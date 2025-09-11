@@ -1,0 +1,180 @@
+// Investment Constants
+export const INVESTMENT_SIZES = {
+  "1MW": {
+    minInvestment: 900000,
+    maxInvestment: 1200000,
+    minRevenue: 200000,
+    maxRevenue: 250000,
+    minROI: 15,
+    maxROI: 20,
+    minPayback: 5,
+    maxPayback: 8,
+    minNPV: 2500000,
+    maxNPV: 4000000,
+  },
+  "5MW": {
+    minInvestment: 4500000,
+    maxInvestment: 6000000,
+    minRevenue: 1000000,
+    maxRevenue: 1250000,
+    minROI: 15,
+    maxROI: 20,
+    minPayback: 5,
+    maxPayback: 8,
+    minNPV: 12000000,
+    maxNPV: 20000000,
+  },
+  "10MW": {
+    minInvestment: 9000000,
+    maxInvestment: 12000000,
+    minRevenue: 2000000,
+    maxRevenue: 2500000,
+    minROI: 15,
+    maxROI: 20,
+    minPayback: 5,
+    maxPayback: 8,
+    minNPV: 25000000,
+    maxNPV: 40000000,
+  },
+} as const
+
+// Cyprus Solar Data
+export const CYPRUS_SOLAR_DATA = {
+  sunHours: 3300,
+  solarIrradiation: 1800, // kWh/m²/year
+  renewablePercentage: 13.8,
+  euAverageRenewable: 19.7,
+  targetCapacity: 1250, // MW by 2030
+  residentialElectricityRate: 0.32, // €/kWh
+  commercialElectricityRate: 0.267, // €/kWh
+  ppaRate: 0.15, // €/kWh average
+  generationCost: 0.06, // €/kWh average
+} as const
+
+// Company Data
+export const COMPANY_DATA = {
+  name: "Lighthief Cyprus",
+  website: "https://solarfarms.cy",
+  email: "info@solarfarms.cy",
+  phone: "+357 [Cyprus office]",
+  offices: 9,
+  assetsUnderManagement: "1GW+",
+  countries: ["Cyprus", "Ukraine", "Kazakhstan", "Gambia", "Kenya"],
+  constructionCostPerMW: {
+    min: 450000,
+    max: 600000,
+  },
+  rtbCostPerMW: {
+    min: 450000,
+    max: 600000,
+  },
+} as const
+
+// SEO Constants
+export const SEO_CONFIG = {
+  siteName: "SolarFarms.cy",
+  siteUrl: "https://solarfarms.cy",
+  defaultTitle: "SolarFarms.cy - Premium Cyprus Solar Investment Platform",
+  defaultDescription: "Invest in Cyprus solar farms with 15-20% ROI. Premium returns in Europe's sunniest climate with Lighthief Cyprus.",
+  defaultKeywords: [
+    "Cyprus solar investment",
+    "solar farm ROI Cyprus",
+    "renewable energy investment Cyprus",
+    "solar PV investment opportunities",
+    "Lighthief Cyprus",
+    "solar farm returns",
+    "Cyprus renewable energy",
+  ],
+  twitterHandle: "@SolarFarmsCy",
+  facebookPage: "SolarFarmsCyprus",
+  linkedinPage: "lighthief-cyprus",
+} as const
+
+// Cyprus Cities for Programmatic SEO
+export const CYPRUS_CITIES = [
+  {
+    name: "Nicosia",
+    slug: "nicosia",
+    population: 330000,
+    description: "Cyprus's capital city with excellent solar potential",
+  },
+  {
+    name: "Limassol",
+    slug: "limassol",
+    population: 235000,
+    description: "Major commercial hub with premium solar opportunities",
+  },
+  {
+    name: "Paphos",
+    slug: "paphos",
+    population: 62000,
+    description: "Tourist destination with high solar irradiation",
+  },
+  {
+    name: "Larnaca",
+    slug: "larnaca",
+    population: 85000,
+    description: "Strategic location with excellent grid connectivity",
+  },
+  {
+    name: "Famagusta",
+    slug: "famagusta",
+    population: 70000,
+    description: "Emerging market with untapped solar potential",
+  },
+] as const
+
+// Navigation Menu
+export const NAVIGATION = {
+  main: [
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Projects", href: "/projects" },
+    { name: "Calculator", href: "/calculator" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
+  ],
+  services: [
+    { name: "EPC Services", href: "/services/epc" },
+    { name: "O&M Management", href: "/services/om" },
+    { name: "Asset Optimization", href: "/services/optimization" },
+    { name: "Lifecycle Support", href: "/services/lifecycle" },
+  ],
+  legal: [
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
+  ],
+} as const
+
+// Form Validation
+export const FORM_LIMITS = {
+  name: { min: 2, max: 50 },
+  email: { max: 254 },
+  phone: { min: 10, max: 15 },
+  message: { min: 10, max: 1000 },
+  company: { max: 100 },
+} as const
+
+// Investment Form Options
+export const INVESTMENT_OPTIONS = [
+  "€500K - €1M",
+  "€1M - €5M",
+  "€5M - €10M",
+  "€10M+",
+] as const
+
+export const TIMELINE_OPTIONS = [
+  "Within 3 months",
+  "3-6 months",
+  "6-12 months",
+  "12+ months",
+] as const
+
+// Analytics Events
+export const ANALYTICS_EVENTS = {
+  CALCULATOR_USED: "calculator_used",
+  GUIDE_DOWNLOADED: "guide_downloaded",
+  CONSULTATION_REQUESTED: "consultation_requested",
+  NEWSLETTER_SUBSCRIBED: "newsletter_subscribed",
+  CONTACT_FORM_SUBMITTED: "contact_form_submitted",
+} as const
