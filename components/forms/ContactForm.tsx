@@ -61,7 +61,7 @@ export function ContactForm() {
         window.gtag('event', 'form_submit', {
           event_category: 'engagement',
           event_label: 'contact_form',
-          value: formData.investmentSize
+          value: 0
         })
       }
       
