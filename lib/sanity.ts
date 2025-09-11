@@ -2,12 +2,14 @@ import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2023-10-01',
   useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_API_TOKEN,
 })
+
+const hasValidConfig = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID)
 
 const builder = imageUrlBuilder(client)
 
@@ -247,65 +249,161 @@ export const queries = {
 
 // Helper functions for fetching data
 export async function getAllPosts() {
-  return await client.fetch(queries.allPosts)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.allPosts)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getPostBySlug(slug: string) {
-  return await client.fetch(queries.postBySlug, { slug })
+  if (!hasValidConfig) return null
+  try {
+    return await client.fetch(queries.postBySlug, { slug })
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return null
+  }
 }
 
 export async function getFeaturedPosts() {
-  return await client.fetch(queries.featuredPosts)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.featuredPosts)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getAllProjects() {
-  return await client.fetch(queries.allProjects)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.allProjects)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getProjectBySlug(slug: string) {
-  return await client.fetch(queries.projectBySlug, { slug })
+  if (!hasValidConfig) return null
+  try {
+    return await client.fetch(queries.projectBySlug, { slug })
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return null
+  }
 }
 
 export async function getFeaturedProjects() {
-  return await client.fetch(queries.featuredProjects)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.featuredProjects)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getAllServices() {
-  return await client.fetch(queries.allServices)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.allServices)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getServiceBySlug(slug: string) {
-  return await client.fetch(queries.serviceBySlug, { slug })
+  if (!hasValidConfig) return null
+  try {
+    return await client.fetch(queries.serviceBySlug, { slug })
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return null
+  }
 }
 
 export async function getAllTeamMembers() {
-  return await client.fetch(queries.allTeamMembers)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.allTeamMembers)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getFeaturedTeamMembers() {
-  return await client.fetch(queries.featuredTeamMembers)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.featuredTeamMembers)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getAllTestimonials() {
-  return await client.fetch(queries.allTestimonials)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.allTestimonials)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getFeaturedTestimonials() {
-  return await client.fetch(queries.featuredTestimonials)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.featuredTestimonials)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getAllGuides() {
-  return await client.fetch(queries.allGuides)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.allGuides)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getGuideBySlug(slug: string) {
-  return await client.fetch(queries.guideBySlug, { slug })
+  if (!hasValidConfig) return null
+  try {
+    return await client.fetch(queries.guideBySlug, { slug })
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return null
+  }
 }
 
 export async function getFeaturedGuides() {
-  return await client.fetch(queries.featuredGuides)
+  if (!hasValidConfig) return []
+  try {
+    return await client.fetch(queries.featuredGuides)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return []
+  }
 }
 
 export async function getSiteSettings() {
-  return await client.fetch(queries.siteSettings)
+  if (!hasValidConfig) return null
+  try {
+    return await client.fetch(queries.siteSettings)
+  } catch (error) {
+    console.warn('Sanity fetch error:', error)
+    return null
+  }
 }
