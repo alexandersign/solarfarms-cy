@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { ROICalculator } from '@/components/calculators/ROICalculator'
 import { ContactForm } from '@/components/forms/ContactForm'
+import { StructuredData, organizationSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = {
   title: 'SolarFarms.cy - Cyprus Solar Farm Investments | 15-20% ROI',
@@ -19,7 +20,13 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <>
+      {/* Structured Data for SEO */}
+      <StructuredData data={organizationSchema} />
+      <StructuredData data={websiteSchema} />
+      <StructuredData data={serviceSchema} />
+      
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50 overflow-hidden">
         {/* Background Images */}
@@ -250,5 +257,6 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

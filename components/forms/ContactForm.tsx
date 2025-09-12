@@ -53,21 +53,33 @@ export function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // Track analytics event
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'form_submit', {
-          event_category: 'engagement',
-          event_label: 'contact_form',
-          value: 0
-        })
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        // Track analytics event
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: 'contact_form',
+            value: 0
+          })
+        }
+        
+        setIsSubmitted(true)
+      } else {
+        throw new Error(result.message || 'Submission failed')
       }
-      
-      setIsSubmitted(true)
     } catch (error) {
       console.error('Form submission error:', error)
+      alert('There was an error submitting your form. Please try again or contact us directly.')
     } finally {
       setIsSubmitting(false)
     }
