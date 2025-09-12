@@ -15,7 +15,7 @@ export default defineConfig({
   name: 'solarfarms-cy',
   title: 'SolarFarms.cy CMS',
   
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '42llz831',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   
   basePath: '/studio',
