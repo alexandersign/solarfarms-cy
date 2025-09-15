@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { 
   Mail, 
