@@ -1,3 +1,45 @@
+// Bank Financing Options
+export const FINANCING_OPTIONS = {
+  CASH: {
+    name: "Cash Purchase",
+    downPayment: 100, // 100% cash
+    loanAmount: 0,
+    interestRate: 0,
+    loanTermYears: 0,
+    description: "Full cash investment with immediate ownership"
+  },
+  BANK_70: {
+    name: "70% Bank Financing",
+    downPayment: 30, // 30% down payment
+    loanAmount: 70, // 70% financed
+    interestRate: 4.5, // Typical Cyprus commercial loan rate
+    loanTermYears: 15, // Standard term for solar projects
+    description: "Leverage bank financing to maximize ROI"
+  },
+  BANK_80: {
+    name: "80% Bank Financing", 
+    downPayment: 20, // 20% down payment
+    loanAmount: 80, // 80% financed
+    interestRate: 5.0, // Slightly higher rate for higher leverage
+    loanTermYears: 12, // Shorter term for higher leverage
+    description: "Maximum leverage option for qualified investors"
+  }
+} as const
+
+// Cyprus Bank Rates (as of 2025)
+export const CYPRUS_BANK_RATES = {
+  commercialLoans: {
+    prime: 4.0, // Prime rate
+    solarProjects: 4.5, // Solar project rate
+    greenFinancing: 4.2, // EU green financing rate
+  },
+  terms: {
+    short: { years: 10, rate: 4.8 },
+    medium: { years: 15, rate: 4.5 },
+    long: { years: 20, rate: 5.2 }
+  }
+} as const
+
 // Investment Constants
 export const INVESTMENT_SIZES = {
   "1MW": {

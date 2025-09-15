@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { INVESTMENT_SIZES, CYPRUS_SOLAR_DATA } from '@/lib/constants'
+import { INVESTMENT_SIZES, CYPRUS_SOLAR_DATA, FINANCING_OPTIONS } from '@/lib/constants'
 import { calculateROI, calculateNPV, formatCurrency, formatPercentage } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Slider } from '@/components/ui/slider'
 import { Badge } from '@/components/ui/badge'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 type InvestmentSize = keyof typeof INVESTMENT_SIZES
 
@@ -20,6 +21,10 @@ interface CalculatorResults {
   npv25: number
   monthlyProfit: number
   breakEvenMonth: number
+  cashInvested: number
+  loanAmount: number
+  annualLoanPayment: number
+  financingType: string
 }
 
 export function ROICalculator() {
@@ -27,6 +32,7 @@ export function ROICalculator() {
   const [customInvestment, setCustomInvestment] = useState(0)
   const [electricityRate, setElectricityRate] = useState([0.15])
   const [operatingCosts, setOperatingCosts] = useState([8]) // Percentage of revenue
+  const [financingOption, setFinancingOption] = useState('CASH')
   const [results, setResults] = useState<CalculatorResults | null>(null)
   const [showResults, setShowResults] = useState(false)
 
@@ -34,12 +40,19 @@ export function ROICalculator() {
 
   useEffect(() => {
     calculateResults()
-  }, [selectedSize, customInvestment, electricityRate, operatingCosts])
+  }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption])
 
   const calculateResults = () => {
-    const investment = customInvestment > 0 ? customInvestment : 
+    const totalInvestment = customInvestment > 0 ? customInvestment : 
       (sizeData.minInvestment + sizeData.maxInvestment) / 2
 
+    // Get financing details
+    const financing = FINANCING_OPTIONS[financingOption as keyof typeof FINANCING_OPTIONS]
+    
+    // Calculate financing structure
+    const downPayment = totalInvestment * (financing.downPayment / 100)
+    const loanAmount = totalInvestment * (financing.loanAmount / 100)
+    
     // Calculate annual energy production (MW * capacity factor * hours per year)
     const capacityMW = selectedSize === '1MW' ? 1 : selectedSize === '5MW' ? 5 : 10
     const capacityFactor = 0.22 // Cyprus average capacity factor
@@ -50,17 +63,30 @@ export function ROICalculator() {
 
     // Calculate operating costs
     const annualOperatingCosts = annualRevenue * (operatingCosts[0] / 100)
-    const annualProfit = annualRevenue - annualOperatingCosts
-
-    // Calculate metrics
-    const roi = (annualProfit / investment) * 100
-    const paybackYears = investment / annualProfit
-    const npv25 = calculateNPV(investment, annualProfit, 0.08, 25)
+    
+    // Calculate loan payments (if financed)
+    let annualLoanPayment = 0
+    if (loanAmount > 0 && financing.loanTermYears > 0) {
+      const monthlyRate = financing.interestRate / 100 / 12
+      const numPayments = financing.loanTermYears * 12
+      const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                            (Math.pow(1 + monthlyRate, numPayments) - 1)
+      annualLoanPayment = monthlyPayment * 12
+    }
+    
+    // Calculate net profit after all costs
+    const annualProfit = annualRevenue - annualOperatingCosts - annualLoanPayment
+    
+    // Calculate metrics based on actual cash invested (down payment)
+    const cashInvested = downPayment
+    const roi = (annualProfit / cashInvested) * 100
+    const paybackYears = cashInvested / annualProfit
+    const npv25 = calculateNPV(cashInvested, annualProfit, 0.08, 25)
     const monthlyProfit = annualProfit / 12
     const breakEvenMonth = Math.ceil(paybackYears * 12)
 
     setResults({
-      investment,
+      investment: totalInvestment,
       annualRevenue,
       annualProfit,
       roi,
@@ -68,6 +94,11 @@ export function ROICalculator() {
       npv25,
       monthlyProfit,
       breakEvenMonth,
+      // Add financing details
+      cashInvested,
+      loanAmount,
+      annualLoanPayment,
+      financingType: financing.name,
     })
   }
 
@@ -188,7 +219,7 @@ export function ROICalculator() {
           </div>
 
           {/* Advanced Parameters */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-6">
               <h3 className="text-xl font-semibold">Electricity Rate (€/kWh)</h3>
               <div className="space-y-4">
@@ -226,6 +257,33 @@ export function ROICalculator() {
                 </div>
               </div>
             </div>
+
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold">Financing Option</h3>
+              <div className="space-y-4">
+                <Select value={financingOption} onValueChange={setFinancingOption}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select financing option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(FINANCING_OPTIONS).map(([key, option]) => (
+                      <SelectItem key={key} value={key}>
+                        <div className="flex flex-col">
+                          <span className="font-medium">{option.name}</span>
+                          <span className="text-xs text-gray-500">{option.description}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {financingOption !== 'CASH' && (
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <div>Interest Rate: {FINANCING_OPTIONS[financingOption as keyof typeof FINANCING_OPTIONS].interestRate}%</div>
+                    <div>Loan Term: {FINANCING_OPTIONS[financingOption as keyof typeof FINANCING_OPTIONS].loanTermYears} years</div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Calculate Button */}
@@ -255,6 +313,7 @@ export function ROICalculator() {
                       {formatPercentage(results.roi)}
                     </div>
                     <div className="text-sm text-gray-600">Annual ROI</div>
+                    <div className="text-xs text-gray-500">On cash invested</div>
                   </CardContent>
                 </Card>
 
@@ -264,6 +323,7 @@ export function ROICalculator() {
                       {results.paybackYears.toFixed(1)} yrs
                     </div>
                     <div className="text-sm text-gray-600">Payback Period</div>
+                    <div className="text-xs text-gray-500">Cash investment</div>
                   </CardContent>
                 </Card>
 
@@ -273,15 +333,17 @@ export function ROICalculator() {
                       {formatCurrency(results.annualProfit)}
                     </div>
                     <div className="text-sm text-gray-600">Annual Profit</div>
+                    <div className="text-xs text-gray-500">After all costs</div>
                   </CardContent>
                 </Card>
 
                 <Card className="text-center">
                   <CardContent className="pt-6">
                     <div className="text-3xl font-bold gradient-text mb-2">
-                      {formatCurrency(results.npv25)}
+                      {formatCurrency(results.cashInvested)}
                     </div>
-                    <div className="text-sm text-gray-600">25-Year NPV</div>
+                    <div className="text-sm text-gray-600">Cash Required</div>
+                    <div className="text-xs text-gray-500">{results.financingType}</div>
                   </CardContent>
                 </Card>
               </div>
@@ -294,10 +356,35 @@ export function ROICalculator() {
                 <CardContent>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-4">
+                      <h4 className="font-semibold text-gray-900 mb-3">Investment Structure</h4>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Total Investment</span>
+                        <span className="text-gray-600">Total Project Cost</span>
                         <span className="font-semibold">{formatCurrency(results.investment)}</span>
                       </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Cash Investment</span>
+                        <span className="font-semibold text-blue-600">{formatCurrency(results.cashInvested)}</span>
+                      </div>
+                      {results.loanAmount > 0 && (
+                        <>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Bank Financing</span>
+                            <span className="font-semibold">{formatCurrency(results.loanAmount)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Annual Loan Payment</span>
+                            <span className="font-semibold text-red-600">{formatCurrency(results.annualLoanPayment)}</span>
+                          </div>
+                        </>
+                      )}
+                      <div className="flex justify-between border-t pt-2">
+                        <span className="text-gray-600">Financing Type</span>
+                        <span className="font-semibold">{results.financingType}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h4 className="font-semibold text-gray-900 mb-3">Financial Performance</h4>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Annual Revenue</span>
                         <span className="font-semibold">{formatCurrency(results.annualRevenue)}</span>
@@ -310,24 +397,13 @@ export function ROICalculator() {
                         <span className="text-gray-600">Monthly Profit</span>
                         <span className="font-semibold text-green-600">{formatCurrency(results.monthlyProfit)}</span>
                       </div>
-                    </div>
-                    
-                    <div className="space-y-4">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Break-even Month</span>
                         <span className="font-semibold">{results.breakEvenMonth}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Electricity Rate</span>
-                        <span className="font-semibold">€{electricityRate[0].toFixed(3)}/kWh</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Operating Costs</span>
-                        <span className="font-semibold">{operatingCosts[0]}% of revenue</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Sun Hours/Year</span>
-                        <span className="font-semibold">{CYPRUS_SOLAR_DATA.sunHours}+</span>
+                      <div className="flex justify-between border-t pt-2">
+                        <span className="text-gray-600">25-Year NPV</span>
+                        <span className="font-semibold text-green-600">{formatCurrency(results.npv25)}</span>
                       </div>
                     </div>
                   </div>
