@@ -174,9 +174,156 @@ export default async function BlogPage() {
             </h2>
           </div>
 
-          {allPosts.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {allPosts.map((post) => (
+          {/* Static Articles for Now */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Featured Articles */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <Image
+                  src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+                  alt="Importance of O&M for solar farms"
+                  width={400}
+                  height={250}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4">
+                  <Badge variant="secondary" className="bg-white/90 text-gray-800">Featured</Badge>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-cyprus-100 text-cyprus-800">operations-maintenance</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/importance-of-om-solar-farms">
+                    Why O&M is Critical for Solar Farm Success
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Professional operations and maintenance can boost your solar farm ROI by 15% and extend asset life beyond 25 years.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Technical Team</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 11, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/importance-of-om-solar-farms"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <Image
+                  src="/images/1690376781153.jpg"
+                  alt="Cyprus solar market analysis"
+                  width={400}
+                  height={250}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4">
+                  <Badge variant="secondary" className="bg-white/90 text-gray-800">Featured</Badge>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">market-analysis</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/cyprus-solar-market-analysis-2025">
+                    Cyprus Solar Market Analysis 2025
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Why Cyprus represents Europe's most compelling solar investment opportunity with 3,300+ sunshine hours and ambitious government targets.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Market Research</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 11, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/cyprus-solar-market-analysis-2025"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <Image
+                  src="/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+                  alt="2025 solar incentives Cyprus"
+                  width={400}
+                  height={250}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-orange-100 text-orange-800">policy-update</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/solar-incentives-cyprus-2025">
+                    2025 Solar Incentives in Cyprus
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Complete guide to 2025 government incentives, EU funding, and policy updates supporting solar farm investments.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Policy Team</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 11, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/solar-incentives-cyprus-2025"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {allPosts.length > 0 ? (
+              <>
+                {allPosts.map((post) => (
                 <Card key={post._id} className="group hover:shadow-xl transition-all duration-300">
                   <div className="relative overflow-hidden rounded-t-lg">
                     {post.featuredImage ? (
@@ -240,9 +387,143 @@ export default async function BlogPage() {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          ) : (
+                ))}
+              </>
+            ) : null}
+
+            {/* Additional Static Articles */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-solar-100 to-cyprus-100 flex items-center justify-center">
+                  <div className="text-6xl">💰</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">investment-strategy</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/solar-farm-financing-strategies-2025">
+                    Solar Farm Financing Strategies 2025
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Learn how strategic financing can boost your solar farm ROI from 18% to 45%+ while preserving capital for additional investments.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 11, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/solar-farm-financing-strategies-2025"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-cyprus-100 to-solar-100 flex items-center justify-center">
+                  <div className="text-6xl">🛡️</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-red-100 text-red-800">risk-management</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/risk-mitigation-solar-investments">
+                    Risk Mitigation in Solar Investments
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Comprehensive strategies to protect your solar investment returns and minimize risks in renewable energy projects.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Risk Management</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 11, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/risk-mitigation-solar-investments"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                  <div className="text-6xl">🇪🇺</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">market-comparison</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/cyprus-vs-eu-solar-markets">
+                    Cyprus vs Other EU Solar Markets
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Detailed comparison of Cyprus solar investments vs Germany, Spain, Italy. Why Cyprus delivers superior returns.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Research Team</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 11, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/cyprus-vs-eu-solar-markets"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {allPosts.length > 0 && (
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">Additional Articles from CMS</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {allPosts.map((post) => (
             /* Placeholder when no posts */
             <div className="text-center py-16">
               <div className="text-6xl mb-4">📝</div>
