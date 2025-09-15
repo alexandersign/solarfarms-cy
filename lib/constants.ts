@@ -95,10 +95,11 @@ export const CYPRUS_SOLAR_DATA = {
 
 // Company Data
 export const COMPANY_DATA = {
-  name: "Lighthief Cyprus",
+  name: "Lighthief Cyprus Ltd",
+  legalName: "LIGHTHIEF CYPRUS LTD",
   website: "https://solarfarms.cy",
-  email: "info@solarfarms.cy",
-  phone: "+357 [Cyprus office]",
+  email: "office@lighthief.com",
+  phone: "+357 77 77 00 50",
   offices: 9,
   assetsUnderManagement: "1GW+",
   countries: ["Cyprus", "Ukraine", "Kazakhstan", "Gambia", "Kenya"],
@@ -110,6 +111,42 @@ export const COMPANY_DATA = {
     min: 450000,
     max: 600000,
   },
+  address: {
+    office: {
+      street: "28 October Ave 249",
+      building: "Lophitis Business Center 1, Office 201",
+      city: "Limassol",
+      postalCode: "3035",
+      country: "Cyprus",
+      full: "28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus"
+    },
+    registered: {
+      street: "Agiou Andreou 241",
+      building: "AG TRIAS COURT, Flat/Office 31",
+      city: "Limassol", 
+      postalCode: "3036",
+      country: "Cyprus",
+      full: "Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus"
+    }
+  },
+  registration: {
+    companyNumber: "HE 477423",
+    tin: "60187188Q",
+    country: "Cyprus"
+  },
+  contacts: {
+    businessDevelopment: {
+      name: "Alexander Papacosta",
+      title: "Business Development Manager",
+      email: "alexander.papacosta@lighthief.com",
+      phone: "+357 99 164 158"
+    },
+    investors: {
+      email: "a.sybaris@lighthief.com",
+      phone: "+357 95 152 788",
+      description: "Contact for investors and potential partners"
+    }
+  }
 } as const
 
 // SEO Constants

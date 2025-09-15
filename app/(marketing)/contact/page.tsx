@@ -70,26 +70,26 @@ const contactMethods = [
 const offices = [
   {
     city: "Cyprus (Headquarters)",
-    address: "Cyprus Business Center\nNicosia, Cyprus",
-    phone: "+357 [Main Office]",
-    email: "cyprus@solarfarms.cy",
+    address: "28 October Ave 249\nLophitis Business Center 1, Office 201\n3035 Limassol, Cyprus",
+    phone: "+357 77 77 00 50",
+    email: "office@lighthief.com",
     hours: "Mon-Fri 9AM-6PM CET",
     primary: true
   },
   {
-    city: "European Operations",
-    address: "9 offices across EU\nGermany, Poland, Czech Republic",
-    phone: "+49 [EU Office]", 
-    email: "europe@solarfarms.cy",
-    hours: "Mon-Fri 8AM-6PM CET",
+    city: "Business Development",
+    address: "Alexander Papacosta\nBusiness Development Manager",
+    phone: "+357 99 164 158", 
+    email: "alexander.papacosta@lighthief.com",
+    hours: "Mon-Fri 9AM-6PM CET",
     primary: false
   },
   {
-    city: "International",
-    address: "Ukraine, Kazakhstan\nGambia, Kenya",
-    phone: "+380 [International]",
-    email: "international@solarfarms.cy", 
-    hours: "Various time zones",
+    city: "Investor Relations",
+    address: "Investment & Partnership Inquiries",
+    phone: "+357 95 152 788",
+    email: "a.sybaris@lighthief.com", 
+    hours: "Mon-Fri 9AM-6PM CET",
     primary: false
   }
 ]

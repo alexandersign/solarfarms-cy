@@ -17,24 +17,47 @@ export function StructuredData({ data }: StructuredDataProps) {
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Lighthief Cyprus Ltd",
+  "name": "LIGHTHIEF CYPRUS LTD",
   "alternateName": "SolarFarms.cy",
   "url": "https://solarfarms.cy",
   "logo": "https://solarfarms.cy/images/logo.png",
   "description": "Premium Cyprus solar farm investments with guaranteed 15-20% ROI. Full lifecycle support from development to recycling.",
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "CY",
-    "addressLocality": "Nicosia",
-    "addressRegion": "Nicosia District"
+    "streetAddress": "28 October Ave 249, Lophitis Business Center 1, Office 201",
+    "addressLocality": "Limassol",
+    "postalCode": "3035",
+    "addressCountry": "CY"
   },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+357-[Cyprus-Office]",
-    "contactType": "customer service",
-    "email": "info@solarfarms.cy",
-    "availableLanguage": ["English", "Greek"]
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+357-77-77-00-50",
+      "contactType": "customer service",
+      "email": "office@lighthief.com",
+      "availableLanguage": ["English", "Greek"]
+    },
+    {
+      "@type": "ContactPoint", 
+      "telephone": "+357-99-164-158",
+      "contactType": "sales",
+      "email": "alexander.papacosta@lighthief.com",
+      "availableLanguage": ["English", "Greek"]
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+357-95-152-788", 
+      "contactType": "investor relations",
+      "email": "a.sybaris@lighthief.com",
+      "availableLanguage": ["English", "Greek"]
+    }
+  ],
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "Cyprus Company Registration",
+    "value": "HE 477423"
   },
+  "taxID": "60187188Q",
   "sameAs": [
     "https://linkedin.com/company/lighthief-cyprus",
     "https://twitter.com/solarfarmscyprus"

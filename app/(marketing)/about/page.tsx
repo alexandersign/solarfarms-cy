@@ -19,37 +19,51 @@ export const metadata: Metadata = {
 
 const teamMembers = [
   {
-    name: "Dr. Andreas Constantinou",
-    position: "Managing Director & Chief Investment Officer",
-    bio: "Dr. Constantinou leads Lighthief Cyprus with over 15 years of experience in renewable energy investments and project development. He holds a PhD in Electrical Engineering from University of Cyprus and has overseen €500M+ in solar investments across Europe.",
+    name: "Alexander Papacosta",
+    position: "Business Development Manager",
+    bio: "Alexander leads business development and investor relations for Lighthief Cyprus. He specializes in structuring solar farm investments and guiding clients through the complete investment process from initial consultation to operational projects.",
     credentials: [
-      "PhD Electrical Engineering, University of Cyprus",
-      "Certified Energy Manager (CEM)",
-      "PMP Project Management Professional",
-      "Member of Cyprus Energy Regulatory Authority Advisory Board"
+      "Business Development Manager, Lighthief Cyprus",
+      "Solar Investment Specialist",
+      "Investor Relations Expert",
+      "Cyprus Market Specialist"
     ],
+    contact: {
+      email: "alexander.papacosta@lighthief.com",
+      phone: "+357 99 164 158"
+    },
     image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
   },
   {
-    name: "Maria Georgiou",
-    position: "Head of Business Development",
-    bio: "Maria drives investor relations and business development for Lighthief Cyprus. With an MBA in Finance and 12 years in investment banking, she specializes in structuring large-scale renewable energy investments for institutional clients.",
+    name: "Investment Relations Team",
+    position: "Investor & Partnership Specialist",
+    bio: "Our dedicated investor relations team works with high-net-worth individuals, family offices, and institutional investors to structure optimal solar investment solutions. Specialized in large-scale renewable energy partnerships.",
     credentials: [
-      "MBA Finance, London Business School",
-      "CFA Chartered Financial Analyst",
-      "Former VP at Deutsche Bank Energy Division"
+      "Institutional Investment Specialists",
+      "Cyprus Investment Experts",
+      "Renewable Energy Finance",
+      "Partnership Structuring"
     ],
+    contact: {
+      email: "a.sybaris@lighthief.com",
+      phone: "+357 95 152 788"
+    },
     image: "/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
   },
   {
-    name: "Dimitris Pavlou",
-    position: "Chief Technology Officer",
-    bio: "Dimitris oversees all technical aspects of solar farm development and operations. His expertise in grid integration and advanced monitoring systems ensures optimal performance and maximum returns for investors.",
+    name: "Technical Operations Team",
+    position: "Engineering & Project Management",
+    bio: "Our technical team oversees all aspects of solar farm development and operations. From initial site assessment to ongoing maintenance, we ensure optimal performance and maximum returns for every investment.",
     credentials: [
-      "MSc Renewable Energy Systems, Technical University of Cyprus",
-      "Certified Solar PV Installer (NABCEP)",
-      "Grid Integration Specialist"
+      "Solar Engineering Specialists",
+      "Project Management Professionals",
+      "Grid Integration Experts",
+      "Performance Optimization"
     ],
+    contact: {
+      email: "office@lighthief.com",
+      phone: "+357 77 77 00 50"
+    },
     image: "/images/1690376781153.jpg"
   }
 ]

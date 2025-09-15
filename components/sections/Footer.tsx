@@ -76,9 +76,14 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-solar-400" />
                 <span className="text-gray-300 text-sm">{COMPANY_DATA.phone}</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-solar-400" />
-                <span className="text-gray-300 text-sm">Cyprus Headquarters</span>
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-solar-400 mt-0.5" />
+                <span className="text-gray-300 text-sm">
+                  {COMPANY_DATA.address.office.full}
+                </span>
+              </div>
+              <div className="text-xs text-gray-400 mt-2">
+                Company Registration: {COMPANY_DATA.registration.companyNumber} | TIN: {COMPANY_DATA.registration.tin}
               </div>
             </div>
           </div>

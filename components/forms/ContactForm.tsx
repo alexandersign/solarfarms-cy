@@ -142,7 +142,7 @@ export function ContactForm() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Email</h3>
-              <p className="text-gray-600">info@solarfarms.cy</p>
+              <p className="text-gray-600">office@lighthief.com</p>
             </div>
           </div>
 
@@ -152,7 +152,7 @@ export function ContactForm() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Phone</h3>
-              <p className="text-gray-600">+357 [Cyprus Office]</p>
+              <p className="text-gray-600">+357 77 77 00 50</p>
             </div>
           </div>
 
@@ -162,7 +162,7 @@ export function ContactForm() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Location</h3>
-              <p className="text-gray-600">Cyprus Headquarters<br />9 European Offices</p>
+              <p className="text-gray-600">28 October Ave 249<br />Lophitis Business Center 1<br />3035 Limassol, Cyprus</p>
             </div>
           </div>
 

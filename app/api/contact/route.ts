@@ -120,10 +120,15 @@ async function sendAutoresponder(data: any) {
     Best regards,
     The Lighthief Cyprus Team
     
-    Lighthief Cyprus Ltd
-    Cyprus Headquarters
-    Email: info@solarfarms.cy
-    Phone: +357 [Cyprus Office]
+    LIGHTHIEF CYPRUS LTD
+    28 October Ave 249, Lophitis Business Center 1, Office 201
+    3035 Limassol, Cyprus
+    
+    General Inquiries: office@lighthief.com | +357 77 77 00 50
+    Business Development: alexander.papacosta@lighthief.com | +357 99 164 158
+    Investor Relations: a.sybaris@lighthief.com | +357 95 152 788
+    
+    Company Registration: HE 477423 | TIN: 60187188Q
     Web: https://solarfarms.cy
   `
   
