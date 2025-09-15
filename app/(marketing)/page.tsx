@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { ROICalculator } from '@/components/calculators/ROICalculator'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { StructuredData, organizationSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
@@ -59,12 +61,16 @@ export default function HomePage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                <button className="btn-primary text-lg px-8 py-4">
-                  Download Investment Guide
-                </button>
-                <button className="btn-secondary text-lg px-8 py-4">
-                  Schedule Consultation
-                </button>
+                <Button variant="solar" size="xl" asChild>
+                  <Link href="/contact">
+                    Download Investment Guide
+                  </Link>
+                </Button>
+                <Button variant="cyprus" size="xl" asChild>
+                  <Link href="/contact">
+                    Schedule Consultation
+                  </Link>
+                </Button>
               </div>
               
               {/* Key Stats */}
@@ -177,9 +183,11 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <button className="w-full btn-primary">
-                Learn More
-              </button>
+              <Button variant="gradient" className="w-full" asChild>
+                <Link href="/calculator">
+                  Calculate Returns
+                </Link>
+              </Button>
             </div>
 
             {/* 5MW Investment */}
@@ -211,9 +219,11 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <button className="w-full btn-primary">
-                Learn More
-              </button>
+              <Button variant="gradient" className="w-full" asChild>
+                <Link href="/calculator">
+                  Calculate Returns
+                </Link>
+              </Button>
             </div>
 
             {/* 10MW Investment */}
@@ -242,9 +252,11 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <button className="w-full btn-primary">
-                Learn More
-              </button>
+              <Button variant="gradient" className="w-full" asChild>
+                <Link href="/calculator">
+                  Calculate Returns
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
