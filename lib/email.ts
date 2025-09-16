@@ -1,7 +1,8 @@
 import { Resend } from 'resend'
 import { COMPANY_DATA } from './constants'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialize Resend only if API key is available
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 interface ContactEmailData {
   name: string
@@ -19,7 +20,7 @@ interface NewsletterEmailData {
 }
 
 export async function sendContactNotification(data: ContactEmailData) {
-  if (!process.env.RESEND_API_KEY) {
+  if (!process.env.RESEND_API_KEY || !resend) {
     console.warn('RESEND_API_KEY not configured, skipping email notification')
     return { success: false, message: 'Email service not configured' }
   }
@@ -46,7 +47,7 @@ export async function sendContactNotification(data: ContactEmailData) {
 }
 
 export async function sendContactAutoresponder(data: ContactEmailData) {
-  if (!process.env.RESEND_API_KEY) {
+  if (!process.env.RESEND_API_KEY || !resend) {
     console.warn('RESEND_API_KEY not configured, skipping autoresponder')
     return { success: false, message: 'Email service not configured' }
   }
@@ -72,7 +73,7 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
 }
 
 export async function sendNewsletterWelcome(data: NewsletterEmailData) {
-  if (!process.env.RESEND_API_KEY) {
+  if (!process.env.RESEND_API_KEY || !resend) {
     console.warn('RESEND_API_KEY not configured, skipping newsletter welcome')
     return { success: false, message: 'Email service not configured' }
   }
