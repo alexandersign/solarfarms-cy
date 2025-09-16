@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calendar, User, Clock, Shield, AlertTriangle, CheckCircle, TrendingDown, Umbrella } from 'lucide-react'
+import { Calendar, User, Clock, Shield, AlertTriangle, CheckCircle, TrendingDown, Umbrella, FileText } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Risk Mitigation in Solar Farm Investments | Protect Your Renewable Energy ROI',
