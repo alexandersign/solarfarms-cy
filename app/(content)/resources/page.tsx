@@ -14,7 +14,8 @@ import {
   Calculator,
   BookOpen,
   Shield,
-  Globe
+  Globe,
+  CheckCircle
 } from 'lucide-react'
 
 export const metadata: Metadata = {
