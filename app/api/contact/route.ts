@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { sendContactNotification, sendContactAutoresponder } from '@/lib/email'
 
 // Validation schema for contact form
 const contactSchema = z.object({
@@ -31,11 +32,11 @@ export async function POST(request: NextRequest) {
     // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    // Send email notification (placeholder)
-    await sendEmailNotification(validatedData)
+    // Send email notification to team
+    await sendContactNotification(validatedData)
     
-    // Send autoresponder (placeholder)
-    await sendAutoresponder(validatedData)
+    // Send autoresponder to client
+    await sendContactAutoresponder(validatedData)
     
     return NextResponse.json(
       { 

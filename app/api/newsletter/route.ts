@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { sendNewsletterWelcome } from '@/lib/email'
 
 // Validation schema for newsletter signup
 const newsletterSchema = z.object({
@@ -25,11 +26,11 @@ export async function POST(request: NextRequest) {
     // Simulate processing
     await new Promise(resolve => setTimeout(resolve, 500))
     
-    // Add to email list (placeholder)
+    // Add to email list (placeholder - integrate with email platform)
     await addToEmailList(validatedData)
     
-    // Send welcome email (placeholder)
-    await sendWelcomeEmail(validatedData)
+    // Send welcome email
+    await sendNewsletterWelcome(validatedData)
     
     return NextResponse.json(
       { 
