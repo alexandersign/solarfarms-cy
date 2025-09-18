@@ -19,20 +19,36 @@ export const metadata: Metadata = {
 
 const teamMembers = [
   {
-    name: "Alexander Papacosta",
-    position: "Business Development Manager",
-    bio: "Alexander leads business development and investor relations for Lighthief Cyprus. He specializes in structuring solar farm investments and guiding clients through the complete investment process from initial consultation to operational projects.",
+    name: "Vladimiros Taliadoros",
+    position: "Director",
+    bio: "Vladimiros serves as Director of Lighthief Cyprus Ltd, overseeing strategic operations and business development. He leads the company's expansion in the Cyprus market and manages key investor relationships for large-scale solar farm projects.",
     credentials: [
-      "Business Development Manager, Lighthief Cyprus",
+      "Director, Lighthief Cyprus Ltd (HE 477423)",
+      "Strategic Operations Leadership",
+      "Cyprus Market Development",
+      "International Solar Project Management"
+    ],
+    contact: {
+      email: "office@lighthief.com",
+      phone: "+357 77 77 00 50"
+    },
+    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+  },
+  {
+    name: "Kostas Alexander Papakosta",
+    position: "Company Secretary & Business Development",
+    bio: "Kostas serves as Company Secretary and leads business development initiatives for Lighthief Cyprus. He specializes in investor relations, project structuring, and guiding clients through the complete solar investment process from consultation to operational projects.",
+    credentials: [
+      "Company Secretary, Lighthief Cyprus Ltd",
+      "Business Development Manager",
       "Solar Investment Specialist",
-      "Investor Relations Expert",
-      "Cyprus Market Specialist"
+      "Cyprus Regulatory Expert"
     ],
     contact: {
       email: "alexander.papacosta@lighthief.com",
       phone: "+357 99 164 158"
     },
-    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+    image: "/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
   },
   {
     name: "Investment Relations Team",
@@ -69,12 +85,12 @@ const teamMembers = [
 ]
 
 const companyStats = [
-  { icon: Globe, label: "European Offices", value: "9", description: "Across major EU markets" },
-  { icon: TrendingUp, label: "Assets Under Management", value: "1GW+", description: "Solar installations" },
-  { icon: Users, label: "Team Members", value: "150+", description: "Solar professionals" },
-  { icon: Award, label: "Years Experience", value: "15+", description: "In renewable energy" },
-  { icon: MapPin, label: "Countries", value: "5", description: "Active operations" },
-  { icon: Shield, label: "Success Rate", value: "100%", description: "Project completion" }
+  { icon: Globe, label: "International Presence", value: "Global", description: "Cyprus headquarters with international reach" },
+  { icon: TrendingUp, label: "Business Evolution", value: "2017-2025", description: "From recycling to full EPC services" },
+  { icon: Users, label: "Service Range", value: "Full Spectrum", description: "Residential to large-scale solar farms" },
+  { icon: Award, label: "Years Experience", value: "8+", description: "Since 2017 founding" },
+  { icon: MapPin, label: "Cyprus Focus", value: "300+", description: "Sunny days annually" },
+  { icon: Shield, label: "Service Quality", value: "Certified", description: "Specialist team with ongoing support" }
 ]
 
 export default function AboutPage() {
@@ -160,21 +176,23 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Founded as part of the Lighthief International network, Lighthief Cyprus represents 
-                  the culmination of over 15 years of renewable energy expertise. We established our 
-                  Cyprus headquarters to capitalize on the island's exceptional solar potential and 
-                  strategic position in the European energy market.
+                  Lighthief's journey began in 2017 when founders Darius and Arkadius identified a critical 
+                  need for sustainable solutions in the renewable energy sector, particularly concerning 
+                  the recycling of used solar panels. This innovative approach to end-of-life solar 
+                  panel management laid the foundation for what would become a comprehensive energy solutions company.
                 </p>
                 <p>
-                  What started as a vision to democratize access to premium solar investments has grown 
-                  into Europe's fastest-growing solar O&M company. With 1GW+ of assets under management 
-                  and operations across 9 European offices, we've proven that sustainable energy and 
-                  superior returns go hand in hand.
+                  From our initial focus on solar panel recycling, we strategically expanded into operations 
+                  and maintenance (O&M) services, recognizing the growing need for reliable servicing and 
+                  maintenance in the rapidly growing solar market. This natural evolution led us to become 
+                  a full-service Engineering, Procurement, and Construction (EPC) contractor, offering 
+                  complete project lifecycle management.
                 </p>
                 <p>
-                  Our Cyprus operations leverage the island's 3,300+ annual sunshine hours and favorable 
-                  regulatory environment to deliver consistent 15-20% ROI for our investors. We're not 
-                  just building solar farms – we're building the future of sustainable investing.
+                  Today, Lighthief Cyprus Ltd (HE 477423) operates from our Limassol headquarters, serving 
+                  as the central hub for our international operations and strategic decision-making. With 
+                  Cyprus's 300+ sunny days annually and supportive regulatory environment, we deliver 
+                  comprehensive solar solutions from residential installations to large-scale solar farms.
                 </p>
               </div>
             </div>

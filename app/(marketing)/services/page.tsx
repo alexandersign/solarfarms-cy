@@ -181,8 +181,8 @@ export default function ServicesPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-              Full lifecycle solar farm services from development to recycling. 
-              Everything you need for successful solar investments in Cyprus.
+              Founded in 2017, Lighthief evolved from solar panel recycling pioneers to full-service 
+              EPC contractors. Complete lifecycle solutions from our Limassol headquarters.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

@@ -7,8 +7,8 @@ import { ContactForm } from '@/components/forms/ContactForm'
 import { StructuredData, organizationSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'SolarFarms.cy - Cyprus Solar Farm Investments | 15-20% ROI',
-  description: 'Invest in Cyprus solar farms with guaranteed 15-20% ROI. Premium returns in Europe\'s sunniest climate. Ready-to-build projects with full lifecycle support.',
+  title: 'SolarFarms.cy - Cyprus Solar Farm Investments | 8-12% IRR',
+  description: 'Invest in Cyprus solar farms with 8-12% equity IRR. Premium returns in Europe\'s sunniest climate. Ready-to-build projects with full lifecycle support from Lighthief Cyprus.',
   keywords: [
     'Cyprus solar investment',
     'solar farm ROI Cyprus',
@@ -56,8 +56,8 @@ export default function HomePage() {
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-                Invest in ready-to-build solar farms with guaranteed 15-20% ROI, 
-                5-8 year payback, and full lifecycle support from Lighthief Cyprus.
+                Invest in ready-to-build solar farms with 8-12% equity IRR, 
+                7-10 year payback, and full lifecycle support from Lighthief Cyprus.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
@@ -80,11 +80,11 @@ export default function HomePage() {
                   <div className="text-sm text-gray-600">Sun Hours/Year</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold gradient-text">15-20%</div>
-                  <div className="text-sm text-gray-600">Annual ROI</div>
+                  <div className="text-3xl font-bold gradient-text">8-12%</div>
+                  <div className="text-sm text-gray-600">Equity IRR</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold gradient-text">5-8</div>
+                  <div className="text-3xl font-bold gradient-text">7-10</div>
                   <div className="text-sm text-gray-600">Years Payback</div>
                 </div>
                 <div className="text-center lg:text-left">

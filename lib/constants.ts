@@ -40,43 +40,43 @@ export const CYPRUS_BANK_RATES = {
   }
 } as const
 
-// Investment Constants
+// Investment Constants (Based on Real Lighthief Data)
 export const INVESTMENT_SIZES = {
   "1MW": {
-    minInvestment: 900000,
+    minInvestment: 800000,  // Based on research: €800K-€1.2M per MW
     maxInvestment: 1200000,
-    minRevenue: 200000,
-    maxRevenue: 250000,
-    minROI: 15,
-    maxROI: 20,
-    minPayback: 5,
-    maxPayback: 8,
-    minNPV: 2500000,
-    maxNPV: 4000000,
+    minRevenue: 180000,     // More conservative based on PPA rates €0.06-0.08/kWh
+    maxRevenue: 240000,
+    minROI: 8,              // More realistic: 8-12% equity IRR
+    maxROI: 12,
+    minPayback: 7,          // Research shows 7-10 years
+    maxPayback: 10,
+    minNPV: 1800000,
+    maxNPV: 3200000,
   },
   "5MW": {
-    minInvestment: 4500000,
+    minInvestment: 4000000,  // €800K-€1.2M per MW * 5
     maxInvestment: 6000000,
-    minRevenue: 1000000,
-    maxRevenue: 1250000,
-    minROI: 15,
-    maxROI: 20,
-    minPayback: 5,
-    maxPayback: 8,
-    minNPV: 12000000,
-    maxNPV: 20000000,
+    minRevenue: 900000,      // More conservative PPA rates
+    maxRevenue: 1200000,
+    minROI: 8,               // Realistic 8-12% equity IRR
+    maxROI: 12,
+    minPayback: 7,
+    maxPayback: 10,
+    minNPV: 9000000,
+    maxNPV: 16000000,
   },
   "10MW": {
-    minInvestment: 9000000,
+    minInvestment: 8000000,  // €800K-€1.2M per MW * 10
     maxInvestment: 12000000,
-    minRevenue: 2000000,
-    maxRevenue: 2500000,
-    minROI: 15,
-    maxROI: 20,
-    minPayback: 5,
-    maxPayback: 8,
-    minNPV: 25000000,
-    maxNPV: 40000000,
+    minRevenue: 1800000,     // Conservative PPA rates
+    maxRevenue: 2400000,
+    minROI: 8,               // Realistic 8-12% equity IRR
+    maxROI: 12,
+    minPayback: 7,
+    maxPayback: 10,
+    minNPV: 18000000,
+    maxNPV: 32000000,
   },
 } as const
 
@@ -93,16 +93,22 @@ export const CYPRUS_SOLAR_DATA = {
   generationCost: 0.06, // €/kWh average
 } as const
 
-// Company Data
+// Company Data (Real Lighthief Information)
 export const COMPANY_DATA = {
   name: "Lighthief Cyprus Ltd",
   legalName: "LIGHTHIEF CYPRUS LTD",
   website: "https://solarfarms.cy",
   email: "office@lighthief.com",
   phone: "+357 77 77 00 50",
-  offices: 9,
-  assetsUnderManagement: "1GW+",
-  countries: ["Cyprus", "Ukraine", "Kazakhstan", "Gambia", "Kenya"],
+  founded: "2017",
+  incorporatedCyprus: "July 1, 2025",
+  founders: ["Darius", "Arkadius"],
+  headquarters: "Limassol, Cyprus",
+  businessModel: "Full-service solar solutions from recycling to EPC",
+  evolution: "Started with solar panel recycling (2017) → O&M services → Full EPC contractor",
+  specialization: "Residential to large-scale solar farms and panel recycling",
+  offices: "International presence with Cyprus headquarters",
+  countries: ["Cyprus", "Europe", "International markets"],
   constructionCostPerMW: {
     min: 450000,
     max: 600000,
