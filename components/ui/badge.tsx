@@ -15,8 +15,8 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
-        solar: "border-transparent bg-solar-100 text-solar-800 hover:bg-solar-200",
-        cyprus: "border-transparent bg-cyprus-100 text-cyprus-800 hover:bg-cyprus-200",
+        solar: "border-transparent bg-solar-500 text-white hover:bg-solar-600 font-semibold",
+        cyprus: "border-transparent bg-cyprus-500 text-white hover:bg-cyprus-600 font-semibold",
       },
     },
     defaultVariants: {

@@ -449,7 +449,7 @@ export default function OMServicesPage() {
                 Request O&M Proposal
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10" asChild>
+            <Button size="lg" className="btn-outline-on-dark" asChild>
               <Link href="/projects">
                 View O&M Success Stories
               </Link>

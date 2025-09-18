@@ -462,7 +462,7 @@ export default function ServicesPage() {
             <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
               Schedule Consultation
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+            <Button size="lg" className="btn-outline-on-dark">
               Download Service Guide
             </Button>
           </div>

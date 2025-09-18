@@ -18,9 +18,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        solar: "bg-solar-500 text-white hover:bg-solar-600",
-        cyprus: "bg-cyprus-500 text-white hover:bg-cyprus-600",
-        gradient: "bg-gradient-to-r from-solar-500 to-cyprus-600 text-white hover:from-solar-600 hover:to-cyprus-700",
+        solar: "bg-solar-500 text-white hover:bg-solar-600 font-semibold shadow-lg",
+        cyprus: "bg-cyprus-500 text-white hover:bg-cyprus-600 font-semibold shadow-lg",
+        gradient: "bg-gradient-to-r from-solar-500 to-cyprus-600 text-white hover:from-solar-600 hover:to-cyprus-700 font-semibold shadow-lg",
+        "outline-on-dark": "bg-white/10 backdrop-blur-sm border-2 border-white text-white font-semibold hover:bg-white hover:text-gray-900 shadow-lg",
       },
       size: {
         default: "h-10 px-4 py-2",

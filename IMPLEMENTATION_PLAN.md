@@ -308,3 +308,4 @@ Your SolarFarms.cy platform is now **fully developed and ready for business oper
 - Platform is optimized for lead generation
 
 **You're ready to start generating serious investor inquiries today!**
+

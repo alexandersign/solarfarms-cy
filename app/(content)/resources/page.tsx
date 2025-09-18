@@ -464,7 +464,7 @@ export default function ResourcesPage() {
                 Download Complete Guide
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10" asChild>
+            <Button size="lg" className="btn-outline-on-dark" asChild>
               <Link href="/contact">
                 Schedule Expert Consultation
               </Link>
