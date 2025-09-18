@@ -218,6 +218,7 @@ export const NAVIGATION = {
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
     { name: "Calculator", href: "/calculator" },
+    { name: "Landowners", href: "/landowners" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],

@@ -262,6 +262,52 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Landowner CTA */}
+      <section className="section-padding bg-gradient-to-r from-green-500 to-solar-500 text-white">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                Own Land in Cyprus?
+              </h2>
+              <p className="text-xl mb-6 opacity-90">
+                Discover your land's solar potential. Get instant assessment and learn how 
+                to earn €15K-80K annually or €200K-2M sale premium.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button variant="secondary" size="lg" className="bg-white text-green-600 hover:bg-gray-100" asChild>
+                  <Link href="/landowners">
+                    Assess My Land Value
+                  </Link>
+                </Button>
+                <Button size="lg" className="btn-outline-on-dark">
+                  Upload Title Deed
+                </Button>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold mb-1">€25K/year</div>
+                <div className="text-sm opacity-80">Average 5-acre lease</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold mb-1">€600K</div>
+                <div className="text-sm opacity-80">Average sale premium</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold mb-1">18 months</div>
+                <div className="text-sm opacity-80">To Ready-to-Build</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold mb-1">Free</div>
+                <div className="text-sm opacity-80">Initial Assessment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section className="section-padding bg-gray-50">
         <div className="container">
