@@ -221,8 +221,8 @@ function getContactAutoresponderTemplate(data: ContactEmailData): string {
             
             <p><strong>Contact Information:</strong><br>
             General: office@lighthief.com | +357 77 77 00 50<br>
-            Business Development: alexander.papacosta@lighthief.com | +357 99 164 158<br>
-            Investor Relations: a.sybaris@lighthief.com | +357 95 152 788</p>
+            Business Development: Alexander Papacosta - alexander.papacosta@lighthief.com | +357 99 164 158<br>
+            Investor Relations: Akradiusz Sybaris - a.sybaris@lighthief.com | +357 95 152 788</p>
             
             <p>Company Registration: HE 477423 | TIN: 60187188Q<br>
             Website: https://solarfarms.cy</p>

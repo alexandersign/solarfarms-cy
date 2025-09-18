@@ -51,14 +51,15 @@ const teamMembers = [
     image: "/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
   },
   {
-    name: "Investment Relations Team",
-    position: "Investor & Partnership Specialist",
-    bio: "Our dedicated investor relations team works with high-net-worth individuals, family offices, and institutional investors to structure optimal solar investment solutions. Specialized in large-scale renewable energy partnerships.",
+    name: "Akradiusz Sybaris",
+    position: "Investor Relations & Partnership Director",
+    bio: "Akradiusz leads investor relations and partnership development for Lighthief Cyprus. He specializes in working with high-net-worth individuals, family offices, and institutional investors to structure optimal solar investment solutions and large-scale renewable energy partnerships.",
     credentials: [
-      "Institutional Investment Specialists",
-      "Cyprus Investment Experts",
-      "Renewable Energy Finance",
-      "Partnership Structuring"
+      "Investor Relations Director, Lighthief Cyprus",
+      "Institutional Investment Specialist",
+      "Cyprus Investment Expert",
+      "Renewable Energy Finance Professional",
+      "Partnership Structuring Specialist"
     ],
     contact: {
       email: "a.sybaris@lighthief.com",

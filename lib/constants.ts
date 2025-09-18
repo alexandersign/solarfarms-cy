@@ -148,6 +148,8 @@ export const COMPANY_DATA = {
       phone: "+357 99 164 158"
     },
     investors: {
+      name: "Akradiusz Sybaris",
+      title: "Investor Relations & Partnership Director",
       email: "a.sybaris@lighthief.com",
       phone: "+357 95 152 788",
       description: "Contact for investors and potential partners"
