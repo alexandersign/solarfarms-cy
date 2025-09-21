@@ -26,11 +26,15 @@ export async function sendContactNotification(data: ContactEmailData) {
   }
 
   try {
+    console.log('Attempting to send notification to:', [COMPANY_DATA.email, COMPANY_DATA.contacts.businessDevelopment.email])
+    console.log('CC to:', [COMPANY_DATA.contacts.investors.email])
+    
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@resend.dev>',
-      to: [COMPANY_DATA.email, COMPANY_DATA.contacts.businessDevelopment.email],
-      cc: [COMPANY_DATA.contacts.investors.email],
-      subject: `New Solar Investment Inquiry - ${data.investmentSize}`,
+      to: ['lighthiefcyprus@gmail.com'], // Temporary: sending to your Gmail for testing
+      // Original: to: [COMPANY_DATA.email, COMPANY_DATA.contacts.businessDevelopment.email],
+      // Original: cc: [COMPANY_DATA.contacts.investors.email],
+      subject: `NEW LEAD NOTIFICATION - ${data.investmentSize}`,
       html: getContactNotificationTemplate(data),
     })
 
