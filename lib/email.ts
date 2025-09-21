@@ -27,7 +27,7 @@ export async function sendContactNotification(data: ContactEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@solarfarms.cy>',
+      from: 'SolarFarms.cy <noreply@resend.dev>',
       to: [COMPANY_DATA.email, COMPANY_DATA.contacts.businessDevelopment.email],
       cc: [COMPANY_DATA.contacts.investors.email],
       subject: `New Solar Investment Inquiry - ${data.investmentSize}`,
@@ -54,7 +54,7 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'Alexander Papacosta <alexander.papacosta@lighthief.com>',
+      from: 'Alexander Papacosta <noreply@resend.dev>',
       to: [data.email],
       subject: 'Thank you for your interest in Cyprus Solar Investments',
       html: getContactAutoresponderTemplate(data),
@@ -80,7 +80,7 @@ export async function sendNewsletterWelcome(data: NewsletterEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <insights@solarfarms.cy>',
+      from: 'SolarFarms.cy <noreply@resend.dev>',
       to: [data.email],
       subject: 'Welcome to SolarFarms.cy - Your Solar Investment Journey Begins',
       html: getNewsletterWelcomeTemplate(data),
