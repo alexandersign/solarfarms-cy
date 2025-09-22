@@ -39,10 +39,6 @@ export function ROICalculator() {
 
   const sizeData = INVESTMENT_SIZES[selectedSize]
 
-  useEffect(() => {
-    calculateResults()
-  }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption, calculateResults])
-
   const calculateResults = useCallback(() => {
     const totalInvestment = customInvestment > 0 ? customInvestment : 
       (sizeData.minInvestment + sizeData.maxInvestment) / 2
@@ -105,6 +101,10 @@ export function ROICalculator() {
       financingType: financing.name,
     })
   }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption, sizeData])
+
+  useEffect(() => {
+    calculateResults()
+  }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption, calculateResults])
 
   const handleCalculate = () => {
     setShowResults(true)
