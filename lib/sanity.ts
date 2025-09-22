@@ -253,7 +253,7 @@ export async function getAllPosts() {
   try {
     return await client.fetch(queries.allPosts)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -263,7 +263,7 @@ export async function getPostBySlug(slug: string) {
   try {
     return await client.fetch(queries.postBySlug, { slug })
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return null
   }
 }
@@ -273,7 +273,7 @@ export async function getFeaturedPosts() {
   try {
     return await client.fetch(queries.featuredPosts)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -283,7 +283,7 @@ export async function getAllProjects() {
   try {
     return await client.fetch(queries.allProjects)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -293,7 +293,7 @@ export async function getProjectBySlug(slug: string) {
   try {
     return await client.fetch(queries.projectBySlug, { slug })
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return null
   }
 }
@@ -303,7 +303,7 @@ export async function getFeaturedProjects() {
   try {
     return await client.fetch(queries.featuredProjects)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -313,7 +313,7 @@ export async function getAllServices() {
   try {
     return await client.fetch(queries.allServices)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -323,7 +323,7 @@ export async function getServiceBySlug(slug: string) {
   try {
     return await client.fetch(queries.serviceBySlug, { slug })
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return null
   }
 }
@@ -333,7 +333,7 @@ export async function getAllTeamMembers() {
   try {
     return await client.fetch(queries.allTeamMembers)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -343,7 +343,7 @@ export async function getFeaturedTeamMembers() {
   try {
     return await client.fetch(queries.featuredTeamMembers)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -353,7 +353,7 @@ export async function getAllTestimonials() {
   try {
     return await client.fetch(queries.allTestimonials)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -363,7 +363,7 @@ export async function getFeaturedTestimonials() {
   try {
     return await client.fetch(queries.featuredTestimonials)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -373,7 +373,7 @@ export async function getAllGuides() {
   try {
     return await client.fetch(queries.allGuides)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -383,7 +383,7 @@ export async function getGuideBySlug(slug: string) {
   try {
     return await client.fetch(queries.guideBySlug, { slug })
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return null
   }
 }
@@ -393,7 +393,7 @@ export async function getFeaturedGuides() {
   try {
     return await client.fetch(queries.featuredGuides)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return []
   }
 }
@@ -403,7 +403,7 @@ export async function getSiteSettings() {
   try {
     return await client.fetch(queries.siteSettings)
   } catch (error) {
-    console.warn('Sanity fetch error:', error)
+    // Sanity fetch error - silently fail in production
     return null
   }
 }

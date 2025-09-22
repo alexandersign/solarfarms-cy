@@ -26,8 +26,7 @@ export async function sendContactNotification(data: ContactEmailData) {
   }
 
   try {
-    console.log('Attempting to send notification to:', [COMPANY_DATA.email, COMPANY_DATA.contacts.businessDevelopment.email])
-    console.log('CC to:', [COMPANY_DATA.contacts.investors.email])
+    // Attempting to send notification to team
     
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
@@ -38,13 +37,13 @@ export async function sendContactNotification(data: ContactEmailData) {
     })
 
     if (error) {
-      console.error('Email notification error:', error)
+      // Email notification error
       return { success: false, error }
     }
 
     return { success: true, data: emailResult }
   } catch (error) {
-    console.error('Email service error:', error)
+    // Email service error
     return { success: false, error }
   }
 }
@@ -64,13 +63,13 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
     })
 
     if (error) {
-      console.error('Autoresponder error:', error)
+      // Autoresponder error
       return { success: false, error }
     }
 
     return { success: true, data: emailResult }
   } catch (error) {
-    console.error('Autoresponder service error:', error)
+    // Autoresponder service error
     return { success: false, error }
   }
 }
@@ -90,13 +89,13 @@ export async function sendNewsletterWelcome(data: NewsletterEmailData) {
     })
 
     if (error) {
-      console.error('Newsletter welcome error:', error)
+      // Newsletter welcome error
       return { success: false, error }
     }
 
     return { success: true, data: emailResult }
   } catch (error) {
-    console.error('Newsletter service error:', error)
+    // Newsletter service error
     return { success: false, error }
   }
 }

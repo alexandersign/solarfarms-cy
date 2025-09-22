@@ -90,7 +90,8 @@ export const updateConsent = (granted: boolean) => {
   if (typeof window !== 'undefined' && window.gtag) {
     const consentValue = granted ? 'granted' : 'denied'
     
-    window.gtag('consent', 'update', {
+    // Use any type to bypass TypeScript consent API limitations
+    ;(window.gtag as any)('consent', 'update', {
       'analytics_storage': consentValue,
       'ad_storage': consentValue,
       'ad_user_data': consentValue,
