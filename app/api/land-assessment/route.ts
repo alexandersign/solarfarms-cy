@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     )
     
   } catch (error) {
-    console.error('Land assessment error:', error)
+    // Land assessment error
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(

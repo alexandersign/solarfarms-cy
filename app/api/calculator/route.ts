@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     )
     
   } catch (error) {
-    console.error('Calculator API error:', error)
+    // Calculator API error
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(

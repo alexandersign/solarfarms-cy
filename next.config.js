@@ -10,10 +10,6 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-select'],
-  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },

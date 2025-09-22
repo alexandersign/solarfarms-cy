@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { INVESTMENT_SIZES, CYPRUS_SOLAR_DATA, FINANCING_OPTIONS } from '@/lib/constants'
 import { calculateROI, calculateNPV, formatCurrency, formatPercentage } from '@/lib/utils'
@@ -41,9 +41,9 @@ export function ROICalculator() {
 
   useEffect(() => {
     calculateResults()
-  }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption])
+  }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption, calculateResults])
 
-  const calculateResults = () => {
+  const calculateResults = useCallback(() => {
     const totalInvestment = customInvestment > 0 ? customInvestment : 
       (sizeData.minInvestment + sizeData.maxInvestment) / 2
     
@@ -104,7 +104,7 @@ export function ROICalculator() {
       annualLoanPayment,
       financingType: financing.name,
     })
-  }
+  }, [selectedSize, customInvestment, electricityRate, operatingCosts, financingOption, sizeData])
 
   const handleCalculate = () => {
     setShowResults(true)
