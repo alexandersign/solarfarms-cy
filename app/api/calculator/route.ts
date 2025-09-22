@@ -146,12 +146,15 @@ function calculateIRR(investment: number, annualProfit: number): number {
 
 async function trackCalculatorUsage(data: any, results: any) {
   // Track calculator usage for analytics
-  // Processing calculator('Calculator usage tracked:', {
+  // In production, send to analytics platform
+  const analyticsData = {
     projectSize: data.projectSize,
     roi: results.roi,
     investment: results.investment,
     timestamp: new Date().toISOString()
-  })
+  }
+  
+  // TODO: Send to PostHog, Google Analytics, or other analytics platform
   
   // TODO: Integrate with analytics platform (PostHog, Google Analytics)
   return true

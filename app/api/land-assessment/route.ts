@@ -136,28 +136,30 @@ async function performLandAssessment(data: any) {
 
 async function saveLandOwnerLead(data: any, assessment: any) {
   // In production, save to Supabase database
-  // Processing assessment('Saving land owner lead:', {
+  const leadData = {
     owner: data.ownerName,
     email: data.email,
     location: data.location,
     capacity: assessment.plotAnalysis.capacity,
-    rtbValue: assessment.financialProjections.rtbValue
-  })
+    rtbValue: assessment.financialProjections.rtbValue,
+    timestamp: new Date().toISOString()
+  }
   
-  // TODO: Integrate with Supabase
+  // TODO: Integrate with Supabase to save leadData
   return true
 }
 
 async function notifyTeamOfLandAssessment(data: any, assessment: any) {
   // Notify Akradiusz Sybaris and team about new land assessment
-  // Processing assessment('Notifying team of land assessment:', {
+  const notificationData = {
     landOwner: data.ownerName,
     location: data.location,
     capacity: assessment.plotAnalysis.capacity,
-    confidence: assessment.confidence
-  })
+    confidence: assessment.confidence,
+    timestamp: new Date().toISOString()
+  }
   
-  // TODO: Send email notification to a.sybaris@lighthief.com
+  // TODO: Send email notification to a.sybaris@lighthief.com with notificationData
   return true
 }
 
