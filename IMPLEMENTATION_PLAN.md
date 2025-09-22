@@ -168,7 +168,81 @@ Your SolarFarms.cy platform is now **fully developed and ready for business oper
 
 ---
 
-### **Phase E: Advanced Features (Optional)**
+### **Phase E: Cyprus Government API Integration (4-6 hours)**
+**Status**: 🏛️ **GOVERNMENT DATA INTEGRATION**
+
+**Cyprus Department of Land and Surveys APIs Available**:
+Based on the official [Cyprus DLS API Catalogue](https://portal.dls.moi.gov.cy/en/alles-ypiresies/katalogos-apis/), the following APIs can enhance the land assessment tool:
+
+1. **Administrative Map API** 
+   - **URL**: `https://eservices.dls.moi.gov.cy/arcgis/rest/services/National/AdminBoundaries%5FIndexes%5FEN/MapServer`
+   - **Data**: Districts, Municipalities/Communities, Parishes, Sections
+   - **Use Case**: Verify land administrative boundaries
+   - **Access**: Contact dls_portal_badmin@dls.moi.gov.cy
+
+2. **Cadastral/Survey Map API** ⭐ **MOST IMPORTANT**
+   - **URL**: `https://eservices.dls.moi.gov.cy/arcgis/rest/services/National/CadastralMap%5FEN/MapServer`
+   - **Data**: Plot boundaries, cadastral plans, urban zones, building factors
+   - **Use Case**: Real plot analysis, zoning verification, building permissions
+   - **Access**: Contact dls_portal_badmin@dls.moi.gov.cy
+
+3. **Topographical Map API**
+   - **URL**: `https://eservices.dls.moi.gov.cy/arcgis/rest/services/National/Topography%5FEN/MapServer`
+   - **Data**: Contour lines, road network, power stations, EAC high voltage network
+   - **Use Case**: Site accessibility, grid connection analysis
+   - **Access**: Contact dls_portal_badmin@dls.moi.gov.cy
+
+**Implementation Steps**:
+1. **Contact DLS Portal Administrator**:
+   - Email: dls_portal_badmin@dls.moi.gov.cy
+   - Request access to Cadastral Map API (priority)
+   - Provide business justification (solar development platform)
+
+2. **API Integration**:
+   ```typescript
+   // Add to environment variables
+   CYPRUS_DLS_API_KEY=your_api_key
+   CYPRUS_DLS_BASE_URL=https://eservices.dls.moi.gov.cy/arcgis/rest/services
+   
+   // Update land assessment API
+   async function getCyprusPlotData(coordinates: {lat: number, lng: number}) {
+     const response = await fetch(
+       `${process.env.CYPRUS_DLS_BASE_URL}/National/CadastralMap_EN/MapServer/identify`,
+       {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/x-www-form-urlencoded',
+         },
+         body: new URLSearchParams({
+           geometry: `${coordinates.lng},${coordinates.lat}`,
+           geometryType: 'esriGeometryPoint',
+           layers: 'visible:0,1,2', // Plots, Urban Zones, Building Factors
+           tolerance: 10,
+           mapExtent: '...',
+           imageDisplay: '400,400,96',
+           returnGeometry: 'false',
+           f: 'json'
+         })
+       }
+     )
+     return response.json()
+   }
+   ```
+
+3. **Enhanced Land Assessment Features**:
+   - **Real Plot Boundaries**: Exact plot dimensions and boundaries
+   - **Zoning Verification**: Official zoning status and restrictions
+   - **Building Factors**: Development potential and limitations
+   - **Administrative Data**: Municipality, parish, district information
+   - **Grid Proximity**: Distance to EAC power infrastructure
+
+**Business Impact**:
+- **Authentic Data**: Real Cyprus government data instead of simulations
+- **Accurate Assessments**: Precise plot analysis and development potential
+- **Legal Compliance**: Official zoning and regulatory information
+- **Enhanced Credibility**: Government-backed data validation
+
+### **Phase F: Advanced Features (Optional)**
 **Status**: 🔮 **FUTURE ENHANCEMENTS**
 
 **Potential Additions**:
@@ -212,7 +286,15 @@ Your SolarFarms.cy platform is now **fully developed and ready for business oper
 2. **Add GA_ID to Vercel environment variables**
 3. **Verify**: Check analytics dashboard for traffic
 
-### **Priority 3: Supabase Database (2-3 hours)**
+### **Priority 3: Cyprus Government API Access (1 hour)**
+**Impact**: High - Enables authentic land assessment data
+
+1. **Email DLS Portal Administrator**: dls_portal_badmin@dls.moi.gov.cy
+2. **Request access to Cadastral Map API** for solar development platform
+3. **Provide business justification**: Lighthief Cyprus solar farm development
+4. **Integrate real plot data** into land assessment tool
+
+### **Priority 4: Supabase Database (2-3 hours)**
 **Impact**: Medium - Enables lead management
 
 1. **Create Supabase project**

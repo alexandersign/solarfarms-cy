@@ -488,7 +488,7 @@ export default function AboutPage() {
             <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
               Schedule Consultation
             </Button>
-            <Button size="lg" className="btn-outline-on-dark">
+            <Button variant="outline-on-dark" size="lg">
               View Investment Opportunities
             </Button>
           </div>

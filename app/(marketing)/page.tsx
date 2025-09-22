@@ -280,7 +280,7 @@ export default function HomePage() {
                     Assess My Land Value
                   </Link>
                 </Button>
-                <Button size="lg" className="btn-outline-on-dark">
+                <Button variant="outline-on-dark" size="lg">
                   Upload Title Deed
                 </Button>
               </div>

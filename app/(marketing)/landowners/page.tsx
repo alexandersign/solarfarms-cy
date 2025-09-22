@@ -596,7 +596,7 @@ export default function LandownersPage() {
             <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
               Order Professional Study
             </Button>
-            <Button size="lg" className="btn-outline-on-dark" asChild>
+            <Button variant="cyprus" size="lg" asChild>
               <Link href="/services/epc-services">
                 Learn About Our EPC Services
               </Link>

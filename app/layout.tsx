@@ -3,6 +3,7 @@ import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
+import { GoogleAnalytics, ConsentBanner } from '@/components/analytics/GoogleAnalytics'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -55,6 +56,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased">
+        <GoogleAnalytics />
+        <ConsentBanner />
         <Header />
         <main>{children}</main>
         <Footer />

@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Slider } from '@/components/ui/slider'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { trackEvent } from '@/components/analytics/GoogleAnalytics'
 
 type InvestmentSize = keyof typeof INVESTMENT_SIZES
 
@@ -45,6 +46,9 @@ export function ROICalculator() {
   const calculateResults = () => {
     const totalInvestment = customInvestment > 0 ? customInvestment : 
       (sizeData.minInvestment + sizeData.maxInvestment) / 2
+    
+    // Track calculator usage
+    trackEvent('calculator_calculation', 'ROI Calculator', selectedSize, totalInvestment)
 
     // Get financing details
     const financing = FINANCING_OPTIONS[financingOption as keyof typeof FINANCING_OPTIONS]

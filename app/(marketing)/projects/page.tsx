@@ -445,7 +445,7 @@ export default function ProjectsPage() {
             <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
               Schedule Project Tour
             </Button>
-            <Button size="lg" className="btn-outline-on-dark">
+            <Button variant="outline-on-dark" size="lg">
               Download Project Portfolio
             </Button>
           </div>
