@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     // 3. Send welcome email
     // 4. Tag based on source
     
-    console.log('Newsletter signup:', validatedData)
+    // Processing newsletter signup
     
     // Simulate processing
     await new Promise(resolve => setTimeout(resolve, 500))
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     )
     
   } catch (error) {
-    console.error('Newsletter signup error:', error)
+    // Newsletter signup error
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
 async function addToEmailList(data: any) {
   // In production, integrate with email marketing platform
-  console.log('Adding to email list:', data.email)
+  // Adding to email list
   
   // TODO: Integrate with Mailchimp, ConvertKit, or similar
   // Example: await mailchimp.lists.addListMember(listId, { email_address: data.email })
@@ -77,7 +77,7 @@ async function addToEmailList(data: any) {
 
 async function sendWelcomeEmail(data: any) {
   // In production, send welcome email with investment resources
-  console.log('Sending welcome email to:', data.email)
+  // Sending welcome email
   
   const welcomeContent = `
     Welcome to SolarFarms.cy!

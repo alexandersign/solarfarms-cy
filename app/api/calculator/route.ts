@@ -146,7 +146,7 @@ function calculateIRR(investment: number, annualProfit: number): number {
 
 async function trackCalculatorUsage(data: any, results: any) {
   // Track calculator usage for analytics
-  console.log('Calculator usage tracked:', {
+  // Processing calculator('Calculator usage tracked:', {
     projectSize: data.projectSize,
     roi: results.roi,
     investment: results.investment,
@@ -159,7 +159,7 @@ async function trackCalculatorUsage(data: any, results: any) {
 
 async function generatePDFReport(data: any, results: any): Promise<string> {
   // In production, generate PDF using Puppeteer or similar
-  console.log('Generating PDF report for:', data.projectSize)
+  // Processing calculator('Generating PDF report for:', data.projectSize)
   
   // TODO: Implement PDF generation
   // Example: Use @react-pdf/renderer or Puppeteer

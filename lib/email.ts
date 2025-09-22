@@ -21,7 +21,7 @@ interface NewsletterEmailData {
 
 export async function sendContactNotification(data: ContactEmailData) {
   if (!process.env.RESEND_API_KEY || !resend) {
-    console.warn('RESEND_API_KEY not configured, skipping email notification')
+    // Email service not configured('RESEND_API_KEY not configured, skipping email notification')
     return { success: false, message: 'Email service not configured' }
   }
 
@@ -50,7 +50,7 @@ export async function sendContactNotification(data: ContactEmailData) {
 
 export async function sendContactAutoresponder(data: ContactEmailData) {
   if (!process.env.RESEND_API_KEY || !resend) {
-    console.warn('RESEND_API_KEY not configured, skipping autoresponder')
+    // Email service not configured('RESEND_API_KEY not configured, skipping autoresponder')
     return { success: false, message: 'Email service not configured' }
   }
 
@@ -76,7 +76,7 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
 
 export async function sendNewsletterWelcome(data: NewsletterEmailData) {
   if (!process.env.RESEND_API_KEY || !resend) {
-    console.warn('RESEND_API_KEY not configured, skipping newsletter welcome')
+    // Email service not configured('RESEND_API_KEY not configured, skipping newsletter welcome')
     return { success: false, message: 'Email service not configured' }
   }
 

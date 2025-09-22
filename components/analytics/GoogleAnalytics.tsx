@@ -14,10 +14,10 @@ interface GoogleAnalyticsProps {
 export function GoogleAnalytics({ gaId = GA_ID }: GoogleAnalyticsProps) {
   return (
     <>
-      {/* Google Consent Mode - Must load BEFORE GA */}
+      {/* Google Consent Mode - Load early */}
       <Script
         id="google-consent-mode"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -126,7 +126,7 @@ export function ConsentBanner() {
     const shouldShowBanner = !consentGiven || 
       (consentDate && new Date(consentDate) < oneYearAgo)
     
-    setShowBanner(shouldShowBanner)
+    setShowBanner(Boolean(shouldShowBanner))
     setLoading(false)
   }, [])
 

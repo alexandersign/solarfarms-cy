@@ -78,7 +78,7 @@ async function performLandAssessment(data: any) {
   // - EAC grid connection database
   // - Solar irradiation mapping services
   
-  console.log('Performing land assessment for:', data.location)
+  // Processing assessment('Performing land assessment for:', data.location)
   
   // Simulate assessment based on Cyprus data
   const plotSizeHectares = parseFloat(data.plotSize) || 5
@@ -136,7 +136,7 @@ async function performLandAssessment(data: any) {
 
 async function saveLandOwnerLead(data: any, assessment: any) {
   // In production, save to Supabase database
-  console.log('Saving land owner lead:', {
+  // Processing assessment('Saving land owner lead:', {
     owner: data.ownerName,
     email: data.email,
     location: data.location,
@@ -150,7 +150,7 @@ async function saveLandOwnerLead(data: any, assessment: any) {
 
 async function notifyTeamOfLandAssessment(data: any, assessment: any) {
   // Notify Akradiusz Sybaris and team about new land assessment
-  console.log('Notifying team of land assessment:', {
+  // Processing assessment('Notifying team of land assessment:', {
     landOwner: data.ownerName,
     location: data.location,
     capacity: assessment.plotAnalysis.capacity,

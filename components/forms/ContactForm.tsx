@@ -78,7 +78,7 @@ export function ContactForm() {
         throw new Error(result.message || 'Submission failed')
       }
     } catch (error) {
-      console.error('Form submission error:', error)
+      // Form submission error
       alert('There was an error submitting your form. Please try again or contact us directly.')
     } finally {
       setIsSubmitting(false)

@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     )
     
   } catch (error) {
-    console.error('Analytics tracking error:', error)
+    // Analytics tracking error
     
     return NextResponse.json(
       { success: false },
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
 }
 
 async function trackEvent(data: any) {
-  console.log('Analytics event:', data)
+  // Processing analytics event
   
   // In production, integrate with:
   // - PostHog: await posthog.capture(data.userId, data.event, data.properties)

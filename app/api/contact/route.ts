@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     // 4. Send autoresponder email
     
     // For now, we'll simulate the process
-    console.log('Contact form submission:', validatedData)
+    // Processing contact form submission
     
     // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 1000))
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     )
     
   } catch (error) {
-    console.error('Contact form error:', error)
+    // Contact form processing error
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
 // Placeholder functions for email functionality
 async function sendEmailNotification(data: any) {
   // In production, use Resend, SendGrid, or similar service
-  console.log('Sending email notification to team:', data)
+  // Sending email notification to team
   
   const emailContent = `
     New Solar Investment Inquiry
@@ -96,7 +96,7 @@ async function sendEmailNotification(data: any) {
 
 async function sendAutoresponder(data: any) {
   // In production, send personalized autoresponder
-  console.log('Sending autoresponder to:', data.email)
+  // Sending autoresponder to client
   
   const autoresponderContent = `
     Dear ${data.name},
