@@ -40,6 +40,8 @@ export default function HomePage() {
               fill
               className="object-cover opacity-10"
               priority
+              quality={75}
+              sizes="100vw"
             />
           </div>
         </div>
