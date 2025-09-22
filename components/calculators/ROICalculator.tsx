@@ -234,6 +234,7 @@ export function ROICalculator() {
                   min={0.10}
                   step={0.01}
                   className="w-full"
+                  aria-label="Electricity rate slider"
                 />
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>€0.10</span>
@@ -253,6 +254,7 @@ export function ROICalculator() {
                   min={5}
                   step={0.5}
                   className="w-full"
+                  aria-label="Operating costs percentage slider"
                 />
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>5%</span>
@@ -265,10 +267,10 @@ export function ROICalculator() {
             <div className="space-y-6">
               <h3 className="text-xl font-semibold">Financing Option</h3>
               <div className="space-y-4">
-                <Select value={financingOption} onValueChange={setFinancingOption}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select financing option" />
-                  </SelectTrigger>
+            <Select value={financingOption} onValueChange={setFinancingOption}>
+              <SelectTrigger aria-label="Select financing option">
+                <SelectValue placeholder="Select financing option" />
+              </SelectTrigger>
                   <SelectContent>
                     {Object.entries(FINANCING_OPTIONS).map(([key, option]) => (
                       <SelectItem key={key} value={key}>

@@ -250,7 +250,7 @@ export function ContactForm() {
                   Investment Size *
                 </label>
                 <Select value={formData.investmentSize} onValueChange={handleSelectChange('investmentSize')} required>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Select investment range">
                     <SelectValue placeholder="Select investment range" />
                   </SelectTrigger>
                   <SelectContent>
@@ -267,7 +267,7 @@ export function ContactForm() {
                   Timeline *
                 </label>
                 <Select value={formData.timeline} onValueChange={handleSelectChange('timeline')} required>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Select timeline">
                     <SelectValue placeholder="Select timeline" />
                   </SelectTrigger>
                   <SelectContent>

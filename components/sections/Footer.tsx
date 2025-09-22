@@ -23,10 +23,10 @@ export function Footer() {
               Full lifecycle support from development to recycling.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-solar-400 transition-colors">
+              <a href="https://linkedin.com/company/lighthief-cyprus" className="text-gray-300 hover:text-solar-400 transition-colors" aria-label="Follow us on LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-solar-400 transition-colors">
+              <a href="https://twitter.com/solarfarmscyprus" className="text-gray-300 hover:text-solar-400 transition-colors" aria-label="Follow us on Twitter">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>

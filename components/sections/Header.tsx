@@ -45,8 +45,10 @@ export function Header() {
                 ROI Calculator
               </Link>
             </Button>
-            <Button variant="gradient" size="sm">
-              Get Started
+            <Button variant="gradient" size="sm" asChild>
+              <Link href="/contact">
+                Get Started
+              </Link>
             </Button>
           </div>
 
@@ -85,8 +87,10 @@ export function Header() {
                     ROI Calculator
                   </Link>
                 </Button>
-                <Button variant="gradient" size="sm">
-                  Get Started
+                <Button variant="gradient" size="sm" asChild>
+                  <Link href="/contact">
+                    Get Started
+                  </Link>
                 </Button>
               </div>
             </nav>

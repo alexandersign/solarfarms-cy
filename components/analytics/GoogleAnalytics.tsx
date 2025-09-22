@@ -150,7 +150,7 @@ export function ConsentBanner() {
             <h3 className="font-semibold text-gray-900 mb-1">Cookie Preferences</h3>
             <p className="text-sm text-gray-600">
               We use cookies to enhance your experience, analyze site traffic, and provide personalized investment recommendations. 
-              <a href="/privacy" className="text-cyprus-600 hover:underline ml-1">
+              <a href="/privacy" className="text-cyprus-700 hover:underline ml-1 font-medium">
                 Learn more about our privacy policy
               </a>
             </p>
