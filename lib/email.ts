@@ -68,8 +68,8 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
     const { data: emailResult, error } = await resend.emails.send({
       from: 'Lighthief Cyprus <onboarding@resend.dev>',
       replyTo: 'lighthiefcyprus@gmail.com',
-      to: [data.email],
-      subject: 'Thank you for your interest in Cyprus Solar Investments',
+      to: ['lighthiefcyprus@gmail.com'], // Temporary: Route all autoresponders to main account
+      subject: `[AUTORESPONDER FOR: ${data.email}] Thank you for your interest in Cyprus Solar Investments`,
       html: getContactAutoresponderTemplate(data),
     })
 
