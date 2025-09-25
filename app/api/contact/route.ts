@@ -88,13 +88,34 @@ export async function POST(request: NextRequest) {
     const savedContact = await contactsService.create(contactToSave)
     
     // Send email notification to team (with file info)
-    await sendContactNotification({
+    console.log('Sending team notification...')
+    const notificationResult = await sendContactNotification({
       ...validatedData,
       attachedFiles: uploadedFileUrls
     })
+    console.log('Team notification result:', notificationResult)
     
     // Send autoresponder to client
-    await sendContactAutoresponder(validatedData)
+    console.log('Sending autoresponder...')
+    const autoresponderResult = await sendContactAutoresponder(validatedData)
+    console.log('Autoresponder result:', autoresponderResult)
+    
+    // Check if emails failed
+    if (!notificationResult.success || !autoresponderResult.success) {
+      console.error('Email sending failed:', {
+        notification: notificationResult,
+        autoresponder: autoresponderResult
+      })
+      
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: 'Form submitted but email delivery failed. We have your information and will contact you directly.',
+          emailError: true
+        },
+        { status: 200 } // Still 200 since form data was saved
+      )
+    }
     
     return NextResponse.json(
       { 

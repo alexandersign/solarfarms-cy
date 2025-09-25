@@ -48,14 +48,15 @@ export async function sendContactNotification(data: ContactEmailData) {
     })
 
     if (error) {
-      // Email notification error
-      return { success: false, error }
+      console.error('Email notification error:', error)
+      return { success: false, error, message: 'Failed to send team notification' }
     }
 
+    console.log('Team notification sent successfully:', emailResult)
     return { success: true, data: emailResult }
   } catch (error) {
-    // Email service error
-    return { success: false, error }
+    console.error('Email service error:', error)
+    return { success: false, error, message: 'Email service error' }
   }
 }
 
@@ -75,14 +76,15 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
     })
 
     if (error) {
-      // Autoresponder error
-      return { success: false, error }
+      console.error('Autoresponder error:', error)
+      return { success: false, error, message: 'Failed to send autoresponder' }
     }
 
+    console.log('Autoresponder sent successfully:', emailResult)
     return { success: true, data: emailResult }
   } catch (error) {
-    // Autoresponder service error
-    return { success: false, error }
+    console.error('Autoresponder service error:', error)
+    return { success: false, error, message: 'Autoresponder service error' }
   }
 }
 
