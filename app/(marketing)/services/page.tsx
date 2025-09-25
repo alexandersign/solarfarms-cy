@@ -189,8 +189,10 @@ export default function ServicesPage() {
               <Button variant="gradient" size="lg">
                 Explore Services
               </Button>
-              <Button variant="outline" size="lg">
-                Request Quote
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/contact?service=consultation">
+                  Request Quote
+                </Link>
               </Button>
             </div>
           </div>

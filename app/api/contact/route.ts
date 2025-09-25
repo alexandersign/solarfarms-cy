@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
     // Processing contact form submission
     
     // Save contact to Supabase database
-    const savedContact = await contactsService.create({
+    const contactToSave = {
       name: validatedData.name,
       email: validatedData.email,
       phone: validatedData.phone,
@@ -74,9 +74,15 @@ export async function POST(request: NextRequest) {
       investment_size: validatedData.investmentSize, // Map field name
       timeline: validatedData.timeline,
       message: validatedData.message,
-      attached_files: uploadedFileUrls,
       source: 'website'
-    })
+    }
+    
+    // Add attached_files only if there are files (in case column doesn't exist yet)
+    if (uploadedFileUrls.length > 0) {
+      (contactToSave as any).attached_files = uploadedFileUrls
+    }
+    
+    const savedContact = await contactsService.create(contactToSave)
     
     // Send email notification to team (with file info)
     await sendContactNotification({

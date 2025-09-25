@@ -282,8 +282,10 @@ export default function HomePage() {
                     Assess My Land Value
                   </Link>
                 </Button>
-                <Button variant="outline-on-dark" size="lg">
-                  Upload Title Deed
+                <Button variant="outline-on-dark" size="lg" asChild>
+                  <Link href="/landowners">
+                    Upload Title Deed
+                  </Link>
                 </Button>
               </div>
             </div>

@@ -34,7 +34,7 @@ const contactMethods = [
     icon: Phone,
     title: "Phone Consultation",
     description: "Speak directly with our investment experts",
-    contact: "+357 [Cyprus Office]",
+    contact: "+357 77 77 00 50",
     availability: "Mon-Fri 9AM-6PM CET",
     action: "Call Now",
     color: "solar"
@@ -189,7 +189,22 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-600 mb-3">{method.description}</p>
                   <div className="text-sm font-medium text-gray-900 mb-1">{method.contact}</div>
                   <div className="text-xs text-gray-500 mb-4">{method.availability}</div>
-                  <Button variant="outline" size="sm" className="group-hover:bg-solar-50">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="group-hover:bg-solar-50"
+                    onClick={() => {
+                      if (method.action === 'Call Now') {
+                        window.open('tel:+35777770050', '_self')
+                      } else if (method.action === 'Send Email') {
+                        window.open('mailto:office@lighthief.com?subject=Solar Investment Inquiry', '_self')
+                      } else if (method.action === 'Schedule Meeting') {
+                        window.open('https://calendly.com/lighthief-cyprus', '_blank')
+                      } else if (method.action === 'Book Visit') {
+                        window.open('mailto:office@lighthief.com?subject=Office Visit Request&body=I would like to schedule an office visit to discuss solar investment opportunities.', '_self')
+                      }
+                    }}
+                  >
                     {method.action}
                   </Button>
                 </CardContent>

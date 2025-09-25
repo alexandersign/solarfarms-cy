@@ -212,11 +212,15 @@ export default function EPCServicesPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button variant="gradient" size="lg">
-                Request EPC Quote
+              <Button variant="gradient" size="lg" asChild>
+                <Link href="/contact?service=epc">
+                  Request EPC Quote
+                </Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Download EPC Guide
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/resources">
+                  Download EPC Guide
+                </Link>
               </Button>
             </div>
 
@@ -403,8 +407,10 @@ export default function EPCServicesPage() {
                     <span>25-year performance warranty</span>
                   </div>
                 </div>
-                <Button variant="solar" className="w-full">
-                  Request Quote
+                <Button variant="solar" className="w-full" asChild>
+                  <Link href="/contact?package=starter">
+                    Request Quote
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -439,8 +445,10 @@ export default function EPCServicesPage() {
                     <span>Enhanced performance guarantee</span>
                   </div>
                 </div>
-                <Button variant="cyprus" className="w-full">
-                  Request Quote
+                <Button variant="cyprus" className="w-full" asChild>
+                  <Link href="/contact?package=professional">
+                    Request Quote
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
