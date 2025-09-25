@@ -36,8 +36,8 @@ export async function sendContactNotification(data: ContactEmailData) {
     // Attempting to send notification to team
     
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@resend.dev>',
-      replyTo: 'alexander.papacosta@lighthief.com',
+      from: 'Lighthief Cyprus <onboarding@resend.dev>',
+      replyTo: 'lighthiefcyprus@gmail.com',
       to: [
         'office@lighthief.com',
         'alexander.papacosta@lighthief.com',
@@ -67,8 +67,8 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@resend.dev>',
-      replyTo: 'alexander.papacosta@lighthief.com',
+      from: 'Lighthief Cyprus <onboarding@resend.dev>',
+      replyTo: 'lighthiefcyprus@gmail.com',
       to: [data.email],
       subject: 'Thank you for your interest in Cyprus Solar Investments',
       html: getContactAutoresponderTemplate(data),
@@ -94,8 +94,8 @@ export async function sendNewsletterWelcome(data: NewsletterEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@resend.dev>',
-      replyTo: 'alexander.papacosta@lighthief.com',
+      from: 'Lighthief Cyprus <onboarding@resend.dev>',
+      replyTo: 'lighthiefcyprus@gmail.com',
       to: [data.email],
       subject: 'Welcome to SolarFarms.cy - Your Solar Investment Journey Begins',
       html: getNewsletterWelcomeTemplate(data),
