@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
       plot_size: validatedData.plotSize,
       location: validatedData.location,
       current_use: validatedData.currentUse,
-      title_deed_url: titleDeedUrl,
+      title_deed_url: titleDeedUrl || undefined,
       assessment_results: assessmentResults,
       estimated_value: assessmentResults.financialProjections.rtbValue,
       solar_potential: assessmentResults.plotAnalysis.capacity,
@@ -188,7 +188,7 @@ async function saveLandOwnerLead(data: any, assessment: any) {
   return true
 }
 
-async function notifyTeamOfLandAssessment(data: any, assessment: any) {
+async function notifyTeamOfLandAssessment(data: any, assessment: any, titleDeedUrl?: string | null) {
   // Notify Akradiusz Sybaris and team about new land assessment
   const notificationData = {
     landOwner: data.ownerName,
