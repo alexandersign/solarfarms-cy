@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: 'Contact Lighthief Cyprus for solar farm investment opportunities. Schedule free consultation, download investment guides, or speak with our Cyprus-based experts.',
   keywords: [
     'contact Lighthief Cyprus',
-    'solar investment consultation',
+    'solar investment consultation', 
     'Cyprus solar experts',
     'renewable energy consultation',
     'solar farm investment contact',
@@ -37,6 +37,7 @@ const contactMethods = [
     contact: "+357 77 77 00 50",
     availability: "Mon-Fri 9AM-6PM CET",
     action: "Call Now",
+    href: "tel:+35777770050",
     color: "solar"
   },
   {
@@ -45,7 +46,8 @@ const contactMethods = [
     description: "Detailed written consultation and proposals",
     contact: "office@lighthief.com",
     availability: "24-hour response guarantee",
-    action: "Send Email", 
+    action: "Send Email",
+    href: "mailto:office@lighthief.com?subject=Solar Investment Inquiry",
     color: "cyprus"
   },
   {
@@ -55,6 +57,7 @@ const contactMethods = [
     contact: "Book online calendar",
     availability: "Flexible scheduling available",
     action: "Schedule Meeting",
+    href: "https://calendly.com/lighthief-cyprus",
     color: "green"
   },
   {
@@ -64,6 +67,7 @@ const contactMethods = [
     contact: "Cyprus Headquarters",
     availability: "By appointment",
     action: "Book Visit",
+    href: "mailto:office@lighthief.com?subject=Office Visit Request&body=I would like to schedule an office visit to discuss solar investment opportunities.",
     color: "blue"
   }
 ]
@@ -189,23 +193,14 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-600 mb-3">{method.description}</p>
                   <div className="text-sm font-medium text-gray-900 mb-1">{method.contact}</div>
                   <div className="text-xs text-gray-500 mb-4">{method.availability}</div>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="group-hover:bg-solar-50"
-                    onClick={() => {
-                      if (method.action === 'Call Now') {
-                        window.open('tel:+35777770050', '_self')
-                      } else if (method.action === 'Send Email') {
-                        window.open('mailto:office@lighthief.com?subject=Solar Investment Inquiry', '_self')
-                      } else if (method.action === 'Schedule Meeting') {
-                        window.open('https://calendly.com/lighthief-cyprus', '_blank')
-                      } else if (method.action === 'Book Visit') {
-                        window.open('mailto:office@lighthief.com?subject=Office Visit Request&body=I would like to schedule an office visit to discuss solar investment opportunities.', '_self')
-                      }
-                    }}
-                  >
-                    {method.action}
+                  <Button variant="outline" size="sm" className="group-hover:bg-solar-50" asChild>
+                    <a 
+                      href={method.href}
+                      target={method.action === 'Schedule Meeting' ? '_blank' : '_self'}
+                      rel={method.action === 'Schedule Meeting' ? 'noopener noreferrer' : undefined}
+                    >
+                      {method.action}
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
