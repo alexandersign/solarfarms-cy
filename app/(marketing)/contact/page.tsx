@@ -43,7 +43,7 @@ const contactMethods = [
     icon: Mail,
     title: "Email Inquiry",
     description: "Detailed written consultation and proposals",
-    contact: "info@solarfarms.cy",
+    contact: "office@lighthief.com",
     availability: "24-hour response guarantee",
     action: "Send Email", 
     color: "cyprus"

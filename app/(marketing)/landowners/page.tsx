@@ -108,8 +108,44 @@ export default function LandownersPage() {
     const file = event.target.files?.[0]
     if (file) {
       setUploadedFile(file)
-      // In production, this would connect to Cyprus Land Registry API
-      simulateAssessment()
+      // File will be uploaded when form is submitted
+    }
+  }
+
+  const handleAssessmentSubmit = async () => {
+    if (!assessmentData.ownerName || !assessmentData.email || !assessmentData.location) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    try {
+      const formData = new FormData()
+      
+      // Add form fields
+      Object.entries(assessmentData).forEach(([key, value]) => {
+        formData.append(key, value)
+      })
+      
+      // Add title deed file if uploaded
+      if (uploadedFile) {
+        formData.append('titleDeed', uploadedFile)
+      }
+      
+      const response = await fetch('/api/land-assessment', {
+        method: 'POST',
+        body: formData,
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        setAssessmentResults(result.assessment)
+        setShowAssessment(true)
+      } else {
+        alert(result.message || 'Assessment failed. Please try again.')
+      }
+    } catch (error) {
+      alert('Assessment failed. Please try again or contact us directly.')
     }
   }
 
@@ -341,7 +377,13 @@ export default function LandownersPage() {
                     </Card>
 
                     <div className="text-center">
-                      <Button variant="gradient" size="xl" className="px-12">
+                      <Button 
+                        variant="gradient" 
+                        size="xl" 
+                        className="px-12"
+                        onClick={handleAssessmentSubmit}
+                        disabled={!assessmentData.ownerName || !assessmentData.email}
+                      >
                         Order Professional Feasibility Study
                       </Button>
                       <p className="text-sm text-gray-500 mt-3">
@@ -593,7 +635,13 @@ export default function LandownersPage() {
             Get professional feasibility study and discover how much your land could earn from solar development
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
+            <Button 
+              variant="secondary" 
+              size="lg" 
+              className="bg-white text-solar-600 hover:bg-gray-100"
+              onClick={handleAssessmentSubmit}
+              disabled={!assessmentData.ownerName || !assessmentData.email}
+            >
               Order Professional Study
             </Button>
             <Button variant="cyprus" size="lg" asChild>

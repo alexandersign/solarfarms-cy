@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { supabase, landAssessmentsService, fileUploadService } from '@/lib/supabase'
+import { sendContactNotification } from '@/lib/email'
 
 // Validation schema for land assessment
 const landAssessmentSchema = z.object({
@@ -22,26 +24,63 @@ const landAssessmentSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const formData = await request.formData()
     
-    // Validate the request body
-    const validatedData = landAssessmentSchema.parse(body)
+    // Handle file upload if present
+    let titleDeedUrl = null
+    const file = formData.get('titleDeed') as File | null
+    
+    if (file) {
+      try {
+        titleDeedUrl = await fileUploadService.uploadFile(file, 'title-deeds', 'assessments')
+      } catch (uploadError) {
+        return NextResponse.json(
+          { success: false, message: 'File upload failed. Please try again.' },
+          { status: 500 }
+        )
+      }
+    }
+    
+    // Extract form data
+    const assessmentData = {
+      plotSize: formData.get('plotSize') as string,
+      location: formData.get('location') as string,
+      currentUse: formData.get('currentUse') as string || '',
+      ownerName: formData.get('ownerName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string || '',
+    }
+    
+    // Validate the form data
+    const validatedData = landAssessmentSchema.parse(assessmentData)
     
     // Simulate Cyprus Land Registry API integration
     const assessmentResults = await performLandAssessment(validatedData)
     
-    // Save lead information
-    await saveLandOwnerLead(validatedData, assessmentResults)
+    // Save to Supabase database
+    const landAssessment = await landAssessmentsService.create({
+      owner_name: validatedData.ownerName,
+      owner_email: validatedData.email,
+      owner_phone: validatedData.phone,
+      plot_size: validatedData.plotSize,
+      location: validatedData.location,
+      current_use: validatedData.currentUse,
+      title_deed_url: titleDeedUrl,
+      assessment_results: assessmentResults,
+      estimated_value: assessmentResults.financialProjections.rtbValue,
+      solar_potential: assessmentResults.plotAnalysis.capacity,
+      status: 'pending'
+    })
     
-    // Send notification to team
-    await notifyTeamOfLandAssessment(validatedData, assessmentResults)
+    // Send notification to team with file attachment info
+    await notifyTeamOfLandAssessment(validatedData, assessmentResults, titleDeedUrl)
     
     return NextResponse.json(
       { 
         success: true,
         assessment: assessmentResults,
         message: 'Assessment completed successfully',
-        assessmentId: generateAssessmentId()
+        assessmentId: landAssessment.id
       },
       { status: 200 }
     )

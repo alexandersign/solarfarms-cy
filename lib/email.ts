@@ -313,7 +313,7 @@ function getNewsletterWelcomeTemplate(data: NewsletterEmailData): string {
             https://solarfarms.cy</p>
             
             <p><small>You received this email because you subscribed to SolarFarms.cy newsletter. 
-            <a href="#">Unsubscribe</a> | <a href="#">Update Preferences</a></small></p>
+            <a href="https://solarfarms.cy/unsubscribe">Unsubscribe</a> | <a href="https://solarfarms.cy/preferences">Update Preferences</a></small></p>
         </div>
     </body>
     </html>

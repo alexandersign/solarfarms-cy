@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sendContactNotification, sendContactAutoresponder } from '@/lib/email'
+import { supabase, contactsService, fileUploadService } from '@/lib/supabase'
 
 // Validation schema for contact form
 const contactSchema = z.object({
@@ -15,10 +16,44 @@ const contactSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const formData = await request.formData()
     
-    // Validate the request body
-    const validatedData = contactSchema.parse(body)
+    // Handle file uploads
+    const uploadedFileUrls: string[] = []
+    const files: File[] = []
+    
+    // Extract files from FormData
+    for (const [key, value] of formData.entries()) {
+      if (key.startsWith('file_') && value instanceof File) {
+        files.push(value)
+      }
+    }
+    
+    // Upload files to Supabase Storage
+    if (files.length > 0) {
+      try {
+        const urls = await fileUploadService.uploadMultipleFiles(files, 'contact-documents', 'leads')
+        uploadedFileUrls.push(...urls)
+      } catch (uploadError) {
+        return NextResponse.json(
+          { success: false, message: 'File upload failed. Please try again.' },
+          { status: 500 }
+        )
+      }
+    }
+    
+    // Extract and validate form data
+    const contactData = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      company: formData.get('company') as string,
+      investmentSize: formData.get('investmentSize') as string,
+      timeline: formData.get('timeline') as string,
+      message: formData.get('message') as string,
+    }
+    
+    const validatedData = contactSchema.parse(contactData)
     
     // In a real implementation, you would:
     // 1. Save to database (Supabase)
@@ -29,11 +64,18 @@ export async function POST(request: NextRequest) {
     // For now, we'll simulate the process
     // Processing contact form submission
     
-    // Simulate processing delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    // Save contact to Supabase database
+    const savedContact = await contactsService.create({
+      ...validatedData,
+      attached_files: uploadedFileUrls,
+      source: 'website'
+    })
     
-    // Send email notification to team
-    await sendContactNotification(validatedData)
+    // Send email notification to team (with file info)
+    await sendContactNotification({
+      ...validatedData,
+      attachedFiles: uploadedFileUrls
+    })
     
     // Send autoresponder to client
     await sendContactAutoresponder(validatedData)
@@ -42,7 +84,8 @@ export async function POST(request: NextRequest) {
       { 
         success: true, 
         message: 'Thank you for your inquiry. We will contact you within 24 hours.',
-        submissionId: generateSubmissionId()
+        submissionId: savedContact.id,
+        filesUploaded: uploadedFileUrls.length
       },
       { status: 200 }
     )

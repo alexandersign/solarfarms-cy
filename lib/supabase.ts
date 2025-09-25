@@ -20,6 +20,7 @@ export interface Contact {
   status?: 'new' | 'contacted' | 'qualified' | 'closed'
   assigned_to?: string
   notes?: string[]
+  attached_files?: string[] // URLs of uploaded files
 }
 
 export interface LandAssessment {
@@ -36,6 +37,7 @@ export interface LandAssessment {
   status?: 'pending' | 'assessed' | 'contacted' | 'contracted'
   estimated_value?: string
   solar_potential?: string
+  attached_files?: string[] // Additional supporting documents
 }
 
 export interface NewsletterSubscriber {
@@ -115,5 +117,53 @@ export const newsletterService = {
     
     if (error) throw error
     return data
+  }
+}
+
+// File Upload Service
+export const fileUploadService = {
+  async uploadFile(file: File, bucket: string = 'documents', folder?: string): Promise<string> {
+    const fileExtension = file.name.split('.').pop()
+    const timestamp = Date.now()
+    const randomId = Math.random().toString(36).substring(2)
+    const fileName = folder 
+      ? `${folder}/${timestamp}-${randomId}.${fileExtension}`
+      : `${timestamp}-${randomId}.${fileExtension}`
+    
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: false
+      })
+    
+    if (error) throw error
+    
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from(bucket)
+      .getPublicUrl(fileName)
+    
+    return publicUrl
+  },
+
+  async uploadMultipleFiles(files: File[], bucket: string = 'documents', folder?: string): Promise<string[]> {
+    const uploadPromises = files.map(file => 
+      this.uploadFile(file, bucket, folder)
+    )
+    
+    return Promise.all(uploadPromises)
+  },
+
+  async deleteFile(url: string, bucket: string = 'documents'): Promise<void> {
+    // Extract file path from URL
+    const urlParts = url.split('/')
+    const fileName = urlParts[urlParts.length - 1]
+    
+    const { error } = await supabase.storage
+      .from(bucket)
+      .remove([fileName])
+    
+    if (error) throw error
   }
 }
