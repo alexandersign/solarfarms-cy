@@ -15,8 +15,11 @@ const contactSchema = z.object({
 })
 
 export async function POST(request: NextRequest) {
+  console.log('Contact API called')
+  
   try {
     const formData = await request.formData()
+    console.log('FormData received, entries count:', Array.from(formData.entries()).length)
     
     // Handle file uploads
     const uploadedFileUrls: string[] = []

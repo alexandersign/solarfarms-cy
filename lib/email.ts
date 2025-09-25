@@ -21,8 +21,14 @@ interface NewsletterEmailData {
 }
 
 export async function sendContactNotification(data: ContactEmailData) {
+  console.log('Attempting to send contact notification', { 
+    hasApiKey: !!process.env.RESEND_API_KEY,
+    hasResend: !!resend,
+    data: { name: data.name, email: data.email, investmentSize: data.investmentSize }
+  })
+  
   if (!process.env.RESEND_API_KEY || !resend) {
-    // Email service not configured('RESEND_API_KEY not configured, skipping email notification')
+    console.error('Email service not configured - missing RESEND_API_KEY')
     return { success: false, message: 'Email service not configured' }
   }
 
@@ -30,7 +36,7 @@ export async function sendContactNotification(data: ContactEmailData) {
     // Attempting to send notification to team
     
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@solarfarms.cy>',
+      from: 'SolarFarms.cy <noreply@resend.dev>',
       replyTo: 'alexander.papacosta@lighthief.com',
       to: [
         'office@lighthief.com',
@@ -61,7 +67,7 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@solarfarms.cy>',
+      from: 'SolarFarms.cy <noreply@resend.dev>',
       replyTo: 'alexander.papacosta@lighthief.com',
       to: [data.email],
       subject: 'Thank you for your interest in Cyprus Solar Investments',
@@ -88,7 +94,7 @@ export async function sendNewsletterWelcome(data: NewsletterEmailData) {
 
   try {
     const { data: emailResult, error } = await resend.emails.send({
-      from: 'SolarFarms.cy <noreply@solarfarms.cy>',
+      from: 'SolarFarms.cy <noreply@resend.dev>',
       replyTo: 'alexander.papacosta@lighthief.com',
       to: [data.email],
       subject: 'Welcome to SolarFarms.cy - Your Solar Investment Journey Begins',

@@ -59,25 +59,32 @@ export function ContactForm() {
     setIsSubmitting(true)
 
     try {
+      console.log('Form submission started', formData)
+      
       // Create FormData for file upload support
       const submitData = new FormData()
       
       // Add form fields
       Object.entries(formData).forEach(([key, value]) => {
         submitData.append(key, value)
+        console.log(`Added field: ${key} = ${value}`)
       })
       
       // Add files
       uploadedFiles.forEach((file, index) => {
         submitData.append(`file_${index}`, file)
+        console.log(`Added file: ${file.name}`)
       })
       
+      console.log('Sending to API...')
       const response = await fetch('/api/contact', {
         method: 'POST',
         body: submitData, // Use FormData instead of JSON
       })
 
+      console.log('API Response status:', response.status)
       const result = await response.json()
+      console.log('API Result:', result)
 
       if (result.success) {
         // Track analytics event
@@ -95,7 +102,8 @@ export function ContactForm() {
       }
     } catch (error) {
       // Form submission error
-      alert('There was an error submitting your form. Please try again or contact us directly.')
+      console.error('Form submission error:', error)
+      alert(`Form submission failed: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again or contact us directly.`)
     } finally {
       setIsSubmitting(false)
     }
