@@ -4,7 +4,6 @@ import './globals.css'
 import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
 import { GoogleAnalytics, ConsentBanner } from '@/components/analytics/GoogleAnalytics'
-import { CriticalCSS } from '@/components/CriticalCSS'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -62,7 +61,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
-        <CriticalCSS />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />

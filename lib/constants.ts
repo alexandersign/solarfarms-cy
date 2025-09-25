@@ -223,10 +223,10 @@ export const NAVIGATION = {
     { name: "Contact", href: "/contact" },
   ],
   services: [
-    { name: "EPC Services", href: "/services/epc" },
-    { name: "O&M Management", href: "/services/om" },
-    { name: "Asset Optimization", href: "/services/optimization" },
-    { name: "Lifecycle Support", href: "/services/lifecycle" },
+    { name: "EPC Services", href: "/services/epc-services" },
+    { name: "O&M Management", href: "/services/om-management" },
+    { name: "Asset Optimization", href: "/services/asset-optimization" },
+    { name: "Lifecycle Support", href: "/services/lifecycle-support" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy" },
