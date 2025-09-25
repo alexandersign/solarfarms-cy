@@ -1,0 +1,46 @@
+; DNS Zone file for solarfarms.cy
+; FINAL PRODUCTION VERSION - Unified Email Setup
+; Updated: 2025-09-25 (Post Navigation Fix)
+
+$ORIGIN solarfarms.cy.
+$TTL 3600
+
+; SOA Record
+@    IN    SOA    ns1.vercel-dns.com. admin.solarfarms.cy. (
+              2025092503    ; Serial (YYYYMMDDNN) - Navigation Fix
+              3600          ; Refresh
+              1800          ; Retry  
+              1209600       ; Expire (2 weeks)
+              3600          ; Minimum TTL
+              )
+
+; Name Servers (Vercel)
+@    IN    NS     ns1.vercel-dns.com.
+@    IN    NS     ns2.vercel-dns.com.
+
+; Vercel App Records
+@    IN    ALIAS  d952ebeffa8f98d8.vercel-dns-017.com.
+*    IN    ALIAS  cname.vercel-dns-017.com.
+
+; SSL Certificate Authority Authorization
+@    IN    CAA    0 issue "letsencrypt.org"
+
+; RESEND EMAIL AUTHENTICATION (Complete Values)
+send                 IN    TXT    "v=spf1 include:amazonses.com ~all"
+resend._domainkey    IN    TXT    "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDXn89tw5BGeoIxa2EtgZGMOqkJR9OiC0PCJyb4jyN0huB3FMJd/4n120GPgx++5EV9IjccOf6lXVDL8ol7d0Dz7WEMcEl4Q6Mv+6o0f5bzXzM3BI7U/Hve3umhiIvXnNaVlpa+qDODC89qS06aVM3TtxE9s+JyxNbRyPS89IG6aQIDAQAB"
+_dmarc               IN    TXT    "v=DMARC1; p=none;"
+
+; Additional Records
+www         IN    CNAME  @
+
+; Remove all ForwardEmail records - No longer needed!
+; Remove all MX records - Sending only, no receiving at solarfarms.cy
+
+; EMAIL ARCHITECTURE:
+; ✅ Send FROM: noreply@solarfarms.cy (branded)
+; ✅ Reply TO: alexander.papacosta@lighthief.com (working email)
+; ✅ Team gets notifications at: office@lighthief.com, alexander.papacosta@lighthief.com, a.sybaris@lighthief.com
+; ✅ Website displays: Real @lighthief.com contact emails
+; ✅ Simple, reliable, cost-effective
+
+; End of zone file
