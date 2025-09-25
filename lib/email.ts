@@ -39,9 +39,7 @@ export async function sendContactNotification(data: ContactEmailData) {
       from: 'Lighthief Cyprus <onboarding@resend.dev>',
       replyTo: 'lighthiefcyprus@gmail.com',
       to: [
-        'office@lighthief.com',
-        'alexander.papacosta@lighthief.com',
-        'a.sybaris@lighthief.com'
+        'lighthiefcyprus@gmail.com'
       ],
       subject: `NEW LEAD NOTIFICATION - ${data.investmentSize}`,
       html: getContactNotificationTemplate(data),
