@@ -67,7 +67,13 @@ export async function POST(request: NextRequest) {
     
     // Save contact to Supabase database
     const savedContact = await contactsService.create({
-      ...validatedData,
+      name: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      company: validatedData.company,
+      investment_size: validatedData.investmentSize, // Map field name
+      timeline: validatedData.timeline,
+      message: validatedData.message,
       attached_files: uploadedFileUrls,
       source: 'website'
     })

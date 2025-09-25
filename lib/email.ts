@@ -12,6 +12,7 @@ interface ContactEmailData {
   investmentSize: string
   timeline: string
   message?: string
+  attachedFiles?: string[]
 }
 
 interface NewsletterEmailData {
@@ -143,6 +144,13 @@ function getContactNotificationTemplate(data: ContactEmailData): string {
             ${data.message ? `
             <h3>Additional Message</h3>
             <p>${data.message}</p>
+            ` : ''}
+            
+            ${data.attachedFiles && data.attachedFiles.length > 0 ? `
+            <h3>Attached Files</h3>
+            <ul>
+            ${data.attachedFiles.map(file => `<li><a href="${file}" target="_blank" style="color: #0ea5e9;">View Document</a></li>`).join('')}
+            </ul>
             ` : ''}
             
             <h3>Next Steps</h3>
