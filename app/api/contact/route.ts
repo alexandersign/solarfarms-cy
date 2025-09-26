@@ -25,8 +25,6 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = contactSchema.parse(body)
     
-    const validatedData = contactSchema.parse(contactData)
-    
     // In a real implementation, you would:
     // 1. Save to database (Supabase)
     // 2. Send email notification
