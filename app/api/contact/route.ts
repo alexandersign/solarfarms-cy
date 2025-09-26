@@ -46,10 +46,7 @@ export async function POST(request: NextRequest) {
       source: 'website'
     }
     
-    // Add attached_files only if there are files (in case column doesn't exist yet)
-    if (uploadedFileUrls.length > 0) {
-      (contactToSave as any).attached_files = uploadedFileUrls
-    }
+    // No file uploads for investor contact form
     
     const savedContact = await contactsService.create(contactToSave)
     
