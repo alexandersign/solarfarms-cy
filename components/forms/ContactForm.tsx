@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { INVESTMENT_OPTIONS, TIMELINE_OPTIONS } from '@/lib/constants'
-import { Mail, Phone, MapPin, Clock, Upload, FileText, X } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 
 interface FormData {
   name: string
@@ -29,7 +29,7 @@ export function ContactForm() {
     timeline: '',
     message: '',
   })
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
+  // File upload removed for investor contact form
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -49,10 +49,7 @@ export function ContactForm() {
     }))
   }
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files || [])
-    setUploadedFiles(files)
-  }
+  // File upload functionality removed for investor contact form
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -61,25 +58,14 @@ export function ContactForm() {
     try {
       console.log('Form submission started', formData)
       
-      // Create FormData for file upload support
-      const submitData = new FormData()
-      
-      // Add form fields
-      Object.entries(formData).forEach(([key, value]) => {
-        submitData.append(key, value)
-        console.log(`Added field: ${key} = ${value}`)
-      })
-      
-      // Add files
-      uploadedFiles.forEach((file, index) => {
-        submitData.append(`file_${index}`, file)
-        console.log(`Added file: ${file.name}`)
-      })
-      
+      // Send as JSON for investor contact form (no file uploads)
       console.log('Sending to API...')
       const response = await fetch('/api/contact', {
         method: 'POST',
-        body: submitData, // Use FormData instead of JSON
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
 
       console.log('API Response status:', response.status)
@@ -318,54 +304,7 @@ export function ContactForm() {
               />
             </div>
 
-            {/* File Upload Section */}
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Supporting Documents (Optional)
-              </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-solar-500 transition-colors">
-                <input
-                  type="file"
-                  accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-                  multiple
-                  onChange={handleFileUpload}
-                  className="hidden"
-                  id="contact-file-upload"
-                />
-                <label htmlFor="contact-file-upload" className="cursor-pointer">
-                  <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-sm font-medium text-gray-700 mb-1">
-                    Upload financial documents, title deeds, or project details
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    PDF, Images, Word documents • Max 10MB per file
-                  </p>
-                </label>
-              </div>
-              
-              {/* Display uploaded files */}
-              {uploadedFiles.length > 0 && (
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-700">Uploaded Files:</p>
-                  {uploadedFiles.map((file, index) => (
-                    <div key={index} className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg p-3">
-                      <div className="flex items-center space-x-2">
-                        <FileText className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-green-800 font-medium">{file.name}</span>
-                        <span className="text-xs text-green-600">({(file.size / 1024 / 1024).toFixed(1)} MB)</span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setUploadedFiles(files => files.filter((_, i) => i !== index))}
-                        className="text-green-600 hover:text-green-800"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* File upload removed for investor contact form */}
 
             <Button
               type="submit"

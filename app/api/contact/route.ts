@@ -18,44 +18,12 @@ export async function POST(request: NextRequest) {
   console.log('Contact API called')
   
   try {
-    const formData = await request.formData()
-    console.log('FormData received, entries count:', Array.from(formData.entries()).length)
+    // Handle JSON data for investor contact form (no file uploads)
+    const body = await request.json()
+    console.log('Contact data received:', body)
     
-    // Handle file uploads
-    const uploadedFileUrls: string[] = []
-    const files: File[] = []
-    
-    // Extract files from FormData
-    const entries = Array.from(formData.entries())
-    for (const [key, value] of entries) {
-      if (key.startsWith('file_') && value instanceof File) {
-        files.push(value)
-      }
-    }
-    
-    // Upload files to Supabase Storage
-    if (files.length > 0) {
-      try {
-        const urls = await fileUploadService.uploadMultipleFiles(files, 'contact-documents', 'leads')
-        uploadedFileUrls.push(...urls)
-      } catch (uploadError) {
-        return NextResponse.json(
-          { success: false, message: 'File upload failed. Please try again.' },
-          { status: 500 }
-        )
-      }
-    }
-    
-    // Extract and validate form data
-    const contactData = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      phone: formData.get('phone') as string,
-      company: formData.get('company') as string,
-      investmentSize: formData.get('investmentSize') as string,
-      timeline: formData.get('timeline') as string,
-      message: formData.get('message') as string,
-    }
+    // Validate the request body
+    const validatedData = contactSchema.parse(body)
     
     const validatedData = contactSchema.parse(contactData)
     
@@ -87,12 +55,9 @@ export async function POST(request: NextRequest) {
     
     const savedContact = await contactsService.create(contactToSave)
     
-    // Send email notification to team (with file info)
+    // Send email notification to team
     console.log('Sending team notification...')
-    const notificationResult = await sendContactNotification({
-      ...validatedData,
-      attachedFiles: uploadedFileUrls
-    })
+    const notificationResult = await sendContactNotification(validatedData)
     console.log('Team notification result:', notificationResult)
     
     // Send autoresponder to client
@@ -121,8 +86,7 @@ export async function POST(request: NextRequest) {
       { 
         success: true, 
         message: 'Thank you for your inquiry. We will contact you within 24 hours.',
-        submissionId: savedContact.id,
-        filesUploaded: uploadedFileUrls.length
+        submissionId: savedContact.id
       },
       { status: 200 }
     )

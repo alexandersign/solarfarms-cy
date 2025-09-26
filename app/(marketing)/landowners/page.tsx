@@ -308,6 +308,22 @@ export default function LandownersPage() {
                           onChange={(e) => setAssessmentData({...assessmentData, location: e.target.value})}
                         />
                       </div>
+                      
+                      {/* Submit Button */}
+                      <div className="text-center pt-6">
+                        <Button 
+                          variant="gradient" 
+                          size="lg" 
+                          onClick={handleAssessmentSubmit}
+                          disabled={!assessmentData.ownerName || !assessmentData.email || !assessmentData.location}
+                          className="px-8"
+                        >
+                          Submit for Assessment
+                        </Button>
+                        <p className="text-sm text-gray-500 mt-2">
+                          Get instant land assessment results
+                        </p>
+                      </div>
                     </div>
                   </>
                 ) : (
