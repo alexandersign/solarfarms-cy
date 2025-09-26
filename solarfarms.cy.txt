@@ -7,7 +7,7 @@ $TTL 3600
 
 ; SOA Record
 @    IN    SOA    ns1.vercel-dns.com. admin.solarfarms.cy. (
-              2025092503    ; Serial (YYYYMMDDNN) - Navigation Fix
+              2025092504    ; Serial (YYYYMMDDNN) - Added Required MX Record
               3600          ; Refresh
               1800          ; Retry  
               1209600       ; Expire (2 weeks)
@@ -25,7 +25,8 @@ $TTL 3600
 ; SSL Certificate Authority Authorization
 @    IN    CAA    0 issue "letsencrypt.org"
 
-; RESEND EMAIL AUTHENTICATION (Complete Values)
+; RESEND EMAIL AUTHENTICATION (Complete Values with REQUIRED MX)
+send                 IN    MX     10 feedback-smtp.eu-west-1.amazonses.com.
 send                 IN    TXT    "v=spf1 include:amazonses.com ~all"
 resend._domainkey    IN    TXT    "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDXn89tw5BGeoIxa2EtgZGMOqkJR9OiC0PCJyb4jyN0huB3FMJd/4n120GPgx++5EV9IjccOf6lXVDL8ol7d0Dz7WEMcEl4Q6Mv+6o0f5bzXzM3BI7U/Hve3umhiIvXnNaVlpa+qDODC89qS06aVM3TtxE9s+JyxNbRyPS89IG6aQIDAQAB"
 _dmarc               IN    TXT    "v=DMARC1; p=none;"
@@ -33,8 +34,8 @@ _dmarc               IN    TXT    "v=DMARC1; p=none;"
 ; Additional Records
 www         IN    CNAME  @
 
-; Remove all ForwardEmail records - No longer needed!
-; Remove all MX records - Sending only, no receiving at solarfarms.cy
+; MX RECORD REQUIRED - Resend needs this for domain verification
+; This MX record is CRITICAL for email sending verification
 
 ; EMAIL ARCHITECTURE:
 ; ✅ Send FROM: noreply@solarfarms.cy (branded)
