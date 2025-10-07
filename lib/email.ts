@@ -21,14 +21,7 @@ interface NewsletterEmailData {
 }
 
 export async function sendContactNotification(data: ContactEmailData) {
-  console.log('Attempting to send contact notification', { 
-    hasApiKey: !!process.env.RESEND_API_KEY,
-    hasResend: !!resend,
-    data: { name: data.name, email: data.email, investmentSize: data.investmentSize }
-  })
-  
   if (!process.env.RESEND_API_KEY || !resend) {
-    console.error('Email service not configured - missing RESEND_API_KEY')
     return { success: false, message: 'Email service not configured' }
   }
 
@@ -46,14 +39,11 @@ export async function sendContactNotification(data: ContactEmailData) {
     })
 
     if (error) {
-      console.error('Email notification error:', error)
       return { success: false, error, message: 'Failed to send team notification' }
     }
 
-    console.log('Team notification sent successfully:', emailResult)
     return { success: true, data: emailResult }
   } catch (error) {
-    console.error('Email service error:', error)
     return { success: false, error, message: 'Email service error' }
   }
 }
@@ -74,14 +64,11 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
     })
 
     if (error) {
-      console.error('Autoresponder error:', error)
       return { success: false, error, message: 'Failed to send autoresponder' }
     }
 
-    console.log('Autoresponder sent successfully:', emailResult)
     return { success: true, data: emailResult }
   } catch (error) {
-    console.error('Autoresponder service error:', error)
     return { success: false, error, message: 'Autoresponder service error' }
   }
 }

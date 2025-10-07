@@ -56,10 +56,7 @@ export function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      console.log('Form submission started', formData)
-      
       // Send as JSON for investor contact form (no file uploads)
-      console.log('Sending to API...')
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -68,9 +65,7 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       })
 
-      console.log('API Response status:', response.status)
       const result = await response.json()
-      console.log('API Result:', result)
 
       if (result.success) {
         // Track analytics event
@@ -88,7 +83,6 @@ export function ContactForm() {
       }
     } catch (error) {
       // Form submission error
-      console.error('Form submission error:', error)
       alert(`Form submission failed: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again or contact us directly.`)
     } finally {
       setIsSubmitting(false)

@@ -15,12 +15,9 @@ const contactSchema = z.object({
 })
 
 export async function POST(request: NextRequest) {
-  console.log('Contact API called')
-  
   try {
     // Handle JSON data for investor contact form (no file uploads)
     const body = await request.json()
-    console.log('Contact data received:', body)
     
     // Validate the request body
     const validatedData = contactSchema.parse(body)
@@ -48,24 +45,25 @@ export async function POST(request: NextRequest) {
     
     // No file uploads for investor contact form
     
-    const savedContact = await contactsService.create(contactToSave)
+    // Try to save to Supabase, but continue if database is down
+    let savedContact = null
+    try {
+      savedContact = await contactsService.create(contactToSave)
+    } catch (dbError) {
+      console.error('Database save failed (Supabase may be paused):', dbError)
+      // Continue with email sending even if database fails
+      savedContact = { id: 'temp_' + Date.now() }
+    }
     
     // Send email notification to team
-    console.log('Sending team notification...')
     const notificationResult = await sendContactNotification(validatedData)
-    console.log('Team notification result:', notificationResult)
     
     // Send autoresponder to client
-    console.log('Sending autoresponder...')
     const autoresponderResult = await sendContactAutoresponder(validatedData)
-    console.log('Autoresponder result:', autoresponderResult)
     
     // Check if emails failed
     if (!notificationResult.success || !autoresponderResult.success) {
-      console.error('Email sending failed:', {
-        notification: notificationResult,
-        autoresponder: autoresponderResult
-      })
+      // Email sending failed
       
       return NextResponse.json(
         { 

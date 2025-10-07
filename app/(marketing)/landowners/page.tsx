@@ -113,8 +113,8 @@ export default function LandownersPage() {
   }
 
   const handleAssessmentSubmit = async () => {
-    if (!assessmentData.ownerName || !assessmentData.email || !assessmentData.location) {
-      alert('Please fill in all required fields')
+    if (!assessmentData.ownerName || !assessmentData.email || !assessmentData.location || !assessmentData.plotSize) {
+      alert('Please fill in all required fields: Name, Email, Location, and Plot Size')
       return
     }
 
@@ -307,6 +307,16 @@ export default function LandownersPage() {
                           value={assessmentData.location}
                           onChange={(e) => setAssessmentData({...assessmentData, location: e.target.value})}
                         />
+                        <Input
+                          placeholder="Plot Size (e.g., 5 acres, 2 hectares)"
+                          value={assessmentData.plotSize}
+                          onChange={(e) => setAssessmentData({...assessmentData, plotSize: e.target.value})}
+                        />
+                        <Input
+                          placeholder="Current Land Use (Optional)"
+                          value={assessmentData.currentUse}
+                          onChange={(e) => setAssessmentData({...assessmentData, currentUse: e.target.value})}
+                        />
                       </div>
                       
                       {/* Submit Button */}
@@ -315,7 +325,7 @@ export default function LandownersPage() {
                           variant="gradient" 
                           size="lg" 
                           onClick={handleAssessmentSubmit}
-                          disabled={!assessmentData.ownerName || !assessmentData.email || !assessmentData.location}
+                          disabled={!assessmentData.ownerName || !assessmentData.email || !assessmentData.location || !assessmentData.plotSize}
                           className="px-8"
                         >
                           Submit for Assessment

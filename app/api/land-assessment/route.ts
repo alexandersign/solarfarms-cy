@@ -25,6 +25,17 @@ const landAssessmentSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
+    console.log('Land assessment API called')
+    
+    // Log all form data for debugging
+    const entries = Array.from(formData.entries())
+    entries.forEach(([key, value]) => {
+      if (value instanceof File) {
+        console.log(`Form field: ${key} = [File: ${value.name}]`)
+      } else {
+        console.log(`Form field: ${key} = ${value}`)
+      }
+    })
     
     // Handle file upload if present
     let titleDeedUrl = null
@@ -57,20 +68,27 @@ export async function POST(request: NextRequest) {
     // Simulate Cyprus Land Registry API integration
     const assessmentResults = await performLandAssessment(validatedData)
     
-    // Save to Supabase database
-    const landAssessment = await landAssessmentsService.create({
-      owner_name: validatedData.ownerName,
-      owner_email: validatedData.email,
-      owner_phone: validatedData.phone,
-      plot_size: validatedData.plotSize,
-      location: validatedData.location,
-      current_use: validatedData.currentUse,
-      title_deed_url: titleDeedUrl || undefined,
-      assessment_results: assessmentResults,
-      estimated_value: assessmentResults.financialProjections.rtbValue,
-      solar_potential: assessmentResults.plotAnalysis.capacity,
-      status: 'pending'
-    })
+    // Try to save to Supabase database, continue if database is down
+    let landAssessment = null
+    try {
+      landAssessment = await landAssessmentsService.create({
+        owner_name: validatedData.ownerName,
+        owner_email: validatedData.email,
+        owner_phone: validatedData.phone,
+        plot_size: validatedData.plotSize,
+        location: validatedData.location,
+        current_use: validatedData.currentUse,
+        title_deed_url: titleDeedUrl || undefined,
+        assessment_results: assessmentResults,
+        estimated_value: assessmentResults.financialProjections.rtbValue,
+        solar_potential: assessmentResults.plotAnalysis.capacity,
+        status: 'pending'
+      })
+    } catch (dbError) {
+      console.error('Database save failed (Supabase may be paused):', dbError)
+      // Continue with assessment results even if database fails
+      landAssessment = { id: 'temp_' + Date.now() }
+    }
     
     // Send notification to team with file attachment info
     await notifyTeamOfLandAssessment(validatedData, assessmentResults, titleDeedUrl)
