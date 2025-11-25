@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { generateLOIHTML, LOIData } from '@/lib/loi-generator'
-import puppeteer from 'puppeteer'
 
 // Validation schema for LOI generation
 const loiSchema = z.object({
