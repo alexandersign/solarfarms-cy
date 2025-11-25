@@ -243,21 +243,29 @@ export default function ParkRef5001Page() {
       <section className="section-padding">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            <div className="relative h-96 rounded-xl overflow-hidden">
+            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
-                alt="5MW Solar Park Aerial View"
+                src="/images/park-ref-5001-aerial-view-1.jpg"
+                alt="5MW Solar Park with Single-Axis Tracking - Aerial View 1"
                 fill
                 className="object-cover"
+                priority
               />
+              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
+                5.01MW DC Capacity with Tracking System
+              </div>
             </div>
-            <div className="relative h-96 rounded-xl overflow-hidden">
+            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/1690376781153.jpg"
-                alt="Solar Park Ground View"
+                src="/images/park-ref-5001-aerial-view-2.jpg"
+                alt="5MW Solar Park with Single-Axis Tracking - Aerial View 2"
                 fill
                 className="object-cover"
+                priority
               />
+              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
+                Nclave SP160 Single-Axis Trackers (2P)
+              </div>
             </div>
           </div>
         </div>
@@ -563,11 +571,37 @@ export default function ParkRef5001Page() {
         </div>
       </section>
 
+      {/* Curtailment Chart Hero */}
+      <section className="section-padding bg-gradient-to-br from-red-50 to-orange-50">
+        <div className="container">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <Badge variant="destructive" className="mb-4">Critical Market Trend</Badge>
+              <h2 className="text-3xl font-heading font-bold mb-4">
+                Cyprus Curtailment Crisis: The BESS Opportunity
+              </h2>
+              <p className="text-xl text-gray-600">
+                Curtailment increased from 0% to 45.8% in just 4 years - making BESS essential for ROI protection
+              </p>
+            </div>
+            
+            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl mb-8">
+              <Image
+                src="/images/curtailment-chart-galascope.jpg"
+                alt="Galascope Limited 5.01MW - Production & Curtailment Trend 2021-2025"
+                fill
+                className="object-contain bg-white p-8"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Historical Production Data */}
       <section className="section-padding">
         <div className="container">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-heading font-bold mb-8">Historical Performance & Curtailment</h2>
+            <h2 className="text-3xl font-heading font-bold mb-8">Detailed Historical Performance Data</h2>
             
             <Card>
               <CardContent className="pt-6">
