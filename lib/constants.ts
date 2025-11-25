@@ -1,4 +1,4 @@
-// Bank Financing Options
+// Bank Financing Options (Updated with realistic caps)
 export const FINANCING_OPTIONS = {
   CASH: {
     name: "Cash Purchase",
@@ -6,23 +6,27 @@ export const FINANCING_OPTIONS = {
     loanAmount: 0,
     interestRate: 0,
     loanTermYears: 0,
-    description: "Full cash investment with immediate ownership"
+    description: "Full cash investment with immediate ownership",
+    note: null
   },
-  BANK_70: {
-    name: "70% Bank Financing",
-    downPayment: 30, // 30% down payment
-    loanAmount: 70, // 70% financed
+  SOLAR_ONLY: {
+    name: "Solar-Only Financing",
+    downPayment: 0, // Calculated based on €500k/MW cap
+    loanAmount: 0, // Calculated based on €500k/MW cap
+    maxDebtPerMW: 500000, // €500k/MW maximum
     interestRate: 4.5, // Typical Cyprus commercial loan rate
     loanTermYears: 15, // Standard term for solar projects
-    description: "Leverage bank financing to maximize ROI"
+    description: "Bank financing capped at €500,000 per MW",
+    note: "For solar-only projects - conservative bank lending"
   },
-  BANK_80: {
-    name: "80% Bank Financing", 
-    downPayment: 20, // 20% down payment
-    loanAmount: 80, // 80% financed
-    interestRate: 5.0, // Slightly higher rate for higher leverage
-    loanTermYears: 12, // Shorter term for higher leverage
-    description: "Maximum leverage option for qualified investors"
+  SOLAR_BESS: {
+    name: "Solar + BESS Financing",
+    downPayment: 30, // 30% down payment
+    loanAmount: 70, // Up to 70% of total capex
+    interestRate: 4.5, // Similar rate due to BESS revenue streams
+    loanTermYears: 15,
+    description: "Up to 70% financing for solar + battery storage",
+    note: "Enhanced bankability with BESS revenue streams"
   }
 } as const
 
@@ -68,46 +72,49 @@ export const CAPEX_MODES = {
   }
 } as const
 
-// Investment Constants (Updated 2025 Market Pricing)
+// Investment Constants (Based on Real 5.01MW Park Data - €1.5M/MW baseline)
 export const INVESTMENT_SIZES = {
   "1MW": {
-    minInvestment: 1200000,  // Realistic range: €1.2M-€1.7M per MW
-    maxInvestment: 1700000,
-    minRevenue: 180000,     // Conservative PPA rates €0.18-0.24/kWh
-    maxRevenue: 240000,
-    minROI: 8,              // Realistic 8-12% equity IRR
-    maxROI: 12,
-    minPayback: 7,          // 7-10 years typical
+    minInvestment: 1500000,  // €1.5M/MW baseline
+    maxInvestment: 1500000,
+    minRevenue: 200000,      // Based on ~2,000 kWh/kWp * €0.19/kWh * 25% curtailment
+    maxRevenue: 280000,      // With optimal performance
+    minROI: 8,               // Conservative with current curtailment
+    maxROI: 13,              // With BESS or better conditions
+    minPayback: 7,           
     maxPayback: 10,
-    minNPV: 1800000,
-    maxNPV: 3200000,
-    financingCap: 500000,   // €500k/MW max debt
+    minNPV: 2000000,
+    maxNPV: 3500000,
+    financingCap: 500000,    // €500k/MW max debt (SOLAR ONLY)
+    bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
   "5MW": {
-    minInvestment: 6000000,  // €1.2M-€1.7M per MW * 5
-    maxInvestment: 8500000,
-    minRevenue: 900000,      // Conservative PPA rates
-    maxRevenue: 1200000,
-    minROI: 8,               // Realistic 8-12% equity IRR
-    maxROI: 12,
+    minInvestment: 7500000,  // €1.5M/MW * 5 = €7.5M baseline
+    maxInvestment: 7500000,
+    minRevenue: 1000000,     // Based on real park data with curtailment
+    maxRevenue: 1400000,     // Optimized scenario
+    minROI: 8,               // Conservative 
+    maxROI: 13,              // With BESS (real 5.01MW park shows 13.3%-13.6%)
     minPayback: 7,
     maxPayback: 10,
-    minNPV: 9000000,
-    maxNPV: 16000000,
-    financingCap: 2500000,   // €500k/MW * 5MW max debt
+    minNPV: 10000000,
+    maxNPV: 17500000,
+    financingCap: 2500000,   // €500k/MW * 5MW max debt (SOLAR ONLY)
+    bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
   "10MW": {
-    minInvestment: 12000000,  // €1.2M-€1.7M per MW * 10
-    maxInvestment: 17000000,
-    minRevenue: 1800000,     // Conservative PPA rates
-    maxRevenue: 2400000,
-    minROI: 8,               // Realistic 8-12% equity IRR
-    maxROI: 12,
+    minInvestment: 15000000,  // €1.5M/MW * 10 = €15M baseline
+    maxInvestment: 15000000,
+    minRevenue: 2000000,      // Scaled from 5MW data
+    maxRevenue: 2800000,
+    minROI: 8,               
+    maxROI: 13,
     minPayback: 7,
     maxPayback: 10,
-    minNPV: 18000000,
-    maxNPV: 32000000,
-    financingCap: 5000000,   // €500k/MW * 10MW max debt
+    minNPV: 20000000,
+    maxNPV: 35000000,
+    financingCap: 5000000,   // €500k/MW * 10MW max debt (SOLAR ONLY)
+    bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
 } as const
 
