@@ -245,11 +245,13 @@ export default function ParkRef5001Page() {
           <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/park-ref-5001-aerial-view-1.jpg"
-                alt="5MW Solar Park with Single-Axis Tracking - Aerial View 1"
+                src="/images/IMG_0149.JPG"
+                alt="5MW Solar Park with Single-Axis Tracking - Aerial View"
                 fill
                 className="object-cover"
                 priority
+                quality={85}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
                 5.01MW DC Capacity with Tracking System
@@ -257,11 +259,13 @@ export default function ParkRef5001Page() {
             </div>
             <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/park-ref-5001-aerial-view-2.jpg"
-                alt="5MW Solar Park with Single-Axis Tracking - Aerial View 2"
+                src="/images/IMG_0146.JPG"
+                alt="5MW Solar Park with Single-Axis Tracking - Close View"
                 fill
                 className="object-cover"
                 priority
+                quality={85}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute bottom-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
                 Nclave SP160 Single-Axis Trackers (2P)
@@ -585,13 +589,35 @@ export default function ParkRef5001Page() {
               </p>
             </div>
             
-            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl mb-8">
-              <Image
-                src="/images/curtailment-chart-galascope.jpg"
-                alt="Galascope Limited 5.01MW - Production & Curtailment Trend 2021-2025"
-                fill
-                className="object-contain bg-white p-8"
-              />
+            {/* Curtailment Trend Visualization */}
+            <div className="bg-white rounded-xl shadow-2xl p-8">
+              <div className="grid md:grid-cols-5 gap-4 mb-6">
+                {PARK_DATA.productionHistory.slice(1).map((year) => (
+                  <div key={year.year} className="text-center">
+                    <div className="text-sm font-semibold text-gray-700 mb-2">{year.year}</div>
+                    <div className="relative h-32 bg-gradient-to-t from-red-500 to-red-200 rounded-lg overflow-hidden">
+                      <div 
+                        className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-green-500 to-green-300"
+                        style={{ height: `${100 - year.curtailmentPct}%` }}
+                      />
+                    </div>
+                    <div className="mt-2">
+                      <div className="text-xs text-gray-500">Curtailment</div>
+                      <div className={`text-lg font-bold ${year.curtailmentPct > 30 ? 'text-red-600' : year.curtailmentPct > 15 ? 'text-orange-600' : 'text-green-600'}`}>
+                        {year.curtailmentPct}%
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-600">
+                  <span className="inline-block w-4 h-4 bg-green-400 rounded mr-2"></span>
+                  Energy Sold
+                  <span className="inline-block w-4 h-4 bg-red-400 rounded ml-6 mr-2"></span>
+                  Curtailed Energy
+                </p>
+              </div>
             </div>
           </div>
         </div>
