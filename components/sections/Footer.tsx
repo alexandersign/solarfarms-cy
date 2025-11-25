@@ -64,6 +64,22 @@ export function Footer() {
             </nav>
           </div>
 
+          {/* Resources */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-lg">Resources</h3>
+            <nav className="flex flex-col space-y-2">
+              {NAVIGATION.resources.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-300 hover:text-solar-400 transition-colors text-sm"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
           {/* Contact */}
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Contact</h3>

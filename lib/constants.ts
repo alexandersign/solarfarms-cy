@@ -101,20 +101,13 @@ export const INVESTMENT_SIZES = {
     maxInvestment: 17000000,
     minRevenue: 1800000,     // Conservative PPA rates
     maxRevenue: 2400000,
-    minROI: 8,
-    maxROI: 12,
-    minPayback: 7,
-    maxPayback: 10,
-    minNPV: 18000000,
-    maxNPV: 32000000,
-    financingCap: 5000000,   // €500k/MW * 10MW max debt
-    maxRevenue: 2400000,
     minROI: 8,               // Realistic 8-12% equity IRR
     maxROI: 12,
     minPayback: 7,
     maxPayback: 10,
     minNPV: 18000000,
     maxNPV: 32000000,
+    financingCap: 5000000,   // €500k/MW * 10MW max debt
   },
 } as const
 
@@ -269,6 +262,12 @@ export const NAVIGATION = {
   legal: [
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
+  ],
+  resources: [
+    { name: "ROI Calculator", href: "/calculator" },
+    { name: "Generate LOI", href: "/loi" },
+    { name: "Investment Guides", href: "/resources" },
+    { name: "Blog & Insights", href: "/blog" },
   ],
 } as const
 

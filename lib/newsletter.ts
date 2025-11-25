@@ -38,7 +38,7 @@ export async function getActiveSubscribers(): Promise<string[]> {
     if (error) throw error
     return data.map(sub => sub.email)
   } catch (error) {
-    console.error('Failed to get subscribers:', error)
+    // Failed to get subscribers - return empty array
     return []
   }
 }
