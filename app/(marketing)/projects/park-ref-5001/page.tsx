@@ -422,7 +422,7 @@ export default function ParkRef5001Page() {
                           {formatCurrency(solarBESS.capex)}
                         </div>
                         <div className="text-xs text-gray-500">
-                          Park: {formatCurrency(PARK_DATA.askingPrice)} + BESS: {formatCurrency(solarBESS.bessCapex)}
+                          Park: {formatCurrency(PARK_DATA.askingPrice)} + BESS: {formatCurrency(solarBESS.bessCapex || 0)}
                         </div>
                       </div>
                       <div>
@@ -647,6 +647,12 @@ export default function ParkRef5001Page() {
                       WhatsApp
                     </a>
                   </Button>
+                  <Button variant="outline-on-dark" size="sm" asChild>
+                    <a href="https://calendly.com/lighthiefcyprus" target="_blank" rel="noopener noreferrer">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Schedule Call
+                    </a>
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -810,6 +816,16 @@ export default function ParkRef5001Page() {
               <a href="https://wa.me/35799164158?text=I'm interested in PARK-REF-5001 - 5MW Solar Park" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 WhatsApp: +357 99 164 158
+              </a>
+            </Button>
+            <Button 
+              variant="outline-on-dark"
+              size="lg"
+              asChild
+            >
+              <a href="https://calendly.com/lighthiefcyprus" target="_blank" rel="noopener noreferrer">
+                <Calendar className="w-5 h-5 mr-2" />
+                Schedule Video Call
               </a>
             </Button>
           </div>

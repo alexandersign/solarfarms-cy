@@ -57,7 +57,7 @@ const contactMethods = [
     contact: "Book online calendar",
     availability: "Flexible scheduling available",
     action: "Schedule Meeting",
-    href: "https://calendly.com/lighthief-cyprus",
+    href: "https://calendly.com/lighthiefcyprus",
     color: "green"
   },
   {
