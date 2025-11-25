@@ -109,11 +109,15 @@ export default function ParkRef5001Page() {
     message: ''
   })
 
+  // Tariff constants
+  const DAY_TARIFF = 0.19 // €190/MWh average
+  const NIGHT_TARIFF = 0.228 // €228/MWh (20% premium)
+
   // Calculate ROI scenarios
   const calculateROI = (withBESS: boolean) => {
     const avgCurtailment = 0.258 // 25.8% average from 2022-2025
     const grossProduction = 10000000 // ~10 GWh typical for 5MW with tracking
-    const tariff = 0.19 // €190/MWh average
+    const tariff = DAY_TARIFF
     
     if (!withBESS) {
       // Solar only scenario
@@ -315,7 +319,7 @@ export default function ParkRef5001Page() {
                         <div>
                           <h4 className="font-semibold text-red-900 mb-1">Curtailment Impact</h4>
                           <p className="text-sm text-red-800">
-                            {formatCurrency(solarOnly.curtailedEnergy * tariff)} annual revenue lost to curtailment
+                            {formatCurrency(solarOnly.curtailedEnergy * DAY_TARIFF)} annual revenue lost to curtailment
                             ({(solarOnly.curtailedEnergy / 1000).toFixed(0)} MWh curtailed)
                           </p>
                         </div>

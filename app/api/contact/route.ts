@@ -50,8 +50,7 @@ export async function POST(request: NextRequest) {
     try {
       savedContact = await contactsService.create(contactToSave)
     } catch (dbError) {
-      console.error('Database save failed (Supabase may be paused):', dbError)
-      // Continue with email sending even if database fails
+      // Database save failed (Supabase may be paused) - continue with email sending
       savedContact = { id: 'temp_' + Date.now() }
     }
     

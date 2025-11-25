@@ -25,17 +25,8 @@ const landAssessmentSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
-    console.log('Land assessment API called')
     
-    // Log all form data for debugging
-    const entries = Array.from(formData.entries())
-    entries.forEach(([key, value]) => {
-      if (value instanceof File) {
-        console.log(`Form field: ${key} = [File: ${value.name}]`)
-      } else {
-        console.log(`Form field: ${key} = ${value}`)
-      }
-    })
+    // Extract form data for validation
     
     // Handle file upload if present
     let titleDeedUrl = null
@@ -85,8 +76,7 @@ export async function POST(request: NextRequest) {
         status: 'pending'
       })
     } catch (dbError) {
-      console.error('Database save failed (Supabase may be paused):', dbError)
-      // Continue with assessment results even if database fails
+      // Database save failed (Supabase may be paused) - continue with assessment results
       landAssessment = { id: 'temp_' + Date.now() }
     }
     
