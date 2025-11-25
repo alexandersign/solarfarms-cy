@@ -31,6 +31,31 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: "5MW Solar Park with Single-Axis Tracking",
+    location: "Cyprus", // Location not disclosed for confidentiality
+    capacity: 5.01,
+    investment: 9600000,
+    roi: 13.3,
+    annualRevenue: 1410000,
+    status: "Available for Acquisition",
+    statusColor: "red",
+    completionDate: "Operational since 2020",
+    image: "/images/IMG_0149.JPG",
+    highlights: [
+      "Single-axis tracking system - premium technology",
+      "Real curtailment data: 45.8% (2025) - BESS opportunity",
+      "Tier-1 equipment: Trina, Huawei, Nclave trackers",
+      "€18.5k in spare parts included",
+      "BESS compatible - enhance ROI to 15.4%"
+    ],
+    testimonial: {
+      quote: "Transparent historical data and realistic curtailment modeling. BESS integration makes this future-proof.",
+      client: "Confidential - Reference: PARK-REF-5001"
+    },
+    featured: true,
+    link: "/projects/park-ref-5001"
+  },
+  {
     title: "Limassol Solar Farm - 5MW Premium Investment",
     location: "Limassol, Cyprus",
     capacity: 5,
@@ -252,13 +277,17 @@ export default function ProjectsPage() {
                     </div>
 
                     <div className="flex gap-3">
-                      <Button variant="gradient" className="flex-1">
-                        View Full Case Study
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                      <Button variant="gradient" className="flex-1" asChild>
+                        <Link href={project.link || '/contact'}>
+                          View Full {project.link ? 'Project Listing' : 'Case Study'}
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </Link>
                       </Button>
-                      <Button variant="outline">
-                        Similar Projects
-                      </Button>
+                      {!project.link && (
+                        <Button variant="outline">
+                          Similar Projects
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -324,9 +353,11 @@ export default function ProjectsPage() {
                     </div>
                   </div>
 
-                  <Button variant="outline" className="w-full group-hover:bg-solar-50">
-                    View Project Details
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                  <Button variant="outline" className="w-full group-hover:bg-solar-50" asChild>
+                    <Link href={project.link || '/contact'}>
+                      View Project Details
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>

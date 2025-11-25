@@ -58,6 +58,60 @@ export default function BlogPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* NEW - Curtailment Crisis Blog Post */}
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-red-200">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <Image
+                  src="/images/IMG_0149.JPG"
+                  alt="Cyprus Curtailment Crisis and BESS Solution"
+                  width={400}
+                  height={250}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4">
+                  <Badge variant="destructive">CRITICAL TREND</Badge>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge variant="secondary" className="bg-white/90 text-gray-800">NEW</Badge>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className={getCategoryColor('market-analysis')}>Market Alert</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">BESS</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/cyprus-curtailment-crisis-bess-solution">
+                    Cyprus Curtailment Crisis: The BESS Solution
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Curtailment surged from 0% to 45.8% in 4 years. Learn how Battery Storage protects your solar investment ROI.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Nov 26, 2025</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/cyprus-curtailment-crisis-bess-solution"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
             <Card className="group hover:shadow-xl transition-all duration-300">
               <div className="relative overflow-hidden rounded-t-lg">
                 <Image
