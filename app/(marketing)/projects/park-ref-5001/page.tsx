@@ -448,12 +448,12 @@ export default function ParkRef5001Page() {
                         <div>
                           <h4 className="font-semibold text-green-900 mb-1">BESS Value Proposition</h4>
                           <p className="text-sm text-green-800 mb-2">
-                            Recovers {(solarBESS.recoveredEnergy / 1000).toFixed(0)} MWh of curtailed energy annually
+                            Recovers {((solarBESS.recoveredEnergy || 0) / 1000).toFixed(0)} MWh of curtailed energy annually
                           </p>
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
                               <span className="text-green-700">BESS ROI: </span>
-                              <span className="font-semibold">{formatPercentage(solarBESS.bessROI)}</span>
+                              <span className="font-semibold">{formatPercentage(solarBESS.bessROI || 0)}</span>
                             </div>
                             <div>
                               <span className="text-green-700">Payback: </span>
@@ -479,13 +479,13 @@ export default function ParkRef5001Page() {
                       </div>
                       <div className="text-center p-4 bg-gray-50 rounded-lg">
                         <div className="text-lg font-bold text-gray-900">
-                          {(solarBESS.netProduction / 1000000).toFixed(2)} GWh
+                          {((solarBESS.netProduction || 0) / 1000000).toFixed(2)} GWh
                         </div>
                         <div className="text-xs text-gray-600">Enhanced Production</div>
                       </div>
                       <div className="text-center p-4 bg-gray-50 rounded-lg">
                         <div className="text-lg font-bold text-gray-900">
-                          {(solarBESS.bessSize).toFixed(1)} MWh
+                          {(solarBESS.bessSize || 0).toFixed(1)} MWh
                         </div>
                         <div className="text-xs text-gray-600">BESS Capacity</div>
                       </div>
