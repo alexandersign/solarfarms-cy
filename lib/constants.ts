@@ -40,24 +40,53 @@ export const CYPRUS_BANK_RATES = {
   }
 } as const
 
-// Investment Constants (Based on Real Lighthief Data)
+// Capex Modes - Realistic 2025 Cyprus Market Pricing
+export const CAPEX_MODES = {
+  'epc-dev': {
+    name: 'EPC Development',
+    pricePerMW: 500000,
+    description: 'Development from scratch - €500k/MW',
+    financingCap: 500000 // €500k/MW max debt
+  },
+  'turnkey': {
+    name: 'Turnkey New Build',
+    pricePerMW: 1200000,
+    description: 'Complete turnkey project - €1.2M/MW',
+    financingCap: 500000
+  },
+  'rtb-old': {
+    name: 'RTB Park (Fixed-Tilt)',
+    pricePerMW: 1200000,
+    description: 'Ready-to-build, older/fixed - €1.2M/MW',
+    financingCap: 500000
+  },
+  'rtb-new': {
+    name: 'RTB Park (Tracking)',
+    pricePerMW: 1700000,
+    description: 'Ready-to-build, new/tracking - €1.7M/MW',
+    financingCap: 500000
+  }
+} as const
+
+// Investment Constants (Updated 2025 Market Pricing)
 export const INVESTMENT_SIZES = {
   "1MW": {
-    minInvestment: 800000,  // Based on research: €800K-€1.2M per MW
-    maxInvestment: 1200000,
-    minRevenue: 180000,     // More conservative based on PPA rates €0.06-0.08/kWh
+    minInvestment: 1200000,  // Realistic range: €1.2M-€1.7M per MW
+    maxInvestment: 1700000,
+    minRevenue: 180000,     // Conservative PPA rates €0.18-0.24/kWh
     maxRevenue: 240000,
-    minROI: 8,              // More realistic: 8-12% equity IRR
+    minROI: 8,              // Realistic 8-12% equity IRR
     maxROI: 12,
-    minPayback: 7,          // Research shows 7-10 years
+    minPayback: 7,          // 7-10 years typical
     maxPayback: 10,
     minNPV: 1800000,
     maxNPV: 3200000,
+    financingCap: 500000,   // €500k/MW max debt
   },
   "5MW": {
-    minInvestment: 4000000,  // €800K-€1.2M per MW * 5
-    maxInvestment: 6000000,
-    minRevenue: 900000,      // More conservative PPA rates
+    minInvestment: 6000000,  // €1.2M-€1.7M per MW * 5
+    maxInvestment: 8500000,
+    minRevenue: 900000,      // Conservative PPA rates
     maxRevenue: 1200000,
     minROI: 8,               // Realistic 8-12% equity IRR
     maxROI: 12,
@@ -65,11 +94,20 @@ export const INVESTMENT_SIZES = {
     maxPayback: 10,
     minNPV: 9000000,
     maxNPV: 16000000,
+    financingCap: 2500000,   // €500k/MW * 5MW max debt
   },
   "10MW": {
-    minInvestment: 8000000,  // €800K-€1.2M per MW * 10
-    maxInvestment: 12000000,
+    minInvestment: 12000000,  // €1.2M-€1.7M per MW * 10
+    maxInvestment: 17000000,
     minRevenue: 1800000,     // Conservative PPA rates
+    maxRevenue: 2400000,
+    minROI: 8,
+    maxROI: 12,
+    minPayback: 7,
+    maxPayback: 10,
+    minNPV: 18000000,
+    maxNPV: 32000000,
+    financingCap: 5000000,   // €500k/MW * 10MW max debt
     maxRevenue: 2400000,
     minROI: 8,               // Realistic 8-12% equity IRR
     maxROI: 12,
