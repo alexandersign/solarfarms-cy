@@ -46,15 +46,35 @@ export function ROICalculator() {
     // Track calculator usage
     trackEvent('calculator_calculation', 'ROI Calculator', selectedSize, totalInvestment)
 
+    // Calculate capacity first (needed for financing calculations)
+    const capacityMW = selectedSize === '1MW' ? 1 : selectedSize === '5MW' ? 5 : 10
+
     // Get financing details
     const financing = FINANCING_OPTIONS[financingOption as keyof typeof FINANCING_OPTIONS]
     
-    // Calculate financing structure
-    const downPayment = totalInvestment * (financing.downPayment / 100)
-    const loanAmount = totalInvestment * (financing.loanAmount / 100)
+    // Calculate financing structure based on option type
+    let downPayment = 0
+    let loanAmount = 0
+    
+    if (financingOption === 'CASH') {
+      downPayment = totalInvestment
+      loanAmount = 0
+    } else if (financingOption === 'SOLAR_ONLY' && 'maxDebtPerMW' in financing) {
+      // Solar-only: Cap at €500k/MW
+      const maxDebt = financing.maxDebtPerMW * capacityMW
+      loanAmount = Math.min(maxDebt, totalInvestment)
+      downPayment = totalInvestment - loanAmount
+    } else if (financingOption === 'SOLAR_BESS' && 'downPayment' in financing && 'loanAmount' in financing) {
+      // Solar+BESS: Up to 70% financing
+      downPayment = totalInvestment * (financing.downPayment / 100)
+      loanAmount = totalInvestment * (financing.loanAmount / 100)
+    } else {
+      // Fallback for any other options
+      downPayment = totalInvestment
+      loanAmount = 0
+    }
     
     // Calculate annual energy production (MW * capacity factor * hours per year)
-    const capacityMW = selectedSize === '1MW' ? 1 : selectedSize === '5MW' ? 5 : 10
     const capacityFactor = 0.22 // Cyprus average capacity factor
     const annualEnergyMWh = capacityMW * capacityFactor * 8760 // hours per year
     
