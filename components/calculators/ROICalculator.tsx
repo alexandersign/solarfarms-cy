@@ -119,8 +119,108 @@ export function ROICalculator() {
   }
 
   const handleDownloadReport = () => {
-    // This would generate a PDF report
-    alert('PDF report generation coming soon!')
+    if (!results) return
+    
+    // Generate HTML report
+    const reportHTML = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Solar Investment ROI Report - ${selectedSize} Farm</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 40px; color: #333; }
+          .header { text-align: center; border-bottom: 3px solid #0ea5e9; padding-bottom: 20px; margin-bottom: 30px; }
+          .header h1 { color: #0ea5e9; margin: 0; }
+          .header p { color: #666; margin: 10px 0 0 0; }
+          .section { margin: 30px 0; }
+          .section h2 { color: #333; border-bottom: 2px solid #f59e0b; padding-bottom: 10px; }
+          table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+          td { padding: 12px; border-bottom: 1px solid #ddd; }
+          td:first-child { font-weight: bold; width: 50%; }
+          td:last-child { text-align: right; color: #0ea5e9; font-weight: bold; }
+          .highlight { background: #fef3c7; padding: 20px; border-left: 4px solid #f59e0b; margin: 20px 0; }
+          .footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid #0ea5e9; text-align: center; font-size: 12px; color: #666; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>Solar Farm Investment ROI Report</h1>
+          <p>SolarFarms.cy - ${selectedSize} Solar Farm | ${new Date().toLocaleDateString()}</p>
+        </div>
+        
+        <div class="section">
+          <h2>Investment Summary</h2>
+          <table>
+            <tr><td>Investment Size</td><td>${selectedSize} Solar Farm</td></tr>
+            <tr><td>Total Project Cost</td><td>${formatCurrency(results.investment)}</td></tr>
+            <tr><td>Financing Type</td><td>${results.financingType}</td></tr>
+            <tr><td>Cash Required</td><td>${formatCurrency(results.cashInvested)}</td></tr>
+            ${results.loanAmount > 0 ? `
+              <tr><td>Bank Financing</td><td>${formatCurrency(results.loanAmount)}</td></tr>
+              <tr><td>Annual Loan Payment</td><td>${formatCurrency(results.annualLoanPayment)}</td></tr>
+            ` : ''}
+          </table>
+        </div>
+        
+        <div class="highlight">
+          <h3 style="margin: 0 0 15px 0; color: #92400e;">Key Investment Metrics</h3>
+          <table style="margin: 0;">
+            <tr><td>Annual ROI on Cash Invested</td><td style="font-size: 24px; color: #10b981;">${formatPercentage(results.roi)}</td></tr>
+            <tr><td>Payback Period</td><td>${results.paybackYears.toFixed(1)} years</td></tr>
+            <tr><td>Break-even Month</td><td>Month ${results.breakEvenMonth}</td></tr>
+            <tr><td>25-Year NPV</td><td>${formatCurrency(results.npv25)}</td></tr>
+          </table>
+        </div>
+        
+        <div class="section">
+          <h2>Financial Performance</h2>
+          <table>
+            <tr><td>Annual Revenue</td><td>${formatCurrency(results.annualRevenue)}</td></tr>
+            <tr><td>Annual Profit (after all costs)</td><td>${formatCurrency(results.annualProfit)}</td></tr>
+            <tr><td>Monthly Profit</td><td>${formatCurrency(results.monthlyProfit)}</td></tr>
+          </table>
+        </div>
+        
+        <div class="section">
+          <h2>Investment Highlights - Cyprus Solar Advantages</h2>
+          <ul>
+            <li>Europe's sunniest climate with 3,300+ sun hours annually</li>
+            <li>Stable EU regulatory framework with long-term guarantees</li>
+            <li>Professional O&M services from Lighthief Cyprus</li>
+            <li>Strategic location with excellent grid infrastructure</li>
+            <li>25-year performance warranties on all equipment</li>
+          </ul>
+        </div>
+        
+        <div class="footer">
+          <p><strong>LIGHTHIEF CYPRUS LTD</strong><br>
+          28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+          Email: office@lighthief.com | Phone: +357 77 77 00 50<br>
+          www.solarfarms.cy</p>
+          
+          <p style="margin-top: 15px; font-size: 10px;">
+            This report is for informational purposes only and does not constitute investment advice. 
+            Actual returns may vary based on market conditions, operational performance, and other factors.
+          </p>
+        </div>
+      </body>
+      </html>
+    `
+    
+    // Open in new window for printing/saving as PDF
+    const printWindow = window.open('', '_blank')
+    if (printWindow) {
+      printWindow.document.write(reportHTML)
+      printWindow.document.close()
+      printWindow.focus()
+      
+      // Auto-trigger print dialog after a short delay
+      setTimeout(() => {
+        printWindow.print()
+      }, 500)
+    }
+    
     // Track analytics event
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'report_downloaded', {
