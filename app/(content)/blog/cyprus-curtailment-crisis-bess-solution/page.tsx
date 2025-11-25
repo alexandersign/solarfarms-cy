@@ -13,7 +13,8 @@ import {
   Zap,
   Shield,
   Award,
-  Globe
+  Globe,
+  Calculator
 } from 'lucide-react'
 
 export const metadata: Metadata = {
