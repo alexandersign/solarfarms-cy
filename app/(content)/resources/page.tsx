@@ -32,23 +32,44 @@ export const metadata: Metadata = {
 
 const investmentGuides = [
   {
-    title: "Complete Guide to Cyprus Solar Farm Investments",
-    description: "Comprehensive 25-page guide covering everything from market analysis to investment strategies, financial projections, and risk mitigation.",
+    title: "Cyprus Solar Investment Guide 2025",
+    description: "Complete guide covering market analysis, investment costs (€1.5M/MW), financing options (€500k/MW cap), ROI expectations (8-13%), and risk mitigation strategies including BESS.",
     category: "Investment Guide",
-    targetAudience: "First-time & Experienced Investors",
-    pages: 25,
-    downloadCount: "2,500+",
-    rating: 4.9,
+    targetAudience: "All Investors",
+    pages: 12,
+    downloadCount: "NEW",
+    rating: 5.0,
     keyTopics: [
-      "Cyprus market opportunity analysis",
-      "Financial modeling and ROI calculations",
-      "Risk assessment and mitigation strategies",
-      "Step-by-step investment process",
-      "Regulatory framework and incentives",
-      "Due diligence checklist"
+      "Realistic 2025 market pricing (€1.5M/MW)",
+      "Curtailment crisis analysis (0% to 45.8%)",
+      "BESS integration economics",
+      "Financing caps and structures",
+      "Tax considerations (8% crypto tax)",
+      "Lighthief Cyprus services"
     ],
     featured: true,
-    gated: true
+    gated: false,
+    downloadUrl: "/guides/cyprus-solar-investment-guide-2025.html"
+  },
+  {
+    title: "BESS Integration Guide 2025",
+    description: "Essential guide to Battery Energy Storage Systems for curtailment mitigation. Includes sizing methodology, economics, case studies, and implementation timeline.",
+    category: "Technical Guide",
+    targetAudience: "All Investors",
+    pages: 8,
+    downloadCount: "NEW",
+    rating: 5.0,
+    keyTopics: [
+      "Curtailment crisis data and trends",
+      "BESS sizing for Cyprus conditions",
+      "ROI calculations (15.4% standalone)",
+      "Tier-1 equipment options",
+      "Lighthief Cyprus BESS services",
+      "14-22 week implementation timeline"
+    ],
+    featured: true,
+    gated: false,
+    downloadUrl: "/guides/bess-integration-guide-2025.html"
   },
   {
     title: "Institutional Solar Investment Strategies",
@@ -285,10 +306,10 @@ export default function ResourcesPage() {
                   </div>
 
                   <Button variant={guide.featured ? "gradient" : "outline"} className="w-full" asChild>
-                    <Link href="/contact">
-                      {guide.gated ? "Download Guide (Free)" : "Download Now"}
+                    <a href={guide.downloadUrl || "/contact"} target={guide.downloadUrl ? "_blank" : "_self"}>
+                      {guide.downloadUrl ? "Download Guide (Free)" : "Coming Soon - Request Info"}
                       <Download className="w-4 h-4 ml-2" />
-                    </Link>
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
