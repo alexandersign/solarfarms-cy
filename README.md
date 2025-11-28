@@ -1,6 +1,18 @@
 # SolarFarms.cy - Premium Cyprus Solar Investment Platform
 
-A Next.js-powered investment platform connecting high-net-worth individuals and institutional investors with premium solar farm opportunities in Cyprus. Built with modern web technologies for optimal performance, SEO, and user experience.
+**Version 2.0** | **Status: Production Operational** | **Last Updated: November 26, 2025**
+
+A Next.js-powered investment platform connecting high-net-worth individuals and institutional investors with premium solar farm opportunities in Cyprus. Features verified email system, BESS ROI modeling, real curtailment data, and professional document generation.
+
+## 🌟 **Platform Highlights**
+
+- ✅ **Live Production**: https://solarfarms.cy
+- ✅ **Verified Email**: Professional delivery from noreply@solarfarms.cy
+- ✅ **Real Park Listing**: 5.01MW with tracking system (€9.6M)
+- ✅ **BESS Calculator**: Interactive curtailment mitigation scenarios
+- ✅ **Document Generation**: LOI and PDF investment reports
+- ✅ **Newsletter System**: Automated subscriber notifications
+- ✅ **Realistic Pricing**: €1.5M/MW based on actual market data
 
 ## 🚀 Quick Start
 
