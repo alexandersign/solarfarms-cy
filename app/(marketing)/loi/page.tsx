@@ -48,19 +48,22 @@ export default function LOIGeneratorPage() {
       })
       
       if (response.ok) {
-        const blob = await response.blob()
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `LOI-${formData.projectReference || 'Solar-Investment'}.html`
-        document.body.appendChild(a)
-        a.click()
-        window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
+        const html = await response.text()
         
-        alert('Letter of Intent generated successfully!')
+        // Open LOI in new window for review and printing
+        const loiWindow = window.open('', '_blank')
+        if (loiWindow) {
+          loiWindow.document.write(html)
+          loiWindow.document.close()
+          loiWindow.focus()
+          
+          alert('Letter of Intent opened in new window. You can review, print, or save as PDF.')
+        } else {
+          alert('Please allow pop-ups to view your Letter of Intent.')
+        }
       } else {
-        alert('Failed to generate LOI. Please check all required fields.')
+        const error = await response.json()
+        alert(error.message || 'Failed to generate LOI. Please check all required fields.')
       }
     } catch (error) {
       alert('An error occurred. Please try again.')
