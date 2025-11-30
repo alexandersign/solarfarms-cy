@@ -122,7 +122,7 @@ export async function trackProjectInterest(data: {
     value: data.value,
     currency: 'EUR',
     country: 'CY',
-    eventSourceUrl: `https://solarfarms.cy/projects/${projectRef}`
+    eventSourceUrl: `https://solarfarms.cy/projects/${data.projectRef}`
   })
 }
 
