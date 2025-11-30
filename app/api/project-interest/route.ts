@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabase } from '@/lib/supabase'
 import { Resend } from 'resend'
+import { trackProjectInterest } from '@/lib/meta-conversions'
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
@@ -176,6 +177,14 @@ export async function POST(request: NextRequest) {
         // Email failed
       }
     }
+    
+    // Track Meta conversion for high-value project interest
+    const projectValue = validatedData.projectRef === 'PARK-REF-5001' ? 9600000 : 5000000
+    trackProjectInterest({
+      email: validatedData.email,
+      projectRef: validatedData.projectRef,
+      value: projectValue * 0.001 // Track as €value/1000 for sensible numbers
+    }).catch(() => {}) // Non-blocking
     
     return NextResponse.json(
       { 

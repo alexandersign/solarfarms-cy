@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sendNewsletterWelcome } from '@/lib/email'
+import { trackMetaConversion } from '@/lib/meta-conversions'
 
 // Validation schema for newsletter signup
 const newsletterSchema = z.object({
@@ -31,6 +32,14 @@ export async function POST(request: NextRequest) {
     
     // Send welcome email
     await sendNewsletterWelcome(validatedData)
+    
+    // Track Meta conversion for newsletter signup
+    trackMetaConversion('CompleteRegistration', {
+      email: validatedData.email,
+      value: 50, // Newsletter subscriber value
+      currency: 'EUR',
+      eventSourceUrl: 'https://solarfarms.cy'
+    }).catch(() => {}) // Non-blocking
     
     return NextResponse.json(
       { 

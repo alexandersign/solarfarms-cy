@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabase, landAssessmentsService, fileUploadService } from '@/lib/supabase'
 import { sendContactNotification } from '@/lib/email'
+import { trackLeadConversion } from '@/lib/meta-conversions'
 
 // Validation schema for land assessment
 const landAssessmentSchema = z.object({
@@ -82,6 +83,14 @@ export async function POST(request: NextRequest) {
     
     // Send notification to team with file attachment info
     await notifyTeamOfLandAssessment(validatedData, assessmentResults, titleDeedUrl)
+    
+    // Track Meta conversion for landowner lead
+    trackLeadConversion({
+      email: validatedData.email,
+      phone: validatedData.phone,
+      value: 200, // Landowner lead value
+      source: '/landowners'
+    }).catch(() => {}) // Non-blocking
     
     return NextResponse.json(
       { 
