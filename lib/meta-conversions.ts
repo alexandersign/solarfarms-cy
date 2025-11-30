@@ -30,7 +30,7 @@ export async function trackMetaConversion(
   eventData: ConversionEventData
 ) {
   if (!ACCESS_TOKEN || !PIXEL_ID) {
-    console.warn('Meta Conversion API not configured')
+    // Meta Conversion API not configured
     return { success: false, message: 'API not configured' }
   }
 
@@ -89,7 +89,7 @@ export async function trackMetaConversion(
     return { success: true, data: response }
     
   } catch (error) {
-    console.error('Meta Conversion API error:', error)
+    // Meta Conversion API error - fail silently
     return { success: false, error }
   }
 }
