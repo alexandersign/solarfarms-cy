@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sendContactNotification, sendContactAutoresponder } from '@/lib/email'
 import { supabase, contactsService, fileUploadService } from '@/lib/supabase'
+import { trackLeadConversion } from '@/lib/meta-conversions'
 
 // Validation schema for contact form
 const contactSchema = z.object({
@@ -59,6 +60,14 @@ export async function POST(request: NextRequest) {
     
     // Send autoresponder to client
     const autoresponderResult = await sendContactAutoresponder(validatedData)
+    
+    // Track Meta conversion (async, don't wait)
+    trackLeadConversion({
+      email: validatedData.email,
+      phone: validatedData.phone,
+      value: 142.52, // Lead value in EUR
+      source: '/contact'
+    }).catch(() => {}) // Ignore errors, don't block response
     
     // Check if emails failed
     if (!notificationResult.success || !autoresponderResult.success) {
