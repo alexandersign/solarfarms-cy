@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { generateLOIHTML, LOIData } from '@/lib/loi-generator'
+import { trackLOIGenerated } from '@/lib/meta-conversions'
 
 // Validation schema for LOI generation
 const loiSchema = z.object({
@@ -28,6 +29,14 @@ export async function POST(request: NextRequest) {
     
     // Generate HTML
     const html = generateLOIHTML(validatedData)
+    
+    // Track Meta conversion for LOI generation (highest intent lead)
+    // Value: €1000 for LOI generation (very high intent)
+    trackLOIGenerated({
+      email: validatedData.investorEmail,
+      projectRef: validatedData.projectReference,
+      investmentAmount: validatedData.investmentAmount,
+    }).catch(() => {}) // Non-blocking
     
     // For now, return HTML (PDF generation requires additional setup)
     // In production, this would use Puppeteer or similar to generate PDF

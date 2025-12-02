@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
 import { GoogleAnalytics, ConsentBanner } from '@/components/analytics/GoogleAnalytics'
+import { MetaPixel } from '@/components/analytics/MetaPixel'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -70,6 +71,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <GoogleAnalytics />
+        <MetaPixel />
         <ConsentBanner />
         <Header />
         <main>{children}</main>

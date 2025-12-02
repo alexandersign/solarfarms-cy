@@ -33,10 +33,11 @@ export async function POST(request: NextRequest) {
     // Send welcome email
     await sendNewsletterWelcome(validatedData)
     
-    // Track Meta conversion for newsletter signup
+    // Track Meta conversion for newsletter signup (top of funnel)
+    // Value: €25 for newsletter subscriber
     trackMetaConversion('CompleteRegistration', {
       email: validatedData.email,
-      value: 50, // Newsletter subscriber value
+      value: 25, // Newsletter subscriber value (top of funnel)
       currency: 'EUR',
       eventSourceUrl: 'https://solarfarms.cy'
     }).catch(() => {}) // Non-blocking

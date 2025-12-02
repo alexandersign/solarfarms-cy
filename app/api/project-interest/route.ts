@@ -14,6 +14,10 @@ const projectInterestSchema = z.object({
   phone: z.string().optional(),
   message: z.string().optional(),
   scenario: z.enum(['solar-only', 'solar-bess']).optional(),
+  // Meta tracking fields
+  fbp: z.string().optional(),
+  fbc: z.string().optional(),
+  eventId: z.string().optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -178,12 +182,23 @@ export async function POST(request: NextRequest) {
       }
     }
     
-    // Track Meta conversion for high-value project interest
-    const projectValue = validatedData.projectRef === 'PARK-REF-5001' ? 9600000 : 5000000
+    // Get client IP and user agent from request headers
+    const clientIpAddress = request.headers.get('x-forwarded-for')?.split(',')[0] || 
+                            request.headers.get('x-real-ip') || 
+                            undefined
+    const clientUserAgent = request.headers.get('user-agent') || undefined
+    
+    // Track Meta conversion for high-value project interest with deduplication
+    // Value: €500 for specific project inquiry (high intent lead)
     trackProjectInterest({
       email: validatedData.email,
       projectRef: validatedData.projectRef,
-      value: projectValue * 0.001 // Track as €value/1000 for sensible numbers
+      value: 500, // High-intent project interest lead value
+      fbp: validatedData.fbp,
+      fbc: validatedData.fbc,
+      eventId: validatedData.eventId,
+      clientIpAddress,
+      clientUserAgent,
     }).catch(() => {}) // Non-blocking
     
     return NextResponse.json(

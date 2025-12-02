@@ -13,6 +13,10 @@ const contactSchema = z.object({
   investmentSize: z.string().min(1, 'Please select investment size'),
   timeline: z.string().min(1, 'Please select timeline'),
   message: z.string().optional(),
+  // Meta tracking fields (optional, from client)
+  fbp: z.string().optional(),
+  fbc: z.string().optional(),
+  eventId: z.string().optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -61,12 +65,32 @@ export async function POST(request: NextRequest) {
     // Send autoresponder to client
     const autoresponderResult = await sendContactAutoresponder(validatedData)
     
-    // Track Meta conversion (async, don't wait)
+    // Extract first and last name from full name
+    const nameParts = validatedData.name.trim().split(' ')
+    const firstName = nameParts[0]
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : undefined
+    
+    // Get client IP and user agent from request headers
+    const clientIpAddress = request.headers.get('x-forwarded-for')?.split(',')[0] || 
+                            request.headers.get('x-real-ip') || 
+                            undefined
+    const clientUserAgent = request.headers.get('user-agent') || undefined
+    
+    // Track Meta conversion with deduplication (async, don't wait)
+    // Lead value: €150 for general investor inquiry
     trackLeadConversion({
       email: validatedData.email,
       phone: validatedData.phone,
-      value: 142.52, // Lead value in EUR
-      source: '/contact'
+      firstName,
+      lastName,
+      country: 'CY',
+      value: 150, // Investor contact lead value in EUR
+      source: '/contact',
+      fbp: validatedData.fbp,
+      fbc: validatedData.fbc,
+      eventId: validatedData.eventId, // Same ID as browser pixel for deduplication
+      clientIpAddress,
+      clientUserAgent,
     }).catch(() => {}) // Ignore errors, don't block response
     
     // Check if emails failed

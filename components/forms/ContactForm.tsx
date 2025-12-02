@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { INVESTMENT_OPTIONS, TIMELINE_OPTIONS } from '@/lib/constants'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
+import { trackLeadPixel, getMetaCookies, generateEventId } from '@/components/analytics/MetaPixel'
 
 interface FormData {
   name: string
@@ -56,24 +57,40 @@ export function ContactForm() {
     setIsSubmitting(true)
 
     try {
+      // Generate event ID for Meta deduplication
+      const eventId = generateEventId()
+      
+      // Fire browser pixel first (with same eventID for deduplication)
+      // Lead value: €150 for general investor inquiry
+      trackLeadPixel(150, 'EUR', eventId)
+      
+      // Get Meta cookies for better matching
+      const { fbp, fbc } = getMetaCookies()
+
       // Send as JSON for investor contact form (no file uploads)
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          // Include Meta tracking data for server-side CAPI
+          fbp,
+          fbc,
+          eventId,
+        }),
       })
 
       const result = await response.json()
 
       if (result.success) {
-        // Track analytics event
+        // Track Google Analytics event
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit', {
             event_category: 'engagement',
             event_label: 'contact_form',
-            value: 0
+            value: 150
           })
         }
         

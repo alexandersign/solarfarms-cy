@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabase, landAssessmentsService, fileUploadService } from '@/lib/supabase'
 import { sendContactNotification } from '@/lib/email'
-import { trackLeadConversion } from '@/lib/meta-conversions'
+import { trackLandownerLead } from '@/lib/meta-conversions'
 
 // Validation schema for land assessment
 const landAssessmentSchema = z.object({
@@ -84,12 +84,34 @@ export async function POST(request: NextRequest) {
     // Send notification to team with file attachment info
     await notifyTeamOfLandAssessment(validatedData, assessmentResults, titleDeedUrl)
     
-    // Track Meta conversion for landowner lead
-    trackLeadConversion({
+    // Get client IP and user agent from request headers
+    const clientIpAddress = request.headers.get('x-forwarded-for')?.split(',')[0] || 
+                            request.headers.get('x-real-ip') || 
+                            undefined
+    const clientUserAgent = request.headers.get('user-agent') || undefined
+    
+    // Extract first and last name from owner name
+    const nameParts = validatedData.ownerName.trim().split(' ')
+    const firstName = nameParts[0]
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : undefined
+    
+    // Get Meta tracking data from form if present
+    const fbp = formData.get('fbp') as string || undefined
+    const fbc = formData.get('fbc') as string || undefined
+    const eventId = formData.get('eventId') as string || undefined
+    
+    // Track Meta conversion for landowner lead with deduplication
+    // Value: €200 for landowner lead (valuable property owner)
+    trackLandownerLead({
       email: validatedData.email,
       phone: validatedData.phone,
-      value: 200, // Landowner lead value
-      source: '/landowners'
+      plotSize: validatedData.plotSize,
+      location: validatedData.location,
+      fbp,
+      fbc,
+      eventId,
+      clientIpAddress,
+      clientUserAgent,
     }).catch(() => {}) // Non-blocking
     
     return NextResponse.json(
