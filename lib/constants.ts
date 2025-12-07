@@ -310,3 +310,79 @@ export const ANALYTICS_EVENTS = {
   NEWSLETTER_SUBSCRIBED: "newsletter_subscribed",
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
 } as const
+
+// Cyprus Market Defaults (2024-2025 Data) - All Editable in Calculator
+export const CYPRUS_MARKET_DEFAULTS = {
+  // Revenue rates
+  daytimeSellingRate: 0.190,      // €/kWh - Average merchant rate during solar hours
+  nightDischargeRate: 0.210,      // €/kWh - Evening peak rate (19-21c typical)
+  ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
+  
+  // Curtailment (based on real 2024-2025 data)
+  curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average
+  curtailedEnergyRate: 0.00,      // €/kWh - Rate paid for curtailed energy
+  curtailmentCompensation: 0.00,  // % compensated under PPA
+  
+  // Production
+  annualYield: 1650,              // kWh/kWp - Cyprus typical (1,500-1,800)
+  capacityFactor: 0.22,           // 22% - Cyprus conditions
+  annualDegradation: 0.005,       // 0.5% per year
+  systemAvailability: 0.99,       // 99% uptime
+  
+  // Operating costs (based on real 5MW park data)
+  omCostPerMW: 15000,             // €/MW/year - Lighthief O&M
+  insurance: 5000,                // €/year
+  landLease: 25000,               // €/year - Typical Cyprus lease
+  administration: 30000,          // €/year - Management, accounting
+  otherCosts: 10000,              // €/year - Miscellaneous
+  
+  // Financing
+  interestRate: 0.045,            // 4.5% - Cyprus commercial loan
+  loanTermYears: 15,              // Standard solar project term
+  discountRate: 0.08,             // 8% for NPV
+  solarOnlyDebtCapPerMW: 500000,  // €500k/MW max for solar-only
+  solarBessDebtPct: 0.70,         // 70% for solar+BESS
+} as const
+
+// BESS Parameters (Linyang System Defaults)
+export const BESS_DEFAULTS = {
+  // Linyang specifications
+  roundTripEfficiency: 0.8839,    // 88.39% RTE
+  costPerKwh: 140,                // €140/kWh installed
+  annualOpexPct: 0.02,            // 2% of capex per year
+  warrantyYears: 15,              // Standard warranty
+  cycleLife: 6000,                // Cycles at 80% DoD
+  
+  // Duration options (hours)
+  durationOptions: [2, 3, 4] as const,
+  defaultDuration: 2,             // 2-hour system default
+  
+  // Operational parameters
+  dailyCycles: 1.0,               // Cycles per day
+  curtailmentRecoveryRate: 0.50,  // 50% of curtailed energy recoverable
+  nightArbitragePremium: 0.105,   // 10.5% premium for evening discharge
+  
+  // Degradation
+  annualCapacityLoss: 0.025,      // 2.5% per year
+} as const
+
+// Project Stage Options
+export const PROJECT_STAGES = {
+  RTB: { name: 'Ready-to-Build (RTB)', description: 'Permits approved, ready for construction' },
+  CONSTRUCTION: { name: 'Under Construction', description: 'Currently being built' },
+  OPERATIONAL: { name: 'Operational', description: 'Producing and selling energy' },
+} as const
+
+// Technology Options
+export const TECHNOLOGY_TYPES = {
+  FIXED: { name: 'Fixed-Tilt', yieldMultiplier: 1.0, costMultiplier: 1.0 },
+  TRACKER: { name: 'Single-Axis Tracker', yieldMultiplier: 1.15, costMultiplier: 1.15 },
+  BIFACIAL: { name: 'Bifacial + Tracker', yieldMultiplier: 1.25, costMultiplier: 1.25 },
+} as const
+
+// PPA Types
+export const PPA_TYPES = {
+  MERCHANT: { name: 'Merchant (Spot Market)', description: 'Sell at market rates' },
+  FIXED: { name: 'Fixed PPA', description: 'Locked rate contract' },
+  HYBRID: { name: 'Hybrid', description: 'Partial fixed, partial merchant' },
+} as const

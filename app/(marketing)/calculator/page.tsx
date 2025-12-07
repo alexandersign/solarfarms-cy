@@ -1,10 +1,12 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { ROICalculator } from '@/components/calculators/ROICalculator'
+import { AdvancedProjectCalculator } from '@/components/calculators/AdvancedProjectCalculator'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Calculator, TrendingUp, Euro, Clock, Shield, Info } from 'lucide-react'
+import { CalculatorTabs } from './calculator-tabs'
 
 export const metadata: Metadata = {
   title: 'Solar Farm ROI Calculator | Calculate Cyprus Solar Investment Returns',
@@ -152,8 +154,8 @@ export default function CalculatorPage() {
             ))}
           </div>
 
-          {/* Interactive Calculator */}
-          <ROICalculator />
+          {/* Interactive Calculator with Tabs */}
+          <CalculatorTabs />
         </div>
       </section>
 
