@@ -71,6 +71,40 @@ function FormField({
   )
 }
 
+// IRR Calculation using Newton-Raphson method
+function calculateIRR(cashFlows: number[], guess: number = 0.1, maxIterations: number = 100, tolerance: number = 0.0001): number {
+  let rate = guess
+  
+  for (let i = 0; i < maxIterations; i++) {
+    let npv = 0
+    let derivativeNpv = 0
+    
+    for (let t = 0; t < cashFlows.length; t++) {
+      const discountFactor = Math.pow(1 + rate, t)
+      npv += cashFlows[t] / discountFactor
+      if (t > 0) {
+        derivativeNpv -= t * cashFlows[t] / Math.pow(1 + rate, t + 1)
+      }
+    }
+    
+    if (Math.abs(npv) < tolerance) {
+      return rate * 100 // Return as percentage
+    }
+    
+    if (derivativeNpv === 0) {
+      return NaN
+    }
+    
+    rate = rate - npv / derivativeNpv
+    
+    // Prevent divergence
+    if (rate < -0.99) rate = -0.99
+    if (rate > 10) rate = 10
+  }
+  
+  return rate * 100 // Return as percentage
+}
+
 // Types
 interface ProjectInputs {
   // Project Info
@@ -116,9 +150,11 @@ interface ProjectInputs {
   landLease: number
   administration: number
   otherCosts: number
+  bessOmPct: number // BESS O&M as % of capex
   
-  // Financing
-  financingType: 'CASH' | 'SOLAR_ONLY' | 'SOLAR_BESS'
+  // Flexible Financing
+  ltvPercent: number          // Loan-to-Value percentage
+  existingLoan: number        // Existing loan balance (for operational projects)
   interestRate: number
   loanTermYears: number
   discountRate: number
@@ -150,7 +186,9 @@ interface CalculationResults {
   bessCapex: number
   totalCapex: number
   recoverableEnergy: number
-  bessRevenue: number
+  bessGrossRevenue: number
+  lostCurtailmentCompensation: number
+  bessNetRevenue: number
   bessOpex: number
   netBessBenefit: number
   totalRevenueWithBESS: number
@@ -164,6 +202,18 @@ interface CalculationResults {
   paybackWithBESS: number
   npv25WithBESS: number
   irrWithBESS: number
+  
+  // Investor Metrics
+  cashOnCashReturn: number
+  equityMultiple: number
+  dscr: number
+  cashOnCashReturnWithBESS: number
+  equityMultipleWithBESS: number
+  dscrWithBESS: number
+  
+  // 25-year totals
+  totalDistributions25: number
+  totalDistributions25WithBESS: number
 }
 
 export function AdvancedProjectCalculator() {
@@ -205,8 +255,11 @@ export function AdvancedProjectCalculator() {
     landLease: CYPRUS_MARKET_DEFAULTS.landLease,
     administration: CYPRUS_MARKET_DEFAULTS.administration,
     otherCosts: CYPRUS_MARKET_DEFAULTS.otherCosts,
+    bessOmPct: BESS_DEFAULTS.annualOpexPct * 100, // 2%
     
-    financingType: 'CASH',
+    // Flexible financing defaults
+    ltvPercent: 0, // Default to cash (0% LTV)
+    existingLoan: 0,
     interestRate: CYPRUS_MARKET_DEFAULTS.interestRate * 100,
     loanTermYears: CYPRUS_MARKET_DEFAULTS.loanTermYears,
     discountRate: CYPRUS_MARKET_DEFAULTS.discountRate * 100,
@@ -232,13 +285,13 @@ export function AdvancedProjectCalculator() {
   const calculateResults = useCallback(() => {
     const {
       capacityDC, capacityAC, technology, askingPrice,
-      annualYield, capacityFactor, annualDegradation, systemAvailability,
+      annualYield, annualDegradation, systemAvailability,
       daytimeRate, nightRate, ppaType, ppaRate,
       curtailmentRate, curtailedEnergyRate, curtailmentCompensation,
       includeBESS, bessDuration, bessCostPerKwh, bessRTE, dailyCycles,
       curtailmentRecoveryRate, nightArbitragePremium,
-      omCostPerMW, insurance, landLease, administration, otherCosts,
-      financingType, interestRate, loanTermYears, discountRate
+      omCostPerMW, insurance, landLease, administration, otherCosts, bessOmPct,
+      ltvPercent, existingLoan, interestRate, loanTermYears, discountRate
     } = inputs
 
     // Convert percentages to decimals
@@ -251,6 +304,8 @@ export function AdvancedProjectCalculator() {
     const arbitragePremiumPct = nightArbitragePremium / 100
     const interestPct = interestRate / 100
     const discountPct = discountRate / 100
+    const ltvPct = ltvPercent / 100
+    const bessOmPctDecimal = bessOmPct / 100
 
     // Technology yield multiplier
     const techMultiplier = TECHNOLOGY_TYPES[technology].yieldMultiplier
@@ -276,32 +331,50 @@ export function AdvancedProjectCalculator() {
     // EBITDA
     const ebitda = netRevenue - totalOpex
 
-    // Financing calculations
-    let cashRequired = solarCapex
-    let loanAmount = 0
+    // Flexible financing calculations
+    const loanAmount = existingLoan > 0 ? existingLoan : solarCapex * ltvPct
+    let cashRequired = solarCapex - loanAmount
+    if (cashRequired < 0) cashRequired = 0
+    
     let debtService = 0
-
-    if (financingType === 'SOLAR_ONLY') {
-      const maxDebt = CYPRUS_MARKET_DEFAULTS.solarOnlyDebtCapPerMW * capacityDC
-      loanAmount = Math.min(maxDebt, solarCapex * 0.7)
-      cashRequired = solarCapex - loanAmount
-    } else if (financingType === 'SOLAR_BESS') {
-      loanAmount = solarCapex * CYPRUS_MARKET_DEFAULTS.solarBessDebtPct
-      cashRequired = solarCapex - loanAmount
-    }
-
     if (loanAmount > 0 && loanTermYears > 0) {
       const monthlyRate = interestPct / 12
       const numPayments = loanTermYears * 12
-      const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                            (Math.pow(1 + monthlyRate, numPayments) - 1)
-      debtService = monthlyPayment * 12
+      if (monthlyRate > 0) {
+        const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                              (Math.pow(1 + monthlyRate, numPayments) - 1)
+        debtService = monthlyPayment * 12
+      } else {
+        debtService = loanAmount / loanTermYears
+      }
     }
 
     // Net profit and metrics
     const netProfit = ebitda - debtService
     const roi = cashRequired > 0 ? (netProfit / cashRequired) * 100 : 0
     const paybackYears = netProfit > 0 ? cashRequired / netProfit : 999
+    
+    // Cash-on-cash return (same as ROI for simple case)
+    const cashOnCashReturn = roi
+    
+    // DSCR (Debt Service Coverage Ratio)
+    const dscr = debtService > 0 ? ebitda / debtService : 999
+
+    // Generate 25-year cash flows for IRR calculation
+    const cashFlows: number[] = [-cashRequired]
+    let totalDistributions25 = 0
+    for (let year = 1; year <= 25; year++) {
+      const yearDegradation = Math.pow(1 - degradationPct, year - 1)
+      const yearNetProfit = netProfit * yearDegradation
+      cashFlows.push(yearNetProfit)
+      totalDistributions25 += yearNetProfit
+    }
+    
+    // Calculate IRR
+    const irr = calculateIRR(cashFlows)
+    
+    // Equity Multiple
+    const equityMultiple = cashRequired > 0 ? totalDistributions25 / cashRequired : 0
 
     // NPV calculation (25 years)
     let npv25 = -cashRequired
@@ -311,60 +384,83 @@ export function AdvancedProjectCalculator() {
       npv25 += yearProfit / Math.pow(1 + discountPct, year)
     }
 
-    // IRR approximation (simplified)
-    const irr = roi * 0.7 // Simplified approximation
-
     // === BESS CALCULATIONS ===
     const bessCapacity = capacityAC * bessDuration * 1000 // kWh
     const bessCapex = bessCapacity * bessCostPerKwh
     const totalCapex = solarCapex + bessCapex
 
     // Recoverable energy from curtailment
-    const recoverableEnergy = curtailedEnergy * recoveryPct * rtePct * dailyCycles * 365 / 365 // Normalized
+    const recoverableEnergy = curtailedEnergy * recoveryPct * rtePct
 
-    // BESS revenue (sell at night rate with arbitrage premium)
+    // BESS revenue breakdown
     const bessSellingRate = nightRate * (1 + arbitragePremiumPct)
-    const bessRevenue = recoverableEnergy * bessSellingRate
-
-    // Lost compensation (if we store instead of getting compensation)
-    const lostCompensation = recoverableEnergy * curtailedEnergyRate * curtailmentCompPct / rtePct
+    const bessGrossRevenue = recoverableEnergy * bessSellingRate
+    
+    // Lost compensation (energy we store instead of getting compensated for)
+    const lostCurtailmentCompensation = (recoverableEnergy / rtePct) * curtailedEnergyRate * curtailmentCompPct
+    
+    // Net BESS revenue
+    const bessNetRevenue = bessGrossRevenue - lostCurtailmentCompensation
 
     // BESS OPEX
-    const bessOpex = bessCapex * BESS_DEFAULTS.annualOpexPct
+    const bessOpex = bessCapex * bessOmPctDecimal
 
     // Net BESS benefit
-    const netBessBenefit = bessRevenue - lostCompensation - bessOpex
+    const netBessBenefit = bessNetRevenue - bessOpex
 
     // Combined metrics with BESS
-    const totalRevenueWithBESS = netRevenue + bessRevenue - lostCompensation
+    const totalRevenueWithBESS = netRevenue + bessNetRevenue
     const totalOpexWithBESS = totalOpex + bessOpex
     const ebitdaWithBESS = totalRevenueWithBESS - totalOpexWithBESS
 
     // Financing with BESS
-    let cashRequiredWithBESS = totalCapex
-    let loanAmountWithBESS = 0
+    const loanAmountWithBESS = existingLoan > 0 ? existingLoan : totalCapex * ltvPct
+    let cashRequiredWithBESS = totalCapex - loanAmountWithBESS
+    if (cashRequiredWithBESS < 0) cashRequiredWithBESS = 0
+    
     let debtServiceWithBESS = 0
-
-    if (financingType === 'SOLAR_ONLY') {
-      const maxDebt = CYPRUS_MARKET_DEFAULTS.solarOnlyDebtCapPerMW * capacityDC
-      loanAmountWithBESS = Math.min(maxDebt, totalCapex * 0.5)
-      cashRequiredWithBESS = totalCapex - loanAmountWithBESS
-    } else if (financingType === 'SOLAR_BESS') {
-      loanAmountWithBESS = totalCapex * CYPRUS_MARKET_DEFAULTS.solarBessDebtPct
-      cashRequiredWithBESS = totalCapex - loanAmountWithBESS
-    }
-
     if (loanAmountWithBESS > 0 && loanTermYears > 0) {
       const monthlyRate = interestPct / 12
       const numPayments = loanTermYears * 12
-      const monthlyPayment = loanAmountWithBESS * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                            (Math.pow(1 + monthlyRate, numPayments) - 1)
-      debtServiceWithBESS = monthlyPayment * 12
+      if (monthlyRate > 0) {
+        const monthlyPayment = loanAmountWithBESS * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                              (Math.pow(1 + monthlyRate, numPayments) - 1)
+        debtServiceWithBESS = monthlyPayment * 12
+      } else {
+        debtServiceWithBESS = loanAmountWithBESS / loanTermYears
+      }
     }
 
     const netProfitWithBESS = ebitdaWithBESS - debtServiceWithBESS
     const roiWithBESS = cashRequiredWithBESS > 0 ? (netProfitWithBESS / cashRequiredWithBESS) * 100 : 0
     const paybackWithBESS = netProfitWithBESS > 0 ? cashRequiredWithBESS / netProfitWithBESS : 999
+    
+    // Cash-on-cash with BESS
+    const cashOnCashReturnWithBESS = roiWithBESS
+    
+    // DSCR with BESS
+    const dscrWithBESS = debtServiceWithBESS > 0 ? ebitdaWithBESS / debtServiceWithBESS : 999
+
+    // Generate 25-year cash flows with BESS for IRR
+    const cashFlowsWithBESS: number[] = [-cashRequiredWithBESS]
+    let totalDistributions25WithBESS = 0
+    for (let year = 1; year <= 25; year++) {
+      const yearDegradation = Math.pow(1 - degradationPct, year - 1)
+      const bessDegradation = Math.pow(1 - BESS_DEFAULTS.annualCapacityLoss, year - 1)
+      const yearSolarProfit = netProfit * yearDegradation
+      const yearBessBenefit = netBessBenefit * bessDegradation
+      const yearTotalProfit = yearSolarProfit + yearBessBenefit - (debtServiceWithBESS - debtService) * (year <= loanTermYears ? 1 : 0)
+      // Simplified: assume same debt service pattern
+      const yearNetProfit = netProfitWithBESS * yearDegradation * (year <= 15 ? 1 : (1 + (debtService > 0 ? debtService/netProfitWithBESS : 0)))
+      cashFlowsWithBESS.push(netProfitWithBESS * Math.pow(1 - degradationPct, year - 1) * Math.pow(1 - BESS_DEFAULTS.annualCapacityLoss * 0.3, year - 1))
+      totalDistributions25WithBESS += netProfitWithBESS * Math.pow(1 - degradationPct, year - 1)
+    }
+    
+    // IRR with BESS
+    const irrWithBESS = calculateIRR(cashFlowsWithBESS)
+    
+    // Equity Multiple with BESS
+    const equityMultipleWithBESS = cashRequiredWithBESS > 0 ? totalDistributions25WithBESS / cashRequiredWithBESS : 0
 
     // NPV with BESS
     let npv25WithBESS = -cashRequiredWithBESS
@@ -374,8 +470,6 @@ export function AdvancedProjectCalculator() {
       const yearProfit = (netProfit * yearDegradation) + (netBessBenefit * bessDegradation)
       npv25WithBESS += yearProfit / Math.pow(1 + discountPct, year)
     }
-
-    const irrWithBESS = roiWithBESS * 0.7
 
     setResults({
       solarCapex,
@@ -401,7 +495,9 @@ export function AdvancedProjectCalculator() {
       bessCapex,
       totalCapex,
       recoverableEnergy,
-      bessRevenue,
+      bessGrossRevenue,
+      lostCurtailmentCompensation,
+      bessNetRevenue,
       bessOpex,
       netBessBenefit,
       totalRevenueWithBESS,
@@ -415,6 +511,16 @@ export function AdvancedProjectCalculator() {
       paybackWithBESS,
       npv25WithBESS,
       irrWithBESS,
+      
+      // Investor metrics
+      cashOnCashReturn,
+      equityMultiple,
+      dscr,
+      cashOnCashReturnWithBESS,
+      equityMultipleWithBESS,
+      dscrWithBESS,
+      totalDistributions25,
+      totalDistributions25WithBESS,
     })
   }, [inputs])
 
@@ -433,6 +539,10 @@ export function AdvancedProjectCalculator() {
       day: 'numeric', month: 'long', year: 'numeric' 
     })
     const referenceId = `SF-${Date.now().toString(36).toUpperCase()}`
+    
+    // Calculate effective rates for formulas
+    const effectiveRate = inputs.ppaType === 'FIXED' ? inputs.ppaRate : inputs.daytimeRate
+    const bessSellingRate = inputs.nightRate * (1 + inputs.nightArbitragePremium / 100)
 
     const reportHTML = `
 <!DOCTYPE html>
@@ -481,7 +591,7 @@ export function AdvancedProjectCalculator() {
       border-left: 5px solid #f59e0b;
     }
     .summary-title { font-size: 16px; font-weight: bold; color: #92400e; margin-bottom: 15px; }
-    .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
     .kpi { text-align: center; background: white; padding: 15px 10px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .kpi-value { font-size: 20px; font-weight: bold; color: #059669; }
     .kpi-label { font-size: 11px; color: #6b7280; margin-top: 5px; }
@@ -498,7 +608,13 @@ export function AdvancedProjectCalculator() {
     .comparison-table .better { color: #059669; font-weight: bold; }
     .comparison-table .worse { color: #dc2626; }
     
-    .bess-section { background: #f0f9ff; padding: 20px; border-radius: 8px; border: 1px solid #bae6fd; }
+    .bess-section { background: #f0f9ff; padding: 20px; border-radius: 8px; border: 1px solid #bae6fd; margin-bottom: 20px; }
+    .formula-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 11px; margin: 10px 0; }
+    .formula-box .label { color: #64748b; margin-bottom: 5px; }
+    .formula-box .formula { color: #1e293b; }
+    .formula-box .result { color: #059669; font-weight: bold; margin-top: 5px; }
+    
+    .investor-metrics { background: #faf5ff; padding: 20px; border-radius: 8px; border: 1px solid #e9d5ff; }
     
     .disclaimer { 
       background: #fef2f2; 
@@ -555,12 +671,18 @@ export function AdvancedProjectCalculator() {
         </div>
         <div class="kpi">
           <div class="kpi-value">${formatPercentage(inputs.includeBESS ? results.roiWithBESS : results.roi)}</div>
-          <div class="kpi-label">Annual ROI</div>
+          <div class="kpi-label">Cash-on-Cash ROI</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value">${(inputs.includeBESS ? results.irrWithBESS : results.irr).toFixed(1)}%</div>
+          <div class="kpi-label">IRR (25-Year)</div>
         </div>
         <div class="kpi">
           <div class="kpi-value">${(inputs.includeBESS ? results.paybackWithBESS : results.paybackYears).toFixed(1)} yrs</div>
           <div class="kpi-label">Payback Period</div>
         </div>
+      </div>
+      <div class="kpi-grid" style="margin-top: 15px;">
         <div class="kpi">
           <div class="kpi-value">${formatCurrency(inputs.includeBESS ? results.netProfitWithBESS : results.netProfit)}</div>
           <div class="kpi-label">Annual Net Profit</div>
@@ -568,6 +690,14 @@ export function AdvancedProjectCalculator() {
         <div class="kpi">
           <div class="kpi-value">${formatCurrency(inputs.includeBESS ? results.npv25WithBESS : results.npv25)}</div>
           <div class="kpi-label">25-Year NPV</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value">${(inputs.includeBESS ? results.equityMultipleWithBESS : results.equityMultiple).toFixed(2)}x</div>
+          <div class="kpi-label">Equity Multiple</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value">${(inputs.includeBESS ? results.dscrWithBESS : results.dscr).toFixed(2)}x</div>
+          <div class="kpi-label">DSCR</div>
         </div>
       </div>
     </div>
@@ -587,45 +717,78 @@ export function AdvancedProjectCalculator() {
     </div>
 
     <div class="section">
-      <h2>Revenue Assumptions</h2>
+      <h2>Revenue & Curtailment Analysis</h2>
       <table>
         <tr><td>PPA Type</td><td>${PPA_TYPES[inputs.ppaType].name}</td></tr>
         <tr><td>Daytime Selling Rate</td><td>€${inputs.daytimeRate.toFixed(3)}/kWh</td></tr>
-        <tr><td>Night Discharge Rate</td><td>€${inputs.nightRate.toFixed(3)}/kWh</td></tr>
+        <tr><td>Night Discharge Rate (BESS)</td><td>€${inputs.nightRate.toFixed(3)}/kWh</td></tr>
         <tr><td>Curtailment Rate</td><td>${inputs.curtailmentRate.toFixed(1)}%</td></tr>
-        <tr><td>Curtailed Energy Compensation</td><td>${inputs.curtailmentCompensation.toFixed(1)}%</td></tr>
+        <tr><td>Curtailed Energy Rate</td><td>€${inputs.curtailedEnergyRate.toFixed(3)}/kWh</td></tr>
+        <tr><td>Curtailment Compensation %</td><td>${inputs.curtailmentCompensation.toFixed(1)}%</td></tr>
       </table>
+      
+      <h3>Curtailment Compensation Value</h3>
+      <div class="formula-box">
+        <div class="label">Formula:</div>
+        <div class="formula">Compensation = Curtailed Energy × Curtailed Rate × Compensation %</div>
+        <div class="formula">= ${(results.curtailedEnergy / 1000).toFixed(0)} MWh × €${inputs.curtailedEnergyRate.toFixed(3)} × ${inputs.curtailmentCompensation}%</div>
+        <div class="result">= ${formatCurrency(results.curtailmentCompensationRevenue)}/year</div>
+      </div>
     </div>
 
     <div class="section">
-      <h2>Financial Analysis</h2>
+      <h2>Production & Revenue Analysis</h2>
       <table>
         <tr><td>Gross Annual Production</td><td>${(results.grossProduction / 1000).toLocaleString()} MWh</td></tr>
         <tr><td>Curtailed Energy</td><td>${(results.curtailedEnergy / 1000).toLocaleString()} MWh (${inputs.curtailmentRate.toFixed(1)}%)</td></tr>
         <tr><td>Net Sold Energy</td><td>${(results.netProduction / 1000).toLocaleString()} MWh</td></tr>
-        <tr><td>Gross Revenue</td><td>${formatCurrency(results.grossRevenue)}</td></tr>
-        <tr><td>Revenue Loss to Curtailment</td><td style="color: #dc2626;">-${formatCurrency(results.curtailmentLoss)}</td></tr>
-        <tr><td>Net Revenue</td><td>${formatCurrency(results.netRevenue)}</td></tr>
-        <tr><td>Total OPEX</td><td>${formatCurrency(results.totalOpex)}</td></tr>
-        <tr><td>EBITDA</td><td style="font-weight: bold;">${formatCurrency(results.ebitda)}</td></tr>
-        ${results.debtService > 0 ? `<tr><td>Debt Service</td><td>-${formatCurrency(results.debtService)}</td></tr>` : ''}
-        <tr style="background: #ecfdf5;"><td><strong>Net Annual Profit</strong></td><td style="color: #059669; font-weight: bold;">${formatCurrency(results.netProfit)}</td></tr>
+        <tr><td>Gross Revenue (if no curtailment)</td><td>${formatCurrency(results.grossRevenue)}</td></tr>
+        <tr style="color: #dc2626;"><td>Revenue Loss to Curtailment</td><td>-${formatCurrency(results.curtailmentLoss)}</td></tr>
+        <tr style="color: #059669;"><td>Curtailment Compensation Revenue</td><td>+${formatCurrency(results.curtailmentCompensationRevenue)}</td></tr>
+        <tr style="background: #ecfdf5;"><td><strong>Net Annual Revenue</strong></td><td><strong>${formatCurrency(results.netRevenue)}</strong></td></tr>
       </table>
     </div>
 
     ${inputs.includeBESS ? `
     <div class="section bess-section">
-      <h2 style="color: #0369a1; border-color: #0ea5e9;">BESS Integration Analysis</h2>
+      <h2 style="color: #0369a1; border-color: #0ea5e9; margin-top: 0;">BESS Integration Analysis</h2>
       <table>
         <tr><td>BESS Duration</td><td>${inputs.bessDuration}-hour system</td></tr>
         <tr><td>BESS Capacity</td><td>${(results.bessCapacity / 1000).toFixed(2)} MWh</td></tr>
         <tr><td>BESS Capex</td><td>${formatCurrency(results.bessCapex)}</td></tr>
-        <tr><td>Round Trip Efficiency</td><td>${inputs.bessRTE.toFixed(2)}%</td></tr>
-        <tr><td>Recoverable Energy</td><td>${(results.recoverableEnergy / 1000).toFixed(1)} MWh/year</td></tr>
-        <tr><td>BESS Revenue</td><td>${formatCurrency(results.bessRevenue)}/year</td></tr>
-        <tr><td>BESS OPEX</td><td>${formatCurrency(results.bessOpex)}/year</td></tr>
-        <tr style="background: #ecfdf5;"><td><strong>Net BESS Benefit</strong></td><td style="color: #059669; font-weight: bold;">${formatCurrency(results.netBessBenefit)}/year</td></tr>
+        <tr><td>Round Trip Efficiency (RTE)</td><td>${inputs.bessRTE.toFixed(2)}%</td></tr>
+        <tr><td>BESS O&M Cost</td><td>${inputs.bessOmPct}% of capex = ${formatCurrency(results.bessOpex)}/year</td></tr>
       </table>
+
+      <h3>BESS Revenue Calculation</h3>
+      <div class="formula-box">
+        <div class="label">Step 1: Recoverable Energy</div>
+        <div class="formula">= Curtailed Energy × Recovery Rate × RTE</div>
+        <div class="formula">= ${(results.curtailedEnergy / 1000).toFixed(0)} MWh × ${inputs.curtailmentRecoveryRate}% × ${inputs.bessRTE}%</div>
+        <div class="result">= ${(results.recoverableEnergy / 1000).toFixed(1)} MWh/year</div>
+      </div>
+      
+      <div class="formula-box">
+        <div class="label">Step 2: BESS Gross Revenue (Night Discharge)</div>
+        <div class="formula">= Recoverable Energy × Night Rate × (1 + Arbitrage Premium)</div>
+        <div class="formula">= ${(results.recoverableEnergy / 1000).toFixed(1)} MWh × €${inputs.nightRate.toFixed(3)} × (1 + ${inputs.nightArbitragePremium}%)</div>
+        <div class="formula">= ${(results.recoverableEnergy / 1000).toFixed(1)} MWh × €${bessSellingRate.toFixed(3)}/kWh</div>
+        <div class="result">= ${formatCurrency(results.bessGrossRevenue)}/year</div>
+      </div>
+      
+      <div class="formula-box">
+        <div class="label">Step 3: Lost Curtailment Compensation</div>
+        <div class="formula">= (Recoverable Energy ÷ RTE) × Curtailed Rate × Compensation %</div>
+        <div class="formula">= ${((results.recoverableEnergy / (inputs.bessRTE/100)) / 1000).toFixed(1)} MWh × €${inputs.curtailedEnergyRate.toFixed(3)} × ${inputs.curtailmentCompensation}%</div>
+        <div class="result" style="color: #dc2626;">= -${formatCurrency(results.lostCurtailmentCompensation)}/year</div>
+      </div>
+      
+      <div class="formula-box">
+        <div class="label">Step 4: Net BESS Benefit</div>
+        <div class="formula">= Gross Revenue - Lost Compensation - BESS O&M</div>
+        <div class="formula">= ${formatCurrency(results.bessGrossRevenue)} - ${formatCurrency(results.lostCurtailmentCompensation)} - ${formatCurrency(results.bessOpex)}</div>
+        <div class="result">= ${formatCurrency(results.netBessBenefit)}/year</div>
+      </div>
 
       <h3 style="margin-top: 20px;">Solar Only vs Solar + BESS Comparison</h3>
       <table class="comparison-table">
@@ -642,25 +805,31 @@ export function AdvancedProjectCalculator() {
           <td>+${formatCurrency(results.bessCapex)}</td>
         </tr>
         <tr>
-          <td>Cash Required</td>
+          <td>Equity Required</td>
           <td>${formatCurrency(results.cashRequired)}</td>
           <td>${formatCurrency(results.cashRequiredWithBESS)}</td>
           <td>+${formatCurrency(results.cashRequiredWithBESS - results.cashRequired)}</td>
         </tr>
         <tr>
-          <td>Annual Profit</td>
+          <td>Annual Net Profit</td>
           <td>${formatCurrency(results.netProfit)}</td>
           <td>${formatCurrency(results.netProfitWithBESS)}</td>
           <td class="${results.netProfitWithBESS > results.netProfit ? 'better' : 'worse'}">+${formatCurrency(results.netProfitWithBESS - results.netProfit)}</td>
         </tr>
         <tr class="highlight">
-          <td><strong>ROI</strong></td>
+          <td><strong>Cash-on-Cash ROI</strong></td>
           <td>${formatPercentage(results.roi)}</td>
           <td>${formatPercentage(results.roiWithBESS)}</td>
           <td class="${results.roiWithBESS > results.roi ? 'better' : 'worse'}">${results.roiWithBESS > results.roi ? '+' : ''}${(results.roiWithBESS - results.roi).toFixed(2)}%</td>
         </tr>
         <tr class="highlight">
-          <td><strong>Payback</strong></td>
+          <td><strong>IRR (25-Year)</strong></td>
+          <td>${results.irr.toFixed(1)}%</td>
+          <td>${results.irrWithBESS.toFixed(1)}%</td>
+          <td class="${results.irrWithBESS > results.irr ? 'better' : 'worse'}">${results.irrWithBESS > results.irr ? '+' : ''}${(results.irrWithBESS - results.irr).toFixed(1)}%</td>
+        </tr>
+        <tr>
+          <td>Payback Period</td>
           <td>${results.paybackYears.toFixed(1)} years</td>
           <td>${results.paybackWithBESS.toFixed(1)} years</td>
           <td class="${results.paybackWithBESS < results.paybackYears ? 'better' : 'worse'}">${(results.paybackWithBESS - results.paybackYears).toFixed(1)} years</td>
@@ -671,9 +840,32 @@ export function AdvancedProjectCalculator() {
           <td>${formatCurrency(results.npv25WithBESS)}</td>
           <td class="${results.npv25WithBESS > results.npv25 ? 'better' : 'worse'}">+${formatCurrency(results.npv25WithBESS - results.npv25)}</td>
         </tr>
+        <tr>
+          <td>Equity Multiple</td>
+          <td>${results.equityMultiple.toFixed(2)}x</td>
+          <td>${results.equityMultipleWithBESS.toFixed(2)}x</td>
+          <td class="${results.equityMultipleWithBESS > results.equityMultiple ? 'better' : 'worse'}">${results.equityMultipleWithBESS > results.equityMultiple ? '+' : ''}${(results.equityMultipleWithBESS - results.equityMultiple).toFixed(2)}x</td>
+        </tr>
       </table>
     </div>
     ` : ''}
+
+    <div class="section investor-metrics">
+      <h2 style="color: #7c3aed; border-color: #a78bfa;">Investor Metrics</h2>
+      <table>
+        <tr><td>Total Investment</td><td>${formatCurrency(inputs.includeBESS ? results.totalCapex : results.solarCapex)}</td></tr>
+        <tr><td>Equity Required</td><td>${formatCurrency(inputs.includeBESS ? results.cashRequiredWithBESS : results.cashRequired)}</td></tr>
+        <tr><td>Debt Financing</td><td>${formatCurrency(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount)} (${inputs.ltvPercent}% LTV)</td></tr>
+        <tr><td>Interest Rate</td><td>${inputs.interestRate.toFixed(2)}%</td></tr>
+        <tr><td>Loan Term</td><td>${inputs.loanTermYears} years</td></tr>
+        <tr><td>Annual Debt Service</td><td>${formatCurrency(inputs.includeBESS ? results.debtServiceWithBESS : results.debtService)}</td></tr>
+        <tr style="background: #f5f3ff;"><td><strong>DSCR (Debt Service Coverage)</strong></td><td><strong>${(inputs.includeBESS ? results.dscrWithBESS : results.dscr).toFixed(2)}x</strong></td></tr>
+        <tr style="background: #f5f3ff;"><td><strong>Cash-on-Cash Return</strong></td><td><strong>${formatPercentage(inputs.includeBESS ? results.cashOnCashReturnWithBESS : results.cashOnCashReturn)}</strong></td></tr>
+        <tr style="background: #f5f3ff;"><td><strong>IRR (25-Year)</strong></td><td><strong>${(inputs.includeBESS ? results.irrWithBESS : results.irr).toFixed(1)}%</strong></td></tr>
+        <tr style="background: #f5f3ff;"><td><strong>Equity Multiple (25-Year)</strong></td><td><strong>${(inputs.includeBESS ? results.equityMultipleWithBESS : results.equityMultiple).toFixed(2)}x</strong></td></tr>
+        <tr><td>Total Distributions (25 years)</td><td>${formatCurrency(inputs.includeBESS ? results.totalDistributions25WithBESS : results.totalDistributions25)}</td></tr>
+      </table>
+    </div>
 
     <div class="section">
       <h2>Operating Costs Breakdown</h2>
@@ -683,7 +875,7 @@ export function AdvancedProjectCalculator() {
         <tr><td>Land Lease</td><td>${formatCurrency(inputs.landLease)}</td></tr>
         <tr><td>Administration</td><td>${formatCurrency(inputs.administration)}</td></tr>
         <tr><td>Other Costs</td><td>${formatCurrency(inputs.otherCosts)}</td></tr>
-        ${inputs.includeBESS ? `<tr><td>BESS OPEX (2% of capex)</td><td>${formatCurrency(results.bessOpex)}</td></tr>` : ''}
+        ${inputs.includeBESS ? `<tr><td>BESS O&M (${inputs.bessOmPct}% of €${(results.bessCapex/1000).toFixed(0)}k)</td><td>${formatCurrency(results.bessOpex)}</td></tr>` : ''}
         <tr style="background: #f3f4f6;"><td><strong>Total Annual OPEX</strong></td><td><strong>${formatCurrency(inputs.includeBESS ? results.totalOpexWithBESS : results.totalOpex)}</strong></td></tr>
       </table>
     </div>
@@ -691,10 +883,11 @@ export function AdvancedProjectCalculator() {
     <div class="section">
       <h2>Financing Structure</h2>
       <table>
-        <tr><td>Financing Type</td><td>${FINANCING_OPTIONS[inputs.financingType].name}</td></tr>
+        <tr><td>LTV (Loan-to-Value)</td><td>${inputs.ltvPercent}%</td></tr>
         <tr><td>Total Investment</td><td>${formatCurrency(inputs.includeBESS ? results.totalCapex : results.solarCapex)}</td></tr>
         <tr><td>Equity Required</td><td>${formatCurrency(inputs.includeBESS ? results.cashRequiredWithBESS : results.cashRequired)}</td></tr>
-        <tr><td>Bank Financing</td><td>${formatCurrency(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount)}</td></tr>
+        <tr><td>Debt Financing</td><td>${formatCurrency(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount)}</td></tr>
+        ${inputs.existingLoan > 0 ? `<tr><td>Existing Loan Balance</td><td>${formatCurrency(inputs.existingLoan)}</td></tr>` : ''}
         ${(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount) > 0 ? `
         <tr><td>Interest Rate</td><td>${inputs.interestRate.toFixed(2)}%</td></tr>
         <tr><td>Loan Term</td><td>${inputs.loanTermYears} years</td></tr>
@@ -707,8 +900,8 @@ export function AdvancedProjectCalculator() {
       <strong>Important Disclaimer:</strong> This analysis is provided for informational purposes only and does not constitute investment advice. 
       Actual returns may vary based on weather conditions, electricity market prices, grid curtailment levels, equipment performance, 
       regulatory changes, and other factors. All investments carry risk, including potential loss of capital. 
-      Past performance does not guarantee future results. Consult with qualified financial and legal advisors before making investment decisions.
-      The projections herein are based on assumptions that may not materialize.
+      Past performance does not guarantee future results. The IRR calculation assumes reinvestment at the same rate and may not reflect actual returns.
+      Consult with qualified financial and legal advisors before making investment decisions.
     </div>
 
     <div class="footer">
@@ -951,7 +1144,7 @@ export function AdvancedProjectCalculator() {
                     </FormField>
 
                     <div className="grid md:grid-cols-2 gap-4">
-                      <FormField label="Curtailed Energy Rate (€/kWh)" tooltip="Rate paid by grid for curtailed energy (usually €0)">
+                      <FormField label="Curtailed Energy Rate (€/kWh)" tooltip="Rate paid by grid for curtailed energy (enter 0 if none)">
                         <Input
                           type="number"
                           step="0.001"
@@ -969,6 +1162,15 @@ export function AdvancedProjectCalculator() {
                         />
                       </FormField>
                     </div>
+                    
+                    {results && (
+                      <div className="bg-green-50 p-4 rounded-lg text-sm">
+                        <CheckCircle className="w-4 h-4 inline text-green-600 mr-2" />
+                        <span className="text-green-800">
+                          Curtailment Compensation Revenue: <strong>{formatCurrency(results.curtailmentCompensationRevenue)}/year</strong>
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </TabsContent>
 
@@ -1019,12 +1221,12 @@ export function AdvancedProjectCalculator() {
                           />
                         </FormField>
 
-                        <FormField label="Daily Cycles" tooltip="Expected charge/discharge cycles per day">
+                        <FormField label="BESS O&M (% of Capex)" tooltip="Annual O&M cost as percentage of BESS capex (typically 2%)">
                           <Input
                             type="number"
                             step="0.1"
-                            value={inputs.dailyCycles}
-                            onChange={(e) => updateInput('dailyCycles', parseFloat(e.target.value) || 0)}
+                            value={inputs.bessOmPct}
+                            onChange={(e) => updateInput('bessOmPct', parseFloat(e.target.value) || 0)}
                           />
                         </FormField>
                       </div>
@@ -1039,51 +1241,77 @@ export function AdvancedProjectCalculator() {
                           className="mt-2"
                         />
                       </FormField>
+                      
+                      <FormField label={`Night Arbitrage Premium: ${inputs.nightArbitragePremium.toFixed(1)}%`} tooltip="Additional premium for evening discharge vs day rate">
+                        <Slider
+                          value={[inputs.nightArbitragePremium]}
+                          onValueChange={([v]) => updateInput('nightArbitragePremium', v)}
+                          min={0}
+                          max={30}
+                          step={0.5}
+                          className="mt-2"
+                        />
+                      </FormField>
 
-                      <div className="bg-white p-3 rounded-lg text-sm">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>BESS Capacity: <strong>{((inputs.capacityAC * inputs.bessDuration)).toFixed(1)} MWh</strong></div>
-                          <div>BESS Capex: <strong>{formatCurrency(inputs.capacityAC * inputs.bessDuration * 1000 * inputs.bessCostPerKwh)}</strong></div>
+                      {results && (
+                        <div className="bg-white p-4 rounded-lg text-sm space-y-2">
+                          <div className="grid grid-cols-2 gap-2">
+                            <div>BESS Capacity: <strong>{((inputs.capacityAC * inputs.bessDuration)).toFixed(1)} MWh</strong></div>
+                            <div>BESS Capex: <strong>{formatCurrency(results.bessCapex)}</strong></div>
+                            <div>BESS O&M: <strong>{formatCurrency(results.bessOpex)}/yr</strong></div>
+                            <div>Net BESS Benefit: <strong className="text-green-600">{formatCurrency(results.netBessBenefit)}/yr</strong></div>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   )}
                 </TabsContent>
 
                 {/* Finance Tab */}
                 <TabsContent value="finance" className="mt-4 space-y-4">
+                  <h3 className="font-semibold text-gray-900 mb-3">Financing Structure</h3>
+                  
+                  <FormField label={`Loan-to-Value (LTV): ${inputs.ltvPercent}%`} tooltip="Percentage of project cost financed by debt (0% = all cash)">
+                    <Slider
+                      value={[inputs.ltvPercent]}
+                      onValueChange={([v]) => updateInput('ltvPercent', v)}
+                      min={0}
+                      max={80}
+                      step={5}
+                      className="mt-2"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>0% (Cash)</span>
+                      <span>40%</span>
+                      <span>80% (Max)</span>
+                    </div>
+                  </FormField>
+                  
                   <div className="grid md:grid-cols-2 gap-4">
-                    <FormField label="Financing Type" tooltip="Cash purchase or bank financing">
-                      <Select value={inputs.financingType} onValueChange={(v) => updateInput('financingType', v as 'CASH' | 'SOLAR_ONLY' | 'SOLAR_BESS')}>
-                        <SelectTrigger><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="CASH">Cash Purchase (100% equity)</SelectItem>
-                          <SelectItem value="SOLAR_ONLY">Solar-Only Financing (€500k/MW cap)</SelectItem>
-                          <SelectItem value="SOLAR_BESS">Solar+BESS Financing (70% debt)</SelectItem>
-                        </SelectContent>
-                      </Select>
+                    <FormField label="Existing Loan (€)" tooltip="For operational projects with existing debt (leave 0 for new projects)">
+                      <Input
+                        type="number"
+                        value={inputs.existingLoan}
+                        onChange={(e) => updateInput('existingLoan', parseFloat(e.target.value) || 0)}
+                      />
                     </FormField>
 
-                    {inputs.financingType !== 'CASH' && (
-                      <>
-                        <FormField label="Interest Rate (%)" tooltip="Annual loan interest rate (Cyprus avg: 4.5%)">
-                          <Input
-                            type="number"
-                            step="0.1"
-                            value={inputs.interestRate}
-                            onChange={(e) => updateInput('interestRate', parseFloat(e.target.value) || 0)}
-                          />
-                        </FormField>
+                    <FormField label="Interest Rate (%)" tooltip="Annual loan interest rate (Cyprus avg: 4.5%)">
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={inputs.interestRate}
+                        onChange={(e) => updateInput('interestRate', parseFloat(e.target.value) || 0)}
+                      />
+                    </FormField>
 
-                        <FormField label="Loan Term (Years)" tooltip="Loan repayment period">
-                          <Input
-                            type="number"
-                            value={inputs.loanTermYears}
-                            onChange={(e) => updateInput('loanTermYears', parseInt(e.target.value) || 0)}
-                          />
-                        </FormField>
-                      </>
-                    )}
+                    <FormField label="Loan Term (Years)" tooltip="Loan repayment period">
+                      <Input
+                        type="number"
+                        value={inputs.loanTermYears}
+                        onChange={(e) => updateInput('loanTermYears', parseInt(e.target.value) || 0)}
+                      />
+                    </FormField>
 
                     <FormField label="Discount Rate (%)" tooltip="Rate used for NPV calculation (typical: 8%)">
                       <Input
@@ -1094,6 +1322,17 @@ export function AdvancedProjectCalculator() {
                       />
                     </FormField>
                   </div>
+                  
+                  {results && inputs.ltvPercent > 0 && (
+                    <div className="bg-purple-50 p-4 rounded-lg text-sm">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>Loan Amount: <strong>{formatCurrency(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount)}</strong></div>
+                        <div>Annual Debt Service: <strong>{formatCurrency(inputs.includeBESS ? results.debtServiceWithBESS : results.debtService)}</strong></div>
+                        <div>DSCR: <strong>{(inputs.includeBESS ? results.dscrWithBESS : results.dscr).toFixed(2)}x</strong></div>
+                        <div>Equity Required: <strong>{formatCurrency(inputs.includeBESS ? results.cashRequiredWithBESS : results.cashRequired)}</strong></div>
+                      </div>
+                    </div>
+                  )}
 
                   <h3 className="font-semibold text-gray-900 mt-6 mb-3">Operating Costs</h3>
                   <div className="grid md:grid-cols-2 gap-4">
@@ -1154,8 +1393,8 @@ export function AdvancedProjectCalculator() {
                       <Badge variant={inputs.includeBESS ? "secondary" : "default"}>
                         {inputs.includeBESS ? 'Solar + BESS' : 'Solar Only'}
                       </Badge>
-                      {inputs.financingType !== 'CASH' && (
-                        <Badge variant="outline">Financed</Badge>
+                      {inputs.ltvPercent > 0 && (
+                        <Badge variant="outline">{inputs.ltvPercent}% LTV</Badge>
                       )}
                     </div>
                   </CardHeader>
@@ -1168,13 +1407,25 @@ export function AdvancedProjectCalculator() {
                             <div className="text-2xl font-bold text-green-600">
                               {formatPercentage(inputs.includeBESS ? results.roiWithBESS : results.roi)}
                             </div>
-                            <div className="text-xs text-gray-600">Annual ROI</div>
+                            <div className="text-xs text-gray-600">Cash-on-Cash ROI</div>
                           </div>
                           <div className="text-center p-3 bg-white rounded-lg shadow-sm">
                             <div className="text-2xl font-bold text-blue-600">
+                              {(inputs.includeBESS ? results.irrWithBESS : results.irr).toFixed(1)}%
+                            </div>
+                            <div className="text-xs text-gray-600">IRR (25-Year)</div>
+                          </div>
+                          <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                            <div className="text-2xl font-bold text-purple-600">
                               {(inputs.includeBESS ? results.paybackWithBESS : results.paybackYears).toFixed(1)}
                             </div>
                             <div className="text-xs text-gray-600">Years Payback</div>
+                          </div>
+                          <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                            <div className="text-2xl font-bold text-orange-600">
+                              {(inputs.includeBESS ? results.equityMultipleWithBESS : results.equityMultiple).toFixed(2)}x
+                            </div>
+                            <div className="text-xs text-gray-600">Equity Multiple</div>
                           </div>
                         </div>
 
@@ -1185,14 +1436,20 @@ export function AdvancedProjectCalculator() {
                             <span className="font-semibold">{formatCurrency(inputs.includeBESS ? results.totalCapex : results.solarCapex)}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Cash Required</span>
+                            <span className="text-gray-600">Equity Required</span>
                             <span className="font-semibold text-blue-600">{formatCurrency(inputs.includeBESS ? results.cashRequiredWithBESS : results.cashRequired)}</span>
                           </div>
                           {(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount) > 0 && (
-                            <div className="flex justify-between">
-                              <span className="text-gray-600">Bank Financing</span>
-                              <span className="font-semibold">{formatCurrency(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount)}</span>
-                            </div>
+                            <>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Debt Financing</span>
+                                <span className="font-semibold">{formatCurrency(inputs.includeBESS ? results.loanAmountWithBESS : results.loanAmount)}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">DSCR</span>
+                                <span className="font-semibold">{(inputs.includeBESS ? results.dscrWithBESS : results.dscr).toFixed(2)}x</span>
+                              </div>
+                            </>
                           )}
                           <div className="border-t pt-2 mt-2">
                             <div className="flex justify-between">
@@ -1203,10 +1460,16 @@ export function AdvancedProjectCalculator() {
                               <span>Curtailment Loss</span>
                               <span>-{formatCurrency(results.curtailmentLoss)}</span>
                             </div>
+                            {results.curtailmentCompensationRevenue > 0 && (
+                              <div className="flex justify-between text-green-600">
+                                <span>Curtailment Comp.</span>
+                                <span>+{formatCurrency(results.curtailmentCompensationRevenue)}</span>
+                              </div>
+                            )}
                             {inputs.includeBESS && (
                               <div className="flex justify-between text-green-600">
-                                <span>BESS Recovery</span>
-                                <span>+{formatCurrency(results.bessRevenue)}</span>
+                                <span>BESS Net Benefit</span>
+                                <span>+{formatCurrency(results.netBessBenefit)}</span>
                               </div>
                             )}
                             <div className="flex justify-between">
@@ -1238,9 +1501,9 @@ export function AdvancedProjectCalculator() {
                                 </span>
                               </div>
                               <div>
-                                <span className="text-gray-600">Payback:</span>
-                                <span className={`ml-1 font-semibold ${results.paybackWithBESS < results.paybackYears ? 'text-green-600' : 'text-red-600'}`}>
-                                  {(results.paybackWithBESS - results.paybackYears).toFixed(1)} yrs
+                                <span className="text-gray-600">IRR Boost:</span>
+                                <span className={`ml-1 font-semibold ${results.irrWithBESS > results.irr ? 'text-green-600' : 'text-red-600'}`}>
+                                  {results.irrWithBESS > results.irr ? '+' : ''}{(results.irrWithBESS - results.irr).toFixed(1)}%
                                 </span>
                               </div>
                             </div>
@@ -1273,4 +1536,3 @@ export function AdvancedProjectCalculator() {
     </div>
   )
 }
-
