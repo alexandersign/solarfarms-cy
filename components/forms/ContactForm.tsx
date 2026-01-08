@@ -54,6 +54,25 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Client-side validation
+    if (!formData.name || formData.name.length < 2) {
+      alert('Please enter your name (at least 2 characters)')
+      return
+    }
+    if (!formData.email || !formData.email.includes('@')) {
+      alert('Please enter a valid email address')
+      return
+    }
+    if (!formData.investmentSize) {
+      alert('Please select an investment size')
+      return
+    }
+    if (!formData.timeline) {
+      alert('Please select a timeline')
+      return
+    }
+    
     setIsSubmitting(true)
 
     try {

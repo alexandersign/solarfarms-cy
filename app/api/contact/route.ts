@@ -120,10 +120,12 @@ export async function POST(request: NextRequest) {
     // Contact form processing error
     
     if (error instanceof z.ZodError) {
+      // Build user-friendly error message
+      const errorMessages = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
       return NextResponse.json(
         { 
           success: false, 
-          message: 'Please check your form data',
+          message: `Please check your form: ${errorMessages}`,
           errors: error.errors 
         },
         { status: 400 }
