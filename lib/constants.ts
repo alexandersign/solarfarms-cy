@@ -255,10 +255,15 @@ export const NAVIGATION = {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
+    { name: "Crypto", href: "/crypto" },
     { name: "Calculator", href: "/calculator" },
-    { name: "Landowners", href: "/landowners" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
+  ],
+  crypto: [
+    { name: "Crypto Investments", href: "/crypto" },
+    { name: "Solar BTC Mining", href: "/crypto/solar-mining" },
+    { name: "AI GPU Mining", href: "/crypto/ai-mining" },
   ],
   services: [
     { name: "EPC Services", href: "/services/epc-services" },
@@ -275,6 +280,7 @@ export const NAVIGATION = {
     { name: "Generate LOI", href: "/loi" },
     { name: "Investment Guides", href: "/resources" },
     { name: "Blog & Insights", href: "/blog" },
+    { name: "Landowners", href: "/landowners" },
   ],
 } as const
 

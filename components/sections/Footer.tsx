@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
@@ -19,7 +19,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Premium solar farm investments in Cyprus with guaranteed 15-20% ROI. 
+              Premium solar farm investments in Cyprus with 8-13% IRR. 
               Full lifecycle support from development to recycling.
             </p>
             <div className="flex space-x-4">
@@ -48,11 +48,11 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Services */}
+          {/* Crypto */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Services</h3>
+            <h3 className="font-semibold text-lg">Crypto Investments</h3>
             <nav className="flex flex-col space-y-2">
-              {NAVIGATION.services.map((item) => (
+              {NAVIGATION.crypto.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -64,11 +64,11 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Resources */}
+          {/* Services */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Resources</h3>
+            <h3 className="font-semibold text-lg">Services</h3>
             <nav className="flex flex-col space-y-2">
-              {NAVIGATION.resources.map((item) => (
+              {NAVIGATION.services.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
