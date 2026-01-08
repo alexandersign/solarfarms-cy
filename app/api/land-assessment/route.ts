@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabase, landAssessmentsService, fileUploadService } from '@/lib/supabase'
-import { sendContactNotification } from '@/lib/email'
+import { sendLandAssessmentNotification, sendLandAssessmentAutoresponder } from '@/lib/email'
 import { trackLandownerLead } from '@/lib/meta-conversions'
 
 // Validation schema for land assessment
@@ -228,16 +228,30 @@ async function saveLandOwnerLead(data: any, assessment: any) {
 }
 
 async function notifyTeamOfLandAssessment(data: any, assessment: any, titleDeedUrl?: string | null) {
-  // Notify Akradiusz Sybaris and team about new land assessment
-  const notificationData = {
-    landOwner: data.ownerName,
+  // Send email notification to team
+  await sendLandAssessmentNotification({
+    ownerName: data.ownerName,
+    email: data.email,
+    phone: data.phone,
+    plotSize: data.plotSize,
     location: data.location,
-    capacity: assessment.plotAnalysis.capacity,
-    confidence: assessment.confidence,
-    timestamp: new Date().toISOString()
-  }
+    currentUse: data.currentUse,
+    titleDeedUrl,
+    assessment
+  })
   
-  // TODO: Send email notification to a.sybaris@lighthief.com with notificationData
+  // Send autoresponder to landowner
+  await sendLandAssessmentAutoresponder({
+    ownerName: data.ownerName,
+    email: data.email,
+    phone: data.phone,
+    plotSize: data.plotSize,
+    location: data.location,
+    currentUse: data.currentUse,
+    titleDeedUrl,
+    assessment
+  })
+  
   return true
 }
 
