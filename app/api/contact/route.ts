@@ -37,14 +37,15 @@ export async function POST(request: NextRequest) {
     // Processing contact form submission
     
     // Save contact to Supabase database
+    // Convert null values to undefined for database compatibility
     const contactToSave = {
       name: validatedData.name,
       email: validatedData.email,
-      phone: validatedData.phone,
-      company: validatedData.company,
+      phone: validatedData.phone ?? undefined,
+      company: validatedData.company ?? undefined,
       investment_size: validatedData.investmentSize, // Map field name
       timeline: validatedData.timeline,
-      message: validatedData.message,
+      message: validatedData.message ?? undefined,
       source: 'website'
     }
     
