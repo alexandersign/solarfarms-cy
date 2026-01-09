@@ -60,11 +60,22 @@ export async function POST(request: NextRequest) {
       savedContact = { id: 'temp_' + Date.now() }
     }
     
+    // Create email data with null converted to undefined
+    const emailData = {
+      name: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone ?? undefined,
+      company: validatedData.company ?? undefined,
+      investmentSize: validatedData.investmentSize,
+      timeline: validatedData.timeline,
+      message: validatedData.message ?? undefined,
+    }
+    
     // Send email notification to team
-    const notificationResult = await sendContactNotification(validatedData)
+    const notificationResult = await sendContactNotification(emailData)
     
     // Send autoresponder to client
-    const autoresponderResult = await sendContactAutoresponder(validatedData)
+    const autoresponderResult = await sendContactAutoresponder(emailData)
     
     // Extract first and last name from full name
     const nameParts = validatedData.name.trim().split(' ')
@@ -81,15 +92,15 @@ export async function POST(request: NextRequest) {
     // Lead value: €150 for general investor inquiry
     trackLeadConversion({
       email: validatedData.email,
-      phone: validatedData.phone,
+      phone: validatedData.phone ?? undefined,
       firstName,
       lastName,
       country: 'CY',
       value: 150, // Investor contact lead value in EUR
       source: '/contact',
-      fbp: validatedData.fbp,
-      fbc: validatedData.fbc,
-      eventId: validatedData.eventId, // Same ID as browser pixel for deduplication
+      fbp: validatedData.fbp ?? undefined,
+      fbc: validatedData.fbc ?? undefined,
+      eventId: validatedData.eventId ?? undefined,
       clientIpAddress,
       clientUserAgent,
     }).catch(() => {}) // Ignore errors, don't block response
