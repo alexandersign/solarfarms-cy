@@ -253,7 +253,7 @@ export default function SolarMiningPage() {
                   Get Mining Quote
                 </Link>
               </Button>
-              <Button size="xl" variant="outline" className="border-white/50 text-white hover:bg-white/10" asChild>
+              <Button size="xl" className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm" asChild>
                 <Link href="/projects/park-ref-5001">
                   View 5MW Park Example
                 </Link>
@@ -963,7 +963,7 @@ export default function SolarMiningPage() {
                 Get Mining Consultation
               </Link>
             </Button>
-            <Button size="xl" variant="outline" className="border-white/50 text-white hover:bg-white/10" asChild>
+            <Button size="xl" className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm" asChild>
               <Link href="/crypto/ai-mining">
                 Explore AI GPU Mining
               </Link>

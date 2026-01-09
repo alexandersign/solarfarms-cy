@@ -164,7 +164,7 @@ export default function AiMiningPage() {
                   Explore GPU Hosting
                 </Link>
               </Button>
-              <Button size="xl" variant="outline" className="border-white/50 text-white hover:bg-white/10" asChild>
+              <Button size="xl" className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm" asChild>
                 <Link href="/crypto/solar-mining">
                   See Bitcoin Mining
                 </Link>
@@ -467,7 +467,7 @@ export default function AiMiningPage() {
                 Schedule Consultation
               </Link>
             </Button>
-            <Button size="xl" variant="outline" className="border-white/50 text-white hover:bg-white/10" asChild>
+            <Button size="xl" className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm" asChild>
               <Link href="/crypto">
                 View All Crypto Options
               </Link>
