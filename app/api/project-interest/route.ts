@@ -11,13 +11,13 @@ const projectInterestSchema = z.object({
   projectRef: z.string().min(1, 'Project reference is required'),
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  message: z.string().optional(),
-  scenario: z.enum(['solar-only', 'solar-bess']).optional(),
-  // Meta tracking fields
-  fbp: z.string().optional(),
-  fbc: z.string().optional(),
-  eventId: z.string().optional(),
+  phone: z.string().optional().nullable(),
+  message: z.string().optional().nullable(),
+  scenario: z.enum(['solar-only', 'solar-bess']).optional().nullable(),
+  // Meta tracking fields - can be null if cookies don't exist
+  fbp: z.string().optional().nullable(),
+  fbc: z.string().optional().nullable(),
+  eventId: z.string().optional().nullable(),
 })
 
 export async function POST(request: NextRequest) {

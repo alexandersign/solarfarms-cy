@@ -8,15 +8,15 @@ import { trackLeadConversion } from '@/lib/meta-conversions'
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(50),
   email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  company: z.string().optional(),
+  phone: z.string().optional().nullable(),
+  company: z.string().optional().nullable(),
   investmentSize: z.string().min(1, 'Please select investment size'),
   timeline: z.string().min(1, 'Please select timeline'),
-  message: z.string().optional(),
-  // Meta tracking fields (optional, from client)
-  fbp: z.string().optional(),
-  fbc: z.string().optional(),
-  eventId: z.string().optional(),
+  message: z.string().optional().nullable(),
+  // Meta tracking fields (optional, from client) - can be null if cookies don't exist
+  fbp: z.string().optional().nullable(),
+  fbc: z.string().optional().nullable(),
+  eventId: z.string().optional().nullable(),
 })
 
 export async function POST(request: NextRequest) {
