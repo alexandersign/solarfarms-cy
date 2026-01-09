@@ -74,10 +74,38 @@ const btcMiningEconomics = {
 
 const miningScenarios = [
   {
+    title: 'Waiting for Connection',
+    subtitle: 'Park built, no grid terms yet',
+    icon: Timer,
+    highlight: 'BRIDGE INCOME',
+    featured: true,
+    economics: {
+      energyCost: '€0/kWh (your own power)',
+      operatingHours: '10-14 hrs/day (with BESS)',
+      annualEnergy: '~8,000 MWh (full output)',
+      miners: '~1,400 Antminer S21 (3.5kW each)',
+      hashrate: '280 PH/s total',
+      monthlyRevenue: '~€65,000-85,000',
+      annualROI: '30-45% on mining investment'
+    },
+    pros: [
+      'Generate income while waiting 2-5 years',
+      'Zero energy cost - use your own solar',
+      'Equipment resale value after connection',
+      'Cover O&M costs during idle period'
+    ],
+    cons: [
+      'Mining equipment investment required',
+      'Need containerized mining setup',
+      'Transition to grid when connected'
+    ]
+  },
+  {
     title: 'Curtailment Mining (No BESS)',
     subtitle: 'Mine during grid curtailment periods',
     icon: Sun,
     highlight: 'FREE ENERGY',
+    featured: false,
     economics: {
       energyCost: '€0/kWh (curtailed)',
       operatingHours: '6-8 hrs/day peak curtailment',
@@ -104,6 +132,7 @@ const miningScenarios = [
     subtitle: 'Continuous mining with battery storage',
     icon: Battery,
     highlight: '24/7 OPERATION',
+    featured: false,
     economics: {
       energyCost: '€0.06-0.08/kWh average',
       operatingHours: '24 hrs/day',
@@ -130,6 +159,7 @@ const miningScenarios = [
     subtitle: 'For parks without grid connection',
     icon: Zap,
     highlight: '100% UTILIZATION',
+    featured: false,
     economics: {
       energyCost: '€0.05-0.07/kWh',
       operatingHours: '10-12 hrs/day (daylight)',
@@ -726,26 +756,44 @@ export default function SolarMiningPage() {
               Mining Scenarios for 5MW Solar Park
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Three approaches to solar-powered Bitcoin mining, each optimized for different investment profiles
+              Four approaches to solar-powered Bitcoin mining, each optimized for different investment profiles
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
             {miningScenarios.map((scenario) => (
-              <Card key={scenario.title} className="hover:shadow-xl transition-all duration-300 border-2">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-14 h-14 bg-gradient-to-r from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center">
-                      <scenario.icon className="w-7 h-7 text-orange-600" />
-                    </div>
-                    <Badge className="bg-orange-500 text-white">{scenario.highlight}</Badge>
+              <Card 
+                key={scenario.title} 
+                className={`hover:shadow-xl transition-all duration-300 ${
+                  scenario.featured 
+                    ? 'border-2 border-orange-500 ring-2 ring-orange-200 shadow-lg relative' 
+                    : 'border-2'
+                }`}
+              >
+                {scenario.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    RECOMMENDED
                   </div>
-                  <CardTitle className="text-xl">{scenario.title}</CardTitle>
-                  <CardDescription className="text-base">{scenario.subtitle}</CardDescription>
+                )}
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                      scenario.featured 
+                        ? 'bg-gradient-to-r from-orange-500 to-yellow-500' 
+                        : 'bg-gradient-to-r from-orange-100 to-yellow-100'
+                    }`}>
+                      <scenario.icon className={`w-6 h-6 ${scenario.featured ? 'text-white' : 'text-orange-600'}`} />
+                    </div>
+                    <Badge className={scenario.featured ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-700'}>
+                      {scenario.highlight}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-lg">{scenario.title}</CardTitle>
+                  <CardDescription className="text-sm">{scenario.subtitle}</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3">
                   {/* Economics */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2 text-sm">
+                  <div className={`rounded-lg p-3 space-y-1.5 text-xs ${scenario.featured ? 'bg-orange-50' : 'bg-gray-50'}`}>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Energy Cost:</span>
                       <span className="font-semibold text-green-600">{scenario.economics.energyCost}</span>
@@ -756,13 +804,13 @@ export default function SolarMiningPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Miners:</span>
-                      <span className="font-medium">{scenario.economics.miners}</span>
+                      <span className="font-medium text-xs">{scenario.economics.miners}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Hashrate:</span>
                       <span className="font-medium">{scenario.economics.hashrate}</span>
                     </div>
-                    <div className="flex justify-between border-t pt-2">
+                    <div className="flex justify-between border-t pt-1.5">
                       <span className="text-gray-600">Monthly Revenue:</span>
                       <span className="font-bold text-green-600">{scenario.economics.monthlyRevenue}</span>
                     </div>
@@ -774,10 +822,10 @@ export default function SolarMiningPage() {
                   
                   {/* Pros */}
                   <div>
-                    <h4 className="font-semibold text-green-700 mb-2 text-sm">Advantages:</h4>
+                    <h4 className="font-semibold text-green-700 mb-1.5 text-xs">Advantages:</h4>
                     <div className="space-y-1">
                       {scenario.pros.slice(0, 3).map((pro) => (
-                        <div key={pro} className="flex items-start gap-2 text-xs">
+                        <div key={pro} className="flex items-start gap-1.5 text-xs">
                           <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0 mt-0.5" />
                           <span className="text-gray-600">{pro}</span>
                         </div>
