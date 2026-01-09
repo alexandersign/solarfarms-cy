@@ -34,9 +34,9 @@ export async function POST(request: NextRequest) {
           project_ref: validatedData.projectRef,
           name: validatedData.name,
           email: validatedData.email,
-          phone: validatedData.phone,
-          message: validatedData.message,
-          scenario: validatedData.scenario,
+          phone: validatedData.phone ?? undefined,
+          message: validatedData.message ?? undefined,
+          scenario: validatedData.scenario ?? undefined,
           source: 'project_listing',
           status: 'new'
         })
@@ -194,9 +194,9 @@ export async function POST(request: NextRequest) {
       email: validatedData.email,
       projectRef: validatedData.projectRef,
       value: 500, // High-intent project interest lead value
-      fbp: validatedData.fbp,
-      fbc: validatedData.fbc,
-      eventId: validatedData.eventId,
+      fbp: validatedData.fbp ?? undefined,
+      fbc: validatedData.fbc ?? undefined,
+      eventId: validatedData.eventId ?? undefined,
       clientIpAddress,
       clientUserAgent,
     }).catch(() => {}) // Non-blocking
