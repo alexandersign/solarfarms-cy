@@ -251,6 +251,32 @@ interface LandAssessmentEmailData {
   currentUse?: string
   titleDeedUrl?: string | null
   assessment?: any
+  dlsData?: {
+    zoning?: {
+      zoneCode: string
+      zoneName: string
+      isViable: boolean
+      status: 'GO' | 'NO_GO' | 'RESTRICTED' | 'REVIEW_NEEDED'
+      reason: string
+      restrictions: string[]
+    }
+    viable?: boolean
+    bestOption?: 'SOUTH' | 'EAST_WEST' | 'NONE'
+    southFacing?: {
+      capacityMW: number
+      capacityKWp: number
+      panelCount: number
+      annualProductionMWh: number
+      annualRevenueEUR: number
+    }
+    eastWest?: {
+      capacityMW: number
+      capacityKWp: number
+      panelCount: number
+      annualProductionMWh: number
+      annualRevenueEUR: number
+    }
+  }
 }
 
 export async function sendLandAssessmentNotification(data: LandAssessmentEmailData) {
@@ -305,6 +331,15 @@ export async function sendLandAssessmentAutoresponder(data: LandAssessmentEmailD
 }
 
 function getLandAssessmentNotificationTemplate(data: LandAssessmentEmailData): string {
+  // Determine zone status styling
+  const zoneStatus = data.dlsData?.zoning?.status || 'REVIEW_NEEDED'
+  const zoneColor = zoneStatus === 'GO' ? '#10b981' : 
+                    zoneStatus === 'NO_GO' ? '#ef4444' : 
+                    zoneStatus === 'RESTRICTED' ? '#f59e0b' : '#3b82f6'
+  const zoneEmoji = zoneStatus === 'GO' ? '✅' : 
+                    zoneStatus === 'NO_GO' ? '❌' : 
+                    zoneStatus === 'RESTRICTED' ? '⚠️' : '❓'
+  
   return `
     <!DOCTYPE html>
     <html>
@@ -320,24 +355,35 @@ function getLandAssessmentNotificationTemplate(data: LandAssessmentEmailData): s
             .file-link { background: #fef3c7; padding: 10px 15px; border-radius: 6px; margin: 10px 0; display: inline-block; }
             .file-link a { color: #92400e; text-decoration: none; font-weight: bold; }
             .footer { background: #f3f4f6; padding: 15px; font-size: 12px; color: #666; }
+            .capacity-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+            .capacity-table th, .capacity-table td { padding: 10px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+            .capacity-table th { background: #f3f4f6; }
+            .zone-box { padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid; }
         </style>
     </head>
     <body>
         <div class="header">
-            <h1>🌍 NEW LAND INQUIRY - ACTION REQUIRED</h1>
-            <p>SolarFarms.cy - Manual Evaluation Needed</p>
+            <h1>🌍 NEW LAND INQUIRY - ${data.dlsData?.viable ? 'VIABLE' : 'REVIEW NEEDED'}</h1>
+            <p>SolarFarms.cy - DLS Data Assessment</p>
         </div>
         
         <div class="content">
-            <div style="background: #fef2f2; border: 2px solid #ef4444; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="color: #dc2626; margin: 0 0 10px 0;">⚠️ MANUAL REVIEW REQUIRED</h3>
-                <p style="margin: 0; color: #7f1d1d;">Please review the property details and uploaded documents below. Contact the landowner within 24-48 hours.</p>
+            <!-- Zone Status Alert -->
+            <div class="zone-box" style="border-color: ${zoneColor}; background: ${zoneColor}15;">
+                <h3 style="color: ${zoneColor}; margin: 0 0 10px 0;">${zoneEmoji} ZONE STATUS: ${zoneStatus}</h3>
+                <p style="margin: 0;"><strong>Zone Code:</strong> ${data.dlsData?.zoning?.zoneCode || 'Unknown'}</p>
+                <p style="margin: 5px 0 0 0;">${data.dlsData?.zoning?.reason || 'Manual verification required'}</p>
+                ${data.dlsData?.zoning?.restrictions?.length ? `
+                <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 14px;">
+                    ${data.dlsData.zoning.restrictions.map((r: string) => `<li>${r}</li>`).join('')}
+                </ul>
+                ` : ''}
             </div>
             
             <h2>Landowner Details</h2>
             <p><strong>Name:</strong> ${data.ownerName}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+            <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+            <p><strong>Phone:</strong> ${data.phone ? `<a href="tel:${data.phone}">${data.phone}</a>` : 'Not provided'}</p>
             
             <div class="highlight">
                 <h3>Property Information</h3>
@@ -350,34 +396,67 @@ function getLandAssessmentNotificationTemplate(data: LandAssessmentEmailData): s
             <div class="file-link">
                 📄 <a href="${data.titleDeedUrl}" target="_blank">VIEW UPLOADED TITLE DEED / PLOT MAP</a>
             </div>
-            ` : '<p><em>No title deed uploaded</em></p>'}
+            ` : '<p><em>No title deed uploaded - request from landowner</em></p>'}
+            
+            <!-- Capacity Comparison Table -->
+            ${data.dlsData?.southFacing && data.dlsData?.eastWest ? `
+            <h3>⚡ Capacity Comparison (DLS Calculated)</h3>
+            <table class="capacity-table">
+                <tr>
+                    <th>Metric</th>
+                    <th>South-Facing (4m pitch)</th>
+                    <th>East-West (1m pitch)</th>
+                </tr>
+                <tr>
+                    <td><strong>Capacity</strong></td>
+                    <td>${data.dlsData.southFacing.capacityMW.toFixed(2)} MW (${data.dlsData.southFacing.capacityKWp.toLocaleString()} kWp)</td>
+                    <td>${data.dlsData.eastWest.capacityMW.toFixed(2)} MW (${data.dlsData.eastWest.capacityKWp.toLocaleString()} kWp)</td>
+                </tr>
+                <tr>
+                    <td><strong>Panel Count</strong></td>
+                    <td>${data.dlsData.southFacing.panelCount.toLocaleString()} panels</td>
+                    <td>${data.dlsData.eastWest.panelCount.toLocaleString()} panels</td>
+                </tr>
+                <tr>
+                    <td><strong>Annual Production</strong></td>
+                    <td>${data.dlsData.southFacing.annualProductionMWh.toLocaleString()} MWh</td>
+                    <td>${data.dlsData.eastWest.annualProductionMWh.toLocaleString()} MWh</td>
+                </tr>
+                <tr style="background: #ecfdf5;">
+                    <td><strong>Annual Revenue @€0.16/kWh</strong></td>
+                    <td style="color: #059669; font-weight: bold;">€${data.dlsData.southFacing.annualRevenueEUR.toLocaleString()}</td>
+                    <td style="color: #059669; font-weight: bold;">€${data.dlsData.eastWest.annualRevenueEUR.toLocaleString()}</td>
+                </tr>
+            </table>
+            <p style="background: #dbeafe; padding: 10px; border-radius: 6px;">
+                <strong>📊 Recommended:</strong> ${data.dlsData.bestOption === 'EAST_WEST' ? 'East-West' : 'South-Facing'} orientation
+            </p>
+            ` : ''}
             
             ${data.assessment ? `
             <div class="assessment">
-                <h3>⚡ Preliminary Estimates (Auto-Generated)</h3>
-                <p style="font-size: 12px; color: #666; margin-bottom: 10px;"><em>These are rough estimates based on plot size. Please verify with site visit and title deed review.</em></p>
-                <p><strong>Estimated Capacity:</strong> ${data.assessment.plotAnalysis?.capacity || 'Pending review'}</p>
-                <p><strong>Estimated RTB Value:</strong> ${data.assessment.financialProjections?.rtbValue || 'Pending review'}</p>
-                <p><strong>Est. Development Timeline:</strong> ${data.assessment.financialProjections?.developmentTimeline || 'Pending review'}</p>
-                <p><strong>Grid Distance:</strong> ${data.assessment.plotAnalysis?.gridDistance || 'Requires verification'}</p>
-                <p><strong>Zoning Status:</strong> ${data.assessment.plotAnalysis?.zoning || 'Requires verification'}</p>
+                <h3>💰 Financial Estimates</h3>
+                <p><strong>Estimated RTB Value:</strong> ${data.assessment.financialProjections?.rtbValue || 'Pending'}</p>
+                <p><strong>Annual Lease Value (8%):</strong> ${data.assessment.landOwnerOptions?.annualLease || 'Pending'}</p>
+                <p><strong>Land Sale Premium:</strong> ${data.assessment.landOwnerOptions?.landSale || 'Pending'}</p>
+                <p><strong>Development Timeline:</strong> ${data.assessment.financialProjections?.developmentTimeline || '12-18 months'}</p>
             </div>
             ` : ''}
             
-            <h3>Next Steps</h3>
+            <h3>Action Items</h3>
             <ul>
-                <li>Review uploaded title deed (if available)</li>
-                <li>Verify plot details in Cyprus Land Registry</li>
-                <li>Contact landowner within 24 hours</li>
-                <li>Schedule site visit if promising</li>
-                <li>Prepare detailed feasibility proposal</li>
+                <li>☐ ${data.dlsData?.viable ? 'High priority - contact within 24h' : 'Review zone restrictions first'}</li>
+                <li>☐ Review uploaded title deed (if available)</li>
+                <li>☐ Verify zone in Cyprus Land Registry portal</li>
+                <li>☐ Check grid connection proximity</li>
+                <li>☐ Schedule site visit if promising</li>
             </ul>
         </div>
         
         <div class="footer">
-            <p>Submitted: ${new Date().toLocaleString()}</p>
-            <p>Source: SolarFarms.cy Land Assessment Tool</p>
-            <p>Priority: HIGH - Landowner Lead</p>
+            <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Source:</strong> SolarFarms.cy DLS-Integrated Assessment Tool</p>
+            <p><strong>Priority:</strong> ${data.dlsData?.viable ? '🟢 HIGH - Viable Land' : '🟡 MEDIUM - Needs Review'}</p>
         </div>
     </body>
     </html>
@@ -419,11 +498,23 @@ function getLandAssessmentAutoresponderTemplate(data: LandAssessmentEmailData): 
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <td style="padding: 10px 0;"><strong>Plot Size:</strong></td>
-                        <td>${data.plotSize}</td>
+                        <td>${data.assessment.plotAnalysis?.size || data.plotSize}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 10px 0;"><strong>Solar Capacity:</strong></td>
+                        <td style="padding: 10px 0;"><strong>Zone Status:</strong></td>
+                        <td>${data.assessment.plotAnalysis?.zoning || 'Pending verification'}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px 0;"><strong>Recommended Capacity:</strong></td>
                         <td style="color: #059669; font-weight: bold;">${data.assessment.plotAnalysis?.capacity || 'To be determined'}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px 0;"><strong>Annual Production:</strong></td>
+                        <td style="color: #059669; font-weight: bold;">${data.assessment.annualProduction?.MWh || 'TBD'} MWh/year</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px 0;"><strong>Annual Revenue Estimate:</strong></td>
+                        <td style="color: #059669; font-weight: bold;">${data.assessment.annualProduction?.revenue || 'To be determined'}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px 0;"><strong>Estimated RTB Value:</strong></td>
@@ -434,6 +525,13 @@ function getLandAssessmentAutoresponderTemplate(data: LandAssessmentEmailData): 
                         <td>${data.assessment.financialProjections?.developmentTimeline || '12-24 months'}</td>
                     </tr>
                 </table>
+                ${data.assessment.capacityComparison ? `
+                <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                    <strong>Capacity Options:</strong> 
+                    South-facing (${data.assessment.capacityComparison.southFacing?.capacityMW || 0} MW) vs 
+                    East-West (${data.assessment.capacityComparison.eastWest?.capacityMW || 0} MW)
+                </p>
+                ` : ''}
             </div>
             
             <h3>Your Revenue Options</h3>

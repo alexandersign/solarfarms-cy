@@ -7,7 +7,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { 
   MapPin, 
   Upload, 
@@ -22,7 +21,13 @@ import {
   Target,
   Compass,
   Map,
-  Building
+  Building,
+  AlertTriangle,
+  XCircle,
+  Sun,
+  ArrowLeftRight,
+  Loader2,
+  Info
 } from 'lucide-react'
 
 const plotValueExamples = [
@@ -58,115 +63,105 @@ const plotValueExamples = [
   }
 ]
 
-const assessmentFactors = [
-  {
-    factor: "Solar Irradiation",
-    description: "Annual sunshine hours and solar potential",
-    cyprusAverage: "1,800 kWh/m²/year",
-    importance: "Primary factor for energy yield"
-  },
-  {
-    factor: "Grid Proximity",
-    description: "Distance to electrical grid connection",
-    cyprusAverage: "Within 5km preferred",
-    importance: "Affects connection costs and feasibility"
-  },
-  {
-    factor: "Zoning Compliance",
-    description: "Land use regulations and permits",
-    cyprusAverage: "Agricultural/Industrial zones",
-    importance: "Determines development permissions"
-  },
-  {
-    factor: "Topography",
-    description: "Land slope and orientation",
-    cyprusAverage: "0-15% slope optimal",
-    importance: "Affects installation costs and efficiency"
-  },
-  {
-    factor: "Access & Infrastructure",
-    description: "Road access and site accessibility",
-    cyprusAverage: "Public road access required",
-    importance: "Construction and maintenance access"
-  }
+const zoneInfo = [
+  { code: 'Γ3/G3', status: 'go', description: 'Agricultural - Solar Permitted' },
+  { code: 'Γ4/G4', status: 'go', description: 'Agricultural - Solar Permitted' },
+  { code: 'Α2/A2', status: 'go', description: 'Agricultural - Solar Permitted' },
+  { code: 'ΒΕ/BE', status: 'go', description: 'Industrial - Solar Permitted' },
+  { code: 'Η2/H2', status: 'no_go', description: 'Protected - NO Solar' },
+  { code: 'Ζ/Z', status: 'no_go', description: 'Strict Protection - NO Solar' },
+  { code: 'Natura 2000', status: 'restricted', description: 'Environmental - Restricted' },
 ]
 
 export default function LandownersPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
-  const [assessmentData, setAssessmentData] = useState({
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
     plotSize: '',
     location: '',
     currentUse: '',
     ownerName: '',
     email: '',
-    phone: ''
+    phone: '',
+    zoneCode: '' // Optional zone code input
   })
   const [showAssessment, setShowAssessment] = useState(false)
   const [assessmentResults, setAssessmentResults] = useState<any>(null)
+  const [dlsAssessment, setDlsAssessment] = useState<any>(null)
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
       setUploadedFile(file)
-      // File will be uploaded when form is submitted
     }
   }
 
   const handleAssessmentSubmit = async () => {
-    if (!assessmentData.ownerName || !assessmentData.email || !assessmentData.location || !assessmentData.plotSize) {
+    if (!formData.ownerName || !formData.email || !formData.location || !formData.plotSize) {
       alert('Please fill in all required fields: Name, Email, Location, and Plot Size')
       return
     }
 
+    setIsSubmitting(true)
+
     try {
-      const formData = new FormData()
+      const submitData = new FormData()
       
       // Add form fields
-      Object.entries(assessmentData).forEach(([key, value]) => {
-        formData.append(key, value)
+      Object.entries(formData).forEach(([key, value]) => {
+        submitData.append(key, value)
       })
       
       // Add title deed file if uploaded
       if (uploadedFile) {
-        formData.append('titleDeed', uploadedFile)
+        submitData.append('titleDeed', uploadedFile)
       }
       
       const response = await fetch('/api/land-assessment', {
         method: 'POST',
-        body: formData,
+        body: submitData,
       })
       
       const result = await response.json()
       
       if (result.success) {
         setAssessmentResults(result.assessment)
+        setDlsAssessment(result.dlsAssessment)
         setShowAssessment(true)
       } else {
         alert(result.message || 'Assessment failed. Please try again.')
       }
     } catch (error) {
       alert('Assessment failed. Please try again or contact us directly.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
-  const simulateAssessment = () => {
-    // Simulate automatic assessment
-    setTimeout(() => {
-      setAssessmentResults({
-        plotSize: "8.5 acres (3.4 hectares)",
-        solarPotential: "2.1 MW capacity",
-        zoningStatus: "Agricultural - Solar Compatible",
-        gridDistance: "2.3 km to nearest substation",
-        solarIrradiation: "1,850 kWh/m²/year",
-        estimatedValue: "€1.2M - €2.5M RTB value",
-        developmentTimeline: "14-20 months",
-        landOwnerOptions: {
-          lease: "€15,000 - €25,000 annual lease",
-          sale: "€600,000 - €1,200,000 premium"
-        }
-      })
-      setShowAssessment(true)
-    }, 2000)
+  const getZoneStatusIcon = (status: string) => {
+    switch (status) {
+      case 'GO':
+        return <CheckCircle className="w-6 h-6 text-green-500" />
+      case 'NO_GO':
+        return <XCircle className="w-6 h-6 text-red-500" />
+      case 'RESTRICTED':
+        return <AlertTriangle className="w-6 h-6 text-amber-500" />
+      default:
+        return <Info className="w-6 h-6 text-blue-500" />
+    }
+  }
+
+  const getZoneStatusColor = (status: string) => {
+    switch (status) {
+      case 'GO':
+        return 'bg-green-50 border-green-200 text-green-800'
+      case 'NO_GO':
+        return 'bg-red-50 border-red-200 text-red-800'
+      case 'RESTRICTED':
+        return 'bg-amber-50 border-amber-200 text-amber-800'
+      default:
+        return 'bg-blue-50 border-blue-200 text-blue-800'
+    }
   }
 
   return (
@@ -196,7 +191,7 @@ export default function LandownersPage() {
               
               <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
                 Transform your Cyprus land into a profitable solar farm. Get instant assessment 
-                of your plot's solar potential and discover how much your land could earn.
+                of your plot&apos;s solar potential with real zone data and capacity calculations.
               </p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-8">
@@ -227,23 +222,24 @@ export default function LandownersPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
+              <Badge className="mb-4 bg-green-100 text-green-800">Powered by Cyprus Land Registry Data</Badge>
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Free Land Evaluation
+                Instant Land Solar Assessment
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Submit your land details and we&apos;ll evaluate your property&apos;s solar potential. 
-                Our team will contact you within 24-48 hours with a detailed assessment.
+                Get immediate feedback on your land&apos;s solar potential including zone verification,
+                capacity estimates, and revenue projections.
               </p>
             </div>
 
             <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur">
               <CardHeader className="text-center pb-8">
                 <CardTitle className="text-2xl font-heading gradient-text">
-                  <Upload className="w-8 h-8 mx-auto mb-3" />
-                  Land Evaluation Request
+                  <Calculator className="w-8 h-8 mx-auto mb-3" />
+                  Solar Potential Calculator
                 </CardTitle>
                 <CardDescription className="text-lg text-gray-600">
-                  Upload your documents • Expert review • Personal consultation within 24-48 hours
+                  Zone checking • Capacity estimation • Revenue projection • Instant results
                 </CardDescription>
               </CardHeader>
 
@@ -252,7 +248,10 @@ export default function LandownersPage() {
                   <>
                     {/* File Upload */}
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold">1. Upload Title Deed or Plot Map</h3>
+                      <h3 className="text-xl font-semibold flex items-center gap-2">
+                        <span className="w-8 h-8 bg-solar-500 text-white rounded-full flex items-center justify-center text-sm">1</span>
+                        Upload Title Deed or Plot Map (Optional)
+                      </h3>
                       <div className="border-2 border-dashed border-solar-300 rounded-lg p-8 text-center hover:border-solar-500 transition-colors">
                         <input
                           type="file"
@@ -267,7 +266,7 @@ export default function LandownersPage() {
                             Drop your title deed or plot map here
                           </p>
                           <p className="text-sm text-gray-500">
-                            PDF, JPG, PNG files • Sent directly to our evaluation team
+                            PDF, JPG, PNG files • Helps our team verify zone data
                           </p>
                         </label>
                       </div>
@@ -276,145 +275,385 @@ export default function LandownersPage() {
                           <p className="text-green-800 font-medium">
                             ✓ {uploadedFile.name} uploaded successfully
                           </p>
-                          <p className="text-green-600 text-sm">Analyzing with Cyprus Land Registry data...</p>
                         </div>
                       )}
                     </div>
 
+                    {/* Plot Information */}
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-semibold flex items-center gap-2">
+                        <span className="w-8 h-8 bg-cyprus-500 text-white rounded-full flex items-center justify-center text-sm">2</span>
+                        Plot Information
+                      </h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-gray-700 mb-1 block">
+                            Plot Size *
+                          </label>
+                          <Input
+                            placeholder="e.g., 5 hectares, 12 acres, 50000 m²"
+                            value={formData.plotSize}
+                            onChange={(e) => setFormData({...formData, plotSize: e.target.value})}
+                          />
+                          <p className="text-xs text-gray-500 mt-1">Supports: hectares, acres, m², donum</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-gray-700 mb-1 block">
+                            Location/Area *
+                          </label>
+                          <Input
+                            placeholder="e.g., Nicosia, Paphos, Limassol"
+                            value={formData.location}
+                            onChange={(e) => setFormData({...formData, location: e.target.value})}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-gray-700 mb-1 block">
+                            Zone Code (if known)
+                          </label>
+                          <Input
+                            placeholder="e.g., Γ3, G3, A2, H2"
+                            value={formData.zoneCode}
+                            onChange={(e) => setFormData({...formData, zoneCode: e.target.value})}
+                          />
+                          <p className="text-xs text-gray-500 mt-1">From your title deed or planning department</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-gray-700 mb-1 block">
+                            Current Land Use
+                          </label>
+                          <Input
+                            placeholder="e.g., Agricultural, Unused, Grazing"
+                            value={formData.currentUse}
+                            onChange={(e) => setFormData({...formData, currentUse: e.target.value})}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Zone Reference */}
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                        <Map className="w-5 h-5" />
+                        Cyprus Zoning Quick Reference
+                      </h4>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                        {zoneInfo.map((zone) => (
+                          <div 
+                            key={zone.code}
+                            className={`p-2 rounded border ${
+                              zone.status === 'go' ? 'bg-green-50 border-green-200' :
+                              zone.status === 'no_go' ? 'bg-red-50 border-red-200' :
+                              'bg-amber-50 border-amber-200'
+                            }`}
+                          >
+                            <div className="font-semibold">{zone.code}</div>
+                            <div className={`text-xs ${
+                              zone.status === 'go' ? 'text-green-700' :
+                              zone.status === 'no_go' ? 'text-red-700' :
+                              'text-amber-700'
+                            }`}>{zone.description}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
                     {/* Contact Information */}
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold">2. Your Contact Information</h3>
+                      <h3 className="text-xl font-semibold flex items-center gap-2">
+                        <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm">3</span>
+                        Your Contact Information
+                      </h3>
                       <div className="grid md:grid-cols-2 gap-4">
                         <Input
-                          placeholder="Your Name"
-                          value={assessmentData.ownerName}
-                          onChange={(e) => setAssessmentData({...assessmentData, ownerName: e.target.value})}
+                          placeholder="Your Name *"
+                          value={formData.ownerName}
+                          onChange={(e) => setFormData({...formData, ownerName: e.target.value})}
                         />
                         <Input
                           type="email"
-                          placeholder="Email Address"
-                          value={assessmentData.email}
-                          onChange={(e) => setAssessmentData({...assessmentData, email: e.target.value})}
+                          placeholder="Email Address *"
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
                         />
                         <Input
                           type="tel"
                           placeholder="Phone Number"
-                          value={assessmentData.phone}
-                          onChange={(e) => setAssessmentData({...assessmentData, phone: e.target.value})}
-                        />
-                        <Input
-                          placeholder="Plot Location (City/Area)"
-                          value={assessmentData.location}
-                          onChange={(e) => setAssessmentData({...assessmentData, location: e.target.value})}
-                        />
-                        <Input
-                          placeholder="Plot Size (e.g., 5 acres, 2 hectares)"
-                          value={assessmentData.plotSize}
-                          onChange={(e) => setAssessmentData({...assessmentData, plotSize: e.target.value})}
-                        />
-                        <Input
-                          placeholder="Current Land Use (Optional)"
-                          value={assessmentData.currentUse}
-                          onChange={(e) => setAssessmentData({...assessmentData, currentUse: e.target.value})}
+                          value={formData.phone}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          className="md:col-span-2"
                         />
                       </div>
-                      
-                      {/* Submit Button */}
-                      <div className="text-center pt-6">
-                        <Button 
-                          variant="gradient" 
-                          size="lg" 
-                          onClick={handleAssessmentSubmit}
-                          disabled={!assessmentData.ownerName || !assessmentData.email || !assessmentData.location || !assessmentData.plotSize}
-                          className="px-8"
-                        >
-                          Submit for Assessment
-                        </Button>
-                        <p className="text-sm text-gray-500 mt-2">
-                          Submit for Free Evaluation
-                        </p>
-                      </div>
+                    </div>
+                    
+                    {/* Submit Button */}
+                    <div className="text-center pt-6">
+                      <Button 
+                        variant="gradient" 
+                        size="xl" 
+                        onClick={handleAssessmentSubmit}
+                        disabled={isSubmitting || !formData.ownerName || !formData.email || !formData.location || !formData.plotSize}
+                        className="px-12"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                            Analyzing...
+                          </>
+                        ) : (
+                          <>
+                            <Zap className="w-5 h-5 mr-2" />
+                            Get Instant Assessment
+                          </>
+                        )}
+                      </Button>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Free instant analysis powered by Cyprus Land Registry data
+                      </p>
                     </div>
                   </>
                 ) : (
                   /* Assessment Results */
                   <div className="space-y-8">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-heading font-bold mb-4 text-green-600">
-                        🎉 Assessment Complete!
-                      </h3>
-                      <p className="text-gray-600">Your land shows excellent solar potential</p>
+                    {/* Zone Status Header */}
+                    <div className={`rounded-xl p-6 border-2 ${getZoneStatusColor(dlsAssessment?.zoning?.status || 'REVIEW_NEEDED')}`}>
+                      <div className="flex items-start gap-4">
+                        {getZoneStatusIcon(dlsAssessment?.zoning?.status || 'REVIEW_NEEDED')}
+                        <div>
+                          <h3 className="text-xl font-bold mb-2">
+                            {dlsAssessment?.zoning?.status === 'GO' && '✅ Land is Suitable for Solar Development'}
+                            {dlsAssessment?.zoning?.status === 'NO_GO' && '❌ Land is NOT Suitable for Solar'}
+                            {dlsAssessment?.zoning?.status === 'RESTRICTED' && '⚠️ Land Has Environmental Restrictions'}
+                            {dlsAssessment?.zoning?.status === 'REVIEW_NEEDED' && '❓ Manual Review Required'}
+                          </h3>
+                          <p className="mb-2">{dlsAssessment?.zoning?.reason}</p>
+                          {dlsAssessment?.zoning?.restrictions?.length > 0 && (
+                            <ul className="text-sm space-y-1 mt-2">
+                              {dlsAssessment.zoning.restrictions.map((r: string, i: number) => (
+                                <li key={i}>• {r}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <Card className="text-center border-green-200">
+                    {/* Capacity Comparison */}
+                    {dlsAssessment?.recommendation?.viable && (
+                      <div>
+                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                          <Calculator className="w-6 h-6 text-solar-500" />
+                          Capacity Comparison: South vs East-West
+                        </h3>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          {/* South Facing */}
+                          <Card className={`border-2 ${dlsAssessment?.recommendation?.bestOption === 'SOUTH' ? 'border-green-500 ring-2 ring-green-200' : 'border-gray-200'}`}>
+                            <CardHeader className="pb-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <Sun className="w-6 h-6 text-amber-500" />
+                                  <CardTitle className="text-lg">South-Facing</CardTitle>
+                                </div>
+                                {dlsAssessment?.recommendation?.bestOption === 'SOUTH' && (
+                                  <Badge className="bg-green-500">Recommended</Badge>
+                                )}
+                              </div>
+                              <CardDescription>4 meter row pitch</CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                              <div className="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                  <span className="text-gray-600">Capacity:</span>
+                                  <div className="font-bold text-lg">{assessmentResults?.capacityComparison?.southFacing?.capacityMW} MW</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Panels:</span>
+                                  <div className="font-bold">{assessmentResults?.capacityComparison?.southFacing?.panelCount?.toLocaleString()}</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Annual Production:</span>
+                                  <div className="font-bold">{assessmentResults?.capacityComparison?.southFacing?.annualProductionMWh?.toLocaleString()} MWh</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Annual Revenue:</span>
+                                  <div className="font-bold text-green-600">€{assessmentResults?.capacityComparison?.southFacing?.annualRevenueEUR?.toLocaleString()}</div>
+                                </div>
+                              </div>
+                              <div className="text-xs text-gray-500 pt-2 border-t">
+                                Yield: {assessmentResults?.capacityComparison?.southFacing?.specificYield} kWh/kWp @ €0.16/kWh
+                              </div>
+                            </CardContent>
+                          </Card>
+
+                          {/* East-West */}
+                          <Card className={`border-2 ${dlsAssessment?.recommendation?.bestOption === 'EAST_WEST' ? 'border-green-500 ring-2 ring-green-200' : 'border-gray-200'}`}>
+                            <CardHeader className="pb-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <ArrowLeftRight className="w-6 h-6 text-blue-500" />
+                                  <CardTitle className="text-lg">East-West</CardTitle>
+                                </div>
+                                {dlsAssessment?.recommendation?.bestOption === 'EAST_WEST' && (
+                                  <Badge className="bg-green-500">Recommended</Badge>
+                                )}
+                              </div>
+                              <CardDescription>1 meter row pitch (higher density)</CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                              <div className="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                  <span className="text-gray-600">Capacity:</span>
+                                  <div className="font-bold text-lg">{assessmentResults?.capacityComparison?.eastWest?.capacityMW} MW</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Panels:</span>
+                                  <div className="font-bold">{assessmentResults?.capacityComparison?.eastWest?.panelCount?.toLocaleString()}</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Annual Production:</span>
+                                  <div className="font-bold">{assessmentResults?.capacityComparison?.eastWest?.annualProductionMWh?.toLocaleString()} MWh</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Annual Revenue:</span>
+                                  <div className="font-bold text-green-600">€{assessmentResults?.capacityComparison?.eastWest?.annualRevenueEUR?.toLocaleString()}</div>
+                                </div>
+                              </div>
+                              <div className="text-xs text-gray-500 pt-2 border-t">
+                                Yield: {assessmentResults?.capacityComparison?.eastWest?.specificYield} kWh/kWp @ €0.16/kWh
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Key Metrics */}
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <Card className="text-center border-solar-200">
                         <CardContent className="pt-6">
                           <Zap className="w-8 h-8 text-solar-500 mx-auto mb-3" />
-                          <div className="text-xl font-bold gradient-text mb-2">{assessmentResults?.solarPotential}</div>
-                          <div className="text-sm text-gray-600">Solar Farm Capacity</div>
+                          <div className="text-xl font-bold gradient-text mb-2">{assessmentResults?.plotAnalysis?.capacity}</div>
+                          <div className="text-sm text-gray-600">Recommended Capacity</div>
+                          <div className="text-xs text-gray-500 mt-1">{assessmentResults?.plotAnalysis?.panelCount} panels</div>
                         </CardContent>
                       </Card>
 
                       <Card className="text-center border-green-200">
                         <CardContent className="pt-6">
                           <Euro className="w-8 h-8 text-green-500 mx-auto mb-3" />
-                          <div className="text-xl font-bold gradient-text mb-2">{assessmentResults?.estimatedValue}</div>
-                          <div className="text-sm text-gray-600">RTB Project Value</div>
+                          <div className="text-xl font-bold gradient-text mb-2">{assessmentResults?.annualProduction?.revenue}</div>
+                          <div className="text-sm text-gray-600">Annual Revenue</div>
+                          <div className="text-xs text-gray-500 mt-1">{assessmentResults?.annualProduction?.MWh} MWh/year</div>
                         </CardContent>
                       </Card>
 
-                      <Card className="text-center border-green-200">
+                      <Card className="text-center border-cyprus-200">
                         <CardContent className="pt-6">
                           <Clock className="w-8 h-8 text-cyprus-500 mx-auto mb-3" />
-                          <div className="text-xl font-bold gradient-text mb-2">{assessmentResults?.developmentTimeline}</div>
-                          <div className="text-sm text-gray-600">To Ready-to-Build</div>
+                          <div className="text-xl font-bold gradient-text mb-2">{assessmentResults?.financialProjections?.rtbValue}</div>
+                          <div className="text-sm text-gray-600">RTB Project Value</div>
+                          <div className="text-xs text-gray-500 mt-1">{assessmentResults?.financialProjections?.developmentTimeline}</div>
                         </CardContent>
                       </Card>
                     </div>
 
-                    <Card className="bg-green-50 border-green-200">
+                    {/* Environmental Status */}
+                    <Card className="bg-gray-50">
                       <CardHeader>
-                        <CardTitle className="text-xl text-green-900">Your Land Revenue Options</CardTitle>
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          <Map className="w-5 h-5" />
+                          Environmental & Zone Status
+                        </CardTitle>
                       </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div>
-                            <h4 className="font-semibold text-green-800 mb-2">Option 1: Land Lease</h4>
-                            <p className="text-green-700 text-sm mb-2">{assessmentResults?.landOwnerOptions.lease}</p>
-                            <ul className="text-green-600 text-xs space-y-1">
-                              <li>• Keep land ownership</li>
-                              <li>• Guaranteed annual income for 25+ years</li>
-                              <li>• No development risk</li>
-                              <li>• Land returned after project life</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-green-800 mb-2">Option 2: Land Sale</h4>
-                            <p className="text-green-700 text-sm mb-2">{assessmentResults?.landOwnerOptions.sale}</p>
-                            <ul className="text-green-600 text-xs space-y-1">
-                              <li>• Immediate lump sum payment</li>
-                              <li>• Premium price for solar-ready land</li>
-                              <li>• No ongoing responsibilities</li>
-                              <li>• Capital available for other investments</li>
-                            </ul>
-                          </div>
+                      <CardContent className="grid md:grid-cols-2 gap-4">
+                        <div className="flex items-center gap-2">
+                          <span>{assessmentResults?.environmental?.natura2000}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span>{assessmentResults?.environmental?.birdPath}</span>
+                        </div>
+                        <div className="md:col-span-2">
+                          <span className="text-sm text-gray-600">{assessmentResults?.plotAnalysis?.zoning}</span>
                         </div>
                       </CardContent>
                     </Card>
 
-                    <div className="text-center">
+                    {/* Landowner Options */}
+                    {dlsAssessment?.recommendation?.viable && (
+                      <Card className="bg-green-50 border-green-200">
+                        <CardHeader>
+                          <CardTitle className="text-xl text-green-900">Your Revenue Options</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                              <h4 className="font-semibold text-green-800 mb-2">Option 1: Land Lease</h4>
+                              <p className="text-green-700 text-lg font-bold mb-2">{assessmentResults?.landOwnerOptions?.annualLease}</p>
+                              <ul className="text-green-600 text-sm space-y-1">
+                                <li>• Keep land ownership</li>
+                                <li>• Guaranteed income for 25+ years</li>
+                                <li>• Total: {assessmentResults?.landOwnerOptions?.leaseTotal25Years}</li>
+                              </ul>
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-green-800 mb-2">Option 2: Land Sale</h4>
+                              <p className="text-green-700 text-lg font-bold mb-2">{assessmentResults?.landOwnerOptions?.landSale}</p>
+                              <ul className="text-green-600 text-sm space-y-1">
+                                <li>• Immediate lump sum payment</li>
+                                <li>• Premium price for solar-ready land</li>
+                                <li>• No ongoing responsibilities</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {/* Next Steps */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg">Next Steps</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2">
+                          {assessmentResults?.nextSteps?.map((step: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                              <span>{step}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+
+                    {/* Data Source */}
+                    <div className="text-center text-sm text-gray-500">
+                      <p>Data source: {assessmentResults?.dataSource}</p>
+                      <p>Assessment generated: {new Date(assessmentResults?.timestamp).toLocaleString()}</p>
+                    </div>
+
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                       <Button 
                         variant="gradient" 
-                        size="xl" 
-                        className="px-12"
-                        onClick={handleAssessmentSubmit}
-                        disabled={!assessmentData.ownerName || !assessmentData.email}
+                        size="lg"
+                        asChild
                       >
-                        Order Professional Feasibility Study
+                        <Link href="/contact">
+                          Schedule Consultation
+                        </Link>
                       </Button>
-                      <p className="text-sm text-gray-500 mt-3">
-                        Detailed study includes: Site survey, grid analysis, permit roadmap, financial projections
-                      </p>
+                      <Button 
+                        variant="outline" 
+                        size="lg"
+                        onClick={() => {
+                          setShowAssessment(false)
+                          setAssessmentResults(null)
+                          setDlsAssessment(null)
+                        }}
+                      >
+                        Assess Another Plot
+                      </Button>
                     </div>
                   </div>
                 )}
@@ -434,7 +673,7 @@ export default function LandownersPage() {
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 RTB projects have all permits, grid connections, and approvals secured. 
-                They're ready for immediate construction and investment.
+                They&apos;re ready for immediate construction and investment.
               </p>
             </div>
 
@@ -553,8 +792,10 @@ export default function LandownersPage() {
                         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                           <p className="text-green-800 font-medium text-sm">{example.roiForLandowner}</p>
                         </div>
-                        <Button variant="outline" className="w-full" size="sm">
-                          Get Detailed Analysis for This Size
+                        <Button variant="outline" className="w-full" size="sm" asChild>
+                          <Link href="#assessment-form">
+                            Get Detailed Analysis for This Size
+                          </Link>
                         </Button>
                       </div>
                     </div>
@@ -566,45 +807,8 @@ export default function LandownersPage() {
         </div>
       </section>
 
-      {/* Assessment Factors */}
-      <section className="section-padding bg-gray-50">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              What We Analyze in Your Assessment
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our automated tool analyzes multiple factors using Cyprus government databases
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {assessmentFactors.map((factor, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
-                    <Map className="w-5 h-5 text-cyprus-500 mr-2" />
-                    {factor.factor}
-                  </CardTitle>
-                  <CardDescription>{factor.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="text-sm">
-                    <span className="text-gray-600">Cyprus Average: </span>
-                    <span className="font-semibold">{factor.cyprusAverage}</span>
-                  </div>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                    <p className="text-blue-800 text-xs font-medium">{factor.importance}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose Lighthief */}
-      <section className="section-padding">
+      <section className="section-padding bg-gray-50">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
@@ -655,20 +859,21 @@ export default function LandownersPage() {
       <section className="section-padding bg-gradient-to-r from-solar-500 to-cyprus-600 text-white">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Ready to Unlock Your Land's Solar Potential?
+            Ready to Unlock Your Land&apos;s Solar Potential?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Get professional feasibility study and discover how much your land could earn from solar development
+            Get instant assessment with real zone data and capacity calculations
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               variant="secondary" 
               size="lg" 
               className="bg-white text-solar-600 hover:bg-gray-100"
-              onClick={handleAssessmentSubmit}
-              disabled={!assessmentData.ownerName || !assessmentData.email}
+              asChild
             >
-              Order Professional Study
+              <Link href="#assessment-form">
+                Get Instant Assessment
+              </Link>
             </Button>
             <Button variant="cyprus" size="lg" asChild>
               <Link href="/services/epc-services">
