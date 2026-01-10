@@ -228,11 +228,11 @@ export default function LandownersPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Free Instant Land Assessment
+                Free Land Evaluation
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Upload your title deed and get immediate analysis of your land's solar potential, 
-                zoning status, and revenue projections.
+                Submit your land details and we&apos;ll evaluate your property&apos;s solar potential. 
+                Our team will contact you within 24-48 hours with a detailed assessment.
               </p>
             </div>
 
@@ -240,10 +240,10 @@ export default function LandownersPage() {
               <CardHeader className="text-center pb-8">
                 <CardTitle className="text-2xl font-heading gradient-text">
                   <Upload className="w-8 h-8 mx-auto mb-3" />
-                  Land Assessment Tool
+                  Land Evaluation Request
                 </CardTitle>
                 <CardDescription className="text-lg text-gray-600">
-                  Connect to Cyprus Land Registry • Automatic Zoning Analysis • Instant Results
+                  Upload your documents • Expert review • Personal consultation within 24-48 hours
                 </CardDescription>
               </CardHeader>
 
@@ -264,10 +264,10 @@ export default function LandownersPage() {
                         <label htmlFor="file-upload" className="cursor-pointer">
                           <Upload className="w-12 h-12 text-solar-500 mx-auto mb-4" />
                           <p className="text-lg font-semibold text-gray-700 mb-2">
-                            Drop your title deed here or click to upload
+                            Drop your title deed or plot map here
                           </p>
                           <p className="text-sm text-gray-500">
-                            PDF, JPG, PNG files • Automatic data extraction • Instant analysis
+                            PDF, JPG, PNG files • Sent directly to our evaluation team
                           </p>
                         </label>
                       </div>
@@ -331,7 +331,7 @@ export default function LandownersPage() {
                           Submit for Assessment
                         </Button>
                         <p className="text-sm text-gray-500 mt-2">
-                          Get instant land assessment results
+                          Submit for Free Evaluation
                         </p>
                       </div>
                     </div>

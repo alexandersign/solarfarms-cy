@@ -324,11 +324,16 @@ function getLandAssessmentNotificationTemplate(data: LandAssessmentEmailData): s
     </head>
     <body>
         <div class="header">
-            <h1>🌍 New Land Assessment Request</h1>
-            <p>SolarFarms.cy - Land Assessment Tool</p>
+            <h1>🌍 NEW LAND INQUIRY - ACTION REQUIRED</h1>
+            <p>SolarFarms.cy - Manual Evaluation Needed</p>
         </div>
         
         <div class="content">
+            <div style="background: #fef2f2; border: 2px solid #ef4444; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #dc2626; margin: 0 0 10px 0;">⚠️ MANUAL REVIEW REQUIRED</h3>
+                <p style="margin: 0; color: #7f1d1d;">Please review the property details and uploaded documents below. Contact the landowner within 24-48 hours.</p>
+            </div>
+            
             <h2>Landowner Details</h2>
             <p><strong>Name:</strong> ${data.ownerName}</p>
             <p><strong>Email:</strong> ${data.email}</p>
@@ -349,11 +354,13 @@ function getLandAssessmentNotificationTemplate(data: LandAssessmentEmailData): s
             
             ${data.assessment ? `
             <div class="assessment">
-                <h3>Preliminary Assessment Results</h3>
-                <p><strong>Estimated Capacity:</strong> ${data.assessment.plotAnalysis?.capacity || 'Pending'}</p>
-                <p><strong>RTB Value:</strong> ${data.assessment.financialProjections?.rtbValue || 'Pending'}</p>
-                <p><strong>Development Timeline:</strong> ${data.assessment.financialProjections?.developmentTimeline || 'Pending'}</p>
-                <p><strong>Confidence Level:</strong> ${data.assessment.confidence || 'Medium'}</p>
+                <h3>⚡ Preliminary Estimates (Auto-Generated)</h3>
+                <p style="font-size: 12px; color: #666; margin-bottom: 10px;"><em>These are rough estimates based on plot size. Please verify with site visit and title deed review.</em></p>
+                <p><strong>Estimated Capacity:</strong> ${data.assessment.plotAnalysis?.capacity || 'Pending review'}</p>
+                <p><strong>Estimated RTB Value:</strong> ${data.assessment.financialProjections?.rtbValue || 'Pending review'}</p>
+                <p><strong>Est. Development Timeline:</strong> ${data.assessment.financialProjections?.developmentTimeline || 'Pending review'}</p>
+                <p><strong>Grid Distance:</strong> ${data.assessment.plotAnalysis?.gridDistance || 'Requires verification'}</p>
+                <p><strong>Zoning Status:</strong> ${data.assessment.plotAnalysis?.zoning || 'Requires verification'}</p>
             </div>
             ` : ''}
             

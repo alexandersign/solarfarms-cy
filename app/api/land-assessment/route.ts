@@ -57,8 +57,8 @@ export async function POST(request: NextRequest) {
     // Validate the form data
     const validatedData = landAssessmentSchema.parse(assessmentData)
     
-    // Simulate Cyprus Land Registry API integration
-    const assessmentResults = await performLandAssessment(validatedData)
+    // Generate preliminary estimates (manual evaluation will follow)
+    const assessmentResults = await generatePreliminaryEstimates(validatedData)
     
     // Try to save to Supabase database, continue if database is down
     let landAssessment = null
@@ -148,17 +148,11 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function performLandAssessment(data: any) {
-  // In production, this would integrate with:
-  // - Cyprus Land Registry API
-  // - Cyprus Topography Database  
-  // - Municipal zoning databases
-  // - EAC grid connection database
-  // - Solar irradiation mapping services
+async function generatePreliminaryEstimates(data: any) {
+  // Generate preliminary estimates based on plot size
+  // Manual evaluation by our team will follow within 24-48 hours
+  // Team will review uploaded title deed and property details
   
-  // Processing assessment('Performing land assessment for:', data.location)
-  
-  // Simulate assessment based on Cyprus data
   const plotSizeHectares = parseFloat(data.plotSize) || 5
   const capacityMW = Math.min(plotSizeHectares * 0.7, 10) // ~0.7 MW per hectare max
   
