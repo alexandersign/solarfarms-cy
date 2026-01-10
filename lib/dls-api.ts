@@ -426,7 +426,7 @@ export async function performLandAssessment(
   
   // Environmental defaults
   let inNatura2000 = false
-  let inBirdPath = false
+  const inBirdPath = false // Bird path detection not yet implemented in DLS API
   
   // Query DLS API if coordinates provided
   if (coordinates) {
