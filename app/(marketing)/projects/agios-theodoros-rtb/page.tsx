@@ -226,10 +226,10 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">PV EPC Cost</span>
-                    <span className="font-semibold">€1.70M</span>
+                    <span className="font-semibold">€1.90M</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600 text-sm">(€0.645/Wp turnkey)</span>
+                    <span className="text-gray-600 text-sm">(€0.72/Wp turnkey)</span>
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
@@ -248,7 +248,7 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="bg-solar-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-solar-800">Total CAPEX</span>
-                    <span className="text-2xl font-bold text-solar-700">€4.04M</span>
+                    <span className="text-2xl font-bold text-solar-700">€4.24M</span>
                   </div>
                 </div>
               </CardContent>
@@ -266,7 +266,7 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Senior Debt (80%)</span>
-                    <span className="font-semibold">€2.43M</span>
+                    <span className="font-semibold">€2.59M</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600 text-sm">On PV EPC + BESS</span>
@@ -274,13 +274,13 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Equity (RTB + 20%)</span>
-                    <span className="font-semibold">€1.61M</span>
+                    <span className="font-semibold">€1.65M</span>
                   </div>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-green-800">Equity Required</span>
-                    <span className="text-2xl font-bold text-green-700">€1.61M</span>
+                    <span className="text-2xl font-bold text-green-700">€1.65M</span>
                   </div>
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
@@ -346,10 +346,10 @@ export default function AgiosTheodorosProjectPage() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { percent: 25, equity: '€400k', revenue: '~€285k/yr' },
-              { percent: 50, equity: '€805k', revenue: '~€570k/yr' },
-              { percent: 75, equity: '€1.21M', revenue: '~€855k/yr' },
-              { percent: 100, equity: '€1.61M', revenue: '~€1.14M/yr', featured: true },
+              { percent: 25, equity: '€410k', revenue: '~€285k/yr' },
+              { percent: 50, equity: '€825k', revenue: '~€570k/yr' },
+              { percent: 75, equity: '€1.24M', revenue: '~€855k/yr' },
+              { percent: 100, equity: '€1.65M', revenue: '~€1.14M/yr', featured: true },
             ].map((option) => (
               <Card 
                 key={option.percent} 

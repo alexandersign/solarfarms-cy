@@ -34,7 +34,7 @@ const projects = [
     title: "Agios Theodoros Solar Park with Battery Storage",
     location: "Agios Theodoros, Larnaca District",
     capacity: 2.64,
-    investment: 4040000,
+    investment: 4240000,
     roi: 35,
     annualRevenue: 1230000,
     status: "Ready to Build",
