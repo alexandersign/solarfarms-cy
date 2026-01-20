@@ -48,7 +48,7 @@ export default function AgiosTheodorosProjectPage() {
       <section className="relative section-padding bg-gradient-to-br from-solar-900 via-cyprus-800 to-solar-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+            src="/images/solar-farm-aerial-unsplash.jpg"
             alt="Agios Theodoros Solar Park"
             fill
             className="object-cover opacity-20"

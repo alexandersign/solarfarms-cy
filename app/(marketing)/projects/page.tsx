@@ -40,7 +40,7 @@ const projects = [
     status: "Ready to Build",
     statusColor: "green",
     completionDate: "Target Q4 2026",
-    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg",
+    image: "/images/solar-farm-aerial-unsplash.jpg",
     highlights: [
       "Integrated 10.56 MWh BESS - 4-hour duration (€127k/MWh)",
       "Bifacial PV modules - 2,100 kWh/kWp yield",
@@ -79,52 +79,6 @@ const projects = [
     },
     featured: true,
     link: "/projects/park-ref-5001"
-  },
-  {
-    title: "Nicosia Industrial Solar Complex - 10MW",
-    location: "Nicosia, Cyprus", 
-    capacity: 10,
-    investment: 10500000,
-    roi: 19.2,
-    annualRevenue: 2250000,
-    status: "Construction",
-    statusColor: "blue",
-    completionDate: "March 2025",
-    image: "/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg",
-    highlights: [
-      "Largest solar installation in Nicosia region",
-      "Advanced bifacial panel technology",
-      "Direct industrial client PPA",
-      "Expected 20%+ ROI based on current progress"
-    ],
-    testimonial: {
-      quote: "Professional project management and transparent communication throughout the process.",
-      client: "Elena Christodoulou, Mediterranean Energy Partners"
-    },
-    featured: true
-  },
-  {
-    title: "Paphos Coastal Solar Farm - 1MW",
-    location: "Paphos, Cyprus",
-    capacity: 1,
-    investment: 1050000,
-    roi: 17.8,
-    annualRevenue: 225000,
-    status: "Planning",
-    statusColor: "yellow",
-    completionDate: "September 2025",
-    image: "/images/1690376781153.jpg",
-    highlights: [
-      "Prime coastal location with optimal exposure",
-      "Perfect entry-level investment opportunity",
-      "Premium PPA rates secured",
-      "Fast-track permitting approved"
-    ],
-    testimonial: {
-      quote: "Ideal first solar investment with clear projections and professional support.",
-      client: "Michael & Sarah Thompson, Private Investors"
-    },
-    featured: false
   }
 ]
 
@@ -170,20 +124,20 @@ export default function ProjectsPage() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">18MW+</div>
-                <div className="text-sm text-gray-600">Total Capacity</div>
+                <div className="text-3xl font-bold gradient-text">7.6MW</div>
+                <div className="text-sm text-gray-600">Available Capacity</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">€25M+</div>
-                <div className="text-sm text-gray-600">Investment Pipeline</div>
+                <div className="text-3xl font-bold gradient-text">€14M+</div>
+                <div className="text-sm text-gray-600">Investment Value</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold gradient-text">35%+</div>
                 <div className="text-sm text-gray-600">Top Leveraged IRR</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">100%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
+                <div className="text-3xl font-bold gradient-text">10.5MWh</div>
+                <div className="text-sm text-gray-600">BESS Capacity</div>
               </div>
             </div>
           </div>
