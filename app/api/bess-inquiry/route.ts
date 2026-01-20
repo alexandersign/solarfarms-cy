@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabase } from '@/lib/supabase'
-import { sendEmail, getContactAutoresponderTemplate } from '@/lib/email'
+import { sendEmail } from '@/lib/email'
 import { COMPANY_DATA } from '@/lib/constants'
 
 const bessInquirySchema = z.object({
@@ -43,9 +43,7 @@ ${validatedData.message || 'None provided'}`,
       timeline: validatedData.timeline ?? undefined,
     })
 
-    if (dbError) {
-      console.error('Database error:', dbError)
-    }
+    // Database error is non-fatal - continue with email notifications
 
     // Send team notification
     const teamNotificationHtml = `
@@ -204,8 +202,6 @@ ${validatedData.message || 'None provided'}`,
       message: 'BESS inquiry submitted successfully',
     })
   } catch (error) {
-    console.error('BESS inquiry error:', error)
-    
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { success: false, message: 'Validation failed', errors: error.errors },

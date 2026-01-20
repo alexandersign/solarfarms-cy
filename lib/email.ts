@@ -4,6 +4,34 @@ import { COMPANY_DATA } from './constants'
 // Initialize Resend only if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
+// Generic email sending function
+interface SendEmailOptions {
+  to: string
+  subject: string
+  html: string
+  from?: string
+  replyTo?: string
+}
+
+export async function sendEmail(options: SendEmailOptions) {
+  if (!process.env.RESEND_API_KEY || !resend) {
+    return { success: false, message: 'Email service not configured' }
+  }
+
+  try {
+    await resend.emails.send({
+      from: options.from || `SolarFarms.cy <noreply@solarfarms.cy>`,
+      to: options.to,
+      subject: options.subject,
+      html: options.html,
+      replyTo: options.replyTo || COMPANY_DATA.contacts.businessDevelopment.email,
+    })
+    return { success: true }
+  } catch (error) {
+    return { success: false, message: 'Failed to send email', error }
+  }
+}
+
 interface ContactEmailData {
   name: string
   email: string
