@@ -86,6 +86,8 @@ export default function AdminDashboard() {
   const [bulkEmails, setBulkEmails] = useState('')
   const [addingSubscriber, setAddingSubscriber] = useState(false)
   const [importResult, setImportResult] = useState<{ success: boolean; message: string } | null>(null)
+  const [initializingDb, setInitializingDb] = useState(false)
+  const [initResult, setInitResult] = useState<{ success: boolean; message: string; results?: string[] } | null>(null)
 
   const fetchData = async () => {
     setLoading(true)
@@ -247,6 +249,41 @@ export default function AdminDashboard() {
       setImportResult({ success: false, message: 'Failed to import subscribers' })
     } finally {
       setAddingSubscriber(false)
+    }
+  }
+
+  const initializeDatabase = async () => {
+    if (!adminKey) {
+      alert('Please enter admin key first')
+      return
+    }
+    
+    setInitializingDb(true)
+    setInitResult(null)
+    
+    try {
+      const response = await fetch('/api/admin/init-database', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey
+        }
+      })
+      
+      const result = await response.json()
+      setInitResult({
+        success: result.success,
+        message: result.message,
+        results: result.results
+      })
+      
+      if (result.success) {
+        fetchData()
+      }
+    } catch {
+      setInitResult({ success: false, message: 'Failed to initialize database' })
+    } finally {
+      setInitializingDb(false)
     }
   }
 
@@ -567,26 +604,87 @@ export default function AdminDashboard() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold">Project Management</h2>
-              <p className="text-gray-600 text-sm">
-                To add projects, run the SQL in <code className="bg-gray-100 px-2 py-1 rounded">supabase-projects-schema.sql</code>
-              </p>
+              <Button 
+                variant="gradient" 
+                onClick={initializeDatabase}
+                disabled={initializingDb || !adminKey}
+              >
+                {initializingDb ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                    Initializing...
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add All Projects
+                  </>
+                )}
+              </Button>
             </div>
+
+            {initResult && (
+              <Card className={initResult.success ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}>
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-3">
+                    {initResult.success ? (
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                    ) : (
+                      <XCircle className="w-5 h-5 text-red-600 mt-0.5" />
+                    )}
+                    <div className="flex-1">
+                      <p className={`font-medium ${initResult.success ? 'text-green-800' : 'text-red-800'}`}>
+                        {initResult.message}
+                      </p>
+                      {initResult.results && (
+                        <ul className="mt-2 space-y-1 text-sm">
+                          {initResult.results.map((r, i) => (
+                            <li key={i} className={initResult.success ? 'text-green-700' : 'text-red-700'}>
+                              {r}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <Button variant="ghost" size="sm" onClick={() => setInitResult(null)}>
+                      Dismiss
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
             
             {projects.length === 0 ? (
               <Card>
                 <CardContent className="py-12 text-center">
                   <Building className="w-16 h-16 mx-auto mb-4 text-gray-300" />
                   <h3 className="text-lg font-semibold mb-2">No Projects in Database</h3>
-                  <p className="text-gray-600 mb-4">
-                    Run the SQL schema to create the projects table and add the Agios Theodoros project.
+                  <p className="text-gray-600 mb-6">
+                    Click the button above to automatically add all projects.
                   </p>
-                  <div className="bg-gray-100 rounded-lg p-4 text-left max-w-xl mx-auto">
-                    <code className="text-sm text-gray-700">
-                      1. Go to Supabase Dashboard → SQL Editor<br/>
-                      2. Copy contents of supabase-projects-schema.sql<br/>
-                      3. Run the SQL to create tables and insert project
-                    </code>
-                  </div>
+                  <Button 
+                    variant="solar" 
+                    size="lg"
+                    onClick={initializeDatabase}
+                    disabled={initializingDb || !adminKey}
+                  >
+                    {initializingDb ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                        Adding Projects...
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-4 h-4 mr-2" />
+                        Initialize Projects Now
+                      </>
+                    )}
+                  </Button>
+                  {!adminKey && (
+                    <p className="text-sm text-red-500 mt-4">
+                      ⚠️ Please enter your admin key at the top of the page first
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             ) : (
