@@ -82,6 +82,10 @@ export default function AdminDashboard() {
   const [sendingNewsletter, setSendingNewsletter] = useState<string | null>(null)
   const [newsletterResult, setNewsletterResult] = useState<{ success: boolean; message: string } | null>(null)
   const [adminKey, setAdminKey] = useState('')
+  const [newEmail, setNewEmail] = useState('')
+  const [bulkEmails, setBulkEmails] = useState('')
+  const [addingSubscriber, setAddingSubscriber] = useState(false)
+  const [importResult, setImportResult] = useState<{ success: boolean; message: string } | null>(null)
 
   const fetchData = async () => {
     setLoading(true)
@@ -172,6 +176,77 @@ export default function AdminDashboard() {
       })
     } finally {
       setSendingNewsletter(null)
+    }
+  }
+
+  const addSingleSubscriber = async () => {
+    if (!newEmail || !adminKey) return
+    
+    setAddingSubscriber(true)
+    setImportResult(null)
+    
+    try {
+      const response = await fetch('/api/admin/subscribers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey
+        },
+        body: JSON.stringify({ email: newEmail })
+      })
+      
+      const result = await response.json()
+      setImportResult({
+        success: result.success,
+        message: result.success ? `Added ${newEmail}` : result.message
+      })
+      
+      if (result.success) {
+        setNewEmail('')
+        fetchData()
+      }
+    } catch {
+      setImportResult({ success: false, message: 'Failed to add subscriber' })
+    } finally {
+      setAddingSubscriber(false)
+    }
+  }
+
+  const addBulkSubscribers = async () => {
+    if (!bulkEmails.trim() || !adminKey) return
+    
+    setAddingSubscriber(true)
+    setImportResult(null)
+    
+    const emails = bulkEmails
+      .split('\n')
+      .map(e => e.trim())
+      .filter(e => e.length > 0)
+    
+    try {
+      const response = await fetch('/api/admin/subscribers/bulk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey
+        },
+        body: JSON.stringify({ emails })
+      })
+      
+      const result = await response.json()
+      setImportResult({
+        success: result.success,
+        message: result.success ? `Successfully imported ${result.added} subscribers` : result.message
+      })
+      
+      if (result.success) {
+        setBulkEmails('')
+        fetchData()
+      }
+    } catch {
+      setImportResult({ success: false, message: 'Failed to import subscribers' })
+    } finally {
+      setAddingSubscriber(false)
     }
   }
 
@@ -680,13 +755,103 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
 
+            {/* Add Subscribers */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Plus className="w-5 h-5" />
+                  Add Subscribers
+                </CardTitle>
+                <CardDescription>
+                  Add investor emails to your newsletter list
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {/* Single Email */}
+                  <div>
+                    <Label htmlFor="singleEmail">Add Single Email</Label>
+                    <div className="flex gap-2 mt-2">
+                      <Input
+                        id="singleEmail"
+                        type="email"
+                        placeholder="investor@example.com"
+                        value={newEmail}
+                        onChange={(e) => setNewEmail(e.target.value)}
+                      />
+                      <Button 
+                        onClick={addSingleSubscriber}
+                        disabled={!newEmail || !adminKey || addingSubscriber}
+                      >
+                        {addingSubscriber ? (
+                          <RefreshCw className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Plus className="w-4 h-4" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  {/* Bulk Import */}
+                  <div>
+                    <Label htmlFor="bulkEmails">Bulk Import (one email per line)</Label>
+                    <textarea
+                      id="bulkEmails"
+                      className="w-full mt-2 p-3 border rounded-lg min-h-[120px] text-sm"
+                      placeholder="investor1@example.com&#10;investor2@example.com&#10;investor3@example.com"
+                      value={bulkEmails}
+                      onChange={(e) => setBulkEmails(e.target.value)}
+                    />
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-sm text-gray-500">
+                        {bulkEmails.split('\n').filter(e => e.trim()).length} emails entered
+                      </span>
+                      <Button 
+                        onClick={addBulkSubscribers}
+                        disabled={!bulkEmails.trim() || !adminKey || addingSubscriber}
+                      >
+                        {addingSubscriber ? (
+                          <>
+                            <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                            Importing...
+                          </>
+                        ) : (
+                          <>
+                            <Users className="w-4 h-4 mr-2" />
+                            Import All
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+
+                  {importResult && (
+                    <div className={`rounded-lg p-4 flex items-start gap-3 ${
+                      importResult.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
+                    }`}>
+                      {importResult.success ? (
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                      ) : (
+                        <XCircle className="w-5 h-5 text-red-600 mt-0.5" />
+                      )}
+                      <div>
+                        <p className={importResult.success ? 'text-green-800' : 'text-red-800'}>
+                          {importResult.message}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
             <Card>
               <CardHeader>
                 <CardTitle>Newsletter Setup</CardTitle>
-                <CardDescription>Configure your newsletter system</CardDescription>
+                <CardDescription>Environment configuration</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <h4 className="font-semibold mb-2">Required Environment Variables</h4>
                     <ul className="text-sm text-gray-600 space-y-1">
@@ -695,12 +860,13 @@ export default function AdminDashboard() {
                     </ul>
                   </div>
                   
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-800 mb-2">How to add subscribers</h4>
-                    <p className="text-sm text-blue-700">
-                      Subscribers are added automatically when users sign up via the newsletter form on the website.
-                      You can also add them manually in Supabase by inserting into the <code className="bg-blue-200 px-1 rounded">newsletter_subscribers</code> table.
-                    </p>
+                  <div className="bg-green-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 mb-2">Subscribers are added from:</h4>
+                    <ul className="text-sm text-green-700 space-y-1">
+                      <li>• Website newsletter signup form</li>
+                      <li>• Admin panel (above)</li>
+                      <li>• Contact form submissions (auto-subscribe)</li>
+                    </ul>
                   </div>
                 </div>
               </CardContent>
