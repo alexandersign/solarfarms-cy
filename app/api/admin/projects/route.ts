@@ -44,15 +44,18 @@ export async function GET() {
     const { data, error } = await supabase
       .from('projects')
       .select('*')
-      .order('sort_order', { ascending: true })
       .order('created_at', { ascending: false })
     
-    if (error) throw error
+    if (error) {
+      console.error('Projects fetch error:', error)
+      throw error
+    }
     
-    return NextResponse.json({ success: true, data })
+    return NextResponse.json({ success: true, data: data || [] })
   } catch (error) {
+    console.error('Projects API error:', error)
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch projects', error },
+      { success: false, message: 'Failed to fetch projects', error: String(error), data: [] },
       { status: 500 }
     )
   }
