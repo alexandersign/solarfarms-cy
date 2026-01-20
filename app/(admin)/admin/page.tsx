@@ -88,6 +88,8 @@ export default function AdminDashboard() {
   const [importResult, setImportResult] = useState<{ success: boolean; message: string } | null>(null)
   const [initializingDb, setInitializingDb] = useState(false)
   const [initResult, setInitResult] = useState<{ success: boolean; message: string; results?: string[] } | null>(null)
+  const [importingLeads, setImportingLeads] = useState(false)
+  const [leadsImportResult, setLeadsImportResult] = useState<{ success: boolean; message: string } | null>(null)
 
   const fetchData = async () => {
     setLoading(true)
@@ -284,6 +286,43 @@ export default function AdminDashboard() {
       setInitResult({ success: false, message: 'Failed to initialize database' })
     } finally {
       setInitializingDb(false)
+    }
+  }
+
+  const importLeadsToNewsletter = async () => {
+    if (!adminKey) {
+      alert('Please enter admin key first')
+      return
+    }
+    
+    setImportingLeads(true)
+    setLeadsImportResult(null)
+    
+    try {
+      const response = await fetch('/api/admin/import-leads-to-newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey
+        },
+        body: JSON.stringify({})
+      })
+      
+      const result = await response.json()
+      setLeadsImportResult({
+        success: result.success,
+        message: result.success 
+          ? `✅ Imported ${result.imported} investor leads to newsletter!` 
+          : result.message
+      })
+      
+      if (result.success) {
+        fetchData()
+      }
+    } catch {
+      setLeadsImportResult({ success: false, message: 'Failed to import leads' })
+    } finally {
+      setImportingLeads(false)
     }
   }
 
@@ -853,15 +892,77 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
 
-            {/* Add Subscribers */}
+            {/* Import Existing Leads */}
+            <Card className="border-2 border-blue-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="w-5 h-5 text-blue-600" />
+                  Import Existing Investor Leads
+                </CardTitle>
+                <CardDescription>
+                  Add all your contact form submissions to the newsletter list with one click
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium text-blue-800">
+                        You have <span className="text-2xl font-bold">{contacts.length}</span> investor leads
+                      </p>
+                      <p className="text-sm text-blue-600 mt-1">
+                        Import them all to your newsletter subscriber list
+                      </p>
+                    </div>
+                    <Mail className="w-10 h-10 text-blue-400" />
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="gradient"
+                  className="w-full"
+                  onClick={importLeadsToNewsletter}
+                  disabled={importingLeads || !adminKey || contacts.length === 0}
+                >
+                  {importingLeads ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                      Importing {contacts.length} leads...
+                    </>
+                  ) : (
+                    <>
+                      <Users className="w-4 h-4 mr-2" />
+                      Import All {contacts.length} Investor Leads
+                    </>
+                  )}
+                </Button>
+
+                {leadsImportResult && (
+                  <div className={`mt-4 rounded-lg p-4 flex items-start gap-3 ${
+                    leadsImportResult.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
+                  }`}>
+                    {leadsImportResult.success ? (
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                    ) : (
+                      <XCircle className="w-5 h-5 text-red-600 mt-0.5" />
+                    )}
+                    <p className={leadsImportResult.success ? 'text-green-800' : 'text-red-800'}>
+                      {leadsImportResult.message}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Add Subscribers Manually */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Plus className="w-5 h-5" />
-                  Add Subscribers
+                  Add More Subscribers
                 </CardTitle>
                 <CardDescription>
-                  Add investor emails to your newsletter list
+                  Manually add additional emails not in your leads database
                 </CardDescription>
               </CardHeader>
               <CardContent>
