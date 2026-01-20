@@ -1,231 +1,255 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { 
-  Monitor, 
-  CheckCircle, 
-  Clock, 
+  Wrench, 
   Shield, 
-  Award,
-  TrendingUp,
-  Wrench,
+  TrendingUp, 
+  Clock, 
+  CheckCircle, 
+  Phone,
+  Euro,
   Zap,
+  Settings,
   BarChart3,
+  FileCheck,
   AlertTriangle,
-  Camera,
-  Smartphone,
-  Recycle,
-  Users
+  Users,
+  Calendar,
+  Award,
+  Battery
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'O&M Management - Operations & Maintenance Services | Lighthief Cyprus',
-  description: 'Professional O&M services by Lighthief Cyprus. From recycling expertise to comprehensive maintenance. Maximize your solar farm performance and protect 8-12% IRR.',
+  title: 'Solar O&M Services Cyprus | Operations & Maintenance | Lighthief',
+  description: 'Professional solar farm O&M services in Cyprus. 99% uptime guarantee, remote monitoring, preventive maintenance. Maximize your solar asset performance with Lighthief.',
   keywords: [
-    'Lighthief O&M services',
-    'solar farm maintenance Cyprus',
-    'solar operations Cyprus',
-    'Lighthief maintenance',
-    'solar asset management',
+    'solar O&M Cyprus',
+    'solar maintenance Cyprus',
+    'PV operations management',
+    'solar farm maintenance',
+    'solar asset management Cyprus',
+    'preventive maintenance solar',
+    'solar monitoring Cyprus',
+    'PV O&M services',
+    'solar performance optimization',
+    'Lighthief O&M',
   ],
+  openGraph: {
+    title: 'Solar O&M Services Cyprus | Lighthief',
+    description: 'Professional solar farm operations and maintenance services',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://solarfarms.cy/services/om-management'
+  }
 }
 
-const lighthiefOMEvolution = [
+const omServices = [
   {
-    phase: "2017: Recycling Foundation",
-    description: "Started with end-of-life solar panel recycling, understanding component lifecycle",
-    insight: "Deep knowledge of equipment degradation and failure patterns",
-    icon: Recycle
+    icon: Settings,
+    title: "Preventive Maintenance",
+    description: "Scheduled inspections, cleaning, and component checks to prevent failures before they occur.",
+    frequency: "Bi-annual visits"
   },
   {
-    phase: "O&M Service Development", 
-    description: "Expanded into operations and maintenance recognizing market need",
-    insight: "Preventive maintenance strategies based on recycling experience",
-    icon: Wrench
+    icon: Wrench,
+    title: "Corrective Maintenance",
+    description: "Rapid response to equipment failures with guaranteed repair times to minimize downtime.",
+    frequency: "24/7 response"
   },
   {
-    phase: "2025: Comprehensive O&M",
-    description: "Full-service O&M with Cyprus headquarters and certified specialists",
-    insight: "Complete lifecycle management from installation to recycling",
-    icon: Monitor
+    icon: BarChart3,
+    title: "Remote Monitoring",
+    description: "24/7 SCADA monitoring of your solar plant with real-time alerts and performance tracking.",
+    frequency: "Continuous"
+  },
+  {
+    icon: FileCheck,
+    title: "Performance Reporting",
+    description: "Monthly and annual reports with KPIs, yield analysis, and optimization recommendations.",
+    frequency: "Monthly"
+  },
+  {
+    icon: AlertTriangle,
+    title: "Fault Diagnosis",
+    description: "Advanced diagnostic tools to identify issues quickly, including IV curve tracing and thermal imaging.",
+    frequency: "As needed"
+  },
+  {
+    icon: TrendingUp,
+    title: "Yield Optimization",
+    description: "Continuous analysis and recommendations to maximize energy production and revenue.",
+    frequency: "Ongoing"
   }
 ]
 
-const omServiceLevels = [
+const pricingTiers = [
   {
-    level: "Essential O&M",
-    pricing: "1.5-2.0% of annual revenue",
-    description: "Basic monitoring and maintenance for smaller installations",
+    name: "Essential",
+    price: "€12",
+    unit: "/kWp/year",
+    description: "For well-maintained, newer installations",
     features: [
-      "Remote monitoring and basic alerts",
-      "Quarterly performance reports",
-      "Annual maintenance visits",
-      "Emergency response within 48 hours",
-      "Basic warranty management"
+      "2× annual preventive visits",
+      "Remote monitoring (8am-6pm)",
+      "Basic performance reports",
+      "Email support",
+      "48hr response time"
     ],
-    suitable: "Residential and small commercial (up to 500kW)",
-    guarantees: ["95% uptime", "Annual performance reporting"]
+    highlight: false
   },
   {
-    level: "Professional O&M",
-    pricing: "2.0-2.5% of annual revenue", 
-    description: "Comprehensive management for commercial and small solar farms",
+    name: "Professional",
+    price: "€15",
+    unit: "/kWp/year",
+    description: "Our most popular O&M package",
     features: [
-      "24/7 remote monitoring with instant alerts",
-      "Monthly performance optimization",
-      "Bi-annual maintenance visits",
-      "Emergency response within 24 hours",
-      "Comprehensive warranty and insurance management",
-      "Detailed investor reporting"
+      "4× annual preventive visits",
+      "24/7 remote monitoring",
+      "Comprehensive monthly reports",
+      "Priority phone support",
+      "24hr response time",
+      "Spare parts inventory",
+      "Annual thermal inspection"
     ],
-    suitable: "Commercial and small solar farms (500kW - 5MW)",
-    guarantees: ["98% uptime", "Monthly performance reports", "Response time SLA"],
-    popular: true
+    highlight: true
   },
   {
-    level: "Premium O&M",
-    pricing: "2.5-3.0% of annual revenue",
-    description: "Full-service asset management for large-scale solar farms",
+    name: "Premium",
+    price: "€18",
+    unit: "/kWp/year",
+    description: "Maximum protection and performance",
     features: [
-      "Everything in Professional O&M",
-      "Advanced predictive maintenance",
-      "Drone inspections and thermal imaging",
-      "Performance optimization consulting",
-      "Dedicated account management",
-      "End-of-life recycling planning"
+      "6× annual preventive visits",
+      "24/7 monitoring + alerts",
+      "Real-time yield dashboard",
+      "Dedicated account manager",
+      "4hr critical response",
+      "Full spare parts coverage",
+      "Availability guarantee (97%)",
+      "Insurance coordination"
     ],
-    suitable: "Large solar farms (5MW+)",
-    guarantees: ["99% uptime", "Performance optimization", "Dedicated support"]
+    highlight: false
   }
 ]
 
-const lighthiefOMAdvantages = [
+const bessOmPricing = [
   {
-    title: "Recycling Expertise",
-    description: "Unique understanding of component lifecycle from our founding recycling business",
-    benefit: "Predictive maintenance based on end-of-life knowledge",
-    icon: Recycle
+    service: "BESS Preventive & Corrective O&M",
+    price: "€1,158",
+    unit: "/MWh/year",
+    description: "Including remote monitoring & bi-annual servicing"
   },
   {
-    title: "Cyprus Climate Knowledge",
-    description: "Deep understanding of Cyprus's 300+ sunny days and specific environmental challenges",
-    benefit: "Optimized maintenance schedules for local conditions",
-    icon: Camera
+    service: "PCS + MVS Maintenance",
+    price: "€1,312",
+    unit: "/MWh/year",
+    description: "Power conversion system & medium voltage maintenance"
   },
   {
-    title: "Certified Specialists",
-    description: "Team of certified specialists providing quality service and ongoing support",
-    benefit: "Professional execution with continuous improvement",
-    icon: Users
-  },
-  {
-    title: "International Standards",
-    description: "Global Lighthief network expertise applied to Cyprus market",
-    benefit: "Best practices from international markets",
-    icon: Award
-  },
-  {
-    title: "Technology Integration",
-    description: "Advanced monitoring and diagnostic tools for optimal performance",
-    benefit: "Early issue detection and performance optimization",
-    icon: Smartphone
-  },
-  {
-    title: "Lifecycle Planning",
-    description: "Complete asset management from installation through recycling",
-    benefit: "Maximized asset value and sustainable disposal",
-    icon: TrendingUp
+    service: "97% Availability Guarantee",
+    price: "€2,202",
+    unit: "/MWh/year",
+    description: "Performance guarantee for years 1-20"
   }
+]
+
+const statistics = [
+  { value: "99.2%", label: "Average Uptime" },
+  { value: "1GW+", label: "Assets Under Management" },
+  { value: "<4hrs", label: "Critical Response Time" },
+  { value: "15+", label: "Years Experience" }
 ]
 
 export default function OMManagementPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="relative w-full h-full">
-            <Image
-              src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
-              alt="Lighthief Cyprus O&M services"
-              fill
-              className="object-cover opacity-10"
-            />
-          </div>
+      <section className="relative section-padding bg-gradient-to-br from-cyprus-900 via-cyprus-800 to-solar-900 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/IMG_0149.JPG"
+            alt="Solar farm O&M services"
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
         </div>
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            <Badge variant="secondary" className="mb-4 bg-solar-500/20 text-solar-300 border-solar-500/30">
+              Professional Solar Services
+            </Badge>
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-              Lighthief O&M Management
-              <span className="block gradient-text">
-                Operations & Maintenance Excellence
+              Operations & Maintenance
+              <span className="block text-solar-400">
+                That Maximizes Returns
               </span>
             </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-              Born from recycling expertise, evolved into comprehensive O&M services. 
-              Protect your 8-12% IRR with professional maintenance and lifecycle management.
+            <p className="text-xl text-gray-300 mb-8 text-balance">
+              Keep your solar investment performing at its peak with Lighthief&apos;s 
+              comprehensive O&M services. 99%+ uptime guaranteed.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button variant="gradient" size="lg">
-                Get O&M Proposal
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="solar" size="xl" asChild>
+                <Link href="/contact">Request O&M Quote</Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Download O&M Guide
+              <Button variant="outline-on-dark" size="xl" asChild>
+                <Link href="#pricing">View Pricing</Link>
               </Button>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">2017</div>
-                <div className="text-sm text-gray-600">Founded</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">99%</div>
-                <div className="text-sm text-gray-600">Uptime Target</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">24/7</div>
-                <div className="text-sm text-gray-600">Monitoring</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">25+</div>
-                <div className="text-sm text-gray-600">Years Support</div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Lighthief O&M Evolution */}
+      {/* Statistics */}
+      <section className="py-12 bg-white border-b">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {statistics.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl font-bold gradient-text mb-2">{stat.value}</div>
+                <div className="text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
       <section className="section-padding">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Our O&M Heritage
+              Comprehensive O&M Services
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Unique expertise developed through our evolution from recycling to full-service O&M
+              Everything you need to keep your solar asset running efficiently
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {lighthiefOMEvolution.map((phase, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-solar-100 to-cyprus-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <phase.icon className="w-8 h-8 text-solar-600" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {omServices.map((service, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="w-12 h-12 bg-gradient-to-br from-solar-100 to-cyprus-100 rounded-xl flex items-center justify-center">
+                      <service.icon className="w-6 h-6 text-solar-600" />
+                    </div>
+                    <Badge variant="outline" className="text-xs">
+                      {service.frequency}
+                    </Badge>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{phase.phase}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{phase.description}</p>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                    <p className="text-blue-800 text-xs font-medium">{phase.insight}</p>
-                  </div>
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -233,113 +257,164 @@ export default function OMManagementPage() {
         </div>
       </section>
 
-      {/* O&M Service Levels */}
-      <section className="section-padding bg-gray-50">
+      {/* Pricing Section */}
+      <section id="pricing" className="section-padding bg-gray-50">
         <div className="container">
           <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">Transparent Pricing</Badge>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              O&M Service Levels
+              Solar PV O&M Packages
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Flexible service levels designed for different project sizes and requirements
+              Flexible packages tailored to your asset&apos;s needs
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {omServiceLevels.map((service, index) => (
-              <Card key={index} className={`${service.popular ? 'border-2 border-cyprus-200' : ''} hover:shadow-xl transition-all duration-300`}>
-                <CardHeader className="text-center">
-                  {service.popular && (
-                    <Badge variant="cyprus" className="w-fit mx-auto mb-2">Most Popular</Badge>
-                  )}
-                  <CardTitle>{service.level}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                  <div className="text-lg font-bold gradient-text mt-4">{service.pricing}</div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {pricingTiers.map((tier, index) => (
+              <Card 
+                key={index} 
+                className={`relative ${tier.highlight ? 'border-2 border-solar-500 shadow-xl' : ''}`}
+              >
+                {tier.highlight && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-solar-500 text-white">Most Popular</Badge>
+                  </div>
+                )}
+                <CardHeader className="text-center pb-2">
+                  <CardTitle className="text-2xl">{tier.name}</CardTitle>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold gradient-text">{tier.price}</span>
+                    <span className="text-gray-600">{tier.unit}</span>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-2">{tier.description}</p>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start space-x-2 text-sm">
+                <CardContent>
+                  <ul className="space-y-3">
+                    {tier.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </div>
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
                     ))}
-                  </div>
-                  
-                  <div className="text-center text-sm text-gray-600 py-2 border-t">
-                    <div className="mb-2">Suitable for: {service.suitable}</div>
-                    <div className="space-y-1">
-                      {service.guarantees.map((guarantee, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs mr-1">
-                          {guarantee}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <Button variant={service.popular ? "cyprus" : "outline"} className="w-full" asChild>
-                    <Link href="/contact">
-                      Select Package
-                    </Link>
+                  </ul>
+                  <Button 
+                    variant={tier.highlight ? "gradient" : "outline"} 
+                    className="w-full mt-6"
+                    asChild
+                  >
+                    <Link href="/contact">Get Quote</Link>
                   </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
+
+          <p className="text-center text-sm text-gray-500 mt-8">
+            * Prices for systems 1MW+. Contact us for custom pricing on larger portfolios.
+          </p>
         </div>
       </section>
 
-      {/* Lighthief O&M Advantages */}
-      <section className="section-padding">
+      {/* BESS O&M Section */}
+      <section className="section-padding bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Why Choose Lighthief O&M
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Unique advantages from our recycling heritage and comprehensive solar expertise
-            </p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge variant="outline" className="mb-4 bg-blue-100 border-blue-300">
+                <Battery className="w-3 h-3 mr-1" />
+                BESS Services
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                Battery Storage O&M
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                As the official Cyprus partner for Linyang energy storage systems, 
+                we offer comprehensive BESS O&M services with performance guarantees.
+              </p>
+              
+              <div className="space-y-4">
+                {bessOmPricing.map((item, index) => (
+                  <div key={index} className="bg-white rounded-lg p-4 shadow-sm">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold text-gray-900">{item.service}</h4>
+                      <div className="text-right">
+                        <div className="font-bold text-blue-600">{item.price}</div>
+                        <div className="text-xs text-gray-500">{item.unit}</div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-600">{item.description}</p>
+                  </div>
+                ))}
+              </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {lighthiefOMAdvantages.map((advantage, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-gradient-to-r from-cyprus-100 to-solar-100 rounded-lg flex items-center justify-center mb-4">
-                    <advantage.icon className="w-6 h-6 text-cyprus-600" />
-                  </div>
-                  <CardTitle className="text-xl">{advantage.title}</CardTitle>
-                  <CardDescription>{advantage.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                    <p className="text-sm text-green-800 font-medium">✓ {advantage.benefit}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+              <Button variant="gradient" size="lg" className="mt-8" asChild>
+                <Link href="/energy-storage">Explore BESS Solutions</Link>
+              </Button>
+            </div>
+
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl p-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-solar-500" />
+                  BESS LTSA Benefits
+                </h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <div>
+                      <span className="font-medium">97% Availability Guarantee</span>
+                      <p className="text-sm text-gray-600">Performance-backed SLA with financial penalties</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <div>
+                      <span className="font-medium">Extended Warranty Options</span>
+                      <p className="text-sm text-gray-600">Coverage up to 20 years for both BESS and PCS</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <div>
+                      <span className="font-medium">Remote Monitoring Included</span>
+                      <p className="text-sm text-gray-600">24/7 system monitoring with instant alerts</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <div>
+                      <span className="font-medium">Scheduled Servicing</span>
+                      <p className="text-sm text-gray-600">Bi-annual on-site maintenance visits</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-cyprus-500 to-solar-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-solar-500 to-cyprus-600 text-white">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Protect Your Solar Investment
+            Ready to Optimize Your Solar Asset?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Leverage Lighthief's unique recycling heritage and O&M expertise for maximum asset protection
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Get a customized O&M proposal for your solar park. Our team will analyze your 
+            specific needs and recommend the right package.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="bg-white text-cyprus-600 hover:bg-gray-100" asChild>
+            <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100" asChild>
               <Link href="/contact">
-                Request O&M Proposal
+                <Phone className="w-4 h-4 mr-2" />
+                Request O&M Quote
               </Link>
             </Button>
-            <Button size="lg" className="btn-outline-on-dark" asChild>
-              <Link href="/services/epc-services">
-                View EPC Services
+            <Button variant="outline-on-dark" size="lg" asChild>
+              <Link href="/projects">
+                View Our Projects
               </Link>
             </Button>
           </div>

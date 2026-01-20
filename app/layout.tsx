@@ -5,6 +5,7 @@ import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
 import { GoogleAnalytics, ConsentBanner } from '@/components/analytics/GoogleAnalytics'
 import { MetaPixel } from '@/components/analytics/MetaPixel'
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -76,6 +77,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )

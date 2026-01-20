@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ROICalculator } from '@/components/calculators/ROICalculator'
 import { ContactForm } from '@/components/forms/ContactForm'
+import { Testimonials } from '@/components/sections/Testimonials'
 import { StructuredData, organizationSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = {
@@ -345,6 +346,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials & Trust Signals */}
+      <Testimonials />
 
       {/* Landowner CTA */}
       <section className="section-padding bg-gradient-to-r from-green-500 to-solar-500 text-white">

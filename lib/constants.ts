@@ -256,7 +256,7 @@ export const NAVIGATION = {
     { name: "Services", href: "/services" },
     { name: "Energy Storage", href: "/energy-storage" },
     { name: "Projects", href: "/projects" },
-    { name: "Calculator", href: "/calculator" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
   crypto: [
