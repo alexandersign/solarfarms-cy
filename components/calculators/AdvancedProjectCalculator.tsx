@@ -244,7 +244,7 @@ export function AdvancedProjectCalculator() {
     
     includeBESS: false,
     bessDuration: BESS_DEFAULTS.defaultDuration,
-    bessCostPerKwh: BESS_DEFAULTS.costPerKwh,
+    bessCostPerKwh: BESS_DEFAULTS.pricing.medium.costPerMWh / 1000, // €135/kWh from medium tier
     bessRTE: BESS_DEFAULTS.roundTripEfficiency * 100,
     dailyCycles: BESS_DEFAULTS.dailyCycles,
     curtailmentRecoveryRate: BESS_DEFAULTS.curtailmentRecoveryRate * 100,
@@ -255,7 +255,7 @@ export function AdvancedProjectCalculator() {
     landLease: CYPRUS_MARKET_DEFAULTS.landLease,
     administration: CYPRUS_MARKET_DEFAULTS.administration,
     otherCosts: CYPRUS_MARKET_DEFAULTS.otherCosts,
-    bessOmPct: BESS_DEFAULTS.annualOpexPct * 100, // 2%
+    bessOmPct: 2, // 2% of BESS CAPEX per year
     
     // Flexible financing defaults
     ltvPercent: 0, // Default to cash (0% LTV)
