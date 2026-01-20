@@ -34,7 +34,7 @@ const projects = [
     title: "Agios Theodoros Solar Park with Battery Storage",
     location: "Agios Theodoros, Larnaca District",
     capacity: 2.64,
-    investment: 4410000,
+    investment: 4590000,
     roi: 35,
     annualRevenue: 1230000,
     status: "Ready to Build",
@@ -42,7 +42,7 @@ const projects = [
     completionDate: "Target Q4 2026",
     image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg",
     highlights: [
-      "Integrated 10.56 MWh BESS - 4-hour duration",
+      "Integrated 10.56 MWh BESS - 4-hour duration (€127k/MWh)",
       "Bifacial PV modules - 2,100 kWh/kWp yield",
       "Zero curtailment risk with battery arbitrage",
       "Leveraged equity IRR: high 30% range",
@@ -394,11 +394,11 @@ export default function ProjectsPage() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Total CAPEX</span>
-                    <span className="font-semibold">€4.41M</span>
+                    <span className="font-semibold">€4.59M</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Min Equity (100%)</span>
-                    <span className="font-semibold">€1.68M</span>
+                    <span className="font-semibold">€1.75M</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Leveraged IRR</span>
