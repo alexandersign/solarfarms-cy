@@ -56,6 +56,31 @@ const projects = [
     link: "/projects/agios-theodoros-rtb"
   },
   {
+    title: "Anarita Solar Park - 10MW Operational",
+    location: "Anarita, Paphos District",
+    capacity: 10,
+    investment: 12500000,
+    roi: 14.5,
+    annualRevenue: 1950000,
+    status: "Operational",
+    statusColor: "green",
+    completionDate: "Energized & Grid Connected",
+    image: "/images/solar-park-field-unsplash.jpg",
+    highlights: [
+      "Fully operational 10MW utility-scale park",
+      "Already energized and grid connected",
+      "BESS-ready infrastructure in place",
+      "Strong merchant revenue track record",
+      "Immediate cash flow from day one"
+    ],
+    testimonial: {
+      quote: "Turnkey operational asset with proven performance. BESS integration opportunity to maximize curtailment recovery and evening arbitrage.",
+      client: "Reference: PARK-ANARITA-10"
+    },
+    featured: true,
+    link: "/projects/anarita-10mw"
+  },
+  {
     title: "5MW Solar Park with Single-Axis Tracking",
     location: "Cyprus", // Location not disclosed for confidentiality
     capacity: 5.01,
@@ -124,11 +149,11 @@ export default function ProjectsPage() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">7.6MW</div>
+                <div className="text-3xl font-bold gradient-text">17.6MW</div>
                 <div className="text-sm text-gray-600">Available Capacity</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">€14M+</div>
+                <div className="text-3xl font-bold gradient-text">€26M+</div>
                 <div className="text-sm text-gray-600">Investment Value</div>
               </div>
               <div className="text-center">
@@ -136,8 +161,8 @@ export default function ProjectsPage() {
                 <div className="text-sm text-gray-600">Top Leveraged IRR</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">10.5MWh</div>
-                <div className="text-sm text-gray-600">BESS Capacity</div>
+                <div className="text-3xl font-bold gradient-text">3</div>
+                <div className="text-sm text-gray-600">Active Projects</div>
               </div>
             </div>
           </div>
