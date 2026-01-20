@@ -313,11 +313,15 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Annual OPEX</span>
-                    <span className="font-semibold text-red-600">~€89k</span>
+                    <span className="font-semibold text-red-600">~€104k</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b text-xs text-gray-500">
+                    <span>PV O&M €40k + BESS O&M €26k + Other €38k</span>
+                    <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Net Cash Flow</span>
-                    <span className="font-semibold text-green-600">~€1.14M/yr</span>
+                    <span className="font-semibold text-green-600">~€1.13M/yr</span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-solar-500 to-solar-600 rounded-lg p-4 mt-4 text-white">
@@ -346,10 +350,10 @@ export default function AgiosTheodorosProjectPage() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { percent: 25, equity: '€410k', revenue: '~€285k/yr' },
-              { percent: 50, equity: '€825k', revenue: '~€570k/yr' },
-              { percent: 75, equity: '€1.24M', revenue: '~€855k/yr' },
-              { percent: 100, equity: '€1.65M', revenue: '~€1.14M/yr', featured: true },
+              { percent: 25, equity: '€410k', revenue: '~€283k/yr' },
+              { percent: 50, equity: '€825k', revenue: '~€565k/yr' },
+              { percent: 75, equity: '€1.24M', revenue: '~€848k/yr' },
+              { percent: 100, equity: '€1.65M', revenue: '~€1.13M/yr', featured: true },
             ].map((option) => (
               <Card 
                 key={option.percent} 
