@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { 
   Users, 
   Mail, 
@@ -12,9 +14,15 @@ import {
   TrendingUp, 
   Clock,
   FileText,
-  ArrowRight,
   RefreshCw,
-  ExternalLink
+  ExternalLink,
+  Send,
+  Building,
+  Plus,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  Zap
 } from 'lucide-react'
 
 interface Contact {
@@ -44,20 +52,49 @@ interface LandAssessment {
   solar_potential?: string
 }
 
+interface Project {
+  id: string
+  reference_code: string
+  title: string
+  slug: string
+  status: string
+  capacity_mwp: number
+  total_capex: number
+  featured: boolean
+  newsletter_sent_at?: string
+  newsletter_sent_to?: number
+}
+
+interface SubscriberStats {
+  total: number
+  active: number
+  unsubscribed: number
+}
+
 export default function AdminDashboard() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [landAssessments, setLandAssessments] = useState<LandAssessment[]>([])
+  const [projects, setProjects] = useState<Project[]>([])
+  const [subscriberStats, setSubscriberStats] = useState<SubscriberStats>({ total: 0, active: 0, unsubscribed: 0 })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'newsletter'>('overview')
+  const [sendingNewsletter, setSendingNewsletter] = useState<string | null>(null)
+  const [newsletterResult, setNewsletterResult] = useState<{ success: boolean; message: string } | null>(null)
+  const [adminKey, setAdminKey] = useState('')
 
   const fetchData = async () => {
     setLoading(true)
     setError(null)
     
     try {
-      const [contactsRes, landRes] = await Promise.all([
+      const [contactsRes, landRes, projectsRes, subscribersRes] = await Promise.all([
         fetch('/api/admin/contacts'),
-        fetch('/api/admin/land-assessments')
+        fetch('/api/admin/land-assessments'),
+        fetch('/api/admin/projects'),
+        fetch('/api/admin/subscribers', {
+          headers: { 'x-admin-key': adminKey || localStorage.getItem('adminKey') || '' }
+        })
       ])
       
       if (contactsRes.ok) {
@@ -69,6 +106,16 @@ export default function AdminDashboard() {
         const landData = await landRes.json()
         setLandAssessments(landData.data || [])
       }
+      
+      if (projectsRes.ok) {
+        const projectsData = await projectsRes.json()
+        setProjects(projectsData.data || [])
+      }
+      
+      if (subscribersRes.ok) {
+        const subscribersData = await subscribersRes.json()
+        setSubscriberStats(subscribersData.stats || { total: 0, active: 0, unsubscribed: 0 })
+      }
     } catch (err) {
       setError('Failed to fetch data. Make sure Supabase is connected.')
     } finally {
@@ -77,8 +124,56 @@ export default function AdminDashboard() {
   }
 
   useEffect(() => {
+    // Try to get admin key from localStorage
+    const storedKey = localStorage.getItem('adminKey')
+    if (storedKey) {
+      setAdminKey(storedKey)
+    }
     fetchData()
   }, [])
+
+  const saveAdminKey = () => {
+    localStorage.setItem('adminKey', adminKey)
+    fetchData()
+  }
+
+  const sendProjectNewsletter = async (projectId: string, projectName: string) => {
+    if (!adminKey) {
+      alert('Please enter admin key first')
+      return
+    }
+    
+    setSendingNewsletter(projectId)
+    setNewsletterResult(null)
+    
+    try {
+      const response = await fetch('/api/admin/send-project-newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-key': adminKey
+        },
+        body: JSON.stringify({ projectId })
+      })
+      
+      const result = await response.json()
+      setNewsletterResult({
+        success: result.success,
+        message: result.message || (result.success ? `Newsletter sent for ${projectName}` : 'Failed to send')
+      })
+      
+      if (result.success) {
+        fetchData() // Refresh to show updated newsletter status
+      }
+    } catch (err) {
+      setNewsletterResult({
+        success: false,
+        message: 'Network error sending newsletter'
+      })
+    } finally {
+      setSendingNewsletter(null)
+    }
+  }
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-GB', {
@@ -90,6 +185,14 @@ export default function AdminDashboard() {
     })
   }
 
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-EU', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0
+    }).format(amount)
+  }
+
   const getStatusBadge = (status: string) => {
     const colors: Record<string, string> = {
       'new': 'bg-green-100 text-green-800',
@@ -97,7 +200,13 @@ export default function AdminDashboard() {
       'contacted': 'bg-blue-100 text-blue-800',
       'qualified': 'bg-purple-100 text-purple-800',
       'closed': 'bg-gray-100 text-gray-800',
-      'contracted': 'bg-green-100 text-green-800'
+      'contracted': 'bg-green-100 text-green-800',
+      'draft': 'bg-gray-100 text-gray-800',
+      'available': 'bg-green-100 text-green-800',
+      'under_offer': 'bg-yellow-100 text-yellow-800',
+      'sold': 'bg-red-100 text-red-800',
+      'construction': 'bg-blue-100 text-blue-800',
+      'operational': 'bg-green-100 text-green-800'
     }
     return colors[status] || 'bg-gray-100 text-gray-800'
   }
@@ -110,7 +219,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="text-gray-600">SolarFarms.cy Lead Management</p>
+              <p className="text-gray-600">SolarFarms.cy Management</p>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline" onClick={fetchData} disabled={loading}>
@@ -125,228 +234,520 @@ export default function AdminDashboard() {
               </Button>
             </div>
           </div>
+          
+          {/* Tabs */}
+          <div className="flex gap-4 mt-6">
+            <Button 
+              variant={activeTab === 'overview' ? 'default' : 'outline'}
+              onClick={() => setActiveTab('overview')}
+            >
+              Overview
+            </Button>
+            <Button 
+              variant={activeTab === 'projects' ? 'default' : 'outline'}
+              onClick={() => setActiveTab('projects')}
+            >
+              <Building className="w-4 h-4 mr-2" />
+              Projects
+            </Button>
+            <Button 
+              variant={activeTab === 'newsletter' ? 'default' : 'outline'}
+              onClick={() => setActiveTab('newsletter')}
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              Newsletter
+            </Button>
+          </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">
+        {/* Admin Key Input */}
+        <Card className="mb-6">
+          <CardContent className="pt-6">
+            <div className="flex items-end gap-4">
+              <div className="flex-1">
+                <Label htmlFor="adminKey">Admin Secret Key</Label>
+                <Input
+                  id="adminKey"
+                  type="password"
+                  value={adminKey}
+                  onChange={(e) => setAdminKey(e.target.value)}
+                  placeholder="Enter admin secret key for protected actions"
+                />
+              </div>
+              <Button onClick={saveAdminKey}>Save Key</Button>
+            </div>
+            <p className="text-sm text-gray-500 mt-2">
+              Required for sending newsletters and managing projects. Set ADMIN_SECRET_KEY in Vercel env vars.
+            </p>
+          </CardContent>
+        </Card>
+
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
             <p className="text-red-800">{error}</p>
-            <p className="text-red-600 text-sm mt-1">
-              Note: Admin features require Supabase to be connected and running.
-            </p>
           </div>
         )}
 
-        {/* Stats Cards */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">Total Contacts</p>
-                  <p className="text-3xl font-bold text-gray-900">{contacts.length}</p>
-                </div>
-                <Users className="w-10 h-10 text-blue-500 opacity-50" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">Land Assessments</p>
-                  <p className="text-3xl font-bold text-gray-900">{landAssessments.length}</p>
-                </div>
-                <MapPin className="w-10 h-10 text-green-500 opacity-50" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">New This Week</p>
-                  <p className="text-3xl font-bold text-gray-900">
-                    {contacts.filter(c => {
-                      const weekAgo = new Date()
-                      weekAgo.setDate(weekAgo.getDate() - 7)
-                      return new Date(c.created_at) > weekAgo
-                    }).length}
-                  </p>
-                </div>
-                <TrendingUp className="w-10 h-10 text-purple-500 opacity-50" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">Pending Review</p>
-                  <p className="text-3xl font-bold text-gray-900">
-                    {contacts.filter(c => c.status === 'new').length + 
-                     landAssessments.filter(l => l.status === 'pending').length}
-                  </p>
-                </div>
-                <Clock className="w-10 h-10 text-yellow-500 opacity-50" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Recent Contacts */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Mail className="w-5 h-5" />
-                Recent Investor Leads
-              </CardTitle>
-              <CardDescription>Contact form submissions from investors</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <div className="text-center py-8 text-gray-500">Loading...</div>
-              ) : contacts.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  <Users className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>No contacts yet</p>
-                  <p className="text-sm">Leads will appear here when submitted</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {contacts.slice(0, 5).map((contact) => (
-                    <div key={contact.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h4 className="font-semibold text-gray-900">{contact.name}</h4>
-                          <p className="text-sm text-gray-600">{contact.email}</p>
-                        </div>
-                        <Badge className={getStatusBadge(contact.status)}>
-                          {contact.status}
-                        </Badge>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="font-medium text-green-600">{contact.investment_size}</span>
-                        <span>•</span>
-                        <span>{contact.timeline}</span>
-                        <span>•</span>
-                        <span>{formatDate(contact.created_at)}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Recent Land Assessments */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                Recent Land Assessments
-              </CardTitle>
-              <CardDescription>Landowner submissions for solar development</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <div className="text-center py-8 text-gray-500">Loading...</div>
-              ) : landAssessments.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  <MapPin className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>No land assessments yet</p>
-                  <p className="text-sm">Landowner submissions will appear here</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {landAssessments.slice(0, 5).map((assessment) => (
-                    <div key={assessment.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h4 className="font-semibold text-gray-900">{assessment.owner_name}</h4>
-                          <p className="text-sm text-gray-600">{assessment.location}</p>
-                        </div>
-                        <Badge className={getStatusBadge(assessment.status)}>
-                          {assessment.status}
-                        </Badge>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="font-medium text-blue-600">{assessment.plot_size}</span>
-                        {assessment.solar_potential && (
-                          <>
-                            <span>•</span>
-                            <span className="font-medium text-green-600">{assessment.solar_potential}</span>
-                          </>
-                        )}
-                        {assessment.title_deed_url && (
-                          <>
-                            <span>•</span>
-                            <a 
-                              href={assessment.title_deed_url} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="text-blue-600 hover:underline flex items-center gap-1"
-                            >
-                              <FileText className="w-3 h-3" />
-                              Title Deed
-                            </a>
-                          </>
-                        )}
-                      </div>
-                      <div className="text-xs text-gray-400 mt-2">
-                        {formatDate(assessment.created_at)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="mt-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid md:grid-cols-4 gap-4">
-            <Button variant="outline" className="justify-start h-auto py-4" asChild>
-              <Link href="/contact">
-                <div className="text-left">
-                  <div className="font-semibold">Test Contact Form</div>
-                  <div className="text-sm text-gray-500">Submit a test lead</div>
-                </div>
-              </Link>
-            </Button>
-            <Button variant="outline" className="justify-start h-auto py-4" asChild>
-              <Link href="/landowners">
-                <div className="text-left">
-                  <div className="font-semibold">Test Land Assessment</div>
-                  <div className="text-sm text-gray-500">Submit a test assessment</div>
-                </div>
-              </Link>
-            </Button>
-            <Button variant="outline" className="justify-start h-auto py-4" asChild>
-              <Link href="/projects/park-ref-5001">
-                <div className="text-left">
-                  <div className="font-semibold">View Featured Park</div>
-                  <div className="text-sm text-gray-500">PARK-REF-5001</div>
-                </div>
-              </Link>
-            </Button>
-            <Button variant="outline" className="justify-start h-auto py-4" asChild>
-              <Link href="/calculator">
-                <div className="text-left">
-                  <div className="font-semibold">Test Calculator</div>
-                  <div className="text-sm text-gray-500">ROI Calculator</div>
-                </div>
-              </Link>
+        {newsletterResult && (
+          <div className={`border rounded-lg p-4 mb-6 flex items-center gap-3 ${
+            newsletterResult.success ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
+          }`}>
+            {newsletterResult.success ? (
+              <CheckCircle className="w-5 h-5 text-green-600" />
+            ) : (
+              <XCircle className="w-5 h-5 text-red-600" />
+            )}
+            <p className={newsletterResult.success ? 'text-green-800' : 'text-red-800'}>
+              {newsletterResult.message}
+            </p>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="ml-auto"
+              onClick={() => setNewsletterResult(null)}
+            >
+              Dismiss
             </Button>
           </div>
-        </div>
+        )}
+
+        {/* Overview Tab */}
+        {activeTab === 'overview' && (
+          <>
+            {/* Stats Cards */}
+            <div className="grid md:grid-cols-5 gap-6 mb-8">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Investor Leads</p>
+                      <p className="text-3xl font-bold text-gray-900">{contacts.length}</p>
+                    </div>
+                    <Users className="w-10 h-10 text-blue-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Land Assessments</p>
+                      <p className="text-3xl font-bold text-gray-900">{landAssessments.length}</p>
+                    </div>
+                    <MapPin className="w-10 h-10 text-green-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Projects</p>
+                      <p className="text-3xl font-bold text-gray-900">{projects.length}</p>
+                    </div>
+                    <Building className="w-10 h-10 text-purple-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Subscribers</p>
+                      <p className="text-3xl font-bold text-gray-900">{subscriberStats.active}</p>
+                    </div>
+                    <Mail className="w-10 h-10 text-yellow-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">New This Week</p>
+                      <p className="text-3xl font-bold text-gray-900">
+                        {contacts.filter(c => {
+                          const weekAgo = new Date()
+                          weekAgo.setDate(weekAgo.getDate() - 7)
+                          return new Date(c.created_at) > weekAgo
+                        }).length}
+                      </p>
+                    </div>
+                    <TrendingUp className="w-10 h-10 text-green-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Recent Contacts */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Mail className="w-5 h-5" />
+                    Recent Investor Leads
+                  </CardTitle>
+                  <CardDescription>Contact form submissions from investors</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {loading ? (
+                    <div className="text-center py-8 text-gray-500">Loading...</div>
+                  ) : contacts.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500">
+                      <Users className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                      <p>No contacts yet</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {contacts.slice(0, 5).map((contact) => (
+                        <div key={contact.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <h4 className="font-semibold text-gray-900">{contact.name}</h4>
+                              <p className="text-sm text-gray-600">{contact.email}</p>
+                            </div>
+                            <Badge className={getStatusBadge(contact.status)}>
+                              {contact.status}
+                            </Badge>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <span className="font-medium text-green-600">{contact.investment_size}</span>
+                            <span>•</span>
+                            <span>{contact.timeline}</span>
+                            <span>•</span>
+                            <span>{formatDate(contact.created_at)}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Recent Land Assessments */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5" />
+                    Recent Land Assessments
+                  </CardTitle>
+                  <CardDescription>Landowner submissions for solar development</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {loading ? (
+                    <div className="text-center py-8 text-gray-500">Loading...</div>
+                  ) : landAssessments.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500">
+                      <MapPin className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                      <p>No land assessments yet</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {landAssessments.slice(0, 5).map((assessment) => (
+                        <div key={assessment.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <h4 className="font-semibold text-gray-900">{assessment.owner_name}</h4>
+                              <p className="text-sm text-gray-600">{assessment.location}</p>
+                            </div>
+                            <Badge className={getStatusBadge(assessment.status)}>
+                              {assessment.status}
+                            </Badge>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <span className="font-medium text-blue-600">{assessment.plot_size}</span>
+                            {assessment.title_deed_url && (
+                              <>
+                                <span>•</span>
+                                <a 
+                                  href={assessment.title_deed_url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:underline flex items-center gap-1"
+                                >
+                                  <FileText className="w-3 h-3" />
+                                  Title Deed
+                                </a>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </>
+        )}
+
+        {/* Projects Tab */}
+        {activeTab === 'projects' && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Project Management</h2>
+              <p className="text-gray-600 text-sm">
+                To add projects, run the SQL in <code className="bg-gray-100 px-2 py-1 rounded">supabase-projects-schema.sql</code>
+              </p>
+            </div>
+            
+            {projects.length === 0 ? (
+              <Card>
+                <CardContent className="py-12 text-center">
+                  <Building className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+                  <h3 className="text-lg font-semibold mb-2">No Projects in Database</h3>
+                  <p className="text-gray-600 mb-4">
+                    Run the SQL schema to create the projects table and add the Agios Theodoros project.
+                  </p>
+                  <div className="bg-gray-100 rounded-lg p-4 text-left max-w-xl mx-auto">
+                    <code className="text-sm text-gray-700">
+                      1. Go to Supabase Dashboard → SQL Editor<br/>
+                      2. Copy contents of supabase-projects-schema.sql<br/>
+                      3. Run the SQL to create tables and insert project
+                    </code>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid gap-6">
+                {projects.map((project) => (
+                  <Card key={project.id} className="overflow-hidden">
+                    <div className="flex items-start gap-6 p-6">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="text-lg font-semibold">{project.title}</h3>
+                          <Badge className={getStatusBadge(project.status)}>
+                            {project.status}
+                          </Badge>
+                          {project.featured && (
+                            <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+                          )}
+                        </div>
+                        <p className="text-gray-600 text-sm mb-3">
+                          Ref: {project.reference_code} • {project.capacity_mwp} MWp • {formatCurrency(project.total_capex || 0)}
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <Button variant="outline" size="sm" asChild>
+                            <Link href={`/projects/${project.slug}`}>
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              View Page
+                            </Link>
+                          </Button>
+                          
+                          {project.newsletter_sent_at ? (
+                            <div className="flex items-center gap-2 text-green-600 text-sm">
+                              <CheckCircle className="w-4 h-4" />
+                              Newsletter sent to {project.newsletter_sent_to} subscribers
+                              <span className="text-gray-400">
+                                ({formatDate(project.newsletter_sent_at)})
+                              </span>
+                            </div>
+                          ) : (
+                            <Button 
+                              variant="solar" 
+                              size="sm"
+                              onClick={() => sendProjectNewsletter(project.id, project.title)}
+                              disabled={sendingNewsletter === project.id || !adminKey}
+                            >
+                              {sendingNewsletter === project.id ? (
+                                <>
+                                  <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                                  Sending...
+                                </>
+                              ) : (
+                                <>
+                                  <Send className="w-4 h-4 mr-2" />
+                                  Send Newsletter
+                                </>
+                              )}
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Newsletter Tab */}
+        {activeTab === 'newsletter' && (
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Active Subscribers</p>
+                      <p className="text-3xl font-bold text-green-600">{subscriberStats.active}</p>
+                    </div>
+                    <CheckCircle className="w-10 h-10 text-green-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Total Subscribers</p>
+                      <p className="text-3xl font-bold text-gray-900">{subscriberStats.total}</p>
+                    </div>
+                    <Users className="w-10 h-10 text-blue-500 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">Unsubscribed</p>
+                      <p className="text-3xl font-bold text-gray-400">{subscriberStats.unsubscribed}</p>
+                    </div>
+                    <XCircle className="w-10 h-10 text-gray-300 opacity-50" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  Quick Send: Agios Theodoros Project Newsletter
+                </CardTitle>
+                <CardDescription>
+                  Send an announcement to all active subscribers about the new RTB project
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-solar-50 border border-solar-200 rounded-lg p-4 mb-4">
+                  <h4 className="font-semibold text-solar-800 mb-2">
+                    Agios Theodoros Solar Park with Battery Storage
+                  </h4>
+                  <ul className="text-sm text-solar-700 space-y-1">
+                    <li>• 2.64 MWp Solar + 10.56 MWh BESS</li>
+                    <li>• Total CAPEX: €4.59M</li>
+                    <li>• Leveraged IRR: 35%+</li>
+                    <li>• Target: Q4 2026</li>
+                  </ul>
+                </div>
+                
+                {projects.find(p => p.slug === 'agios-theodoros-rtb') ? (
+                  <Button 
+                    variant="gradient"
+                    onClick={() => {
+                      const project = projects.find(p => p.slug === 'agios-theodoros-rtb')
+                      if (project) {
+                        sendProjectNewsletter(project.id, project.title)
+                      }
+                    }}
+                    disabled={sendingNewsletter !== null || !adminKey}
+                    className="w-full"
+                  >
+                    {sendingNewsletter ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                        Sending to {subscriberStats.active} subscribers...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Newsletter to {subscriberStats.active} Subscribers
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
+                    <div>
+                      <p className="text-yellow-800 font-medium">Project not in database yet</p>
+                      <p className="text-yellow-700 text-sm">
+                        Run the SQL schema in Supabase to add the Agios Theodoros project, then refresh this page.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Newsletter Setup</CardTitle>
+                <CardDescription>Configure your newsletter system</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">Required Environment Variables</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><code className="bg-gray-200 px-1 rounded">RESEND_API_KEY</code> - Your Resend API key</li>
+                      <li><code className="bg-gray-200 px-1 rounded">ADMIN_SECRET_KEY</code> - Secret key for admin actions</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-blue-800 mb-2">How to add subscribers</h4>
+                    <p className="text-sm text-blue-700">
+                      Subscribers are added automatically when users sign up via the newsletter form on the website.
+                      You can also add them manually in Supabase by inserting into the <code className="bg-blue-200 px-1 rounded">newsletter_subscribers</code> table.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Quick Actions */}
+        {activeTab === 'overview' && (
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
+            <div className="grid md:grid-cols-4 gap-4">
+              <Button variant="outline" className="justify-start h-auto py-4" asChild>
+                <Link href="/contact">
+                  <div className="text-left">
+                    <div className="font-semibold">Test Contact Form</div>
+                    <div className="text-sm text-gray-500">Submit a test lead</div>
+                  </div>
+                </Link>
+              </Button>
+              <Button variant="outline" className="justify-start h-auto py-4" asChild>
+                <Link href="/landowners">
+                  <div className="text-left">
+                    <div className="font-semibold">Test Land Assessment</div>
+                    <div className="text-sm text-gray-500">Submit a test assessment</div>
+                  </div>
+                </Link>
+              </Button>
+              <Button variant="outline" className="justify-start h-auto py-4" asChild>
+                <Link href="/projects/agios-theodoros-rtb">
+                  <div className="text-left">
+                    <div className="font-semibold">View RTB Project</div>
+                    <div className="text-sm text-gray-500">Agios Theodoros</div>
+                  </div>
+                </Link>
+              </Button>
+              <Button variant="outline" className="justify-start h-auto py-4" asChild>
+                <Link href="/calculator">
+                  <div className="text-left">
+                    <div className="font-semibold">Test Calculator</div>
+                    <div className="text-sm text-gray-500">ROI Calculator</div>
+                  </div>
+                </Link>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
