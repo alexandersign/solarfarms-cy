@@ -31,6 +31,31 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: "Agios Theodoros Solar Park with Battery Storage",
+    location: "Agios Theodoros, Larnaca District",
+    capacity: 2.64,
+    investment: 4410000,
+    roi: 35,
+    annualRevenue: 1230000,
+    status: "Ready to Build",
+    statusColor: "green",
+    completionDate: "Target Q4 2026",
+    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg",
+    highlights: [
+      "Integrated 10.56 MWh BESS - 4-hour duration",
+      "Bifacial PV modules - 2,100 kWh/kWp yield",
+      "Zero curtailment risk with battery arbitrage",
+      "Leveraged equity IRR: high 30% range",
+      "Single operator: Lighthief EPC + O&M"
+    ],
+    testimonial: {
+      quote: "Ready to build utility scale project with integrated battery storage removing curtailment risk. Strong leveraged returns with conservative assumptions.",
+      client: "Reference: PARK-RTB-2026"
+    },
+    featured: true,
+    link: "/projects/agios-theodoros-rtb"
+  },
+  {
     title: "5MW Solar Park with Single-Axis Tracking",
     location: "Cyprus", // Location not disclosed for confidentiality
     capacity: 5.01,
@@ -54,29 +79,6 @@ const projects = [
     },
     featured: true,
     link: "/projects/park-ref-5001"
-  },
-  {
-    title: "Limassol Solar Farm - 5MW Premium Investment",
-    location: "Limassol, Cyprus",
-    capacity: 5,
-    investment: 5250000,
-    roi: 18.5,
-    annualRevenue: 1125000,
-    status: "Operational",
-    statusColor: "green",
-    completionDate: "August 2024",
-    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg",
-    highlights: [
-      "Exceeded ROI projections by 1.5%",
-      "Completed 2 weeks ahead of schedule", 
-      "Zero safety incidents during construction",
-      "Grid connection achieved in record time"
-    ],
-    testimonial: {
-      quote: "Outstanding project delivery and performance. The ROI has exceeded our expectations.",
-      client: "George Andreou, Andreou Family Office"
-    },
-    featured: true
   },
   {
     title: "Nicosia Industrial Solar Complex - 10MW",
@@ -168,16 +170,16 @@ export default function ProjectsPage() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">16MW+</div>
+                <div className="text-3xl font-bold gradient-text">18MW+</div>
                 <div className="text-sm text-gray-600">Total Capacity</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">€16.8M</div>
-                <div className="text-sm text-gray-600">Investments Managed</div>
+                <div className="text-3xl font-bold gradient-text">€25M+</div>
+                <div className="text-sm text-gray-600">Investment Pipeline</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">18.5%</div>
-                <div className="text-sm text-gray-600">Average ROI</div>
+                <div className="text-3xl font-bold gradient-text">35%+</div>
+                <div className="text-sm text-gray-600">Top Leveraged IRR</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold gradient-text">100%</div>
@@ -379,56 +381,74 @@ export default function ProjectsPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-2 border-solar-200 hover:shadow-xl transition-all duration-300">
+            <Card className="border-2 border-solar-200 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-gradient-to-l from-solar-500 to-solar-400 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                FEATURED
+              </div>
               <CardHeader className="text-center">
-                <Badge variant="solar" className="w-fit mx-auto mb-2">Available Now</Badge>
-                <CardTitle>Larnaca Solar Farm</CardTitle>
-                <CardDescription>2MW • Strategic Location</CardDescription>
+                <Badge variant="solar" className="w-fit mx-auto mb-2">Ready to Build</Badge>
+                <CardTitle>Agios Theodoros Solar + BESS</CardTitle>
+                <CardDescription>2.64 MWp + 10.56 MWh Battery</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Investment</span>
-                    <span className="font-semibold">€2.1M</span>
+                    <span className="text-gray-600">Total CAPEX</span>
+                    <span className="font-semibold">€4.41M</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Projected ROI</span>
-                    <span className="font-semibold text-green-600">18.2%</span>
+                    <span className="text-gray-600">Min Equity (100%)</span>
+                    <span className="font-semibold">€1.68M</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Timeline</span>
-                    <span className="font-semibold">8 months</span>
+                    <span className="text-gray-600">Leveraged IRR</span>
+                    <span className="font-semibold text-green-600">35%+</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Annual Revenue</span>
+                    <span className="font-semibold">€1.23M</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Target</span>
+                    <span className="font-semibold">Q4 2026</span>
                   </div>
                 </div>
-                <Button variant="solar" className="w-full">
-                  Express Interest
+                <div className="text-xs text-gray-500 bg-gray-50 rounded p-2">
+                  <strong>Equity options:</strong> 25%, 50%, 75%, or 100%
+                </div>
+                <Button variant="solar" className="w-full" asChild>
+                  <Link href="/projects/agios-theodoros-rtb">
+                    View Full Details
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             <Card className="border-2 border-cyprus-200 hover:shadow-xl transition-all duration-300">
               <CardHeader className="text-center">
-                <Badge variant="cyprus" className="w-fit mx-auto mb-2">Coming Soon</Badge>
-                <CardTitle>Famagusta Solar Complex</CardTitle>
-                <CardDescription>7MW • Industrial Scale</CardDescription>
+                <Badge variant="cyprus" className="w-fit mx-auto mb-2">Available</Badge>
+                <CardTitle>5MW Tracker Park</CardTitle>
+                <CardDescription>Operational • BESS Opportunity</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Investment</span>
-                    <span className="font-semibold">€7.35M</span>
+                    <span className="font-semibold">€9.6M</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Projected ROI</span>
-                    <span className="font-semibold text-green-600">19.1%</span>
+                    <span className="text-gray-600">Current ROI</span>
+                    <span className="font-semibold text-green-600">13.3%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Timeline</span>
-                    <span className="font-semibold">12 months</span>
+                    <span className="text-gray-600">With BESS</span>
+                    <span className="font-semibold text-green-600">15.4%</span>
                   </div>
                 </div>
-                <Button variant="cyprus" className="w-full">
-                  Join Waitlist
+                <Button variant="cyprus" className="w-full" asChild>
+                  <Link href="/projects/park-ref-5001">
+                    View Project
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
