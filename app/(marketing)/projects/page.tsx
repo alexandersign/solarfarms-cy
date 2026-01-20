@@ -67,14 +67,14 @@ const projects = [
     completionDate: "Energized & Grid Connected",
     image: "/images/solar-park-field-unsplash.jpg",
     highlights: [
-      "Fully operational 10MW utility-scale park",
-      "Already energized and grid connected",
-      "BESS-ready infrastructure in place",
-      "Strong merchant revenue track record",
-      "Immediate cash flow from day one"
+      "Real curtailment data: 38% avg, up to 67% peak",
+      "18 months verified production data available",
+      "BESS opportunity: recover €600k+ annually",
+      "ROI boost from 14.5% to 18%+ with 40MWh BESS",
+      "Linyang BESS quote ready: €4.4M turnkey"
     ],
     testimonial: {
-      quote: "Turnkey operational asset with proven performance. BESS integration opportunity to maximize curtailment recovery and evening arbitrage.",
+      quote: "Transparent operational asset with real curtailment data. BESS integration to recover lost revenue and maximize returns.",
       client: "Reference: PARK-ANARITA-10"
     },
     featured: true,

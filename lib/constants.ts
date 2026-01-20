@@ -254,10 +254,9 @@ export const NAVIGATION = {
   main: [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Energy Storage", href: "/energy-storage" },
     { name: "Projects", href: "/projects" },
-    { name: "Crypto", href: "/crypto" },
     { name: "Calculator", href: "/calculator" },
-    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
   crypto: [
@@ -265,9 +264,16 @@ export const NAVIGATION = {
     { name: "Solar BTC Mining", href: "/crypto/solar-mining" },
     { name: "AI GPU Mining", href: "/crypto/ai-mining" },
   ],
+  energyStorage: [
+    { name: "BESS Solutions", href: "/energy-storage" },
+    { name: "Linyang Systems", href: "/energy-storage#systems" },
+    { name: "O&M Services", href: "/energy-storage#om-services" },
+    { name: "Get BESS Quote", href: "/energy-storage#inquiry-form" },
+  ],
   services: [
     { name: "EPC Services", href: "/services/epc-services" },
     { name: "O&M Management", href: "/services/om-management" },
+    { name: "Energy Storage", href: "/energy-storage" },
     { name: "Asset Optimization", href: "/services/asset-optimization" },
     { name: "Lifecycle Support", href: "/services/lifecycle-support" },
   ],
@@ -350,18 +356,32 @@ export const CYPRUS_MARKET_DEFAULTS = {
   solarBessDebtPct: 0.70,         // 70% for solar+BESS
 } as const
 
-// BESS Parameters (Linyang System Defaults)
+// BESS Parameters (Linyang System Defaults via Lighthief Cyprus - includes 10% markup)
 export const BESS_DEFAULTS = {
   // Linyang specifications
   roundTripEfficiency: 0.8839,    // 88.39% RTE
-  costPerKwh: 140,                // €140/kWh installed
-  annualOpexPct: 0.02,            // 2% of capex per year
   warrantyYears: 15,              // Standard warranty
   cycleLife: 6000,                // Cycles at 80% DoD
+  containerCapacity: 5.015,       // MWh per 20HC container
+  
+  // Pricing tiers (€/MWh installed, includes 10% Lighthief markup)
+  pricing: {
+    small: { minMW: 1, maxMW: 2, costPerMWh: 170000 },      // €165-175k/MWh
+    medium: { minMW: 2.5, maxMW: 5, costPerMWh: 135000 },   // €125-145k/MWh
+    large: { minMW: 8, maxMW: 25, costPerMWh: 110000 },     // €100-115k/MWh
+    utility: { minMW: 25, maxMW: 100, costPerMWh: 105000 }, // €100-110k/MWh
+  },
+  
+  // O&M costs (€/MWh/year based on LTSA)
+  omCosts: {
+    bessMaintenancePerMWh: 1157.62,  // BESS preventive & corrective
+    pcsMaintenancePerMWh: 1311.97,   // PCS + MVS maintenance
+    availabilityGuaranteePerMWh: 2201.73, // 97% availability (optional)
+  },
   
   // Duration options (hours)
   durationOptions: [2, 3, 4] as const,
-  defaultDuration: 2,             // 2-hour system default
+  defaultDuration: 4,             // 4-hour system default for utility scale
   
   // Operational parameters
   dailyCycles: 1.0,               // Cycles per day
