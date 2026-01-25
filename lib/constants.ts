@@ -44,39 +44,48 @@ export const CYPRUS_BANK_RATES = {
   }
 } as const
 
-// Capex Modes - Realistic 2025 Cyprus Market Pricing
+// Capex Modes - Cyprus Market Pricing (Client Prices)
+// PV EPC Markup: €100,000/MW flat on top of self-cost
+// Self-cost ~€500-540k/MW, Client price ~€600-640k/MW
 export const CAPEX_MODES = {
   'epc-dev': {
     name: 'EPC Development',
-    pricePerMW: 500000,
-    description: 'Development from scratch - €500k/MW',
-    financingCap: 500000 // €500k/MW max debt
+    pricePerMW: 640000, // Client price (self-cost + €100k/MW markup)
+    description: 'Development from scratch - €640k/MW',
+    financingCap: 500000, // €500k/MW max debt
+    selfCostPerMW: 540000, // Internal reference
+    epcMarkupPerMW: 100000 // €100k/MW flat markup
   },
   'turnkey': {
     name: 'Turnkey New Build',
-    pricePerMW: 1200000,
-    description: 'Complete turnkey project - €1.2M/MW',
+    pricePerMW: 1090000, // PV EPC (€640k) + RTB (€350k) + contingency
+    description: 'Complete turnkey project - €1.09M/MW',
     financingCap: 500000
   },
   'rtb-old': {
     name: 'RTB Park (Fixed-Tilt)',
-    pricePerMW: 1200000,
-    description: 'Ready-to-build, older/fixed - €1.2M/MW',
+    pricePerMW: 1090000, // PV EPC (€640k) + RTB (€350k) + contingency
+    description: 'Ready-to-build, older/fixed - €1.09M/MW',
     financingCap: 500000
   },
   'rtb-new': {
     name: 'RTB Park (Tracking)',
-    pricePerMW: 1700000,
-    description: 'Ready-to-build, new/tracking - €1.7M/MW',
+    pricePerMW: 1200000, // PV EPC (€700k tracking) + RTB (€350k) + contingency
+    description: 'Ready-to-build, new/tracking - €1.2M/MW',
     financingCap: 500000
   }
 } as const
 
-// Investment Constants (Based on Real 5.01MW Park Data - €1.5M/MW baseline)
+// Investment Constants - PV + BESS All-In Client Pricing
+// Based on: PV EPC (self-cost + €100k/MW) + BESS (+17.4%) + RTB (€350k/MW)
+// See docs/internal/solarpark-epc.md for detailed breakdown
 export const INVESTMENT_SIZES = {
   "1MW": {
-    minInvestment: 1500000,  // €1.5M/MW baseline
-    maxInvestment: 1500000,
+    minInvestment: 1754000,  // 1 MWp + 4 MWh All-In Client: €1,754,414
+    maxInvestment: 1754000,
+    pvOnlyCost: 730000,      // PV Client: €730k (self-cost €630k + €100k markup)
+    bessCost: 674000,        // BESS Client: 4 MWh @ €168k/MWh
+    rtbCost: 350000,         // RTB: €350k/MW
     minRevenue: 200000,      // Based on ~2,000 kWh/kWp * €0.19/kWh * 25% curtailment
     maxRevenue: 280000,      // With optimal performance
     minROI: 8,               // Conservative with current curtailment
@@ -89,8 +98,11 @@ export const INVESTMENT_SIZES = {
     bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
   "5MW": {
-    minInvestment: 7500000,  // €1.5M/MW * 5 = €7.5M baseline
-    maxInvestment: 7500000,
+    minInvestment: 7204000,  // 5 MWp + 20 MWh All-In Client: €7,203,501
+    maxInvestment: 7204000,
+    pvOnlyCost: 3200000,     // PV Client: 5 × €640k = €3.2M
+    bessCost: 2253000,       // BESS Client: 20 MWh @ €113k/MWh
+    rtbCost: 1750000,        // RTB: 5 × €350k = €1.75M
     minRevenue: 1000000,     // Based on real park data with curtailment
     maxRevenue: 1400000,     // Optimized scenario
     minROI: 8,               // Conservative 
@@ -103,8 +115,11 @@ export const INVESTMENT_SIZES = {
     bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
   "10MW": {
-    minInvestment: 15000000,  // €1.5M/MW * 10 = €15M baseline
-    maxInvestment: 15000000,
+    minInvestment: 13993000,  // 10 MWp + 40 MWh All-In Client: €13,992,665
+    maxInvestment: 13993000,
+    pvOnlyCost: 6101000,      // PV Client: 10 × €610k = €6.1M
+    bessCost: 4392000,        // BESS Client: 40 MWh @ €110k/MWh
+    rtbCost: 3500000,         // RTB: 10 × €350k = €3.5M
     minRevenue: 2000000,      // Scaled from 5MW data
     maxRevenue: 2800000,
     minROI: 8,               
@@ -266,6 +281,7 @@ export const NAVIGATION = {
   ],
   energyStorage: [
     { name: "BESS Solutions", href: "/energy-storage" },
+    { name: "BESS ROI Calculator", href: "/energy-storage/calculator" },
     { name: "Linyang Systems", href: "/energy-storage#systems" },
     { name: "O&M Services", href: "/energy-storage#om-services" },
     { name: "Get BESS Quote", href: "/energy-storage#inquiry-form" },
@@ -356,20 +372,31 @@ export const CYPRUS_MARKET_DEFAULTS = {
   solarBessDebtPct: 0.70,         // 70% for solar+BESS
 } as const
 
-// BESS Parameters (Linyang System Defaults via Lighthief Cyprus - includes 10% markup)
+// BESS Parameters (Linyang System Defaults via Lighthief Cyprus)
+// BESS EPC Markup: +17.4% on installed cost
+// See docs/internal/solarpark-epc.md for detailed breakdown
 export const BESS_DEFAULTS = {
-  // Linyang specifications
-  roundTripEfficiency: 0.8839,    // 88.39% RTE
-  warrantyYears: 15,              // Standard warranty
-  cycleLife: 6000,                // Cycles at 80% DoD
-  containerCapacity: 5.015,       // MWh per 20HC container
+  // Linyang specifications (from docs/linyang.md)
+  roundTripEfficiency: 0.878,     // 87.8% system RTE (AC-AC)
+  warrantyYearsBase: 5,           // Base OEM warranty (Linyang)
+  warrantyYearsWithLTSA: 15,      // Extended warranty with LTSA (Years 6-15 paid)
+  cycleLife: 6000,                // Cycles at 100% DoD @ 80% SOH
+  cycleLifeReducedDoD: 8000,      // Cycles at 90% DoD @ 70% SOH
+  containerCapacity: 5.015,       // MWh per 20HC container (actual rated)
   
-  // Pricing tiers (€/MWh installed, includes 10% Lighthief markup)
+  // Client pricing tiers (€/MWh, includes 17.4% markup on installed cost)
+  // Self-cost → Client: multiply by 1.174
   pricing: {
-    small: { minMW: 1, maxMW: 2, costPerMWh: 170000 },      // €165-175k/MWh
-    medium: { minMW: 2.5, maxMW: 5, costPerMWh: 135000 },   // €125-145k/MWh
-    large: { minMW: 8, maxMW: 25, costPerMWh: 110000 },     // €100-115k/MWh
-    utility: { minMW: 25, maxMW: 100, costPerMWh: 105000 }, // €100-110k/MWh
+    small: { minMW: 1, maxMW: 2, costPerMWh: 169000 },      // 4 MWh: €168,584/MWh client
+    medium: { minMW: 2.5, maxMW: 5, costPerMWh: 124000 },   // 10 MWh: €124,122/MWh client
+    large: { minMW: 8, maxMW: 25, costPerMWh: 113000 },     // 20 MWh: €112,656/MWh client
+    utility: { minMW: 25, maxMW: 100, costPerMWh: 110000 }, // 40+ MWh: €109,797/MWh client
+  },
+  
+  // EPC Markup structure
+  epcMarkup: {
+    bessMarkupPercent: 17.4,      // BESS: +17.4% on installed cost
+    pvMarkupPerMW: 100000,        // PV: +€100k/MW flat
   },
   
   // O&M costs (€/MWh/year based on LTSA)

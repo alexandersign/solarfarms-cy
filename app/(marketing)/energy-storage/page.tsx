@@ -183,14 +183,15 @@ export default function EnergyStoragePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button size="xl" className="bg-white text-blue-600 hover:bg-gray-100" asChild>
-                <Link href="#inquiry-form">
-                  <Battery className="w-5 h-5 mr-2" />
-                  Request BESS Proposal
+                <Link href="/energy-storage/calculator">
+                  <Zap className="w-5 h-5 mr-2" />
+                  BESS ROI Calculator
                 </Link>
               </Button>
               <Button size="xl" variant="outline" className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm" asChild>
-                <Link href="/projects/anarita-10mw">
-                  View BESS Case Study
+                <Link href="#inquiry-form">
+                  <Battery className="w-5 h-5 mr-2" />
+                  Request Proposal
                 </Link>
               </Button>
             </div>

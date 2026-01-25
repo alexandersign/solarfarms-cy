@@ -110,9 +110,9 @@ export const serviceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "1MW Solar Farm Investment",
-          "description": "Complete 1MW solar farm development and management"
+          "description": "Complete 1MW solar farm with BESS development and management"
         },
-        "price": "900000-1200000",
+        "price": "1750000-1850000",
         "priceCurrency": "EUR"
       },
       {
@@ -120,9 +120,9 @@ export const serviceSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "5MW Solar Farm Investment",
-          "description": "Complete 5MW solar farm development and management"
+          "description": "Complete 5MW solar farm with BESS development and management"
         },
-        "price": "4500000-6000000",
+        "price": "7200000-7500000",
         "priceCurrency": "EUR"
       },
       {
@@ -130,9 +130,9 @@ export const serviceSchema = {
         "itemOffered": {
           "@type": "Service", 
           "name": "10MW Solar Farm Investment",
-          "description": "Complete 10MW solar farm development and management"
+          "description": "Complete 10MW solar farm with BESS development and management"
         },
-        "price": "9000000-12000000",
+        "price": "13900000-14500000",
         "priceCurrency": "EUR"
       }
     ]

@@ -1212,7 +1212,7 @@ export function AdvancedProjectCalculator() {
                           />
                         </FormField>
 
-                        <FormField label="Round Trip Efficiency (%)" tooltip="Linyang RTE: 88.39% (editable for other brands)">
+                        <FormField label="Round Trip Efficiency (%)" tooltip="Linyang system RTE: 87.8% AC-AC (editable for other brands)">
                           <Input
                             type="number"
                             step="0.01"
