@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP - Concrete Base Construction | Cyprus BESS Portfolio 863.5 MWh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .logo-placeholder {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            letter-spacing: 3px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 26px;
+            margin: 15px 0;
+        }
+        
+        .rfp-number {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 20px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 16px;
+            margin: 20px 0 10px 0;
+        }
+        
+        .info-box {
+            background: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        .info-box strong {
+            color: #2c3e50;
+        }
+        
+        .warning-box {
+            background: #ffeaa7;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        .mandatory-box {
+            background: #ffe6e6;
+            border-left: 4px solid #e74c3c;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .highlight-row {
+            background: #e8f6f3 !important;
+            font-weight: 600;
+        }
+        
+        .total-row {
+            background: #2c3e50 !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .total-row td {
+            border-color: #2c3e50;
+        }
+        
+        .district-header {
+            background: #34495e !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .spec-table th {
+            background: #27ae60;
+        }
+        
+        .requirement-table th {
+            background: #e74c3c;
+        }
+        
+        .dimension-diagram {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .container-visual {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        .container-box {
+            border: 3px solid #2c3e50;
+            padding: 15px;
+            margin: 5px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .container-20hc {
+            width: 180px;
+            height: 80px;
+        }
+        
+        .container-40hc {
+            width: 360px;
+            height: 80px;
+        }
+        
+        .dimension-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        ul, ol {
+            margin: 10px 0 10px 25px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .contact-box {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+        
+        .contact-box h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .badge-mandatory {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .badge-dso {
+            background: #9b59b6;
+            color: white;
+        }
+        
+        .badge-linyang {
+            background: #3498db;
+            color: white;
+        }
+        
+        .price-input {
+            background: #fffde7;
+            border: 1px dashed #f39c12;
+            padding: 5px;
+            min-width: 80px;
+        }
+        
+        @media print {
+            .page {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-placeholder">LIGHTHIEF</div>
+            <h1>Request for Proposal</h1>
+            <div class="rfp-number">RFP-LCY-CIVIL-2026-001</div>
+            <p class="subtitle">Reinforced Concrete Base Construction for BESS Installations</p>
+        </div>
+        
+        <div class="info-box">
+            <strong>RFP Issue Date:</strong> 27 January 2026<br>
+            <strong>Proposal Due:</strong> 10 February 2026<br>
+            <strong>Project:</strong> Cyprus BESS Portfolio - 47 Parks (863.5 MWh)<br>
+            <strong>Total Equipment:</strong> 176 Battery Containers + 70 MV SKIDs
+        </div>
+        
+        <h2>1. Project Overview</h2>
+        <p>Lighthief Cyprus Ltd is seeking proposals from qualified civil contractors for the design and construction of reinforced concrete foundations for a portfolio of 47 Battery Energy Storage System (BESS) installations across Cyprus.</p>
+        
+        <div class="mandatory-box">
+            <strong>⚠️ REGULATORY REQUIREMENT (Κ.Δ.Π. 15/2026)</strong><br>
+            Per Cyprus Law §18.4 Item 24: <em>"Reinforced concrete foundation required"</em> (Βάση οπλισμένου σκυροδέματος) for all BESS installations within licensed RES stations.
+        </div>
+        
+        <h2>2. Scope of Work</h2>
+        
+        <h3>2.1 Works Required Per Site</h3>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Work Item</th>
+                <th>Description</th>
+                <th>Standard</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><strong>Site Survey</strong></td>
+                <td>Topographic survey, soil investigation</td>
+                <td>ETEK certified</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Excavation</strong></td>
+                <td>Excavation to formation level (min 300mm)</td>
+                <td>Per structural design</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>Sub-base</strong></td>
+                <td>Compacted aggregate base layer</td>
+                <td>130 kN/m² min bearing</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>Membrane</strong></td>
+                <td>DPM/Geotextile membrane</td>
+                <td>300gsm minimum</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>Reinforcement</strong></td>
+                <td>Steel mesh/rebar per structural design</td>
+                <td>A393 mesh or equivalent</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>Concrete Base</strong></td>
+                <td>Reinforced concrete slab</td>
+                <td>C30/37 minimum</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><strong>Container Anchors</strong></td>
+                <td>Anchor bolts/plates for containers</td>
+                <td>Per Linyang specs</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><strong>Cable Trenches</strong></td>
+                <td>Trenches for MV/LV/control cables</td>
+                <td>Per layout design</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><strong>Drainage</strong></td>
+                <td>Surface water drainage system</td>
+                <td>Per DSO §18.4</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><strong>Earthing Grid</strong></td>
+                <td>Foundation earthing conductors</td>
+                <td>&lt;1Ω impedance</td>
+            </tr>
+        </table>
+        
+        <h3>2.2 DSO Regulatory Requirements <span class="badge badge-dso">DSO</span></h3>
+        <table class="requirement-table">
+            <tr>
+                <th>Requirement</th>
+                <th>Specification</th>
+                <th>Reference</th>
+            </tr>
+            <tr>
+                <td><strong>PCS Nameplate ≤ PV Capacity</strong></td>
+                <td>Total PCS rated power must be ≤ RES licensed capacity. Software limiting NOT allowed.</td>
+                <td>Κ.Δ.Π. 15/2026 §4</td>
+            </tr>
+            <tr>
+                <td><strong>Reinforced concrete foundation</strong></td>
+                <td>MANDATORY for all BESS</td>
+                <td>Κ.Δ.Π. 15/2026 §24</td>
+            </tr>
+            <tr>
+                <td><strong>Minimal concrete paving</strong></td>
+                <td>Limit paved area to equipment footprints</td>
+                <td>Κ.Δ.Π. 15/2026 §8</td>
+            </tr>
+            <tr>
+                <td><strong>No topography alteration</strong></td>
+                <td>Maintain existing ground levels where possible</td>
+                <td>Κ.Δ.Π. 15/2026 §10</td>
+            </tr>
+            <tr>
+                <td><strong>Min 6m from boundaries</strong></td>
+                <td>All equipment ≥6m from plot boundaries</td>
+                <td>Κ.Δ.Π. 15/2026 §12</td>
+            </tr>
+            <tr>
+                <td><strong>6m fire access perimeter</strong></td>
+                <td>Clear access for fire vehicles around site</td>
+                <td>Κ.Δ.Π. 15/2026 §18</td>
+            </tr>
+            <tr>
+                <td><strong>Max height 3m</strong></td>
+                <td>Including supports, HVAC on roof</td>
+                <td>Κ.Δ.Π. 15/2026 §6</td>
+            </tr>
+        </table>
+        
+        <h2>3. Equipment Specifications</h2>
+        
+        <h3>3.1 Battery Container (20HC) <span class="badge badge-linyang">LINYANG</span></h3>
+        <table class="spec-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td><strong>Container Type</strong></td>
+                <td>20-foot High Cube (20HC)</td>
+                <td>ISO standard</td>
+            </tr>
+            <tr>
+                <td><strong>Dimensions (L × W × H)</strong></td>
+                <td><strong>6,058 × 2,438 × 2,896 mm</strong></td>
+                <td>External dimensions</td>
+            </tr>
+            <tr>
+                <td><strong>Weight (Loaded)</strong></td>
+                <td><strong>~41.5 tonnes</strong></td>
+                <td>Including batteries, cooling</td>
+            </tr>
+            <tr>
+                <td><strong>Foundation Footprint</strong></td>
+                <td><strong>~15 m²</strong> per container</td>
+                <td>6.1m × 2.5m minimum</td>
+            </tr>
+            <tr>
+                <td><strong>Anchor Points</strong></td>
+                <td>4× corner castings</td>
+                <td>ISO 1161 twist locks</td>
+            </tr>
+            <tr>
+                <td><strong>Ground Pressure</strong></td>
+                <td>~28 kN/m²</td>
+                <td>Distributed load</td>
+            </tr>
+        </table>
+        
+        <h3>3.2 MV SKID Container (40HC) <span class="badge badge-linyang">LINYANG</span></h3>
+        <table class="spec-table">
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td><strong>Container Type</strong></td>
+                <td>40-foot High Cube (40HC)</td>
+                <td>ISO standard</td>
+            </tr>
+            <tr>
+                <td><strong>Dimensions (L × W × H)</strong></td>
+                <td><strong>12,192 × 2,438 × 2,896 mm</strong></td>
+                <td>External dimensions</td>
+            </tr>
+            <tr>
+                <td><strong>Weight (Loaded)</strong></td>
+                <td><strong>≤38 tonnes</strong></td>
+                <td>Including PCS, transformer, switchgear</td>
+            </tr>
+            <tr>
+                <td><strong>Foundation Footprint</strong></td>
+                <td><strong>~30 m²</strong> per MV SKID</td>
+                <td>12.2m × 2.5m minimum</td>
+            </tr>
+            <tr>
+                <td><strong>Anchor Points</strong></td>
+                <td>8× corner castings</td>
+                <td>ISO 1161 twist locks</td>
+            </tr>
+            <tr>
+                <td><strong>Ground Pressure</strong></td>
+                <td>~13 kN/m²</td>
+                <td>Distributed load</td>
+            </tr>
+        </table>
+        
+        <div class="dimension-diagram">
+            <h3>Container Footprint Visualization</h3>
+            <div class="container-visual">
+                <div class="container-box container-20hc">
+                    BESS 20HC<br>
+                    ~41.5t
+                </div>
+                <div class="dimension-label">6,058 × 2,438 mm</div>
+            </div>
+            <div class="container-visual">
+                <div class="container-box container-40hc">
+                    MV SKID 40HC<br>
+                    ≤38t
+                </div>
+                <div class="dimension-label">12,192 × 2,438 mm</div>
+            </div>
+        </div>
+        
+        <h3>3.3 Foundation Design Requirements</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Requirement</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td><strong>Concrete Grade</strong></td>
+                <td>C30/37 minimum</td>
+                <td>Higher grades for coastal sites</td>
+            </tr>
+            <tr>
+                <td><strong>Slab Thickness</strong></td>
+                <td>200-300mm (per structural design)</td>
+                <td>Based on soil conditions</td>
+            </tr>
+            <tr>
+                <td><strong>Reinforcement</strong></td>
+                <td>A393 mesh or T12@200 both ways</td>
+                <td>Top and bottom mats</td>
+            </tr>
+            <tr>
+                <td><strong>Cover</strong></td>
+                <td>50mm minimum (75mm coastal)</td>
+                <td>Per EN 1992-1-1</td>
+            </tr>
+            <tr>
+                <td><strong>Bearing Capacity</strong></td>
+                <td>≥150 kN/m²</td>
+                <td>After sub-base preparation</td>
+            </tr>
+            <tr>
+                <td><strong>Container Spacing</strong></td>
+                <td>≥1m (≥3m at doors)</td>
+                <td>Access and maintenance</td>
+            </tr>
+            <tr>
+                <td><strong>Anchor Bolts</strong></td>
+                <td>M20 Grade 8.8 or equivalent</td>
+                <td>Cast-in or post-fixed</td>
+            </tr>
+            <tr>
+                <td><strong>Surface Finish</strong></td>
+                <td>Power floated, non-slip</td>
+                <td>Falls to drainage</td>
+            </tr>
+        </table>
+        
+        <h2>4. Complete Project List</h2>
+        <p>The following 47 parks require concrete base construction. Projects are grouped by district.</p>
+        
+        <div style="max-height: 500px; overflow-y: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Project ID</th>
+                        <th>District</th>
+                        <th>Power (MW)</th>
+                        <th>Energy (MWh)</th>
+                        <th>BESS Containers</th>
+                        <th>MV SKIDs</th>
+                        <th>Est. Foundation Area (m²)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="district-header">
+                        <td colspan="8">FAMAGUSTA DISTRICT - 7 Projects</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>CY-FAM-001</td>
+                        <td>Famagusta</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>105</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>CY-FAM-002</td>
+                        <td>Famagusta</td>
+                        <td>2.50</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>CY-FAM-003</td>
+                        <td>Famagusta</td>
+                        <td>6.50</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>CY-FAM-004</td>
+                        <td>Famagusta</td>
+                        <td>25.00</td>
+                        <td>100</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>360</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>CY-FAM-005</td>
+                        <td>Famagusta</td>
+                        <td>5.00</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>CY-FAM-006</td>
+                        <td>Famagusta</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>CY-FAM-007</td>
+                        <td>Famagusta</td>
+                        <td>1.00</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    
+                    <tr class="district-header">
+                        <td colspan="8">LARNACA DISTRICT - 2 Projects</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>CY-LAR-001</td>
+                        <td>Larnaca</td>
+                        <td>2.00</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>CY-LAR-002</td>
+                        <td>Larnaca</td>
+                        <td>1.00</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    
+                    <tr class="district-header">
+                        <td colspan="8">LIMASSOL DISTRICT - 5 Projects</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>CY-LIM-001</td>
+                        <td>Limassol</td>
+                        <td>8.00</td>
+                        <td>60</td>
+                        <td>12</td>
+                        <td>2</td>
+                        <td>240</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>CY-LIM-002</td>
+                        <td>Limassol</td>
+                        <td>1.51</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>CY-LIM-003</td>
+                        <td>Limassol</td>
+                        <td>3.29</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>CY-LIM-004</td>
+                        <td>Limassol</td>
+                        <td>7.70</td>
+                        <td>25</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>135</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>CY-LIM-005</td>
+                        <td>Limassol</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>105</td>
+                    </tr>
+                    
+                    <tr class="district-header">
+                        <td colspan="8">NICOSIA DISTRICT - 30 Projects</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>CY-NIC-001</td>
+                        <td>Nicosia</td>
+                        <td>7.00</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>CY-NIC-002</td>
+                        <td>Nicosia</td>
+                        <td>2.50</td>
+                        <td>7.5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>CY-NIC-003</td>
+                        <td>Nicosia</td>
+                        <td>7.50</td>
+                        <td>25</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>135</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>CY-NIC-004</td>
+                        <td>Nicosia</td>
+                        <td>6.00</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>CY-NIC-005</td>
+                        <td>Nicosia</td>
+                        <td>4.50</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>CY-NIC-006</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>CY-NIC-007</td>
+                        <td>Nicosia</td>
+                        <td>3.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>CY-NIC-008</td>
+                        <td>Nicosia</td>
+                        <td>3.50</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>CY-NIC-009</td>
+                        <td>Nicosia</td>
+                        <td>3.00</td>
+                        <td>12</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>CY-NIC-010</td>
+                        <td>Nicosia</td>
+                        <td>3.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>CY-NIC-011</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>105</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>CY-NIC-012</td>
+                        <td>Nicosia</td>
+                        <td>2.50</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>CY-NIC-013</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>CY-NIC-014</td>
+                        <td>Nicosia</td>
+                        <td>2.50</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td>CY-NIC-015</td>
+                        <td>Nicosia</td>
+                        <td>8.00</td>
+                        <td>35</td>
+                        <td>7</td>
+                        <td>2</td>
+                        <td>165</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>CY-NIC-016</td>
+                        <td>Nicosia</td>
+                        <td>4.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td>CY-NIC-017</td>
+                        <td>Nicosia</td>
+                        <td>4.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>32</td>
+                        <td>CY-NIC-018</td>
+                        <td>Nicosia</td>
+                        <td>7.00</td>
+                        <td>30</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td>150</td>
+                    </tr>
+                    <tr>
+                        <td>33</td>
+                        <td>CY-NIC-019</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>34</td>
+                        <td>CY-NIC-020</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>35</td>
+                        <td>CY-NIC-021</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>CY-NIC-022</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>37</td>
+                        <td>CY-NIC-023</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>CY-NIC-024</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>39</td>
+                        <td>CY-NIC-025</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>105</td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>CY-NIC-026</td>
+                        <td>Nicosia</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>41</td>
+                        <td>CY-NIC-027</td>
+                        <td>Nicosia</td>
+                        <td>1.00</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>CY-NIC-028</td>
+                        <td>Nicosia</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>43</td>
+                        <td>CY-NIC-029</td>
+                        <td>Nicosia</td>
+                        <td>1.00</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>CY-NIC-030</td>
+                        <td>Nicosia</td>
+                        <td>8.00</td>
+                        <td>24</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>135</td>
+                    </tr>
+                    
+                    <tr class="district-header">
+                        <td colspan="8">PAPHOS DISTRICT - 3 Projects</td>
+                    </tr>
+                    <tr>
+                        <td>45</td>
+                        <td>CY-PAP-001</td>
+                        <td>Paphos</td>
+                        <td>2.50</td>
+                        <td>7.5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>46</td>
+                        <td>CY-PAP-002</td>
+                        <td>Paphos</td>
+                        <td>2.50</td>
+                        <td>7.5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>47</td>
+                        <td>CY-PAP-003</td>
+                        <td>Paphos</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>45</td>
+                    </tr>
+                    
+                    <tr class="total-row">
+                        <td colspan="3"><strong>TOTAL - 47 PROJECTS</strong></td>
+                        <td><strong>248 MW</strong></td>
+                        <td><strong>863.5 MWh</strong></td>
+                        <td><strong>176</strong></td>
+                        <td><strong>70</strong></td>
+                        <td><strong>~4,740 m²</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h2>5. Portfolio Summary by District</h2>
+        <table>
+            <tr>
+                <th>District</th>
+                <th>Projects</th>
+                <th>BESS Containers</th>
+                <th>MV SKIDs</th>
+                <th>Est. Foundation Area</th>
+            </tr>
+            <tr>
+                <td>Famagusta</td>
+                <td>7</td>
+                <td>35</td>
+                <td>9</td>
+                <td>~795 m²</td>
+            </tr>
+            <tr>
+                <td>Larnaca</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>~90 m²</td>
+            </tr>
+            <tr>
+                <td>Limassol</td>
+                <td>5</td>
+                <td>23</td>
+                <td>8</td>
+                <td>~585 m²</td>
+            </tr>
+            <tr>
+                <td>Nicosia</td>
+                <td>30</td>
+                <td>111</td>
+                <td>48</td>
+                <td>~3,105 m²</td>
+            </tr>
+            <tr>
+                <td>Paphos</td>
+                <td>3</td>
+                <td>5</td>
+                <td>3</td>
+                <td>~165 m²</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>47</strong></td>
+                <td><strong>176</strong></td>
+                <td><strong>70</strong></td>
+                <td><strong>~4,740 m²</strong></td>
+            </tr>
+        </table>
+        
+        <h2>6. Standard Site Layouts</h2>
+        
+        <h3>6.1 Small Park (1-2 Containers)</h3>
+        <pre style="background: #f8f9fa; padding: 15px; font-family: monospace; font-size: 12px; overflow-x: auto;">
+┌─────────────────────────────────────────────────────────────┐
+│                     SITE BOUNDARY                            │
+│    ┌─────────────────────────────────────────────────────┐  │
+│    │                   6m SETBACK                        │  │
+│    │                                                     │  │
+│    │     ┌───────────────┐    ┌────────────────────────┐│  │
+│    │     │   BESS 20HC   │    │      MV SKID 40HC      ││  │
+│    │     │  6.1m × 2.4m  │    │     12.2m × 2.4m       ││  │
+│    │     │    ~42t       │    │        ~38t            ││  │
+│    │     └───────────────┘    └────────────────────────┘│  │
+│    │           ↑ 1m min ↑              ↑                │  │
+│    │     ┌───────────────┐             │                │  │
+│    │     │  CONCRETE     │             │                │  │
+│    │     │  FOUNDATION   │←────────────┘                │  │
+│    │     │   ~45 m²      │         Cable trench        │  │
+│    │     └───────────────┘                              │  │
+│    │                                                     │  │
+│    │                   6m FIRE ACCESS                   │  │
+│    └─────────────────────────────────────────────────────┘  │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+        Typical: 1-5 MWh | Foundation: ~45 m² | Site: ~400 m²
+        </pre>
+        
+        <h3>6.2 Medium Park (4-6 Containers)</h3>
+        <pre style="background: #f8f9fa; padding: 15px; font-family: monospace; font-size: 12px; overflow-x: auto;">
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           SITE BOUNDARY                                  │
+│    ┌─────────────────────────────────────────────────────────────────┐  │
+│    │                        6m SETBACK                               │  │
+│    │                                                                 │  │
+│    │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐               │  │
+│    │  │ BESS 1  │ │ BESS 2  │ │ BESS 3  │ │ BESS 4  │               │  │
+│    │  │  42t    │ │  42t    │ │  42t    │ │  42t    │               │  │
+│    │  └─────────┘ └─────────┘ └─────────┘ └─────────┘               │  │
+│    │       ↑ 1m ↑      ↑ 1m ↑      ↑ 1m ↑      ↑                    │  │
+│    │  ═══════════════════════════════════════════════               │  │
+│    │                    CONCRETE SLAB                                │  │
+│    │                      ~120 m²                                    │  │
+│    │  ═══════════════════════════════════════════════               │  │
+│    │       ↓                                        ↓                │  │
+│    │  ┌─────────────────────────┐  ┌─────────────────────────┐      │  │
+│    │  │      MV SKID 1          │  │      MV SKID 2          │      │  │
+│    │  │        38t              │  │        38t              │      │  │
+│    │  └─────────────────────────┘  └─────────────────────────┘      │  │
+│    │                                                                 │  │
+│    │                        6m FIRE ACCESS                           │  │
+│    └─────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+           Typical: 15-25 MWh | Foundation: ~135 m² | Site: ~800 m²
+        </pre>
+        
+        <h2>7. Pricing Template</h2>
+        
+        <div class="warning-box">
+            <strong>📋 CONTRACTOR TO COMPLETE</strong><br>
+            Please provide unit rates for each category. Portfolio pricing discounts should be reflected in rates.
+        </div>
+        
+        <h3>7.1 Foundation Works - Unit Rates</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Unit</th>
+                <th>Unit Rate (€)</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Site survey & setting out</td>
+                <td>per site</td>
+                <td class="price-input"></td>
+                <td>ETEK certified</td>
+            </tr>
+            <tr>
+                <td>Excavation to formation</td>
+                <td>m³</td>
+                <td class="price-input"></td>
+                <td>300mm depth</td>
+            </tr>
+            <tr>
+                <td>Disposal of excavated material</td>
+                <td>m³</td>
+                <td class="price-input"></td>
+                <td>Off-site</td>
+            </tr>
+            <tr>
+                <td>Compacted sub-base (Type 1)</td>
+                <td>m³</td>
+                <td class="price-input"></td>
+                <td>200mm thickness</td>
+            </tr>
+            <tr>
+                <td>DPM membrane</td>
+                <td>m²</td>
+                <td class="price-input"></td>
+                <td>300gsm</td>
+            </tr>
+            <tr>
+                <td>Reinforcement mesh (A393)</td>
+                <td>m²</td>
+                <td class="price-input"></td>
+                <td>Supply & fix</td>
+            </tr>
+            <tr>
+                <td>Concrete C30/37 (200mm slab)</td>
+                <td>m²</td>
+                <td class="price-input"></td>
+                <td>Including pour/finish</td>
+            </tr>
+            <tr>
+                <td>Container anchor assemblies</td>
+                <td>per container</td>
+                <td class="price-input"></td>
+                <td>4 anchors per 20HC, 8 per 40HC</td>
+            </tr>
+            <tr>
+                <td>Cable trench (inc. backfill)</td>
+                <td>lin. m</td>
+                <td class="price-input"></td>
+                <td>600×600mm</td>
+            </tr>
+            <tr>
+                <td>Perimeter drainage</td>
+                <td>lin. m</td>
+                <td class="price-input"></td>
+                <td>If required</td>
+            </tr>
+            <tr>
+                <td>Earthing conductor (in slab)</td>
+                <td>lin. m</td>
+                <td class="price-input"></td>
+                <td>50×5mm copper</td>
+            </tr>
+        </table>
+        
+        <h3>7.2 Preliminaries & General Items</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Unit</th>
+                <th>Rate (€)</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Site mobilization/demobilization</td>
+                <td>per site</td>
+                <td class="price-input"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Site supervision</td>
+                <td>per day</td>
+                <td class="price-input"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Temporary facilities</td>
+                <td>per site</td>
+                <td class="price-input"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Health & safety compliance</td>
+                <td>per site</td>
+                <td class="price-input"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Structural engineer certification</td>
+                <td>per site</td>
+                <td class="price-input"></td>
+                <td>ETEK stamped</td>
+            </tr>
+        </table>
+        
+        <h3>7.3 Lump Sum Pricing by Park Size</h3>
+        <table>
+            <tr>
+                <th>Park Size</th>
+                <th>Containers</th>
+                <th>Typical Area</th>
+                <th>Lump Sum Price (€)</th>
+            </tr>
+            <tr>
+                <td>Small (1-5 MWh)</td>
+                <td>1 BESS + 1 MV</td>
+                <td>~45 m²</td>
+                <td class="price-input"></td>
+            </tr>
+            <tr>
+                <td>Medium (10-20 MWh)</td>
+                <td>2-4 BESS + 1-2 MV</td>
+                <td>~90-120 m²</td>
+                <td class="price-input"></td>
+            </tr>
+            <tr>
+                <td>Large (25-40 MWh)</td>
+                <td>5-8 BESS + 2 MV</td>
+                <td>~150-180 m²</td>
+                <td class="price-input"></td>
+            </tr>
+            <tr>
+                <td>Extra Large (60-100 MWh)</td>
+                <td>12-20 BESS + 2 MV</td>
+                <td>~240-360 m²</td>
+                <td class="price-input"></td>
+            </tr>
+        </table>
+        
+        <h2>8. Deliverables Required</h2>
+        <ol>
+            <li><strong>Structural Design</strong> - Foundation design per site, stamped by ETEK engineer</li>
+            <li><strong>Method Statement</strong> - Detailed construction methodology</li>
+            <li><strong>Programme</strong> - Construction schedule per site</li>
+            <li><strong>Quality Plan</strong> - Inspection and test plan</li>
+            <li><strong>As-Built Drawings</strong> - Foundation as-built including anchor positions</li>
+            <li><strong>Test Certificates</strong> - Concrete cube tests, compaction tests</li>
+            <li><strong>Warranty</strong> - 10-year structural warranty</li>
+        </ol>
+        
+        <h2>9. Contractor Qualifications</h2>
+        <ul>
+            <li>ETEK registered civil contractor (Category A or B)</li>
+            <li>Minimum 5 years experience in industrial foundations</li>
+            <li>Demonstrated experience with container/prefab installations</li>
+            <li>Full insurance coverage (€2M minimum)</li>
+            <li>In-house or contracted structural engineering capability</li>
+            <li>Ability to work across all Cyprus districts</li>
+        </ul>
+        
+        <h2>10. Timeline</h2>
+        <table>
+            <tr>
+                <th>Milestone</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>RFP Issued</td>
+                <td>27 January 2026</td>
+            </tr>
+            <tr>
+                <td>Site Visits (if required)</td>
+                <td>30 Jan - 5 Feb 2026</td>
+            </tr>
+            <tr>
+                <td>Questions Due</td>
+                <td>5 February 2026</td>
+            </tr>
+            <tr>
+                <td><strong>Proposals Due</strong></td>
+                <td><strong>10 February 2026</strong></td>
+            </tr>
+            <tr>
+                <td>Contractor Selection</td>
+                <td>14 February 2026</td>
+            </tr>
+            <tr>
+                <td>First Site Construction Start</td>
+                <td>March 2026</td>
+            </tr>
+            <tr>
+                <td>All Sites Complete</td>
+                <td>Q4 2026</td>
+            </tr>
+        </table>
+        
+        <h2>11. Proposal Requirements</h2>
+        <p>Your proposal must include:</p>
+        <ol>
+            <li><strong>Company Profile</strong> - ETEK registration, experience, references</li>
+            <li><strong>Technical Approach</strong> - Design methodology, construction sequence</li>
+            <li><strong>Completed Pricing Template</strong> - All unit rates and lump sums</li>
+            <li><strong>Sample Foundation Design</strong> - For 5MW/20MWh park (4 BESS + 1 MV)</li>
+            <li><strong>Programme</strong> - Indicative timeline for different park sizes</li>
+            <li><strong>Resources</strong> - Available equipment and personnel</li>
+            <li><strong>Insurance Certificates</strong> - Current coverage</li>
+            <li><strong>Reference Projects</strong> - Minimum 3 similar projects</li>
+        </ol>
+        
+        <div class="contact-box">
+            <h3>📧 Contact Information</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong></p>
+            <p>Email: procurement@lighthief.cy</p>
+            <p>Reference: RFP-LCY-CIVIL-2026-001</p>
+            <p style="margin-top: 15px; font-size: 12px;">All proposals must be submitted electronically in PDF format.</p>
+        </div>
+        
+        <div class="footer">
+            <p><strong>CONFIDENTIAL</strong></p>
+            <p>RFP-LCY-CIVIL-2026-001 | Concrete Base Construction | Cyprus BESS Portfolio</p>
+            <p>Lighthief Cyprus Ltd | January 2026</p>
+            <p style="margin-top: 10px; font-size: 11px;">This document contains proprietary information. Distribution is limited to invited contractors.</p>
+        </div>
+    </div>
+</body>
+</html>

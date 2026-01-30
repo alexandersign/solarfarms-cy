@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP - Protection Testing & DSO Witnessing | Cyprus BESS Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .page { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 50px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 3px solid #2c3e50; padding-bottom: 25px; margin-bottom: 30px; }
+        .logo { font-size: 28px; font-weight: bold; color: #2c3e50; letter-spacing: 3px; }
+        h1 { color: #2c3e50; font-size: 24px; margin: 15px 0; }
+        .rfp-number { background: #e67e22; color: white; padding: 8px 20px; display: inline-block; font-weight: bold; font-size: 14px; border-radius: 3px; }
+        .subtitle { color: #7f8c8d; font-size: 16px; margin-top: 10px; }
+        h2 { color: #2c3e50; font-size: 18px; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid #e67e22; }
+        h3 { color: #34495e; font-size: 15px; margin: 20px 0 10px 0; }
+        .info-box { background: #ecf0f1; border-left: 4px solid #e67e22; padding: 15px 20px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        th { background: #2c3e50; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .total-row { background: #2c3e50 !important; color: white; font-weight: bold; }
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 80px; }
+        ul, ol { margin: 10px 0 10px 25px; }
+        li { margin: 5px 0; }
+        .contact-box { background: #2c3e50; color: white; padding: 20px; margin-top: 30px; border-radius: 5px; }
+        .contact-box h3 { color: #e67e22; margin-bottom: 10px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #7f8c8d; font-size: 12px; }
+        .test-table th { background: #e67e22; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo">LIGHTHIEF</div>
+            <h1>Request for Proposal</h1>
+            <div class="rfp-number">RFP-LCY-PROT-2026-001</div>
+            <p class="subtitle">Protection Relay Testing & DSO Witness Testing Services</p>
+        </div>
+        
+        <div class="info-box">
+            <strong>RFP Issue Date:</strong> 27 January 2026<br>
+            <strong>Proposal Due:</strong> 10 February 2026<br>
+            <strong>Project:</strong> Cyprus BESS Portfolio - 47 Parks (863.5 MWh)<br>
+            <strong>DSO:</strong> Electricity Authority of Cyprus (EAC)
+        </div>
+
+        <h2>1. Project Overview</h2>
+        <p>Lighthief Cyprus Ltd requires protection relay testing, commissioning, and DSO witness testing services for 47 BESS installations. All protection settings must comply with Cyprus DSO Technical Guide and EN 50549-2.</p>
+
+        <h2>2. Scope of Work</h2>
+        
+        <h3>2.1 Protection Relay Testing (Per Park)</h3>
+        <table class="test-table">
+            <tr><th>Test Type</th><th>Description</th><th>Standard</th></tr>
+            <tr><td>Secondary Injection</td><td>Verify relay operation with test currents</td><td>IEC 60255</td></tr>
+            <tr><td>Trip Time Verification</td><td>Confirm operate times per DSO settings</td><td>EN 50549-2</td></tr>
+            <tr><td>Pickup Level Test</td><td>Verify threshold settings</td><td>Per DSO spec</td></tr>
+            <tr><td>Directional Test</td><td>Confirm directional elements (if applicable)</td><td>IEC 60255</td></tr>
+            <tr><td>Communication Test</td><td>IEC 61850 / Modbus functionality</td><td>IEC 61850</td></tr>
+            <tr><td>End-to-End Test</td><td>Full protection chain verification</td><td>Site-specific</td></tr>
+        </table>
+
+        <h3>2.2 DSO Required Protection Settings</h3>
+        <table>
+            <tr><th>Protection</th><th>Setting</th><th>Trip Time</th></tr>
+            <tr><td>Undervoltage Stage 1 (U<)</td><td>0.9 Un</td><td>0.2s</td></tr>
+            <tr><td>Overvoltage Stage 1 (U>)</td><td>1.1 Un</td><td>0.2s</td></tr>
+            <tr><td>Underfrequency Stage 1 (f<)</td><td>47.0 Hz</td><td>0.2s</td></tr>
+            <tr><td>Overfrequency Stage 1 (f>)</td><td>52.0 Hz</td><td>0.2s</td></tr>
+            <tr><td>Loss of Mains (LoM)</td><td>Active detection</td><td>Per IEC 62116</td></tr>
+            <tr><td>ROCOF</td><td>Per DSO setting</td><td>Configurable</td></tr>
+        </table>
+
+        <h3>2.3 DSO Witness Testing</h3>
+        <table>
+            <tr><th>Activity</th><th>Description</th></tr>
+            <tr><td>Pre-witness Preparation</td><td>Documentation, test equipment calibration</td></tr>
+            <tr><td>DSO Notification</td><td>Schedule witness test with EAC</td></tr>
+            <tr><td>Witness Test Execution</td><td>Demonstrate protection operation to DSO</td></tr>
+            <tr><td>Re-test (if required)</td><td>Address any DSO observations</td></tr>
+            <tr><td>Test Report</td><td>Formal test report for DSO acceptance</td></tr>
+            <tr><td>Grid Connection Clearance</td><td>Obtain DSO approval for energization</td></tr>
+        </table>
+
+        <h3>2.4 Deliverables</h3>
+        <ul>
+            <li>Protection settings verification report</li>
+            <li>Secondary injection test certificates</li>
+            <li>Trip time graphs/oscillograms</li>
+            <li>DSO witness test report</li>
+            <li>Grid connection test certificate</li>
+            <li>As-tested settings record</li>
+        </ul>
+
+        <h2>3. Equipment Details</h2>
+        <table>
+            <tr><th>Equipment</th><th>Brand</th><th>Quantity</th></tr>
+            <tr><td>Protection Relays (in MV SKID)</td><td>ABB or Schneider</td><td>70 (per MV SKID)</td></tr>
+            <tr><td>PCS Protection</td><td>Kehua integrated</td><td>176 (per container)</td></tr>
+            <tr><td>RTU</td><td>TBD (Linyang supply)</td><td>47 (per park)</td></tr>
+        </table>
+
+        <h2>4. Portfolio Summary</h2>
+        <table>
+            <tr><th>District</th><th>Parks</th><th>MV SKIDs</th><th>Protection Points</th></tr>
+            <tr><td>Famagusta</td><td>7</td><td>9</td><td>9</td></tr>
+            <tr><td>Larnaca</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr><td>Limassol</td><td>5</td><td>8</td><td>8</td></tr>
+            <tr><td>Nicosia</td><td>30</td><td>48</td><td>48</td></tr>
+            <tr><td>Paphos</td><td>3</td><td>3</td><td>3</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>47</strong></td><td><strong>70</strong></td><td><strong>70</strong></td></tr>
+        </table>
+
+        <h2>5. Pricing Template</h2>
+        
+        <h3>5.1 Testing Services (Per MV SKID)</h3>
+        <table>
+            <tr><th>Service</th><th>Unit</th><th>Price (€)</th></tr>
+            <tr><td>Secondary Injection Testing</td><td>per relay</td><td class="price-input"></td></tr>
+            <tr><td>Trip Time Verification</td><td>per relay</td><td class="price-input"></td></tr>
+            <tr><td>Communication Testing</td><td>per SKID</td><td class="price-input"></td></tr>
+            <tr><td>End-to-End Testing</td><td>per SKID</td><td class="price-input"></td></tr>
+            <tr><td>Test Report Preparation</td><td>per SKID</td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.2 DSO Witness Services (Per Park)</h3>
+        <table>
+            <tr><th>Service</th><th>Unit</th><th>Price (€)</th></tr>
+            <tr><td>Pre-witness Preparation</td><td>per park</td><td class="price-input"></td></tr>
+            <tr><td>DSO Witness Test Day</td><td>per day</td><td class="price-input"></td></tr>
+            <tr><td>Re-test (if required)</td><td>per day</td><td class="price-input"></td></tr>
+            <tr><td>DSO Test Report</td><td>per park</td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.3 Lump Sum by Park Size</h3>
+        <table>
+            <tr><th>Park Size</th><th>MV SKIDs</th><th>Testing (€)</th><th>DSO Witness (€)</th><th>Total (€)</th></tr>
+            <tr><td>Small (1 MV SKID)</td><td>1</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Medium (2 MV SKIDs)</td><td>2</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr class="total-row"><td><strong>Portfolio Total</strong></td><td><strong>70</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h2>6. Contractor Qualifications</h2>
+        <ul>
+            <li>ETEK registered or equivalent EU certification</li>
+            <li>Experience with ABB and Schneider protection relays</li>
+            <li>IEC 61850 / IEC 60870-5-104 protocol knowledge</li>
+            <li>Previous DSO witness test experience in Cyprus</li>
+            <li>Calibrated test equipment (certificates required)</li>
+            <li>Professional indemnity insurance</li>
+        </ul>
+
+        <h2>7. Timeline</h2>
+        <table>
+            <tr><th>Milestone</th><th>Date</th></tr>
+            <tr><td>RFP Issued</td><td>27 January 2026</td></tr>
+            <tr><td>Questions Due</td><td>5 February 2026</td></tr>
+            <tr><td><strong>Proposals Due</strong></td><td><strong>10 February 2026</strong></td></tr>
+            <tr><td>Contractor Selection</td><td>14 February 2026</td></tr>
+            <tr><td>First Site Testing</td><td>Q2 2026</td></tr>
+        </table>
+
+        <div class="contact-box">
+            <h3>📧 Contact Information</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong></p>
+            <p>Email: procurement@lighthief.cy</p>
+            <p>Reference: RFP-LCY-PROT-2026-001</p>
+        </div>
+
+        <div class="footer">
+            <p>RFP-LCY-PROT-2026-001 | Protection Testing | Cyprus BESS Portfolio</p>
+            <p>Lighthief Cyprus Ltd | January 2026</p>
+        </div>
+    </div>
+</body>
+</html>

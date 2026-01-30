@@ -1,7 +1,7 @@
 # Internal Documentation Index
 
 > **CONFIDENTIAL - ADMIN ACCESS REQUIRED**
-> **Last Updated**: January 23, 2026
+> **Last Updated**: January 27, 2026
 
 ---
 
@@ -9,19 +9,48 @@
 
 | Document | Purpose | Status |
 |----------|---------|--------|
-| [Dino Requirements Tracker](./dino-requirements-tracker.md) | **Contract requirements from Dino - 8 gaps** | 🔴 Action Required |
+| [**Linyang Quotation Jan 2026**](./linyang-quotation-jan2026.md) | **LY202601271 - Updated CIF pricing** | ✅ **NEW** |
+| [**Client Pricing 13%**](./client-pricing-13-percent.md) | **All 47 parks @ 13% margin** | ✅ **NEW** |
+| [**PCS Capacity RFI**](./pcs-capacity-rfi-linyang-jan2026.html) | **🔴 URGENT - 10 parks over limit** | 🔴 **ACTION** |
+| [**Import Duty Model**](./import-duty-model.md) | **Weighted duty calc (0.9% vs 2.7%)** | ✅ **NEW** |
+
+### RFPs/RFQs Ready to Send
+
+| Document | Scope | Vendor Target |
+|----------|-------|---------------|
+| [Concrete Base RFP](./concrete-base-rfp-jan2026.html) | Civil works - 47 parks | TBD Cyprus contractor |
+| [SCADA/EMS RFP](./scada-ems-rfp-jan2026.html) | SCADA integration | Axol |
+| [LPS/SPD RFQ](./lightning-protection-rfq-dhen.md) | Lightning protection | DEHN (Artur Łasak) |
+| [Electrical Install RFP](./rfp-electrical-installation-jan2026.html) | MV/LV cabling & terminations | TBD |
+| [Cybersecurity RFP](./rfp-cybersecurity-nis2-jan2026.html) | NIS2 compliance | TBD |
+| [Insurance RFP](./rfp-insurance-car-ear-jan2026.html) | CAR/EAR coverage | TBD broker |
+| [Protection Testing RFP](./rfp-protection-testing-jan2026.html) | Relay testing & DSO witness | TBD |
+| [Remote Trip & UPS RFP](./rfp-remote-trip-ups-jan2026.html) | Trip system & auxiliary power | TBD |
+| [Earthing RFP](./rfp-earthing-grounding-jan2026.html) | Earth grid & grounding | TBD |
+| [Transport RFQ](./rfq-transport-asoulis-jan2026.html) | Heavy haulage - 246 containers | A. Soulis |
+| [Performance Guarantees RFI](./rfi-performance-guarantees-linyang-jan2026.html) | LDs, Bonds, Warranty confirmation | Linyang |
+
+### Client-Facing Documents
+
+| Document | Purpose | Status |
+|----------|---------|--------|
+| [**GROUP EPC Proposal (PDF)**](./client-proposal-group-epc-jan2026.html) | **Full turnkey pricing - 47 parks** | ✅ **FINAL REVIEW** |
+| [BESS Portfolio Proposal](./client-proposal-cyprus-bess-jan2026.html) | Interactive web proposal | ✅ Ready |
+| [Client FAQ - Guarantees & Bonds](./client-faq-guarantees-bonds-jan2026.html) | LDs, availability, warranty FAQ | ✅ Ready |
+| [**Final RFI Linyang**](./FINAL_RFI_LINYANG_JAN2026.md) | **Outstanding docs + scope clarification** | 🔴 Active |
+| [Dino Requirements Tracker](./dino-requirements-tracker.md) | Contract requirements from Dino - 8 gaps | 🔴 Action Required |
 | [Pricing Gap Analysis](./pricing-gap-analysis.md) | Group pricing vs our model | ⚠️ Under Review |
 | [Linyang RFI Tracker](./linyang-rfi-tracker.md) | DSO/TSO documentation requests to Linyang | 🔴 Active |
 | [Group RFI Tracker](./group-rfi-tracker.md) | Group questions & final offering checklist | 🟡 In Progress |
-| [Solar Park EPC](./solarpark-epc.md) | PV + BESS self-cost model | ✅ New |
-| [Solar Park Validation](./solarpark-epc-validation.md) | Cost assumption validation | ✅ New |
-| [Civil Works Estimate](./civil-works-estimate.md) | Ground prep cost estimates | ✅ New |
+| [Solar Park EPC](./solarpark-epc.md) | PV + BESS self-cost model | ✅ Complete |
+| [Solar Park Validation](./solarpark-epc-validation.md) | Cost assumption validation | ✅ Complete |
+| [Civil Works Estimate](./civil-works-estimate.md) | Ground prep cost estimates | ✅ Complete |
 | [Guarantee Comparison](./guarantee-comparison.md) | Competitor vs Lighthief guarantees | ✅ Complete |
 | [Pricing Verification](./pricing-verification.md) | EPC cost verification & tracking | ⚠️ Needs Update |
-| [Clients Index](../clients/_index.md) | Client portfolio overview | ✅ Complete |
+| [Clients Index](../clients/_index.md) | Client portfolio overview | ✅ Updated |
 | [Linyang Specs](../linyang.md) | Equipment specifications | ✅ Complete |
 | [Cyprus DSO](../CyprusDSO.md) | Grid connection requirements | ✅ Complete |
-| [Public FAQ](../public-faq.md) | **Chat agent knowledge base** | ✅ New |
+| [Public FAQ](../public-faq.md) | Chat agent knowledge base | ✅ Complete |
 
 ---
 

@@ -57,7 +57,7 @@
 | BESS Containers (ME series) | ✅ Included | 32× ME 4.179 MWh | Offer |
 | Kehua PCS (BCS1250K-**C**-HUD) | ✅ Included | 32 units, **C-series confirmed** | **Kamil (Jan 2026)** |
 | MV Transformer | ✅ Included | 4× 10MW oil-immersed | Offer |
-| **ABB MV Switchgear** | ✅ **INCLUDED** | In MV SKID | **Kamil (Jan 2026)** |
+| **MV Switchgear** | ✅ **INCLUDED** | ABB or Schneider (same cost) | **Kamil (Jan 2026)** |
 | **Training & Commissioning** | ✅ **INCLUDED** | "Training and launch included in price" | Offer |
 | Communication Protocols | ✅ Included | Modbus/IEC104/IEC61850 | Offer |
 | Fire Suppression | ✅ Included | Aerosol + gas detection | Offer |
@@ -127,6 +127,10 @@
 | Grid Forming PPC | **Unclear** | ⚠️ Optional add-on |
 | MV Switchgear & LV Control | **Unclear** | ⚠️ May be in MV Skid |
 | Auxiliary System & Comms | **Unclear** | ⚠️ Partial? |
+| **Auxiliary Transformer** | ✅ **LINYANG INCLUDED** | Schneider brand |
+| **RMU (Ring Main Unit)** | ✅ **LINYANG INCLUDED** | Schneider brand |
+
+> ⚠️ **DSO REQUIREMENT (Jan 2026)**: PCS nameplate capacity must be ≤ RES licensed MW. Software limiting NOT allowed. Each park requires correctly sized MV SKID configuration.
 | RTU + Protection Relay | Linyang/EPC | ❌ Not explicit |
 | Cables | EPC | ❌ No |
 | Delivery DDP | Freight | ❌ No (CIF only) |
@@ -184,7 +188,7 @@
 | 8 | RTU + Protection Relay | €39,600 | 1 | €39,600 | €1,980 |
 | 9 | Cables (min losses <0.5%) | €14,900 | 1 | €14,900 | €745 |
 | 10 | Delivery DDP | €47,700 | 1 | €47,700 | €2,385 |
-| 11 | Import duties (2.7%) | €50,312 | 1 | €50,312 | €2,516 |
+| 11 | Import duties (0.9% weighted) | €16,770 | 1 | €16,770 | €839 |
 | 12 | Installation incl. unloading | €29,300 | 1 | €29,300 | €1,465 |
 | 13 | Commissioning | €66,900 | 1 | €66,900 | €3,345 |
 | 14 | EMS System | €5,600 | 1 | €5,600 | €280 |
@@ -239,11 +243,15 @@
 | Item | Group Price | Our Price | Gap | Status |
 |------|-------------|-----------|-----|--------|
 | Delivery DDP | €47,700 | €14,160* | **-€33,540** | ⚠️ Check |
-| Import Duties (2.7%) | €50,312 | €47,000** | -€3,312 | ✅ Close |
-| **SUBTOTAL** | **€98,012** | €61,160 | **-€36,852** | ⚠️ **UNDERESTIMATED** |
+| Import Duties (0.9% weighted) | €50,312 | €15,697** | -€34,615 | 🟢 **LOWER** |
+| **SUBTOTAL** | **€98,012** | €29,857 | **-€68,155** | 🟢 **FAVORABLE** |
 
 *Our transport: 6 containers × €2,360 = €14,160 (Limassol inland only)
-**Our duty: €1,744,100 × 2.7% = €47,091
+**Our duty (CORRECTED): €1,744,100 × 0.9% = €15,697
+
+> **DUTY CORRECTION (Jan 2026):** Previous 2.7% flat rate was incorrect.
+> Weighted duty model: Batteries 0%, PCS 0%, MV Transformer 3.7%
+> Effective rate: **0.9% of CIF** (savings of ~€31,400 on 20MWh system)
 
 **Analysis:**
 - Group "Delivery DDP" likely includes:
@@ -388,12 +396,12 @@ RTU + Protection = Separate item (€39,600)
 > |-----------|--------|--------|
 > | 8× PCS units (BCS1250K-**C**-HUD) | ✅ **INCLUDED** | Kamil confirmed C-series |
 > | 10MW Oil Transformer | ✅ **INCLUDED** | Offer |
-> | **ABB MV Switchgear** | ✅ **INCLUDED** | **Kamil confirmed** |
+> | **MV Switchgear (ABB/Schneider)** | ✅ **INCLUDED** | **Kamil confirmed** |
 > | Power Plant Controller (PPC) | ❓ **Pending RFI** | - |
 > | Grid Forming Controller | ❓ **Pending RFI** | - |
 > | LV Control Cabinet | ❓ **Pending RFI** | - |
 > | Protection Relays | ❓ **Pending RFI** | - |
-> | RTU | ❓ **Pending RFI** | - |
+> | RTU | ✅ **INCLUDED** | Confirmed 27 Jan 2026 |
 > | Auxiliary Power Distribution | ❓ **Pending RFI** | - |
 
 ### REMAINING RFI ITEMS (To be included in next Linyang RFI)
@@ -404,7 +412,7 @@ RTU + Protection = Separate item (€39,600)
 | 2 | **Grid Forming Controller** | Is grid forming built-in or add-on? | +€40,000 (€2,000/MWh) |
 | 3 | **LV Control Cabinet** | Included in MV SKID or separate? | Part of €79,300 |
 | 4 | **Protection Relays** | In SKID or customer scope? | Part of RTU line |
-| 5 | **RTU** | Linyang supply or customer? | +€39,600 (€1,980/MWh) |
+| 5 | **RTU** | ✅ **CONFIRMED INCLUDED** (27 Jan 2026) | ✅ Included |
 | 6 | **Auxiliary System & Comms** | What exactly is included? | +€39,600 (€1,980/MWh) |
 | 7 | **Commissioning scope** | What does "training & launch" cover? | May reduce EPC scope |
 
@@ -457,7 +465,7 @@ Based on group analysis, propose updating our EPC adders:
 
 | Item | Current | Proposed | Change |
 |------|---------|----------|--------|
-| Import Duty (2.7%) | €47,000 | €47,000 | - |
+| Import Duty (0.9% weighted) | €15,697 | €15,697 | - |
 | Port & Customs | €8,000 | €15,000 | +€7,000 |
 | Inland Transport | €14,160 | €14,160 | - |
 | Mechanical Install | €32,500 | €29,300 | -€3,200 |
@@ -585,7 +593,7 @@ The Linyang commercial offer (198/A/KT/2025) clarifies several key points:
 | Grid Forming PPC | €40,000 | +€2,000/MWh (optional) |
 | MV Switchgear & LV Cabinet | €79,300 | +€3,965/MWh |
 | Auxiliary System & Comms | €39,600 | +€1,980/MWh |
-| RTU + Protection Relay | €39,600 | +€1,980/MWh |
+| ~~RTU + Protection Relay~~ | ~~€39,600~~ | ✅ **CONFIRMED INCLUDED** |
 | **TOTAL UNCLEAR** | **€277,800** | **+€13,890/MWh** |
 
 ### Revised Gap Assessment

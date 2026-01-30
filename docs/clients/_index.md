@@ -1,8 +1,9 @@
 # Cyprus BESS Client Portfolio
 
 > **CONFIDENTIAL - INTERNAL USE ONLY**
-> **Last Updated**: January 23, 2026
+> **Last Updated**: January 27, 2026
 > **Source**: Hybrid Storage - List of PV plants & owners (November 21, 2025)
+> **Pricing Source**: Linyang Quotation LY202601271 (27 Jan 2026) ✅ NEW
 
 ---
 
@@ -89,17 +90,19 @@
 | Client Price | €1,222,144 | €122.21 |
 | Non-Group Price | €1,368,801 | €136.88 |
 
-### Quotation Reference: LY202511281 (48 Projects - GROUP ORDER)
+### Quotation Reference: LY202601271 (47 Projects - GROUP ORDER) ✅ UPDATED 27 JAN 2026
 
-| Size Range | CIF €/kWh | Installed €/kWh | Client €/kWh | Non-Group €/kWh |
-|------------|-----------|-----------------|--------------|-----------------|
-| 100 MWh | €80.44 | €85.93 | €100.88 | €112.99 |
-| 40-60 MWh | €74.53 - €86.15 | €93.52 - €109.77 | €109.79 - €128.87 | €122.97 - €144.33 |
-| 20-35 MWh | €83.03 - €91.79 | €98.67 - €106.31 | €115.88 - €124.81 | €129.79 - €139.79 |
-| 10-15 MWh | €90.17 - €101.40 | €104.13 - €116.38 | €122.25 - €136.63 | €136.92 - €153.03 |
-| 4-8 MWh | €94.71 - €116.47 | €115.46 - €143.60 | €135.55 - €168.59 | €151.82 - €188.82 |
+| Size Range | CIF €/kWh | Est. Installed €/kWh | Client €/kWh | Non-Group €/kWh |
+|------------|-----------|----------------------|--------------|-----------------|
+| **100 MWh** | €87.54 | ~€91 | ~€108 | ~€121 |
+| **40-60 MWh** | €82.03 - €94.25 | ~€86 - €100 | ~€105 - €117 | ~€118 - €131 |
+| **20-35 MWh** | €90.77 - €100.62 | ~€96 - €107 | ~€115 - €125 | ~€129 - €140 |
+| **10-15 MWh** | €99.00 - €110.11 | ~€107 - €120 | ~€125 - €140 | ~€140 - €157 |
+| **4-8 MWh** | €104.22 - €129.44 | ~€115 - €145 | ~€135 - €175 | ~€151 - €196 |
 
-> ⚠️ **Note**: Installed costs are ESTIMATES - see [Pricing Verification](../internal/pricing-verification.md) for status
+> ⚠️ **Price Update:** Jan 2026 quotation shows ~4% increase vs Nov 2025
+> 
+> 📄 **Full Pricing:** See [Linyang Quotation Jan 2026](../internal/linyang-quotation-jan2026.md)
 > 
 > **LTSA Available**: 15-year O&M and warranty packages
 

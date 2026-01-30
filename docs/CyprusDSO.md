@@ -770,6 +770,8 @@ BESS installations within licensed RES (solar) stations are **exempt from buildi
 | 2 | **NO-GO ZONES** - Not within: Protected monuments, Controlled Areas, Archaeological Zones, Protected Trees, Airport Zone, Heliport areas, Military zones, Geological Zones 00/00Α | Απαγορευμένες ζώνες | ⚠️ Site verification |
 | 3 | BESS is auxiliary/supplementary to main RES installation | Βοηθητική χρήση | ✅ By design |
 | 4 | **BESS rated power ≤ RES rated power** | Ονομαστική ισχύς BESS ≤ ισχύς ΑΠΕ | ✅ Per project |
+
+> ⚠️ **CRITICAL (Confirmed Jan 2026)**: PCS **nameplate capacity** must be ≤ RES licensed capacity. **Software limiting is NOT allowed** - physical installed PCS rating must match or be lower than the park's licensed MW capacity.
 | 5 | Data center max power ≤ RES rated power | Μέγιστη ζήτηση ΚΔ ≤ ισχύς ΑΠΕ | N/A |
 | 6 | **Max height 3m** (including supports, roof HVAC) | Μέγιστο ύψος 3μ | ✅ 2.896m container |
 | 7 | Neutral/earth-tone colors (no bright colors or reflective materials) | Ουδέτερες γήινες αποχρώσεις | ⚠️ Specify in order |
