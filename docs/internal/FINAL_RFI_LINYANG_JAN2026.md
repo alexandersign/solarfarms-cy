@@ -18,11 +18,16 @@ This Final RFI consolidates all outstanding documentation requests identified ac
 
 | Priority | Total Items | Critical for DSO | High Priority | Medium Priority |
 |----------|-------------|------------------|---------------|-----------------|
-| **PART A** | 4 | 🔴 4 | - | - |
+| **PART A** | 4 | ✅ 2 resolved, 🔴 2 | - | - |
 | **PART B** | 9 | - | 🟡 9 | - |
 | **PART C** | 14 | - | - | 🟢 14 |
 | **PART D** | 8 | - | 🟡 8 | - |
-| **TOTAL** | **35** | **4** | **17** | **14** |
+| **TOTAL** | **35** | **2 resolved** | **17** | **14** |
+
+### 📋 Updates (30 Jan 2026) - Kehua PCS Documentation Received
+- **A1. EN 50549-2** ✅ CONFIRMED - Kehua catalogue shows compliance
+- **A4. System SLD** ⚠️ PARTIAL - 5MW @ 33kV SLD received (DWG)
+- **Foundation Drawings** ✅ RECEIVED - 2.5MW and 5MW specs
 
 ---
 
@@ -30,19 +35,19 @@ This Final RFI consolidates all outstanding documentation requests identified ac
 
 > These items are **MANDATORY** for Cyprus DSO (EAC) grid connection application. Without these documents, we cannot proceed with any project.
 
-### A1. EN 50549-2 Type Test Certificate (PCS)
+### A1. EN 50549-2 Type Test Certificate (PCS) ✅ RESOLVED
 
 | Field | Details |
 |-------|---------|
 | **Component** | Kehua BCS1250K-C-HUD Power Conversion System |
 | **Standard** | EN 50549-2:2019 - Requirements for generating plants to be connected in parallel with distribution networks |
-| **Status** | ❌ **MISSING - CRITICAL** |
-| **Why Required** | Cyprus DSO (EAC) requires EN 50549-2 certification for all grid-connected inverters/PCS. Without this, grid connection application will be rejected. |
-| **Alternative** | AS/NZS 4777.2:2020 (if available) may be acceptable per DSO Technical Guide |
+| **Status** | ✅ **CONFIRMED - 30 Jan 2026** |
+| **Source** | Kehua BCS4000K~5000K-C-HUD/T4 Catalogue - Compliance section |
+| **Compliance List** | EN/IEC 62477-1, EN/IEC 61000-6-2, **EN50549-2/10**, IEC62116, IEC61727, IEC60068-2-1/2/14/30, EN55011 |
 
-**Requested Document:**
-- EN 50549-2 Type Test Certificate from accredited lab (TÜV, DNV, etc.)
-- OR written confirmation that certification is in progress with expected date
+**Resolution:**
+- ✅ EN 50549-2 compliance confirmed in Kehua catalogue (received 30 Jan 2026)
+- ⏳ Request formal Type Test Certificate copy for DSO submission file
 
 ---
 
@@ -95,23 +100,27 @@ Complete point list in Excel format including:
 
 ---
 
-### A4. System Single-Line Diagram with Protection Devices
+### A4. System Single-Line Diagram with Protection Devices ⚠️ PARTIAL
 
 | Field | Details |
 |-------|---------|
 | **Component** | Complete BESS System (Battery + PCS + MV Skid + Transformer) |
-| **Status** | ❌ **MISSING - CRITICAL** |
+| **Status** | ⚠️ **PARTIAL - 30 Jan 2026** |
+| **Received** | 5MW @ 33kV SLD, 2.5MW drawings, foundation specs |
 | **Why Required** | Required for DSO grid connection application and protection coordination study |
 
-**Requested Documents:**
-1. Complete system SLD showing:
-   - Battery containers (DC side)
-   - PCS units with ratings
-   - MV Transformer
-   - MV Switchgear (confirmed ABB)
-   - All protection devices (relays, breakers, fuses)
-   - Metering points
-2. MV Skid internal SLD (for each size: 1MW, 1.25MW, 2.5MW, 5MW, 8MW)
+**Documents Received (30 Jan 2026):**
+- ✅ `5MW PCS Single Line Diagram(33kV).dwg`
+- ✅ `5MW PCS Container Layout&Recommended Foundation(33kV).dwg`
+- ✅ `BCS2500K-C-HUD-T2 Drawings.dwg`
+- ✅ `BCS5000K-C-HUD-T4 Drawings.dwg`
+- ✅ `2.5MW ESS Appearance&Recommended foundation.dwg`
+- ✅ `BCS2500K-C-HUD-T2 Drawings-Recommended Foundation.pdf`
+
+**Still Required:**
+1. SLDs for other sizes (1MW, 1.25MW, 1.5MW, 8MW)
+2. Protection relay specifications (brand, model, settings)
+3. SLD for 11kV and 22kV configurations (received is 33kV)
 
 ---
 

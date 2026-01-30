@@ -64,6 +64,20 @@ const DOCUMENT_CATEGORIES = {
       'solarpark-epc-validation.md',
     ],
   },
+  kehua: {
+    title: 'Kehua PCS Documentation',
+    icon: '🔋',
+    files: [
+      'kehua-pcs/README.md',
+    ],
+    externalFiles: [
+      { name: 'BCS2000K~2500K Catalogue (2-2.5MW)', file: 'kehua-pcs/BCS200_1.PDF' },
+      { name: 'BCS4000K~5000K Catalogue (4-5MW)', file: 'kehua-pcs/BCS4000K~5000K-C-HUD-T4 Catalogue-2.pdf' },
+      { name: '2.5MW Foundation Drawings', file: 'kehua-pcs/BCS2500K-C-HUD-T2 Drawings-Recommended Foundation.pdf' },
+      { name: '5MW SLD @ 33kV (DWG)', file: 'kehua-pcs/5MW PCS Single Line Diagram(33kV) .dwg' },
+      { name: '5MW Container Layout (DWG)', file: 'kehua-pcs/5MW PCS Container Layout&Recommended Foundation(33kV).dwg' },
+    ],
+  },
   tracking: {
     title: 'Project Tracking',
     icon: '📊',
