@@ -914,15 +914,15 @@ export function AdvancedProjectCalculator() {
         </div>
         <div>
           <h4>Business Development</h4>
-          <div>${COMPANY_DATA.contacts.businessDevelopment.name}</div>
-          <div>${COMPANY_DATA.contacts.businessDevelopment.phone}</div>
-          <div><a href="mailto:${COMPANY_DATA.contacts.businessDevelopment.email}">${COMPANY_DATA.contacts.businessDevelopment.email}</a></div>
+          <div>${COMPANY_DATA.contacts.cyprusDirector.name}</div>
+          <div>${COMPANY_DATA.contacts.cyprusDirector.phone}</div>
+          <div><a href="mailto:${COMPANY_DATA.contacts.cyprusDirector.email}">${COMPANY_DATA.contacts.cyprusDirector.email}</a></div>
         </div>
         <div>
           <h4>Investor Relations</h4>
-          <div>${COMPANY_DATA.contacts.investors.name}</div>
-          <div>${COMPANY_DATA.contacts.investors.phone}</div>
-          <div><a href="mailto:${COMPANY_DATA.contacts.investors.email}">${COMPANY_DATA.contacts.investors.email}</a></div>
+          <div>${COMPANY_DATA.contacts.ceo.name}</div>
+          <div>Investor Relations</div>
+          <div><a href="mailto:${COMPANY_DATA.contacts.ceo.email}">${COMPANY_DATA.contacts.ceo.email}</a></div>
         </div>
       </div>
       <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e5e7eb;">

@@ -10,7 +10,7 @@ interface WhatsAppButtonProps {
 }
 
 export function WhatsAppButton({ 
-  phoneNumber = COMPANY_DATA.contacts.businessDevelopment.phone.replace(/\s/g, '').replace('+', ''),
+  phoneNumber = COMPANY_DATA.contacts.cyprusDirector.phone?.replace(/\s/g, '').replace('+', '') || '35799164158',
   message = "Hi! I'm interested in Cyprus solar farm investment opportunities. Can you help me?"
 }: WhatsAppButtonProps) {
   const [isVisible, setIsVisible] = useState(false)

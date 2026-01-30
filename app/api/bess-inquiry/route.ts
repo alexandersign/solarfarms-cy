@@ -178,9 +178,9 @@ ${validatedData.message || 'None provided'}`,
       
       <p style="margin-top: 30px;">Best regards,</p>
       <p><strong>The Lighthief BESS Team</strong><br>
-      ${COMPANY_DATA.contacts.businessDevelopment.name}<br>
-      ${COMPANY_DATA.contacts.businessDevelopment.phone}<br>
-      ${COMPANY_DATA.contacts.businessDevelopment.email}</p>
+      ${COMPANY_DATA.contacts.cyprusDirector.name}<br>
+      ${COMPANY_DATA.contacts.cyprusDirector.phone}<br>
+      ${COMPANY_DATA.contacts.cyprusDirector.email}</p>
     </div>
     <div class="footer">
       <p>Lighthief Cyprus Ltd - Official Linyang Energy Storage Distributor</p>

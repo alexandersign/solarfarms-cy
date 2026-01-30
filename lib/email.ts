@@ -24,7 +24,7 @@ export async function sendEmail(options: SendEmailOptions) {
       to: options.to,
       subject: options.subject,
       html: options.html,
-      replyTo: options.replyTo || COMPANY_DATA.contacts.businessDevelopment.email,
+      replyTo: options.replyTo || COMPANY_DATA.contacts.cyprusDirector.email,
     })
     return { success: true }
   } catch (error) {
