@@ -396,7 +396,7 @@ with coverage valid for Cyprus and naming the Distributor as additional insured 
 | | |
 |---|---|
 | Name: | Alexander Papacosta |
-| Title: | Business Development Manager |
+| Title: | Cyprus Director |
 | Signature: | ________________________________ |
 | Date: | ________________________________ |
 

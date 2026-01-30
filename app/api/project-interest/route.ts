@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
                     
                     <p>Best regards,<br>
                     <strong>Alexander Papacosta</strong><br>
-                    Business Development Manager<br>
+                    Cyprus Director<br>
                     Lighthief Cyprus Ltd</p>
                 </div>
             </body>

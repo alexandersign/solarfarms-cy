@@ -416,7 +416,7 @@ SELLER: conoryang@linyang.com.cn; kamil@linyang.com; magdalena@linyang.com.cn; k
 BUYER:
 
 > *LIGHTHIEF COMMENT: Please insert Buyer notice address:*
-> *alex@lighthief.com; office@lighthief.com*
+> *alexander.papacosta@lighthief.com; office@lighthief.com*
 
 *LIGHTHIEF COMMENT: Section 15 otherwise accepted as drafted.*
 

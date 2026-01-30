@@ -496,7 +496,7 @@ Date: ________________________________
 Registered Office: Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol
 Company No. HE 477423 | TIN: 60187188Q
 Name: Alexander Papacosta 
-Title: Business Development Manager 
+Title: Cyprus Director 
 Signature: ___________________________ 
 Date: ________________________________
 

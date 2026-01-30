@@ -25,7 +25,7 @@ Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31
 
 **Primary Contact:**
 Alexander Papacosta
-Business Development Manager
+Cyprus Director
 
 ---
 
@@ -322,7 +322,7 @@ The following documents are available upon request:
 
 **Primary Contact:**
 Alexander Papacosta
-Business Development Manager
+Cyprus Director
 Lighthief Cyprus Ltd
 
 **Address:**

@@ -234,7 +234,7 @@ function getNewParkEmailTemplate(park: NewParkNotification): string {
                 <div style="background: #f0f9ff; border-radius: 8px; padding: 20px; margin: 20px 0;">
                     <p style="margin: 0; text-align: center;">
                         <strong>Contact Alexander Papacosta</strong><br>
-                        Business Development Manager<br>
+                        Cyprus Director<br>
                         📱 WhatsApp: +357 99 164 158<br>
                         📧 Email: lighthiefcyprus@gmail.com<br>
                         📅 <a href="https://calendly.com/lighthiefcyprus" style="color: #0ea5e9;">Schedule Video Call</a>

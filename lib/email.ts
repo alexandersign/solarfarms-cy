@@ -247,7 +247,7 @@ function getContactAutoresponderTemplate(data: ContactEmailData): string {
             
             <p>Best regards,<br>
             <strong>Alexander Papacosta</strong><br>
-            Business Development Manager<br>
+            Cyprus Director<br>
             Lighthief Cyprus Ltd</p>
         </div>
         

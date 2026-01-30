@@ -22,6 +22,10 @@ export function Footer() {
               Premium solar farm investments in Cyprus with 8-13% IRR. 
               Full lifecycle support from development to recycling.
             </p>
+            <div className="mt-3 pt-3 border-t border-gray-700">
+              <p className="text-xs text-gray-400">Powered by <strong className="text-solar-400">Lighthief</strong></p>
+              <p className="text-xs text-gray-500">100s MW managed across 11 countries</p>
+            </div>
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/lighthiefcyprus/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-solar-400 transition-colors" aria-label="Follow us on LinkedIn">
                 <Linkedin className="w-5 h-5" />

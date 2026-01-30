@@ -158,7 +158,7 @@ Currently showing 5-step process from consultation to O&M
 
 ### **Company Statistics**
 Currently claiming:
-- 1GW+ assets under management
+- 100s MW assets under management
 - 9 European offices
 - 150+ team members
 - €500M+ investments managed

@@ -317,7 +317,7 @@ export function generateLOIHTML(data: LOIData): string {
                 <p style="margin-bottom: 5px;"><strong>For Lighthief Cyprus Ltd:</strong></p>
                 <div class="signature-line"></div>
                 <p style="margin: 5px 0;">Name: Alexander Papacosta</p>
-                <p style="margin: 5px 0;">Title: Business Development Manager</p>
+                <p style="margin: 5px 0;">Title: Cyprus Director</p>
                 <p style="margin: 5px 0;">Date: __________________</p>
             </div>
         </div>

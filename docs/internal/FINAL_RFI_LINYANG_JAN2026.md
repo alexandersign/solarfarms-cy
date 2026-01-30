@@ -434,7 +434,7 @@ The following documents have been received and are on file:
 
 Please provide all documents to:
 
-**Email:** office@lighthief.com / alex@lighthief.com
+**Email:** office@lighthief.com / alexander.papacosta@lighthief.com
 **Reference:** RFI-LINYANG-FINAL-JAN2026
 **Format:** PDF (technical documents), Excel (SCADA point list, pricing confirmations)
 
@@ -450,8 +450,8 @@ Company No. HE 477423
 TIN: 60187188Q
 
 Alexander Papacosta
-Business Development Manager
-alex@lighthief.com
+Cyprus Director
+alexander.papacosta@lighthief.com
 
 ---
 

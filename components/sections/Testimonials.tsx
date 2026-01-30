@@ -57,7 +57,7 @@ const testimonials = [
 const trustSignals = [
   {
     icon: Shield,
-    title: "1GW+ Assets Managed",
+    title: "100s MW Assets Managed",
     description: "Across Cyprus solar portfolio"
   },
   {

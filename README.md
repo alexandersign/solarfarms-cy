@@ -156,7 +156,7 @@ solarfarms-cy/
 
 ### Lighthief Cyprus Benefits
 - **Global Network**: 9 European offices + international operations
-- **Market Leadership**: 1GW+ assets under management
+- **Market Leadership**: Hundreds of MW assets under management across 11 countries
 - **Local Expertise**: Cyprus headquarters, 300+ sunny days
 - **Full Lifecycle**: Development → Construction → O&M → Recycling
 - **Cost Leadership**: 15-20% lower than local competitors

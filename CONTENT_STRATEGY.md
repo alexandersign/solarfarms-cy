@@ -220,7 +220,7 @@ Content strategy for SolarFarms.cy targeting high-net-worth individuals, family 
 
 ### 4. WHY LIGHTHIEF CYPRUS
 **Global Network**: Part of Lighthief International with 9 European offices + operations in Ukraine, Kazakhstan, Gambia, Kenya
-**Market Leadership**: Fastest-growing solar O&M company in Europe with 1GW+ assets under management
+**Market Leadership**: Fastest-growing solar O&M company in Europe with hundreds of MW under management
 **EPC Excellence**: Multi-year construction experience from 50kW to utility-scale projects
 **Local Expertise**: Cyprus headquarters with 300+ sunny days, deep understanding of local market
 **Scientific Partnerships**: University collaborations (Częstochowa University of Technology) for R&D
@@ -262,7 +262,7 @@ Content strategy for SolarFarms.cy targeting high-net-worth individuals, family 
 #### 4.2 INTERNATIONAL PRESENCE & SCALE
 **European Operations**: 9 offices across major EU markets
 **Global Footprint**: Projects in Ukraine, Kazakhstan, Gambia, Kenya
-**Asset Management**: 1GW+ solar installations under active management
+**Asset Management**: Hundreds of MW solar installations under active management
 **Client Base**: Universities, government entities, corporations, private investors
 **Track Record**: Fastest-growing O&M company in European solar sector
 
