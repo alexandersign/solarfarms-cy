@@ -192,7 +192,7 @@ export default function OMServicesPage() {
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
             <Image
-              src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+              src="/images/solar-park-field-unsplash.jpg"
               alt="Solar farm operations and maintenance"
               fill
               className="object-cover opacity-10"

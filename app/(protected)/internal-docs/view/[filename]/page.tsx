@@ -68,7 +68,7 @@ export default async function ViewDocumentPage({ params }: PageProps) {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-gray-400 text-sm">{decodedFilename}</span>
-            <ExportPdfButton />
+            <ExportPdfButton filename={decodedFilename} />
           </div>
         </div>
       </header>

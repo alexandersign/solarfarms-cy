@@ -163,7 +163,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
             <Image
-              src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+              src="/images/solar-park-field-unsplash.jpg"
               alt="Comprehensive solar services"
               fill
               className="object-cover opacity-10"
@@ -464,8 +464,8 @@ export default function ServicesPage() {
             <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
               Schedule Consultation
             </Button>
-            <Button variant="outline-on-dark" size="lg">
-              Download Service Guide
+            <Button variant="outline-on-dark" size="lg" asChild>
+              <Link href="/contact">Request Service Guide</Link>
             </Button>
           </div>
         </div>

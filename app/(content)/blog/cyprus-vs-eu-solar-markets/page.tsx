@@ -141,7 +141,7 @@ export default function CyprusVsEUSolarMarketsArticle() {
             
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-12">
               <Image
-                src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+                src="/images/solar-park-field-unsplash.jpg"
                 alt="European solar market comparison"
                 width={800}
                 height={400}

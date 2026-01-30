@@ -267,11 +267,25 @@ export default function EnergyStoragePage() {
               <div className="relative">
                 <Card className="border-2 border-cyprus-200 bg-white shadow-xl">
                   <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyprus-600 rounded-xl flex items-center justify-center">
-                        <Battery className="w-8 h-8 text-white" />
+                    <div className="flex flex-col gap-4 mb-6">
+                      <div className="flex items-center justify-center gap-6 mb-2">
+                        <Image 
+                          src="/logo/lighthief-logo.png" 
+                          alt="Lighthief Logo" 
+                          width={120} 
+                          height={40}
+                          className="h-10 w-auto"
+                        />
+                        <span className="text-2xl text-gray-300">×</span>
+                        <Image 
+                          src="/logo/linyang_logo.jpg" 
+                          alt="Linyang Energy Logo" 
+                          width={120} 
+                          height={40}
+                          className="h-10 w-auto"
+                        />
                       </div>
-                      <div>
+                      <div className="text-center">
                         <h3 className="text-xl font-bold">Linyang Energy</h3>
                         <p className="text-gray-600">Battery Storage Systems</p>
                       </div>

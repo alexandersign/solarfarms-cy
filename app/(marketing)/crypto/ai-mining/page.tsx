@@ -128,7 +128,7 @@ export default function AiMiningPage() {
       <section className="relative section-padding bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
           <Image
-            src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+            src="/images/solar-park-field-unsplash.jpg"
             alt="Solar-powered AI data center"
             fill
             className="object-cover"

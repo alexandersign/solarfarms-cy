@@ -55,7 +55,7 @@ const teamMembers = [
     name: "Costas Hadjikyriacou",
     position: "Electrical Engineer",
     countries: ["CY"],
-    bio: "ETEK-licensed Electrical Engineer with extensive experience in photovoltaic systems design, installation, and O&M. Previously led the B2B Green Energy Solutions Department at Asbis Kypros and managed residential and commercial PV operations at Dracoudis Energy. Holds MEng in Electrical & Computer Engineering from Aristotle University of Thessaloniki and MSc in Energy Systems from International Hellenic University.",
+    bio: "ETEK-licensed Electrical Engineer with extensive experience in photovoltaic systems design, installation, and O&M. Background includes leading B2B green energy solutions and managing residential and commercial PV operations. Holds MEng in Electrical & Computer Engineering from Aristotle University of Thessaloniki and MSc in Energy Systems from International Hellenic University.",
     credentials: [
       "ETEK Licensed Engineer",
       "MEng Electrical & Computer Engineering",
@@ -556,7 +556,7 @@ export default function AboutPage() {
               </Button>
             </Link>
             <Link href="/energy-storage">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+              <Button variant="outline-on-dark" size="lg">
                 Explore BESS Solutions
               </Button>
             </Link>

@@ -116,7 +116,7 @@ export default function BlogPage() {
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-purple-200">
               <div className="relative overflow-hidden rounded-t-lg">
                 <Image
-                  src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+                  src="/images/solar-park-field-unsplash.jpg"
                   alt="AI GPU Mining with Solar Energy"
                   width={400}
                   height={250}
@@ -223,7 +223,7 @@ export default function BlogPage() {
             <Card className="group hover:shadow-xl transition-all duration-300">
               <div className="relative overflow-hidden rounded-t-lg">
                 <Image
-                  src="/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+                  src="/images/solar-park-field-unsplash.jpg"
                   alt="Importance of O&M for solar farms"
                   width={400}
                   height={250}
