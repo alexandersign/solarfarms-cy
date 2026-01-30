@@ -160,7 +160,7 @@ const bessOmPricing = [
 
 const statistics = [
   { value: "99.2%", label: "Average Uptime" },
-  { value: "1GW+", label: "Assets Under Management" },
+  { value: "100s MW", label: "Assets Under Management" },
   { value: "<4hrs", label: "Critical Response Time" },
   { value: "15+", label: "Years Experience" }
 ]

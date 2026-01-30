@@ -91,7 +91,7 @@ export default function HomePage() {
                   <div className="text-sm text-gray-600">Years Payback</div>
                 </div>
                 <div className="text-center lg:text-left">
-                  <div className="text-3xl font-bold gradient-text">1GW+</div>
+                  <div className="text-3xl font-bold gradient-text">100s MW</div>
                   <div className="text-sm text-gray-600">Assets Managed</div>
                 </div>
               </div>

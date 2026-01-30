@@ -1,97 +1,163 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { MapPin, Users, Award, Globe, TrendingUp, Shield } from 'lucide-react'
+import { MapPin, Users, Award, Globe, TrendingUp, Shield, Zap, Building2, Leaf, Factory } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'About Lighthief Cyprus | Leading Solar Investment Company',
-  description: 'Learn about Lighthief Cyprus, the fastest-growing solar O&M company in Europe with 1GW+ assets under management. Expert solar farm development and investment services.',
+  title: 'About Lighthief | European Renewable Energy O&M Operator',
+  description: 'Lighthief manages hundreds of megawatts of solar, wind, and biogas installations across 11 countries. NATO-certified provider with comprehensive EPC and O&M services.',
   keywords: [
-    'Lighthief Cyprus',
-    'solar investment company',
-    'Cyprus solar development',
-    'renewable energy experts',
+    'Lighthief',
+    'renewable energy operator',
+    'solar O&M Europe',
+    'BESS solutions',
+    'NATO certified',
     'solar farm management',
+    'Cyprus solar investment',
   ],
 }
 
 const teamMembers = [
   {
-    name: "Vladimiros Taliadoros",
-    position: "Director",
-    bio: "Vladimiros serves as Director of Lighthief Cyprus Ltd, overseeing strategic operations and business development. He leads the company's expansion in the Cyprus market and manages key investor relationships for large-scale solar farm projects.",
+    name: "Dr. Arkadius Sybaris",
+    position: "Founder & CEO",
+    countries: ["PL", "UK", "KZ", "UZ", "UA", "RO"],
+    bio: "Dr. Arkadius founded Lighthief nearly a decade ago and has been instrumental in renewable energy for over 10 years. He focuses on investor relations and new market development, overseeing Eurasian expansion across Kazakhstan, Uzbekistan, and Kyrgyzstan, as well as operations in Ukraine and Romania. As a private investor, he holds substantial renewable energy assets: over 250 MW in photovoltaic farms, 60 MW in wind energy, and 4 MW in biogas installations.",
     credentials: [
-      "Director, Lighthief Cyprus Ltd (HE 477423)",
-      "Strategic Operations Leadership",
-      "Cyprus Market Development",
-      "International Solar Project Management"
+      "Founder & CEO, Lighthief Group",
+      "250+ MW PV, 60 MW Wind, 4 MW Biogas",
+      "Biomethane LTD - Biogas Division",
+      "Future Business Strategy Architect"
     ],
-    contact: {
-      email: "office@lighthief.com",
-      phone: "+357 77 77 00 50"
-    },
+    email: "a.sybaris@lighthief.com",
+    linkedin: true,
     image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
   },
   {
-    name: "Kostas Alexander Papakosta",
-    position: "Company Secretary & Business Development",
-    bio: "Kostas serves as Company Secretary and leads business development initiatives for Lighthief Cyprus. He specializes in investor relations, project structuring, and guiding clients through the complete solar investment process from consultation to operational projects.",
+    name: "Alexander Papacosta",
+    position: "Cyprus Director",
+    countries: ["CY", "GR"],
+    bio: "Alexander leads our rapidly expanding Cyprus operations, specializing in off-grid energy systems and the innovative integration of renewable energy with cryptocurrency mining and AI infrastructure. He manages investor relations for photovoltaic farm development across Cyprus and Greece, overseeing strategic Joint Ventures including our partnership with 7Sun, one of Europe's major renewable energy wholesalers.",
     credentials: [
-      "Company Secretary, Lighthief Cyprus Ltd",
-      "Business Development Manager",
-      "Solar Investment Specialist",
-      "Cyprus Regulatory Expert"
+      "Cyprus & Greece Market Lead",
+      "Off-Grid & BESS Specialist",
+      "7Sun JV Partnership",
+      "Crypto & AI Infrastructure Integration"
     ],
-    contact: {
-      email: "alexander.papacosta@lighthief.com",
-      phone: "+357 99 164 158"
-    },
-    image: "/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
+    email: "alexander.papacosta@lighthief.com",
+    linkedin: true,
+    image: "/images/solar-farm-aerial-unsplash.jpg"
   },
   {
-    name: "Akradiusz Sybaris",
-    position: "Investor Relations & Partnership Director",
-    bio: "Akradiusz leads investor relations and partnership development for Lighthief Cyprus. He specializes in working with high-net-worth individuals, family offices, and institutional investors to structure optimal solar investment solutions and large-scale renewable energy partnerships.",
+    name: "Costas Hadjikyriacou",
+    position: "Electrical Engineer",
+    countries: ["CY"],
+    bio: "ETEK-licensed Electrical Engineer with extensive experience in photovoltaic systems design, installation, and O&M. Previously led the B2B Green Energy Solutions Department at Asbis Kypros and managed residential and commercial PV operations at Dracoudis Energy. Holds MEng in Electrical & Computer Engineering from Aristotle University of Thessaloniki and MSc in Energy Systems from International Hellenic University.",
     credentials: [
-      "Investor Relations Director, Lighthief Cyprus",
-      "Institutional Investment Specialist",
-      "Cyprus Investment Expert",
-      "Renewable Energy Finance Professional",
-      "Partnership Structuring Specialist"
+      "ETEK Licensed Engineer",
+      "MEng Electrical & Computer Engineering",
+      "MSc Energy Systems - Energy Management",
+      "Certified PV Installer (Cyprus)"
     ],
-    contact: {
-      email: "a.sybaris@lighthief.com",
-      phone: "+357 95 152 788"
-    },
-    image: "/images/solar-panels-on-bright-blue-sky-background-2024-12-16-05-51-23-utc.jpg"
-  },
-  {
-    name: "Technical Operations Team",
-    position: "Engineering & Project Management",
-    bio: "Our technical team oversees all aspects of solar farm development and operations. From initial site assessment to ongoing maintenance, we ensure optimal performance and maximum returns for every investment.",
-    credentials: [
-      "Solar Engineering Specialists",
-      "Project Management Professionals",
-      "Grid Integration Experts",
-      "Performance Optimization"
-    ],
-    contact: {
-      email: "office@lighthief.com",
-      phone: "+357 77 77 00 50"
-    },
+    email: "costas@lighthief.com",
+    linkedin: true,
     image: "/images/1690376781153.jpg"
+  },
+  {
+    name: "Maciej Krzyżanowski",
+    position: "Poland Director",
+    countries: ["PL"],
+    bio: "Maciej brings years of renewable energy experience from leading OZE companies. For the past four years, he has architected the Polish operation's strategy and explosive growth. Under his leadership, Lighthief Poland developed the state-of-the-art Częstochowa headquarters—a facility combining 1,000 m² of office space, 3,500 m² of warehouse capacity, and a 23-hectare research center with integrated PV farms, biogas plant, and BESS systems.",
+    credentials: [
+      "Poland Operations Director",
+      "Częstochowa HQ Development Lead",
+      "Solar EPC & BESS Division",
+      "European O&M Expansion"
+    ],
+    email: "m.krzyzanowski@lighthief.com",
+    linkedin: true,
+    image: "/images/solar-park-field-unsplash.jpg"
+  },
+  {
+    name: "Maurizio Ganis",
+    position: "Italy Director",
+    countries: ["IT"],
+    bio: "Maurizio brings elite-level expertise from decades of operating at the highest echelons of European, American, and Asian investment funds. His career spans Renewable Energy, Oil & Gas, and Real Estate sectors, where he has held senior executive positions including Chairman, CEO, and Commercial Director. His deep relationships with institutional investors and understanding of structured finance position Lighthief Italy for aggressive growth.",
+    credentials: [
+      "Italy Market Director",
+      "Institutional Investment Expert",
+      "Structured Finance Specialist",
+      "Utility-Scale Project Execution"
+    ],
+    email: "m.ganis@lighthief.com",
+    linkedin: true,
+    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+  },
+  {
+    name: "Leon Volkerink",
+    position: "Director & Chief Compliance Officer",
+    countries: ["NL", "DE", "CY"],
+    bio: "Leon oversees our Dutch market and plays a key role in German operations while serving as Chief Compliance Officer for the entire Lighthief Group. He ensures transaction security, manages KYC protocols, and establishes procedural frameworks that protect operations across 11 countries and maintain NATO certification standards. A Dutch national who has lived in Cyprus for over 15 years, Leon bridges Northern and Mediterranean European business cultures seamlessly.",
+    credentials: [
+      "Chief Compliance Officer",
+      "Netherlands & Germany Operations",
+      "NATO Certification Compliance",
+      "KYC & Transaction Security"
+    ],
+    email: "leon.volkerink@lighthief.com",
+    linkedin: true,
+    image: "/images/solar-farm-aerial-unsplash.jpg"
   }
 ]
 
 const companyStats = [
-  { icon: Globe, label: "International Presence", value: "Global", description: "Cyprus headquarters with international reach" },
-  { icon: TrendingUp, label: "Business Evolution", value: "2017-2025", description: "From recycling to full EPC services" },
-  { icon: Users, label: "Service Range", value: "Full Spectrum", description: "Residential to large-scale solar farms" },
-  { icon: Award, label: "Years Experience", value: "8+", description: "Since 2017 founding" },
-  { icon: MapPin, label: "Cyprus Focus", value: "300+", description: "Sunny days annually" },
-  { icon: Shield, label: "Service Quality", value: "Certified", description: "Specialist team with ongoing support" }
+  { icon: Globe, label: "Countries", value: "11", description: "Active operations across Europe and Asia" },
+  { icon: Zap, label: "Assets Managed", value: "100s MW", description: "Solar, wind, and biogas installations" },
+  { icon: Users, label: "Team Size", value: "150+", description: "Renewable energy professionals" },
+  { icon: Award, label: "Experience", value: "10+ Years", description: "In renewable energy sector" },
+  { icon: Shield, label: "Certification", value: "NATO", description: "Certified service provider" },
+  { icon: Factory, label: "R&D Center", value: "23 ha", description: "Innovation hub in Poland" }
+]
+
+const officeLocations = [
+  { city: "Częstochowa", country: "Poland", flag: "🇵🇱", status: "HQ", description: "European headquarters, R&D center" },
+  { city: "Limassol", country: "Cyprus", flag: "🇨🇾", status: "Active", description: "Mediterranean hub" },
+  { city: "Trieste", country: "Italy", flag: "🇮🇹", status: "Active", description: "Italian operations" },
+  { city: "Salerno", country: "Italy", flag: "🇮🇹", status: "Active", description: "Southern Italy" },
+  { city: "Malaga", country: "Spain", flag: "🇪🇸", status: "Active", description: "Spanish market" },
+  { city: "Hannover", country: "Germany", flag: "🇩🇪", status: "Active", description: "German operations" },
+  { city: "Utrecht", country: "Netherlands", flag: "🇳🇱", status: "Active", description: "Dutch market" },
+  { city: "Athens", country: "Greece", flag: "🇬🇷", status: "Active", description: "Greek expansion" },
+  { city: "Astana", country: "Kazakhstan", flag: "🇰🇿", status: "Active", description: "Central Asia hub" },
+  { city: "Tashkent", country: "Uzbekistan", flag: "🇺🇿", status: "Active", description: "Uzbek operations" },
+  { city: "Bucharest", country: "Romania", flag: "🇷🇴", status: "2026", description: "Planned expansion" },
+  { city: "Prague", country: "Czech Republic", flag: "🇨🇿", status: "2026", description: "Planned expansion" },
+]
+
+const services = [
+  {
+    icon: Zap,
+    title: "Solar EPC",
+    description: "Turnkey solar projects from concept to commissioning across Europe. Technical design, equipment procurement, construction management, and grid connection."
+  },
+  {
+    icon: Building2,
+    title: "Solar & Wind O&M",
+    description: "24/7 monitoring from four European control centers, preventive maintenance, rapid emergency response, thermal imaging, and performance optimization."
+  },
+  {
+    icon: Factory,
+    title: "BESS Solutions",
+    description: "Comprehensive battery energy storage from system design to ongoing monitoring. Large-scale commercial, residential, and SMB solutions."
+  },
+  {
+    icon: Leaf,
+    title: "Repowering & Recycling",
+    description: "Extend installation lifecycles through strategic repowering. Complete physical recycling capabilities at our Polish facility for PV and wind assets."
+  }
 ]
 
 export default function AboutPage() {
@@ -103,7 +169,7 @@ export default function AboutPage() {
           <div className="relative w-full h-full">
             <Image
               src="/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
-              alt="Lighthief Cyprus solar installations"
+              alt="Lighthief solar installations"
               fill
               className="object-cover opacity-10"
             />
@@ -112,25 +178,30 @@ export default function AboutPage() {
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            <Badge variant="solar" className="mb-4">NATO Certified Provider</Badge>
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
               About
               <span className="block gradient-text">
-                Lighthief Cyprus
+                Lighthief
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-              Europe's fastest-growing solar O&M company with 1GW+ assets under management. 
-              We deliver premium solar farm investments with guaranteed 15-20% ROI.
+              European-Asian renewable energy O&M operator managing hundreds of megawatts 
+              of solar, wind, and biogas installations across 11 countries.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button variant="gradient" size="lg">
-                View Our Projects
-              </Button>
-              <Button variant="outline" size="lg">
-                Download Company Profile
-              </Button>
+              <Link href="/projects">
+                <Button variant="gradient" size="lg">
+                  View Our Projects
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" size="lg">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -139,15 +210,6 @@ export default function AboutPage() {
       {/* Company Stats */}
       <section className="section-padding">
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Leading Solar Investment Platform
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Trusted by investors across Europe for delivering consistent returns and exceptional service
-            </p>
-          </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {companyStats.map((stat, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
@@ -167,7 +229,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story */}
+      {/* About Us Story */}
       <section className="section-padding bg-gray-50">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -177,23 +239,23 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Lighthief's journey began in 2017 when founders Darius and Arkadius identified a critical 
-                  need for sustainable solutions in the renewable energy sector, particularly concerning 
-                  the recycling of used solar panels. This innovative approach to end-of-life solar 
-                  panel management laid the foundation for what would become a comprehensive energy solutions company.
+                  Founded nearly a decade ago, Lighthief has evolved from a small Polish-British company 
+                  into a rapidly growing European-Asian renewable energy O&M operator. Today, we manage 
+                  hundreds of megawatts of solar, wind, and biogas installations across 11 countries, 
+                  providing comprehensive EPC and O&M services throughout the entire lifecycle of 
+                  renewable energy projects.
                 </p>
                 <p>
-                  From our initial focus on solar panel recycling, we strategically expanded into operations 
-                  and maintenance (O&M) services, recognizing the growing need for reliable servicing and 
-                  maintenance in the rapidly growing solar market. This natural evolution led us to become 
-                  a full-service Engineering, Procurement, and Construction (EPC) contractor, offering 
-                  complete project lifecycle management.
+                  Our team of over 150 renewable energy professionals combines field engineers, technical 
+                  specialists, project managers, and monitoring experts—all united by hands-on experience 
+                  and commitment to operational excellence. Led by Founder Dr. Arkadius Sybaris, our 
+                  multinational workforce speaks the language of local markets while maintaining unified 
+                  quality standards.
                 </p>
                 <p>
-                  Today, Lighthief Cyprus Ltd (HE 477423) operates from our Limassol headquarters, serving 
-                  as the central hub for our international operations and strategic decision-making. With 
-                  Cyprus's 300+ sunny days annually and supportive regulatory environment, we deliver 
-                  comprehensive solar solutions from residential installations to large-scale solar farms.
+                  Our strength lies in our people: engineers who've weathered countless installations, 
+                  technicians who know every panel and inverter intimately, and managers who understand 
+                  that renewable energy service is ultimately about reliability, response time, and results.
                 </p>
               </div>
             </div>
@@ -202,7 +264,7 @@ export default function AboutPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/1690376781153.jpg"
-                  alt="Lighthief Cyprus headquarters and solar installations"
+                  alt="Lighthief solar installations"
                   width={600}
                   height={400}
                   className="w-full h-auto"
@@ -212,8 +274,8 @@ export default function AboutPage() {
               
               <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-6 border border-gray-100">
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text">€500M+</div>
-                  <div className="text-xs text-gray-600">Investments Managed</div>
+                  <div className="text-2xl font-bold gradient-text">11</div>
+                  <div className="text-xs text-gray-600">Countries</div>
                 </div>
               </div>
             </div>
@@ -221,89 +283,178 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Global Network */}
+      {/* Innovation Hub */}
       <section className="section-padding">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/solar-park-field-unsplash.jpg"
+                  alt="Lighthief Innovation Hub Poland"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+            
+            <div className="order-1 lg:order-2">
+              <Badge variant="outline" className="mb-4">R&D Center</Badge>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+                Innovation Hub
+              </h2>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  Our Polish facility represents a major investment in renewable energy research and 
+                  development. Located on a <strong>23-hectare site</strong>, this center combines 
+                  cutting-edge research with practical applications, featuring:
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-solar-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <span><strong>2×8 MW</strong> photovoltaic farm for live testing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-solar-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <span><strong>1 MW</strong> biogas plant</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-solar-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <span>Advanced <strong>energy storage systems</strong></span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-solar-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <span><strong>1,000 m²</strong> office space + <strong>3,500 m²</strong> warehouse</span>
+                  </li>
+                </ul>
+                <p>
+                  This living laboratory allows us to test, optimize, and validate technologies before 
+                  deploying them across our client portfolio. Our innovative O&M solutions have been 
+                  supported by <strong>numerous EU grants</strong> for research and development.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Security & Standards */}
+      <section className="section-padding bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <Shield className="w-16 h-16 text-solar-400 mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+              Security & Standards
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              As a <strong className="text-white">certified NATO service provider</strong>, Lighthief adheres to 
+              stringent security protocols and quality standards. This certification reflects our commitment 
+              to operational excellence, data security, and reliable service delivery for critical 
+              infrastructure projects.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Badge className="bg-white/10 text-white border-white/20">NATO Certified</Badge>
+              <Badge className="bg-white/10 text-white border-white/20">ISO 9001</Badge>
+              <Badge className="bg-white/10 text-white border-white/20">ISO 14001</Badge>
+              <Badge className="bg-white/10 text-white border-white/20">EU Grants Recipient</Badge>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Vision */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+              Our Vision
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Lighthief's strategic goal is to provide comprehensive O&M coverage across the entire 
+              European Union and establish ourselves as one of the largest renewable energy service 
+              operators in the region. Our expansion into Ukraine and Eurasian markets reflects this 
+              ambition, positioning us at the forefront of renewable energy growth in both established 
+              and emerging markets.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="section-padding bg-gray-50">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Global Network, Local Expertise
+              Our Expertise
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Part of Lighthief International with operations across Europe, Asia, and Africa
+              End-to-end renewable energy solutions from project development through operations, 
+              maintenance, and end-of-life recycling
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold gradient-text mb-2">9</div>
-                <div className="font-semibold mb-2">European Offices</div>
-                <div className="text-sm text-gray-600">Germany, Poland, Czech Republic, Slovakia, Hungary, Romania, Bulgaria, Greece, Cyprus</div>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold gradient-text mb-2">4</div>
-                <div className="font-semibold mb-2">Global Markets</div>
-                <div className="text-sm text-gray-600">Ukraine, Kazakhstan, Gambia, Kenya</div>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold gradient-text mb-2">1GW+</div>
-                <div className="font-semibold mb-2">Assets Managed</div>
-                <div className="text-sm text-gray-600">Solar installations under active management</div>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold gradient-text mb-2">100%</div>
-                <div className="font-semibold mb-2">Success Rate</div>
-                <div className="text-sm text-gray-600">Project completion and performance delivery</div>
-              </CardContent>
-            </Card>
+            {services.map((service, index) => (
+              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-gradient-to-r from-solar-100 to-cyprus-100 rounded-full flex items-center justify-center">
+                      <service.icon className="w-7 h-7 text-solar-600" />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{service.title}</h3>
+                  <p className="text-sm text-gray-600">{service.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Leadership Team */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Leadership Team
+              Our Team
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Meet the experts driving solar innovation and investment excellence in Cyprus
+              Over 150 renewable energy professionals across Europe and Asia, led by experienced 
+              directors with hands-on expertise earned in the field
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative h-64">
+                <div className="relative h-48">
                   <Image
                     src={member.image}
                     alt={member.name}
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-xl font-bold">{member.name}</h3>
                     <p className="text-sm opacity-90">{member.position}</p>
                   </div>
+                  <div className="absolute top-4 right-4 flex gap-1">
+                    {member.countries.map((country, idx) => (
+                      <Badge key={idx} variant="secondary" className="text-xs bg-white/90 text-gray-800">
+                        {country}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
                 
                 <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-4">
                     {member.bio}
                   </p>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-4">
                     <h4 className="font-semibold text-sm text-gray-900">Key Credentials:</h4>
                     <div className="space-y-1">
                       {member.credentials.slice(0, 2).map((credential, idx) => (
@@ -314,6 +465,12 @@ export default function AboutPage() {
                       ))}
                     </div>
                   </div>
+
+                  <div className="pt-4 border-t border-gray-100">
+                    <a href={`mailto:${member.email}`} className="text-sm text-solar-600 hover:text-solar-700">
+                      {member.email}
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -321,155 +478,63 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="section-padding">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Why Choose Lighthief Cyprus
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Unique advantages that set us apart in the Cyprus solar investment market
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <Globe className="w-8 h-8 text-cyprus-500 mb-2" />
-                <CardTitle>International Network</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Part of Lighthief International with 9 European offices and global operations. 
-                  Benefit from international expertise with local market knowledge.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <TrendingUp className="w-8 h-8 text-solar-500 mb-2" />
-                <CardTitle>Proven Track Record</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Fastest-growing solar O&M company in Europe with 1GW+ assets under management. 
-                  Consistent delivery of 15-20% ROI for our investors.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Shield className="w-8 h-8 text-green-500 mb-2" />
-                <CardTitle>Full Lifecycle Support</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Complete service from development to recycling. EPC, O&M, asset optimization, 
-                  and end-of-life management - all under one roof.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Award className="w-8 h-8 text-purple-500 mb-2" />
-                <CardTitle>Scientific Partnerships</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  University collaborations and R&D partnerships ensure we stay at the forefront 
-                  of solar technology and optimization strategies.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <MapPin className="w-8 h-8 text-blue-500 mb-2" />
-                <CardTitle>Cyprus Expertise</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Deep understanding of Cyprus's regulatory environment, grid infrastructure, 
-                  and market dynamics. Local presence with international standards.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Users className="w-8 h-8 text-red-500 mb-2" />
-                <CardTitle>Investor Focus</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Dedicated investor relations team providing transparent reporting, 
-                  regular updates, and personalized service for all investment sizes.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications & Partnerships */}
+      {/* Office Locations */}
       <section className="section-padding bg-gray-50">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Certifications & Partnerships
+              Our Locations
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Industry-leading certifications and strategic partnerships ensure quality and reliability
+              Strategic offices across Europe and Central Asia with 24/7 monitoring centers 
+              in Poland, Germany, Italy, and Spain
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Industry Certifications</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Badge variant="solar" className="flex-shrink-0">ISO 9001</Badge>
-                  <span className="text-gray-600">Quality Management Systems</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Badge variant="cyprus" className="flex-shrink-0">ISO 14001</Badge>
-                  <span className="text-gray-600">Environmental Management</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Badge variant="secondary" className="flex-shrink-0">OHSAS 18001</Badge>
-                  <span className="text-gray-600">Occupational Health & Safety</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Badge variant="outline" className="flex-shrink-0">EU CE</Badge>
-                  <span className="text-gray-600">European Conformity Standards</span>
-                </div>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {officeLocations.map((office, index) => (
+              <Card key={index} className={`text-center ${office.status === '2026' ? 'opacity-60' : ''}`}>
+                <CardContent className="pt-4 pb-4">
+                  <div className="text-2xl mb-2">{office.flag}</div>
+                  <div className="font-semibold text-gray-900">{office.city}</div>
+                  <div className="text-xs text-gray-500">{office.country}</div>
+                  {office.status === '2026' && (
+                    <Badge variant="outline" className="mt-2 text-xs">2026</Badge>
+                  )}
+                  {office.status === 'HQ' && (
+                    <Badge variant="solar" className="mt-2 text-xs">HQ</Badge>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Strategic Partnerships</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-solar-500 rounded-full flex-shrink-0"></div>
-                  <span className="text-gray-600">Częstochowa University of Technology (R&D)</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-cyprus-500 rounded-full flex-shrink-0"></div>
-                  <span className="text-gray-600">Pragmasoft (Monitoring Solutions)</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                  <span className="text-gray-600">Mansser (Robotic Cleaning Systems)</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                  <span className="text-gray-600">Promika Solar (Technical Services)</span>
-                </div>
-              </div>
+          <div className="mt-8 text-center">
+            <p className="text-gray-600">
+              <strong>24/7 Monitoring Centers:</strong> Częstochowa (Poland), Hannover (Germany), 
+              Trieste (Italy), Malaga (Spain)
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Local Presence */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                Why Local Presence Matters
+              </h2>
+            </div>
+            <div className="bg-gradient-to-r from-solar-50 to-cyprus-50 rounded-2xl p-8">
+              <p className="text-lg text-gray-700 text-center">
+                For O&M and EPC services, local presence isn't just about representation — it's about 
+                <strong> boots on the ground</strong>, immediate response capabilities, and deep understanding 
+                of regional regulations, weather patterns, and market dynamics. Renewable energy service 
+                delivery demands logistics excellence, rapid reaction times, and local market expertise. 
+                This is precisely what our partners, investors, and clients value most about working with Lighthief.
+              </p>
             </div>
           </div>
         </div>
@@ -479,18 +544,22 @@ export default function AboutPage() {
       <section className="section-padding bg-gradient-to-r from-solar-500 to-cyprus-600 text-white">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Ready to Join Our Success Story?
+            Ready to Partner with Lighthief?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Discover how Lighthief Cyprus can help you achieve premium returns through solar farm investments
+            Discover how our expertise can maximize the performance of your renewable energy investments
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
-              Schedule Consultation
-            </Button>
-            <Button variant="outline-on-dark" size="lg">
-              View Investment Opportunities
-            </Button>
+            <Link href="/contact">
+              <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
+                Schedule Consultation
+              </Button>
+            </Link>
+            <Link href="/energy-storage">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                Explore BESS Solutions
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

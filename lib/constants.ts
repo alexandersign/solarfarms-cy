@@ -153,15 +153,24 @@ export const COMPANY_DATA = {
   website: "https://solarfarms.cy",
   email: "office@lighthief.com",
   phone: "+357 77 77 00 50",
-  founded: "2017",
+  founded: "2015", // Nearly a decade ago
   incorporatedCyprus: "July 1, 2025",
-  founders: ["Darius", "Arkadius"],
+  founders: ["Dr. Arkadius Sybaris"],
   headquarters: "Limassol, Cyprus",
-  businessModel: "Full-service solar solutions from recycling to EPC",
-  evolution: "Started with solar panel recycling (2017) → O&M services → Full EPC contractor",
-  specialization: "Residential to large-scale solar farms and panel recycling",
-  offices: "International presence with Cyprus headquarters",
-  countries: ["Cyprus", "Europe", "International markets"],
+  globalHQ: "Częstochowa, Poland",
+  businessModel: "European-Asian renewable energy O&M operator with comprehensive EPC services",
+  evolution: "Polish-British startup → Pan-European operator → 11 countries across Europe and Asia",
+  specialization: "Solar, wind, biogas O&M and EPC services across the entire project lifecycle",
+  offices: "11 countries: Poland, Cyprus, Greece, Italy, Spain, Germany, Netherlands, Kazakhstan, Uzbekistan, Romania, Ukraine",
+  countries: ["Poland", "Cyprus", "Greece", "Italy", "Spain", "Germany", "Netherlands", "Kazakhstan", "Uzbekistan", "Romania", "Ukraine"],
+  assetsManaged: "Hundreds of MW across solar, wind, and biogas",
+  teamSize: "150+",
+  certifications: ["NATO Certified", "EU Grants Recipient"],
+  rdCenter: {
+    location: "Częstochowa, Poland",
+    size: "23 hectares",
+    facilities: ["2×8 MW PV farm", "1 MW biogas plant", "BESS systems", "1,000 m² office", "3,500 m² warehouse"]
+  },
   constructionCostPerMW: {
     min: 450000,
     max: 600000,
@@ -194,20 +203,58 @@ export const COMPANY_DATA = {
     country: "Cyprus"
   },
   contacts: {
-    businessDevelopment: {
-      name: "Alexander Papacosta",
-      title: "Business Development Manager",
-      email: "alexander.papacosta@lighthief.com",
-      phone: "+357 99 164 158"
-    },
-    investors: {
-      name: "Akradiusz Sybaris",
-      title: "Investor Relations & Partnership Director",
+    ceo: {
+      name: "Dr. Arkadius Sybaris",
+      title: "Founder & CEO",
       email: "a.sybaris@lighthief.com",
-      phone: "+357 95 152 788",
-      description: "Contact for investors and potential partners"
+      markets: ["Poland", "UK", "Kazakhstan", "Uzbekistan", "Ukraine", "Romania"],
+      description: "Investor relations and new market development"
+    },
+    cyprusDirector: {
+      name: "Alexander Papacosta",
+      title: "Cyprus Director",
+      email: "alexander.papacosta@lighthief.com",
+      phone: "+357 99 164 158",
+      markets: ["Cyprus", "Greece"],
+      description: "Cyprus & Greece operations, BESS, crypto/AI integration"
+    },
+    engineer: {
+      name: "Costas Hadjikyriacou",
+      title: "Electrical Engineer (ETEK)",
+      email: "costas@lighthief.com",
+      markets: ["Cyprus"],
+      description: "PV systems design, installation, and O&M"
+    },
+    polandDirector: {
+      name: "Maciej Krzyżanowski",
+      title: "Poland Director",
+      email: "m.krzyzanowski@lighthief.com",
+      markets: ["Poland"],
+      description: "Polish operations, EPC, BESS division"
+    },
+    italyDirector: {
+      name: "Maurizio Ganis",
+      title: "Italy Director",
+      email: "m.ganis@lighthief.com",
+      markets: ["Italy"],
+      description: "Italian market, institutional investors"
+    },
+    complianceOfficer: {
+      name: "Leon Volkerink",
+      title: "Director & Chief Compliance Officer",
+      email: "leon.volkerink@lighthief.com",
+      markets: ["Netherlands", "Germany", "Cyprus"],
+      description: "Compliance, KYC, NATO certification"
+    },
+    spainDirector: {
+      name: "Marko Hernaiz",
+      title: "Spain / Poland Director",
+      email: "m.hernaiz@lighthief.com",
+      markets: ["Spain", "Poland"],
+      description: "Spanish market development"
     }
-  }
+  },
+  monitoringCenters: ["Częstochowa (Poland)", "Hannover (Germany)", "Trieste (Italy)", "Malaga (Spain)"]
 } as const
 
 // SEO Constants
