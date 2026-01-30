@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import { ExportPdfButton } from '@/components/docs/ExportPdfButton';
+import { PrintStyles } from '@/components/docs/PrintStyles';
 
 // Auth check
 const DOCS_PASSWORD = 'CyprusBess2026';
@@ -95,20 +96,7 @@ export default async function ViewDocumentPage({ params }: PageProps) {
       </main>
 
       {/* Print styles */}
-      <style jsx global>{`
-        @media print {
-          header, footer {
-            display: none !important;
-          }
-          main {
-            padding: 0 !important;
-            max-width: none !important;
-          }
-          .bg-gray-900 {
-            background: white !important;
-          }
-        }
-      `}</style>
+      <PrintStyles />
     </div>
   );
 }
