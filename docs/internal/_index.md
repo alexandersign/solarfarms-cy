@@ -1,7 +1,7 @@
 # Internal Documentation Index
 
 > **CONFIDENTIAL - ADMIN ACCESS REQUIRED**
-> **Last Updated**: January 27, 2026
+> **Last Updated**: January 30, 2026
 
 ---
 
@@ -109,6 +109,10 @@ The BESS Finance Calculator on solarfarms.cy uses:
 ### Technical Specifications
 - `linyang.md` - Battery, PCS, MV Skid specs
 - `CyprusDSO.md` - Grid connection requirements
+- `kehua-pcs/` - **Kehua PCS catalogues & drawings (NEW)**
+  - BCS2000K~2500K (2-2.5MW PCS)
+  - BCS4000K~5000K (4-5MW PCS)
+  - Single line diagrams, foundation specs, DWG files
 
 ### Client Management
 - `clients/_index.md` - Portfolio overview
