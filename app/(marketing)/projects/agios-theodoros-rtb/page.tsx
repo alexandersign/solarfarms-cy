@@ -265,22 +265,22 @@ export default function AgiosTheodorosProjectPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Senior Debt (80%)</span>
-                    <span className="font-semibold">€2.59M</span>
+                    <span className="text-gray-600">Senior Debt (70%)</span>
+                    <span className="font-semibold">€2.27M</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600 text-sm">On PV EPC + BESS</span>
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Equity (RTB + 20%)</span>
-                    <span className="font-semibold">€1.65M</span>
+                    <span className="text-gray-600">Equity (RTB + 30%)</span>
+                    <span className="font-semibold">€1.97M</span>
                   </div>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-green-800">Equity Required</span>
-                    <span className="text-2xl font-bold text-green-700">€1.65M</span>
+                    <span className="text-2xl font-bold text-green-700">€1.97M</span>
                   </div>
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
@@ -470,11 +470,11 @@ export default function AgiosTheodorosProjectPage() {
               <CardContent className="p-8">
                 <div className="flex items-center gap-4 mb-8">
                   <Image
-                    src="/images/1690376781153.jpg"
-                    alt="Lighthief"
-                    width={80}
-                    height={80}
-                    className="rounded-full object-cover"
+                    src="/logo/lighthief-logo.png"
+                    alt="Lighthief Logo"
+                    width={120}
+                    height={50}
+                    className="object-contain"
                   />
                   <div>
                     <h3 className="text-2xl font-bold text-cyprus-700">Lighthief</h3>
