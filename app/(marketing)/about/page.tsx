@@ -34,7 +34,7 @@ const teamMembers = [
     ],
     email: "a.sybaris@lighthief.com",
     linkedin: true,
-    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+    image: "/images/team/arkadius.jpg"
   },
   {
     name: "Alexander Papacosta",
@@ -49,7 +49,7 @@ const teamMembers = [
     ],
     email: "alexander.papacosta@lighthief.com",
     linkedin: true,
-    image: "/images/solar-farm-aerial-unsplash.jpg"
+    image: "/images/team/alexander-papacosta.jpg"
   },
   {
     name: "Costas Hadjikyriacou",
@@ -79,7 +79,7 @@ const teamMembers = [
     ],
     email: "m.krzyzanowski@lighthief.com",
     linkedin: true,
-    image: "/images/solar-park-field-unsplash.jpg"
+    image: "/images/team/maciej.jpg"
   },
   {
     name: "Maurizio Ganis",
@@ -94,7 +94,7 @@ const teamMembers = [
     ],
     email: "m.ganis@lighthief.com",
     linkedin: true,
-    image: "/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
+    image: "/images/team/maurizio.jpg"
   },
   {
     name: "Leon Volkerink",
@@ -109,7 +109,22 @@ const teamMembers = [
     ],
     email: "leon.volkerink@lighthief.com",
     linkedin: true,
-    image: "/images/solar-farm-aerial-unsplash.jpg"
+    image: "/images/team/leon.jpg"
+  },
+  {
+    name: "Marko Hernaiz",
+    position: "Spain / Poland Director",
+    countries: ["ES", "PL"],
+    bio: "One of Lighthief's founding members alongside Arkadius, helping build the company from its earliest days. Today, he oversees Spanish market development, leveraging his unique dual heritage—half Polish, half Spanish—to bridge cultural and business practices across our European operations. His expertise in people management and team building has been invaluable to Lighthief's growth.",
+    credentials: [
+      "Co-Founder, Lighthief",
+      "Spain Market Director",
+      "Team Building Expert",
+      "Circular Economy Specialist"
+    ],
+    email: "m.hernaiz@lighthief.com",
+    linkedin: true,
+    image: "/images/team/marko.jpg"
   }
 ]
 
@@ -425,54 +440,49 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Horizontal row with circular photos */}
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
             {teamMembers.map((member, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative h-48">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold">{member.name}</h3>
-                    <p className="text-sm opacity-90">{member.position}</p>
-                  </div>
-                  <div className="absolute top-4 right-4 flex gap-1">
-                    {member.countries.map((country, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs bg-white/90 text-gray-800">
-                        {country}
-                      </Badge>
-                    ))}
+              <div key={index} className="flex flex-col items-center text-center group w-36 sm:w-40">
+                {/* Circular Photo */}
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 mb-4">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-solar-400 to-cyprus-600 p-1">
+                    <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
                   </div>
                 </div>
                 
-                <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-4">
-                    {member.bio}
-                  </p>
-                  
-                  <div className="space-y-2 mb-4">
-                    <h4 className="font-semibold text-sm text-gray-900">Key Credentials:</h4>
-                    <div className="space-y-1">
-                      {member.credentials.slice(0, 2).map((credential, idx) => (
-                        <div key={idx} className="text-xs text-gray-600 flex items-start">
-                          <div className="w-1.5 h-1.5 bg-solar-500 rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
-                          {credential}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-gray-100">
-                    <a href={`mailto:${member.email}`} className="text-sm text-solar-600 hover:text-solar-700">
-                      {member.email}
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
+                {/* Name & Title */}
+                <h3 className="font-bold text-gray-900 text-sm sm:text-base leading-tight">
+                  {member.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-solar-600 font-medium mt-1">
+                  {member.position}
+                </p>
+                
+                {/* Country flags */}
+                <div className="flex gap-1 mt-2">
+                  {member.countries.map((country, idx) => (
+                    <span key={idx} className="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">
+                      {country}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* Email link */}
+                <a 
+                  href={`mailto:${member.email}`} 
+                  className="text-xs text-gray-500 hover:text-solar-600 mt-2 truncate max-w-full"
+                >
+                  {member.email.split('@')[0]}@...
+                </a>
+              </div>
             ))}
           </div>
         </div>
@@ -489,6 +499,18 @@ export default function AboutPage() {
               Strategic offices across Europe and Central Asia with 24/7 monitoring centers 
               in Poland, Germany, Italy, and Spain
             </p>
+          </div>
+
+          {/* Locations Map */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="relative aspect-[16/9] rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/loghithief-locations.webp"
+                alt="Lighthief global office locations"
+                fill
+                className="object-contain bg-white"
+              />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
