@@ -38,6 +38,8 @@
 | [BESS Portfolio Proposal](./client-proposal-cyprus-bess-jan2026.html) | Interactive web proposal | ✅ Ready |
 | [Client FAQ - Guarantees & Bonds](./client-faq-guarantees-bonds-jan2026.html) | LDs, availability, warranty FAQ | ✅ Ready |
 | [**Final RFI Linyang**](./FINAL_RFI_LINYANG_JAN2026.md) | **Outstanding docs + scope clarification** | 🔴 Active |
+| [**RFI MV Equipment Brands**](./rfi-mv-equipment-brands-jan2026.md) | **Transformer, Switchgear, RMU brands + lead times** | 🔴 **NEW** |
+| [**LTSA Updated Rates**](./ltsa-updated-rates-jan2026.md) | **€1,740 maintenance + original warranty** | 🟡 **DRAFT** |
 | [Dino Requirements Tracker](./dino-requirements-tracker.md) | Contract requirements from Dino - 8 gaps | 🔴 Action Required |
 | [Pricing Gap Analysis](./pricing-gap-analysis.md) | Group pricing vs our model | ⚠️ Under Review |
 | [Linyang RFI Tracker](./linyang-rfi-tracker.md) | DSO/TSO documentation requests to Linyang | 🔴 Active |
