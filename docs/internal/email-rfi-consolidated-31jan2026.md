@@ -214,21 +214,37 @@ Please confirm our understanding:
 
 ---
 
+## SECTION G: SCOPE CLARIFICATION (FOR LINYANG) 🔴 CRITICAL
+
+Items from the group's itemized breakdown requiring confirmation whether included in Linyang CIF price or separate:
+
+| # | Item | Group Shows | Question |
+|---|------|-------------|----------|
+| 32 | **Power Plant Controller (PPC)** | €79,300 | Built into PCS or separate? If separate, can third-party EMS provide PPC function? |
+| 33 | **Grid Forming Controller** | €40,000 | Built-in to BCS C-series PCS or add-on? |
+| 34 | **LV Control Cabinet** | Part of Switchgear | Included in MV SKID or separate supply? |
+| 35 | **Protection Relays** | Part of RTU | In SKID or customer scope? **What brand - Schneider or ABB?** |
+| 36 | **RTU (Remote Terminal Unit)** | €39,600 | Confirmed INCLUDED ✓ - **What brand - Schneider or ABB?** |
+| 37 | **Auxiliary System & Comms Cabinet** | €39,600 | What exactly is included in this line item? Details required. |
+| 38 | **Commissioning Scope** | €66,900 | What does "training & launch" cover vs full DSO commissioning? What's included/excluded? |
+| 39 | **Lightning Protection / SPD** | Not specified | Is SPD included in container or MV SKID? What specs? |
+
+**Why this matters:** We need to confirm exact scope boundaries to avoid gaps or overlaps in our EPC pricing. Brand confirmation (Schneider/ABB) is critical for EU spares availability and LTSA commitments.
+
+---
+
 ## SUMMARY TABLE
 
 | Category | Items | Priority | Response By |
 |----------|-------|----------|-------------|
-| MV Equipment Brands | 4 questions | 🔴 HIGH | 5 Feb 2026 |
-| MV Lead Times | 3 questions | 🔴 HIGH | 5 Feb 2026 |
-| Payment Terms | 1 proposal | 🔴 HIGH | 7 Feb 2026 |
-| Advance Payment Guarantee | 1 question | 🔴 HIGH | 7 Feb 2026 |
-| Performance Bond | 2 questions | 🟡 MEDIUM | 7 Feb 2026 |
-| SOH Remedy | 1 question | 🟡 MEDIUM | 7 Feb 2026 |
-| Technical Docs (DSO) | 4 documents | 🔴 HIGH | 14 Feb 2026 |
-| MV Datasheets | 2 categories | 🟡 MEDIUM | 14 Feb 2026 |
-| Commissioning Docs | 3 documents | 🟡 MEDIUM | 14 Feb 2026 |
-| Spare Parts List | 3 requests | 🟡 MEDIUM | 14 Feb 2026 |
-| PCS Documentation | 4 documents | 🟢 LOW | 21 Feb 2026 |
+| A. MV Equipment | #1-6 (6 items) | 🔴 HIGH | 5 Feb 2026 |
+| B. Commercial Terms | #7-11 (5 items) | 🔴 HIGH | 7 Feb 2026 |
+| C. Technical Docs | #12-20 (9 items) | 🔴 HIGH | 14 Feb 2026 |
+| D. Spare Parts | #21-23 (3 items) | 🟡 MEDIUM | 14 Feb 2026 |
+| E. PCS Docs (Kehua) | #24-28 (5 items) | 🟢 LOW | 21 Feb 2026 |
+| F. Timeline | #29-31 (3 items) | 🟡 MEDIUM | 7 Feb 2026 |
+| **G. Scope Clarification** | #32-39 (8 items) | 🔴 HIGH | 7 Feb 2026 |
+| **TOTAL** | **39 items** | - | - |
 
 ---
 
