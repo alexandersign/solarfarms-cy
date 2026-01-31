@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Offer - Anarita BESS Project | Lighthief Cyprus Ltd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #1a1a2e;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #16213e 100%);
+            color: white;
+            padding: 60px 50px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .cover-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .cover-logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+        
+        .cover-ref {
+            text-align: right;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .cover-main {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .cover-main h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .cover-main .project-name {
+            font-size: 56px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 30px;
+        }
+        
+        .cover-main .capacity {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .cover-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 30px;
+        }
+        
+        .cover-footer .partners {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .cover-footer .date {
+            font-size: 14px;
+        }
+        
+        /* Content Pages */
+        .page {
+            padding: 40px 50px;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #16213e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .page-header .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #16213e;
+            letter-spacing: 2px;
+        }
+        
+        .page-header .page-title {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        h2 {
+            color: #16213e;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4ade80;
+            display: inline-block;
+        }
+        
+        h3 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin: 25px 0 15px 0;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        th {
+            background: #16213e;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        tr:hover {
+            background: #f0f7ff;
+        }
+        
+        .highlight-row {
+            background: #ecfdf5 !important;
+            font-weight: bold;
+        }
+        
+        .highlight-row td {
+            border-top: 2px solid #4ade80;
+            border-bottom: 2px solid #4ade80;
+        }
+        
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .pricing-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-card.recommended {
+            border-color: #4ade80;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.2);
+        }
+        
+        .pricing-card-header {
+            background: #16213e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .pricing-card.recommended .pricing-card-header {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        
+        .pricing-card-header h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .pricing-card-header .capacity {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .pricing-card-body {
+            padding: 25px;
+        }
+        
+        .price-main {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .price-main .amount {
+            font-size: 36px;
+            font-weight: bold;
+            color: #16213e;
+        }
+        
+        .price-main .per-kwh {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .pricing-card-body ul {
+            list-style: none;
+            font-size: 13px;
+        }
+        
+        .pricing-card-body li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .pricing-card-body li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Info Boxes */
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .success-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .urgent-box {
+            background: #fef2f2;
+            border: 2px solid #dc2626;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .urgent-box strong {
+            color: #dc2626;
+        }
+        
+        /* Scope Lists */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        .scope-box {
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .scope-box.included {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .scope-box.excluded {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        
+        .scope-box h4 {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .scope-box.included h4 {
+            color: #059669;
+        }
+        
+        .scope-box.excluded h4 {
+            color: #dc2626;
+        }
+        
+        .scope-box ul {
+            font-size: 12px;
+            padding-left: 20px;
+        }
+        
+        .scope-box li {
+            margin-bottom: 6px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: #e5e7eb;
+        }
+        
+        .timeline-item {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            background: #16213e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .timeline-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .timeline-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #16213e;
+        }
+        
+        /* SOH Table */
+        .soh-table th {
+            background: #059669;
+        }
+        
+        .soh-table .year-10 {
+            background: #d1fae5;
+            font-weight: bold;
+        }
+        
+        /* LTSA Section */
+        .ltsa-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .ltsa-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .ltsa-card .period {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        
+        .ltsa-card .rate {
+            font-size: 20px;
+            font-weight: bold;
+            color: #16213e;
+        }
+        
+        .ltsa-card .annual {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        
+        /* Footer */
+        .page-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Signature Section */
+        .signature-section {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .signature-box {
+            border-top: 2px solid #16213e;
+            padding-top: 15px;
+        }
+        
+        .signature-box .label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .signature-box .name {
+            font-weight: bold;
+            color: #16213e;
+        }
+        
+        .signature-box .title {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .signature-line {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #16213e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .print-btn:hover {
+            background: #1e3a5f;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .badge.recommended {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        
+        .badge.standard {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">
+        📄 Export to PDF
+    </button>
+
+    <div class="container">
+        <!-- COVER PAGE -->
+        <div class="cover">
+            <div class="cover-header">
+                <div class="cover-logo">LIGHTHIEF</div>
+                <div class="cover-ref">
+                    Reference: LCY-OFFER-ANARITA-2026<br>
+                    Version: 1.0<br>
+                    Validity: 14 Days
+                </div>
+            </div>
+            
+            <div class="cover-main">
+                <h1>Commercial Offer</h1>
+                <div class="project-name">ANARITA</div>
+                <div class="capacity">Battery Energy Storage System<br>Paphos District, Cyprus</div>
+                
+                <div class="cover-badge">
+                    ⚠️ PRICE INCREASE IMMINENT - VALID 14 DAYS ONLY
+                </div>
+            </div>
+            
+            <div class="cover-footer">
+                <div class="partners">
+                    <strong>Technology Partners:</strong><br>
+                    Linyang Energy Storage (Battery Containers)<br>
+                    Kehua Digital Energy (Power Conversion Systems)
+                </div>
+                <div class="date">
+                    <strong>31 January 2026</strong><br>
+                    Lighthief Cyprus Ltd
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 1: EXECUTIVE SUMMARY -->
+        <div class="page page-break">
+            <div class="page-header">
+                <div class="logo">LIGHTHIEF</div>
+                <div class="page-title">Commercial Offer - Anarita BESS</div>
+            </div>
+
+            <h2>Executive Summary</h2>
+            
+            <p style="font-size: 14px; margin-bottom: 20px;">
+                Lighthief Cyprus Ltd is pleased to present this commercial offer for a turnkey Battery Energy Storage System (BESS) 
+                installation at the Anarita site in Paphos District. We offer two configuration options to meet your investment 
+                requirements.
+            </p>
+
+            <div class="urgent-box">
+                <strong>⚠️ IMPORTANT: PRICE VALIDITY</strong><br>
+                Due to imminent manufacturer price increases effective February 2026, this offer is valid for <strong>14 days only</strong> 
+                from the date of issue. Prices cannot be guaranteed beyond <strong>14 February 2026</strong>.
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <h4>Option A</h4>
+                        <div class="capacity">10 MW / 30 MWh</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <div class="price-main">
+                            <div class="amount">€3,810,000</div>
+                            <div class="per-kwh">€127.00 per kWh</div>
+                        </div>
+                        <ul>
+                            <li><span>Duration</span><span>3 hours</span></li>
+                            <li><span>Battery Containers</span><span>6 × 5 MWh</span></li>
+                            <li><span>PCS Units</span><span>8 × 1.25 MW</span></li>
+                            <li><span>Delivery</span><span>CIF Limassol</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pricing-card recommended">
+                    <div class="pricing-card-header">
+                        <h4>Option B <span class="badge recommended">RECOMMENDED</span></h4>
+                        <div class="capacity">10 MW / 40 MWh</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <div class="price-main">
+                            <div class="amount">€4,760,000</div>
+                            <div class="per-kwh">€119.00 per kWh</div>
+                        </div>
+                        <ul>
+                            <li><span>Duration</span><span>4 hours</span></li>
+                            <li><span>Battery Containers</span><span>8 × 5 MWh</span></li>
+                            <li><span>PCS Units</span><span>8 × 1.25 MW</span></li>
+                            <li><span>Delivery</span><span>CIF Limassol</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>Why Option B (10/40) is Recommended:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Lower cost per kWh (€119 vs €127) - better value</li>
+                    <li>4-hour duration maximizes revenue from time-shifting</li>
+                    <li>Better alignment with Cyprus electricity market peak periods</li>
+                    <li>Higher total energy capacity for grid services</li>
+                </ul>
+            </div>
+
+            <h3>What's Included</h3>
+            
+            <table>
+                <tr>
+                    <th style="width: 40%;">Component</th>
+                    <th>Option A (30 MWh)</th>
+                    <th>Option B (40 MWh)</th>
+                </tr>
+                <tr>
+                    <td><strong>Battery Containers</strong> (Linyang Power Atlantic)</td>
+                    <td>6 × 5 MWh (30 MWh)</td>
+                    <td>8 × 5 MWh (40 MWh)</td>
+                </tr>
+                <tr>
+                    <td><strong>PCS</strong> (Kehua BCS1250K-C-HUD)</td>
+                    <td>8 × 1.25 MW (10 MW)</td>
+                    <td>8 × 1.25 MW (10 MW)</td>
+                </tr>
+                <tr>
+                    <td><strong>MV SKID</strong> (Transformer + Switchgear)</td>
+                    <td>10 MW rated</td>
+                    <td>10 MW rated</td>
+                </tr>
+                <tr>
+                    <td><strong>Shipping</strong></td>
+                    <td colspan="2" style="text-align: center;">CIF Limassol Port</td>
+                </tr>
+                <tr>
+                    <td><strong>Installation & Commissioning</strong></td>
+                    <td colspan="2" style="text-align: center;">Full turnkey installation</td>
+                </tr>
+                <tr>
+                    <td><strong>Base Warranty</strong></td>
+                    <td colspan="2" style="text-align: center;">5 years (equipment)</td>
+                </tr>
+            </table>
+
+            <div class="page-footer">
+                <span>Lighthief Cyprus Ltd | Confidential</span>
+                <span>Page 1 of 5</span>
+            </div>
+        </div>
+
+        <!-- PAGE 2: TECHNICAL SPECIFICATIONS -->
+        <div class="page page-break">
+            <div class="page-header">
+                <div class="logo">LIGHTHIEF</div>
+                <div class="page-title">Technical Specifications</div>
+            </div>
+
+            <h2>Technical Specifications</h2>
+
+            <h3>Battery System - Linyang Power Atlantic</h3>
+            
+            <table>
+                <tr>
+                    <th style="width: 40%;">Parameter</th>
+                    <th>Specification</th>
+                </tr>
+                <tr>
+                    <td>Manufacturer</td>
+                    <td><strong>Jiangsu Linyang Energy Storage Technology Co., Ltd</strong></td>
+                </tr>
+                <tr>
+                    <td>Cell Chemistry</td>
+                    <td>LFP (Lithium Iron Phosphate)</td>
+                </tr>
+                <tr>
+                    <td>Cell Capacity</td>
+                    <td>314 Ah (EVE)</td>
+                </tr>
+                <tr>
+                    <td>Container Size</td>
+                    <td>5.015 MWh per 20HC container</td>
+                </tr>
+                <tr>
+                    <td>DC Voltage Range</td>
+                    <td>1,164.8 - 1,497.6 V</td>
+                </tr>
+                <tr>
+                    <td>Cycle Life</td>
+                    <td>8,000 cycles @ 90% DOD, 70% EOL</td>
+                </tr>
+                <tr>
+                    <td>Round-Trip Efficiency</td>
+                    <td>≥87.8% (system level)</td>
+                </tr>
+                <tr>
+                    <td>Operating Temperature</td>
+                    <td>-30°C to +55°C (discharge)</td>
+                </tr>
+                <tr>
+                    <td>Cooling System</td>
+                    <td>Liquid cooling (45 kW capacity)</td>
+                </tr>
+                <tr>
+                    <td>IP Rating</td>
+                    <td>IP55 (container)</td>
+                </tr>
+                <tr>
+                    <td>Fire Suppression</td>
+                    <td>Aerosol (container + pack level)</td>
+                </tr>
+            </table>
+
+            <h3>Power Conversion System - Kehua BCS1250K-C-HUD</h3>
+            
+            <table>
+                <tr>
+                    <th style="width: 40%;">Parameter</th>
+                    <th>Specification</th>
+                </tr>
+                <tr>
+                    <td>Manufacturer</td>
+                    <td><strong>Xiamen Kehua Digital Energy Tech Co., Ltd</strong></td>
+                </tr>
+                <tr>
+                    <td>Rated Power</td>
+                    <td>1,250 kW per unit (8 units = 10 MW)</td>
+                </tr>
+                <tr>
+                    <td>Maximum Efficiency</td>
+                    <td>≥99%</td>
+                </tr>
+                <tr>
+                    <td>AC Voltage</td>
+                    <td>690 VAC (3-phase)</td>
+                </tr>
+                <tr>
+                    <td>Grid Frequency</td>
+                    <td>50 Hz</td>
+                </tr>
+                <tr>
+                    <td>Power Factor</td>
+                    <td>> 0.99 @ rated power</td>
+                </tr>
+                <tr>
+                    <td>THDi</td>
+                    <td>< 3% @ rated power</td>
+                </tr>
+                <tr>
+                    <td>Grid Forming</td>
+                    <td>✓ Supported (VSG, Black-Start)</td>
+                </tr>
+                <tr>
+                    <td>Response Time</td>
+                    <td>Millisecond-level</td>
+                </tr>
+                <tr>
+                    <td>IP Rating</td>
+                    <td>IP65</td>
+                </tr>
+                <tr>
+                    <td>Corrosion Protection</td>
+                    <td>C5 rated</td>
+                </tr>
+            </table>
+
+            <h3>State of Health (SOH) Guarantee</h3>
+            
+            <table class="soh-table">
+                <tr>
+                    <th>Year</th>
+                    <th>1 Cycle/Day (0.25P)</th>
+                    <th>2 Cycles/Day (0.25P)</th>
+                </tr>
+                <tr>
+                    <td>Year 1</td>
+                    <td>94.62%</td>
+                    <td>93.91%</td>
+                </tr>
+                <tr>
+                    <td>Year 5</td>
+                    <td>86.78%</td>
+                    <td>83.72%</td>
+                </tr>
+                <tr class="year-10">
+                    <td><strong>Year 10</strong></td>
+                    <td><strong>79.58%</strong></td>
+                    <td><strong>74.13%</strong></td>
+                </tr>
+                <tr>
+                    <td>Year 15</td>
+                    <td>73.61%</td>
+                    <td>N/A (EOL @ Year 12)</td>
+                </tr>
+            </table>
+            
+            <p style="font-size: 11px; color: #666; margin-top: 10px;">
+                <em>Values based on Linyang degradation curves at 0.25P rate. EOL defined as 70% SOH.</em>
+            </p>
+
+            <h3>Certifications</h3>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                <span class="badge standard">UL 9540A</span>
+                <span class="badge standard">IEC 62619</span>
+                <span class="badge standard">IEC 63056</span>
+                <span class="badge standard">EN 50549-2</span>
+                <span class="badge standard">UN38.3</span>
+                <span class="badge standard">EN 62477-1</span>
+                <span class="badge standard">IEC 61000-6-2/6-4</span>
+            </div>
+
+            <div class="page-footer">
+                <span>Lighthief Cyprus Ltd | Confidential</span>
+                <span>Page 2 of 5</span>
+            </div>
+        </div>
+
+        <!-- PAGE 3: SCOPE & TIMELINE -->
+        <div class="page page-break">
+            <div class="page-header">
+                <div class="logo">LIGHTHIEF</div>
+                <div class="page-title">Scope of Supply & Timeline</div>
+            </div>
+
+            <h2>Scope of Supply</h2>
+
+            <div class="scope-grid">
+                <div class="scope-box included">
+                    <h4>✅ INCLUDED IN EPC PRICE</h4>
+                    <ul>
+                        <li><strong>Battery Containers</strong> - Complete with LFP cells, BMS, HVAC, fire suppression</li>
+                        <li><strong>Power Conversion Systems</strong> - Kehua PCS units with grid-forming capability</li>
+                        <li><strong>MV SKID</strong> - Transformer, switchgear, protection systems</li>
+                        <li><strong>Auxiliary Transformer</strong> - For HVAC and BMS power</li>
+                        <li><strong>RTU</strong> - Remote Terminal Unit for DSO communication</li>
+                        <li><strong>Shipping</strong> - CIF Limassol Port</li>
+                        <li><strong>Import Duties & Customs</strong> - Clearance and handling</li>
+                        <li><strong>Inland Transport</strong> - Port to site delivery</li>
+                        <li><strong>Concrete Foundations</strong> - Reinforced per Κ.Δ.Π. 15/2026</li>
+                        <li><strong>DC Cabling</strong> - Up to 50m per container</li>
+                        <li><strong>AC/MV Cabling</strong> - LV and MV connections</li>
+                        <li><strong>MV Terminations</strong> - Connection to grid</li>
+                        <li><strong>Protection Engineering</strong> - Settings and coordination</li>
+                        <li><strong>SCADA Programming</strong> - IEC 60870-5-104 integration</li>
+                        <li><strong>Remote Trip System</strong> - DSO emergency disconnect</li>
+                        <li><strong>Commissioning</strong> - Full system commissioning</li>
+                        <li><strong>Insurance</strong> - CAR/EAR during construction</li>
+                        <li><strong>OEM Supervision</strong> - Linyang/Kehua engineer support</li>
+                        <li><strong>Base Warranty</strong> - 5 years equipment warranty</li>
+                    </ul>
+                </div>
+                
+                <div class="scope-box excluded">
+                    <h4>❌ CLIENT RESPONSIBILITY</h4>
+                    <ul>
+                        <li><strong>CERA License</strong> - Generation license application</li>
+                        <li><strong>DSO Application</strong> - EAC connection agreement</li>
+                        <li><strong>DSO/EAC Fees</strong> - Connection fees, network charges</li>
+                        <li><strong>External Lightning Protection</strong> - If required by site assessment</li>
+                        <li><strong>Telecoms Backhaul</strong> - Internet/4G connectivity (OPEX)</li>
+                        <li><strong>Site Fencing</strong> - Perimeter security</li>
+                        <li><strong>Planning Permits</strong> - If required for site</li>
+                        <li><strong>Land</strong> - Site lease or purchase</li>
+                        <li><strong>Grid Upgrades</strong> - If required by DSO</li>
+                        <li><strong>Water Drainage</strong> - If special works required (€1,500)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Project Timeline</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-label">Contract & Advance</div>
+                    <div class="timeline-value">Week 0</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-label">Design Lock</div>
+                    <div class="timeline-value">Week 2</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-label">Production</div>
+                    <div class="timeline-value">90 Days</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-label">Shipping</div>
+                    <div class="timeline-value">~50 Days</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">5</div>
+                    <div class="timeline-label">Install & Commission</div>
+                    <div class="timeline-value">30 Days</div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Phase</th>
+                    <th>Duration</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>Contract Signing & Advance Payment</td>
+                    <td>Week 0</td>
+                    <td>25% advance triggers production</td>
+                </tr>
+                <tr>
+                    <td>Design Lock & Approval</td>
+                    <td>Weeks 1-2</td>
+                    <td>Final design signed by client</td>
+                </tr>
+                <tr>
+                    <td>Civil Works (Parallel)</td>
+                    <td>Weeks 2-12</td>
+                    <td>Foundations can start during manufacturing</td>
+                </tr>
+                <tr>
+                    <td>Manufacturing</td>
+                    <td>90 days</td>
+                    <td>Battery containers, PCS, MV equipment</td>
+                </tr>
+                <tr>
+                    <td>Shipping (CIF Limassol)</td>
+                    <td>~50 days indicative</td>
+                    <td>Weather/vessel dependent</td>
+                </tr>
+                <tr>
+                    <td>Installation & Commissioning</td>
+                    <td>30 working days</td>
+                    <td>From site delivery</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Total to Commercial Operation</strong></td>
+                    <td><strong>~6 months</strong></td>
+                    <td>From contract signing</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <strong>Note:</strong> Civil works (foundations) can commence during the manufacturing phase, 
+                reducing overall project timeline. This parallel track provides 7+ weeks buffer before BESS arrival.
+            </div>
+
+            <div class="page-footer">
+                <span>Lighthief Cyprus Ltd | Confidential</span>
+                <span>Page 3 of 5</span>
+            </div>
+        </div>
+
+        <!-- PAGE 4: LTSA & WARRANTIES -->
+        <div class="page page-break">
+            <div class="page-header">
+                <div class="logo">LIGHTHIEF</div>
+                <div class="page-title">LTSA & Warranty Options</div>
+            </div>
+
+            <h2>Long-Term Service Agreement (LTSA)</h2>
+
+            <p style="margin-bottom: 20px;">
+                Comprehensive maintenance and warranty packages to protect your investment and ensure optimal performance 
+                throughout the system lifetime.
+            </p>
+
+            <h3>Tier C: Preventive & Corrective Maintenance</h3>
+            
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Rate (€/MWh/Year)</th>
+                    <th>Option A (30 MWh/Year)</th>
+                    <th>Option B (40 MWh/Year)</th>
+                </tr>
+                <tr>
+                    <td>BESS Maintenance</td>
+                    <td>€1,157.62</td>
+                    <td>€34,729</td>
+                    <td>€46,305</td>
+                </tr>
+                <tr>
+                    <td>PCS + MV Maintenance</td>
+                    <td>€1,311.97</td>
+                    <td>€39,359</td>
+                    <td>€52,479</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Total Annual Maintenance</strong></td>
+                    <td><strong>€2,469.59</strong></td>
+                    <td><strong>€74,088/year</strong></td>
+                    <td><strong>€98,784/year</strong></td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <strong>Included in Tier C:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>24/7 remote monitoring via Linyang EMS</li>
+                    <li>Bi-annual on-site preventive maintenance visits</li>
+                    <li>Corrective maintenance response (24-hour critical issues)</li>
+                    <li>Software updates and BMS optimization</li>
+                    <li>Performance reporting (monthly)</li>
+                </ul>
+            </div>
+
+            <h3>Extended Warranty Options</h3>
+            
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Years 1-5 (Included)</th>
+                    <th>Years 6-10</th>
+                    <th>Years 11-15</th>
+                    <th>Years 16-20</th>
+                </tr>
+                <tr>
+                    <td>BESS Extended Warranty</td>
+                    <td>✓ Included</td>
+                    <td>+€913.92/MWh</td>
+                    <td>+€1,157.62/MWh</td>
+                    <td>+€3,858.75/MWh</td>
+                </tr>
+                <tr>
+                    <td>PCS+MV Extended Warranty</td>
+                    <td>✓ Included</td>
+                    <td>+€747.76/MWh</td>
+                    <td>+€926.10/MWh</td>
+                    <td>+€2,315.25/MWh</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Total Warranty Extension</strong></td>
+                    <td><strong>€0</strong></td>
+                    <td><strong>+€1,661.68/MWh</strong></td>
+                    <td><strong>+€2,083.72/MWh</strong></td>
+                    <td><strong>+€6,174.00/MWh</strong></td>
+                </tr>
+            </table>
+
+            <h3>20-Year Cost Summary (Option B: 40 MWh)</h3>
+            
+            <div class="ltsa-grid">
+                <div class="ltsa-card">
+                    <div class="period">Years 1-5</div>
+                    <div class="rate">€2,469.59</div>
+                    <div class="annual">€98,784/year</div>
+                </div>
+                <div class="ltsa-card">
+                    <div class="period">Years 6-10</div>
+                    <div class="rate">€4,131.27</div>
+                    <div class="annual">€165,251/year</div>
+                </div>
+                <div class="ltsa-card">
+                    <div class="period">Years 11-15</div>
+                    <div class="rate">€4,553.31</div>
+                    <div class="annual">€182,132/year</div>
+                </div>
+                <div class="ltsa-card">
+                    <div class="period">Years 16-20</div>
+                    <div class="rate">€8,643.59</div>
+                    <div class="annual">€345,744/year</div>
+                </div>
+            </div>
+
+            <h3>Tier D: Availability Guarantee (Optional)</h3>
+            
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Rate</th>
+                    <th>Annual Cost (40 MWh)</th>
+                </tr>
+                <tr>
+                    <td>97% Availability Guarantee</td>
+                    <td>€2,201.73/MWh/Year</td>
+                    <td>€88,069/year</td>
+                </tr>
+            </table>
+            
+            <div class="info-box">
+                <strong>Tier D Includes:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Local service team in Cyprus</li>
+                    <li>Local spare parts warehouse</li>
+                    <li>Guaranteed 97% system availability</li>
+                    <li>Liquidated damages for availability shortfall</li>
+                </ul>
+                <p style="margin-top: 10px;"><em>Note: Tier D is only available in addition to Tier C maintenance.</em></p>
+            </div>
+
+            <div class="page-footer">
+                <span>Lighthief Cyprus Ltd | Confidential</span>
+                <span>Page 4 of 5</span>
+            </div>
+        </div>
+
+        <!-- PAGE 5: COMMERCIAL TERMS & ACCEPTANCE -->
+        <div class="page page-break">
+            <div class="page-header">
+                <div class="logo">LIGHTHIEF</div>
+                <div class="page-title">Commercial Terms & Acceptance</div>
+            </div>
+
+            <h2>Commercial Terms</h2>
+
+            <h3>Payment Schedule</h3>
+            
+            <table>
+                <tr>
+                    <th>Milestone</th>
+                    <th>Percentage</th>
+                    <th>Option A (30 MWh)</th>
+                    <th>Option B (40 MWh)</th>
+                </tr>
+                <tr>
+                    <td>Advance Payment (Contract Signing)</td>
+                    <td>30%</td>
+                    <td>€1,143,000</td>
+                    <td>€1,428,000</td>
+                </tr>
+                <tr>
+                    <td>Ready to Ship (Production Complete)</td>
+                    <td>50%</td>
+                    <td>€1,905,000</td>
+                    <td>€2,380,000</td>
+                </tr>
+                <tr>
+                    <td>Arrival on Site</td>
+                    <td>15%</td>
+                    <td>€571,500</td>
+                    <td>€714,000</td>
+                </tr>
+                <tr>
+                    <td>SAT (Site Acceptance Test)</td>
+                    <td>5%</td>
+                    <td>€190,500</td>
+                    <td>€238,000</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong>100%</strong></td>
+                    <td><strong>€3,810,000</strong></td>
+                    <td><strong>€4,760,000</strong></td>
+                </tr>
+            </table>
+
+            <h3>Performance Guarantees</h3>
+            
+            <table>
+                <tr>
+                    <th>Guarantee</th>
+                    <th>Coverage</th>
+                </tr>
+                <tr>
+                    <td>Installation & Commissioning Delay LDs</td>
+                    <td>0.1-0.2% per day, capped at 10% (excludes shipping, DSO delays, Force Majeure)</td>
+                </tr>
+                <tr>
+                    <td>Performance Bond</td>
+                    <td>Corporate guarantee from Linyang Energy</td>
+                </tr>
+                <tr>
+                    <td>SOH Guarantee</td>
+                    <td>Per degradation curve, remedy via augmentation or pro-rata compensation</td>
+                </tr>
+                <tr>
+                    <td>Availability (with Tier D)</td>
+                    <td>97% guaranteed with LDs for shortfall</td>
+                </tr>
+            </table>
+
+            <h3>End-of-Life Management</h3>
+            
+            <div class="success-box">
+                <strong>Included at no additional cost:</strong> At end of BESS operational life, Lighthief Cyprus Ltd will:
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Collect and transport batteries at no cost to client</li>
+                    <li>Assess residual value for second-life or recycling</li>
+                    <li>Provide cashback based on EOL market value, OR</li>
+                    <li>Recycle at net zero cost to client</li>
+                </ul>
+            </div>
+
+            <div class="urgent-box">
+                <strong>⚠️ OFFER VALIDITY: 14 DAYS</strong><br>
+                This offer is valid until <strong>14 February 2026</strong>.<br>
+                Prices are subject to increase after this date due to manufacturer price adjustments.
+            </div>
+
+            <h2>Acceptance</h2>
+            
+            <p style="margin-bottom: 20px;">
+                By signing below, Client confirms acceptance of <strong>[  ] Option A (10 MW / 30 MWh)</strong> or 
+                <strong>[  ] Option B (10 MW / 40 MWh)</strong> (please check one) under the terms and conditions 
+                set forth in this offer.
+            </p>
+
+            <div class="signature-section">
+                <div class="signature-box">
+                    <div class="label">FOR AND ON BEHALF OF CLIENT:</div>
+                    <div class="signature-line"></div>
+                    <div class="name">_______________________________</div>
+                    <div class="title">Name / Title / Date</div>
+                </div>
+                <div class="signature-box">
+                    <div class="label">FOR AND ON BEHALF OF LIGHTHIEF CYPRUS LTD:</div>
+                    <div class="signature-line"></div>
+                    <div class="name">Alexander Papacosta</div>
+                    <div class="title">Cyprus Director</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding: 20px; background: #f8fafc; border-radius: 8px;">
+                <h4 style="margin-bottom: 15px; color: #16213e;">Contact Information</h4>
+                <p style="font-size: 13px;">
+                    <strong>Lighthief Cyprus Ltd</strong><br>
+                    28 October Avenue 249, Lophitis Business Center 1, Office 201<br>
+                    3035 Limassol, Cyprus<br><br>
+                    📧 alexander.papacosta@lighthief.com<br>
+                    📱 +357 99 164 158<br>
+                    🌐 www.solarfarms.cy
+                </p>
+            </div>
+
+            <div class="page-footer">
+                <span>Lighthief Cyprus Ltd | Confidential</span>
+                <span>Page 5 of 5</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
