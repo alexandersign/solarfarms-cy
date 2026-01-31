@@ -1,7 +1,7 @@
 # Internal Documentation Index
 
 > **CONFIDENTIAL - ADMIN ACCESS REQUIRED**
-> **Last Updated**: January 30, 2026
+> **Last Updated**: January 31, 2026
 
 ---
 
@@ -29,6 +29,13 @@
 | [Earthing RFP](./rfp-earthing-grounding-jan2026.html) | Earth grid & grounding | TBD |
 | [Transport RFQ](./rfq-transport-asoulis-jan2026.html) | Heavy haulage - 246 containers | A. Soulis |
 | [Performance Guarantees RFI](./rfi-performance-guarantees-linyang-jan2026.html) | LDs, Bonds, Warranty confirmation | Linyang |
+| [**Spares List RFI**](./rfi-spares-list-jan2026.md) | **Spare parts & lead times** | 🔴 **NEW** Linyang + Kehua |
+
+### Commercial Terms & Clarifications
+
+| Document | Purpose | Status |
+|----------|---------|--------|
+| [**Commercial Terms Clarification**](./commercial-terms-clarification-jan2026.md) | **Payment, VAT, Timeline, LDs, EOL** | 🔴 **NEW** |
 
 ### Client-Facing Documents
 
