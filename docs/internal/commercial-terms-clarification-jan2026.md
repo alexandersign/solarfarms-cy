@@ -3,10 +3,21 @@
 
 ---
 
-**Document Reference:** LCY-COMMERCIAL-TERMS-2026
-**Date:** 31 January 2026
-**Status:** DRAFT - For Client Review
-**Source:** DINO CHANGES.pdf + Linyang Quotation LY202601271
+| Field | Value |
+|-------|-------|
+| **Document Reference** | LCY-COMMERCIAL-TERMS-2026 |
+| **Version** | 1.0 |
+| **Date Created** | 31 January 2026 |
+| **Last Updated** | 31 January 2026 |
+| **Status** | 🔴 DRAFT - For Client Review |
+| **Author** | Lighthief Cyprus Ltd |
+| **Source** | DINO CHANGES.pdf + Linyang Quotation LY202601271 |
+
+### Version History
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 31 Jan 2026 | Initial creation | Alex |
 
 ---
 

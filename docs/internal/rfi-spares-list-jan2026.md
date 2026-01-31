@@ -3,14 +3,23 @@
 
 ---
 
-**Document Reference:** LCY-RFI-SPARES-2026
-**Date:** 31 January 2026
-**From:** Lighthief Cyprus Ltd
-**To:** 
-- Linyang Energy Storage Technology Co., Ltd
-- Xiamen Kehua Digital Energy Tech Co., Ltd
-**Subject:** Recommended Spare Parts List, Pricing & Lead Times
-**Priority:** HIGH - Required for LTSA Planning
+| Field | Value |
+|-------|-------|
+| **Document Reference** | LCY-RFI-SPARES-2026 |
+| **Version** | 1.0 |
+| **Date Created** | 31 January 2026 |
+| **Last Updated** | 31 January 2026 |
+| **From** | Lighthief Cyprus Ltd |
+| **To** | Linyang Energy + Kehua Digital Energy |
+| **Subject** | Recommended Spare Parts List, Pricing & Lead Times |
+| **Priority** | 🔴 HIGH - Required for LTSA Planning |
+| **Response Due** | 14 February 2026 |
+
+### Version History
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 31 Jan 2026 | Initial creation | Alex |
 
 ---
 

@@ -3,12 +3,24 @@
 
 ---
 
-**Document Reference:** LCY-RFI-MV-EQUIPMENT-2026
-**Date:** 30 January 2026
-**From:** Lighthief Cyprus Ltd
-**To:** Linyang Energy / Kamil Tyburski / Conor Yang
-**Subject:** MV Equipment Specifications, Brand Confirmation & Lead Time Alignment
-**Priority:** HIGH - Required for Client Proposals
+| Field | Value |
+|-------|-------|
+| **Document Reference** | LCY-RFI-MV-EQUIPMENT-2026 |
+| **Version** | 1.0 |
+| **Date Created** | 30 January 2026 |
+| **Last Updated** | 31 January 2026 |
+| **From** | Lighthief Cyprus Ltd |
+| **To** | Linyang Energy / Kamil Tyburski / Conor Yang |
+| **Subject** | MV Equipment Specifications, Brand Confirmation & Lead Time Alignment |
+| **Priority** | 🔴 HIGH - Required for Client Proposals |
+| **Response Due** | 5 February 2026 |
+
+### Version History
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 30 Jan 2026 | Initial creation | Alex |
+| 1.0 | 31 Jan 2026 | Added version header | Alex |
 
 ---
 

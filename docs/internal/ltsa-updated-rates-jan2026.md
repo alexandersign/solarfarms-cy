@@ -3,10 +3,21 @@
 
 ---
 
-**Document Reference:** LCY-LTSA-RATES-002
-**Date:** 30 January 2026
-**Status:** ✅ APPROVED
-**Purpose:** Differentiated LTSA pricing for Group vs Non-Group clients
+| Field | Value |
+|-------|-------|
+| **Document Reference** | LCY-LTSA-RATES-002 |
+| **Version** | 1.0 |
+| **Date Created** | 30 January 2026 |
+| **Last Updated** | 31 January 2026 |
+| **Status** | ✅ APPROVED |
+| **Author** | Lighthief Cyprus Ltd |
+| **Purpose** | Differentiated LTSA pricing for Group vs Non-Group clients |
+
+### Version History
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 30 Jan 2026 | Initial creation with proportional split | Alex |
 
 ---
 

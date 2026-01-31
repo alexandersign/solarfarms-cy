@@ -9,6 +9,7 @@
 
 | Document | Purpose | Status |
 |----------|---------|--------|
+| [**🎯 RFI MASTER TRACKER**](./rfi-master-tracker-jan2026.md) | **All RFIs & confirmations in one place** | 🔴 **ACTIVE** |
 | [**Linyang Quotation Jan 2026**](./linyang-quotation-jan2026.md) | **LY202601271 - Updated CIF pricing** | ✅ **NEW** |
 | [**Client Pricing 13%**](./client-pricing-13-percent.md) | **All 47 parks @ 13% margin** | ✅ **NEW** |
 | [**PCS Capacity RFI**](./pcs-capacity-rfi-linyang-jan2026.html) | **🔴 URGENT - 10 parks over limit** | 🔴 **ACTION** |
