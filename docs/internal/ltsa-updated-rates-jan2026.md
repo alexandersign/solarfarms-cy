@@ -1,38 +1,60 @@
-# LTSA UPDATED RATES - January 2026
-## Dino/Humphrey Adjustment
+# LTSA RATES - January 2026
+## Group Order vs Non-Group Pricing
 
 ---
 
 **Document Reference:** LCY-LTSA-RATES-002
 **Date:** 30 January 2026
-**Status:** DRAFT - Awaiting Approval
-**Purpose:** Adjusted maintenance rates per client discussion
+**Status:** ✅ APPROVED
+**Purpose:** Differentiated LTSA pricing for Group vs Non-Group clients
 
 ---
 
-## 1. RATE COMPARISON
+## IMPORTANT: PRICING TIERS
 
-### Original Linyang LTSA Rates
-
-| Service | €/MWh/Year | % of Total |
-|---------|------------|------------|
-| BESS Maintenance | €1,157.62 | 47% |
-| PCS + MVS Maintenance | €1,311.97 | 53% |
-| **TOTAL** | **€2,469.59** | 100% |
-
-### New Adjusted Rates (€1,740/MWh/Year Total)
-
-| Service | €/MWh/Year | % of Total | Change |
-|---------|------------|------------|--------|
-| BESS Maintenance | **€609.00** | 35% | -€548.62 (-47%) |
-| PCS + MVS Maintenance | **€1,131.00** | 65% | -€180.97 (-14%) |
-| **TOTAL** | **€1,740.00** | 100% | **-€729.59 (-30%)** |
-
-> **Rationale:** Heavier weight on PCS+MVS reflects higher complexity of inverter/transformer maintenance and aligns with Electromatic bundled pricing.
+| Client Type | Maintenance Rate | Where Used |
+|-------------|------------------|------------|
+| **GROUP ORDER** | **€1,740/MWh/year** | Group internal docs, Group client proposals |
+| **NON-GROUP / PUBLIC** | **€2,469.59/MWh/year** | Public website, non-group quotes, calculators |
 
 ---
 
-## 2. EXTENDED WARRANTY (UNCHANGED - Original Linyang Rates)
+## 1. GROUP ORDER RATES (47 Projects)
+
+### Proportional Split from Original Rates
+
+| Service | Original Rate | Original % | **GROUP Rate** |
+|---------|---------------|------------|----------------|
+| BESS Maintenance | €1,157.62 | 46.88% | **€815.72** |
+| PCS + MVS Maintenance | €1,311.97 | 53.12% | **€924.28** |
+| **TOTAL** | €2,469.59 | 100% | **€1,740.00** |
+
+**Calculation:**
+```
+BESS:    €1,740 × (€1,157.62 ÷ €2,469.59) = €1,740 × 0.4688 = €815.72
+PCS+MVS: €1,740 × (€1,311.97 ÷ €2,469.59) = €1,740 × 0.5312 = €924.28
+                                                    TOTAL = €1,740.00 ✓
+```
+
+> **Discount:** 30% reduction from original rates for Group order volume commitment.
+
+---
+
+## 2. NON-GROUP / PUBLIC RATES (Original Linyang)
+
+### Standard LTSA Rates
+
+| Service | €/MWh/Year | Notes |
+|---------|------------|-------|
+| BESS Maintenance | **€1,157.62** | Original Linyang rate |
+| PCS + MVS Maintenance | **€1,311.97** | Original Linyang rate |
+| **TOTAL** | **€2,469.59** | Used on public website & non-group quotes |
+
+> **No discount** for non-group clients. Original Linyang LTSA pricing applies.
+
+---
+
+## 3. EXTENDED WARRANTY (Same for Group & Non-Group)
 
 ### BESS Extended Warranty
 
@@ -50,19 +72,29 @@
 | 11-15 | **€926.10** | Original Linyang rate |
 | 16-20 | **€2,315.25** | Original Linyang rate |
 
+> **Note:** Extended warranty rates are the same for all clients (Group and Non-Group).
+
 ---
 
-## 3. COMPLETE LTSA PRICING TABLE
+## 4. COMPLETE LTSA PRICING TABLES
 
-### Tier C: Preventive & Corrective Maintenance
+### GROUP ORDER - Tier C: Preventive & Corrective Maintenance
 
 | Service | Years 1-5 | Years 6-10 | Years 11-15 | Years 16-20 |
 |---------|-----------|------------|-------------|-------------|
-| **BESS Maintenance** | €609.00 | €609.00 | €609.00 | €609.00 |
-| **PCS+MVS Maintenance** | €1,131.00 | €1,131.00 | €1,131.00 | €1,131.00 |
+| **BESS Maintenance** | €815.72 | €815.72 | €815.72 | €815.72 |
+| **PCS+MVS Maintenance** | €924.28 | €924.28 | €924.28 | €924.28 |
 | **Subtotal Maintenance** | **€1,740.00** | **€1,740.00** | **€1,740.00** | **€1,740.00** |
 
-### Extended Warranty Add-Ons
+### NON-GROUP / PUBLIC - Tier C: Preventive & Corrective Maintenance
+
+| Service | Years 1-5 | Years 6-10 | Years 11-15 | Years 16-20 |
+|---------|-----------|------------|-------------|-------------|
+| **BESS Maintenance** | €1,157.62 | €1,157.62 | €1,157.62 | €1,157.62 |
+| **PCS+MVS Maintenance** | €1,311.97 | €1,311.97 | €1,311.97 | €1,311.97 |
+| **Subtotal Maintenance** | **€2,469.59** | **€2,469.59** | **€2,469.59** | **€2,469.59** |
+
+### Extended Warranty Add-Ons (Same for All)
 
 | Service | Years 1-5 | Years 6-10 | Years 11-15 | Years 16-20 |
 |---------|-----------|------------|-------------|-------------|
@@ -70,7 +102,7 @@
 | PCS+MVS Extended Warranty | Included | +€747.76 | +€926.10 | +€2,315.25 |
 | **Subtotal Warranty** | **€0** | **+€1,661.68** | **+€2,083.72** | **+€6,174.00** |
 
-### Total with Extended Warranty
+### GROUP ORDER - Total with Extended Warranty
 
 | Period | Maintenance | Warranty | **Total €/MWh/Year** |
 |--------|-------------|----------|----------------------|
@@ -79,13 +111,22 @@
 | Years 11-15 | €1,740.00 | +€2,083.72 | **€3,823.72** |
 | Years 16-20 | €1,740.00 | +€6,174.00 | **€7,914.00** |
 
+### NON-GROUP / PUBLIC - Total with Extended Warranty
+
+| Period | Maintenance | Warranty | **Total €/MWh/Year** |
+|--------|-------------|----------|----------------------|
+| Years 1-5 | €2,469.59 | Included | **€2,469.59** |
+| Years 6-10 | €2,469.59 | +€1,661.68 | **€4,131.27** |
+| Years 11-15 | €2,469.59 | +€2,083.72 | **€4,553.31** |
+| Years 16-20 | €2,469.59 | +€6,174.00 | **€8,643.59** |
+
 ---
 
-## 4. TIER D: AVAILABILITY GUARANTEE (Optional Add-On)
+## 5. TIER D: AVAILABILITY GUARANTEE (Optional Add-On)
 
 | Service | Rate €/MWh/Year | Notes |
 |---------|-----------------|-------|
-| 97% Availability Guarantee | €2,201.73 | Original Linyang rate |
+| 97% Availability Guarantee | €2,201.73 | Same for Group & Non-Group |
 
 **Includes:**
 - Local service team
@@ -94,27 +135,36 @@
 
 ---
 
-## 5. EXAMPLE: 20 MWh SYSTEM
+## 6. EXAMPLE: 20 MWh SYSTEM
 
-### Annual Costs
+### GROUP ORDER - Annual Costs
 
 | Period | Rate €/MWh/Yr | System 20 MWh | Monthly |
 |--------|---------------|---------------|---------|
-| Years 1-5 (Maint only) | €1,740 | €34,800/year | **€2,900/month** |
+| Years 1-5 (Maint only) | €1,740.00 | €34,800/year | **€2,900/month** |
 | Years 6-10 (+ Warranty) | €3,401.68 | €68,034/year | €5,669/month |
 | Years 11-15 (+ Warranty) | €3,823.72 | €76,474/year | €6,373/month |
-| Years 16-20 (+ Warranty) | €7,914 | €158,280/year | €13,190/month |
+| Years 16-20 (+ Warranty) | €7,914.00 | €158,280/year | €13,190/month |
 
-### 20-Year Total Cost
+### NON-GROUP - Annual Costs
 
-| Option | Total 20-Year Cost |
-|--------|-------------------|
-| Maintenance Only (No Ext. Warranty) | €696,000 |
-| Full LTSA with Extended Warranty | €1,371,480 |
+| Period | Rate €/MWh/Yr | System 20 MWh | Monthly |
+|--------|---------------|---------------|---------|
+| Years 1-5 (Maint only) | €2,469.59 | €49,392/year | **€4,116/month** |
+| Years 6-10 (+ Warranty) | €4,131.27 | €82,625/year | €6,885/month |
+| Years 11-15 (+ Warranty) | €4,553.31 | €91,066/year | €7,589/month |
+| Years 16-20 (+ Warranty) | €8,643.59 | €172,872/year | €14,406/month |
+
+### 20-Year Total Cost Comparison (20 MWh System)
+
+| Option | GROUP | NON-GROUP | Savings |
+|--------|-------|-----------|---------|
+| Maintenance Only | €696,000 | €987,836 | **€291,836** |
+| Full LTSA with Ext. Warranty | €1,371,480 | €1,663,316 | **€291,836** |
 
 ---
 
-## 6. SPARES OPTION (Alternative to Extended Warranty)
+## 7. SPARES OPTION (Alternative to Extended Warranty)
 
 Per DINO CHANGES discussion, clients may choose:
 
@@ -127,29 +177,67 @@ Per DINO CHANGES discussion, clients may choose:
 
 ---
 
-## 7. CHANGES FROM ORIGINAL PROPOSAL
+## 8. SUMMARY: WHERE TO USE EACH RATE
 
-| Item | Original | Updated | Change |
-|------|----------|---------|--------|
-| BESS Maintenance | €1,157.62 | €609.00 | -47% |
-| PCS+MVS Maintenance | €1,311.97 | €1,131.00 | -14% |
-| Total Maintenance | €2,469.59 | €1,740.00 | **-30%** |
-| Extended Warranty BESS | Per Linyang | **Unchanged** | - |
-| Extended Warranty PCS | Per Linyang | **Unchanged** | - |
-| Availability Guarantee | €2,201.73 | **Unchanged** | - |
+### GROUP RATES (€1,740/MWh/year)
+
+Use for:
+- ✅ Group client internal documents
+- ✅ Group client proposals and contracts
+- ✅ 47 projects under Cyprus BESS portfolio
+- ✅ Any client in the consolidated Group order
+
+| Component | Rate |
+|-----------|------|
+| BESS Maintenance | €815.72/MWh/year |
+| PCS+MVS Maintenance | €924.28/MWh/year |
+| **TOTAL** | **€1,740.00/MWh/year** |
+
+### NON-GROUP / PUBLIC RATES (€2,469.59/MWh/year)
+
+Use for:
+- ✅ Public website (solarfarms.cy)
+- ✅ BESS Finance Calculator defaults
+- ✅ Non-group client quotations
+- ✅ General marketing materials
+- ✅ Prospects not in Group order
+
+| Component | Rate |
+|-----------|------|
+| BESS Maintenance | €1,157.62/MWh/year |
+| PCS+MVS Maintenance | €1,311.97/MWh/year |
+| **TOTAL** | **€2,469.59/MWh/year** |
 
 ---
 
-## 8. APPROVAL REQUIRED
+## 9. RATE COMPARISON
 
-- [ ] Internal approval - Lighthief management
-- [ ] Commercial validation - Does this margin work?
-- [ ] Client confirmation - Dino/Humphrey accept rates
-- [ ] Update client-facing documents
+| Item | NON-GROUP | GROUP | Discount |
+|------|-----------|-------|----------|
+| BESS Maintenance | €1,157.62 | €815.72 | -30% |
+| PCS+MVS Maintenance | €1,311.97 | €924.28 | -30% |
+| **Total Maintenance** | **€2,469.59** | **€1,740.00** | **-30%** |
+| Extended Warranty | Original | Original | 0% |
+| Availability Guarantee | €2,201.73 | €2,201.73 | 0% |
+
+---
+
+## 10. DOCUMENT UPDATE CHECKLIST
+
+### Group Documents (Update to €1,740)
+- [ ] `client-proposal-group-epc-jan2026.html`
+- [ ] Group-specific LTSA contracts
+- [ ] Internal pricing models
+
+### Non-Group / Public (Keep Original €2,469.59)
+- [ ] Public website LTSA section
+- [ ] BESS Finance Calculator
+- [ ] General marketing materials
+- [ ] Non-group client quotes
 
 ---
 
 *Document prepared by: Lighthief Cyprus Ltd*
 *Classification: INTERNAL - CONFIDENTIAL*
-*Version: 1.0*
+*Version: 2.0*
 *Date: 30 January 2026*
