@@ -81,9 +81,9 @@ Other items by: 7 February 2026
 |-----------|----------|--------|----------------|
 | **MV Transformer** | Part of MV SKID | ✅ **Kehua SL-10000** | Confirmed from datasheet |
 | **MV Switchgear** | What brand? SF6 or air-insulated? | ⚠️ PENDING | **Please specify model** |
-| **RMU** | Kamil confirmed Schneider on 27 Jan | ⚠️ PENDING | **Please specify model (SM6, RM6, Premset?)** |
+| **RMU** | Confirmed Schneider - which model? | ✅ Schneider (included) | **SM6, RM6, or Premset?** |
 | **Protection Relays** | What brand/model? | ⚠️ PENDING | **Please specify (ABB REF615, Schneider Sepam?)** |
-| **Auxiliary Transformer** | Separate from MV Transformer - powers aux systems (cooling, BMS, controls). What brand? | ⚠️ PENDING | **Please specify brand/model** |
+| **Auxiliary Transformer** | Confirmed Schneider - which model? Powers aux systems. | ✅ Schneider (included) | **Please specify model/size (kVA)** |
 
 **Why this matters:** 
 1. Our clients require EU-brand MV equipment for local spares availability
