@@ -9,13 +9,22 @@
 
 | Document | Purpose | Status |
 |----------|---------|--------|
-| [**🎯 RFI MASTER TRACKER**](./rfi-master-tracker-jan2026.md) | **All RFIs & confirmations in one place** | 🔴 **ACTIVE** |
-| [**Linyang Quotation Jan 2026**](./linyang-quotation-jan2026.md) | **LY202601271 - Updated CIF pricing** | ✅ **NEW** |
-| [**Client Pricing 13%**](./client-pricing-13-percent.md) | **All 47 parks @ 13% margin** | ✅ **NEW** |
-| [**PCS Capacity RFI**](./pcs-capacity-rfi-linyang-jan2026.html) | **🔴 URGENT - 10 parks over limit** | 🔴 **ACTION** |
-| [**Import Duty Model**](./import-duty-model.md) | **Weighted duty calc (0.9% vs 2.7%)** | ✅ **NEW** |
+| [**🎯 CONSOLIDATED RFI v1.2**](./rfi-consolidated-31jan2026.html) | **41 items - READY TO SEND** | 🔴 **FINAL** |
+| [**📋 RFI Master Tracker**](./rfi-master-tracker-jan2026.md) | **Track all RFI responses** | 🔴 **ACTIVE** |
+| [**Linyang Quotation Jan 2026**](./linyang-quotation-jan2026.md) | **LY202601271 - Updated CIF pricing** | ✅ **CURRENT** |
+| [**Client Pricing 13%**](./client-pricing-13-percent.md) | **All 47 parks @ 13% margin** | ✅ **CURRENT** |
+| [**Import Duty Model**](./import-duty-model.md) | **Weighted duty calc (verify 2.7% vs 0.9%)** | ⚠️ **VERIFY** |
+| [**Logistics Quote**](./logistics-quote-interfreight-jan2026.md) | **Interfreight - transport & customs** | ✅ **NEW** |
 
-### RFPs/RFQs Ready to Send
+### RFIs - Linyang/Kehua
+
+| Document | Scope | Status |
+|----------|-------|--------|
+| [**Consolidated RFI v1.2 (HTML)**](./rfi-consolidated-31jan2026.html) | **41 items - All topics combined** | 🔴 **SEND** |
+| [**Consolidated RFI v1.2 (MD)**](./email-rfi-consolidated-31jan2026.md) | **Email body version** | 🔴 **SEND** |
+| [**Spares List RFI**](./rfi-spares-list-jan2026.md) | **Spare parts & lead times** | 🔴 **SEND** |
+
+### RFPs/RFQs - Other Vendors
 
 | Document | Scope | Vendor Target |
 |----------|-------|---------------|
@@ -29,8 +38,6 @@
 | [Remote Trip & UPS RFP](./rfp-remote-trip-ups-jan2026.html) | Trip system & auxiliary power | TBD |
 | [Earthing RFP](./rfp-earthing-grounding-jan2026.html) | Earth grid & grounding | TBD |
 | [Transport RFQ](./rfq-transport-asoulis-jan2026.html) | Heavy haulage - 246 containers | A. Soulis |
-| [Performance Guarantees RFI](./rfi-performance-guarantees-linyang-jan2026.html) | LDs, Bonds, Warranty confirmation | Linyang |
-| [**Spares List RFI**](./rfi-spares-list-jan2026.md) | **Spare parts & lead times** | 🔴 **NEW** Linyang + Kehua |
 
 ### Commercial Terms & Clarifications
 
@@ -42,21 +49,30 @@
 
 | Document | Purpose | Status |
 |----------|---------|--------|
-| [**GROUP EPC Proposal (PDF)**](./client-proposal-group-epc-jan2026.html) | **Full turnkey pricing - 47 parks** | ✅ **FINAL REVIEW** |
-| [BESS Portfolio Proposal](./client-proposal-cyprus-bess-jan2026.html) | Interactive web proposal | ✅ Ready |
+| [**GROUP EPC Proposal (PDF)**](./client-proposal-group-epc-jan2026.html) | **Full turnkey pricing - 47 parks** | ✅ **FINAL** |
+| [**Spanercom Offer (Anarita)**](./offer-anarita-10mw-jan2026.html) | **10MW/40MWh - Paphos** | ✅ **NEW** |
+| [BESS Portfolio Proposal](./client-proposal-cyprus-bess-jan2026.html) | Interactive web proposal | ⚠️ Review Pricing |
 | [Client FAQ - Guarantees & Bonds](./client-faq-guarantees-bonds-jan2026.html) | LDs, availability, warranty FAQ | ✅ Ready |
-| [**Final RFI Linyang**](./FINAL_RFI_LINYANG_JAN2026.md) | **Outstanding docs + scope clarification** | 🔴 Active |
-| [**RFI MV Equipment Brands**](./rfi-mv-equipment-brands-jan2026.md) | **Transformer, Switchgear, RMU brands + lead times** | 🔴 **NEW** |
-| [**LTSA Updated Rates**](./ltsa-updated-rates-jan2026.md) | **€1,740 maintenance + original warranty** | 🟡 **DRAFT** |
-| [Dino Requirements Tracker](./dino-requirements-tracker.md) | Contract requirements from Dino - 8 gaps | 🔴 Action Required |
-| [Pricing Gap Analysis](./pricing-gap-analysis.md) | Group pricing vs our model | ⚠️ Under Review |
-| [Linyang RFI Tracker](./linyang-rfi-tracker.md) | DSO/TSO documentation requests to Linyang | 🔴 Active |
-| [Group RFI Tracker](./group-rfi-tracker.md) | Group questions & final offering checklist | 🟡 In Progress |
+
+### Commercial & Pricing
+
+| Document | Purpose | Status |
+|----------|---------|--------|
+| [**LTSA Updated Rates**](./ltsa-updated-rates-jan2026.md) | **Group €1,740 / Non-Group €2,469** | ✅ **FINAL** |
+| [**Commercial Terms Clarification**](./commercial-terms-clarification-jan2026.md) | **Payment, VAT, Timeline, LDs, EOL** | ✅ **CURRENT** |
+| [Dino Requirements Tracker](./dino-requirements-tracker.md) | Contract requirements from Dino | 🔴 Action |
+| [Pricing Gap Analysis](./pricing-gap-analysis.md) | Group pricing vs our model | ⚠️ Review |
+| [Guarantee Comparison](./guarantee-comparison.md) | Competitor vs Lighthief guarantees | ✅ Complete |
+| [Pricing Verification](./pricing-verification.md) | EPC cost verification & tracking | ⚠️ Update |
+| [**Logistics Cost Comparison**](./logistics-cost-comparison-jan2026.md) | **Interfreight vs A. Soulis** | ✅ **NEW** |
+
+### Technical Reference
+
+| Document | Purpose | Status |
+|----------|---------|--------|
 | [Solar Park EPC](./solarpark-epc.md) | PV + BESS self-cost model | ✅ Complete |
 | [Solar Park Validation](./solarpark-epc-validation.md) | Cost assumption validation | ✅ Complete |
 | [Civil Works Estimate](./civil-works-estimate.md) | Ground prep cost estimates | ✅ Complete |
-| [Guarantee Comparison](./guarantee-comparison.md) | Competitor vs Lighthief guarantees | ✅ Complete |
-| [Pricing Verification](./pricing-verification.md) | EPC cost verification & tracking | ⚠️ Needs Update |
 | [Clients Index](../clients/_index.md) | Client portfolio overview | ✅ Updated |
 | [Linyang Specs](../linyang.md) | Equipment specifications | ✅ Complete |
 | [Cyprus DSO](../CyprusDSO.md) | Grid connection requirements | ✅ Complete |
