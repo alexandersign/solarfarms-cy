@@ -29,16 +29,21 @@ We are finalizing client proposals for the **47-project Cyprus BESS portfolio (8
 
 ## SECTION A: MV EQUIPMENT (FOR LINYANG)
 
-### A1. Brand Confirmation 🔴 CRITICAL
+### A1. Brand & Model Confirmation 🔴 CRITICAL
 
-| Component | Question | Our Preference |
-|-----------|----------|----------------|
-| **MV Transformer** | What brand is included in the MV SKID? | ABB or Schneider preferred |
-| **MV Switchgear** | What brand? Is it SF6 or air-insulated? | Schneider preferred |
-| **RMU** | Kamil confirmed Schneider on 27 Jan - please confirm model/series | Schneider ✓ |
-| **Protection Relays** | What brand/model protection relays are included? | ABB/Schneider/Siemens |
+| Component | Question | Our Preference | Model Required |
+|-----------|----------|----------------|----------------|
+| **MV Transformer** | What brand is included in the MV SKID? | ABB or Schneider preferred | **Please specify exact model/series** |
+| **MV Switchgear** | What brand? Is it SF6 or air-insulated? | Schneider preferred | **Please specify exact model/series** |
+| **RMU** | Kamil confirmed Schneider on 27 Jan | Schneider ✓ | **Please specify model (e.g., SM6, RM6, Premset?)** |
+| **Protection Relays** | What brand/model protection relays are included? | ABB/Schneider/Siemens | **Please specify exact model (e.g., ABB REF615, Schneider Sepam?)** |
+| **Auxiliary Transformer** | What brand is the auxiliary transformer? | Schneider preferred | **Please specify exact model/series** |
 
-**Why this matters:** Our clients require EU-brand MV equipment for local spares availability. If Chinese/unbranded equipment is supplied, spare parts lead time from China becomes a concern for LTSA commitments.
+**Why this matters:** 
+1. Our clients require EU-brand MV equipment for local spares availability
+2. Competitor proposals specify exact models (e.g., "Siemens 8DJH", "Schneider RM6") - we need equivalent detail
+3. Spare parts lead time from China is a concern for LTSA commitments
+4. Brand/model confirmation required for our proposals to match competitor detail level
 
 ### A2. Lead Time Alignment 🔴 CRITICAL
 
@@ -84,14 +89,24 @@ Current terms in Quote LY202601271:
 
 This is a key requirement from our clients' banks for project financing.
 
-### B3. Performance Bond / Corporate Guarantee
+### B3. Performance Bond / Corporate Guarantee 🔴 CRITICAL
 
 **Question:** Please confirm the form of Performance Bond:
-- Is it a corporate guarantee from Linyang?
+- Is it a corporate guarantee from Linyang or a bank guarantee?
 - What is the coverage amount and period?
 - Does it cover both equipment performance and warranty obligations?
 
-### B4. SOH Guarantee Remedy
+**Critical follow-up:** How is the Performance Bond backed?
+
+| Question | Response Required |
+|----------|-------------------|
+| **Issuing entity** | Linyang corporate? Parent company? Bank? |
+| **Form** | Letter of guarantee? Bank instrument? |
+| **Verification** | How can client verify the guarantee is valid? |
+| **Claim mechanism** | What is the process to make a claim if needed? |
+| **Backing security** | Is it backed by a reserve fund, insurance, or bank facility? |
+
+### B4. SOH Guarantee Remedy 🔴 CRITICAL
 
 **Question:** If actual SOH falls below the guaranteed value (e.g., 79.58% at Year 10), what remedy does Linyang offer?
 
@@ -99,6 +114,21 @@ Options typically include:
 - Battery augmentation (add capacity)
 - Pro-rata refund
 - Replacement of defective packs
+
+### B5. SOH Guarantee Backing Mechanism 🔴 CRITICAL
+
+**Question:** How is the SOH guarantee backed and honored?
+
+| Question | Response Required |
+|----------|-------------------|
+| **Financial backing** | Is there a warranty reserve fund? Insurance? Escrow? |
+| **Verification method** | How is SOH measured and verified (independent testing?) |
+| **Claim process** | What documentation is needed to make a claim? |
+| **Response timeline** | How quickly must Linyang respond to a valid SOH claim? |
+| **Guarantee enforcement** | Is the guarantee a separate legal instrument or part of main contract? |
+| **Parent company backing** | Does Linyang Energy (SHA: 601222) guarantee the warranty obligations? |
+
+**Why this matters:** Our clients' banks require clear understanding of how long-term performance guarantees are backed before they will approve project financing.
 
 ---
 
@@ -237,14 +267,23 @@ Items from the group's itemized breakdown requiring confirmation whether include
 
 | Category | Items | Priority | Response By |
 |----------|-------|----------|-------------|
-| A. MV Equipment | #1-6 (6 items) | 🔴 HIGH | 5 Feb 2026 |
-| B. Commercial Terms | #7-11 (5 items) | 🔴 HIGH | 7 Feb 2026 |
-| C. Technical Docs | #12-20 (9 items) | 🔴 HIGH | 14 Feb 2026 |
-| D. Spare Parts | #21-23 (3 items) | 🟡 MEDIUM | 14 Feb 2026 |
-| E. PCS Docs (Kehua) | #24-28 (5 items) | 🟢 LOW | 21 Feb 2026 |
-| F. Timeline | #29-31 (3 items) | 🟡 MEDIUM | 7 Feb 2026 |
-| **G. Scope Clarification** | #32-39 (8 items) | 🔴 HIGH | 7 Feb 2026 |
-| **TOTAL** | **39 items** | - | - |
+| A. MV Equipment | #1-7 (7 items) | 🔴 HIGH | 5 Feb 2026 |
+| B. Commercial Terms | #8-13 (6 items) | 🔴 HIGH | 7 Feb 2026 |
+| C. Technical Docs | #14-22 (9 items) | 🔴 HIGH | 14 Feb 2026 |
+| D. Spare Parts | #23-25 (3 items) | 🟡 MEDIUM | 14 Feb 2026 |
+| E. PCS Docs (Kehua) | #26-30 (5 items) | 🟢 LOW | 21 Feb 2026 |
+| F. Timeline | #31-33 (3 items) | 🟡 MEDIUM | 7 Feb 2026 |
+| **G. Scope Clarification** | #34-41 (8 items) | 🔴 HIGH | 7 Feb 2026 |
+| **TOTAL** | **41 items** | - | - |
+
+### 🔴 NEW CRITICAL ITEMS (Added 31 Jan 2026)
+
+| # | Item | Section | Why Critical |
+|---|------|---------|--------------|
+| NEW | MV Equipment exact model names | A1 | Competitor proposals specify models |
+| NEW | Auxiliary Transformer model | A1 | Complete MV scope definition |
+| NEW | Performance Bond backing mechanism | B3 | Bank financing requirement |
+| NEW | SOH Guarantee backing mechanism | B5 | Bank financing requirement |
 
 ---
 
