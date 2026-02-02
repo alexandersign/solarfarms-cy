@@ -48,7 +48,11 @@ Thank you for the recent documentation including the Kehua PCS catalogues and dr
 
 We are finalizing client proposals for the **47-project Cyprus BESS portfolio (863.5 MWh)** and need clarification on several outstanding items. I've consolidated all questions below for your convenience.
 
-**Response requested by: 7 February 2026** (critical items marked 🔴)
+**Response requested by: 2 February 2026 (TODAY)** for critical items:
+- **LDs (Liquidated Damages)** - Section B6
+- **MV Equipment Brand/Model Names** - Section A1
+
+Other items by: 7 February 2026
 
 ---
 
@@ -341,8 +345,8 @@ Equipment items requiring confirmation whether included in Linyang CIF price or 
 
 | Category | Items | Priority | Response By |
 |----------|-------|----------|-------------|
-| A. MV Equipment | #1-7 (7 items) | 🔴 HIGH | 5 Feb 2026 |
-| B. Commercial Terms | #8-15 (8 items) | 🔴 HIGH | 7 Feb 2026 |
+| **A. MV Equipment (Brand Names)** | #1-7 (7 items) | 🚨 **URGENT** | **2 Feb 2026 (TODAY)** |
+| **B. Commercial Terms (LDs)** | #8-19 (12 items) | 🚨 **URGENT** | **2 Feb 2026 (TODAY)** |
 | C. Technical Docs | #14-22 (9 items) | 🔴 HIGH | 14 Feb 2026 |
 | D. Spare Parts | #23-25 (3 items) | 🟡 MEDIUM | 14 Feb 2026 |
 | E. PCS Docs (Kehua) | #26-30 (5 items) | 🟢 LOW | 21 Feb 2026 |
