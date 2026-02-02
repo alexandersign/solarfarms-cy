@@ -8,7 +8,7 @@
 | Field | Value |
 |-------|-------|
 | **Document Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
-| **Version** | 1.3 |
+| **Version** | 1.4 |
 | **Date Created** | 31 January 2026 |
 | **Last Updated** | 2 February 2026 |
 | **Status** | ✅ READY TO SEND |
@@ -22,6 +22,7 @@
 | 1.1 | 31 Jan 2026 | Added Section G: Scope Clarification (8 items) | Alex |
 | 1.2 | 31 Jan 2026 | Added MV model names, SOH/Performance backing questions (+2 items = 41 total) | Alex |
 | 1.3 | 2 Feb 2026 | Finalized for sending, renamed to FINAL_RFI_LINYANG_FEB2026 | Alex |
+| 1.4 | 2 Feb 2026 | Added LDs section (B6), Guarantee confirmation table (B7), disclaimer | Alex |
 
 ---
 
@@ -48,6 +49,21 @@ Thank you for the recent documentation including the Kehua PCS catalogues and dr
 We are finalizing client proposals for the **47-project Cyprus BESS portfolio (863.5 MWh)** and need clarification on several outstanding items. I've consolidated all questions below for your convenience.
 
 **Response requested by: 7 February 2026** (critical items marked 🔴)
+
+---
+
+### ⚠️ IMPORTANT DISCLAIMER
+
+**NONE of the values, terms, or specifications in this document have been signed off or confirmed by Linyang.** This RFI is sent to obtain official confirmation of:
+
+- All warranty and guarantee terms and values
+- Liquidated Damages (LDs) terms and caps
+- Payment terms and milestone structure
+- SOH degradation curves and remedies
+- Performance Bond and APG mechanisms
+- All pricing and scope inclusions
+
+**All values shown are based on preliminary discussions and marketing materials only. Official confirmation from Linyang is required before any commitments can be made to clients.**
 
 ---
 
@@ -153,6 +169,40 @@ Options typically include:
 | **Parent company backing** | Does Linyang Energy (SHA: 601222) guarantee the warranty obligations? |
 
 **Why this matters:** Our clients' banks require clear understanding of how long-term performance guarantees are backed before they will approve project financing.
+
+### B6. Liquidated Damages (LDs) 🔴 CRITICAL
+
+**Question:** Please confirm the Liquidated Damages terms for the following scenarios:
+
+| LD Category | Question | Response Required |
+|-------------|----------|-------------------|
+| **Delay LDs** | What LDs apply if delivery is delayed beyond agreed date? | % per week/month, cap? |
+| **Performance LDs** | What LDs apply if system underperforms guaranteed capacity? | Calculation basis, cap? |
+| **Availability LDs** | What LDs apply if system availability falls below guarantee? | Threshold, calculation? |
+| **LD Cap** | What is the total maximum LD liability? | % of contract value? |
+| **Force Majeure** | What events qualify for LD exemption? | Definition required |
+| **Notice Period** | How must LDs be claimed and within what timeframe? | Process details |
+
+**Why this matters:** Our clients require clear LD terms for their financial models and risk assessment. Banks will not approve financing without understanding downside protection.
+
+### B7. All Guarantee Values - Confirmation Required 🔴 CRITICAL
+
+**Note:** The following values have been discussed but require **official written confirmation** from Linyang:
+
+| Guarantee | Value Discussed | Status |
+|-----------|-----------------|--------|
+| **Warranty Period** | 5 years standard | ⚠️ UNCONFIRMED |
+| **Extended Warranty** | Up to 20 years available | ⚠️ UNCONFIRMED |
+| **SOH Year 10** | 79.58% minimum | ⚠️ UNCONFIRMED |
+| **SOH Year 15** | 70% minimum | ⚠️ UNCONFIRMED |
+| **SOH Year 20** | TBD | ⚠️ UNCONFIRMED |
+| **Cycle Life** | 8,000+ cycles at 1C | ⚠️ UNCONFIRMED |
+| **System Availability** | 97%+ | ⚠️ UNCONFIRMED |
+| **Round-Trip Efficiency** | 86%+ | ⚠️ UNCONFIRMED |
+| **Performance Bond** | Amount and period TBD | ⚠️ UNCONFIRMED |
+| **Advance Payment Guarantee** | 100% of advance | ⚠️ UNCONFIRMED |
+
+**Request:** Please provide official written confirmation of all guarantee values, ideally in the form of a formal warranty certificate or term sheet.
 
 ---
 
@@ -292,7 +342,7 @@ Equipment items requiring confirmation whether included in Linyang CIF price or 
 | Category | Items | Priority | Response By |
 |----------|-------|----------|-------------|
 | A. MV Equipment | #1-7 (7 items) | 🔴 HIGH | 5 Feb 2026 |
-| B. Commercial Terms | #8-13 (6 items) | 🔴 HIGH | 7 Feb 2026 |
+| B. Commercial Terms | #8-15 (8 items) | 🔴 HIGH | 7 Feb 2026 |
 | C. Technical Docs | #14-22 (9 items) | 🔴 HIGH | 14 Feb 2026 |
 | D. Spare Parts | #23-25 (3 items) | 🟡 MEDIUM | 14 Feb 2026 |
 | E. PCS Docs (Kehua) | #26-30 (5 items) | 🟢 LOW | 21 Feb 2026 |
