@@ -205,7 +205,7 @@ Options typically include:
 | **Cycle Life** | 8,000+ cycles at 1C | ⚠️ UNCONFIRMED |
 | **System Availability** | 97%+ | ⚠️ UNCONFIRMED |
 | **PCS Efficiency** | ≥99% max, ~98% at rated power | ✅ CONFIRMED (Kehua datasheet) |
-| **System Round-Trip Efficiency** | 86%+ (total BESS incl. battery, cooling, transformer) | ⚠️ UNCONFIRMED |
+| **System Round-Trip Efficiency** | **87.8%** (per Linyang RTE Calculation doc) | ✅ **CONFIRMED** |
 | **Performance Bond** | Amount and period TBD | ⚠️ UNCONFIRMED |
 | **Advance Payment Guarantee** | 100% of advance | ⚠️ UNCONFIRMED |
 
