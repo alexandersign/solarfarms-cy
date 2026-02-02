@@ -8,7 +8,7 @@
 | Field | Value |
 |-------|-------|
 | **Document Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
-| **Version** | 1.5 |
+| **Version** | 1.6 FINAL |
 | **Date Created** | 31 January 2026 |
 | **Last Updated** | 2 February 2026 |
 | **Status** | ✅ READY TO SEND |
@@ -24,6 +24,7 @@
 | 1.3 | 2 Feb 2026 | Finalized for sending, renamed to FINAL_RFI_LINYANG_FEB2026 | Alex |
 | 1.4 | 2 Feb 2026 | Added LDs section (B6), Guarantee confirmation table (B7), disclaimer | Alex |
 | 1.5 | 2 Feb 2026 | Updated with received documentation status (C1, C2, E1, E2) | Alex |
+| 1.6 | 2 Feb 2026 | **FINAL VERSION FOR SENDING** | Alex |
 
 ---
 
@@ -33,7 +34,7 @@
 |-------|-------|
 | **To** | Kamil Tyburski, Conor Yang (Linyang); Kehua Sales Team |
 | **CC** | [Internal team] |
-| **Subject** | RFI - Cyprus 863.5 MWh BESS Portfolio - Outstanding Items (31 Jan 2026) - v1.2 |
+| **Subject** | RFI - Cyprus 863.5 MWh BESS Portfolio - Outstanding Items (2 Feb 2026) - FINAL |
 | **Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
 | **Priority** | HIGH |
 

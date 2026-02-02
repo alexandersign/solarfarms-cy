@@ -165,15 +165,24 @@ This is critical for System RTE calculation:
 - Transformer efficiency: ~99%
 - **Combined estimate: ~91% × 98% × 99% = ~88% System RTE**
 
-### Pricing Benchmark
+### Pricing - NOT COMPARABLE
 
 | Metric | This Offer | Our Portfolio |
 |--------|------------|---------------|
 | €/kWh | €97.00 | €119.00 (non-group) |
-| Configuration | 4×10MW SKID | Various |
+| **Scope** | **CIF Cyprus only** | **Full EPC Turnkey** |
+| Configuration | 4×10MW SKID | Various sizes |
 | Date | Nov 2025 | Jan 2026 |
 
-*Note: €22/kWh difference may be due to: volume (40MW vs smaller), timing, scope differences*
+**⚠️ NOT DIRECTLY COMPARABLE:** This offer is CIF equipment only. Our €119/kWh includes full EPC scope:
+- Installation & commissioning
+- DC/AC cabling
+- Civil works
+- EMS/SCADA
+- Project management
+- Warranties & LTSA
+
+The €22/kWh difference represents EPC works, not a price gap.
 
 ### Confirmed Specifications
 
