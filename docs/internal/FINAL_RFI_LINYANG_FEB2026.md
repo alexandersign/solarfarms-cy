@@ -270,18 +270,18 @@ Please confirm our understanding:
 
 ## SECTION G: SCOPE CLARIFICATION (FOR LINYANG) 🔴 CRITICAL
 
-Items from the group's itemized breakdown requiring confirmation whether included in Linyang CIF price or separate:
+Equipment items requiring confirmation whether included in Linyang CIF price or separate:
 
-| # | Item | Group Shows | Question |
-|---|------|-------------|----------|
-| 32 | **Power Plant Controller (PPC)** | €79,300 | Built into PCS or separate? If separate, can third-party EMS provide PPC function? |
-| 33 | **Grid Forming Controller** | €40,000 | Built-in to BCS C-series PCS or add-on? |
-| 34 | **LV Control Cabinet** | Part of Switchgear | Included in MV SKID or separate supply? |
-| 35 | **Protection Relays** | Part of RTU | In SKID or customer scope? **What brand - Schneider or ABB?** |
-| 36 | **RTU (Remote Terminal Unit)** | €39,600 | Confirmed INCLUDED ✓ - **What brand - Schneider or ABB?** |
-| 37 | **Auxiliary System & Comms Cabinet** | €39,600 | What exactly is included in this line item? Details required. |
-| 38 | **Commissioning Scope** | €66,900 | What does "training & launch" cover vs full DSO commissioning? What's included/excluded? |
-| 39 | **Lightning Protection / SPD** | Not specified | Is SPD included in container or MV SKID? What specs? |
+| # | Item | Question |
+|---|------|----------|
+| 32 | **Power Plant Controller (PPC)** | Built into PCS or separate? If separate, can third-party EMS provide PPC function? |
+| 33 | **Grid Forming Controller** | Built-in to BCS C-series PCS or add-on? |
+| 34 | **LV Control Cabinet** | Included in MV SKID or separate supply? |
+| 35 | **Protection Relays** | In SKID or customer scope? **What brand - Schneider or ABB?** |
+| 36 | **RTU (Remote Terminal Unit)** | Confirmed INCLUDED ✓ - **What brand - Schneider or ABB?** |
+| 37 | **Auxiliary System & Comms Cabinet** | What exactly is included in this line item? Details required. |
+| 38 | **Commissioning Scope** | What does "training & launch" cover vs full DSO commissioning? What's included/excluded? |
+| 39 | **Lightning Protection / SPD** | Is SPD included in container or MV SKID? What specs? |
 
 **Why this matters:** We need to confirm exact scope boundaries to avoid gaps or overlaps in our EPC pricing. Brand confirmation (Schneider/ABB) is critical for EU spares availability and LTSA commitments.
 
