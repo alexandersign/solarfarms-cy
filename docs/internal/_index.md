@@ -9,7 +9,7 @@
 
 | Document | Purpose | Status |
 |----------|---------|--------|
-| [**🎯 CONSOLIDATED RFI v1.2**](./rfi-consolidated-31jan2026.html) | **41 items - READY TO SEND** | 🔴 **FINAL** |
+| [**🎯 FINAL RFI LINYANG v1.2**](./final-rfi-linyang-consolidated-jan2026.html) | **41 items - READY TO SEND** | 🔴 **FINAL** |
 | [**📋 RFI Master Tracker**](./rfi-master-tracker-jan2026.md) | **Track all RFI responses** | 🔴 **ACTIVE** |
 | [**Linyang Quotation Jan 2026**](./linyang-quotation-jan2026.md) | **LY202601271 - Updated CIF pricing** | ✅ **CURRENT** |
 | [**Client Pricing 13%**](./client-pricing-13-percent.md) | **All 47 parks @ 13% margin** | ✅ **CURRENT** |
@@ -20,8 +20,8 @@
 
 | Document | Scope | Status |
 |----------|-------|--------|
-| [**Consolidated RFI v1.2 (HTML)**](./rfi-consolidated-31jan2026.html) | **41 items - All topics combined** | 🔴 **SEND** |
-| [**Consolidated RFI v1.2 (MD)**](./email-rfi-consolidated-31jan2026.md) | **Email body version** | 🔴 **SEND** |
+| [**FINAL RFI Linyang v1.2 (HTML)**](./final-rfi-linyang-consolidated-jan2026.html) | **41 items - All topics combined** | 🔴 **SEND** |
+| [**FINAL RFI Linyang v1.2 (MD)**](./final-rfi-linyang-consolidated-jan2026.md) | **Email body version** | 🔴 **SEND** |
 | [**Spares List RFI**](./rfi-spares-list-jan2026.md) | **Spare parts & lead times** | 🔴 **SEND** |
 
 ### RFPs/RFQs - Other Vendors
