@@ -77,13 +77,13 @@ Other items by: 7 February 2026
 
 ### A1. Brand & Model Confirmation 🔴 CRITICAL
 
-| Component | Question | Our Preference | Model Required |
-|-----------|----------|----------------|----------------|
-| **MV Transformer** | What brand is included in the MV SKID? | ABB or Schneider preferred | **Please specify exact model/series** |
-| **MV Switchgear** | What brand? Is it SF6 or air-insulated? | Schneider preferred | **Please specify exact model/series** |
-| **RMU** | Kamil confirmed Schneider on 27 Jan | Schneider ✓ | **Please specify model (e.g., SM6, RM6, Premset?)** |
-| **Protection Relays** | What brand/model protection relays are included? | ABB/Schneider/Siemens | **Please specify exact model (e.g., ABB REF615, Schneider Sepam?)** |
-| **Auxiliary Transformer** | What brand is the auxiliary transformer? | Schneider preferred | **Please specify exact model/series** |
+| Component | Question | Status | Model Required |
+|-----------|----------|--------|----------------|
+| **MV Transformer** | Part of MV SKID | ✅ **Kehua SL-10000** | Confirmed from datasheet |
+| **MV Switchgear** | What brand? SF6 or air-insulated? | ⚠️ PENDING | **Please specify model** |
+| **RMU** | Kamil confirmed Schneider on 27 Jan | ⚠️ PENDING | **Please specify model (SM6, RM6, Premset?)** |
+| **Protection Relays** | What brand/model? | ⚠️ PENDING | **Please specify (ABB REF615, Schneider Sepam?)** |
+| **Auxiliary Transformer** | Separate from MV Transformer - powers aux systems (cooling, BMS, controls). What brand? | ⚠️ PENDING | **Please specify brand/model** |
 
 **Why this matters:** 
 1. Our clients require EU-brand MV equipment for local spares availability
