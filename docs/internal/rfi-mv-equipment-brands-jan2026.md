@@ -6,7 +6,7 @@
 | Field | Value |
 |-------|-------|
 | **Document Reference** | LCY-RFI-MV-EQUIPMENT-2026 |
-| **Version** | 1.0 |
+| **Version** | 1.1 |
 | **Date Created** | 30 January 2026 |
 | **Last Updated** | 31 January 2026 |
 | **From** | Lighthief Cyprus Ltd |
@@ -20,7 +20,8 @@
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0 | 30 Jan 2026 | Initial creation | Alex |
-| 1.0 | 31 Jan 2026 | Added version header | Alex |
+| 1.0a | 31 Jan 2026 | Added version header | Alex |
+| 1.1 | 31 Jan 2026 | Added exact model name requirements (competitors specify models) | Alex |
 
 ---
 

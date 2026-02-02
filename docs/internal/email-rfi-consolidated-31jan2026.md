@@ -3,12 +3,35 @@
 
 ---
 
+## Document Control
+
+| Field | Value |
+|-------|-------|
+| **Document Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
+| **Version** | 1.2 |
+| **Date Created** | 31 January 2026 |
+| **Last Updated** | 31 January 2026 |
+| **Status** | ✅ READY TO SEND |
+| **Author** | Alexander Papacosta |
+
+### Version History
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 31 Jan 2026 | Initial consolidated RFI (39 items) | Alex |
+| 1.1 | 31 Jan 2026 | Added Section G: Scope Clarification (8 items) | Alex |
+| 1.2 | 31 Jan 2026 | Added MV model names, SOH/Performance backing questions (+2 items = 41 total) | Alex |
+
+---
+
+## Email Details
+
 | Field | Value |
 |-------|-------|
 | **To** | Kamil Tyburski, Conor Yang (Linyang); Kehua Sales Team |
 | **CC** | [Internal team] |
-| **Subject** | RFI - Cyprus 863.5 MWh BESS Portfolio - Outstanding Items (31 Jan 2026) |
-| **Reference** | LCY-RFI-CONSOLIDATED-2026 |
+| **Subject** | RFI - Cyprus 863.5 MWh BESS Portfolio - Outstanding Items (31 Jan 2026) - v1.2 |
+| **Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
 | **Priority** | HIGH |
 
 ---
