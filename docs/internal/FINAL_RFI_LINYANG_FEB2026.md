@@ -8,9 +8,9 @@
 | Field | Value |
 |-------|-------|
 | **Document Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
-| **Version** | 1.2 |
+| **Version** | 1.3 |
 | **Date Created** | 31 January 2026 |
-| **Last Updated** | 31 January 2026 |
+| **Last Updated** | 2 February 2026 |
 | **Status** | ✅ READY TO SEND |
 | **Author** | Alexander Papacosta |
 
@@ -21,6 +21,7 @@
 | 1.0 | 31 Jan 2026 | Initial consolidated RFI (39 items) | Alex |
 | 1.1 | 31 Jan 2026 | Added Section G: Scope Clarification (8 items) | Alex |
 | 1.2 | 31 Jan 2026 | Added MV model names, SOH/Performance backing questions (+2 items = 41 total) | Alex |
+| 1.3 | 2 Feb 2026 | Finalized for sending, renamed to FINAL_RFI_LINYANG_FEB2026 | Alex |
 
 ---
 
