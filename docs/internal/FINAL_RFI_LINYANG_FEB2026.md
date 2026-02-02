@@ -8,7 +8,7 @@
 | Field | Value |
 |-------|-------|
 | **Document Reference** | LCY-RFI-CONSOLIDATED-2026-001 |
-| **Version** | 1.4 |
+| **Version** | 1.5 |
 | **Date Created** | 31 January 2026 |
 | **Last Updated** | 2 February 2026 |
 | **Status** | ✅ READY TO SEND |
@@ -23,6 +23,7 @@
 | 1.2 | 31 Jan 2026 | Added MV model names, SOH/Performance backing questions (+2 items = 41 total) | Alex |
 | 1.3 | 2 Feb 2026 | Finalized for sending, renamed to FINAL_RFI_LINYANG_FEB2026 | Alex |
 | 1.4 | 2 Feb 2026 | Added LDs section (B6), Guarantee confirmation table (B7), disclaimer | Alex |
+| 1.5 | 2 Feb 2026 | Updated with received documentation status (C1, C2, E1, E2) | Alex |
 
 ---
 
@@ -202,7 +203,7 @@ Options typically include:
 | **SOH Year 20** | TBD | ⚠️ UNCONFIRMED |
 | **Cycle Life** | 8,000+ cycles at 1C | ⚠️ UNCONFIRMED |
 | **System Availability** | 97%+ | ⚠️ UNCONFIRMED |
-| **Round-Trip Efficiency** | 86%+ | ⚠️ UNCONFIRMED |
+| **Round-Trip Efficiency** | ~98% (per efficiency curves) | ✅ CONFIRMED in datasheet |
 | **Performance Bond** | Amount and period TBD | ⚠️ UNCONFIRMED |
 | **Advance Payment Guarantee** | 100% of advance | ⚠️ UNCONFIRMED |
 
@@ -216,17 +217,20 @@ Options typically include:
 
 | Document | Standard | Status | Notes |
 |----------|----------|--------|-------|
-| **LVRT/HVRT Test Report** | EN 50549-2 | ❌ Missing | Voltage ride-through curves |
-| **Frequency Response Curves** | EN 50549-2 | ❌ Missing | LFSM-O at 50.2 Hz, 10% droop |
-| **IEC 60870-5-104 Point List** | IEC 60870-5-104 | ❌ Missing | Complete SCADA register list |
+| **LVRT/HVRT Test Report** | EN 50549-2 | ✅ **RECEIVED** | BCS1250K-C-HUD EN50549-2 Report |
+| **Frequency Response Curves** | EN 50549-2 | ✅ **RECEIVED** | FRT 1000K/1250K-C-HUD document |
+| **IEC 60870-5-104 Point List** | IEC 60870-5-104 | ✅ **RECEIVED** | WRWF-0I002-06 IEC104 Point List.xlsx |
+| **Modbus Register List** | Modbus-TCP | ✅ **RECEIVED** | WRDF-0I002-103 Modbus Protocol.xlsx |
 | **Protection Settings Guide** | - | ❌ Missing | Default settings for Cyprus grid |
 
 ### C2. MV Equipment Datasheets
 
 | Document | Sizes Needed | Status |
 |----------|--------------|--------|
+| MV Skid Datasheets | 10MW | ✅ **RECEIVED** (BCS10000K-C-HUD T8.pdf) |
 | MV Skid Datasheets | 1MW, 1.25MW, 1.5MW, 2MW, 2.5MW, 3MW, 4MW, 5MW, 6MW, 8MW | ❌ Missing |
-| MV Transformer Datasheets | All sizes (1.1 MVA - 10 MVA) | ❌ Missing |
+| MV Transformer Datasheets | 10 MVA | ✅ **RECEIVED** (MV Transformer 10000kVA Datasheet) |
+| MV Transformer Datasheets | 1.1 MVA - 8 MVA | ❌ Missing |
 
 ### C3. Commissioning Documentation
 
@@ -286,20 +290,30 @@ For each spare part, please provide:
 
 ## SECTION E: PCS DOCUMENTATION (FOR KEHUA)
 
-### E1. Additional PCS Documents Needed
+### E1. PCS Documentation Status
 
 | Document | Status |
 |----------|--------|
+| PCS Datasheet (1000K/1250K) | ✅ **RECEIVED** (BCS1000K~1250K-C-HUD Series.pdf) |
+| PCS Datasheet (8000K/10000K) | ✅ **RECEIVED** (BCS8000K~10000K-C-HUD T8.pdf) |
+| Efficiency Curves | ✅ **RECEIVED** (BCS1250K-C-HUD efficiency Curve.pdf) |
+| P-Q Capability Curves | ✅ **RECEIVED** (single & parallel PCS PQ Curve.pdf) |
+| EN 50549-2 Certificate | ✅ **RECEIVED** (BCS1000K~1250K-C-HUD EN50549-2 cert.pdf) |
+| CE-LVD/EMC Certificates | ✅ **RECEIVED** (Multiple CE certificates) |
+| IEC 62909-1/2 TÜV Certificate | ✅ **RECEIVED** (Valid to 2030) |
 | PCS Installation Manual | ❌ Missing |
 | PCS Commissioning Guide | ❌ Missing |
 | Black Start Procedure | ❌ Missing |
 | Grid-Forming Configuration Guide | ❌ Missing |
 
-### E2. Foundation Drawings for Other Sizes
+### E2. Foundation Drawings
 
-We received the 2.5MW and 5MW foundation drawings. Please also provide:
-- 1MW/1.25MW PCS foundation requirements
-- 10MW container (BCS10000K-C-HUD/T8) foundation requirements
+| Size | Status |
+|------|--------|
+| 2.5MW / 5MW | ✅ **RECEIVED** (Previously provided) |
+| 10MW (BCS10000K-C-HUD/T8) | ✅ **RECEIVED** (DWG file available) |
+| 1MW / 1.25MW | ❌ Missing |
+| 8MW | ❌ Missing |
 
 ---
 
