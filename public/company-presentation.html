@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthief - Company Presentation 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #e2b62e;
+            --gold-light: rgba(226, 182, 46, 0.15);
+            --dark: #1c2026;
+            --dark-light: #2d3139;
+            --text: #374151;
+            --text-muted: #6b7280;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--white);
+        }
+
+        /* Print Controls */
+        .print-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+        }
+
+        .print-btn {
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .print-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .print-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Page Container */
+        .page {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--white);
+        }
+
+        /* Cover Page */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            page-break-after: always;
+        }
+
+        .cover-logo {
+            width: 180px;
+            margin-bottom: 40px;
+        }
+
+        .cover h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .cover-tagline {
+            font-size: 22px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .cover-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .cover-stat {
+            text-align: center;
+        }
+
+        .cover-stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .cover-stat-label {
+            font-size: 13px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cover-meta {
+            margin-top: 60px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 40px 0;
+            page-break-inside: avoid;
+        }
+
+        .section-dark {
+            background: var(--dark);
+            color: var(--white);
+            padding: 50px 40px;
+            margin: 0 -40px;
+        }
+
+        .section-gold {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 50px 40px;
+            margin: 0 -40px;
+        }
+
+        .section-gray {
+            background: var(--gray-50);
+            padding: 50px 40px;
+            margin: 0 -40px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            margin-top: 12px;
+        }
+
+        .section-dark h2,
+        .section-gold h2 {
+            color: inherit;
+        }
+
+        .section-dark h2::after {
+            background: var(--gold);
+        }
+
+        .section-gold h2::after {
+            background: var(--dark);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.75;
+        }
+
+        .lead {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--gray-100);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--gray-100);
+        }
+
+        .team-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .team-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            font-size: 11px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .team-countries {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .country-tag {
+            font-size: 9px;
+            padding: 3px 8px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .team-email {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            word-break: break-all;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .service-card {
+            padding: 25px;
+            background: var(--white);
+            border-radius: 12px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .service-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Location Grid */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .location-card {
+            text-align: center;
+            padding: 15px 10px;
+            background: var(--gold);
+            color: var(--dark);
+            border-radius: 8px;
+        }
+
+        .location-card.planned {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--white);
+        }
+
+        .location-country {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .location-city {
+            font-size: 10px;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+
+        .location-badge {
+            font-size: 8px;
+            background: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* Partners Logo Grid */
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: var(--gray-50);
+            border-radius: 12px;
+        }
+
+        .partner-logo {
+            height: 40px;
+            width: auto;
+            opacity: 0.7;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 13px;
+        }
+
+        .feature-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        /* Badges */
+        .badge-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            background: var(--gold-light);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .badge-dark {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .contact-card {
+            padding: 25px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(226,182,46,0.3);
+            border-radius: 12px;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .contact-value a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* Map Image */
+        .map-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        /* Page Break */
+        .page-break {
+            page-break-after: always;
+        }
+
+        /* Print Styles */
+        @media print {
+            .print-controls {
+                display: none !important;
+            }
+
+            body {
+                font-size: 10pt;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .page {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .cover {
+                min-height: auto;
+                padding: 40px;
+            }
+
+            .section-dark,
+            .section-gold,
+            .section-gray {
+                margin: 0 -20px;
+                padding: 30px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .stat-value, .cover-stat-value {
+                font-size: 24px;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+    </style>
+</head>
+<body>
+    <!-- Print Controls -->
+    <div class="print-controls no-print">
+        <button class="print-btn" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            Save as PDF
+        </button>
+    </div>
+
+    <!-- COVER PAGE -->
+    <div class="cover">
+        <img src="/logo/lighthief-logo.png" alt="Lighthief Logo" class="cover-logo">
+        <h1>LIGHTHIEF</h1>
+        <p class="cover-tagline">European-Asian Renewable Energy O&M Operator</p>
+        
+        <div class="cover-stats">
+            <div class="cover-stat">
+                <div class="cover-stat-value">11</div>
+                <div class="cover-stat-label">Countries</div>
+            </div>
+            <div class="cover-stat">
+                <div class="cover-stat-value">100s MW</div>
+                <div class="cover-stat-label">Assets Managed</div>
+            </div>
+            <div class="cover-stat">
+                <div class="cover-stat-value">150+</div>
+                <div class="cover-stat-label">Team Members</div>
+            </div>
+            <div class="cover-stat">
+                <div class="cover-stat-value">10+</div>
+                <div class="cover-stat-label">Years Experience</div>
+            </div>
+        </div>
+
+        <div class="cover-meta">
+            Company Presentation | 2026<br>
+            NATO Certified Service Provider | EU Grants Recipient
+        </div>
+    </div>
+
+    <div class="page">
+        <!-- ABOUT US -->
+        <section class="section">
+            <h2>About Us</h2>
+            <p class="lead">From Polish-British startup to pan-European renewable energy powerhouse</p>
+            
+            <p>Founded nearly a decade ago, Lighthief has evolved from a small Polish-British company into a rapidly growing European-Asian renewable energy O&M operator. Today, we manage hundreds of megawatts of solar, wind, and biogas installations across 11 countries, providing comprehensive EPC and O&M services throughout the entire lifecycle of renewable energy projects.</p>
+            
+            <p>Our team of over 150 renewable energy professionals combines field engineers, technical specialists, project managers, and monitoring experts—all united by hands-on experience and commitment to operational excellence. Led by Founder Dr. Arkadius Sybaris, our multinational workforce speaks the language of local markets while maintaining unified quality standards.</p>
+            
+            <p>Our strength lies in our people: engineers who've weathered countless installations, technicians who know every panel and inverter intimately, and managers who understand that renewable energy service is ultimately about reliability, response time, and results.</p>
+        </section>
+
+        <!-- COMPANY STATS -->
+        <section class="section section-gray">
+            <h2>At a Glance</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">11</div>
+                    <div class="stat-label">Countries</div>
+                    <div class="stat-desc">Active operations across Europe and Asia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100s MW</div>
+                    <div class="stat-label">Assets Managed</div>
+                    <div class="stat-desc">Solar, wind, and biogas installations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">150+</div>
+                    <div class="stat-label">Team Size</div>
+                    <div class="stat-desc">Renewable energy professionals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10+</div>
+                    <div class="stat-label">Years Experience</div>
+                    <div class="stat-desc">In renewable energy sector</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">NATO</div>
+                    <div class="stat-label">Certified</div>
+                    <div class="stat-desc">Service provider certification</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">23 ha</div>
+                    <div class="stat-label">R&D Center</div>
+                    <div class="stat-desc">Innovation hub in Poland</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- INNOVATION HUB -->
+        <section class="section">
+            <h2>Innovation Hub</h2>
+            <p class="lead">Our Polish facility represents a major investment in renewable energy research and development</p>
+            
+            <div class="two-col">
+                <div>
+                    <p>Located on a <strong>23-hectare site</strong> in Częstochowa, Poland, this center combines cutting-edge research with practical applications. Our living laboratory allows us to test, optimize, and validate technologies before deploying them across our client portfolio.</p>
+                    
+                    <p>Our innovative O&M solutions for PV farms have been supported by numerous <strong>EU grants</strong> for research and development, validating our approach to next-generation renewable energy services.</p>
+                </div>
+                <div>
+                    <h3>Facility Features</h3>
+                    <ul class="feature-list">
+                        <li><strong>2×8 MW</strong> photovoltaic farm for live testing</li>
+                        <li><strong>1 MW</strong> biogas plant</li>
+                        <li>Advanced <strong>BESS systems</strong></li>
+                        <li><strong>1,000 m²</strong> office space</li>
+                        <li><strong>3,500 m²</strong> warehouse capacity</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY & STANDARDS -->
+        <section class="section section-dark">
+            <h2>Security & Standards</h2>
+            <p>As a <strong>certified NATO service provider</strong>, Lighthief adheres to stringent security protocols and quality standards. This certification reflects our commitment to operational excellence, data security, and reliable service delivery for critical infrastructure projects.</p>
+            
+            <div class="badge-row">
+                <span class="badge badge-dark">NATO Certified</span>
+                <span class="badge badge-dark">ISO 9001</span>
+                <span class="badge badge-dark">ISO 14001</span>
+                <span class="badge badge-dark">EU Grants Recipient</span>
+            </div>
+        </section>
+
+        <!-- VISION -->
+        <section class="section">
+            <h2>Our Vision</h2>
+            <p>Lighthief's strategic goal is to provide comprehensive O&M coverage across the entire European Union and establish ourselves as one of the largest renewable energy service operators in the region.</p>
+            <p>Our expansion into Ukraine and Eurasian markets reflects this ambition, positioning us at the forefront of renewable energy growth in both established and emerging markets.</p>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- SERVICES -->
+        <section class="section section-gray">
+            <h2>Our Services</h2>
+            <p class="lead">End-to-end renewable energy solutions from project development through operations, maintenance, and end-of-life recycling</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-title">Solar EPC</div>
+                    <div class="service-desc">
+                        Turnkey solar projects from concept to commissioning across Europe. Technical design, equipment procurement, construction management, grid connection, and final handover. NATO certification and EU grants validate our commitment to quality and safety.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-title">Solar & Wind O&M</div>
+                    <div class="service-desc">
+                        24/7 monitoring from four European control centers, preventive maintenance, rapid emergency response, thermal imaging inspections, and performance optimization. Experience spans floating PV, mountain installations, and active conflict zones.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-title">BESS Solutions</div>
+                    <div class="service-desc">
+                        Comprehensive battery energy storage from system design to ongoing monitoring. Large-scale commercial (MW-scale), residential battery storage, and SMB solutions tailored to business consumption patterns.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-title">Repowering & Recycling</div>
+                    <div class="service-desc">
+                        Extend installation lifecycles through strategic repowering—upgrading inverters, replacing underperforming panels, modernizing control systems. Complete physical recycling capabilities at our Polish facility.
+                    </div>
+                </div>
+            </div>
+
+            <h3>EPC Deliverables</h3>
+            <ul class="feature-list">
+                <li>Complete technical design and engineering documentation</li>
+                <li>Equipment procurement from verified tier-1 manufacturers</li>
+                <li>Full construction management with certified installation teams</li>
+                <li>Grid connection coordination and permitting support</li>
+                <li>Commissioning, testing, and performance verification</li>
+                <li>As-built documentation and warranty management</li>
+            </ul>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- LEADERSHIP TEAM -->
+        <section class="section">
+            <h2>Leadership Team</h2>
+            <p class="lead">Over 150 renewable energy professionals across Europe and Asia, led by experienced directors with hands-on expertise</p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="/images/team/arkadius.jpg" alt="Dr. Arkadius Sybaris" class="team-photo">
+                    <div class="team-name">Dr. Arkadius Sybaris</div>
+                    <div class="team-role">Founder & CEO</div>
+                    <div class="team-countries">
+                        <span class="country-tag">PL</span>
+                        <span class="country-tag">UK</span>
+                        <span class="country-tag">KZ</span>
+                        <span class="country-tag">UZ</span>
+                        <span class="country-tag">UA</span>
+                        <span class="country-tag">RO</span>
+                    </div>
+                    <div class="team-email">a.sybaris@lighthief.com</div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="/images/team/alexander-papacosta.jpg" alt="Alexander Papacosta" class="team-photo">
+                    <div class="team-name">Alexander Papacosta</div>
+                    <div class="team-role">Cyprus Director</div>
+                    <div class="team-countries">
+                        <span class="country-tag">CY</span>
+                        <span class="country-tag">GR</span>
+                    </div>
+                    <div class="team-email">alexander.papacosta@lighthief.com</div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="/images/team/maciej.jpg" alt="Maciej Krzyżanowski" class="team-photo">
+                    <div class="team-name">Maciej Krzyżanowski</div>
+                    <div class="team-role">Poland Director</div>
+                    <div class="team-countries">
+                        <span class="country-tag">PL</span>
+                    </div>
+                    <div class="team-email">m.krzyzanowski@lighthief.com</div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="/images/team/maurizio.jpg" alt="Maurizio Ganis" class="team-photo">
+                    <div class="team-name">Maurizio Ganis</div>
+                    <div class="team-role">Italy Director</div>
+                    <div class="team-countries">
+                        <span class="country-tag">IT</span>
+                    </div>
+                    <div class="team-email">m.ganis@lighthief.com</div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="/images/team/leon.jpg" alt="Leon Volkerink" class="team-photo">
+                    <div class="team-name">Leon Volkerink</div>
+                    <div class="team-role">Director & CCO</div>
+                    <div class="team-countries">
+                        <span class="country-tag">NL</span>
+                        <span class="country-tag">DE</span>
+                        <span class="country-tag">CY</span>
+                    </div>
+                    <div class="team-email">leon.volkerink@lighthief.com</div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="/images/team/marko.jpg" alt="Marko Hernaiz" class="team-photo">
+                    <div class="team-name">Marko Hernaiz</div>
+                    <div class="team-role">Spain/Poland Director</div>
+                    <div class="team-countries">
+                        <span class="country-tag">ES</span>
+                        <span class="country-tag">PL</span>
+                    </div>
+                    <div class="team-email">m.hernaiz@lighthief.com</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- LOCATIONS -->
+        <section class="section section-dark">
+            <h2>Our Locations</h2>
+            <p class="lead">Strategic offices across Europe and Central Asia with 24/7 monitoring centers</p>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-country">Poland</div>
+                    <div class="location-city">Częstochowa (HQ)</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Italy</div>
+                    <div class="location-city">Trieste</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Italy</div>
+                    <div class="location-city">Salerno</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Spain</div>
+                    <div class="location-city">Malaga</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Germany</div>
+                    <div class="location-city">Hannover</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Netherlands</div>
+                    <div class="location-city">Utrecht</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Cyprus</div>
+                    <div class="location-city">Limassol</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Greece</div>
+                    <div class="location-city">Athens</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Kazakhstan</div>
+                    <div class="location-city">Astana</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-country">Uzbekistan</div>
+                    <div class="location-city">Tashkent</div>
+                </div>
+                <div class="location-card planned">
+                    <div class="location-badge">2026</div>
+                    <div class="location-country">Romania</div>
+                </div>
+                <div class="location-card planned">
+                    <div class="location-badge">2026</div>
+                    <div class="location-country">Czech Republic</div>
+                </div>
+                <div class="location-card planned">
+                    <div class="location-badge">2026</div>
+                    <div class="location-country">Slovakia</div>
+                </div>
+                <div class="location-card planned">
+                    <div class="location-badge">2026</div>
+                    <div class="location-country">Switzerland</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 30px; text-align: center; opacity: 0.8;">
+                <strong>24/7 Monitoring Centers:</strong> Częstochowa (PL), Hannover (DE), Trieste (IT), Malaga (ES)
+            </p>
+        </section>
+
+        <!-- WHY LOCAL PRESENCE -->
+        <section class="section">
+            <h2>Why Local Presence Matters</h2>
+            <p>For O&M and EPC services, local presence isn't just about representation — it's about <strong>boots on the ground</strong>, immediate response capabilities, and deep understanding of regional regulations, weather patterns, and market dynamics.</p>
+            <p>Renewable energy service delivery demands logistics excellence, rapid reaction times, and local market expertise. This is precisely what our partners, investors, and clients value most about working with Lighthief.</p>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- PARTNERS -->
+        <section class="section section-gray">
+            <h2>Our Partners</h2>
+            <p class="lead">Strategic partnerships with leading manufacturers and industry leaders</p>
+            
+            <div class="partners-grid">
+                <img src="/images/lighithief-service-man_files/logo_0010_jinko.png" alt="Jinko Solar" class="partner-logo">
+                <img src="/images/lighithief-service-man_files/logo_0002_SolarEdge_logo_header_new_0.png" alt="SolarEdge" class="partner-logo">
+                <img src="/images/lighithief-service-man_files/logo_0005_Logo-base-1.png" alt="Partner" class="partner-logo">
+                <img src="/images/lighithief-service-man_files/logo_0006_logo.png" alt="Partner" class="partner-logo">
+                <img src="/images/lighithief-service-man_files/logo_0004_logoedpb_new_dark.png" alt="Partner" class="partner-logo">
+                <img src="/images/lighithief-service-man_files/logo_0003_pcz_logo_pol_poziom_kolor.png" alt="PCZ" class="partner-logo">
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section section-gold">
+            <h2>Contact Us</h2>
+            <p class="lead">Ready to partner with Lighthief? Get in touch with our team.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-label">Cyprus Office</div>
+                    <div class="contact-value">
+                        28 October Ave 249<br>
+                        Lophitis Business Center 1, Office 201<br>
+                        3035 Limassol, Cyprus
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-label">Global Headquarters</div>
+                    <div class="contact-value">
+                        Częstochowa, Poland<br>
+                        23-hectare R&D Center
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:office@lighthief.com">office@lighthief.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">
+                        <a href="tel:+35777770050">+357 77 77 00 50</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="contact-label">Website</div>
+                <div class="contact-value" style="font-size: 18px;">
+                    <a href="https://solarfarms.cy">solarfarms.cy</a> | <a href="https://lighthief.energy">lighthief.energy</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <section class="section" style="text-align: center; padding: 40px 0 20px;">
+            <img src="/logo/lighthief-logo.png" alt="Lighthief" style="height: 50px; margin-bottom: 20px; filter: brightness(0);">
+            <p style="font-size: 11px; color: var(--text-muted);">
+                LIGHTHIEF CYPRUS LTD | Company No: HE 477423 | TIN: 60187188Q<br>
+                Registered: Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus
+            </p>
+            <p style="font-size: 10px; color: var(--text-muted); margin-top: 15px;">
+                © 2026 Lighthief. All rights reserved. NATO Certified Service Provider.
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Print optimization
+        window.addEventListener('beforeprint', function() {
+            document.body.classList.add('printing');
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.body.classList.remove('printing');
+        });
+    </script>
+</body>
+</html>
