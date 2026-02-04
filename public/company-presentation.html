@@ -205,15 +205,40 @@
             color: var(--dark);
         }
 
+        .section-dark h3 {
+            color: var(--white);
+        }
+
+        .section-gold h3 {
+            color: var(--dark);
+        }
+
         p {
             margin-bottom: 15px;
             line-height: 1.75;
+        }
+
+        .section-dark p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .section-gold p {
+            color: var(--dark);
         }
 
         .lead {
             font-size: 14px;
             color: var(--text-muted);
             margin-bottom: 30px;
+        }
+
+        .section-dark .lead {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .section-gold .lead {
+            color: var(--dark);
+            opacity: 0.85;
         }
 
         /* Stats Grid */
@@ -388,11 +413,13 @@
 
         .location-badge {
             font-size: 8px;
-            background: rgba(0,0,0,0.2);
+            background: var(--gold);
+            color: var(--dark);
             padding: 2px 6px;
             border-radius: 10px;
             margin-bottom: 5px;
             display: inline-block;
+            font-weight: 600;
         }
 
         /* Partners Logo Grid */
@@ -442,6 +469,18 @@
             font-size: 14px;
         }
 
+        .section-dark .feature-list li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .section-gold .feature-list li {
+            color: var(--dark);
+        }
+
+        .section-gold .feature-list li::before {
+            color: var(--dark);
+        }
+
         /* Badges */
         .badge-row {
             display: flex;
@@ -466,6 +505,12 @@
             border-color: rgba(255,255,255,0.3);
         }
 
+        .section-gold .badge {
+            background: var(--dark);
+            color: var(--white);
+            border-color: var(--dark);
+        }
+
         /* Contact Section */
         .contact-grid {
             display: grid;
@@ -476,8 +521,8 @@
 
         .contact-card {
             padding: 25px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(226,182,46,0.3);
+            background: rgba(28, 32, 38, 0.08);
+            border: 2px solid var(--dark);
             border-radius: 12px;
         }
 
@@ -485,6 +530,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--dark);
             opacity: 0.7;
             margin-bottom: 10px;
         }
@@ -492,11 +538,26 @@
         .contact-value {
             font-size: 14px;
             font-weight: 600;
+            color: var(--dark);
         }
 
         .contact-value a {
+            color: var(--dark);
+            text-decoration: underline;
+        }
+
+        .section-dark .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+        }
+
+        .section-dark .contact-label,
+        .section-dark .contact-value {
+            color: var(--white);
+        }
+
+        .section-dark .contact-value a {
             color: var(--gold);
-            text-decoration: none;
         }
 
         /* Map Image */
@@ -961,9 +1022,9 @@
             </div>
             
             <div style="text-align: center; margin-top: 30px;">
-                <div class="contact-label">Website</div>
-                <div class="contact-value" style="font-size: 18px;">
-                    <a href="https://solarfarms.cy">solarfarms.cy</a> | <a href="https://lighthief.energy">lighthief.energy</a>
+                <div class="contact-label" style="color: var(--dark);">Website</div>
+                <div class="contact-value" style="font-size: 18px; color: var(--dark);">
+                    <a href="https://solarfarms.cy" style="color: var(--dark);">solarfarms.cy</a> | <a href="https://lighthief.energy" style="color: var(--dark);">lighthief.energy</a>
                 </div>
             </div>
         </section>
