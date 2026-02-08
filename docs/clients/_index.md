@@ -1,7 +1,16 @@
+> ## ⚠️ PRICING NOTICE — SINGLE SOURCE OF TRUTH
+> **All pricing in this document is SUPERSEDED by the master spreadsheet:**  
+> **`docs/Bess - EPC System Cost v2.xlsx`** (Sheet: `Pricing_Model_All_Projects`)  
+> If any price, cost, or margin figure in this document conflicts with the spreadsheet, **the spreadsheet prevails**.  
+> Individual order pricing (non-group) = spreadsheet columns BL-BR (+15% on CIF & subcontractor adders).  
+> *Last verified: 7 February 2026*
+
+---
+
 # Cyprus BESS Client Portfolio
 
 > **CONFIDENTIAL - INTERNAL USE ONLY**
-> **Last Updated**: January 27, 2026
+> **Last Updated**: 7 February 2026
 > **Source**: Hybrid Storage - List of PV plants & owners (November 21, 2025)
 > **Pricing Source**: Linyang Quotation LY202601271 (27 Jan 2026) ✅ NEW
 
@@ -24,6 +33,7 @@
 
 | Client | District | Projects | BESS Capacity | Timeline | Status |
 |--------|----------|----------|---------------|----------|--------|
+| [**🔴 Abio Power (HTML)**](./abio-power-proposal-feb2026.html) | Multiple | 19 | 64 MW / 225 MWh | 2026-2030 | 🔴 **€27.5M PORTFOLIO** |
 | [ELESTORE](./elestore.md) | Nicosia | 5 | 60 MW / 200 MWh | Q2 2026 | 🔄 Active |
 | [Esperia Energy Group](./esperia-energy.md) | Multiple | 7 | 59.5 MW / 262.5 MWh | Q2-Q4 2026 | 🔄 Active |
 | [Dianary Group](./dianary.md) | Nicosia | 3 | 14 MW / 55 MWh | Q3 2026 | 🔄 Active |

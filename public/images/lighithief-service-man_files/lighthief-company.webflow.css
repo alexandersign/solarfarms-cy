@@ -1,0 +1,1239 @@
+.hero_section {
+  width: 100vw;
+  height: 100vh;
+}
+
+.background-video {
+  background-image: linear-gradient(#0000 53%, #000);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.image-7 {
+  text-align: center;
+  max-width: 50%;
+}
+
+.guideline-wrap-info {
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  display: flex;
+}
+
+.guideline-wrap-info.left-align {
+  text-align: left;
+  align-items: flex-start;
+  height: 120vh;
+}
+
+.paragraph-3 {
+  color: #fff;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  line-height: 1.7em;
+}
+
+.heading-2 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1.3rem;
+  font-family: Poppins, sans-serif;
+  font-size: 70px;
+  font-weight: 800;
+}
+
+.sticky-info-column {
+  background-color: #252c4e;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  padding-left: 96px;
+  padding-right: 96px;
+  display: flex;
+}
+
+.sticky-header-column {
+  background-color: #e2b62e;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100vh;
+  padding-left: 96px;
+  padding-right: 96px;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.paragraph {
+  color: #000;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.7rem;
+}
+
+.large-nber {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: 200;
+}
+
+.large-nber.outline {
+  color: #e2b62e;
+  -webkit-text-stroke-color: #e2b62e;
+  margin-bottom: .8rem;
+  font-weight: 900;
+}
+
+.sticky-section {
+  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+.body {
+  color: #fff;
+  background-color: #252c4e;
+  font-family: Poppins, sans-serif;
+}
+
+.podtytul-drugi {
+  margin-top: 32px;
+  margin-bottom: 17px;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.main-p-copy-copy-copy {
+  margin-top: 0;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7em;
+}
+
+.s-scroll-box-wrapper {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  display: flex;
+  position: relative;
+}
+
+.s-scroll-box-wrapper.img {
+  overflow: hidden;
+}
+
+.main-p {
+  color: #fff;
+  margin-top: 36px;
+  margin-bottom: 50px;
+  padding-top: 0;
+  font-family: Poppins, sans-serif;
+  line-height: 1.7em;
+}
+
+.lines-inner-wrapper {
+  z-index: 1;
+  opacity: .25;
+  justify-content: space-between;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  position: static;
+  inset: 0%;
+}
+
+.heading-4 {
+  color: #e2b62e;
+  margin-bottom: 0;
+  font-family: Poppins, sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 55px;
+}
+
+.img-transition-wrapper {
+  z-index: 2;
+  background-color: #e2b62e;
+  display: none;
+  position: absolute;
+  inset: 0%;
+}
+
+.full-page-wrapper {
+  position: relative;
+}
+
+.nav-link {
+  border-bottom: 1px #000;
+  text-decoration: none;
+}
+
+.nav-outer-wrapper {
+  z-index: 99;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 30px;
+  display: flex;
+  position: fixed;
+  inset: 0% 0% auto;
+}
+
+.line {
+  color: #e2b62e;
+  -webkit-text-stroke-color: #e2b62e;
+  background-color: #e2b62e;
+  width: 1px;
+  max-width: 1px;
+  height: 100%;
+}
+
+.main-p-copy {
+  margin-top: 17px;
+  margin-bottom: 17px;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.content-outer-wrapper {
+  z-index: 2;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 65%;
+  display: block;
+  position: relative;
+}
+
+.main-p-copy-copy-copy-copy-copy-copy {
+  margin-top: 25px;
+  margin-bottom: 50px;
+  font-family: Poppins, sans-serif;
+  line-height: 1.7em;
+}
+
+.heading-3 {
+  color: #e2b62e;
+  margin-bottom: 1px;
+  font-family: Poppins, sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.image {
+  width: 35px;
+}
+
+.s-scroll {
+  justify-content: space-between;
+  height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+.img-wrapper {
+  z-index: 1;
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-winter-farm.jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  inset: 0%;
+}
+
+.img-wrapper._2 {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.img-wrapper._3 {
+  background-image: url('../images/lighthief-energy-storage.jpg');
+}
+
+.img-wrapper._2-copy {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.img-wrapper._3-copy {
+  background-image: url('../images/2_square.jpg');
+}
+
+.lines-outer-wrapper {
+  z-index: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0%;
+}
+
+.podlowek-zaglowka {
+  font-weight: 600;
+}
+
+.hero-without-image {
+  background-color: #252c4e;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-wrapper-two {
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.margin-bottom-24px {
+  margin-bottom: 24px;
+}
+
+.button-primary {
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: #1a1b1f;
+  padding: 12px 25px;
+  font-size: 12px;
+  line-height: 20px;
+  transition: all .2s;
+}
+
+.button-primary:hover {
+  color: #fff;
+  background-color: #32343a;
+}
+
+.button-primary:active {
+  background-color: #43464d;
+}
+
+.image-8 {
+  vertical-align: top;
+  flex: 1;
+  overflow: visible;
+}
+
+.image-9 {
+  box-sizing: border-box;
+}
+
+.hero-without-image-2 {
+  background-color: #252c4e;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-2 {
+  width: 100%;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-without-image-3 {
+  box-sizing: border-box;
+  aspect-ratio: auto;
+  object-fit: fill;
+  background-color: #fff;
+  background-image: linear-gradient(#000, #fff 32%);
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-3 {
+  width: 100%;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partners-head {
+  color: #252c4e;
+  -webkit-text-stroke-color: #252c4e;
+  margin-top: 270px;
+  font-size: 70px;
+}
+
+.page-padding {
+  padding: 5em 5%;
+}
+
+.page-padding.s0 {
+  margin-top: 139px;
+  margin-bottom: 140px;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.container-large {
+  width: 100%;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.padding-vertical {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.padding-vertical.padding-xxlarge {
+  padding: 0;
+}
+
+.logo_component-slider {
+  grid-column-gap: 6rem;
+  grid-row-gap: 6rem;
+  grid-template-rows: auto;
+  grid-template-columns: max-content 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: flex-start;
+  align-items: center;
+  width: 2200px;
+  display: flex;
+}
+
+.logo-slider-img {
+  width: 200px;
+}
+
+.image-10 {
+  text-align: center;
+}
+
+.hero-without-image-4 {
+  background-color: #252c4e;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-4 {
+  width: 100%;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-11 {
+  box-sizing: border-box;
+  aspect-ratio: auto;
+  text-align: center;
+  position: static;
+}
+
+.image-12 {
+  text-align: center;
+  vertical-align: top;
+  object-fit: fill;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.heading-5 {
+  color: #e2b62e;
+  margin-bottom: 0;
+  font-family: Poppins, sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 55px;
+}
+
+.img-transition-wrapper-2 {
+  z-index: 2;
+  background-color: #e2b62e;
+  display: none;
+  position: absolute;
+  inset: 0%;
+}
+
+.line-2 {
+  background-color: #e2b62e;
+  width: 1px;
+  max-width: 1px;
+  height: 100%;
+}
+
+.image-13 {
+  width: 35px;
+}
+
+.custom_map-map_block {
+  position: static;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.custom_map-legends {
+  grid-column-gap: .625rem;
+  grid-row-gap: .625rem;
+  align-items: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  display: flex;
+}
+
+.section-custom_map {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  overflow: hidden;
+}
+
+.map_item-list {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.custom_map-component {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 33%;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  margin-top: 3rem;
+  display: grid;
+}
+
+.heading-style-h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.padding-global {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.map_item-collection {
+  margin-top: 4rem;
+  display: none;
+}
+
+.spacer-large {
+  padding-top: 3rem;
+}
+
+.map_pointer {
+  z-index: 1;
+  border-radius: 50%;
+  width: .8vw;
+  height: .8vw;
+  position: absolute;
+  inset: 0% auto auto 0%;
+  transform: translate(-50%, -50%);
+}
+
+.map_pointer:hover {
+  z-index: 2;
+}
+
+.custom_map-image {
+  width: 100%;
+  display: block;
+}
+
+.heading-style-h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.spacer-xxsmall {
+  width: 100%;
+  padding-top: .25rem;
+}
+
+.container-large-2 {
+  width: 100%;
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-without-image-5 {
+  -webkit-text-fill-color: transparent;
+  background-color: #f5f7fa;
+  -webkit-background-clip: text;
+  background-clip: text;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-5 {
+  width: 100%;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-6 {
+  width: 90%;
+  max-width: 90rem;
+}
+
+.heading-6 {
+  color: #ffe3f3;
+  text-align: center;
+  margin-bottom: 6rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-weight: 100;
+}
+
+.world-map {
+  background-image: url('../images/world-map.svg');
+  background-position: 0 0;
+  background-size: auto;
+  width: auto;
+  max-width: 90rem;
+  height: 30rem;
+  position: relative;
+}
+
+.grid {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.grid-item {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.image-wrapper {
+  object-fit: cover;
+  background-color: #ffe3f300;
+  border-radius: 1000px;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  display: flex;
+}
+
+.pin-icon {
+  object-fit: fill;
+}
+
+.map-pin {
+  background-color: #e81123;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: -10%;
+  bottom: -109.531px;
+  left: 31%;
+}
+
+.hero-without-image-6 {
+  background-color: #252c4e;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-7 {
+  width: 100%;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-wrapper-two-2 {
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.margin-bottom-24px-2 {
+  margin-bottom: 24px;
+}
+
+.button-primary-2 {
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: #1a1b1f;
+  padding: 12px 25px;
+  font-size: 12px;
+  line-height: 20px;
+  transition: all .2s;
+}
+
+.button-primary-2:hover {
+  color: #fff;
+  background-color: #32343a;
+}
+
+.button-primary-2:active {
+  background-color: #43464d;
+}
+
+.heading-3-center {
+  color: #e2b62e;
+  margin-bottom: 1px;
+  font-family: Poppins, sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.img-wrapper-copy {
+  z-index: 1;
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-winter-farm.jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  inset: 0%;
+}
+
+.img-wrapper-copy._2 {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.img-wrapper-copy._3 {
+  background-image: url('../images/2_square.jpg');
+}
+
+.img-wrapper-copy._2-copy {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-solar-farm.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.img-wrapper-recycling {
+  z-index: 1;
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-recycling.jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  inset: 0%;
+}
+
+.img-wrapper-recycling._2 {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.img-wrapper-recycling._3 {
+  background-image: url('../images/2_square.jpg');
+}
+
+.img-wrapper-recycling._2-copy {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.ssdsd {
+  z-index: 1;
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-winter-farm.jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  inset: 0%;
+}
+
+.ssdsd._2 {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.ssdsd._3 {
+  background-image: url('../images/2_square.jpg');
+}
+
+.ssdsd._2-copy {
+  background-color: #e2b62e;
+  background-image: url('../images/lighthief-service.jpg');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.ssdsd._3-copy {
+  background-image: url('../images/lighthiewf-solar-roof.jpg');
+}
+
+.hero-without-image-7 {
+  background-color: #252c4e;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-8 {
+  width: 100%;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-wrapper-two-3 {
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.margin-bottom-24px-3 {
+  margin-bottom: 24px;
+}
+
+.button-primary-3 {
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: #1a1b1f;
+  padding: 12px 25px;
+  font-size: 12px;
+  line-height: 20px;
+  transition: all .2s;
+}
+
+.button-primary-3:hover {
+  color: #fff;
+  background-color: #32343a;
+}
+
+.button-primary-3:active {
+  background-color: #43464d;
+}
+
+.main-p-our-team {
+  box-sizing: border-box;
+  float: none;
+  text-align: left;
+  flex-flow: row;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 70%;
+  margin-top: 36px;
+  margin-bottom: 50px;
+  padding-top: 0;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  line-height: 1.7em;
+  display: block;
+  overflow: visible;
+}
+
+.hero-without-image-8 {
+  background-color: #252c4e;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container-9 {
+  width: 100%;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-wrapper-two-4 {
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.code-embed {
+  margin-top: 99px;
+  padding-top: 70px;
+  transition: opacity .2s;
+  display: flex;
+}
+
+.container-large-3, .container-large-4 {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 1280px) {
+  .background-video {
+    background-image: linear-gradient(#000000b3, #0000 47%);
+  }
+
+  .main-p-copy-copy-copy {
+    font-size: 14px;
+  }
+
+  .heading-4 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .main-p-copy-copy-copy-copy-copy-copy {
+    float: none;
+    clear: none;
+    font-size: 0;
+  }
+
+  .img-wrapper._2 {
+    font-size: 18px;
+  }
+
+  .hero-without-image-3 {
+    background-image: linear-gradient(#00000094, #fff 32%);
+  }
+
+  .heading-5 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .hero-without-image-6 {
+    -webkit-text-stroke-color: #fff0;
+    background-color: #252c4e;
+  }
+
+  .img-wrapper-copy._2-copy {
+    background-image: url('../images/lighthief-solar-farm.jpg');
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container-9 {
+    max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .heading-2 {
+    font-size: 50px;
+  }
+
+  .sticky-info-column {
+    width: 50%;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .sticky-header-column {
+    align-items: flex-start;
+    width: 50%;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  .podtytul-drugi, .main-p-copy-copy-copy {
+    max-width: 100%;
+  }
+
+  .s-scroll-box-wrapper, .s-scroll-box-wrapper.img {
+    width: 100%;
+    height: 50%;
+  }
+
+  .main-p, .main-p-copy {
+    max-width: 100%;
+  }
+
+  .content-outer-wrapper {
+    max-width: 65%;
+  }
+
+  .main-p-copy-copy-copy-copy-copy-copy {
+    max-width: 100%;
+  }
+
+  .s-scroll {
+    display: block;
+  }
+
+  .container, .container-2, .container-3 {
+    max-width: 728px;
+  }
+
+  .page-padding.s0 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .padding-vertical {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .logo_component-slider {
+    grid-column-gap: 3rem;
+  }
+
+  .logo-slider-img {
+    width: 174px;
+  }
+
+  .container-4 {
+    max-width: 728px;
+  }
+
+  .map_item-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .custom_map-component {
+    grid-template-columns: 1fr;
+  }
+
+  .map_item-collection {
+    display: block;
+  }
+
+  .spacer-large {
+    padding: 2.5rem;
+  }
+
+  .map_pointer {
+    width: 1.5vw;
+    height: 1.5vw;
+  }
+
+  .container-5, .container-7, .container-8 {
+    max-width: 728px;
+  }
+
+  .main-p-our-team {
+    max-width: 100%;
+  }
+
+  .container-9 {
+    max-width: 728px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .heading-2 {
+    font-size: 46px;
+  }
+
+  .lines-inner-wrapper {
+    width: 70%;
+  }
+
+  .content-outer-wrapper {
+    max-width: 70%;
+  }
+
+  .hero-without-image, .hero-without-image-2, .hero-without-image-3 {
+    padding: 60px 15px;
+  }
+
+  .padding-vertical {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .logo_component-slider {
+    grid-row-gap: 2rem;
+    flex-direction: row;
+    grid-template-columns: 1fr;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .logo-slider-img {
+    width: 125px;
+  }
+
+  .hero-without-image-4 {
+    padding: 60px 15px;
+  }
+
+  .map_item-list {
+    grid-template-columns: 1fr;
+  }
+
+  .heading-style-h3 {
+    font-size: 1.5rem;
+  }
+
+  .padding-global {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .spacer-large {
+    padding: 1.5rem;
+  }
+
+  .heading-style-h2 {
+    font-size: 2rem;
+  }
+
+  .hero-without-image-5, .hero-without-image-6, .hero-without-image-7, .hero-without-image-8 {
+    padding: 60px 15px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sticky-info-column {
+    width: 100%;
+  }
+
+  .sticky-header-column {
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
+    position: static;
+  }
+
+  .sticky-section {
+    flex-direction: column;
+  }
+
+  .s-scroll-box-wrapper {
+    height: 60%;
+  }
+
+  .s-scroll-box-wrapper.img {
+    height: 40%;
+  }
+
+  .lines-inner-wrapper {
+    width: 80%;
+  }
+
+  .content-outer-wrapper {
+    max-width: 80%;
+  }
+
+  .image {
+    width: 25px;
+  }
+
+  .container, .container-2, .container-3 {
+    max-width: none;
+  }
+
+  .page-padding.s0 {
+    margin-bottom: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  .padding-vertical {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .padding-vertical.padding-xxlarge {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .logo_component-slider {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    overflow: hidden;
+  }
+
+  .logo-slider-img {
+    width: 100px;
+  }
+
+  .container-4 {
+    max-width: none;
+  }
+
+  .image-13 {
+    width: 25px;
+  }
+
+  .container-5, .container-7, .container-8, .container-9 {
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #w-node-a6f7ecd2-bf47-c72c-44fc-6b540cdaa036-c00fa7a0 {
+    grid-area: span 1 / span 2 / span 1 / span 2;
+  }
+}
+
+

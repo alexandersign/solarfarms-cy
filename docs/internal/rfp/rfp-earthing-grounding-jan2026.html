@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP - Earthing & Grounding Systems | Cyprus BESS Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .page { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 50px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%); color: white; padding: 25px 30px; margin: -40px -50px 30px -50px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .logo { font-size: 28px; font-weight: bold; color: #2c3e50; letter-spacing: 3px; display: none; }
+        h1 { color: #2c3e50; font-size: 24px; margin: 15px 0; }
+        .rfp-number { background: #795548; color: white; padding: 8px 20px; display: inline-block; font-weight: bold; font-size: 14px; border-radius: 3px; }
+        .subtitle { color: #7f8c8d; font-size: 16px; margin-top: 10px; }
+        h2 { color: #2c3e50; font-size: 18px; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid #795548; }
+        h3 { color: #34495e; font-size: 15px; margin: 20px 0 10px 0; }
+        .info-box { background: #ecf0f1; border-left: 4px solid #795548; padding: 15px 20px; margin: 20px 0; }
+        .mandatory-box { background: #ffe6e6; border-left: 4px solid #e74c3c; padding: 15px 20px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        th { background: #2c3e50; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .total-row { background: #2c3e50 !important; color: white; font-weight: bold; }
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 80px; }
+        ul, ol { margin: 10px 0 10px 25px; }
+        li { margin: 5px 0; }
+        .contact-box { background: #2c3e50; color: white; padding: 20px; margin-top: 30px; border-radius: 5px; }
+        .contact-box h3 { color: #795548; margin-bottom: 10px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #7f8c8d; font-size: 12px; }
+        .spec-table th { background: #795548; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Ref:</strong> RFP-LCY-EARTH-2026-001</div>
+                    <div><strong>Date:</strong> 27 January 2026</div>
+                </div>
+            </div>
+            <h1 style="color: white; text-align: center; margin-top: 10px;">Request for Proposal</h1>
+            <p class="subtitle" style="color: rgba(255,255,255,0.85); text-align: center;">Earthing Grid & Grounding System Installation</p>
+        </div>
+        
+        <div class="info-box">
+            <strong>RFP Issue Date:</strong> 27 January 2026<br>
+            <strong>Proposal Due:</strong> 10 February 2026<br>
+            <strong>Project:</strong> Cyprus BESS Portfolio - 47 Parks (863.5 MWh)<br>
+            <strong>Standard:</strong> IEC 62305 / IEEE 80
+        </div>
+
+        <div class="mandatory-box">
+            <strong>⚠️ DSO & MANUFACTURER REQUIREMENT</strong><br>
+            Earth resistance must be <strong>≤ 1Ω</strong> per Linyang specifications and Cyprus DSO requirements. Earthing enhancement may be required at sites with high soil resistivity.
+        </div>
+
+        <h2>1. Project Overview</h2>
+        <p>Lighthief Cyprus Ltd requires earthing grid design, installation, and testing for 47 BESS installations. The scope includes primary earth grid, equipment bonding, and earthing enhancement where soil conditions require.</p>
+
+        <h2>2. Earthing System Requirements</h2>
+        
+        <h3>2.1 Linyang Specifications</h3>
+        <table class="spec-table">
+            <tr><th>Parameter</th><th>Requirement</th><th>Notes</th></tr>
+            <tr><td>Earth Grid Cross-section</td><td>120-150 mm² copper</td><td>Per Linyang manual</td></tr>
+            <tr><td>Earth Impedance</td><td>≤ 1Ω</td><td>Measured at main earth bar</td></tr>
+            <tr><td>Grounding Cable</td><td>120 mm² minimum</td><td>Container connections</td></tr>
+            <tr><td>Earth Rods</td><td>Copper-clad steel</td><td>3m minimum length</td></tr>
+        </table>
+
+        <h3>2.2 Scope of Works (Per Park)</h3>
+        <table>
+            <tr><th>Work Item</th><th>Description</th></tr>
+            <tr><td>Site Survey</td><td>Soil resistivity measurement (Wenner method)</td></tr>
+            <tr><td>Earth Grid Design</td><td>Grid layout per site dimensions and soil conditions</td></tr>
+            <tr><td>Trench Excavation</td><td>For earth conductors (typically 600mm depth)</td></tr>
+            <tr><td>Earth Conductor Installation</td><td>Bare copper tape/cable in trenches</td></tr>
+            <tr><td>Earth Rod Installation</td><td>Driven rods at grid nodes</td></tr>
+            <tr><td>Equipment Bonding</td><td>Connect all containers and MV SKIDs</td></tr>
+            <tr><td>Testing</td><td>Fall-of-potential test, continuity test</td></tr>
+            <tr><td>Documentation</td><td>Test report, as-built drawings</td></tr>
+        </table>
+
+        <h3>2.3 Earthing Enhancement (If Required)</h3>
+        <table>
+            <tr><th>Method</th><th>Application</th><th>When Needed</th></tr>
+            <tr><td>Additional Earth Rods</td><td>Increase ground contact area</td><td>Resistance > 1Ω</td></tr>
+            <tr><td>Extended Grid</td><td>Larger grid perimeter</td><td>High resistivity soil</td></tr>
+            <tr><td>Chemical Earth Pits</td><td>Bentonite/conductive backfill</td><td>Rocky/dry soil</td></tr>
+            <tr><td>Deep Earth Electrodes</td><td>10-30m driven rods</td><td>Very high resistivity</td></tr>
+            <tr><td>Ring Earth</td><td>Perimeter ring conductor</td><td>Standard enhancement</td></tr>
+        </table>
+
+        <h2>3. Portfolio Summary</h2>
+        <table>
+            <tr><th>District</th><th>Parks</th><th>Containers</th><th>Est. Grid Length (m)</th></tr>
+            <tr><td>Famagusta</td><td>7</td><td>44</td><td>~2,200</td></tr>
+            <tr><td>Larnaca</td><td>2</td><td>4</td><td>~200</td></tr>
+            <tr><td>Limassol</td><td>5</td><td>31</td><td>~1,550</td></tr>
+            <tr><td>Nicosia</td><td>30</td><td>159</td><td>~7,950</td></tr>
+            <tr><td>Paphos</td><td>3</td><td>8</td><td>~400</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>47</strong></td><td><strong>246</strong></td><td><strong>~12,300m</strong></td></tr>
+        </table>
+
+        <h2>4. Pricing Template</h2>
+        
+        <h3>4.1 Base Earthing System</h3>
+        <table>
+            <tr><th>Item</th><th>Unit</th><th>Supply (€)</th><th>Install (€)</th><th>Total (€)</th></tr>
+            <tr><td>Soil Resistivity Survey</td><td>per park</td><td>-</td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Earth Conductor 120mm² Cu</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Earth Rod 3m (Cu-clad)</td><td>per unit</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Earth Bar (main)</td><td>per park</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Equipment Bonding Cable</td><td>per container</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Inspection Pit</td><td>per unit</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Testing & Certification</td><td>per park</td><td>-</td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>4.2 Earthing Enhancement (Contingency)</h3>
+        <table>
+            <tr><th>Item</th><th>Unit</th><th>Supply (€)</th><th>Install (€)</th><th>Total (€)</th></tr>
+            <tr><td>Additional Earth Rod</td><td>per unit</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Chemical Earth Pit</td><td>per pit</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Extended Grid Conductor</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Deep Earth Electrode (10m)</td><td>per unit</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Re-testing</td><td>per test</td><td>-</td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>4.3 Lump Sum by Park Size</h3>
+        <table>
+            <tr><th>Park Size</th><th>Containers</th><th>Base System (€)</th><th>Enhancement Allowance (€)</th><th>Total (€)</th></tr>
+            <tr><td>Small (1-2 containers)</td><td>2</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Medium (3-5 containers)</td><td>5</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Large (6-12 containers)</td><td>10</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Extra Large (12+ containers)</td><td>20</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h2>5. Technical Requirements</h2>
+        <ul>
+            <li>All materials to IEC 62561 (LPS components)</li>
+            <li>Copper tape: 25×3mm minimum or equivalent cable</li>
+            <li>All connections: exothermic weld or approved clamps</li>
+            <li>Corrosion protection for direct burial</li>
+            <li>Touch and step voltage within safe limits</li>
+            <li>Grid design per IEEE 80 or IEC 62305</li>
+        </ul>
+
+        <h2>6. Deliverables</h2>
+        <ol>
+            <li>Soil resistivity test report</li>
+            <li>Earthing system design drawings</li>
+            <li>Material certificates</li>
+            <li>Installation photos</li>
+            <li>Earth resistance test certificate (≤ 1Ω)</li>
+            <li>As-built drawings</li>
+        </ol>
+
+        <h2>7. Timeline</h2>
+        <table>
+            <tr><th>Milestone</th><th>Date</th></tr>
+            <tr><td>RFP Issued</td><td>27 January 2026</td></tr>
+            <tr><td>Questions Due</td><td>5 February 2026</td></tr>
+            <tr><td><strong>Proposals Due</strong></td><td><strong>10 February 2026</strong></td></tr>
+            <tr><td>Contractor Selection</td><td>14 February 2026</td></tr>
+            <tr><td>First Site Survey</td><td>March 2026</td></tr>
+        </table>
+
+        <div class="contact-box">
+            <h3>📧 Contact Information</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong></p>
+            <p>Email: office@lighthief.com</p>
+            <p>Reference: RFP-LCY-EARTH-2026-001</p>
+        </div>
+
+        <div class="footer">
+            <p>RFP-LCY-EARTH-2026-001 | Earthing & Grounding | Cyprus BESS Portfolio</p>
+            <p>Lighthief Cyprus Ltd | January 2026</p>
+        </div>
+    </div>
+</body>
+</html>

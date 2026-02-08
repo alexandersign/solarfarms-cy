@@ -80,31 +80,6 @@ const projects = [
     featured: true,
     link: "/projects/anarita-10mw"
   },
-  {
-    title: "5MW Solar Park with Single-Axis Tracking",
-    location: "Cyprus", // Location not disclosed for confidentiality
-    capacity: 5.01,
-    investment: 9600000,
-    roi: 13.3,
-    annualRevenue: 1410000,
-    status: "Available for Acquisition",
-    statusColor: "red",
-    completionDate: "Operational since 2020",
-    image: "/images/IMG_0149.JPG",
-    highlights: [
-      "Single-axis tracking system - premium technology",
-      "Real curtailment data: 45.8% (2025) - BESS opportunity",
-      "Tier-1 equipment: Trina, Huawei, Nclave trackers",
-      "€18.5k in spare parts included",
-      "BESS compatible - enhance ROI to 15.4%"
-    ],
-    testimonial: {
-      quote: "Transparent historical data and realistic curtailment modeling. BESS integration makes this future-proof.",
-      client: "Confidential - Reference: PARK-REF-5001"
-    },
-    featured: true,
-    link: "/projects/park-ref-5001"
-  }
 ]
 
 const getStatusColor = (color: string) => {
@@ -149,11 +124,11 @@ export default function ProjectsPage() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">17.6MW</div>
+                <div className="text-3xl font-bold gradient-text">12.6MW</div>
                 <div className="text-sm text-gray-600">Available Capacity</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">€26M+</div>
+                <div className="text-3xl font-bold gradient-text">€16M+</div>
                 <div className="text-sm text-gray-600">Investment Value</div>
               </div>
               <div className="text-center">
@@ -161,7 +136,7 @@ export default function ProjectsPage() {
                 <div className="text-sm text-gray-600">Top Leveraged IRR</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">3</div>
+                <div className="text-3xl font-bold gradient-text">2</div>
                 <div className="text-sm text-gray-600">Active Projects</div>
               </div>
             </div>
@@ -359,7 +334,7 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card className="border-2 border-solar-200 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-gradient-to-l from-solar-500 to-solar-400 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
                 FEATURED
@@ -398,35 +373,6 @@ export default function ProjectsPage() {
                 <Button variant="solar" className="w-full" asChild>
                   <Link href="/projects/agios-theodoros-rtb">
                     View Full Details
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-cyprus-200 hover:shadow-xl transition-all duration-300">
-              <CardHeader className="text-center">
-                <Badge variant="cyprus" className="w-fit mx-auto mb-2">Available</Badge>
-                <CardTitle>5MW Tracker Park</CardTitle>
-                <CardDescription>Operational • BESS Opportunity</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Investment</span>
-                    <span className="font-semibold">€9.6M</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Current ROI</span>
-                    <span className="font-semibold text-green-600">13.3%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">With BESS</span>
-                    <span className="font-semibold text-green-600">15.4%</span>
-                  </div>
-                </div>
-                <Button variant="cyprus" className="w-full" asChild>
-                  <Link href="/projects/park-ref-5001">
-                    View Project
                   </Link>
                 </Button>
               </CardContent>

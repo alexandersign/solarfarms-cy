@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR Insurance - Project Value Timeline | Lighthief Cyprus</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2c5282;
+            --accent: #d4af37;
+            --gold: #d69e2e;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --border: #e2e8f0;
+            --success: #38a169;
+            --warning: #ed8936;
+            --danger: #e53e3e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 40px;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+        }
+        
+        .logo-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--accent);
+        }
+        
+        .company-name {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+        
+        .company-tagline {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+        
+        .doc-meta {
+            text-align: right;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .doc-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        .doc-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .content {
+            padding: 35px 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timeline-visual {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .timeline-bar {
+            display: flex;
+            gap: 5px;
+            min-width: 800px;
+        }
+        
+        .timeline-segment {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.85rem;
+        }
+        
+        .timeline-segment.q2025 { background: #718096; }
+        .timeline-segment.q1-2026 { background: #4299e1; }
+        .timeline-segment.q2-2026 { background: var(--success); flex: 2; }
+        .timeline-segment.q3-2026 { background: #ed8936; }
+        .timeline-segment.q4-2026 { background: #9f7aea; }
+        .timeline-segment.q2027 { background: #667eea; }
+        .timeline-segment.tbc { background: #a0aec0; flex: 1.5; }
+        
+        .timeline-segment strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        tr:hover {
+            background: #edf2f7;
+        }
+        
+        tr.subtotal {
+            background: linear-gradient(90deg, #c6f6d5 0%, #b2f5ea 100%) !important;
+            font-weight: 600;
+        }
+        
+        tr.highlight {
+            background: #fefcbf !important;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .price {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .summary-card.peak {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            border-color: var(--success);
+        }
+        
+        .summary-card.warning {
+            background: linear-gradient(135deg, #fefcbf 0%, #faf089 100%);
+            border-color: var(--gold);
+        }
+        
+        .summary-label {
+            font-size: 0.7rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .summary-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .summary-card.peak .summary-value {
+            color: var(--success);
+        }
+        
+        .note-box {
+            background: #fffaf0;
+            border-left: 4px solid var(--warning);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .recommendation-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border: 2px solid #3182ce;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .recommendation-box h3 {
+            color: #2b6cb0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+        
+        .footer-left {
+            opacity: 0.9;
+        }
+        
+        .footer-right {
+            text-align: right;
+        }
+        
+        .confidential {
+            background: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30, 58, 95, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .print-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 58, 95, 0.5);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .print-button {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            th {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .summary-card, .timeline-segment, .header, .footer {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        
+        @page {
+            margin: 1cm;
+            size: A4 landscape;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 2 L12 12 L18 18" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Reference:</strong> LCY-CAR-TIMELINE-FEB2026</div>
+                    <div><strong>Date:</strong> 5 February 2026</div>
+                    <div><strong>Classification:</strong> Internal - Confidential</div>
+                </div>
+            </div>
+            <div class="doc-title">CAR Insurance - Project Value Timeline</div>
+            <div class="doc-subtitle">Construction All Risks sum insured by delivery period | Source: Voltus EMS Project List</div>
+        </div>
+        
+        <div class="content">
+            <!-- Timeline Visual -->
+            <div class="section">
+                <h2 class="section-title">1. Delivery Timeline Overview</h2>
+                <div class="timeline-visual">
+                    <div class="timeline-bar">
+                        <div class="timeline-segment q2025">
+                            <strong>2025</strong>
+                            7 parks<br>68 MWh<br>€9.0M
+                        </div>
+                        <div class="timeline-segment q1-2026">
+                            <strong>Q1 2026</strong>
+                            2 parks<br>25 MWh<br>€3.3M
+                        </div>
+                        <div class="timeline-segment q2-2026">
+                            <strong>Q2 2026 (PEAK)</strong>
+                            8 parks<br>255 MWh<br>€29.4M
+                        </div>
+                        <div class="timeline-segment q3-2026">
+                            <strong>Q3 2026</strong>
+                            3 parks<br>50 MWh<br>€6.1M
+                        </div>
+                        <div class="timeline-segment q4-2026">
+                            <strong>Q4 2026</strong>
+                            3 parks<br>170 MWh<br>€18.0M
+                        </div>
+                        <div class="timeline-segment q2027">
+                            <strong>2027</strong>
+                            1 park<br>20 MWh<br>€2.3M
+                        </div>
+                        <div class="timeline-segment tbc">
+                            <strong>TBC</strong>
+                            18 parks<br>183.5 MWh<br>€23.9M
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-label">Total Parks</div>
+                        <div class="summary-value">42</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Total MWh</div>
+                        <div class="summary-value">771.5</div>
+                    </div>
+                    <div class="summary-card peak">
+                        <div class="summary-label">Total Value</div>
+                        <div class="summary-value">€92.0M</div>
+                    </div>
+                    <div class="summary-card warning">
+                        <div class="summary-label">Peak Exposure (Q2)</div>
+                        <div class="summary-value">€41.8M</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2025 Projects -->
+            <div class="section">
+                <h2 class="section-title">2.1 Already in Progress / 2025</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Park</th>
+                            <th>Group</th>
+                            <th class="text-center">MW</th>
+                            <th class="text-center">MWh</th>
+                            <th class="text-right">€/MWh</th>
+                            <th class="text-right">Project Value (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dianary 1</td>
+                            <td>DIA</td>
+                            <td class="text-center">3.5</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">€120,630</td>
+                            <td class="text-right price">€1,206,300</td>
+                        </tr>
+                        <tr>
+                            <td>Galascope 1</td>
+                            <td>GAL</td>
+                            <td class="text-center">5</td>
+                            <td class="text-center">15</td>
+                            <td class="text-right">€130,792</td>
+                            <td class="text-right price">€1,961,880</td>
+                        </tr>
+                        <tr>
+                            <td>Galascope 2</td>
+                            <td>GAL</td>
+                            <td class="text-center">2.5</td>
+                            <td class="text-center">8</td>
+                            <td class="text-right">€135,560</td>
+                            <td class="text-right price">€1,084,480</td>
+                        </tr>
+                        <tr>
+                            <td>Easy Power 1</td>
+                            <td>EAS</td>
+                            <td class="text-center">5</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">€136,106</td>
+                            <td class="text-right price">€1,361,060</td>
+                        </tr>
+                        <tr>
+                            <td>Easy Power 2</td>
+                            <td>EAS</td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">€136,106</td>
+                            <td class="text-right price">€1,361,060</td>
+                        </tr>
+                        <tr>
+                            <td>Greendorado 1</td>
+                            <td>GRD</td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">€136,106</td>
+                            <td class="text-right price">€1,361,060</td>
+                        </tr>
+                        <tr>
+                            <td>Greendorado Larnaca 2</td>
+                            <td>GRD</td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">5</td>
+                            <td class="text-right">€136,106</td>
+                            <td class="text-right price">€680,530</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td><strong>Subtotal 2025</strong></td>
+                            <td>-</td>
+                            <td class="text-center"><strong>23</strong></td>
+                            <td class="text-center"><strong>68</strong></td>
+                            <td class="text-right">-</td>
+                            <td class="text-right price"><strong>€9,016,370</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Q1 2026 -->
+            <div class="section">
+                <h2 class="section-title">2.2 Q1 2026 (January - March)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Park</th>
+                            <th>Group</th>
+                            <th class="text-center">MW</th>
+                            <th class="text-center">MWh</th>
+                            <th class="text-right">€/MWh</th>
+                            <th class="text-right">Project Value (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Easy Power 3</td>
+                            <td>EAS</td>
+                            <td class="text-center">5</td>
+                            <td class="text-center">15</td>
+                            <td class="text-right">€130,792</td>
+                            <td class="text-right price">€1,961,880</td>
+                        </tr>
+                        <tr>
+                            <td>Easy Power 4</td>
+                            <td>EAS</td>
+                            <td class="text-center">2.5</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">€136,106</td>
+                            <td class="text-right price">€1,361,060</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td><strong>Subtotal Q1 2026</strong></td>
+                            <td>-</td>
+                            <td class="text-center"><strong>7.5</strong></td>
+                            <td class="text-center"><strong>25</strong></td>
+                            <td class="text-right">-</td>
+                            <td class="text-right price"><strong>€3,322,940</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note-box">
+                    <strong>Cumulative at Risk (incl 2025):</strong> €12,339,310
+                </div>
+            </div>
+            
+            <!-- Q2 2026 - PEAK -->
+            <div class="section">
+                <h2 class="section-title">2.3 Q2 2026 (April - June) - PEAK DELIVERY</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Park</th>
+                            <th>Group</th>
+                            <th class="text-center">MW</th>
+                            <th class="text-center">MWh</th>
+                            <th class="text-right">€/MWh</th>
+                            <th class="text-right">Project Value (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td>ELESTORE 1</td>
+                            <td>ELE</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">40</td>
+                            <td class="text-right">€114,990</td>
+                            <td class="text-right price">€4,599,600</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>ELESTORE 2</td>
+                            <td>ELE</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">40</td>
+                            <td class="text-right">€114,990</td>
+                            <td class="text-right price">€4,599,600</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>ELESTORE 3</td>
+                            <td>ELE</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">40</td>
+                            <td class="text-right">€114,990</td>
+                            <td class="text-right price">€4,599,600</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>ELESTORE 4</td>
+                            <td>ELE</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">40</td>
+                            <td class="text-right">€114,990</td>
+                            <td class="text-right price">€4,599,600</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>ELESTORE 5</td>
+                            <td>ELE</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">40</td>
+                            <td class="text-right">€114,990</td>
+                            <td class="text-right price">€4,599,600</td>
+                        </tr>
+                        <tr>
+                            <td>Esperia Famagusta</td>
+                            <td>ESP</td>
+                            <td class="text-center">6.5</td>
+                            <td class="text-center">20</td>
+                            <td class="text-right">€112,945</td>
+                            <td class="text-right price">€2,258,900</td>
+                        </tr>
+                        <tr>
+                            <td>My Sun Park (Karis)</td>
+                            <td>MSP</td>
+                            <td class="text-center">7.7</td>
+                            <td class="text-center">25</td>
+                            <td class="text-right">€112,945</td>
+                            <td class="text-right price">€2,823,625</td>
+                        </tr>
+                        <tr>
+                            <td>Renergetic</td>
+                            <td>REN</td>
+                            <td class="text-center">5</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">€136,106</td>
+                            <td class="text-right price">€1,361,060</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td><strong>Subtotal Q2 2026</strong></td>
+                            <td>-</td>
+                            <td class="text-center"><strong>79.2</strong></td>
+                            <td class="text-center"><strong>255</strong></td>
+                            <td class="text-right">-</td>
+                            <td class="text-right price"><strong>€29,441,585</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note-box">
+                    <strong>Cumulative at Risk:</strong> €41,780,895
+                </div>
+            </div>
+            
+            <!-- CAR Insurance Summary -->
+            <div class="section">
+                <h2 class="section-title">3. CAR Insurance Summary by Period</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th class="text-center">Parks</th>
+                            <th class="text-center">MWh</th>
+                            <th class="text-right">Value (€)</th>
+                            <th class="text-right">Cumulative (€)</th>
+                            <th class="text-center">% of Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>2025</strong></td>
+                            <td class="text-center">7</td>
+                            <td class="text-center">68</td>
+                            <td class="text-right price">€9,016,370</td>
+                            <td class="text-right price">€9,016,370</td>
+                            <td class="text-center">9.8%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Q1 2026</strong></td>
+                            <td class="text-center">2</td>
+                            <td class="text-center">25</td>
+                            <td class="text-right price">€3,322,940</td>
+                            <td class="text-right price">€12,339,310</td>
+                            <td class="text-center">13.4%</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>Q2 2026 (PEAK)</strong></td>
+                            <td class="text-center">8</td>
+                            <td class="text-center">255</td>
+                            <td class="text-right price">€29,441,585</td>
+                            <td class="text-right price">€41,780,895</td>
+                            <td class="text-center">45.4%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Q3 2026</strong></td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">50</td>
+                            <td class="text-right price">€6,066,240</td>
+                            <td class="text-right price">€47,847,135</td>
+                            <td class="text-center">52.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Q4 2026</strong></td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">170</td>
+                            <td class="text-right price">€17,992,080</td>
+                            <td class="text-right price">€65,839,215</td>
+                            <td class="text-center">71.5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2027</strong></td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">20</td>
+                            <td class="text-right price">€2,258,900</td>
+                            <td class="text-right price">€68,098,115</td>
+                            <td class="text-center">74.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TBC</strong></td>
+                            <td class="text-center">18</td>
+                            <td class="text-center">183.5</td>
+                            <td class="text-right price">€23,935,922</td>
+                            <td class="text-right price">€92,034,037</td>
+                            <td class="text-center">100%</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td><strong>TOTAL</strong></td>
+                            <td class="text-center"><strong>42</strong></td>
+                            <td class="text-center"><strong>771.5</strong></td>
+                            <td class="text-right price"><strong>€92,034,037</strong></td>
+                            <td class="text-right">-</td>
+                            <td class="text-center">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Recommendation -->
+            <div class="section">
+                <h2 class="section-title">4. CAR Insurance Recommendations</h2>
+                <div class="recommendation-box">
+                    <h3>Recommended: Single Annual Policy with Declaration Basis</h3>
+                    <table>
+                        <tr>
+                            <td><strong>Sum Insured (Limit)</strong></td>
+                            <td>€50,000,000 any one project</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aggregate Limit</strong></td>
+                            <td>€104,000,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Period</strong></td>
+                            <td>1 March 2026 - 28 February 2027</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extended to</strong></td>
+                            <td>28 February 2028 (for 2027 projects)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Basis</strong></td>
+                            <td>Declarations - report new projects monthly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Est. Total Premium (0.15%)</strong></td>
+                            <td><strong>€138,100</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-left">
+                <strong>Lighthief Cyprus Ltd</strong><br>
+                28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+                Phone: 77 77 00 50 | Email: office@lighthief.com
+            </div>
+            <div class="footer-right">
+                <strong>Contact:</strong><br>
+                Alexander Papacosta<br>
+                +357 99 164 158<br>
+                alexander.papacosta@lighthief.com
+            </div>
+        </div>
+        
+        <div class="confidential">
+            Internal - Confidential | Lighthief Cyprus Ltd | LCY-CAR-TIMELINE-FEB2026
+        </div>
+    </div>
+    
+    <button class="print-button" onclick="window.print()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Export to PDF
+    </button>
+</body>
+</html>

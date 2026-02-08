@@ -1,3 +1,12 @@
+> ## ⚠️ PRICING NOTICE — SINGLE SOURCE OF TRUTH
+> **All pricing in this document is SUPERSEDED by the master spreadsheet:**  
+> **`docs/Bess - EPC System Cost v2.xlsx`** (Sheet: `Pricing_Model_All_Projects`)  
+> If any price, cost, or margin figure in this document conflicts with the spreadsheet, **the spreadsheet prevails**.  
+> Individual order pricing (non-group) = spreadsheet columns BL-BR (+15% on CIF & subcontractor adders).  
+> *Last verified: 7 February 2026*
+
+---
+
 # BESS CIVIL WORKS COST ESTIMATE
 
 **Document Reference:** LCY-CIVIL-EST-001

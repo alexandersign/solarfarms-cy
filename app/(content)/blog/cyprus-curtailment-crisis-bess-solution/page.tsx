@@ -174,7 +174,7 @@ export default function CyprusCurtailmentBESSArticle() {
                     <span className="inline-block w-4 h-4 bg-red-400 rounded ml-6 mr-2"></span>
                     Curtailed Energy
                   </p>
-                  <p className="text-xs text-gray-500 mt-2">Source: Galascope Limited 5.01MW Solar Park (Operational Data)</p>
+                  <p className="text-xs text-gray-500 mt-2">Source: 5.01MW Solar Park, Cyprus (Operational Data)</p>
                 </div>
               </div>
             </div>

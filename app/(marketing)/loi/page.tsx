@@ -168,7 +168,7 @@ export default function LOIGeneratorPage() {
                   />
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input
-                      placeholder="Project Reference (e.g., PARK-REF-5001)"
+                      placeholder="Project Reference (e.g., PARK-RTB-2026)"
                       value={formData.projectReference}
                       onChange={(e) => setFormData({...formData, projectReference: e.target.value})}
                     />

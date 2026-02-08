@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCADA/EMS RFP - Cyprus BESS Portfolio 863.5 MWh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 30px;
+            margin: -40px -40px 30px -40px;
+            border-bottom: 4px solid #38a169;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .company-tagline {
+            font-size: 10px;
+            opacity: 0.85;
+            letter-spacing: 1px;
+        }
+        
+        .doc-meta {
+            text-align: right;
+            font-size: 9pt;
+            opacity: 0.9;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .rfp-number {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.85);
+            font-size: 13px;
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #1a365d;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2c5282;
+            font-size: 18px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        h3 {
+            color: #4a5568;
+            font-size: 15px;
+            margin: 20px 0 10px;
+        }
+        
+        .info-box {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-box.warning {
+            background: #fffaf0;
+            border-color: #fbd38d;
+        }
+        
+        .info-box.success {
+            background: #f0fff4;
+            border-color: #9ae6b4;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .info-label {
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            color: #1a365d;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #2c5282;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        tr:hover {
+            background: #edf2f7;
+        }
+        
+        .project-table th {
+            position: sticky;
+            top: 0;
+        }
+        
+        .highlight-row {
+            background: #ebf8ff !important;
+            font-weight: 600;
+        }
+        
+        .district-header {
+            background: #4a5568 !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .total-row {
+            background: #1a365d !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .requirement-table td:first-child {
+            font-weight: 500;
+            background: #f7fafc;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #a0aec0;
+        }
+        
+        .timeline-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c5282;
+        }
+        
+        .timeline-event {
+            font-size: 12px;
+            color: #4a5568;
+            margin-top: 5px;
+        }
+        
+        .scope-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .scope-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .scope-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #38a169;
+            font-weight: bold;
+        }
+        
+        .scope-list li.excluded::before {
+            content: '✗';
+            color: #e53e3e;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .badge-required { background: #fed7d7; color: #c53030; }
+        .badge-preferred { background: #fefcbf; color: #975a16; }
+        .badge-optional { background: #c6f6d5; color: #276749; }
+        
+        .contact-box {
+            background: #2c5282;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .contact-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            font-size: 12px;
+            color: #718096;
+            text-align: center;
+        }
+        
+        @media print {
+            body { background: white; padding: 0; }
+            .page { box-shadow: none; padding: 20px; }
+            .project-table { font-size: 10px; }
+        }
+        
+        .mwh-bar {
+            height: 8px;
+            background: #3182ce;
+            border-radius: 4px;
+            min-width: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Ref:</strong> RFP-LCY-SCADA-2026-001</div>
+                    <div><strong>Date:</strong> January 2026</div>
+                </div>
+            </div>
+            <h1>Request for Proposal</h1>
+            <p class="subtitle">SCADA/EMS Integration Services for Cyprus BESS Portfolio</p>
+        </div>
+
+        <div class="info-box">
+            <div class="info-grid">
+                <div>
+                    <div class="info-item">
+                        <span class="info-label">Total Portfolio Capacity</span>
+                        <span class="info-value">863.5 MWh</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Total Power Rating</span>
+                        <span class="info-value">248 MW</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Number of Sites</span>
+                        <span class="info-value">47 Parks</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-item">
+                        <span class="info-label">Location</span>
+                        <span class="info-value">Cyprus (All Districts)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Grid Operator</span>
+                        <span class="info-value">EAC (Electricity Authority of Cyprus)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Deployment Timeline</span>
+                        <span class="info-value">Q2 2026 - Q4 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>1. Project Overview</h2>
+        
+        <p>Lighthief Cyprus Ltd is seeking proposals from qualified SCADA/EMS providers for the integration, programming, and ongoing support of 47 Battery Energy Storage System (BESS) installations across Cyprus. All systems must comply with Cyprus DSO (EAC) requirements and operate under IEC 60870-5-104 protocol.</p>
+
+        <h2>2. Complete Project List</h2>
+
+        <div style="max-height: 600px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
+            <table class="project-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Project ID</th>
+                        <th>District</th>
+                        <th>Power (MW)</th>
+                        <th>Energy (MWh)</th>
+                        <th>Containers</th>
+                        <th>MV SKIDs</th>
+                        <th>Capacity Visualization</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- FAMAGUSTA DISTRICT -->
+                    <tr class="district-header">
+                        <td colspan="8">FAMAGUSTA DISTRICT - 7 Projects | 172 MWh</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>CY-FAM-001</td>
+                        <td>Famagusta</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>CY-FAM-002</td>
+                        <td>Famagusta</td>
+                        <td>2.50</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 8%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>CY-FAM-003</td>
+                        <td>Famagusta</td>
+                        <td>6.50</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 20%;"></div></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>4</td>
+                        <td>CY-FAM-004</td>
+                        <td>Famagusta</td>
+                        <td>25.00</td>
+                        <td>100</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 100%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>CY-FAM-005</td>
+                        <td>Famagusta</td>
+                        <td>5.00</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 20%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>CY-FAM-006</td>
+                        <td>Famagusta</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>CY-FAM-007</td>
+                        <td>Famagusta</td>
+                        <td>1.00</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 4%;"></div></td>
+                    </tr>
+
+                    <!-- LARNACA DISTRICT -->
+                    <tr class="district-header">
+                        <td colspan="8">LARNACA DISTRICT - 2 Projects | 10 MWh</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>CY-LAR-001</td>
+                        <td>Larnaca</td>
+                        <td>2.00</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>CY-LAR-002</td>
+                        <td>Larnaca</td>
+                        <td>1.00</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+
+                    <!-- LIMASSOL DISTRICT -->
+                    <tr class="district-header">
+                        <td colspan="8">LIMASSOL DISTRICT - 5 Projects | 115 MWh</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>10</td>
+                        <td>CY-LIM-001</td>
+                        <td>Limassol</td>
+                        <td>8.00</td>
+                        <td>60</td>
+                        <td>12</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 60%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>CY-LIM-002</td>
+                        <td>Limassol</td>
+                        <td>1.51</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>CY-LIM-003</td>
+                        <td>Limassol</td>
+                        <td>3.29</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>CY-LIM-004</td>
+                        <td>Limassol</td>
+                        <td>7.70</td>
+                        <td>25</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 25%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>CY-LIM-005</td>
+                        <td>Limassol</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+
+                    <!-- NICOSIA DISTRICT -->
+                    <tr class="district-header">
+                        <td colspan="8">NICOSIA DISTRICT - 30 Projects | 546.5 MWh</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>CY-NIC-001</td>
+                        <td>Nicosia</td>
+                        <td>7.00</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 20%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>CY-NIC-002</td>
+                        <td>Nicosia</td>
+                        <td>2.50</td>
+                        <td>7.5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 7.5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>CY-NIC-003</td>
+                        <td>Nicosia</td>
+                        <td>7.50</td>
+                        <td>25</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 25%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>CY-NIC-004</td>
+                        <td>Nicosia</td>
+                        <td>6.00</td>
+                        <td>20</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 20%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>CY-NIC-005</td>
+                        <td>Nicosia</td>
+                        <td>4.50</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>CY-NIC-006</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>CY-NIC-007</td>
+                        <td>Nicosia</td>
+                        <td>3.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>CY-NIC-008</td>
+                        <td>Nicosia</td>
+                        <td>3.50</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>CY-NIC-009</td>
+                        <td>Nicosia</td>
+                        <td>3.00</td>
+                        <td>12</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 12%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>CY-NIC-010</td>
+                        <td>Nicosia</td>
+                        <td>3.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>CY-NIC-011</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>CY-NIC-012</td>
+                        <td>Nicosia</td>
+                        <td>2.50</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>CY-NIC-013</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>CY-NIC-014</td>
+                        <td>Nicosia</td>
+                        <td>2.50</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td>CY-NIC-015</td>
+                        <td>Nicosia</td>
+                        <td>8.00</td>
+                        <td>35</td>
+                        <td>7</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 35%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>CY-NIC-016</td>
+                        <td>Nicosia</td>
+                        <td>4.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td>CY-NIC-017</td>
+                        <td>Nicosia</td>
+                        <td>4.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>32</td>
+                        <td>CY-NIC-018</td>
+                        <td>Nicosia</td>
+                        <td>7.00</td>
+                        <td>30</td>
+                        <td>6</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 30%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>33</td>
+                        <td>CY-NIC-019</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 10%;"></div></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>34</td>
+                        <td>CY-NIC-020</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 40%;"></div></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>35</td>
+                        <td>CY-NIC-021</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 40%;"></div></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>36</td>
+                        <td>CY-NIC-022</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 40%;"></div></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>37</td>
+                        <td>CY-NIC-023</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 40%;"></div></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>38</td>
+                        <td>CY-NIC-024</td>
+                        <td>Nicosia</td>
+                        <td>12.00</td>
+                        <td>40</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 40%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>39</td>
+                        <td>CY-NIC-025</td>
+                        <td>Nicosia</td>
+                        <td>5.00</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 15%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>CY-NIC-026</td>
+                        <td>Nicosia</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>41</td>
+                        <td>CY-NIC-027</td>
+                        <td>Nicosia</td>
+                        <td>1.00</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 4%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>CY-NIC-028</td>
+                        <td>Nicosia</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>43</td>
+                        <td>CY-NIC-029</td>
+                        <td>Nicosia</td>
+                        <td>1.00</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 4%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>CY-NIC-030</td>
+                        <td>Nicosia</td>
+                        <td>8.00</td>
+                        <td>24</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td><div class="mwh-bar" style="width: 24%;"></div></td>
+                    </tr>
+
+                    <!-- PAPHOS DISTRICT -->
+                    <tr class="district-header">
+                        <td colspan="8">PAPHOS DISTRICT - 3 Projects | 20 MWh</td>
+                    </tr>
+                    <tr>
+                        <td>45</td>
+                        <td>CY-PAF-001</td>
+                        <td>Paphos</td>
+                        <td>2.50</td>
+                        <td>7.5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 7.5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>46</td>
+                        <td>CY-PAF-002</td>
+                        <td>Paphos</td>
+                        <td>2.50</td>
+                        <td>7.5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 7.5%;"></div></td>
+                    </tr>
+                    <tr>
+                        <td>47</td>
+                        <td>CY-PAF-003</td>
+                        <td>Paphos</td>
+                        <td>1.50</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><div class="mwh-bar" style="width: 5%;"></div></td>
+                    </tr>
+
+                    <!-- TOTALS -->
+                    <tr class="total-row">
+                        <td colspan="3">TOTAL - 47 PROJECTS</td>
+                        <td>248 MW</td>
+                        <td>863.5 MWh</td>
+                        <td>176</td>
+                        <td>70</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>3. Portfolio Summary by District</h2>
+        
+        <table>
+            <tr>
+                <th>District</th>
+                <th>Projects</th>
+                <th>Total MWh</th>
+                <th>Containers</th>
+                <th>MV SKIDs</th>
+                <th>% of Portfolio</th>
+            </tr>
+            <tr>
+                <td>Nicosia</td>
+                <td>30</td>
+                <td>546.5</td>
+                <td>115</td>
+                <td>45</td>
+                <td>63.3%</td>
+            </tr>
+            <tr>
+                <td>Famagusta</td>
+                <td>7</td>
+                <td>172</td>
+                <td>35</td>
+                <td>9</td>
+                <td>19.9%</td>
+            </tr>
+            <tr>
+                <td>Limassol</td>
+                <td>5</td>
+                <td>115</td>
+                <td>23</td>
+                <td>8</td>
+                <td>13.3%</td>
+            </tr>
+            <tr>
+                <td>Paphos</td>
+                <td>3</td>
+                <td>20</td>
+                <td>5</td>
+                <td>3</td>
+                <td>2.3%</td>
+            </tr>
+            <tr>
+                <td>Larnaca</td>
+                <td>2</td>
+                <td>10</td>
+                <td>2</td>
+                <td>2</td>
+                <td>1.2%</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>47</strong></td>
+                <td><strong>863.5</strong></td>
+                <td><strong>176</strong></td>
+                <td><strong>70</strong></td>
+                <td><strong>100%</strong></td>
+            </tr>
+        </table>
+
+        <h2>4. Technical Requirements</h2>
+        
+        <div class="mandatory-box">
+            <strong>⚠️ PCS CAPACITY REQUIREMENT (DSO)</strong><br>
+            Total PCS <strong>nameplate capacity</strong> must be ≤ RES licensed capacity per park.<br>
+            <strong>Software limiting is NOT allowed</strong> - physical installed PCS rating must match or be lower than park's licensed MW.
+        </div>
+
+        <h3>4.1 DSO Communication Protocol (MANDATORY)</h3>
+        
+        <table class="requirement-table">
+            <tr>
+                <td>Primary Protocol</td>
+                <td><strong>IEC 60870-5-104</strong> <span class="badge badge-required">REQUIRED</span></td>
+            </tr>
+            <tr>
+                <td>Transport Layer</td>
+                <td>TCP/IP</td>
+            </tr>
+            <tr>
+                <td>Communication Link</td>
+                <td>M2M (4G/LTE) or Fiber Optic</td>
+            </tr>
+            <tr>
+                <td>Response Time</td>
+                <td>≤ 3 seconds for command acknowledgment</td>
+            </tr>
+            <tr>
+                <td>Setpoint Adjustment</td>
+                <td>≤ 1 minute to reach new power setpoint</td>
+            </tr>
+            <tr>
+                <td>Control Accuracy</td>
+                <td>±2% of setpoint</td>
+            </tr>
+        </table>
+
+        <h3>4.2 Required SCADA Points (Per DSO)</h3>
+
+        <div class="two-col">
+            <div>
+                <h4 style="font-size: 13px; margin-bottom: 10px;">Active Power Control</h4>
+                <table>
+                    <tr><th>Signal</th><th>Address</th><th>Type</th></tr>
+                    <tr><td>P Setpoint</td><td>30</td><td>Analog Output</td></tr>
+                    <tr><td>P Feedback</td><td>503</td><td>Analog Input</td></tr>
+                    <tr><td>Command Status</td><td>103</td><td>Digital</td></tr>
+                </table>
+            </div>
+            <div>
+                <h4 style="font-size: 13px; margin-bottom: 10px;">Reactive Power Control</h4>
+                <table>
+                    <tr><th>Signal</th><th>Address</th><th>Type</th></tr>
+                    <tr><td>Q Setpoint</td><td>31</td><td>Analog Output</td></tr>
+                    <tr><td>Q Feedback</td><td>504</td><td>Analog Input</td></tr>
+                    <tr><td>Command Status</td><td>104</td><td>Digital</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>4.3 Discrete Power Commands</h3>
+        
+        <table>
+            <tr>
+                <th>Command Level</th>
+                <th>Power Output</th>
+                <th>Use Case</th>
+            </tr>
+            <tr>
+                <td>Level 1</td>
+                <td>100%</td>
+                <td>Normal operation</td>
+            </tr>
+            <tr>
+                <td>Level 2</td>
+                <td>60%</td>
+                <td>Partial curtailment</td>
+            </tr>
+            <tr>
+                <td>Level 3</td>
+                <td>30%</td>
+                <td>Significant curtailment</td>
+            </tr>
+            <tr>
+                <td>Level 4</td>
+                <td>0%</td>
+                <td>Zero export mode</td>
+            </tr>
+        </table>
+
+        <h3>4.4 Required Measurements</h3>
+        
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Parameters</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td>Electrical</td>
+                <td>P, Q, S, V (per phase), I (per phase), f, PF, cos φ</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+            </tr>
+            <tr>
+                <td>BESS Status</td>
+                <td>SOC, SOH, Temperature, Charge/Discharge mode</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+            </tr>
+            <tr>
+                <td>Protection</td>
+                <td>Relay status, Trip indications, Fault codes</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+            </tr>
+            <tr>
+                <td>Environmental</td>
+                <td>Ambient temperature, Container temperature</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+            </tr>
+            <tr>
+                <td>Energy</td>
+                <td>kWh imported, kWh exported, kVArh</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+            </tr>
+        </table>
+
+        <h2>5. EMS Functional Requirements</h2>
+
+        <div class="info-box success">
+            <h3 style="margin-bottom: 10px; color: #276749;">Required EMS Capabilities</h3>
+            <ul class="scope-list">
+                <li>Peak shaving / Load shifting optimization</li>
+                <li>Arbitrage optimization (time-of-use pricing)</li>
+                <li>Grid services participation (FCR, aFRR if available)</li>
+                <li>Power Plant Controller (PPC) functionality</li>
+                <li>Multi-site fleet management dashboard</li>
+                <li>Automated dispatch and scheduling</li>
+                <li>Historical data logging (min 2 years)</li>
+                <li>Alarm management and escalation</li>
+                <li>Remote firmware update capability</li>
+                <li>API integration for third-party systems</li>
+            </ul>
+        </div>
+
+        <h3>5.1 Cybersecurity Requirements</h3>
+
+        <table class="requirement-table">
+            <tr>
+                <td>Compliance</td>
+                <td><strong>NIS2 Directive</strong> / KRITIS (if applicable) <span class="badge badge-required">REQUIRED</span></td>
+            </tr>
+            <tr>
+                <td>Data Encryption</td>
+                <td>TLS 1.3 minimum, AES-256</td>
+            </tr>
+            <tr>
+                <td>Authentication</td>
+                <td>Multi-factor authentication (MFA)</td>
+            </tr>
+            <tr>
+                <td>Access Control</td>
+                <td>Role-based access control (RBAC)</td>
+            </tr>
+            <tr>
+                <td>Data Location</td>
+                <td>EU-based servers preferred</td>
+            </tr>
+            <tr>
+                <td>Audit Logging</td>
+                <td>All user actions logged, retained 12 months minimum</td>
+            </tr>
+        </table>
+
+        <h2>6. Equipment Information</h2>
+
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Communication</th>
+            </tr>
+            <tr>
+                <td>Battery Container</td>
+                <td>Linyang</td>
+                <td>Power Atlantic 5.015 MWh</td>
+                <td>Modbus TCP, CAN</td>
+            </tr>
+            <tr>
+                <td>PCS (Inverter)</td>
+                <td>Kehua</td>
+                <td>BCS1250K-C-HUD</td>
+                <td>Modbus TCP, IEC 61850 (optional)</td>
+            </tr>
+            <tr>
+                <td>BMS</td>
+                <td>Linyang</td>
+                <td>3-level architecture (BCMU/BMU/SBMU)</td>
+                <td>CAN, Modbus RTU</td>
+            </tr>
+            <tr>
+                <td>MV Switchgear</td>
+                <td>ABB or Schneider (Linyang supply)</td>
+                <td>TBD</td>
+                <td>IEC 61850, Modbus</td>
+            </tr>
+            <tr>
+                <td>Auxiliary Transformer</td>
+                <td>Schneider (Linyang supply)</td>
+                <td>TBD</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>RMU (Ring Main Unit)</td>
+                <td>Schneider (Linyang supply)</td>
+                <td>TBD</td>
+                <td>IEC 61850, Modbus</td>
+            </tr>
+            <tr>
+                <td>Protection Relays</td>
+                <td>Schneider / ABB</td>
+                <td>TBD</td>
+                <td>IEC 61850, Modbus</td>
+            </tr>
+        </table>
+
+        <h2>7. Scope of Work</h2>
+
+        <div class="two-col">
+            <div>
+                <h3>Included in Proposal</h3>
+                <ul class="scope-list">
+                    <li>SCADA system design per site</li>
+                    <li>IEC 60870-5-104 gateway programming</li>
+                    <li>Signal mapping and point list creation</li>
+                    <li>HMI/Dashboard development</li>
+                    <li>DSO integration and testing</li>
+                    <li>EMS software license (if applicable)</li>
+                    <li>Commissioning support</li>
+                    <li>Documentation and as-built drawings</li>
+                    <li>Operator training</li>
+                    <li>12-month warranty</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Excluded / Client Responsibility</h3>
+                <ul class="scope-list">
+                    <li class="excluded">Hardware (RTU, routers, switches)</li>
+                    <li class="excluded">Communication SIM cards</li>
+                    <li class="excluded">On-site cabling and installation</li>
+                    <li class="excluded">DSO application and fees</li>
+                    <li class="excluded">Cybersecurity hardware (firewalls)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>8. Proposal Requirements</h2>
+
+        <div class="info-box warning">
+            <h3 style="margin-bottom: 10px; color: #975a16;">Proposal Must Include:</h3>
+            <ol style="margin-left: 20px;">
+                <li><strong>Technical Proposal</strong> - System architecture, approach, and methodology</li>
+                <li><strong>Commercial Proposal</strong> - Itemized pricing (per site and portfolio)</li>
+                <li><strong>Experience</strong> - References for similar BESS projects (>10 MWh)</li>
+                <li><strong>Team</strong> - Key personnel and qualifications</li>
+                <li><strong>Timeline</strong> - Proposed delivery schedule</li>
+                <li><strong>Support</strong> - Post-commissioning support and SLA options</li>
+                <li><strong>Compliance</strong> - Statement of NIS2/cybersecurity compliance</li>
+            </ol>
+        </div>
+
+        <h2>9. Commercial Pricing Template</h2>
+
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Unit</th>
+                <th>Qty</th>
+                <th>Unit Price (€)</th>
+                <th>Total (€)</th>
+            </tr>
+            <tr>
+                <td>SCADA Design & Engineering (per site)</td>
+                <td>Site</td>
+                <td>47</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>IEC 104 Gateway Programming (per site)</td>
+                <td>Site</td>
+                <td>47</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Signal Mapping (per data point)</td>
+                <td>Point</td>
+                <td>Est. 15,000</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>HMI/Dashboard Development</td>
+                <td>Lump Sum</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Fleet Management Platform (if applicable)</td>
+                <td>Annual</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>EMS License (per MWh or site)</td>
+                <td>MWh/Site</td>
+                <td>863.5 / 47</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>DSO Testing & Commissioning (per site)</td>
+                <td>Site</td>
+                <td>47</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Training</td>
+                <td>Days</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Documentation</td>
+                <td>Lump Sum</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Annual Support/Maintenance (Year 2+)</td>
+                <td>Annual</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="4"><strong>TOTAL (Excluding ongoing support)</strong></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h2>10. Timeline</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">27 Jan 2026</div>
+                <div class="timeline-event">RFP Issued</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">10 Feb 2026</div>
+                <div class="timeline-event">Questions Due</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">17 Feb 2026</div>
+                <div class="timeline-event">Proposals Due</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">28 Feb 2026</div>
+                <div class="timeline-event">Selection</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Q2 2026</div>
+                <div class="timeline-event">First Site Go-Live</div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h3>📧 Contact Information</h3>
+            <p style="margin-bottom: 10px;">
+                <strong>Lighthief Cyprus Ltd</strong><br>
+                Cyprus BESS Portfolio - SCADA/EMS RFP
+            </p>
+            <p>
+                For questions or clarifications, please contact:<br>
+                Email: <strong>office@lighthief.com</strong><br>
+                Subject Line: <strong>RFP-LCY-SCADA-2026-001 - [Your Company Name]</strong>
+            </p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+                All proposals must be submitted in PDF format by <strong>17 February 2026, 17:00 CET</strong>.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>
+                <strong>Document:</strong> RFP-LCY-SCADA-2026-001 | SCADA/EMS Integration Services<br>
+                <strong>Issued:</strong> 27 January 2026 | <strong>Confidential</strong> - For intended recipients only<br>
+                <strong>Prepared by:</strong> Lighthief Cyprus Ltd
+            </p>
+        </div>
+    </div>
+</body>
+</html>

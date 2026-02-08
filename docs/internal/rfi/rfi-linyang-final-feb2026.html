@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI - Cyprus BESS Portfolio 863.5 MWh | Lighthief Cyprus Ltd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 20mm 15mm;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #1a1a2e;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 30px;
+            margin: -40px -40px 30px -40px;
+            border-bottom: 4px solid #38a169;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-right: 12px;
+            float: left;
+        }
+        
+        .logo-section h1 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 3px;
+            letter-spacing: 2px;
+        }
+        
+        .logo-section p {
+            color: rgba(255,255,255,0.85);
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .doc-info {
+            text-align: right;
+            font-size: 10px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .doc-info .ref {
+            font-weight: bold;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .doc-info .date {
+            color: rgba(255,255,255,0.85);
+        }
+        
+        /* Title Section */
+        .title-section {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            color: white;
+            padding: 25px;
+            margin: -40px -40px 30px -40px;
+            text-align: center;
+        }
+        
+        .title-section h1 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .title-section .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .title-section .capacity {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4ade80;
+            margin-top: 10px;
+        }
+        
+        /* Meta Info */
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+        
+        .meta-table td {
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .meta-table td:first-child {
+            background: #f5f5f5;
+            font-weight: 600;
+            width: 150px;
+            color: #16213e;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            background: #16213e;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-header .priority {
+            background: #dc2626;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .section-header .priority.medium {
+            background: #f59e0b;
+        }
+        
+        .section-header .priority.low {
+            background: #22c55e;
+        }
+        
+        /* Sub-section */
+        .subsection {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fafafa;
+            border-left: 4px solid #16213e;
+        }
+        
+        .subsection h4 {
+            color: #16213e;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        
+        th {
+            background: #16213e;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        tr:hover {
+            background: #f0f7ff;
+        }
+        
+        /* Question Numbers */
+        .q-num {
+            display: inline-block;
+            background: #16213e;
+            color: white;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        /* Status Badges */
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .status.missing {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .status.pending {
+            background: #fffbeb;
+            color: #d97706;
+        }
+        
+        .status.complete {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+        
+        /* Question List */
+        .question-list {
+            list-style: none;
+            margin: 10px 0;
+        }
+        
+        .question-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .question-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Note Box */
+        .note-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .note-box strong {
+            color: #1e40af;
+        }
+        
+        /* Summary Table */
+        .summary-table {
+            margin-top: 30px;
+        }
+        
+        .summary-table th {
+            background: #0f172a;
+        }
+        
+        .summary-table .high {
+            color: #dc2626;
+            font-weight: bold;
+        }
+        
+        .summary-table .medium {
+            color: #d97706;
+            font-weight: bold;
+        }
+        
+        .summary-table .low {
+            color: #16a34a;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #16213e;
+        }
+        
+        .signature {
+            margin-top: 30px;
+        }
+        
+        .signature .name {
+            font-weight: bold;
+            color: #16213e;
+            font-size: 16px;
+        }
+        
+        .signature .title {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .contact-info {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .contact-info a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #16213e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .print-btn:hover {
+            background: #1e3a5f;
+        }
+        
+        /* Intro Text */
+        .intro {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .response-deadline {
+            background: #fef2f2;
+            border: 2px solid #dc2626;
+            padding: 15px 20px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">
+        📄 Export to PDF
+    </button>
+
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1>REQUEST FOR INFORMATION</h1>
+            <div class="subtitle">Cyprus BESS Portfolio - Consolidated Outstanding Items</div>
+            <div class="capacity">863.5 MWh | 47 Projects</div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <h1>LIGHTHIEF</h1>
+                        <p>Energy Storage Solutions | Cyprus</p>
+                    </div>
+                </div>
+                <div class="doc-info">
+                    <div class="ref">LCY-RFI-LINYANG-2026-001</div>
+                    <div class="date">2 February 2026</div>
+                    <div style="margin-top: 8px;"><strong>Version 1.6 FINAL</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meta Table -->
+        <table class="meta-table">
+            <tr>
+                <td>To</td>
+                <td><strong>Linyang Energy Storage:</strong> Kamil Tyburski, Conor Yang<br>
+                    <strong>Kehua Digital Energy:</strong> Sales Team</td>
+            </tr>
+            <tr>
+                <td>From</td>
+                <td>Alexander Papacosta, Cyprus Director</td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td>Consolidated RFI - Outstanding Items for Cyprus BESS Portfolio</td>
+            </tr>
+            <tr>
+                <td>Priority</td>
+                <td><span class="status missing">HIGH</span></td>
+            </tr>
+            <tr>
+                <td>Total Questions</td>
+                <td><strong>41 items</strong> across 7 categories (updated 31 Jan - added guarantee backing questions)</td>
+            </tr>
+        </table>
+
+        <!-- Response Deadline -->
+        <div class="response-deadline">
+            🚨 URGENT - RESPONSE REQUIRED TODAY (2 FEBRUARY 2026):<br>
+            • LDs (Liquidated Damages) - Section B6<br>
+            • MV Equipment Brand/Model Names - Section A1<br>
+            <span style="font-size: 12px; font-weight: normal;">Other items by: 7 February 2026</span>
+        </div>
+
+        <!-- Introduction -->
+        <div class="intro">
+            <p>Dear Kamil, Conor, and Kehua Team,</p>
+            <br>
+            <p>Thank you for the recent documentation including the Kehua PCS catalogues and drawings - these have been very helpful in confirming EN 50549-2 compliance and foundation specifications.</p>
+            <br>
+            <p>We are finalizing client proposals for the <strong>47-project Cyprus BESS portfolio (863.5 MWh)</strong> and need clarification on several outstanding items. I've consolidated all questions below for your convenience.</p>
+        </div>
+
+        <!-- IMPORTANT DISCLAIMER -->
+        <div class="note-box" style="background: #fef3cd; border-color: #f59e0b; margin: 20px 0;">
+            <strong>⚠️ IMPORTANT DISCLAIMER</strong><br><br>
+            <strong>NONE of the values, terms, or specifications in this document have been signed off or confirmed by Linyang.</strong> This RFI is sent to obtain official confirmation of:
+            <ul style="margin: 10px 0 10px 20px;">
+                <li>All warranty and guarantee terms and values</li>
+                <li>Liquidated Damages (LDs) terms and caps</li>
+                <li>Payment terms and milestone structure</li>
+                <li>SOH degradation curves and remedies</li>
+                <li>Performance Bond and APG mechanisms</li>
+                <li>All pricing and scope inclusions</li>
+            </ul>
+            <strong>All values shown are based on preliminary discussions and marketing materials only. Official confirmation from Linyang is required before any commitments can be made to clients.</strong>
+        </div>
+
+        <!-- SECTION A: MV EQUIPMENT -->
+        <div class="section-header">
+            <span>SECTION A: MV EQUIPMENT</span>
+            <span class="priority">CRITICAL</span>
+        </div>
+
+        <div class="subsection">
+            <h4>A1. Brand & Model Confirmation 🔴 CRITICAL</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Component</th>
+                    <th>Question</th>
+                    <th>Our Preference</th>
+                    <th>Model Required</th>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td><strong>MV Transformer</strong></td>
+                    <td>Part of MV SKID</td>
+                    <td style="color: #166534;"><strong>✅ Kehua SL-10000</strong></td>
+                    <td>Confirmed from datasheet</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">1</span></td>
+                    <td><strong>MV Switchgear</strong></td>
+                    <td>What brand? Is it SF6 or air-insulated?</td>
+                    <td>Schneider preferred</td>
+                    <td><strong>Please specify model</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">2</span></td>
+                    <td><strong>RMU</strong></td>
+                    <td>Confirmed Schneider included - which model?</td>
+                    <td style="color: #166534;"><strong>✅ Schneider</strong></td>
+                    <td><strong>SM6, RM6, or Premset?</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">3</span></td>
+                    <td><strong>Protection Relays</strong></td>
+                    <td>What brand/model protection relays are included?</td>
+                    <td>ABB/Schneider/Siemens</td>
+                    <td><strong>ABB REF615, Schneider Sepam?</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">4</span></td>
+                    <td><strong>Auxiliary Transformer</strong></td>
+                    <td>Confirmed Schneider included - which model/size?</td>
+                    <td style="color: #166534;"><strong>✅ Schneider</strong></td>
+                    <td><strong>Please specify model & kVA size</strong></td>
+                </tr>
+            </table>
+            
+            <div class="note-box">
+                <strong>Why this matters:</strong><br>
+                1. Our clients require EU-brand MV equipment for local spares availability<br>
+                2. <strong>Competitor proposals specify exact models</strong> (e.g., "Siemens 8DJH", "Schneider RM6") - we need equivalent detail<br>
+                3. Brand/model confirmation required for our proposals to match competitor detail level<br>
+                4. Spare parts lead time from China is a concern for LTSA commitments
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h4>A2. Lead Time Alignment</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Component</th>
+                    <th>BESS Lead Time</th>
+                    <th>MV Lead Time</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">5</span></td>
+                    <td>MV Transformer</td>
+                    <td>90 days</td>
+                    <td><span class="status pending">❓ Please confirm</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">6</span></td>
+                    <td>MV Switchgear + RMU</td>
+                    <td>90 days</td>
+                    <td><span class="status pending">❓ Please confirm</span></td>
+                </tr>
+            </table>
+            
+            <div class="note-box">
+                <strong>Question:</strong> Do all MV components have the same 90-day lead time as BESS? If not, what is the longest lead time component?
+            </div>
+        </div>
+
+        <!-- SECTION B: COMMERCIAL TERMS -->
+        <div class="section-header page-break">
+            <span>SECTION B: COMMERCIAL TERMS</span>
+            <span class="priority">CRITICAL</span>
+        </div>
+
+        <div class="subsection">
+            <h4>B1. Payment Terms</h4>
+            <p style="margin-bottom: 15px; font-size: 13px;"><strong>Current terms (Quote LY202601271):</strong> 30% advance + 70% pre-shipment = 100% paid before delivery</p>
+            
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Milestone</th>
+                    <th>Current %</th>
+                    <th>Proposed %</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td rowspan="4"><span class="q-num">7</span></td>
+                    <td>Advance Payment</td>
+                    <td>30%</td>
+                    <td><strong>25%</strong></td>
+                    <td>Production start</td>
+                </tr>
+                <tr>
+                    <td>Ready to Ship</td>
+                    <td>70%</td>
+                    <td><strong>50%</strong></td>
+                    <td>Manufacturing complete</td>
+                </tr>
+                <tr>
+                    <td>Arrival on Site</td>
+                    <td>0%</td>
+                    <td><strong>20%</strong></td>
+                    <td>Delivery confirmed</td>
+                </tr>
+                <tr>
+                    <td>SAT</td>
+                    <td>0%</td>
+                    <td><strong>5%</strong></td>
+                    <td>Performance holdback</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h4>B2. Advance Payment Guarantee</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Item</th>
+                    <th>Request</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">8</span></td>
+                    <td>Advance Payment Guarantee (APG)</td>
+                    <td>
+                        <strong>Form:</strong> Bank guarantee (not corporate)<br>
+                        <strong>Coverage:</strong> 100% of advance payment<br>
+                        <strong>Bank:</strong> International bank acceptable in Cyprus
+                    </td>
+                </tr>
+            </table>
+            <div class="note-box">
+                This is a key requirement from our clients' banks for project financing.
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h4>B3. Performance Bond & Guarantee Backing 🔴 CRITICAL</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Item</th>
+                    <th>Question</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">9</span></td>
+                    <td>Performance Bond Form</td>
+                    <td>What form: Corporate guarantee or bank guarantee?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">10</span></td>
+                    <td>Coverage Amount & Period</td>
+                    <td>What is the coverage amount and period?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">11</span></td>
+                    <td><strong>Performance Bond Backing</strong></td>
+                    <td>How is the Performance Bond backed? (Issuing entity, verification method, claim mechanism)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h4>B4. SOH Guarantee & Backing Mechanism 🔴 CRITICAL</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Item</th>
+                    <th>Question</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">12</span></td>
+                    <td>SOH Remedy</td>
+                    <td>If SOH falls below guaranteed value (79.58% @ Year 10), what is the remedy? (Augmentation / Refund / Replacement)</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">13</span></td>
+                    <td><strong>SOH Guarantee Backing</strong></td>
+                    <td>How is the SOH guarantee backed? Is there a warranty reserve fund, insurance, or escrow?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">14</span></td>
+                    <td>Verification Method</td>
+                    <td>How is SOH measured and verified? Is independent testing accepted?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">15</span></td>
+                    <td>Parent Company Backing</td>
+                    <td>Does Linyang Energy (SHA: 601222) guarantee the warranty obligations of the subsidiary?</td>
+                </tr>
+            </table>
+            <div class="note-box" style="background: #fef2f2; border-color: #dc2626;">
+                <strong>Why this is critical:</strong> Our clients' banks require clear understanding of how long-term performance guarantees are backed before they will approve project financing.
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h4>B6. Liquidated Damages (LDs) 🔴 CRITICAL</h4>
+            <p style="margin-bottom: 15px; font-size: 13px;">Please confirm the Liquidated Damages terms for the following scenarios:</p>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>LD Category</th>
+                    <th>Question</th>
+                    <th>Response Required</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">14</span></td>
+                    <td><strong>Delay LDs</strong></td>
+                    <td>What LDs apply if delivery is delayed beyond agreed date?</td>
+                    <td>% per week/month, cap?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">15</span></td>
+                    <td><strong>Performance LDs</strong></td>
+                    <td>What LDs apply if system underperforms guaranteed capacity?</td>
+                    <td>Calculation basis, cap?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">16</span></td>
+                    <td><strong>Availability LDs</strong></td>
+                    <td>What LDs apply if system availability falls below guarantee?</td>
+                    <td>Threshold, calculation?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">17</span></td>
+                    <td><strong>LD Cap</strong></td>
+                    <td>What is the total maximum LD liability?</td>
+                    <td>% of contract value?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">18</span></td>
+                    <td><strong>Force Majeure</strong></td>
+                    <td>What events qualify for LD exemption?</td>
+                    <td>Definition required</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">19</span></td>
+                    <td><strong>Notice Period</strong></td>
+                    <td>How must LDs be claimed and within what timeframe?</td>
+                    <td>Process details</td>
+                </tr>
+            </table>
+            <div class="note-box">
+                <strong>Why this matters:</strong> Our clients require clear LD terms for their financial models and risk assessment. Banks will not approve financing without understanding downside protection.
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h4>B7. All Guarantee Values - Confirmation Required 🔴 CRITICAL</h4>
+            <p style="margin-bottom: 15px; font-size: 13px;"><strong>Note:</strong> The following values have been discussed but require <strong>official written confirmation</strong> from Linyang:</p>
+            <table>
+                <tr>
+                    <th>Guarantee</th>
+                    <th>Value Discussed</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><strong>Warranty Period</strong></td>
+                    <td>5 years standard</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>Extended Warranty</strong></td>
+                    <td>Up to 20 years available</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>SOH Year 10</strong></td>
+                    <td>79.58% minimum</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>SOH Year 15</strong></td>
+                    <td>70% minimum</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>SOH Year 20</strong></td>
+                    <td>TBD</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>Cycle Life</strong></td>
+                    <td>8,000+ cycles at 1C</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>System Availability</strong></td>
+                    <td>97%+</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>PCS Efficiency (Kehua)</strong></td>
+                    <td>≥99% max, ~98% at rated</td>
+                    <td style="color: #166534; font-weight: bold;">✅ CONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>System Round-Trip Efficiency</strong></td>
+                    <td><strong>87.8%</strong> (per Linyang RTE Calculation doc)</td>
+                    <td style="color: #166534; font-weight: bold;">✅ CONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>Performance Bond</strong></td>
+                    <td>Amount and period TBD</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+                <tr>
+                    <td><strong>Advance Payment Guarantee</strong></td>
+                    <td>100% of advance</td>
+                    <td style="color: #f59e0b; font-weight: bold;">⚠️ UNCONFIRMED</td>
+                </tr>
+            </table>
+            <div class="note-box" style="background: #fef2f2; border-color: #dc2626;">
+                <strong>Request:</strong> Please provide official written confirmation of all guarantee values, ideally in the form of a formal warranty certificate or term sheet.
+            </div>
+        </div>
+
+        <!-- SECTION C: TECHNICAL DOCUMENTATION -->
+        <div class="section-header">
+            <span>SECTION C: TECHNICAL DOCUMENTATION</span>
+            <span class="priority">CRITICAL</span>
+        </div>
+
+        <div class="subsection">
+            <h4>C1. Grid Connection Documents (Required for Cyprus DSO)</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Document</th>
+                    <th>Standard</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">20</span></td>
+                    <td>LVRT/HVRT Test Report</td>
+                    <td>EN 50549-2</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">21</span></td>
+                    <td>Frequency Response Curves</td>
+                    <td>EN 50549-2 (LFSM-O @ 50.2 Hz)</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">22</span></td>
+                    <td>IEC 60870-5-104 Point List</td>
+                    <td>IEC 60870-5-104</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">23</span></td>
+                    <td>Modbus Register List</td>
+                    <td>Modbus-TCP</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">24</span></td>
+                    <td>Protection Settings Guide</td>
+                    <td>Cyprus Grid Requirements</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h4>C2. MV Equipment Datasheets</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Document</th>
+                    <th>Sizes Required</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">25</span></td>
+                    <td>MV Skid Datasheet (10MW)</td>
+                    <td>BCS10000K-C-HUD T8</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">26</span></td>
+                    <td>MV Skid Datasheets</td>
+                    <td>1MW, 1.25MW, 1.5MW, 2MW, 2.5MW, 3MW, 4MW, 5MW, 6MW, 8MW</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">27</span></td>
+                    <td>MV Transformer Datasheet (10MVA)</td>
+                    <td>10000kVA</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">28</span></td>
+                    <td>MV Transformer Datasheets</td>
+                    <td>1.1 MVA - 8 MVA</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h4>C3. Commissioning Documentation</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Document</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">18</span></td>
+                    <td>FAT (Factory Acceptance Test) Procedures</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">19</span></td>
+                    <td>SAT (Site Acceptance Test) Procedures</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">20</span></td>
+                    <td>Commissioning Checklist</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION D: SPARE PARTS -->
+        <div class="section-header page-break">
+            <span>SECTION D: SPARE PARTS</span>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+
+        <div class="subsection">
+            <h4>D1. Recommended Spare Parts List (Linyang + Kehua)</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Request</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">21</span></td>
+                    <td>Recommended Spares List</td>
+                    <td>
+                        <strong>Battery Container:</strong> BMS (BCMU, BAMS, BMU), DC contactors, fuses, cooling components, fire suppression cartridges, sensors<br><br>
+                        <strong>PCS:</strong> Control boards, IGBT modules, cooling fans, communication modules, AC/DC contactors
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">22</span></td>
+                    <td>Pricing & Lead Times</td>
+                    <td>
+                        For each spare: Part number, quantity per 10 MWh, unit price (FOB/CIF), lead time from China, lead time from EU stock
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">23</span></td>
+                    <td>EU Consignment Stock</td>
+                    <td>Can you maintain consignment stock in EU (Netherlands/Germany) for critical spares?</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION E: PCS DOCUMENTATION -->
+        <div class="section-header">
+            <span>SECTION E: PCS DOCUMENTATION (KEHUA)</span>
+            <span class="priority low">LOW</span>
+        </div>
+
+        <div class="subsection">
+            <h4>E1. PCS Documentation Status</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Document</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>PCS Datasheet (1000K/1250K)</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>PCS Datasheet (8000K/10000K)</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>Efficiency Curves</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>P-Q Capability Curves</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td>-</td>
+                    <td>EN 50549-2 / CE / TÜV Certificates</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">40</span></td>
+                    <td>PCS Installation Manual</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">41</span></td>
+                    <td>PCS Commissioning Guide</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">42</span></td>
+                    <td>Black Start Procedure</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">43</span></td>
+                    <td>Grid-Forming Configuration Guide</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="subsection">
+            <h4>E2. Foundation Drawings</h4>
+            <table>
+                <tr>
+                    <th>Size</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>2.5MW / 5MW</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED</span></td>
+                </tr>
+                <tr>
+                    <td>10MW (BCS10000K-C-HUD/T8)</td>
+                    <td><span class="status" style="background: #dcfce7; color: #166534;">✅ RECEIVED (DWG)</span></td>
+                </tr>
+                <tr>
+                    <td>1MW / 1.25MW</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+                <tr>
+                    <td>8MW</td>
+                    <td><span class="status missing">MISSING</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION F: TIMELINE -->
+        <div class="section-header">
+            <span>SECTION F: TIMELINE CONFIRMATION</span>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+
+        <div class="subsection">
+            <h4>F1. Production & Delivery Timeline</h4>
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Phase</th>
+                    <th>Duration</th>
+                    <th>Confirmation Required</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">29</span></td>
+                    <td>Production Start</td>
+                    <td>-</td>
+                    <td>Confirm starts only after: Advance payment + Contract + <strong>Design Lock signed by client</strong>?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">30</span></td>
+                    <td>Shipping</td>
+                    <td>~50 days indicative</td>
+                    <td>Confirm variable (weather/vessel) and <strong>no LDs apply</strong> to shipping delays?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">31</span></td>
+                    <td>Installation & Commissioning</td>
+                    <td>30 working days</td>
+                    <td>Confirm 30 working days after site delivery?</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION G: SCOPE CLARIFICATION -->
+        <div class="section-header">
+            <span>SECTION G: SCOPE CLARIFICATION</span>
+            <span class="priority">CRITICAL</span>
+        </div>
+
+        <div class="subsection">
+            <h4>G1. Equipment Scope & Brand Confirmation</h4>
+            <p style="margin-bottom: 15px; font-size: 13px;">Equipment items requiring confirmation whether included in Linyang CIF price or separate:</p>
+            
+            <table>
+                <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>Item</th>
+                    <th>Question</th>
+                </tr>
+                <tr>
+                    <td><span class="q-num">32</span></td>
+                    <td><strong>Power Plant Controller (PPC)</strong></td>
+                    <td>Built into PCS or separate? If separate, can third-party EMS (e.g., AXOS) provide PPC function?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">33</span></td>
+                    <td><strong>Grid Forming Controller</strong></td>
+                    <td>Built-in to BCS C-series PCS or add-on?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">34</span></td>
+                    <td><strong>LV Control Cabinet</strong></td>
+                    <td>Included in MV SKID or separate supply?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">35</span></td>
+                    <td><strong>Protection Relays</strong></td>
+                    <td>In SKID or customer scope? <strong>What brand - Schneider or ABB?</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">36</span></td>
+                    <td><strong>RTU (Remote Terminal Unit)</strong></td>
+                    <td>Confirmed INCLUDED ✓ - <strong>What brand - Schneider or ABB?</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">37</span></td>
+                    <td><strong>Auxiliary System & Comms Cabinet</strong></td>
+                    <td>What exactly is included in this line item? Details required.</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">38</span></td>
+                    <td><strong>Commissioning Scope</strong></td>
+                    <td>What does "training & launch" cover vs full DSO commissioning? What's included/excluded?</td>
+                </tr>
+                <tr>
+                    <td><span class="q-num">39</span></td>
+                    <td><strong>Lightning Protection / SPD</strong></td>
+                    <td>Is SPD included in container or MV SKID? What specs?</td>
+                </tr>
+            </table>
+            
+            <div class="note-box">
+                <strong>Why this matters:</strong> We need to confirm exact scope boundaries to avoid gaps or overlaps in our EPC pricing. Brand confirmation (Schneider/ABB) is critical for EU spares availability and LTSA commitments.
+            </div>
+        </div>
+
+        <!-- SUMMARY TABLE -->
+        <div class="section-header page-break">
+            <span>RESPONSE SUMMARY</span>
+        </div>
+
+        <table class="summary-table">
+            <tr>
+                <th>Category</th>
+                <th>Questions</th>
+                <th>Priority</th>
+                <th>Response By</th>
+            </tr>
+            <tr style="background: #fef2f2;">
+                <td><strong>A. MV Equipment (Brand Names)</strong></td>
+                <td>#1-7 (7 items)</td>
+                <td class="high">🚨 URGENT</td>
+                <td style="color: #dc2626;"><strong>2 Feb 2026 (TODAY)</strong></td>
+            </tr>
+            <tr style="background: #fef2f2;">
+                <td><strong>B. Commercial Terms (LDs)</strong></td>
+                <td>#8-19 (12 items)</td>
+                <td class="high">🚨 URGENT</td>
+                <td style="color: #dc2626;"><strong>2 Feb 2026 (TODAY)</strong></td>
+            </tr>
+            <tr>
+                <td>C. Technical Docs</td>
+                <td>#12-20 (9 items)</td>
+                <td class="high">🔴 HIGH</td>
+                <td><strong>14 Feb 2026</strong></td>
+            </tr>
+            <tr>
+                <td>D. Spare Parts</td>
+                <td>#21-23 (3 items)</td>
+                <td class="medium">🟡 MEDIUM</td>
+                <td>14 Feb 2026</td>
+            </tr>
+            <tr>
+                <td>E. PCS Docs (Kehua)</td>
+                <td>#24-28 (5 items)</td>
+                <td class="low">🟢 LOW</td>
+                <td>21 Feb 2026</td>
+            </tr>
+            <tr>
+                <td>F. Timeline</td>
+                <td>#29-31 (3 items)</td>
+                <td class="medium">🟡 MEDIUM</td>
+                <td>7 Feb 2026</td>
+            </tr>
+            <tr>
+                <td><strong>G. Scope Clarification</strong></td>
+                <td>#32-39 (8 items)</td>
+                <td class="high">🔴 HIGH</td>
+                <td><strong>7 Feb 2026</strong></td>
+            </tr>
+            <tr style="background: #f0f7ff; font-weight: bold;">
+                <td>TOTAL</td>
+                <td colspan="3">39 Items</td>
+            </tr>
+        </table>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Please let me know if you need any clarification on these items. We're targeting to finalize client contracts by end of February, so timely responses will be greatly appreciated.</p>
+            
+            <div class="signature">
+                <div class="name">Alexander Papacosta</div>
+                <div class="title">Cyprus Director | Lighthief Cyprus Ltd</div>
+                
+                <div class="contact-info">
+                    <p>📧 <a href="mailto:alexander.papacosta@lighthief.com">alexander.papacosta@lighthief.com</a></p>
+                    <p>📱 +357 99 164 158</p>
+                    <p>🏢 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 11px; color: #999; text-align: center;">
+            <p><strong>CONFIDENTIAL</strong> | Reference: LCY-RFI-LINYANG-2026-001 | Version 1.6 FINAL | 2 February 2026</p>
+            <p>Lighthief Cyprus Ltd | Prepared for Linyang Energy Storage & Kehua Digital Energy</p>
+        </div>
+    </div>
+</body>
+</html>

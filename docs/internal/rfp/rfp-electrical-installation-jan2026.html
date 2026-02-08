@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP - Electrical Installation | Cyprus BESS Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .page { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 50px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%); color: white; padding: 25px 30px; margin: -40px -50px 30px -50px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .logo { display: none; }
+        h1 { color: #2c3e50; font-size: 24px; margin: 15px 0; }
+        .rfp-number { background: #e74c3c; color: white; padding: 8px 20px; display: inline-block; font-weight: bold; font-size: 14px; border-radius: 3px; }
+        .subtitle { color: #7f8c8d; font-size: 16px; margin-top: 10px; }
+        h2 { color: #2c3e50; font-size: 18px; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid #3498db; }
+        h3 { color: #34495e; font-size: 15px; margin: 20px 0 10px 0; }
+        .info-box { background: #ecf0f1; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; }
+        .warning-box { background: #ffeaa7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        th { background: #2c3e50; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .total-row { background: #2c3e50 !important; color: white; font-weight: bold; }
+        .total-row td { border-color: #2c3e50; }
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 80px; }
+        ul, ol { margin: 10px 0 10px 25px; }
+        li { margin: 5px 0; }
+        .contact-box { background: #2c3e50; color: white; padding: 20px; margin-top: 30px; border-radius: 5px; }
+        .contact-box h3 { color: #3498db; margin-bottom: 10px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #7f8c8d; font-size: 12px; }
+        .scope-table th { background: #27ae60; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Ref:</strong> RFP-LCY-ELEC-2026-001</div>
+                    <div><strong>Date:</strong> 27 January 2026</div>
+                </div>
+            </div>
+            <h1 style="color: white; text-align: center; margin-top: 10px;">Request for Proposal</h1>
+            <p class="subtitle" style="color: rgba(255,255,255,0.85); text-align: center;">Electrical Installation Services - MV/LV Cabling & Terminations</p>
+        </div>
+        
+        <div class="info-box">
+            <strong>RFP Issue Date:</strong> 27 January 2026<br>
+            <strong>Proposal Due:</strong> 10 February 2026<br>
+            <strong>Project:</strong> Cyprus BESS Portfolio - 47 Parks (863.5 MWh)<br>
+            <strong>Total Equipment:</strong> 176 Battery Containers + 70 MV SKIDs
+        </div>
+
+        <h2>1. Project Overview</h2>
+        <p>Lighthief Cyprus Ltd is seeking proposals from qualified electrical contractors for the supply, installation, and termination of MV and LV power cables for 47 Battery Energy Storage System (BESS) installations across Cyprus.</p>
+
+        <h2>2. Scope of Work</h2>
+        
+        <h3>2.1 LV Cabling (Per Park)</h3>
+        <table class="scope-table">
+            <tr><th>Item</th><th>Specification</th><th>Notes</th></tr>
+            <tr><td>DC Cables (Battery to PCS)</td><td>240 mm² copper, double insulated</td><td>Per Linyang specs</td></tr>
+            <tr><td>LV AC Cables (PCS to Transformer)</td><td>4×35mm² + 1×16mm² copper</td><td>690V rated</td></tr>
+            <tr><td>Control Cables</td><td>Multi-core screened</td><td>For BMS/SCADA</td></tr>
+            <tr><td>Grounding Cables</td><td>120-150 mm² copper</td><td>Earth grid connection</td></tr>
+            <tr><td>Base Included Length</td><td><strong>50m per connection</strong></td><td>Additional priced separately</td></tr>
+        </table>
+
+        <h3>2.2 MV Cabling (Per Park)</h3>
+        <table class="scope-table">
+            <tr><th>Item</th><th>Specification</th><th>Notes</th></tr>
+            <tr><td>MV Cables (Transformer to POC)</td><td>95-400 mm² Al XLPE</td><td>11kV or 22kV rated</td></tr>
+            <tr><td>MV Terminations</td><td>Heat shrink outdoor/indoor</td><td>Per MV SKID count</td></tr>
+            <tr><td>Cable Loss Target</td><td>&lt;0.5% one-way</td><td>DSO requirement</td></tr>
+            <tr><td>Base Included Length</td><td><strong>50m per connection</strong></td><td>Additional priced separately</td></tr>
+        </table>
+
+        <h3>2.3 Installation Works</h3>
+        <table>
+            <tr><th>Work Item</th><th>Description</th></tr>
+            <tr><td>Cable Pulling</td><td>Through pre-installed trenches/ducts</td></tr>
+            <tr><td>Cable Termination</td><td>LV and MV terminations per manufacturer specs</td></tr>
+            <tr><td>Cable Testing</td><td>Insulation resistance, continuity, hi-pot</td></tr>
+            <tr><td>Glanding & Sealing</td><td>IP65 rated entries to containers</td></tr>
+            <tr><td>Labeling</td><td>Per IEC standards</td></tr>
+            <tr><td>As-Built Documentation</td><td>Cable schedules, test certificates</td></tr>
+        </table>
+
+        <h2>3. Portfolio Summary</h2>
+        <table>
+            <tr><th>District</th><th>Projects</th><th>BESS Containers</th><th>MV SKIDs</th><th>Est. LV Cable (m)</th><th>Est. MV Cable (m)</th></tr>
+            <tr><td>Famagusta</td><td>7</td><td>35</td><td>9</td><td>1,750</td><td>450</td></tr>
+            <tr><td>Larnaca</td><td>2</td><td>2</td><td>2</td><td>100</td><td>100</td></tr>
+            <tr><td>Limassol</td><td>5</td><td>23</td><td>8</td><td>1,150</td><td>400</td></tr>
+            <tr><td>Nicosia</td><td>30</td><td>111</td><td>48</td><td>5,550</td><td>2,400</td></tr>
+            <tr><td>Paphos</td><td>3</td><td>5</td><td>3</td><td>250</td><td>150</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>47</strong></td><td><strong>176</strong></td><td><strong>70</strong></td><td><strong>~8,800m</strong></td><td><strong>~3,500m</strong></td></tr>
+        </table>
+        <p><em>Note: Cable lengths are estimates based on 50m per connection. Actual lengths per site survey.</em></p>
+
+        <h2>4. Pricing Template</h2>
+        
+        <h3>4.1 LV Cabling - Unit Rates</h3>
+        <table>
+            <tr><th>Item</th><th>Unit</th><th>Supply (€)</th><th>Install (€)</th><th>Total (€)</th></tr>
+            <tr><td>DC Cable 240mm² Cu</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>LV AC Cable 4×35+16mm²</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Control Cable (multi-core)</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Earth Cable 120mm² Cu</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>LV Termination Kit</td><td>per set</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Cable Gland IP65</td><td>per unit</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>4.2 MV Cabling - Unit Rates</h3>
+        <table>
+            <tr><th>Item</th><th>Unit</th><th>Supply (€)</th><th>Install (€)</th><th>Total (€)</th></tr>
+            <tr><td>MV Cable 95mm² Al XLPE 11kV</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>MV Cable 185mm² Al XLPE 11kV</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>MV Cable 300mm² Al XLPE 22kV</td><td>per m</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>MV Outdoor Termination 11kV</td><td>per set</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>MV Indoor Termination 11kV</td><td>per set</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>MV Cable Testing (hi-pot)</td><td>per cable</td><td>-</td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>4.3 Lump Sum by Park Size</h3>
+        <table>
+            <tr><th>Park Size</th><th>Containers</th><th>LV Cabling (€)</th><th>MV Cabling (€)</th><th>MV Terminations (€)</th><th>Total (€)</th></tr>
+            <tr><td>Small (1-5 MWh)</td><td>1 BESS + 1 MV</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Medium (10-20 MWh)</td><td>2-4 BESS + 1-2 MV</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Large (25-40 MWh)</td><td>5-8 BESS + 2 MV</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Extra Large (60-100 MWh)</td><td>12-20 BESS + 2 MV</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h2>5. Technical Requirements</h2>
+        <ul>
+            <li>All cables must be CE marked and IEC certified</li>
+            <li>MV cables must be type-tested per IEC 60502-2</li>
+            <li>Terminations per manufacturer instructions</li>
+            <li>Cable loss calculations to be provided</li>
+            <li>Test certificates for all installed cables</li>
+            <li>Minimum 20-year cable life expectancy</li>
+        </ul>
+
+        <h2>6. Contractor Qualifications</h2>
+        <ul>
+            <li>ETEK registered electrical contractor (Class A or B)</li>
+            <li>MV cable jointing/termination certification</li>
+            <li>Minimum 5 years experience with industrial installations</li>
+            <li>Full insurance coverage (€2M minimum)</li>
+            <li>Ability to work across all Cyprus districts</li>
+        </ul>
+
+        <h2>7. Timeline</h2>
+        <table>
+            <tr><th>Milestone</th><th>Date</th></tr>
+            <tr><td>RFP Issued</td><td>27 January 2026</td></tr>
+            <tr><td>Questions Due</td><td>5 February 2026</td></tr>
+            <tr><td><strong>Proposals Due</strong></td><td><strong>10 February 2026</strong></td></tr>
+            <tr><td>Contractor Selection</td><td>14 February 2026</td></tr>
+            <tr><td>First Site Start</td><td>March 2026</td></tr>
+        </table>
+
+        <div class="contact-box">
+            <h3>📧 Contact Information</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong></p>
+            <p>Email: office@lighthief.com</p>
+            <p>Reference: RFP-LCY-ELEC-2026-001</p>
+        </div>
+
+        <div class="footer">
+            <p>RFP-LCY-ELEC-2026-001 | Electrical Installation | Cyprus BESS Portfolio</p>
+            <p>Lighthief Cyprus Ltd | January 2026</p>
+        </div>
+    </div>
+</body>
+</html>
