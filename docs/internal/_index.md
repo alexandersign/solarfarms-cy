@@ -10,7 +10,7 @@
 # Internal Documentation Index
 
 > **CONFIDENTIAL - ADMIN ACCESS REQUIRED**
-> **Last Updated**: 7 February 2026
+> **Last Updated**: 8 February 2026
 
 ---
 
@@ -117,8 +117,11 @@ All internal documents follow a consistent naming pattern:
 
 | Document | Purpose | Status |
 |----------|---------|--------|
-| [**BESS Service Team Profile (MD)**](./bess-service-team-profile.md) | **Full team reference - 6 engineers, credentials, training, DSO compliance** | ✅ **NEW** |
-| [**BESS Service Team Presentation (HTML)**](./bess-service-team-presentation.html) | **Client-ready branded presentation - print to PDF** | ✅ **NEW** |
+| [**BESS Service Team Profile (MD)**](./bess-service-team-profile.md) | **Full team reference - 5 engineers, credentials, training, DSO compliance** | ✅ **UPDATED** |
+| [**BESS Service Team Presentation (HTML)**](./bess-service-team-presentation.html) | **Client-ready team & company presentation - incl. staffing model - PDF export** | ✅ **UPDATED** |
+| [**BESS O&M Workflow Plan (HTML)**](./bess-om-workflow-plan.html) | **Night/day rotation, fault response, escalation, KPIs - PDF export** | ✅ **NEW** |
+| [**BESS Employee Service Manual (HTML)**](./bess-employee-service-manual.html) | **OEM warranty, maintenance, safety, regulatory - PDF export** | ✅ **NEW** |
+| [**Employee Service Manual (MD Source)**](../../legal/employee_service_manual.md) | **MD source - warranty, LTSA, checklists, specs** | ✅ **SOURCE** |
 | [**Company Presentation (HTML)**](../../public/company-presentation.html) | **Lighthief group overview** | ✅ **UPDATED** |
 
 ### Commercial & Pricing

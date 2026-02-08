@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthief — BESS Employee Service Manual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --solar-400: #fbbf24;
+            --solar-500: #f59e0b;
+            --solar-600: #d97706;
+            --solar-light: rgba(251, 191, 36, 0.15);
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #ffffff;
+            --cyprus-500: #0ea5e9;
+            --cyprus-600: #0284c7;
+            --gold: var(--solar-500);
+            --gold-light: var(--solar-light);
+            --dark: var(--gray-900);
+            --dark-light: var(--gray-800);
+            --text: var(--gray-700);
+            --text-muted: var(--gray-500);
+            --success: #10b981;
+            --blue: #3b82f6;
+            --blue-light: rgba(59, 130, 246, 0.1);
+            --red: #ef4444;
+            --red-light: rgba(239, 68, 68, 0.1);
+            --orange: #f97316;
+            --orange-light: rgba(249, 115, 22, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--white);
+        }
+
+        .print-controls { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px; }
+        .print-btn { background: var(--dark); color: var(--white); border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .print-btn:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); }
+        .print-btn svg { width: 18px; height: 18px; }
+
+        .page { max-width: 210mm; margin: 0 auto; padding: 40px; background: var(--white); }
+
+        /* Cover */
+        .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--dark) 0%, #0f172a 50%, #1e293b 100%); color: var(--white); padding: 60px 40px; page-break-after: always; position: relative; overflow: hidden; }
+        .cover::before { content: ''; position: absolute; top: -50%; right: -30%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(251,191,36,0.08) 0%, transparent 70%); border-radius: 50%; }
+        .cover::after { content: ''; position: absolute; bottom: -30%; left: -20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%); border-radius: 50%; }
+        .cover > * { position: relative; z-index: 1; }
+        .cover-badge { display: inline-block; padding: 8px 20px; border: 1px solid var(--solar-400); border-radius: 30px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--solar-400); margin-bottom: 30px; }
+        .cover h1 { font-size: 38px; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; line-height: 1.1; }
+        .cover h1 span { color: var(--solar-400); }
+        .cover-subtitle { font-size: 18px; font-weight: 300; opacity: 0.9; margin-bottom: 15px; }
+        .cover-tagline { font-size: 13px; font-weight: 400; opacity: 0.65; margin-bottom: 50px; max-width: 580px; }
+        .cover-meta { margin-top: 60px; font-size: 11px; opacity: 0.45; letter-spacing: 0.5px; }
+
+        /* TOC */
+        .toc { background: var(--gray-50); border-radius: 14px; padding: 30px; margin: 30px 0; border: 1px solid var(--gray-200); }
+        .toc h3 { font-size: 16px; font-weight: 700; margin-bottom: 15px; color: var(--dark); }
+        .toc-list { list-style: none; padding: 0; counter-reset: toc; }
+        .toc-list li { counter-increment: toc; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 12px; display: flex; align-items: center; gap: 10px; }
+        .toc-list li:last-child { border-bottom: none; }
+        .toc-list li::before { content: counter(toc); display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--solar-500); color: var(--white); font-size: 11px; font-weight: 700; flex-shrink: 0; }
+        .toc-list li a { color: var(--text); text-decoration: none; font-weight: 500; }
+        .toc-list li a:hover { color: var(--solar-600); }
+
+        /* Sections */
+        .section { padding: 40px 0; page-break-inside: avoid; }
+        .section-dark { background: var(--dark); color: var(--white); padding: 45px 40px; margin: 0 -40px; }
+        .section-gold { background: var(--solar-400); color: var(--gray-900); padding: 45px 40px; margin: 0 -40px; }
+        .section-gray { background: var(--gray-50); padding: 45px 40px; margin: 0 -40px; }
+        .section-blue { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: var(--white); padding: 45px 40px; margin: 0 -40px; }
+        .section-red { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); color: var(--white); padding: 45px 40px; margin: 0 -40px; }
+
+        h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: var(--dark); position: relative; }
+        h2::after { content: ''; display: block; width: 50px; height: 3px; background: var(--gold); margin-top: 12px; margin-bottom: 12px; }
+        .section-dark h2, .section-blue h2, .section-red h2 { color: var(--white); }
+        .section-gold h2 { color: var(--dark); }
+        .section-dark h2::after, .section-blue h2::after, .section-red h2::after { background: var(--gold); }
+        .section-gold h2::after { background: var(--dark); }
+        .section-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 25px; font-weight: 400; }
+        .section-dark .section-subtitle, .section-blue .section-subtitle, .section-red .section-subtitle { color: rgba(255,255,255,0.65); }
+        h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; margin-top: 20px; color: var(--dark); }
+        .section-dark h3, .section-blue h3, .section-red h3 { color: var(--white); }
+        h3:first-child { margin-top: 0; }
+        p { margin-bottom: 14px; line-height: 1.75; font-size: 12px; }
+        .section-dark p, .section-blue p, .section-red p { color: rgba(255,255,255,0.88); }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 11px; }
+        th { background: var(--dark); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+        td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); color: var(--text); }
+        tr:nth-child(even) td { background: var(--gray-50); }
+        .section-dark table th, .section-blue table th, .section-red table th { background: rgba(255,255,255,0.12); color: var(--solar-400); }
+        .section-dark table td, .section-blue table td, .section-red table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); }
+        .section-dark table tr:nth-child(even) td, .section-blue table tr:nth-child(even) td, .section-red table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+
+        /* Layout */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: start; }
+        .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+        .badge { font-size: 10px; padding: 5px 12px; border-radius: 20px; font-weight: 600; }
+        .badge-gold { background: var(--gold-light); color: var(--solar-600); border: 1px solid var(--solar-500); }
+        .badge-success { background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.3); }
+        .badge-red { background: var(--red-light); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+        .badge-orange { background: var(--orange-light); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+        .badge-blue { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+
+        /* Alert Boxes */
+        .alert { padding: 18px 22px; border-radius: 10px; margin: 18px 0; font-size: 12px; border-left: 5px solid; }
+        .alert-critical { background: var(--red-light); border-color: var(--red); }
+        .alert-critical .alert-title { color: var(--red); }
+        .alert-warning { background: var(--orange-light); border-color: var(--orange); }
+        .alert-warning .alert-title { color: var(--orange); }
+        .alert-info { background: var(--blue-light); border-color: var(--blue); }
+        .alert-info .alert-title { color: var(--blue); }
+        .alert-success { background: rgba(16,185,129,0.1); border-color: var(--success); }
+        .alert-success .alert-title { color: var(--success); }
+        .alert-title { font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+
+        /* Checklist */
+        .checklist { background: var(--white); border-radius: 14px; padding: 25px; border: 1px solid var(--gray-200); box-shadow: 0 2px 10px rgba(0,0,0,0.04); margin: 18px 0; }
+        .checklist-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--solar-500); }
+        .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 11px; }
+        .checklist-box { width: 16px; height: 16px; border: 2px solid var(--gray-300); border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
+
+        /* Spec Box */
+        .spec-box { background: var(--gray-50); border-radius: 12px; padding: 20px; border: 1px solid var(--gray-200); margin: 15px 0; }
+        .spec-title { font-size: 12px; font-weight: 700; color: var(--solar-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+
+        .page-break { page-break-after: always; }
+
+        @media print {
+            .print-controls { display: none !important; }
+            body { font-size: 9pt; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .page { padding: 20px; max-width: 100%; }
+            .cover { min-height: auto; padding: 40px; }
+            .section-dark, .section-gold, .section-gray, .section-blue, .section-red { margin: 0 -20px; padding: 30px 20px; }
+        }
+        @page { size: A4; margin: 12mm; }
+    </style>
+</head>
+<body>
+
+    <div class="print-controls">
+        <button class="print-btn" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            Save as PDF
+        </button>
+    </div>
+
+    <!-- ======================= COVER ======================= -->
+    <div class="cover">
+        <div class="cover-badge">Confidential &mdash; Internal Use Only</div>
+        <h1>Employee <span>Service Manual</span></h1>
+        <p class="cover-subtitle">BESS Operations &amp; Warranty Compliance</p>
+        <p class="cover-tagline">Comprehensive operational guide for Lighthief Cyprus BESS field engineers. Covering OEM warranty protection, LTSA compliance, maintenance protocols, safety procedures, and Cyprus regulatory requirements.</p>
+
+        <div class="cover-meta">
+            Document Ref: LCY-SVC-001 &bull; Version 2.0 &bull; February 2026<br>
+            Lighthief Cyprus Ltd &mdash; HE 477423<br>
+            <br>
+            <strong style="color: var(--solar-400);">KEY PRINCIPLE: ALWAYS PROTECT THE WARRANTY</strong>
+        </div>
+    </div>
+
+    <div class="page">
+
+        <!-- ======================= TABLE OF CONTENTS ======================= -->
+        <section class="section">
+            <h2>Table of Contents</h2>
+            <div class="toc">
+                <ol class="toc-list">
+                    <li><a href="#intro">Introduction &amp; Purpose</a></li>
+                    <li><a href="#warranty">OEM Warranty Terms Summary (Linyang)</a></li>
+                    <li><a href="#ltsa">LTSA Service Tier Requirements</a></li>
+                    <li><a href="#site">Site Assessment &amp; Installation Compliance</a></li>
+                    <li><a href="#claims">Warranty Claim Procedures</a></li>
+                    <li><a href="#maintenance">Maintenance Protocols</a></li>
+                    <li><a href="#safety">Safety Precautions &amp; OEM Requirements</a></li>
+                    <li><a href="#documentation">Documentation Requirements</a></li>
+                    <li><a href="#emergency">Emergency Response Procedures</a></li>
+                    <li><a href="#spares">Spare Parts Management</a></li>
+                    <li><a href="#client">Client Communication Standards</a></li>
+                    <li><a href="#regulatory">Cyprus Regulatory Compliance</a></li>
+                    <li><a href="#specs">Technical Specifications Reference</a></li>
+                    <li><a href="#acknowledgement">Acknowledgement</a></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ======================= 1. INTRODUCTION ======================= -->
+        <section class="section" id="intro">
+            <h2>1. Introduction &amp; Purpose</h2>
+            <p class="section-subtitle">What this manual covers and who it applies to</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Purpose</h3>
+                    <p>This manual provides Lighthief Cyprus employees with comprehensive guidance on:</p>
+                    <ul style="font-size:12px; margin-left:18px; margin-bottom:14px;">
+                        <li>Meeting OEM warranty requirements (Linyang Energy Storage)</li>
+                        <li>Fulfilling LTSA service obligations</li>
+                        <li>Proper documentation and claim procedures</li>
+                        <li>Compliance with contractual commitments</li>
+                        <li>Cyprus regulatory requirements</li>
+                    </ul>
+
+                    <h3>Scope</h3>
+                    <p>This manual applies to all employees involved in:</p>
+                    <ul style="font-size:12px; margin-left:18px;">
+                        <li>Project installation and commissioning</li>
+                        <li>Operations and maintenance</li>
+                        <li>Customer service and support</li>
+                        <li>Warranty claim processing</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="alert alert-critical">
+                        <div class="alert-title">KEY PRINCIPLE</div>
+                        <p style="font-size:12px; margin:0; font-weight:600;">ALWAYS PROTECT THE WARRANTY.</p>
+                        <p style="font-size:11px; margin:8px 0 0 0;">Every action taken during installation, commissioning, and service must preserve the OEM warranty. Unauthorised modifications, improper handling, or inadequate documentation can void the warranty and expose Lighthief to significant liability.</p>
+                    </div>
+
+                    <div class="spec-box">
+                        <div class="spec-title">Document Information</div>
+                        <table>
+                            <tr><td><strong>Document Ref</strong></td><td>LCY-SVC-001</td></tr>
+                            <tr><td><strong>Version</strong></td><td>2.0</td></tr>
+                            <tr><td><strong>Effective</strong></td><td>February 2026</td></tr>
+                            <tr><td><strong>Classification</strong></td><td>Internal Use Only</td></tr>
+                            <tr><td><strong>Review Cycle</strong></td><td>6 months</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 2. WARRANTY ======================= -->
+        <section class="section-dark" id="warranty">
+            <h2>2. OEM Warranty Terms (Linyang)</h2>
+            <p class="section-subtitle">Jiangsu Linyang Energy Storage Technology Co., Ltd &mdash; Reference: LYCN/WI-3410</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Standard Warranty Periods</h3>
+                    <table>
+                        <thead><tr><th>Product</th><th>Standard Warranty</th></tr></thead>
+                        <tbody>
+                            <tr><td>Power Conversion System (PCS)</td><td>5 years</td></tr>
+                            <tr><td>Battery Container</td><td>5 years</td></tr>
+                            <tr><td>HVAC System</td><td>5 years</td></tr>
+                            <tr><td>Fire Suppression System (FSS)</td><td>5 years</td></tr>
+                            <tr><td>Transformer</td><td>5 years</td></tr>
+                            <tr><td>Medium Voltage Switchgear</td><td>5 years</td></tr>
+                            <tr><td>DC/AC Container/Enclosure</td><td>5 years</td></tr>
+                            <tr><td>Uninterruptible Power Supply</td><td>5 years</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert alert-critical">
+                        <div class="alert-title">WARRANTY START DATE</div>
+                        <p style="font-size:11px; margin:0;">Warranty starts on the <strong>EARLIER</strong> of: (1) Commissioning date (PAC issued), OR (2) <strong>6 months after shipment</strong> from Linyang factory. Track shipment dates carefully!</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Warranty Conditions &mdash; Warranty Applies ONLY If:</h3>
+                    <table>
+                        <tr><td>1</td><td>Full payment made for all amounts due</td></tr>
+                        <tr><td>2</td><td>Products used per user manuals and maintenance guidelines</td></tr>
+                        <tr><td>3</td><td>Only Linyang-certified personnel perform service</td></tr>
+                        <tr><td>4</td><td>No unauthorised modifications or repairs</td></tr>
+                        <tr><td>5</td><td>All serial numbers visible and unaltered</td></tr>
+                    </table>
+
+                    <h3>Warranty Termination Events</h3>
+                    <div class="alert alert-warning">
+                        <div class="alert-title">WARRANTY IMMEDIATELY TERMINATED IF:</div>
+                        <p style="font-size:11px; margin:0;">
+                            <strong>1.</strong> Serial number altered or unidentifiable<br>
+                            <strong>2.</strong> Access refused for inspection<br>
+                            <strong>3.</strong> Product relocated without Linyang written approval
+                        </p>
+                    </div>
+
+                    <h3>Linyang Liability Cap</h3>
+                    <p><strong>Maximum liability = 10% of product value.</strong> If warranty claims exceed 10% of what was paid for defective products, Linyang is not obligated to pay more.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:25px;">Coastal Installation Restrictions</h3>
+            <div class="two-col">
+                <div>
+                    <p><strong>CYPRUS STANDARD: C5-Rated Enclosure</strong> &mdash; mandatory for all Cyprus installations due to island geography and coastal climate.</p>
+                    <table>
+                        <thead><tr><th>Distance from Sea</th><th>With C5 Enclosure</th></tr></thead>
+                        <tbody>
+                            <tr><td>&gt;500 m</td><td><span class="badge badge-success">Full 5-year warranty</span></td></tr>
+                            <tr><td>&lt;500 m</td><td><span class="badge badge-orange">Reduced to 2 years (PCS, transformer, switchgear)</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <thead><tr><th>Distance from Sea</th><th>Without C5 (non-Cyprus)</th></tr></thead>
+                        <tbody>
+                            <tr><td>&gt;5 km</td><td><span class="badge badge-success">Full 5-year warranty</span></td></tr>
+                            <tr><td>2&ndash;5 km</td><td><span class="badge badge-orange">Reduced to 2 years</span></td></tr>
+                            <tr><td>&lt;2 km</td><td><span class="badge badge-red">WARRANTY VOID</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 style="margin-top:20px;">Warranty Exclusions &mdash; DO NOT Submit Claims For:</h3>
+            <div class="two-col">
+                <div>
+                    <table>
+                        <tr><td>Consumables and wear parts</td></tr>
+                        <tr><td>Cosmetic defects not affecting function</td></tr>
+                        <tr><td>Damage from improper transport/handling/storage</td></tr>
+                        <tr><td>Installation not following Linyang manual</td></tr>
+                        <tr><td>Unauthorised commissioning, repair, or modification</td></tr>
+                        <tr><td>Natural disasters (floods, earthquakes, etc.)</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <tr><td>Biological damage or industrial chemical exposure</td></tr>
+                        <tr><td>Salt spray/corrosion exceeding specifications</td></tr>
+                        <tr><td>Operation exceeding voltage/wind/snow specifications</td></tr>
+                        <tr><td>Human damage or accidents</td></tr>
+                        <tr><td>Third-party equipment damage</td></tr>
+                        <tr><td>Force majeure events</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- ======================= 3. LTSA ======================= -->
+        <section class="section" id="ltsa">
+            <h2>3. LTSA Service Tier Requirements</h2>
+            <p class="section-subtitle">Long-Term Service Agreement tier definitions and obligations</p>
+
+            <table>
+                <thead><tr><th>Tier</th><th>Name</th><th>Key Features</th><th>Availability</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>A</strong></td><td>Basic Monitoring &amp; Maintenance</td><td>24/7 monitoring + bi-annual visits</td><td>&mdash;</td></tr>
+                    <tr><td><strong>B</strong></td><td>Comprehensive O&amp;M</td><td>+ Corrective maintenance, PCS/MVS</td><td>&mdash;</td></tr>
+                    <tr><td><strong>C</strong></td><td>Full Service + Availability</td><td>+ 97% availability guarantee, local spares</td><td><span class="badge badge-gold">&ge;97%</span></td></tr>
+                    <tr><td><strong>D</strong></td><td>Premium + Performance</td><td>+ SOH guarantee, cell augmentation</td><td><span class="badge badge-gold">&ge;97%</span></td></tr>
+                </tbody>
+            </table>
+
+            <div class="two-col" style="margin-top:20px;">
+                <div>
+                    <h3>Tier A &mdash; Base Requirements</h3>
+                    <table>
+                        <thead><tr><th>Task</th><th>Schedule</th></tr></thead>
+                        <tbody>
+                            <tr><td>24/7 Remote Monitoring</td><td>Continuous</td></tr>
+                            <tr><td>Daily Data Review</td><td>Daily by 09:00</td></tr>
+                            <tr><td>Weekly Summary</td><td>Every Monday</td></tr>
+                            <tr><td>Quarterly Remote Health Check</td><td>End of quarter</td></tr>
+                            <tr><td>Bi-Annual Maintenance Visit</td><td>Every 6 months</td></tr>
+                            <tr><td>Monthly Performance Report</td><td>10th of month</td></tr>
+                            <tr><td>Quarterly Health Report</td><td>15 days after quarter</td></tr>
+                            <tr><td>Annual Review Report</td><td>30 days after anniversary</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Tier C &mdash; Availability Requirements</h3>
+                    <table>
+                        <thead><tr><th>Requirement</th><th>Target</th></tr></thead>
+                        <tbody>
+                            <tr><td>Availability Guarantee</td><td>&ge;97% annual</td></tr>
+                            <tr><td>Max Operational Downtime</td><td>2 days (48 hours) per park/year</td></tr>
+                            <tr><td>Planned Maintenance</td><td>8 days/park/year (midnight&ndash;6am)</td></tr>
+                            <tr><td>Local Spare Parts</td><td>Critical parts warehouse</td></tr>
+                            <tr><td>LD Exposure (Client)</td><td>&euro;50/day/MWh shortfall</td></tr>
+                            <tr><td>LD Exposure (Linyang)</td><td>&euro;30/day/MWh shortfall</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="spec-box">
+                        <div class="spec-title">Availability Calculation</div>
+                        <p style="font-size:11px; margin:0; font-family:monospace;">Availability (%) = [(8,760 &minus; Unavailable Hours) / 8,760] &times; 100</p>
+                        <p style="font-size:10px; margin:8px 0 0 0; color:var(--text-muted);"><strong>Excluded from unavailable hours:</strong> Scheduled maintenance (midnight&ndash;6am), grid curtailment, force majeure, client-caused issues, EMS failures, non-dispatch periods.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Tier D Additional &mdash; SOH Guarantee</h3>
+            <table>
+                <thead><tr><th>Year</th><th>Min SOH</th><th>Remedy</th></tr></thead>
+                <tbody>
+                    <tr><td>Year 5</td><td>&ge;90%</td><td>Module replacement within 60 days</td></tr>
+                    <tr><td>Year 10</td><td>&ge;80%</td><td>Module replacement within 60 days</td></tr>
+                    <tr><td>Year 15</td><td>&ge;70%</td><td>Cell augmentation within 120 days</td></tr>
+                    <tr><td>Year 20</td><td>&ge;60%</td><td>Cell augmentation within 120 days</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ======================= 4. SITE ASSESSMENT ======================= -->
+        <section class="section-gray" id="site">
+            <h2>4. Site Assessment &amp; Installation</h2>
+            <p class="section-subtitle">Mandatory pre-installation checks and installation requirements</p>
+
+            <div class="two-col">
+                <div>
+                    <div class="checklist">
+                        <div class="checklist-title">Pre-Installation Site Assessment</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Site address and GPS coordinates recorded</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Coastal proximity measured (GPS/Google Maps/Survey)</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>C5-rated enclosure confirmed (Cyprus standard)</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Warranty impact assessed (&lt;500m from sea = 2yr reduction)</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Ambient temperature range documented</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Humidity range documented</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Salt spray exposure level assessed</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>24/7 site access confirmed</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Vehicle access to equipment confirmed</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Grid voltage and frequency documented</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>DSO/TSO identified (EAC/TSOC)</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Installation Requirements (To Preserve Warranty)</h3>
+                    <table>
+                        <tr><td><strong>1</strong></td><td>Follow Linyang Installation Manual exactly &mdash; no deviations without written approval</td></tr>
+                        <tr><td><strong>2</strong></td><td>Photograph every serial number during installation</td></tr>
+                        <tr><td><strong>3</strong></td><td>Record all serial numbers in master project file</td></tr>
+                        <tr><td><strong>4</strong></td><td>Only Linyang-certified personnel may commission</td></tr>
+                        <tr><td><strong>5</strong></td><td>Complete Linyang commissioning checklist</td></tr>
+                        <tr><td><strong>6</strong></td><td>Issue PAC only when system meets all specifications</td></tr>
+                        <tr><td><strong>7</strong></td><td>Record exact PAC date (warranty start trigger)</td></tr>
+                        <tr><td><strong>8</strong></td><td>Obtain client signature on PAC</td></tr>
+                    </table>
+
+                    <h3>Storage Requirements</h3>
+                    <p>Products awaiting installation must be stored per Linyang specifications:</p>
+                    <table>
+                        <tr><td>Temperature</td><td>Per product manual (typically 0&ndash;40&deg;C)</td></tr>
+                        <tr><td>Humidity</td><td>&lt;85% RH</td></tr>
+                        <tr><td>Protection</td><td>From rain, dust, direct sunlight</td></tr>
+                        <tr><td>Battery SOC</td><td>Per Linyang guidelines</td></tr>
+                        <tr><td>Max storage</td><td>Track 6-month warranty trigger</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- ======================= 5. WARRANTY CLAIMS ======================= -->
+        <section class="section" id="claims">
+            <h2>5. Warranty Claim Procedures</h2>
+            <p class="section-subtitle">Step-by-step process for submitting and tracking warranty claims</p>
+
+            <div class="two-col">
+                <div>
+                    <div class="checklist">
+                        <div class="checklist-title">Claim Eligibility &mdash; Verify Before Submitting</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Product is within warranty period</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Full payment has been made</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Serial number is intact and readable</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Product used per OEM guidelines</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>No unauthorised modifications</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Defect is covered (not in exclusion list)</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Installation within coastal restrictions</div>
+                        <div class="checklist-item"><div class="checklist-box"></div>Product not relocated without approval</div>
+                    </div>
+
+                    <h3>Required Documentation</h3>
+                    <table>
+                        <thead><tr><th>Document</th><th>Source</th></tr></thead>
+                        <tbody>
+                            <tr><td>Serial Number (photo)</td><td>Installation records</td></tr>
+                            <tr><td>Proof of Purchase</td><td>Finance department</td></tr>
+                            <tr><td>O&amp;M Logs</td><td>Monitoring platform</td></tr>
+                            <tr><td>Defect Description</td><td>Service engineer</td></tr>
+                            <tr><td>Photos/Videos</td><td>On-site evidence</td></tr>
+                            <tr><td>Test Data</td><td>Monitoring platform</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Claim Submission Process</h3>
+                    <table>
+                        <thead><tr><th>Step</th><th>Action</th><th>Timeline</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>1</strong></td><td>Internal review &mdash; engineer completes eligibility checklist, O&amp;M Manager reviews</td><td>Same day</td></tr>
+                            <tr><td><strong>2</strong></td><td>Submit to Linyang &mdash; email with all documentation, request receipt confirmation</td><td>Within 24 hrs</td></tr>
+                            <tr><td><strong>3</strong></td><td>Linyang response &mdash; Accept, Reject, or Request More Info</td><td>48 hrs (excl weekends)</td></tr>
+                            <tr><td><strong>4</strong></td><td>Track resolution &mdash; log in warranty tracker, follow up if no response</td><td>Ongoing</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Dispute Resolution</h3>
+                    <p>If Linyang rejects a claim and we disagree:</p>
+                    <table>
+                        <tr><td>1</td><td>Request written explanation from Linyang</td></tr>
+                        <tr><td>2</td><td>Review evidence with Technical Lead</td></tr>
+                        <tr><td>3</td><td>Propose third-party testing if appropriate</td></tr>
+                        <tr><td>4</td><td>Agree test protocol before testing (required)</td></tr>
+                        <tr><td>5</td><td>If testing shows defect not attributable to product, <strong>WE pay</strong> all testing costs</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 6. MAINTENANCE ======================= -->
+        <section class="section-blue" id="maintenance">
+            <h2>6. Maintenance Protocols</h2>
+            <p class="section-subtitle">OEM-aligned maintenance schedule and procedures</p>
+
+            <h3>OEM Maintenance Schedule</h3>
+            <table>
+                <thead><tr><th>Frequency</th><th>Key Items</th><th>Owner</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Monthly</strong></td><td>Container condition, BMS data download/save, system status, software updates check</td><td>Monitoring Team + Field</td></tr>
+                    <tr><td><strong>Every 6 Months</strong></td><td>Full OEM checklist: cable shielding, SPD, fuses, thermal imaging, battery readings, safety systems</td><td>Field Engineers</td></tr>
+                    <tr><td><strong>Annually</strong></td><td>Cable layout review, ground resistance (&le;4&Omega;), equipotential bonding, protection relay test</td><td>Field Engineers</td></tr>
+                    <tr><td><strong>Initial Grid Connection</strong></td><td>Cable specs, terminal materials, bolt sizes, gasket direction verification</td><td>Commissioning Team</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top:25px;">Bi-Annual Visit Checklist Summary</h3>
+            <div class="two-col">
+                <div>
+                    <table>
+                        <thead><tr><th colspan="2">External &amp; Internal Container</th></tr></thead>
+                        <tbody>
+                            <tr><td>Damage, paint flaking, oxidisation</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>No flammable objects on container top</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Foundation welds firm, no corrosion</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Door seals intact, no curling</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>No foreign objects, dust, condensation</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Air inlet/outlet not blocked</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead><tr><th colspan="2">Electrical Systems</th></tr></thead>
+                        <tbody>
+                            <tr><td>All cables no breakage, sealed entries</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Torque verification completed</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>SPD &amp; fuses properly fastened</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Ground resistance &le;4&Omega; (annual)</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Thermal imaging completed</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <thead><tr><th colspan="2">Battery Systems</th></tr></thead>
+                        <tbody>
+                            <tr><td>All MSDs disconnected before work</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Module visual inspection</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Cell voltage readings recorded</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Cell temperature readings recorded</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>BMS communication check passed</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>SOH verification completed</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead><tr><th colspan="2">Safety &amp; Thermal</th></tr></thead>
+                        <tbody>
+                            <tr><td>HVAC operating normally</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Filters cleaned/replaced</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Fire suppression armed, pressure OK</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>E-stop function test passed</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Fire extinguisher present, in date</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                            <tr><td>Serial numbers visible and unaltered</td><td><div class="checklist-box" style="display:inline-block;"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- ======================= 7. SAFETY ======================= -->
+        <section class="section-red" id="safety">
+            <h2>7. Safety Precautions</h2>
+            <p class="section-subtitle">Non-negotiable OEM safety requirements &mdash; Linyang Power Atlantic 5MWh User Manual</p>
+
+            <div class="alert alert-critical" style="background: rgba(0,0,0,0.3); border-color: var(--solar-400);">
+                <div class="alert-title" style="color: var(--solar-400);">LETHAL VOLTAGES PRESENT</div>
+                <p style="font-size: 12px; margin: 0; color: var(--white);">Lethal voltages (up to <strong>1,497.6V DC</strong>) are present inside the BESS container at all times. Touching contact points or terminals may cause electric shock or death. Wait <strong>5 minutes</strong> after power disconnect before any work. <strong>ALWAYS</strong> confirm zero voltage with a calibrated meter.</p>
+            </div>
+
+            <div class="two-col" style="margin-top:20px;">
+                <div>
+                    <h3>Warranty-Voiding Conditions</h3>
+                    <table>
+                        <thead><tr><th>Condition</th><th>Threshold</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td>Low Cell Voltage</td><td>&lt;2.8V for 120 hrs</td><td>Charge immediately</td></tr>
+                            <tr><td>Zero SOC</td><td>0% for 120 hrs</td><td>Charge immediately</td></tr>
+                            <tr><td>Under-Voltage</td><td>Cell &le;2.5V (any)</td><td>Escalate to OEM</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size:11px;">Set CRITICAL alert at cell voltage &lt;2.9V and SOC &lt;5%. Never leave BESS in low SOC for extended periods. Before planned shutdown, charge to 30&ndash;50% SOC.</p>
+
+                    <h3>Personnel Requirements (Per OEM)</h3>
+                    <table>
+                        <tr><td>Qualified professional electricians</td></tr>
+                        <tr><td>Electronic, electrical wiring &amp; mechanical expertise</td></tr>
+                        <tr><td>Familiar with ESS composition &amp; principles</td></tr>
+                        <tr><td>Professional training on ESS installation/commissioning</td></tr>
+                        <tr><td>Able to respond to hazards or emergencies</td></tr>
+                        <tr><td>Familiar with Cyprus/EU regulations and standards</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Maintenance Precautions (OEM)</h3>
+                    <table>
+                        <thead><tr><th>Precaution</th><th>Requirement</th></tr></thead>
+                        <tbody>
+                            <tr><td>Weather</td><td>Do NOT open container in rain, humid, or windy conditions</td></tr>
+                            <tr><td>High Humidity</td><td>Avoid opening door in rain, snow, or fog</td></tr>
+                            <tr><td>Door Seals</td><td>Ensure seals do not curl when closing</td></tr>
+                            <tr><td>MSD Disconnect</td><td>Disconnect ALL MSDs before maintenance</td></tr>
+                            <tr><td>Pack Unplugging</td><td>Unlock locking structure before unplugging power cord</td></tr>
+                            <tr><td>Scope</td><td>Do NOT perform work beyond this manual &mdash; contact Linyang</td></tr>
+                            <tr><td>Snow</td><td>Clear snow from equipment top promptly</td></tr>
+                            <tr><td>Dehumidification</td><td>In fair weather, open door briefly to dehumidify</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert alert-warning" style="background: rgba(0,0,0,0.2); border-color: var(--solar-400);">
+                        <div class="alert-title" style="color: var(--solar-400);">ELECTRIC SHOCK HAZARD</div>
+                        <p style="font-size: 11px; margin: 0; color: var(--white);">Do not perform any maintenance operations beyond this manual. Contact Linyang customer service if any work exceeds documented procedures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 8. DOCUMENTATION ======================= -->
+        <section class="section" id="documentation">
+            <h2>8. Documentation Requirements</h2>
+            <p class="section-subtitle">Record keeping and retention policies</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Required Project Records</h3>
+                    <table>
+                        <thead><tr><th>Document</th><th>Retention</th></tr></thead>
+                        <tbody>
+                            <tr><td>EPC &amp; LTSA Agreements</td><td>Term + 10 years</td></tr>
+                            <tr><td>Quotations and POs</td><td>Term + 10 years</td></tr>
+                            <tr><td>Installation Records</td><td>Term + 10 years</td></tr>
+                            <tr><td>Serial Number Photos</td><td>Term + 10 years</td></tr>
+                            <tr><td>Commissioning Reports</td><td>Term + 10 years</td></tr>
+                            <tr><td>PAC/FAC Certificates</td><td>Term + 10 years</td></tr>
+                            <tr><td>Maintenance Reports</td><td>Term + 10 years</td></tr>
+                            <tr><td>O&amp;M Logs</td><td>5 years minimum</td></tr>
+                            <tr><td>Warranty Claims</td><td>Term + 10 years</td></tr>
+                            <tr><td>Performance Data</td><td>5 years minimum</td></tr>
+                            <tr><td>Correspondence</td><td>Term + 5 years</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Photograph Requirements</h3>
+                    <p><strong>All photos must include:</strong> clear image, date stamp, project reference, context description.</p>
+                    <table>
+                        <thead><tr><th>At Installation</th><th>At Maintenance</th></tr></thead>
+                        <tbody>
+                            <tr><td>All serial number labels</td><td>Any defects or issues</td></tr>
+                            <tr><td>All major components</td><td>Thermal imaging results</td></tr>
+                            <tr><td>Electrical connections</td><td>Filter condition before/after</td></tr>
+                            <tr><td>Completed installation</td><td>Completed work</td></tr>
+                            <tr><td>PAC signoff</td><td>Parts replaced</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Serial Number Register</h3>
+                    <p>Maintain master register for ALL serial numbers with: Project ID, Equipment Type, Manufacturer, Model, Serial Number, Installation Date, Warranty Start/End, Photo Reference.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 9. EMERGENCY ======================= -->
+        <section class="section-dark" id="emergency">
+            <h2>9. Emergency Response</h2>
+            <p class="section-subtitle">Critical alert response and escalation procedures</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Response Timeline</h3>
+                    <table>
+                        <thead><tr><th>Time</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>0&ndash;30 min</strong></td><td>Acknowledge alert, initial assessment</td></tr>
+                            <tr><td><strong>0&ndash;4 hours</strong></td><td>Remote diagnosis, client notification</td></tr>
+                            <tr><td><strong>4&ndash;24 hours</strong></td><td>On-site attendance if required</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Emergency Categories</h3>
+                    <table>
+                        <thead><tr><th>Category</th><th>Examples</th><th>Response</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="badge badge-red">FIRE</span></td><td>Fire alarm, smoke</td><td>Call 112, notify client, secure area</td></tr>
+                            <tr><td><span class="badge badge-red">ELECTRICAL</span></td><td>Ground fault, arc flash</td><td>Remote shutdown, dispatch</td></tr>
+                            <tr><td><span class="badge badge-orange">THERMAL</span></td><td>Over-temp, cooling failure</td><td>Reduce load, dispatch if needed</td></tr>
+                            <tr><td><span class="badge badge-orange">COMMS</span></td><td>Total monitoring loss</td><td>Contact client, physical check</td></tr>
+                            <tr><td><span class="badge badge-gold">SAFETY</span></td><td>E-stop, door interlock</td><td>Remote assess, dispatch</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Escalation Matrix</h3>
+                    <table>
+                        <thead><tr><th>Level</th><th>Role</th><th>When</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>L1</strong></td><td>Field Engineer (Day Crew)</td><td>First responder</td></tr>
+                            <tr><td><strong>L2</strong></td><td>Costas (Project Manager)</td><td>Unresolved &gt;2 hours</td></tr>
+                            <tr><td><strong>L3</strong></td><td>Alexander (Director)</td><td>Unresolved &gt;8 hours</td></tr>
+                            <tr><td><strong>L4</strong></td><td>Linyang Technical Support</td><td>OEM expertise required</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert alert-info">
+                        <div class="alert-title">IMPORTANT NOTE</div>
+                        <p style="font-size:11px; margin:0; color:var(--dark);">For the full escalation workflow, response flow diagrams, and shift-specific procedures, refer to the <strong>O&amp;M Workflow Plan</strong> (LCY-OPS-WF-001).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 10. SPARE PARTS ======================= -->
+        <section class="section" id="spares">
+            <h2>10. Spare Parts Management</h2>
+            <p class="section-subtitle">Local stock and replenishment procedures</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Local Warehouse (Limassol)</h3>
+                    <table>
+                        <thead><tr><th>Category</th><th>Items</th></tr></thead>
+                        <tbody>
+                            <tr><td>BMS</td><td>Controllers, communication modules</td></tr>
+                            <tr><td>Cooling</td><td>Fans, filters, temperature sensors</td></tr>
+                            <tr><td>Electrical</td><td>Fuses, contactors, protection devices, SPDs</td></tr>
+                            <tr><td>PCS</td><td>Control boards, power modules</td></tr>
+                            <tr><td>Sensors</td><td>Voltage, current, temperature sensors</td></tr>
+                            <tr><td>Communications</td><td>Network switches, fibre cables</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Inventory Checks</h3>
+                    <table>
+                        <thead><tr><th>Frequency</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td>Monthly</td><td>Visual inventory count</td></tr>
+                            <tr><td>Quarterly</td><td>Full inventory audit</td></tr>
+                            <tr><td>Annually</td><td>Expiry review, obsolescence check</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Lead Times</h3>
+                    <table>
+                        <thead><tr><th>Part Type</th><th>Lead Time</th></tr></thead>
+                        <tbody>
+                            <tr><td>Consumables (filters)</td><td>2 weeks</td></tr>
+                            <tr><td>Sensors / Fuses</td><td>3&ndash;4 weeks</td></tr>
+                            <tr><td>Control boards</td><td>4&ndash;6 weeks</td></tr>
+                            <tr><td>Power modules</td><td>6&ndash;8 weeks</td></tr>
+                            <tr><td>Battery modules</td><td>8&ndash;12 weeks</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 11. CLIENT COMMS ======================= -->
+        <section class="section-gray" id="client">
+            <h2>11. Client Communication</h2>
+            <p class="section-subtitle">Response commitments and professional standards</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Response Commitments</h3>
+                    <table>
+                        <thead><tr><th>Situation</th><th>Response Time</th></tr></thead>
+                        <tbody>
+                            <tr><td>Critical Alert</td><td>30 minutes (phone/email)</td></tr>
+                            <tr><td>Major Alert</td><td>2 hours (email)</td></tr>
+                            <tr><td>General Enquiry</td><td>1 business day</td></tr>
+                            <tr><td>Report Delivery</td><td>Per LTSA schedule</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Report Templates</h3>
+                    <p>Use standardised templates for:</p>
+                    <table>
+                        <tr><td>Monthly Performance Reports</td></tr>
+                        <tr><td>Quarterly Health Reports</td></tr>
+                        <tr><td>Annual Review Reports</td></tr>
+                        <tr><td>Maintenance Visit Reports</td></tr>
+                        <tr><td>SOH Certificates (Tier D)</td></tr>
+                        <tr><td>Availability Reports (Tier C/D)</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="alert alert-info" style="margin-top:15px;">
+                <div class="alert-title">COMMUNICATION STANDARD</div>
+                <p style="font-size:11px; margin:0;">All client communications must be professional, factual, include clear action items and timelines, and be documented in the project file. Never speculate on fault causes &mdash; always verify before communicating.</p>
+            </div>
+        </section>
+
+        <div class="page-break"></div>
+
+        <!-- ======================= 12. REGULATORY ======================= -->
+        <section class="section-dark" id="regulatory">
+            <h2>12. Cyprus Regulatory Compliance</h2>
+            <p class="section-subtitle">Regulatory framework, authorities, and site requirements</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>Regulatory Authorities</h3>
+                    <table>
+                        <thead><tr><th>Authority</th><th>Role</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>CERA</strong> (&Pi;&Alpha;&Delta;&Kappa;)</td><td>Energy Regulatory Authority &mdash; licensing</td></tr>
+                            <tr><td><strong>EAC/DSO</strong> (&Alpha;&Eta;&Kappa;)</td><td>Electricity Authority &mdash; grid connection, SCADA</td></tr>
+                            <tr><td><strong>TSOC</strong> (&Delta;&Sigma;&Mu;)</td><td>Transmission System Operator &mdash; &gt;8MW</td></tr>
+                            <tr><td><strong>Fire Dept</strong></td><td>Fire safety &mdash; can inspect anytime</td></tr>
+                            <tr><td><strong>Town Planning</strong></td><td>Building permits (if exemption N/A)</td></tr>
+                            <tr><td><strong>Environment</strong></td><td>End-of-life recycling</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Building Permit Exemption</h3>
+                    <p>BESS in Cyprus does NOT require a building permit when installed within an already licensed RES station, provided all safety, fire, access, and environmental conditions are met.</p>
+                    <div class="alert alert-warning">
+                        <div class="alert-title" style="color:var(--dark);">If conditions are violated, exemption is automatically invalidated.</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Site Requirements (Verify Every Visit)</h3>
+                    <table>
+                        <thead><tr><th>Requirement</th><th>Specification</th></tr></thead>
+                        <tbody>
+                            <tr><td>Boundary Setback</td><td>&ge;6 metres from plot boundaries</td></tr>
+                            <tr><td>Fire Access Road</td><td>&ge;6 metres width</td></tr>
+                            <tr><td>Foundation</td><td>Reinforced concrete base</td></tr>
+                            <tr><td>Emergency Access</td><td>Clear for emergency services</td></tr>
+                            <tr><td>Vegetation</td><td>Cleared around installation</td></tr>
+                            <tr><td>Site Security</td><td>Fencing and controlled access</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>DSO Reporting Obligations</h3>
+                    <table>
+                        <thead><tr><th>Event</th><th>Timeframe</th></tr></thead>
+                        <tbody>
+                            <tr><td>Planned outage</td><td>7 days advance notice</td></tr>
+                            <tr><td>Emergency outage</td><td>Immediately</td></tr>
+                            <tr><td>System fault</td><td>Within 24 hours</td></tr>
+                            <tr><td>Protection trip</td><td>Within 48 hours</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 style="margin-top:25px;">SCADA &amp; Remote Control (Mandatory)</h3>
+            <div class="two-col">
+                <div>
+                    <table>
+                        <thead><tr><th>Equipment</th><th>Purpose</th></tr></thead>
+                        <tbody>
+                            <tr><td>RTU</td><td>Remote Terminal Unit</td></tr>
+                            <tr><td>Telecom Router</td><td>E-LINE or 4G APN</td></tr>
+                            <tr><td>Power Quality Analyser</td><td>PQDIF &amp; COMTRADE output</td></tr>
+                            <tr><td>Grid Protection Relay</td><td>Per DSO settings</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <thead><tr><th>Mandatory Signals</th><th>Mandatory Commands</th></tr></thead>
+                        <tbody>
+                            <tr><td>P/Q (Active/Reactive Power)</td><td>P-set (Active power setpoint)</td></tr>
+                            <tr><td>V/I/f (Voltage/Current/Freq)</td><td>Q-set (Reactive power setpoint)</td></tr>
+                            <tr><td>SOC/SOH (Battery state)</td><td>Zero-export (Export limitation)</td></tr>
+                            <tr><td>Breaker Status, Alarms</td><td>Start/Stop (Remote control)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 13. SPECS ======================= -->
+        <section class="section" id="specs">
+            <h2>13. Technical Specifications</h2>
+            <p class="section-subtitle">Linyang Power Atlantic 5MWh Battery Container reference data</p>
+
+            <div class="two-col">
+                <div>
+                    <h3>System Overview</h3>
+                    <table>
+                        <tr><td><strong>Chemistry</strong></td><td>Lithium Iron Phosphate (LFP)</td></tr>
+                        <tr><td><strong>Configuration</strong></td><td>12P416S</td></tr>
+                        <tr><td><strong>Rated Energy</strong></td><td>5,015 kWh (5.015 MWh)</td></tr>
+                        <tr><td><strong>Voltage Range</strong></td><td>1,164.8V &ndash; 1,497.6V</td></tr>
+                        <tr><td><strong>Duration</strong></td><td>&ge;2 hours</td></tr>
+                        <tr><td><strong>Container</strong></td><td>20HC (6,058 &times; 2,438 &times; 2,896 mm)</td></tr>
+                        <tr><td><strong>Weight</strong></td><td>~43 tonnes</td></tr>
+                        <tr><td><strong>IP Rating</strong></td><td>IP54 (Container), IP67 (Pack)</td></tr>
+                        <tr><td><strong>Cooling</strong></td><td>Liquid cooling, 45 kW capacity</td></tr>
+                    </table>
+
+                    <h3>Cell Specifications</h3>
+                    <table>
+                        <tr><td>Cell Capacity</td><td>314 Ah</td></tr>
+                        <tr><td>Nominal Voltage</td><td>3.2V</td></tr>
+                        <tr><td>Standard C-Rate</td><td>0.5C</td></tr>
+                        <tr><td>Maximum C-Rate</td><td>1C</td></tr>
+                        <tr><td>Cycle Life</td><td>6,000 cycles (to 80% SOH)</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>Critical Operating Limits</h3>
+                    <table>
+                        <thead><tr><th>Mode</th><th>Min</th><th>Max</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Charging Temp</strong></td><td>0&deg;C</td><td>+55&deg;C</td></tr>
+                            <tr><td><strong>Discharging Temp</strong></td><td>&minus;20&deg;C</td><td>+55&deg;C</td></tr>
+                            <tr><td><strong>Humidity</strong></td><td>&mdash;</td><td>&lt;95% RH</td></tr>
+                            <tr><td><strong>Cell Voltage</strong></td><td>2.5V</td><td>3.65V</td></tr>
+                            <tr><td><strong>System Voltage</strong></td><td>1,164.8V</td><td>1,497.6V</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert alert-critical">
+                        <div class="alert-title">WARNING</div>
+                        <p style="font-size:11px; margin:0;">Charging below 0&deg;C can cause permanent cell damage and void the warranty!</p>
+                    </div>
+
+                    <h3>Monitoring Alert Thresholds</h3>
+                    <table>
+                        <thead><tr><th>Parameter</th><th>Warning</th><th>Critical</th></tr></thead>
+                        <tbody>
+                            <tr><td>Cell Voltage Low</td><td>&lt;2.6V</td><td>&lt;2.55V</td></tr>
+                            <tr><td>Cell Voltage High</td><td>&gt;3.55V</td><td>&gt;3.60V</td></tr>
+                            <tr><td>Cell Imbalance</td><td>&gt;30mV</td><td>&gt;50mV</td></tr>
+                            <tr><td>Humidity</td><td>&gt;85%</td><td>&gt;90%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 14. ACKNOWLEDGEMENT ======================= -->
+        <section class="section-gold" id="acknowledgement">
+            <h2>Acknowledgement</h2>
+            <p style="font-size:13px; color:var(--dark); margin-bottom:25px;">I acknowledge that I have read, understood, and will comply with this Employee Service Manual.</p>
+
+            <div style="background:var(--white); border-radius:14px; padding:30px; max-width:500px;">
+                <table>
+                    <tr><td style="width:120px;"><strong>Name</strong></td><td style="border-bottom:2px solid var(--gray-300); min-width:200px;">&nbsp;</td></tr>
+                    <tr><td><strong>Position</strong></td><td style="border-bottom:2px solid var(--gray-300);">&nbsp;</td></tr>
+                    <tr><td><strong>Signature</strong></td><td style="border-bottom:2px solid var(--gray-300); height:50px;">&nbsp;</td></tr>
+                    <tr><td><strong>Date</strong></td><td style="border-bottom:2px solid var(--gray-300);">&nbsp;</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================= DOCUMENT CONTROL ======================= -->
+        <section class="section">
+            <h2>Document Control</h2>
+            <table>
+                <thead><tr><th>Version</th><th>Date</th><th>Author</th><th>Changes</th></tr></thead>
+                <tbody>
+                    <tr><td>1.0</td><td>January 2025</td><td>Alexander Papacosta</td><td>Initial release (MD format)</td></tr>
+                    <tr><td>2.0</td><td>February 2026</td><td>Alexander Papacosta</td><td>Converted to HTML. Updated availability model (2-day downtime), night/day shift procedures, LTSA Tier C alignment, regulatory updates.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Related Documents</h3>
+            <table>
+                <tr><td>O&amp;M Workflow Plan</td><td>LCY-OPS-WF-001</td><td>bess-om-workflow-plan.html</td></tr>
+                <tr><td>BESS Service Team Profile</td><td>LCY-COMPANY-PROFILE-FEB2026</td><td>bess-service-team-profile.md</td></tr>
+                <tr><td>BESS Team Presentation</td><td>&mdash;</td><td>bess-service-team-presentation.html</td></tr>
+                <tr><td>Linyang Warranty Manual</td><td>LYCN/WI-3410</td><td>Linyang Warranty Terms v2.pdf</td></tr>
+                <tr><td>Linyang Maintenance Manual</td><td>&mdash;</td><td>Power Atlantic 5MWh</td></tr>
+            </table>
+        </section>
+
+        <section class="section" style="text-align:center; padding:30px 0 15px;">
+            <p style="font-size:10px; color:var(--text-muted);">
+                &copy; 2026 Lighthief Cyprus Ltd. All rights reserved.<br>
+                HE 477423 &bull; TIN: 60187188Q &bull; 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+                Confidential &mdash; Internal Use Only
+            </p>
+        </section>
+
+    </div>
+
+    <script>
+        window.addEventListener('beforeprint', () => document.body.classList.add('printing'));
+        window.addEventListener('afterprint', () => document.body.classList.remove('printing'));
+    </script>
+</body>
+</html>

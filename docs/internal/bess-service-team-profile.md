@@ -599,9 +599,46 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 | **Total Parks** | 51 |
 | **Districts Covered** | Famagusta, Larnaca, Limassol, Nicosia, Paphos |
 | **Annual O&M Value** | €1,740/MWh/year |
-| **Field Engineers** | 4 (1 Cyprus, 3 Poland-trained) |
+| **Field Engineers** | 5 recommended (2 night / 2 day / 1 float) |
 | **24/7 Monitoring** | Voltus SCADA + Lighthief NOC |
-| **Response Time (Critical)** | 1 hour remote, 4 hours on-site |
+| **Response Time (Critical)** | 1 hour remote, 90 min on-site |
+| **Max Downtime** | 2 days/park/year (operational) |
+| **Planned Maintenance** | 8 days/park/year (midnight–6am) |
+| **Base Location** | Limassol (< 1 hr to any park) |
+
+---
+
+## O&M STAFFING MODEL
+
+### Staffing Recommendation: 5 Field Engineers
+
+The 97% availability guarantee permits only **2 days (48 hours) of operational downtime per park per year**. All planned maintenance (8 days/park/year) is conducted from **midnight to 6am** and does not impact operational hours.
+
+| Parameter | Value |
+|-----------|-------|
+| **Total Night Maintenance Visits** | 408/year (51 parks × 8) |
+| **Night Shifts Required** | ~320/year (batching nearby parks) |
+| **Estimated Reactive Calls** | 100–200/year (daytime) |
+| **Max Unplanned Events/Park** | ~8–9 before breach |
+| **LD Exposure (Client)** | €50/day/MWh shortfall |
+| **LD Exposure (Linyang)** | €30/day/MWh shortfall |
+
+### Rotation: 2-Night / 2-Day / 1-Float
+
+- **Night Crew (2 engineers):** Planned maintenance, midnight–6am
+- **Day Crew (2 engineers):** Reactive fault response, on-call 06:00–22:00
+- **Float (1 engineer):** Backup for leave, training, simultaneous events
+
+Rotation reverses every 4 weeks. No engineer works nights and days on the same day.
+
+### Related Documents
+
+| Document | Reference |
+|----------|-----------|
+| **O&M Workflow Plan** | [bess-om-workflow-plan.html](./bess-om-workflow-plan.html) — Full SOPs, shift schedules, escalation matrix |
+| **Employee Service Manual** | [bess-employee-service-manual.html](./bess-employee-service-manual.html) — Warranty, maintenance, safety, regulatory |
+| **Employee Manual (MD Source)** | [employee_service_manual.md](../../legal/employee_service_manual.md) — Original MD source document |
+| **Team Presentation** | [bess-service-team-presentation.html](./bess-service-team-presentation.html) — Client-ready branded presentation |
 
 ---
 
