@@ -120,16 +120,22 @@ Alexander leads Lighthief's rapidly expanding Cyprus operations, specializing in
 ### 3.1 Team Structure
 
 ```
-Alexander Papacosta — Cyprus Director (Team Lead)
+Alexander Papacosta — Cyprus Director & Project Lead
 │
-├── Andreas Christoforou — Energy & BESS Consultant (NEW)
+├── PROJECT MANAGEMENT & COMPLIANCE
+│   ├── Costas Hadjikyriacou — ETEK Licensed, Project Planning & Sign-Off
+│   └── Andreas Christoforou — Energy & BESS Consultant
 │
-├── Costas Hadjikyriacou — Electrical Engineer (Cyprus-based, ETEK Licensed)
+├── O&M FIELD TEAM (Training at Czestochowa HQ)
+│   ├── Dawid Lesnikowski — Senior Electrical Engineer
+│   ├── Szymon Drozdz — Senior Electrical Engineer
+│   └── Kacper Goral — Senior Electrical Engineer
 │
-└── Poland BESS Specialist Team (Training at Czestochowa HQ)
-    ├── Dawid Lesnikowski — Senior Electrical Engineer
-    ├── Szymon Drozdz — Senior Electrical Engineer
-    └── Kacper Goral — Senior Electrical Engineer
+└── INSTALLATION & COMMISSIONING TEAM
+    ├── Kamil Tyburski — Linyang, Installation & IT/SCADA
+    ├── Michael — Linyang, Product Manager
+    ├── Janusz — Lighthief, Installation Lead (details TBC)
+    └── Linyang China HQ Team — Factory Commissioning Specialists
 ```
 
 ---
@@ -180,24 +186,24 @@ Andreas is a proactive, versatile energy sector professional with experience on 
 
 ---
 
-### Costas Hadjikyriacou — Electrical Engineer (Cyprus)
+### Costas Hadjikyriacou — ETEK Licensed Engineer, Project Planning & Sign-Off
 
 | Field | Detail |
 |-------|--------|
-| **Role** | Electrical Engineer — Site Lead, Cyprus |
+| **Role** | ETEK Licensed Engineer — Project Planning, Sign-Off & O&M Team Management |
 | **Location** | Cyprus (permanent) |
 | **Email** | costas@lighthief.com |
 | **Certifications** | ETEK Licensed Engineer, Certified PV Installer (Cyprus) |
 | **Education** | MEng Electrical & Computer Engineering (Aristotle University of Thessaloniki), MSc Energy Systems & Energy Management (International Hellenic University) |
 
-Costas is Lighthief's ETEK-licensed Electrical Engineer based permanently in Cyprus, providing the critical local engineering presence required for DSO compliance, grid connections, and ongoing BESS operations. His background includes leading B2B green energy solutions and managing residential and commercial PV operations.
+Costas is Lighthief's ETEK-licensed Electrical Engineer responsible for regulatory sign-off, project planning, and management of the O&M team in Cyprus. He provides the licensed engineering authority required for DSO compliance, ETEK certifications, and grid connection approvals. His background includes leading B2B green energy solutions and managing residential and commercial PV operations.
 
-For the BESS portfolio, Costas serves as the on-ground engineering lead responsible for:
-- **DSO/EAC Interface** — Licensed to sign off on electrical installations and certifications required by ETEK and EAC
-- **Grid Connection** — Technical liaison for protection relay testing, DSO witness tests, and commissioning protocols
-- **Local Compliance** — Ensures all installations meet Cyprus electrical codes, CERA requirements, and EN 50549-2 grid code
-- **First Response** — 4-hour maximum response time for operational issues across all Cyprus sites
-- **Logistics Coordination** — Local supplier management (A. Soulis transport, civil contractors, DEHN lightning protection)
+**Project Responsibilities:**
+- **ETEK Sign-Off** — Licensed authority to sign off on electrical installations and certifications required by ETEK and EAC
+- **DSO/EAC Applications** — Manages DSO application process, documentation, and approval coordination
+- **Project Planning** — Plans O&M schedules, maintenance programmes, and team deployment
+- **O&M Team Management** — Coordinates the field engineering team and service operations
+- **Regulatory Compliance** — Ensures all installations meet Cyprus electrical codes, CERA requirements, and EN 50549-2 grid code
 
 **Key Credentials:**
 - ETEK Licensed Engineer (Cyprus)
@@ -290,9 +296,46 @@ With over 3 years of dedicated service at Lighthief International, Kacper holds 
 
 ---
 
-## 5. LINYANG GLOBAL SUPPORT STRUCTURE
+## 5. INSTALLATION & COMMISSIONING TEAM
 
-### 5.1 Poland-Based Engineering Support
+### 5.1 Joint Lighthief + Linyang Deployment Team
+
+The installation and commissioning phase involves a joint team from Lighthief and Linyang, combining local project leadership with factory-trained commissioning specialists.
+
+#### Alexander Papacosta — On-Site Project Lead (Lighthief)
+
+On-site during all commissioning phases. Client liaison, DSO coordination, logistics management, and overall project delivery oversight.
+
+#### Kamil Tyburski — Installation & IT/SCADA Integration (Linyang)
+
+Linyang's European installation specialist. Leads on-site BESS container installation, IT infrastructure setup, SCADA integration, and system configuration. Coordinates between Lighthief field team and Linyang China engineering.
+
+#### Michael — Product Manager (Linyang)
+
+Linyang product management representative on-site during commissioning. Oversees product specifications, factory acceptance verification, and ensures system performance meets contractual guarantees. Technical escalation point to Linyang engineering.
+
+#### Janusz — Installation Lead (Lighthief)
+
+Lighthief's installation lead managing physical deployment — container placement, MV/LV cabling, earthing, and civil works coordination. *(Further details to be confirmed.)*
+
+### 5.2 Linyang China HQ — Factory Commissioning Team
+
+Linyang deploys a dedicated commissioning team from their Nanjing headquarters (Jiangsu Linyang Energy Storage Technology Co., Ltd) to support on-site system bring-up:
+
+- **BESS container commissioning engineers** — battery module verification, BMS calibration, thermal system validation
+- **PCS/inverter specialists** — Kehua BCS1250K-C configuration, grid-forming setup, protection parameter programming
+- **SCADA & EMS integration** — Voltus platform deployment, IEC-104 protocol setup, DSO data exchange configuration
+- **MV SKID commissioning** — transformer testing, switchgear configuration, HV safety verification
+- **SAT (Site Acceptance Test)** — full system performance verification against contractual specifications
+- **Knowledge transfer** — handover documentation, O&M training for Lighthief field team
+
+> Per the Distribution Agreement, Linyang covers all travel and accommodation costs for commissioning support personnel. Minimum 2 engineering visits per year included in the partnership.
+
+---
+
+## 6. LINYANG GLOBAL SUPPORT STRUCTURE
+
+### 6.1 Poland-Based Engineering Support
 
 Lighthief's Poland headquarters serves as the European hub for Linyang technical support, providing:
 
@@ -304,7 +347,7 @@ Lighthief's Poland headquarters serves as the European hub for Linyang technical
 | **Engineering Team** | 150+ person European team |
 | **Response Time** | On-site Cyprus deployment within 48 hours |
 
-### 5.2 China-Based Engineering Support (Linyang HQ)
+### 6.2 China-Based Engineering Support (Linyang HQ)
 
 | Support Function | Detail |
 |------------------|--------|
@@ -327,7 +370,7 @@ Lighthief's Poland headquarters serves as the European hub for Linyang technical
 - FAT/SAT support for new deployments
 - €500/day credit for missed SLA deadlines
 
-### 5.3 Training Program (Linyang-Supported)
+### 6.3 Training Program (Linyang-Supported)
 
 **Initial Training (Per Distribution Agreement):**
 
@@ -354,7 +397,7 @@ Lighthief's Poland headquarters serves as the European hub for Linyang technical
 
 ---
 
-## 6. INTERNAL TRAINING PROGRAM — POLAND HQ
+## 7. INTERNAL TRAINING PROGRAM — POLAND HQ
 
 The three Polish team members (Dawid, Szymon, Kacper) are currently completing an intensive BESS-specific training program at Lighthief's Czestochowa headquarters. The training covers:
 
@@ -370,29 +413,29 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 
 ---
 
-## 7. SERVICE DELIVERY MODEL
+## 8. SERVICE DELIVERY MODEL
 
-### 7.1 Response Times
+### 8.1 Response Times
 
 | Severity | Response | On-Site | Team Member |
 |----------|----------|---------|-------------|
-| **Critical** (system down, safety) | 1 hour | 4 hours | Costas (local) + remote support |
-| **High** (degraded performance) | 4 hours | 24 hours | Costas + BESS specialist |
+| **Critical** (system down, safety) | 1 hour | 4 hours | Field team + remote support |
+| **High** (degraded performance) | 4 hours | 24 hours | BESS specialist dispatch |
 | **Medium** (minor fault, alert) | 24 hours | 72 hours | Scheduled dispatch |
 | **Low** (planned maintenance) | Scheduled | Scheduled | Rotation roster |
 
-### 7.2 Coverage Model
+### 8.2 Coverage Model
 
 | Aspect | Detail |
 |--------|--------|
 | **Monitoring** | 24/7/365 via Voltus SCADA + Lighthief NOC |
-| **Local Presence** | Costas Hadjikyriacou — permanent Cyprus-based |
+| **Project Management** | Costas Hadjikyriacou — ETEK sign-off & planning |
 | **BESS Specialists** | 3 engineers on rotation (Dawid, Szymon, Kacper) |
 | **Planned Maintenance** | Quarterly site visits per park |
 | **Annual Cost** | €1,740/MWh/year (O&M contract) |
 | **Portfolio Coverage** | 51 parks, 863.5+ MWh, 5 districts |
 
-### 7.3 District Assignments (Planned)
+### 8.3 District Assignments (Planned)
 
 | District | Parks | MWh | Primary Engineer | Backup |
 |----------|-------|-----|------------------|--------|
@@ -402,9 +445,9 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | Nicosia | 34 | 576.5 | Szymon + Kacper | Dawid |
 | Paphos | 3 | 20 | Kacper | Costas |
 
-### 7.4 Team Strengths
+### 8.4 Team Strengths
 
-- **Local + International**: ETEK-licensed Cyprus engineer (Costas) + Energy Consultant (Andreas) for regulatory compliance, backed by 3 battle-tested BESS specialists from Lighthief's European operations
+- **Local + International**: ETEK-licensed project management and sign-off (Costas) + Energy Consultant (Andreas) for regulatory compliance, backed by 3 battle-tested BESS specialists from Lighthief's European operations, plus Linyang's own installation and commissioning team
 - **Hands-On BESS Experience**: All three Polish engineers have 3+ years working on containerized BESS, BMS/EMS systems, and high-voltage environments
 - **Energy Sector Expertise**: Andreas brings Schneider Electric and ICF International experience in energy assessments, auditing, and power system specifications
 - **Full-Stack Capability**: Team covers DC, AC, MV, protection, control, SCADA, commissioning, and diagnostics — no gaps in the service chain
@@ -413,9 +456,9 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 
 ---
 
-## 8. DSO COMPLIANCE STRATEGY
+## 9. DSO COMPLIANCE STRATEGY
 
-### 8.1 Cyprus Regulatory Authorities
+### 9.1 Cyprus Regulatory Authorities
 
 | Authority | Role | Jurisdiction |
 |-----------|------|--------------|
@@ -424,7 +467,7 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | **CERA (ΡΑΕΚ)** | Energy Regulatory Authority | Licensing & Market Rules |
 | **ETEK (ΕΤΕΚ)** | Technical Chamber of Cyprus | Engineering Standards |
 
-### 8.2 Known DSO Compliance Requirements
+### 9.2 Known DSO Compliance Requirements
 
 | Requirement | Standard | Status | Resolution |
 |-------------|----------|--------|------------|
@@ -438,7 +481,7 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | **Fire Safety** | UL 9540A | ✅ PASSED | Unit level passed, no propagation |
 | **Grid Integration** | IEC 62933-5-2 | 🔄 In Progress | Certificate 2-3 weeks |
 
-### 8.3 Protection Settings Compliance
+### 9.3 Protection Settings Compliance
 
 | Protection | DSO Requirement | Kehua PCS Capability | Status |
 |------------|-----------------|----------------------|--------|
@@ -450,7 +493,7 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | THDi | < 5% | < 3% | ✅ Exceeds |
 | Power Factor | ≥ 0.9 | > 0.99 | ✅ Exceeds |
 
-### 8.4 SCADA Integration (≥120 kW Systems)
+### 9.4 SCADA Integration (≥120 kW Systems)
 
 | Requirement | Protocol | Status |
 |-------------|----------|--------|
@@ -460,7 +503,7 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | Internal BMS/PCS Comms | Modbus TCP | ✅ Register maps available |
 | Substation Communication | IEC 61850 (optional) | ✅ Supported |
 
-### 8.5 Compliance Action Plan
+### 9.5 Compliance Action Plan
 
 | Phase | Action | Owner | Timeline |
 |-------|--------|-------|----------|
@@ -470,7 +513,7 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | **Commissioning** | SCADA integration testing (IEC 104) | Field team | Pre-COD |
 | **Post-COD** | Quarterly compliance reporting to CERA | Alexander | Ongoing |
 
-### 8.6 Building Permit Exemptions (Κ.Δ.Π. 15/2026 & 17/2026)
+### 9.6 Building Permit Exemptions (Κ.Δ.Π. 15/2026 & 17/2026)
 
 BESS installations within licensed RES stations are **exempt from building permits** provided:
 
@@ -486,9 +529,9 @@ BESS installations within licensed RES stations are **exempt from building permi
 
 ---
 
-## 9. LINYANG-LIGHTHIEF STRATEGIC COMMITMENT
+## 10. LINYANG-LIGHTHIEF STRATEGIC COMMITMENT
 
-### 9.1 Exclusive Distribution Rights
+### 10.1 Exclusive Distribution Rights
 
 Per the Distribution Agreement dated 28 November 2025:
 
@@ -500,7 +543,7 @@ Per the Distribution Agreement dated 28 November 2025:
 | **Protected Clients** | All clients introduced by Lighthief registered and protected |
 | **Deal Registration** | Projects >€500k gain 180-day protection, renewable |
 
-### 9.2 Technical Support Commitments
+### 10.2 Technical Support Commitments
 
 | Service | SLA | Cost |
 |---------|-----|------|
@@ -512,7 +555,7 @@ Per the Distribution Agreement dated 28 November 2025:
 | 24/7 remote diagnostics | Continuous | Covered |
 | SLA penalty | €500/day credit | Per breach |
 
-### 9.3 Warranty Commitments (Cyprus Market)
+### 10.3 Warranty Commitments (Cyprus Market)
 
 | Component | Base Warranty | Extended (LTSA) |
 |-----------|---------------|-----------------|
@@ -524,7 +567,7 @@ Per the Distribution Agreement dated 28 November 2025:
 | Replacement Parts | Delivered within 15 days | Covered |
 | C5 Corrosion Protection | Standard for Cyprus | All coastal installations |
 
-### 9.4 Commercial Protections
+### 10.4 Commercial Protections
 
 | Protection | Detail |
 |------------|--------|
@@ -535,7 +578,7 @@ Per the Distribution Agreement dated 28 November 2025:
 | **>€2M** | 20% of contract value (capped €500,000) |
 | **Pricing Protection** | Cyprus pricing within ±5% of EU distributors |
 
-### 9.5 EU Expansion Territories
+### 10.5 EU Expansion Territories
 
 The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
@@ -548,7 +591,7 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
 ---
 
-## 10. PORTFOLIO SUMMARY
+## 11. PORTFOLIO SUMMARY
 
 | Metric | Value |
 |--------|-------|
@@ -564,14 +607,18 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
 ## CONTACT
 
-| Name | Role | Email | Location |
-|------|------|-------|----------|
-| **Alexander Papacosta** | Cyprus Director, Team Lead | alexander.papacosta@lighthief.com | Limassol, CY |
-| **Andreas Christoforou** | Energy & BESS Consultant | xristoforou.andreass@gmail.com | UK → CY |
-| **Costas Hadjikyriacou** | Electrical Engineer, Site Lead | costas@lighthief.com | Cyprus |
-| **Dawid Lesnikowski** | Senior Electrical Engineer | — | Training (PL) → CY |
-| **Szymon Drozdz** | Senior Electrical Engineer | — | Training (PL) → CY |
-| **Kacper Goral** | Senior Electrical Engineer | — | Training (PL) → CY |
+| Name | Role | Organisation | Email | Location |
+|------|------|-------------|-------|----------|
+| **Alexander Papacosta** | Cyprus Director & Project Lead | Lighthief | alexander.papacosta@lighthief.com | Limassol, CY |
+| **Costas Hadjikyriacou** | ETEK Engineer, Project Planning & Sign-Off | Lighthief | costas@lighthief.com | Cyprus |
+| **Andreas Christoforou** | Energy & BESS Consultant | Lighthief | xristoforou.andreass@gmail.com | UK → CY |
+| **Dawid Lesnikowski** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |
+| **Szymon Drozdz** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |
+| **Kacper Goral** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |
+| **Kamil Tyburski** | Installation & IT/SCADA | Linyang | — | EU |
+| **Michael** | Product Manager | Linyang | — | EU |
+| **Janusz** | Installation Lead | Lighthief | — | PL |
+| **Linyang China HQ Team** | Factory Commissioning Specialists | Linyang | — | Nanjing, CN |
 
 ---
 
