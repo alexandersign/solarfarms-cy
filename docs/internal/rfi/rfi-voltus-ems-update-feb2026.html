@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI - Voltus EMS/SCADA Update - February 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1f2937; padding: 40px; max-width: 1100px; margin: 0 auto; }
+        
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .header h1 { font-size: 22pt; margin-bottom: 8px; text-align: center; }
+        .header .subtitle { font-size: 13pt; opacity: 0.9; text-align: center; }
+
+        .section { margin-bottom: 30px; page-break-inside: avoid; }
+        h2 { color: #1e3a5f; border-bottom: 2px solid #1e3a5f; padding-bottom: 8px; margin-bottom: 15px; font-size: 14pt; }
+        h3 { color: #2d5a87; margin: 20px 0 10px 0; font-size: 12pt; }
+        h4 { color: #374151; margin: 15px 0 8px 0; font-size: 11pt; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; }
+        th { background: #f3f4f6; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .highlight-box { background: #dbeafe; border: 1px solid #3b82f6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .success-box { background: #dcfce7; border: 1px solid #22c55e; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .response-cell { background: #fff7ed; min-height: 30px; }
+
+        .total-row { background: #dbeafe !important; font-weight: bold; }
+        .group-header { background: #e0e7ff !important; font-weight: 600; }
+        .standalone-row { background: #fef3c7 !important; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-orange { background: #ffedd5; color: #c2410c; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+
+        .architecture-box { background: #f0f4f8; border: 2px solid #2d5a87; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: 'Courier New', monospace; font-size: 10pt; white-space: pre-line; line-height: 1.8; }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 4px; }
+        p { margin-bottom: 10px; }
+
+        @media print {
+            body { padding: 20px; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+        }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: #1e3a5f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 12pt; z-index: 100; }
+        .print-btn:hover { background: #2d5a87; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-RFI-VOLTUS-2026-002</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 10 February 2026</div>
+                <div><strong>Priority:</strong> HIGH</div>
+            </div>
+        </div>
+        <h1>REQUEST FOR INFORMATION</h1>
+        <div class="subtitle">EMS / SCADA Pricing Update &amp; Bill of Materials Confirmation</div>
+        <div style="text-align: center; margin-top: 8px; font-size: 11pt; opacity: 0.9;">Revised Group Structure &mdash; Cyprus BESS Portfolio (51 Parks / ~912 MWh)</div>
+    </div>
+
+    <!-- SECTION 1: PURPOSE -->
+    <div class="section">
+        <h2>1. PURPOSE</h2>
+
+        <p>Dear Voltus Team,</p>
+
+        <p>Following our original RFI (LCY-RFI-EMS-2026-001, 2 February 2026) and the Voltus pricing quote received in January 2026, we have finalized the commercial and operational structure for the Cyprus BESS portfolio. This RFI requests:</p>
+
+        <ol style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Updated pricing</strong> based on a revised 3-group structure (down from 6+ groups)</li>
+            <li><strong>Confirmation of Bill of Materials (BoM)</strong> per site &mdash; specifically WAGO hardware included in your quote</li>
+            <li><strong>Scope boundary clarification</strong> &mdash; what Lighthief (EPC) must procure vs. what Voltus supplies</li>
+            <li><strong>Confirmation of OEM-shipped items</strong> already included in Linyang's delivery that interface with EMS</li>
+            <li><strong>Standalone pricing</strong> for 6 parks outside the main groups</li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>Response requested by: 21 February 2026</strong><br>
+            Please provide updated pricing and BoM confirmation at your earliest convenience. We are finalizing EPC contracts with clients and need to confirm all-in turnkey costs.
+        </div>
+    </div>
+
+    <!-- SECTION 2: REVISED STRUCTURE -->
+    <div class="section">
+        <h2>2. REVISED COMMERCIAL STRUCTURE</h2>
+
+        <h3>2.1 Stakeholder Roles</h3>
+        <table>
+            <tr>
+                <th style="width:25%;">Entity</th>
+                <th style="width:25%;">Role</th>
+                <th style="width:50%;">Responsibilities</th>
+            </tr>
+            <tr>
+                <td><strong>Lighthief Cyprus Ltd</strong></td>
+                <td>EPC Contractor, Installer, O&amp;M Provider, Linyang Distributor</td>
+                <td>
+                    <ul style="margin-left:15px;">
+                        <li>Turnkey BESS EPC delivery (incl. EMS/SCADA)</li>
+                        <li>Exclusive distributor for Linyang in Cyprus</li>
+                        <li>Master EMS &amp; SCADA management across portfolio</li>
+                        <li>Long-term O&amp;M and BESS service partner</li>
+                        <li>Procures and installs all EMS/SCADA hardware &amp; software</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Voltus</strong></td>
+                <td>EMS/SCADA Provider</td>
+                <td>
+                    <ul style="margin-left:15px;">
+                        <li>EMS software, WAGO hardware, SCADA platform</li>
+                        <li>PPC + RTU functionality (integrated in WAGO controller)</li>
+                        <li>Remote configuration, commissioning support, training</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Linyang / Kehua</strong></td>
+                <td>OEM Equipment Supplier</td>
+                <td>
+                    <ul style="margin-left:15px;">
+                        <li>Battery containers (5 MWh LFP), PCS (Kehua BCS-C-HUD), MV Skids</li>
+                        <li>BMS (3-level: BMU/BCMU/BAMS), RTU (confirmed included)</li>
+                        <li>Installation &amp; OEM commissioning</li>
+                        <li>Spares stock (see Section 5)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>ABIO</strong></td>
+                <td>Aggregator (Group 1)</td>
+                <td>Market aggregator for ABIO Power parks</td>
+            </tr>
+            <tr>
+                <td><strong>Synenergia</strong></td>
+                <td>Aggregator (Group 2)</td>
+                <td>Market aggregator for Esperia Energy Group parks</td>
+            </tr>
+        </table>
+
+        <h3>2.2 Confirmed System Architecture</h3>
+
+        <div class="architecture-box">
+<strong>Per-Site Architecture (confirmed by Linyang OEM &mdash; Kamil Tyburski, Feb 2026):</strong>
+
+    Cyprus DSO (EAC)
+         |
+         | IEC 60870-5-104
+         |
+    [WAGO PFC200] &mdash; PPC + RTU + IEC-104 gateway (Voltus supply)
+         |
+         |--- Modbus TCP ---> Kehua PCS (BCS-C-HUD) &mdash; accepts external setpoints
+         |--- Modbus TCP ---> Linyang BMS (BAMS) &mdash; battery monitoring
+         |--- Voltus EMS Software &mdash; dispatch, optimization, grid services
+         |
+    Voltus SCADA Local ---> Voltus SCADA Global (per group, on-premise)
+
+<strong>Key confirmation:</strong> No separate PPC hardware required. WAGO controller integrated
+with PPC + RTU functions. Kehua PCS accepts direct setpoint commands via Modbus TCP.
+        </div>
+
+        <h3>2.3 Abbreviation Key</h3>
+        <table style="font-size: 9pt;">
+            <tr>
+                <th colspan="4" style="text-align:center; background:#e0e7ff;">Group &amp; Park Abbreviations</th>
+            </tr>
+            <tr>
+                <th style="width:12%;">Code</th>
+                <th style="width:38%;">Full Name</th>
+                <th style="width:12%;">Code</th>
+                <th style="width:38%;">Full Name</th>
+            </tr>
+            <tr><td><strong>ABIO</strong></td><td>ABIO Power (Client / Group 1)</td><td><strong>ESP</strong></td><td>Esperia Energy Group (Client / Group 2)</td></tr>
+            <tr><td><strong>TIM</strong></td><td>Timotheos Timotheou (Client / Group 3)</td><td><strong>CLS</strong></td><td>Classone (Lampros Andreadis)</td></tr>
+            <tr><td><strong>PAP</strong></td><td>Paphos (A Kerasi)</td><td><strong>MSP</strong></td><td>My Sun Park (Ioannis Karis)</td></tr>
+            <tr><td colspan="4" style="background:#f3f4f6; font-weight:600;">ABIO Sub-groups</td></tr>
+            <tr><td><strong>GRD</strong></td><td>Greendorado</td><td><strong>DIA</strong></td><td>Dianary</td></tr>
+            <tr><td><strong>ELE</strong></td><td>ELESTORE</td><td><strong>EAS</strong></td><td>Easy Power</td></tr>
+            <tr><td><strong>POL</strong></td><td>Polemi</td><td><strong>POT</strong></td><td>Potamia</td></tr>
+            <tr><td><strong>REN</strong></td><td>Renergetic</td><td><strong>SOL</strong></td><td>Solarity</td></tr>
+            <tr><td><strong>SLT</strong></td><td>Solartech</td><td><strong>WAN</strong></td><td>Waneron</td></tr>
+            <tr><td><strong>ASZ</strong></td><td>Agios Sozomenos</td><td></td><td></td></tr>
+            <tr><td colspan="4" style="background:#f3f4f6; font-weight:600;">ESP Sub-groups</td></tr>
+            <tr><td><strong>GAL</strong></td><td>Galascope</td><td><strong>ESP-28</strong></td><td>Esperia Tseri (2028 phase)</td></tr>
+            <tr><td colspan="4" style="background:#f3f4f6; font-weight:600;">TIM Sub-groups</td></tr>
+            <tr><td><strong>LT</strong></td><td>L&amp;T (various entities)</td><td><strong>AGM</strong></td><td>AGM (various entities)</td></tr>
+        </table>
+
+        <h3>2.4 Revised Group Structure (3 Groups + 6 Standalone)</h3>
+
+        <div class="highlight-box">
+            <strong>Change from previous quote:</strong> The original Voltus quote had 15 groups, later consolidated to 6. We have now finalized at <strong>3 main groups + 6 standalone parks</strong>. This reduces SCADA Global instances from 6 to 3 for the main groups, with 6 standalone parks priced individually.
+        </div>
+
+        <h4>G1: ABIO &mdash; Aggregator: ABIO &mdash; 25 Parks</h4>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Park</th>
+                <th>MW</th>
+                <th>MWh</th>
+                <th>Cnt</th>
+                <th>MV</th>
+                <th>Batt</th>
+                <th>Status</th>
+            </tr>
+            <tr><td>GRD-AV</td><td>Greendorado Agrivoltaic</td><td>0.75</td><td>3</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-orange">NEW</span></td></tr>
+            <tr><td>GRD-L1</td><td>Greendorado Larnaca 1</td><td>1.25</td><td>5</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>GRD-L2</td><td>Greendorado Larnaca 2</td><td>1.0</td><td>5</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>GRD-1</td><td>Greendorado 1</td><td>1.8</td><td>8</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ASZ</td><td>Agios Sozomenos</td><td>6.0</td><td>25</td><td>6</td><td>1</td><td>5</td><td><span class="badge badge-orange">NEW</span></td></tr>
+            <tr><td>DIA-1</td><td>Dianary 1</td><td>2.5</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>DIA-2</td><td>Dianary 2</td><td>2.5</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>DIA-3</td><td>Dianary 3</td><td>8.0</td><td>35</td><td>9</td><td>2</td><td>7</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ELE-1</td><td>ELESTORE 1</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>8</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ELE-2</td><td>ELESTORE 2</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>8</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ELE-3</td><td>ELESTORE 3</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>8</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ELE-4</td><td>ELESTORE 4</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>8</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ELE-5</td><td>ELESTORE 5</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>8</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>EAS-1</td><td>Easy Power 1</td><td>5.0</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>EAS-2</td><td>Easy Power 2</td><td>4.5</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>EAS-3</td><td>Easy Power 3</td><td>5.0</td><td>10</td><td>5</td><td>2</td><td>3</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>EAS-4</td><td>Easy Power 4</td><td>1.8</td><td>8</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>POL</td><td>Polemi</td><td>1.25</td><td>10</td><td>4</td><td>1</td><td>3</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>POT-151</td><td>Potamia p151</td><td>1.25</td><td>10</td><td>4</td><td>1</td><td>3</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>POT-208</td><td>Potamia p208</td><td>4.5</td><td>20</td><td>8</td><td>2</td><td>6</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>REN-1</td><td>Renergetic</td><td>5.0</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>REN-2</td><td>Renergetic 2</td><td>2.4</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-orange">NEW</span></td></tr>
+            <tr><td>SOL</td><td>Solarity</td><td>5.0</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>SLT-3X</td><td>Solartech 3 Ext.</td><td>2.5</td><td>10</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-orange">NEW</span></td></tr>
+            <tr><td>WAN</td><td>Waneron</td><td>3.0</td><td>11.28</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr class="total-row">
+                <td></td>
+                <td><strong>G1 TOTAL</strong></td>
+                <td><strong>125.0</strong></td>
+                <td><strong>430.3</strong></td>
+                <td><strong>125</strong></td>
+                <td><strong>33</strong></td>
+                <td><strong>92</strong></td>
+                <td>1 SCADA Gl.</td>
+            </tr>
+        </table>
+
+        <h4>G2: ESP &mdash; Aggregator: Synenergia &mdash; 11 Parks</h4>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Park</th>
+                <th>MW</th>
+                <th>MWh</th>
+                <th>Cnt</th>
+                <th>MV</th>
+                <th>Batt</th>
+                <th>Status</th>
+            </tr>
+            <tr><td>ESP-F1</td><td>Esperia Famagusta</td><td>6.5</td><td>20</td><td>5</td><td>1</td><td>4</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ESP-F2</td><td>Esperia Famagusta 2</td><td>5.0</td><td>20</td><td>5</td><td>1</td><td>4</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ESP-FR</td><td>Esperia Frenaros</td><td>25.0</td><td>100</td><td>23</td><td>3</td><td>20</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ESP-LIM</td><td>Esperia Limassol</td><td>8.0</td><td>60</td><td>14</td><td>2</td><td>12</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>GAL-1</td><td>Galascope 1</td><td>5.0</td><td>15</td><td>5</td><td>2</td><td>3</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>GAL-2</td><td>Galascope 2</td><td>2.5</td><td>8</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>ESP-T1</td><td>Esperia Tseri</td><td>7.0</td><td>20</td><td>5</td><td>1</td><td>4</td><td><span class="badge badge-blue">2028</span></td></tr>
+            <tr><td>ESP-T2a</td><td>Esperia Tseri 2a</td><td>2.5</td><td>7.5</td><td>3</td><td>1</td><td>2</td><td><span class="badge badge-blue">2028</span></td></tr>
+            <tr><td>ESP-T2b</td><td>Esperia Tseri 2b</td><td>7.5</td><td>25</td><td>7</td><td>2</td><td>5</td><td><span class="badge badge-blue">2028</span></td></tr>
+            <tr><td>ESP-T2c</td><td>Esperia Tseri 2c</td><td>6.0</td><td>20</td><td>5</td><td>1</td><td>4</td><td><span class="badge badge-blue">2028</span></td></tr>
+            <tr><td>ESP-T3</td><td>Esperia Tseri 3</td><td>4.5</td><td>15</td><td>4</td><td>1</td><td>3</td><td><span class="badge badge-blue">2028</span></td></tr>
+            <tr class="total-row">
+                <td></td>
+                <td><strong>G2 TOTAL</strong></td>
+                <td><strong>79.5</strong></td>
+                <td><strong>310.5</strong></td>
+                <td><strong>79</strong></td>
+                <td><strong>16</strong></td>
+                <td><strong>63</strong></td>
+                <td>1 SCADA Gl.</td>
+            </tr>
+        </table>
+
+        <h4>G3: TIM &mdash; 9 Parks</h4>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Park</th>
+                <th>MW</th>
+                <th>MWh</th>
+                <th>Cnt</th>
+                <th>MV</th>
+                <th>Batt</th>
+                <th>Status</th>
+            </tr>
+            <tr><td>LT-RS</td><td>L&amp;T Res Systems</td><td>1.0</td><td>4</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>LT-SP</td><td>L&amp;T Solar Power</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>LT-SE</td><td>L&amp;T Sun Energy</td><td>5.0</td><td>15</td><td>4</td><td>1</td><td>3</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>LT-EN</td><td>L&amp;T Energia</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>LT-PV</td><td>L&amp;T PV Tech</td><td>1.0</td><td>4</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>AGM-LP</td><td>AGM Lightpower</td><td>8.0</td><td>24</td><td>7</td><td>2</td><td>5</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>AGM-SF1</td><td>AGM Sunfield 1</td><td>5.0</td><td>15</td><td>4</td><td>1</td><td>3</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>AGM-SF2</td><td>AGM Sunfield 2</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr><td>AGM-SF3</td><td>AGM Sunfield 3</td><td>1.0</td><td>4</td><td>2</td><td>1</td><td>1</td><td><span class="badge badge-green">VER</span></td></tr>
+            <tr class="total-row">
+                <td></td>
+                <td><strong>G3 TOTAL</strong></td>
+                <td><strong>25.5</strong></td>
+                <td><strong>81.0</strong></td>
+                <td><strong>27</strong></td>
+                <td><strong>10</strong></td>
+                <td><strong>17</strong></td>
+                <td>1 SCADA Gl.</td>
+            </tr>
+        </table>
+
+        <h4>Standalone (Individual SCADA Global Each)</h4>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Park</th>
+                <th>Owner</th>
+                <th>MW</th>
+                <th>MWh</th>
+                <th>Cnt</th>
+                <th>MV</th>
+                <th>Batt</th>
+            </tr>
+            <tr class="standalone-row"><td>CLS-SB</td><td>Classone Solar Breeze</td><td>L. Andreadis</td><td>1.51</td><td>5</td><td>2</td><td>1</td><td>1</td></tr>
+            <tr class="standalone-row"><td>CLS-SG</td><td>Classone Solar Garden</td><td>L. Andreadis</td><td>3.29</td><td>10</td><td>3</td><td>1</td><td>2</td></tr>
+            <tr class="standalone-row"><td>PAP-1</td><td>Paphos 1</td><td>A Kerasi</td><td>2.5</td><td>7.5</td><td>3</td><td>1</td><td>2</td></tr>
+            <tr class="standalone-row"><td>PAP-2</td><td>Paphos 2</td><td>A Kerasi</td><td>2.5</td><td>7.5</td><td>3</td><td>1</td><td>2</td></tr>
+            <tr class="standalone-row"><td>PAP-3</td><td>Paphos 3</td><td>A Kerasi</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>1</td></tr>
+            <tr class="standalone-row"><td>MSP</td><td>My Sun Park</td><td>I. Karis</td><td>7.7</td><td>25</td><td>7</td><td>2</td><td>5</td></tr>
+            <tr class="total-row">
+                <td></td>
+                <td colspan="2"><strong>STANDALONE TOTAL</strong></td>
+                <td><strong>19.0</strong></td>
+                <td><strong>60.0</strong></td>
+                <td><strong>20</strong></td>
+                <td><strong>7</strong></td>
+                <td><strong>13</strong></td>
+            </tr>
+        </table>
+
+        <h3>2.5 Portfolio Summary</h3>
+        <table>
+            <tr>
+                <th>Group</th>
+                <th>Parks</th>
+                <th>MW</th>
+                <th>MWh</th>
+                <th>Cnt</th>
+                <th>SCADA Gl.</th>
+            </tr>
+            <tr><td>G1: ABIO</td><td>25</td><td>125.0</td><td>430.3</td><td>125</td><td>1</td></tr>
+            <tr><td>G2: ESP</td><td>11</td><td>79.5</td><td>310.5</td><td>79</td><td>1</td></tr>
+            <tr><td>G3: TIM</td><td>9</td><td>25.5</td><td>81.0</td><td>27</td><td>1</td></tr>
+            <tr class="standalone-row"><td>Standalone (6 parks)</td><td>6</td><td>19.0</td><td>60.0</td><td>20</td><td>6 (individual)</td></tr>
+            <tr class="total-row">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>51</strong></td>
+                <td><strong>249.0</strong></td>
+                <td><strong>881.8</strong></td>
+                <td><strong>251</strong></td>
+                <td><strong>9</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 3: PRICING UPDATE REQUEST -->
+    <div class="section">
+        <h2>3. PRICING UPDATE REQUEST</h2>
+
+        <p>Based on the revised 3-group + 6 standalone structure, please provide updated pricing for the following:</p>
+
+        <h3>3.1 Group Pricing (SCADA Global shared across group)</h3>
+        <table>
+            <tr>
+                <th>Cost Component</th>
+                <th>G1: ABIO (25)</th>
+                <th>G2: ESP (11)</th>
+                <th>G3: TIM (9)</th>
+            </tr>
+            <tr>
+                <td><strong>EMS per park (System + Hardware)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Remote Configuration &amp; Preparation (per park)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>On-site Installation + Training (per park)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Local (per park)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Global (one-time, per group)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Local Maintenance (per park/year)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Global Maintenance (per group/year)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>3.2 Standalone Park Pricing (individual SCADA Global per park)</h3>
+        <table>
+            <tr>
+                <th>Park</th>
+                <th>MW/MWh</th>
+                <th>EMS (System + HW)</th>
+                <th>SCADA Local</th>
+                <th>SCADA Global</th>
+                <th>Total</th>
+            </tr>
+            <tr><td>CLS-SB</td><td>1.51/5</td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>CLS-SG</td><td>3.29/10</td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>PAP-1</td><td>2.5/7.5</td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>PAP-2</td><td>2.5/7.5</td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>PAP-3</td><td>1.5/5</td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>MSP</td><td>7.7/25</td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>3.3 Volume Discount</h3>
+        <table>
+            <tr>
+                <th style="width:60%;">Question</th>
+                <th style="width:40%;">Response</th>
+            </tr>
+            <tr>
+                <td>Are the January 2026 quoted prices still valid, or have they been updated?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Is there an additional volume discount for the full 51-park portfolio ordered together?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can standalone parks receive discounted SCADA Global pricing if ordered as part of the portfolio?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Is there a discount for multi-year SCADA maintenance commitment (e.g. 5-year)?</td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 4: BILL OF MATERIALS -->
+    <div class="section">
+        <h2>4. BILL OF MATERIALS (BoM) &mdash; CONFIRMATION REQUIRED</h2>
+
+        <div class="warning-box">
+            <strong>Critical:</strong> Lighthief delivers turnkey EPC including EMS/SCADA to the end client. We need to confirm exactly what hardware is included in Voltus pricing vs. what Lighthief must procure separately. Please confirm or correct the following understanding.
+        </div>
+
+        <h3>4.1 WAGO Hardware &mdash; Included in Voltus "System + Hardware"?</h3>
+        <table>
+            <tr>
+                <th style="width:35%;">Component</th>
+                <th style="width:30%;">Our Understanding</th>
+                <th style="width:35%;">Voltus Confirmation</th>
+            </tr>
+            <tr>
+                <td><strong>WAGO PFC200 PLC Controller</strong><br>(PPC + RTU + IEC-104 combined)</td>
+                <td><span class="badge badge-green">Included in Voltus</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>WAGO I/O Modules (750 series)</strong><br>(Digital/analog I/O, power measurement)</td>
+                <td><span class="badge badge-green">Included in Voltus</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Energy Meters</strong><br>(Grid-side, BESS-side power metering)</td>
+                <td><span class="badge badge-orange">Confirm</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Network Switch (managed)</strong></td>
+                <td><span class="badge badge-orange">Confirm</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Industrial Router / VPN Firewall</strong></td>
+                <td><span class="badge badge-orange">Confirm</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>4G/LTE SIM Router</strong><br>(Remote connectivity)</td>
+                <td><span class="badge badge-orange">Confirm</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Control Cabinet / Enclosure</strong><br>(DIN-rail housing for WAGO + network)</td>
+                <td><span class="badge badge-orange">Confirm</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>UPS for Controls</strong><br>(Backup power for WAGO/network)</td>
+                <td><span class="badge badge-orange">Confirm</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>EMS Software License</strong></td>
+                <td><span class="badge badge-green">Included in Voltus</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Local Software</strong></td>
+                <td><span class="badge badge-green">Included in Voltus</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>4.2 Items to be Procured by Lighthief (EPC)?</h3>
+        <p>Please confirm if any of the following must be ordered separately by Lighthief:</p>
+        <table>
+            <tr>
+                <th style="width:40%;">Item</th>
+                <th style="width:30%;">Included by Voltus?</th>
+                <th style="width:30%;">Lighthief to Procure?</th>
+            </tr>
+            <tr>
+                <td>SIM cards for 4G/LTE connectivity</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Ethernet/fibre cabling (site internal)</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>GPS antenna (for time sync)</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Revenue meter (if separate from EMS metering)</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>CT/VT transducers (current/voltage transformers)</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>SCADA Global server hardware (on-premise)</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Any other items not listed above</td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>4.3 Detailed BoM Request</h3>
+        <div class="highlight-box">
+            <strong>Please provide a detailed Bill of Materials for each site size category:</strong>
+            <ul>
+                <li><strong>Small site</strong> (1-3 MW / 1-2 PCS units / 1 MV Skid)</li>
+                <li><strong>Medium site</strong> (4-8 MW / 3-6 PCS units / 1-2 MV Skids)</li>
+                <li><strong>Large site</strong> (10-15 MW / 8-10 PCS units / 2 MV Skids)</li>
+                <li><strong>XL site</strong> (20-30 MW / 15-20 PCS units / 2-3 MV Skids)</li>
+            </ul>
+            <p style="margin-top:10px;">For each, please list: part number, description, quantity, and whether it is included in the Voltus price or to be procured by Lighthief.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 5: OEM-SHIPPED ITEMS -->
+    <div class="section">
+        <h2>5. OEM-SHIPPED ITEMS (Linyang / Kehua) &mdash; Interface with EMS</h2>
+
+        <p>The following items are confirmed as shipped by Linyang OEM as part of the BESS supply order. Please confirm compatibility and whether any of these overlap with or replace Voltus-supplied components.</p>
+
+        <h3>5.1 Linyang OEM Equipment (Relevant to EMS/SCADA)</h3>
+        <table>
+            <tr>
+                <th style="width:30%;">OEM Component</th>
+                <th style="width:30%;">Details</th>
+                <th style="width:20%;">Interface to EMS</th>
+                <th style="width:20%;">Voltus Notes</th>
+            </tr>
+            <tr>
+                <td><strong>RTU (Remote Terminal Unit)</strong></td>
+                <td>Confirmed included in Linyang MV Skid scope</td>
+                <td>IEC 60870-5-104</td>
+                <td class="response-cell">Does Voltus WAGO replace this, or do they work in parallel?</td>
+            </tr>
+            <tr>
+                <td><strong>BMS (BAMS Level 3)</strong></td>
+                <td>Linyang 3-level BMS: BMU/BCMU/BAMS</td>
+                <td>Modbus TCP, CAN, RS485</td>
+                <td class="response-cell">Confirm Voltus reads from BAMS via Modbus TCP</td>
+            </tr>
+            <tr>
+                <td><strong>Kehua PCS Controller</strong></td>
+                <td>BCS-C-HUD series, accepts external setpoints</td>
+                <td>Modbus TCP</td>
+                <td class="response-cell">Confirm Voltus/WAGO sends P/Q setpoints via Modbus TCP</td>
+            </tr>
+            <tr>
+                <td><strong>Auxiliary System &amp; Comms Cabinet</strong></td>
+                <td>Included in Linyang scope (details pending)</td>
+                <td>TBC</td>
+                <td class="response-cell">Does this contain any EMS-relevant hardware?</td>
+            </tr>
+        </table>
+
+        <h3>5.2 Linyang Confirmed Spares Stock (Shipped with Order)</h3>
+        <div class="success-box">
+            <strong>Confirmed by Kamil Tyburski (Linyang) &mdash; February 2026 via WhatsApp:</strong>
+            <ul>
+                <li><strong>3 pallets of PCS spares</strong> per PCS configuration (Kehua BCS-C-HUD)</li>
+                <li><strong>~8 racks of Li-ion cell racks</strong> for replacement battery stock</li>
+                <li><strong>~40 pallets total</strong> spares shipment with order</li>
+            </ul>
+            <p style="margin-top:10px;">These spares are held by Lighthief as the BESS service partner. They include PCS control boards, IGBT modules, cooling fans, BMS components, DC contactors/fuses, and battery packs.</p>
+        </div>
+
+        <h3>5.3 Interface Confirmation Required</h3>
+        <table>
+            <tr>
+                <th style="width:60%;">Question</th>
+                <th style="width:40%;">Response</th>
+            </tr>
+            <tr>
+                <td>Does the Linyang-supplied RTU need to remain active, or does the WAGO PFC200 fully replace the RTU function?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Are there any Linyang-supplied meters or sensors that Voltus EMS needs to read?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Does Voltus require any specific firmware version or configuration on the Kehua PCS for Modbus TCP integration?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Does Voltus need access to the Linyang BMS Modbus register map? (We can provide this &mdash; document ref: WRDF-0I002-103)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Does Voltus need the Kehua IEC-104 point list? (We can provide this &mdash; document ref: WRWF-0I002-06)</td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 6: LIGHTHIEF MASTER MANAGEMENT -->
+    <div class="section">
+        <h2>6. LIGHTHIEF MASTER EMS/SCADA MANAGEMENT</h2>
+
+        <p>As the portfolio-wide EPC and O&amp;M provider, Lighthief requires master-level access and management capability across all 51 parks. Please confirm:</p>
+
+        <table>
+            <tr>
+                <th style="width:60%;">Requirement</th>
+                <th style="width:40%;">Response</th>
+            </tr>
+            <tr>
+                <td>Can Lighthief have a <strong>master SCADA dashboard</strong> across all 3 groups + standalone parks?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can Lighthief access all parks regardless of which group/aggregator they belong to?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Is there a separate license/cost for a Lighthief master portal?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can Lighthief receive consolidated alarm/fault notifications for all parks?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can Lighthief generate portfolio-wide performance reports?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can aggregators (ABIO, Synenergia) have read-only access to their respective group's SCADA?</td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 7: RESPONSE -->
+    <div class="section">
+        <h2>7. RESPONSE INSTRUCTIONS</h2>
+
+        <div class="highlight-box">
+            <strong>Please submit your response to:</strong><br><br>
+            <strong>Email:</strong> alexander.papacosta@lighthief.com<br>
+            <strong>Subject:</strong> RFI Response - Voltus EMS/SCADA Update Feb 2026 (LCY-RFI-VOLTUS-2026-002)<br>
+            <strong>Deadline:</strong> 21 February 2026<br><br>
+            <strong>Deliverables requested:</strong>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>Updated pricing per Section 3 (3 groups + 6 standalone)</li>
+                <li>Completed BoM confirmation per Section 4</li>
+                <li>OEM interface confirmation per Section 5</li>
+                <li>Master management confirmation per Section 6</li>
+                <li>Detailed per-site BoM (part numbers, quantities) for each site size</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 10pt; color: #6b7280;">
+        <p><strong>Lighthief Cyprus Ltd</strong><br>
+        28 October Avenue 249, Lophitis Business Center 1, Office 201<br>
+        3035 Limassol, Cyprus</p>
+        <p style="margin-top: 10px;">
+            Email: alexander.papacosta@lighthief.com | Tel: +357 99 164 158
+        </p>
+        <p style="margin-top: 15px; font-style: italic;">
+            Document Reference: LCY-RFI-VOLTUS-2026-002 | Version 1.0 | 10 February 2026<br>
+            Classification: CONFIDENTIAL &mdash; For Voltus Energy use only
+        </p>
+    </div>
+
+</body>
+</html>
