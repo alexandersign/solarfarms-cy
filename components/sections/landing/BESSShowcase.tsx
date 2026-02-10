@@ -56,7 +56,7 @@ export function BESSShowcase() {
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10" asChild>
+                <Button variant="outline-on-dark" size="lg" asChild>
                   <Link href="/energy-storage/calculator">
                     BESS Investment Calculator
                   </Link>
