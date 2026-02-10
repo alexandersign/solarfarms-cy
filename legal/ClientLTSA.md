@@ -3,8 +3,8 @@ LONG-TERM SERVICE AGREEMENT
 Battery Energy Storage System (BESS)
 
 **Document Reference:** LCY-LTSA-001
-**Version:** 2.3
-**Template Date:** January 2026
+**Version:** 2.4
+**Template Date:** February 2026
 
 ---
 
@@ -69,7 +69,7 @@ For the purposes of this Agreement:
 "Liquidated Damages"
  means the predetermined damages payable by the Service Provider in the event of failure to meet guaranteed performance levels.
 "Scheduled Downtime"
- means planned maintenance periods agreed in advance, which shall not exceed two (2) days per calendar year.
+ means planned maintenance periods agreed in advance, which shall not exceed ten (10) days per calendar year.
 "System Capacity"
  means the total installed capacity of the BESS in MWh, as specified in Schedule 1.
 
@@ -206,7 +206,7 @@ For the purposes of this Agreement:
 6.4 Maintenance Scheduling
  (a) Bi-Annual Maintenance Visits shall be scheduled at least thirty (30) days in advance, at mutually agreed dates approximately six (6) months apart.
  (b) The Service Provider shall endeavour to schedule maintenance at times when the BESS is not actively dispatching, to minimise impact on Client operations.
- (c) Each Scheduled Downtime period shall not exceed one (1) full day per visit (two days total per year).
+ (c) Total Scheduled Downtime shall not exceed ten (10) days per calendar year, distributed across preventive maintenance visits, OEM service windows, and system health checks.
  (d) The Client shall ensure site access and availability of relevant personnel during scheduled visits.
  (e) If the Client cancels or postpones a scheduled visit with less than fourteen (14) days' notice, reasonable rebooking costs may apply.
 6.5 Maintenance Records
@@ -279,7 +279,7 @@ For the purposes of this Agreement:
  (b) Unavailable Hours = hours during which the BESS is unable to operate at its rated capacity due to equipment fault, failure, or Service Provider-caused downtime.
 9.3 Exclusions from Unavailable Hours
  The following shall not count as Unavailable Hours:
- (a) Scheduled Downtime for preventive maintenance (maximum 48 hours per year);
+ (a) Scheduled Downtime for preventive maintenance (maximum 240 hours / 10 days per year);
  (b) Downtime caused by grid unavailability, curtailment, or grid operator instruction;
  (c) Downtime caused by Force Majeure events;
  (d) Downtime caused by Client actions, third parties, or unauthorised modifications;
@@ -311,10 +311,10 @@ For the purposes of this Agreement:
  (b) End of Year 2: 96% of original rated capacity;
  (c) End of Year 3: 94% of original rated capacity;
  (d) End of Year 4: 92% of original rated capacity;
- (e) End of Year 5: 90% of original rated capacity;
- (f) End of Year 10: 80% of original rated capacity;
- (g) End of Year 15: 70% of original rated capacity;
- (h) End of Year 20: 60% of original rated capacity.
+ (e) End of Year 5: 85% of original rated capacity;
+ (f) End of Year 10: 79.58% of original rated capacity;
+ (g) End of Year 15: 70% of original rated capacity.
+ **Note:** The maximum SOH Guarantee period available from the OEM is fifteen (15) years. SOH Guarantees beyond Year 15 are not available. The above values are based on 1 cycle per day operation and are subject to the OEM's confirmed degradation profile.
 10.3 SOH Measurement
  (a) SOH shall be measured at least annually using OEM-approved testing protocols.
  (b) The Service Provider shall provide the Client with a written SOH certificate following each annual measurement.
@@ -326,14 +326,14 @@ For the purposes of this Agreement:
   (i) The Service Provider shall replace or repair the affected modules at no cost to the Client;
   (ii) Replacement shall occur within sixty (60) days of identification;
   (iii) Replacement modules shall be new or equivalent to new in performance;
-  (iv) **OEM Warranty:** Module replacements are sourced through the OEM warranty reserve at no cost to the Service Provider where the failure is attributable to manufacturing factors.
+  (iv) **OEM Warranty:** Module replacements are sourced through the OEM warranty reserve where the failure is attributable to manufacturing factors. The OEM covers replacement components only; service fees, on-site replacement labor, and logistics costs are borne by the Service Provider and are included in the Tier D Service Fee.
 
  (b) SYSTEMIC UNDERPERFORMANCE (affecting 5% or more of total capacity):
   (i) The Service Provider shall, at its option, either:
    - Augment the BESS with additional cells to restore capacity to the Guaranteed SOH; or
    - Pay Liquidated Damages calculated as the cost to restore the system to Guaranteed SOH.
   (ii) If augmentation is chosen, it shall be completed within one hundred twenty (120) days;
-  (iii) **OEM-Backed Augmentation:** The Service Provider's augmentation obligation is backed by a contractual commitment from the OEM to supply replacement cells under the OEM warranty reserve for SOH underperformance attributable to manufacturing factors or normal degradation exceeding the specified curve;
+  (iii) **OEM-Backed Augmentation:** The Service Provider's augmentation obligation is backed by a contractual commitment from the OEM to supply replacement cells under the OEM warranty reserve for SOH underperformance attributable to manufacturing factors or normal degradation exceeding the specified curve. The OEM covers replacement components only; service fees, on-site installation labor, and logistics costs are included in the Tier D Service Fee;
   (iv) Where augmentation cells are provided by the OEM under warranty, the Service Provider shall coordinate installation and commissioning;
   (v) Where SOH underperformance is caused by Client misuse, operational non-compliance, or factors excluded under Section 10.7, the augmentation obligation does not apply.
 
@@ -724,7 +724,7 @@ CELL SPECIFICATIONS:
 | Nominal Voltage | 3.2V |
 | Standard C-Rate | 0.5C |
 | Maximum C-Rate | 1C |
-| Cycle Life (to 80% SOH) | 6,000 cycles (25°C, 100% DOD, 0.5C) |
+| Cycle Life (to 70% EOL) | 7,000 cycles (25°C, 90% DOD, 0.5C) |
 | Energy Density | 183 Wh/kg |
 
 BMS ACCURACY:
@@ -753,9 +753,9 @@ KEY DATES
 EXPECTED DEGRADATION (SOH Reference)
 ───────────────────────────────────────────────────────────────
 
-Based on cycle life of 6,000 cycles to 80% SOH at reference conditions:
+Based on cycle life of 7,000 cycles to 70% EOL at reference conditions:
 - Reference Temperature: 25°C
-- Reference DOD: 100%
+- Reference DOD: 90%
 - Reference C-Rate: 0.5C charge / 0.5C discharge
 
 Actual degradation will vary based on:
@@ -799,11 +799,11 @@ OPTIONAL WARRANTY EXTENSIONS (Per MWh per Year)
 | Warranty Extension | Years | EUR/MWh/Year | Selected |
 |--------------------|-------|--------------|----------|
 | BESS Performance & Product Warranty | 6-10 | €913.92 | ☐ |
-| BESS Performance & Product Warranty | 11-15 | €1,157.62 | ☐ |
-| BESS Performance & Product Warranty | 16-20 | €3,858.75 | ☐ |
+| BESS Performance & Product Warranty | 11-15 | €4,182.25 | ☐ |
 | PCS + MVS Product Warranty | 6-10 | €747.76 | ☐ |
-| PCS Product Warranty | 11-15 | €926.10 | ☐ |
-| PCS Product Warranty | 16-20 | €2,315.25 | ☐ |
+| PCS Product Warranty | 11-15 | €1,086.20 | ☐ |
+
+**Note:** Extended warranty is available for a maximum of fifteen (15) years from COD (1 cycle per day condition). Years 16-20 warranty extension is not available from the OEM. Alternative: upfront spares package at €1,000–1,250/MWh.
 
 ───────────────────────────────────────────────────────────────
 ANNUAL FEE SUMMARY
@@ -1001,7 +1001,7 @@ EXCLUDED HOURS (Do not count as Unavailable)
 ───────────────────────────────────────────────────────────────
 
 The following shall NOT count as Unavailable Hours:
-1. Scheduled Downtime (max 48 hours/year for maintenance)
+1. Scheduled Downtime (max 240 hours / 10 days per year for maintenance)
 2. Grid unavailability or curtailment by grid operator
 3. Force Majeure events
 4. Client-caused issues or unauthorised modifications
@@ -1020,7 +1020,9 @@ AVAILABILITY LIQUIDATED DAMAGES
 | 90% to < 93% | 15% of annual Service Fee |
 | Below 90% | 20% of annual Service Fee |
 
-Maximum annual Liquidated Damages: 20% of annual Service Fee
+Maximum annual Availability Liquidated Damages: 20% of annual Service Fee
+
+**Availability LD Rate:** €30/day/MWh of unavailable capacity (per OEM confirmed rate)
 
 ───────────────────────────────────────────────────────────────
 AVAILABILITY MEASUREMENT AND REPORTING
@@ -1100,9 +1102,10 @@ Based on OEM degradation data, the following minimum SOH levels are guaranteed:
 | 7 | 81% |
 | 8 | 79% |
 | 9 | 77% |
-| 10 | 75% |
+| 10 | 79.58% |
 | 15 | 70% |
-| 20 | 60% |
+
+**Note:** OEM SOH guarantee is available for a maximum of fifteen (15) years. Year 20 SOH guarantee is not available from the OEM.
 
 **For 2 Cycles per Day Operation:**
 
@@ -1141,11 +1144,11 @@ DEGRADATION CURVE (Visual Reference)
  80% |                ●----●----●----●----●
      |                                    ●
  70% |                                      ●----●----●----●----●
-     |                                                          ●
- 60% |                                                            ●----●----●----●----●
      |
- 50% |────────────────────────────────────────────────────────────────────────────────────
-     0    2    4    6    8   10   12   14   16   18   20  Years
+     |  (OEM guarantee ends at Year 15 — no Year 16-20 coverage available)
+     |
+ 50% |────────────────────────────────────────────────────────────
+     0    2    4    6    8   10   12   14   16  Years
 
 ───────────────────────────────────────────────────────────────
 SOH MEASUREMENT PROTOCOL

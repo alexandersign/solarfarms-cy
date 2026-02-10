@@ -1,0 +1,11 @@
+# Keep Excel files local only (too large for git)
+excel/*.xlsx
+excel/*.xls
+
+# Keep processed JSON data local
+data/*.json
+
+# Keep the folder structure
+!.gitignore
+!excel/.gitkeep
+!data/.gitkeep

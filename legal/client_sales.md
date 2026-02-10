@@ -2,8 +2,8 @@ ENGINEERING, PROCUREMENT & CONSTRUCTION AGREEMENT
 Battery Energy Storage System (BESS)
 
 **Document Reference:** LCY-EPC-001
-**Version:** 2.4
-**Template Date:** January 2026
+**Version:** 2.5
+**Template Date:** February 2026
 
 ---
 
@@ -226,7 +226,7 @@ Contractor and Client are referred to individually as a “Party” and collecti
  (ii) If system shutdown is planned, BESS is charged to 30-50% SOC;
  (iii) Monitoring alerts are configured to trigger at cell voltage < 2.9V and SOC < 5%.
 10.6 Extended Warranty and Guarantees
- Any extended warranty, availability guarantee, SOH guarantee, or performance commitment applies only under a separately executed LTSA.
+ Any extended warranty, availability guarantee, SOH guarantee, or performance commitment applies only under a separately executed LTSA. The maximum extended warranty period available from the OEM is fifteen (15) years from COD, subject to 1 cycle per day operating condition.
 
 10.7 **WARRANTY RESPONSIBILITY SPLIT**
 
@@ -562,7 +562,7 @@ BATTERY CELL SPECIFICATIONS
 | Standard Charge/Discharge Rate | 0.5C |
 | Maximum Charge/Discharge Rate | 1C |
 | Energy Density | 183 Wh/kg |
-| Cycle Life | 6,000 cycles (at 25°C, 100% DOD, 0.5C/0.5C, to 80% SOH) |
+| Cycle Life | 7,000 cycles (at 25°C, 90% DOD, 0.5C/0.5C, to 70% EOL) |
 
 ───────────────────────────────────────────────────────────────
 BATTERY MANAGEMENT SYSTEM (BMS)
@@ -625,7 +625,7 @@ CLIENT ACKNOWLEDGEMENT
 The Client acknowledges:
 1. The BESS must be operated within the specified temperature and humidity ranges;
 2. Operation outside specified parameters may void the manufacturer's warranty;
-3. The cycle life specification assumes operation at 25°C, 100% DOD, 0.5C rates;
+3. The cycle life specification assumes operation at 25°C, 90% DOD, 0.5C rates;
 4. Actual cycle life may vary based on operating conditions;
 5. The Client is responsible for ensuring site conditions meet IP54 requirements.
 

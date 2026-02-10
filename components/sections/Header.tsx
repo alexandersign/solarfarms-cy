@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { NAVIGATION } from '@/lib/constants'
-import { Menu, X, Sun, Calculator } from 'lucide-react'
+import { Menu, X, Sun, Calculator, BarChart3 } from 'lucide-react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -38,11 +38,17 @@ export function Header() {
           </nav>
 
           {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/market">
+                <BarChart3 className="w-4 h-4 mr-1.5" />
+                Market
+              </Link>
+            </Button>
             <Button variant="outline" size="sm" asChild>
               <Link href="/calculator">
-                <Calculator className="w-4 h-4 mr-2" />
-                ROI Calculator
+                <Calculator className="w-4 h-4 mr-1.5" />
+                Calculator
               </Link>
             </Button>
             <Button variant="gradient" size="sm" asChild>
@@ -81,6 +87,12 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/market">
+                    <BarChart3 className="w-4 h-4 mr-2" />
+                    Market Pricing
+                  </Link>
+                </Button>
                 <Button variant="outline" size="sm" asChild>
                   <Link href="/calculator">
                     <Calculator className="w-4 h-4 mr-2" />

@@ -207,10 +207,16 @@ Adjustment requires sixty (60) days' prior notice and applies only to new uncomm
 
 ### 11. PAYMENT PRINCIPLES
 
-11.1 **Milestone Structure:**
+11.1 **Default Milestone Structure:**
 - (a) 30% Advance – within 7 days of contract effectiveness;
 - (b) 60% Pre-shipment – prior to equipment dispatch;
 - (c) 10% Commissioning – upon successful PAC.
+
+11.1A **Group Order Milestone Structure (Confirmed per Linyang RFI Feb 2026):**
+- (a) 25% Advance Payment;
+- (b) 50% Ready to Ship;
+- (c) 20% Arrival on Site;
+- (d) 5% SAT Completion (subject to 5% Performance Bond).
 
 11.2 **Payment Dependency:** Where Distributor payments depend on end-customer milestones, any delay in end-customer payment automatically extends the Distributor's deadline without penalty.
 
@@ -288,7 +294,11 @@ Adjustment requires sixty (60) days' prior notice and applies only to new uncomm
 
 16.3 **LTSA Separation:** Availability guarantees, SOH guarantees, and performance guarantees are governed exclusively by separate Long-Term Service Agreements (LTSA) with end customers.
 
-16.4 **EMS Exclusion:** No warranty for third-party EMS beyond interface compatibility.
+16.4 **Extended Warranty Cap:** The maximum extended warranty period available from the Company is fifteen (15) years from COD, subject to 1 cycle per day operating condition. Extended warranty beyond 15 years is not available. SOH guarantees confirmed: Year 5 ≥85%, Year 10 ≥79.58%, Year 15 ≥70%.
+
+16.5 **SOH Remedy Scope:** SOH warranty remedy covers replacement components only. Service fees, on-site replacement labor, and logistics costs are not included in the OEM warranty and are the Distributor's responsibility.
+
+16.6 **EMS Exclusion:** No warranty for third-party EMS beyond interface compatibility.
 
 ---
 
@@ -402,6 +412,7 @@ with coverage valid for Cyprus and naming the Distributor as additional insured 
 
 ---
 
-*Document Version: 2.0*
+*Document Version: 2.1*
 *Effective Date: November 28, 2025*
+*Updated: February 2026 — Aligned to Linyang RFI Confirmed Commitments*
 *Lighthief Cyprus Ltd*

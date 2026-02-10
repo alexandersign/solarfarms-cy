@@ -49,7 +49,7 @@ const investmentGuides = [
     ],
     featured: true,
     gated: false,
-    downloadUrl: "/guides/cyprus-solar-investment-guide-2025.html"
+    downloadUrl: "/investment-guide"
   },
   {
     title: "BESS Integration Guide 2025",
@@ -69,7 +69,7 @@ const investmentGuides = [
     ],
     featured: true,
     gated: false,
-    downloadUrl: "/guides/bess-integration-guide-2025.html"
+    downloadUrl: "/investment-guide"
   },
   {
     title: "Institutional Solar Investment Strategies",
@@ -481,8 +481,8 @@ export default function ResourcesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100" asChild>
-              <Link href="/contact">
-                Download Complete Guide
+              <Link href="/investment-guide">
+                View Investment Guide
               </Link>
             </Button>
             <Button size="lg" className="btn-outline-on-dark" asChild>

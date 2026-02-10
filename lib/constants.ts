@@ -317,6 +317,7 @@ export const NAVIGATION = {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Energy Storage", href: "/energy-storage" },
+    { name: "Market Data", href: "/market" },
     { name: "Projects", href: "/projects" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
@@ -329,6 +330,7 @@ export const NAVIGATION = {
   energyStorage: [
     { name: "BESS Solutions", href: "/energy-storage" },
     { name: "BESS ROI Calculator", href: "/energy-storage/calculator" },
+    { name: "Cyprus Market Pricing", href: "/market" },
     { name: "Linyang Systems", href: "/energy-storage#systems" },
     { name: "O&M Services", href: "/energy-storage#om-services" },
     { name: "Get BESS Quote", href: "/energy-storage#inquiry-form" },
@@ -346,8 +348,9 @@ export const NAVIGATION = {
   ],
   resources: [
     { name: "ROI Calculator", href: "/calculator" },
+    { name: "Cyprus Market Pricing", href: "/market" },
     { name: "Generate LOI", href: "/loi" },
-    { name: "Investment Guides", href: "/resources" },
+    { name: "Investment Guide", href: "/investment-guide" },
     { name: "Blog & Insights", href: "/blog" },
     { name: "Landowners", href: "/landowners" },
   ],
@@ -386,12 +389,16 @@ export const ANALYTICS_EVENTS = {
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
 } as const
 
-// Cyprus Market Defaults (2024-2025 Data) - All Editable in Calculator
+// Cyprus Market Defaults (Oct 2025 - Feb 2026 Real Market Data)
+// Source: TSOC DAM, CyprusGrid, Poullikkas (2026), Cyprus Mail
+// Wholesale MCP avg: €162.7/MWh (Oct 2025), range €0-500/MWh
+// See /market page for live charts
 export const CYPRUS_MARKET_DEFAULTS = {
-  // Revenue rates
-  daytimeSellingRate: 0.190,      // €/kWh - Average merchant rate during solar hours
-  nightDischargeRate: 0.210,      // €/kWh - Evening peak rate (19-21c typical)
+  // Revenue rates (based on actual DAM clearing prices)
+  daytimeSellingRate: 0.045,      // €/kWh - Solar hours avg (€0-45/MWh, often near zero midday)
+  nightDischargeRate: 0.230,      // €/kWh - Evening peak avg (€200-260/MWh from 18:00-21:00)
   ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
+  wholesaleAvgRate: 0.163,        // €/kWh - Overall weighted avg MCP (€162.7/MWh)
   
   // Curtailment (based on real 2024-2025 data)
   curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average

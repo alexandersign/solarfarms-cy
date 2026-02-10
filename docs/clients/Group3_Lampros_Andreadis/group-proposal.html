@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classone Solar — BESS Turnkey Proposal | Lighthief</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669}
+        body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+        .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+        .logo{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}.logo span{color:var(--accent)}
+        .tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+        .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+        h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+        h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+        h2::after{content:'';display:block}
+        h3{font-size:9.5pt;color:var(--primary);margin:10px 0 5px}
+        table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+        th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600;white-space:nowrap}
+        td{padding:5px 7px;border-bottom:1px solid var(--border)}
+        tr:nth-child(even){background:#fafbfc}
+        .r{text-align:right}.c{text-align:center}
+        .price{font-weight:700;color:var(--accent)}
+        .total-row{background:var(--primary)!important;color:#fff;font-weight:700}
+        .total-row td{border:none}
+        .sub-total{background:#edf2f7!important;font-weight:600}
+        .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 20px}
+        .metric-box{background:var(--bg);border-radius:8px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
+        .metric-box .val{font-size:18pt;font-weight:800;color:var(--primary)}
+        .metric-box .lbl{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+        .box{border:1px solid var(--border);border-radius:6px;padding:12px}
+        .box h3{margin-top:0}
+        .box ul{margin-left:16px}.box li{margin-bottom:3px}
+        .highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .savings{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+        .team-card{border:1px solid var(--border);border-radius:6px;padding:10px;font-size:8pt}
+        .team-card strong{color:var(--primary);font-size:9pt}.team-card .role{color:var(--accent);font-size:7.5pt;font-weight:600}
+        .phase{background:var(--bg);padding:6px 12px;border-left:3px solid var(--accent);margin:14px 0 6px;font-weight:600;color:var(--primary);font-size:9pt}
+        .footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+        .note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+        .print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .print-btn:hover{background:var(--accent)}
+        ul{margin-left:18px}li{margin-bottom:3px}
+        .incl{color:var(--ok)}.excl{color:#dc2626}
+        @media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}.page-break{page-break-before:always}}
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+<div class="page">
+    <div class="header">
+        <div>
+            <div class="logo">Light<span>hief</span></div>
+            <div class="tagline">Battery Energy Storage Solutions — Cyprus</div>
+        </div>
+        <div class="doc-info">
+            <div><strong>Prepared for:</strong> Classone Solar (Mr. Lampros Andreadis)</div>
+            <div><strong>Date:</strong> February 2026</div>
+            <div><strong>Valid:</strong> 30 days from issue</div>
+            <div><strong>Ref:</strong> LCY-GP-CLS-FEB2026</div>
+        </div>
+    </div>
+
+    <h1>BESS Turnkey EPC Proposal</h1>
+    <p style="color:var(--muted);font-size:8.5pt;margin-bottom:14px;">Battery Energy Storage Solution for Classone Solar Projects — Group Order Pricing</p>
+
+    <div class="metric-grid">
+        <div class="metric-box"><div class="val">2</div><div class="lbl">Projects</div></div>
+        <div class="metric-box"><div class="val">4.8 MW</div><div class="lbl">Total Power</div></div>
+        <div class="metric-box"><div class="val">15 MWh</div><div class="lbl">Total Energy</div></div>
+        <div class="metric-box"><div class="val">&euro;2.03M</div><div class="lbl">Portfolio Value</div></div>
+    </div>
+
+    <!-- ABOUT LIGHTHIEF -->
+    <h2>About Lighthief</h2>
+    <div class="two-col">
+        <div class="box">
+            <h3>Company Overview</h3>
+            <ul>
+                <li><strong>Exclusive Linyang BESS distributor</strong> for the Republic of Cyprus</li>
+                <li>Part of Lighthief European Group — Poland HQ with 150+ engineers</li>
+                <li>23-hectare research center (Czestochowa) with operational BESS test systems</li>
+                <li>3,500 m&sup2; warehouse including 950 m&sup2; dedicated Linyang spare parts</li>
+                <li>863.5 MWh total BESS portfolio across 51 parks in Cyprus</li>
+                <li>7Sun Joint Venture — renewable energy wholesale partner</li>
+                <li>Linyang: strategic shareholder in EVE Energy (cell manufacturer)</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Partnership &amp; Support</h3>
+            <ul>
+                <li>Exclusive Distribution Agreement — effective 28 November 2025 (3-year term)</li>
+                <li>24/7/365 remote diagnostics and SCADA monitoring</li>
+                <li>Critical issue response: 4 hours remote, on-site engineer within 5 business days</li>
+                <li>Minimum 2 Linyang engineering visits per year (travel covered by Linyang)</li>
+                <li>5-day initial training + quarterly webinars + annual refresher</li>
+                <li>&euro;500/day SLA credit for missed response deadlines</li>
+                <li>Dedicated commissioning team from Linyang Nanjing HQ</li>
+            </ul>
+        </div>
+    </div>
+    <div class="highlight">
+        <strong>Certifications:</strong> UL 9540A (Fire Safety — PASSED) &bull; IEC 62619 (Battery Safety) &bull; EN 50549-2 (Grid Connection) &bull; IEC 63056 &bull; UN 38.3 &bull; EN IEC 61000 (EMC) &bull; IP55 Container &bull; C5 Corrosion Rating (Coastal)
+    </div>
+
+    <!-- PORTFOLIO PRICING -->
+    <h2>Your Projects — Pricing</h2>
+    <p class="note">All prices exclude VAT (19%). No equipment cost (CIF) shown — prices are final turnkey EPC delivered. Source: Master Pricing Model (Bess - EPC System Cost v2.xlsx).</p>
+
+    <div class="phase">CLASSONE SOLAR — 2 Projects | 4.8 MW | 15 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Classone Solar Breeze</td><td class="c">Limassol</td><td class="c">1.51</td><td class="c">5</td><td class="c">1&times; 5MWh</td><td class="c">1&times; MV</td><td class="r">&euro;154.08</td><td class="r price">&euro;770,395</td></tr>
+            <tr><td>Classone Solar Garden</td><td class="c">Limassol</td><td class="c">3.29</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">1&times; MV</td><td class="r">&euro;126.21</td><td class="r price">&euro;1,262,140</td></tr>
+        </tbody>
+    </table>
+    <table>
+        <tr class="total-row"><td colspan="6" style="border:none"><strong>TOTAL — 2 Projects | 4.8 MW | 15 MWh</strong></td><td class="r" style="border:none">&euro;135.50</td><td class="r" style="border:none">&euro;2,032,535</td></tr>
+    </table>
+    <p class="note">All prices sourced from master spreadsheet (Bess - EPC System Cost v2.xlsx). Status: VERIFIED. Pricing valid for 30 days.</p>
+
+    <div class="savings">
+        <strong>Group Order LTSA Savings Opportunity:</strong> By joining the consolidated group order (47 parks, 863.5 MWh), Classone Solar benefits from reduced O&amp;M rates: <strong>&euro;1,740/MWh/year</strong> (Group) vs &euro;2,469.59/MWh/year (Standard) — a <strong>30% discount</strong> on annual maintenance costs.
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="page-break"></div>
+    <h2>Technical Solution</h2>
+    <div class="two-col">
+        <div class="box">
+            <h3>Battery Energy Storage</h3>
+            <ul>
+                <li><strong>Manufacturer:</strong> Jiangsu Linyang Energy Storage Technology (China)</li>
+                <li><strong>Model:</strong> Power Atlantic ME 5.015 MWh / ME 4.179 MWh</li>
+                <li><strong>Container:</strong> 20HC (6,058 &times; 2,438 &times; 2,896 mm)</li>
+                <li><strong>Chemistry:</strong> LFP (Lithium Iron Phosphate)</li>
+                <li><strong>Cell:</strong> EVE LF314 (314Ah)</li>
+                <li><strong>Cooling:</strong> Liquid cooling (45–60 kW)</li>
+                <li><strong>Protection:</strong> IP55 rated, C5 corrosion (coastal)</li>
+                <li><strong>Fire Suppression:</strong> Integrated, UL 9540A certified</li>
+                <li><strong>Cycle Life:</strong> 7,000 cycles (90% DOD, 0.5C, 70% EOL)</li>
+                <li><strong>Round-Trip Efficiency:</strong> ~87.8% (AC-to-AC system level)</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Power Conversion &amp; Grid</h3>
+            <ul>
+                <li><strong>PCS Manufacturer:</strong> Xiamen Kehua Digital Energy</li>
+                <li><strong>Model:</strong> BCS1250K-C-HUD (1,250 kW each)</li>
+                <li><strong>Max Efficiency:</strong> &ge;99%</li>
+                <li><strong>Power Factor:</strong> &gt;0.99</li>
+                <li><strong>THDi:</strong> &lt;3%</li>
+                <li><strong>IP Rating:</strong> IP65, C5 corrosion</li>
+                <li><strong>Grid-Forming:</strong> VSG, Black-Start, VF Mode</li>
+                <li><strong>MV Transformer:</strong> Integrated in MV Skid (oil-immersed, 99%)</li>
+                <li><strong>Switchgear:</strong> Schneider Electric RMU</li>
+                <li><strong>Communication:</strong> Modbus TCP, IEC 104, IEC 61850</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- INCLUSIONS / EXCLUSIONS -->
+    <h2>Scope — Inclusions &amp; Exclusions</h2>
+    <div class="two-col">
+        <div class="box">
+            <h3 class="incl">&#10003; Included in EPC Price</h3>
+            <ul>
+                <li>BESS Containers — Linyang Power Atlantic (LFP, liquid cooling)</li>
+                <li>Power Conversion System — Kehua BCS1250K-C-HUD</li>
+                <li>MV Transformer &amp; Switchgear (Schneider RMU)</li>
+                <li>Civil Works — concrete platforms, cable trenches, drainage</li>
+                <li>Electrical Works — MV/LV cabling, terminations, earthing grid</li>
+                <li>EMS/SCADA — Voltus Energy (local + group SCADA)</li>
+                <li>Protection Engineering — SPDs, earthing, protection relay setup</li>
+                <li>Full Commissioning &amp; Site Acceptance Testing (SAT)</li>
+                <li>DSO (EAC) Application Coordination</li>
+                <li>Import Duties (2.66%) &amp; Marine Insurance (0.75%)</li>
+                <li>CIF Delivery to Limassol Port</li>
+                <li>Inland Transport to Site</li>
+                <li>Mechanical Installation &amp; Container Placement</li>
+                <li>5-Year OEM Manufacturer Warranty</li>
+                <li>Documentation &amp; Compliance Certificates</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3 class="excl">&#10007; Excluded (Client Responsibility)</h3>
+            <ul>
+                <li>EAC Testing &amp; Inspection Fees (paid directly to EAC)</li>
+                <li>External Lightning Protection (if required by site assessment)</li>
+                <li>TSO/EDC Communication Fees</li>
+                <li>VAT (19%)</li>
+                <li>Land Preparation beyond BESS footprint</li>
+                <li>Grid Connection Upgrade (if required by DSO)</li>
+                <li>CERA Licensing Fees</li>
+                <li>Any third-party consultant fees</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- WARRANTY & LTSA -->
+    <h2>Warranty &amp; Long-Term Service Agreement (LTSA)</h2>
+    <table>
+        <thead><tr><th>Coverage</th><th>Duration</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Standard OEM Warranty</strong></td><td>5 Years</td><td>Full BESS, PCS, BMS coverage — included in EPC price</td></tr>
+            <tr><td><strong>SOH Guarantee — Year 5</strong></td><td>—</td><td>&ge; 85% State of Health (confirmed by OEM)</td></tr>
+            <tr><td><strong>SOH Guarantee — Year 10</strong></td><td>—</td><td>&ge; 79.58% State of Health (confirmed by OEM)</td></tr>
+            <tr><td><strong>SOH Guarantee — Year 15</strong></td><td>—</td><td>&ge; 70% State of Health (maximum OEM guarantee period)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>LTSA Options — Standard Rates</h3>
+    <table>
+        <thead><tr><th>Service</th><th class="r">&euro;/MWh/Year</th><th class="r">Group Rate</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>O&amp;M Maintenance</strong></td><td class="r">&euro;2,469.59</td><td class="r price">&euro;1,740</td><td>Preventive &amp; corrective maintenance, 24/7 monitoring</td></tr>
+            <tr><td>— BESS component</td><td class="r">&euro;1,157.62</td><td class="r">&euro;815.72</td><td>Battery container maintenance</td></tr>
+            <tr><td>— PCS + MVS component</td><td class="r">&euro;1,311.97</td><td class="r">&euro;924.28</td><td>Inverter, transformer, switchgear maintenance</td></tr>
+            <tr><td><strong>Extended Warranty (BESS)</strong></td><td class="r" colspan="2">&euro;913.92</td><td>Years 6–10 (OEM backed)</td></tr>
+            <tr><td><strong>Extended Warranty (PCS+MVS)</strong></td><td class="r" colspan="2">&euro;747.76</td><td>Years 6–10 (OEM backed)</td></tr>
+            <tr><td><strong>97% Availability Guarantee</strong></td><td class="r" colspan="2">&euro;2,201.73</td><td>Add-on to maintenance contract</td></tr>
+        </tbody>
+    </table>
+    <p class="note">Group Rate available when joining the consolidated group order. Extended warranty rates: Years 11–15 BESS: &euro;1,157.62/MWh/yr | PCS+MVS: &euro;926.10/MWh/yr.</p>
+
+    <!-- SERVICE TEAM -->
+    <h2>Our Service Team</h2>
+    <div class="team-grid">
+        <div class="team-card">
+            <strong>Alexander Papacosta</strong><br>
+            <span class="role">Cyprus Director &amp; Project Lead</span><br>
+            Lighthief Cyprus Ltd — Limassol<br>
+            On-site during all commissioning phases. Client liaison, DSO coordination, overall project delivery.
+        </div>
+        <div class="team-card">
+            <strong>Costas Hadjikyriacou</strong><br>
+            <span class="role">ETEK Licensed Engineer — Project Planning &amp; Sign-Off</span><br>
+            MEng Electrical &amp; Computer Engineering | MSc Energy Systems<br>
+            Licensed authority for ETEK certifications, DSO applications, grid connection approvals.
+        </div>
+        <div class="team-card">
+            <strong>Andreas Christoforou</strong><br>
+            <span class="role">Energy &amp; BESS Consultant</span><br>
+            MSc Sustainable Energy (Cardiff) | Ex-Schneider Electric &amp; ICF International<br>
+            30+ energy audits across UK/EU. Power systems specification, project tendering.
+        </div>
+        <div class="team-card">
+            <strong>Field Engineering Team (3 Senior Engineers)</strong><br>
+            <span class="role">Dawid Lesnikowski, Szymon Drozdz, Kacper Goral</span><br>
+            3+ years each at Lighthief International. Training at Poland HQ (Czestochowa).<br>
+            BESS commissioning, BMS/EMS integration, MV systems, SCADA, diagnostics.
+        </div>
+    </div>
+
+    <!-- COMMERCIAL TERMS -->
+    <h2>Commercial Terms</h2>
+    <div class="two-col">
+        <div class="box">
+            <h3>Payment Schedule</h3>
+            <table>
+                <tr><td><strong>25%</strong></td><td>Advance Payment — contract signing</td></tr>
+                <tr><td><strong>50%</strong></td><td>Ready to Ship — before shipment from factory</td></tr>
+                <tr><td><strong>20%</strong></td><td>Site Delivery — equipment arrival at site</td></tr>
+                <tr><td><strong>5%</strong></td><td>SAT Complete — after commissioning &amp; acceptance</td></tr>
+            </table>
+        </div>
+        <div class="box">
+            <h3>Delivery Timeline</h3>
+            <table>
+                <tr><td><strong>Production</strong></td><td>13 weeks</td></tr>
+                <tr><td><strong>Sea Transport</strong></td><td>7 weeks (CIF Limassol, Cyprus)</td></tr>
+                <tr><td><strong>Installation</strong></td><td>4–6 weeks per site</td></tr>
+                <tr><td><strong>Total</strong></td><td><strong>~24–26 weeks from order</strong></td></tr>
+            </table>
+            <p class="note">Incoterms: CIF Limassol, Cyprus. Governing Law: Cyprus.</p>
+        </div>
+    </div>
+
+    <!-- COMPLIANCE -->
+    <h2>Regulatory Compliance — Cyprus</h2>
+    <div class="highlight">
+        <strong>Building Permit Exemption:</strong> BESS installations within licensed RES stations are exempt from building permits per Cyprus Special Development Order 2026 (Gazette 5992/2026), provided height &le;3m (Linyang: 2.896m &#10003;), boundary setback &ge;6m, and BESS power &le; RES rated power.
+    </div>
+    <div class="two-col">
+        <div class="box">
+            <h3>DSO (EAC) Compliance</h3>
+            <ul>
+                <li>EN 50549-2 grid connection certificate — available</li>
+                <li>IEC 60870-5-104 SCADA integration — confirmed</li>
+                <li>Anti-islanding test (IEC 62116) — available</li>
+                <li>LVRT/HVRT test report — available</li>
+                <li>Protection settings: configurable per EAC requirements</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Safety &amp; Certifications</h3>
+            <ul>
+                <li>UL 9540A Fire Safety — PASSED (no thermal propagation)</li>
+                <li>IEC 62619 Battery Safety — CB Certified</li>
+                <li>UN 38.3 Transport Safety — Passed</li>
+                <li>IP55 Container Protection</li>
+                <li>C5 Corrosion Protection (coastal installations)</li>
+                <li>Integrated fire suppression system</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <h2>Contact &amp; Next Steps</h2>
+    <div class="box" style="text-align:center;padding:16px;">
+        <strong style="font-size:11pt;color:var(--primary);">Lighthief Cyprus Ltd</strong><br>
+        28 October Avenue 249, Lophitis Business Center I, Office 601<br>
+        3035 Limassol, Cyprus<br><br>
+        <table style="width:auto;margin:0 auto;text-align:left">
+            <tr><td><strong>Alexander Papacosta</strong></td><td>alexander.papacosta@lighthief.com</td><td>+357 99 164 158</td></tr>
+        </table>
+        <br>
+        <strong style="color:var(--accent)">www.lighthief.com</strong>
+    </div>
+
+    <div class="footer">
+        <p>This proposal is confidential and intended solely for Classone Solar (Mr. Lampros Andreadis).</p>
+        <p>All prices exclude VAT (19%). Prices valid for 30 days from issue date. All pricing sourced from master spreadsheet. Ref: LCY-GP-CLS-FEB2026</p>
+        <p>&copy; 2026 Lighthief Cyprus Ltd (HE 477423)</p>
+    </div>
+</div>
+</body>
+</html>

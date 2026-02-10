@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Sun, Mail, Phone, MapPin, Linkedin, Twitter } from 'lucide-react'
+import { Sun, Mail, Phone, MapPin, Linkedin, Twitter, BarChart3 } from 'lucide-react'
 import { NAVIGATION, COMPANY_DATA, SEO_CONFIG } from '@/lib/constants'
 
 export function Footer() {
@@ -82,6 +82,18 @@ export function Footer() {
                 </Link>
               ))}
             </nav>
+            
+            {/* Market Data highlight */}
+            <div className="pt-3 mt-3 border-t border-gray-700">
+              <Link
+                href="/market"
+                className="inline-flex items-center gap-2 text-sm font-medium text-cyprus-300 hover:text-solar-400 transition-colors"
+              >
+                <BarChart3 className="w-4 h-4" />
+                Cyprus Market Pricing
+              </Link>
+              <p className="text-xs text-gray-500 mt-1">Live DAM price data &amp; BESS analysis</p>
+            </div>
           </div>
 
           {/* Contact */}

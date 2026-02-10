@@ -2,8 +2,8 @@
 ## Lighthief Cyprus Ltd – BESS Operations and Warranty Compliance
 
 **Document Reference:** LCY-SVC-001
-**Version:** 1.0
-**Effective Date:** January 2025
+**Version:** 2.0
+**Effective Date:** February 2026
 **Classification:** Internal Use Only
 
 ---
@@ -198,7 +198,7 @@ Everything in Tier A & B, plus:
 | Requirement | Target |
 |-------------|--------|
 | Availability Guarantee | 97% annual |
-| Scheduled Downtime Limit | Max 48 hours/year |
+| Scheduled Downtime Limit | Max 10 days (240 hours)/year |
 | Local Spare Parts Warehouse | Maintain critical parts |
 | Availability Reporting | Monthly calculation |
 | Liquidated Damages | 5-20% fee reduction if missed |
@@ -209,7 +209,7 @@ Availability (%) = [(8,760 - Unavailable Hours) / 8,760] x 100
 ```
 
 **Excluded from Unavailable Hours:**
-- Scheduled maintenance (max 48 hrs/yr)
+- Scheduled maintenance (max 240 hrs / 10 days per yr)
 - Grid curtailment or unavailability
 - Force Majeure
 - Client-caused issues
@@ -228,13 +228,14 @@ Everything in Tier A, B & C, plus:
 | Module Replacement | Within 60 days (isolated) |
 | Cell Augmentation | Within 120 days (systemic) |
 
-**Guaranteed SOH Milestones:**
-| Year | Min SOH |
-|------|---------|
-| 5 | 90% |
-| 10 | 80% |
-| 15 | 70% |
-| 20 | 60% |
+**Guaranteed SOH Milestones (OEM Confirmed – Feb 2026 RFI):**
+| Year | Min SOH | Status |
+|------|---------|--------|
+| 5 | 85% | ✅ Confirmed |
+| 10 | 79.58% | ✅ Confirmed |
+| 15 | 70% | ✅ Confirmed |
+
+**Note:** The maximum SOH Guarantee period available from the OEM is fifteen (15) years. SOH Guarantees beyond Year 15 are not available. Values based on 1 cycle per day operation.
 
 ---
 
@@ -1318,17 +1319,17 @@ CELL SPECIFICATIONS
 | Energy per Cell | 1,004.8 Wh |
 | Standard C-Rate | 0.5C |
 | Maximum C-Rate | 1C |
-| Cycle Life | 6,000 cycles (to 80% SOH) |
+| Cycle Life | 7,000 cycles (at 25°C, 90% DOD, 0.5C/0.5C, to 70% EOL) |
 | Energy Density | 183 Wh/kg |
 | Cell Dimensions | 72 x 174 x 207.7 mm |
 | Cell Weight | 5.5 kg |
 
 **Cycle Life Conditions:**
 - Temperature: 25°C
-- Depth of Discharge: 100%
+- Depth of Discharge: 90%
 - Charge Rate: 0.5C
 - Discharge Rate: 0.5C
-- End of Life: 80% SOH
+- End of Life: 70% SOH
 
 ───────────────────────────────────────────────────────────────
 BATTERY MANAGEMENT SYSTEM (BMS)
@@ -1450,6 +1451,7 @@ SYSTEM COMPONENTS COUNT
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | January 2025 | [●] | Initial release |
+| 2.0 | February 2026 | [●] | Aligned to Linyang RFI Feb 2026 confirmed values: updated cycle life (7,000 cycles, 90% DOD, 70% EOL), SOH guarantees (Year 5: 85%, Year 10: 79.58%, 15-year max), scheduled downtime (10 days/year) |
 
 ---
 

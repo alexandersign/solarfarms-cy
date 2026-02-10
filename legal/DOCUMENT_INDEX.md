@@ -269,17 +269,17 @@ All documents include consistent Force Majeure provisions covering:
 
 | Document | Version | Last Updated | Status |
 |----------|---------|--------------|--------|
-| distribution.md | 2.0 | Jan 2026 | **Active - Signed Nov 2025** |
+| distribution.md | 2.1 | Feb 2026 | **Active - Signed Feb 2026** |
 | sales_agrement.md | 2.0 | Jan 2026 | Active |
-| client_sales.md | 2.0 | Jan 2026 | Template |
-| ClientLTSA.md | 2.0 | Jan 2026 | Template |
+| client_sales.md | 2.5 | Feb 2026 | Template - Updated to Linyang RFI |
+| ClientLTSA.md | 2.4 | Feb 2026 | Template - Updated to Linyang RFI |
 | service_management.md | 1.1 | Jan 2025 | Active |
 | employee_service_manual.md | 2.0 | Jan 2026 | Active |
 | DSO_compliance.md | 3.0 | Jan 2026 | Active |
 | regulatory_compliance_checklist.md | 3.1 | Jan 2026 | Active |
 | RFI_Linyang_compliance.md | 1.0 | Jan 2026 | Active |
 | client_compliance_memo.md | 1.0 | Jan 2026 | Template |
-| DOCUMENT_INDEX.md | 4.0 | Jan 2026 | Active |
+| DOCUMENT_INDEX.md | 5.0 | Feb 2026 | Active - Updated to Linyang RFI |
 
 ---
 
@@ -308,18 +308,35 @@ All documents include consistent Force Majeure provisions covering:
 | Major | 24 hours | 72 hours |
 | Minor | 72 hours | Next scheduled visit |
 
-### LTSA Pricing (Linyang – EUR/MWh/Year)
-| Service | Price | Notes |
-|---------|-------|-------|
+### LTSA Pricing (Linyang Confirmed – EUR/MWh/Year)
+
+**OEM Maintenance Costs (Linyang to Lighthief):**
+| Service | OEM Cost | Notes |
+|---------|----------|-------|
+| BESS Maintenance | €815.72 | Confirmed Feb 2026 RFI |
+| PCS + MVS Maintenance | €924.28 | Confirmed Feb 2026 RFI |
+| **TOTAL Tier C OEM Cost** | **€1,740.00** | **Confirmed** |
+
+**Lighthief Client-Facing Rates:**
+| Service | Client Rate | Notes |
+|---------|-------------|-------|
 | BESS Preventive + Corrective Maintenance | €1,157.62 | Includes monitoring + bi-annual servicing |
 | PCS + MVS Maintenance | €1,311.97 | Includes monitoring + bi-annual servicing |
 | 97% Availability Guarantee | €2,201.73 | Requires local team + spare parts warehouse |
-| BESS Warranty Extension (Yr 6-10) | €913.92 | Performance + Product |
-| BESS Warranty Extension (Yr 11-15) | €1,157.62 | Performance + Product |
-| BESS Warranty Extension (Yr 16-20) | €3,858.75 | Performance + Product |
-| PCS Warranty Extension (Yr 6-10) | €747.76 | Product only |
-| PCS Warranty Extension (Yr 11-15) | €926.10 | Product only |
-| PCS Warranty Extension (Yr 16-20) | €2,315.25 | Product only |
+
+**Warranty Extension (OEM Confirmed Costs):**
+| Extension | OEM Cost | Status |
+|-----------|----------|--------|
+| BESS Warranty Extension (Yr 6-10) | €913.92 | ✅ Confirmed |
+| BESS Warranty Extension (Yr 11-15) | €4,182.25 | ✅ Confirmed (was €1,157.62) |
+| BESS Warranty Extension (Yr 16-20) | N/A | ❌ Not available (15-year max) |
+| PCS Warranty Extension (Yr 6-10) | €747.76 | ✅ Confirmed |
+| PCS Warranty Extension (Yr 11-15) | €1,086.20 | ✅ Confirmed (was €926.10) |
+| PCS Warranty Extension (Yr 16-20) | N/A | ❌ Not available (15-year max) |
+
+**Alternative:** Upfront spares package at €1,000–1,250/MWh (confirmed)
+
+*Pricing last verified: February 2026 (Linyang RFI V1 Answers)*
 
 ### LTSA Tier Comparison
 | Feature | Tier A | Tier B | Tier C | Tier D |
@@ -366,13 +383,15 @@ All documents include consistent Force Majeure provisions covering:
 
 *Note: CPD = Cycles per Day, P = Power rating*
 
-### SOH Guarantee Milestones (Tier D)
-| Year | Guaranteed SOH |
-|------|---------------|
-| 5 | 90% |
-| 10 | 80% |
-| 15 | 70% |
-| 20 | 60% |
+### SOH Guarantee Milestones (Tier D) — OEM Confirmed
+| Year | OEM Guaranteed SOH | Client LTSA Guarantee | Status |
+|------|--------------------|-----------------------|--------|
+| 5 | ≥85% | 85% | ✅ Confirmed |
+| 10 | ≥79.58% | 79.58% | ✅ Confirmed |
+| 15 | ≥70% | 70% | ✅ Confirmed |
+| 20 | N/A | N/A | ❌ Not available (15-year max) |
+
+*SOH based on 1 cycle per day operation. Linyang confirmed Feb 2026.*
 
 ### Insurance Requirements
 | Party | Coverage | Minimum |
@@ -518,7 +537,7 @@ All documents include consistent Force Majeure provisions covering:
 |-----------|---------------|
 | Cell Capacity | 314 Ah |
 | Nominal Voltage | 3.2V |
-| Cycle Life | 6,000 cycles (to 80% SOH) |
+| Cycle Life | 7,000 cycles (to 70% EOL, 90% DOD) |
 | C-Rate (Standard) | 0.5C |
 | C-Rate (Maximum) | 1C |
 
