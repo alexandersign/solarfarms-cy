@@ -180,7 +180,7 @@ export default function BessProjectDashboard() {
               <p className="text-[10px] text-gray-500">Lighthief Energy — Project Timeline Dashboard</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="text-right">
               <p className="text-[10px] text-gray-500">Order Date</p>
               <p className={`text-xs font-bold ${daysToOrder <= 14 ? 'text-red-400' : daysToOrder <= 30 ? 'text-amber-400' : 'text-cyan-400'}`}>
@@ -188,6 +188,12 @@ export default function BessProjectDashboard() {
                 <span className="text-gray-500 font-normal ml-1">({daysToOrder}d)</span>
               </p>
             </div>
+            <button
+              onClick={() => router.push('/bess-project/procurement')}
+              className="text-[10px] px-3 py-1.5 rounded-lg bg-cyan-600/20 text-cyan-400 hover:bg-cyan-600/30 transition-colors border border-cyan-500/20 font-semibold"
+            >
+              RFI Tracker
+            </button>
             <button
               onClick={handleLogout}
               className="text-[10px] px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition-colors border border-gray-700"

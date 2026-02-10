@@ -76,7 +76,7 @@
 | UPS/Aux | €2,000 | ✅ Standard | Fixed | Per project |
 | SCADA/RTU | €5,000 | ✅ Standard | Fixed | Per project |
 | Docs & Compliance | €7,000 | ✅ Standard | Fixed | Per project |
-| Insurance | €7,000 | ⚠️ REVIEW | Estimate | May vary by project size |
+| Insurance | 0.75% of CIF | ✅ **VERIFIED** | Agent confirmed | Scales with project CIF value |
 | Fire & Lightning | €800 | ✅ Standard | Fixed | Per project |
 | CERA License | €0.10/kWh | ✅ Standard | CERA | Regulatory fee |
 
@@ -102,7 +102,7 @@ SCADA/RTU           = €5,000 fixed
 CERA License        = MWh × €100
 Commissioning       = €30,000 base + (MWh × €500)
 Docs & Compliance   = €7,000 fixed
-Insurance           = €7,000 fixed
+Insurance           = CIF × 0.75% (verified Feb 2026)
 Fire & Lightning    = €800 fixed
 PCC Bay Extension   = €0 (if not required)
 ```
@@ -122,7 +122,7 @@ PCC Bay Extension   = €0 (if not required)
 | Customs Broker | Import duty confirmation | HIGH | 🔴 Pending | - |
 | Local EPC | Installation labor rates | HIGH | 🔴 Pending | - |
 | ~~Transport Company~~ | ~~Inland delivery rates~~ | ~~MEDIUM~~ | ✅ **Verified** | A. Soulis |
-| Insurance Broker | Project insurance rates | MEDIUM | 🔴 Pending | - |
+| ~~Insurance Broker~~ | ~~Project insurance rates~~ | ~~MEDIUM~~ | ✅ **Verified** | Agent — 0.75% of CIF |
 | Linyang | Commissioning service fees | MEDIUM | 🔴 Pending | - |
 | A. Soulis | Quotes for other routes (Nicosia, Paphos) | LOW | 🟡 Request | - |
 

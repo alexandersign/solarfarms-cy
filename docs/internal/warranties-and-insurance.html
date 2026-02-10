@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranties &amp; Insurance — Lighthief Cyprus Ltd</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dark: #111827; --dark2: #1f2937; --gold: #f59e0b; --gold-light: rgba(245,158,11,0.12);
+            --blue: #2563eb; --blue-light: rgba(37,99,235,0.08); --green: #10b981; --green-light: rgba(16,185,129,0.1);
+            --red: #ef4444; --red-light: rgba(239,68,68,0.08); --orange: #f97316; --orange-light: rgba(249,115,22,0.08);
+            --gray50: #f9fafb; --gray100: #f3f4f6; --gray200: #e5e7eb; --gray300: #d1d5db;
+            --gray500: #6b7280; --gray700: #374151; --gray900: #111827; --white: #fff;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--gray700); background: var(--gray50); font-size: 13px; }
+        .print-controls { position: fixed; top: 20px; right: 20px; z-index: 9999; }
+        .print-btn { background: var(--dark); color: var(--white); border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+        .print-btn:hover { background: var(--gold); color: var(--dark); }
+        .page { max-width: 1000px; margin: 0 auto; background: var(--white); box-shadow: 0 0 30px rgba(0,0,0,0.08); }
+
+        /* Header */
+        .header { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); color: var(--white); padding: 35px 45px 30px; border-bottom: 4px solid var(--gold); }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+        .logo { font-size: 22px; font-weight: 800; letter-spacing: 3px; }
+        .logo span { color: var(--gold); }
+        .doc-meta { text-align: right; font-size: 10px; opacity: 0.8; }
+        .header h1 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 6px; }
+        .header h1 span { color: var(--gold); }
+        .header-sub { text-align: center; font-size: 14px; opacity: 0.85; }
+        .header-ref { text-align: center; font-size: 10px; opacity: 0.55; margin-top: 12px; }
+
+        /* Content */
+        .content { padding: 40px 45px; }
+        h2 { font-size: 20px; font-weight: 700; color: var(--dark); margin: 35px 0 6px; position: relative; padding-bottom: 10px; border-bottom: 3px solid var(--gold); }
+        h2:first-child { margin-top: 0; }
+        h3 { font-size: 15px; font-weight: 700; color: var(--dark2); margin: 22px 0 10px; }
+        h4 { font-size: 13px; font-weight: 700; color: var(--gray700); margin: 16px 0 8px; }
+        p { margin-bottom: 12px; }
+        .subtitle { color: var(--gray500); font-size: 12px; margin-bottom: 18px; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12px; }
+        th { background: var(--dark); color: var(--white); padding: 9px 12px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+        th:first-child { border-radius: 6px 0 0 0; } th:last-child { border-radius: 0 6px 0 0; }
+        td { padding: 9px 12px; border-bottom: 1px solid var(--gray100); }
+        tr:nth-child(even) td { background: var(--gray50); }
+
+        /* Badges */
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; }
+        .badge-green { background: var(--green-light); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+        .badge-red { background: var(--red-light); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+        .badge-orange { background: var(--orange-light); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+        .badge-blue { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(37,99,235,0.3); }
+
+        /* Info boxes */
+        .info-box { padding: 16px 20px; border-radius: 8px; margin: 16px 0; border-left: 5px solid; font-size: 12px; }
+        .info-blue { background: var(--blue-light); border-color: var(--blue); }
+        .info-green { background: var(--green-light); border-color: var(--green); }
+        .info-orange { background: var(--orange-light); border-color: var(--orange); }
+        .info-red { background: var(--red-light); border-color: var(--red); }
+        .info-box strong { display: block; margin-bottom: 4px; }
+        .info-box.info-blue strong { color: var(--blue); }
+        .info-box.info-green strong { color: var(--green); }
+        .info-box.info-orange strong { color: var(--orange); }
+        .info-box.info-red strong { color: var(--red); }
+
+        /* Two column */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+
+        /* Stats */
+        .stat-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin: 18px 0; }
+        .stat-card { background: var(--dark); color: var(--white); border-radius: 10px; padding: 18px 14px; text-align: center; }
+        .stat-value { font-size: 24px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+        .stat-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; opacity: 0.85; }
+
+        /* Flow chart */
+        .flow-container { margin: 20px 0; }
+        .flow-tier { border-radius: 12px; padding: 22px; margin-bottom: 0; position: relative; }
+        .flow-tier + .flow-arrow { text-align: center; padding: 8px 0; font-size: 22px; color: var(--gold); font-weight: 800; }
+        .flow-tier-dark { background: var(--dark); color: var(--white); }
+        .flow-tier-blue { background: linear-gradient(135deg, #1e3a5f, #2c5282); color: var(--white); }
+        .flow-tier-gold { background: var(--gold); color: var(--dark); }
+        .flow-tier-gray { background: var(--gray100); color: var(--dark); border: 2px solid var(--gray200); }
+        .flow-tier h4 { color: inherit; margin: 0 0 4px; font-size: 14px; }
+        .flow-tier-dark h4, .flow-tier-blue h4 { color: var(--gold); }
+        .flow-tier-gold h4 { color: var(--dark); }
+        .flow-role { font-size: 11px; opacity: 0.75; margin-bottom: 12px; }
+        .flow-items { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; font-size: 11px; }
+        .flow-items li { list-style: none; padding-left: 16px; position: relative; line-height: 1.5; }
+        .flow-items li::before { content: '\2713'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; }
+        .flow-tier-dark .flow-items li::before, .flow-tier-blue .flow-items li::before { color: var(--gold); }
+        .flow-items-red li::before { content: '\2717'; color: var(--red) !important; }
+        .flow-connector { text-align: center; padding: 6px 0; }
+        .flow-connector-line { display: inline-block; width: 3px; height: 20px; background: var(--gold); }
+        .flow-connector-label { font-size: 10px; color: var(--gray500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Insurance flow */
+        .ins-flow { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; gap: 0; align-items: center; margin: 20px 0; }
+        .ins-card { background: var(--white); border: 2px solid var(--gray200); border-radius: 10px; padding: 18px; text-align: center; }
+        .ins-card-dark { background: var(--dark); color: var(--white); border-color: var(--dark); }
+        .ins-card-blue { background: #1e3a5f; color: var(--white); border-color: #1e3a5f; }
+        .ins-card-gold { border-color: var(--gold); border-width: 3px; }
+        .ins-card h4 { margin: 0 0 10px; font-size: 13px; }
+        .ins-card-dark h4 { color: var(--gold); }
+        .ins-card-blue h4 { color: var(--gold); }
+        .ins-item { font-size: 11px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .ins-card-dark .ins-item { border-bottom-color: rgba(255,255,255,0.1); }
+        .ins-amount { font-weight: 700; color: var(--gold); }
+        .ins-arrow { text-align: center; font-size: 24px; color: var(--gold); font-weight: 800; }
+
+        /* Claim flow */
+        .claim-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 20px 0; }
+        .claim-card { border-radius: 10px; padding: 18px; border-top: 4px solid; text-align: center; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .claim-card.oem { border-top-color: var(--blue); }
+        .claim-card.epc { border-top-color: var(--gold); }
+        .claim-card.client { border-top-color: var(--orange); }
+        .claim-card.excluded { border-top-color: var(--gray300); }
+        .claim-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .claim-card.oem .claim-type { color: var(--blue); }
+        .claim-card.epc .claim-type { color: #b45309; }
+        .claim-card.client .claim-type { color: var(--orange); }
+        .claim-card.excluded .claim-type { color: var(--gray500); }
+        .claim-title { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+        .claim-desc { font-size: 10px; color: var(--gray500); line-height: 1.5; }
+        .claim-backed { font-size: 10px; font-weight: 700; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--gray200); }
+        .claim-card.oem .claim-backed { color: var(--blue); }
+        .claim-card.epc .claim-backed { color: #b45309; }
+
+        /* LEG comparison */
+        .leg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+        .leg-card { border-radius: 10px; padding: 18px; text-align: center; border: 2px solid var(--gray200); background: var(--white); }
+        .leg-card.recommended { border-color: var(--green); background: var(--green-light); }
+        .leg-name { font-size: 18px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+        .leg-card.recommended .leg-name { color: var(--green); }
+        .leg-cover { font-size: 11px; color: var(--gray500); margin-bottom: 10px; min-height: 44px; }
+        .leg-verdict { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-block; }
+        .leg-card:nth-child(1) .leg-verdict { background: var(--red-light); color: var(--red); }
+        .leg-card:nth-child(2) .leg-verdict { background: var(--orange-light); color: var(--orange); }
+        .leg-card.recommended .leg-verdict { background: rgba(16,185,129,0.2); color: var(--green); }
+
+        /* Quote block */
+        blockquote { background: var(--gray50); border-left: 4px solid var(--gray300); padding: 14px 18px; margin: 14px 0; font-style: italic; font-size: 12px; color: var(--gray700); border-radius: 0 6px 6px 0; }
+        blockquote cite { display: block; font-style: normal; font-weight: 600; margin-top: 6px; color: var(--gray500); font-size: 11px; }
+
+        .section-dark { background: var(--dark); color: var(--white); padding: 35px 45px; margin: 0 -45px; }
+        .section-dark h2 { color: var(--white); border-bottom-color: var(--gold); }
+        .section-dark h3 { color: rgba(255,255,255,0.9); }
+        .section-dark table th { background: rgba(255,255,255,0.12); color: var(--gold); }
+        .section-dark table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.88); }
+        .section-dark table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+
+        .footer { background: var(--dark); color: var(--white); padding: 25px 45px; text-align: center; font-size: 11px; opacity: 0.7; }
+        .page-break { page-break-after: always; }
+
+        @media print {
+            .print-controls { display: none !important; }
+            body { font-size: 9pt; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .page { box-shadow: none; max-width: 100%; }
+            .content { padding: 25px 30px; }
+            .section-dark { margin: 0 -30px; padding: 25px 30px; }
+        }
+        @page { size: A4; margin: 10mm; }
+    </style>
+</head>
+<body>
+
+<div class="print-controls">
+    <button class="print-btn" onclick="window.print()">Save as PDF</button>
+</div>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">LIGHT<span>HIEF</span></div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-INS-BRIEF-FEB2026</div>
+                <div><strong>Date:</strong> 10 February 2026</div>
+                <div><strong>Version:</strong> 1.0</div>
+            </div>
+        </div>
+        <h1><span>Warranties</span> &amp; Insurance</h1>
+        <div class="header-sub">BESS EPC &amp; O&amp;M Insurance Briefing — Prepared for Insurance Broker / Underwriter</div>
+        <div class="header-ref">Lighthief Cyprus Ltd &bull; HE 477423 &bull; Classification: COMMERCIAL &mdash; CONFIDENTIAL</div>
+    </div>
+
+    <div class="content">
+
+        <!-- 1. COMPANY OVERVIEW -->
+        <h2>1. Company Overview</h2>
+
+        <div class="stat-row">
+            <div class="stat-card">
+                <div class="stat-value">863.5</div>
+                <div class="stat-label">MWh Portfolio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">51</div>
+                <div class="stat-label">BESS Parks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Field Engineers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">97%</div>
+                <div class="stat-label">Availability SLA</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Monitoring</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>Business Model</h3>
+                <p>Lighthief is a <strong>dedicated BESS EPC contractor and O&amp;M service provider</strong>. The company does <strong>not manufacture</strong> any equipment. All BESS equipment is manufactured by Linyang (OEM) and installed by Linyang's factory-trained technicians.</p>
+                <table>
+                    <tr><td><strong>Entity</strong></td><td>Lighthief Cyprus Ltd (HE 477423)</td></tr>
+                    <tr><td><strong>Role</strong></td><td>EPC Contractor + O&amp;M Provider</td></tr>
+                    <tr><td><strong>OEM Partner</strong></td><td>Linyang (Exclusive Distribution, Nov 2025)</td></tr>
+                    <tr><td><strong>EU HQ</strong></td><td>Solarfun Poland (Warsaw/Czestochowa)</td></tr>
+                    <tr><td><strong>Base</strong></td><td>Limassol, Cyprus</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3>Dedicated O&amp;M Capability</h3>
+                <table>
+                    <tr><td><strong>Field Engineers</strong></td><td>5 dedicated BESS specialists</td></tr>
+                    <tr><td><strong>Monitoring</strong></td><td>24/7/365 Voltus SCADA + NOC</td></tr>
+                    <tr><td><strong>Critical Response</strong></td><td>1 hr remote, 90 min on-site</td></tr>
+                    <tr><td><strong>Shift Model</strong></td><td>2 night / 2 day / 1 float</td></tr>
+                    <tr><td><strong>Spare Parts</strong></td><td>Local Cyprus + 950 m&sup2; Poland</td></tr>
+                    <tr><td><strong>Max Travel</strong></td><td>&lt; 1 hour to any park</td></tr>
+                    <tr><td><strong>Availability SLA</strong></td><td>&ge; 97% (&le; 48 hrs downtime/park/yr)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>EPC Contract Values by Delivery Period</h3>
+        <table>
+            <tr><th>Period</th><th>Parks</th><th>MWh</th><th>EPC Contract Value (&euro;)</th><th>Cumulative (&euro;)</th><th>% of Total</th></tr>
+            <tr><td><strong>2025</strong></td><td>7</td><td>68</td><td>&euro;9,016,370</td><td>&euro;9,016,370</td><td>9.8%</td></tr>
+            <tr><td><strong>Q1 2026</strong></td><td>2</td><td>25</td><td>&euro;3,322,940</td><td>&euro;12,339,310</td><td>13.4%</td></tr>
+            <tr><td style="background:#fef3c7;font-weight:700;">Q2 2026 (PEAK)</td><td style="font-weight:700;">8</td><td style="font-weight:700;">255</td><td style="font-weight:700;">&euro;29,441,585</td><td style="font-weight:700;">&euro;41,780,895</td><td style="font-weight:700;">45.4%</td></tr>
+            <tr><td><strong>Q3 2026</strong></td><td>3</td><td>50</td><td>&euro;6,066,240</td><td>&euro;47,847,135</td><td>52.0%</td></tr>
+            <tr><td><strong>Q4 2026</strong></td><td>3</td><td>170</td><td>&euro;17,992,080</td><td>&euro;65,839,215</td><td>71.5%</td></tr>
+            <tr><td><strong>2027</strong></td><td>1</td><td>20</td><td>&euro;2,258,900</td><td>&euro;68,098,115</td><td>74.0%</td></tr>
+            <tr><td><strong>TBC</strong></td><td>18</td><td>183.5</td><td>&euro;23,935,922</td><td>&euro;92,034,037</td><td>100%</td></tr>
+            <tr style="background:var(--dark);"><td style="color:var(--white);font-weight:700;">TOTAL</td><td style="color:var(--gold);font-weight:700;">42+</td><td style="color:var(--gold);font-weight:700;">771.5+</td><td style="color:var(--gold);font-weight:700;">&euro;92,034,037</td><td colspan="2" style="color:rgba(255,255,255,0.6);font-size:10px;">Full portfolio ~&euro;104M (51 parks / 863.5 MWh)</td></tr>
+        </table>
+
+        <h3>Peak Construction Exposure</h3>
+        <div class="two-col">
+            <div>
+                <table>
+                    <tr><th>Quarter</th><th>New Value at Risk</th><th>Active Construction</th></tr>
+                    <tr><td>Q4 2025</td><td>&euro;9.0M</td><td>&euro;9.0M</td></tr>
+                    <tr><td>Q1 2026</td><td>&euro;3.3M</td><td>&euro;12.3M</td></tr>
+                    <tr style="background:#fef3c7;font-weight:700;"><td>Q2 2026</td><td>&euro;29.4M</td><td>&euro;41.8M</td></tr>
+                    <tr><td>Q3 2026</td><td>&euro;6.1M</td><td>&euro;35.0M</td></tr>
+                    <tr><td>Q4 2026</td><td>&euro;18.0M</td><td>&euro;24.1M</td></tr>
+                    <tr><td>Q1 2027</td><td>&euro;2.3M</td><td>&euro;20.3M</td></tr>
+                </table>
+            </div>
+            <div>
+                <h4>Project Size Categories</h4>
+                <table>
+                    <tr><th>Size</th><th>Count</th><th>Total Value</th></tr>
+                    <tr><td>Small (4&ndash;5 MWh)</td><td>8</td><td>~&euro;5M</td></tr>
+                    <tr><td>Medium (7.5&ndash;15 MWh)</td><td>18</td><td>~&euro;22M</td></tr>
+                    <tr><td>Large (20&ndash;40 MWh)</td><td>17</td><td>~&euro;52M</td></tr>
+                    <tr><td>Extra Large (60&ndash;100 MWh)</td><td>4</td><td>~&euro;25M</td></tr>
+                    <tr style="background:var(--dark);"><td style="color:var(--white);font-weight:700;">TOTAL</td><td style="color:var(--gold);font-weight:700;">47</td><td style="color:var(--gold);font-weight:700;">~&euro;104M</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>Equipment Values (Per Unit)</h3>
+                <table>
+                    <tr><th>Equipment</th><th>Manufacturer</th><th>Value/Unit</th></tr>
+                    <tr><td>Battery Container (5 MWh)</td><td>Linyang</td><td>~&euro;400,000</td></tr>
+                    <tr><td>MV SKID (PCS + Transformer)</td><td>Linyang/Kehua</td><td>~&euro;200&ndash;400K</td></tr>
+                    <tr><td>Cables &amp; Accessories</td><td>Various</td><td>~&euro;3M total</td></tr>
+                    <tr><td>Civil Works</td><td>Subcontracted</td><td>~&euro;3M total</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3>Site Locations</h3>
+                <table>
+                    <tr><th>District</th><th>Parks</th><th>Est. Value</th></tr>
+                    <tr><td>Nicosia</td><td>30</td><td>~&euro;70M</td></tr>
+                    <tr><td>Famagusta</td><td>7</td><td>~&euro;15M</td></tr>
+                    <tr><td>Limassol</td><td>5</td><td>~&euro;12M</td></tr>
+                    <tr><td>Paphos</td><td>3</td><td>~&euro;3M</td></tr>
+                    <tr><td>Larnaca</td><td>2</td><td>~&euro;1.5M</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>Company Information (For Underwriting)</h3>
+        <div class="two-col">
+            <div>
+                <table>
+                    <tr><td><strong>Insured Entity</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+                    <tr><td><strong>Registration</strong></td><td>HE 477423</td></tr>
+                    <tr><td><strong>TIN</strong></td><td>60187188Q</td></tr>
+                    <tr><td><strong>Current Employees</strong></td><td>5</td></tr>
+                    <tr><td><strong>Projected (12 months)</strong></td><td>10</td></tr>
+                    <tr><td><strong>Est. Gross Wages</strong></td><td>&euro;400,000&ndash;600,000</td></tr>
+                </table>
+            </div>
+            <div>
+                <h4>Risk Profile</h4>
+                <table>
+                    <tr><td>Fire risk</td><td><span class="badge badge-green">Low</span> LFP, UL9540A</td></tr>
+                    <tr><td>Installation risk</td><td><span class="badge badge-green">Low</span> OEM installs</td></tr>
+                    <tr><td>Professional risk</td><td><span class="badge badge-orange">Medium</span> EPC design</td></tr>
+                    <tr><td>Transit risk</td><td><span class="badge badge-orange">Medium</span> Heavy equip.</td></tr>
+                    <tr><td>Electrical risk</td><td><span class="badge badge-orange">Medium</span> MV/LV work</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>Portfolio (Client Names Redacted)</h3>
+        <table>
+            <tr><th>Group</th><th>Abbrev.</th><th>Parks</th><th>~MWh</th><th>Status</th></tr>
+            <tr><td>Group 1</td><td>G1</td><td>5</td><td>200</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Group 2</td><td>G2</td><td>7</td><td>172</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Group 3</td><td>G3</td><td>2</td><td>45</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Group 4</td><td>G4</td><td>4</td><td>25</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Group 5</td><td>G5</td><td>5</td><td>49</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Group 6</td><td>G6</td><td>3</td><td>15</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Other SPVs</td><td>Various</td><td>25</td><td>~357.5</td><td><span class="badge badge-orange">Pipeline</span></td></tr>
+            <tr style="background:var(--dark);"><td colspan="2" style="color:var(--white);font-weight:700;">TOTAL</td><td style="color:var(--gold);font-weight:700;">51</td><td style="color:var(--gold);font-weight:700;">~863.5</td><td></td></tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <!-- 2. GUARANTEE FLOW CHART -->
+        <h2>2. Warranty &amp; Guarantee Responsibility Flow</h2>
+        <p class="subtitle">Visual map of how warranties, guarantees, and insurance responsibilities flow through the supply chain</p>
+
+        <div class="flow-container">
+            <!-- Tier 1 -->
+            <div class="flow-tier flow-tier-dark">
+                <h4>TIER 1 &mdash; COMPONENT MANUFACTURERS</h4>
+                <div class="flow-role">Eve Energy (LFP Cells) &bull; Kehua (PCS/Inverters)</div>
+                <ul class="flow-items">
+                    <li>Eve Energy: 314Ah LFP cells, 7,000 cycle life to 70% EOL</li>
+                    <li>Kehua: BCS1250K-C PCS, EN 50549-2 certified, &ge;98% efficiency</li>
+                    <li>Linyang is a <strong>shareholder in Eve Energy</strong> &mdash; supply chain alignment</li>
+                    <li>Cell &amp; PCS warranties flow through Linyang to Lighthief to Client</li>
+                </ul>
+            </div>
+            <div class="flow-connector"><div class="flow-connector-line"></div><br><span class="flow-connector-label">Cell &amp; PCS warranties flow down</span></div>
+
+            <!-- Tier 2 -->
+            <div class="flow-tier flow-tier-blue">
+                <h4>TIER 2 &mdash; OEM / SYSTEM INTEGRATOR: LINYANG</h4>
+                <div class="flow-role">Jiangsu Linyang Energy Storage Technology Co., Ltd (Nanjing, China)</div>
+                <h4 style="font-size:12px; margin-top:10px;">Provides to Lighthief:</h4>
+                <ul class="flow-items">
+                    <li>5-year base warranty (all components)</li>
+                    <li>Extended warranty available to 15 years</li>
+                    <li>SOH guarantee: Y5 &ge;85%, Y10 &ge;79.58%, Y15 &ge;70%</li>
+                    <li>&euro;5M product liability insurance (AXA)</li>
+                    <li>&euro;2M professional indemnity insurance</li>
+                    <li>Full manufacturing defect indemnification</li>
+                    <li>~1.9% warranty reserve per year (on Linyang books)</li>
+                    <li>5% performance bond (bank guarantee)</li>
+                    <li>APG: 100% of advance payment (bank guarantee)</li>
+                    <li>Installation &amp; commissioning by factory technicians</li>
+                    <li>Technical support: 4hr critical / 24hr major / 72hr minor</li>
+                    <li>950 m&sup2; spare parts warehouse (Poland)</li>
+                </ul>
+            </div>
+            <div class="flow-connector"><div class="flow-connector-line"></div><br><span class="flow-connector-label">Distribution Agreement + Sales Agreement &bull; Manufacturing defect indemnification</span></div>
+
+            <!-- Tier 3 -->
+            <div class="flow-tier flow-tier-gold">
+                <h4>TIER 3 &mdash; EPC CONTRACTOR &amp; O&amp;M PROVIDER: LIGHTHIEF</h4>
+                <div class="flow-role" style="opacity:0.65;">Lighthief Cyprus Ltd (Limassol, Cyprus) &mdash; Exclusive Linyang Distributor</div>
+                <div class="two-col" style="gap:16px;">
+                    <div>
+                        <h4 style="font-size:12px; margin-top:4px;">Provides to Client:</h4>
+                        <ul class="flow-items" style="grid-template-columns:1fr;">
+                            <li>2-year EPC works warranty (civil, cabling, grounding)</li>
+                            <li>5-year OEM warranty pass-through (equipment)</li>
+                            <li>97% availability guarantee (Tier C LTSA)</li>
+                            <li>Availability LDs: up to 20% of service fee</li>
+                            <li>Delay LDs: 0.1&ndash;0.2%/day, capped at 10%</li>
+                            <li>5% retention until Final Acceptance</li>
+                            <li>24/7 monitoring + 5 dedicated field engineers</li>
+                            <li>Local spare parts warehouse (Cyprus)</li>
+                            <li>&euro;1M general commercial liability</li>
+                            <li>&euro;1M professional indemnity</li>
+                            <li>CAR insurance (full contract value)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size:12px; margin-top:4px; color:var(--red);">Lighthief is NOT Liable For:</h4>
+                        <ul class="flow-items flow-items-red" style="grid-template-columns:1fr;">
+                            <li>OEM manufacturing defects (Linyang liability)</li>
+                            <li>OEM design defects or firmware failures</li>
+                            <li>Battery degradation beyond OEM curve</li>
+                            <li>Third-party EMS performance</li>
+                            <li>Grid/utility failures</li>
+                            <li>Client misuse or unauthorised modifications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flow-connector"><div class="flow-connector-line"></div><br><span class="flow-connector-label">EPC Agreement + LTSA (per project)</span></div>
+
+            <!-- Tier 4 -->
+            <div class="flow-tier flow-tier-gray">
+                <h4>TIER 4 &mdash; END CLIENT (SPV)</h4>
+                <div class="flow-role">Independent project companies (Groups G1&ndash;G6 + others)</div>
+                <div class="two-col" style="gap:16px;">
+                    <div>
+                        <h4 style="font-size:12px;">Client Receives:</h4>
+                        <ul class="flow-items" style="grid-template-columns:1fr;">
+                            <li>Full turnkey BESS installation</li>
+                            <li>5-year equipment warranty (OEM via Lighthief)</li>
+                            <li>2-year EPC works warranty (Lighthief direct)</li>
+                            <li>97% availability guarantee with LDs</li>
+                            <li>Delay protection: 10% cap</li>
+                            <li>24/7 monitoring and dedicated O&amp;M team</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size:12px;">Client Is Responsible For:</h4>
+                        <ul class="flow-items" style="grid-template-columns:1fr;">
+                            <li>Operating BESS per OEM guidelines</li>
+                            <li>Maintaining site access and security</li>
+                            <li>Property/asset insurance on BESS</li>
+                            <li>Internet connectivity for monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 3. INSURANCE COVERAGE FLOW -->
+        <h2>3. Insurance Coverage Flow</h2>
+
+        <div class="ins-flow">
+            <div class="ins-card ins-card-dark">
+                <h4>LINYANG (OEM)</h4>
+                <div class="ins-item">Product Liability: <span class="ins-amount">&euro;5M</span> (AXA)</div>
+                <div class="ins-item">Professional Indemnity: <span class="ins-amount">&euro;2M</span></div>
+                <div class="ins-item">Mfg Defect: <span class="ins-amount">Full Indemnity</span></div>
+                <div class="ins-item">Warranty Reserve: <span class="ins-amount">~1.9%/yr</span></div>
+                <div style="font-size:10px;margin-top:10px;opacity:0.6;">Covers: Manufacturing defects, design flaws, OEM workmanship</div>
+            </div>
+            <div class="ins-arrow">&rarr;</div>
+            <div class="ins-card ins-card-blue ins-card-gold">
+                <h4>LIGHTHIEF (EPC / O&amp;M)</h4>
+                <div class="ins-item">General Liability: <span class="ins-amount">&euro;1M</span></div>
+                <div class="ins-item">Professional Indemnity: <span class="ins-amount">&euro;1M</span></div>
+                <div class="ins-item">CAR: <span class="ins-amount">Full Contract Value</span></div>
+                <div class="ins-item">Employer&rsquo;s Liability: <span class="ins-amount">Per Law</span></div>
+                <div class="ins-item">[Rec] Marine Cargo: <span class="ins-amount">&euro;85M</span></div>
+                <div style="font-size:10px;margin-top:10px;opacity:0.6;">Covers: EPC works, site operations, professional advice</div>
+            </div>
+            <div class="ins-arrow">&rarr;</div>
+            <div class="ins-card">
+                <h4 style="color:var(--dark);">CLIENT SPV</h4>
+                <div class="ins-item">Property/Asset: <span style="font-weight:700;color:var(--dark);">Full BESS Value</span></div>
+                <div class="ins-item">Operational Liability: <span style="font-weight:700;color:var(--dark);">From COD</span></div>
+                <div class="ins-item">Business Interruption: <span style="font-weight:700;color:var(--dark);">Recommended</span></div>
+                <div style="font-size:10px;margin-top:10px;color:var(--gray500);">Covers: Post-handover asset protection</div>
+            </div>
+        </div>
+
+        <div class="info-box info-green">
+            <strong>KEY INSURANCE IMPLICATION</strong>
+            Lighthief is indemnified by Linyang for all claims arising from manufacturing defects. Lighthief's own insurance does NOT need to cover OEM product defects &mdash; these are backed by Linyang's &euro;5M product liability (AXA) and full manufacturing defect indemnification.
+        </div>
+
+        <!-- 4. DEFECT CLAIM FLOW -->
+        <h2>4. Defect Claim Routing</h2>
+        <p class="subtitle">How different types of defects are handled and who bears responsibility</p>
+
+        <div class="claim-flow">
+            <div class="claim-card oem">
+                <div class="claim-type">OEM Equipment Defect</div>
+                <div class="claim-title">Linyang Liability</div>
+                <div class="claim-desc">Battery, PCS, BMS, cooling, fire suppression, OEM installation workmanship</div>
+                <div class="claim-backed">Backed by: &euro;5M product liability + 1.9% warranty reserve</div>
+            </div>
+            <div class="claim-card epc">
+                <div class="claim-type">EPC Works Defect</div>
+                <div class="claim-title">Lighthief Liability</div>
+                <div class="claim-desc">Civil works, foundations, cabling, grounding, auxiliary electrical, site infrastructure</div>
+                <div class="claim-backed">Backed by: &euro;1M PI + &euro;1M general liability + CAR</div>
+            </div>
+            <div class="claim-card client">
+                <div class="claim-type">Client-Caused Issue</div>
+                <div class="claim-title">Client Bears Cost</div>
+                <div class="claim-desc">Misuse, unauthorised modifications, access denial, operational non-compliance</div>
+                <div class="claim-backed" style="color:var(--orange);">Not covered by any warranty</div>
+            </div>
+            <div class="claim-card excluded">
+                <div class="claim-type">Excluded Events</div>
+                <div class="claim-title">No Warranty Applies</div>
+                <div class="claim-desc">Force Majeure, grid failures, third-party EMS, curtailment, utility issues</div>
+                <div class="claim-backed" style="color:var(--gray500);">Client property insurance may apply</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 5. CONFIRMED GUARANTEES -->
+        <h2>5. Linyang Confirmed Guarantees (RFI Feb 2026)</h2>
+
+        <h3>Confirmed &check;</h3>
+        <table>
+            <tr><th>Guarantee</th><th>Confirmed Value</th><th>Status</th></tr>
+            <tr><td>Standard Warranty</td><td>5 years from COD</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>SOH Year 5</td><td>&ge; 85%</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>SOH Year 10</td><td>&ge; 79.58%</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>SOH Year 15</td><td>&ge; 70%</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>PCS Efficiency</td><td>&ge; 98% at rated power</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>System RTE</td><td>&ge; 87% at POC (MV side)</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Product Liability Insurance</td><td>&euro;5,000,000 (AXA)</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>OEM Warranty Reserve</td><td>~1.9% of system value/year</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Advance Payment Guarantee</td><td>100% of advance, bank guarantee</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Performance Bond</td><td>5% bank guarantee</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>SOH Remedy &mdash; Augmentation</td><td>Available</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>SOH Remedy &mdash; Module Replacement</td><td>Available</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>Claim Response Time</td><td>48 hours</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+        </table>
+
+        <h3>Modified Terms</h3>
+        <table>
+            <tr><th>Item</th><th>Originally Proposed</th><th>Linyang Confirmed</th><th>Status</th></tr>
+            <tr><td>Extended Warranty Max</td><td>20 years</td><td><strong>15 years</strong> (1 cycle/day)</td><td><span class="badge badge-orange">Modified</span></td></tr>
+            <tr><td>Performance Bond</td><td>10%</td><td><strong>5%</strong></td><td><span class="badge badge-orange">Modified</span></td></tr>
+            <tr><td>Delay LD Basis</td><td>% of contract value</td><td>% of <strong>delayed goods</strong> value</td><td><span class="badge badge-orange">Modified</span></td></tr>
+            <tr><td>Availability LD Rate</td><td>&euro;50/day/MWh</td><td><strong>&euro;30/day/MWh</strong></td><td><span class="badge badge-orange">Modified</span></td></tr>
+            <tr><td>SOH Remedy Costs</td><td>Full coverage</td><td><strong>Components only</strong> &mdash; service/labour excluded</td><td><span class="badge badge-orange">Modified</span></td></tr>
+            <tr><td>Combined LD Cap</td><td>15% of contract</td><td><strong>10% of contract</strong></td><td><span class="badge badge-orange">Modified</span></td></tr>
+        </table>
+
+        <!-- 6. CLIENT REQUESTS -->
+        <h2>6. Client Requests (Legal RFI)</h2>
+        <p class="subtitle">What project investors and their financing banks asked for</p>
+        <table>
+            <tr><th>#</th><th>Client Request</th><th>Lighthief Response</th><th>Linyang Backing</th></tr>
+            <tr><td>1</td><td>Advance Payment Guarantee (100% deposit)</td><td><span class="badge badge-green">Offered</span> via Linyang bank guarantee</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+            <tr><td>2</td><td>Performance Bond (held until SAT)</td><td><span class="badge badge-green">5% retention</span> + 5% Linyang bond</td><td><span class="badge badge-green">5% bond</span></td></tr>
+            <tr><td>3</td><td>Delay Liquidated Damages</td><td><span class="badge badge-green">0.1&ndash;0.2%/day</span> capped 10%</td><td>Lighthief bears risk</td></tr>
+            <tr><td>4</td><td>Availability Warranty &ge;97%</td><td><span class="badge badge-green">Tier C LTSA</span> with LDs</td><td><span class="badge badge-green">Backed</span></td></tr>
+            <tr><td>5</td><td>SOH/Degradation Guarantee</td><td><span class="badge badge-green">Tier D LTSA</span></td><td><span class="badge badge-green">~1.9% reserve</span></td></tr>
+            <tr><td>6</td><td>Step-In Rights (Eve, Kehua)</td><td><span class="badge badge-orange">Tripartite</span> &gt;&euro;2M</td><td>&euro;5M product liability</td></tr>
+            <tr><td>7</td><td>Parent Company Backing</td><td><span class="badge badge-red">Not available</span></td><td>&mdash;</td></tr>
+            <tr><td>8</td><td>Warranty Reserve Fund (escrow)</td><td><span class="badge badge-red">Not available</span></td><td>OEM holds ~1.9% reserve</td></tr>
+            <tr><td>9</td><td>C5 Corrosion Protection</td><td><span class="badge badge-green">Standard</span> for all Cyprus</td><td><span class="badge badge-green">Included</span></td></tr>
+            <tr><td>10</td><td>Fire Safety (UL9540A, IEC 62619)</td><td><span class="badge badge-green">All certs available</span></td><td><span class="badge badge-green">Passed</span></td></tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <!-- 7. LEG3 -->
+        <h2>7. LEG3 &mdash; CAR Insurance Defects Clause</h2>
+        <p class="subtitle">Recommended defects exclusion clause for BESS construction all risks coverage</p>
+
+        <div class="leg-grid">
+            <div class="leg-card">
+                <div class="leg-name">LEG1</div>
+                <div class="leg-cover">Resultant damage to sound property only. Excludes defective item itself.</div>
+                <div class="leg-verdict">Inadequate for BESS</div>
+            </div>
+            <div class="leg-card">
+                <div class="leg-name">LEG2</div>
+                <div class="leg-cover">Resultant damage + making good, but only if defect found during construction.</div>
+                <div class="leg-verdict">Partial Cover</div>
+            </div>
+            <div class="leg-card recommended">
+                <div class="leg-name">LEG3</div>
+                <div class="leg-cover">Cost of making good defective part <strong>AND</strong> all resultant damage. Only <em>improvement</em> costs excluded.</div>
+                <div class="leg-verdict">Recommended for BESS</div>
+            </div>
+        </div>
+
+        <h3>Why LEG3 for BESS Projects</h3>
+        <table>
+            <tr><th>Scenario</th><th>LEG1</th><th>LEG2</th><th>LEG3</th></tr>
+            <tr><td>Defective cable joint causes fire damage to adjacent container</td><td><span class="badge badge-orange">Adjacent only</span></td><td><span class="badge badge-orange">If during construction</span></td><td><span class="badge badge-green">Full cover</span></td></tr>
+            <tr><td>Foundation defect causes container settlement and cable stress</td><td><span class="badge badge-orange">Adjacent only</span></td><td><span class="badge badge-orange">Limited</span></td><td><span class="badge badge-green">Full cover</span></td></tr>
+            <tr><td>MV switchgear fault during testing damages PCS</td><td><span class="badge badge-orange">PCS only</span></td><td><span class="badge badge-green">Full if during construction</span></td><td><span class="badge badge-green">Full cover</span></td></tr>
+            <tr><td>Grounding defect found at commissioning causes equipment damage</td><td><span class="badge badge-orange">Resultant only</span></td><td><span class="badge badge-green">Full cover</span></td><td><span class="badge badge-green">Full cover</span></td></tr>
+        </table>
+
+        <div class="info-box info-green">
+            <strong>RISK PROFILE SUPPORTS LEG3</strong>
+            <strong>Low fire risk:</strong> LFP battery chemistry, UL9540A certified (no propagation). <strong>OEM installation:</strong> Equipment installed by Linyang factory technicians. <strong>Dedicated O&amp;M:</strong> 5 BESS-specialist engineers, 24/7 monitoring, 97% availability SLA. <strong>Quality components:</strong> Eve Energy cells (Linyang is shareholder), Kehua PCS (EN 50549-2). <strong>C5 corrosion:</strong> Standard for all Cyprus installations.
+        </div>
+
+        <!-- 8. WARRANTY WORDING -->
+        <h2>8. Key Warranty Wording (Extracts)</h2>
+
+        <h3>OEM Base Warranty (Linyang &rarr; Lighthief, passed to Client)</h3>
+        <blockquote>
+            &ldquo;The Seller warrants that the Products supplied under this Agreement shall be free from defects in materials and workmanship under normal operating conditions for a period of five (5) years.&rdquo;
+            <cite>&mdash; Sales Agreement, Section 12.1</cite>
+        </blockquote>
+
+        <h3>No Cross-Liability</h3>
+        <blockquote>
+            &ldquo;(i) The Contractor shall NOT be liable for defects in OEM equipment or OEM installation; (ii) The OEM shall NOT be liable for defects in the Contractor&rsquo;s EPC works; (iii) Each party warrants only its own scope of work.&rdquo;
+            <cite>&mdash; EPC Agreement, Section 10.7(c)</cite>
+        </blockquote>
+
+        <h3>Manufacturing Defect Indemnification</h3>
+        <blockquote>
+            &ldquo;The Company indemnifies the Distributor against all claims arising from manufacturing defects. The Distributor is NOT liable for Product performance issues, liquidated damages, or losses attributable to manufacturing defects or software failures within the Company&rsquo;s Product stack.&rdquo;
+            <cite>&mdash; Distribution Agreement, Section 19.3</cite>
+        </blockquote>
+
+        <h3>Availability Guarantee</h3>
+        <blockquote>
+            &ldquo;The Service Provider guarantees that the BESS shall achieve a minimum annual Availability of ninety-seven percent (97%), calculated in accordance with Schedule 4.&rdquo;
+            <cite>&mdash; LTSA, Section 9.1</cite>
+        </blockquote>
+
+        <h3>SOH Guarantee &mdash; OEM Pass-Through</h3>
+        <blockquote>
+            &ldquo;The SOH Guarantee is a pass-through guarantee provided by the OEM (Linyang) and is backed by the OEM&rsquo;s warranty reserve. The Service Provider&rsquo;s obligation under this Section is to facilitate the OEM&rsquo;s warranty and ensure proper maintenance is performed.&rdquo;
+            <cite>&mdash; LTSA, Section 10.1(b)</cite>
+        </blockquote>
+
+        <!-- 9. CERTIFICATIONS -->
+        <h2>9. Equipment Certifications</h2>
+        <table>
+            <tr><th>Certification</th><th>Standard</th><th>Status</th></tr>
+            <tr><td>Battery Safety</td><td>IEC 62619</td><td><span class="badge badge-green">Certified</span></td></tr>
+            <tr><td>ESS Safety</td><td>IEC 63056</td><td><span class="badge badge-green">Certified</span></td></tr>
+            <tr><td>Grid ESS Safety</td><td>IEC 62933-5-2</td><td><span class="badge badge-blue">In Progress</span></td></tr>
+            <tr><td>Fire Safety</td><td>UL 9540A</td><td><span class="badge badge-green">PASSED &mdash; no propagation</span></td></tr>
+            <tr><td>Fire Retardant Materials</td><td>UL 94 V-0</td><td><span class="badge badge-green">Certified</span></td></tr>
+            <tr><td>Transport Safety</td><td>UN 38.3</td><td><span class="badge badge-green">Certified</span></td></tr>
+            <tr><td>Grid Connection</td><td>EN 50549-2</td><td><span class="badge badge-green">Kehua PCS Certified</span></td></tr>
+            <tr><td>EMC</td><td>IEC 61000-6-2/6-4</td><td><span class="badge badge-green">Certified</span></td></tr>
+        </table>
+
+        <!-- 10. INSURANCE COVERAGE REQUEST -->
+        <div class="page-break"></div>
+        <h2>10. Insurance Coverage Request &mdash; For Broker Quotation</h2>
+
+        <h3>All Insurance Lines Required</h3>
+        <table>
+            <tr><th>#</th><th>Insurance Type</th><th>Limit Required</th><th>Priority</th><th>Est. Annual Premium</th></tr>
+            <tr><td>1</td><td>Employers&rsquo; Liability</td><td>Statutory (Law 174/1989)</td><td><span class="badge badge-red">MANDATORY</span></td><td>&euro;1,500&ndash;3,000</td></tr>
+            <tr><td>2</td><td>Public Liability</td><td>&euro;5M occ. / &euro;10M agg.</td><td><span class="badge badge-red">HIGH</span></td><td>&euro;5,000&ndash;15,000</td></tr>
+            <tr><td>3</td><td>Professional Indemnity</td><td>&euro;2M claim / &euro;5M agg.</td><td><span class="badge badge-red">HIGH</span></td><td>&euro;10,000&ndash;25,000</td></tr>
+            <tr><td>4</td><td>D&amp;O + Legal Protection</td><td>&euro;2M + defence costs</td><td><span class="badge badge-red">HIGH</span></td><td>&euro;5,000&ndash;12,000</td></tr>
+            <tr style="background:var(--gold-light);font-weight:700;"><td>5</td><td>CAR/EAR (with LEG3)</td><td>&euro;50M project / &euro;104M agg.</td><td><span class="badge badge-red">HIGH</span></td><td>&euro;150,000&ndash;300,000</td></tr>
+            <tr><td>6</td><td>Marine Cargo</td><td>&euro;85M annual shipments</td><td><span class="badge badge-red">HIGH</span></td><td>&euro;60,000&ndash;120,000</td></tr>
+            <tr><td>7</td><td>Cyber Liability</td><td>&euro;500K</td><td><span class="badge badge-orange">MEDIUM</span></td><td>&euro;2,000&ndash;5,000</td></tr>
+            <tr><td>8</td><td>Product Liability</td><td>&euro;5M</td><td><span class="badge badge-orange">MEDIUM</span></td><td>&euro;5,000&ndash;10,000</td></tr>
+            <tr><td>9</td><td>Legal Expenses</td><td>&euro;250K</td><td><span class="badge badge-orange">MEDIUM</span></td><td>&euro;2,000&ndash;4,000</td></tr>
+            <tr style="background:var(--dark);"><td></td><td style="color:var(--white);font-weight:700;">TOTAL ESTIMATE</td><td></td><td></td><td style="color:var(--gold);font-weight:700;">&euro;240,000&ndash;490,000</td></tr>
+        </table>
+
+        <h3>CAR/EAR &mdash; Recommended Structure</h3>
+        <div class="two-col">
+            <div>
+                <table>
+                    <tr><td><strong>Structure</strong></td><td>Single Annual Policy, Declaration Basis</td></tr>
+                    <tr><td><strong>Sum Insured (Any One Project)</strong></td><td style="font-weight:700;color:var(--dark);">&euro;50,000,000</td></tr>
+                    <tr><td><strong>Aggregate Limit</strong></td><td style="font-weight:700;color:var(--dark);">&euro;104,000,000</td></tr>
+                    <tr><td><strong>Period</strong></td><td>1 March 2026 &ndash; 28 February 2027</td></tr>
+                    <tr><td><strong>Extended to</strong></td><td>28 February 2028 (2027 projects)</td></tr>
+                    <tr><td><strong>Defects Clause</strong></td><td style="font-weight:700;color:var(--green);">LEG3/06</td></tr>
+                    <tr><td><strong>Peak Exposure</strong></td><td style="font-weight:700;">&euro;41.8M (Q2 2026)</td></tr>
+                </table>
+            </div>
+            <div>
+                <h4>Marine Cargo Timeline</h4>
+                <table>
+                    <tr><th>Delivery</th><th>Shipping</th><th>Value</th></tr>
+                    <tr><td>Q2 2026</td><td>Q4 2025&ndash;Q1 2026</td><td>&euro;29.4M</td></tr>
+                    <tr><td>Q3&ndash;Q4 2026</td><td>Q1&ndash;Q2 2026</td><td>&euro;24.1M</td></tr>
+                    <tr><td>2027</td><td>Q3&ndash;Q4 2026</td><td>&euro;2.3M</td></tr>
+                    <tr><td>TBC</td><td>TBC</td><td>&euro;23.9M</td></tr>
+                </table>
+                <p style="font-size:10px;color:var(--gray500);">Route: Shanghai/Ningbo &rarr; Limassol. Cargo: BESS containers (~43t each), MV equipment, cables.</p>
+            </div>
+        </div>
+
+        <h3>Special CAR/EAR Conditions</h3>
+        <div class="info-box info-orange">
+            <strong>BESS-SPECIFIC REQUIREMENTS</strong>
+            <ul style="margin:8px 0 0 18px;font-size:11px;line-height:1.8;">
+                <li>Lithium Iron Phosphate (LFP) battery-specific coverage required</li>
+                <li>Fire and explosion coverage for battery thermal events</li>
+                <li>No exclusion for electrical/mechanical breakdown during testing</li>
+                <li>Coverage for DSO-mandated testing requirements</li>
+                <li>Sub-contractor coverage included</li>
+                <li>Lighthief named as insured; clients as additional insured where required</li>
+                <li><strong>LEG3/06 defects clause</strong> (see Section 7)</li>
+            </ul>
+        </div>
+
+        <h3>Pricing Template &mdash; Please Complete</h3>
+        <table>
+            <tr><th>Insurance Type</th><th>Limit</th><th>Premium (&euro;)</th><th>Deductible (&euro;)</th><th>Insurer</th></tr>
+            <tr><td>Employers&rsquo; Liability</td><td>Statutory</td><td style="background:#fffde7;border:1px dashed #f59e0b;min-width:80px;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>Public Liability</td><td>&euro;10M</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>Professional Indemnity</td><td>&euro;5M</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>D&amp;O + Legal Protection</td><td>&euro;2M + defence</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td><strong>CAR/EAR (LEG3)</strong></td><td>&euro;104M</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>Marine Cargo</td><td>&euro;85M</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>Cyber Liability</td><td>&euro;500K</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>Product Liability</td><td>&euro;5M</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr><td>Legal Expenses</td><td>&euro;250K</td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td><td style="background:#fffde7;border:1px dashed #f59e0b;"></td></tr>
+            <tr style="background:var(--dark);"><td style="color:var(--white);font-weight:700;">TOTAL</td><td></td><td style="background:#fffde7;border:2px solid #f59e0b;font-weight:700;"></td><td></td><td></td></tr>
+        </table>
+        <p style="font-size:11px;color:var(--gray500);margin-top:6px;">Package discount available? &square; Yes &mdash; ___% &nbsp;&nbsp; &square; No</p>
+
+        <h3>Requested Quote Packages</h3>
+        <div class="three-col">
+            <div class="info-box" style="border-color:var(--gray300);background:var(--gray50);">
+                <strong style="color:var(--dark);">Package A: Minimum</strong>
+                <ul style="margin:8px 0 0 16px;font-size:11px;line-height:1.8;">
+                    <li>General Liability: &euro;1M</li>
+                    <li>Professional Indemnity: &euro;1M</li>
+                    <li>CAR (LEG3): &euro;5M agg.</li>
+                    <li>Employer&rsquo;s Liability: Statutory</li>
+                </ul>
+            </div>
+            <div class="info-box info-blue">
+                <strong>Package B: Recommended</strong>
+                <ul style="margin:8px 0 0 16px;font-size:11px;line-height:1.8;">
+                    <li>All Package A, PLUS:</li>
+                    <li>Goods in Transit: &euro;2M</li>
+                    <li>D&amp;O + Legal: &euro;2M</li>
+                    <li>Cyber: &euro;500K</li>
+                    <li>Marine Cargo: &euro;85M</li>
+                </ul>
+            </div>
+            <div class="info-box info-green">
+                <strong>Package C: Enhanced</strong>
+                <ul style="margin:8px 0 0 16px;font-size:11px;line-height:1.8;">
+                    <li>All Package B, increased:</li>
+                    <li>General Liability: &euro;2M</li>
+                    <li>Professional Indemnity: &euro;2M</li>
+                    <li>CAR (LEG3): &euro;50M/&euro;104M</li>
+                    <li>Product Liability: &euro;5M</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Documents Available for Underwriting</h3>
+        <div class="two-col">
+            <div>
+                <table>
+                    <tr><td>&square;</td><td>Distribution Agreement with Linyang</td></tr>
+                    <tr><td>&square;</td><td>Sales Agreement template</td></tr>
+                    <tr><td>&square;</td><td>EPC Agreement template</td></tr>
+                    <tr><td>&square;</td><td>LTSA template</td></tr>
+                    <tr><td>&square;</td><td>Product certifications (UL9540A, IEC 62619)</td></tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr><td>&square;</td><td>Company registration documents</td></tr>
+                    <tr><td>&square;</td><td>Project portfolio &amp; delivery timeline</td></tr>
+                    <tr><td>&square;</td><td>Financial statements</td></tr>
+                    <tr><td>&square;</td><td>O&amp;M Workflow Plan (SOPs, shifts)</td></tr>
+                    <tr><td>&square;</td><td>Service Team Profile (qualifications)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>Response Timeline</h3>
+        <table>
+            <tr><th>Milestone</th><th>Date</th></tr>
+            <tr><td>Document Issued</td><td>10 February 2026</td></tr>
+            <tr><td>Broker Questions Due</td><td>17 February 2026</td></tr>
+            <tr><td><strong>Proposals Due</strong></td><td><strong>24 February 2026</strong></td></tr>
+            <tr><td>Broker/Insurer Selection</td><td>28 February 2026</td></tr>
+            <tr><td>Policy Inception</td><td>1 March 2026</td></tr>
+        </table>
+
+    </div><!-- /content -->
+
+    <div class="footer">
+        <p>LCY-INS-BRIEF-FEB2026 &bull; Warranties &amp; Insurance &bull; Lighthief Cyprus Ltd</p>
+        <p>28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+        <p>Contact: alexander.papacosta@lighthief.com &bull; Classification: COMMERCIAL &mdash; CONFIDENTIAL</p>
+    </div>
+
+</div><!-- /page -->
+
+<script>
+    window.addEventListener('beforeprint', () => document.body.classList.add('printing'));
+    window.addEventListener('afterprint', () => document.body.classList.remove('printing'));
+</script>
+
+</body>
+</html>

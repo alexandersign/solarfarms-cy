@@ -115,7 +115,7 @@
 |---|---|---|
 | Payment Terms (OEM) | Linyang confirmed 25/50/20/5 | Lighthief wants 30/60/10 — **not aligned**. Also, original quote was 30/70 (100% pre-delivery) |
 | Client Revenue Pricing | Calculated in spreadsheet | Dino Price/MWh and Target Price/MWh exist but no signed client agreements |
-| Insurance | Estimated at 0.75% | No insurance quote obtained. Product liability (Linyang: €5M AXA) confirmed but EPC/CAR insurance not sourced |
+| ~~Insurance~~ | ✅ **VERIFIED** — 0.75% of CIF | Agent confirmed premium 0.75% of CIF totals (Feb 2026). Formulas updated in spreadsheet for all 51 parks. Product liability (Linyang: €5M AXA) also confirmed |
 
 ### 🔴 NOT READY
 | Item | Status | Action Required |
@@ -150,7 +150,7 @@
 | AJ-AK | Cement Platforms, Drainage | ❌ Empty | **Not costed — civil works gap** |
 | AL | Commissioning | ❌ All zeros (47 rows) | **Not costed — critical EPC deliverable** |
 | AM | Docs & Compliance | ❌ Empty | **Not costed** |
-| AN | Insurance | ❌ Empty | **Not costed** |
+| AN | Insurance | ✅ **VERIFIED** — 0.75% of CIF | Formulas added for all 51 parks. Agent confirmed Feb 2026 |
 | AO | PCC Bay Extension | ❌ All zeros (47 rows) | **Not costed — required for grid connection** |
 
 ### Verify Sheet (23-item Checklist)
@@ -211,7 +211,7 @@
 | 6 | **Submit grid connection applications to EAC** (per park) | 🔴 HIGH | **Can now proceed** — EN 50549-2 cert available. Long lead time, start immediately |
 | 7 | **Issue RFPs to local Cyprus contractors** (civil, mech, elec) | 🔴 HIGH | 12+ cost columns in spreadsheet are empty — all local EPC works uncosted |
 | 8 | **Confirm Voltus BoM and scope boundary** (new RFI sent) | 🟡 HIGH | WAGO hardware scope unclear. What does Lighthief procure? Response due 21 Feb |
-| 9 | **Obtain insurance quotes** (CAR, product liability, EPC PI) | 🟡 MEDIUM | Not costed in spreadsheet. Required for EPC contracts |
+| 9 | ~~**Obtain insurance quotes** (CAR, product liability, EPC PI)~~ | ✅ DONE | **Verified** — Agent confirmed 0.75% of CIF. Spreadsheet updated. Product liability confirmed (Linyang €5M AXA) |
 | 10 | **Draft and issue client EPC contracts** | 🟡 MEDIUM | Pricing exists but no contract templates. Needs OEM terms resolved first |
 
 ---
