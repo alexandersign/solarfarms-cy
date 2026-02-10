@@ -12,7 +12,7 @@ import {
   Lock, 
   FileCheck, 
   Building2, 
-  Handshake, 
+  Users, 
   ArrowRight,
   AlertTriangle,
   TrendingUp,
@@ -281,7 +281,7 @@ export default function BESSBankabilityArticle() {
 
                 <div>
                   <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <Handshake className="w-6 h-6 text-emerald-600 mr-2" />
+                    <Users className="w-6 h-6 text-emerald-600 mr-2" />
                     The Exclusive Distribution Agreement
                   </h3>
                   <p className="text-gray-700 mb-4">
@@ -544,7 +544,7 @@ export default function BESSBankabilityArticle() {
                 <div className="space-y-4">
                   <div className="bg-white rounded-lg p-5">
                     <h4 className="font-semibold text-lg mb-2 flex items-center">
-                      <Handshake className="w-5 h-5 text-purple-600 mr-2" />
+                      <Users className="w-5 h-5 text-purple-600 mr-2" />
                       Complete Technology Ecosystem
                     </h4>
                     <p className="text-gray-700 text-sm">
