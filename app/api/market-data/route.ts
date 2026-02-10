@@ -38,7 +38,7 @@ export async function GET(request: Request) {
     
     if (useDemo) {
       const demoData = generateDemoData()
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line no-unused-vars
       const { records, ...summary } = demoData
       
       switch (view) {

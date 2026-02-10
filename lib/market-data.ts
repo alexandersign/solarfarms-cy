@@ -112,7 +112,7 @@ export function getMarketDataSummary(): MarketDataSummary | null {
   const data = getMarketDataFull()
   if (!data) return null
   
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   const { records, ...summary } = data
   return summary
 }
