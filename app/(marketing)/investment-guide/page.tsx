@@ -663,15 +663,15 @@ export default function InvestmentGuidePage() {
                 <MiniStat icon={<Sun className="w-4 h-4" />} label="Capacity" value="2.64 MW" />
                 <MiniStat icon={<Battery className="w-4 h-4" />} label="BESS" value="10.56 MWh" />
                 <MiniStat icon={<Euro className="w-4 h-4" />} label="Investment" value="€4.24M" />
-                <MiniStat icon={<TrendingUp className="w-4 h-4" />} label="Leveraged IRR" value="~35%" />
+                <MiniStat icon={<TrendingUp className="w-4 h-4" />} label="Leveraged IRR" value="~30%" />
               </div>
 
               <ul className="space-y-1 text-gray-700 text-sm">
                 <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Integrated 10.56 MWh BESS &mdash; 4-hour duration (€127k/MWh)</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Bifacial PV modules &mdash; 2,100 kWh/kWp yield</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Bifacial TopCon modules &mdash; 1,800 kWh/kWp yield</li>
                 <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Zero curtailment risk with battery arbitrage</li>
                 <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Single operator: Lighthief EPC + O&M</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Annual revenue estimated at €1.23M</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Annual revenue estimated at €1.05M</li>
               </ul>
             </div>
 
@@ -764,7 +764,7 @@ export default function InvestmentGuidePage() {
             <h3 className="text-xl font-semibold text-gray-800 mb-4">8.1 Energy Production</h3>
             <ul className="text-gray-700 space-y-1 mb-6 list-disc pl-6">
               <li><strong>Capacity Factor:</strong> 20&ndash;22% (Cyprus average)</li>
-              <li><strong>Annual Yield:</strong> 1,650&ndash;2,100 kWh/kWp</li>
+              <li><strong>Annual Yield:</strong> 1,650&ndash;1,850 kWh/kWp (monofacial to bifacial TopCon)</li>
               <li><strong>Degradation:</strong> 0.5% per year (Tier-1 panels)</li>
               <li><strong>System Availability:</strong> 99%</li>
             </ul>

@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Agios Theodoros Solar Park with BESS | 2.64 MWp RTB Investment | SolarFarms.cy',
-  description: 'Ready-to-build 2.64 MWp solar park with 10.56 MWh battery storage in Larnaca. Leveraged equity IRR 35%+. Equity participation from 25%. Target Q4 2026.',
+  description: 'Ready-to-build 2.64 MWp bifacial TopCon solar park with 10.56 MWh BESS in Larnaca. Leveraged equity IRR ~30%. Equity participation from 25%. Target Q4 2026.',
   keywords: [
     'Agios Theodoros solar park',
     'Cyprus solar investment',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Agios Theodoros Solar Park with Battery Storage | RTB Investment',
-    description: 'Ready-to-build 2.64 MWp solar + 10.56 MWh BESS. Leveraged IRR 35%+. Target Q4 2026.',
+    description: 'Ready-to-build 2.64 MWp bifacial TopCon solar + 10.56 MWh BESS. Leveraged IRR ~30%. Target Q4 2026.',
     type: 'website',
   }
 }
@@ -98,12 +98,12 @@ export default function AgiosTheodorosProjectPage() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-6 h-6 text-solar-300 mx-auto mb-2" />
-                <div className="text-2xl font-bold">35%+</div>
+                <div className="text-2xl font-bold">~30%</div>
                 <div className="text-sm text-white/70">Leveraged IRR</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Euro className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold">€1.23M</div>
+                <div className="text-2xl font-bold">€1.05M</div>
                 <div className="text-sm text-white/70">Annual Revenue</div>
               </div>
             </div>
@@ -133,15 +133,15 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Technology</div>
-                    <div className="text-xl font-bold text-gray-900">Bifacial PV</div>
+                    <div className="text-xl font-bold text-gray-900">Bifacial TopCon</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Mounting</div>
-                    <div className="text-xl font-bold text-gray-900">Fixed Tilt</div>
+                    <div className="text-xl font-bold text-gray-900">Fixed Tilt South</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Specific Yield</div>
-                    <div className="text-xl font-bold text-gray-900">2,100 kWh/kWp</div>
+                    <div className="text-xl font-bold text-gray-900">1,800 kWh/kWp</div>
                   </div>
                 </div>
                 <div className="bg-solar-50 rounded-lg p-4 border border-solar-200">
@@ -149,7 +149,7 @@ export default function AgiosTheodorosProjectPage() {
                     <Zap className="w-5 h-5 text-solar-600" />
                     <span className="font-semibold text-solar-800">Annual Generation</span>
                   </div>
-                  <div className="text-3xl font-bold text-solar-700">5.54 GWh</div>
+                  <div className="text-3xl font-bold text-solar-700">4.75 GWh</div>
                   <div className="text-sm text-solar-600">Estimated annual production</div>
                 </div>
               </CardContent>
@@ -309,7 +309,7 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Annual Revenue</span>
-                    <span className="font-semibold text-green-600">~€1.23M</span>
+                    <span className="font-semibold text-green-600">~€1.05M</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Annual OPEX</span>
@@ -321,13 +321,13 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Net Cash Flow</span>
-                    <span className="font-semibold text-green-600">~€1.13M/yr</span>
+                    <span className="font-semibold text-green-600">~€950K/yr</span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-solar-500 to-solar-600 rounded-lg p-4 mt-4 text-white">
                   <div className="text-center">
                     <div className="text-sm opacity-90">Leveraged Equity IRR</div>
-                    <div className="text-3xl font-bold">High 30% Range</div>
+                    <div className="text-3xl font-bold">~30% Range</div>
                   </div>
                 </div>
               </CardContent>
@@ -350,10 +350,10 @@ export default function AgiosTheodorosProjectPage() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { percent: 25, equity: '€410k', revenue: '~€283k/yr' },
-              { percent: 50, equity: '€825k', revenue: '~€565k/yr' },
-              { percent: 75, equity: '€1.24M', revenue: '~€848k/yr' },
-              { percent: 100, equity: '€1.65M', revenue: '~€1.13M/yr', featured: true },
+              { percent: 25, equity: '€410k', revenue: '~€238k/yr' },
+              { percent: 50, equity: '€825k', revenue: '~€475k/yr' },
+              { percent: 75, equity: '€1.24M', revenue: '~€713k/yr' },
+              { percent: 100, equity: '€1.65M', revenue: '~€950k/yr', featured: true },
             ].map((option) => (
               <Card 
                 key={option.percent} 
@@ -417,12 +417,12 @@ export default function AgiosTheodorosProjectPage() {
               {
                 icon: Sun,
                 title: 'Premium Technology',
-                description: 'High-yield bifacial PV modules delivering 2,100 kWh/kWp specific yield.'
+                description: 'Bifacial TopCon PV modules, south-facing fixed-tilt, delivering 1,800 kWh/kWp specific yield.'
               },
               {
                 icon: TrendingUp,
                 title: 'Strong Returns',
-                description: 'Leveraged equity IRR in the high 30% range with conservative assumptions.'
+                description: 'Leveraged equity IRR in the ~30% range with conservative assumptions.'
               },
               {
                 icon: Users,

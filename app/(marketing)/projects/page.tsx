@@ -35,17 +35,17 @@ const projects = [
     location: "Agios Theodoros, Larnaca District",
     capacity: 2.64,
     investment: 4240000,
-    roi: 35,
-    annualRevenue: 1230000,
+    roi: 30,
+    annualRevenue: 1050000,
     status: "Ready to Build",
     statusColor: "green",
     completionDate: "Target Q4 2026",
     image: "/images/solar-farm-aerial-unsplash.jpg",
     highlights: [
       "Integrated 10.56 MWh BESS - 4-hour duration (€127k/MWh)",
-      "Bifacial PV modules - 2,100 kWh/kWp yield",
+      "Bifacial TopCon modules - 1,800 kWh/kWp yield",
       "Zero curtailment risk with battery arbitrage",
-      "Leveraged equity IRR: high 30% range",
+      "Leveraged equity IRR: ~30% range",
       "Single operator: Lighthief EPC + O&M"
     ],
     testimonial: {
@@ -132,7 +132,7 @@ export default function ProjectsPage() {
                 <div className="text-sm text-gray-600">Investment Value</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">35%+</div>
+                <div className="text-3xl font-bold gradient-text">~30%</div>
                 <div className="text-sm text-gray-600">Top Leveraged IRR</div>
               </div>
               <div className="text-center">
@@ -356,7 +356,7 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Leveraged IRR</span>
-                    <span className="font-semibold text-green-600">35%+</span>
+                    <span className="font-semibold text-green-600">~30%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Annual Revenue</span>
