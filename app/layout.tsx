@@ -24,8 +24,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://solarfarms.cy'),
-  title: 'SolarFarms.cy - Premium Cyprus Solar Investment Platform',
-  description: 'Invest in Cyprus solar farms with 15-20% ROI. Premium returns in Europe\'s sunniest climate with Lighthief Cyprus.',
+  title: 'SolarFarms.cy — Cyprus Solar & BESS Investment Platform',
+  description: 'Invest in Cyprus solar farms and BESS with 8-12% equity IRR. Turnkey EPC, O&M, and bankable energy storage by Lighthief.',
   keywords: ['Cyprus solar investment', 'solar farm ROI', 'renewable energy investment', 'solar PV Cyprus'],
   authors: [{ name: 'Lighthief Cyprus' }],
   creator: 'Lighthief Cyprus',
@@ -36,21 +36,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://solarfarms.cy',
     siteName: 'SolarFarms.cy',
-    title: 'SolarFarms.cy - Premium Cyprus Solar Investment Platform',
-    description: 'Invest in Cyprus solar farms with 15-20% ROI. Premium returns in Europe\'s sunniest climate.',
+    title: 'SolarFarms.cy — Cyprus Solar & BESS Investment Platform',
+    description: 'Invest in Cyprus solar farms and BESS with 8-12% equity IRR. Turnkey EPC, O&M, and bankable energy storage.',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'SolarFarms.cy - Cyprus Solar Farm Investment Platform | PV Solar Panels',
+        alt: 'SolarFarms.cy — Cyprus Solar & BESS Investment Platform',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SolarFarms.cy - Premium Cyprus Solar Investment Platform',
-    description: 'Invest in Cyprus solar farms with 15-20% ROI. Premium returns in Europe\'s sunniest climate.',
+    title: 'SolarFarms.cy — Cyprus Solar & BESS Investment Platform',
+    description: 'Invest in Cyprus solar farms and BESS with 8-12% equity IRR. Turnkey EPC, O&M, and bankable energy storage.',
     images: ['/images/twitter-image.jpg'],
   },
 }

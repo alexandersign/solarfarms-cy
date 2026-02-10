@@ -26,7 +26,7 @@ const testimonials = [
     rating: 5,
     text: "After researching solar investments across Southern Europe, Cyprus stood out. Lighthief's team provided exceptional due diligence on my 2MW acquisition. The ROI has exceeded projections despite curtailment challenges.",
     investment: "€2.4M Investment",
-    highlight: "18% Year 1 ROI"
+    highlight: "Exceeded Projections"
   },
   {
     id: 2,
@@ -62,8 +62,8 @@ const trustSignals = [
   },
   {
     icon: Award,
-    title: "Official Linyang Partner",
-    description: "Cyprus BESS distributor"
+    title: "Official Tier-1 BESS Partner",
+    description: "Cyprus distributor & O&M"
   },
   {
     icon: Building2,
@@ -78,7 +78,7 @@ const trustSignals = [
 ]
 
 const partners = [
-  { name: "Linyang", description: "BESS Systems" },
+  { name: "Tier-1 BESS OEM", description: "BESS Systems" },
   { name: "EAC", description: "Grid Connection" },
   { name: "Bank of Cyprus", description: "Project Financing" },
   { name: "PWC Cyprus", description: "Tax Advisory" },
