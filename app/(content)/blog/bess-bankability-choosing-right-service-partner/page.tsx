@@ -57,6 +57,9 @@ export default function BESSBankabilityArticle() {
                 Why Choosing the Right Service Partner Makes or Breaks Your Investment
               </span>
             </h1>
+            <p className="text-2xl font-semibold text-cyprus-700 italic mb-4">
+              "Lighthief &amp; Linyang — Leading the Way for Lenders in Cyprus"
+            </p>
             <p className="text-xl text-gray-600 mb-6">
               In BESS project finance, bankability is everything. Lenders don't just evaluate the technology — they
               scrutinise the entire value chain behind it. From OEM pedigree to insurance coverage, the service partner
@@ -901,6 +904,9 @@ export default function BESSBankabilityArticle() {
 
             {/* Call to Action */}
             <div className="bg-gradient-to-r from-cyprus-600 to-solar-600 rounded-2xl p-8 text-white text-center">
+              <p className="text-2xl font-semibold italic mb-4 opacity-90">
+                "Lighthief &amp; Linyang — Leading the Way for Lenders in Cyprus"
+              </p>
               <h2 className="text-3xl font-heading font-bold mb-4">
                 Ready to Build a Bankable BESS Project?
               </h2>
