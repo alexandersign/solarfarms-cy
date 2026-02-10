@@ -315,7 +315,7 @@ export default function BESSBankabilityArticle() {
                       </div>
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span><strong>Product liability insurance: €5,000,000</strong> (AXA) maintained by Linyang</span>
+                        <span><strong>Comprehensive product liability insurance</strong> maintained by Linyang with a global Tier-1 insurer</span>
                       </div>
                     </div>
                   </div>
@@ -349,21 +349,68 @@ export default function BESSBankabilityArticle() {
               </div>
             </div>
 
-            {/* Section 4: Insurance Makes BESS Bankable */}
+            {/* Section 4: Insurance & Warranty Flow */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">
-                How Insurance Backs Lighthief — and Makes Your BESS Asset Bankable
+                How Insurance and Warranties Flow — and Why OEM-O&M Partnership Is Essential
               </h2>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-lg text-gray-700 mb-4">
                 Bankability isn't just about technology and track record — it's about transferring risk to
-                creditworthy insurers. The multi-layered insurance structure behind Lighthief's BESS projects is
-                specifically designed to satisfy lender requirements and protect investor capital at every stage,
-                from manufacturing to long-term operations.
+                creditworthy counterparties through a seamless chain of insurance and warranties. When the OEM
+                manufacturer and the O&M service partner operate in a formal partnership — as official distributors
+                rather than loose reseller arrangements — this chain becomes unbreakable.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                Here's why: if your O&M provider has no direct relationship with the OEM, warranty claims become a
+                game of telephone. Fault reports go through intermediaries, replacement parts come from unknown sources,
+                and insurance coverage can have gaps between who manufactured the equipment and who maintains it.
+                When your service partner is the official distributor — with a contractual exclusivity agreement —
+                the OEM's insurance, warranties, and technical support flow directly through to your project without
+                breaks in the chain.
               </p>
 
-              {/* Insurance Layers */}
+              {/* Why OEM + O&M Partnership Matters */}
+              <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-xl p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-center">Why the OEM-Distributor-O&M Chain Must Be Unified</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <FileCheck className="w-7 h-7 text-white" />
+                    </div>
+                    <h4 className="font-semibold mb-2">Warranty Enforcement</h4>
+                    <p className="text-sm text-gray-700">
+                      As official distributor, Lighthief can enforce warranty claims directly with Linyang —
+                      no intermediaries, no delays, no finger-pointing. Manufacturing defect indemnification
+                      flows straight from OEM to project.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Shield className="w-7 h-7 text-white" />
+                    </div>
+                    <h4 className="font-semibold mb-2">Insurance Continuity</h4>
+                    <p className="text-sm text-gray-700">
+                      The OEM's product liability insurance seamlessly connects to the EPC/O&M provider's
+                      professional indemnity and construction insurance. No gaps between manufacturing,
+                      delivery, installation, and operations.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-14 h-14 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Lock className="w-7 h-7 text-white" />
+                    </div>
+                    <h4 className="font-semibold mb-2">Lender Confidence</h4>
+                    <p className="text-sm text-gray-700">
+                      Lenders can trace the entire accountability chain from cell manufacturer to system integrator
+                      to on-site service team. A unified chain with formal agreements is what credit committees
+                      need to approve financing.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Insurance & Warranty Flow */}
               <div className="space-y-6 mb-8">
-                {/* Layer 1: OEM Insurance */}
                 <Card className="border-2 border-blue-200">
                   <CardHeader className="bg-blue-50">
                     <CardTitle className="flex items-center text-blue-900">
@@ -374,28 +421,29 @@ export default function BESSBankabilityArticle() {
                   <CardContent className="pt-6">
                     <div className="grid md:grid-cols-3 gap-4">
                       <div className="bg-blue-50 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-700">€5,000,000</div>
-                        <div className="text-sm text-gray-600">Product Liability (AXA)</div>
+                        <div className="text-lg font-bold text-blue-700">Product Liability</div>
+                        <div className="text-sm text-gray-600">Insured with a global Tier-1 insurer</div>
                       </div>
                       <div className="bg-blue-50 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-700">€2,000,000</div>
-                        <div className="text-sm text-gray-600">Professional Indemnity</div>
+                        <div className="text-lg font-bold text-blue-700">Professional Indemnity</div>
+                        <div className="text-sm text-gray-600">Covers design & engineering defects</div>
                       </div>
                       <div className="bg-blue-50 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-700">Full</div>
-                        <div className="text-sm text-gray-600">Manufacturing Defect Indemnification</div>
+                        <div className="text-lg font-bold text-blue-700">Defect Indemnification</div>
+                        <div className="text-sm text-gray-600">Full manufacturing defect coverage to Lighthief</div>
                       </div>
                     </div>
                     <p className="text-gray-700 mt-4 text-sm">
-                      Linyang maintains product liability insurance with AXA — one of the world's most
-                      recognised insurers. This covers defects in design, materials, or workmanship across all
-                      system components. Additionally, Linyang provides full indemnification to Lighthief for
-                      any manufacturing defects, creating a direct OEM accountability chain that lenders value highly.
+                      As the manufacturer, Linyang maintains comprehensive product liability insurance with a
+                      globally recognised insurer, covering defects in design, materials, or workmanship across
+                      all system components. Critically, Linyang provides full indemnification to Lighthief as
+                      their official distributor for any manufacturing defects — creating a direct OEM accountability
+                      chain that lenders value highly. This protection only exists because of the formal distributor
+                      relationship.
                     </p>
                   </CardContent>
                 </Card>
 
-                {/* Layer 2: EPC/O&M Insurance */}
                 <Card className="border-2 border-emerald-200">
                   <CardHeader className="bg-emerald-50">
                     <CardTitle className="flex items-center text-emerald-900">
@@ -406,33 +454,34 @@ export default function BESSBankabilityArticle() {
                   <CardContent className="pt-6">
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                       <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                        <div className="text-xl font-bold text-emerald-700">€1,000,000</div>
-                        <div className="text-sm text-gray-600">General Commercial Liability</div>
+                        <div className="text-lg font-bold text-emerald-700">Commercial Liability</div>
+                        <div className="text-sm text-gray-600">General third-party coverage</div>
                       </div>
                       <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                        <div className="text-xl font-bold text-emerald-700">€1,000,000</div>
-                        <div className="text-sm text-gray-600">Professional Indemnity</div>
+                        <div className="text-lg font-bold text-emerald-700">Professional Indemnity</div>
+                        <div className="text-sm text-gray-600">Design & advisory coverage</div>
                       </div>
                       <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                        <div className="text-xl font-bold text-emerald-700">Full Value</div>
-                        <div className="text-sm text-gray-600">CAR/EAR Insurance (Construction)</div>
+                        <div className="text-lg font-bold text-emerald-700">Construction All Risks</div>
+                        <div className="text-sm text-gray-600">Full contract value during build</div>
                       </div>
                       <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                        <div className="text-xl font-bold text-emerald-700">0.75%</div>
-                        <div className="text-sm text-gray-600">Marine Cargo (of CIF value)</div>
+                        <div className="text-lg font-bold text-emerald-700">Marine Cargo</div>
+                        <div className="text-sm text-gray-600">Factory-to-site transit protection</div>
                       </div>
                     </div>
                     <p className="text-gray-700 mt-4 text-sm">
                       Lighthief carries comprehensive insurance covering every phase of the project lifecycle.
-                      Contractor's All Risks (CAR) insurance covers the full contract value during construction
-                      with the LEG3 defects clause recommended for lender protection. Marine cargo insurance at 0.75%
-                      of CIF value protects equipment in transit from the factory to site. Professional indemnity
-                      covers design and engineering advice provided during EPC delivery.
+                      Contractor's All Risks (CAR) insurance covers the full contract value during construction,
+                      with the LEG3 defects clause recommended for lender protection. Marine cargo insurance
+                      protects equipment in transit from the factory to site. Professional indemnity covers
+                      design and engineering advice provided during EPC delivery. Because Lighthief is the
+                      official distributor, there is seamless handoff from OEM coverage to EPC coverage with
+                      no gaps.
                     </p>
                   </CardContent>
                 </Card>
 
-                {/* Layer 3: Asset Owner Insurance */}
                 <Card className="border-2 border-purple-200">
                   <CardHeader className="bg-purple-50">
                     <CardTitle className="flex items-center text-purple-900">
@@ -443,12 +492,12 @@ export default function BESSBankabilityArticle() {
                   <CardContent className="pt-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="bg-purple-50 rounded-lg p-4 text-center">
-                        <div className="text-xl font-bold text-purple-700">Full Replacement</div>
-                        <div className="text-sm text-gray-600">Property/Asset Insurance</div>
+                        <div className="text-lg font-bold text-purple-700">Property/Asset Insurance</div>
+                        <div className="text-sm text-gray-600">Full BESS replacement value</div>
                       </div>
                       <div className="bg-purple-50 rounded-lg p-4 text-center">
-                        <div className="text-xl font-bold text-purple-700">From Commissioning</div>
-                        <div className="text-sm text-gray-600">Operational Liability</div>
+                        <div className="text-lg font-bold text-purple-700">Operational Liability</div>
+                        <div className="text-sm text-gray-600">Active from commissioning onwards</div>
                       </div>
                     </div>
                     <p className="text-gray-700 mt-4 text-sm">
@@ -467,16 +516,16 @@ export default function BESSBankabilityArticle() {
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                   <div className="bg-blue-100 border-2 border-blue-300 rounded-lg p-4 text-center w-full md:w-1/3">
                     <div className="font-bold text-blue-800 mb-1">Linyang (OEM)</div>
-                    <div className="text-xs text-gray-600">€5M Product Liability</div>
-                    <div className="text-xs text-gray-600">€2M Professional Indemnity</div>
+                    <div className="text-xs text-gray-600">Product Liability Insurance</div>
+                    <div className="text-xs text-gray-600">Professional Indemnity</div>
                     <div className="text-xs text-gray-600">Full Defect Indemnification</div>
                   </div>
                   <ArrowRight className="w-6 h-6 text-gray-400 rotate-90 md:rotate-0" />
                   <div className="bg-emerald-100 border-2 border-emerald-300 rounded-lg p-4 text-center w-full md:w-1/3">
-                    <div className="font-bold text-emerald-800 mb-1">Lighthief (EPC/O&M)</div>
-                    <div className="text-xs text-gray-600">€1M Commercial Liability</div>
-                    <div className="text-xs text-gray-600">€1M Professional Indemnity</div>
-                    <div className="text-xs text-gray-600">Full Value CAR Insurance</div>
+                    <div className="font-bold text-emerald-800 mb-1">Lighthief (Official Distributor / EPC / O&M)</div>
+                    <div className="text-xs text-gray-600">Commercial Liability</div>
+                    <div className="text-xs text-gray-600">Professional Indemnity</div>
+                    <div className="text-xs text-gray-600">Construction All Risks</div>
                   </div>
                   <ArrowRight className="w-6 h-6 text-gray-400 rotate-90 md:rotate-0" />
                   <div className="bg-purple-100 border-2 border-purple-300 rounded-lg p-4 text-center w-full md:w-1/3">
@@ -486,6 +535,10 @@ export default function BESSBankabilityArticle() {
                     <div className="text-xs text-gray-600">Protected from Day One</div>
                   </div>
                 </div>
+                <p className="text-sm text-gray-500 text-center mt-4">
+                  The official distributor relationship is what connects these layers into a seamless chain —
+                  without it, gaps appear between OEM coverage and on-site service accountability.
+                </p>
               </div>
             </div>
 
@@ -548,10 +601,11 @@ export default function BESSBankabilityArticle() {
                       Complete Technology Ecosystem
                     </h4>
                     <p className="text-gray-700 text-sm">
-                      Beyond Linyang for battery systems, Lighthief has established partnerships with Kehua for
-                      Power Conversion Systems (PCS), Voltus for Energy Management and SCADA systems, and local
-                      subcontractors for civil and electrical works. This integrated ecosystem means single-point
-                      accountability for the entire BESS installation — a key bankability differentiator.
+                      Beyond Linyang for battery systems, Lighthief has established partnerships with leading
+                      manufacturers for Power Conversion Systems (PCS), a global leader for Energy Management
+                      and SCADA systems, and qualified local subcontractors for civil and electrical works. This
+                      integrated ecosystem means single-point accountability for the entire BESS installation —
+                      a key bankability differentiator.
                     </p>
                   </div>
 
@@ -624,7 +678,7 @@ export default function BESSBankabilityArticle() {
                       <td className="p-4 text-gray-700">
                         <span className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                          €5M AXA policy maintained by Linyang
+                          Comprehensive policy with global Tier-1 insurer, maintained by Linyang
                         </span>
                       </td>
                     </tr>
@@ -798,10 +852,12 @@ export default function BESSBankabilityArticle() {
               </p>
               <p className="text-lg text-gray-700 mb-4">
                 The Lighthief-Linyang partnership was designed with this understanding from the ground up. From
-                Linyang's BloombergNEF Tier-1 status and €5M AXA product liability coverage, to Lighthief's
+                Linyang's BloombergNEF Tier-1 status and comprehensive product liability coverage, to Lighthief's
                 dedicated BESS team with 97% availability guarantees and full EPC/O&M insurance — every element
                 of the value chain is structured to make your BESS investment bankable, insurable, and profitable
-                for decades.
+                for decades. The official distributor relationship is what makes this chain unbreakable: warranties
+                flow directly from the OEM, insurance layers connect without gaps, and accountability is clear at
+                every stage.
               </p>
               <p className="text-lg text-gray-700 mb-6">
                 In a market where BESS projects with the right structure can access up to 70% loan-to-value
@@ -865,7 +921,7 @@ export default function BESSBankabilityArticle() {
                 </Button>
               </div>
               <p className="mt-6 text-sm opacity-75">
-                Contact Alexander Papacosta: +357 99 164 158 | lighthiefcyprus@gmail.com
+                Contact Alexander Papacosta: +357 99 164 158 | alexander.papacosta@lighthief.com
               </p>
             </div>
 
