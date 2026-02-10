@@ -423,7 +423,7 @@ export default function CyprusCurtailmentBESSArticle() {
 
               <div className="text-center">
                 <Button variant="gradient" size="lg" asChild>
-                  <Link href="/projects/park-ref-5001">
+                  <Link href="/projects">
                     <Calculator className="w-5 h-5 mr-2" />
                     Try Interactive BESS Calculator
                   </Link>
@@ -593,7 +593,7 @@ export default function CyprusCurtailmentBESSArticle() {
 
               <div className="text-center mt-6">
                 <Button variant="cyprus" size="lg" asChild>
-                  <Link href="/projects/park-ref-5001">
+                  <Link href="/projects">
                     View Live 5MW Park with BESS Calculator →
                   </Link>
                 </Button>
@@ -717,7 +717,7 @@ export default function CyprusCurtailmentBESSArticle() {
                   </Link>
                 </Button>
                 <Button variant="outline-on-dark" size="lg" asChild>
-                  <Link href="/projects/park-ref-5001">
+                  <Link href="/projects">
                     Explore 5MW Park with BESS
                   </Link>
                 </Button>

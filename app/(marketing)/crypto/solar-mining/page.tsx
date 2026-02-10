@@ -254,7 +254,7 @@ export default function SolarMiningPage() {
                 </Link>
               </Button>
               <Button size="xl" className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm" asChild>
-                <Link href="/projects/park-ref-5001">
+                <Link href="/projects">
                   View 5MW Park Example
                 </Link>
               </Button>

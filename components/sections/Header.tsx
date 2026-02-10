@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { NAVIGATION } from '@/lib/constants'
-import { Menu, X, Sun, Calculator, BarChart3 } from 'lucide-react'
+import { Menu, X, Calculator, BarChart3 } from 'lucide-react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -15,9 +16,14 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-solar-500 to-cyprus-600">
-              <Sun className="w-6 h-6 text-white" />
-            </div>
+            <Image
+              src="/logo/lighthief-logo.png"
+              alt="Lighthief Energy"
+              width={36}
+              height={36}
+              className="rounded-lg"
+              priority
+            />
             <div className="font-heading font-bold text-xl">
               <span className="gradient-text">SolarFarms</span>
               <span className="text-gray-700">.cy</span>

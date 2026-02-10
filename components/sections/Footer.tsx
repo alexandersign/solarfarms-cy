@@ -1,6 +1,7 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Sun, Mail, Phone, MapPin, Linkedin, Twitter, BarChart3 } from 'lucide-react'
-import { NAVIGATION, COMPANY_DATA, SEO_CONFIG } from '@/lib/constants'
+import { Mail, Phone, MapPin, Linkedin, Twitter, BarChart3 } from 'lucide-react'
+import { NAVIGATION, COMPANY_DATA } from '@/lib/constants'
 
 export function Footer() {
   return (
@@ -9,10 +10,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-solar-500 to-cyprus-600">
-                <Sun className="w-6 h-6 text-white" />
-              </div>
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
+                src="/logo/lighthief-logo.png"
+                alt="Lighthief Energy"
+                width={36}
+                height={36}
+                className="rounded-lg"
+              />
               <div className="font-heading font-bold text-xl">
                 <span className="gradient-text">SolarFarms</span>
                 <span className="text-gray-300">.cy</span>
@@ -125,7 +130,7 @@ export function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © 2025 {COMPANY_DATA.name}. All rights reserved.
+              © {new Date().getFullYear()} {COMPANY_DATA.name}. All rights reserved.
             </div>
             <div className="flex space-x-6">
               {NAVIGATION.legal.map((item) => (
