@@ -1,9 +1,9 @@
-# Keep Excel files local only (too large for git)
+# Keep Excel source files local only (too large for git)
 excel/*.xlsx
 excel/*.xls
 
-# Keep processed JSON data local
-data/*.json
+# Processed JSON is committed so it deploys to production
+# (regenerate with: npx ts-node scripts/download-market-data.ts)
 
 # Keep the folder structure
 !.gitignore
