@@ -1241,13 +1241,13 @@ If claim is accepted:
 
 | Requirement | Standard | Status | Notes |
 |-------------|----------|--------|-------|
-| **Grid Connection Compliance** | EN 50549-2 | ❌ Missing | Required for EAC approval |
-| **Anti-Islanding Test** | IEC 62116 | ❌ Missing | Loss of Mains protection |
-| **LVRT/HVRT Test Report** | EN 50549-2 | ❌ Missing | Voltage ride-through |
-| **Frequency Response Curves** | EN 50549-2 | ❌ Missing | LFSM-O droop settings |
-| **IEC 60870-5-104 Point List** | IEC 60870-5-104 | ❌ Missing | SCADA integration |
+| **Grid Connection Compliance** | EN 50549-2:2019/A1:2023 + EN 50549-10:2022 | ✅ **CONFIRMED** | TÜV Compliance Doc (D 115067 0077 Rev.00, 2025-07-31) + Full TÜV Test Report (64.290.25.30339.02, 447 pages, 2025-08-26). Models: BCS1000K-C-HUD, BCS1250K-C-HUD |
+| **Anti-Islanding Test** | IEC 62116 | ✅ **Available** | BCS1000~1250K-C-HUD IEC62116 61727.pdf |
+| **LVRT/HVRT Test Report** | EN 50549-2 | ✅ **Available** | FRT characteristics: Charakterystyka FRT 1000K-C-HUD & 1250K-C-HUD_ang.pdf |
+| **Frequency Response Curves** | EN 50549-2 | ⚠️ Partial | Covered in TÜV test report; separate LFSM-O droop settings doc still useful for DSO submission |
+| **IEC 60870-5-104 Point List** | IEC 60870-5-104 | ✅ **Available** | WRWF-0I002-06 (Excel, in repo) |
 
-> ⚠️ **NOTE**: EN 50549-2 certification is MANDATORY for Cyprus DSO grid connection approval. PCS must be certified, not just the battery system.
+> ✅ **UPDATE (Feb 2026)**: EN 50549-2 certification is now CONFIRMED for Kehua BCS1000K/BCS1250K-C-HUD (TÜV cert + full test report). **Important:** External interface protection must be installed in final installation (EPC scope item). Remote information exchange not covered by TÜV cert — use PCS comms spec / EMS docs for SCADA evidence.
 
 | NFPA 855 Compliant | **Yes** | Fire code compliance |
 
@@ -1888,14 +1888,14 @@ This RFI requests technical documentation required for:
 
 | Document | Purpose | Cyprus DSO Requirement | Status |
 |----------|---------|------------------------|--------|
-| **EN 50549-2 Certificate** | Grid connection compliance | **MANDATORY** | ❌ Missing |
-| **Anti-Islanding Test Report** | Loss of mains detection | Per IEC 62116 | ❌ Missing |
-| **LVRT/HVRT Test Report** | Voltage ride-through | DSO/TSO compliance | ❌ Missing |
-| **Frequency Response Curves** | LFSM-O droop at 50.2Hz | 100% PM per Hz | ❌ Missing |
+| **EN 50549-2 Certificate** | Grid connection compliance | **MANDATORY** | ✅ Confirmed (TÜV) |
+| **Anti-Islanding Test Report** | Loss of mains detection | Per IEC 62116 | ✅ Available |
+| **LVRT/HVRT Test Report** | Voltage ride-through | DSO/TSO compliance | ✅ Available |
+| **Frequency Response Curves** | LFSM-O droop at 50.2Hz | 100% PM per Hz | ⚠️ In TÜV report |
 | **Q(U) Capability Curves** | Reactive power control | ±40% at voltage limits | ⚠️ Partial |
 | **P(U) Capability Curves** | Active power vs voltage | Charge/discharge modes | ❌ Missing |
 | **Protection Settings Guide** | Configurable settings | 0.9/1.1Un, 47/52Hz, 0.2s | ❌ Missing |
-| **IEC 60870-5-104 Point List** | SCADA integration | All addresses & data types | ❌ Missing |
+| **IEC 60870-5-104 Point List** | SCADA integration | All addresses & data types | ✅ Available |
 | **IEC 61850 Mapping** | Substation communication | Optional but preferred | ❌ Missing |
 | **THD Test Report** | Current harmonics | THDi < 5% | ⚠️ Partial (< 3% claimed) |
 | **DC Injection Test Report** | DC component | < 1% of rated current | ❌ Missing |
@@ -1915,8 +1915,8 @@ This RFI requests technical documentation required for:
 | **UL 9540A** | Fire safety test report | ✅ **Received** | Unit: 80239432 (PASSED) |
 | **EN 62477-1 / IEC 62040** | LVD compliance | ✅ **Received** | Container: N8A 130105 0006 |
 | **EN IEC 61000-6-2/6-4** | EMC | ✅ **Received** | Multiple certs |
-| IEC 61850 Conformance | Communication protocol | ❌ Missing | Needed for TSO |
-| **EN 50549-2** | Grid connection compliance | ❌ **MISSING** | **CRITICAL for Cyprus DSO** |
+| IEC 61850 Conformance | Communication protocol | ✅ **Available** | bms61850.icd in repo |
+| **EN 50549-2** | Grid connection compliance | ✅ **CONFIRMED** | TÜV cert + 447-page test report |
 
 ### 11.7 Installation & Commissioning (Priority: MEDIUM)
 

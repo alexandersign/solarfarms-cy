@@ -84,9 +84,9 @@ export const phases: Phase[] = [
         status: 'critical', progress: 0, notes: 'Linyang €4,182 vs client model €1,158/MWh/yr',
       },
       {
-        id: 'pc-3', name: 'Obtain EN 50549-2 grid code cert',
-        phase: 'pre-contract', start: '2026-02-10', end: '2026-03-15',
-        status: 'blocked', progress: 0, notes: 'MANDATORY for EAC grid connection — Linyang/Kehua to provide',
+        id: 'pc-3', name: 'EN 50549-2 grid code cert — CONFIRMED',
+        phase: 'pre-contract', start: '2026-02-10', end: '2026-02-10',
+        status: 'complete', progress: 100, notes: 'TÜV cert (D 115067 0077) + 447-page test report. BCS1000K/1250K-C-HUD. Also have IEC 62116, LVRT/HVRT, IEC 61850. Note: external interface protection = EPC scope.',
       },
       {
         id: 'pc-4', name: 'Obtain 14 missing MV skid datasheets',
@@ -141,9 +141,9 @@ export const phases: Phase[] = [
       },
       {
         id: 'eng-3', name: 'Grid connection applications (EAC) — 51 parks',
-        phase: 'engineering', start: '2026-03-15', end: '2026-05-15',
-        status: 'not-started', progress: 0, dependencies: ['pc-3', 'eng-1'],
-        notes: 'Long lead time. Needs EN 50549-2 + protection studies',
+        phase: 'engineering', start: '2026-03-01', end: '2026-05-15',
+        status: 'not-started', progress: 0, dependencies: ['eng-1'],
+        notes: 'EN 50549-2 cert now available — can proceed. Long lead time, start ASAP',
       },
       {
         id: 'eng-4', name: 'Civil & structural design (foundations, drainage)',
@@ -569,14 +569,15 @@ export const readinessCategories: ReadinessCategory[] = [
   },
   {
     name: 'Technical & Engineering',
-    score: 25,
+    score: 55,
     items: [
       { name: 'BESS technical specs', status: 'ready' },
       { name: 'System architecture', status: 'ready' },
-      { name: 'EN 50549-2 grid code cert', status: 'blocked' },
+      { name: 'EN 50549-2 grid code cert (TÜV)', status: 'ready' },
+      { name: 'Anti-islanding / LVRT/HVRT / IEC 61850', status: 'ready' },
+      { name: 'MV SLDs (40MW available, smaller TBD)', status: 'partial' },
       { name: 'Protection coordination study', status: 'not-started' },
-      { name: 'Grid connection applications', status: 'not-started' },
-      { name: 'Single-line diagrams', status: 'not-started' },
+      { name: 'Grid connection applications (can proceed)', status: 'not-started' },
     ],
   },
   {

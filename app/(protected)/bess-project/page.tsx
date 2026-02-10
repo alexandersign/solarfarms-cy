@@ -60,14 +60,14 @@ function BatchCard({ batch }: { batch: typeof portfolioStats.batches[0] }) {
 
 function CriticalBlockers() {
   const blockers = [
-    { id: 1, text: 'EN 50549-2 grid code cert — MISSING', severity: 'critical' as const },
+    { id: 1, text: 'EN 50549-2 grid code cert — CONFIRMED ✓ (TÜV cert + test report)', severity: 'resolved' as const },
     { id: 2, text: 'OEM Sales Agreement — NOT SIGNED (18 amendments)', severity: 'critical' as const },
-    { id: 3, text: '14/15 MV Skid datasheets — MISSING', severity: 'critical' as const },
-    { id: 4, text: 'Ext. warranty Yr 11-15 pricing — 261% gap', severity: 'critical' as const },
-    { id: 5, text: 'Local subcontractor quotes — NOT STARTED', severity: 'high' as const },
-    { id: 6, text: 'Warehouse lease — NOT SIGNED', severity: 'high' as const },
-    { id: 7, text: 'Engineer hiring (4 positions) — NOT STARTED', severity: 'high' as const },
-    { id: 8, text: 'Grid connection applications — NOT SUBMITTED', severity: 'high' as const },
+    { id: 3, text: 'Ext. warranty Yr 11-15 pricing — 261% gap', severity: 'critical' as const },
+    { id: 4, text: 'MV Skid datasheets — partial (40MW SLDs available, smaller configs TBD)', severity: 'high' as const },
+    { id: 5, text: 'Grid connection applications — can now proceed with EN 50549-2', severity: 'high' as const },
+    { id: 6, text: 'Local subcontractor quotes — NOT STARTED', severity: 'high' as const },
+    { id: 7, text: 'Warehouse lease — NOT SIGNED', severity: 'high' as const },
+    { id: 8, text: 'Engineer hiring (4 positions) — NOT STARTED', severity: 'high' as const },
   ];
 
   return (
@@ -80,18 +80,22 @@ function CriticalBlockers() {
         <p className="text-[10px] text-gray-500 mt-0.5">Must resolve before March 1 order date</p>
       </div>
       <div className="p-3 space-y-1.5">
-        {blockers.map(b => (
+          {blockers.map(b => (
           <div key={b.id} className={`flex items-start gap-2 p-2 rounded-lg ${
-            b.severity === 'critical' ? 'bg-red-500/5 border border-red-500/10' : 'bg-amber-500/5 border border-amber-500/10'
+            b.severity === 'resolved' ? 'bg-emerald-500/5 border border-emerald-500/10'
+            : b.severity === 'critical' ? 'bg-red-500/5 border border-red-500/10'
+            : 'bg-amber-500/5 border border-amber-500/10'
           }`}>
             <span className={`text-[9px] px-1 py-0.5 rounded font-bold flex-shrink-0 mt-0.5 ${
-              b.severity === 'critical'
+              b.severity === 'resolved'
+                ? 'bg-emerald-500/20 text-emerald-400'
+                : b.severity === 'critical'
                 ? 'bg-red-500/20 text-red-400'
                 : 'bg-amber-500/20 text-amber-400'
             }`}>
-              {b.severity === 'critical' ? 'CRIT' : 'HIGH'}
+              {b.severity === 'resolved' ? 'DONE' : b.severity === 'critical' ? 'CRIT' : 'HIGH'}
             </span>
-            <span className="text-[11px] text-gray-300">{b.text}</span>
+            <span className={`text-[11px] ${b.severity === 'resolved' ? 'text-gray-500 line-through' : 'text-gray-300'}`}>{b.text}</span>
           </div>
         ))}
       </div>

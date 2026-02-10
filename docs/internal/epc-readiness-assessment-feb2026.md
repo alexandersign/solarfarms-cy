@@ -10,13 +10,13 @@
 |---|---|---|---|---|
 | Equipment Procurement | 3 | 2 | 1 | 🟡 55% |
 | Legal & Contractual | 2 | 3 | 3 | 🔴 35% |
-| Technical & Engineering | 2 | 2 | 6 | 🔴 25% |
+| Technical & Engineering | 7 | 2 | 3 | 🟡 55% |
 | Financial & Commercial | 4 | 3 | 2 | 🟡 50% |
 | Operational (O&M/Spares) | 3 | 2 | 1 | 🟡 55% |
 | Project Management | 0 | 1 | 4 | 🔴 10% |
-| **OVERALL EPC READINESS** | | | | **🔴 ~38%** |
+| **OVERALL EPC READINESS** | | | | **🟡 ~43%** |
 
-**Bottom line:** You have strong commercial positioning (exclusive distributor, 51-park portfolio, OEM relationship) and confirmed equipment specs, but you are **not construction-ready**. The critical blockers are: unsigned OEM contract, missing MV datasheets, no local subcontractor quotes, no project schedule, unresolved warranty pricing conflict, and missing grid code certifications.
+**Bottom line:** You have strong commercial positioning (exclusive distributor, 51-park portfolio, OEM relationship) and confirmed equipment specs. **Major progress:** EN 50549-2 grid code certification now confirmed (TÜV cert + full test report), along with anti-islanding, LVRT/HVRT, and IEC 61850. Grid connection applications can now proceed. Remaining critical blockers: unsigned OEM contract, unresolved warranty pricing conflict, local subcontractor quotes not started, and some MV datasheets still incomplete for smaller site configs.
 
 ---
 
@@ -76,25 +76,26 @@
 |---|---|---|
 | BESS Technical Specs | Fully documented | linyang.md — complete degradation curves, BMS architecture, safety systems, thermal specs |
 | System Architecture | Confirmed | WAGO PFC200 as integrated PPC+RTU, Modbus TCP to Kehua PCS + Linyang BMS, Voltus EMS/SCADA |
+| **EN 50549-2 (Grid Code)** | **✅ CONFIRMED** | TÜV compliance doc (D 115067 0077 Rev.00, 2025-07-31) + full 447-page TÜV test report (64.290.25.30339.02, 2025-08-26). Models: BCS1000K/BCS1250K-C-HUD. Tested to EN 50549-2:2019/A1:2023 + EN 50549-10:2022. **Note:** External interface protection required at plant level (EPC scope). |
+| Anti-Islanding (IEC 62116) | ✅ Available | Certificate in repo: BCS1000~1250K-C-HUD IEC62116 61727.pdf |
+| LVRT/HVRT Test Reports | ✅ Available | FRT characteristics document: Charakterystyka FRT 1000K-C-HUD & 1250K-C-HUD_ang.pdf |
+| IEC 61850 Conformance | ✅ Available | BMS IEC 61850 ICD file in repo (bms61850.icd) |
+| Communication Protocol Docs | ✅ Available | Modbus register map (WRDF-0I002-103) + IEC-104 point list (WRWF-0I002-06) — both in repo. **Not yet shared with Voltus.** |
+| MV Single-Line Diagrams | Improved | 40MW SLD drawings now available (Anatoliko SS, Athalassa SS, FIZ SS). 10MW PCS SLD also in repo |
 
 ### 🟡 PARTIAL
 | Item | Status | Gap |
 |---|---|---|
-| Certifications | 20 of 21 complete | IEC 62933-5-2 pending (2-3 weeks). UL 9540A Installation Level pending (site-specific) |
-| Communication Protocols | Specs confirmed | IEC 104 point list and BMS Modbus register map available but **not yet shared with Voltus** |
+| Certifications | 21+ complete | IEC 62933-5-2 notification received. UL 9540A Installation Level pending (site-specific). CE-LVD, CE-EMC, CB scheme, IEC 62477-1 all certified |
+| MV Skid Datasheets | Improved but incomplete | Additional PCS/transformer docs available. Still need site-specific MV skid configs for smaller sites |
 
 ### 🔴 NOT READY
 | Item | Status | Action Required |
 |---|---|---|
-| **EN 50549-2 (Grid Code)** | **MISSING** | **MANDATORY for Cyprus DSO (EAC) connection approval.** Without this, no grid connection permit. This is the #1 technical blocker |
-| Anti-Islanding (IEC 62116) | MISSING | Required for grid code compliance |
-| LVRT/HVRT Test Reports | MISSING | Required for grid code compliance |
-| Frequency Response Curves | MISSING | LFSM-O droop curves needed for TSO/DSO approval |
-| Protection Settings Guide | MISSING | Cannot design protection scheme without OEM protection settings |
-| MV Single-Line Diagrams | MISSING (14/15) | Only 10MW configuration available. Cannot do engineering design for other sizes |
-| Protection Coordination Study | Not started | Requires MV datasheets + transformer data + DSO protection settings |
-| Grid Connection Applications | No evidence | Not found in any document. Must be submitted to EAC per park |
-| IEC 61850 Conformance | MISSING | Needed for TSO SCADA integration |
+| Frequency Response Curves | MISSING | LFSM-O droop curves needed for TSO/DSO approval (FRT available but freq response settings separate) |
+| Protection Settings Guide | MISSING | Cannot design protection scheme without OEM protection settings. **EN 50549-2 cert notes: external interface protection is EPC scope** |
+| Protection Coordination Study | Not started | Requires remaining MV datasheets + transformer data + DSO settings. Can now proceed for 10MW/40MW configs |
+| Grid Connection Applications | No evidence | Can now be submitted — EN 50549-2 cert is available. Must be filed per park to EAC |
 | Black Start / Sync Procedures | MISSING | Required for commissioning |
 
 ---
@@ -202,14 +203,14 @@
 
 | # | Action | Priority | Blocking |
 |---|---|---|---|
-| 1 | **Get EN 50549-2 certification from Linyang/Kehua** | 🔴 CRITICAL | Grid connection approval for ALL 51 parks |
+| 1 | ~~Get EN 50549-2 certification~~ | ✅ DONE | TÜV cert + 447-page test report confirmed (BCS1000K/1250K-C-HUD). Anti-islanding, LVRT/HVRT, IEC 61850 also available |
 | 2 | **Sign OEM Sales Agreement** (resolve 18 amendments) | 🔴 CRITICAL | Cannot order equipment. Cannot finalize client contracts |
-| 3 | **Obtain ALL MV Skid + Transformer datasheets** (14 missing) | 🔴 CRITICAL | Cannot do engineering design, protection studies, or grid applications |
-| 4 | **Resolve Extended Warranty Yr 11-15 pricing** (261% gap) | 🔴 CRITICAL | Client financial models are wrong. Either renegotiate or re-price |
-| 5 | **Create Master Project Schedule** with phased rollout | 🔴 HIGH | No timeline = no client commitments, no procurement planning |
-| 6 | **Issue RFPs to local Cyprus contractors** (civil, mech, elec) | 🔴 HIGH | 12+ cost columns in spreadsheet are empty — all local EPC works uncosted |
-| 7 | **Submit grid connection applications to EAC** (per park) | 🟡 HIGH | Long lead time. Needs MV datasheets + EN 50549-2 first |
-| 8 | **Confirm Voltus BoM and scope boundary** (new RFI sent) | 🟡 HIGH | WAGO hardware scope unclear. What does Lighthief procure? |
+| 3 | **Resolve Extended Warranty Yr 11-15 pricing** (261% gap) | 🔴 CRITICAL | Client financial models are wrong. Either renegotiate or re-price |
+| 4 | **Obtain remaining MV Skid datasheets** (small/medium configs) | 🔴 HIGH | 40MW SLDs now available. Still need site-specific MV configs for 1-8 MW sites |
+| 5 | **Create Master Project Schedule** with phased rollout | 🟢 DONE | Gantt chart live at solarfarms.cy/bess-project. 6 phases, 3 batches, ~65 tasks |
+| 6 | **Submit grid connection applications to EAC** (per park) | 🔴 HIGH | **Can now proceed** — EN 50549-2 cert available. Long lead time, start immediately |
+| 7 | **Issue RFPs to local Cyprus contractors** (civil, mech, elec) | 🔴 HIGH | 12+ cost columns in spreadsheet are empty — all local EPC works uncosted |
+| 8 | **Confirm Voltus BoM and scope boundary** (new RFI sent) | 🟡 HIGH | WAGO hardware scope unclear. What does Lighthief procure? Response due 21 Feb |
 | 9 | **Obtain insurance quotes** (CAR, product liability, EPC PI) | 🟡 MEDIUM | Not costed in spreadsheet. Required for EPC contracts |
 | 10 | **Draft and issue client EPC contracts** | 🟡 MEDIUM | Pricing exists but no contract templates. Needs OEM terms resolved first |
 
