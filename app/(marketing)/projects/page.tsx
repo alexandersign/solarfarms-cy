@@ -71,7 +71,7 @@ const projects = [
       "18 months verified production data available",
       "BESS opportunity: recover €600k+ annually",
       "ROI boost from 14.5% to 18%+ with 40MWh BESS",
-      "Linyang BESS quote ready: €4.4M turnkey"
+      "Tier-1 BESS integration ready: turnkey delivery"
     ],
     testimonial: {
       quote: "Transparent operational asset with real curtailment data. BESS integration to recover lost revenue and maximize returns.",

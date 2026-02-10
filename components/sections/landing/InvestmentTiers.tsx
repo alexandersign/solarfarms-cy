@@ -10,28 +10,31 @@ const tiers = [
   {
     size: '1 MW',
     label: 'Entry',
-    investment: '€900K – €1.2M',
-    annual: '€120K – €160K',
-    irr: '8–10%',
-    npv: '€2.5M – €4.0M',
+    subtitle: '+ 4 MWh BESS',
+    investment: '~€1.74M',
+    annual: '€200K – €280K',
+    irr: '8–13%',
+    npv: '€2.0M – €3.5M',
     popular: false,
   },
   {
     size: '5 MW',
     label: 'Most Popular',
-    investment: '€4.5M – €6.0M',
-    annual: '€600K – €800K',
-    irr: '10–12%',
-    npv: '€12M – €20M',
+    subtitle: '+ 20 MWh BESS',
+    investment: '~€7.37M',
+    annual: '€1.0M – €1.4M',
+    irr: '8–13%',
+    npv: '€10M – €17.5M',
     popular: true,
   },
   {
     size: '10 MW',
     label: 'Institutional',
-    investment: '€9.0M – €12.0M',
-    annual: '€1.2M – €1.6M',
-    irr: '10–12%',
-    npv: '€25M – €40M',
+    subtitle: '+ 40 MWh BESS',
+    investment: '~€14.04M',
+    annual: '€2.0M – €2.8M',
+    irr: '8–13%',
+    npv: '€20M – €35M',
     popular: false,
   },
 ]
@@ -47,8 +50,8 @@ export function InvestmentTiers() {
               Scalable Solar Farm Investments
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose from proven project sizes with transparent financials — all include
-              EPC delivery, grid connection, and optional long-term O&amp;M.
+              All-in turnkey pricing: PV EPC + BESS + Ready-to-Build permitting.
+              Transparent financials with optional long-term O&amp;M.
             </p>
           </div>
         </AnimatedSection>
@@ -73,7 +76,8 @@ export function InvestmentTiers() {
 
                 <div className="text-center mb-6 pt-2">
                   <div className="text-4xl md:text-5xl font-bold gradient-text mb-1">{tier.size}</div>
-                  <div className="text-gray-500 text-sm">{!tier.popular ? tier.label : 'Solar Farm'}</div>
+                  <div className="text-sm font-medium text-cyprus-600">{tier.subtitle}</div>
+                  <div className="text-gray-400 text-xs mt-1">{!tier.popular ? tier.label : 'Solar + BESS'}</div>
                 </div>
 
                 <div className="space-y-4 mb-8">

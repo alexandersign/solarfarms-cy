@@ -329,7 +329,7 @@ export default function OMManagementPage() {
                 Battery Storage O&M
               </h2>
               <p className="text-xl text-gray-600 mb-6">
-                As the official Cyprus partner for Linyang energy storage systems, 
+                As the official Cyprus partner for Tier-1 energy storage systems, 
                 we offer comprehensive BESS O&M services with performance guarantees.
               </p>
               

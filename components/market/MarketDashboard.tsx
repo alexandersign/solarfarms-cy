@@ -669,7 +669,7 @@ export function MarketDashboard() {
             </div>
             
             <p className="text-xs text-gray-500 mt-4 text-center">
-              Based on 87.8% round-trip efficiency (Linyang spec) &bull; 1 cycle/day &bull; 
+              Based on 87.8% round-trip efficiency (OEM spec) &bull; 1 cycle/day &bull; 
               Charge during solar hours (06-18), discharge during peak (17-21)
             </p>
           </CardContent>

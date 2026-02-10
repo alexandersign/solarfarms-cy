@@ -1204,7 +1204,7 @@ export function AdvancedProjectCalculator() {
                           </Select>
                         </FormField>
 
-                        <FormField label="BESS Cost (€/kWh)" tooltip="Linyang full system cost per kWh installed (€140 typical)">
+                        <FormField label="BESS Cost (€/kWh)" tooltip="BESS full system cost per kWh installed (€140 typical)">
                           <Input
                             type="number"
                             value={inputs.bessCostPerKwh}
@@ -1212,7 +1212,7 @@ export function AdvancedProjectCalculator() {
                           />
                         </FormField>
 
-                        <FormField label="Round Trip Efficiency (%)" tooltip="Linyang system RTE: 87.8% AC-AC (editable for other brands)">
+                        <FormField label="Round Trip Efficiency (%)" tooltip="OEM system RTE: 87.8% AC-AC (editable for other brands)">
                           <Input
                             type="number"
                             step="0.01"

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     'BESS ready solar',
     'solar curtailment Cyprus',
     'battery storage investment',
-    'Linyang BESS Cyprus'
+    'Tier-1 BESS Cyprus'
   ],
   openGraph: {
     title: 'Anarita 10MW Operational Solar Park | BESS Opportunity',
@@ -69,9 +69,9 @@ export default function Anarita10MWProjectPage() {
   const avgCurtailment = Math.round(curtailmentData.reduce((sum, d) => sum + d.curtailment, 0) / curtailmentData.length)
   const maxCurtailment = Math.max(...curtailmentData.map(d => d.curtailment))
   
-  // BESS calculations with Linyang pricing (10% Lighthief markup)
+  // BESS calculations with Tier-1 OEM pricing (15% CIF + 15% EPC margin)
   const bessCapacityMWh = 40 // 4-hour system for 10MW
-  const bessCostPerMWh = 110000 // €110k/MWh (Linyang + 10% markup for large system)
+  const bessCostPerMWh = 111000 // €111k/MWh (large tier, 15% margin)
   const totalBessCost = bessCapacityMWh * bessCostPerMWh // €4.4M
   
   return (
@@ -291,7 +291,7 @@ export default function Anarita10MWProjectPage() {
                   </div>
                   <div>
                     <CardTitle className="text-2xl">BESS Integration Solution</CardTitle>
-                    <p className="text-sm text-gray-500 mt-1">Linyang LFP System via Lighthief Cyprus</p>
+                    <p className="text-sm text-gray-500 mt-1">Tier-1 LFP System via Lighthief Cyprus</p>
                   </div>
                 </div>
               </CardHeader>
@@ -339,7 +339,7 @@ export default function Anarita10MWProjectPage() {
               Investment Comparison: Solar Only vs Solar + BESS
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Real numbers based on operational data and Linyang BESS pricing
+              Real numbers based on operational data and Tier-1 BESS pricing
             </p>
           </div>
 
@@ -456,7 +456,7 @@ export default function Anarita10MWProjectPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-cyprus-800">BESS Supply & Installation</h3>
-                    <p className="text-gray-600">Linyang Energy Storage via Lighthief Cyprus Ltd</p>
+                    <p className="text-gray-600">Tier-1 BESS via Lighthief Cyprus Ltd</p>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 text-sm">
@@ -515,7 +515,7 @@ export default function Anarita10MWProjectPage() {
               {
                 icon: Battery,
                 title: 'BESS Ready',
-                description: 'Infrastructure in place. Add 40MWh Linyang BESS to boost ROI from 14.5% to 18%+.'
+                description: 'Infrastructure in place. Add 40MWh Tier-1 BESS to boost ROI from 14.5% to 18%+.'
               },
               {
                 icon: Euro,

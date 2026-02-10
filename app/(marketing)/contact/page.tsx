@@ -102,7 +102,7 @@ const offices = [
 const faqs = [
   {
     question: "What is the minimum investment amount?",
-    answer: "Our investment opportunities start from €900,000 for 1MW solar farms. We also offer fractional ownership options for smaller investors through our investment syndication program."
+    answer: "A turnkey 1 MW solar + 4 MWh BESS project starts at approximately €1.75M all-in (PV EPC, BESS, and ready-to-build permitting). PV-only EPC starts from around €640K per MW. Contact us to discuss financing options — up to 70% debt is available for solar+BESS projects."
   },
   {
     question: "How long does the investment process take?",

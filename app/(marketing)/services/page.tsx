@@ -47,10 +47,10 @@ const services = [
     benefits: [
       "Fixed-price contracts with performance guarantees",
       "6-12 months delivery vs industry 18-24 months",
-      "€450-600k/MW competitive pricing",
+      "€640k–1.2M/MW turnkey EPC pricing",
       "European quality standards"
     ],
-    pricing: "€450,000 - €600,000 per MW",
+    pricing: "€640,000 - €1,200,000 per MW",
     color: "solar",
     slug: "epc-services"
   },

@@ -81,10 +81,10 @@ export const CAPEX_MODES = {
 // See docs/internal/solarpark-epc.md for detailed breakdown
 export const INVESTMENT_SIZES = {
   "1MW": {
-    minInvestment: 1754000,  // 1 MWp + 4 MWh All-In Client: €1,754,414
-    maxInvestment: 1754000,
+    minInvestment: 1744000,  // 1 MWp + 4 MWh All-In Client (15% CIF + 15% EPC margin)
+    maxInvestment: 1744000,
     pvOnlyCost: 730000,      // PV Client: €730k (self-cost €630k + €100k markup)
-    bessCost: 674000,        // BESS Client: 4 MWh @ €168k/MWh
+    bessCost: 664000,        // BESS Client: 4 MWh @ €166k/MWh (15% margin)
     rtbCost: 350000,         // RTB: €350k/MW
     minRevenue: 200000,      // Based on ~2,000 kWh/kWp * €0.19/kWh * 25% curtailment
     maxRevenue: 280000,      // With optimal performance
@@ -98,10 +98,10 @@ export const INVESTMENT_SIZES = {
     bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
   "5MW": {
-    minInvestment: 7204000,  // 5 MWp + 20 MWh All-In Client: €7,203,501
-    maxInvestment: 7204000,
+    minInvestment: 7370000,  // 5 MWp + 20 MWh All-In Client (15% CIF + 15% EPC margin)
+    maxInvestment: 7370000,
     pvOnlyCost: 3200000,     // PV Client: 5 × €640k = €3.2M
-    bessCost: 2253000,       // BESS Client: 20 MWh @ €113k/MWh
+    bessCost: 2420000,       // BESS Client: 20 MWh @ €121k/MWh (15% margin)
     rtbCost: 1750000,        // RTB: 5 × €350k = €1.75M
     minRevenue: 1000000,     // Based on real park data with curtailment
     maxRevenue: 1400000,     // Optimized scenario
@@ -115,10 +115,10 @@ export const INVESTMENT_SIZES = {
     bessFinancingPct: 70,    // 70% of total for solar+BESS
   },
   "10MW": {
-    minInvestment: 13993000,  // 10 MWp + 40 MWh All-In Client: €13,992,665
-    maxInvestment: 13993000,
+    minInvestment: 14041000,  // 10 MWp + 40 MWh All-In Client (15% CIF + 15% EPC margin)
+    maxInvestment: 14041000,
     pvOnlyCost: 6101000,      // PV Client: 10 × €610k = €6.1M
-    bessCost: 4392000,        // BESS Client: 40 MWh @ €110k/MWh
+    bessCost: 4440000,        // BESS Client: 40 MWh @ €111k/MWh (15% margin)
     rtbCost: 3500000,         // RTB: 10 × €350k = €3.5M
     minRevenue: 2000000,      // Scaled from 5MW data
     maxRevenue: 2800000,

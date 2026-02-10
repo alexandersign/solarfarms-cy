@@ -459,9 +459,9 @@ export default function InvestmentGuidePage() {
               <DataTable
                 headers={['Size', 'Total Investment', 'PV Cost', 'BESS Cost', 'RTB Cost', 'Target ROI']}
                 rows={[
-                  ['1 MW + 4 MWh', '€1,754,000', '€730,000', '€674,000', '€350,000', '8–13%'],
-                  ['5 MW + 20 MWh', '€7,204,000', '€3,200,000', '€2,253,000', '€1,750,000', '8–13%'],
-                  ['10 MW + 40 MWh', '€13,993,000', '€6,101,000', '€4,392,000', '€3,500,000', '8–13%'],
+                  ['1 MW + 4 MWh', '€1,744,000', '€730,000', '€664,000', '€350,000', '8–13%'],
+                  ['5 MW + 20 MWh', '€7,370,000', '€3,200,000', '€2,420,000', '€1,750,000', '8–13%'],
+                  ['10 MW + 40 MWh', '€14,041,000', '€6,101,000', '€4,440,000', '€3,500,000', '8–13%'],
                 ]}
               />
             </div>
@@ -481,10 +481,10 @@ export default function InvestmentGuidePage() {
             <p className="text-gray-700 mb-6">
               Battery Energy Storage Systems are the critical enabler for Cyprus solar investments in 2025/26.
               BESS unlocks three revenue streams: curtailment recovery, evening peak arbitrage, and future grid services.
-              Lighthief supplies Linyang BESS systems &mdash; a Tier-1 Chinese manufacturer with proven utility-scale deployments.
+              Lighthief is the official Cyprus distributor for a Tier-1 BESS manufacturer &mdash; a leading cell producer and PCS supplier with proven utility-scale deployments.
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">4.1 Linyang BESS Specifications</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">4.1 Tier-1 BESS Specifications</h3>
             <div className="avoid-break">
               <DataTable
                 headers={['Parameter', 'Specification']}
@@ -505,10 +505,10 @@ export default function InvestmentGuidePage() {
               <DataTable
                 headers={['System Size', 'Capacity Range', 'Price per MWh', 'Example Total']}
                 rows={[
-                  ['Small', '1–2 MW / 4–8 MWh', '€169,000/MWh', '4 MWh = €676,000'],
-                  ['Medium', '2.5–5 MW / 10–20 MWh', '€124,000/MWh', '20 MWh = €2,480,000'],
-                  ['Large', '8–25 MW / 32–100 MWh', '€113,000/MWh', '40 MWh = €4,520,000'],
-                  ['Utility', '25–100 MW / 100+ MWh', '€110,000/MWh', '100 MWh = €11,000,000'],
+                  ['Small', '1–2 MW / 4–8 MWh', '€166,000/MWh', '4 MWh = €664,000'],
+                  ['Medium', '2.5–5 MW / 10–20 MWh', '€121,000/MWh', '20 MWh = €2,420,000'],
+                  ['Large', '8–25 MW / 32–100 MWh', '€111,000/MWh', '40 MWh = €4,440,000'],
+                  ['Utility', '25–100 MW / 100+ MWh', '€108,000/MWh', '100 MWh = €10,800,000'],
                 ]}
               />
             </div>
@@ -639,7 +639,7 @@ export default function InvestmentGuidePage() {
             </div>
 
             <InfoBox>
-              Revenue calculation assumes 87.8% round-trip efficiency (Linyang spec), 1 cycle per day,
+              Revenue calculation assumes 87.8% round-trip efficiency (OEM spec), 1 cycle per day,
               charging during solar hours (06:00&ndash;17:00) and discharging during peak (17:00&ndash;21:00).
               Summer arbitrage spreads can reach €125+/MWh, with evening peaks hitting the €500 market cap.
             </InfoBox>
@@ -695,7 +695,7 @@ export default function InvestmentGuidePage() {
                 <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />18 months verified production data available</li>
                 <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />BESS opportunity: recover €600k+ annually in curtailed energy</li>
                 <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />ROI boost from 14.5% to 18%+ with 40MWh BESS integration</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />Linyang BESS quote ready: €4.4M turnkey</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />Tier-1 BESS integration ready: turnkey delivery</li>
               </ul>
             </div>
 
@@ -816,7 +816,7 @@ export default function InvestmentGuidePage() {
                 level="critical"
                 title="Curtailment Risk"
                 description="Grid operator may curtail production during oversupply. Current 45.8% average in 2025."
-                mitigation="BESS integration to recover 30–60% of curtailed energy. Cost: €110–169k/MWh for Tier-1 battery systems."
+                mitigation="BESS integration to recover 30–60% of curtailed energy. Cost: €108–166k/MWh for Tier-1 battery systems."
               />
               <RiskItem
                 level="medium"
@@ -962,7 +962,7 @@ export default function InvestmentGuidePage() {
                 <ul className="text-gray-700 text-sm space-y-1.5">
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />EPC Development: €640k/MW</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />O&M Management: 24/7 monitoring</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />BESS Integration: Linyang Tier-1 systems</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />BESS Integration: Tier-1 OEM systems</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Asset Optimization &amp; Performance</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Lifecycle Support incl. Recycling</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Investment Advisory &amp; LOI Generation</li>
@@ -1072,7 +1072,7 @@ export default function InvestmentGuidePage() {
                   <li>24/7/365 remote monitoring via Lighthief platform</li>
                   <li>Critical alerts: 4-hour response time</li>
                   <li>Bi-annual on-site preventive maintenance</li>
-                  <li>OEM-compliant maintenance per Linyang manual</li>
+                  <li>OEM-compliant maintenance per manufacturer manual</li>
                   <li>Cyprus coastal protection (C5 enclosure maintenance)</li>
                 </ul>
               </div>

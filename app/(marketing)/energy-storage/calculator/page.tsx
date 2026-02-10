@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'energy storage ROI Cyprus',
     'battery NPV IRR calculator',
     'BESS investment analysis',
-    'Linyang battery calculator',
+    'Tier-1 BESS calculator',
     'Cyprus BESS financing',
   ],
   openGraph: {
@@ -69,7 +69,7 @@ export default function BESSCalculatorPage() {
           <div className="flex flex-wrap gap-4 mt-6">
             <div className="flex items-center gap-2 text-sm text-blue-200">
               <Battery className="w-4 h-4" />
-              <span>Linyang Pricing Built-in</span>
+              <span>OEM Pricing Built-in</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-blue-200">
               <Calculator className="w-4 h-4" />

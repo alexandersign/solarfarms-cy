@@ -61,7 +61,7 @@ const assumptions = [
       "Operating costs: 5-20% of revenue (configurable)",
       "Discount rate: 8% (for NPV calculations)",
       "Project lifetime: 25 years (standard warranty)",
-      "Construction cost: €450-600k/MW (current market)"
+      "Construction cost: €640k-1.2M/MW (PV EPC client pricing)"
     ]
   },
   {
@@ -112,11 +112,11 @@ export default function CalculatorPage() {
                 <div className="text-sm text-gray-600">Sun Hours/Year</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">15-20%</div>
-                <div className="text-sm text-gray-600">Annual ROI</div>
+                <div className="text-3xl font-bold gradient-text">8-13%</div>
+                <div className="text-sm text-gray-600">Equity IRR</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">5-8</div>
+                <div className="text-3xl font-bold gradient-text">7-10</div>
                 <div className="text-sm text-gray-600">Years Payback</div>
               </div>
               <div className="text-center">

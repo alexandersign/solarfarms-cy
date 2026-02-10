@@ -24,12 +24,12 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Battery Energy Storage Systems Cyprus | Linyang BESS | Lighthief Official Distributor',
-  description: 'Utility-scale BESS solutions in Cyprus. Linyang LFP battery systems from €100k/MWh. Official Cyprus distributor & O&M partner. Reduce curtailment, maximize solar ROI.',
+  title: 'Battery Energy Storage Systems Cyprus | Tier-1 BESS | Lighthief Official Distributor',
+  description: 'Utility-scale BESS solutions in Cyprus. Tier-1 LFP battery systems from €100k/MWh. Official Cyprus distributor & O&M partner. Reduce curtailment, maximize solar ROI.',
   keywords: [
     'BESS Cyprus',
     'battery energy storage Cyprus',
-    'Linyang BESS',
+    'Tier-1 BESS',
     'utility scale battery storage',
     'solar battery storage Cyprus',
     'energy storage systems Cyprus',
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     'frequency regulation Cyprus'
   ],
   openGraph: {
-    title: 'Battery Energy Storage Systems Cyprus | Linyang BESS',
-    description: 'Official Linyang BESS distributor in Cyprus. Utility-scale battery storage from €100k/MWh. Expert O&M services.',
+    title: 'Battery Energy Storage Systems Cyprus | Tier-1 BESS',
+    description: 'Official Tier-1 BESS distributor in Cyprus. Utility-scale battery storage from €100k/MWh. Expert O&M services.',
     type: 'website',
   },
   alternates: {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   }
 }
 
-// BESS sizing options with Linyang pricing (includes 10% Lighthief markup)
+// BESS sizing options with Tier-1 OEM pricing (15% CIF + 15% EPC margin)
 const bessSystems = [
   {
     capacity: '1-2 MW',
@@ -90,7 +90,7 @@ const bessSystems = [
 const bessFeatures = [
   {
     icon: Battery,
-    title: 'Linyang LFP Technology',
+    title: 'Tier-1 LFP Technology',
     description: 'Lithium Iron Phosphate cells with 88.39% round-trip efficiency and 6,000+ cycle life.'
   },
   {
@@ -164,7 +164,7 @@ export default function EnergyStoragePage() {
                 Utility Scale BESS
               </Badge>
               <Badge className="bg-green-500 text-white text-sm px-4 py-1">
-                Official Linyang Partner
+                Official Tier-1 BESS Partner
               </Badge>
               <Badge className="bg-white/20 text-white text-sm px-4 py-1 backdrop-blur-sm">
                 Cyprus Distributor
@@ -177,7 +177,7 @@ export default function EnergyStoragePage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-8">
-              Linyang LFP battery systems • From €100k/MWh • 
+              Tier-1 LFP battery systems • From €100k/MWh • 
               Official Cyprus distributor & O&M partner
             </p>
 
@@ -232,10 +232,10 @@ export default function EnergyStoragePage() {
                 <Badge className="bg-cyprus-100 text-cyprus-800 mb-4">Official Partnership</Badge>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                   Lighthief Cyprus Ltd
-                  <span className="block text-cyprus-600 text-2xl mt-2">Official Linyang ESS Distributor</span>
+                  <span className="block text-cyprus-600 text-2xl mt-2">Official Tier-1 ESS Distributor</span>
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  As the exclusive Cyprus partner for Linyang Energy Storage, we provide complete 
+                  As the exclusive Cyprus partner for Tier-1 BESS, we provide complete 
                   turnkey BESS solutions from supply through installation and long-term O&M.
                 </p>
                 
@@ -251,7 +251,7 @@ export default function EnergyStoragePage() {
                     <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="font-semibold">Utility Scale O&M Partner</h3>
-                      <p className="text-sm text-gray-600">Certified for Linyang BESS maintenance and warranty service</p>
+                      <p className="text-sm text-gray-600">Certified for Tier-1 BESS maintenance and warranty service</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -279,14 +279,14 @@ export default function EnergyStoragePage() {
                         <span className="text-2xl text-gray-300">×</span>
                         <Image 
                           src="/logo/linyang_logo.jpg" 
-                          alt="Linyang Energy Logo" 
+                          alt="Tier-1 BESS OEM Logo" 
                           width={120} 
                           height={40}
                           className="h-10 w-auto"
                         />
                       </div>
                       <div className="text-center">
-                        <h3 className="text-xl font-bold">Linyang Energy</h3>
+                        <h3 className="text-xl font-bold">Tier-1 BESS OEM</h3>
                         <p className="text-gray-600">Battery Storage Systems</p>
                       </div>
                     </div>
@@ -398,7 +398,7 @@ export default function EnergyStoragePage() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Why Choose Linyang BESS?
+              Why Choose Tier-1 BESS?
             </h2>
           </div>
 
@@ -570,7 +570,7 @@ export default function EnergyStoragePage() {
                 
                 <div className="mt-6 pt-6 border-t text-center">
                   <p className="text-sm text-gray-500">
-                    Lighthief Cyprus Ltd • Official Linyang Energy Storage Distributor
+                    Lighthief Cyprus Ltd • Official Tier-1 BESS Distributor
                   </p>
                 </div>
               </CardContent>
