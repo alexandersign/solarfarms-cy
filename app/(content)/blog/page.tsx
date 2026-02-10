@@ -86,7 +86,7 @@ export default function BlogPage() {
                   </Link>
                 </CardTitle>
                 <CardDescription className="line-clamp-2">
-                  How Linyang backs Lighthief with Tier-1 technology, and how multi-layered insurance makes BESS assets bankable and reliable investments.
+                  Why Cyprus's isolated grid is entering a BESS cycle, and how Tier-1 OEM partnerships and multi-layered insurance make BESS assets bankable investments.
                 </CardDescription>
               </CardHeader>
               <CardContent>

@@ -16,18 +16,19 @@ import {
   ArrowRight,
   AlertTriangle,
   TrendingUp,
-  Wrench
+  Wrench,
+  Zap,
+  Network
 } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'BESS Bankability: Why Choosing the Right Service Partner Makes or Breaks Your Investment',
-  description: 'Discover why BESS bankability depends on choosing the right EPC and O&M partner. Learn how Linyang backs Lighthief with Tier-1 technology, and how multi-layered insurance makes BESS assets bankable and reliable investments.',
+  description: 'Discover why BESS bankability depends on choosing the right EPC and O&M partner. Learn how Tier-1 OEM partnerships, multi-layered insurance, and cross-European expertise make BESS assets bankable and reliable investments in Cyprus.',
   keywords: [
     'BESS bankability',
     'battery energy storage bankability',
     'BESS service partner',
     'BESS EPC partner',
-    'Linyang BESS',
     'Lighthief Cyprus',
     'BESS insurance',
     'BESS warranty',
@@ -37,7 +38,10 @@ export const metadata: Metadata = {
     'BESS project finance',
     'Tier 1 BESS manufacturer',
     'BESS risk mitigation',
-    'Cyprus BESS investment'
+    'Cyprus BESS investment',
+    'Cyprus grid stability',
+    'island grid BESS',
+    'BESS cycle Europe'
   ],
 }
 
@@ -58,19 +62,20 @@ export default function BESSBankabilityArticle() {
               </span>
             </h1>
             <p className="text-2xl font-semibold text-cyprus-700 italic mb-4">
-              "Lighthief &amp; Linyang — Leading the Way for Lenders in Cyprus"
+              "Lighthief — Leading the Way for Lenders in Cyprus"
             </p>
             <p className="text-xl text-gray-600 mb-6">
-              In BESS project finance, bankability is everything. Lenders don't just evaluate the technology — they
-              scrutinise the entire value chain behind it. From OEM pedigree to insurance coverage, the service partner
-              you choose determines whether your project gets financed, stays operational, and delivers returns for decades.
+              Cyprus stands at a critical juncture in its energy transition. With an isolated grid, rising curtailment,
+              and ambitious renewable targets, the island is entering a BESS cycle that demands not just technology —
+              but bankable technology backed by the right partnerships. Here's why your choice of service partner
+              determines whether your BESS project gets financed, stays operational, and delivers returns for decades.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>•</span>
               <span>February 10, 2026</span>
               <span>•</span>
-              <span>12 min read</span>
+              <span>14 min read</span>
             </div>
           </div>
         </div>
@@ -81,7 +86,111 @@ export default function BESSBankabilityArticle() {
         <div className="container">
           <div className="max-w-4xl mx-auto space-y-12">
 
-            {/* Section 1: What is BESS Bankability */}
+            {/* Section 1: The Cyprus Context */}
+            <div>
+              <h2 className="text-3xl font-heading font-bold mb-4">Why Cyprus — and Why Now</h2>
+              <p className="text-lg text-gray-700 mb-4">
+                Cyprus faces a unique challenge among European Union member states: an isolated electrical grid
+                operating with one of the highest power outage frequencies in the region. Unlike mainland European
+                nations benefiting from interconnected transmission networks, Cyprus cannot export excess renewable
+                generation to neighbouring grids during peak production periods, nor import power during generation
+                deficits.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                This geographical constraint, combined with rapidly increasing renewable generation capacity, has
+                created significant grid stability issues. The Cyprus Transmission System Operator (TSO) reports
+                frequency fluctuations and curtailment events that reflect the fundamental challenge of balancing
+                intermittent solar and wind generation without adequate storage infrastructure.
+              </p>
+
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 mb-6">
+                <p className="text-lg text-gray-700 italic border-l-4 border-blue-500 pl-4">
+                  "Cyprus, with its very specific transmission networks and one of the highest outage levels due to
+                  a closed energy market, provides enormous opportunities for BESS utilisation. The island's electrical
+                  isolation makes it an ideal case study for energy storage deployment."
+                </p>
+                <p className="text-sm text-gray-500 mt-3 pl-4">
+                  — Dr. Arkadius Sybaris, Founder of Lighthief International
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-200">
+                  <CardContent className="pt-6">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
+                      <Network className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">Isolated Grid</h3>
+                    <p className="text-gray-700 text-sm">
+                      No interconnections to neighbouring countries. Excess power cannot be exported and deficits
+                      cannot be imported — creating mandatory curtailment during peak solar hours.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200">
+                  <CardContent className="pt-6">
+                    <div className="w-12 h-12 bg-amber-500 rounded-lg flex items-center justify-center mb-4">
+                      <AlertTriangle className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">High Outage Frequency</h3>
+                    <p className="text-gray-700 text-sm">
+                      One of the highest power outage rates among EU member states. Grid instability affects
+                      both consumers and the economic viability of renewable energy assets.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+                  <CardContent className="pt-6">
+                    <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                      <Battery className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">The BESS Opportunity</h3>
+                    <p className="text-gray-700 text-sm">
+                      These constraints create enormous demand for BESS — providing frequency regulation,
+                      peak shaving, and renewable energy time-shifting that the grid urgently needs.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Section 2: The BESS Cycle */}
+            <div>
+              <h2 className="text-3xl font-heading font-bold mb-4">Europe Is Entering a BESS Cycle — Cyprus Leads the Way</h2>
+              <p className="text-lg text-gray-700 mb-4">
+                The first wave of photovoltaic and wind installations across Europe has reached the technical limits
+                of what existing transmission infrastructure can accommodate. Without BESS development, there is
+                currently no other viable pathway for grid stabilisation — meaning further generation capacity
+                cannot be built until storage catches up.
+              </p>
+
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 mb-6">
+                <p className="text-lg text-gray-700 italic border-l-4 border-indigo-500 pl-4">
+                  "Without BESS development in Europe, there is currently no other possibility for grid stabilisation.
+                  We can clearly see that we are now entering a BESS cycle, so that in a few years we can once again
+                  build significantly more generation sources."
+                </p>
+                <p className="text-sm text-gray-500 mt-3 pl-4">
+                  — Dr. Arkadius Sybaris, Founder of Lighthief International
+                </p>
+              </div>
+
+              <p className="text-lg text-gray-700 mb-4">
+                BESS installations represent the necessary intermediate phase — providing grid services including
+                frequency regulation, peak shaving, and renewable energy time-shifting — that enables subsequent
+                expansion of generation capacity. For Cyprus, with its isolated grid and ambitious renewable targets,
+                this cycle isn't just relevant — it's urgent.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                But entering the BESS cycle is only half the challenge. The other half — the one that determines
+                whether projects actually get built — is <strong>bankability</strong>. And bankability starts with
+                who you choose as your service partner.
+              </p>
+            </div>
+
+            {/* Section 3: What is BESS Bankability */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">What Does "Bankable" Actually Mean for BESS?</h2>
               <p className="text-lg text-gray-700 mb-4">
@@ -151,7 +260,7 @@ export default function BESSBankabilityArticle() {
               </div>
             </div>
 
-            {/* Section 2: Why the Right Service Partner Matters */}
+            {/* Section 4: Why the Right Service Partner Matters */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">Why the Right Service Partner Is the Keystone of Bankability</h2>
               <p className="text-lg text-gray-700 mb-6">
@@ -190,10 +299,10 @@ export default function BESSBankabilityArticle() {
                   <CardContent>
                     <p className="text-gray-700">
                       BESS warranties are only as valuable as your ability to enforce them. A service partner with a
-                      direct contractual relationship with the OEM — not a reseller chain or intermediary — can
-                      expedite warranty claims, coordinate factory support, and ensure that replacement parts meet
-                      original specifications. Without this direct alignment, warranty disputes can leave your asset
-                      underperforming for months.
+                      direct contractual relationship with the OEM — as an official distributor, not a reseller chain
+                      or intermediary — can expedite warranty claims, coordinate factory support, and ensure that
+                      replacement parts meet original specifications. Without this direct alignment, warranty disputes
+                      can leave your asset underperforming for months.
                     </p>
                   </CardContent>
                 </Card>
@@ -219,8 +328,27 @@ export default function BESSBankabilityArticle() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center">
+                      <Zap className="w-5 h-5 text-amber-600 mr-2" />
+                      4. Technical Sophistication for Island Grids
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700">
+                      In an isolated grid environment like Cyprus, BESS installations must be capable of operating
+                      autonomously during grid disturbances while seamlessly synchronising when normal operations
+                      resume. This requires sophisticated inverter technology, grid-forming capabilities during
+                      islanding events, and advanced control systems coordinating with the TSO's dispatch algorithms.
+                      This level of technical sophistication demands experienced commissioning teams who understand
+                      both the equipment and the specific grid characteristics of the market they operate in.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg flex items-center">
                       <Globe className="w-5 h-5 text-cyan-600 mr-2" />
-                      4. Local Presence Is Non-Negotiable
+                      5. Local Presence Is Non-Negotiable
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -236,16 +364,80 @@ export default function BESSBankabilityArticle() {
               </div>
             </div>
 
-            {/* Section 3: How Linyang Backs Lighthief */}
+            {/* Section 5: Cross-European Expertise */}
+            <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-8">
+              <div className="text-center mb-8">
+                <Badge className="mb-3 bg-cyan-600 text-white">Multi-Jurisdictional Experience</Badge>
+                <h2 className="text-3xl font-heading font-bold mb-4">
+                  Why Cross-European Expertise Is a Bankability Multiplier
+                </h2>
+                <p className="text-lg text-gray-600">
+                  BESS technology requires specialised expertise in electrical engineering, thermal management,
+                  fire suppression systems, and sophisticated control algorithms. Knowledge gained across diverse
+                  European markets becomes preventive intelligence for new deployments.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 mb-6">
+                <p className="text-lg text-gray-700 italic border-l-4 border-cyan-500 pl-4">
+                  "What we're implementing here is not simply technology transfer — it's the integration of
+                  operational knowledge gained from managing hundreds of megawatts across diverse European markets.
+                  Our teams in Poland, Italy, and Spain have encountered and solved problems that Cyprus hasn't
+                  yet faced, and that preventive knowledge is invaluable."
+                </p>
+                <p className="text-sm text-gray-500 mt-3 pl-4">
+                  — Alexander Papacosta, Managing Director, Lighthief Cyprus & Greece
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-white rounded-lg p-5 text-center">
+                  <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Globe className="w-7 h-7 text-white" />
+                  </div>
+                  <h4 className="font-semibold mb-2">Multi-Market Operations</h4>
+                  <p className="text-sm text-gray-700">
+                    Lighthief International operates across eleven European nations. Each market has different
+                    regulatory frameworks, grid codes, and technical requirements — creating a depth of operational
+                    knowledge that single-market operators cannot replicate.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-5 text-center">
+                  <div className="w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="w-7 h-7 text-white" />
+                  </div>
+                  <h4 className="font-semibold mb-2">Cross-Border Team Reinforcement</h4>
+                  <p className="text-sm text-gray-700">
+                    The local Cyprus team is reinforced by experienced service technicians and installers from
+                    Lighthief Poland and Lighthief Italy, as well as directly by factory trainers from the OEM
+                    manufacturer — ensuring commissioning excellence from day one.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-5 text-center">
+                  <div className="w-14 h-14 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Shield className="w-7 h-7 text-white" />
+                  </div>
+                  <h4 className="font-semibold mb-2">Mediterranean Climate Mastery</h4>
+                  <p className="text-sm text-gray-700">
+                    High ambient temperatures require robust thermal management systems and impact battery
+                    degradation rates. Lighthief's teams have already mastered BESS performance in Mediterranean
+                    conditions through deployments in southern Italy and Spain.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 6: How the OEM Partnership Works */}
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
               <div className="text-center mb-8">
                 <Badge className="mb-3 bg-blue-600 text-white">Strategic OEM Partnership</Badge>
                 <h2 className="text-3xl font-heading font-bold mb-4">
-                  How Linyang Backs Lighthief: A Tier-1 OEM Partnership Built for Bankability
+                  How Lighthief's Tier-1 OEM Partnership Is Built for Bankability
                 </h2>
                 <p className="text-lg text-gray-600">
-                  The relationship between Lighthief and Linyang Energy isn't a simple buyer-seller arrangement —
-                  it's a strategic exclusivity partnership designed to deliver bankable BESS assets.
+                  Lighthief has signed exclusive distribution agreements with a BloombergNEF Tier-1 BESS
+                  manufacturer and cell producer, as well as a leading PCS manufacturer — creating a fully
+                  integrated, bankable supply chain for the Cyprus market.
                 </p>
               </div>
 
@@ -253,31 +445,30 @@ export default function BESSBankabilityArticle() {
                 <div>
                   <h3 className="text-xl font-semibold mb-4 flex items-center">
                     <Building2 className="w-6 h-6 text-blue-600 mr-2" />
-                    About Linyang Energy
+                    Why OEM Status Matters
                   </h3>
                   <p className="text-gray-700 mb-4">
-                    Jiangsu Linyang Energy Storage Technology Co., Ltd (Nanjing, China) is a
-                    <strong> BloombergNEF Tier-1 global energy storage manufacturer</strong> (Q4 2024) and a
-                    Global Top 500 New Energy Enterprise. Linyang is a strategic shareholder in EVE Energy, the
-                    cell manufacturer behind their BESS systems, giving full vertical integration from cell
-                    chemistry to containerised system.
+                    The difference between being an official distributor and simply buying equipment on the open
+                    market is the difference between a bankable project and a speculative one. As the exclusive
+                    authorised distributor for a BloombergNEF Tier-1 BESS manufacturer in Cyprus, Lighthief has
+                    secured the kind of OEM relationship that lenders require:
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700"><strong>Product:</strong> Linyang Power Atlantic — 5.015 MWh containerised BESS (20HC)</span>
+                      <span className="text-gray-700"><strong>Tier-1 BESS Manufacturer:</strong> BloombergNEF Tier-1 listed, Global Top 500 New Energy Enterprise with vertically integrated production</span>
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700"><strong>Chemistry:</strong> LFP (Lithium Iron Phosphate) — EVE Energy MB31 314Ah cells</span>
+                      <span className="text-gray-700"><strong>Tier-1 Cell Manufacturer:</strong> Strategic shareholder relationship with the cell producer ensures full traceability from cell chemistry to containerised system</span>
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700"><strong>Certifications:</strong> UL 9540A (PASSED), IEC 62619, EN 50549-2, IEC 63056, UN 38.3</span>
+                      <span className="text-gray-700"><strong>Leading PCS Manufacturer:</strong> Grid-code compliant Power Conversion Systems (EN 50549-2 certified) ensuring seamless grid integration</span>
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700"><strong>Global Partnerships:</strong> Hoppecke (Germany), Saudi ECC, Thundergrid (Australia), Bison Energy (Japan)</span>
+                      <span className="text-gray-700"><strong>Full Certifications:</strong> UL 9540A (PASSED), IEC 62619, EN 50549-2, IEC 63056, UN 38.3</span>
                     </div>
                   </div>
                 </div>
@@ -285,20 +476,19 @@ export default function BESSBankabilityArticle() {
                 <div>
                   <h3 className="text-xl font-semibold mb-4 flex items-center">
                     <Users className="w-6 h-6 text-emerald-600 mr-2" />
-                    The Exclusive Distribution Agreement
+                    What the Exclusive Distribution Agreement Delivers
                   </h3>
                   <p className="text-gray-700 mb-4">
-                    Signed on 28 November 2025, the 3-year exclusive distribution agreement makes Lighthief the
-                    sole authorised Linyang BESS distributor for the Republic of Cyprus. This isn't just a
-                    commercial arrangement — it's a commitment to joint market development with deep technical
-                    integration.
+                    This isn't just a commercial arrangement — it's a commitment to joint market development
+                    with deep technical integration. The exclusive distribution agreement makes Lighthief the
+                    sole authorised BESS distributor for Cyprus, with the following OEM commitments:
                   </p>
                   <div className="bg-white rounded-lg p-4 space-y-3">
-                    <h4 className="font-semibold text-blue-800">What Linyang Provides to Lighthief:</h4>
+                    <h4 className="font-semibold text-blue-800">OEM Commitments to Lighthief:</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span><strong>Factory-trained commissioning technicians</strong> from Nanjing HQ for every project</span>
+                        <span><strong>Factory-trained commissioning technicians</strong> deployed directly from OEM headquarters for every project</span>
                       </div>
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
@@ -306,19 +496,19 @@ export default function BESSBankabilityArticle() {
                       </div>
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span><strong>5-day initial training programme</strong> + quarterly webinars + annual refresher</span>
+                        <span><strong>Comprehensive training programme</strong> with quarterly webinars and annual refresher courses</span>
                       </div>
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span><strong>950 m² dedicated spare parts warehouse</strong> in Poland (EU logistics hub)</span>
+                        <span><strong>Dedicated spare parts warehouse</strong> in Poland (EU logistics hub) for rapid European supply</span>
                       </div>
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span><strong>Minimum 2 engineering visits per year</strong> (travel covered by Linyang)</span>
+                        <span><strong>Minimum 2 engineering visits per year</strong> covered by the OEM</span>
                       </div>
                       <div className="flex items-start space-x-2">
                         <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span><strong>Comprehensive product liability insurance</strong> maintained by Linyang with a global Tier-1 insurer</span>
+                        <span><strong>Comprehensive product liability insurance</strong> maintained by the OEM with a global Tier-1 insurer</span>
                       </div>
                     </div>
                   </div>
@@ -347,12 +537,12 @@ export default function BESSBankabilityArticle() {
                 </div>
                 <p className="text-sm text-gray-600 text-center">
                   Base warranty: 5 years from PAC (all components) | Extended warranty available up to 15 years |
-                  Warranty reserve: ~1.9% of system value/year maintained on Linyang books
+                  Warranty reserve maintained on OEM books — not a paper promise, but a funded commitment.
                 </p>
               </div>
             </div>
 
-            {/* Section 4: Insurance & Warranty Flow */}
+            {/* Section 7: Insurance & Warranty Flow */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">
                 How Insurance and Warranties Flow — and Why OEM-O&M Partnership Is Essential
@@ -382,9 +572,9 @@ export default function BESSBankabilityArticle() {
                     </div>
                     <h4 className="font-semibold mb-2">Warranty Enforcement</h4>
                     <p className="text-sm text-gray-700">
-                      As official distributor, Lighthief can enforce warranty claims directly with Linyang —
+                      As official distributor, Lighthief can enforce warranty claims directly with the OEM —
                       no intermediaries, no delays, no finger-pointing. Manufacturing defect indemnification
-                      flows straight from OEM to project.
+                      flows straight from the manufacturer to your project.
                     </p>
                   </div>
                   <div className="text-center">
@@ -418,7 +608,7 @@ export default function BESSBankabilityArticle() {
                   <CardHeader className="bg-blue-50">
                     <CardTitle className="flex items-center text-blue-900">
                       <Shield className="w-6 h-6 mr-2" />
-                      Layer 1: OEM Protection (Linyang)
+                      Layer 1: OEM Protection (Tier-1 Manufacturer)
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -437,12 +627,11 @@ export default function BESSBankabilityArticle() {
                       </div>
                     </div>
                     <p className="text-gray-700 mt-4 text-sm">
-                      As the manufacturer, Linyang maintains comprehensive product liability insurance with a
-                      globally recognised insurer, covering defects in design, materials, or workmanship across
-                      all system components. Critically, Linyang provides full indemnification to Lighthief as
-                      their official distributor for any manufacturing defects — creating a direct OEM accountability
-                      chain that lenders value highly. This protection only exists because of the formal distributor
-                      relationship.
+                      The OEM manufacturer maintains comprehensive product liability insurance with a globally
+                      recognised insurer, covering defects in design, materials, or workmanship across all system
+                      components. Critically, the OEM provides full indemnification to Lighthief as their official
+                      distributor for any manufacturing defects — creating a direct accountability chain that
+                      lenders value highly. This protection only exists because of the formal distributor relationship.
                     </p>
                   </CardContent>
                 </Card>
@@ -518,7 +707,7 @@ export default function BESSBankabilityArticle() {
                 <h3 className="text-lg font-semibold text-center mb-6">Complete Risk Transfer Chain</h3>
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                   <div className="bg-blue-100 border-2 border-blue-300 rounded-lg p-4 text-center w-full md:w-1/3">
-                    <div className="font-bold text-blue-800 mb-1">Linyang (OEM)</div>
+                    <div className="font-bold text-blue-800 mb-1">Tier-1 OEM Manufacturer</div>
                     <div className="text-xs text-gray-600">Product Liability Insurance</div>
                     <div className="text-xs text-gray-600">Professional Indemnity</div>
                     <div className="text-xs text-gray-600">Full Defect Indemnification</div>
@@ -545,7 +734,7 @@ export default function BESSBankabilityArticle() {
               </div>
             </div>
 
-            {/* Section 5: Lighthief's Unique Position */}
+            {/* Section 8: Lighthief's Unique Position */}
             <div className="bg-gradient-to-br from-cyprus-50 to-solar-50 rounded-2xl p-8">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-heading font-bold mb-4">
@@ -577,8 +766,8 @@ export default function BESSBankabilityArticle() {
                       EU Infrastructure Backbone
                     </h4>
                     <p className="text-gray-700 text-sm">
-                      With EU headquarters in Częstochowa, Poland — featuring a 23-hectare facility with operational
-                      BESS test systems, 3,500 m² warehouse, and a 950 m² dedicated Linyang spare parts depot —
+                      With EU headquarters in Poland — featuring a 23-hectare facility with operational
+                      BESS test systems, large-scale warehouse, and a dedicated OEM spare parts depot —
                       Lighthief has the infrastructure to support long-term operations. This isn't a start-up
                       promise; it's operational reality with 150+ engineers across Europe.
                     </p>
@@ -587,12 +776,12 @@ export default function BESSBankabilityArticle() {
                   <div className="bg-white rounded-lg p-5">
                     <h4 className="font-semibold text-lg mb-2 flex items-center">
                       <Battery className="w-5 h-5 text-emerald-600 mr-2" />
-                      863.5 MWh Portfolio in Cyprus
+                      Significant Cyprus Portfolio
                     </h4>
                     <p className="text-gray-700 text-sm">
-                      With 863.5 MWh across 51 parks in Cyprus (249 MW total, ~€92-104M portfolio value),
-                      Lighthief has demonstrated market commitment at scale. This portfolio size creates economies
-                      of scale in spare parts, monitoring, and service delivery that smaller operators cannot match.
+                      With a substantial BESS portfolio across dozens of parks in Cyprus, Lighthief has
+                      demonstrated market commitment at scale. This portfolio size creates economies of scale
+                      in spare parts, monitoring, and service delivery that smaller operators cannot match.
                     </p>
                   </div>
                 </div>
@@ -604,11 +793,10 @@ export default function BESSBankabilityArticle() {
                       Complete Technology Ecosystem
                     </h4>
                     <p className="text-gray-700 text-sm">
-                      Beyond Linyang for battery systems, Lighthief has established partnerships with leading
-                      manufacturers for Power Conversion Systems (PCS), a global leader for Energy Management
-                      and SCADA systems, and qualified local subcontractors for civil and electrical works. This
-                      integrated ecosystem means single-point accountability for the entire BESS installation —
-                      a key bankability differentiator.
+                      Lighthief has signed with a Tier-1 BESS manufacturer and cell producer, a leading PCS
+                      manufacturer, a global leader for Energy Management and SCADA systems, and qualified local
+                      subcontractors for civil and electrical works. This integrated ecosystem means single-point
+                      accountability for the entire BESS installation — a key bankability differentiator.
                     </p>
                   </div>
 
@@ -631,22 +819,22 @@ export default function BESSBankabilityArticle() {
                       Turnkey EPC with OEM Warranty Pass-Through
                     </h4>
                     <p className="text-gray-700 text-sm">
-                      Lighthief provides 2-year EPC works warranty covering civil, cabling, and earthing works,
-                      plus a full 5-year OEM warranty pass-through on equipment. This dual warranty structure means
+                      Lighthief provides an EPC works warranty covering civil, cabling, and earthing works,
+                      plus a full OEM warranty pass-through on equipment. This dual warranty structure means
                       the client has a single point of contact (Lighthief) while retaining the full backing of
-                      Linyang's OEM guarantee — simplifying both operations and lender reporting.
+                      the OEM's guarantee — simplifying both operations and lender reporting.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Section 6: What Lenders Actually Look For */}
+            {/* Section 9: What Lenders Actually Look For */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">What Lenders Actually Look For: A Bankability Checklist</h2>
               <p className="text-lg text-gray-700 mb-6">
                 Based on current project finance requirements for BESS systems, here is what banks and institutional
-                investors evaluate — and how the Lighthief-Linyang structure addresses each requirement:
+                investors evaluate — and how the Lighthief structure addresses each requirement:
               </p>
 
               <div className="overflow-hidden rounded-xl border">
@@ -663,7 +851,7 @@ export default function BESSBankabilityArticle() {
                       <td className="p-4 text-gray-700">
                         <span className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                          Linyang — BNEF Tier-1 (Q4 2024)
+                          BloombergNEF Tier-1 manufacturer (exclusive distribution agreement)
                         </span>
                       </td>
                     </tr>
@@ -681,7 +869,7 @@ export default function BESSBankabilityArticle() {
                       <td className="p-4 text-gray-700">
                         <span className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                          Comprehensive policy with global Tier-1 insurer, maintained by Linyang
+                          Comprehensive policy with global Tier-1 insurer, maintained by OEM
                         </span>
                       </td>
                     </tr>
@@ -726,7 +914,7 @@ export default function BESSBankabilityArticle() {
                       <td className="p-4 text-gray-700">
                         <span className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                          950 m² EU warehouse (Poland) + local Cyprus inventory
+                          EU warehouse (Poland) + local Cyprus inventory
                         </span>
                       </td>
                     </tr>
@@ -735,11 +923,20 @@ export default function BESSBankabilityArticle() {
                       <td className="p-4 text-gray-700">
                         <span className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                          EVE Energy (Linyang strategic shareholder) — full traceability
+                          OEM is strategic shareholder in cell manufacturer — full traceability
                         </span>
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
+                      <td className="p-4 text-gray-700">Cross-jurisdictional expertise</td>
+                      <td className="p-4 text-gray-700">
+                        <span className="flex items-center">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          Lighthief operates across 11 European nations with 150+ engineers
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
                       <td className="p-4 text-gray-700">Enhanced bankability for financing</td>
                       <td className="p-4 text-gray-700">
                         <span className="flex items-center">
@@ -753,7 +950,7 @@ export default function BESSBankabilityArticle() {
               </div>
             </div>
 
-            {/* Section 7: The Cost of Choosing Wrong */}
+            {/* Section 10: The Cost of Choosing Wrong */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">The Cost of Choosing the Wrong Partner</h2>
               <p className="text-lg text-gray-700 mb-6">
@@ -848,25 +1045,30 @@ export default function BESSBankabilityArticle() {
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4">Conclusion: Bankability Is Built, Not Bought</h2>
               <p className="text-lg text-gray-700 mb-4">
-                BESS bankability is not a feature you can purchase off a spec sheet. It's the result of deliberate
-                choices — choosing a Tier-1 OEM with proven global partnerships, selecting a service partner with
-                dedicated BESS expertise and local presence, and building a multi-layered insurance and warranty
-                structure that satisfies the most rigorous lender requirements.
+                Cyprus stands at a critical juncture. The island's isolated grid, combined with ambitious renewable
+                energy targets, creates an urgent need for BESS infrastructure. But the successful implementation of
+                energy storage requires not only appropriate technology — it requires the operational expertise,
+                insurance framework, and OEM partnerships that make projects financeable.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                The Lighthief-Linyang partnership was designed with this understanding from the ground up. From
-                Linyang's BloombergNEF Tier-1 status and comprehensive product liability coverage, to Lighthief's
-                dedicated BESS team with 97% availability guarantees and full EPC/O&M insurance — every element
-                of the value chain is structured to make your BESS investment bankable, insurable, and profitable
-                for decades. The official distributor relationship is what makes this chain unbreakable: warranties
-                flow directly from the OEM, insurance layers connect without gaps, and accountability is clear at
-                every stage.
+                BESS bankability is not a feature you can purchase off a spec sheet. It's the result of deliberate
+                choices — choosing a Tier-1 OEM with proven global partnerships, selecting a service partner with
+                dedicated BESS expertise and local presence, ensuring cross-European operational knowledge transfer,
+                and building a multi-layered insurance and warranty structure that satisfies the most rigorous
+                lender requirements.
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                Lighthief's approach to the Cyprus market draws on this exact framework. With exclusive distribution
+                agreements with a Tier-1 BESS manufacturer and cell producer, a leading PCS manufacturer, and
+                comprehensive EPC/O&M insurance — every element of the value chain is structured to make your
+                BESS investment bankable, insurable, and profitable for decades. The official distributor
+                relationship is what makes this chain unbreakable: warranties flow directly from the OEM, insurance
+                layers connect without gaps, and accountability is clear at every stage.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                In a market where BESS projects with the right structure can access up to 70% loan-to-value
-                financing, the choice of service partner isn't just an operational decision — it's a financial one
-                that determines whether your project gets built, stays performing, and delivers the returns you
-                planned for.
+                As the island develops its BESS infrastructure, the technical knowledge and experience of companies
+                operating across multiple jurisdictions will prove essential to achieving stable, sustainable
+                electrical systems — and bankable investment returns.
               </p>
             </div>
 
@@ -894,7 +1096,7 @@ export default function BESSBankabilityArticle() {
                   BloombergNEF — Tier-1 Energy Storage Manufacturer List, Q4 2024
                 </li>
                 <li>
-                  Linyang-Lighthief Exclusive Distribution Agreement — November 28, 2025
+                  Cyprus Mail — <em>"Cyprus Energy Storage Market: BESS Technology Emerges as Critical Solution to Grid Instability"</em>
                 </li>
                 <li>
                   Lighthief Internal — Warranties and Insurance Documentation (February 2026)
@@ -905,13 +1107,13 @@ export default function BESSBankabilityArticle() {
             {/* Call to Action */}
             <div className="bg-gradient-to-r from-cyprus-600 to-solar-600 rounded-2xl p-8 text-white text-center">
               <p className="text-2xl font-semibold italic mb-4 opacity-90">
-                "Lighthief &amp; Linyang — Leading the Way for Lenders in Cyprus"
+                "Lighthief — Leading the Way for Lenders in Cyprus"
               </p>
               <h2 className="text-3xl font-heading font-bold mb-4">
                 Ready to Build a Bankable BESS Project?
               </h2>
               <p className="text-xl mb-6 opacity-90">
-                Talk to our team about how the Lighthief-Linyang partnership can make your BESS investment
+                Talk to our team about how Lighthief's Tier-1 OEM partnerships can make your BESS investment
                 bankable, insurable, and future-proof.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
