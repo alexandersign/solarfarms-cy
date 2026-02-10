@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lighthief EPC Guide 2025 - Engineering, Procurement & Construction</title>
+    <style>
+        @page { 
+            margin: 2cm;
+            size: A4;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; 
+            line-height: 1.7; 
+            color: #1a1a1a;
+            font-size: 10.5pt;
+            max-width: 21cm;
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        /* ── Print Controls ── */
+        .print-controls {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 9999;
+            display: flex;
+            gap: 8px;
+        }
+        .print-btn {
+            background: #111827;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all .2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        }
+        .print-btn:hover { background: #f59e0b; color: #111827; }
+        .print-btn svg { width: 16px; height: 16px; }
+
+        /* ── Cover ── */
+        .cover {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 40%, #0ea5e9 100%);
+            color: white;
+            padding: 70px 60px;
+            page-break-after: always;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cover-logo {
+            width: 180px;
+            margin-bottom: 40px;
+            filter: brightness(0) invert(1);
+        }
+        .cover h1 {
+            font-size: 42pt;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .cover .subtitle {
+            font-size: 16pt;
+            opacity: 0.92;
+            font-weight: 400;
+            margin-bottom: 50px;
+            max-width: 500px;
+        }
+        .cover-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: auto;
+        }
+        .cover-stat {
+            background: rgba(255,255,255,.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .cover-stat-value {
+            font-size: 22pt;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .cover-stat-label {
+            font-size: 9pt;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        .cover-footer {
+            margin-top: 50px;
+            font-size: 10pt;
+            opacity: 0.75;
+        }
+
+        /* ── Headings ── */
+        h1.section-title {
+            color: #0ea5e9;
+            font-size: 22pt;
+            font-weight: 800;
+            margin: 50px 0 20px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #f59e0b;
+            letter-spacing: -0.01em;
+        }
+        h2 {
+            color: #1f2937;
+            font-size: 16pt;
+            font-weight: 700;
+            margin: 30px 0 14px 0;
+        }
+        h3 {
+            color: #4b5563;
+            font-size: 13pt;
+            font-weight: 600;
+            margin: 20px 0 10px 0;
+        }
+
+        /* ── Content Area ── */
+        .content {
+            padding: 40px 50px;
+        }
+
+        /* ── Boxes ── */
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            page-break-inside: avoid;
+        }
+        .info-box {
+            background: #dbeafe;
+            border-left: 5px solid #0ea5e9;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            page-break-inside: avoid;
+        }
+        .success-box {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            page-break-inside: avoid;
+        }
+
+        /* ── Stats Grid ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .stat-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            border-radius: 10px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        .stat-value {
+            font-size: 26pt;
+            font-weight: 800;
+            color: #0ea5e9;
+            line-height: 1.1;
+        }
+        .stat-value.solar { color: #f59e0b; }
+        .stat-value.green { color: #22c55e; }
+        .stat-label {
+            font-size: 9pt;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+
+        /* ── Tables ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            page-break-inside: avoid;
+            font-size: 10pt;
+        }
+        th, td {
+            padding: 11px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f3f4f6;
+            font-weight: 700;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: #4b5563;
+        }
+        tr:hover { background: #f9fafb; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 24px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #f59e0b, #0ea5e9);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+            page-break-inside: avoid;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #f59e0b;
+        }
+        .timeline-item:nth-child(even)::before { border-color: #0ea5e9; }
+        .timeline-year {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #f59e0b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .timeline-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 2px 0 4px 0;
+        }
+        .timeline-desc {
+            font-size: 10pt;
+            color: #6b7280;
+        }
+
+        /* ── Process Steps ── */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin: 20px 0;
+        }
+        .process-step {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 24px;
+            page-break-inside: avoid;
+            position: relative;
+            overflow: hidden;
+        }
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -8px;
+            right: -5px;
+            font-size: 60pt;
+            font-weight: 900;
+            color: rgba(14, 165, 233, 0.06);
+            line-height: 1;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #0ea5e9);
+            color: white;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        .step-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .step-duration {
+            font-size: 9pt;
+            color: #0ea5e9;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .step-desc {
+            font-size: 9.5pt;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* ── Packages ── */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 20px 0;
+        }
+        .package-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 28px;
+            page-break-inside: avoid;
+            position: relative;
+        }
+        .package-card.popular {
+            border: 2px solid #f59e0b;
+            box-shadow: 0 4px 20px rgba(245,158,11,.12);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            font-size: 8pt;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .package-name {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        .package-price {
+            font-size: 13pt;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f59e0b, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+        .package-irr {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 9pt;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .package-features li {
+            font-size: 9.5pt;
+            color: #4b5563;
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        /* ── BESS Pricing ── */
+        .bess-highlight {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border: 1px solid #bbf7d0;
+        }
+        .bess-highlight td { font-weight: 600; }
+
+        /* ── Partners Grid ── */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .partner-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        .partner-name {
+            font-size: 13pt;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        .partner-type {
+            font-size: 8pt;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Form ── */
+        .form-section {
+            background: linear-gradient(135deg, #111827, #1f2937);
+            color: #fff;
+            padding: 50px;
+            margin: 40px -50px -40px -50px;
+            border-radius: 0;
+        }
+        .form-section h2 {
+            color: #fff;
+            font-size: 20pt;
+            margin-bottom: 6px;
+        }
+        .form-subtitle {
+            color: #9ca3af;
+            font-size: 11pt;
+            margin-bottom: 30px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-label {
+            font-size: 9pt;
+            font-weight: 600;
+            color: #d1d5db;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .form-input, .form-select, .form-textarea {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 10.5pt;
+            transition: all .2s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245,158,11,.15);
+        }
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #6b7280;
+        }
+        .form-select { cursor: pointer; }
+        .form-select option { background: #1f2937; color: #fff; }
+        .form-textarea { resize: vertical; min-height: 100px; }
+        .form-submit {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #111827;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 12pt;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(245,158,11,.3);
+        }
+        .form-note {
+            font-size: 8pt;
+            color: #6b7280;
+            margin-top: 12px;
+        }
+
+        /* ── Scope Checklist ── */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .scope-included, .scope-excluded {
+            border-radius: 10px;
+            padding: 24px;
+        }
+        .scope-included {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+        .scope-excluded {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        .scope-title {
+            font-size: 11pt;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .scope-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .scope-list li {
+            font-size: 9.5pt;
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #374151;
+        }
+        .scope-included .scope-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: 700;
+        }
+        .scope-excluded .scope-list li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* ── Footer ── */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px solid #0ea5e9;
+            text-align: center;
+            font-size: 9pt;
+            color: #6b7280;
+        }
+        .doc-footer strong { color: #1f2937; }
+
+        /* ── Page Breaks ── */
+        .page-break { page-break-before: always; }
+
+        /* ── Lists ── */
+        ul, ol { margin: 12px 0; padding-left: 24px; }
+        li { margin: 6px 0; }
+
+        /* ── Print Styles ── */
+        @media print {
+            .print-controls { display: none !important; }
+            .form-section { display: none !important; }
+            body { font-size: 9.5pt; }
+            .cover { min-height: auto; padding: 50px 40px; margin: -2cm; padding: 60px; }
+            .content { padding: 20px 0; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .packages-grid { grid-template-columns: repeat(3, 1fr); }
+            .form-section { page-break-before: always; display: block !important; }
+            h1.section-title { margin-top: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Print Controls -->
+<div class="print-controls">
+    <button class="print-btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        Export PDF
+    </button>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--                   COVER                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="cover">
+    <img src="/logo/lighthief-logo.png" alt="Lighthief" class="cover-logo" onerror="this.style.display='none'">
+    <h1>EPC SERVICES<br>GUIDE</h1>
+    <p class="subtitle">Engineering, Procurement &amp; Construction for Solar Farms &amp; Battery Energy Storage Systems in Cyprus</p>
+
+    <div class="cover-stats">
+        <div class="cover-stat">
+            <div class="cover-stat-value">€0.61-0.73</div>
+            <div class="cover-stat-label">PV EPC per Wp</div>
+        </div>
+        <div class="cover-stat">
+            <div class="cover-stat-value">8-13%</div>
+            <div class="cover-stat-label">Equity IRR</div>
+        </div>
+        <div class="cover-stat">
+            <div class="cover-stat-value">2017</div>
+            <div class="cover-stat-label">Founded</div>
+        </div>
+        <div class="cover-stat">
+            <div class="cover-stat-value">300+</div>
+            <div class="cover-stat-label">Sunny Days / Year</div>
+        </div>
+    </div>
+
+    <div class="cover-footer">
+        <p>Published by <strong>LIGHTHIEF CYPRUS LTD</strong> &middot; 2025 Edition</p>
+        <p>www.solarfarms.cy</p>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--                  CONTENT                    -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="content">
+
+<!-- ─── 1. ABOUT LIGHTHIEF GROUP ─── -->
+<h1 class="section-title">1. About the Lighthief Group</h1>
+
+<h2>1.1 Group Overview</h2>
+
+<p>Lighthief is a European clean energy group founded in 2017, operating across the solar lifecycle &mdash; from development and EPC construction to operations, monitoring, and end-of-life recycling. Our unique heritage gives us unmatched perspective on long-term asset performance and sustainability.</p>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value solar">8+</div>
+        <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">Cyprus</div>
+        <div class="stat-label">Headquarters &mdash; Limassol</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value green">Tier-1</div>
+        <div class="stat-label">Equipment Partnerships</div>
+    </div>
+</div>
+
+<h2>1.2 Our Evolution</h2>
+
+<div class="timeline">
+    <div class="timeline-item">
+        <div class="timeline-year">2017 &mdash; Foundation</div>
+        <div class="timeline-title">Solar Panel Recycling Pioneers</div>
+        <div class="timeline-desc">Founded by Darius and Arkadius to address the growing need for sustainable solar panel end-of-life solutions. This heritage gives us unique lifecycle expertise that informs every project we deliver.</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-year">2019 &mdash; Expansion</div>
+        <div class="timeline-title">Operations &amp; Maintenance Services</div>
+        <div class="timeline-desc">Expanded into comprehensive O&amp;M services for existing solar installations. Developed 24/7 monitoring capabilities, preventive maintenance programs, and performance optimization expertise.</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-year">2022 &mdash; Growth</div>
+        <div class="timeline-title">BESS Integration Specialist</div>
+        <div class="timeline-desc">Became an official Tier-1 BESS reseller with partnerships with leading manufacturers. Pioneered battery storage integration for curtailment mitigation in the Cyprus market.</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-year">2024 &mdash; Full EPC</div>
+        <div class="timeline-title">Complete EPC Contractor</div>
+        <div class="timeline-desc">Evolution into a full-service EPC contractor, offering end-to-end project delivery from design through commissioning. Cyprus-headquartered with international standards and supply chain.</div>
+    </div>
+    <div class="timeline-item">
+        <div class="timeline-year">2025 &mdash; Scale</div>
+        <div class="timeline-title">Large-Scale Portfolio Deployment</div>
+        <div class="timeline-desc">Executing large-scale BESS portfolio across 47 Cyprus solar parks (863+ MWh). Proven delivery capability for utility-scale projects with confirmed Tier-1 equipment supply chain.</div>
+    </div>
+</div>
+
+<h2>1.3 Lighthief Cyprus Ltd</h2>
+
+<table>
+    <tr><th style="width:35%">Detail</th><th>Information</th></tr>
+    <tr><td><strong>Company Name</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+    <tr><td><strong>Registration</strong></td><td>HE 477423</td></tr>
+    <tr><td><strong>Tax ID</strong></td><td>60187188Q</td></tr>
+    <tr><td><strong>Address</strong></td><td>28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</td></tr>
+    <tr><td><strong>Specialization</strong></td><td>Solar EPC, BESS Integration, O&amp;M Services, Asset Recycling</td></tr>
+    <tr><td><strong>Certifications</strong></td><td>ETEK Certified Engineers, EU Battery Passport Compliant</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ─── 2. EPC SERVICES OVERVIEW ─── -->
+<h1 class="section-title">2. EPC Services Overview</h1>
+
+<h2>2.1 What We Deliver</h2>
+
+<p>Lighthief provides complete turnkey Engineering, Procurement &amp; Construction (EPC) services for solar photovoltaic parks and Battery Energy Storage Systems (BESS) in Cyprus. Our integrated approach covers the entire project lifecycle:</p>
+
+<div class="process-grid">
+    <div class="process-step" data-step="1">
+        <div class="step-number">1</div>
+        <div class="step-title">Assessment &amp; Design</div>
+        <div class="step-duration">2&ndash;4 weeks</div>
+        <div class="step-desc">Solar irradiation analysis, grid feasibility, optimized layout design, financial projections with realistic 8-13% IRR targets, and environmental impact assessment.</div>
+    </div>
+    <div class="process-step" data-step="2">
+        <div class="step-number">2</div>
+        <div class="step-title">Engineering &amp; Procurement</div>
+        <div class="step-duration">4&ndash;6 weeks</div>
+        <div class="step-desc">Complete electrical and structural engineering, Tier-1 equipment procurement with full supply chain management, grid connection design, and regulatory compliance.</div>
+    </div>
+    <div class="process-step" data-step="3">
+        <div class="step-number">3</div>
+        <div class="step-title">Construction &amp; Installation</div>
+        <div class="step-duration">8&ndash;16 weeks</div>
+        <div class="step-desc">Civil works and foundations, professional equipment installation by certified specialists, MV infrastructure, quality assurance protocols, and full safety compliance.</div>
+    </div>
+    <div class="process-step" data-step="4">
+        <div class="step-number">4</div>
+        <div class="step-title">Commissioning &amp; Handover</div>
+        <div class="step-duration">2&ndash;4 weeks</div>
+        <div class="step-desc">System testing and performance verification, grid connection certification, ETEK engineer sign-off, warranty documentation, and transition to O&amp;M services.</div>
+    </div>
+</div>
+
+<h2>2.2 The Lighthief Advantage</h2>
+
+<div class="highlight-box">
+    <strong>Why Lighthief EPC?</strong>
+    <ul>
+        <li><strong>Recycling Heritage:</strong> Unique understanding of component lifecycle ensures optimal equipment selection</li>
+        <li><strong>Local Presence:</strong> Limassol-based HQ with same-day emergency response capability</li>
+        <li><strong>Integrated Services:</strong> Seamless transition from construction to 24/7 O&amp;M operations</li>
+        <li><strong>Realistic Projections:</strong> Conservative 8-13% IRR based on actual Cyprus market data</li>
+        <li><strong>End-to-End Lifecycle:</strong> From development through decommissioning and recycling</li>
+    </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ─── 3. PV EPC PRICING ─── -->
+<h1 class="section-title">3. Solar PV EPC Pricing</h1>
+
+<h2>3.1 Turnkey PV Pricing by Size</h2>
+
+<p>Complete turnkey solar PV EPC pricing, fully installed and commissioned:</p>
+
+<table>
+    <tr>
+        <th>Park Size (MWp)</th>
+        <th class="text-right">Total EPC Price</th>
+        <th class="text-right">Price per MWp</th>
+        <th class="text-right">Price per Wp</th>
+    </tr>
+    <tr>
+        <td><strong>1 MWp</strong></td>
+        <td class="text-right"><strong>€730,000</strong></td>
+        <td class="text-right">€730,000</td>
+        <td class="text-right">€0.73</td>
+    </tr>
+    <tr>
+        <td><strong>2 MWp</strong></td>
+        <td class="text-right"><strong>€1,380,000</strong></td>
+        <td class="text-right">€690,000</td>
+        <td class="text-right">€0.69</td>
+    </tr>
+    <tr>
+        <td><strong>3 MWp</strong></td>
+        <td class="text-right"><strong>€1,980,000</strong></td>
+        <td class="text-right">€660,000</td>
+        <td class="text-right">€0.66</td>
+    </tr>
+    <tr>
+        <td><strong>5 MWp</strong></td>
+        <td class="text-right"><strong>€3,200,000</strong></td>
+        <td class="text-right">€640,000</td>
+        <td class="text-right">€0.64</td>
+    </tr>
+    <tr>
+        <td><strong>10 MWp</strong></td>
+        <td class="text-right"><strong>€6,100,000</strong></td>
+        <td class="text-right">€610,000</td>
+        <td class="text-right">€0.61</td>
+    </tr>
+</table>
+
+<div class="info-box">
+    <strong>Economies of Scale:</strong> Larger projects benefit from significant unit cost reductions. A 10 MWp park costs €0.61/Wp compared to €0.73/Wp for 1 MWp &mdash; a 16% cost improvement.
+</div>
+
+<h2>3.2 What's Included in PV EPC</h2>
+
+<div class="scope-grid">
+    <div class="scope-included">
+        <div class="scope-title" style="color: #166534;">Included in EPC Price</div>
+        <ul class="scope-list">
+            <li>Tier-1 solar modules (590W)</li>
+            <li>String inverters (Huawei)</li>
+            <li>Mounting structure &amp; piling</li>
+            <li>DC &amp; AC balance of system</li>
+            <li>MV station &amp; transformer</li>
+            <li>Civil works, grading &amp; fencing</li>
+            <li>Installation labor &amp; machinery</li>
+            <li>Engineering, HSE &amp; QA</li>
+            <li>Commissioning &amp; certification</li>
+            <li>Performance warranties</li>
+            <li>Logistics &amp; port handling</li>
+        </ul>
+    </div>
+    <div class="scope-excluded">
+        <div class="scope-title" style="color: #991b1b;">Client Pays Separately</div>
+        <ul class="scope-list">
+            <li>RTB license (€350,000/MWp)</li>
+            <li>Off-site grid reinforcement</li>
+            <li>Land purchase or lease</li>
+            <li>Financing costs</li>
+            <li>VAT (19%)</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ─── 4. BESS PRICING ─── -->
+<h1 class="section-title">4. BESS Pricing</h1>
+
+<h2>4.1 Battery Energy Storage Systems</h2>
+
+<p>Lighthief provides complete turnkey BESS solutions using Tier-1 equipment, fully installed, commissioned, and grid-connected:</p>
+
+<table>
+    <tr>
+        <th>BESS Size (MWh)</th>
+        <th class="text-right">Price per MWh</th>
+        <th class="text-right">Total Price</th>
+        <th>Equipment</th>
+    </tr>
+    <tr>
+        <td><strong>4 MWh</strong></td>
+        <td class="text-right">€168,500/MWh</td>
+        <td class="text-right"><strong>€674,000</strong></td>
+        <td>Linyang ME / Kehua PCS</td>
+    </tr>
+    <tr>
+        <td><strong>8 MWh</strong></td>
+        <td class="text-right">€135,500/MWh</td>
+        <td class="text-right"><strong>€1,084,000</strong></td>
+        <td>Linyang ME / Kehua PCS</td>
+    </tr>
+    <tr>
+        <td><strong>10 MWh</strong></td>
+        <td class="text-right">€124,100/MWh</td>
+        <td class="text-right"><strong>€1,241,000</strong></td>
+        <td>Linyang ME / Kehua PCS</td>
+    </tr>
+    <tr class="bess-highlight">
+        <td><strong>20 MWh</strong> <span style="font-size:8pt;color:#22c55e;">&#9733; Most Popular</span></td>
+        <td class="text-right"><strong>€112,600/MWh</strong></td>
+        <td class="text-right"><strong>€2,253,000</strong></td>
+        <td>Linyang ME / Kehua PCS</td>
+    </tr>
+    <tr>
+        <td><strong>40 MWh</strong></td>
+        <td class="text-right">€109,800/MWh</td>
+        <td class="text-right"><strong>€4,392,000</strong></td>
+        <td>Linyang ME / Kehua PCS</td>
+    </tr>
+</table>
+
+<div class="success-box">
+    <strong>Volume Advantage:</strong> BESS pricing benefits significantly from scale &mdash; from €168,500/MWh at 4 MWh down to €109,800/MWh at 40 MWh (35% cost reduction).
+</div>
+
+<h2>4.2 BESS Technical Specifications</h2>
+
+<table>
+    <tr><th style="width:40%">Specification</th><th>Value</th></tr>
+    <tr><td><strong>Battery Chemistry</strong></td><td>LFP (Lithium Iron Phosphate) &mdash; EVE 314Ah cells</td></tr>
+    <tr><td><strong>Container</strong></td><td>Linyang ME 5.015 MWh integrated container</td></tr>
+    <tr><td><strong>PCS / Inverter</strong></td><td>Kehua BCS1250K-C / BCS10000K-C-HUD</td></tr>
+    <tr><td><strong>Round-Trip Efficiency</strong></td><td>87.8%</td></tr>
+    <tr><td><strong>PCS Efficiency</strong></td><td>≥99% max, ~98% at rated power</td></tr>
+    <tr><td><strong>Cooling</strong></td><td>Integrated liquid cooling system</td></tr>
+    <tr><td><strong>Fire Suppression</strong></td><td>Integrated in container</td></tr>
+    <tr><td><strong>BMS</strong></td><td>3-tier: BAMS / BCMU / BMU (Linyang integrated)</td></tr>
+    <tr><td><strong>Grid Forming</strong></td><td>Grid forming capability included</td></tr>
+    <tr><td><strong>EU Battery Passport</strong></td><td>Compliant</td></tr>
+    <tr><td><strong>Warranty</strong></td><td>5 years manufacturer warranty</td></tr>
+    <tr><td><strong>Design Life</strong></td><td>15+ years at 1 cycle per day</td></tr>
+</table>
+
+<h2>4.3 BESS Scope of Work</h2>
+
+<div class="scope-grid">
+    <div class="scope-included">
+        <div class="scope-title" style="color: #166534;">Included in BESS Price</div>
+        <ul class="scope-list">
+            <li>Battery containers (EVE 314Ah LFP)</li>
+            <li>PCS / Inverters (Kehua)</li>
+            <li>MV Skid (Transformer + Switchgear)</li>
+            <li>RMU &amp; Switchgear (Schneider)</li>
+            <li>BMS, Liquid Cooling, Fire Suppression</li>
+            <li>Surge Protection (SPDs)</li>
+            <li>Internal Earthing Grid</li>
+            <li>EMS / SCADA system</li>
+            <li>Import &amp; customs duties</li>
+            <li>Civil works, concrete bases &amp; cable laying</li>
+            <li>Drainage system</li>
+            <li>Installation &amp; commissioning (4-6 weeks)</li>
+            <li>ETEK engineer certification</li>
+            <li>CERA license (€0.10/kWh)</li>
+            <li>EOL recycling (zero net cost)</li>
+        </ul>
+    </div>
+    <div class="scope-excluded">
+        <div class="scope-title" style="color: #991b1b;">Client Pays Separately</div>
+        <ul class="scope-list">
+            <li>External Lightning Protection (DEHN &mdash; coordinated by Lighthief)</li>
+            <li>Site earthing enhancement (if needed)</li>
+            <li>EAC testing &amp; connection fees</li>
+            <li>Communication equipment to TSO/EDC</li>
+            <li>VAT (19%)</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ─── 5. COMBINED SOLAR + BESS ─── -->
+<h1 class="section-title">5. Combined Solar + BESS Projects</h1>
+
+<h2>5.1 Complete Park Pricing (PV + BESS)</h2>
+
+<p>Integrated pricing for combined solar and battery storage projects:</p>
+
+<table>
+    <tr>
+        <th>Configuration</th>
+        <th class="text-right">PV EPC</th>
+        <th class="text-right">BESS EPC</th>
+        <th class="text-right">Combined EPC</th>
+        <th class="text-right">Per MWp</th>
+    </tr>
+    <tr>
+        <td><strong>1 MWp + 4 MWh</strong></td>
+        <td class="text-right">€730,000</td>
+        <td class="text-right">€674,000</td>
+        <td class="text-right"><strong>€1,404,000</strong></td>
+        <td class="text-right">€1,404,000</td>
+    </tr>
+    <tr>
+        <td><strong>2 MWp + 8 MWh</strong></td>
+        <td class="text-right">€1,380,000</td>
+        <td class="text-right">€1,084,000</td>
+        <td class="text-right"><strong>€2,464,000</strong></td>
+        <td class="text-right">€1,232,000</td>
+    </tr>
+    <tr>
+        <td><strong>3 MWp + 12 MWh</strong></td>
+        <td class="text-right">€1,980,000</td>
+        <td class="text-right">€1,643,000</td>
+        <td class="text-right"><strong>€3,623,000</strong></td>
+        <td class="text-right">€1,208,000</td>
+    </tr>
+    <tr style="background:#f0fdf4;">
+        <td><strong>5 MWp + 20 MWh</strong> <span style="font-size:8pt;color:#22c55e;">&#9733;</span></td>
+        <td class="text-right"><strong>€3,200,000</strong></td>
+        <td class="text-right"><strong>€2,253,000</strong></td>
+        <td class="text-right"><strong>€5,453,000</strong></td>
+        <td class="text-right"><strong>€1,091,000</strong></td>
+    </tr>
+    <tr>
+        <td><strong>10 MWp + 40 MWh</strong></td>
+        <td class="text-right">€6,100,000</td>
+        <td class="text-right">€4,392,000</td>
+        <td class="text-right"><strong>€10,492,000</strong></td>
+        <td class="text-right">€1,049,000</td>
+    </tr>
+</table>
+
+<h2>5.2 All-In Investment (Including RTB License)</h2>
+
+<table>
+    <tr>
+        <th>Configuration</th>
+        <th class="text-right">EPC Price</th>
+        <th class="text-right">RTB License</th>
+        <th class="text-right">All-In Investment</th>
+        <th class="text-right">Per MWp</th>
+    </tr>
+    <tr>
+        <td><strong>1 MWp + 4 MWh</strong></td>
+        <td class="text-right">€1,404,000</td>
+        <td class="text-right">€350,000</td>
+        <td class="text-right"><strong>€1,754,000</strong></td>
+        <td class="text-right">€1,754,000</td>
+    </tr>
+    <tr>
+        <td><strong>2 MWp + 8 MWh</strong></td>
+        <td class="text-right">€2,464,000</td>
+        <td class="text-right">€700,000</td>
+        <td class="text-right"><strong>€3,164,000</strong></td>
+        <td class="text-right">€1,582,000</td>
+    </tr>
+    <tr>
+        <td><strong>5 MWp + 20 MWh</strong></td>
+        <td class="text-right">€5,453,000</td>
+        <td class="text-right">€1,750,000</td>
+        <td class="text-right"><strong>€7,203,000</strong></td>
+        <td class="text-right">€1,441,000</td>
+    </tr>
+    <tr>
+        <td><strong>10 MWp + 40 MWh</strong></td>
+        <td class="text-right">€10,492,000</td>
+        <td class="text-right">€3,500,000</td>
+        <td class="text-right"><strong>€13,992,000</strong></td>
+        <td class="text-right">€1,399,000</td>
+    </tr>
+</table>
+
+<div class="highlight-box">
+    <strong>All prices exclude VAT (19%). RTB = Ready-to-Build license at €350,000/MWp.</strong>
+    <p style="margin-top:6px;">Custom configurations and multi-site portfolio pricing available on request.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ─── 6. EPC PACKAGES ─── -->
+<h1 class="section-title">6. EPC Packages</h1>
+
+<div class="packages-grid">
+    <div class="package-card">
+        <div class="package-name">Standard EPC</div>
+        <div class="package-price">€0.61&ndash;0.73/Wp</div>
+        <div class="package-irr">Target IRR: 8&ndash;10%</div>
+        <ul class="package-features">
+            <li>Site assessment &amp; design</li>
+            <li>Tier-1 component procurement</li>
+            <li>Construction by certified specialists</li>
+            <li>Grid connection &amp; commissioning</li>
+            <li>Performance warranties</li>
+            <li>O&amp;M transition support</li>
+        </ul>
+        <p style="font-size:8.5pt;color:#6b7280;margin-top:14px;">Ideal for: 1&ndash;5 MWp projects<br>Timeline: 4&ndash;8 months</p>
+    </div>
+    <div class="package-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="package-name">Premium EPC + BESS</div>
+        <div class="package-price">€1.05&ndash;1.40/Wp (incl. BESS)</div>
+        <div class="package-irr">Target IRR: 10&ndash;13%</div>
+        <ul class="package-features">
+            <li>Everything in Standard Package</li>
+            <li>Integrated BESS for curtailment protection</li>
+            <li>Advanced EMS/SCADA monitoring</li>
+            <li>Grid forming capability</li>
+            <li>Enhanced performance guarantees</li>
+            <li>24/7 O&amp;M service inclusion</li>
+            <li>Dedicated project management</li>
+        </ul>
+        <p style="font-size:8.5pt;color:#6b7280;margin-top:14px;">Ideal for: 5&ndash;10+ MWp projects<br>Timeline: 6&ndash;12 months</p>
+    </div>
+    <div class="package-card">
+        <div class="package-name">Custom Solutions</div>
+        <div class="package-price">Custom pricing</div>
+        <div class="package-irr">Target IRR: 8&ndash;13%</div>
+        <ul class="package-features">
+            <li>Tailored system design</li>
+            <li>Specialized equipment selection</li>
+            <li>Unique site accommodation</li>
+            <li>Flexible milestone planning</li>
+            <li>Extended warranty options</li>
+            <li>Portfolio pricing for multi-site</li>
+        </ul>
+        <p style="font-size:8.5pt;color:#6b7280;margin-top:14px;">Ideal for: All sizes with special requirements<br>Timeline: Variable</p>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ─── 7. COMMERCIAL TERMS ─── -->
+<h1 class="section-title">7. Commercial Terms</h1>
+
+<h2>7.1 Payment Schedule</h2>
+
+<table>
+    <tr>
+        <th>Milestone</th>
+        <th class="text-center">Percentage</th>
+        <th>Trigger</th>
+    </tr>
+    <tr>
+        <td><strong>Advance Payment</strong></td>
+        <td class="text-center"><strong>25%</strong></td>
+        <td>Contract signing</td>
+    </tr>
+    <tr>
+        <td><strong>Ready to Ship</strong></td>
+        <td class="text-center"><strong>50%</strong></td>
+        <td>Equipment ready for dispatch at factory</td>
+    </tr>
+    <tr>
+        <td><strong>On-Site Delivery</strong></td>
+        <td class="text-center"><strong>20%</strong></td>
+        <td>Equipment delivered and verified on site</td>
+    </tr>
+    <tr>
+        <td><strong>Final Acceptance</strong></td>
+        <td class="text-center"><strong>5%</strong></td>
+        <td>Pass Site Acceptance Test (SAT)</td>
+    </tr>
+</table>
+
+<h2>7.2 Delivery Timeline</h2>
+
+<table>
+    <tr><th>Phase</th><th>Duration</th><th>Description</th></tr>
+    <tr><td><strong>Manufacturing</strong></td><td>13 weeks</td><td>Equipment production and factory testing</td></tr>
+    <tr><td><strong>Shipping &amp; Logistics</strong></td><td>7 weeks</td><td>CIF delivery to Cyprus port, customs clearance</td></tr>
+    <tr><td><strong>Installation</strong></td><td>4&ndash;6 weeks</td><td>On-site installation and commissioning per unit</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>24&ndash;26 weeks</strong></td><td>Contract signing to commercial operation</td></tr>
+</table>
+
+<h2>7.3 Warranties &amp; Guarantees</h2>
+
+<table>
+    <tr><th>Item</th><th>Coverage</th></tr>
+    <tr><td><strong>Manufacturer Warranty</strong></td><td>5 years (equipment defects &amp; workmanship)</td></tr>
+    <tr><td><strong>SOH Year 10</strong></td><td>≥79.6% minimum (at 1 cycle per day)</td></tr>
+    <tr><td><strong>SOH Year 15</strong></td><td>≥73.6% minimum (at 1 cycle per day)</td></tr>
+    <tr><td><strong>Advance Payment Guarantee</strong></td><td>100% bank guarantee on advance payment</td></tr>
+    <tr><td><strong>Performance Bond</strong></td><td>Corporate guarantee through delivery</td></tr>
+</table>
+
+<h2>7.4 O&amp;M Services</h2>
+
+<div class="info-box">
+    <strong>Post-Commissioning O&amp;M:</strong> €1,740 per MWh per year
+    <ul style="margin-top:8px;">
+        <li>24/7 remote monitoring from Limassol HQ</li>
+        <li>Preventive maintenance schedule</li>
+        <li>Emergency response (same-day in Cyprus)</li>
+        <li>EMS software license included</li>
+        <li>Performance reporting &amp; optimization</li>
+        <li>Spare parts inventory management</li>
+    </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ─── 8. EQUIPMENT PARTNERS ─── -->
+<h1 class="section-title">8. Equipment &amp; Technology Partners</h1>
+
+<h2>8.1 Tier-1 Supply Chain</h2>
+
+<div class="partners-grid">
+    <div class="partner-card">
+        <div class="partner-name">Linyang</div>
+        <div class="partner-type">Battery Systems</div>
+        <p style="font-size:9pt;color:#6b7280;margin-top:8px;">ME Series containers, EVE 314Ah LFP cells, integrated BMS/cooling/fire suppression</p>
+    </div>
+    <div class="partner-card">
+        <div class="partner-name">Kehua</div>
+        <div class="partner-type">PCS / Inverters</div>
+        <p style="font-size:9pt;color:#6b7280;margin-top:8px;">BCS1250K-C &amp; BCS10000K-C-HUD, grid forming capable, ≥99% efficiency</p>
+    </div>
+    <div class="partner-card">
+        <div class="partner-name">Schneider</div>
+        <div class="partner-type">Switchgear &amp; Protection</div>
+        <p style="font-size:9pt;color:#6b7280;margin-top:8px;">RM AirSeT 12-24kV, auxiliary transformers, protection relays</p>
+    </div>
+    <div class="partner-card">
+        <div class="partner-name">Huawei</div>
+        <div class="partner-type">PV Inverters</div>
+        <p style="font-size:9pt;color:#6b7280;margin-top:8px;">100-115kW string inverters, advanced MPPT, grid support functions</p>
+    </div>
+</div>
+
+<h2>8.2 Additional BESS Partners</h2>
+
+<p>As an official Tier-1 BESS reseller, Lighthief also works with:</p>
+
+<ul>
+    <li><strong>Tesla Energy Solutions</strong> &mdash; Megapack &amp; Powerwall commercial</li>
+    <li><strong>BYD</strong> &mdash; Battery-Box Commercial series</li>
+    <li><strong>Sungrow</strong> &mdash; PowerStack integrated solutions</li>
+    <li><strong>DEHN</strong> &mdash; Lightning protection systems (coordinated by Lighthief)</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ─── 9. WHY CYPRUS ─── -->
+<h1 class="section-title">9. Why Cyprus for Solar Investment</h1>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value solar">3,300+</div>
+        <div class="stat-label">Annual Sun Hours</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">1,800+</div>
+        <div class="stat-label">kWh/m²/year Irradiation</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value green">12.5%</div>
+        <div class="stat-label">Corporate Tax Rate</div>
+    </div>
+</div>
+
+<h2>9.1 The Curtailment Opportunity</h2>
+
+<p>Cyprus solar curtailment has increased from 0% (2021) to 45.8% (2025), making BESS integration essential for new projects. This creates a significant opportunity for storage-equipped solar parks to capture premium returns through energy arbitrage.</p>
+
+<table>
+    <tr><th>Year</th><th class="text-center">Curtailment %</th><th>Investment Implication</th></tr>
+    <tr><td>2021</td><td class="text-center">0%</td><td>Full revenue capture</td></tr>
+    <tr><td>2023</td><td class="text-center">13.4%</td><td>BESS advantage begins</td></tr>
+    <tr><td>2025</td><td class="text-center">45.8%</td><td>BESS essential for ROI protection</td></tr>
+</table>
+
+<h2>9.2 Investment Returns</h2>
+
+<table>
+    <tr><th>Scenario (5 MWp Example)</th><th class="text-right">Investment</th><th class="text-right">Annual Profit</th><th class="text-right">Equity ROI</th></tr>
+    <tr><td>Solar Only (Cash)</td><td class="text-right">€7,500,000</td><td class="text-right">€1,000,000</td><td class="text-right">13.3%</td></tr>
+    <tr><td>Solar + BESS (Cash)</td><td class="text-right">€9,250,000</td><td class="text-right">€1,260,000</td><td class="text-right">13.6%</td></tr>
+    <tr style="background:#f0fdf4;"><td><strong>Solar + BESS (70% Financed)</strong></td><td class="text-right"><strong>€2,775,000 equity</strong></td><td class="text-right"><strong>€560,000</strong></td><td class="text-right"><strong>20.2%</strong></td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- ─── 10. CONTACT & NEXT STEPS ─── -->
+<h1 class="section-title">10. Next Steps</h1>
+
+<h2>10.1 How to Get Started</h2>
+
+<div class="process-grid">
+    <div class="process-step" data-step="1">
+        <div class="step-number">1</div>
+        <div class="step-title">Submit EPC Request</div>
+        <div class="step-desc">Fill in the request form below or contact us directly. Share your project size, location, and timeline preferences.</div>
+    </div>
+    <div class="process-step" data-step="2">
+        <div class="step-number">2</div>
+        <div class="step-title">Receive Proposal</div>
+        <div class="step-desc">Within 5 business days, receive a detailed EPC proposal with pricing, timeline, and financial projections tailored to your project.</div>
+    </div>
+    <div class="process-step" data-step="3">
+        <div class="step-number">3</div>
+        <div class="step-title">Site Assessment</div>
+        <div class="step-desc">Our Cyprus-based team conducts a thorough site assessment and finalizes the technical design and commercial terms.</div>
+    </div>
+    <div class="process-step" data-step="4">
+        <div class="step-number">4</div>
+        <div class="step-title">Contract &amp; Build</div>
+        <div class="step-desc">Sign the EPC contract and we handle everything from procurement through commissioning and O&amp;M transition.</div>
+    </div>
+</div>
+
+<h2>10.2 Contact Information</h2>
+
+<table>
+    <tr><td style="width:35%;"><strong>Cyprus Director</strong></td><td>Alexander Papacosta</td></tr>
+    <tr><td><strong>WhatsApp</strong></td><td>+357 99 164 158</td></tr>
+    <tr><td><strong>Email</strong></td><td>lighthiefcyprus@gmail.com</td></tr>
+    <tr><td><strong>Office</strong></td><td>+357 77 77 00 50</td></tr>
+    <tr><td><strong>Website</strong></td><td>www.solarfarms.cy</td></tr>
+    <tr><td><strong>Schedule Meeting</strong></td><td>calendly.com/lighthiefcyprus</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--              EPC REQUEST FORM               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="form-section" id="epc-request">
+    <h2>Request EPC Proposal</h2>
+    <p class="form-subtitle">Complete the form below and our team will prepare a tailored EPC proposal within 5 business days.</p>
+
+    <form id="epcRequestForm" onsubmit="handleSubmit(event)">
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label" for="fullName">Full Name *</label>
+                <input type="text" id="fullName" class="form-input" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="company">Company / Entity</label>
+                <input type="text" id="company" class="form-input" placeholder="Company name (if applicable)">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address *</label>
+                <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="phone">Phone / WhatsApp *</label>
+                <input type="tel" id="phone" class="form-input" placeholder="+357..." required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="projectType">Project Type *</label>
+                <select id="projectType" class="form-select" required>
+                    <option value="">Select project type...</option>
+                    <option value="pv-only">Solar PV Only</option>
+                    <option value="bess-only">BESS Only (Retrofit)</option>
+                    <option value="pv-bess">Solar PV + BESS (Combined)</option>
+                    <option value="custom">Custom / Portfolio</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="projectSize">Estimated Size *</label>
+                <select id="projectSize" class="form-select" required>
+                    <option value="">Select project size...</option>
+                    <option value="1mw">1 MWp / 4 MWh</option>
+                    <option value="2mw">2 MWp / 8 MWh</option>
+                    <option value="3mw">3 MWp / 12 MWh</option>
+                    <option value="5mw">5 MWp / 20 MWh</option>
+                    <option value="10mw">10 MWp / 40 MWh</option>
+                    <option value="custom">Custom size</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="siteStatus">Site / License Status</label>
+                <select id="siteStatus" class="form-select">
+                    <option value="">Select status...</option>
+                    <option value="rtb">Ready-to-Build (RTB) secured</option>
+                    <option value="development">In development / planning</option>
+                    <option value="operational">Operational park (BESS retrofit)</option>
+                    <option value="looking">Looking for suitable site</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="financing">Financing Preference</label>
+                <select id="financing" class="form-select">
+                    <option value="">Select financing...</option>
+                    <option value="cash">100% Cash / Equity</option>
+                    <option value="bank">Bank financing (up to 70%)</option>
+                    <option value="mixed">Mixed (partial equity + debt)</option>
+                    <option value="discuss">Need guidance / discuss</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="timeline">Preferred Timeline</label>
+                <select id="timeline" class="form-select">
+                    <option value="">Select timeline...</option>
+                    <option value="asap">ASAP / Q1 2026</option>
+                    <option value="h1">H1 2026</option>
+                    <option value="h2">H2 2026</option>
+                    <option value="2027">2027</option>
+                    <option value="flexible">Flexible</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="budget">Approximate Budget (EUR)</label>
+                <input type="text" id="budget" class="form-input" placeholder="e.g. €5,000,000">
+            </div>
+
+            <div class="form-group full-width">
+                <label class="form-label" for="details">Project Details / Questions</label>
+                <textarea id="details" class="form-textarea" placeholder="Tell us about your project, specific requirements, questions, or anything else we should know..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label class="form-label" for="referral">How did you hear about Lighthief?</label>
+                <select id="referral" class="form-select">
+                    <option value="">Select...</option>
+                    <option value="website">Website (solarfarms.cy)</option>
+                    <option value="referral">Personal referral</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="search">Google / Search</option>
+                    <option value="event">Conference / Event</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width" style="flex-direction:row;align-items:center;gap:20px;">
+                <button type="submit" class="form-submit">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Submit EPC Request
+                </button>
+                <p class="form-note">We respond within 2 business days. Your information is treated as confidential.</p>
+            </div>
+        </div>
+    </form>
+
+    <div id="formSuccess" style="display:none;text-align:center;padding:40px;">
+        <div style="font-size:48px;margin-bottom:16px;">✓</div>
+        <h3 style="color:#4ade80;font-size:18pt;margin-bottom:8px;">Request Submitted Successfully</h3>
+        <p style="color:#9ca3af;">Thank you! Our team will review your request and contact you within 2 business days with a tailored EPC proposal.</p>
+    </div>
+</div>
+
+<!-- ─── DOCUMENT FOOTER ─── -->
+<div class="doc-footer">
+    <p><strong>LIGHTHIEF CYPRUS LTD</strong></p>
+    <p>28 October Ave 249, Lophitis Business Center 1, Office 201 &middot; 3035 Limassol, Cyprus</p>
+    <p>Company Registration: HE 477423 &middot; TIN: 60187188Q</p>
+    <p style="margin-top:12px;">
+        <strong>Contact:</strong> office@lighthief.com &middot; +357 77 77 00 50<br>
+        <strong>Website:</strong> www.solarfarms.cy
+    </p>
+    <p style="margin-top:18px;font-size:8pt;color:#999;">
+        &copy; 2025 Lighthief Cyprus Ltd. This guide is for informational purposes only and does not constitute 
+        investment advice. All pricing is indicative and subject to final site assessment. Consult with qualified 
+        financial and legal advisors before making investment decisions. Document: LCY-EPC-GUIDE-2025 v1.0
+    </p>
+</div>
+
+</div><!-- /content -->
+
+<script>
+function handleSubmit(e) {
+    e.preventDefault();
+    
+    // Collect form data
+    const formData = {
+        fullName: document.getElementById('fullName').value,
+        company: document.getElementById('company').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        projectType: document.getElementById('projectType').value,
+        projectSize: document.getElementById('projectSize').value,
+        siteStatus: document.getElementById('siteStatus').value,
+        financing: document.getElementById('financing').value,
+        timeline: document.getElementById('timeline').value,
+        budget: document.getElementById('budget').value,
+        details: document.getElementById('details').value,
+        referral: document.getElementById('referral').value,
+        submittedAt: new Date().toISOString()
+    };
+    
+    console.log('EPC Request Submitted:', formData);
+    
+    // Show success message
+    document.getElementById('epcRequestForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    
+    // In production, send to API:
+    // fetch('/api/epc-request', { method: 'POST', body: JSON.stringify(formData) });
+}
+</script>
+
+</body>
+</html>

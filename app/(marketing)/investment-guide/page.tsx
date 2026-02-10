@@ -467,7 +467,7 @@ export default function InvestmentGuidePage() {
             </div>
 
             <InfoBox>
-              <strong>Note:</strong> All investment figures include PV EPC markup (€100k/MW) and BESS markup (+17.4%).
+              <strong>Note:</strong> All investment figures are complete client pricing inclusive of EPC costs.
               RTB (Ready-to-Build) premium is €350,000/MW. Prices are exclusive of land lease costs.
             </InfoBox>
           </section>
@@ -500,7 +500,7 @@ export default function InvestmentGuidePage() {
               />
             </div>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">4.2 BESS Pricing (Client Pricing incl. 17.4% Markup)</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">4.2 BESS Pricing</h3>
             <div className="avoid-break">
               <DataTable
                 headers={['System Size', 'Capacity Range', 'Price per MWh', 'Example Total']}
