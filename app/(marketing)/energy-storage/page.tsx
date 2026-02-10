@@ -322,7 +322,7 @@ export default function EnergyStoragePage() {
       </section>
 
       {/* System Sizing Options */}
-      <section className="section-padding">
+      <section id="systems" className="section-padding">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
@@ -458,7 +458,7 @@ export default function EnergyStoragePage() {
       </section>
 
       {/* O&M Services */}
-      <section className="section-padding bg-gradient-to-br from-cyprus-900 to-blue-900 text-white">
+      <section id="om-services" className="section-padding bg-gradient-to-br from-cyprus-900 to-blue-900 text-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="bg-white/20 text-white mb-4">BESS O&M Services</Badge>

@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       priority: 'medium',
       from_company: 'Lighthief Cyprus',
       from_contact: 'Alex Papacosta',
-      from_email: 'lighthiefcyprus@gmail.com',
+      from_email: 'alexander.papacosta@lighthief.com',
       to_company: '',
       ...rest,
     })

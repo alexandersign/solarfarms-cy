@@ -723,7 +723,7 @@ export default function CyprusCurtailmentBESSArticle() {
                 </Button>
               </div>
               <p className="mt-6 text-sm opacity-75">
-                Contact Alexander Papacosta: +357 99 164 158 | lighthiefcyprus@gmail.com
+                Contact Alexander Papacosta: +357 99 164 158 | alexander.papacosta@lighthief.com
               </p>
             </div>
 

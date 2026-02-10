@@ -77,7 +77,7 @@ export const CAPEX_MODES = {
 } as const
 
 // Investment Constants - PV + BESS All-In Client Pricing
-// Based on: PV EPC (self-cost + €100k/MW) + BESS (+17.4%) + RTB (€350k/MW)
+// Based on: PV EPC (self-cost + €100k/MW) + BESS (15% CIF + 15% EPC margin) + RTB (€350k/MW)
 // See docs/internal/solarpark-epc.md for detailed breakdown
 export const INVESTMENT_SIZES = {
   "1MW": {
@@ -426,30 +426,31 @@ export const CYPRUS_MARKET_DEFAULTS = {
   solarBessDebtPct: 0.70,         // 70% for solar+BESS
 } as const
 
-// BESS Parameters (Linyang System Defaults via Lighthief Cyprus)
-// BESS EPC Markup: +17.4% on installed cost
+// BESS Parameters (Tier-1 OEM System Defaults via Lighthief Cyprus)
+// BESS Margin Structure: 15% on CIF (equipment) + 15% on EPC costs
 // See docs/internal/solarpark-epc.md for detailed breakdown
 export const BESS_DEFAULTS = {
-  // Linyang specifications (from docs/linyang.md)
+  // OEM specifications
   roundTripEfficiency: 0.878,     // 87.8% system RTE (AC-AC)
-  warrantyYearsBase: 5,           // Base OEM warranty (Linyang)
+  warrantyYearsBase: 5,           // Base OEM warranty
   warrantyYearsWithLTSA: 15,      // Extended warranty with LTSA (Years 6-15 paid)
   cycleLife: 6000,                // Cycles at 100% DoD @ 80% SOH
   cycleLifeReducedDoD: 8000,      // Cycles at 90% DoD @ 70% SOH
   containerCapacity: 5.015,       // MWh per 20HC container (actual rated)
   
-  // Client pricing tiers (€/MWh, includes 17.4% markup on installed cost)
-  // Self-cost → Client: multiply by 1.174
+  // Client pricing tiers (€/MWh, includes 15% CIF margin + 15% EPC margin)
+  // Self-cost → Client: CIF × 1.15 + EPC costs × 1.15
   pricing: {
-    small: { minMW: 1, maxMW: 2, costPerMWh: 169000 },      // 4 MWh: €168,584/MWh client
-    medium: { minMW: 2.5, maxMW: 5, costPerMWh: 124000 },   // 10 MWh: €124,122/MWh client
-    large: { minMW: 8, maxMW: 25, costPerMWh: 113000 },     // 20 MWh: €112,656/MWh client
-    utility: { minMW: 25, maxMW: 100, costPerMWh: 110000 }, // 40+ MWh: €109,797/MWh client
+    small: { minMW: 1, maxMW: 2, costPerMWh: 166000 },      // 4 MWh: ~€166k/MWh client
+    medium: { minMW: 2.5, maxMW: 5, costPerMWh: 121000 },   // 10 MWh: ~€121k/MWh client
+    large: { minMW: 8, maxMW: 25, costPerMWh: 111000 },     // 20 MWh: ~€111k/MWh client
+    utility: { minMW: 25, maxMW: 100, costPerMWh: 108000 }, // 40+ MWh: ~€108k/MWh client
   },
   
   // EPC Markup structure
   epcMarkup: {
-    bessMarkupPercent: 17.4,      // BESS: +17.4% on installed cost
+    cifMarginPercent: 15,          // CIF equipment: +15% margin
+    epcCostsMarginPercent: 15,     // EPC installation costs: +15% margin
     pvMarkupPerMW: 100000,        // PV: +€100k/MW flat
   },
   

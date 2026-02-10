@@ -159,7 +159,7 @@ All pricing in this proposal is derived from:
 ## Contact
 
 **Lighthief Cyprus Ltd**  
-28 October Avenue 249, Lophitis Business Center I, Office 601  
+28 October Avenue 249, Lophitis Business Center I, Office 201  
 3035 Limassol, Cyprus
 
 | Contact | Details |

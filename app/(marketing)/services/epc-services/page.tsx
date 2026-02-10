@@ -214,11 +214,15 @@ export default function EPCServicesPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button variant="gradient" size="lg">
-                Request EPC Proposal
+              <Button variant="gradient" size="lg" asChild>
+                <Link href="/contact?service=epc">
+                  Request EPC Proposal
+                </Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Download EPC Guide
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/guides/lighthief-epc-guide-2025.html" target="_blank">
+                  Download EPC Guide
+                </Link>
               </Button>
             </div>
 

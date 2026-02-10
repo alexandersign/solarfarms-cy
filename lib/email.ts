@@ -58,9 +58,9 @@ export async function sendContactNotification(data: ContactEmailData) {
     
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-      replyTo: 'lighthiefcyprus@gmail.com',
+      replyTo: 'alexander.papacosta@lighthief.com',
       to: [
-        'lighthiefcyprus@gmail.com'
+        'alexander.papacosta@lighthief.com'
       ],
       subject: `NEW LEAD NOTIFICATION - ${data.investmentSize}`,
       html: getContactNotificationTemplate(data),
@@ -85,7 +85,7 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
   try {
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-      replyTo: 'lighthiefcyprus@gmail.com',
+      replyTo: 'alexander.papacosta@lighthief.com',
       to: [data.email], // Send autoresponder to customer email
       subject: 'Thank you for your interest in Cyprus Solar Investments',
       html: getContactAutoresponderTemplate(data),
@@ -110,7 +110,7 @@ export async function sendNewsletterWelcome(data: NewsletterEmailData) {
   try {
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-      replyTo: 'lighthiefcyprus@gmail.com',
+      replyTo: 'alexander.papacosta@lighthief.com',
       to: [data.email],
       subject: 'Welcome to SolarFarms.cy - Your Solar Investment Journey Begins',
       html: getNewsletterWelcomeTemplate(data),
@@ -318,7 +318,7 @@ export async function sendLandAssessmentNotification(data: LandAssessmentEmailDa
       replyTo: 'a.sybaris@lighthief.com',
       to: [
         'a.sybaris@lighthief.com',
-        'lighthiefcyprus@gmail.com'
+        'alexander.papacosta@lighthief.com'
       ],
       subject: `🌍 NEW LAND ASSESSMENT - ${data.location} - ${data.plotSize}`,
       html: getLandAssessmentNotificationTemplate(data),

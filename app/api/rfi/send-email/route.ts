@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       subject,
       html,
       from: 'Lighthief Cyprus <noreply@solarfarms.cy>',
-      replyTo: 'lighthiefcyprus@gmail.com',
+      replyTo: 'alexander.papacosta@lighthief.com',
     })
 
     if (!result.success) {
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         rfi_id: rfiId,
         direction: 'sent',
         date: new Date().toISOString().split('T')[0],
-        from_email: 'lighthiefcyprus@gmail.com',
+        from_email: 'alexander.papacosta@lighthief.com',
         to_email,
         subject,
         body_preview: html.substring(0, 300).replace(/<[^>]*>/g, ''),
@@ -179,7 +179,7 @@ function rfiTemplate(data: Record<string, any>): string {
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
       28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
-      lighthiefcyprus@gmail.com · +357 99 164 158 · solarfarms.cy
+      alexander.papacosta@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
 </body>
@@ -246,7 +246,7 @@ function rfpTemplate(data: Record<string, any>): string {
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
       28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
-      lighthiefcyprus@gmail.com · +357 99 164 158 · solarfarms.cy
+      alexander.papacosta@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
 </body>
@@ -299,7 +299,7 @@ function followupTemplate(data: Record<string, any>): string {
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
       28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
-      lighthiefcyprus@gmail.com · +357 99 164 158 · solarfarms.cy
+      alexander.papacosta@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
 </body>
@@ -343,7 +343,7 @@ function reminderTemplate(data: Record<string, any>): string {
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
       28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
-      lighthiefcyprus@gmail.com · +357 99 164 158 · solarfarms.cy
+      alexander.papacosta@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
 </body>

@@ -22,8 +22,8 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'BESS Bankability: Why Choosing the Right Service Partner Makes or Breaks Your Investment',
-  description: 'Discover why BESS bankability depends on choosing the right EPC and O&M partner. Learn how Tier-1 OEM partnerships, multi-layered insurance, and cross-European expertise make BESS assets bankable and reliable investments in Cyprus.',
+  title: 'BESS Bankability: Why the Right Service Partner Matters',
+  description: 'BESS bankability depends on the right EPC and O&M partner. Learn how Tier-1 OEM partnerships and multi-layered insurance make BESS assets bankable in Cyprus.',
   keywords: [
     'BESS bankability',
     'battery energy storage bankability',

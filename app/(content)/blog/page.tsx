@@ -289,7 +289,7 @@ export default function BlogPage() {
               </div>
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="secondary" className={getCategoryColor('operations-maintenance')}>operations-maintenance</Badge>
+                  <Badge variant="secondary" className={getCategoryColor('operations-maintenance')}>Operations & Maintenance</Badge>
                 </div>
                 <CardTitle className="group-hover:text-solar-600 transition-colors">
                   <Link href="/blog/importance-of-om-solar-farms">
@@ -338,7 +338,7 @@ export default function BlogPage() {
               </div>
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="secondary" className={getCategoryColor('market-analysis')}>market-analysis</Badge>
+                  <Badge variant="secondary" className={getCategoryColor('market-analysis')}>Market Analysis</Badge>
                 </div>
                 <CardTitle className="group-hover:text-solar-600 transition-colors">
                   <Link href="/blog/cyprus-solar-market-analysis-2025">
@@ -384,7 +384,7 @@ export default function BlogPage() {
               </div>
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="secondary" className={getCategoryColor('regulations')}>policy-update</Badge>
+                  <Badge variant="secondary" className={getCategoryColor('regulations')}>Policy Update</Badge>
                 </div>
                 <CardTitle className="group-hover:text-solar-600 transition-colors">
                   <Link href="/blog/solar-incentives-cyprus-2025">
@@ -426,7 +426,7 @@ export default function BlogPage() {
               </div>
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="secondary" className={getCategoryColor('investment-guide')}>investment-strategy</Badge>
+                  <Badge variant="secondary" className={getCategoryColor('investment-guide')}>Investment Strategy</Badge>
                 </div>
                 <CardTitle className="group-hover:text-solar-600 transition-colors">
                   <Link href="/blog/solar-farm-financing-strategies-2025">
@@ -468,7 +468,7 @@ export default function BlogPage() {
               </div>
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="secondary" className={getCategoryColor('case-study')}>risk-management</Badge>
+                  <Badge variant="secondary" className={getCategoryColor('case-study')}>Risk Management</Badge>
                 </div>
                 <CardTitle className="group-hover:text-solar-600 transition-colors">
                   <Link href="/blog/risk-mitigation-solar-investments">
@@ -510,7 +510,7 @@ export default function BlogPage() {
               </div>
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="secondary" className={getCategoryColor('market-analysis')}>market-comparison</Badge>
+                  <Badge variant="secondary" className={getCategoryColor('market-analysis')}>Market Comparison</Badge>
                 </div>
                 <CardTitle className="group-hover:text-solar-600 transition-colors">
                   <Link href="/blog/cyprus-vs-eu-solar-markets">

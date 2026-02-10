@@ -1031,10 +1031,10 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
   },
   
   capex: {
-    // BESS Client Pricing: ~€137/kWh (Non-Group) or ~€113-122/kWh (Group)
-    // Includes: CIF (~€90) + EPC adders (~€14) + margin (17.4%) + public markup (12%)
+    // BESS Client Pricing: ~€135/kWh (Non-Group) or ~€111-121/kWh (Group)
+    // Includes: CIF + EPC adders + 15% CIF margin + 15% EPC margin + public markup (12%)
     // See docs/internal/solarpark-epc.md for detailed breakdown
-    bessCostPerMWh: 137000,
+    bessCostPerMWh: 135000,
     bessSystemCost: 1370000,
     pcsAndBos: 0,
     // PV Client Pricing: Self-cost + €100k/MW flat markup
