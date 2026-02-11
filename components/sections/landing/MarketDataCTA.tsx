@@ -24,9 +24,9 @@ export function MarketDataCTA() {
                     <span className="block gradient-text">Market Pricing</span>
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Verified day-ahead market data from 37 official TSOC reports. With 25-45%
-                    solar curtailment and €182/MWh evening peak prices, BESS curtailment recovery
-                    delivers €16,500-28,000 per MWh of capacity annually.
+                    Verified day-ahead market data from a 134-day complete TSOC dataset (Oct 2025 – Feb 2026).
+                    With an €82/MWh peak-midday spread, €183/MWh evening peak prices, and 29.4%
+                    midday curtailment periods, BESS curtailment recovery delivers €161/MWh per discharge cycle.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button variant="gradient" asChild>
@@ -63,7 +63,7 @@ export function MarketDataCTA() {
                       </div>
                       <div>
                         <p className="font-semibold text-sm">BESS Curtailment Recovery</p>
-                        <p className="text-xs text-cyprus-200">Store curtailed solar (€0 cost), discharge at €182/MWh peak</p>
+                        <p className="text-xs text-cyprus-200">Store curtailed solar (€0 cost), discharge at €183/MWh peak — €161/MWh revenue per cycle</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">

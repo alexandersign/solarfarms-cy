@@ -41,7 +41,7 @@ Cyprus launched its **Competitive Electricity Market (CEM)** on **1 October 2025
 | **Market Type** | Non-interconnected (isolated island system) |
 | **Initial Participants** | 17 entities |
 | **Wholesale Price Cap** | €500/MWh |
-| **New Market Avg MCP (Oct-Feb)** | €165.12/MWh (from 21 sample days) |
+| **New Market Avg MCP (Oct-Feb)** | €158.19/MWh (134 TSOC DAM files, 6,432 half-hourly records) |
 | **ENTSO-E Membership** | Full member since October 2005 |
 
 ### Pre-Market History
@@ -458,74 +458,114 @@ All tariffs are calculated per CERA Regulatory Decision 02/2015 (KDP 208/2015).
 
 ### Data Source
 
-**37 official TSOC DAM Excel reports** have been processed covering January 2025 (pre-market regulated period) through February 2026 (new open market). This includes 34 sample days and 816 hourly records. Raw files are stored in `market/excel/` and processed data in `market/data/market-data.json`.
+**134 official TSOC DAM Excel files** have been processed covering the complete open market period from 1 October 2025 through 11 February 2026 (134 consecutive days, 6,432 half-hourly records). This represents the **complete dataset** — every trading day since market launch. Raw files are stored in `market/excel/` and processed data in `market/data/market-data.json`.
 
-### Overall New Market Statistics (Oct 2025 - Feb 2026, VERIFIED)
+### Overall New Market Statistics (Oct 2025 - Feb 2026, COMPLETE DATASET)
 
-*Source: TSOC DAM Excel reports processed Feb 2026 — 21 sample days, ~500 half-hourly periods*
+*Source: 134 TSOC DAM Excel files, 1 Oct 2025 – 11 Feb 2026, 6,432 half-hourly records — COMPLETE dataset (every trading day since market launch)*
 
 | Metric | Value |
 |--------|-------|
-| **Average MCP** | **€165.12/MWh** |
-| **Solar Hours Average (06:00-18:00)** | **€150.41/MWh** |
-| **Peak Hours Average (17:00-21:00)** | **€182.03/MWh** |
-| **Off-Peak Average** | **€168.15/MWh** |
-| **Arbitrage Spread** | **€31.62/MWh** |
-| **Median Price** | €166/MWh |
-| **Price Range** | €0 - €200/MWh |
-| **Zero-Price Periods** | 11 (~2.2% of all periods) |
-| **Highest Observed** | €200/MWh (no €500 spikes recorded in sample) |
+| **Average MCP** | **€158.19/MWh** |
+| **Median MCP** | **€171.00/MWh** |
+| **Solar Hours Average (06:00-17:00)** | **€140.88/MWh** |
+| **Midday Solar Average (10:00-14:00)** | **€101.13/MWh** |
+| **Morning Average (06:00-09:00)** | **€165.35/MWh** |
+| **Peak Evening Average (17:00-21:00)** | **€182.99/MWh** |
+| **Evening Average (17:00-20:00)** | **€183.94/MWh** |
+| **Off-Peak Average (22:00-05:00)** | **€171.49/MWh** |
+| **Night Average (21:00-05:00)** | **€172.34/MWh** |
+| **Peak-Midday Spread** | **€81.86/MWh** |
+| **Peak-Solar Spread** | **€42.11/MWh** |
+| **Price Range** | €0.00 - €500.00/MWh |
+| **Zero-Price Periods (≤€1)** | 336 (5.2% of all periods) |
+| **Low-Price Periods (≤€10)** | 467 (7.3% of all periods) |
+| **Highest Observed** | €500/MWh (price cap reached) |
 
-### Monthly Breakdown (New Open Market)
+### Monthly Breakdown (Complete Dataset)
 
-| Month | Days | Avg MCP | Min | Max | Peak Avg | Solar Avg | Spread | Solar% |
-|-------|:----:|--------:|----:|----:|---------:|----------:|-------:|-------:|
-| **Oct 2025** | 6 | €149.9 | €0 | €200 | €178.1 | €132.5 | €45.7 | 11.2% |
-| **Nov 2025** | 4 | €168.2 | €0 | €197 | €187.3 | €158.4 | €28.8 | 8.7% |
-| **Dec 2025** | 5 | €158.7 | €0 | €187 | €172.9 | €149.9 | €23.1 | 8.9% |
-| **Jan 2026** | 5 | €174.4 | €9.8 | €195 | €189.3 | €169.9 | €19.4 | 6.5% |
-| **Feb 2026** | 1 | €154.5 | €10 | €194 | €193.8 | €130.9 | €62.9 | 12.9% |
+| Month | Days | Avg MCP | Peak Avg (17-21) | Midday Avg (10-14) | Spread | Solar % | Low-Price Periods |
+|-------|:----:|--------:|---------:|----------:|-------:|--------:|------------------:|
+| **Oct 2025** | 31 | €147.23 | €177.69 | €78.89 | €98.80 | 27.9% | 96 |
+| **Nov 2025** | 30 | €155.49 | €184.77 | €81.50 | €103.27 | 22.5% | 163 |
+| **Dec 2025** | 31 | €158.76 | €178.79 | €111.36 | €67.43 | 17.0% | 97 |
+| **Jan 2026** | 31 | €169.22 | €187.70 | €137.98 | €49.72 | 15.2% | 56 |
+| **Feb 2026** | 11 | €163.73 | €191.63 | €84.65 | €106.98 | 22.3% | 55 |
+
+**Monthly observations:**
+- **Spreads are highly seasonal:** Oct/Nov/Feb show €99-107/MWh spreads vs Dec/Jan at €49-67/MWh
+- **Winter narrows spreads:** Shorter daylight, reduced solar output, higher baseline demand
+- **Low-price clustering:** Nov 2025 had the most low-price periods (163), reflecting autumn solar surplus
+- **Peak prices rising:** Evening peaks trending upward from €178 (Oct) to €192 (Feb)
+- **Solar % declining into winter:** 27.9% (Oct) → 15.2% (Jan), recovering in Feb (22.3%)
+
+### Hourly Price Profile (Average MCP by Hour, €/MWh)
+
+*Complete dataset: 134 days, 6,432 half-hourly records*
+
+| Hour | MCP | | Hour | MCP | | Hour | MCP | | Hour | MCP |
+|:----:|----:|-|:----:|----:|-|:----:|----:|-|:----:|----:|
+| 00:00 | €173 | | 06:00 | €174 | | 12:00 | **€77** | | 18:00 | €185 |
+| 01:00 | €170 | | 07:00 | €174 | | 13:00 | €105 | | 19:00 | **€186** |
+| 02:00 | €169 | | 08:00 | €167 | | 14:00 | €142 | | 20:00 | €183 |
+| 03:00 | €169 | | 09:00 | €146 | | 15:00 | €167 | | 21:00 | €179 |
+| 04:00 | €169 | | 10:00 | €102 | | 16:00 | €175 | | 22:00 | €176 |
+| 05:00 | €171 | | 11:00 | €80 | | 17:00 | €181 | | 23:00 | €174 |
+
+**Daily low:** 12:00 at €77/MWh | **Daily high:** 19:00 at €186/MWh | **Range:** €109/MWh
+
+The hourly profile reveals a deep midday solar trough (10:00-14:00) with prices plunging from €167 at 08:00 to just €77 at noon, before recovering sharply to €186 by 19:00. This creates a consistent and exploitable BESS arbitrage window.
 
 ### Key Findings vs Pre-Market Predictions
 
-> **CRITICAL UPDATE**: The actual market data shows **significantly less price volatility** than pre-market estimates suggested. Pre-launch models predicted solar midday prices of €0-45/MWh and evening peaks of €200-260/MWh, creating a €150-260/MWh spread. In reality, the spread is only **€32/MWh on average**.
+> **CRITICAL UPDATE (Complete 134-day dataset)**: The actual market data shows **real and significant solar price depression** — midday solar prices average just €101/MWh vs €183/MWh at evening peak, creating an **€82/MWh spread**. However, the absolute price levels remain higher than pre-market models predicted, as must-run conventional generation maintains a price floor.
 
-| What Was Predicted | What Actually Happened |
-|--------------------|----------------------|
-| Solar hours: €0-45/MWh | Solar hours: **€150/MWh** |
-| Peak hours: €200-260/MWh | Peak hours: **€182/MWh** |
-| Spread: €150-260/MWh | Spread: **€32/MWh** |
-| Zero-price frequency: 42% of days | Zero-price: **~2.2% of periods** |
-| Price cap events: €500/MWh | Max observed: **€200/MWh** |
+| What Was Predicted | What Actually Happened (134 days) |
+|--------------------|----------------------------------|
+| Solar hours: €0-45/MWh | Solar hours: **€141/MWh** (midday: **€101/MWh**) |
+| Peak hours: €200-260/MWh | Peak hours: **€183/MWh** |
+| Spread: €150-260/MWh | Peak-Midday Spread: **€82/MWh** |
+| Zero-price frequency: 42% of days | Zero-price (≤€1): **5.2% of periods** (336 periods) |
+| Price cap events: €500/MWh | Max observed: **€500/MWh** (price cap reached) |
 
-### Price Patterns - Reality vs Predictions
+### Price Patterns — Complete Dataset Analysis
 
-The Cyprus open market operates with **much more uniform pricing** than expected:
+The complete 134-day dataset reveals **clear and consistent price patterns** driven by solar generation:
 
-**Solar hours are NOT near-zero:**
-- Solar hours average €150/MWh, not €0-45/MWh
-- Zero-price periods are rare (~2.2%), not common (42%)
-- Solar penetration: 5-13% depending on season (still modest)
+**Midday solar depression is real and significant:**
+- Midday (10:00-14:00) averages **€101/MWh** — 36% below the daily average of €158/MWh
+- Solar hours (06:00-17:00) average **€141/MWh** — still elevated by morning/afternoon periods
+- Zero-price periods (≤€1): **336 periods (5.2%)** — concentrated in midday hours
+- Low-price periods (≤€10): **467 periods (7.3%)**
+- Solar as % of daytime volume: **19.8%** overall
 
-**Evening peak premiums are modest:**
-- Evening peak (17:00-21:00): €175-195/MWh, not €200-280/MWh
-- The premium over daytime is only ~20% on average
-- Driven by limited generation diversity (conventional still dominates)
+**Evening peak premiums are strong and consistent:**
+- Peak evening (17:00-21:00): **€183/MWh** — 80% above midday average
+- Evening (17:00-20:00): **€184/MWh** — the highest sustained price band
+- Daily high at 19:00: **€186/MWh**
+- Peak prices trending upward: €178 (Oct) → €188 (Jan) → €192 (Feb)
 
-**Seasonal trends are emerging:**
-- Winter (Jan-Feb): Higher baseline prices (€174/MWh avg), lower solar penetration (5-7%)
-- Autumn (Oct): More volatile, higher spread (€46/MWh), more solar (11%)
-- Spread is NARROWING over time as market matures (€46 → €19 Oct-Jan)
+**Deep curtailment periods are frequent:**
+- Low-price solar hours (MCP ≤€50, 09:00-15:00): **29.4% of midday periods**
+- Deep curtailment (MCP ≤€10, 09:00-15:00): **463 periods** across the dataset
+- Periods with solar >10 MWh: **2,174** | Solar >50 MWh: **425**
 
-### Seasonal Price Observations (EUR/MWh, from ACTUAL data)
+**Seasonal trends are clear:**
+- Autumn (Oct): Highest spreads (€99/MWh), highest solar % (27.9%), most volatile
+- Early winter (Nov): Still high spreads (€103/MWh), high low-price periods (163)
+- Deep winter (Dec-Jan): Spreads narrow (€49-67/MWh), solar drops to 15-17%
+- Late winter (Feb): Spreads rebound sharply (€107/MWh) as days lengthen, solar recovers (22.3%)
 
-| Period | Autumn (Oct) | Winter (Nov-Feb) | Projected Summer |
-|--------|:------------:|:----------------:|:----------------:|
-| **Solar Hours (06:00-18:00)** | €130-135 | €150-170 | ~€80-120 (est.) |
-| **Evening Peak (17:00-21:00)** | €175-180 | €173-193 | ~€185-200 (est.) |
-| **Night Off-Peak (22:00-06:00)** | €145-160 | €155-175 | ~€140-165 (est.) |
-| **Daily Average** | €135-160 | €149-175 | ~€120-155 (est.) |
-| **Arbitrage Spread** | €46 | €19-29 | ~€60-80 (est.) |
+### Seasonal Price Observations (EUR/MWh, Complete Dataset)
+
+| Period | Autumn (Oct-Nov) | Winter (Dec-Jan) | Late Winter (Feb) | Projected Summer |
+|--------|:----------------:|:----------------:|:-----------------:|:----------------:|
+| **Midday Solar (10-14)** | €78-82 | €111-138 | €85 | ~€40-70 (est.) |
+| **Solar Hours (06-17)** | €120-130 | €145-165 | €135 | ~€80-110 (est.) |
+| **Evening Peak (17-21)** | €178-185 | €179-188 | €192 | ~€185-200 (est.) |
+| **Off-Peak (22-05)** | €160-170 | €170-180 | €175 | ~€155-170 (est.) |
+| **Daily Average** | €147-155 | €159-169 | €164 | ~€130-150 (est.) |
+| **Peak-Midday Spread** | €99-103 | €49-67 | €107 | ~€120-160 (est.) |
 
 ### Generation Mix (October 2025)
 
@@ -542,24 +582,40 @@ The Cyprus open market operates with **much more uniform pricing** than expected
 
 BESS revenue in Cyprus today comes exclusively from **curtailment recovery** — storing solar energy that the DSO orders to be curtailed (charge cost = €0, energy would otherwise be wasted) and discharging at evening peak prices.
 
+*Based on complete 134-day dataset, 6,432 half-hourly records*
+
 | Metric | Value |
 |--------|-------|
 | **Charge Cost** | **€0/MWh** (curtailed solar — would be wasted) |
-| **Discharge Price (peak hours avg)** | **€182/MWh** (verified TSOC DAM data) |
-| **Net Revenue per MWh discharged** | **€159.8/MWh** (after 87.8% RTE) |
+| **Avg Evening Peak MCP (17:00-21:00)** | **€182.99/MWh** (verified, 134 days) |
+| **Avg Midday MCP (10:00-14:00)** | **€101.13/MWh** (verified, 134 days) |
+| **Avg Daily Peak-Midday Spread** | **€81.86/MWh** |
+| **Revenue per MWh discharged** | **€160.67/MWh** (after 87.8% RTE) |
 | **Curtailment hours** | ~10:00-14:00 (peak solar, DSO dispatch-down orders) |
 | **Discharge hours** | ~17:00-21:00 (evening peak demand) |
+| **Days with negative spread** | **0 out of 134** (100% positive) |
+| **Days with spread >€20** | **78%** |
+| **Days with spread >€40** | **61%** |
 
-**Annual Revenue by Curtailment Level (per MWh of BESS capacity):**
+**Annual Revenue Projections (Curtailment Recovery):**
 
-| Curtailment Rate | Annual Revenue/MWh BESS | Source |
-|:----------------:|:-----------------------:|--------|
-| 15% | ~€9,900 | Low-curtailment parks |
-| 25% | ~€16,500 | Cyprus average (25.8%) |
-| 38% | ~€28,000 | Anarita 10MW real data |
-| 45% | ~€29,700 | High-curtailment parks |
+| Scenario | Daily Discharge | Annual Revenue | Basis |
+|----------|:--------------:|:--------------:|-------|
+| Conservative | 2.5 MWh/day | **€146,608/yr** | Low-curtailment parks |
+| Moderate | 3.2 MWh/day | **€187,659/yr** | Cyprus average curtailment |
+| High | 3.8 MWh/day | **€222,844/yr** | High-curtailment parks (e.g. Anarita) |
 
-*Assumptions: 5MWp solar per 1.25MW/5MWh BESS (4:1 ratio), 1650 kWh/kWp yield, 87.8% RTE, €182/MWh peak price*
+*Assumptions: €182.99/MWh peak price, 87.8% RTE, €0 charge cost (curtailed solar), 365 days/yr*
+
+**Solar & Curtailment Statistics:**
+
+| Metric | Value |
+|--------|-------|
+| **Solar % of daytime volume** | 19.8% |
+| **Periods with solar >10 MWh** | 2,174 |
+| **Periods with solar >50 MWh** | 425 |
+| **Low-price solar hours (MCP ≤€50, 09-15)** | 29.4% of midday periods |
+| **Deep curtailment (MCP ≤€10, 09-15)** | 463 periods |
 
 #### Future Revenue: DAM Arbitrage (Requires New Legislation)
 
@@ -567,13 +623,13 @@ When BESS is permitted to buy from the DAM, additional revenue from grid arbitra
 
 | Metric | Value |
 |--------|-------|
-| **Buy Price (solar hours avg)** | €150/MWh |
-| **Sell Price (peak hours avg)** | €182/MWh |
-| **Net Spread (after buying)** | €32/MWh |
-| **Net per Cycle (after RTE)** | ~€10/MWh |
-| **Additional Annual Revenue/MWh** | ~€3,600-4,000 |
+| **Buy Price (midday avg, 10-14)** | €101.13/MWh |
+| **Sell Price (peak avg, 17-21)** | €182.99/MWh |
+| **Gross Spread** | €81.86/MWh |
+| **Net per MWh (after 87.8% RTE)** | **€71.87/MWh** |
+| **Annual at 2.5 MWh/day** | **€65,585/yr** |
 
-> **Key insight**: Curtailment recovery is **far more profitable** than grid arbitrage because the charge cost is €0 (vs €150/MWh from the DAM). This makes the current regulatory constraint less impactful than it might appear — BESS economics in Cyprus are primarily driven by curtailment, not price arbitrage.
+> **Key insight**: Curtailment recovery remains **far more profitable** than grid arbitrage because the charge cost is €0 (vs €101/MWh from the DAM). At 2.5 MWh/day, curtailment recovery yields **€146,608/yr** vs **€65,585/yr** for grid arbitrage. However, future arbitrage provides a significant **additional** revenue stream once legislation passes, and both strategies can be combined — curtailment recovery during high-curtailment midday periods, and grid arbitrage on days when curtailment is insufficient to fill the battery.
 
 ---
 
@@ -633,9 +689,11 @@ When BESS is permitted to buy from the DAM, additional revenue from grid arbitra
 
 ### Curtailment Challenge
 - Curtailment surged from **0% to 45.8%** in four years (2021-2025)
-- October 2025: ~2.2% of half-hourly periods hit zero price (much less than pre-market predictions of 42%)
-- No grid-scale storage → excess solar is curtailed
-- Key driver for BESS investment
+- Complete market data (134 days, Oct 2025 - Feb 2026): **5.2% of periods** hit zero price (≤€1), with **7.3% at ≤€10**
+- **29.4% of midday periods (09:00-15:00)** see MCP ≤€50 — indicating significant solar oversupply
+- **463 deep curtailment periods** (MCP ≤€10) during midday hours across the dataset
+- Solar accounts for **19.8% of daytime volume** — and growing
+- No grid-scale storage → excess solar is curtailed → **key driver for BESS investment**
 
 ---
 
@@ -652,19 +710,24 @@ When BESS is permitted to buy from the DAM, additional revenue from grid arbitra
 - BESS revenue today comes exclusively from **curtailment recovery** (storing own curtailed solar)
 - Expected to be a key factor in reducing price volatility and wholesale costs once deployed
 
-### Revenue Model — Current vs Future
+### Revenue Model — Current vs Future (Complete 134-day Dataset)
 
 **Current (Feb 2026) — Curtailment Recovery:**
 - BESS stores otherwise-curtailed solar energy (charge cost = **€0**)
-- Discharges at evening peak prices (**€182/MWh** verified TSOC data)
-- Revenue: **€16,500–28,000/MWh BESS/year** depending on curtailment level (25–38%)
+- Discharges at evening peak prices (**€182.99/MWh** verified, 134-day complete TSOC dataset)
+- Revenue per MWh discharged: **€160.67/MWh** (after 87.8% RTE)
+- Annual revenue at 2.5 MWh/day: **€146,608/yr** | At 3.8 MWh/day: **€222,844/yr**
+- **0 out of 134 days** had negative spread — curtailment recovery profitable every single day
+- **78% of days** had peak-midday spread >€20, **61%** had spread >€40
 - This is highly profitable because charge cost is zero
 
 **Future — When Legislation Enables BESS Market Participation:**
-- **DAM Arbitrage:** Buy at solar-hour prices (~€150/MWh), sell at peak (~€182/MWh)
-  - Additional spread: ~€32/MWh → ~€3,600–4,000/MWh BESS/year
+- **DAM Arbitrage:** Buy at midday prices (~€101/MWh), sell at peak (~€183/MWh)
+  - Net per MWh after RTE: **€71.87/MWh** (€81.86 × 87.8%)
+  - Annual at 2.5 MWh/day: **€65,585/yr** additional revenue
 - **Balancing Market:** Provide frequency response and reserve services
 - **Capacity Payments:** Revenue for availability guarantees
+- **Combined potential:** Curtailment recovery + grid arbitrage for days with insufficient curtailment
 - Expected wholesale price reduction of **10-15%** once storage is deployed (per Poullikkas 2026)
 
 ---

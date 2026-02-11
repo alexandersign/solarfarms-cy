@@ -181,23 +181,31 @@ export function getDailyStatsLastNDays(n: number): DailyStats[] {
  * ⚠️ REGULATORY NOTE (Feb 2026): BESS cannot buy from the DAM grid in Cyprus yet.
  * Grid arbitrage (buy low / sell high) is NOT legal as of Feb 2026.
  * 
+ * COMPLETE DATASET (134 days, Oct 2025 – Feb 2026):
+ *   Midday avg (10-14): €101.13/MWh
+ *   Peak evening (17-21): €182.99/MWh
+ *   Peak-Midday spread: €81.86/MWh
+ *   Zero-price periods: 336 (5.2%)
+ *   Deep curtailment (≤€10, 09-15): 463 periods
+ * 
  * CURRENT revenue model: Curtailment recovery
  *   → Charge cost = €0 (storing otherwise-curtailed solar energy)
- *   → Discharge at peak evening prices (€182/MWh avg)
- *   → Revenue per MWh discharged = peakPrice × RTE = ~€160/MWh
- *   → Annual: €16,500-28,000/MWh BESS depending on curtailment level (25-38%)
+ *   → Discharge at peak evening prices (€183/MWh avg)
+ *   → Revenue per MWh discharged = €183 × 87.8% RTE = €160.67/MWh
+ *   → Annual: €146,608 (2.5 MWh/day) to €222,844 (3.8 MWh/day)
  * 
  * FUTURE revenue (when legislation enables BESS market participation):
- *   → Grid arbitrage: buy at solar hours, sell at peak
- *   → Spread: ~€32/MWh (from real TSOC data)
+ *   → Grid arbitrage: buy at midday (€101/MWh), sell at peak (€183/MWh)
+ *   → Net: €81.86 spread × 87.8% RTE = €71.87/MWh per cycle
  */
 export function calculateBESSArbitrage(data: MarketDataSummary): {
   avgDailySpread: number
   avgChargePrice: number   // Avg price during solar hours (reference)
   avgDischargePrice: number // Avg price during peak hours (discharge value)
+  middayAvgPrice: number   // Avg midday price (10-14) — deep solar dip
   estimatedRevenuePerMWhPerDay: number
   annualRevenuePerMWh: number
-  // NEW: Curtailment recovery metrics (current Cyprus reality)
+  // Curtailment recovery metrics (current Cyprus reality)
   curtailmentRevenuePerMWh: number
   curtailmentAnnualPerMWh25: number  // At 25% curtailment
   curtailmentAnnualPerMWh38: number  // At 38% curtailment (Anarita real)
@@ -206,12 +214,15 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
   
   const avgChargePrice = stats.solarHoursAvg  // Reference only — BESS cannot buy from grid yet
   const avgDischargePrice = stats.peakHoursAvg // BESS discharge value at peak
-  const avgDailySpread = avgDischargePrice - avgChargePrice
+  // Use midday price if available (more accurate for BESS charge window)
+  const middayAvgPrice = (stats as any).middayAvg || avgChargePrice
+  const avgDailySpread = avgDischargePrice - middayAvgPrice
   
   const rte = 0.878 // 87.8% round-trip efficiency (Linyang spec)
   
   // FUTURE: Grid arbitrage revenue (not yet legal)
-  const estimatedRevenuePerMWhPerDay = (avgDischargePrice * rte) - avgChargePrice
+  // Buy at midday, sell at peak
+  const estimatedRevenuePerMWhPerDay = (avgDischargePrice * rte) - middayAvgPrice
   const annualRevenuePerMWh = estimatedRevenuePerMWhPerDay * 365
   
   // CURRENT: Curtailment recovery revenue
@@ -228,6 +239,7 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
     avgDailySpread,
     avgChargePrice,
     avgDischargePrice,
+    middayAvgPrice,
     estimatedRevenuePerMWhPerDay,
     annualRevenuePerMWh,
     curtailmentRevenuePerMWh,
@@ -239,30 +251,34 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
 /**
  * Generate demo data for when no real data is available
  * 
- * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 2025 - Feb 2026):
- * Source: TSOC DAM Excel reports (37 files), processed Feb 2026
+ * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 1, 2025 – Feb 11, 2026):
+ * Source: 134 TSOC DAM Excel files, 6,432 half-hourly records, every trading day
  * 
- * VERIFIED real data points (Oct 2025 - Feb 2026, 21 sample days):
- * - Overall avg MCP: €165.12/MWh (new open market)
- * - Solar hours (06:00-18:00) avg: €150.41/MWh
- * - Peak hours (17:00-21:00) avg: €182.03/MWh
- * - Off-peak avg: €168.15/MWh
- * - Arbitrage spread: €31.62/MWh
- * - Range: €0 to €200/MWh (no €500 spikes in new market)
- * - Zero-price periods: 11 out of ~500 periods (~2.2%)
- * - Solar penetration: 5-13% depending on season
+ * VERIFIED complete dataset:
+ * - Overall avg MCP: €158.19/MWh
+ * - Midday (10-14):  €101.13/MWh  ← deep solar suppression (duck curve)
+ * - Solar hours (06-17): €140.88/MWh
+ * - Peak evening (17-21): €182.99/MWh
+ * - Off-peak (22-05): €171.49/MWh
+ * - Peak-Midday Spread: €81.86/MWh ← BESS opportunity
+ * - Range: €0 to €500/MWh (rare spikes)
+ * - Zero-price periods: 336 (5.2% of all half-hours)
+ * - Low-price (≤€10): 467 (7.3%)
+ * - Midday curtailment (≤€50, 09-15): 29.4% of periods
+ * - Solar volume: 19.8% of daytime generation
  * 
- * Monthly trend (new open market):
- * - Oct 2025: avg €149.9, spread €45.7 (volatile first month)
- * - Nov 2025: avg €168.2, spread €28.8
- * - Dec 2025: avg €158.7, spread €23.1
- * - Jan 2026: avg €174.4, spread €19.4 (winter peak, low solar)
- * - Feb 2026: avg €154.5, spread €62.9 (single sample, solar returning)
+ * Hourly profile (key hours):
+ * - 00:00: €173 | 06:00: €174 | 08:00: €167
+ * - 10:00: €102 | 11:00: €80  | 12:00: €77  ← solar trough
+ * - 14:00: €142 | 16:00: €175 | 18:00: €185
+ * - 19:00: €186 ← daily peak | 22:00: €176
  * 
- * Key insight: The new open market shows MUCH less price volatility
- * than expected. Solar midday suppression is modest (€130-170, not €0-50).
- * Evening peaks are €175-195, not €250+. Arbitrage spreads are €20-60,
- * not €80-150 as predicted by pre-market models.
+ * Monthly trend (complete):
+ * - Oct 2025: avg €147.23, peak-midday spread €98.80
+ * - Nov 2025: avg €155.49, spread €103.27 (deepest curtailment)
+ * - Dec 2025: avg €158.76, spread €67.43
+ * - Jan 2026: avg €169.22, spread €49.72 (winter, less solar)
+ * - Feb 2026: avg €163.73, spread €106.98 (solar returning)
  */
 export function generateDemoData(): MarketDataFull {
   const records: HourlyRecord[] = []
@@ -281,12 +297,12 @@ export function generateDemoData(): MarketDataFull {
     185, 200, 195, 188, 175, 162,   // 18:00-23:00 (evening peak - AC + fossil)
   ]
   
-  // WINTER (Nov-Feb): REAL DATA - Less solar, higher baseline, modest midday dip
+  // WINTER (Nov-Feb): REAL DATA from 134-day dataset - deep midday dip even in winter
   const winterProfile = [
-    168, 164, 160, 158, 156, 158,   // 00:00-05:00 (night - heating demand)
-    160, 155, 145, 130, 118, 105,   // 06:00-11:00 (less solar, modest dip)
-    100, 105, 115, 135, 155, 175,   // 12:00-17:00 (limited solar, ramp to peak)
-    190, 195, 192, 188, 178, 170,   // 18:00-23:00 (evening peak - heating + lighting)
+    173, 170, 169, 169, 169, 171,   // 00:00-05:00 (night - heating demand)
+    174, 174, 167, 146, 102, 80,    // 06:00-11:00 (solar suppresses midday heavily)
+    77, 105, 142, 167, 175, 181,    // 12:00-17:00 (trough at noon, ramp to peak)
+    185, 186, 183, 179, 176, 174,   // 18:00-23:00 (evening peak)
   ]
   
   // SPRING (Mar-May): Transitional, increasing solar penetration
@@ -297,12 +313,12 @@ export function generateDemoData(): MarketDataFull {
     188, 198, 195, 190, 178, 165,   // 18:00-23:00
   ]
   
-  // AUTUMN (Sep-Oct): REAL DATA - First months of open market
+  // AUTUMN (Sep-Oct): REAL DATA - Highest solar suppression, deepest duck curve
   const autumnProfile = [
-    160, 155, 150, 148, 145, 143,   // 00:00-05:00
-    140, 125, 100, 75, 55, 35,      // 06:00-11:00
-    25, 30, 50, 80, 115, 165,       // 12:00-17:00
-    188, 197, 194, 190, 178, 168,   // 18:00-23:00
+    165, 160, 155, 152, 150, 148,   // 00:00-05:00
+    155, 140, 115, 80, 50, 25,      // 06:00-11:00 (aggressive solar ramp)
+    15, 25, 55, 90, 130, 170,       // 12:00-17:00 (near-zero at noon)
+    185, 195, 192, 188, 175, 168,   // 18:00-23:00 (evening peak)
   ]
   
   function getSeasonProfile(month: number): number[] {
@@ -327,28 +343,28 @@ export function generateDemoData(): MarketDataFull {
     const month = currentDate.getMonth()
     const profile = getSeasonProfile(month)
     
-    // Price spikes are rare in the new open market (max observed: €200, not €500)
-    const isSpikeDay = seededRandom() < 0.02 // ~2% of days have a modest spike
+    // Price spikes do occur (€500 max observed) but are rare in the open market
+    const isSpikeDay = seededRandom() < 0.03 // ~3% of days have a price spike
     
     for (let h = 0; h < 24; h++) {
       const basePrice = profile[h]
       const weekendDiscount = isWeekend ? 0.92 : 1.0 // Weekend effect is modest
       const randomFactor = 0.88 + seededRandom() * 0.24 // ±12% random variation (market is less volatile than predicted)
       
-      // Spike factor for price events (evening hours only, capped at market reality)
+      // Spike factor for price events (capped at €500 observed max)
       const spikeFactor = (isSpikeDay && h >= 18 && h <= 21) 
-        ? 1.1 + seededRandom() * 0.15  // Up to ~1.25x during spike events (max ~€195)
+        ? 1.3 + seededRandom() * 0.5  // Up to ~1.8x during spike events
         : 1.0
       
       let price = basePrice * weekendDiscount * randomFactor * spikeFactor
       
-      // Enforce zero floor and cap at €200 (observed max in new open market)
-      price = Math.max(0, Math.min(200, price))
+      // Enforce zero floor and cap at €500 (observed max in dataset)
+      price = Math.max(0, Math.min(500, price))
       
-      // Zero-price events during midday solar are RARE in new market (~2.2% of all periods)
-      // Much less frequent than pre-market predictions suggested
-      if (h >= 11 && h <= 14 && seededRandom() < 0.08) {
-        price = Math.max(0, price * 0.15) // Modest suppression
+      // Zero-price events during midday solar — 5.2% overall, concentrated 10:00-14:00
+      // 29.4% of midday periods have MCP ≤ €50 (real curtailment data)
+      if (h >= 10 && h <= 14 && seededRandom() < 0.12) {
+        price = Math.max(0, price * 0.08) // Deep solar suppression to near-zero
       }
       
       const volume = (250 + seededRandom() * 180) * (isWeekend ? 0.82 : 1)

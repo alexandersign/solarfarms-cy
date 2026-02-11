@@ -1,0 +1,121 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# TSOC Market Data Daily Fetcher
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Runs daily at 14:00 UTC (4 PM Cyprus time) - after TSOC publishes
+# day-ahead reports. Downloads new Excel files, processes them into
+# market-data.json, and commits the update.
+#
+# The git push triggers Vercel auto-deploy, so the website stays current.
+#
+# Can also be triggered manually from GitHub Actions tab or via Vercel cron.
+#
+# Required secrets:
+#   None (uses GITHUB_TOKEN automatically)
+#
+# Optional secrets (for Cloudflare bypass fallbacks):
+#   SCRAPINGBEE_API_KEY  - scrapingbee.com free tier (1000 req/month)
+#   ZENROWS_API_KEY      - zenrows.com free tier (1000 req/month)
+#   PROXY_URL            - Residential proxy URL
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Fetch TSOC Market Data
+
+on:
+  schedule:
+    # Daily at 14:00 UTC = 16:00 Cyprus time (EET/EEST)
+    # TSOC typically publishes day-ahead data by ~14:00 local time
+    - cron: '0 14 * * *'
+
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: 'Backfill all data since Oct 2025 (not just latest)'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-market-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # ── Setup ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # ── Restore cached Excel files ─────────────────────────────────
+      # Excel files are gitignored (too large), but we cache them
+      # between runs so we only download new ones each day.
+      - name: Restore Excel cache
+        uses: actions/cache@v4
+        with:
+          path: market/excel
+          key: tsoc-excel-${{ github.run_number }}
+          restore-keys: |
+            tsoc-excel-
+
+      # ── Fetch new data ─────────────────────────────────────────────
+      - name: Fetch TSOC Excel files
+        run: |
+          npx ts-node --compiler-options '{"module":"commonjs"}' \
+            scripts/fetch-tsoc-playwright.ts \
+            ${{ github.event.inputs.backfill == 'true' && '--backfill' || '' }}
+        env:
+          TSOC_BACKFILL: ${{ github.event.inputs.backfill }}
+          SCRAPINGBEE_API_KEY: ${{ secrets.SCRAPINGBEE_API_KEY }}
+          ZENROWS_API_KEY: ${{ secrets.ZENROWS_API_KEY }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
+
+      # ── Process data ───────────────────────────────────────────────
+      - name: Process Excel files into market-data.json
+        run: |
+          npx ts-node --compiler-options '{"module":"commonjs"}' \
+            scripts/download-market-data.ts --parse-only
+
+      # ── Commit & push ──────────────────────────────────────────────
+      - name: Commit updated market data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Only commit the processed JSON (Excel files are gitignored)
+          git add market/data/market-data.json
+
+          if git diff --staged --quiet; then
+            echo "::notice::No new market data to commit"
+          else
+            DATES=$(git diff --staged -- market/data/market-data.json | grep '"end"' | tail -1 | grep -oP '\d{4}-\d{2}-\d{2}' || echo "unknown")
+            git commit -m "$(cat <<EOF
+          chore: update TSOC market data through ${DATES}
+
+          Automated daily fetch from tsoc.org.cy
+          EOF
+          )"
+            git push
+            echo "::notice::Market data updated and pushed"
+          fi
+
+      # ── Notify on failure ──────────────────────────────────────────
+      - name: Report failure
+        if: failure()
+        run: |
+          echo "::error::Market data fetch failed. Check logs above."
+          echo "Manual fallback: download Excel files from TSOC website to market/excel/"
+          echo "Then run: npm run market:parse"

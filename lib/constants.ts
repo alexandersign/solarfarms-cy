@@ -389,24 +389,35 @@ export const ANALYTICS_EVENTS = {
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
 } as const
 
-// Cyprus Market Defaults (Oct 2025 - Feb 2026 VERIFIED from TSOC DAM Excel Reports)
-// Source: 37 TSOC DAM files processed, 21 new market sample days (Oct 2025 - Feb 2026)
-// ACTUAL new open market: avg €165.12/MWh, solar €150.41/MWh, peak €182.03/MWh
+// Cyprus Market Defaults — COMPLETE DATASET (Oct 1, 2025 – Feb 11, 2026)
+// Source: 134 TSOC DAM Excel files, 6,432 half-hourly records, every trading day
+// VERIFIED from: https://tsoc.org.cy/competitive-electricity-market/mms-reports/
+//
+// KEY METRICS (134 days):
+//   Overall avg MCP:    €158.19/MWh
+//   Midday (10-14):     €101.13/MWh  ← deep solar suppression
+//   Peak evening (17-21): €182.99/MWh
+//   Peak-Midday Spread: €81.86/MWh  ← BESS opportunity
+//   Zero-price periods: 336 (5.2% of all half-hours)
+//   Low-price (≤€10):   467 (7.3%)
+//   Curtailment midday (≤€50, 09-15): 29.4% of periods
 //
 // ⚠️ REGULATORY NOTE (Feb 2026): BESS CANNOT buy electricity from the DAM grid yet.
 // DAM arbitrage (buy at solar hours, sell at peak) is NOT YET legal in Cyprus.
 // Current BESS revenue model: CURTAILMENT RECOVERY ONLY
 //   → Store otherwise-curtailed solar energy (charge cost = €0)
-//   → Discharge at evening peak prices (€182/MWh)
-//   → Revenue: €16,500-28,000/MWh BESS/year depending on curtailment level
-// Future: DAM arbitrage will become available when legislation enables BESS participation
+//   → Discharge at evening peak prices (€183/MWh)
+//   → Revenue per MWh discharged: €160.67/MWh (at 87.8% RTE)
+//   → Annual: €146k–223k per MWh BESS (at 2.5–3.8 MWh daily throughput)
+// Future: DAM arbitrage will add €72/MWh net per cycle when legislation enables it
 //
 export const CYPRUS_MARKET_DEFAULTS = {
-  // Revenue rates (UPDATED Feb 2026 from actual TSOC DAM clearing prices)
-  daytimeSellingRate: 0.150,      // €/kWh - Solar hours avg €150.41/MWh (DAM reference price)
-  nightDischargeRate: 0.182,      // €/kWh - Evening peak avg €182.03/MWh (BESS discharge price)
+  // Revenue rates (VERIFIED Feb 2026 from 134-day complete TSOC DAM dataset)
+  daytimeSellingRate: 0.141,      // €/kWh - Solar hours avg €140.88/MWh (06:00-17:00)
+  middayRate: 0.101,              // €/kWh - Midday avg €101.13/MWh (10:00-14:00, deep solar dip)
+  nightDischargeRate: 0.183,      // €/kWh - Evening peak avg €182.99/MWh (BESS discharge price)
   ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
-  wholesaleAvgRate: 0.165,        // €/kWh - Overall weighted avg MCP €165.12/MWh
+  wholesaleAvgRate: 0.158,        // €/kWh - Overall avg MCP €158.19/MWh
   
   // Curtailment (based on real 2024-2025 data, may decrease with new market mechanisms)
   curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average (pre-open market)

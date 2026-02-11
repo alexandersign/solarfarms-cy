@@ -50,9 +50,9 @@ export default function MarketPage() {
             
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Real pricing analytics from the Cyprus Transmission System Operator (TSOC), 
-              sourced from 37 official DAM Excel reports spanning January 2025 to February 2026. 
-              Track hourly market clearing prices, identify BESS arbitrage opportunities, and 
-              understand how the new competitive market (launched October 2025) is shaping energy investment.
+              sourced from 134 official TSOC DAM files spanning Oct 1, 2025 &ndash; Feb 11, 2026 
+              (6,432 half-hourly records). Track market clearing prices, identify BESS arbitrage 
+              opportunities, and understand how the new competitive market is shaping energy investment.
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -95,12 +95,15 @@ export default function MarketPage() {
                   <p>
                     The Cyprus competitive electricity market launched on <strong>October 1, 2025</strong>,
                     operated by the Transmission System Operator of Cyprus (TSOC) following the EU Target Model.
-                    Data shown here is sourced from <strong>37 official TSOC DAM Excel reports</strong> (Jan 2025 &ndash; Feb 2026).
+                    Data shown here is sourced from <strong>134 official TSOC DAM files</strong> (Oct 1, 2025 &ndash; Feb 11, 2026), 
+                    covering 134 days and 6,432 half-hourly records.
                   </p>
                   <p>
                     The <strong>Day-Ahead Market (DAM)</strong> determines half-hourly market clearing prices 
-                    through a bidding process. Since launch, the average MCP has been <strong>&euro;165/MWh</strong>,
-                    with solar hours averaging <strong>&euro;150/MWh</strong> and evening peak hours at <strong>&euro;182/MWh</strong>.
+                    through a bidding process. Since launch, the overall average MCP has been <strong>&euro;158.19/MWh</strong>,
+                    with solar hours (06&ndash;17) averaging <strong>&euro;140.88/MWh</strong>, midday (10&ndash;14) at <strong>&euro;101.13/MWh</strong>, 
+                    and evening peak hours (17&ndash;21) at <strong>&euro;182.99/MWh</strong>. 
+                    Zero-price periods account for <strong>336 intervals (5.2%)</strong> of all records.
                   </p>
                   <p>
                     Important note: as of February 2026, <strong>BESS cannot yet buy from the DAM</strong>. 
@@ -132,17 +135,19 @@ export default function MarketPage() {
                   <p>
                     In Cyprus, BESS currently generates revenue through <strong>curtailment recovery</strong> &mdash; 
                     storing solar energy that would otherwise be curtailed by the DSO, and discharging it 
-                    at evening peak prices (&euro;182/MWh avg).
+                    at evening peak prices (&euro;183/MWh avg). Revenue per MWh discharged: <strong>&euro;160.67</strong> (charge 
+                    at &euro;0, discharge at peak, 87.8% round-trip efficiency).
                   </p>
                   <p>
-                    With <strong>25&ndash;45% curtailment rates</strong> across Cyprus solar parks and zero 
-                    charge cost (curtailed energy is free), BESS delivers <strong>&euro;16,500&ndash;28,000 
-                    per MWh of capacity annually</strong> from curtailment recovery alone.
+                    With <strong>29.4% midday curtailment rates</strong> (periods &le;&euro;50, 09&ndash;15) across Cyprus solar parks 
+                    and zero charge cost (curtailed energy is free), BESS delivers <strong>&euro;146,600&ndash;&euro;222,800 
+                    annual revenue</strong> (2.5&ndash;3.8 MWh/day discharged) from curtailment recovery alone.
                   </p>
                   <p>
                     <strong>Future upside:</strong> When legislation enables BESS participation in the 
-                    Day-Ahead Market (DAM), additional arbitrage revenue from buying at solar-hour prices 
-                    (&euro;150/MWh) and selling at peak (&euro;182/MWh) will create a further revenue stream.
+                    Day-Ahead Market (DAM), additional arbitrage revenue from buying at midday prices 
+                    (&euro;101/MWh) and selling at peak (&euro;183/MWh) &mdash; a spread of &euro;81.86/MWh 
+                    yielding <strong>&euro;71.87 net per MWh</strong> after 87.8% RTE &mdash; will create a further revenue stream.
                     Grid ancillary services represent additional future potential.
                   </p>
                 </div>
@@ -169,10 +174,10 @@ export default function MarketPage() {
                 Data Pipeline
               </p>
               <p>
-                Market data is sourced from 37 official TSOC DAM Excel reports (Jan 2025 &ndash; Feb 2026). 
-                34 sample days with 816 hourly records have been processed. The data covers both the old 
-                regulated market (Jan&ndash;Sep 2025) and the new competitive open market (Oct 2025 onwards).
-                Last updated: <strong>February 2026</strong>. Raw files stored in 
+                Market data is sourced from 134 official TSOC DAM files (Oct 1, 2025 &ndash; Feb 11, 2026). 
+                134 days with 6,432 half-hourly records have been processed, covering the competitive 
+                open market period since launch.
+                Last updated: <strong>February 11, 2026</strong>. Raw files stored in 
                 <code className="bg-gray-200 px-1.5 py-0.5 rounded">market/excel/</code> and processed
                 statistics in <code className="bg-gray-200 px-1.5 py-0.5 rounded">market/data/market-data.json</code>.
               </p>

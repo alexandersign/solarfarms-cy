@@ -1,0 +1,47 @@
+{
+  "analysis_date": "2026-02-11T13:19:57.554102",
+  "dataset": {
+    "files": 134,
+    "records": 6432,
+    "date_range": {
+      "start": "2025-10-01",
+      "end": "2026-02-11"
+    },
+    "total_days": 134
+  },
+  "overall": {
+    "avg_mcp": 158.19,
+    "median_mcp": 171.0,
+    "min_mcp": 0.0,
+    "max_mcp": 500.0,
+    "zero_price_periods": 336,
+    "low_price_periods": 467
+  },
+  "time_of_day": {
+    "solar_hours_avg": 140.88,
+    "midday_avg": 101.13,
+    "morning_avg": 165.35,
+    "peak_evening_avg": 182.99,
+    "evening_avg": 183.94,
+    "offpeak_avg": 171.49,
+    "night_avg": 172.34,
+    "peak_midday_spread": 81.86,
+    "peak_solar_spread": 42.11
+  },
+  "bess": {
+    "avg_evening_peak_mcp": 182.99,
+    "avg_midday_mcp": 101.13,
+    "avg_daily_spread": 81.86,
+    "curtailment_revenue_per_mwh": 160.67,
+    "curtailment_annual_2_5mwh": 146608.0,
+    "curtailment_annual_3_8mwh": 222844.0,
+    "arbitrage_net_per_mwh": 71.87,
+    "days_positive_spread_pct": 100.0,
+    "rte": 0.878
+  },
+  "solar": {
+    "solar_pct_of_daytime_volume": 19.8,
+    "curtailment_periods_midday": 552,
+    "deep_curtailment_periods": 463
+  }
+}

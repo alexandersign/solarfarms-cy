@@ -193,7 +193,7 @@ async function parseAllExcelFiles(): Promise<void> {
   const XLSX = await import('xlsx')
   
   const files = fs.readdirSync(EXCEL_DIR)
-    .filter(f => f.endsWith('.xlsx') || f.endsWith('.xls'))
+    .filter(f => (f.endsWith('.xlsx') || f.endsWith('.xls')) && !f.startsWith('._'))
     .sort()
   
   if (files.length === 0) {

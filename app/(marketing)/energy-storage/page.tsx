@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     'renewable energy storage',
     'Cyprus grid storage',
     'solar plus storage Cyprus',
-    'battery arbitrage Cyprus',
+    'BESS curtailment recovery Cyprus',
     'peak shaving Cyprus',
     'frequency regulation Cyprus'
   ],
@@ -91,7 +91,7 @@ const bessFeatures = [
   {
     icon: Battery,
     title: 'Tier-1 LFP Technology',
-    description: 'Lithium Iron Phosphate cells with 88.39% round-trip efficiency and 6,000+ cycle life.'
+    description: 'Lithium Iron Phosphate cells with 87.8% round-trip efficiency and 6,000+ cycle life.'
   },
   {
     icon: Shield,
@@ -106,7 +106,7 @@ const bessFeatures = [
   {
     icon: TrendingUp,
     title: 'Revenue Optimization',
-    description: 'Curtailment recovery, evening arbitrage, and grid services to maximize returns.'
+    description: 'Curtailment recovery at peak prices and grid services to maximize returns.'
   },
   {
     icon: Euro,
@@ -128,9 +128,9 @@ const useCases = [
     icon: Sun
   },
   {
-    title: 'Evening Arbitrage',
-    description: 'Store curtailed solar energy (€0 charge cost) and discharge at evening peak prices (€182/MWh avg). Future DAM arbitrage will add further revenue.',
-    benefit: '€16-28k per MWh annually',
+    title: 'Curtailment Recovery at Peak Prices',
+    description: 'Store curtailed solar energy (€0 charge cost) and discharge at evening peak prices (€183/MWh avg). Revenue of €161/MWh discharged at 87.8% RTE. Based on 134-day verified TSOC dataset.',
+    benefit: '€161/MWh revenue per cycle',
     icon: TrendingUp
   },
   {
@@ -215,7 +215,7 @@ export default function EnergyStoragePage() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold">88.4%</div>
+                <div className="text-2xl font-bold">87.8%</div>
                 <div className="text-sm text-white/70">Round-Trip Efficiency</div>
               </div>
             </div>
