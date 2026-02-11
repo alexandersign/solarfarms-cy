@@ -359,7 +359,7 @@ export default function InvestmentGuidePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
-                  <span><strong>€{marketData ? (marketData.arbitrageSpread).toFixed(0) : '81'}/MWh BESS arbitrage spread</strong> &mdash; From real TSOC market data</span>
+                  <span><strong>€{marketData ? (marketData.arbitrageSpread).toFixed(0) : '32'}/MWh BESS arbitrage spread</strong> &mdash; From verified TSOC DAM data (Oct 2025 – Feb 2026)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
@@ -371,7 +371,7 @@ export default function InvestmentGuidePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
-                  <span><strong>€{bessData ? bessData.annualRevenuePerMWh.toLocaleString('en', {maximumFractionDigits: 0}) : '19,901'}/MWh/year</strong> &mdash; Estimated BESS annual revenue</span>
+                  <span><strong>€{bessData ? bessData.annualRevenuePerMWh.toLocaleString('en', {maximumFractionDigits: 0}) : '10,500'}/MWh/year</strong> &mdash; Estimated BESS annual revenue (arbitrage + curtailment recovery)</span>
                 </li>
               </ul>
             </HighlightBox>
@@ -565,12 +565,12 @@ export default function InvestmentGuidePage() {
                 color="cyan"
               />
               <StatCard
-                value={marketData ? `€${marketData.solarHoursAvg.toFixed(0)}` : '€135'}
+                value={marketData ? `€${marketData.solarHoursAvg.toFixed(0)}` : '€150'}
                 label="Solar Hours Avg"
                 color="amber"
               />
               <StatCard
-                value={marketData ? `€${marketData.peakHoursAvg.toFixed(0)}` : '€216'}
+                value={marketData ? `€${marketData.peakHoursAvg.toFixed(0)}` : '€182'}
                 label="Peak Hours Avg"
                 color="indigo"
               />
@@ -596,8 +596,9 @@ export default function InvestmentGuidePage() {
 
             <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">5.3 BESS Arbitrage Opportunity</h3>
             <p className="text-gray-700 mb-4">
-              The classic &ldquo;duck curve&rdquo; in Cyprus creates exceptional BESS arbitrage:
-              charge during midday solar suppression (€0&ndash;40/MWh) and discharge during evening peak (€200&ndash;500/MWh).
+              The emerging duck curve in Cyprus creates a BESS arbitrage opportunity:
+              charge during midday solar dip (€85&ndash;130/MWh) and discharge during evening peak (€175&ndash;195/MWh).
+              Real TSOC data shows an average spread of €32/MWh, with summer spreads expected to widen significantly.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 avoid-break">
@@ -632,7 +633,7 @@ export default function InvestmentGuidePage() {
               <div className="bg-green-100 border border-green-300 rounded-lg p-4 text-center">
                 <BarChart3 className="w-5 h-5 text-green-700 mx-auto mb-1" />
                 <p className="text-lg font-bold text-green-800">
-                  {bessData ? `€${bessData.annualRevenuePerMWh.toLocaleString('en', {maximumFractionDigits: 0})}` : '€19,901'}
+                  {bessData ? `€${bessData.annualRevenuePerMWh.toLocaleString('en', {maximumFractionDigits: 0})}` : '€10,500'}
                 </p>
                 <p className="text-xs text-green-700 font-medium">Annual /MWh</p>
               </div>
@@ -641,7 +642,8 @@ export default function InvestmentGuidePage() {
             <InfoBox>
               Revenue calculation assumes 87.8% round-trip efficiency (OEM spec), 1 cycle per day,
               charging during solar hours (06:00&ndash;17:00) and discharging during peak (17:00&ndash;21:00).
-              Summer arbitrage spreads can reach €125+/MWh, with evening peaks hitting the €500 market cap.
+              Summer arbitrage spreads expected to reach €60&ndash;80/MWh as solar penetration deepens midday prices.
+              Total BESS value includes curtailment recovery (25.8% of solar output) and future ancillary services.
             </InfoBox>
           </section>
 
@@ -788,7 +790,7 @@ export default function InvestmentGuidePage() {
                   <Battery className="w-4 h-4 text-green-500" /> BESS Revenue
                 </h4>
                 <ul className="text-gray-700 text-sm space-y-1 list-disc pl-5">
-                  <li>Evening arbitrage: €{marketData ? (marketData.peakHoursAvg - marketData.solarHoursAvg).toFixed(0) : '81'}/MWh spread</li>
+                  <li>Evening arbitrage: €{marketData ? (marketData.peakHoursAvg - marketData.solarHoursAvg).toFixed(0) : '32'}/MWh spread</li>
                   <li>Curtailment recovery: 50% of curtailed energy</li>
                   <li>Night tariff premium: 20&ndash;30% above day rates</li>
                   <li>Grid services: future ancillary revenue</li>

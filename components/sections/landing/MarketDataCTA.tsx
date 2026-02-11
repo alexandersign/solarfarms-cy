@@ -24,9 +24,9 @@ export function MarketDataCTA() {
                     <span className="block gradient-text">Market Pricing</span>
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Track real-time day-ahead market prices from TSOC Cyprus. Understand when energy
-                    is cheapest, when peak demand drives prices up, and how battery storage captures
-                    the spread.
+                    Track verified day-ahead market prices from 37 official TSOC reports.
+                    Average MCP: €165/MWh. Solar hours: €150/MWh. Peak: €182/MWh.
+                    See how the new competitive market creates BESS investment opportunities.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button variant="gradient" asChild>

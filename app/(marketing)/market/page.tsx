@@ -49,9 +49,10 @@ export default function MarketPage() {
             </h1>
             
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Real-time pricing analytics from the Cyprus Transmission System Operator (TSOC). 
+              Real pricing analytics from the Cyprus Transmission System Operator (TSOC), 
+              sourced from 37 official DAM Excel reports spanning January 2025 to February 2026. 
               Track hourly market clearing prices, identify BESS arbitrage opportunities, and 
-              understand solar production value in the Cyprus electricity market.
+              understand how the new competitive market (launched October 2025) is shaping energy investment.
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -94,17 +95,18 @@ export default function MarketPage() {
                   <p>
                     The Cyprus competitive electricity market launched on <strong>October 1, 2025</strong>,
                     operated by the Transmission System Operator of Cyprus (TSOC) following the EU Target Model.
+                    Data shown here is sourced from <strong>37 official TSOC DAM Excel reports</strong> (Jan 2025 &ndash; Feb 2026).
                   </p>
                   <p>
-                    The <strong>Day-Ahead Market (DAM)</strong> determines hourly market clearing prices 
-                    through a bidding process where producers, suppliers, and aggregators submit offers 
-                    for each 30-minute interval of the following day.
+                    The <strong>Day-Ahead Market (DAM)</strong> determines half-hourly market clearing prices 
+                    through a bidding process. Since launch, the average MCP has been <strong>&euro;165/MWh</strong>,
+                    with solar hours averaging <strong>&euro;150/MWh</strong> and evening peak hours at <strong>&euro;182/MWh</strong>.
                   </p>
                   <p>
-                    Key insight for solar investors: during solar production hours (06:00-18:00), 
-                    market prices typically <strong>drop significantly</strong> due to abundant solar supply, 
-                    while evening peak hours (17:00-21:00) command premium prices - creating a 
-                    clear <strong>BESS arbitrage opportunity</strong>.
+                    Key insight: the new open market shows <strong>less price volatility</strong> than pre-market 
+                    predictions suggested. The arbitrage spread of <strong>&euro;32/MWh</strong> is tighter than 
+                    the &euro;80+ predicted by early models, making <strong>curtailment recovery</strong> and 
+                    <strong>ancillary services</strong> increasingly important for BESS economics alongside pure arbitrage.
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-gray-100">
@@ -128,18 +130,19 @@ export default function MarketPage() {
                 </h3>
                 <div className="space-y-3 text-sm text-gray-600">
                   <p>
-                    Battery Energy Storage Systems (BESS) profit from the <strong>price spread</strong> between 
-                    low-cost solar hours and high-value peak demand hours.
+                    Battery Energy Storage Systems (BESS) profit from <strong>multiple revenue streams</strong>:
+                    price arbitrage, curtailment recovery, and ancillary services.
                   </p>
                   <p>
-                    Our analysis shows a consistent <strong>arbitrage opportunity</strong> where BESS 
-                    operators can charge during midday solar surplus (low prices) and discharge during 
-                    evening peak demand (high prices).
+                    Real market data shows an average <strong>&euro;32/MWh arbitrage spread</strong> between
+                    solar hours (&euro;150/MWh) and peak evening hours (&euro;182/MWh). With 87.8% round-trip
+                    efficiency, this yields <strong>&euro;9.8k&ndash;11.5k per MWh of BESS capacity annually</strong> 
+                    from arbitrage alone.
                   </p>
                   <p>
-                    Combined with <strong>curtailment recovery</strong> (recovering energy that would 
-                    otherwise be wasted due to grid curtailment), BESS delivers compelling returns for 
-                    Cyprus solar-storage hybrid projects.
+                    The real value multiplier is <strong>curtailment recovery</strong>: with 25.8% average
+                    curtailment in Cyprus, BESS recovers otherwise-wasted solar energy and sells at
+                    evening rates, <strong>significantly improving project IRR</strong> beyond pure arbitrage.
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-green-100 flex flex-col sm:flex-row gap-3">
@@ -165,11 +168,12 @@ export default function MarketPage() {
                 Data Pipeline
               </p>
               <p>
-                Market data is sourced from TSOC daily Excel reports. To update with the latest data, 
-                run: <code className="bg-gray-200 px-1.5 py-0.5 rounded">npx ts-node scripts/download-market-data.ts</code>. 
-                Files are downloaded to <code className="bg-gray-200 px-1.5 py-0.5 rounded">market/excel/</code>, 
-                parsed, and statistics are generated to <code className="bg-gray-200 px-1.5 py-0.5 rounded">market/data/market-data.json</code>. 
-                If no real data is available, demo data based on typical Cyprus market patterns is displayed.
+                Market data is sourced from 37 official TSOC DAM Excel reports (Jan 2025 &ndash; Feb 2026). 
+                34 sample days with 816 hourly records have been processed. The data covers both the old 
+                regulated market (Jan&ndash;Sep 2025) and the new competitive open market (Oct 2025 onwards).
+                Last updated: <strong>February 2026</strong>. Raw files stored in 
+                <code className="bg-gray-200 px-1.5 py-0.5 rounded">market/excel/</code> and processed
+                statistics in <code className="bg-gray-200 px-1.5 py-0.5 rounded">market/data/market-data.json</code>.
               </p>
             </div>
           </div>

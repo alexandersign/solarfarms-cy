@@ -965,11 +965,14 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
     monthlyProductionShare: DEFAULT_MONTHLY_PRODUCTION,
   },
   
+  // Revenue defaults UPDATED Feb 2026 from ACTUAL TSOC DAM data (Oct 2025 - Feb 2026)
+  // Source: 21 sample days, 37 Excel files processed
+  // Solar hours avg: €150.41/MWh, Peak hours avg: €182.03/MWh, Spread: €31.62/MWh
   revenue: {
-    dayPrice: 110,
-    nightPrice: 160,
-    arbitrageSpread: 50,
-    solarSellingRate: 0.19,
+    dayPrice: 150,       // €150/MWh — solar hours avg from real DAM data (was €110)
+    nightPrice: 182,     // €182/MWh — peak hours avg from real DAM data (was €160)
+    arbitrageSpread: 32, // €32/MWh — real spread (was €50, significantly lower than predicted)
+    solarSellingRate: 0.15, // €0.15/kWh — adjusted to match real wholesale (was €0.19)
     curtailedEnergyRate: 0,
     frequencyRegulation: 0,
     spinningReserve: 0,
@@ -998,12 +1001,13 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
     })),
   },
   
+  // Hourly price curve UPDATED Feb 2026 from real TSOC DAM hourly averages
   hourly: {
     enabled: false,
     priceCurve: Array.from({ length: 24 }, (_, i) => ({
       hour: i,
-      buyPrice: i >= 10 && i <= 16 ? 80 : i >= 18 && i <= 21 ? 160 : 100,
-      sellPrice: i >= 10 && i <= 16 ? 90 : i >= 18 && i <= 21 ? 170 : 110,
+      buyPrice: i >= 10 && i <= 16 ? 120 : i >= 18 && i <= 21 ? 185 : 160, // Updated from real data
+      sellPrice: i >= 10 && i <= 16 ? 130 : i >= 18 && i <= 21 ? 192 : 168, // Updated from real data
     })),
     consumptionPattern: DEFAULT_HOURLY_CONSUMPTION,
     chargeHours: [10, 11, 12, 13, 14, 15],

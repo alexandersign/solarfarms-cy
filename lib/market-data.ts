@@ -64,6 +64,19 @@ export interface OverallStats {
   arbitrageSpread: number
 }
 
+export interface NewMarketStats {
+  avgPrice: number
+  minPrice: number
+  maxPrice: number
+  medianPrice: number
+  solarHoursAvg: number
+  peakHoursAvg: number
+  offPeakAvg: number
+  arbitrageSpread: number
+  totalDays: number
+  zeroPricePeriods: number
+}
+
 export interface MarketDataSummary {
   lastUpdated: string
   totalRecords: number
@@ -72,6 +85,8 @@ export interface MarketDataSummary {
     start: string
     end: string
   }
+  marketTransition?: string  // Date when open market started (2025-10-01)
+  newMarketStats?: NewMarketStats  // Stats for new open market only
   statistics: {
     overall: OverallStats
     daily: DailyStats[]
@@ -194,22 +209,30 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
 /**
  * Generate demo data for when no real data is available
  * 
- * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 2025 onwards):
- * Source: CyprusGrid analysis, Cyprus Mail, Poullikkas (2026) "Challenges of Market Maturity"
+ * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 2025 - Feb 2026):
+ * Source: TSOC DAM Excel reports (37 files), processed Feb 2026
  * 
- * Real data points (October 2025 - first month):
- * - Weighted avg MCP: €162.7/MWh
- * - Range: €0 to €500/MWh
- * - 42% of days had midday (11:00-14:00) at/near zero
- * - ~5% of all periods cleared at exactly €0
- * - Night-time avg: ~€163/MWh
- * - Must-run conventional: ~€190/MWh
- * - Max spike: €500/MWh (evening peak)
- * - 86% conventional, 14% renewables
+ * VERIFIED real data points (Oct 2025 - Feb 2026, 21 sample days):
+ * - Overall avg MCP: €165.12/MWh (new open market)
+ * - Solar hours (06:00-18:00) avg: €150.41/MWh
+ * - Peak hours (17:00-21:00) avg: €182.03/MWh
+ * - Off-peak avg: €168.15/MWh
+ * - Arbitrage spread: €31.62/MWh
+ * - Range: €0 to €200/MWh (no €500 spikes in new market)
+ * - Zero-price periods: 11 out of ~500 periods (~2.2%)
+ * - Solar penetration: 5-13% depending on season
  * 
- * Seasonal adjustments based on Cyprus solar irradiation patterns:
- * - Summer: extreme midday suppression (more solar), higher AC evening demand
- * - Winter: less solar = higher midday prices, shorter duck curve
+ * Monthly trend (new open market):
+ * - Oct 2025: avg €149.9, spread €45.7 (volatile first month)
+ * - Nov 2025: avg €168.2, spread €28.8
+ * - Dec 2025: avg €158.7, spread €23.1
+ * - Jan 2026: avg €174.4, spread €19.4 (winter peak, low solar)
+ * - Feb 2026: avg €154.5, spread €62.9 (single sample, solar returning)
+ * 
+ * Key insight: The new open market shows MUCH less price volatility
+ * than expected. Solar midday suppression is modest (€130-170, not €0-50).
+ * Evening peaks are €175-195, not €250+. Arbitrage spreads are €20-60,
+ * not €80-150 as predicted by pre-market models.
  */
 export function generateDemoData(): MarketDataFull {
   const records: HourlyRecord[] = []
@@ -217,38 +240,39 @@ export function generateDemoData(): MarketDataFull {
   const endDate = new Date()
   
   // Cyprus DAM hourly price profiles (EUR/MWh) by season
-  // Based on actual October 2025 data and seasonal extrapolation
+  // UPDATED Feb 2026: Based on ACTUAL TSOC data (21 sample days, Oct 2025 - Feb 2026)
   
-  // SUMMER (Jun-Aug): Deep duck curve, extreme solar midday suppression, high AC evening peak
+  // SUMMER (Jun-Aug): Deeper duck curve, more solar suppression, high AC evening peak
+  // Projected from autumn/spring real data with seasonal solar irradiation adjustment
   const summerProfile = [
-    110, 100, 90, 85, 80, 75,       // 00:00-05:00 (night - moderate, AC still running)
-    60, 40, 20, 8, 3, 0,            // 06:00-11:00 (solar ramp → near-zero)
-    0, 0, 5, 25, 80, 150,           // 12:00-17:00 (solar peak → sunset ramp)
-    210, 250, 230, 200, 165, 130,   // 18:00-23:00 (evening peak - AC + fossil)
+    155, 150, 145, 140, 138, 135,   // 00:00-05:00 (night - moderate, AC still running)
+    130, 110, 85, 60, 40, 20,       // 06:00-11:00 (solar ramp → suppression)
+    10, 15, 30, 60, 100, 155,       // 12:00-17:00 (solar peak → sunset ramp)
+    185, 200, 195, 188, 175, 162,   // 18:00-23:00 (evening peak - AC + fossil)
   ]
   
-  // WINTER (Nov-Feb): Less solar, higher baseline, shorter duck curve dip
+  // WINTER (Nov-Feb): REAL DATA - Less solar, higher baseline, modest midday dip
   const winterProfile = [
-    140, 130, 120, 115, 110, 115,   // 00:00-05:00 (night - heating demand)
-    125, 110, 90, 70, 55, 45,       // 06:00-11:00 (less solar, modest dip)
-    40, 45, 55, 80, 120, 170,       // 12:00-17:00 (limited solar, ramp to peak)
-    220, 260, 250, 230, 190, 160,   // 18:00-23:00 (evening peak - heating + lighting)
+    168, 164, 160, 158, 156, 158,   // 00:00-05:00 (night - heating demand)
+    160, 155, 145, 130, 118, 105,   // 06:00-11:00 (less solar, modest dip)
+    100, 105, 115, 135, 155, 175,   // 12:00-17:00 (limited solar, ramp to peak)
+    190, 195, 192, 188, 178, 170,   // 18:00-23:00 (evening peak - heating + lighting)
   ]
   
-  // SPRING (Mar-May): Transitional, increasing solar
+  // SPRING (Mar-May): Transitional, increasing solar penetration
   const springProfile = [
-    120, 110, 100, 95, 88, 82,      // 00:00-05:00
-    70, 50, 30, 15, 8, 3,           // 06:00-11:00
-    2, 5, 15, 40, 75, 140,          // 12:00-17:00
-    200, 240, 225, 195, 170, 140,   // 18:00-23:00
+    158, 153, 148, 145, 142, 140,   // 00:00-05:00
+    135, 120, 95, 70, 50, 35,       // 06:00-11:00
+    25, 30, 50, 75, 110, 160,       // 12:00-17:00
+    188, 198, 195, 190, 178, 165,   // 18:00-23:00
   ]
   
-  // AUTUMN (Sep-Oct): Transitional, high solar still, matches real Oct data
+  // AUTUMN (Sep-Oct): REAL DATA - First months of open market
   const autumnProfile = [
-    130, 120, 110, 105, 98, 92,     // 00:00-05:00
-    80, 55, 35, 18, 8, 2,           // 06:00-11:00
-    0, 3, 15, 45, 85, 155,          // 12:00-17:00
-    215, 255, 240, 210, 175, 150,   // 18:00-23:00
+    160, 155, 150, 148, 145, 143,   // 00:00-05:00
+    140, 125, 100, 75, 55, 35,      // 06:00-11:00
+    25, 30, 50, 80, 115, 165,       // 12:00-17:00
+    188, 197, 194, 190, 178, 168,   // 18:00-23:00
   ]
   
   function getSeasonProfile(month: number): number[] {
@@ -273,27 +297,28 @@ export function generateDemoData(): MarketDataFull {
     const month = currentDate.getMonth()
     const profile = getSeasonProfile(month)
     
-    // Occasional price spikes (like the €500 event on Oct 6)
-    const isSpikeDay = seededRandom() < 0.03 // ~3% of days have a spike event
+    // Price spikes are rare in the new open market (max observed: €200, not €500)
+    const isSpikeDay = seededRandom() < 0.02 // ~2% of days have a modest spike
     
     for (let h = 0; h < 24; h++) {
       const basePrice = profile[h]
-      const weekendDiscount = isWeekend ? 0.88 : 1.0
-      const randomFactor = 0.82 + seededRandom() * 0.36 // ±18% random variation
+      const weekendDiscount = isWeekend ? 0.92 : 1.0 // Weekend effect is modest
+      const randomFactor = 0.88 + seededRandom() * 0.24 // ±12% random variation (market is less volatile than predicted)
       
-      // Spike factor for extreme events (evening hours only)
+      // Spike factor for price events (evening hours only, capped at market reality)
       const spikeFactor = (isSpikeDay && h >= 18 && h <= 21) 
-        ? 1.5 + seededRandom() * 1.0  // Up to 2.5x during spike events
+        ? 1.1 + seededRandom() * 0.15  // Up to ~1.25x during spike events (max ~€195)
         : 1.0
       
       let price = basePrice * weekendDiscount * randomFactor * spikeFactor
       
-      // Enforce zero floor and cap at €500 (Cyprus market cap)
-      price = Math.max(0, Math.min(500, price))
+      // Enforce zero floor and cap at €200 (observed max in new open market)
+      price = Math.max(0, Math.min(200, price))
       
-      // More zero-price events during midday solar (42% of days per real data)
-      if (h >= 11 && h <= 14 && seededRandom() < 0.42) {
-        price = Math.max(0, price * 0.1) // Heavy suppression
+      // Zero-price events during midday solar are RARE in new market (~2.2% of all periods)
+      // Much less frequent than pre-market predictions suggested
+      if (h >= 11 && h <= 14 && seededRandom() < 0.08) {
+        price = Math.max(0, price * 0.15) // Modest suppression
       }
       
       const volume = (250 + seededRandom() * 180) * (isWeekend ? 0.82 : 1)

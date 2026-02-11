@@ -389,19 +389,20 @@ export const ANALYTICS_EVENTS = {
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
 } as const
 
-// Cyprus Market Defaults (Oct 2025 - Feb 2026 Real Market Data)
-// Source: TSOC DAM, CyprusGrid, Poullikkas (2026), Cyprus Mail
-// Wholesale MCP avg: €162.7/MWh (Oct 2025), range €0-500/MWh
-// See /market page for live charts
+// Cyprus Market Defaults (Oct 2025 - Feb 2026 VERIFIED from TSOC DAM Excel Reports)
+// Source: 37 TSOC DAM files processed, 21 new market sample days (Oct 2025 - Feb 2026)
+// ACTUAL new open market: avg €165.12/MWh, solar €150.41/MWh, peak €182.03/MWh
+// Arbitrage spread: €31.62/MWh (MUCH less than pre-market predictions of €80+)
+// See /market page for live charts and market/data/market-data.json for raw data
 export const CYPRUS_MARKET_DEFAULTS = {
-  // Revenue rates (based on actual DAM clearing prices)
-  daytimeSellingRate: 0.045,      // €/kWh - Solar hours avg (€0-45/MWh, often near zero midday)
-  nightDischargeRate: 0.230,      // €/kWh - Evening peak avg (€200-260/MWh from 18:00-21:00)
-  ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
-  wholesaleAvgRate: 0.163,        // €/kWh - Overall weighted avg MCP (€162.7/MWh)
+  // Revenue rates (UPDATED Feb 2026 from actual TSOC DAM clearing prices)
+  daytimeSellingRate: 0.150,      // €/kWh - Solar hours avg €150.41/MWh (was €0.045 — pre-market estimate was wrong)
+  nightDischargeRate: 0.182,      // €/kWh - Evening peak avg €182.03/MWh (was €0.230 — less extreme than predicted)
+  ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate (unchanged)
+  wholesaleAvgRate: 0.165,        // €/kWh - Overall weighted avg MCP €165.12/MWh (was €0.163)
   
-  // Curtailment (based on real 2024-2025 data)
-  curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average
+  // Curtailment (based on real 2024-2025 data, may decrease with new market mechanisms)
+  curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average (pre-open market)
   curtailedEnergyRate: 0.00,      // €/kWh - Rate paid for curtailed energy
   curtailmentCompensation: 0.00,  // % compensated under PPA
   

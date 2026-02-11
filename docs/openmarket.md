@@ -41,7 +41,7 @@ Cyprus launched its **Competitive Electricity Market (CEM)** on **1 October 2025
 | **Market Type** | Non-interconnected (isolated island system) |
 | **Initial Participants** | 17 entities |
 | **Wholesale Price Cap** | €500/MWh |
-| **First Month Avg MCP** | €162.7/MWh (weighted) |
+| **New Market Avg MCP (Oct-Feb)** | €165.12/MWh (from 21 sample days) |
 | **ENTSO-E Membership** | Full member since October 2005 |
 
 ### Pre-Market History
@@ -454,46 +454,78 @@ All tariffs are calculated per CERA Regulatory Decision 02/2015 (KDP 208/2015).
 
 ---
 
-## 9. Market Pricing Data (Oct 2025 - Present)
+## 9. Market Pricing Data (Oct 2025 - Feb 2026)
 
-### First Month Analysis (October 2025)
+### Data Source
 
-*Sources: CyprusGrid, Poullikkas (2026), Cyprus Mail*
+**37 official TSOC DAM Excel reports** have been processed covering January 2025 (pre-market regulated period) through February 2026 (new open market). This includes 34 sample days and 816 hourly records. Raw files are stored in `market/excel/` and processed data in `market/data/market-data.json`.
+
+### Overall New Market Statistics (Oct 2025 - Feb 2026, VERIFIED)
+
+*Source: TSOC DAM Excel reports processed Feb 2026 — 21 sample days, ~500 half-hourly periods*
 
 | Metric | Value |
 |--------|-------|
-| **Weighted Average MCP** | €162.7/MWh |
-| **Monthly Average (Poullikkas)** | €167.78/MWh |
-| **Price Range** | €0 - €500/MWh |
-| **Zero-Price Periods** | ~5% of all trading periods |
-| **Midday Near-Zero Days** | 42% of days (11:00-14:00) |
-| **Night-Time Average** | ~€163/MWh |
-| **Effective Supplier Cost** | ~€171/MWh (including must-run) |
-| **Must-Run Unit Cost** | ~€190/MWh |
-| **Highest Spike** | €500/MWh (6 October 2025, evening peak) |
+| **Average MCP** | **€165.12/MWh** |
+| **Solar Hours Average (06:00-18:00)** | **€150.41/MWh** |
+| **Peak Hours Average (17:00-21:00)** | **€182.03/MWh** |
+| **Off-Peak Average** | **€168.15/MWh** |
+| **Arbitrage Spread** | **€31.62/MWh** |
+| **Median Price** | €166/MWh |
+| **Price Range** | €0 - €200/MWh |
+| **Zero-Price Periods** | 11 (~2.2% of all periods) |
+| **Highest Observed** | €200/MWh (no €500 spikes recorded in sample) |
 
-### Price Patterns - "Two-Speed Market"
+### Monthly Breakdown (New Open Market)
 
-The Cyprus market operates at **two distinct speeds:**
+| Month | Days | Avg MCP | Min | Max | Peak Avg | Solar Avg | Spread | Solar% |
+|-------|:----:|--------:|----:|----:|---------:|----------:|-------:|-------:|
+| **Oct 2025** | 6 | €149.9 | €0 | €200 | €178.1 | €132.5 | €45.7 | 11.2% |
+| **Nov 2025** | 4 | €168.2 | €0 | €197 | €187.3 | €158.4 | €28.8 | 8.7% |
+| **Dec 2025** | 5 | €158.7 | €0 | €187 | €172.9 | €149.9 | €23.1 | 8.9% |
+| **Jan 2026** | 5 | €174.4 | €9.8 | €195 | €189.3 | €169.9 | €19.4 | 6.5% |
+| **Feb 2026** | 1 | €154.5 | €10 | €194 | €193.8 | €130.9 | €62.9 | 12.9% |
 
-**Low prices during solar surplus (midday):**
-- Solar generation drives prices to €0 in 42% of midday periods
-- Reflects high solar output + limited storage + inflexible demand
+### Key Findings vs Pre-Market Predictions
 
-**High prices during fossil-dominated night:**
-- Evening peak (18:00-21:00): €200-260/MWh
-- Night-time average: ~€163/MWh
-- Driven by expensive oil-fired conventional generation
+> **CRITICAL UPDATE**: The actual market data shows **significantly less price volatility** than pre-market estimates suggested. Pre-launch models predicted solar midday prices of €0-45/MWh and evening peaks of €200-260/MWh, creating a €150-260/MWh spread. In reality, the spread is only **€32/MWh on average**.
 
-### Seasonal Price Estimates (EUR/MWh)
+| What Was Predicted | What Actually Happened |
+|--------------------|----------------------|
+| Solar hours: €0-45/MWh | Solar hours: **€150/MWh** |
+| Peak hours: €200-260/MWh | Peak hours: **€182/MWh** |
+| Spread: €150-260/MWh | Spread: **€32/MWh** |
+| Zero-price frequency: 42% of days | Zero-price: **~2.2% of periods** |
+| Price cap events: €500/MWh | Max observed: **€200/MWh** |
 
-| Period | Summer (Jun-Aug) | Winter (Nov-Feb) | Spring/Autumn |
-|--------|:----------------:|:----------------:|:-------------:|
-| **Midday Solar (11:00-14:00)** | €0-10 | €40-80 | €0-30 |
-| **Daytime Solar (06:00-18:00)** | €0-30 avg | €45-90 avg | €15-55 avg |
-| **Evening Peak (17:00-21:00)** | €180-260 | €200-280 | €190-260 |
-| **Night Off-Peak (22:00-06:00)** | €80-130 | €110-160 | €90-150 |
-| **Daily Average** | €100-140 | €140-190 | €130-170 |
+### Price Patterns - Reality vs Predictions
+
+The Cyprus open market operates with **much more uniform pricing** than expected:
+
+**Solar hours are NOT near-zero:**
+- Solar hours average €150/MWh, not €0-45/MWh
+- Zero-price periods are rare (~2.2%), not common (42%)
+- Solar penetration: 5-13% depending on season (still modest)
+
+**Evening peak premiums are modest:**
+- Evening peak (17:00-21:00): €175-195/MWh, not €200-280/MWh
+- The premium over daytime is only ~20% on average
+- Driven by limited generation diversity (conventional still dominates)
+
+**Seasonal trends are emerging:**
+- Winter (Jan-Feb): Higher baseline prices (€174/MWh avg), lower solar penetration (5-7%)
+- Autumn (Oct): More volatile, higher spread (€46/MWh), more solar (11%)
+- Spread is NARROWING over time as market matures (€46 → €19 Oct-Jan)
+
+### Seasonal Price Observations (EUR/MWh, from ACTUAL data)
+
+| Period | Autumn (Oct) | Winter (Nov-Feb) | Projected Summer |
+|--------|:------------:|:----------------:|:----------------:|
+| **Solar Hours (06:00-18:00)** | €130-135 | €150-170 | ~€80-120 (est.) |
+| **Evening Peak (17:00-21:00)** | €175-180 | €173-193 | ~€185-200 (est.) |
+| **Night Off-Peak (22:00-06:00)** | €145-160 | €155-175 | ~€140-165 (est.) |
+| **Daily Average** | €135-160 | €149-175 | ~€120-155 (est.) |
+| **Arbitrage Spread** | €46 | €19-29 | ~€60-80 (est.) |
 
 ### Generation Mix (October 2025)
 
@@ -502,15 +534,21 @@ The Cyprus market operates at **two distinct speeds:**
 | **Conventional** | 51% | 34% | **86%** |
 | **Renewables** | 7% | 8% | **14%** |
 
-### BESS Arbitrage Opportunity
+### BESS Arbitrage Opportunity (UPDATED with Real Data)
 
-| Metric | Value |
-|--------|-------|
-| **Charge Price (solar hours avg)** | €0-45/MWh |
-| **Discharge Price (peak hours avg)** | €200-260/MWh |
-| **Gross Spread** | €150-260/MWh |
-| **Net Revenue per Cycle (87.8% RTE)** | €150-200/MWh |
-| **Annual Revenue per MWh capacity** | €55,000-73,000 |
+| Metric | Pre-Market Estimate | Actual (Oct 2025 - Feb 2026) |
+|--------|:-------------------:|:----------------------------:|
+| **Charge Price (solar hours avg)** | €0-45/MWh | **€150/MWh** |
+| **Discharge Price (peak hours avg)** | €200-260/MWh | **€182/MWh** |
+| **Gross Spread** | €150-260/MWh | **€32/MWh** |
+| **Net Revenue per Cycle (87.8% RTE)** | €150-200/MWh | **€10/MWh** |
+| **Annual Revenue per MWh (arbitrage only)** | €55,000-73,000 | **€3,600-4,000** |
+
+> **Note**: Pure arbitrage revenue is much lower than initially projected. However, BESS economics in Cyprus are increasingly supported by:
+> 1. **Curtailment recovery** (25.8% of solar energy curtailed — recovery at peak rates)
+> 2. **Ancillary services** (frequency regulation, spinning reserve — not yet priced in DAM)
+> 3. **Summer spread** (expected to be much wider with deeper solar penetration)
+> 4. **Market maturation** (spreads may widen as more flexible pricing develops)
 
 ---
 
@@ -570,7 +608,7 @@ The Cyprus market operates at **two distinct speeds:**
 
 ### Curtailment Challenge
 - Curtailment surged from **0% to 45.8%** in four years (2021-2025)
-- October 2025: 42% of days had near-zero midday prices (solar surplus)
+- October 2025: ~2.2% of half-hourly periods hit zero price (much less than pre-market predictions of 42%)
 - No grid-scale storage → excess solar is curtailed
 - Key driver for BESS investment
 

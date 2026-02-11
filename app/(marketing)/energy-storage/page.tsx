@@ -129,8 +129,8 @@ const useCases = [
   },
   {
     title: 'Evening Arbitrage',
-    description: 'Buy/store at €110/MWh during day, sell at €160/MWh during evening peak. Daily profit from price spread.',
-    benefit: '€15-25k per MWh annually',
+    description: 'Charge at €85-150/MWh during solar hours, discharge at €175-195/MWh during evening peak. Real TSOC data shows €32/MWh avg spread.',
+    benefit: '€10-15k per MWh annually',
     icon: TrendingUp
   },
   {

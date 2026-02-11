@@ -191,7 +191,7 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <ul className="space-y-1 text-sm text-green-700">
                     <li>• Curtailment elimination</li>
-                    <li>• Evening peak arbitrage (€160/MWh)</li>
+                    <li>• Evening peak arbitrage (€182/MWh avg)</li>
                     <li>• Grid stabilization revenue potential</li>
                   </ul>
                 </div>
@@ -301,11 +301,11 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Base Power Price</span>
-                    <span className="font-semibold">€110/MWh</span>
+                    <span className="font-semibold">€150/MWh</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Evening Arbitrage</span>
-                    <span className="font-semibold">€160/MWh</span>
+                    <span className="font-semibold">€182/MWh</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Annual Revenue</span>
