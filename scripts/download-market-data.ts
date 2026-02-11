@@ -321,28 +321,82 @@ async function parseAllExcelFiles(): Promise<void> {
           if (!row || row.length === 0) continue
           
           const price = Number(row[priceColIdx])
-          if (isNaN(price) || price === 0) continue
+          if (isNaN(price)) continue
+          // Note: price === 0 is valid (solar curtailment events), don't skip
           
           // Extract period/hour
           let hour = 0
           let period = ''
           if (periodColIdx >= 0 && row[periodColIdx] !== undefined) {
             const periodVal = String(row[periodColIdx])
-            // Parse various period formats: "1", "01:00", "00:30-01:00", "MTU1", etc.
-            const hourMatch = periodVal.match(/(\d{1,2})/)
-            if (hourMatch) {
-              const parsed = parseInt(hourMatch[1], 10)
-              // If it's a half-hour period (1-48), convert to hour
-              if (parsed > 24) {
-                hour = Math.floor((parsed - 1) / 2)
-              } else if (parsed >= 1 && parsed <= 48) {
-                // Could be period number (1-48 for half hours, 1-24 for hours)
-                // Check if max value in the column suggests half-hour periods
-                hour = parsed <= 24 ? parsed - 1 : Math.floor((parsed - 1) / 2)
-              } else {
+            
+            // Parse various period formats, ordered by specificity:
+            //
+            // Format 1: "DD/MM/YYYY HH:MM-DD/MM/YYYY HH:MM" (TSOC full datetime range)
+            //   e.g. "11/02/2026 19:00-11/02/2026 19:30"
+            //   → extract the first HH from the time portion (after the date)
+            //
+            // Format 2: "HH:MM-HH:MM" or "HH:MM" (time only)
+            //   e.g. "19:00-19:30" or "19:00"
+            //
+            // Format 3: "MTU1", "MTU48" (market time unit number, 1-48 half-hours)
+            //
+            // Format 4: Plain number "1"-"48" (period number)
+            
+            let parsed = -1
+            
+            // Try Format 1: full datetime "DD/MM/YYYY HH:MM-..."
+            // Look for time pattern after a date pattern
+            const fullDateTimeMatch = periodVal.match(/\d{1,2}\/\d{1,2}\/\d{4}\s+(\d{1,2}):\d{2}/)
+            if (fullDateTimeMatch) {
+              parsed = parseInt(fullDateTimeMatch[1], 10)
+              hour = parsed // This is already the hour (0-23), no conversion needed
+            }
+            
+            // Try Format 2: "HH:MM" time pattern (but NOT preceded by a date)
+            if (parsed === -1) {
+              const timeMatch = periodVal.match(/^(\d{1,2}):\d{2}/)
+              if (timeMatch) {
+                parsed = parseInt(timeMatch[1], 10)
                 hour = parsed
               }
             }
+            
+            // Try Format 3: "MTU" prefix
+            if (parsed === -1) {
+              const mtuMatch = periodVal.match(/MTU\s*(\d+)/i)
+              if (mtuMatch) {
+                const mtuNum = parseInt(mtuMatch[1], 10)
+                hour = Math.floor((mtuNum - 1) / 2) // MTU 1-2 = hour 0, MTU 3-4 = hour 1, etc.
+                parsed = mtuNum
+              }
+            }
+            
+            // Try Format 4: plain number (period index 1-48 or 1-24)
+            if (parsed === -1) {
+              const numMatch = periodVal.match(/^(\d{1,2})$/)
+              if (numMatch) {
+                const num = parseInt(numMatch[1], 10)
+                if (num > 24) {
+                  hour = Math.floor((num - 1) / 2)
+                } else if (num >= 1 && num <= 24) {
+                  hour = num - 1
+                } else {
+                  hour = num
+                }
+                parsed = num
+              }
+            }
+            
+            // Fallback: grab first standalone number (not part of a date)
+            if (parsed === -1) {
+              const fallbackMatch = periodVal.match(/(\d{1,2})/)
+              if (fallbackMatch) {
+                const num = parseInt(fallbackMatch[1], 10)
+                hour = num <= 24 ? (num > 0 ? num - 1 : 0) : Math.floor((num - 1) / 2)
+              }
+            }
+            
             period = periodVal
           } else {
             // Use row index as period

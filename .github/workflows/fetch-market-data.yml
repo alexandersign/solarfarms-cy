@@ -32,7 +32,7 @@ on:
       backfill:
         description: 'Backfill all data since Oct 2025 (not just latest)'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 permissions:
@@ -67,16 +67,41 @@ jobs:
         uses: actions/cache@v4
         with:
           path: market/excel
-          key: tsoc-excel-${{ github.run_number }}
+          # Use a weekly rotating key so the cache stays warm.
+          # The restore-keys prefix ensures we always get the most recent cache
+          # even if the exact key doesn't match. Caches expire after 7 days of
+          # no access, so using a date-based key keeps them alive.
+          key: tsoc-excel-${{ github.run_id }}
           restore-keys: |
             tsoc-excel-
 
+      # ── Check if cache was restored ──────────────────────────────
+      - name: Check Excel cache status
+        id: cache-check
+        run: |
+          EXCEL_COUNT=$(find market/excel -name '*.xlsx' -o -name '*.xls' 2>/dev/null | wc -l)
+          echo "excel_count=$EXCEL_COUNT" >> $GITHUB_OUTPUT
+          if [ "$EXCEL_COUNT" -lt 10 ]; then
+            echo "needs_backfill=true" >> $GITHUB_OUTPUT
+            echo "⚠️  Only $EXCEL_COUNT Excel files found — cache likely expired. Will backfill."
+          else
+            echo "needs_backfill=false" >> $GITHUB_OUTPUT
+            echo "✓ Cache restored with $EXCEL_COUNT Excel files."
+          fi
+
       # ── Fetch new data ─────────────────────────────────────────────
+      # Auto-backfill if cache was lost (< 10 files), otherwise just fetch latest
       - name: Fetch TSOC Excel files
         run: |
+          BACKFILL_FLAG=""
+          if [ "${{ github.event.inputs.backfill }}" = "true" ] || [ "${{ steps.cache-check.outputs.needs_backfill }}" = "true" ]; then
+            BACKFILL_FLAG="--backfill"
+            echo "📥 Running in BACKFILL mode (fetching all data since Oct 2025)"
+          else
+            echo "📥 Running in INCREMENTAL mode (fetching latest files only)"
+          fi
           npx ts-node --compiler-options '{"module":"commonjs"}' \
-            scripts/fetch-tsoc-playwright.ts \
-            ${{ github.event.inputs.backfill == 'true' && '--backfill' || '' }}
+            scripts/fetch-tsoc-playwright.ts $BACKFILL_FLAG
         env:
           TSOC_BACKFILL: ${{ github.event.inputs.backfill }}
           SCRAPINGBEE_API_KEY: ${{ secrets.SCRAPINGBEE_API_KEY }}
