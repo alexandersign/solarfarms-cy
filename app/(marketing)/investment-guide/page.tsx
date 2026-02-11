@@ -50,8 +50,12 @@ interface BESSArbitrage {
   avgDailySpread: number
   avgChargePrice: number
   avgDischargePrice: number
+  middayAvgPrice: number
   estimatedRevenuePerMWhPerDay: number
   annualRevenuePerMWh: number
+  curtailmentRevenuePerMWh: number
+  curtailmentAnnualPerMWh25: number
+  curtailmentAnnualPerMWh38: number
 }
 
 // ─── Component ───────────────────────────────────────────────────────────────
