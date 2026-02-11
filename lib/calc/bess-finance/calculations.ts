@@ -552,8 +552,12 @@ export function calculateRevenue(
   // Price escalation
   const priceMultiplier = Math.pow(1 + revenue.priceEscalation / 100, year - 1)
   
-  // Arbitrage revenue
-  const arbitrageRevenue = energyBalance.batteryDischarge * revenue.arbitrageSpread * priceMultiplier
+  // Arbitrage revenue (ONLY in price_arbitrage mode — grid buying is NOT legal in Cyprus as of Feb 2026)
+  // In excess_production and solar_only modes, BESS charges from own solar/curtailment (€0 charge cost),
+  // and revenue comes from curtailmentRecovery below, NOT from arbitrage spread.
+  const arbitrageRevenue = battery.useMode === 'price_arbitrage'
+    ? energyBalance.batteryDischarge * revenue.arbitrageSpread * priceMultiplier
+    : 0
   
   // Grid services revenue
   const powerMW = battery.multiBatteryEnabled

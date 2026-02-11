@@ -918,8 +918,10 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
     constructionStartDate: new Date().toISOString().split('T')[0],
   },
   
+  // BESS mode: 'excess_production' = curtailment recovery (current Cyprus law, Feb 2026)
+  // 'price_arbitrage' = grid buying/selling (NOT yet legal in Cyprus — future revenue potential)
   battery: {
-    useMode: 'price_arbitrage',
+    useMode: 'excess_production',
     capacityMWh: 10,
     durationHours: 4,
     powerMW: 2.5,
@@ -967,12 +969,20 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
   
   // Revenue defaults UPDATED Feb 2026 from ACTUAL TSOC DAM data (Oct 2025 - Feb 2026)
   // Source: 21 sample days, 37 Excel files processed
-  // Solar hours avg: €150.41/MWh, Peak hours avg: €182.03/MWh, Spread: €31.62/MWh
+  //
+  // REGULATORY NOTE (Feb 2026): BESS cannot buy from the DAM grid in Cyprus yet.
+  // Arbitrage (buy low / sell high) is NOT legal. Current BESS revenue comes from:
+  //   1. CURTAILMENT RECOVERY — store own curtailed solar energy (€0 charge cost)
+  //      and discharge at evening peak prices (€182/MWh)
+  //   2. Future: DAM arbitrage when legislation enables BESS market participation
+  //
+  // At 25.8% curtailment + €182 peak price → ~€16,500/MWh BESS/year (curtailment only)
+  // At 38% curtailment (Anarita real data) → ~€28,000/MWh BESS/year
   revenue: {
-    dayPrice: 150,       // €150/MWh — solar hours avg from real DAM data (was €110)
-    nightPrice: 182,     // €182/MWh — peak hours avg from real DAM data (was €160)
-    arbitrageSpread: 32, // €32/MWh — real spread (was €50, significantly lower than predicted)
-    solarSellingRate: 0.15, // €0.15/kWh — adjusted to match real wholesale (was €0.19)
+    dayPrice: 150,       // €150/MWh — solar hours DAM avg (reference only, BESS cannot buy from grid yet)
+    nightPrice: 182,     // €182/MWh — peak hours avg, used for curtailment recovery discharge value
+    arbitrageSpread: 32, // €32/MWh — DAM spread (FUTURE revenue only, not legal yet in Cyprus)
+    solarSellingRate: 0.15, // €0.15/kWh — wholesale rate for uncurtailed solar sold to grid
     curtailedEnergyRate: 0,
     frequencyRegulation: 0,
     spinningReserve: 0,

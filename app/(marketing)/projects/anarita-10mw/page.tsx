@@ -321,7 +321,7 @@ export default function Anarita10MWProjectPage() {
                   </div>
                   <ul className="space-y-1 text-sm text-blue-700">
                     <li>• Curtailment recovery: ~€500k/year</li>
-                    <li>• Evening arbitrage (€182/MWh peak avg): ~€100-150k/year</li>
+                    <li>• Curtailment recovery at peak prices (€182/MWh): ~€400-600k/year</li>
                     <li>• Grid services potential: Additional upside</li>
                   </ul>
                 </div>

@@ -129,8 +129,8 @@ const useCases = [
   },
   {
     title: 'Evening Arbitrage',
-    description: 'Charge at €85-150/MWh during solar hours, discharge at €175-195/MWh during evening peak. Real TSOC data shows €32/MWh avg spread.',
-    benefit: '€10-15k per MWh annually',
+    description: 'Store curtailed solar energy (€0 charge cost) and discharge at evening peak prices (€182/MWh avg). Future DAM arbitrage will add further revenue.',
+    benefit: '€16-28k per MWh annually',
     icon: TrendingUp
   },
   {

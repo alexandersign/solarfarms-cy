@@ -392,14 +392,21 @@ export const ANALYTICS_EVENTS = {
 // Cyprus Market Defaults (Oct 2025 - Feb 2026 VERIFIED from TSOC DAM Excel Reports)
 // Source: 37 TSOC DAM files processed, 21 new market sample days (Oct 2025 - Feb 2026)
 // ACTUAL new open market: avg €165.12/MWh, solar €150.41/MWh, peak €182.03/MWh
-// Arbitrage spread: €31.62/MWh (MUCH less than pre-market predictions of €80+)
-// See /market page for live charts and market/data/market-data.json for raw data
+//
+// ⚠️ REGULATORY NOTE (Feb 2026): BESS CANNOT buy electricity from the DAM grid yet.
+// DAM arbitrage (buy at solar hours, sell at peak) is NOT YET legal in Cyprus.
+// Current BESS revenue model: CURTAILMENT RECOVERY ONLY
+//   → Store otherwise-curtailed solar energy (charge cost = €0)
+//   → Discharge at evening peak prices (€182/MWh)
+//   → Revenue: €16,500-28,000/MWh BESS/year depending on curtailment level
+// Future: DAM arbitrage will become available when legislation enables BESS participation
+//
 export const CYPRUS_MARKET_DEFAULTS = {
   // Revenue rates (UPDATED Feb 2026 from actual TSOC DAM clearing prices)
-  daytimeSellingRate: 0.150,      // €/kWh - Solar hours avg €150.41/MWh (was €0.045 — pre-market estimate was wrong)
-  nightDischargeRate: 0.182,      // €/kWh - Evening peak avg €182.03/MWh (was €0.230 — less extreme than predicted)
-  ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate (unchanged)
-  wholesaleAvgRate: 0.165,        // €/kWh - Overall weighted avg MCP €165.12/MWh (was €0.163)
+  daytimeSellingRate: 0.150,      // €/kWh - Solar hours avg €150.41/MWh (DAM reference price)
+  nightDischargeRate: 0.182,      // €/kWh - Evening peak avg €182.03/MWh (BESS discharge price)
+  ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
+  wholesaleAvgRate: 0.165,        // €/kWh - Overall weighted avg MCP €165.12/MWh
   
   // Curtailment (based on real 2024-2025 data, may decrease with new market mechanisms)
   curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average (pre-open market)

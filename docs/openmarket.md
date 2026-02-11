@@ -534,21 +534,46 @@ The Cyprus open market operates with **much more uniform pricing** than expected
 | **Conventional** | 51% | 34% | **86%** |
 | **Renewables** | 7% | 8% | **14%** |
 
-### BESS Arbitrage Opportunity (UPDATED with Real Data)
+### BESS Revenue Model — Current vs Future
 
-| Metric | Pre-Market Estimate | Actual (Oct 2025 - Feb 2026) |
-|--------|:-------------------:|:----------------------------:|
-| **Charge Price (solar hours avg)** | €0-45/MWh | **€150/MWh** |
-| **Discharge Price (peak hours avg)** | €200-260/MWh | **€182/MWh** |
-| **Gross Spread** | €150-260/MWh | **€32/MWh** |
-| **Net Revenue per Cycle (87.8% RTE)** | €150-200/MWh | **€10/MWh** |
-| **Annual Revenue per MWh (arbitrage only)** | €55,000-73,000 | **€3,600-4,000** |
+> **⚠️ REGULATORY NOTE (February 2026):** BESS cannot buy electricity from the Cyprus DAM grid. Grid arbitrage (buying at solar-hour prices and selling at peak) is **NOT yet legal**. The enabling legislation has not been passed as of February 2026.
 
-> **Note**: Pure arbitrage revenue is much lower than initially projected. However, BESS economics in Cyprus are increasingly supported by:
-> 1. **Curtailment recovery** (25.8% of solar energy curtailed — recovery at peak rates)
-> 2. **Ancillary services** (frequency regulation, spinning reserve — not yet priced in DAM)
-> 3. **Summer spread** (expected to be much wider with deeper solar penetration)
-> 4. **Market maturation** (spreads may widen as more flexible pricing develops)
+#### Current Revenue: Curtailment Recovery (Active Now)
+
+BESS revenue in Cyprus today comes exclusively from **curtailment recovery** — storing solar energy that the DSO orders to be curtailed (charge cost = €0, energy would otherwise be wasted) and discharging at evening peak prices.
+
+| Metric | Value |
+|--------|-------|
+| **Charge Cost** | **€0/MWh** (curtailed solar — would be wasted) |
+| **Discharge Price (peak hours avg)** | **€182/MWh** (verified TSOC DAM data) |
+| **Net Revenue per MWh discharged** | **€159.8/MWh** (after 87.8% RTE) |
+| **Curtailment hours** | ~10:00-14:00 (peak solar, DSO dispatch-down orders) |
+| **Discharge hours** | ~17:00-21:00 (evening peak demand) |
+
+**Annual Revenue by Curtailment Level (per MWh of BESS capacity):**
+
+| Curtailment Rate | Annual Revenue/MWh BESS | Source |
+|:----------------:|:-----------------------:|--------|
+| 15% | ~€9,900 | Low-curtailment parks |
+| 25% | ~€16,500 | Cyprus average (25.8%) |
+| 38% | ~€28,000 | Anarita 10MW real data |
+| 45% | ~€29,700 | High-curtailment parks |
+
+*Assumptions: 5MWp solar per 1.25MW/5MWh BESS (4:1 ratio), 1650 kWh/kWp yield, 87.8% RTE, €182/MWh peak price*
+
+#### Future Revenue: DAM Arbitrage (Requires New Legislation)
+
+When BESS is permitted to buy from the DAM, additional revenue from grid arbitrage will become available:
+
+| Metric | Value |
+|--------|-------|
+| **Buy Price (solar hours avg)** | €150/MWh |
+| **Sell Price (peak hours avg)** | €182/MWh |
+| **Net Spread (after buying)** | €32/MWh |
+| **Net per Cycle (after RTE)** | ~€10/MWh |
+| **Additional Annual Revenue/MWh** | ~€3,600-4,000 |
+
+> **Key insight**: Curtailment recovery is **far more profitable** than grid arbitrage because the charge cost is €0 (vs €150/MWh from the DAM). This makes the current regulatory constraint less impactful than it might appear — BESS economics in Cyprus are primarily driven by curtailment, not price arbitrage.
 
 ---
 
@@ -621,16 +646,25 @@ The Cyprus open market operates with **much more uniform pricing** than expected
 - **Exception:** Storage facilities operated exclusively for own use
 - Storage operators can participate in the market as producers, aggregators, or BSPs
 
-### Current Status
-- **No utility-scale storage** operational (as of Oct 2025)
-- Market price signals strongly favor BESS deployment
-- Expected to be a key factor in reducing price volatility and wholesale costs
+### Current Status (February 2026)
+- **No utility-scale storage** operational yet — Lighthief BESS projects are among the first in planning
+- **BESS cannot buy from the DAM** — grid arbitrage legislation has NOT been passed as of Feb 2026
+- BESS revenue today comes exclusively from **curtailment recovery** (storing own curtailed solar)
+- Expected to be a key factor in reducing price volatility and wholesale costs once deployed
 
-### Market Opportunity
-- BESS can participate in:
-  - **DAM:** Buy cheap solar energy, sell at peak prices
-  - **Balancing Market:** Provide frequency response and reserve services
-  - **Curtailment Recovery:** Store otherwise-curtailed solar energy
+### Revenue Model — Current vs Future
+
+**Current (Feb 2026) — Curtailment Recovery:**
+- BESS stores otherwise-curtailed solar energy (charge cost = **€0**)
+- Discharges at evening peak prices (**€182/MWh** verified TSOC data)
+- Revenue: **€16,500–28,000/MWh BESS/year** depending on curtailment level (25–38%)
+- This is highly profitable because charge cost is zero
+
+**Future — When Legislation Enables BESS Market Participation:**
+- **DAM Arbitrage:** Buy at solar-hour prices (~€150/MWh), sell at peak (~€182/MWh)
+  - Additional spread: ~€32/MWh → ~€3,600–4,000/MWh BESS/year
+- **Balancing Market:** Provide frequency response and reserve services
+- **Capacity Payments:** Revenue for availability guarantees
 - Expected wholesale price reduction of **10-15%** once storage is deployed (per Poullikkas 2026)
 
 ---

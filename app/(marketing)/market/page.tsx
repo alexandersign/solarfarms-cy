@@ -103,10 +103,10 @@ export default function MarketPage() {
                     with solar hours averaging <strong>&euro;150/MWh</strong> and evening peak hours at <strong>&euro;182/MWh</strong>.
                   </p>
                   <p>
-                    Key insight: the new open market shows <strong>less price volatility</strong> than pre-market 
-                    predictions suggested. The arbitrage spread of <strong>&euro;32/MWh</strong> is tighter than 
-                    the &euro;80+ predicted by early models, making <strong>curtailment recovery</strong> and 
-                    <strong>ancillary services</strong> increasingly important for BESS economics alongside pure arbitrage.
+                    Important note: as of February 2026, <strong>BESS cannot yet buy from the DAM</strong>. 
+                    Current BESS revenue comes from <strong>curtailment recovery</strong> &mdash; storing 
+                    otherwise-wasted solar energy and selling at peak prices. Future DAM arbitrage 
+                    participation is expected when enabling legislation is passed.
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-gray-100">
@@ -130,19 +130,20 @@ export default function MarketPage() {
                 </h3>
                 <div className="space-y-3 text-sm text-gray-600">
                   <p>
-                    Battery Energy Storage Systems (BESS) profit from <strong>multiple revenue streams</strong>:
-                    price arbitrage, curtailment recovery, and ancillary services.
+                    In Cyprus, BESS currently generates revenue through <strong>curtailment recovery</strong> &mdash; 
+                    storing solar energy that would otherwise be curtailed by the DSO, and discharging it 
+                    at evening peak prices (&euro;182/MWh avg).
                   </p>
                   <p>
-                    Real market data shows an average <strong>&euro;32/MWh arbitrage spread</strong> between
-                    solar hours (&euro;150/MWh) and peak evening hours (&euro;182/MWh). With 87.8% round-trip
-                    efficiency, this yields <strong>&euro;9.8k&ndash;11.5k per MWh of BESS capacity annually</strong> 
-                    from arbitrage alone.
+                    With <strong>25&ndash;45% curtailment rates</strong> across Cyprus solar parks and zero 
+                    charge cost (curtailed energy is free), BESS delivers <strong>&euro;16,500&ndash;28,000 
+                    per MWh of capacity annually</strong> from curtailment recovery alone.
                   </p>
                   <p>
-                    The real value multiplier is <strong>curtailment recovery</strong>: with 25.8% average
-                    curtailment in Cyprus, BESS recovers otherwise-wasted solar energy and sells at
-                    evening rates, <strong>significantly improving project IRR</strong> beyond pure arbitrage.
+                    <strong>Future upside:</strong> When legislation enables BESS participation in the 
+                    Day-Ahead Market (DAM), additional arbitrage revenue from buying at solar-hour prices 
+                    (&euro;150/MWh) and selling at peak (&euro;182/MWh) will create a further revenue stream.
+                    Grid ancillary services represent additional future potential.
                   </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-green-100 flex flex-col sm:flex-row gap-3">

@@ -359,7 +359,7 @@ export default function InvestmentGuidePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
-                  <span><strong>€{marketData ? (marketData.arbitrageSpread).toFixed(0) : '32'}/MWh BESS arbitrage spread</strong> &mdash; From verified TSOC DAM data (Oct 2025 – Feb 2026)</span>
+                  <span><strong>€{marketData ? (marketData.peakHoursAvg * 0.878).toFixed(0) : '160'}/MWh curtailment recovery value</strong> &mdash; Charge curtailed solar (€0), discharge at peak ({marketData ? `€${marketData.peakHoursAvg.toFixed(0)}` : '€182'}/MWh × 87.8% RTE)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
@@ -371,7 +371,7 @@ export default function InvestmentGuidePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
-                  <span><strong>€{bessData ? bessData.annualRevenuePerMWh.toLocaleString('en', {maximumFractionDigits: 0}) : '10,500'}/MWh/year</strong> &mdash; Estimated BESS annual revenue (arbitrage + curtailment recovery)</span>
+                  <span><strong>€16,500&ndash;28,000/MWh/year</strong> &mdash; BESS curtailment recovery revenue (25&ndash;38% curtailment × €182 peak price)</span>
                 </li>
               </ul>
             </HighlightBox>
@@ -596,54 +596,55 @@ export default function InvestmentGuidePage() {
 
             <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">5.3 BESS Arbitrage Opportunity</h3>
             <p className="text-gray-700 mb-4">
-              The emerging duck curve in Cyprus creates a BESS arbitrage opportunity:
-              charge during midday solar dip (€85&ndash;130/MWh) and discharge during evening peak (€175&ndash;195/MWh).
-              Real TSOC data shows an average spread of €32/MWh, with summer spreads expected to widen significantly.
+              BESS in Cyprus currently earns revenue through <strong>curtailment recovery</strong>: during DSO-ordered
+              production cutbacks, BESS stores energy that would otherwise be wasted (€0 charge cost) and discharges 
+              at evening peak prices (€182/MWh avg). With 25&ndash;45% curtailment rates, this is highly profitable.
+              Future DAM arbitrage (buying at solar hours, selling at peak) will add further revenue when legislation permits.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 avoid-break">
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-center">
                 <Sun className="w-5 h-5 text-amber-600 mx-auto mb-1" />
                 <p className="text-lg font-bold text-gray-900">
-                  {bessData ? fmtDec(bessData.avgChargePrice) : '€134.72'}
+                  {bessData ? fmtDec(bessData.avgChargePrice) : '€0'}
                 </p>
-                <p className="text-xs text-gray-600">Charge Price</p>
+                <p className="text-xs text-gray-600">Charge Cost (curtailed)</p>
               </div>
               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 text-center">
                 <Zap className="w-5 h-5 text-indigo-600 mx-auto mb-1" />
                 <p className="text-lg font-bold text-gray-900">
-                  {bessData ? fmtDec(bessData.avgDischargePrice) : '€215.54'}
+                  {bessData ? fmtDec(bessData.avgDischargePrice) : '€182'}
                 </p>
-                <p className="text-xs text-gray-600">Discharge Price</p>
+                <p className="text-xs text-gray-600">Peak Discharge Price</p>
               </div>
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
                 <TrendingUp className="w-5 h-5 text-green-600 mx-auto mb-1" />
                 <p className="text-lg font-bold text-green-700">
-                  {bessData ? fmtDec(bessData.avgDailySpread) : '€80.82'}
+                  {bessData ? fmtDec(bessData.curtailmentRevenuePerMWh || bessData.avgDailySpread) : '€160'}
                 </p>
-                <p className="text-xs text-gray-600">Spread /MWh</p>
+                <p className="text-xs text-gray-600">Net Revenue /MWh</p>
               </div>
               <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4 text-center">
                 <Euro className="w-5 h-5 text-cyan-600 mx-auto mb-1" />
                 <p className="text-lg font-bold text-cyan-700">
-                  {bessData ? fmtDec(bessData.estimatedRevenuePerMWhPerDay) : '€54.52'}
+                  {bessData?.curtailmentRevenuePerMWh ? fmtDec(bessData.curtailmentRevenuePerMWh) : '€160'}
                 </p>
-                <p className="text-xs text-gray-600">Daily Rev /MWh</p>
+                <p className="text-xs text-gray-600">Per MWh Discharged</p>
               </div>
               <div className="bg-green-100 border border-green-300 rounded-lg p-4 text-center">
                 <BarChart3 className="w-5 h-5 text-green-700 mx-auto mb-1" />
                 <p className="text-lg font-bold text-green-800">
-                  {bessData ? `€${bessData.annualRevenuePerMWh.toLocaleString('en', {maximumFractionDigits: 0})}` : '€10,500'}
+                  {bessData?.curtailmentAnnualPerMWh25 ? `€${bessData.curtailmentAnnualPerMWh25.toLocaleString('en', {maximumFractionDigits: 0})}` : '€16,500'}
                 </p>
                 <p className="text-xs text-green-700 font-medium">Annual /MWh</p>
               </div>
             </div>
 
             <InfoBox>
-              Revenue calculation assumes 87.8% round-trip efficiency (OEM spec), 1 cycle per day,
-              charging during solar hours (06:00&ndash;17:00) and discharging during peak (17:00&ndash;21:00).
-              Summer arbitrage spreads expected to reach €60&ndash;80/MWh as solar penetration deepens midday prices.
-              Total BESS value includes curtailment recovery (25.8% of solar output) and future ancillary services.
+              Revenue calculation: BESS charges during curtailment hours (typically 10:00&ndash;14:00 peak solar)
+              with €0 charge cost, discharges at evening peak (17:00&ndash;21:00) at €182/MWh avg. 87.8% RTE
+              (Linyang OEM spec). At 25.8% avg curtailment → ~€16,500/MWh/year. At Anarita&apos;s 38% →  ~€28,000/MWh/year.
+              Future: DAM grid arbitrage + ancillary services when legislation enables BESS market participation.
             </InfoBox>
           </section>
 
@@ -790,10 +791,10 @@ export default function InvestmentGuidePage() {
                   <Battery className="w-4 h-4 text-green-500" /> BESS Revenue
                 </h4>
                 <ul className="text-gray-700 text-sm space-y-1 list-disc pl-5">
-                  <li>Evening arbitrage: €{marketData ? (marketData.peakHoursAvg - marketData.solarHoursAvg).toFixed(0) : '32'}/MWh spread</li>
-                  <li>Curtailment recovery: 50% of curtailed energy</li>
-                  <li>Night tariff premium: 20&ndash;30% above day rates</li>
-                  <li>Grid services: future ancillary revenue</li>
+                  <li>Curtailment recovery: store curtailed solar (€0 cost), sell at €{marketData ? marketData.peakHoursAvg.toFixed(0) : '182'}/MWh peak</li>
+                  <li>Recovery revenue: €16,500&ndash;28,000/MWh BESS/year (at 25&ndash;38% curtailment)</li>
+                  <li>Future: DAM arbitrage (€{marketData ? (marketData.peakHoursAvg - marketData.solarHoursAvg).toFixed(0) : '32'}/MWh spread when legislation permits)</li>
+                  <li>Future: grid ancillary services (frequency regulation, spinning reserve)</li>
                 </ul>
               </div>
             </div>

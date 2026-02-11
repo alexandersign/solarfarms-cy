@@ -191,7 +191,7 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <ul className="space-y-1 text-sm text-green-700">
                     <li>• Curtailment elimination</li>
-                    <li>• Evening peak arbitrage (€182/MWh avg)</li>
+                    <li>• Curtailment recovery at peak prices (€182/MWh avg)</li>
                     <li>• Grid stabilization revenue potential</li>
                   </ul>
                 </div>

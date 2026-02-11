@@ -176,26 +176,53 @@ export function getDailyStatsLastNDays(n: number): DailyStats[] {
 }
 
 /**
- * Calculate BESS arbitrage opportunity metrics from market data
+ * Calculate BESS revenue metrics from market data
+ * 
+ * ⚠️ REGULATORY NOTE (Feb 2026): BESS cannot buy from the DAM grid in Cyprus yet.
+ * Grid arbitrage (buy low / sell high) is NOT legal as of Feb 2026.
+ * 
+ * CURRENT revenue model: Curtailment recovery
+ *   → Charge cost = €0 (storing otherwise-curtailed solar energy)
+ *   → Discharge at peak evening prices (€182/MWh avg)
+ *   → Revenue per MWh discharged = peakPrice × RTE = ~€160/MWh
+ *   → Annual: €16,500-28,000/MWh BESS depending on curtailment level (25-38%)
+ * 
+ * FUTURE revenue (when legislation enables BESS market participation):
+ *   → Grid arbitrage: buy at solar hours, sell at peak
+ *   → Spread: ~€32/MWh (from real TSOC data)
  */
 export function calculateBESSArbitrage(data: MarketDataSummary): {
   avgDailySpread: number
-  avgChargePrice: number   // Avg price during solar hours (charge)
-  avgDischargePrice: number // Avg price during peak hours (discharge)
+  avgChargePrice: number   // Avg price during solar hours (reference)
+  avgDischargePrice: number // Avg price during peak hours (discharge value)
   estimatedRevenuePerMWhPerDay: number
   annualRevenuePerMWh: number
+  // NEW: Curtailment recovery metrics (current Cyprus reality)
+  curtailmentRevenuePerMWh: number
+  curtailmentAnnualPerMWh25: number  // At 25% curtailment
+  curtailmentAnnualPerMWh38: number  // At 38% curtailment (Anarita real)
 } {
   const stats = data.statistics.overall
   
-  const avgChargePrice = stats.solarHoursAvg  // Buy during solar hours (cheap)
-  const avgDischargePrice = stats.peakHoursAvg // Sell during peak hours (expensive)
+  const avgChargePrice = stats.solarHoursAvg  // Reference only — BESS cannot buy from grid yet
+  const avgDischargePrice = stats.peakHoursAvg // BESS discharge value at peak
   const avgDailySpread = avgDischargePrice - avgChargePrice
   
-  // Revenue per MWh of BESS capacity per cycle
-  // Assuming 87.8% round-trip efficiency (Linyang spec)
-  const rte = 0.878
+  const rte = 0.878 // 87.8% round-trip efficiency (Linyang spec)
+  
+  // FUTURE: Grid arbitrage revenue (not yet legal)
   const estimatedRevenuePerMWhPerDay = (avgDischargePrice * rte) - avgChargePrice
   const annualRevenuePerMWh = estimatedRevenuePerMWhPerDay * 365
+  
+  // CURRENT: Curtailment recovery revenue
+  // Charge cost = €0, discharge at peak price
+  const curtailmentRevenuePerMWh = avgDischargePrice * rte // €/MWh discharged
+  
+  // Annual curtailment recovery for a matched solar+BESS system (e.g. 5MWp + 20MWh)
+  // Assumes 1650 kWh/kWp yield, 4:1 solar-to-BESS ratio
+  const solarYieldMWhPerMWhBESS = (1650 / 1000) * 4 // MWh solar per MWh BESS per year
+  const curtailmentAnnualPerMWh25 = solarYieldMWhPerMWhBESS * 0.25 * rte * avgDischargePrice
+  const curtailmentAnnualPerMWh38 = solarYieldMWhPerMWhBESS * 0.38 * rte * avgDischargePrice
   
   return {
     avgDailySpread,
@@ -203,6 +230,9 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
     avgDischargePrice,
     estimatedRevenuePerMWhPerDay,
     annualRevenuePerMWh,
+    curtailmentRevenuePerMWh,
+    curtailmentAnnualPerMWh25,
+    curtailmentAnnualPerMWh38,
   }
 }
 

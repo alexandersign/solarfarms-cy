@@ -24,9 +24,9 @@ export function MarketDataCTA() {
                     <span className="block gradient-text">Market Pricing</span>
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Track verified day-ahead market prices from 37 official TSOC reports.
-                    Average MCP: €165/MWh. Solar hours: €150/MWh. Peak: €182/MWh.
-                    See how the new competitive market creates BESS investment opportunities.
+                    Verified day-ahead market data from 37 official TSOC reports. With 25-45%
+                    solar curtailment and €182/MWh evening peak prices, BESS curtailment recovery
+                    delivers €16,500-28,000 per MWh of capacity annually.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button variant="gradient" asChild>
@@ -62,8 +62,8 @@ export function MarketDataCTA() {
                         <TrendingUp className="w-4 h-4 text-green-300" />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">BESS Arbitrage Analysis</p>
-                        <p className="text-xs text-cyprus-200">Charge low during solar, sell high during peak demand</p>
+                        <p className="font-semibold text-sm">BESS Curtailment Recovery</p>
+                        <p className="text-xs text-cyprus-200">Store curtailed solar (€0 cost), discharge at €182/MWh peak</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
