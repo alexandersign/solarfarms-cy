@@ -58,6 +58,60 @@ export default function BlogPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* NEW - Why BESS No Longer Optional */}
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-red-200">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <Image
+                  src="/images/bess-no-longer-optional-cyprus.png"
+                  alt="Why BESS is no longer optional for RES projects in Cyprus"
+                  width={400}
+                  height={250}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4">
+                  <Badge className="bg-red-600 text-white">MUST READ</Badge>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge variant="secondary" className="bg-white/90 text-gray-800">NEW</Badge>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-red-100 text-red-800">Market Reality</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">BESS</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/why-bess-no-longer-optional-res-cyprus">
+                    Why BESS Is No Longer Optional for RES Projects in Cyprus
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  47% curtailment, €77/MWh midday prices, and €893K annual losses per 5MW park. The data says it all — solar without BESS is no longer viable.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Feb 13, 2026</span>
+                    </div>
+                  </div>
+                  <Link 
+                    href="/blog/why-bess-no-longer-optional-res-cyprus"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* NEW - BESS Bankability Article */}
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-emerald-200">
               <div className="relative overflow-hidden rounded-t-lg">
