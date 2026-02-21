@@ -1,22 +1,22 @@
 {
-  "lastUpdated": "2026-02-20T14:38:44.917Z",
-  "totalRecords": 26879,
-  "totalFiles": 144,
+  "lastUpdated": "2026-02-21T14:23:13.387Z",
+  "totalRecords": 27057,
+  "totalFiles": 145,
   "dateRange": {
     "start": "2025-10-01",
-    "end": "2026-02-21"
+    "end": "2026-02-22"
   },
   "statistics": {
     "overall": {
-      "avgPrice": 169.0869058383356,
+      "avgPrice": 169.20331162538338,
       "minPrice": 1,
       "maxPrice": 500,
       "medianPrice": 173,
-      "totalRecords": 26879,
-      "solarHoursAvg": 149.0946398379093,
-      "peakHoursAvg": 183.67044421126286,
-      "offPeakAvg": 172.70851488037286,
-      "arbitrageSpread": 34.57580437335355
+      "totalRecords": 27057,
+      "solarHoursAvg": 148.79994306741622,
+      "peakHoursAvg": 183.7845779784649,
+      "offPeakAvg": 172.86777573884427,
+      "arbitrageSpread": 34.98463491104869
     },
     "daily": [
       {
@@ -1602,200 +1602,211 @@
         "peakHourPrice": 195.4,
         "offPeakAvgPrice": 194.27777777777777,
         "solarHourAvgPrice": 110.48351648351648
+      },
+      {
+        "date": "2026-02-22",
+        "avgPrice": 148.91011235955057,
+        "minPrice": 0,
+        "maxPrice": 201,
+        "avgVolume": 148.91011235955057,
+        "totalVolume": 26506,
+        "peakHourPrice": 200.1,
+        "offPeakAvgPrice": 195.61111111111111,
+        "solarHourAvgPrice": 101.93333333333334
       }
     ],
     "hourlyAvg": [
       {
         "hour": 0,
-        "avgPrice": 173.9915715539947,
+        "avgPrice": 174.15902353966868,
         "minPrice": 150,
         "maxPrice": 201,
         "avgVolume": 0,
-        "count": 1139
+        "count": 1147
       },
       {
         "hour": 1,
-        "avgPrice": 171.05869183494286,
+        "avgPrice": 171.22218831734955,
         "minPrice": 150,
         "maxPrice": 196,
         "avgVolume": 0,
-        "count": 1139
+        "count": 1147
       },
       {
         "hour": 2,
-        "avgPrice": 170.25369068541295,
+        "avgPrice": 170.41771378708546,
         "minPrice": 150,
         "maxPrice": 194,
-        "avgVolume": 0,
-        "count": 1138
-      },
-      {
-        "hour": 3,
-        "avgPrice": 169.71890243902433,
-        "minPrice": 150,
-        "maxPrice": 193,
-        "avgVolume": 0,
-        "count": 1148
-      },
-      {
-        "hour": 4,
-        "avgPrice": 170.0965879265091,
-        "minPrice": 150,
-        "maxPrice": 194,
-        "avgVolume": 0,
-        "count": 1143
-      },
-      {
-        "hour": 5,
-        "avgPrice": 172.2323090430201,
-        "minPrice": 150,
-        "maxPrice": 195,
-        "avgVolume": 0,
-        "count": 1139
-      },
-      {
-        "hour": 6,
-        "avgPrice": 175.53239683933282,
-        "minPrice": 152,
-        "maxPrice": 198,
-        "avgVolume": 0,
-        "count": 1139
-      },
-      {
-        "hour": 7,
-        "avgPrice": 175.54895833333322,
-        "minPrice": 153,
-        "maxPrice": 200,
-        "avgVolume": 0,
-        "count": 1152
-      },
-      {
-        "hour": 8,
-        "avgPrice": 167.85187119234118,
-        "minPrice": 0,
-        "maxPrice": 195,
-        "avgVolume": 0,
-        "count": 1149
-      },
-      {
-        "hour": 9,
-        "avgPrice": 148.0240305206463,
-        "minPrice": 0,
-        "maxPrice": 192,
-        "avgVolume": 0,
-        "count": 1114
-      },
-      {
-        "hour": 10,
-        "avgPrice": 109.92039499036608,
-        "minPrice": 0,
-        "maxPrice": 193.5,
-        "avgVolume": 0,
-        "count": 1038
-      },
-      {
-        "hour": 11,
-        "avgPrice": 88.41784569138275,
-        "minPrice": 0,
-        "maxPrice": 193.5,
-        "avgVolume": 0,
-        "count": 998
-      },
-      {
-        "hour": 12,
-        "avgPrice": 85.5616817724068,
-        "minPrice": 0,
-        "maxPrice": 195,
-        "avgVolume": 0,
-        "count": 993
-      },
-      {
-        "hour": 13,
-        "avgPrice": 110.79536092396533,
-        "minPrice": 0,
-        "maxPrice": 195,
-        "avgVolume": 0,
-        "count": 1039
-      },
-      {
-        "hour": 14,
-        "avgPrice": 142.68717015468604,
-        "minPrice": 0,
-        "maxPrice": 195.5,
-        "avgVolume": 0,
-        "count": 1099
-      },
-      {
-        "hour": 15,
-        "avgPrice": 166.6806986899563,
-        "minPrice": 0,
-        "maxPrice": 196,
-        "avgVolume": 0,
-        "count": 1145
-      },
-      {
-        "hour": 16,
-        "avgPrice": 175.64427083333334,
-        "minPrice": 144,
-        "maxPrice": 200,
-        "avgVolume": 0,
-        "count": 1152
-      },
-      {
-        "hour": 17,
-        "avgPrice": 181.64786771105307,
-        "minPrice": 150,
-        "maxPrice": 274,
-        "avgVolume": 0,
-        "count": 1149
-      },
-      {
-        "hour": 18,
-        "avgPrice": 185.80410122164042,
-        "minPrice": 153.5,
-        "maxPrice": 500,
         "avgVolume": 0,
         "count": 1146
       },
       {
-        "hour": 19,
-        "avgPrice": 186.799300087489,
+        "hour": 3,
+        "avgPrice": 169.88347750865046,
+        "minPrice": 150,
+        "maxPrice": 193.5,
+        "avgVolume": 0,
+        "count": 1156
+      },
+      {
+        "hour": 4,
+        "avgPrice": 170.25925282363156,
+        "minPrice": 150,
+        "maxPrice": 194,
+        "avgVolume": 0,
+        "count": 1151
+      },
+      {
+        "hour": 5,
+        "avgPrice": 172.38238884045327,
+        "minPrice": 150,
+        "maxPrice": 195,
+        "avgVolume": 0,
+        "count": 1147
+      },
+      {
+        "hour": 6,
+        "avgPrice": 175.6681778552747,
+        "minPrice": 152,
+        "maxPrice": 198,
+        "avgVolume": 0,
+        "count": 1147
+      },
+      {
+        "hour": 7,
+        "avgPrice": 175.66758620689646,
+        "minPrice": 153,
+        "maxPrice": 200,
+        "avgVolume": 0,
+        "count": 1160
+      },
+      {
+        "hour": 8,
+        "avgPrice": 167.42543252595158,
+        "minPrice": 0,
+        "maxPrice": 195,
+        "avgVolume": 0,
+        "count": 1156
+      },
+      {
+        "hour": 9,
+        "avgPrice": 147.23104464285714,
+        "minPrice": 0,
+        "maxPrice": 192,
+        "avgVolume": 0,
+        "count": 1120
+      },
+      {
+        "hour": 10,
+        "avgPrice": 109.28866858237548,
+        "minPrice": 0,
+        "maxPrice": 193.5,
+        "avgVolume": 0,
+        "count": 1044
+      },
+      {
+        "hour": 11,
+        "avgPrice": 87.88945219123504,
+        "minPrice": 0,
+        "maxPrice": 193.5,
+        "avgVolume": 0,
+        "count": 1004
+      },
+      {
+        "hour": 12,
+        "avgPrice": 85.04779779779776,
+        "minPrice": 0,
+        "maxPrice": 195,
+        "avgVolume": 0,
+        "count": 999
+      },
+      {
+        "hour": 13,
+        "avgPrice": 110.15921531100476,
+        "minPrice": 0,
+        "maxPrice": 195,
+        "avgVolume": 0,
+        "count": 1045
+      },
+      {
+        "hour": 14,
+        "avgPrice": 141.9123981900452,
+        "minPrice": 0,
+        "maxPrice": 195.5,
+        "avgVolume": 0,
+        "count": 1105
+      },
+      {
+        "hour": 15,
+        "avgPrice": 166.23385416666665,
+        "minPrice": 0,
+        "maxPrice": 196,
+        "avgVolume": 0,
+        "count": 1152
+      },
+      {
+        "hour": 16,
+        "avgPrice": 175.76224137931035,
+        "minPrice": 144,
+        "maxPrice": 200,
+        "avgVolume": 0,
+        "count": 1160
+      },
+      {
+        "hour": 17,
+        "avgPrice": 181.77130509939497,
+        "minPrice": 150,
+        "maxPrice": 274,
+        "avgVolume": 0,
+        "count": 1157
+      },
+      {
+        "hour": 18,
+        "avgPrice": 185.90251299826681,
         "minPrice": 153.5,
         "maxPrice": 500,
         "avgVolume": 0,
-        "count": 1143
+        "count": 1154
+      },
+      {
+        "hour": 19,
+        "avgPrice": 186.89800173761938,
+        "minPrice": 153.5,
+        "maxPrice": 500,
+        "avgVolume": 0,
+        "count": 1151
       },
       {
         "hour": 20,
-        "avgPrice": 184.02087719298245,
+        "avgPrice": 184.1322299651568,
         "minPrice": 153.5,
         "maxPrice": 500,
-        "avgVolume": 0,
-        "count": 1140
-      },
-      {
-        "hour": 21,
-        "avgPrice": 180.0765789473684,
-        "minPrice": 153,
-        "maxPrice": 250,
-        "avgVolume": 0,
-        "count": 1140
-      },
-      {
-        "hour": 22,
-        "avgPrice": 177.0367595818816,
-        "minPrice": 150,
-        "maxPrice": 200,
         "avgVolume": 0,
         "count": 1148
       },
       {
-        "hour": 23,
-        "avgPrice": 174.43698868581367,
-        "minPrice": 150,
-        "maxPrice": 195,
+        "hour": 21,
+        "avgPrice": 180.21541811846689,
+        "minPrice": 153,
+        "maxPrice": 250,
         "avgVolume": 0,
-        "count": 1149
+        "count": 1148
+      },
+      {
+        "hour": 22,
+        "avgPrice": 177.19221453287204,
+        "minPrice": 150,
+        "maxPrice": 200,
+        "avgVolume": 0,
+        "count": 1156
+      },
+      {
+        "hour": 23,
+        "avgPrice": 174.60682800345714,
+        "minPrice": 150,
+        "maxPrice": 199,
+        "avgVolume": 0,
+        "count": 1157
       }
     ],
     "weekly": [
@@ -1901,8 +1912,8 @@
       },
       {
         "week": "2026-02-16",
-        "avgPrice": 155.4895400984516,
-        "count": 6
+        "avgPrice": 154.5496218500372,
+        "count": 7
       }
     ]
   },
@@ -243815,6 +243826,1608 @@
       "period": "21/02/2026 23:30-22/02/2026 00:00",
       "price": 190.5,
       "volume": 190.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:00-22/02/2026 00:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:00-22/02/2026 00:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:00-22/02/2026 00:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:00-22/02/2026 00:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:30-22/02/2026 01:00",
+      "price": 197,
+      "volume": 197,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:30-22/02/2026 01:00",
+      "price": 197,
+      "volume": 197,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:30-22/02/2026 01:00",
+      "price": 197,
+      "volume": 197,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 0,
+      "period": "22/02/2026 00:30-22/02/2026 01:00",
+      "price": 197,
+      "volume": 197,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:00-22/02/2026 01:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:00-22/02/2026 01:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:00-22/02/2026 01:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:00-22/02/2026 01:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:30-22/02/2026 02:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:30-22/02/2026 02:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:30-22/02/2026 02:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 1,
+      "period": "22/02/2026 01:30-22/02/2026 02:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:00-22/02/2026 02:30",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:00-22/02/2026 02:30",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:00-22/02/2026 02:30",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:00-22/02/2026 02:30",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:30-22/02/2026 03:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:30-22/02/2026 03:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:30-22/02/2026 03:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 2,
+      "period": "22/02/2026 02:30-22/02/2026 03:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:00-22/02/2026 03:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:00-22/02/2026 03:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:00-22/02/2026 03:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:00-22/02/2026 03:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:30-22/02/2026 04:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:30-22/02/2026 04:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:30-22/02/2026 04:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 3,
+      "period": "22/02/2026 03:30-22/02/2026 04:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:00-22/02/2026 04:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:00-22/02/2026 04:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:00-22/02/2026 04:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:00-22/02/2026 04:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:30-22/02/2026 05:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:30-22/02/2026 05:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:30-22/02/2026 05:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 4,
+      "period": "22/02/2026 04:30-22/02/2026 05:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:00-22/02/2026 05:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:00-22/02/2026 05:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:00-22/02/2026 05:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:00-22/02/2026 05:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:30-22/02/2026 06:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:30-22/02/2026 06:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:30-22/02/2026 06:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 5,
+      "period": "22/02/2026 05:30-22/02/2026 06:00",
+      "price": 194,
+      "volume": 194,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:00-22/02/2026 06:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:00-22/02/2026 06:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:00-22/02/2026 06:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:00-22/02/2026 06:30",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:30-22/02/2026 07:00",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:30-22/02/2026 07:00",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:30-22/02/2026 07:00",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 6,
+      "period": "22/02/2026 06:30-22/02/2026 07:00",
+      "price": 195,
+      "volume": 195,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:00-22/02/2026 07:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:00-22/02/2026 07:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:00-22/02/2026 07:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:00-22/02/2026 07:30",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:30-22/02/2026 08:00",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:30-22/02/2026 08:00",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:30-22/02/2026 08:00",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 7,
+      "period": "22/02/2026 07:30-22/02/2026 08:00",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:00-22/02/2026 08:30",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:00-22/02/2026 08:30",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:00-22/02/2026 08:30",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:00-22/02/2026 08:30",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:30-22/02/2026 09:00",
+      "price": 10,
+      "volume": 10,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:30-22/02/2026 09:00",
+      "price": 10,
+      "volume": 10,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 8,
+      "period": "22/02/2026 08:30-22/02/2026 09:00",
+      "price": 10,
+      "volume": 10,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 9,
+      "period": "22/02/2026 09:00-22/02/2026 09:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 9,
+      "period": "22/02/2026 09:00-22/02/2026 09:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 9,
+      "period": "22/02/2026 09:00-22/02/2026 09:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 9,
+      "period": "22/02/2026 09:30-22/02/2026 10:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 9,
+      "period": "22/02/2026 09:30-22/02/2026 10:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 9,
+      "period": "22/02/2026 09:30-22/02/2026 10:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 10,
+      "period": "22/02/2026 10:00-22/02/2026 10:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 10,
+      "period": "22/02/2026 10:00-22/02/2026 10:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 10,
+      "period": "22/02/2026 10:00-22/02/2026 10:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 10,
+      "period": "22/02/2026 10:30-22/02/2026 11:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 10,
+      "period": "22/02/2026 10:30-22/02/2026 11:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 10,
+      "period": "22/02/2026 10:30-22/02/2026 11:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 11,
+      "period": "22/02/2026 11:00-22/02/2026 11:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 11,
+      "period": "22/02/2026 11:00-22/02/2026 11:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 11,
+      "period": "22/02/2026 11:00-22/02/2026 11:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 11,
+      "period": "22/02/2026 11:30-22/02/2026 12:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 11,
+      "period": "22/02/2026 11:30-22/02/2026 12:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 11,
+      "period": "22/02/2026 11:30-22/02/2026 12:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 12,
+      "period": "22/02/2026 12:00-22/02/2026 12:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 12,
+      "period": "22/02/2026 12:00-22/02/2026 12:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 12,
+      "period": "22/02/2026 12:00-22/02/2026 12:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 12,
+      "period": "22/02/2026 12:30-22/02/2026 13:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 12,
+      "period": "22/02/2026 12:30-22/02/2026 13:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 12,
+      "period": "22/02/2026 12:30-22/02/2026 13:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 13,
+      "period": "22/02/2026 13:00-22/02/2026 13:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 13,
+      "period": "22/02/2026 13:00-22/02/2026 13:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 13,
+      "period": "22/02/2026 13:00-22/02/2026 13:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 13,
+      "period": "22/02/2026 13:30-22/02/2026 14:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 13,
+      "period": "22/02/2026 13:30-22/02/2026 14:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 13,
+      "period": "22/02/2026 13:30-22/02/2026 14:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 14,
+      "period": "22/02/2026 14:00-22/02/2026 14:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 14,
+      "period": "22/02/2026 14:00-22/02/2026 14:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 14,
+      "period": "22/02/2026 14:00-22/02/2026 14:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 14,
+      "period": "22/02/2026 14:30-22/02/2026 15:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 14,
+      "period": "22/02/2026 14:30-22/02/2026 15:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 14,
+      "period": "22/02/2026 14:30-22/02/2026 15:00",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:00-22/02/2026 15:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:00-22/02/2026 15:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:00-22/02/2026 15:30",
+      "price": 0,
+      "volume": 0,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:30-22/02/2026 16:00",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:30-22/02/2026 16:00",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:30-22/02/2026 16:00",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 15,
+      "period": "22/02/2026 15:30-22/02/2026 16:00",
+      "price": 163,
+      "volume": 163,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:00-22/02/2026 16:30",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:00-22/02/2026 16:30",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:00-22/02/2026 16:30",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:00-22/02/2026 16:30",
+      "price": 192,
+      "volume": 192,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:30-22/02/2026 17:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:30-22/02/2026 17:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:30-22/02/2026 17:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 16,
+      "period": "22/02/2026 16:30-22/02/2026 17:00",
+      "price": 193.5,
+      "volume": 193.5,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:00-22/02/2026 17:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:00-22/02/2026 17:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:00-22/02/2026 17:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:00-22/02/2026 17:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:30-22/02/2026 18:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:30-22/02/2026 18:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:30-22/02/2026 18:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 17,
+      "period": "22/02/2026 17:30-22/02/2026 18:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:00-22/02/2026 18:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:00-22/02/2026 18:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:00-22/02/2026 18:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:00-22/02/2026 18:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:30-22/02/2026 19:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:30-22/02/2026 19:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:30-22/02/2026 19:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 18,
+      "period": "22/02/2026 18:30-22/02/2026 19:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:00-22/02/2026 19:30",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:00-22/02/2026 19:30",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:00-22/02/2026 19:30",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:00-22/02/2026 19:30",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:30-22/02/2026 20:00",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:30-22/02/2026 20:00",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:30-22/02/2026 20:00",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 19,
+      "period": "22/02/2026 19:30-22/02/2026 20:00",
+      "price": 201,
+      "volume": 201,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:00-22/02/2026 20:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:00-22/02/2026 20:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:00-22/02/2026 20:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:00-22/02/2026 20:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:30-22/02/2026 21:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:30-22/02/2026 21:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:30-22/02/2026 21:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 20,
+      "period": "22/02/2026 20:30-22/02/2026 21:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:00-22/02/2026 21:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:00-22/02/2026 21:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:00-22/02/2026 21:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:00-22/02/2026 21:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:30-22/02/2026 22:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:30-22/02/2026 22:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:30-22/02/2026 22:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 21,
+      "period": "22/02/2026 21:30-22/02/2026 22:00",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:00-22/02/2026 22:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:00-22/02/2026 22:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:00-22/02/2026 22:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:00-22/02/2026 22:30",
+      "price": 200,
+      "volume": 200,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:30-22/02/2026 23:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:30-22/02/2026 23:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:30-22/02/2026 23:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 22,
+      "period": "22/02/2026 22:30-22/02/2026 23:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:00-22/02/2026 23:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:00-22/02/2026 23:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:00-22/02/2026 23:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:00-22/02/2026 23:30",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:30-23/02/2026 00:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:30-23/02/2026 00:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:30-23/02/2026 00:00",
+      "price": 199,
+      "volume": 199,
+      "buyVolume": 0,
+      "sellVolume": 0
+    },
+    {
+      "date": "2026-02-22",
+      "hour": 23,
+      "period": "22/02/2026 23:30-23/02/2026 00:00",
+      "price": 199,
+      "volume": 199,
       "buyVolume": 0,
       "sellVolume": 0
     }
