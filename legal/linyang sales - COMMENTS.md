@@ -35,7 +35,7 @@ SELLER and BUYER hereinafter collectively referred to as the "Parties" or the "P
 
 > *SECTION 1A – CONTRACTUAL CONTEXT*
 
-> *1A.1 Subordination to Distribution Agreement: This Sales Contract is entered into pursuant to, and shall be governed by the terms of, the Distribution Agreement between the Parties (and/or their Affiliates) dated November 28, 2025 ("Distribution Agreement").*
+> *1A.1 Subordination to Distribution Agreement: This Sales Contract is entered into pursuant to, and shall be governed by the terms of, the Distribution Agreement between the Parties (and/or their Affiliates) dated February 22, 2026 ("Distribution Agreement").*
 
 > *1A.2 Conflict of Terms: In the event of any conflict or inconsistency between this Sales Contract and the Distribution Agreement regarding exclusivity, client protection, anti-circumvention, liability, penalty fees, or survival provisions, the Distribution Agreement shall prevail.*
 

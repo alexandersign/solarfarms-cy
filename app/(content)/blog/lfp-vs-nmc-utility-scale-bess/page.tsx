@@ -52,7 +52,7 @@ const articleSchema = {
     name: 'Lighthief Cyprus Ltd',
     url: 'https://solarfarms.cy',
   },
-  datePublished: '2026-03-16',
+  datePublished: '2026-01-27',
   image: 'https://solarfarms.cy/images/blog/lfp-vs-nmc-bess.jpg',
   description:
     'We chose LFP (LiFePO4) for all 51 parks in our 881 MWh Cyprus portfolio. Here\u2019s why cycle life economics, fire safety, and insurance implications make LFP the clear winner for utility-scale BESS.',
@@ -85,7 +85,7 @@ export default function LFPvsNMCArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>March 16, 2026</span>
+              <span>January 27, 2026</span>
               <span>&bull;</span>
               <span>9 min read</span>
             </div>

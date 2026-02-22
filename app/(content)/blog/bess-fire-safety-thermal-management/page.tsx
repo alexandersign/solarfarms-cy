@@ -39,7 +39,7 @@ const articleSchema = {
   headline: 'BESS Fire Safety and Thermal Management: Deploying 881 MWh in Cyprus Heat',
   description:
     'Outdoor BESS containers face 45°C Cyprus summers. We cover thermal management, fire suppression systems, container spacing, insurance requirements, and the engineering decisions behind our 881 MWh deployment.',
-  datePublished: '2026-07-06',
+  datePublished: '2025-10-07',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -86,7 +86,7 @@ export default function BESSFireSafetyArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>July 6, 2026</span>
+              <span>October 7, 2025</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

@@ -40,8 +40,8 @@ const articleSchema = {
   headline: 'The Real Cost of NOT Adding BESS: A 10-Year Financial Model for Solar Parks',
   description:
     'We model PV-only vs PV+BESS over 10 years using real Cyprus data — 47% curtailment, €77-186/MWh pricing spreads, and confirmed BESS CAPEX. The crossover point might surprise you.',
-  datePublished: '2026-06-22',
-  dateModified: '2026-06-22',
+  datePublished: '2025-10-21',
+  dateModified: '2025-10-21',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -145,7 +145,7 @@ export default function CostOfNotAddingBESSArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>June 22, 2026</span>
+              <span>October 21, 2025</span>
               <span>&bull;</span>
               <span>14 min read</span>
             </div>

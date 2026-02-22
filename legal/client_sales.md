@@ -2,13 +2,13 @@ ENGINEERING, PROCUREMENT & CONSTRUCTION AGREEMENT
 Battery Energy Storage System (BESS)
 
 **Document Reference:** LCY-EPC-001
-**Version:** 2.5
-**Template Date:** February 2026
+**Version:** 3.0
+**Template Date:** February 22, 2026
 
 ---
 
 ## 1. PARTIES
-This Engineering, Procurement and Construction Agreement (“Agreement”) is made as of [●] 2025 (“Effective Date”)
+This Engineering, Procurement and Construction Agreement (“Agreement”) is made as of [●] 2026 (“Effective Date”)
 BETWEEN:
 Lighthief Cyprus Ltd,
  a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company No. HE 477423, TIN 60187188Q
@@ -558,6 +558,7 @@ SYSTEM SPECIFICATIONS
 | Rated Energy | 5,015 kWh (5.015 MWh) |
 | Battery Voltage Range | 1,164.8V – 1,497.6V |
 | Duration | ≥2 hours |
+| System Round-Trip Efficiency | ≥ 86.32% (full system AC-AC incl. cabling) |
 | Thermal Management | Liquid Cooling (45kW capacity) |
 | Communication | Ethernet / CAN / RS485 |
 | IP Rating | IP54 (Container), IP67 (Battery Pack) |

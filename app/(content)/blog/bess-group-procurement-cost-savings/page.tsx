@@ -37,8 +37,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Group Procurement for BESS: How PV Park Owners Reduce Costs by 15-20% Through Joint Orders',
   description: 'Individual 5MW parks pay a premium. By aggregating 51 parks into a single 881 MWh procurement, we achieved Tier-1 OEM pricing that no individual buyer could access. Here\'s how group procurement works.',
-  datePublished: '2026-08-17',
-  dateModified: '2026-08-17',
+  datePublished: '2025-08-19',
+  dateModified: '2025-08-19',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -90,7 +90,7 @@ export default function BESSGroupProcurementArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>August 17, 2026</span>
+              <span>August 19, 2025</span>
               <span>&bull;</span>
               <span>9 min read</span>
             </div>

@@ -38,8 +38,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'BESS Insurance and Risk: What Lenders and Insurers Actually Look For',
   description: 'Insurance is the overlooked gatekeeper of BESS bankability. We explain what insurers assess — chemistry, fire suppression, OEM warranties, O&M partners — and how it affects your project finance terms.',
-  datePublished: '2026-04-27',
-  dateModified: '2026-04-27',
+  datePublished: '2025-12-16',
+  dateModified: '2025-12-16',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -90,7 +90,7 @@ export default function BESSInsuranceRiskArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>•</span>
-              <span>April 27, 2026</span>
+              <span>December 16, 2025</span>
               <span>•</span>
               <span>11 min read</span>
             </div>

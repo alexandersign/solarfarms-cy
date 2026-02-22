@@ -37,8 +37,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Curtailed Energy Is Not Lost Energy: Revenue Recovery Strategies for Cyprus PV Parks',
   description: '306 GWh of solar energy was curtailed in Cyprus in 2025 — worth over €58M at market rates. We break down three proven strategies to recover this revenue: BESS time-shifting, behind-the-meter loads, and computational monetisation.',
-  datePublished: '2026-05-25',
-  dateModified: '2026-05-25',
+  datePublished: '2025-11-18',
+  dateModified: '2025-11-18',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -85,7 +85,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>•</span>
-              <span>May 25, 2026</span>
+              <span>November 18, 2025</span>
               <span>•</span>
               <span>9 min read</span>
             </div>

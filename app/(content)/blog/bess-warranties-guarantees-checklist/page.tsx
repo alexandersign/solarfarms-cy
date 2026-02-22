@@ -37,8 +37,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Warranties, Guarantees, and Performance Bonds: The BESS Buyer\'s Protection Checklist',
   description: 'Not all BESS warranties are equal. We break down capacity warranties, availability guarantees, performance bonds, and LTSA structures — with the exact terms we secured for our 881 MWh portfolio.',
-  datePublished: '2026-07-20',
-  dateModified: '2026-07-20',
+  datePublished: '2025-09-23',
+  dateModified: '2025-09-23',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -89,7 +89,7 @@ export default function BESSWarrantiesGuaranteesArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>July 20, 2026</span>
+              <span>September 23, 2025</span>
               <span>&bull;</span>
               <span>11 min read</span>
             </div>

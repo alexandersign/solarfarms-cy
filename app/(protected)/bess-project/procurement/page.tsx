@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import type { RfiItem, RfiType, RfiStatus, RfiPriority, RfiDirection } from '@/lib/rfi-service';
+import type { VendorContact } from '@/lib/vendor-contacts';
 
 // ─────────────────────────── Helpers ─────────────────────────────
 
@@ -446,6 +447,260 @@ function DetailPanel({ rfi, onClose, onUpdate, onSendFollowup }: {
   );
 }
 
+// ──────────────── Send Document Modal ────────────────────────
+
+interface SendDocModalProps {
+  open: boolean;
+  onClose: () => void;
+  showToast: (msg: string) => void;
+}
+
+interface DocEntry { path: string; label: string; type: string; vendor?: string }
+
+function SendDocumentModal({ open, onClose, showToast }: SendDocModalProps) {
+  const [vendors, setVendors] = useState<VendorContact[]>([]);
+  const [documents, setDocuments] = useState<DocEntry[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const [selectedVendor, setSelectedVendor] = useState('');
+  const [selectedDoc, setSelectedDoc] = useState('');
+  const [toEmail, setToEmail] = useState('');
+  const [toName, setToName] = useState('');
+  const [cc, setCc] = useState('');
+  const [subject, setSubject] = useState('');
+  const [coverMsg, setCoverMsg] = useState('');
+  const [confirmText, setConfirmText] = useState('');
+
+  useEffect(() => {
+    if (!open) return;
+    setSent(false);
+    setConfirmText('');
+    setLoading(true);
+    fetch('/api/admin/vendor-email')
+      .then(r => r.json())
+      .then(data => {
+        setVendors(data.vendors || []);
+        setDocuments(data.documents || []);
+      })
+      .catch(() => showToast('Failed to load vendors'))
+      .finally(() => setLoading(false));
+  }, [open, showToast]);
+
+  useEffect(() => {
+    if (!selectedVendor) return;
+    const v = vendors.find(x => x.id === selectedVendor);
+    if (!v) return;
+    const primary = v.contacts.find(c => c.primary) || v.contacts[0];
+    if (primary) {
+      setToEmail(primary.email || '');
+      setToName(primary.name || '');
+    }
+    const vendorDocs = documents.filter(d => d.vendor === selectedVendor);
+    if (vendorDocs.length === 1) setSelectedDoc(vendorDocs[0].path);
+  }, [selectedVendor, vendors, documents]);
+
+  useEffect(() => {
+    if (!selectedDoc) return;
+    const doc = documents.find(d => d.path === selectedDoc);
+    if (doc) {
+      const v = vendors.find(x => x.id === selectedVendor);
+      setSubject(`${doc.type}: ${doc.label}${v ? ` — ${v.company}` : ''}`);
+    }
+  }, [selectedDoc, selectedVendor, vendors, documents]);
+
+  if (!open) return null;
+
+  const filteredDocs = selectedVendor
+    ? documents.filter(d => !d.vendor || d.vendor === selectedVendor)
+    : documents;
+
+  const canSend = toEmail && subject && selectedDoc && confirmText === 'SEND';
+
+  const handleSend = async () => {
+    if (!canSend) return;
+    setSending(true);
+    try {
+      const res = await fetch('/api/admin/vendor-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          vendor_id: selectedVendor || undefined,
+          to_email: toEmail,
+          to_name: toName,
+          cc: cc || undefined,
+          subject,
+          document_path: selectedDoc,
+          cover_message: coverMsg || undefined,
+          send_as_attachment: false,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showToast(`Error: ${data.error}`);
+      } else {
+        setSent(true);
+        showToast(`Sent to ${toEmail}`);
+      }
+    } catch (err: any) {
+      showToast(`Send failed: ${err.message}`);
+    } finally {
+      setSending(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <div className="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl"
+        onClick={e => e.stopPropagation()}>
+
+        <div className="sticky top-0 bg-gray-900 border-b border-gray-700/50 px-6 py-4 flex items-center justify-between z-10">
+          <div>
+            <h2 className="text-base font-semibold text-white">Send Document to Vendor</h2>
+            <p className="text-[10px] text-gray-500 mt-0.5">Document will be embedded in a professional email</p>
+          </div>
+          <button onClick={onClose} className="text-gray-500 hover:text-white text-lg">&times;</button>
+        </div>
+
+        {sent ? (
+          <div className="p-12 text-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+              <span className="text-3xl text-emerald-400">&#10003;</span>
+            </div>
+            <p className="text-lg text-white font-semibold mb-1">Email Sent Successfully</p>
+            <p className="text-sm text-gray-400 mb-6">Sent to {toEmail}</p>
+            <button onClick={onClose}
+              className="px-6 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 text-sm">
+              Close
+            </button>
+          </div>
+        ) : loading ? (
+          <div className="p-12 text-center">
+            <div className="inline-block w-8 h-8 border-2 border-gray-600 border-t-blue-500 rounded-full animate-spin" />
+            <p className="text-sm text-gray-500 mt-3">Loading vendors...</p>
+          </div>
+        ) : (
+          <div className="p-6 space-y-4">
+            {/* Vendor selector */}
+            <div>
+              <label className="text-[10px] uppercase text-gray-500 mb-1 block">Vendor</label>
+              <select value={selectedVendor} onChange={e => setSelectedVendor(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white">
+                <option value="">— Select vendor or enter manually —</option>
+                {vendors.map(v => (
+                  <option key={v.id} value={v.id}>
+                    {v.company} ({v.category})
+                    {v.contacts[0]?.email ? '' : ' ⚠ no email'}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Recipient */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="text-[10px] uppercase text-gray-500 mb-1 block">Recipient Email *</label>
+                <input value={toEmail} onChange={e => setToEmail(e.target.value)}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+                  placeholder="vendor@company.com" type="email" required />
+              </div>
+              <div>
+                <label className="text-[10px] uppercase text-gray-500 mb-1 block">Recipient Name</label>
+                <input value={toName} onChange={e => setToName(e.target.value)}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+                  placeholder="Contact name" />
+              </div>
+            </div>
+
+            {/* CC */}
+            <div>
+              <label className="text-[10px] uppercase text-gray-500 mb-1 block">CC (optional)</label>
+              <input value={cc} onChange={e => setCc(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+                placeholder="office@lighthief.com" type="email" />
+            </div>
+
+            {/* Document selector */}
+            <div>
+              <label className="text-[10px] uppercase text-gray-500 mb-1 block">Document *</label>
+              <select value={selectedDoc} onChange={e => setSelectedDoc(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white" required>
+                <option value="">— Select document —</option>
+                {filteredDocs.map(d => (
+                  <option key={d.path} value={d.path}>
+                    [{d.type}] {d.label}
+                  </option>
+                ))}
+              </select>
+              {selectedDoc && (
+                <p className="text-[9px] text-gray-600 mt-1 font-mono truncate">{selectedDoc}</p>
+              )}
+            </div>
+
+            {/* Subject */}
+            <div>
+              <label className="text-[10px] uppercase text-gray-500 mb-1 block">Email Subject *</label>
+              <input value={subject} onChange={e => setSubject(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+                placeholder="Subject line" required />
+            </div>
+
+            {/* Cover message */}
+            <div>
+              <label className="text-[10px] uppercase text-gray-500 mb-1 block">Cover Message (optional)</label>
+              <textarea value={coverMsg} onChange={e => setCoverMsg(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white h-20 resize-y"
+                placeholder="Additional context for the recipient..." />
+            </div>
+
+            {/* Security confirmation */}
+            <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-4 space-y-3">
+              <div className="flex items-start gap-2">
+                <span className="text-red-400 text-sm mt-0.5">&#9888;</span>
+                <div>
+                  <p className="text-xs text-red-300 font-semibold">Confirm before sending</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">
+                    This will send an email from <strong className="text-white">noreply@solarfarms.cy</strong> with the selected
+                    document embedded. The email cannot be recalled once sent.
+                  </p>
+                  <p className="text-[10px] text-gray-400 mt-1">
+                    To: <strong className="text-white">{toEmail || '(no email)'}</strong>
+                    {toName && <> &middot; {toName}</>}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <label className="text-[10px] text-red-300 mb-1 block">Type <strong>SEND</strong> to confirm</label>
+                <input value={confirmText} onChange={e => setConfirmText(e.target.value.toUpperCase())}
+                  className="w-full bg-gray-950 border border-red-500/30 rounded-lg px-3 py-2 text-sm text-white font-mono tracking-widest text-center"
+                  placeholder="Type SEND" maxLength={4} autoComplete="off" />
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-3 pt-2">
+              <button onClick={handleSend} disabled={!canSend || sending}
+                className="flex-1 py-2.5 rounded-lg text-sm font-semibold bg-red-600 hover:bg-red-500 text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                {sending ? 'Sending...' : 'Send Document Email'}
+              </button>
+              <button onClick={onClose}
+                className="px-6 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 transition-colors">
+                Cancel
+              </button>
+            </div>
+
+            {/* Rate limit notice */}
+            <p className="text-[9px] text-gray-600 text-center">
+              Rate limited to 5 emails per minute &middot; All sends are logged &middot; Reply-to: office@lighthief.com
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ────────────────────── Main Dashboard ──────────────────────────
 
 export default function ProcurementDashboard() {
@@ -461,6 +716,7 @@ export default function ProcurementDashboard() {
   const [directionFilter, setDirectionFilter] = useState<'all' | RfiDirection>('all');
   const [seeding, setSeeding] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [sendDocOpen, setSendDocOpen] = useState(false);
 
   const showToast = useCallback((msg: string) => {
     setToast(msg);
@@ -673,6 +929,10 @@ export default function ProcurementDashboard() {
             <button onClick={() => router.push('/bess-project')}
               className="text-[10px] px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition-colors border border-gray-700">
               Timeline
+            </button>
+            <button onClick={() => setSendDocOpen(true)}
+              className="text-[10px] px-3 py-1.5 rounded-lg bg-amber-600 text-white hover:bg-amber-500 transition-colors font-semibold">
+              Send Document
             </button>
             <button onClick={() => { setComposeMode('new_rfi'); setComposeRfi(null); setComposeOpen(true); }}
               className="text-[10px] px-3 py-1.5 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-colors font-semibold">
@@ -904,6 +1164,13 @@ export default function ProcurementDashboard() {
         onSend={handleComposeSend}
         rfi={composeRfi}
         mode={composeMode}
+      />
+
+      {/* Send Document modal */}
+      <SendDocumentModal
+        open={sendDocOpen}
+        onClose={() => setSendDocOpen(false)}
+        showToast={showToast}
       />
     </div>
   );

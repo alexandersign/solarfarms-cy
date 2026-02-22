@@ -40,8 +40,8 @@ const articleSchema = {
   headline: 'Virtual Power Plants on Island Grids: The Next Revenue Frontier for BESS',
   description:
     'Aggregated BESS capacity on Cyprus\'s isolated grid could participate in balancing markets, ancillary services, and synthetic inertia. We explore how VPPs create new revenue streams for battery storage investors.',
-  datePublished: '2026-09-14',
-  dateModified: '2026-09-14',
+  datePublished: '2025-07-22',
+  dateModified: '2025-07-22',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -93,7 +93,7 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>September 14, 2026</span>
+              <span>July 22, 2025</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

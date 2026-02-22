@@ -38,8 +38,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'From Container Ship to Grid Connection: Inside a Utility-Scale BESS Installation',
   description: 'What does it actually take to install a utility-scale BESS? We walk through every phase — from factory production to CIF delivery, civil works, electrical installation, and TSOC grid connection — based on our 51-park deployment timeline.',
-  datePublished: '2026-08-03',
-  dateModified: '2026-08-03',
+  datePublished: '2025-09-02',
+  dateModified: '2025-09-02',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -91,7 +91,7 @@ export default function BESSInstallationArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>August 3, 2026</span>
+              <span>September 2, 2025</span>
               <span>&bull;</span>
               <span>12 min read</span>
             </div>

@@ -38,8 +38,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Understanding BESS Costs in 2026: CAPEX Breakdown for Project Developers',
   description: 'Beyond the headline €/MWh figure lies a complex cost stack. We break down every line item in a utility-scale BESS project — from CIF container pricing to civil works, EMS, insurance, and import duties — using real confirmed pricing from our 881 MWh portfolio.',
-  datePublished: '2026-03-09',
-  dateModified: '2026-03-09',
+  datePublished: '2026-02-03',
+  dateModified: '2026-02-03',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -89,7 +89,7 @@ export default function BESSCosts2026Article() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>March 9, 2026</span>
+              <span>February 3, 2026</span>
               <span>&bull;</span>
               <span>12 min read</span>
             </div>

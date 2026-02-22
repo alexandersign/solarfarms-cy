@@ -40,8 +40,8 @@ const articleSchema = {
   headline: 'The Cyprus Energy Storage Roadmap: What 2027-2030 Looks Like for BESS Investors',
   description:
     'From curtailment recovery to grid services, ancillary markets, and the EuroAsia Interconnector — we map out the BESS investment landscape in Cyprus through 2030 and what it means for early movers.',
-  datePublished: '2026-08-31',
-  dateModified: '2026-08-31',
+  datePublished: '2025-08-05',
+  dateModified: '2025-08-05',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -92,7 +92,7 @@ export default function CyprusEnergyStorageRoadmapArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>August 31, 2026</span>
+              <span>August 5, 2025</span>
               <span>&bull;</span>
               <span>11 min read</span>
             </div>

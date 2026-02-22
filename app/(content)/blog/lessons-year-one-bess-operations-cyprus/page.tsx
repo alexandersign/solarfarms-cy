@@ -41,7 +41,7 @@ const articleSchema = {
   headline: 'Lessons from Year One: What We Learned Operating 881 MWh of BESS in Cyprus',
   description:
     'After commissioning 251 containers across 51 parks, we share the operational realities — what worked, what surprised us, and what every BESS investor should know before their first year of operations.',
-  datePublished: '2026-10-26',
+  datePublished: '2026-02-20',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -90,7 +90,7 @@ export default function LessonsYearOneBESSArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>October 26, 2026</span>
+              <span>February 20, 2026</span>
               <span>&bull;</span>
               <span>13 min read</span>
             </div>

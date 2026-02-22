@@ -2,14 +2,14 @@ SALES AGREEMENT
 (Battery Energy Storage Systems)
 
 **Document Reference:** LCY-SALES-001
-**Version:** 2.4
-**Effective Date:** November 28, 2025
+**Version:** 3.0
+**Effective Date:** February 22, 2026
 
 ---
 
 ## 1. PARTIES
 
-This Sales Agreement ("Agreement") is made as of November 28th, 2025 ("Effective Date")
+This Sales Agreement ("Agreement") is made as of February 22nd, 2026 ("Effective Date")
 BETWEEN:
 Jiangsu Linyang Energy Storage Technology Co., Ltd,
  a company incorporated under the laws of the People’s Republic of China, with its registered office at F17, Building D1, No. 2 Mudanjiang Street, Jianye District, Nanjing, Jiangsu 210004, China
@@ -26,7 +26,7 @@ Seller and Buyer are referred to individually as a “Party” and collectively 
 
 2.2 The Buyer is engaged in the development, integration, and delivery of photovoltaic, hybrid, and battery energy storage projects in the Republic of Cyprus and elsewhere.
 
-2.3 **Subordination to Distribution Agreement:** This Sales Agreement is entered into pursuant to, and shall be governed by the terms of, the Distribution Agreement between the Parties (and/or their Affiliates) dated November 28, 2025 ("Distribution Agreement").
+2.3 **Subordination to Distribution Agreement:** This Sales Agreement is entered into pursuant to, and shall be governed by the terms of, the Distribution Agreement between the Parties (and/or their Affiliates) dated February 22, 2026 ("Distribution Agreement").
 
 2.4 This Agreement governs the sale and supply of Products by the Seller to the Buyer on a project-by-project basis, pursuant to written quotations issued by the Seller and accepted by the Buyer.
 
@@ -387,7 +387,7 @@ The following terms have been confirmed by Linyang and should be reflected in al
 | **SOH Year 5** | ≥ 85% | Confirmed |
 | **SOH Year 10** | ≥ 79.58% | Confirmed |
 | **SOH Year 15** | ≥ 70% | Confirmed |
-| **System RTE** | ≥ 87% (MV side, excl. AUX) | Confirmed |
+| **System RTE** | ≥ 86.32% (full system AC-AC incl. cabling) | Confirmed |
 | **PCS Efficiency** | ≥ 98% at rated power | Confirmed |
 | **LTSA Tier C** | €1,740/MWh/year | Confirmed (30% group discount) |
 | **Extended Warranty Yr 6–10** | €1,661.68/MWh/year | BESS €913.92 + PCS/MVS €747.76 — ✅ Confirmed |

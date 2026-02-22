@@ -39,8 +39,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Peak Shaving vs Energy Arbitrage: Which BESS Revenue Model Works in Cyprus?',
   description: 'Two revenue models, one grid. We compare peak shaving and energy arbitrage using real Cyprus day-ahead pricing — €77/MWh midday vs €186/MWh evening — to show which strategy maximises BESS returns.',
-  datePublished: '2026-04-13',
-  dateModified: '2026-04-13',
+  datePublished: '2025-12-29',
+  dateModified: '2025-12-29',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -91,7 +91,7 @@ export default function PeakShavingVsArbitrageArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>April 13, 2026</span>
+              <span>December 29, 2025</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

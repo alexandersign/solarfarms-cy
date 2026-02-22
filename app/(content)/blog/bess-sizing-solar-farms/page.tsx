@@ -35,8 +35,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'BESS Sizing for Solar Farms: How to Match Storage to Your Park\'s Revenue Potential',
   description: 'How much BESS does your solar park need? We break down the sizing methodology using real curtailment data, evening peak pricing, and grid export constraints from our 51-park Cyprus portfolio.',
-  datePublished: '2026-03-30',
-  dateModified: '2026-03-30',
+  datePublished: '2026-01-13',
+  dateModified: '2026-01-13',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -84,7 +84,7 @@ export default function BESSSizingSolarFarmsArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>March 30, 2026</span>
+              <span>January 13, 2026</span>
               <span>&bull;</span>
               <span>11 min read</span>
             </div>

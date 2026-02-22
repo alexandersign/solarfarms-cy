@@ -41,7 +41,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
         "headline": "The Investor's Guide to Battery Energy Storage",
         "author": { "@type": "Person", "name": "Alexander Papacosta" },
         "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
-        "datePublished": "2026-03-02",
+        "datePublished": "2026-02-18",
         "description": "BESS isn't just technology — it's a revenue protection tool. Learn what battery energy storage means for your solar park's grid connection, asset valuation, and annual returns in Cyprus.",
         "mainEntityOfPage": "https://solarfarms.cy/blog/investors-guide-battery-energy-storage",
       }} />
@@ -69,7 +69,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>March 2, 2026</span>
+              <span>February 18, 2026</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

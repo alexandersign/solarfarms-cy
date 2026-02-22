@@ -38,8 +38,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: "How Cyprus's BESS Regulatory Framework Compares to the Rest of Europe",
   description: 'Cyprus is rapidly developing its energy storage regulations. We compare permitting, grid connection, and market access rules across Cyprus, Germany, Spain, Italy, Greece, and the UK to help developers navigate the landscape.',
-  datePublished: '2026-05-11',
-  dateModified: '2026-05-11',
+  datePublished: '2025-12-02',
+  dateModified: '2025-12-02',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -90,7 +90,7 @@ export default function CyprusBESSRegulatoryFrameworkArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>May 11, 2026</span>
+              <span>December 2, 2025</span>
               <span>&bull;</span>
               <span>12 min read</span>
             </div>

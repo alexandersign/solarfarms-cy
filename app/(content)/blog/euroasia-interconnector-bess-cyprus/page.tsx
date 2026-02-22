@@ -40,7 +40,7 @@ const articleSchema = {
   headline: 'BESS and the EuroAsia Interconnector: How Grid Connection Changes the Game for Cyprus',
   description:
     'The 2,000 MW EuroAsia submarine cable will end Cyprus\'s grid isolation by 2029-2030. We analyse what interconnection means for BESS investors — less curtailment, but new arbitrage and export opportunities.',
-  datePublished: '2026-10-12',
+  datePublished: '2025-06-10',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -88,7 +88,7 @@ export default function EuroAsiaInterconnectorArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>October 12, 2026</span>
+              <span>June 10, 2025</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

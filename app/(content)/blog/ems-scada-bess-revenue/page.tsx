@@ -38,8 +38,8 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'EMS and SCADA for BESS: Why Your Energy Management System Determines Your Revenue',
   description: 'The EMS is the brain of your BESS. We explain how real-time curtailment signal integration, SOC optimisation, and degradation management directly determine whether your battery earns €300K or €500K per year.',
-  datePublished: '2026-06-08',
-  dateModified: '2026-06-08',
+  datePublished: '2025-11-04',
+  dateModified: '2025-11-04',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -87,7 +87,7 @@ export default function EMSSCADABESSRevenueArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>June 8, 2026</span>
+              <span>November 4, 2025</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

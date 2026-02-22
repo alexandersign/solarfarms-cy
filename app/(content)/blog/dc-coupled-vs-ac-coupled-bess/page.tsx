@@ -39,7 +39,7 @@ const articleSchema = {
   headline: 'DC-Coupled vs AC-Coupled BESS: Which Architecture Maximises Revenue for Existing PV Parks?',
   description:
     'Retrofitting BESS onto an existing solar park? The coupling architecture — DC or AC — affects your curtailment capture efficiency, inverter compatibility, and total cost. We analyse both options for Cyprus PV parks.',
-  datePublished: '2026-09-28',
+  datePublished: '2025-07-08',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -87,7 +87,7 @@ export default function DCvsACCoupledBESSArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>September 28, 2026</span>
+              <span>July 8, 2025</span>
               <span>&bull;</span>
               <span>9 min read</span>
             </div>

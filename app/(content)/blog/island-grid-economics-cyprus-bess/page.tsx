@@ -37,8 +37,8 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: "Island Grid Economics: Why BESS on Cyprus\u2019s Isolated Grid Is Different from Mainland Europe",
-  datePublished: '2026-03-23',
-  dateModified: '2026-03-23',
+  datePublished: '2026-01-20',
+  dateModified: '2026-01-20',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -84,7 +84,7 @@ export default function IslandGridEconomicsArticle() {
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
               <span>&bull;</span>
-              <span>March 23, 2026</span>
+              <span>January 20, 2026</span>
               <span>&bull;</span>
               <span>10 min read</span>
             </div>

@@ -4,8 +4,24 @@ import { rfiService } from '@/lib/rfi-service'
 import type { RfiItem } from '@/lib/rfi-service'
 
 // POST /api/rfi/send-email — Send an RFI/RFP email and update tracker
+// SECURED: requires x-admin-key header or bess-project-auth cookie
 export async function POST(request: NextRequest) {
   try {
+    const adminKey = request.headers.get('x-admin-key')
+    const bessCookie = request.cookies.get('bess-project-auth')
+    const BESS_PASSWORD = 'BessCyprus2026'
+    const expectedBessToken = Buffer.from(`bess-project-auth-${BESS_PASSWORD}-valid`).toString('base64')
+
+    const isAdminAuth = adminKey === process.env.ADMIN_SECRET_KEY
+    const isBessAuth = bessCookie?.value === expectedBessToken
+
+    if (!isAdminAuth && !isBessAuth) {
+      return NextResponse.json(
+        { error: 'Unauthorized — valid admin key or BESS project session required' },
+        { status: 401 }
+      )
+    }
+
     const body = await request.json()
     const {
       rfiId,         // existing RFI ID to mark as sent
