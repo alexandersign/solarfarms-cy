@@ -120,6 +120,198 @@ export const newsletterService = {
   }
 }
 
+// PV Prospects CRM Types
+export interface PvProspect {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  plant_name: string
+  cera_license_no?: string
+  capacity_mwp?: number
+  technology?: string
+  plant_status?: string
+  location?: string
+  district?: string
+  grid_connection_point?: string
+  commissioning_date?: string
+  curtailment_rate?: number
+  company_name?: string
+  company_reg_no?: string
+  parent_group?: string
+  registered_address?: string
+  company_website?: string
+  contact_name?: string
+  contact_title?: string
+  contact_email?: string
+  contact_phone?: string
+  contact_linkedin?: string
+  secondary_contact_name?: string
+  secondary_contact_title?: string
+  secondary_contact_email?: string
+  secondary_contact_phone?: string
+  secondary_contact_linkedin?: string
+  outreach_status?: 'new' | 'researching' | 'contacted' | 'responded' | 'meeting_set' | 'proposal_sent' | 'negotiating' | 'won' | 'lost' | 'not_interested'
+  outreach_channel?: string
+  first_contact_date?: string
+  last_contact_date?: string
+  next_follow_up?: string
+  offer_type?: string
+  estimated_deal_value?: number
+  bess_potential_mwh?: number
+  notes?: string
+  data_source?: string
+  tags?: string[]
+  priority?: 'low' | 'medium' | 'high' | 'urgent'
+}
+
+export interface GridOperatorContact {
+  id?: string
+  created_at?: string
+  organization: string
+  department?: string
+  contact_name?: string
+  contact_title?: string
+  email?: string
+  phone?: string
+  address?: string
+  website?: string
+  notes?: string
+}
+
+export const pvProspectsService = {
+  async getAll(filters?: {
+    outreach_status?: string
+    priority?: string
+    district?: string
+    offer_type?: string
+    search?: string
+  }) {
+    let query = supabase
+      .from('pv_prospects')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (filters?.outreach_status) {
+      query = query.eq('outreach_status', filters.outreach_status)
+    }
+    if (filters?.priority) {
+      query = query.eq('priority', filters.priority)
+    }
+    if (filters?.district) {
+      query = query.eq('district', filters.district)
+    }
+    if (filters?.offer_type) {
+      query = query.eq('offer_type', filters.offer_type)
+    }
+    if (filters?.search) {
+      query = query.or(
+        `plant_name.ilike.%${filters.search}%,company_name.ilike.%${filters.search}%,contact_name.ilike.%${filters.search}%`
+      )
+    }
+
+    const { data, error } = await query
+    if (error) throw error
+    return data as PvProspect[]
+  },
+
+  async getStats() {
+    const { data, error } = await supabase
+      .from('pv_prospects')
+      .select('outreach_status, priority, estimated_deal_value, capacity_mwp')
+
+    if (error) throw error
+
+    const prospects = data || []
+    const byStatus: Record<string, number> = {}
+    const byPriority: Record<string, number> = {}
+    let totalPipeline = 0
+    let totalCapacity = 0
+
+    for (const p of prospects) {
+      byStatus[p.outreach_status || 'new'] = (byStatus[p.outreach_status || 'new'] || 0) + 1
+      byPriority[p.priority || 'medium'] = (byPriority[p.priority || 'medium'] || 0) + 1
+      totalPipeline += Number(p.estimated_deal_value) || 0
+      totalCapacity += Number(p.capacity_mwp) || 0
+    }
+
+    return {
+      total: prospects.length,
+      byStatus,
+      byPriority,
+      totalPipeline,
+      totalCapacity,
+    }
+  },
+
+  async create(prospect: Partial<PvProspect>) {
+    const { data, error } = await supabase
+      .from('pv_prospects')
+      .insert(prospect)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async update(id: string, updates: Partial<PvProspect>) {
+    const { data, error } = await supabase
+      .from('pv_prospects')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async delete(id: string) {
+    const { error } = await supabase
+      .from('pv_prospects')
+      .delete()
+      .eq('id', id)
+
+    if (error) throw error
+  },
+
+  async getDueFollowUps() {
+    const today = new Date().toISOString().split('T')[0]
+    const { data, error } = await supabase
+      .from('pv_prospects')
+      .select('*')
+      .lte('next_follow_up', today)
+      .not('outreach_status', 'in', '("won","lost","not_interested")')
+      .order('next_follow_up', { ascending: true })
+
+    if (error) throw error
+    return data as PvProspect[]
+  },
+}
+
+export const gridOperatorService = {
+  async getAll() {
+    const { data, error } = await supabase
+      .from('grid_operator_contacts')
+      .select('*')
+      .order('organization', { ascending: true })
+
+    if (error) throw error
+    return data as GridOperatorContact[]
+  },
+
+  async create(contact: Partial<GridOperatorContact>) {
+    const { data, error } = await supabase
+      .from('grid_operator_contacts')
+      .insert(contact)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+}
+
 // File Upload Service
 export const fileUploadService = {
   async uploadFile(file: File, bucket: string = 'documents', folder?: string): Promise<string> {
