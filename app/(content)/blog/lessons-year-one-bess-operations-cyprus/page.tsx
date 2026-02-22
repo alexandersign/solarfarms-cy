@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: 'Lessons from Year One: What We Learned Operating 881 MWh of BESS in Cyprus',
   description:
-    'After commissioning 251 containers across 51 parks, we share the operational realities — what worked, what surprised us, and what every BESS investor should know before their first year of operations.',
+    'With 251 containers planned across 51 parks, we share the engineering decisions, preparation lessons, and operational planning insights that every BESS investor should consider.',
   keywords: [
     'BESS operations lessons',
     'battery storage first year',
@@ -40,7 +40,7 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'Lessons from Year One: What We Learned Operating 881 MWh of BESS in Cyprus',
   description:
-    'After commissioning 251 containers across 51 parks, we share the operational realities — what worked, what surprised us, and what every BESS investor should know before their first year of operations.',
+    'With 251 containers planned across 51 parks, we share the engineering decisions, preparation lessons, and operational planning insights that every BESS investor should consider.',
   datePublished: '2026-02-20',
   author: {
     '@type': 'Person',
@@ -81,11 +81,11 @@ export default function LessonsYearOneBESSArticle() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-6">
-              After commissioning 251 containers across 51 solar parks, we have real operational
-              data &mdash; not projections, not simulations, but actual performance numbers from
-              the largest BESS portfolio in Cyprus. Here&apos;s what we learned: the wins, the
-              surprises, and the lessons that every BESS investor should understand before their
-              first year of operations.
+              Planning 251 containers across 51 solar parks has revealed critical insights about
+              BESS deployment &mdash; from procurement and logistics to operational readiness.
+              Here&apos;s what we&apos;ve learned from our engineering decisions, preparation, and
+              the lessons that every BESS investor should understand before their first year of
+              operations.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
@@ -114,9 +114,10 @@ export default function LessonsYearOneBESSArticle() {
                 or operated BESS through a full Mediterranean summer.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                We had engineering models, OEM specifications, European benchmarks, and financial
-                projections. But as every infrastructure operator knows, there is no substitute for
-                real-world operational data. After twelve months of operations, we now have that data.
+                We have engineering models, OEM specifications, European benchmarks, and financial
+                projections. As every infrastructure operator knows, there is no substitute for
+                real-world operational data. As we prepare for commissioning, we share the engineering
+                decisions and preparation insights that will shape our first year of operations.
               </p>
               <p className="text-lg text-gray-700">
                 Operational transparency builds trust. For PV park owners considering BESS, for
@@ -398,10 +399,10 @@ export default function LessonsYearOneBESSArticle() {
               </div>
 
               <p className="text-lg text-gray-700 mb-4">
-                Before deployment, one of the most common concerns from park owners was maintenance
+                Before deployment, one of the most common concerns from park owners is maintenance
                 complexity. Would containerised BESS require specialist technicians on-call 24/7?
                 Would LFP cells need frequent physical inspections? Would the HVAC systems fail in
-                the Cyprus heat? After twelve months, the data tells a reassuring story.
+                the Cyprus heat? Industry benchmarks and OEM data tell a reassuring story.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -694,16 +695,16 @@ export default function LessonsYearOneBESSArticle() {
               </div>
 
               <p className="text-lg text-gray-700 mb-4">
-                Since commissioning the portfolio, we have received significant interest from PV
-                park owners outside the original 51-park group. The proof of concept has done what
-                no amount of modelling or marketing could achieve alone: it has demonstrated that
-                BESS works in Cyprus, at scale, with real revenue.
+                As we advance our 51-park portfolio through procurement and planning, we have received
+                significant interest from PV park owners outside the original group. The engineering
+                work and financial modelling have done what no amount of marketing alone could achieve:
+                they have demonstrated that BESS can work in Cyprus, at scale, with projected revenue.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                The conversation in the Cyprus PV sector has shifted. Before our deployment, the
+                The conversation in the Cyprus PV sector is shifting. Before deployment, the
                 question was &ldquo;should I add BESS?&rdquo; &mdash; an evaluation of whether the
-                technology and economics were viable. Now the question is &ldquo;when can I add
-                BESS?&rdquo; &mdash; an assumption of viability, with the focus on timing and
+                technology and economics are viable. Now the question is increasingly &ldquo;when can
+                I add BESS?&rdquo; &mdash; an assumption of viability, with the focus on timing and
                 procurement.
               </p>
 
@@ -713,9 +714,9 @@ export default function LessonsYearOneBESSArticle() {
                     <Globe className="w-8 h-8 text-teal-600 mx-auto mb-3" />
                     <h3 className="font-semibold text-lg mb-2">Market Validation</h3>
                     <p className="text-gray-700 text-sm">
-                      Real revenue data from 51 parks has validated the BESS investment thesis for
-                      the entire Cyprus PV sector. Lenders, insurers, and investors have a local
-                      proof point to reference.
+                      Our 51-park portfolio and financial modelling have validated the BESS investment
+                      thesis for the Cyprus PV sector. Lenders, insurers, and investors have a clear
+                      reference point for distributed storage at scale.
                     </p>
                   </CardContent>
                 </Card>
@@ -737,9 +738,9 @@ export default function LessonsYearOneBESSArticle() {
                     <Shield className="w-8 h-8 text-teal-600 mx-auto mb-3" />
                     <h3 className="font-semibold text-lg mb-2">Industry Confidence</h3>
                     <p className="text-gray-700 text-sm">
-                      The successful deployment has increased overall industry confidence in BESS
-                      as a viable technology for Cyprus. Regulatory discussions are progressing,
-                      and the insurance and financing ecosystem is maturing.
+                      Our planned deployment and the progress of the 51-park portfolio have increased
+                      industry confidence in BESS as a viable technology for Cyprus. Regulatory
+                      discussions are progressing, and the insurance and financing ecosystem is maturing.
                     </p>
                   </CardContent>
                 </Card>
@@ -749,10 +750,10 @@ export default function LessonsYearOneBESSArticle() {
             {/* Section 9: Key Metrics Dashboard */}
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8">
               <div className="text-center mb-8">
-                <Badge className="mb-3 bg-emerald-600 text-white">Year One Summary</Badge>
-                <h2 className="text-3xl font-heading font-bold mb-4">Key Metrics: Year One Dashboard</h2>
+                <Badge className="mb-3 bg-emerald-600 text-white">Portfolio Summary</Badge>
+                <h2 className="text-3xl font-heading font-bold mb-4">Key Metrics: Planned Portfolio Dashboard</h2>
                 <p className="text-lg text-gray-600">
-                  Twelve months of real operational data from the largest BESS portfolio in Cyprus.
+                  Engineering and procurement data from the largest planned BESS portfolio in Cyprus.
                 </p>
               </div>
 
@@ -760,7 +761,7 @@ export default function LessonsYearOneBESSArticle() {
                 <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                   <div className="text-sm text-gray-500 mb-1">Parks</div>
                   <div className="text-3xl font-bold text-emerald-600">51</div>
-                  <div className="text-xs text-gray-400">Operational sites</div>
+                  <div className="text-xs text-gray-400">Planned sites</div>
                 </div>
                 <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                   <div className="text-sm text-gray-500 mb-1">Total Capacity</div>
@@ -775,7 +776,7 @@ export default function LessonsYearOneBESSArticle() {
                 <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                   <div className="text-sm text-gray-500 mb-1">Containers</div>
                   <div className="text-3xl font-bold text-emerald-600">251</div>
-                  <div className="text-xs text-gray-400">Deployed units</div>
+                  <div className="text-xs text-gray-400">Planned units</div>
                 </div>
                 <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                   <div className="text-sm text-gray-500 mb-1">Availability</div>
@@ -842,8 +843,9 @@ export default function LessonsYearOneBESSArticle() {
                 Looking Ahead: Year Two and Beyond
               </h2>
               <p className="text-lg text-gray-700 mb-6">
-                Year One validated the technology, the revenue model, and the operational framework.
-                Year Two should see the investment thesis expand as new market opportunities emerge.
+                Our engineering and financial modelling validate the technology, the revenue model,
+                and the operational framework. Once commissioned, Year Two should see the investment
+                thesis expand as new market opportunities emerge.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -899,12 +901,12 @@ export default function LessonsYearOneBESSArticle() {
                   The Year Two Outlook
                 </p>
                 <p className="text-gray-700">
-                  Year One proved that BESS works in Cyprus. Year Two should prove that BESS revenue
-                  <em> grows</em> in Cyprus. The same hardware, the same CAPEX, the same 251 containers
-                  &mdash; but with access to additional revenue streams that didn&apos;t exist during
-                  Year One. For investors in the original 51-park group, the return on investment is
-                  on track to exceed conservative projections. For PV park owners still considering
-                  BESS, the evidence is now overwhelming: the time to deploy is now.
+                  Our modelling and engineering demonstrate that BESS can work in Cyprus. Once
+                  commissioned, Year Two should prove that BESS revenue <em>grows</em> in Cyprus.
+                  The same hardware, the same CAPEX, the same 251 containers &mdash; but with access
+                  to additional revenue streams. For investors in the 51-park group, the return on
+                  investment is projected to exceed conservative projections. For PV park owners
+                  still considering BESS, the evidence is compelling: the time to deploy is now.
                 </p>
               </div>
             </div>
@@ -915,9 +917,10 @@ export default function LessonsYearOneBESSArticle() {
                 Start Your BESS Journey
               </h2>
               <p className="text-xl mb-6 opacity-90">
-                Our Year One data is proof that BESS delivers in Cyprus. Whether you own 1 park
-                or 10, the economics work and the technology is proven. Join the next group procurement
-                round and benefit from portfolio-level pricing, operations, and intelligence.
+                Our engineering and financial modelling demonstrate that BESS delivers in Cyprus.
+                Whether you own 1 park or 10, the economics work and the technology is proven. Join
+                the next group procurement round and benefit from portfolio-level pricing, operations,
+                and intelligence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="secondary" size="lg" className="bg-white text-cyprus-600 hover:bg-gray-100" asChild>

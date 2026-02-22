@@ -229,9 +229,9 @@ export default function CyprusEnergyStorageRoadmapArticle() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      First wave of BESS installations commissioned across Cyprus. Lighthief&apos;s
-                      51-park, 881&nbsp;MWh portfolio enters operation, becoming one of the largest
-                      distributed storage fleets in the Mediterranean.
+                      First wave of BESS installations expected to be commissioned across Cyprus.
+                      Lighthief&apos;s 51-park, 881&nbsp;MWh portfolio is planned to enter operation,
+                      becoming one of the largest distributed storage fleets in the Mediterranean.
                     </p>
                   </CardContent>
                 </Card>

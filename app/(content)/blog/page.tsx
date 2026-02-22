@@ -36,7 +36,7 @@ const articles: Article[] = [
   {
     slug: 'lessons-year-one-bess-operations-cyprus',
     title: 'Lessons from Year One: 881 MWh of BESS',
-    description: 'After commissioning 251 containers across 51 parks — what worked, what surprised us, and operational realities.',
+    description: 'With 251 containers planned across 51 parks — engineering decisions, preparation lessons, and what every BESS investor should know.',
     category: 'Case Study',
     categoryColor: 'bg-cyan-100 text-cyan-800',
     author: 'Alexander Papacosta',
@@ -76,7 +76,7 @@ const articles: Article[] = [
   {
     slug: 'bess-costs-2026-capex-breakdown',
     title: 'Understanding BESS Costs in 2026: CAPEX Breakdown',
-    description: 'Beyond the headline \u20AC/MWh figure \u2014 every line item from CIF container pricing to civil works, EMS, insurance, and import duties.',
+    description: 'Beyond the headline \u20AC/MWh figure \u2014 every cost layer from equipment to civil works, EMS, insurance, and import duties.',
     category: 'Investment Guide',
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
@@ -206,7 +206,7 @@ const articles: Article[] = [
   {
     slug: 'bess-fire-safety-thermal-management',
     title: 'BESS Fire Safety and Thermal Management',
-    description: 'Deploying 251 containers in 45\u00B0C Cyprus summers. Thermal management, fire suppression, and engineering decisions.',
+    description: 'Planning 251 containers for 45\u00B0C Cyprus summers. Thermal management, fire suppression, and engineering decisions.',
     category: 'Technology',
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',

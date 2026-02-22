@@ -263,11 +263,11 @@ export default function CostOfNotAddingBESSArticle() {
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Installed cost</span>
-                        <span className="font-semibold">&euro;112,945/MWh</span>
+                        <span className="font-semibold">Competitive group-order rates</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Total CAPEX</span>
-                        <span className="font-semibold text-blue-600">&euro;2,258,900</span>
+                        <span className="font-semibold text-blue-600">~&euro;2.0&ndash;2.5M (20 MWh)</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Round-trip efficiency</span>
@@ -860,9 +860,9 @@ export default function CostOfNotAddingBESSArticle() {
                       <div>
                         <p className="font-semibold text-gray-900 mb-1">BESS prices at historic lows</p>
                         <p className="text-sm text-gray-600">
-                          LFP cell prices have fallen ~40% since 2023. Current CIF pricing of
-                          &euro;112,945/MWh installed is near the bottom of the cost curve.
-                          Supply consolidation and tariff risks could reverse this trend.
+                          LFP cell prices have fallen ~40% since 2023. Current installed
+                          pricing is near historic lows. Supply consolidation and tariff
+                          risks could reverse this trend.
                         </p>
                       </div>
                     </div>

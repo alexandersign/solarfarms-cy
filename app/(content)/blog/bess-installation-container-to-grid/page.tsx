@@ -124,7 +124,7 @@ export default function BESSInstallationArticle() {
                 how perfectly it&rsquo;s been installed.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                Here&rsquo;s every phase of a utility-scale BESS installation, based on our real
+                Here&rsquo;s every phase of a utility-scale BESS installation, based on our planned
                 deployment of 251 containers across 51 solar parks in Cyprus. These aren&rsquo;t
                 theoretical timelines &mdash; they&rsquo;re our confirmed production and
                 installation schedule.
@@ -262,7 +262,7 @@ export default function BESSInstallationArticle() {
                         <Shield className="w-4 h-4 text-sky-500" />
                         <span className="text-gray-700">Marine insurance</span>
                       </div>
-                      <span className="font-semibold text-gray-900">0.75% of CIF value</span>
+                      <span className="font-semibold text-gray-900">0.5&ndash;1.5% of equipment value</span>
                     </div>
                     <div className="flex items-center justify-between py-2 border-b border-gray-100">
                       <div className="flex items-center gap-2">
@@ -283,7 +283,7 @@ export default function BESSInstallationArticle() {
                         <Building2 className="w-4 h-4 text-sky-500" />
                         <span className="text-gray-700">Import duty</span>
                       </div>
-                      <span className="font-semibold text-gray-900">2.66% of CIF value</span>
+                      <span className="font-semibold text-gray-900">2.5&ndash;3.0% (EU tariff schedule)</span>
                     </div>
                   </div>
                   <p className="text-sm text-gray-500 mt-4">

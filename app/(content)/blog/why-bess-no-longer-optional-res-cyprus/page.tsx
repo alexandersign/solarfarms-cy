@@ -666,11 +666,11 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <CardContent className="pt-6 text-center">
                       <Badge className="mb-3 bg-blue-600 text-white">2-Hour System</Badge>
                       <div className="text-sm text-gray-600 mb-1">5 MW / 10 MWh</div>
-                      <div className="text-2xl font-bold text-gray-800">€136,106</div>
-                      <div className="text-xs text-gray-500">/MWh installed</div>
+                      <div className="text-lg font-bold text-gray-800">Competitive group pricing</div>
+                      <div className="text-xs text-gray-500">per MWh installed</div>
                       <div className="mt-3 border-t pt-3">
-                        <div className="text-lg font-bold text-gray-900">€1,481,613</div>
-                        <div className="text-xs text-gray-500">Total (incl. grid + 5% contingency)</div>
+                        <div className="text-sm font-semibold text-gray-700">Contact for total system cost</div>
+                        <div className="text-xs text-gray-500">Incl. grid connection + 5% contingency</div>
                       </div>
                     </CardContent>
                   </Card>
@@ -679,11 +679,11 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <CardContent className="pt-6 text-center">
                       <Badge className="mb-3 bg-amber-600 text-white">3-Hour System</Badge>
                       <div className="text-sm text-gray-600 mb-1">5 MW / 15 MWh</div>
-                      <div className="text-2xl font-bold text-gray-800">€130,792</div>
-                      <div className="text-xs text-gray-500">/MWh installed</div>
+                      <div className="text-lg font-bold text-gray-800">Lower per-MWh cost</div>
+                      <div className="text-xs text-gray-500">vs 2-hour system</div>
                       <div className="mt-3 border-t pt-3">
-                        <div className="text-lg font-bold text-gray-900">€2,112,474</div>
-                        <div className="text-xs text-gray-500">Total (incl. grid + 5% contingency)</div>
+                        <div className="text-sm font-semibold text-gray-700">Contact for total system cost</div>
+                        <div className="text-xs text-gray-500">Incl. grid connection + 5% contingency</div>
                       </div>
                     </CardContent>
                   </Card>
@@ -692,11 +692,11 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <CardContent className="pt-6 text-center">
                       <Badge className="mb-3 bg-green-600 text-white">4-Hour System</Badge>
                       <div className="text-sm text-gray-600 mb-1">5 MW / 20 MWh</div>
-                      <div className="text-2xl font-bold text-gray-800">€112,945</div>
-                      <div className="text-xs text-gray-500">/MWh installed</div>
+                      <div className="text-lg font-bold text-gray-800">Best per-MWh pricing</div>
+                      <div className="text-xs text-gray-500">~17% lower than 2-hour</div>
                       <div className="mt-3 border-t pt-3">
-                        <div className="text-lg font-bold text-gray-900">€2,424,345</div>
-                        <div className="text-xs text-gray-500">Total (incl. grid + 5% contingency)</div>
+                        <div className="text-sm font-semibold text-gray-700">Contact for total system cost</div>
+                        <div className="text-xs text-gray-500">Incl. grid connection + 5% contingency</div>
                       </div>
                     </CardContent>
                   </Card>
@@ -860,9 +860,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <tbody>
                       <tr className="border-b">
                         <td className="p-3 text-gray-600">BESS CAPEX</td>
-                        <td className="text-center p-3 font-semibold">€1,481,613</td>
-                        <td className="text-center p-3 font-semibold">€2,112,474</td>
-                        <td className="text-center p-3 font-semibold">€2,424,345</td>
+                        <td className="text-center p-3 font-semibold" colSpan={3}>Contact for current group pricing</td>
                       </tr>
                       <tr className="border-b bg-gray-50">
                         <td className="p-3 text-gray-600">Year 1 Revenue</td>

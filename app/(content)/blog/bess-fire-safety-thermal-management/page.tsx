@@ -108,7 +108,7 @@ export default function BESSFireSafetyArticle() {
               <p className="text-lg text-gray-700 mb-4">
                 BESS safety incidents make headlines. A single thermal event at a battery storage
                 facility draws the kind of media coverage that can stall permitting for an entire
-                region. As developers deploying 251 containers across 51 parks &mdash; totalling
+                region. As developers planning 251 containers across 51 parks &mdash; totalling
                 881&nbsp;MWh of lithium iron phosphate storage &mdash; safety engineering is not a
                 feature we offer. It is the prerequisite for everything else.
               </p>

@@ -138,9 +138,9 @@ export default function BESSGroupProcurementArticle() {
                       <h4 className="font-semibold text-red-800 mb-1">The Individual Buyer Premium</h4>
                       <p className="text-red-700">
                         A standalone 5&nbsp;MW/20&nbsp;MWh BESS procurement typically costs
-                        &euro;135,000&ndash;145,000/MWh installed. The same system procured through
-                        a group order: &euro;112,945/MWh. That&rsquo;s a 16&ndash;22% gap that no
-                        amount of negotiation on an individual basis can close.
+                        significantly more per MWh installed than what&rsquo;s achievable through
+                        volume procurement. Our group-order pricing delivers a 16&ndash;22% reduction
+                        &mdash; a gap that no amount of individual negotiation can close.
                       </p>
                     </div>
                   </div>
@@ -421,8 +421,8 @@ export default function BESSGroupProcurementArticle() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-center mb-4">
-                      <p className="text-4xl font-bold text-green-700">&euro;112,945</p>
-                      <p className="text-sm text-green-600">per MWh installed (confirmed)</p>
+                      <p className="text-4xl font-bold text-green-700">16&ndash;22%</p>
+                      <p className="text-sm text-green-600">lower per MWh vs individual procurement</p>
                     </div>
                     <ul className="space-y-2 text-sm text-green-700">
                       <li className="flex items-center gap-2">

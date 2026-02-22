@@ -213,8 +213,8 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                 curtailed energy, store it in batteries and discharge during the evening peak when prices are highest.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                This is not a future technology — it is operational today. Lighthief is deploying BESS across
-                51 parks in Cyprus under Category B licensing, with first installations going live in 2026.
+                This is not a future technology — it is operational today. Lighthief is preparing BESS deployment across
+                51 parks in Cyprus under Category B licensing, with first installations planned for 2026.
               </p>
 
               <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 mb-8">
@@ -315,7 +315,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm"><strong>Scalable:</strong> Lighthief deploying across 51 parks with group pricing</span>
+                        <span className="text-sm"><strong>Scalable:</strong> Lighthief preparing deployment across 51 parks with group pricing</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />

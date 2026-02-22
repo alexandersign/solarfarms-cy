@@ -282,15 +282,11 @@ export default function BESSSizingSolarFarmsArticle() {
                     </tr>
                     <tr className="border-b bg-gray-50">
                       <td className="p-4 text-gray-600 font-semibold">&euro;/MWh Installed</td>
-                      <td className="text-center p-4 font-bold text-blue-700">&euro;136,106</td>
-                      <td className="text-center p-4 font-bold text-amber-700">&euro;130,792</td>
-                      <td className="text-center p-4 font-bold text-green-700">&euro;112,945</td>
+                      <td className="text-center p-4 font-bold text-blue-700" colSpan={3}>Contact for current group pricing &mdash; per-MWh cost decreases with longer duration</td>
                     </tr>
                     <tr className="border-b">
                       <td className="p-4 text-gray-600 font-semibold">Total CAPEX</td>
-                      <td className="text-center p-4">&euro;1,481,613</td>
-                      <td className="text-center p-4">&euro;2,112,474</td>
-                      <td className="text-center p-4">&euro;2,424,345</td>
+                      <td className="text-center p-4" colSpan={3}>Contact for current pricing (incl. grid connection + 5% contingency)</td>
                     </tr>
                     <tr className="border-b bg-gray-50">
                       <td className="p-4 text-gray-600 font-semibold">Evening Dispatch Window</td>
@@ -328,7 +324,7 @@ export default function BESSSizingSolarFarmsArticle() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      Lowest CAPEX at &euro;136,106/MWh. Gets you into storage at the smallest capital
+                      Lowest CAPEX per MWh of the three options. Gets you into storage at the smallest capital
                       outlay. Ideal for operators who want to recover curtailed energy immediately with
                       minimal financial exposure. The 4.5-year payback at 47% curtailment delivers 22.2% ROI.
                       Trade-off: only 2 hours of evening dispatch limits future arbitrage potential.
@@ -343,7 +339,7 @@ export default function BESSSizingSolarFarmsArticle() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      The middle ground at &euro;130,792/MWh. Covers most of the evening peak window
+                      The middle ground with competitive per-MWh pricing. Covers most of the evening peak window
                       (17:00&ndash;20:00) when prices average &euro;183/MWh. Seven-year payback is still
                       comfortably within the 15-year warranty period. Captures more high-price hours than
                       the 2-hour without the full capital commitment of 4-hour.
@@ -358,7 +354,7 @@ export default function BESSSizingSolarFarmsArticle() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      Best per-MWh cost at &euro;112,945 &mdash; a 17% discount versus the 2-hour system.
+                      Best per-MWh cost &mdash; approximately 17% lower than the 2-hour system.
                       Full evening coverage (17:00&ndash;21:00) captures every high-price hour. Best
                       positioned for future grid services and DAM arbitrage. The 8.7-year payback drops
                       to ~4.8 years once arbitrage legislation passes.
@@ -610,7 +606,7 @@ export default function BESSSizingSolarFarmsArticle() {
                           <span className="font-semibold text-green-700">4-hour system</span>
                         </div>
                         <p className="text-gray-600 text-sm mt-1">
-                          Best &euro;/MWh installed cost (&euro;112,945 vs &euro;136,106 for 2-hour). Full
+                          Best &euro;/MWh installed cost (~17% lower than 2-hour systems). Full
                           evening dispatch window (17:00&ndash;21:00). Maximum arbitrage revenue when
                           legislation passes. Payback drops to ~4.8 years with grid charging.
                         </p>

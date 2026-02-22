@@ -676,7 +676,7 @@ export default function EMSSCADABESSRevenueArticle() {
               <p className="text-lg text-gray-700 mb-6">
                 Whether you&apos;re evaluating EMS providers for a new project or considering an upgrade
                 to an existing system, here is a practical buyer&apos;s checklist based on our experience
-                deploying across 51 parks.
+                planning deployment across 51 parks.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -814,8 +814,8 @@ export default function EMSSCADABESSRevenueArticle() {
                 project&apos;s lifetime. We can help you choose, configure, and optimise the right system.
               </p>
               <p className="text-lg mb-8 opacity-80">
-                Lighthief has deployed Voltus EMS across 51 parks with 881 MWh of battery storage.
-                We bring real-world operational experience to every EMS discussion.
+                Lighthief has selected Voltus EMS for 51 parks with 881 MWh of planned battery storage.
+                We bring procurement and design experience to every EMS discussion.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="secondary" size="lg" className="bg-white text-cyprus-600 hover:bg-gray-100" asChild>

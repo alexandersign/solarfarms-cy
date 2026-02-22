@@ -638,9 +638,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                         <div className="bg-amber-50 rounded-lg p-3">
                           <p className="text-sm text-gray-700">
                             <strong>Benchmark:</strong> Lighthief&apos;s confirmed group-order pricing
-                            for 5 MW / 20 MWh systems (4-hour duration) is <strong>&euro;112,945/MWh
-                            </strong> all-in &mdash; including grid connection, EMS, and 5%
-                            contingency. Individual procurement typically costs 15&ndash;20% more.
+                            for 5 MW / 20 MWh systems (4-hour duration) delivers <strong>15&ndash;20%
+                            savings</strong> versus individual procurement &mdash; all-in including
+                            grid connection, EMS, and 5% contingency.
                           </p>
                         </div>
                       </div>
@@ -699,10 +699,10 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                         <div className="bg-amber-50 rounded-lg p-3">
                           <p className="text-sm text-gray-700">
                             <strong>What &ldquo;good&rdquo; looks like:</strong> For a 5 MW / 20 MWh
-                            system at &euro;112,945/MWh, simple payback is ~8.7 years at 47%
-                            curtailment (conservative model). With 70% project finance at 4.5%
-                            interest, equity payback drops to ~6.1 years. When DAM arbitrage
-                            legislation passes, payback falls to ~4.8 years.
+                            system at competitive group-order pricing, simple payback is ~8&ndash;9
+                            years at 47% curtailment (conservative model). With 70% project finance
+                            at 4.5% interest, equity payback drops to ~6 years. When DAM arbitrage
+                            legislation passes, payback falls below 5 years.
                           </p>
                         </div>
                       </div>
@@ -755,8 +755,8 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                     <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Euro className="w-7 h-7 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-green-700 mb-1">&euro;112,945</div>
-                    <div className="text-sm text-gray-600">/MWh (5 MW / 20 MWh System)</div>
+                    <div className="text-3xl font-bold text-green-700 mb-1">15&ndash;20%</div>
+                    <div className="text-sm text-gray-600">Lower Cost via Group Order</div>
                   </div>
                 </div>
 
@@ -815,10 +815,10 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
               <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
                 <p className="text-lg text-gray-700">
                   <Users className="inline w-5 h-5 mr-2 text-indigo-500" />
-                  <strong>The maths is simple:</strong> at &euro;112,945/MWh through the group order
-                  versus &euro;130,000&ndash;&euro;140,000/MWh for individual procurement, a 5 MW /
-                  20 MWh system saves &euro;341,000&ndash;&euro;541,000 in CAPEX. That savings alone
-                  reduces payback by 1&ndash;2 years. Group procurement doesn&apos;t just lower costs
+                  <strong>The maths is simple:</strong> group-order pricing delivers
+                  15&ndash;20% savings compared to individual procurement. For a 5 MW / 20 MWh
+                  system, that translates to significant CAPEX savings &mdash; enough to reduce
+                  payback by 1&ndash;2 years. Group procurement doesn&apos;t just lower costs
                   &mdash; it structurally improves the investment case.
                 </p>
               </div>
