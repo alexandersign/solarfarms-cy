@@ -243,10 +243,11 @@ For the purposes of this Agreement:
 
 8.2 Response Time Commitments
  The Service Provider commits to the following Response Times:
- (a) Critical Alerts: Initial response within four (4) hours; on-site attendance (if required) within twenty-four (24) hours.
- (b) Major Alerts: Initial response within twenty-four (24) hours; on-site attendance (if required) within seventy-two (72) hours.
- (c) Minor Alerts: Response within seventy-two (72) hours.
+ (a) Critical Alerts: Initial remote response within two (2) hours; on-site attendance (if required) within eight (8) hours.
+ (b) Major Alerts: Initial remote response within eight (8) hours; on-site attendance (if required) within forty-eight (48) hours.
+ (c) Minor Alerts: Initial remote response within forty-eight (48) hours; on-site attendance (if required) at the next scheduled maintenance visit or within five (5) business days, whichever is sooner.
  (d) **Response Time Measurement:** Response Time is measured from the timestamp of alert generation in the Monitoring Platform, not from Client notification.
+ (e) **Clarification — Response vs Resolution:** The Response Times set out above apply to initial response and on-site attendance only. Resolution time depends on fault severity, spare parts availability, and OEM support requirements, and is not subject to the Response Time commitments in this Section.
 
 8.3 Response Scope
  Initial response shall include:
@@ -266,11 +267,27 @@ For the purposes of this Agreement:
  (c) Issues related to grid or external infrastructure;
  (d) Scheduled downtime or maintenance windows.
 8.5 Service Level Credits
- Where the Service Provider fails to meet the Response Time commitments set out in Section 8.1 on more than three (3) occasions in any calendar quarter, the Client shall be entitled to a service credit equal to five percent (5%) of the quarterly Service Fee for that quarter.
+ (a) **Critical Alert Breach:** Where the Service Provider fails to achieve on-site attendance within the eight (8) hour commitment for a Critical Alert, the Client shall be entitled to a service credit of one hundred euros (€100) for each full hour of delay beyond the eight (8) hour commitment, up to a maximum of one thousand euros (€1,000) per incident.
+ (b) **Major Alert Breach:** Where the Service Provider fails to achieve on-site attendance within the forty-eight (48) hour commitment for a Major Alert, the Client shall be entitled to a service credit of fifty euros (€50) for each full hour of delay beyond the forty-eight (48) hour commitment, up to a maximum of five hundred euros (€500) per incident.
+ (c) **Quarterly Cap:** The total Service Level Credits payable under this Section 8.5 in any calendar quarter shall not exceed ten percent (10%) of the quarterly Service Fee for that quarter.
+ (d) **Remediation Plan:** Where three (3) or more Service Level breaches occur in any calendar quarter, the Client may request a written remediation plan from the Service Provider. The Service Provider shall deliver such plan within fourteen (14) days of the request, detailing root cause analysis and corrective actions.
+ (e) **Sole Remedy:** The Service Level Credits set out in this Section 8.5 shall be the Client's sole and exclusive remedy for failure to meet the Response Time commitments, and the Client shall not be entitled to claim additional damages for Response Time breaches beyond the Service Level Credits.
+
+8.6 Escalation Protocol
+ The Service Provider shall maintain the following escalation procedure for Critical Alerts:
+ (a) **Acknowledgement:** All Critical Alerts shall be acknowledged by the duty technician within thirty (30) minutes of alert generation.
+ (b) **Auto-Escalation:** If the primary duty technician does not acknowledge a Critical Alert within thirty (30) minutes, the Monitoring Platform shall automatically escalate the alert to the backup technician and the operations manager simultaneously.
+ (c) **Management Escalation:** If on-site attendance has not been dispatched within four (4) hours of a Critical Alert, the operations manager shall escalate to the Service Provider's senior management and notify the Client's designated contact.
+ (d) **Client Notification:** The Client shall receive status updates at intervals of no more than two (2) hours from the time of a Critical Alert until the issue is resolved or the situation is stabilised.
+
+8.7 Coverage Hours
+ (a) The Response Time commitments set out in Section 8.2 for Critical Alerts and Major Alerts apply on a **twenty-four hours a day, seven days a week, three hundred and sixty-five days a year (24/7/365)** basis, including weekends, public holidays, and night hours.
+ (b) The Response Time commitment for Minor Alerts applies during **business hours** (Monday to Friday, 08:00–17:00 local time), excluding public holidays. Where a Minor Alert is raised outside business hours, the Response Time shall commence at the start of the next business day.
+ (c) The Service Provider shall maintain a staffed duty roster at all times sufficient to meet the 24/7/365 commitment for Critical and Major Alerts, with a minimum of one (1) qualified technician on-call and a designated backup at all times.
 
 9. AVAILABILITY GUARANTEE (TIER C AND D ONLY)
 9.1 Availability Commitment
- Where the Client has selected Tier C or Tier D services, the Service Provider guarantees that the BESS shall achieve a minimum annual Availability of ninety-seven percent (97%), calculated in accordance with Schedule 4.
+ Where the Client has selected Tier C or Tier C services, the Service Provider guarantees that the BESS shall achieve a minimum annual Availability of ninety-seven percent (97%), calculated in accordance with Schedule 4.
 9.2 Calculation of Availability
  Availability shall be calculated as follows:
  Availability (%) = [(Total Hours in Year - Unavailable Hours) / Total Hours in Year] x 100
@@ -301,7 +318,7 @@ For the purposes of this Agreement:
 10. STATE OF HEALTH (SOH) AND PERFORMANCE WARRANTY (TIER D ONLY)
 
 10.1 SOH Guarantee — OEM Pass-Through
- (a) Where the Client has selected Tier D services, the Service Provider guarantees that the BESS shall maintain a minimum State of Health in accordance with the Degradation Curve set out in Schedule 5.
+ (a) Where the Client has selected Tier C services, the Service Provider guarantees that the BESS shall maintain a minimum State of Health in accordance with the Degradation Curve set out in Schedule 5.
  (b) **OEM-Backed Guarantee:** The SOH Guarantee is a pass-through guarantee provided by the OEM (Linyang) and is backed by the OEM's warranty reserve. The Service Provider's obligation under this Section is to facilitate the OEM's warranty and ensure proper maintenance is performed.
  (c) **Manufacturing Defect Determination:** Where SOH underperformance is attributable to a manufacturing defect or design flaw in the OEM equipment, the OEM's determination of the defect shall govern. The Service Provider shall facilitate the warranty claim process with the OEM.
  (d) **No Double Liability:** The Service Provider shall not be liable under both this Section 10 and Section 14.5 for the same underlying issue. Where SOH underperformance is caused by an OEM manufacturing defect, the remedy shall be through the OEM warranty, not through the Service Provider's direct liability.
@@ -326,14 +343,14 @@ For the purposes of this Agreement:
   (i) The Service Provider shall replace or repair the affected modules at no cost to the Client;
   (ii) Replacement shall occur within sixty (60) days of identification;
   (iii) Replacement modules shall be new or equivalent to new in performance;
-  (iv) **OEM Warranty:** Module replacements are sourced through the OEM warranty reserve where the failure is attributable to manufacturing factors. The OEM covers replacement components only; service fees, on-site replacement labor, and logistics costs are borne by the Service Provider and are included in the Tier D Service Fee.
+  (iv) **OEM Warranty:** Module replacements are sourced through the OEM warranty reserve where the failure is attributable to manufacturing factors. The OEM covers replacement components only; service fees, on-site replacement labor, and logistics costs are borne by the Service Provider and are included in the Tier C Service Fee.
 
  (b) SYSTEMIC UNDERPERFORMANCE (affecting 5% or more of total capacity):
   (i) The Service Provider shall, at its option, either:
    - Augment the BESS with additional cells to restore capacity to the Guaranteed SOH; or
    - Pay Liquidated Damages calculated as the cost to restore the system to Guaranteed SOH.
   (ii) If augmentation is chosen, it shall be completed within one hundred twenty (120) days;
-  (iii) **OEM-Backed Augmentation:** The Service Provider's augmentation obligation is backed by a contractual commitment from the OEM to supply replacement cells under the OEM warranty reserve for SOH underperformance attributable to manufacturing factors or normal degradation exceeding the specified curve. The OEM covers replacement components only; service fees, on-site installation labor, and logistics costs are included in the Tier D Service Fee;
+  (iii) **OEM-Backed Augmentation:** The Service Provider's augmentation obligation is backed by a contractual commitment from the OEM to supply replacement cells under the OEM warranty reserve for SOH underperformance attributable to manufacturing factors or normal degradation exceeding the specified curve. The OEM covers replacement components only; service fees, on-site installation labor, and logistics costs are included in the Tier C Service Fee;
   (iv) Where augmentation cells are provided by the OEM under warranty, the Service Provider shall coordinate installation and commissioning;
   (v) Where SOH underperformance is caused by Client misuse, operational non-compliance, or factors excluded under Section 10.7, the augmentation obligation does not apply.
 
@@ -341,7 +358,7 @@ For the purposes of this Agreement:
   If the OEM fails to honour its warranty obligations (including due to insolvency, refusal, or cessation of business):
   (i) The Service Provider shall use commercially reasonable efforts to source equivalent replacement cells from alternative suppliers;
   (ii) The Service Provider's liability shall be limited to the caps set out in Section 10.5;
-  (iii) The Service Provider may, at its option, terminate the Tier D service and refund a pro-rata portion of Tier D premiums paid;
+  (iii) The Service Provider may, at its option, terminate the Tier C service and refund a pro-rata portion of Tier C premiums paid;
   (iv) The Client shall have the right to downgrade to Tier C without penalty.
 10.5 SOH Liquidated Damages Calculation
  Where Liquidated Damages are payable for SOH underperformance:
@@ -768,7 +785,7 @@ SCHEDULE 2 – SERVICE FEES AND PRICING
 
 SYSTEM CAPACITY: [●] MWh
 
-SELECTED SERVICE TIER: ☐ Tier A  ☐ Tier B  ☐ Tier C  ☐ Tier D
+SELECTED SERVICE TIER: ☐ Tier A  ☐ Tier B  ☐ Tier C
 
 ───────────────────────────────────────────────────────────────
 BASE SERVICE PRICING (Per MWh per Year)
@@ -799,11 +816,42 @@ OPTIONAL WARRANTY EXTENSIONS (Per MWh per Year)
 | Warranty Extension | Years | EUR/MWh/Year | Selected |
 |--------------------|-------|--------------|----------|
 | BESS Performance & Product Warranty | 6-10 | €913.92 | ☐ |
-| BESS Performance & Product Warranty | 11-15 | €4,182.25 | ☐ |
+| BESS Performance & Product Warranty | 11-15 | €1,157.62 | ☐ |
 | PCS + MVS Product Warranty | 6-10 | €747.76 | ☐ |
-| PCS Product Warranty | 11-15 | €1,086.20 | ☐ |
+| PCS + MVS Product Warranty | 11-15 | €926.10 | ☐ |
 
 **Note:** Extended warranty is available for a maximum of fifteen (15) years from COD (1 cycle per day condition). Years 16-20 warranty extension is not available from the OEM. Alternative: upfront spares package at €1,000–1,250/MWh.
+
+───────────────────────────────────────────────────────────────
+EMS/SCADA ANNUAL SUBSCRIPTION (Per MWh per Year)
+───────────────────────────────────────────────────────────────
+
+| Component | EUR/MWh/Year | Annual Total |
+|-----------|--------------|--------------|
+| EMS/SCADA Software Subscription | €[●] | €[●] |
+| (20% of installed EMS/SCADA cost per year) | | |
+
+**Calculation basis:** Annual subscription = 20% of total installed EMS/SCADA cost (EMS hardware + SCADA Local + SCADA Global), divided by system capacity in MWh. Rate varies by park size and group allocation — portfolio range: €661 – €3,181/MWh/Year.
+
+**Subscription includes:**
+- Software updates and patches
+- Cloud hosting and data storage
+- External data feeds (market prices, grid signals, weather)
+- Cybersecurity maintenance and NIS2 compliance updates
+- System integrations and API access
+- 10 read-only SCADA dashboard accounts per client group
+- 1 hour/month technical support per park (additional hours at €80/hr)
+
+**Post-Subscription:** If the subscription lapses, the system degrades to local-only EMS operation — no cloud access, SCADA Global, or external data feeds.
+
+**EMS/SCADA Subscription for this System:**
+
+| Item | Value |
+|------|-------|
+| System Capacity | [●] MWh |
+| Installed EMS/SCADA Cost | €[●] |
+| Annual Subscription (20%) | €[●] |
+| EUR/MWh/Year | €[●] |
 
 ───────────────────────────────────────────────────────────────
 ANNUAL FEE SUMMARY
@@ -813,7 +861,8 @@ ANNUAL FEE SUMMARY
 |-----------|------------------|
 | Base Service Fee (Selected Tier) | €[●] |
 | Warranty Extension (if selected) | €[●] |
-| TOTAL ANNUAL SERVICE FEE | €[●] |
+| EMS/SCADA Annual Subscription | €[●] |
+| TOTAL ANNUAL FEE | €[●] |
 | VAT (19%) | €[●] |
 | TOTAL INCLUDING VAT | €[●] |
 
@@ -852,7 +901,8 @@ TIER D adds:
 FEE EXCLUSIONS (ALL TIERS)
 ───────────────────────────────────────────────────────────────
 - Major component replacement beyond warranty scope
-- EMS software, licences, and customisation
+- EMS/SCADA annual subscription (charged separately — see EMS/SCADA section above)
+- EMS software customisation beyond standard configuration
 - Grid-related issues beyond point of interconnection
 - Damage caused by Client, third parties, or Force Majeure
 - Civil works or site infrastructure
@@ -972,7 +1022,7 @@ DOCUMENTATION
 ☐ Maintenance report completed
 
 SCHEDULE 4 – AVAILABILITY CALCULATION AND GUARANTEES
-(Applicable to Tier C and Tier D only)
+(Applicable to Tier C only)
 
 ───────────────────────────────────────────────────────────────
 AVAILABILITY FORMULA
@@ -994,7 +1044,7 @@ GUARANTEED AVAILABILITY LEVEL
 | Service Tier | Guaranteed Availability |
 |--------------|------------------------|
 | Tier C | 97% annual |
-| Tier D | 97% annual (98% available on request) |
+| ~~Tier D~~ | *Not offered — Tier C is the highest tier* |
 
 ───────────────────────────────────────────────────────────────
 EXCLUDED HOURS (Do not count as Unavailable)
@@ -1035,7 +1085,7 @@ AVAILABILITY MEASUREMENT AND REPORTING
 5. Liquidated Damages (if applicable) shall be credited against next invoice
 
 SCHEDULE 5 – DEGRADATION CURVE AND SOH GUARANTEE
-(Applicable to Tier D only)
+(Not currently offered — Tier C is the highest tier)
 
 **Reference:** Linyang Power Atlantic 5MWh BESS Degradation Curve Document
 

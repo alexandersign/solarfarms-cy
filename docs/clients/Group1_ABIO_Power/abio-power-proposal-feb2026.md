@@ -151,7 +151,7 @@ All pricing in this proposal is derived from:
 - Column BH (60): Target Total
 
 **Pricing Policy:**
-- **Dino Locked:** Specific configurations with committed rates
+- **Dino Confirmed:** Specific configurations with committed rates
 - **13% Margin:** Standard margin applied to Full EPC Cost
 
 ---
@@ -164,7 +164,7 @@ All pricing in this proposal is derived from:
 
 | Contact | Details |
 |---------|---------|
-| **Alexander Papacosta** | alexander.papacosta@lighthief.com |
+| **Alexander Papacosta** | office@lighthief.com |
 | **Phone** | +357 99 164 158 |
 | **Website** | www.lighthief.com |
 

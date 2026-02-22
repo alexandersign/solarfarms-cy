@@ -76,9 +76,10 @@ Any price adjustment shall require not less than sixty (60) days’ prior writte
 7. PAYMENT TERMS AND MILESTONES
 7.1 Milestone-Based Payment Structure
  Unless otherwise stated in the applicable Quotation, payment for Products shall be made as follows:
- (a) thirty percent (30%) advance payment by bank transfer (T/T) payable within seven (7) days of contract effectiveness or purchase order signing;
- (b) sixty percent (60%) payment by T/T payable prior to shipment of the Products from the manufacturing facility;
- (c) ten percent (10%) final payment by T/T payable upon successful installation, commissioning, and provisional acceptance of the Products on site.
+ (a) twenty-five percent (25%) advance payment by bank transfer (T/T) payable within seven (7) days of contract effectiveness or purchase order signing;
+ (b) fifty percent (50%) payment by T/T payable when the Products are ready for shipment (Ex-Works) from the manufacturing facility;
+ (c) twenty percent (20%) payment by T/T payable upon arrival of the Products on site (DAP);
+ (d) five percent (5%) performance holdback by T/T payable upon successful completion of Site Acceptance Testing (SAT) and provisional acceptance of the Products on site.
 7.2 End-Customer Dependency
  Where Buyer payments are contractually linked to end-customer milestone payments, any delay in end-customer payment shall automatically extend the Buyer’s corresponding payment deadline without penalty.
 7.3 No Default for Client Delay
@@ -143,7 +144,7 @@ Any price adjustment shall require not less than sixty (60) days’ prior writte
 10.3 Effect of Provisional Acceptance
  Provisional Acceptance shall:
  (a) confirm completion of installation and commissioning;
- (b) trigger the Buyer’s obligation to make the final ten percent (10%) payment in accordance with Section 7; and
+ (b) trigger the Buyer’s obligation to make the final five percent (5%) performance holdback payment in accordance with Section 7.1(d); and
  (c) mark the commencement of the base warranty period under Section 16 of the Distribution Agreement, unless otherwise stated in the applicable Quotation.
 10.4 Minor Defects
  Minor defects that do not materially affect system operation shall not prevent Provisional Acceptance, provided such defects are recorded in a punch list and remedied within a reasonable time.
@@ -368,6 +369,48 @@ Any price adjustment shall require not less than sixty (60) days’ prior writte
 21.3 Cross-border transfers of personal data outside the EEA shall require appropriate safeguards (adequacy decisions, SCCs, or BCRs).
 
 21.4 In the event of a personal data breach, the affected Party shall notify the other Party within seventy-two (72) hours of becoming aware of the breach.
+
+---
+
+## ANNEX: LINYANG RFI CONFIRMED TERMS (February 2026)
+
+*Source: Linyang RFI V1 Answers (Klaudia / Solarfun), February 2026*
+
+The following terms have been confirmed by Linyang and should be reflected in all client-facing contracts:
+
+| Item | Confirmed Value | Notes |
+|------|----------------|-------|
+| **Payment Terms** | 25% / 50% / 20% / 5% | Advance / Ex-Works / DAP / SAT holdback |
+| **Standard Warranty** | 5 years from COD | Per project COD dates |
+| **Extended Warranty Max** | 15 years (not 20) | 1 cycle/day condition applies |
+| **Cycle Life** | 7,000 cycles @ 90% DOD, 70% EOL | Not 8,000 as originally proposed |
+| **SOH Year 5** | ≥ 85% | Confirmed |
+| **SOH Year 10** | ≥ 79.58% | Confirmed |
+| **SOH Year 15** | ≥ 70% | Confirmed |
+| **System RTE** | ≥ 87% (MV side, excl. AUX) | Confirmed |
+| **PCS Efficiency** | ≥ 98% at rated power | Confirmed |
+| **LTSA Tier C** | €1,740/MWh/year | Confirmed (30% group discount) |
+| **Extended Warranty Yr 6–10** | €1,661.68/MWh/year | BESS €913.92 + PCS/MVS €747.76 — ✅ Confirmed |
+| **Extended Warranty Yr 11–15** | €2,083.72/MWh/year | BESS €1,157.62 + PCS/MVS €926.10 — ✅ Confirmed (V3) |
+| **Combined LTSA + Warranty Yr 6–10** | €3,401.68/MWh/year | Tier C €1,740 + Warranty €1,661.68 — ✅ Confirmed |
+| **Combined LTSA + Warranty Yr 11–15** | €3,823.72/MWh/year | Tier C €1,740 + Warranty €2,083.72 — ✅ Confirmed (V3) |
+| **Performance Bond** | 5% corporate guarantee (bank) | No parent company backing — corporate guarantee only |
+| **APG** | 100% bank guarantee | International bank, valid until delivery +30 days |
+| **Product Liability Insurance** | €5,000,000 (AXA) | Confirmed |
+| **Delay LDs** | 0.1%/0.15% of **delayed goods** per day | NOT contract value — scope reduced |
+| **Delay LD Cap** | 10% of delayed goods | NOT 10% of contract |
+| **Availability LDs** | €30/day/MWh (not €50) | Below 97% annual availability |
+| **Total LD Cap** | 10% of contract value | Linyang rejected 15% |
+| **Scheduled Maintenance** | 10 days/year (not 8) | Linyang recommendation |
+| **SOH Remedy** | Parts only — labor/service NOT included | ⚠️ Significant gap vs. client expectations |
+| **Spares Alternative** | €1,000–1,250/MWh upfront | Alternative to extended warranty |
+
+### ⚠️ OPEN ISSUES TO RESOLVE
+
+1. ~~**Extended Warranty Yr 11–15 pricing**~~ — ✅ RESOLVED: V3 confirms €2,083.72/MWh/year (client rates accepted)
+2. **SOH remedy costs** — Linyang covers parts only, not service/labor during warranty
+3. **Delay LDs basis** — Agreed: LD Value basis with Critical Path (Full Order) / Non-Critical Path (Partial) definitions per Section 9C.0–9C.1 (see linyang-sales-comments.html)
+4. **Performance Bond** — Accepted as 5% corporate guarantee (bank issued, no parent backing)
 
 ---
 

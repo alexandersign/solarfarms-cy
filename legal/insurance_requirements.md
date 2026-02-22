@@ -134,44 +134,64 @@ Lighthief Cyprus Ltd is an Engineering, Procurement, and Construction (EPC) cont
 
 ---
 
-## 4. RECOMMENDED ADDITIONAL COVERAGE
+## 4. STRONGLY RECOMMENDED COVERAGE
 
-### 4.1 Goods in Transit Insurance
+### 4.1 Inland Transit / Goods in Transit Insurance
 
-| Recommendation | Details |
-|----------------|---------|
-| **Coverage** | EUR 2,000,000 per shipment |
-| **Reason** | BESS equipment shipped CIF Limassol; port-to-site transit is Lighthief's responsibility |
+| Requirement | Details |
+|-------------|---------|
+| **Coverage** | EUR 2,000,000 per shipment / EUR 10,000,000 annual aggregate |
+| **Reason** | BESS equipment purchased CIF Limassol; port-to-site transit is Lighthief's responsibility |
+| **Priority** | HIGH |
 
 **Coverage Required:**
-- Port of Limassol to project sites across Cyprus
-- Loading/unloading
-- Storage at port (temporary)
-- Inland transit
+- Port of Limassol to project sites across all 5 districts of Cyprus
+- Loading/unloading at port and site
+- Temporary storage at port (awaiting transport)
+- Inland heavy haulage transit (BESS containers ~43 tonnes each)
+
+> **Note:** Marine cargo insurance for the sea voyage (China → Cyprus) is **not required** — covered by Linyang under CIF Incoterms® 2020.
 
 ---
 
-### 4.2 Demonstration Equipment Insurance
+### 4.2 Delay in Start-Up (DSU)
+
+| Requirement | Details |
+|-------------|---------|
+| **Coverage** | 12-month indemnity period |
+| **Reason** | Protects against revenue loss when material damage delays COD; Lighthief exposed to 10% delay LDs under EPC contracts |
+| **Priority** | HIGH |
+
+---
+
+### 4.3 Directors & Officers (D&O) + Legal Protection
+
+| Requirement | Details |
+|-------------|---------|
+| **Coverage** | EUR 2,000,000 + defence costs (non-eroding) |
+| **Reason** | Protection for company directors against personal liability from shareholder, creditor, employee, client, and regulatory claims |
+| **Priority** | HIGH |
+
+---
+
+### 4.4 Advance Payment Guarantee (APG) / Surety Bond Facility
+
+| Requirement | Details |
+|-------------|---------|
+| **Coverage** | EUR 15,000,000 aggregate facility; max EUR 3,000,000 per bond |
+| **Reason** | Client advance payment protection; required for bank-financed projects; competitive parity |
+| **Priority** | HIGH |
+
+---
+
+## 5. RECOMMENDED ADDITIONAL COVERAGE
+
+### 5.1 Cyber Liability Insurance
 
 | Recommendation | Details |
 |----------------|---------|
 | **Coverage** | EUR 500,000 |
-| **Reason** | Distribution Agreement Section 17.2 — demo equipment insurance borne by Distributor |
-
-**Coverage Required:**
-- Demonstration units on loan from Linyang
-- All risks including theft, damage, fire
-- Storage at Lighthief premises
-- Transport to/from client sites
-
----
-
-### 4.3 Cyber Liability Insurance
-
-| Recommendation | Details |
-|----------------|---------|
-| **Coverage** | EUR 500,000 |
-| **Reason** | LTSA includes 24/7 remote monitoring of client BESS systems |
+| **Reason** | LTSA includes 24/7 SCADA/EMS remote monitoring of client BESS systems; GDPR and NIS2 compliance |
 
 **Coverage Required:**
 - Data breach liability
@@ -182,12 +202,48 @@ Lighthief Cyprus Ltd is an Engineering, Procurement, and Construction (EPC) cont
 
 ---
 
-### 4.4 Directors & Officers (D&O) Insurance
+### 5.2 Environmental / Pollution Liability
 
 | Recommendation | Details |
 |----------------|---------|
-| **Coverage** | EUR 1,000,000 |
-| **Reason** | Protection for company directors against personal liability |
+| **Coverage** | EUR 1,000,000 per occurrence / EUR 2,000,000 aggregate |
+| **Reason** | Battery electrolyte spill, coolant leak, soil contamination during construction or operations |
+
+---
+
+### 5.3 Product Liability (Lighthief Scope)
+
+| Recommendation | Details |
+|----------------|---------|
+| **Coverage** | EUR 5,000,000 |
+| **Reason** | Covers Lighthief-installed components (cabling, grounding, civil works); OEM product defects covered by Linyang's EUR 5M product liability (AXA) |
+
+---
+
+### 5.4 Sabotage & Terrorism
+
+| Recommendation | Details |
+|----------------|---------|
+| **Coverage** | Aligned with CAR/EAR limits |
+| **Reason** | BESS sites are critical energy infrastructure; 47 remote/semi-rural sites with limited physical security during construction |
+
+---
+
+### 5.5 Demonstration Equipment Insurance
+
+| Recommendation | Details |
+|----------------|---------|
+| **Coverage** | EUR 500,000 |
+| **Reason** | Distribution Agreement Section 17.2 — demo equipment insurance borne by Distributor |
+
+---
+
+### 5.6 Legal Expenses Insurance
+
+| Recommendation | Details |
+|----------------|---------|
+| **Coverage** | EUR 250,000 per annum |
+| **Reason** | Contract disputes, employment disputes, regulatory defence, subcontractor disputes |
 
 ---
 
@@ -206,23 +262,36 @@ The following insurance is maintained by Linyang (OEM) and names Lighthief as ad
 
 ## 6. INSURANCE SUMMARY TABLE
 
-### Mandatory (Contractual Requirements)
+### Mandatory (Contractual + Legal Requirements)
 
 | Coverage Type | Minimum | Priority |
 |---------------|---------|----------|
+| Employer's Liability | Per Cyprus law (Law 174/1989) | **MANDATORY** |
 | General Commercial Liability | EUR 1,000,000 | **REQUIRED** |
 | Professional Indemnity | EUR 1,000,000 | **REQUIRED** |
-| Contractor's All Risks | Per project value | **REQUIRED** |
-| Employer's Liability | Per Cyprus law | **REQUIRED** |
+| Contractor's All Risks (with LEG3) | EUR 50M per project / EUR 104M aggregate | **REQUIRED** |
+
+### Strongly Recommended (HIGH Priority)
+
+| Coverage Type | Recommended | Priority |
+|---------------|-------------|----------|
+| Inland Transit / Goods in Transit | EUR 2,000,000 per shipment / EUR 10M aggregate | **HIGH** |
+| Delay in Start-Up (DSU) | 12-month indemnity | **HIGH** |
+| D&O + Legal Protection | EUR 2,000,000 + defence costs | **HIGH** |
+| APG / Surety Bond Facility | EUR 15,000,000 aggregate | **HIGH** |
 
 ### Recommended (Risk Mitigation)
 
 | Coverage Type | Recommended | Priority |
 |---------------|-------------|----------|
-| Goods in Transit | EUR 2,000,000 | HIGH |
-| Demo Equipment | EUR 500,000 | MEDIUM |
+| Product Liability (Lighthief scope) | EUR 5,000,000 | MEDIUM |
 | Cyber Liability | EUR 500,000 | MEDIUM |
-| Directors & Officers | EUR 1,000,000 | MEDIUM |
+| Environmental / Pollution | EUR 1,000,000 | MEDIUM |
+| Sabotage & Terrorism | Per CAR/EAR limits | MEDIUM |
+| Legal Expenses | EUR 250,000 | MEDIUM |
+| Demo Equipment | EUR 500,000 | MEDIUM |
+
+> **Note:** Marine cargo insurance is **not required** — all BESS equipment is purchased CIF Limassol (Incoterms® 2020) from Linyang.
 
 ---
 
@@ -272,34 +341,42 @@ For projects with multiple parties, policies should include cross-liability cove
 
 ## 9. PROJECT INFORMATION (For Underwriting)
 
-### Typical Project Profile
+### Portfolio Scale
 
-| Parameter | Typical Range |
-|-----------|---------------|
-| Project size | 1 MWh to 50 MWh |
-| Project value | EUR 300,000 to EUR 5,000,000 |
+| Parameter | Value |
+|-----------|-------|
+| Total capacity | 881.78 MWh across 51 parks |
+| Total EPC contract value | ~EUR 92–104 Million |
+| Largest single project | ~EUR 10,600,000 (100 MWh) |
+| Typical project range | EUR 300,000 to EUR 5,000,000 |
 | Projects per year | 5 to 15 |
-| Annual revenue | EUR 3,000,000 to EUR 15,000,000 |
-| Employees | 5 to 15 |
+| Peak construction exposure | EUR 41.8M (Q2 2026) |
+| Employees | 5 (current), 10 (projected) |
 | Subcontractors used | Civil works, electrical installation |
+| Districts | Famagusta, Larnaca, Limassol, Nicosia, Paphos |
 
 ### Equipment Handled
 
 | Equipment | Manufacturer | Value per Unit |
 |-----------|--------------|----------------|
 | Battery Container (5MWh) | Linyang | ~EUR 400,000 |
-| PCS (Power Conversion System) | Linyang | ~EUR 150,000 |
-| Transformer | Various | ~EUR 50,000 |
-| Switchgear | Various | ~EUR 30,000 |
+| MV SKID (PCS + Transformer) | Linyang/Kehua | ~EUR 200,000–400,000 |
+| Cables & Accessories | Various | ~EUR 3M total (portfolio) |
+| Civil Works | Subcontracted | ~EUR 3M total (portfolio) |
 
 ### Risk Profile
 
-| Risk Factor | Assessment |
-|-------------|------------|
-| Fire risk | Low (LFP batteries, UL9540A certified) |
-| Installation risk | Low (OEM performs installation) |
-| Professional risk | Medium (EPC design and coordination) |
-| Transit risk | Medium (heavy equipment transport) |
+| Risk Factor | Assessment | Detail |
+|-------------|------------|--------|
+| Fire risk | Low | LFP batteries, UL9540A certified — no thermal propagation |
+| Installation risk | Low | OEM (Linyang) performs equipment installation |
+| Professional risk | Medium | EPC design and project coordination |
+| Transit risk | Medium | Heavy equipment transport (port to site, ~43 tonnes per container) |
+| Electrical risk | Medium | MV/LV installation, grid connection work |
+
+### Claims History
+
+No insurance claims have been filed since incorporation. Clean claims record.
 
 ---
 
@@ -337,23 +414,30 @@ Lophitis Business Center 1, Office 201
 Please provide quotes for the following packages:
 
 ### Package A: Minimum Contractual Requirements
+- Employer's Liability: Per Cyprus law
 - General Commercial Liability: EUR 1,000,000
 - Professional Indemnity: EUR 1,000,000
-- Contractor's All Risks: EUR 5,000,000 annual aggregate
-- Employer's Liability: Per Cyprus law
+- Contractor's All Risks (with LEG3): EUR 50,000,000 per project
+- Inland Transit: EUR 2,000,000 per shipment
 
 ### Package B: Recommended Full Coverage
 - All Package A coverages, PLUS:
-- Goods in Transit: EUR 2,000,000
-- Demo Equipment: EUR 500,000
+- D&O + Legal Protection: EUR 2,000,000
+- Delay in Start-Up (DSU): 12-month indemnity
+- APG / Surety Bond Facility: EUR 15,000,000 aggregate
 - Cyber Liability: EUR 500,000
-- Directors & Officers: EUR 1,000,000
+- Legal Expenses: EUR 250,000
 
 ### Package C: Enhanced Coverage
-- All Package B coverages with increased limits:
-- General Commercial Liability: EUR 2,000,000
-- Professional Indemnity: EUR 2,000,000
-- CAR: EUR 10,000,000 annual aggregate
+- All Package B with increased limits, PLUS:
+- General Commercial Liability: EUR 5,000,000 per occurrence / EUR 10,000,000 aggregate
+- Professional Indemnity: EUR 2,000,000 per claim / EUR 5,000,000 aggregate
+- CAR/EAR (with LEG3): EUR 50M per project / EUR 104M aggregate
+- Product Liability: EUR 5,000,000
+- Environmental / Pollution Liability: EUR 1,000,000
+- Sabotage & Terrorism: Per CAR/EAR limits
+
+> We welcome proposals for a **combined construction folio program** where available.
 
 ---
 
@@ -362,4 +446,5 @@ Please provide quotes for the following packages:
 ---
 
 *This document is prepared for insurance procurement purposes and summarises the insurance requirements arising from Lighthief Cyprus Ltd's contractual obligations. All coverage amounts and terms are subject to underwriting and policy conditions.*
+*Revised: 20 February 2026*
 

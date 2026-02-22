@@ -20,9 +20,9 @@
 
 | # | Issue | Client Doc Says | Linyang RFI Says | Impact |
 |---|-------|----------------|-----------------|--------|
-| 1 | **Extended Warranty Yr 11-15 BESS** | €1,157/MWh/yr | **€4,182.25/MWh/yr** | +261% cost |
+| 1 | ~~**Extended Warranty Yr 11-15 BESS**~~ | €1,157/MWh/yr | ✅ €1,157.62/MWh/yr (V3) | **RESOLVED** |
 | 2 | **SOH Remedy Costs** | Module replacement included | **Labor/service NOT included** | Hidden costs |
-| 3 | **Parent Company Backing** | Implied | **NO** | Credit risk |
+| 3 | **Performance Bond** | 10% with parent backing | **5% corporate guarantee**, no parent | Accepted |
 | 4 | **Delay LDs Basis** | % of contract value | **% of delayed goods only** | Reduced protection |
 | 5 | **Total LD Cap** | Not specified | **10% of contract value** | Cap on liability |
 | 6 | **Cycle Life** | Not specified | **7,000 cycles** (not 8,000) | Lower than typical |
@@ -124,11 +124,10 @@ These are the **final confirmed prices** presented to clients:
 
 | Period | Client Doc Rate | Linyang RFI Response | Status |
 |--------|-----------------|---------------------|--------|
-| Years 6-10 | €913/MWh/year | ✅ €913.92/MWh/year | ✅ Confirmed |
-| Years 11-15 | €1,157/MWh/year | 🔴 **€4,182.25/MWh/year** | ⚠️ CONFLICT |
+| Years 6-10 | €913/MWh/year | ✅ €913.92/MWh/year | ✅ Confirmed (V1 & V3) |
+| Years 11-15 | €1,157/MWh/year | ✅ **€1,157.62/MWh/year** | ✅ Confirmed (V3) |
 
-> ⚠️ **CRITICAL:** Linyang's actual price for Years 11-15 BESS warranty is **€4,182.25/MWh/year** - 
-> significantly higher than the €1,157/MWh shown in client presentation.
+> ✅ **RESOLVED (RFI V3):** Linyang V3 confirms Years 11-15 BESS warranty at €1,157.62/MWh/year — matching client presentation rates. Previous V1 conflict (€2,084) is superseded.
 
 ### Extended Warranty - PCS & Transformer
 
@@ -142,8 +141,8 @@ These are the **final confirmed prices** presented to clients:
 | Period | BESS | PCS+MVS | Total |
 |--------|------|---------|-------|
 | Years 6-10 | €913.92 | €747.76 | **€1,661.68/MWh/year** ✅ |
-| Years 11-15 | €4,182.25 | €1,086.20 | **€5,268.45/MWh/year** 🔴 |
-| Years 16-20 | €3,858.75 | €2,315.25 | **€6,174.00/MWh/year** |
+| Years 11-15 | €1,157.62 | €926.10 | **€2,083.72/MWh/year** ✅ (V3) |
+| Years 16-20 | N/A | N/A | Not available (max 15 years) |
 
 > Spare parts available in local 950m² storage
 > 
@@ -175,7 +174,7 @@ These are the **final confirmed prices** presented to clients:
 | **SOH Year 15** | 68.1% | ≥70% | ✅ Better than quoted |
 | **SOH Year 20** | 68.1% | ⚠️ Only 15 years covered | ⚠️ Max 15 years |
 | **Cycle Life** | Not specified | 7,000 cycles @ 70% EOL | ⚠️ Not 8,000 |
-| **System Availability** | ≥97% | ≥97% (formula TBD for 863.5 MWh) | ⚠️ Needs agreement |
+| **System Availability** | ≥97% | ≥97% (formula TBD for 881.78 MWh) | ⚠️ Needs agreement |
 | **Availability LDs** | €30/day/MWh | €30/day/MWh | ✅ Confirmed |
 | **Maintenance Allowance** | 2 days/yr | 10 days/year recommended | ⚠️ Linyang wants more |
 | **PCS Efficiency** | - | ≥98% at rated power | ✅ Confirmed |

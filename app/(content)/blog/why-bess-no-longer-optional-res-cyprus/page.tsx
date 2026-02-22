@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -44,6 +45,16 @@ export const metadata: Metadata = {
 export default function WhyBESSNoLongerOptionalArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why BESS Is No Longer Optional for RES Projects in Cyprus | 2026 Market Reality",
+        "author": { "@type": "Person", "name": "Alexander Papacosta" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2026-02-13",
+        "description": "With curtailment at 47%, midday prices collapsing to €77/MWh, and annual revenue losses exceeding €800K per 5MW park, adding BESS to your renewable energy project in Cyprus is now a financial necessity — not an option.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/why-bess-no-longer-optional-res-cyprus"
+      }} />
       {/* Hero */}
       <section className="section-padding bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
         <div className="container">
@@ -421,8 +432,8 @@ export default function WhyBESSNoLongerOptionalArticle() {
                 A BESS changes this equation fundamentally. Instead of being forced to sell at rock-bottom midday
                 prices (or having your production curtailed entirely), you <strong>store energy at €0 cost</strong> (since
                 it would otherwise be wasted) and <strong>discharge during the €183/MWh evening peak</strong>.
-                Every MWh shifted from curtailment to evening dispatch nets you ~€161/MWh after accounting for
-                87.8% round-trip efficiency losses.
+                Every MWh shifted from curtailment to evening dispatch nets you ~€158/MWh after accounting for
+                86.32% AC-AC round-trip efficiency losses.
               </p>
             </div>
 
@@ -587,7 +598,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Round-trip efficiency:</span>
-                      <span>87.8%</span>
+                      <span>86.32%</span>
                     </div>
                     <div className="flex justify-between border-t pt-2 font-bold text-green-700">
                       <span>Net revenue per MWh:</span>
@@ -634,81 +645,292 @@ export default function WhyBESSNoLongerOptionalArticle() {
               </div>
             </div>
 
-            {/* Section 7: Real ROI by Park Size */}
+            {/* Section 7: Payback by Duration — 2h vs 3h vs 4h */}
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-heading font-bold mb-2 text-center">BESS ROI by Park Size</h2>
-              <p className="text-center text-gray-600 mb-8">
-                Conservative estimates based on 2025 curtailment levels and verified market pricing
+              <h2 className="text-3xl font-heading font-bold mb-2 text-center">
+                Payback Period: 2-Hour vs 3-Hour vs 4-Hour Systems
+              </h2>
+              <p className="text-center text-gray-600 mb-4">
+                Validated against confirmed client pricing (Feb 2026) and the Lighthief financial model.
+                Reference: 5 MW PV park with tracker (9,488 MWh/yr gross production).
+              </p>
+              <p className="text-center text-xs text-gray-500 mb-8">
+                Model parameters: 86.32% RTE | 90% DoD | 97% availability | 2.5%/yr degradation | €182/MWh evening peak | 50% recovery rate | 2% price escalation
               </p>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>5 MW Park + 12.5 MWh BESS</CardTitle>
-                    <CardDescription>2.5 MWh per MW installed</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">BESS Investment:</span>
-                      <span className="font-bold">€1,750,000</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Annual BESS Revenue:</span>
-                      <span className="text-green-600 font-semibold">€294,000</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Annual BESS OPEX:</span>
-                      <span>€25,000</span>
-                    </div>
-                    <div className="flex justify-between border-t pt-2">
-                      <span className="font-bold">Net BESS Income:</span>
-                      <span className="font-bold text-green-600">€269,000/year</span>
-                    </div>
-                    <div className="bg-green-100 rounded-lg p-3 text-center">
-                      <div className="text-sm text-gray-600">BESS Standalone ROI</div>
-                      <div className="text-3xl font-bold text-green-700">15.4%</div>
-                      <div className="text-xs text-gray-500">Payback: ~6.5 years</div>
-                    </div>
-                  </CardContent>
-                </Card>
+              {/* CAPEX comparison */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-4 text-center">Confirmed BESS Pricing (Feb 2026)</h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <Card className="border-blue-200">
+                    <CardContent className="pt-6 text-center">
+                      <Badge className="mb-3 bg-blue-600 text-white">2-Hour System</Badge>
+                      <div className="text-sm text-gray-600 mb-1">5 MW / 10 MWh</div>
+                      <div className="text-2xl font-bold text-gray-800">€136,106</div>
+                      <div className="text-xs text-gray-500">/MWh installed</div>
+                      <div className="mt-3 border-t pt-3">
+                        <div className="text-lg font-bold text-gray-900">€1,481,613</div>
+                        <div className="text-xs text-gray-500">Total (incl. grid + 5% contingency)</div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle>10 MW Park + 25 MWh BESS</CardTitle>
-                    <CardDescription>2.5 MWh per MW installed</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">BESS Investment:</span>
-                      <span className="font-bold">€2,875,000</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Annual BESS Revenue:</span>
-                      <span className="text-green-600 font-semibold">€588,000</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Annual BESS OPEX:</span>
-                      <span>€43,000</span>
-                    </div>
-                    <div className="flex justify-between border-t pt-2">
-                      <span className="font-bold">Net BESS Income:</span>
-                      <span className="font-bold text-green-600">€545,000/year</span>
-                    </div>
-                    <div className="bg-green-100 rounded-lg p-3 text-center">
-                      <div className="text-sm text-gray-600">BESS Standalone ROI</div>
-                      <div className="text-3xl font-bold text-green-700">19.0%</div>
-                      <div className="text-xs text-gray-500">Payback: ~5.3 years | Economies of scale</div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  <Card className="border-amber-200">
+                    <CardContent className="pt-6 text-center">
+                      <Badge className="mb-3 bg-amber-600 text-white">3-Hour System</Badge>
+                      <div className="text-sm text-gray-600 mb-1">5 MW / 15 MWh</div>
+                      <div className="text-2xl font-bold text-gray-800">€130,792</div>
+                      <div className="text-xs text-gray-500">/MWh installed</div>
+                      <div className="mt-3 border-t pt-3">
+                        <div className="text-lg font-bold text-gray-900">€2,112,474</div>
+                        <div className="text-xs text-gray-500">Total (incl. grid + 5% contingency)</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-green-200">
+                    <CardContent className="pt-6 text-center">
+                      <Badge className="mb-3 bg-green-600 text-white">4-Hour System</Badge>
+                      <div className="text-sm text-gray-600 mb-1">5 MW / 20 MWh</div>
+                      <div className="text-2xl font-bold text-gray-800">€112,945</div>
+                      <div className="text-xs text-gray-500">/MWh installed</div>
+                      <div className="mt-3 border-t pt-3">
+                        <div className="text-lg font-bold text-gray-900">€2,424,345</div>
+                        <div className="text-xs text-gray-500">Total (incl. grid + 5% contingency)</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-md text-center">
-                <p className="text-lg text-gray-700">
-                  <strong>Key insight:</strong> BESS equipment costs drop significantly at scale
-                  (€165k/MWh for small systems vs €100-115k/MWh for large systems), meaning larger parks
-                  achieve even better BESS ROI through economies of scale.
+              {/* Key insight: same revenue, different costs */}
+              <div className="bg-white rounded-xl p-6 shadow-md mb-8">
+                <h3 className="font-bold text-lg mb-3 text-center">Why Duration Matters: The Revenue Cap Effect</h3>
+                <p className="text-gray-700 text-sm text-center mb-4">
+                  In curtailment-recovery mode (current Cyprus law), all three systems recover the <strong>same
+                  amount of energy</strong> — because the constraint is available curtailment from the PV park,
+                  not the battery&apos;s storage capacity. This means smaller, cheaper systems achieve faster payback.
                 </p>
+                <div className="grid grid-cols-3 gap-4 text-center text-sm">
+                  <div>
+                    <div className="font-bold text-gray-700">Annual Curtailment (47%)</div>
+                    <div className="text-xl font-bold text-red-600">4,459 MWh</div>
+                    <div className="text-gray-500">Wasted from 5 MW park</div>
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-700">Recoverable (50%)</div>
+                    <div className="text-xl font-bold text-amber-600">2,230 MWh</div>
+                    <div className="text-gray-500">Same for all 3 systems</div>
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-700">Year 1 Revenue</div>
+                    <div className="text-xl font-bold text-green-600">€405,860</div>
+                    <div className="text-gray-500">Same for all 3 systems</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payback comparison at 47% curtailment */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-2 text-center">Payback at 47% Curtailment (2025 Reality)</h3>
+                <p className="text-center text-sm text-gray-500 mb-4">
+                  Revenue: €405,860/yr (all systems) | OPEX varies by battery capacity
+                </p>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <Card className="border-2 border-blue-500 bg-blue-50/50">
+                    <CardHeader className="pb-2">
+                      <Badge className="mb-1 bg-blue-600 text-white w-fit">Best Payback</Badge>
+                      <CardTitle className="text-lg">2-Hour (10 MWh)</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Revenue:</span>
+                        <span className="font-semibold">€405,860</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">OPEX:</span>
+                        <span>€77,255</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-400">
+                        <span>O&M €46.7K + Ins €7.4K + Fixed €13K + Broker €10.1K</span>
+                      </div>
+                      <div className="flex justify-between border-t pt-2 font-bold text-green-700">
+                        <span>Net Income:</span>
+                        <span>€328,605/yr</span>
+                      </div>
+                      <div className="bg-blue-100 rounded-lg p-4 text-center mt-2">
+                        <div className="text-sm text-gray-600">Simple Payback</div>
+                        <div className="text-4xl font-bold text-blue-700">4.5 yr</div>
+                        <div className="text-sm font-semibold text-blue-600 mt-1">ROI: 22.2%</div>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-3 text-center mt-2">
+                        <div className="text-xs text-gray-500">With 70% financing (4.5%, 15yr)</div>
+                        <div className="text-sm font-bold">Equity payback: 1.9 years</div>
+                        <div className="text-xs text-gray-500">DSCR: 3.39x</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-amber-50/50">
+                    <CardHeader className="pb-2">
+                      <Badge className="mb-1 bg-amber-600 text-white w-fit">Balanced</Badge>
+                      <CardTitle className="text-lg">3-Hour (15 MWh)</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Revenue:</span>
+                        <span className="font-semibold">€405,860</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">OPEX:</span>
+                        <span>€103,759</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-400">
+                        <span>O&M €70K + Ins €10.6K + Fixed €13K + Broker €10.1K</span>
+                      </div>
+                      <div className="flex justify-between border-t pt-2 font-bold text-green-700">
+                        <span>Net Income:</span>
+                        <span>€302,101/yr</span>
+                      </div>
+                      <div className="bg-amber-100 rounded-lg p-4 text-center mt-2">
+                        <div className="text-sm text-gray-600">Simple Payback</div>
+                        <div className="text-4xl font-bold text-amber-700">7.0 yr</div>
+                        <div className="text-sm font-semibold text-amber-600 mt-1">ROI: 14.3%</div>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-3 text-center mt-2">
+                        <div className="text-xs text-gray-500">With 70% financing (4.5%, 15yr)</div>
+                        <div className="text-sm font-bold">Equity payback: 3.9 years</div>
+                        <div className="text-xs text-gray-500">DSCR: 2.18x</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-green-50/50">
+                    <CardHeader className="pb-2">
+                      <Badge className="mb-1 bg-green-600 text-white w-fit">Future-Proof</Badge>
+                      <CardTitle className="text-lg">4-Hour (20 MWh)</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Revenue:</span>
+                        <span className="font-semibold">€405,860</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">OPEX:</span>
+                        <span>€128,669</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-400">
+                        <span>O&M €93.4K + Ins €12.1K + Fixed €13K + Broker €10.1K</span>
+                      </div>
+                      <div className="flex justify-between border-t pt-2 font-bold text-green-700">
+                        <span>Net Income:</span>
+                        <span>€277,191/yr</span>
+                      </div>
+                      <div className="bg-green-100 rounded-lg p-4 text-center mt-2">
+                        <div className="text-sm text-gray-600">Simple Payback</div>
+                        <div className="text-4xl font-bold text-green-700">8.7 yr</div>
+                        <div className="text-sm font-semibold text-green-600 mt-1">ROI: 11.4%</div>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-3 text-center mt-2">
+                        <div className="text-xs text-gray-500">With 70% financing (4.5%, 15yr)</div>
+                        <div className="text-sm font-bold">Equity payback: 6.1 years</div>
+                        <div className="text-xs text-gray-500">DSCR: 1.75x</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Conservative scenario at 25.8% curtailment */}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-2 text-center">Conservative Scenario: 25.8% Curtailment</h3>
+                <p className="text-center text-sm text-gray-500 mb-4">
+                  Revenue: €222,768/yr (model default, 2024 average curtailment rate)
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-gray-100">
+                        <th className="text-left p-3 font-semibold border-b-2">Metric</th>
+                        <th className="text-center p-3 font-semibold border-b-2 text-blue-700">2-Hour (10 MWh)</th>
+                        <th className="text-center p-3 font-semibold border-b-2 text-amber-700">3-Hour (15 MWh)</th>
+                        <th className="text-center p-3 font-semibold border-b-2 text-green-700">4-Hour (20 MWh)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b">
+                        <td className="p-3 text-gray-600">BESS CAPEX</td>
+                        <td className="text-center p-3 font-semibold">€1,481,613</td>
+                        <td className="text-center p-3 font-semibold">€2,112,474</td>
+                        <td className="text-center p-3 font-semibold">€2,424,345</td>
+                      </tr>
+                      <tr className="border-b bg-gray-50">
+                        <td className="p-3 text-gray-600">Year 1 Revenue</td>
+                        <td className="text-center p-3" colSpan={3}>€222,768 (same for all)</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="p-3 text-gray-600">Year 1 OPEX</td>
+                        <td className="text-center p-3">€72,685</td>
+                        <td className="text-center p-3">€99,189</td>
+                        <td className="text-center p-3">€124,099</td>
+                      </tr>
+                      <tr className="border-b bg-gray-50">
+                        <td className="p-3 text-gray-600 font-semibold">Net Income</td>
+                        <td className="text-center p-3 font-bold text-green-700">€150,083</td>
+                        <td className="text-center p-3 font-bold text-green-700">€123,579</td>
+                        <td className="text-center p-3 font-bold text-green-700">€98,669</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="p-3 text-gray-600 font-semibold">Simple Payback</td>
+                        <td className="text-center p-3 font-bold text-blue-700">9.9 years</td>
+                        <td className="text-center p-3 font-bold text-amber-700">17.1 years</td>
+                        <td className="text-center p-3 font-bold text-green-700">24.6 years</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="p-3 text-gray-600 font-semibold">ROI</td>
+                        <td className="text-center p-3 font-bold text-blue-700">10.1%</td>
+                        <td className="text-center p-3 font-bold text-amber-700">5.9%</td>
+                        <td className="text-center p-3 font-bold text-green-700">4.1%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Guidance */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="font-bold text-lg mb-4 text-center">Which Duration Should You Choose?</h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="font-bold text-blue-700 mb-2">2-Hour System</div>
+                    <p className="text-sm text-gray-700">
+                      <strong>Best for pure curtailment recovery.</strong> Fastest payback (4.5 years at current rates).
+                      Lowest capital outlay. Ideal if your primary goal is revenue protection today.
+                    </p>
+                  </div>
+                  <div className="text-center p-4 bg-amber-50 rounded-lg">
+                    <div className="font-bold text-amber-700 mb-2">3-Hour System</div>
+                    <p className="text-sm text-gray-700">
+                      <strong>Balanced choice.</strong> Captures more energy on high-production days. Better positioned
+                      for future DAM arbitrage when legislation allows grid charging.
+                    </p>
+                  </div>
+                  <div className="text-center p-4 bg-green-50 rounded-lg">
+                    <div className="font-bold text-green-700 mb-2">4-Hour System</div>
+                    <p className="text-sm text-gray-700">
+                      <strong>Maximum future-proofing.</strong> Best €/MWh cost. Can discharge across the full evening
+                      peak (17:00-21:00). Highest value when grid services and arbitrage markets open.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4 p-4 bg-purple-50 rounded-lg text-center">
+                  <p className="text-sm text-gray-700">
+                    <strong>Future upside:</strong> When DAM arbitrage legislation passes, 4-hour systems gain an
+                    additional ~€72/MWh net per cycle from grid charging, adding ~€170K-€280K/year in revenue.
+                    This would bring the 4-hour payback down to <strong>4.8 years</strong> — making all three
+                    durations viable with payback under 5 years.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -860,7 +1082,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                 </Button>
               </div>
               <p className="mt-6 text-sm opacity-75">
-                Contact Alexander Papacosta: +357 99 164 158 | alexander.papacosta@lighthief.com
+                Contact Alexander Papacosta: +357 99 164 158 | office@lighthief.com
               </p>
             </div>
 

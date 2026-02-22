@@ -34,7 +34,7 @@ const projects = [
     title: "Agios Theodoros Solar Park with Battery Storage",
     location: "Agios Theodoros, Larnaca District",
     capacity: 2.64,
-    investment: 4240000,
+    investment: 4590000,
     roi: 30,
     annualRevenue: 1050000,
     status: "Ready to Build",
@@ -67,7 +67,7 @@ const projects = [
     completionDate: "Energized & Grid Connected",
     image: "/images/solar-park-field-unsplash.jpg",
     highlights: [
-      "Real curtailment data: 38% avg, up to 67% peak",
+      "Real curtailment data: 35% avg, up to 67% peak",
       "18 months verified production data available",
       "BESS opportunity: recover €600k+ annually",
       "ROI boost from 14.5% to 18%+ with 40MWh BESS",
@@ -351,8 +351,8 @@ export default function ProjectsPage() {
                     <span className="font-semibold">€4.59M</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Min Equity (100%)</span>
-                    <span className="font-semibold">€1.75M</span>
+                    <span className="text-gray-600">Equity Required</span>
+                    <span className="font-semibold">€2.32M</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Leveraged IRR</span>
@@ -360,7 +360,7 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Annual Revenue</span>
-                    <span className="font-semibold">€1.23M</span>
+                    <span className="font-semibold">~€1.05M</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Target</span>

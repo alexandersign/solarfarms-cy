@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
         await resend.emails.send({
           from: 'SolarFarms.cy <noreply@solarfarms.cy>',
           replyTo: validatedData.email,
-          to: ['alexander.papacosta@lighthief.com'],
+          to: ['office@lighthief.com'],
           subject: `PROJECT INTEREST - ${validatedData.projectRef} - ${validatedData.name}`,
           html: `
             <!DOCTYPE html>
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
       try {
         await resend.emails.send({
           from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-          replyTo: 'alexander.papacosta@lighthief.com',
+          replyTo: 'office@lighthief.com',
           to: [validatedData.email],
           subject: `Thank you for your interest in ${validatedData.projectRef}`,
           html: `
@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
                     
                     <p>For immediate questions, contact Alexander Papacosta directly:</p>
                     <p><strong>WhatsApp:</strong> +357 99 164 158<br>
-                    <strong>Email:</strong> alexander.papacosta@lighthief.com</p>
+                    <strong>Email:</strong> office@lighthief.com</p>
                     
                     <div style="text-align: center; margin: 30px 0;">
                         <a href="https://wa.me/35799164158?text=I inquired about ${validatedData.projectRef}" class="cta">

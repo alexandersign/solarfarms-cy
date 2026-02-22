@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFQ - Heavy Transport & Unloading | A. Soulis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .page { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 50px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%); color: white; padding: 25px 30px; margin: -40px -50px 30px -50px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .logo { display: none; }
+        h1 { color: #2c3e50; font-size: 24px; margin: 15px 0; }
+        .rfq-number { background: #f39c12; color: white; padding: 8px 20px; display: inline-block; font-weight: bold; font-size: 14px; border-radius: 3px; }
+        .subtitle { color: #7f8c8d; font-size: 16px; margin-top: 10px; }
+        h2 { color: #2c3e50; font-size: 18px; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid #f39c12; }
+        h3 { color: #34495e; font-size: 15px; margin: 20px 0 10px 0; }
+        .info-box { background: #ecf0f1; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; }
+        .vendor-box { background: #2c3e50; color: white; padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .vendor-box h3 { color: #f39c12; margin-bottom: 10px; }
+        .reference-box { background: #e8f6e8; border-left: 4px solid #27ae60; padding: 15px 20px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        th { background: #2c3e50; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .total-row { background: #2c3e50 !important; color: white; font-weight: bold; }
+        .total-row td { border-color: #2c3e50; }
+        .subtotal-row { background: #34495e !important; color: white; font-weight: 600; }
+        .subtotal-row td { border-color: #34495e; }
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 80px; }
+        ul, ol { margin: 10px 0 10px 25px; }
+        li { margin: 5px 0; }
+        .spec-highlight { background: #fff3cd; padding: 3px 8px; border-radius: 3px; font-weight: bold; }
+        .container-spec { display: inline-block; background: #e8f4fd; padding: 10px 15px; border-radius: 5px; margin: 5px; border-left: 4px solid #3498db; }
+        .weight-warning { color: #e74c3c; font-weight: bold; }
+        .contact-box { background: #2c3e50; color: white; padding: 20px; margin-top: 30px; border-radius: 5px; }
+        .contact-box h3 { color: #f39c12; margin-bottom: 10px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #7f8c8d; font-size: 12px; }
+        .district-header { background: #f39c12 !important; color: white; font-weight: bold; }
+        .district-header td { border-color: #f39c12; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Ref:</strong> RFQ-LCY-TRANS-2026-001</div>
+                    <div><strong>Date:</strong> 27 January 2026</div>
+                </div>
+            </div>
+            <h1 style="color: white; text-align: center; margin-top: 10px;">Request for Quotation</h1>
+            <p class="subtitle" style="color: rgba(255,255,255,0.85); text-align: center;">Heavy Transport & Crane Unloading Services - BESS Equipment</p>
+        </div>
+
+        <div class="vendor-box">
+            <h3>TO: A. SOULIS - Special Lifting & Heavy Haulage</h3>
+            <p><strong>Attention:</strong> Stephanos Soulis, General Manager</p>
+            <p><strong>Tel:</strong> +357 24642430 | <strong>Mobile:</strong> +357 99522736</p>
+            <p><strong>Email:</strong> stephanos@souliscranes.com | asoulis@spidernet.com.cy</p>
+            <p><strong>Web:</strong> www.soulis-cranes.com.cy</p>
+        </div>
+        
+        <div class="info-box">
+            <strong>RFQ Issue Date:</strong> 27 January 2026<br>
+            <strong>Quotation Required By:</strong> 7 February 2026<br>
+            <strong>Project:</strong> Cyprus BESS Portfolio - 47 Solar Parks<br>
+            <strong>Equipment Origin:</strong> Limassol Port (CIF Limassol)<br>
+            <strong>Total Containers:</strong> 246 units (176 BESS + 70 MV SKID)
+        </div>
+
+        <div class="reference-box">
+            <strong>📋 REFERENCE QUOTATION (Nov 2025)</strong><br>
+            Limassol Port → Ayios Kendeas:<br>
+            • 6× 20' High Cube (43t) + 4× 20' Standard (15t)<br>
+            • Transport + unload within 2 days: <strong>€23,600</strong><br>
+            • Effective rate: ~€2,360/container
+        </div>
+
+        <h2>1. Equipment Specifications</h2>
+        
+        <h3>1.1 Battery Container (BESS) - 20' High Cube</h3>
+        <div class="container-spec">
+            <strong>Type:</strong> 20' High Cube (20HC)<br>
+            <strong>Dimensions:</strong> 6,058mm × 2,438mm × 2,896mm<br>
+            <strong>Weight:</strong> <span class="weight-warning">~41.5 - 43 tonnes (LOADED)</span><br>
+            <strong>Contents:</strong> LFP Battery Cells + BMS + HVAC<br>
+            <strong>Quantity:</strong> <span class="spec-highlight">176 units</span>
+        </div>
+
+        <h3>1.2 MV SKID Container - 40' High Cube</h3>
+        <div class="container-spec">
+            <strong>Type:</strong> 40' High Cube (40HC)<br>
+            <strong>Dimensions:</strong> 12,192mm × 2,438mm × 2,896mm<br>
+            <strong>Weight:</strong> <span class="weight-warning">~35 - 38 tonnes (LOADED)</span><br>
+            <strong>Contents:</strong> PCS + MV Transformer + Switchgear<br>
+            <strong>Quantity:</strong> <span class="spec-highlight">70 units</span>
+        </div>
+
+        <h2>2. Scope of Work</h2>
+        <table>
+            <tr><th>Service</th><th>Description</th></tr>
+            <tr><td>Collection</td><td>Pick up from Limassol Port container yard</td></tr>
+            <tr><td>Transport</td><td>Heavy haulage to destination site (all Cyprus)</td></tr>
+            <tr><td>Crane Unloading</td><td>Lift and place on prepared concrete foundation</td></tr>
+            <tr><td>Positioning</td><td>Final alignment per site layout drawings</td></tr>
+            <tr><td>Equipment</td><td>Mobile crane, low-loader trailers, escorts as required</td></tr>
+        </table>
+
+        <h3>2.1 Special Requirements</h3>
+        <ul>
+            <li>Heavy load permits to be arranged by contractor</li>
+            <li>Police escorts where required by law</li>
+            <li>Crane capacity: minimum 50 tonnes for 20HC, 80 tonnes for 40HC</li>
+            <li>Containers to be placed within ±50mm of marked positions</li>
+            <li>Containers to be level (shimming may be required)</li>
+            <li>Weekend/night transport acceptable if required</li>
+        </ul>
+
+        <h2>3. Complete Delivery Schedule</h2>
+        <p><em>All deliveries from <strong>Limassol Port</strong> to destinations listed below:</em></p>
+
+        <table>
+            <tr><th>#</th><th>Project Name</th><th>Destination Area</th><th>BESS (20HC)<br>43t each</th><th>MV SKID (40HC)<br>38t each</th><th>Est. Distance<br>(km)</th></tr>
+            
+            <!-- FAMAGUSTA DISTRICT -->
+            <tr class="district-header"><td colspan="6">📍 FAMAGUSTA DISTRICT (7 Parks)</td></tr>
+            <tr><td>1</td><td>Dianary</td><td>Famagusta</td><td>2</td><td>1</td><td>~130</td></tr>
+            <tr><td>2</td><td>Waneron</td><td>Famagusta</td><td>8</td><td>1</td><td>~130</td></tr>
+            <tr><td>3</td><td>Renergetic</td><td>Famagusta</td><td>6</td><td>1</td><td>~130</td></tr>
+            <tr><td>4</td><td>Solarity</td><td>Famagusta</td><td>5</td><td>2</td><td>~130</td></tr>
+            <tr><td>5</td><td>Greendorado</td><td>Famagusta</td><td>4</td><td>1</td><td>~130</td></tr>
+            <tr><td>6</td><td>Galascope</td><td>Famagusta</td><td>5</td><td>2</td><td>~130</td></tr>
+            <tr><td>7</td><td>Esperia Energy</td><td>Famagusta</td><td>5</td><td>1</td><td>~130</td></tr>
+            <tr class="subtotal-row"><td colspan="3"><strong>Famagusta Subtotal</strong></td><td><strong>35</strong></td><td><strong>9</strong></td><td>-</td></tr>
+
+            <!-- LARNACA DISTRICT -->
+            <tr class="district-header"><td colspan="6">📍 LARNACA DISTRICT (2 Parks)</td></tr>
+            <tr><td>8</td><td>My Sun Park</td><td>Larnaca</td><td>1</td><td>1</td><td>~70</td></tr>
+            <tr><td>9</td><td>AGM Group</td><td>Larnaca</td><td>1</td><td>1</td><td>~70</td></tr>
+            <tr class="subtotal-row"><td colspan="3"><strong>Larnaca Subtotal</strong></td><td><strong>2</strong></td><td><strong>2</strong></td><td>-</td></tr>
+
+            <!-- LIMASSOL DISTRICT -->
+            <tr class="district-header"><td colspan="6">📍 LIMASSOL DISTRICT (5 Parks)</td></tr>
+            <tr><td>10</td><td>Polemi</td><td>Polemi / Limassol</td><td>4</td><td>2</td><td>~50</td></tr>
+            <tr><td>11</td><td>LT Group (Ayios Kendeas)</td><td>Ayios Kendeas</td><td>6</td><td>2</td><td>~30</td></tr>
+            <tr><td>12</td><td>ClassOne</td><td>Limassol</td><td>4</td><td>1</td><td>~40</td></tr>
+            <tr><td>13</td><td>Easy Power</td><td>Limassol</td><td>5</td><td>2</td><td>~40</td></tr>
+            <tr><td>14</td><td>Elestore</td><td>Limassol</td><td>4</td><td>1</td><td>~40</td></tr>
+            <tr class="subtotal-row"><td colspan="3"><strong>Limassol Subtotal</strong></td><td><strong>23</strong></td><td><strong>8</strong></td><td>-</td></tr>
+
+            <!-- NICOSIA DISTRICT -->
+            <tr class="district-header"><td colspan="6">📍 NICOSIA DISTRICT (30 Parks)</td></tr>
+            <tr><td>15</td><td>Nicosia1</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>16</td><td>Nicosia2</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>17</td><td>Nicosia3</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>18</td><td>Nicosia4</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>19</td><td>Nicosia5</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>20</td><td>Nicosia6</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>21</td><td>Nicosia7</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>22</td><td>Nicosia8</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>23</td><td>Nicosia9</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>24</td><td>Nicosia10</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>25</td><td>Nicosia11</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>26</td><td>Nicosia12</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>27</td><td>Nicosia13</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>28</td><td>Nicosia14</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>29</td><td>Nicosia15</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>30</td><td>Nicosia16</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>31</td><td>Nicosia17</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>32</td><td>Nicosia18</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>33</td><td>Nicosia19</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>34</td><td>Nicosia20</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>35</td><td>Nicosia21</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>36</td><td>Nicosia22</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>37</td><td>Nicosia23</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>38</td><td>Nicosia24</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>39</td><td>Nicosia25</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>40</td><td>Nicosia26</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>41</td><td>Nicosia27</td><td>Nicosia region</td><td>4</td><td>2</td><td>~90</td></tr>
+            <tr><td>42</td><td>Nicosia28</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>43</td><td>Nicosia29</td><td>Nicosia region</td><td>3</td><td>1</td><td>~90</td></tr>
+            <tr><td>44</td><td>Nicosia30</td><td>Nicosia region</td><td>2</td><td>1</td><td>~90</td></tr>
+            <tr class="subtotal-row"><td colspan="3"><strong>Nicosia Subtotal</strong></td><td><strong>111</strong></td><td><strong>48</strong></td><td>-</td></tr>
+
+            <!-- PAPHOS DISTRICT -->
+            <tr class="district-header"><td colspan="6">📍 PAPHOS DISTRICT (3 Parks)</td></tr>
+            <tr><td>45</td><td>Paphos1</td><td>Paphos</td><td>2</td><td>1</td><td>~70</td></tr>
+            <tr><td>46</td><td>Paphos2</td><td>Paphos</td><td>2</td><td>1</td><td>~70</td></tr>
+            <tr><td>47</td><td>Potamia</td><td>Potamia / Paphos</td><td>1</td><td>1</td><td>~70</td></tr>
+            <tr class="subtotal-row"><td colspan="3"><strong>Paphos Subtotal</strong></td><td><strong>5</strong></td><td><strong>3</strong></td><td>-</td></tr>
+
+            <!-- GRAND TOTAL -->
+            <tr class="total-row">
+                <td colspan="3"><strong>GRAND TOTAL - ALL DISTRICTS</strong></td>
+                <td><strong>176</strong></td>
+                <td><strong>70</strong></td>
+                <td><strong>246 containers</strong></td>
+            </tr>
+        </table>
+
+        <h2>4. Weight Summary</h2>
+        <table>
+            <tr><th>Container Type</th><th>Quantity</th><th>Unit Weight</th><th>Total Weight</th></tr>
+            <tr><td>BESS 20' High Cube</td><td>176</td><td>~43 tonnes</td><td>~7,568 tonnes</td></tr>
+            <tr><td>MV SKID 40' High Cube</td><td>70</td><td>~38 tonnes</td><td>~2,660 tonnes</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>246</strong></td><td>-</td><td><strong>~10,228 tonnes</strong></td></tr>
+        </table>
+
+        <h2>5. Pricing Template</h2>
+        
+        <h3>5.1 Unit Rates - By Container Type</h3>
+        <table>
+            <tr><th>Container Type</th><th>Weight</th><th>Transport/km (€)</th><th>Crane Unload (€)</th><th>Total/Container (€)</th></tr>
+            <tr><td>BESS 20' High Cube</td><td>43t</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>MV SKID 40' High Cube</td><td>38t</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.2 Rates by District (Lump Sum per Container)</h3>
+        <table>
+            <tr><th>From → To</th><th>Distance</th><th>20HC BESS (€)</th><th>40HC MV SKID (€)</th></tr>
+            <tr><td>Limassol Port → Limassol sites</td><td>30-50 km</td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Limassol Port → Paphos sites</td><td>~70 km</td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Limassol Port → Larnaca sites</td><td>~70 km</td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Limassol Port → Nicosia sites</td><td>~90 km</td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Limassol Port → Famagusta sites</td><td>~130 km</td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.3 District Totals</h3>
+        <table>
+            <tr><th>District</th><th>BESS (20HC)</th><th>MV SKID (40HC)</th><th>BESS Cost (€)</th><th>MV SKID Cost (€)</th><th>District Total (€)</th></tr>
+            <tr><td>Famagusta</td><td>35</td><td>9</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Larnaca</td><td>2</td><td>2</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Limassol</td><td>23</td><td>8</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Nicosia</td><td>111</td><td>48</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Paphos</td><td>5</td><td>3</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>176</strong></td><td><strong>70</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.4 Volume Discount</h3>
+        <table>
+            <tr><th>Volume Tier</th><th>Containers</th><th>Discount (%)</th></tr>
+            <tr><td>Full Portfolio (246 containers)</td><td>246</td><td class="price-input"></td></tr>
+            <tr><td>Framework Agreement (12 months)</td><td>All</td><td class="price-input"></td></tr>
+        </table>
+
+        <h2>6. Delivery Timeline</h2>
+        <table>
+            <tr><th>Phase</th><th>Period</th><th>Est. Containers</th></tr>
+            <tr><td>Phase 1 - Priority Parks</td><td>Q2 2026</td><td>~80</td></tr>
+            <tr><td>Phase 2 - Main Rollout</td><td>Q3 2026</td><td>~100</td></tr>
+            <tr><td>Phase 3 - Completion</td><td>Q4 2026</td><td>~66</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td>Q2-Q4 2026</td><td><strong>246</strong></td></tr>
+        </table>
+
+        <h2>7. Terms & Conditions</h2>
+        <ul>
+            <li>Pricing to remain valid for 12 months from contract signature</li>
+            <li>Call-off orders with 5 working days notice</li>
+            <li>Insurance: full goods-in-transit coverage required</li>
+            <li>Weekend/holiday delivery: premium rate if applicable</li>
+            <li>Waiting time: first 2 hours included, thereafter rate per hour</li>
+            <li>Payment: 30 days from delivery confirmation</li>
+        </ul>
+
+        <h2>8. Required Information</h2>
+        <ol>
+            <li>Completed pricing tables above</li>
+            <li>Lead time per delivery (port to site)</li>
+            <li>Crane availability and capacity</li>
+            <li>Insurance certificate (min €5M coverage)</li>
+            <li>Heavy haulage license confirmation</li>
+            <li>Reference projects (similar weights)</li>
+        </ol>
+
+        <div class="contact-box">
+            <h3>📧 Lighthief Contact</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong></p>
+            <p>Email: office@lighthief.com</p>
+            <p>Reference: RFQ-LCY-TRANS-2026-001</p>
+            <p><strong>Quotation Due:</strong> 7 February 2026</p>
+        </div>
+
+        <div class="footer">
+            <p>RFQ-LCY-TRANS-2026-001 | Heavy Transport & Unloading | A. Soulis</p>
+            <p>Lighthief Cyprus Ltd | January 2026</p>
+        </div>
+    </div>
+</body>
+</html>

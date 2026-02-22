@@ -76,7 +76,7 @@ We supply **Linyang LFP (Lithium Iron Phosphate)** battery systems:
 |--------------|-------|
 | Chemistry | LFP (safest lithium technology) |
 | Container Size | 5.015 MWh per 20ft HC container |
-| Round-Trip Efficiency | 87.8% system (AC-AC) |
+| Round-Trip Efficiency | 86.32% full system AC-AC (incl. cabling) |
 | Base Warranty | **5 years** (manufacturer) |
 | Extended Warranty | Up to **15 years** (with LTSA) |
 | Cycle Life | 6,000 cycles @ 100% DoD (80% SOH) |

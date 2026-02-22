@@ -61,13 +61,16 @@ function BatchCard({ batch }: { batch: typeof portfolioStats.batches[0] }) {
 function CriticalBlockers() {
   const blockers = [
     { id: 1, text: 'EN 50549-2 grid code cert — CONFIRMED ✓ (TÜV cert + test report)', severity: 'resolved' as const },
+    { id: 9, text: '5 field engineers confirmed ✓ (3 Lighthief PL + 2 Linyang PL, deploying Q1)', severity: 'resolved' as const },
+    { id: 10, text: 'OPEX plan finalized ✓ (€511k budget, 510 maint. days/yr)', severity: 'resolved' as const },
     { id: 2, text: 'OEM Sales Agreement — NOT SIGNED (18 amendments)', severity: 'critical' as const },
     { id: 3, text: 'Ext. warranty Yr 11-15 pricing — 261% gap', severity: 'critical' as const },
+    { id: 11, text: 'Heavy-duty crane — PRE-BOOK NOW (only 1 in Cyprus, need Jul–Oct)', severity: 'critical' as const },
+    { id: 12, text: 'Low-loader trucks — UNKNOWN availability (RFI to A. Soulis & Interfreight)', severity: 'critical' as const },
     { id: 4, text: 'MV Skid datasheets — partial (40MW SLDs available, smaller configs TBD)', severity: 'high' as const },
     { id: 5, text: 'Grid connection applications — can now proceed with EN 50549-2', severity: 'high' as const },
     { id: 6, text: 'Local subcontractor quotes — NOT STARTED', severity: 'high' as const },
     { id: 7, text: 'Warehouse lease — NOT SIGNED', severity: 'high' as const },
-    { id: 8, text: 'Engineer hiring (4 positions) — NOT STARTED', severity: 'high' as const },
   ];
 
   return (
@@ -77,7 +80,7 @@ function CriticalBlockers() {
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
           <h2 className="text-sm font-semibold text-white">Critical Blockers</h2>
         </div>
-        <p className="text-[10px] text-gray-500 mt-0.5">Must resolve before March 1 order date</p>
+        <p className="text-[10px] text-gray-500 mt-0.5">Must resolve before March 1 order — updated 19 Feb 2026</p>
       </div>
       <div className="p-3 space-y-1.5">
           {blockers.map(b => (
@@ -105,17 +108,18 @@ function CriticalBlockers() {
 
 function OpsReadinessPanel() {
   const opsItems = [
-    { name: 'Warehouse lease', status: 'not-started' as const, target: 'Mar 15', note: 'Limassol industrial area, 40+ pallets capacity' },
-    { name: 'Forklift procurement', status: 'not-started' as const, target: 'Mar 31', note: '5-ton + 2.5-ton, lease vs buy evaluation' },
-    { name: 'O&M transport vehicles', status: 'not-started' as const, target: 'Apr 30', note: '2-3 service vans, island-wide coverage' },
-    { name: 'Engineer #1 — Senior BESS/HV', status: 'not-started' as const, target: 'Mar 31', note: 'Commissioning lead, HV authorized' },
-    { name: 'Engineer #2 — Electrical/Controls', status: 'not-started' as const, target: 'Apr 15', note: 'PLC/SCADA, WAGO experience' },
-    { name: 'Engineer #3 — Mechanical/Civil', status: 'not-started' as const, target: 'Apr 30', note: 'Foundations, container installation' },
-    { name: 'Engineer #4 — Service/O&M', status: 'not-started' as const, target: 'May 15', note: 'Night shift O&M capability' },
-    { name: 'Linyang BESS training', status: 'not-started' as const, target: 'May 15', note: 'Factory training — Eng #1 & #2' },
-    { name: 'Kehua PCS training', status: 'not-started' as const, target: 'May 31', note: 'PCS commissioning — Eng #1 & #2' },
-    { name: 'Voltus EMS/SCADA training', status: 'not-started' as const, target: 'Jun 15', note: 'WAGO PFC200 — Eng #2 & #4' },
-    { name: 'HV safety certification', status: 'not-started' as const, target: 'May 01', note: 'All 4 engineers, Cyprus HV auth' },
+    { name: '5 field engineers confirmed', status: 'complete' as const, target: 'Feb 19', note: '3 Lighthief Poland + 2 Linyang Poland — deploying Q1' },
+    { name: 'OPEX plan (€511k)', status: 'complete' as const, target: 'Feb 19', note: 'Personnel, vehicles, warehouse, tools, training, contingency' },
+    { name: 'Maintenance program', status: 'complete' as const, target: 'Feb 19', note: '510 planned days/yr, 10 days/park, 5 districts' },
+    { name: 'Crane pre-booking', status: 'not-started' as const, target: 'Feb 28', note: 'ONLY 1 heavy-duty crane on island — must lock Jul–Oct' },
+    { name: 'Transport RFI (trucks)', status: 'not-started' as const, target: 'Feb 28', note: 'A. Soulis & Interfreight — fleet size UNKNOWN' },
+    { name: 'Warehouse lease', status: 'not-started' as const, target: 'Mar 15', note: 'Limassol industrial area, 50% of 10,000 sqft, €5k/mo' },
+    { name: 'Forklift rental', status: 'not-started' as const, target: 'Mar 31', note: '2.5-3T diesel, 12-month rental, €600/mo' },
+    { name: '3 service vans (lease)', status: 'not-started' as const, target: 'Mar 31', note: '36-month lease, day/night/float rotation' },
+    { name: 'Poland HQ training (5 eng × 3wk)', status: 'not-started' as const, target: 'Apr 04', note: 'Czestochowa — BMS, safety, installation. €15k total' },
+    { name: 'Kehua PCS training', status: 'not-started' as const, target: 'Apr 30', note: 'PCS commissioning — all engineers' },
+    { name: 'Voltus EMS/SCADA training', status: 'not-started' as const, target: 'May 31', note: 'WAGO PFC200, IEC-104, Voltus platform' },
+    { name: 'HV safety certification', status: 'not-started' as const, target: 'May 01', note: 'All 5 engineers, Cyprus HV auth, €1.5k' },
   ];
 
   const statusColors = {
@@ -131,7 +135,7 @@ function OpsReadinessPanel() {
           <span className="w-2 h-2 rounded-full bg-purple-500" />
           <h2 className="text-sm font-semibold text-white">Operational Readiness</h2>
         </div>
-        <p className="text-[10px] text-gray-500 mt-0.5">Warehouse, fleet, team & training</p>
+        <p className="text-[10px] text-gray-500 mt-0.5">Team, assets, fleet, training — updated 19 Feb 2026</p>
       </div>
       <div className="p-3 space-y-1">
         {opsItems.map((item, i) => {
@@ -188,6 +192,12 @@ export default function BessProjectDashboard() {
                 <span className="text-gray-500 font-normal ml-1">({daysToOrder}d)</span>
               </p>
             </div>
+            <button
+              onClick={() => router.push('/bess-project/operations')}
+              className="text-[10px] px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 transition-colors border border-emerald-500/20 font-semibold"
+            >
+              Operations
+            </button>
             <button
               onClick={() => router.push('/bess-project/procurement')}
               className="text-[10px] px-3 py-1.5 rounded-lg bg-cyan-600/20 text-cyan-400 hover:bg-cyan-600/30 transition-colors border border-cyan-500/20 font-semibold"

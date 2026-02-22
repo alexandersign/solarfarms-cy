@@ -91,7 +91,7 @@ const bessFeatures = [
   {
     icon: Battery,
     title: 'Tier-1 LFP Technology',
-    description: 'Lithium Iron Phosphate cells with 87.8% round-trip efficiency and 6,000+ cycle life.'
+    description: 'Lithium Iron Phosphate cells with 86.32% AC-AC round-trip efficiency and 6,000+ cycle life.'
   },
   {
     icon: Shield,
@@ -129,7 +129,7 @@ const useCases = [
   },
   {
     title: 'Curtailment Recovery at Peak Prices',
-    description: 'Store curtailed solar energy (€0 charge cost) and discharge at evening peak prices (€183/MWh avg). Revenue of €161/MWh discharged at 87.8% RTE. Based on 134-day verified TSOC dataset.',
+    description: 'Store curtailed solar energy (€0 charge cost) and discharge at evening peak prices (€183/MWh avg). Revenue of €158/MWh discharged at 86.32% RTE. Based on 134-day verified TSOC dataset.',
     benefit: '€161/MWh revenue per cycle',
     icon: TrendingUp
   },
@@ -215,7 +215,7 @@ export default function EnergyStoragePage() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold">87.8%</div>
+                <div className="text-2xl font-bold">86.32%</div>
                 <div className="text-sm text-white/70">Round-Trip Efficiency</div>
               </div>
             </div>

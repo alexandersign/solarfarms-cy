@@ -213,7 +213,7 @@ export const COMPANY_DATA = {
     cyprusDirector: {
       name: "Alexander Papacosta",
       title: "Cyprus Director",
-      email: "alexander.papacosta@lighthief.com",
+      email: "office@lighthief.com",
       phone: "+357 99 164 158",
       markets: ["Cyprus", "Greece"],
       description: "Cyprus & Greece operations, BESS, crypto/AI integration"
@@ -407,7 +407,7 @@ export const ANALYTICS_EVENTS = {
 // Current BESS revenue model: CURTAILMENT RECOVERY ONLY
 //   → Store otherwise-curtailed solar energy (charge cost = €0)
 //   → Discharge at evening peak prices (€183/MWh)
-//   → Revenue per MWh discharged: €160.67/MWh (at 87.8% RTE)
+//   → Revenue per MWh discharged: €157.94/MWh (at 86.32% RTE)
 //   → Annual: €146k–223k per MWh BESS (at 2.5–3.8 MWh daily throughput)
 // Future: DAM arbitrage will add €72/MWh net per cycle when legislation enables it
 //
@@ -450,7 +450,7 @@ export const CYPRUS_MARKET_DEFAULTS = {
 // See docs/internal/solarpark-epc.md for detailed breakdown
 export const BESS_DEFAULTS = {
   // OEM specifications
-  roundTripEfficiency: 0.878,     // 87.8% system RTE (AC-AC)
+  roundTripEfficiency: 0.8632,    // 86.32% full system AC-AC RTE incl. cabling (PCS-level = 87.8%)
   warrantyYearsBase: 5,           // Base OEM warranty
   warrantyYearsWithLTSA: 15,      // Extended warranty with LTSA (Years 6-15 paid)
   cycleLife: 6000,                // Cycles at 100% DoD @ 80% SOH

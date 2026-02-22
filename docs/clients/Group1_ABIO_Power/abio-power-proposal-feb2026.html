@@ -6,7 +6,7 @@
     <title>Abio Power BESS Portfolio - Lighthief Proposal</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #1e3a5f; --accent: #2563eb; }
+        :root { --primary: #1e3a5f; --accent: #2563eb; --blue-pale: #e8f0fe; --border: #d1d5db; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 7pt; line-height: 1.3; background: #f0f4f8; padding: 10px; }
         .page { background: white; max-width: 210mm; margin: 0 auto; padding: 12mm 10mm 10mm; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-bottom: 8px; }
@@ -17,8 +17,8 @@
         h1 { color: var(--primary); font-size: 11pt; margin-bottom: 3px; }
         h2 { color: var(--primary); font-size: 8pt; margin: 8px 0 4px; border-bottom: 1px solid #e2e8f0; padding-bottom: 2px; }
         table { width: 100%; border-collapse: collapse; font-size: 6.5pt; margin-bottom: 6px; }
-        th, td { border: 1px solid #e2e8f0; padding: 3px 4px; }
-        th { background: var(--primary); color: white; font-weight: 600; text-align: center; }
+        th, td { border: 1px solid var(--border); padding: 3px 4px; }
+        th { background: var(--blue-pale); color: var(--primary); font-weight: 600; text-align: center; border-bottom: 2px solid var(--accent); }
         .text-center { text-align: center; }
         .text-right { text-align: right; }
         .price { font-weight: 600; color: var(--accent); }
@@ -26,15 +26,23 @@
         .legend { display: flex; gap: 8px; font-size: 5.5pt; margin: 3px 0; flex-wrap: wrap; }
         .legend span { padding: 1px 4px; border-radius: 2px; }
         .print-btn { position: fixed; top: 12px; right: 12px; background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-size: 11px; z-index: 1000; }
-        @media print { .print-btn { display: none; } body { background: white; } .page { box-shadow: none; } @page { margin: 6mm; size: A4; } }
+        @media print {
+            .print-btn { display: none; }
+            body { background: white; padding: 0; }
+            .page { box-shadow: none; padding: 8mm; max-width: none; }
+            @page { margin: 6mm; size: A4 portrait; }
+            table { page-break-inside: auto; }
+            tr { page-break-inside: avoid; }
+            h2 { page-break-after: avoid; }
+        }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
-        .box { border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px; font-size: 6pt; }
-        .box h3 { font-size: 7pt; color: var(--primary); margin-bottom: 3px; }
+        .box { border: 1px solid var(--border); border-radius: 4px; padding: 6px; font-size: 6pt; }
+        .box h3 { font-size: 7pt; color: var(--primary); margin-bottom: 3px; border-bottom: 1px solid #e2e8f0; padding-bottom: 2px; }
         .box ul { margin-left: 12px; }
         .box li { margin-bottom: 1px; }
-        .summary { background: #f8fafc; padding: 6px; border-radius: 4px; margin-top: 6px; font-size: 6pt; }
+        .summary { background: #f8fafc; padding: 6px; border: 1px solid var(--border); border-radius: 4px; margin-top: 6px; font-size: 6pt; }
         .footer { margin-top: 8px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size: 5.5pt; color: #64748b; text-align: center; }
-        .rfi-note { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 4px; padding: 5px 8px; margin: 6px 0; font-size: 6.5pt; }
+        .rfi-note { background: #fffbeb; border: 1px solid #f59e0b; border-radius: 4px; padding: 5px 8px; margin: 6px 0; font-size: 6.5pt; }
         .rfi-note strong { color: #92400e; }
     </style>
 </head>
@@ -52,552 +60,394 @@
             </div>
             <div class="doc-info">
                 <div><strong>Prepared for:</strong> Abio Power Ltd | Mr. Iacovos Charalambous (CTO)</div>
-                <div><strong>Date:</strong> 5 February 2026</div>
+                <div><strong>Date:</strong> 16 February 2026</div>
                 <div><strong>Valid until:</strong> 28 February 2026</div>
                 <div><strong>Contact:</strong> ic@abio.com.cy | +357 99</div>
             </div>
         </div>
         
-        <h1>Portfolio: 19 Projects | Confirmed: 8 (105MWh = €9.0M) | Pending: 11</h1>
+                <h1>ABIO Power — BESS Portfolio | 25 Parks · 125 MW · 430.28 MWh</h1>
         
-        <div class="legend">
-            <span style="background:#fff; border:1px solid #e2e8f0;">✓ Confirmed config + price</span>
-            <span style="background:#fff5f5;">Pending - select option below</span>
-            <span style="background:#f0fff4;">Option A: Lower/same PCS</span>
-            <span style="background:#ebf8ff;">Option B: Higher PCS</span>
-        </div>
-        
-        <h2>PHASE 1 - IMMEDIATE [2026] | Confirmed: 4 | Pending: 3</h2>
         <table>
             <thead>
                 <tr>
                     <th style="width:20px;">#</th>
                     <th>Park Name</th>
-                    <th style="width:35px;">PV MWp</th>
-                    <th style="width:35px;">BESS MW</th>
-                    <th style="width:35px;">MWh</th>
+                    <th style="width:40px;">BESS MW</th>
+                    <th style="width:40px;">MWh</th>
                     <th>BESS Containers</th>
                     <th>MV SKID</th>
-                    <th style="width:60px;">€/MWh</th>
-                    <th style="width:75px;">Total</th>
+                    <th style="width:65px;">&euro;/MWh</th>
+                    <th style="width:80px;">Total</th>
                 </tr>
             </thead>
             <tbody>
 <tr>
-            <td>10</td>
-            <td><strong>Easy Power 1</strong></td>
-            <td class="text-center">5.58</td>
-            <td class="text-center">5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">5MW (1)</td>
-            <td class="text-right">€136,106</td>
-            <td class="text-right price">€1,361,060</td>
+            <td>1</td>
+            <td><strong>Agios Sozomenos</strong></td>
+            <td class="text-center">6</td>
+            <td class="text-center">25</td>
+            <td class="text-center">5&times; 5.015MWh</td>
+            <td class="text-center">6MW (1)</td>
+            <td class="text-right">&euro;125,461</td>
+            <td class="text-right price">&euro;3,136,513</td>
         </tr>
 <tr>
-            <td>14</td>
-            <td><strong>Easy Power 3</strong></td>
-            <td class="text-center">7.94</td>
-            <td class="text-center">5</td>
+            <td>2</td>
+            <td><strong>Dianary 1</strong></td>
+            <td class="text-center">2.5</td>
             <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">5MW (1)</td>
-            <td class="text-right">€136,106</td>
-            <td class="text-right price">€1,361,060</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">2.5MW (1)</td>
+            <td class="text-right">&euro;120,630</td>
+            <td class="text-right price">&euro;1,206,300</td>
         </tr>
 <tr>
-            <td>12</td>
-            <td><strong>Renergetic</strong></td>
-            <td class="text-center">7.5</td>
-            <td class="text-center">5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">5MW (1)</td>
-            <td class="text-right">€136,106</td>
-            <td class="text-right price">€1,361,060</td>
-        </tr>
-<tr>
-            <td>19</td>
-            <td><strong>Solartech 3 EXTENSION</strong></td>
-            <td class="text-center">3.0</td>
+            <td>3</td>
+            <td><strong>Dianary 2</strong></td>
             <td class="text-center">2.5</td>
             <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
+            <td class="text-center">2&times; 5.015MWh</td>
             <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
+            <td class="text-right">&euro;120,630</td>
+            <td class="text-right price">&euro;1,206,300</td>
         </tr>
-<tr style="background: #fff5f5;">
-            <td>17</td>
-            <td><strong>Waneron FIT scheme</strong><br><span style="font-size:6pt;color:#718096;">Required: 3.0MW / 11.28MWh</span></td>
-            <td class="text-center">3.0</td>
-            <td class="text-center">3.0</td>
-            <td class="text-center">11.28</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (2.5MW/10MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (3MW/12MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">3</td>
-            <td class="text-center">12</td>
-            <td class="text-center">3× 4.179MWh</td>
-            <td class="text-center">1MW+2MW (2)</td>
-            <td class="text-right">€146,049</td>
-            <td class="text-right price">€1,752,588</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>11</td>
-            <td><strong>Easy Power 2</strong><br><span style="font-size:6pt;color:#718096;">Required: 4.5MW / 10MWh</span></td>
-            <td class="text-center">4.69</td>
-            <td class="text-center">4.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (2.5MW/10MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (5MW/10MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">5MW (1)</td>
-            <td class="text-right">€136,106</td>
-            <td class="text-right price">€1,361,060</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>15</td>
-            <td><strong>Easy Power 4</strong><br><span style="font-size:6pt;color:#718096;">Required: 1.8MW / 8MWh</span></td>
-            <td class="text-center">1.83</td>
-            <td class="text-center">1.8</td>
-            <td class="text-center">8</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (1.5MW/5MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
-            <td class="text-center">1.5</td>
-            <td class="text-center">5</td>
-            <td class="text-center">1× 5.015MWh</td>
-            <td class="text-center">1.5MW (1)</td>
-            <td class="text-right">€157,377</td>
-            <td class="text-right price">€786,885</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (2MW/8MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">2</td>
-            <td class="text-center">8</td>
-            <td class="text-center">2× 4.179MWh</td>
-            <td class="text-center">2MW (1)</td>
-            <td class="text-right">€145,298</td>
-            <td class="text-right price">€1,162,384</td>
-        </tr>
-            </tbody>
-        </table>
-        
-        <h2>PHASE 2 - 2027 | Confirmed: 3 | Pending: 4</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th style="width:20px;">#</th>
-                    <th>Park Name</th>
-                    <th style="width:35px;">PV MWp</th>
-                    <th style="width:35px;">BESS MW</th>
-                    <th style="width:35px;">MWh</th>
-                    <th>BESS Containers</th>
-                    <th>MV SKID</th>
-                    <th style="width:60px;">€/MWh</th>
-                    <th style="width:75px;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
 <tr>
             <td>4</td>
-            <td><strong>Dianary 1 extension</strong></td>
-            <td class="text-center">3.2</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
+            <td><strong>Dianary 3</strong></td>
+            <td class="text-center">8</td>
+            <td class="text-center">35</td>
+            <td class="text-center">7&times; 5.015MWh</td>
+            <td class="text-center">8MW (2)</td>
+            <td class="text-right">&euro;119,961</td>
+            <td class="text-right price">&euro;4,198,621</td>
         </tr>
 <tr>
             <td>5</td>
-            <td><strong>Dianary 2 plot48</strong></td>
-            <td class="text-center">1.4</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>9</td>
-            <td><strong>Potamia plot 208 Agrivoltaic</strong><br><span style="font-size:6pt;color:#718096;">Required: 4.5MW / 20MWh</span></td>
-            <td class="text-center">4.63</td>
-            <td class="text-center">4.5</td>
-            <td class="text-center">20</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (3MW/12MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
-            <td class="text-center">3</td>
+            <td><strong>ELESTORE 1</strong></td>
             <td class="text-center">12</td>
-            <td class="text-center">3× 4.179MWh</td>
-            <td class="text-center">3MW (1)</td>
-            <td class="text-right">€146,049</td>
-            <td class="text-right price">€1,752,588</td>
+            <td class="text-center">40</td>
+            <td class="text-center">8&times; 5.015MWh</td>
+            <td class="text-center">12MW (2)</td>
+            <td class="text-right">&euro;114,990</td>
+            <td class="text-right price">&euro;4,599,600</td>
         </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (5MW/20MWh)</td>
-            <td class="text-center">-</td>
+<tr>
+            <td>6</td>
+            <td><strong>ELESTORE 2</strong></td>
+            <td class="text-center">12</td>
+            <td class="text-center">40</td>
+            <td class="text-center">8&times; 5.015MWh</td>
+            <td class="text-center">12MW (2)</td>
+            <td class="text-right">&euro;114,990</td>
+            <td class="text-right price">&euro;4,599,600</td>
+        </tr>
+<tr>
+            <td>7</td>
+            <td><strong>ELESTORE 3</strong></td>
+            <td class="text-center">12</td>
+            <td class="text-center">40</td>
+            <td class="text-center">8&times; 5.015MWh</td>
+            <td class="text-center">12MW (2)</td>
+            <td class="text-right">&euro;114,990</td>
+            <td class="text-right price">&euro;4,599,600</td>
+        </tr>
+<tr>
+            <td>8</td>
+            <td><strong>ELESTORE 4</strong></td>
+            <td class="text-center">12</td>
+            <td class="text-center">40</td>
+            <td class="text-center">8&times; 5.015MWh</td>
+            <td class="text-center">12MW (2)</td>
+            <td class="text-right">&euro;114,990</td>
+            <td class="text-right price">&euro;4,599,600</td>
+        </tr>
+<tr>
+            <td>9</td>
+            <td><strong>ELESTORE 5</strong></td>
+            <td class="text-center">12</td>
+            <td class="text-center">40</td>
+            <td class="text-center">8&times; 5.015MWh</td>
+            <td class="text-center">12MW (2)</td>
+            <td class="text-right">&euro;114,990</td>
+            <td class="text-right price">&euro;4,599,600</td>
+        </tr>
+<tr>
+            <td>10</td>
+            <td><strong>Easy Power 1</strong></td>
             <td class="text-center">5</td>
-            <td class="text-center">20</td>
-            <td class="text-center">4× 5.015MWh</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
             <td class="text-center">5MW (1)</td>
-            <td class="text-right">€112,945</td>
-            <td class="text-right price">€2,258,900</td>
+            <td class="text-right">&euro;136,105</td>
+            <td class="text-right price">&euro;1,361,050</td>
         </tr>
-<tr style="background: #fff5f5;">
-            <td>1</td>
-            <td><strong>Greendorado plots</strong><br><span style="font-size:6pt;color:#718096;">Required: 1.25MW / 5MWh</span></td>
+<tr>
+            <td>11</td>
+            <td><strong>Easy Power 2</strong></td>
+            <td class="text-center">4.5</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">4.5MW (1)</td>
+            <td class="text-right">&euro;140,154</td>
+            <td class="text-right price">&euro;1,401,540</td>
+        </tr>
+<tr>
+            <td>12</td>
+            <td><strong>Easy Power 3</strong></td>
+            <td class="text-center">5</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">5MW (2)</td>
+            <td class="text-right">&euro;136,105</td>
+            <td class="text-right price">&euro;1,361,050</td>
+        </tr>
+<tr>
+            <td>13</td>
+            <td><strong>Easy Power 4</strong></td>
             <td class="text-center">1.8</td>
+            <td class="text-center">8</td>
+            <td class="text-center">2&times; 4.179MWh</td>
+            <td class="text-center">1.8MW (1)</td>
+            <td class="text-right">&euro;142,119</td>
+            <td class="text-right price">&euro;1,136,949</td>
+        </tr>
+<tr>
+            <td>14</td>
+            <td><strong>Greendorado 1</strong></td>
+            <td class="text-center">1.8</td>
+            <td class="text-center">8</td>
+            <td class="text-center">2&times; 4.179MWh</td>
+            <td class="text-center">1.8MW (1)</td>
+            <td class="text-right">&euro;142,119</td>
+            <td class="text-right price">&euro;1,136,949</td>
+        </tr>
+<tr>
+            <td>15</td>
+            <td><strong>Greendorado Agrivoltaic</strong></td>
+            <td class="text-center">0.75</td>
+            <td class="text-center">3</td>
+            <td class="text-center">1&times; 3.343MWh</td>
+            <td class="text-center">0.75MW (1)</td>
+            <td class="text-right">&euro;209,422</td>
+            <td class="text-right price">&euro;628,265</td>
+        </tr>
+<tr>
+            <td>16</td>
+            <td><strong>Greendorado Larnaca 1</strong></td>
             <td class="text-center">1.25</td>
             <td class="text-center">5</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
+            <td class="text-center">1&times; 5.015MWh</td>
+            <td class="text-center">1.25MW (1)</td>
+            <td class="text-right">&euro;154,079</td>
+            <td class="text-right price">&euro;770,397</td>
         </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (1MW/4MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
+<tr>
+            <td>17</td>
+            <td><strong>Greendorado Larnaca 2</strong></td>
             <td class="text-center">1</td>
-            <td class="text-center">4</td>
-            <td class="text-center">1× 4.179MWh</td>
+            <td class="text-center">5</td>
+            <td class="text-center">1&times; 5.015MWh</td>
             <td class="text-center">1MW (1)</td>
-            <td class="text-right">€174,357</td>
-            <td class="text-right price">€697,428</td>
+            <td class="text-right">&euro;153,150</td>
+            <td class="text-right price">&euro;765,751</td>
         </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (1.5MW/5MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">1.5</td>
-            <td class="text-center">5</td>
-            <td class="text-center">1× 5.015MWh</td>
-            <td class="text-center">1.5MW (1)</td>
-            <td class="text-right">€157,377</td>
-            <td class="text-right price">€786,885</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>2</td>
-            <td><strong>Agios Sozomenos</strong><br><span style="font-size:6pt;color:#718096;">Required: 6.0MW / 25MWh</span></td>
-            <td class="text-center">6.1</td>
-            <td class="text-center">6.0</td>
-            <td class="text-center">25</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (5MW/20MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
-            <td class="text-center">5</td>
-            <td class="text-center">20</td>
-            <td class="text-center">4× 5.015MWh</td>
-            <td class="text-center">5MW (1)</td>
-            <td class="text-right">€112,945</td>
-            <td class="text-right price">€2,258,900</td>
-        </tr>
-<tr style="background: #fefcbf; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#744210;">↳ <strong>Option B</strong> (6MW/20MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">6</td>
-            <td class="text-center">20</td>
-            <td class="text-center">4× 5.015MWh</td>
-            <td class="text-center">6MW (1)</td>
-            <td class="text-right">€119,505</td>
-            <td class="text-right price">€2,390,100</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option C</strong> (6MW/25MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">6</td>
-            <td class="text-center">25</td>
-            <td class="text-center">5× 5.015MWh</td>
-            <td class="text-center">6MW (1)</td>
-            <td class="text-right">€123,103</td>
-            <td class="text-right price">€3,077,575</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>16</td>
-            <td><strong>Greendorado</strong><br><span style="font-size:6pt;color:#718096;">Required: 1.8MW / 8MWh</span></td>
-            <td class="text-center">2.1</td>
-            <td class="text-center">1.8</td>
-            <td class="text-center">8</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (1.5MW/5MWh) <span style="font-size:5.5pt;color:#48bb78;">DSO Compliant</span></td>
-            <td class="text-center">-</td>
-            <td class="text-center">1.5</td>
-            <td class="text-center">5</td>
-            <td class="text-center">1× 5.015MWh</td>
-            <td class="text-center">1.5MW (1)</td>
-            <td class="text-right">€157,377</td>
-            <td class="text-right price">€786,885</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (2MW/8MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">2</td>
-            <td class="text-center">8</td>
-            <td class="text-center">2× 4.179MWh</td>
-            <td class="text-center">2MW (1)</td>
-            <td class="text-right">€145,298</td>
-            <td class="text-right price">€1,162,384</td>
-        </tr>
-            </tbody>
-        </table>
-        
-        <h2>PHASE 3 - 2028+ | Confirmed: 1 | Pending: 4</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th style="width:20px;">#</th>
-                    <th>Park Name</th>
-                    <th style="width:35px;">PV MWp</th>
-                    <th style="width:35px;">BESS MW</th>
-                    <th style="width:35px;">MWh</th>
-                    <th>BESS Containers</th>
-                    <th>MV SKID</th>
-                    <th style="width:60px;">€/MWh</th>
-                    <th style="width:75px;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
 <tr>
             <td>18</td>
+            <td><strong>Polemi</strong></td>
+            <td class="text-center">1.25</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">1.25MW (1)</td>
+            <td class="text-right">&euro;112,958</td>
+            <td class="text-right price">&euro;1,129,579</td>
+        </tr>
+<tr>
+            <td>19</td>
+            <td><strong>Potamia p151</strong></td>
+            <td class="text-center">1.25</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">1.25MW (1)</td>
+            <td class="text-right">&euro;112,958</td>
+            <td class="text-right price">&euro;1,129,579</td>
+        </tr>
+<tr>
+            <td>20</td>
+            <td><strong>Potamia p208</strong></td>
+            <td class="text-center">4.5</td>
+            <td class="text-center">20</td>
+            <td class="text-center">4&times; 5.015MWh</td>
+            <td class="text-center">4.5MW (2)</td>
+            <td class="text-right">&euro;119,789</td>
+            <td class="text-right price">&euro;2,395,785</td>
+        </tr>
+<tr>
+            <td>21</td>
+            <td><strong>Renergetic</strong></td>
+            <td class="text-center">5</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">5MW (1)</td>
+            <td class="text-right">&euro;136,105</td>
+            <td class="text-right price">&euro;1,361,050</td>
+        </tr>
+<tr>
+            <td>22</td>
+            <td><strong>Renergetic 2</strong></td>
+            <td class="text-center">2.4</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">2.4MW (1)</td>
+            <td class="text-right">&euro;124,598</td>
+            <td class="text-right price">&euro;1,245,983</td>
+        </tr>
+<tr>
+            <td>23</td>
             <td><strong>Solarity</strong></td>
-            <td class="text-center">6.0</td>
-            <td class="text-center">5.0</td>
+            <td class="text-center">5</td>
             <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
+            <td class="text-center">2&times; 5.015MWh</td>
             <td class="text-center">5MW (1)</td>
-            <td class="text-right">€136,106</td>
-            <td class="text-right price">€1,361,060</td>
+            <td class="text-right">&euro;136,105</td>
+            <td class="text-right price">&euro;1,361,050</td>
         </tr>
-<tr style="background: #fff5f5;">
-            <td>3</td>
-            <td><strong>Greendorado Agrivoltaic</strong><br><span style="font-size:6pt;color:#718096;">Required: 0.75MW / 3MWh</span></td>
-            <td class="text-center">0.75</td>
-            <td class="text-center">0.75</td>
+<tr>
+            <td>24</td>
+            <td><strong>Solartech 3 Extension</strong></td>
+            <td class="text-center">2.5</td>
+            <td class="text-center">10</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">2.5MW (1)</td>
+            <td class="text-right">&euro;120,630</td>
+            <td class="text-right price">&euro;1,206,300</td>
+        </tr>
+<tr>
+            <td>25</td>
+            <td><strong>Waneron</strong></td>
             <td class="text-center">3</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
+            <td class="text-center">11.28</td>
+            <td class="text-center">2&times; 5.015MWh</td>
+            <td class="text-center">3MW (1)</td>
+            <td class="text-right">&euro;130,583</td>
+            <td class="text-right price">&euro;1,472,981</td>
         </tr>
-<tr style="background: #fff5f5; font-size: 6.5pt;">
+<tr style="background:var(--blue-pale);font-weight:700;">
             <td></td>
-            <td style="padding-left:12px;color:#c53030;" colspan="8">↳ <strong>Option A</strong>: No smaller config in current quote — RFI pending</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (1MW/4MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">1</td>
-            <td class="text-center">4</td>
-            <td class="text-center">1× 4.179MWh</td>
-            <td class="text-center">1MW (1)</td>
-            <td class="text-right">€174,357</td>
-            <td class="text-right price">€697,428</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>7</td>
-            <td><strong>Polemi plot 1494 Agrivoltaic</strong><br><span style="font-size:6pt;color:#718096;">Required: 1.25MW / 10MWh</span></td>
-            <td class="text-center">1.8</td>
-            <td class="text-center">1.25</td>
-            <td class="text-center">10</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (1.5MW/5MWh) </td>
-            <td class="text-center">-</td>
-            <td class="text-center">1.5</td>
-            <td class="text-center">5</td>
-            <td class="text-center">1× 5.015MWh</td>
-            <td class="text-center">1.5MW (1)</td>
-            <td class="text-right">€157,377</td>
-            <td class="text-right price">€786,885</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (2.5MW/10MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>8</td>
-            <td><strong>Potamia plot 151 Agrivoltaic</strong><br><span style="font-size:6pt;color:#718096;">Required: 1.25MW / 10MWh</span></td>
-            <td class="text-center">1.57</td>
-            <td class="text-center">1.25</td>
-            <td class="text-center">10</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (1.5MW/5MWh) </td>
-            <td class="text-center">-</td>
-            <td class="text-center">1.5</td>
-            <td class="text-center">5</td>
-            <td class="text-center">1× 5.015MWh</td>
-            <td class="text-center">1.5MW (1)</td>
-            <td class="text-right">€157,377</td>
-            <td class="text-right price">€786,885</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (2.5MW/10MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
-        </tr>
-<tr style="background: #fff5f5;">
-            <td>13</td>
-            <td><strong>Renergetic 2</strong><br><span style="font-size:6pt;color:#718096;">Required: 2.4MW / 10MWh</span></td>
-            <td class="text-center">2.4</td>
-            <td class="text-center">2.4</td>
-            <td class="text-center">10</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td class="text-center" style="color:#718096;font-style:italic;">TBD</td>
-            <td colspan="2" style="color:#718096;text-align:center;font-style:italic;">See options below</td>
-        </tr>
-<tr style="background: #f0fff4; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#276749;">↳ <strong>Option A</strong> (2.5MW/10MWh) </td>
-            <td class="text-center">-</td>
-            <td class="text-center">2.5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">2.5MW (1)</td>
-            <td class="text-right">€120,630</td>
-            <td class="text-right price">€1,206,300</td>
-        </tr>
-<tr style="background: #ebf8ff; font-size: 6.5pt;">
-            <td></td>
-            <td style="padding-left:12px;color:#2c5282;">↳ <strong>Option B</strong> (5MW/10MWh)</td>
-            <td class="text-center">-</td>
-            <td class="text-center">5</td>
-            <td class="text-center">10</td>
-            <td class="text-center">2× 5.015MWh</td>
-            <td class="text-center">5MW (1)</td>
-            <td class="text-right">€136,106</td>
-            <td class="text-right price">€1,361,060</td>
+            <td><strong>ABIO Power Total</strong></td>
+            <td class="text-center"><strong>125</strong></td>
+            <td class="text-center"><strong>430.28</strong></td>
+            <td colspan="2"></td>
+            <td class="text-right">&mdash;</td>
+            <td class="text-right price"><strong>&euro;52,609,992</strong></td>
         </tr>
             </tbody>
         </table>
         
-        <div class="rfi-note">
-            <strong>⏳ RFI sent to Linyang for new park configurations</strong> — Quote update for TBD prices within <strong>4 working days</strong>.<br>
-            Options shown are nearest available configurations for price comparison. Custom configs available with adjusted nameplate power.
+                <!-- INCLUDED -->
+        <div style="margin-top:8px;">
+          <div style="background:#d1fae5;color:#065f46;padding:6px 10px;border-radius:6px 6px 0 0;font-weight:700;font-size:7pt;display:flex;align-items:center;gap:4px;border-bottom:2px solid #065f46;">
+            <span style="font-size:10px;">✓</span> INCLUDED IN TURNKEY PRICE
+          </div>
+          <div style="border:1.5px solid #065f46;border-top:none;border-radius:0 0 6px 6px;padding:6px 8px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="min-width:0;overflow:hidden;">
+                <div style="font-size:5.5pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Equipment Supply (CIF Limassol)</div>
+                <table style="font-size:6pt;table-layout:fixed;width:100%;margin-bottom:4px;">
+                  <col style="width:42%;"><col style="width:58%;">
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ Battery Containers</td><td style="padding:2px 4px;">Linyang ME 5.015 MWh · EVE LF314 LFP</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ PCS / Inverters</td><td style="padding:2px 4px;">Kehua BCS1250K-C / BCS1000K-C-HUD</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ MV Skid</td><td style="padding:2px 4px;">PCS + MV Transformer (0.69/33kV)</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ RMU &amp; Switchgear</td><td style="padding:2px 4px;">Schneider RM AirSeT 12-24kV</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ BMS</td><td style="padding:2px 4px;">3-Level (BMU/BCMU/BAMS)</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ Liquid Cooling</td><td style="padding:2px 4px;">HVAC per container (45kW)</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ Fire Suppression</td><td style="padding:2px 4px;">Aerosol + Gas detection</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ EMS / SCADA</td><td style="padding:2px 4px;">Voltus EMS + Lighthief SCADA</td></tr>
+                </table>
+
+                <div style="font-size:5.5pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Civil Works &amp; Installation</div>
+                <table style="font-size:6pt;table-layout:fixed;width:100%;">
+                  <col style="width:42%;"><col style="width:58%;">
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ Civil Works</td><td style="padding:2px 4px;">Site prep, grading &amp; compaction</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ Concrete Bases</td><td style="padding:2px 4px;">Foundations for containers &amp; skids</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ Drainage System</td><td style="padding:2px 4px;">Stormwater drainage &amp; grading</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ AC/DC Cabling</td><td style="padding:2px 4px;">Power &amp; comms cables, trays</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ Internal Earthing</td><td style="padding:2px 4px;">Earthing grid + resistivity test</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ Surge Protection</td><td style="padding:2px 4px;">DEHN SPDs on all equipment</td></tr>
+                </table>
+              </div>
+              <div style="min-width:0;overflow:hidden;">
+                <div style="font-size:5.5pt;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Services &amp; Compliance</div>
+                <table style="font-size:6pt;table-layout:fixed;width:100%;">
+                  <col style="width:44%;"><col style="width:56%;">
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ Installation &amp; Commissioning</td><td style="padding:2px 4px;">OEM technicians (4-6 weeks/site)</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ Import &amp; Customs</td><td style="padding:2px 4px;">All import costs in CIF price</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ ETEK Certification</td><td style="padding:2px 4px;">Licensed engineer declaration</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ Grid Forming</td><td style="padding:2px 4px;">VSG, Black Start, PQ, VF modes</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ EU Battery Passport</td><td style="padding:2px 4px;">Full compliance documentation</td></tr>
+                  <tr><td style="padding:2px 4px;font-weight:600;">✓ EOL Recycling</td><td style="padding:2px 4px;">Zero net cost · Lighthief disposal</td></tr>
+                  <tr style="background:#f0fdf4;"><td style="padding:2px 4px;font-weight:600;">✓ 5-Year OEM Warranty</td><td style="padding:2px 4px;">All components · Linyang-backed</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <p class="note"><strong>Pricing:</strong> Select Option A (lower PCS, DSO compliant) or Option B (higher PCS) for pending configurations.</p>
-        
-        <div class="two-col">
-            <div class="box">
-                <h3>✓ EPC TURNKEY INCLUDED</h3>
-                <ul>
-                    <li><strong>BESS:</strong> Linyang containers, EVE LF314 cells, BMS</li>
-                    <li><strong>MV SKID:</strong> Transformer + Schneider switchgear</li>
-                    <li>EMS/SCADA integration (Voltus)</li>
-                    <li>Civil works, foundations, fencing</li>
-                    <li>MV cabling to DSO connection point</li>
-                    <li>Commissioning & 2-year warranty</li>
-                    <li>CY-DSO certification support</li>
-                </ul>
+
+        <!-- EXCLUDED -->
+        <div style="margin-top:6px;">
+          <div style="background:#fee2e2;color:#991b1b;padding:6px 10px;border-radius:6px 6px 0 0;font-weight:700;font-size:7pt;display:flex;align-items:center;gap:4px;border-bottom:2px solid #991b1b;">
+            <span style="font-size:10px;">✗</span> EXCLUDED — CLIENT PAYS SEPARATELY
+          </div>
+          <div style="border:1.5px solid #991b1b;border-top:none;border-radius:0 0 6px 6px;padding:6px 8px;">
+            <table style="font-size:6pt;table-layout:fixed;width:100%;">
+              <colgroup><col style="width:38%;"><col style="width:62%;"></colgroup>
+              <tr><th style="background:#fee2e2;color:#991b1b;font-size:6pt;padding:2px 4px;border-bottom:1px solid #991b1b;">Item</th><th style="background:#fee2e2;color:#991b1b;font-size:6pt;padding:2px 4px;border-bottom:1px solid #991b1b;">Notes</th></tr>
+              <tr style="background:#fee2e2;"><td style="padding:3px 4px;font-weight:700;">✗ EAC Testing &amp; Connection Fees</td><td style="padding:3px 4px;">Grid connection testing, metering, and EAC admin fees — paid by park owner directly to EAC</td></tr>
+              <tr><td style="padding:3px 4px;font-weight:700;">✗ External Lightning Protection (LPS)</td><td style="padding:3px 4px;">External lightning rods &amp; conductors — DEHN design, coordinated by Lighthief. Pricing on request.</td></tr>
+              <tr style="background:#fee2e2;"><td style="padding:3px 4px;font-weight:700;">✗ Site Earthing Enhancement</td><td style="padding:3px 4px;">Only if existing earthing is inadequate (rare). Internal earthing IS included in EPC.</td></tr>
+              <tr><td style="padding:3px 4px;font-weight:700;">✗ Electrical Drawings / As-Built</td><td style="padding:3px 4px;"><strong>Required</strong> — engineering drawings &amp; as-built documentation. Budget €5,000–€15,000 per site depending on complexity. Client must arrange separately.</td></tr>
+              <tr style="background:#fee2e2;"><td style="padding:3px 4px;font-weight:700;">✗ Communication to TSO/DSO</td><td style="padding:3px 4px;">Fibre or dedicated communication link to TSO/EAC control centre</td></tr>
+              <tr><td style="padding:3px 4px;font-weight:700;">✗ VAT (19%)</td><td style="padding:3px 4px;">Cyprus standard rate — applied on invoicing</td></tr>
+            </table>
+
+            <div style="background:#fef3c7;border:1px solid #fbbf24;border-radius:4px;padding:4px 6px;margin-top:6px;">
+              <div style="font-size:6pt;font-weight:700;color:#92400e;margin-bottom:2px;">Optional Add-Ons (Coordinated by Lighthief)</div>
+              <div style="font-size:5.5pt;color:#92400e;">
+                • External LPS Design &amp; Installation (DEHN) — quoted per site<br>
+                • Enhanced site earthing — if soil resistivity test requires it<br>
+                • Fencing &amp; security upgrades — if client requests beyond standard<br>
+                • LTSA Tier C (Availability Guarantee + Premium O&amp;M) — highest service tier offered
+              </div>
             </div>
-            <div class="box">
-                <h3>✗ EXCLUDED</h3>
-                <ul>
-                    <li>EAC Testing Fees</li>
-                    <li>External Lightning Protection</li>
-                    <li>Land lease / acquisition</li>
-                    <li>DSO connection fees & metering</li>
-                    <li>Third-party insurance during construction</li>
-                    <li>Permitting fees (if any)</li>
-                </ul>
-            </div>
+          </div>
+        </div>
+
+        <!-- INSURANCE & GUARANTEES -->
+        <div style="margin-top:6px;">
+          <div style="background:#f3f4f6;color:var(--primary);padding:6px 10px;border-radius:6px 6px 0 0;font-weight:700;font-size:7pt;display:flex;align-items:center;gap:4px;border-bottom:2px solid var(--primary);">
+            <span style="font-size:10px;">🛡</span> INSURANCE &amp; GUARANTEES BACKING
+          </div>
+          <div style="border:1.5px solid var(--border);border-top:none;border-radius:0 0 6px 6px;padding:6px 8px;">
+            <table style="font-size:6pt;table-layout:fixed;width:100%;">
+              <col style="width:34%;"><col style="width:34%;"><col style="width:32%;">
+              <tr><th style="font-size:5.5pt;background:#f3f4f6;color:var(--primary);padding:2px 4px;">Protection</th><th style="font-size:5.5pt;background:#f3f4f6;color:var(--primary);padding:2px 4px;">Provider</th><th style="font-size:5.5pt;background:#f3f4f6;color:var(--primary);padding:2px 4px;">Limit</th></tr>
+              <tr><td style="padding:2px 4px;">Product Liability</td><td style="padding:2px 4px;">Linyang (AXA)</td><td style="padding:2px 4px;font-weight:700;">€5,000,000</td></tr>
+              <tr style="background:#f9fafb;"><td style="padding:2px 4px;">Professional Indemnity</td><td style="padding:2px 4px;">Linyang</td><td style="padding:2px 4px;font-weight:700;">€2,000,000</td></tr>
+              <tr><td style="padding:2px 4px;">CAR/EAR Insurance (LEG3)</td><td style="padding:2px 4px;">Lighthief</td><td style="padding:2px 4px;font-weight:700;">Full Contract Value</td></tr>
+              <tr style="background:#f9fafb;"><td style="padding:2px 4px;">Manufacturing Defect</td><td style="padding:2px 4px;">Linyang</td><td style="padding:2px 4px;font-weight:700;">Full Indemnification</td></tr>
+              <tr><td style="padding:2px 4px;">Performance Bond</td><td style="padding:2px 4px;">Linyang (Bank)</td><td style="padding:2px 4px;font-weight:700;">5% Bank Guarantee</td></tr>
+              <tr style="background:#f9fafb;"><td style="padding:2px 4px;">Advance Payment Guarantee</td><td style="padding:2px 4px;">Linyang (Bank)</td><td style="padding:2px 4px;font-weight:700;">100% of Advance</td></tr>
+              <tr><td style="padding:2px 4px;">OEM Warranty Reserve</td><td style="padding:2px 4px;">Linyang</td><td style="padding:2px 4px;font-weight:700;">~1.9%/year</td></tr>
+            </table>
+          </div>
         </div>
         
         <div class="summary">
-            <strong>CONFIRMED TOTAL:</strong> 105 MWh = €9,028,140 | 
-            <strong>PENDING:</strong> 120.3 MWh |
-            <strong>PORTFOLIO TOTAL:</strong> 225.3 MWh
+            <strong>PORTFOLIO TOTAL:</strong> 25 Parks · 125 MW · 430.28 MWh = <strong>&euro;52,609,992</strong>
         </div>
         
         <div class="footer">
-            <strong>Lighthief Ltd</strong> — Energy Storage Solutions, Cyprus | Email: info@lighthief.com
+            <strong>Lighthief Ltd</strong> — Energy Storage Solutions, Cyprus | Email: office@lighthief.com
         </div>
     </div>
 </body>

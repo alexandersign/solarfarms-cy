@@ -11,7 +11,7 @@
 
 Lighthief is the exclusive Linyang BESS distribution partner for Cyprus, operating under a strategic Distribution Agreement with Jiangsu Linyang Energy Storage Technology Co., Ltd (China) and Solarfun Renewable Energy Poland sp. z o.o. This partnership extends across multiple EU territories, establishing Lighthief as a key European channel partner for Linyang's Power Atlantic BESS solutions.
 
-Our Cyprus operation is deploying an 863.5 MWh BESS portfolio across 51 parks, supported by a dedicated engineering team trained at our Poland headquarters and backed by Linyang's global technical support infrastructure.
+Our Cyprus operation is deploying an 881.78 MWh BESS portfolio across 51 parks, supported by a dedicated engineering team trained at our Poland headquarters and backed by Linyang's global technical support infrastructure.
 
 ---
 
@@ -24,7 +24,7 @@ LIGHTHIEF GROUP
 │
 ├── Lighthief Cyprus Ltd (HE 477423)
 │   └── Cyprus Director: Alexander Papacosta
-│       • 863.5 MWh BESS Portfolio (51 parks)
+│       • 881.78 MWh BESS Portfolio (51 parks)
 │       • Exclusive Linyang Distributor — Cyprus
 │
 ├── Solarfun Renewable Energy Poland sp. z o.o. (KRS 0001164462)
@@ -56,7 +56,7 @@ LIGHTHIEF GROUP
 |------------|--------|
 | **Exclusivity** | Linyang shall not appoint any other Cyprus distributor during Term |
 | **Technical Support** | Critical issues: 4-hour response, on-site within 5 days |
-| **Training** | 5-day initial + quarterly webinars + annual refresher |
+| **Training** | 3-week initial training in Poland for Engineers + quarterly webinars + annual refresher |
 | **Warranty** | 5-year base (extendable to 10-20 years via LTSA) |
 | **Parts Inventory** | 950 m² dedicated Linyang warehouse in Poland |
 | **Engineer Visits** | Minimum 2 in-person Linyang visits per year |
@@ -74,7 +74,7 @@ LIGHTHIEF GROUP
 |-------|--------|
 | **Role** | Cyprus Director, BESS O&M Team Lead |
 | **Location** | Limassol, Cyprus |
-| **Email** | alexander.papacosta@lighthief.com |
+| **Email** | office@lighthief.com |
 | **Entity** | Lighthief Cyprus Ltd |
 
 Alexander leads Lighthief's rapidly expanding Cyprus operations, specializing in off-grid energy systems and the integration of renewable energy with advanced infrastructure. He manages investor relations for photovoltaic farm development across Cyprus and Greece, overseeing strategic Joint Ventures including the partnership with 7Sun, one of Europe's major renewable energy wholesalers.
@@ -376,9 +376,9 @@ Lighthief's Poland headquarters serves as the European hub for Linyang technical
 
 | Aspect | Detail |
 |--------|--------|
-| **Duration** | 5 business days |
-| **Participants** | Up to 5 Lighthief staff |
-| **Location** | Lighthief Poland HQ or Linyang China |
+| **Duration** | 3 weeks |
+| **Participants** | All Engineers |
+| **Location** | Lighthief Poland HQ (Czestochowa) |
 | **Cost** | Linyang covers trainers' travel/accommodation |
 
 **Training Content:**
@@ -399,15 +399,14 @@ Lighthief's Poland headquarters serves as the European hub for Linyang technical
 
 ## 7. INTERNAL TRAINING PROGRAM — POLAND HQ
 
-The three Polish team members (Dawid, Szymon, Kacper) are currently completing an intensive BESS-specific training program at Lighthief's Czestochowa headquarters. The training covers:
+All Engineers complete an intensive 3-week BESS-specific training program at Lighthief's Czestochowa headquarters in Poland. The training covers:
 
 | Module | Duration | Content |
 |--------|----------|---------|
-| **Linyang BESS Systems** | 2 weeks | Container architecture (ME 4.179 / 5.015 MWh), BMS operations, liquid cooling, fire suppression, C5 corrosion environments |
-| **Kehua PCS Operations** | 1 week | BCS1250K-C / BCS1000K-C-HUD inverters, grid-forming capabilities, MV SKID integration, fault codes and diagnostics |
-| **EMS/SCADA Integration** | 1 week | Voltus EMS platform, SCADA local/global architecture, IEC-104 protocol, HPC controller operations, DSO data exchange |
-| **Cyprus Grid Code** | 1 week | EN 50549-2, EAC connection procedures, CERA licensing, protection relay testing, DSO witness test preparation |
-| **Safety & Compliance** | Ongoing | High-voltage working procedures, arc flash protection, lockout/tagout, confined space (battery containers), thermal runaway response protocols |
+| **Week 1: Linyang BESS Systems** | 5 days | Container architecture (ME 4.179 / 5.015 MWh), BMS operations, liquid cooling, fire suppression, C5 corrosion environments |
+| **Week 2: Kehua PCS + EMS/SCADA** | 5 days | BCS1250K-C / BCS1000K-C-HUD inverters, grid-forming capabilities, MV SKID integration, Voltus EMS platform, IEC-104 protocol, SCADA architecture |
+| **Week 3: Grid Code + Practical Commissioning** | 5 days | EN 50549-2, EAC connection procedures, CERA licensing, protection relay testing, DSO witness test preparation, hands-on commissioning exercises |
+| **Safety & Compliance** | Integrated throughout | High-voltage working procedures, arc flash protection, lockout/tagout, confined space (battery containers), thermal runaway response protocols |
 
 **Training Location:** Lighthief Poland HQ, Czestochowa — 23-hectare research center with operational PV farms, biogas plant, and BESS test systems
 
@@ -433,7 +432,7 @@ The three Polish team members (Dawid, Szymon, Kacper) are currently completing a
 | **BESS Specialists** | 3 engineers on rotation (Dawid, Szymon, Kacper) |
 | **Planned Maintenance** | Quarterly site visits per park |
 | **Annual Cost** | €1,740/MWh/year (O&M contract) |
-| **Portfolio Coverage** | 51 parks, 863.5+ MWh, 5 districts |
+| **Portfolio Coverage** | 51 parks, 881.78 MWh, 5 districts |
 
 ### 8.3 District Assignments (Planned)
 
@@ -584,7 +583,7 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
 | Territory | Status | Entity |
 |-----------|--------|--------|
-| **Cyprus** | Active — 863.5 MWh portfolio | Lighthief Cyprus Ltd |
+| **Cyprus** | Active — 881.78 MWh portfolio | Lighthief Cyprus Ltd |
 | **Poland** | Active — EU Headquarters | Solarfun Poland |
 | **Greece** | 7Sun JV partnership | Lighthief/7Sun |
 | **EU (General)** | Via Poland coordination | Solarfun Poland |
@@ -595,7 +594,7 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
 | Metric | Value |
 |--------|-------|
-| **Total Portfolio** | 863.5 MWh |
+| **Total Portfolio** | 881.78 MWh |
 | **Total Parks** | 51 |
 | **Districts Covered** | Famagusta, Larnaca, Limassol, Nicosia, Paphos |
 | **Annual O&M Value** | €1,740/MWh/year |
@@ -646,7 +645,7 @@ Rotation reverses every 4 weeks. No engineer works nights and days on the same d
 
 | Name | Role | Organisation | Email | Location |
 |------|------|-------------|-------|----------|
-| **Alexander Papacosta** | Cyprus Director & Project Lead | Lighthief | alexander.papacosta@lighthief.com | Limassol, CY |
+| **Alexander Papacosta** | Cyprus Director & Project Lead | Lighthief | office@lighthief.com | Limassol, CY |
 | **Costas Hadjikyriacou** | ETEK Engineer, Project Planning & Sign-Off | Lighthief | costas@lighthief.com | Cyprus |
 | **Andreas Christoforou** | Energy & BESS Consultant | Lighthief | xristoforou.andreass@gmail.com | UK → CY |
 | **Dawid Lesnikowski** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |

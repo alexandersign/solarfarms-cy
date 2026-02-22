@@ -601,6 +601,738 @@ export default function BlogPage() {
         </div>
       </section>
 
+      {/* BESS Investment Series */}
+      <section className="section-padding bg-gray-50">
+        <div className="container">
+          <div className="mb-12">
+            <h2 className="text-3xl font-heading font-bold mb-2">BESS Investment Series</h2>
+            <p className="text-lg text-gray-600">Comprehensive guides to battery energy storage for PV park owners, investors, and project developers.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 1. Investor's Guide */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-blue-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">Investment Guide</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/investors-guide-battery-energy-storage">The Investor&apos;s Guide to Battery Energy Storage</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">What BESS means for your solar park&apos;s revenue, grid connection, and asset valuation. Written for PV park owners, not hobbyists.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Mar 2, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/investors-guide-battery-energy-storage" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 2. BESS Costs 2026 */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-amber-100 to-yellow-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-amber-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">Investment Guide</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-costs-2026-capex-breakdown">Understanding BESS Costs in 2026: CAPEX Breakdown</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Beyond the headline &euro;/MWh figure — every line item from CIF container pricing to civil works, EMS, insurance, and import duties.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Mar 9, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-costs-2026-capex-breakdown" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 3. LFP vs NMC */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-purple-100 to-indigo-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-purple-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">Technology</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/lfp-vs-nmc-utility-scale-bess">LFP vs NMC for Utility-Scale BESS</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Why we chose LFP for all 881 MWh across 51 parks — cycle life economics, fire safety, and insurance implications.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Mar 16, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/lfp-vs-nmc-utility-scale-bess" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 4. Island Grid Economics */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-sky-100 to-blue-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-sky-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">Market Analysis</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/island-grid-economics-cyprus-bess">Island Grid Economics: Why Cyprus BESS Is Different</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Zero interconnection means higher curtailment, wider price spreads, and stronger BESS economics than mainland Europe.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Mar 23, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/island-grid-economics-cyprus-bess" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 5. BESS Sizing */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-emerald-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">Technology</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-sizing-solar-farms">BESS Sizing for Solar Farms</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">How to match storage capacity to your park&apos;s revenue potential using real curtailment data and grid constraints.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Mar 30, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-sizing-solar-farms" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 6. Peak Shaving vs Energy Arbitrage */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-green-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">Investment Guide</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/peak-shaving-vs-energy-arbitrage-cyprus">Peak Shaving vs Energy Arbitrage in Cyprus</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Two revenue models compared with real Cyprus pricing — &euro;77/MWh midday vs &euro;186/MWh evening.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Apr 13, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/peak-shaving-vs-energy-arbitrage-cyprus" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 7. BESS Insurance and Risk */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-red-100 to-rose-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-red-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-cyan-100 text-cyan-800">Risk Management</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-insurance-risk-lenders">BESS Insurance and Risk: What Lenders Look For</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Insurance is the overlooked gatekeeper of bankability. What insurers assess and how it affects your project finance.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Apr 27, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-insurance-risk-lenders" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 8. Cyprus BESS Regulations vs Europe */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-slate-100 to-gray-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-slate-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-orange-100 text-orange-800">Regulations</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/cyprus-bess-regulatory-framework-europe">Cyprus BESS Regulations vs Europe</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Permitting, grid connection, and market access rules compared across Cyprus, Germany, Spain, Italy, Greece, and the UK.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>May 11, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/cyprus-bess-regulatory-framework-europe" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 9. Curtailed Energy Revenue Recovery */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-amber-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">Market Analysis</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/curtailed-energy-revenue-recovery-cyprus">Curtailed Energy Is Not Lost Energy</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">306 GWh curtailed in 2025, worth &euro;58M. Three proven strategies to recover this revenue for your PV park.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>May 25, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/curtailed-energy-revenue-recovery-cyprus" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 10. EMS and SCADA */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-violet-100 to-purple-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-violet-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">Technology</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/ems-scada-bess-revenue">EMS and SCADA: Why Your Software Determines Revenue</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">A well-configured EMS generates 20-40% more revenue from the same BESS hardware. Here&apos;s what matters.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Jun 8, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/ems-scada-bess-revenue" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 11. Cost of NOT Adding BESS */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-emerald-100 to-green-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-emerald-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">Investment Guide</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/cost-of-not-adding-bess-financial-model">The Real Cost of NOT Adding BESS: 10-Year Model</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">PV-only vs PV+BESS over 10 years with real Cyprus data. The crossover point might surprise you.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Jun 22, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/cost-of-not-adding-bess-financial-model" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 12. BESS Fire Safety */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-red-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">Technology</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-fire-safety-thermal-management">BESS Fire Safety and Thermal Management</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Deploying 251 containers in 45&deg;C Cyprus summers. Thermal management, fire suppression, and engineering decisions.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Jul 6, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-fire-safety-thermal-management" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 13. BESS Warranties and Performance Bonds */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-blue-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">Investment Guide</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-warranties-guarantees-checklist">BESS Warranties and Performance Bonds Checklist</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Capacity warranties, availability guarantees, performance bonds, and LTSA structures — with our exact terms.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Jul 20, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-warranties-guarantees-checklist" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 14. From Container Ship to Grid Connection */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-cyan-100 to-sky-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-cyan-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-cyan-100 text-cyan-800">Case Study</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-installation-container-to-grid">From Container Ship to Grid Connection</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Every phase of utility-scale BESS installation — factory to commissioning — based on our 51-park deployment.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Aug 3, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-installation-container-to-grid" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 15. Group Procurement */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-yellow-100 to-amber-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-yellow-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">Investment Guide</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/bess-group-procurement-cost-savings">Group Procurement: 15-20% BESS Cost Savings</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">How aggregating 51 parks into one 881 MWh order achieves Tier-1 OEM pricing no individual buyer can access.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Aug 17, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/bess-group-procurement-cost-savings" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 16. Cyprus Energy Storage Roadmap */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-teal-100 to-emerald-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-teal-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">Market Analysis</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/cyprus-energy-storage-roadmap-2027-2030">Cyprus Energy Storage Roadmap: 2027-2030</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">From curtailment recovery to grid services and the EuroAsia Interconnector — the BESS landscape through 2030.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Aug 31, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/cyprus-energy-storage-roadmap-2027-2030" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 17. Virtual Power Plants */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-indigo-100 to-blue-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-indigo-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">Market Analysis</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/virtual-power-plants-island-grids">Virtual Power Plants on Island Grids</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">How aggregated BESS capacity could participate in balancing markets, ancillary services, and synthetic inertia.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 14, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/virtual-power-plants-island-grids" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 18. DC-Coupled vs AC-Coupled */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-orange-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">Technology</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/dc-coupled-vs-ac-coupled-bess">DC-Coupled vs AC-Coupled BESS for PV Parks</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">Which architecture maximises revenue when retrofitting BESS onto existing solar parks? We analyse both.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Sep 28, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/dc-coupled-vs-ac-coupled-bess" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 19. EuroAsia Interconnector */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-blue-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">Market Analysis</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/euroasia-interconnector-bess-cyprus">BESS and the EuroAsia Interconnector</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">The 2,000 MW submarine cable changes Cyprus&apos;s grid. We analyse what interconnection means for BESS investors.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Oct 12, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/euroasia-interconnector-bess-cyprus" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 20. Lessons from Year One */}
+            <Card className="group hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <div className="w-full h-48 bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
+                  <div className="text-4xl font-bold text-emerald-600/30">BESS</div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-cyan-100 text-cyan-800">Case Study</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/lessons-year-one-bess-operations-cyprus">Lessons from Year One: 881 MWh of BESS</Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">After commissioning 251 containers across 51 parks — what worked, what surprised us, and operational realities.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Oct 26, 2026</span>
+                    </div>
+                  </div>
+                  <Link href="/blog/lessons-year-one-bess-operations-cyprus" className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium">
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter Signup */}
       <section className="section-padding bg-gradient-to-r from-solar-500 to-cyprus-600 text-white">
         <div className="container text-center">

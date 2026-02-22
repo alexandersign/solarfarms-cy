@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP - Electrical Design Drawings & CT Consultation | INTESO GROUP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .page { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 50px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%); color: white; padding: 25px 30px; margin: -40px -50px 30px -50px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        h1 { color: #2c3e50; font-size: 24px; margin: 15px 0; }
+        .subtitle { color: #7f8c8d; font-size: 16px; margin-top: 10px; }
+        h2 { color: #2c3e50; font-size: 18px; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid #2980b9; }
+        h3 { color: #34495e; font-size: 15px; margin: 20px 0 10px 0; }
+        .info-box { background: #ecf0f1; border-left: 4px solid #2980b9; padding: 15px 20px; margin: 20px 0; }
+        .critical-box { background: #ebf8ff; border-left: 4px solid #3182ce; padding: 15px 20px; margin: 20px 0; }
+        .context-box { background: #ebf8ff; border-left: 4px solid #3182ce; padding: 15px 20px; margin: 20px 0; }
+        .note-box { background: #fefcbf; border-left: 4px solid #d69e2e; padding: 15px 20px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        th { background: #2c3e50; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .total-row { background: #2c3e50 !important; color: white; font-weight: bold; }
+        .total-row td { border-color: #2c3e50; }
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 80px; }
+        ul, ol { margin: 10px 0 10px 25px; }
+        li { margin: 5px 0; }
+        .scope-table th { background: #2980b9; }
+        .ct-table th { background: #2980b9; }
+        .contact-box { background: #2c3e50; color: white; padding: 20px; margin-top: 30px; border-radius: 5px; }
+        .contact-box h3 { color: #63b3ed; margin-bottom: 10px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; text-align: center; color: #7f8c8d; font-size: 12px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; color: white; }
+        .badge-scope-a { background: #2980b9; }
+        .badge-scope-b { background: #2d8659; }
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; padding: 20px 30px; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            th, .badge, .total-row { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Ref:</strong> RFP-LCY-DESIGN-2026-001</div>
+                    <div><strong>Date:</strong> 19 February 2026</div>
+                    <div><strong>Classification:</strong> CONFIDENTIAL</div>
+                </div>
+            </div>
+            <h1 style="color: white; text-align: center; margin-top: 10px;">Request for Proposal</h1>
+            <p class="subtitle" style="color: rgba(255,255,255,0.85); text-align: center;">Electrical Design Drawings & CT Specification Consultation</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ADDRESSEE & OVERVIEW -->
+        <!-- ============================================================ -->
+
+        <div class="info-box">
+            <strong>To:</strong> Valentinos Grigoriou — Founder, INTESO GROUP<br>
+            <strong>From:</strong> Alexander Papacosta — Cyprus Director, Lighthief Cyprus Ltd<br>
+            <strong>RFP Issue Date:</strong> 19 February 2026<br>
+            <strong>Project:</strong> Cyprus BESS Portfolio — 47 Parks (~863.5 MWh)
+        </div>
+
+        <h2>1. Introduction</h2>
+        <p>Lighthief Cyprus Ltd is developing a utility-scale Battery Energy Storage System (BESS) portfolio in Cyprus: <strong>47 parks</strong> across all districts, totalling approximately 863.5 MWh. Equipment is supplied by <strong>Linyang Energy</strong> (battery containers, BMS, cooling) with <strong>Kehua Tech</strong> PCS (power conversion systems) and integrated MV SKIDs (transformer + RMU + switchgear).</p>
+
+        <p>We are seeking proposals from <strong>INTESO GROUP</strong> for two closely related scopes of work:</p>
+
+        <div class="two-col" style="margin: 15px 0;">
+            <div style="background: #ebf8ff; border: 2px solid #2980b9; border-radius: 8px; padding: 15px;">
+                <strong><span class="badge badge-scope-a">SCOPE A</span> Electrical Design Drawings</strong>
+                <p style="margin-top: 8px; font-size: 12px;">Detailed single-line diagrams, protection schemes, cable schedules, and layout drawings for DSO application and EPC execution — covering the full BESS-to-grid connection for each park type.</p>
+            </div>
+            <div style="background: #f0fff4; border: 2px solid #2d8659; border-radius: 8px; padding: 15px;">
+                <strong><span class="badge badge-scope-b">SCOPE B</span> CT Specification Consultation</strong>
+                <p style="margin-top: 8px; font-size: 12px;">Expert consultation on Current Transformer (CT) class, ratio, location, and accuracy to satisfy Cyprus DSO (EAC) requirements — including direct coordination with DSO if required.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PROJECT CONTEXT -->
+        <!-- ============================================================ -->
+
+        <h2>2. Project Context</h2>
+
+        <h3>2.1 Portfolio Summary</h3>
+        <table>
+            <tr><th>Parameter</th><th>Value</th></tr>
+            <tr><td>Total Parks</td><td><strong>47</strong> (6 client groups)</td></tr>
+            <tr><td>Total Capacity</td><td>~863.5 MWh</td></tr>
+            <tr><td>Battery Containers</td><td>~176 units × 5.015 MWh (20' HC)</td></tr>
+            <tr><td>PCS</td><td>Kehua C-HUD series — BCS1000K (1.00 MW) and BCS1250K (1.25 MW)</td></tr>
+            <tr><td>MV SKIDs</td><td>~70 units (integrated transformer + RMU + switchgear)</td></tr>
+            <tr><td>Grid Connection</td><td>11 kV or 22 kV MV, via existing PV park POC</td></tr>
+            <tr><td>DSO</td><td>EAC (Electricity Authority of Cyprus)</td></tr>
+            <tr><td>Category</td><td>Category B (RES + Integrated Storage) or Category C (Standalone)</td></tr>
+            <tr><td>SCADA Protocol</td><td>IEC 60870-5-104 to DSO (mandatory for &ge;120 kW)</td></tr>
+            <tr><td>Equipment Supplier</td><td>Linyang Energy + Kehua Tech (PCS)</td></tr>
+        </table>
+
+        <h3>2.2 Typical Park Configurations</h3>
+        <p>Parks range from single-container installations (~5 MWh) to large multi-container parks (~40+ MWh). For design drawing purposes, we anticipate grouping parks into approximately 4 standard types based on container count and MV SKID configuration. The exact type definitions will be agreed during the engagement.</p>
+
+        <h3>2.3 District Distribution</h3>
+        <table>
+            <tr><th>District</th><th>Parks</th><th>BESS Containers</th><th>MV SKIDs</th></tr>
+            <tr><td>Nicosia</td><td>30</td><td>111</td><td>48</td></tr>
+            <tr><td>Famagusta</td><td>7</td><td>35</td><td>9</td></tr>
+            <tr><td>Limassol</td><td>5</td><td>23</td><td>8</td></tr>
+            <tr><td>Paphos</td><td>3</td><td>5</td><td>3</td></tr>
+            <tr><td>Larnaca</td><td>2</td><td>2</td><td>2</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>47</strong></td><td><strong>176</strong></td><td><strong>70</strong></td></tr>
+        </table>
+
+        <!-- ============================================================ -->
+        <!-- SCOPE A: ELECTRICAL DESIGN DRAWINGS -->
+        <!-- ============================================================ -->
+
+        <h2>3. Scope A — Electrical Design Drawings</h2>
+
+        <h3>3.1 Deliverables</h3>
+        <table class="scope-table">
+            <tr><th style="width:5%">#</th><th style="width:30%">Drawing / Document</th><th>Description</th><th style="width:12%">Quantity</th></tr>
+            <tr>
+                <td>A1</td>
+                <td><strong>Single Line Diagrams (SLD)</strong></td>
+                <td>Complete SLD per park type showing: BESS containers, PCS, MV SKID (transformer + RMU + switchgear), MV cable to POC, protection relay, CT/VT positions, metering points, earthing, circuit breakers, and DSO boundary. Must comply with EAC Technical Guide for Storage 2025.1.</td>
+                <td>4 types + site-specific variants</td>
+            </tr>
+            <tr>
+                <td>A2</td>
+                <td><strong>Protection Scheme Drawings</strong></td>
+                <td>Detailed protection relay wiring diagrams showing: CT/VT connections to protection relay, trip circuit, SCADA interface, remote trip (C5) interlock with PCS. Include relay settings per DSO Table 1 (U&lt; 0.9Un/0.2s, U&gt; 1.1Un/0.2s, f&lt; 47Hz/0.2s, f&gt; 52Hz/0.2s, LoM/ROCOF).</td>
+                <td>Per park type</td>
+            </tr>
+            <tr>
+                <td>A3</td>
+                <td><strong>CT/VT Metering & Protection Scheme</strong></td>
+                <td>Detailed CT/VT wiring showing: two sets of 3-phase CTs (protection set + metering/PQR set per DSO SLD), VT connections, burden calculations, CT/VT position (MV or LV side), accuracy class designation, and interface to Power Quality Recorder (PQR) and SCADA RTU.</td>
+                <td>Per park type</td>
+            </tr>
+            <tr>
+                <td>A4</td>
+                <td><strong>MV Cabling Layout</strong></td>
+                <td>Cable route drawings from MV SKID to Point of Connection (POC). Include: cable sizing calculations, voltage drop calculations, trench cross-sections, cable termination details (indoor at SKID, outdoor at POC).</td>
+                <td>Per park type</td>
+            </tr>
+            <tr>
+                <td>A5</td>
+                <td><strong>LV Cabling & Auxiliary Power Layout</strong></td>
+                <td>DC cabling (BESS to PCS), LV AC (PCS to transformer), communication cables (Ethernet to EMS), 24V UPS distribution, auxiliary power distribution for BMS/SCADA.</td>
+                <td>Per park type</td>
+            </tr>
+            <tr>
+                <td>A6</td>
+                <td><strong>Earthing & Bonding Drawings</strong></td>
+                <td>Earth grid design per park type, electrode placement, bonding connections to containers, earth rod schedule, resistance targets. Coordinate with DEHN earthing/LPS scope.</td>
+                <td>Per park type</td>
+            </tr>
+            <tr>
+                <td>A7</td>
+                <td><strong>SCADA/EMS Interface Diagram</strong></td>
+                <td>Communication architecture drawing: EMS (Voltus) &harr; PCS/BMS (Modbus TCP) &harr; RTU (IEC 60870-5-104) &harr; DSO (EKED). Include network switch, cellular router, 4G antenna, UPS for comms.</td>
+                <td>Typical + per park type</td>
+            </tr>
+            <tr>
+                <td>A8</td>
+                <td><strong>Cable Schedule & Bill of Materials</strong></td>
+                <td>Complete cable schedule per park type: cable type, size, length, route, termination details. BoM for CT/VT, protection relay, PQR, metering panel, earthing materials.</td>
+                <td>Per park type</td>
+            </tr>
+            <tr>
+                <td>A9</td>
+                <td><strong>DSO Application Package</strong></td>
+                <td>Formatted drawing set suitable for submission with EAC grid connection application per Appendix I requirements. Includes SLD, protection settings, cable specifications, site layout showing BESS positions and distances from boundaries.</td>
+                <td>Per park (47 total)</td>
+            </tr>
+        </table>
+
+        <h3>3.2 Design Standards & References</h3>
+        <table>
+            <tr><th>Standard / Reference</th><th>Application</th></tr>
+            <tr><td>EAC Technical Guide for Storage — Edition 2025.1</td><td>DSO grid connection requirements for BESS</td></tr>
+            <tr><td>EAC Technical Guide for RES (ΣAAΗ) — Edition 2023.2</td><td>RES connection requirements (protection, SCADA)</td></tr>
+            <tr><td>EN 50549-2</td><td>Grid connection standard for generating plants</td></tr>
+            <tr><td>IEC 60870-5-104</td><td>SCADA communication protocol</td></tr>
+            <tr><td>IEC 60255</td><td>Protection relay standards</td></tr>
+            <tr><td>IEC 60044 / IEC 61869</td><td>Current and voltage transformers</td></tr>
+            <tr><td>IEC 60502-2</td><td>MV power cables</td></tr>
+            <tr><td>IEC 60364</td><td>Electrical installations</td></tr>
+            <tr><td>Linyang / Kehua equipment datasheets</td><td>OEM specifications (to be provided)</td></tr>
+        </table>
+
+        <div class="context-box">
+            <strong>Information Provided by Lighthief:</strong> We will supply Linyang equipment datasheets, Kehua PCS specifications, MV SKID configuration drawings, DQG layout files (container/platform positions), Voltus EMS architecture, and all DSO technical guides. A site visit to a representative park location can be arranged.
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SCOPE B: CT CONSULTATION -->
+        <!-- ============================================================ -->
+
+        <h2>4. Scope B — CT Specification Consultation</h2>
+
+        <div class="critical-box">
+            <strong>Background:</strong> The Current Transformer (CT) class, ratio, and mounting location need to be defined and agreed with the DSO (EAC) as part of the electrical design for this portfolio. The CT specifications will feed into the equipment production order and must align with DSO requirements for protection, metering, and ancillary services.
+        </div>
+
+        <h3>4.1 Current Situation</h3>
+        <p>The DSO (EAC) Technical Guide for Storage 2025.1 specifies <strong>what CTs must do</strong> but does <strong>not prescribe specific CT class, ratio, or location</strong>. These are project-specific decisions that require DSO agreement. The DSO single-line diagrams show:</p>
+
+        <table class="ct-table">
+            <tr><th>CT Set</th><th>Configuration</th><th>Purpose</th><th>Feeds</th></tr>
+            <tr>
+                <td><strong>Set 1 — Protection</strong></td>
+                <td>3 × CTs + 3 × VTs</td>
+                <td>Grid protection relay</td>
+                <td>Overcurrent (I&gt;&gt;), earth fault, ROCOF, U&lt;, U&gt;, f&lt;, f&gt;</td>
+            </tr>
+            <tr>
+                <td><strong>Set 2 — Metering / PQR</strong></td>
+                <td>3 × CTs + 3 × VTs</td>
+                <td>Power Quality Recorder + SCADA metering</td>
+                <td>P, Q, S, V, I, f, PF, cos&phi;, THDi &rarr; IEC 104 addresses 500–511</td>
+            </tr>
+        </table>
+
+        <h3>4.2 Open Questions Requiring Expert Resolution</h3>
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:30%">Decision</th><th>Options</th><th>Considerations</th></tr>
+            <tr>
+                <td>1</td>
+                <td><strong>CT Location</strong></td>
+                <td>MV side vs LV side</td>
+                <td>MV side is preferred due to space constraints on the LV busbar. DSO confirmation of placement is required.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>CT Metering Accuracy Class</strong></td>
+                <td>Class 0.2S / 0.5S / 1.0</td>
+                <td>Depends on DSO revenue metering requirements vs operational metering. Class 0.2S typically required for billing; 0.5S may suffice for PQR/SCADA.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>CT Protection Class</strong></td>
+                <td>5P10 / 5P20 / 10P10</td>
+                <td>Must match protection relay burden requirements. Depends on relay make/model (ABB or Schneider in MV SKID).</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>CT Ratio</strong></td>
+                <td>Based on system rated current</td>
+                <td>Depends on system rated current at the CT location (MV or LV side) and must be calculated per park type. Ratio to be agreed with DSO.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>CT Burden (VA)</strong></td>
+                <td>Based on lead length + relay/meter burden</td>
+                <td>Depends on distance between CT and relay panel, cable cross-section, and connected instruments.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>Combined CT viability</strong></td>
+                <td>Separate vs combined protection/metering CTs</td>
+                <td>Can a single CT with dual-core (protection + metering) be used, or does DSO require separate CT sets?</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><strong>Ancillary Services CTs</strong></td>
+                <td>CT requirements for FCR/aFRR participation</td>
+                <td>TSO requires sub-second response and accurate metering for grid services. CT specification must support ancillary service market participation.</td>
+            </tr>
+        </table>
+
+        <h3>4.3 Consultation Deliverables</h3>
+        <table class="ct-table">
+            <tr><th style="width:5%">#</th><th style="width:35%">Deliverable</th><th>Description</th></tr>
+            <tr>
+                <td>B1</td>
+                <td><strong>CT Specification Document</strong></td>
+                <td>Complete CT/VT specification per park type: class, ratio, burden, accuracy, insulation level, mounting arrangement. Suitable for inclusion in equipment procurement specifications.</td>
+            </tr>
+            <tr>
+                <td>B2</td>
+                <td><strong>CT Burden Calculations</strong></td>
+                <td>Detailed burden calculation per CT set: relay/meter burden + cable burden + safety margin. Confirm CT knee-point voltage is adequate.</td>
+            </tr>
+            <tr>
+                <td>B3</td>
+                <td><strong>DSO Coordination Letter / Report</strong></td>
+                <td>Written technical proposal to submit to EAC/DSO for CT class and location agreement. If consultant has existing DSO relationship, direct coordination is preferred.</td>
+            </tr>
+            <tr>
+                <td>B4</td>
+                <td><strong>CT Location Recommendation</strong></td>
+                <td>Technical recommendation on MV vs LV placement with justification, assessment of design implications for each option, and mitigation approaches (e.g. external CT cabinet if LV space is constrained).</td>
+            </tr>
+            <tr>
+                <td>B5</td>
+                <td><strong>Protection Relay CT Compatibility</strong></td>
+                <td>Confirm CT specifications are compatible with protection relay (ABB/Schneider in MV SKID). Include relay burden data and coordination study inputs.</td>
+            </tr>
+        </table>
+
+        <!-- ============================================================ -->
+        <!-- PRICING -->
+        <!-- ============================================================ -->
+
+        <h2>5. Pricing Template</h2>
+
+        <h3>5.1 Scope A — Electrical Design Drawings</h3>
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:40%">Deliverable</th><th style="width:12%">Unit</th><th style="width:15%">Unit Rate (&euro;)</th><th style="width:13%">Quantity</th><th style="width:15%">Total (&euro;)</th></tr>
+            <tr><td>A1</td><td>Single Line Diagram (per park type)</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A2</td><td>Protection Scheme Drawings (per type)</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A3</td><td>CT/VT Metering & Protection Scheme</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A4</td><td>MV Cabling Layout (per type)</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A5</td><td>LV Cabling & Auxiliary Power Layout</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A6</td><td>Earthing & Bonding Drawings</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A7</td><td>SCADA/EMS Interface Diagram</td><td>typical + types</td><td class="price-input"></td><td>1 + 4</td><td class="price-input"></td></tr>
+            <tr><td>A8</td><td>Cable Schedule & BoM (per type)</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>A9</td><td>DSO Application Drawing Package (per park)</td><td>per park</td><td class="price-input"></td><td>47</td><td class="price-input"></td></tr>
+            <tr><td></td><td><em>Site-specific SLD variants (if park deviates from type)</em></td><td>per variant</td><td class="price-input"></td><td>Est. ~15</td><td class="price-input"></td></tr>
+            <tr class="total-row"><td colspan="5"><strong>SCOPE A SUBTOTAL</strong></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.2 Scope B — CT Specification Consultation</h3>
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:40%">Deliverable</th><th style="width:12%">Unit</th><th style="width:15%">Rate (&euro;)</th><th style="width:13%">Quantity</th><th style="width:15%">Total (&euro;)</th></tr>
+            <tr><td>B1</td><td>CT/VT Specification Document (per park type)</td><td>per type</td><td class="price-input"></td><td>4</td><td class="price-input"></td></tr>
+            <tr><td>B2</td><td>CT Burden Calculations</td><td>lump sum</td><td class="price-input"></td><td>1</td><td class="price-input"></td></tr>
+            <tr><td>B3</td><td>DSO Coordination / Technical Submission</td><td>lump sum</td><td class="price-input"></td><td>1</td><td class="price-input"></td></tr>
+            <tr><td>B4</td><td>CT Location Recommendation Report</td><td>lump sum</td><td class="price-input"></td><td>1</td><td class="price-input"></td></tr>
+            <tr><td>B5</td><td>Protection Relay CT Compatibility Check</td><td>lump sum</td><td class="price-input"></td><td>1</td><td class="price-input"></td></tr>
+            <tr class="total-row"><td colspan="5"><strong>SCOPE B SUBTOTAL</strong></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>5.3 Optional / Additional Services</h3>
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:40%">Service</th><th style="width:12%">Unit</th><th style="width:15%">Rate (&euro;)</th><th>Notes</th></tr>
+            <tr><td>O1</td><td>On-site supervision during commissioning</td><td>per day</td><td class="price-input"></td><td>If required for DSO witness testing support</td></tr>
+            <tr><td>O2</td><td>Drawing revisions (post-DSO feedback)</td><td>per revision set</td><td class="price-input"></td><td>Per park type or site-specific</td></tr>
+            <tr><td>O3</td><td>Protection coordination study</td><td>lump sum</td><td class="price-input"></td><td>Full relay coordination across MV/LV</td></tr>
+            <tr><td>O4</td><td>Hourly consulting rate</td><td>per hour</td><td class="price-input"></td><td>For ad-hoc technical queries</td></tr>
+        </table>
+
+        <div class="note-box">
+            <strong>Pricing Notes:</strong>
+            <ul>
+                <li>All prices in EUR, excluding VAT</li>
+                <li>Scope A type-based drawings will be reused across all 47 parks; site-specific variants (A9) cover per-park customisation for DSO submission</li>
+                <li>Discount for combined Scope A + B award is welcome</li>
+            </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- TIMELINE -->
+        <!-- ============================================================ -->
+
+        <h2>6. Indicative Programme</h2>
+        <p>We expect to agree on a detailed programme upon engagement. A suggested phasing is outlined below:</p>
+        <table>
+            <tr><th>Phase</th><th>Description</th></tr>
+            <tr><td>Phase 1</td><td>CT/VT specification and DSO coordination (Scope B)</td></tr>
+            <tr><td>Phase 2</td><td>Type drawings — 4 park types (Scope A, items A1–A8)</td></tr>
+            <tr><td>Phase 3</td><td>DSO feedback incorporation and drawing revisions</td></tr>
+            <tr><td>Phase 4</td><td>Site-specific DSO application packages — 47 parks (Scope A, item A9)</td></tr>
+        </table>
+        <p>Please include your proposed programme and availability as part of your response.</p>
+
+        <!-- ============================================================ -->
+        <!-- QUALIFICATIONS & INFORMATION -->
+        <!-- ============================================================ -->
+
+        <h2>7. Consultant Qualifications</h2>
+        <p>Please include the following in your proposal:</p>
+        <ul>
+            <li>Company profile and relevant Cyprus BESS / RES grid connection experience</li>
+            <li>ETEK registration details</li>
+            <li>Prior experience with EAC (DSO) technical submissions and grid connection approvals</li>
+            <li>Specific experience with CT/VT specification for MV-connected generation or storage systems in Cyprus</li>
+            <li>Key personnel CVs (lead designer, protection engineer)</li>
+            <li>Professional indemnity insurance details</li>
+            <li>References from similar-scale projects</li>
+        </ul>
+
+        <h2>8. Information to Be Provided by Lighthief</h2>
+        <p>Upon engagement, Lighthief will provide:</p>
+        <ul>
+            <li>Linyang BESS container datasheets and BMS specifications</li>
+            <li>Kehua BCS1250K-C-HUD PCS datasheet and electrical parameters</li>
+            <li>MV SKID configuration (transformer rating, RMU type, switchgear)</li>
+            <li>DQG layout files (container and platform positions per park)</li>
+            <li>Voltus EMS/SCADA architecture and IEC 104 point list</li>
+            <li>EAC Technical Guide for Storage 2025.1 (full document including Appendices I–IV)</li>
+            <li>EAC Technical Guide for RES 2023.2</li>
+            <li>Site survey data and cadastral plans per park (as available)</li>
+            <li>Existing PV park grid connection details (POC location, MV voltage, existing metering)</li>
+            <li>DEHN earthing / LPS / SPD scope documentation</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- CONTACT -->
+        <!-- ============================================================ -->
+
+        <div class="contact-box">
+            <h3>Contact Information</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong></p>
+            <p>28 October Avenue 249, Lophitis Business Center 1, Office 201</p>
+            <p>3035 Limassol, Cyprus</p>
+            <br>
+            <p><strong>Alexander Papacosta</strong> — Cyprus Director</p>
+            <p>Email: office@lighthief.com</p>
+            <p>Phone: +357 99 164 158</p>
+            <br>
+            <p>Reference: <strong>RFP-LCY-DESIGN-2026-001</strong></p>
+            <p>Please send proposals to the email above with subject line: <em>"RFP-LCY-DESIGN-2026-001 — INTESO Proposal"</em></p>
+        </div>
+
+        <div class="footer">
+            <p><strong>RFP-LCY-DESIGN-2026-001</strong> | Electrical Design Drawings & CT Specification Consultation</p>
+            <p>Lighthief Cyprus Ltd | 19 February 2026 | CONFIDENTIAL</p>
+        </div>
+    </div>
+</body>
+</html>

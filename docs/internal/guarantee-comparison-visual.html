@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief BESS — Guarantee &amp; Protection Overview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;color:#1a1a2e;line-height:1.5;max-width:1000px;margin:0 auto;padding:30px 24px;font-size:13px}
+@media print{body{padding:12px;font-size:11.5px}h1{font-size:18px!important}.card{break-inside:avoid}.flow-row{break-inside:avoid}}
+
+h1{text-align:center;font-size:22px;font-weight:700;margin-bottom:2px;color:#0f172a}
+.subtitle{text-align:center;font-size:13px;color:#64748b;margin-bottom:6px}
+.doc-ref{text-align:center;font-size:10px;color:#94a3b8;margin-bottom:18px}
+
+/* Section headers */
+.section-hdr{display:flex;align-items:center;gap:10px;margin:22px 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.section-hdr .num{background:#1e3a5f;color:#fff;font-weight:700;font-size:12px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-hdr h2{font-size:15px;font-weight:700;color:#0f172a}
+
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-bottom:16px}
+.card{border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;background:#fafbfc;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.card.green::before{background:#16a34a}
+.card.blue::before{background:#2563eb}
+.card.amber::before{background:#d97706}
+.card.red::before{background:#dc2626}
+.card.purple::before{background:#7c3aed}
+.card h3{font-size:13px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.card h3 .icon{font-size:16px}
+.card .detail{font-size:12px;color:#475569;margin-bottom:4px}
+.card .detail strong{color:#0f172a}
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;margin-right:4px}
+.tag-confirmed{background:#dcfce7;color:#166534}
+.tag-modified{background:#fef3c7;color:#92400e}
+.tag-pending{background:#fee2e2;color:#991b1b}
+.tag-new{background:#dbeafe;color:#1e40af}
+
+/* Flow diagram */
+.flow-row{display:flex;align-items:stretch;gap:0;margin:10px 0;position:relative}
+.flow-box{flex:1;padding:10px 14px;text-align:center;font-size:11.5px;font-weight:600;position:relative;border:1px solid #cbd5e1}
+.flow-box.oem{background:#eff6ff;border-color:#93c5fd;color:#1e40af}
+.flow-box.lighthief{background:#f0fdf4;border-color:#86efac;color:#166534}
+.flow-box.client{background:#fefce8;border-color:#fde047;color:#854d0e}
+.flow-box .sub{font-size:10px;font-weight:400;color:#64748b;display:block;margin-top:2px}
+.flow-arrow{width:28px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#94a3b8;flex-shrink:0}
+
+/* Tracking table */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+th,td{border:1px solid #e2e8f0;padding:7px 10px;text-align:left}
+th{background:#f1f5f9;font-weight:600;color:#334155;font-size:11px;text-transform:uppercase;letter-spacing:0.3px}
+td{color:#475569}
+tr:nth-child(even){background:#f8fafc}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.dot-green{background:#16a34a}
+.dot-amber{background:#d97706}
+.dot-red{background:#dc2626}
+
+/* Summary strip */
+.summary-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.summary-item{text-align:center;padding:12px 8px;border-radius:8px;border:1px solid #e2e8f0}
+.summary-item .big{font-size:22px;font-weight:800;display:block}
+.summary-item .label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px}
+.si-green{background:#f0fdf4;border-color:#86efac}.si-green .big{color:#16a34a}
+.si-blue{background:#eff6ff;border-color:#93c5fd}.si-blue .big{color:#2563eb}
+.si-amber{background:#fffbeb;border-color:#fcd34d}.si-amber .big{color:#d97706}
+.si-purple{background:#f5f3ff;border-color:#c4b5fd}.si-purple .big{color:#7c3aed}
+
+.note{font-size:11px;color:#64748b;font-style:italic;margin:6px 0}
+.footer-ref{margin-top:24px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:10px;color:#94a3b8;text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Guarantee &amp; Protection Framework</h1>
+<p class="subtitle">Lighthief Cyprus Ltd — BESS EPC + LTSA</p>
+<p class="doc-ref">Version 3.0 · February 2026 · Based on Linyang V3 RFI Confirmed Terms · Internal Reference</p>
+
+<!-- ══════ SUMMARY STRIP ══════ -->
+<div class="summary-strip">
+  <div class="summary-item si-green"><span class="big">5yr</span><span class="label">Base Warranty</span></div>
+  <div class="summary-item si-blue"><span class="big">15yr</span><span class="label">Max Extended</span></div>
+  <div class="summary-item si-amber"><span class="big">97%</span><span class="label">Availability</span></div>
+  <div class="summary-item si-purple"><span class="big">5%</span><span class="label">Performance Bond</span></div>
+</div>
+
+<!-- ══════ GUARANTEE FLOW ══════ -->
+<div class="section-hdr"><span class="num">1</span><h2>Guarantee Chain — Who Backs What</h2></div>
+
+<div class="flow-row">
+  <div class="flow-box oem">Linyang (OEM)<span class="sub">Manufacturer · SHA:601222</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box lighthief">Lighthief Cyprus<span class="sub">EPC Contractor · HE 477423</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box client">End Client<span class="sub">Asset Owner</span></div>
+</div>
+
+<table>
+<tr><th style="width:26%">Guarantee</th><th style="width:24%">OEM (Linyang) → Lighthief</th><th style="width:24%">Lighthief → Client</th><th style="width:26%">Form &amp; Trackability</th></tr>
+<tr><td><strong>Equipment Warranty</strong></td><td>5-year product warranty</td><td>5-year pass-through warranty</td><td><span class="status-dot dot-green"></span>OEM Warranty Certificate per park</td></tr>
+<tr><td><strong>Extended Warranty</strong></td><td>Up to 15 years confirmed</td><td>Up to 15 years (via LTSA Tier C)</td><td><span class="status-dot dot-green"></span>LTSA Schedule 2 pricing table</td></tr>
+<tr><td><strong>Performance Bond</strong></td><td>5% bank guarantee (corporate)</td><td>Passed to Client</td><td><span class="status-dot dot-green"></span>Bank guarantee instrument</td></tr>
+<tr><td><strong>SOH Guarantee</strong></td><td>Backed by OEM warranty reserve (~1.9%)</td><td>≥85% Y5 · ≥79.58% Y10 · ≥70% Y15</td><td><span class="status-dot dot-green"></span>Annual SOH Certificate</td></tr>
+<tr><td><strong>Availability</strong></td><td>97% (formula-based)</td><td>97% with LDs €30/day/MWh</td><td><span class="status-dot dot-green"></span>Monthly availability reports</td></tr>
+<tr><td><strong>Delay LDs</strong></td><td>Not provided by OEM</td><td>0.1–0.2%/day of delayed goods, cap 10%</td><td><span class="status-dot dot-amber"></span>Lighthief bears risk</td></tr>
+<tr><td><strong>Product Liability</strong></td><td>AXA insurance policy</td><td>Flow-through to Client</td><td><span class="status-dot dot-green"></span>Certificate of Insurance</td></tr>
+<tr><td><strong>APG (Advance Payment)</strong></td><td>Bank guarantee, 100% of advance</td><td>Passed to Client</td><td><span class="status-dot dot-green"></span>Bank guarantee instrument</td></tr>
+</table>
+
+<!-- ══════ EPC GUARANTEES ══════ -->
+<div class="section-hdr"><span class="num">2</span><h2>EPC Agreement — Key Protections (client_sales.html v3.0)</h2></div>
+
+<div class="cards">
+  <div class="card green">
+    <h3><span class="icon">🔒</span> Performance Bond</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>Amount:</strong> 5% of Contract Price</div>
+    <div class="detail"><strong>Form:</strong> Bank guarantee (OEM corporate-backed)</div>
+    <div class="detail"><strong>Validity:</strong> From 1 month before delivery → PAC</div>
+    <div class="detail"><strong>Call conditions:</strong> Material failure, abandonment, insolvency</div>
+    <div class="detail"><strong>EPC Ref:</strong> Section 7.6</div>
+  </div>
+
+  <div class="card blue">
+    <h3><span class="icon">⏱</span> Delay LDs — Full vs Partial</h3>
+    <span class="tag tag-modified">V3 MODIFIED</span>
+    <div class="detail"><strong>Full Park Delay</strong> (Critical Path — PCS, MV): LD base = <strong>entire park value</strong></div>
+    <div class="detail"><strong>Partial Delay</strong> (Battery containers): LD base = <strong>delayed goods value only</strong></div>
+    <div class="detail"><strong>Rates:</strong> 0.1%/day (d1–30) · 0.15%/day (d31–60) · 0.2%/day (d61+)</div>
+    <div class="detail"><strong>Cap:</strong> 10% of delayed/affected goods value</div>
+    <div class="detail"><strong>EPC Ref:</strong> Section 8.4</div>
+  </div>
+
+  <div class="card green">
+    <h3><span class="icon">🏦</span> Advance Payment Guarantee</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>Coverage:</strong> 100% of advance payment</div>
+    <div class="detail"><strong>Form:</strong> Bank guarantee (international bank)</div>
+    <div class="detail"><strong>Validity:</strong> Until delivery + 30 days</div>
+  </div>
+
+  <div class="card green">
+    <h3><span class="icon">💳</span> Payment Structure</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>25%</strong> Advance (with APG protection)</div>
+    <div class="detail"><strong>50%</strong> Ex-Works (equipment ready to ship)</div>
+    <div class="detail"><strong>20%</strong> DAP Limassol (arrival on site)</div>
+    <div class="detail"><strong>5%</strong> Performance holdback → released at PAC</div>
+    <div class="detail"><strong>EPC Ref:</strong> Section 7.1</div>
+  </div>
+
+  <div class="card green">
+    <h3><span class="icon">🛡</span> Base Warranty (5 Years)</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>OEM Scope:</strong> Battery, PCS, BMS, cooling, fire suppression</div>
+    <div class="detail"><strong>EPC Scope:</strong> Civil works, cabling, grounding (2 years)</div>
+    <div class="detail"><strong>Coastal:</strong> C5-rated enclosure standard (Cyprus)</div>
+    <div class="detail"><strong>EPC Ref:</strong> Sections 10.1–10.7</div>
+  </div>
+
+  <div class="card purple">
+    <h3><span class="icon">📋</span> Insurance — Trackable</h3>
+    <span class="tag tag-new">ENHANCED V3</span>
+    <div class="detail"><strong>Contractor:</strong> GCL €1M + PI €1M + All Risks + Marine/Transit</div>
+    <div class="detail"><strong>OEM:</strong> AXA Product Liability (confirmed V3)</div>
+    <div class="detail"><strong>Client:</strong> Property + Operational + BI (recommended)</div>
+    <div class="detail"><strong>Tracking:</strong> 14-day certificate renewal, compliance register, lapse notification</div>
+    <div class="detail"><strong>EPC Ref:</strong> Section 14</div>
+  </div>
+</div>
+
+<!-- ══════ LTSA GUARANTEES ══════ -->
+<div class="section-hdr"><span class="num">3</span><h2>LTSA Tier C — O&amp;M Guarantees (ClientLTSA.html v3.0)</h2></div>
+
+<div class="cards">
+  <div class="card green">
+    <h3><span class="icon">📊</span> 97% Availability Guarantee</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>Target:</strong> 97% annual availability</div>
+    <div class="detail"><strong>Direct LD:</strong> €30/day/MWh for shortfall below 97%</div>
+    <div class="detail"><strong>Fee Reduction:</strong> 5% (95–97%) · 10% (93–95%) · 15% (90–93%) · 20% (&lt;90%)</div>
+    <div class="detail"><strong>Maintenance Allowance:</strong> 10 days/year excluded</div>
+    <div class="detail"><strong>LTSA Ref:</strong> Sections 9.1–9.6, 9.4A</div>
+  </div>
+
+  <div class="card green">
+    <h3><span class="icon">🔋</span> SOH Guarantee</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>Year 5:</strong> ≥ 85%</div>
+    <div class="detail"><strong>Year 10:</strong> ≥ 79.58%</div>
+    <div class="detail"><strong>Year 15:</strong> ≥ 70% (maximum warranty period)</div>
+    <div class="detail"><strong>Backed by:</strong> OEM warranty reserve (~1.9%)</div>
+    <div class="detail"><strong>LTSA Ref:</strong> Section 10</div>
+  </div>
+
+  <div class="card blue">
+    <h3><span class="icon">🔄</span> SOH Remedies</h3>
+    <span class="tag tag-confirmed">V3 CONFIRMED</span>
+    <div class="detail"><strong>Isolated (&lt;5%):</strong> Module replacement within 60 days</div>
+    <div class="detail"><strong>Systemic (≥5%):</strong> Cell augmentation within 120 days <em>or</em> LDs</div>
+    <div class="detail"><strong>LD Cap:</strong> 50% of total service fees paid</div>
+    <div class="detail"><strong>LTSA Ref:</strong> Section 10.4</div>
+  </div>
+
+  <div class="card red">
+    <h3><span class="icon">📉</span> SOH Capacity Shortfall LD (Bankable)</h3>
+    <span class="tag tag-new">NEW — BANKABLE</span>
+    <div class="detail"><strong>Formula:</strong> Daily LD = Lost Capacity (MWh) x €30/MWh/day</div>
+    <div class="detail"><strong>Lost Capacity:</strong> (Guaranteed SOH% − Actual SOH%) x System Capacity</div>
+    <div class="detail"><strong>Trigger:</strong> Annual SOH test shows ≥1% shortfall vs guarantee curve</div>
+    <div class="detail"><strong>Grace Period:</strong> 90 days to remedy (augmentation or replacement)</div>
+    <div class="detail"><strong>Accrual:</strong> Day 91 if unremedied; stops when SOH restored</div>
+    <div class="detail"><strong>Annual Cap:</strong> 20% of annual LTSA fee</div>
+    <div class="detail"><strong>Lifetime Cap:</strong> 50% of total service fees paid</div>
+    <div class="detail"><strong>Combined Cap:</strong> SOH + Availability LDs ≤ 30% of annual fee</div>
+    <div class="detail"><strong>Rate Consistency:</strong> Same €30/MWh/day as Availability LD — single metric for bank models</div>
+    <div class="detail"><strong>LTSA Ref:</strong> Section 10.5</div>
+  </div>
+
+  <div class="card amber">
+    <h3><span class="icon">⚡</span> Cycle Life</h3>
+    <span class="tag tag-modified">V3 MODIFIED</span>
+    <div class="detail"><strong>Guarantee:</strong> 15 years or 7,000 cycles @ 70% EOL</div>
+    <div class="detail"><strong>Conditions:</strong> 90% DOD, 25±2°C, whichever comes first</div>
+    <div class="detail"><strong>Previous:</strong> <s>8,000 cycles at 1C</s></div>
+  </div>
+</div>
+
+<!-- ══════ EXTENDED WARRANTY ══════ -->
+<div class="section-hdr"><span class="num">4</span><h2>Extended Warranty Pricing (Confirmed per MWh per Year)</h2></div>
+
+<table>
+<tr><th>Period</th><th>BESS Warranty</th><th>PCS + MVS Warranty</th><th>Combined Add-On</th><th>Status</th></tr>
+<tr><td><strong>Years 1–5</strong></td><td colspan="2" style="text-align:center">Included in base warranty</td><td>€0</td><td><span class="status-dot dot-green"></span>Included</td></tr>
+<tr><td><strong>Years 6–10</strong></td><td>€913.92</td><td>€747.76</td><td><strong>€1,661.68</strong></td><td><span class="status-dot dot-green"></span>V3 Confirmed</td></tr>
+<tr><td><strong>Years 11–15</strong></td><td>€1,157.62</td><td>€926.10</td><td><strong>€2,083.72</strong></td><td><span class="status-dot dot-green"></span>V3 Confirmed</td></tr>
+<tr><td><strong>Years 16–20</strong></td><td colspan="3" style="text-align:center;color:#94a3b8"><em>Not confirmed — subject to future negotiation</em></td><td><span class="status-dot dot-amber"></span>Pending</td></tr>
+</table>
+
+<p class="note">Group order maintenance rate: €1,740/MWh/year (Tier C). Non-group: €2,469.59/MWh/year.</p>
+
+<!-- ══════ TOTAL LD CAPS ══════ -->
+<div class="section-hdr"><span class="num">5</span><h2>Aggregate LD Caps &amp; Liability Limits</h2></div>
+
+<table>
+<tr><th>LD Type</th><th>Cap</th><th>Basis</th><th>Document</th></tr>
+<tr><td>Delay LDs (Full Park)</td><td>10% of affected park value</td><td>Contract value of delayed/affected goods</td><td>EPC §8.4(d)</td></tr>
+<tr><td>Delay LDs (Partial)</td><td>10% of delayed goods value</td><td>Contract value of delayed goods only</td><td>EPC §8.4(d)</td></tr>
+<tr><td>Availability LDs (annual)</td><td>20% of annual service fee</td><td>Percentage of LTSA fee</td><td>LTSA §9.5</td></tr>
+<tr><td>Availability Direct LD</td><td>€30/day/MWh below 97%</td><td>Per day per MWh shortfall</td><td>LTSA §9.4A</td></tr>
+<tr><td>SOH Capacity Shortfall LD</td><td>€30/day per Lost MWh · Annual 20% of fee · Lifetime 50%</td><td>Lost Capacity = (Guaranteed% − Actual%) × System MWh</td><td>LTSA §10.5</td></tr>
+<tr><td>Combined SOH + Availability (annual)</td><td>30% of annual service fee</td><td>Joint ceiling prevents double-penalty</td><td>LTSA §10.5(c)(iii)</td></tr>
+<tr><td>EPC Total Contractor Liability</td><td>100% of Contract Price</td><td>Excludes OEM manufacturing defects</td><td>EPC §13.2</td></tr>
+<tr><td>Linyang Total Liability</td><td>10% of contract value</td><td>Per Linyang V3 RFI response</td><td>V3 RFI §4.5</td></tr>
+</table>
+
+<!-- ══════ TRACKING CHECKLIST ══════ -->
+<div class="section-hdr"><span class="num">6</span><h2>Guarantee Tracking Checklist — Per Park</h2></div>
+
+<table>
+<tr><th style="width:4%">#</th><th style="width:30%">Item</th><th style="width:20%">Issued By</th><th style="width:18%">When</th><th style="width:14%">Held By</th><th style="width:14%">Status</th></tr>
+<tr><td>1</td><td>Advance Payment Guarantee</td><td>OEM Bank</td><td>At signing</td><td>Client</td><td>☐</td></tr>
+<tr><td>2</td><td>Performance Bond (5%)</td><td>OEM Bank</td><td>1 month pre-delivery</td><td>Client</td><td>☐</td></tr>
+<tr><td>3</td><td>Marine/Transit Insurance Certificate</td><td>Contractor insurer</td><td>Per shipment</td><td>Client + Contractor</td><td>☐</td></tr>
+<tr><td>4</td><td>OEM Warranty Certificate</td><td>Linyang</td><td>At PAC</td><td>Client</td><td>☐</td></tr>
+<tr><td>5</td><td>Product Liability Insurance (AXA)</td><td>Linyang/AXA</td><td>Annual renewal</td><td>Contractor file</td><td>☐</td></tr>
+<tr><td>6</td><td>Contractor All Risks Insurance</td><td>Contractor insurer</td><td>During construction</td><td>Client named insured</td><td>☐</td></tr>
+<tr><td>7</td><td>PAC Certificate</td><td>Contractor + Client</td><td>At commissioning</td><td>Both parties</td><td>☐</td></tr>
+<tr><td>8</td><td>Performance Bond Release</td><td>Client</td><td>At PAC</td><td>Returned to OEM bank</td><td>☐</td></tr>
+<tr><td>9</td><td>LTSA Execution (Tier C)</td><td>Both parties</td><td>At PAC or before</td><td>Both parties</td><td>☐</td></tr>
+<tr><td>10</td><td>Annual SOH Certificate</td><td>Service Provider</td><td>Annually</td><td>Client</td><td>☐</td></tr>
+<tr><td>11</td><td>Monthly Availability Report</td><td>Service Provider</td><td>Monthly</td><td>Client</td><td>☐</td></tr>
+<tr><td>12</td><td>Insurance Compliance Register</td><td>Both parties</td><td>Annual / on renewal</td><td>Both parties</td><td>☐</td></tr>
+<tr><td>13</td><td>FAC Certificate</td><td>Contractor + Client</td><td>Within 12 months of PAC</td><td>Both parties</td><td>☐</td></tr>
+<tr><td>14</td><td>Extended Warranty Activation</td><td>Both parties + OEM</td><td>Before Year 5 expiry</td><td>Both parties</td><td>☐</td></tr>
+</table>
+
+<!-- ══════ KEY CHANGES V3 ══════ -->
+<div class="section-hdr"><span class="num">7</span><h2>Key Changes from V3 RFI</h2></div>
+
+<table>
+<tr><th style="width:28%">Item</th><th style="width:24%">Previous</th><th style="width:24%">V3 Confirmed</th><th style="width:24%">Impact</th></tr>
+<tr><td>Delay LD Basis</td><td>% of total Contract Price</td><td><strong>% of delayed goods value</strong></td><td>Lower exposure per item; bankable distinction</td></tr>
+<tr><td>Extended Warranty</td><td>Up to 20 years</td><td><strong>Up to 15 years</strong></td><td>Years 16–20 removed pending negotiation</td></tr>
+<tr><td>Cycle Life</td><td>8,000 cycles at 1C</td><td><strong>7,000 cycles @ 70% EOL</strong></td><td>More conservative; 15-year cap added</td></tr>
+<tr><td>Availability LD Rate</td><td>€50/day/MWh proposed</td><td><strong>€30/day/MWh</strong></td><td>Lower annual LD exposure</td></tr>
+<tr><td>Maintenance Allowance</td><td>8 days/year (48 hours)</td><td><strong>10 days/year (240 hours)</strong></td><td>More maintenance flexibility</td></tr>
+<tr><td>Performance Bond</td><td>10% proposed</td><td><strong>5% bank guarantee</strong></td><td>OEM counter-proposed; corporate-backed</td></tr>
+<tr><td>Payment Structure</td><td>30/55/10/5</td><td><strong>25/50/20/5</strong></td><td>More balanced milestone distribution</td></tr>
+<tr><td>Linyang Total Liability</td><td>15% proposed</td><td><strong>10% of contract value</strong></td><td>Linyang cap lower than proposed</td></tr>
+<tr><td>Warranty Reserve</td><td>~1.9% referenced</td><td><strong>1.9% on Linyang financial book (confirmed)</strong></td><td>Formal acknowledgement</td></tr>
+<tr><td>Product Liability Insurer</td><td>Not specified</td><td><strong>AXA (confirmed)</strong></td><td>Named insurer for tracking</td></tr>
+<tr><td>LTSA Tier</td><td>Tier D (premium)</td><td><strong>Tier C is highest offered</strong></td><td>SOH + Availability included in Tier C</td></tr>
+</table>
+
+<div class="footer-ref">
+  Lighthief Cyprus Ltd · HE 477423 · office@lighthief.com<br>
+  Source: RFI - Legal Guarantees Confirmation _ Linyang V3 (2 Feb 2026) · EPC v3.0 · LTSA v3.0<br>
+  Classification: INTERNAL — CONFIDENTIAL
+</div>
+
+</body>
+</html>

@@ -205,7 +205,7 @@
 
 **Current SOH Coverage:**
 - Full degradation curves available (linyang.md §2)
-- LTSA §10 (Tier D): SOH guarantee, module replacement, augmentation
+- LTSA §10 (Tier C): SOH guarantee, module replacement, augmentation
 - OEM warranty reserve: ~1.9%
 - But: **No specific "10% of contract value" cap defined**
 

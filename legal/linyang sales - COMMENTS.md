@@ -154,15 +154,16 @@ BUYER acknowledges and agrees that the remedies set forth in this section are Bu
 The total value of the whole Contract shall be paid by the BUYER to the SELLER's account as follows:
 50% T/T advance payment to start production; 50% T/T before shipment.
 
-> *LIGHTHIEF COMMENT: CRITICAL — Please amend payment terms:*
+> *LIGHTHIEF COMMENT — CONFIRMED BY LINYANG RFI (Feb 2026):*
 
-> *The payment structure should be aligned with the Distribution Agreement standard milestones:*
+> *Payment structure as confirmed by Linyang (Klaudia, RFI V1 Answers, Feb 2026):*
 
-> *(a) 30% advance payment by T/T within seven (7) days of contract effectiveness;*
-> *(b) 60% payment by T/T prior to shipment of the Commodities from the manufacturing facility;*
-> *(c) 10% final payment by T/T upon successful installation, commissioning, and provisional acceptance on site.*
+> *(a) 25% advance payment by T/T within seven (7) days of contract effectiveness;*
+> *(b) 50% payment by T/T when Commodities are ready for shipment (Ex-Works);*
+> *(c) 20% payment by T/T upon arrival of Commodities on site (DAP);*
+> *(d) 5% performance holdback by T/T upon successful completion of SAT and provisional acceptance on site.*
 
-> *REASON: The 10% retention protects the Buyer until commissioning is complete and allows for punch list items to be resolved.*
+> *STATUS: ✅ Confirmed by Linyang — all four milestones agreed.*
 
 In addition to all other remedies available under this Contract or at law (which SELLER does not waive by the exercise of any rights hereunder), the SELLER is entitled to suspend or cancel future deliveries of Commodities, relevant Software or Documentation and provisioning of Services to the BUYER without notice where the BUYER has failed to make payments within [ten] business days after the due date in accordance with this Attachment.
 
@@ -416,7 +417,7 @@ SELLER: conoryang@linyang.com.cn; kamil@linyang.com; magdalena@linyang.com.cn; k
 BUYER:
 
 > *LIGHTHIEF COMMENT: Please insert Buyer notice address:*
-> *alexander.papacosta@lighthief.com; office@lighthief.com*
+> *office@lighthief.com*
 
 *LIGHTHIEF COMMENT: Section 15 otherwise accepted as drafted.*
 

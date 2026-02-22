@@ -265,7 +265,7 @@
 
 | Parameter | Value | Notes |
 |-----------|-------|-------|
-| **System RTE (AC-AC)** | **87.8%** | Full system, without aux power |
+| **System RTE (AC-AC)** | **87.8%** (PCS-level, excl. cabling) | Per Linyang calculation. Full system AC-AC incl. cabling = **86.32%** |
 | Cell RTE | **94%** | @ 0.5P |
 | Battery Charging Efficiency | **96.5%** | DC side |
 | Battery Discharging Efficiency | **97.5%** | DC side |
@@ -372,7 +372,7 @@ RTE ≈ 87.8%
 
 | Scenario | System RTE | Notes |
 |----------|------------|-------|
-| **Without Aux Power** | **87.8%** | Per Linyang calculation |
+| **Without Aux Power** | **87.8%** (PCS-level) | Per Linyang calculation. Full system AC-AC incl. cabling = **86.32%** |
 | **With 2% Aux Power** | **~85.8%** | Estimate with HVAC/BMS |
 | **Optimal (40% load)** | **~89-90%** | PCS at peak efficiency |
 | **Worst Case (10% load)** | **~84-85%** | PCS at lowest efficiency |
@@ -1490,7 +1490,7 @@ const LINYANG_DEFAULTS = {
   
   // Calculated RTEs
   rteScenarios: {
-    withoutAuxPower: 87.8, // Per Linyang calculation
+    withoutAuxPower: 87.8, // Per Linyang PCS-level calculation (full system AC-AC incl. cabling = 86.32%)
     withAuxPower: 85.8, // Estimate with 2% aux
     optimal40Load: 90.0, // PCS at peak efficiency
     worstCase10Load: 84.0, // PCS at lowest efficiency
@@ -1691,7 +1691,7 @@ const LINYANG_SOH_TABLES = {
 | 5MWhSpecification.pdf | Full technical specifications | ✅ **Complete** | Cell/Pack/Cluster specs, BMS parameters, fire suppression, liquid cooling |
 | User_Manual_V2.0.pdf | Complete user manual | ✅ **Complete** | Warranty conditions, storage/transport, installation, cable specs, safety |
 | Power Atlantic_5MWh_EN.pdf | Product datasheet | ✅ **Complete** | Updated specs, certifications, power ratings, efficiency, cycle life |
-| 02_RTE Calculation.pdf | System RTE calculation | ✅ **Complete** | Full RTE formula, component efficiencies, 87.8% system RTE |
+| 02_RTE Calculation.pdf | System RTE calculation | ✅ **Complete** | Full RTE formula, component efficiencies, 87.8% PCS-level RTE (86.32% full system AC-AC) |
 | BCS1250K-C-HUD Efficiency Curve.pdf | PCS efficiency data | ✅ **Complete** | Load-based efficiency curves for 1060V/1250V/1450V, self/external power |
 | LTSA - Cyprus.pdf | Official LTSA pricing | ✅ **Complete** | All service pricing, warranty extensions, availability guarantee costs |
 | BCS1000K~1250K-C-HUD Series.pdf | PCS specifications | ✅ **Complete** | Full PCS specs, efficiency, compliance, communication protocols |
@@ -1742,7 +1742,7 @@ const LINYANG_SOH_TABLES = {
 | 2026-01-25 | 1.3 | Added full technical specs from 5MWh Specification (cell, pack, cluster, BMS, fire suppression, liquid cooling) | AI Assistant |
 | 2026-01-25 | 1.4 | Added User Manual V2.0: warranty conditions, SOC management, storage/transport, cable specs, safety requirements | AI Assistant |
 | 2026-01-25 | 1.5 | Added Power Atlantic Datasheet: updated power ratings (2500kW/1250kW), 8000 cycle life, 93% efficiency, IP55, certifications | AI Assistant |
-| 2026-01-25 | 1.6 | Added RTE analysis: full calculation model (87.8% system RTE), Kehua PCS efficiency curves, component breakdown | AI Assistant |
+| 2026-01-25 | 1.6 | Added RTE analysis: full calculation model (87.8% PCS-level RTE, 86.32% full system AC-AC), Kehua PCS efficiency curves, component breakdown | AI Assistant |
 | 2026-01-25 | 1.7 | Added official LTSA Cyprus pricing: €1,157.62 BESS O&M, €1,311.97 PCS O&M, €2,201.73 availability guarantee, warranty extensions | AI Assistant |
 | 2026-01-25 | 1.8 | Added Kehua PCS specs: BCS1250K-C-HUD (1.25MW), 10MW containerized system, P-Q curves, power quality, MV transformer (10MVA, 0.69/35kV) | AI Assistant |
 | 2026-01-25 | 1.9 | Added complete MV Skid matrix (15 models), battery container matrix, efficiency curves V3.0, 3rd-party PCS compatibility, RFI for missing docs | AI Assistant |
@@ -1762,7 +1762,7 @@ const LINYANG_SOH_TABLES = {
 
 | TSO Requirement | Linyang/Kehua Value | Status |
 |-----------------|---------------------|--------|
-| **RTE ≥ 80% (BoL)** | **87.8%** system RTE | ✅ Compliant |
+| **RTE ≥ 80% (BoL)** | **86.32%** full system AC-AC RTE | ✅ Compliant |
 | **RTE ≥ 75% (10-year)** | ~82% estimated | ✅ Compliant |
 | **Standby ≤ 15% capacity/day** | ~2% aux consumption | ✅ Compliant |
 | **Availability ≥ 92%** | **97%** with LTSA | ✅ Exceeds |
@@ -1970,7 +1970,7 @@ Please provide the above documentation in PDF format to:
 - [x] Complete battery container specifications (5 MWh)
 - [x] PCS specifications (BCS1000K/1250K-C-HUD)
 - [x] 10MW containerized system (BCS10000K-C-HUD/T8)
-- [x] RTE calculation model (87.8% system efficiency)
+- [x] RTE calculation model (86.32% full system AC-AC efficiency; 87.8% PCS-level)
 - [x] LTSA pricing for Cyprus
 - [x] MV Skid product matrix (15 configurations)
 - [x] Battery pack models (BPL-Y series)

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSO/TSO SCADA Curtailment Signals - BESS Technical Reference for Voltus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1f2937; padding: 40px; max-width: 1100px; margin: 0 auto; }
+
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .header h1 { font-size: 20pt; margin-bottom: 8px; text-align: center; }
+        .header .subtitle { font-size: 12pt; opacity: 0.9; text-align: center; }
+
+        .section { margin-bottom: 28px; page-break-inside: avoid; }
+        h2 { color: #1e3a5f; border-bottom: 2px solid #1e3a5f; padding-bottom: 8px; margin-bottom: 15px; font-size: 14pt; }
+        h3 { color: #2d5a87; margin: 18px 0 10px 0; font-size: 12pt; }
+        h4 { color: #374151; margin: 14px 0 8px 0; font-size: 11pt; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        th, td { border: 1px solid #d1d5db; padding: 7px 10px; text-align: left; }
+        th { background: #f3f4f6; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .highlight-box { background: #dbeafe; border: 1px solid #3b82f6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .success-box { background: #dcfce7; border: 1px solid #22c55e; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .critical-box { background: #fee2e2; border: 1px solid #ef4444; padding: 15px; border-radius: 5px; margin: 15px 0; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-orange { background: #ffedd5; color: #c2410c; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-gray { background: #f3f4f6; color: #374151; }
+
+        .layer-card { border: 2px solid #2d5a87; border-radius: 8px; padding: 18px; margin: 12px 0; background: #f8fafc; }
+        .layer-card h4 { color: #1e3a5f; margin-top: 0; font-size: 12pt; }
+        .layer-number { display: inline-block; background: #1e3a5f; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; font-size: 13pt; margin-right: 8px; vertical-align: middle; }
+
+        .architecture-box { background: #f0f4f8; border: 2px solid #2d5a87; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: 'Courier New', monospace; font-size: 9.5pt; white-space: pre; line-height: 1.5; overflow-x: auto; }
+
+        .cmd-addr { font-family: 'Courier New', monospace; font-weight: 600; color: #1e40af; }
+        .signal-dir-send { color: #dc2626; font-weight: 600; }
+        .signal-dir-recv { color: #16a34a; font-weight: 600; }
+
+        .toc { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin-bottom: 30px; }
+        .toc h3 { color: #1e3a5f; margin: 0 0 12px 0; }
+        .toc ol { margin-left: 20px; }
+        .toc li { margin-bottom: 4px; }
+        .toc a { color: #2563eb; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 4px; }
+        p { margin-bottom: 10px; }
+
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 9pt; color: #6b7280; text-align: center; }
+        .footer strong { color: #374151; }
+
+        .curtailment-level-1 td:first-child { border-left: 4px solid #22c55e; }
+        .curtailment-level-2 td:first-child { border-left: 4px solid #f59e0b; }
+        .curtailment-level-3 td:first-child { border-left: 4px solid #ef4444; }
+        .curtailment-level-4 td:first-child { border-left: 4px solid #7f1d1d; }
+
+        @media print {
+            body { padding: 15px; font-size: 10pt; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+            .section { page-break-inside: avoid; }
+            .layer-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .badge, .badge-green, .badge-blue, .badge-orange, .badge-red, .badge-gray { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .highlight-box, .warning-box, .success-box, .critical-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            table { font-size: 9pt; }
+            h2 { font-size: 13pt; }
+            h3 { font-size: 11pt; }
+        }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: #1e3a5f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 12pt; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .print-btn:hover { background: #2d5a87; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Export PDF</button>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-SCADA-CURTAIL-2026-001</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 15 February 2026</div>
+                <div><strong>Classification:</strong> CONFIDENTIAL</div>
+            </div>
+        </div>
+        <h1>DSO/TSO SCADA Curtailment Signals</h1>
+        <div class="subtitle">Confirmed IEC 60870-5-104 Signal Map for BESS Grid Integration &mdash; Technical Reference for Voltus EMS</div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+            <li><a href="#overview">Overview &amp; Curtailment Architecture</a></li>
+            <li><a href="#protocol">Communication Protocol &amp; Parameters</a></li>
+            <li><a href="#active-power">Active Power Curtailment Signals</a></li>
+            <li><a href="#discrete-levels">Discrete Curtailment Levels</a></li>
+            <li><a href="#reactive-power">Reactive Power Control Signals</a></li>
+            <li><a href="#bess-specific">BESS-Specific Control Signals</a></li>
+            <li><a href="#cb-control">Circuit Breaker Control (Hard Disconnect)</a></li>
+            <li><a href="#telemetry">Telemetry &amp; Monitoring Signals</a></li>
+            <li><a href="#protection">Protection Signals</a></li>
+            <li><a href="#auto-curtailment">Automatic Curtailment (Local Firmware)</a></li>
+            <li><a href="#response-times">Response Time Requirements</a></li>
+            <li><a href="#ems-actions">Required EMS Actions &amp; Implementation Notes</a></li>
+        </ol>
+    </div>
+
+    <!-- 1. OVERVIEW -->
+    <div class="section" id="overview">
+        <h2>1. Overview &amp; Curtailment Architecture</h2>
+
+        <p>This document consolidates all <strong>confirmed</strong> DSO (EAC/EKED) and TSO (TSOC) SCADA signals related to curtailment and power control for BESS systems connected to the Cyprus distribution network. All signals are sourced from the <strong>EAC Technical Guide for Storage &ndash; Edition 2025.1</strong> and the <strong>TSO ANNEX-II-Appendix-2</strong>.</p>
+
+        <div class="highlight-box">
+            <strong>Key Principle:</strong> DSO curtailment commands have <strong>absolute priority</strong> over market participation dispatch schedules. When a curtailment signal is received, the EMS must immediately override any active market or optimization schedule and comply within the required response times.
+        </div>
+
+        <h3>Three Layers of Curtailment Control</h3>
+
+        <div class="layer-card">
+            <h4><span class="layer-number">1</span> Analog Setpoints (Continuous)</h4>
+            <p>The DSO sends a precise active/reactive power setpoint (in kW / kVAr) via IEC 60870-5-104 addresses <span class="cmd-addr">30</span> (P) and <span class="cmd-addr">31</span> (Q). The EMS must ramp the BESS to the commanded value within 60 seconds. This is the <strong>primary curtailment mechanism</strong> and allows any power level from 0 to P<sub>installed</sub>.</p>
+        </div>
+        <div class="layer-card">
+            <h4><span class="layer-number">2</span> Discrete Step Commands</h4>
+            <p>Pre-defined power levels (<strong>100% / 60% / 30% / 0%</strong>) sent as double commands. These are standardized curtailment steps for network congestion management. The 0% level corresponds to <strong>full curtailment / zero export</strong>.</p>
+        </div>
+        <div class="layer-card">
+            <h4><span class="layer-number">3</span> Hard Disconnect (Circuit Breaker)</h4>
+            <p>Emergency disconnect via IEC address <span class="cmd-addr">10</span> (C_DC_NA_1). Opens the grid circuit breaker, physically isolating the BESS from the network. Used only for emergencies or protection events. After reconnection, a <strong>3-minute delay</strong> and <strong>10% P<sub>Amax</sub>/min ramp</strong> are mandatory.</p>
+        </div>
+
+        <h3>Signal Flow Architecture</h3>
+        <div class="architecture-box">EKED National Control Centre (EAC DSO)
+        |
+        | IEC 60870-5-104  (TCP port 2404)
+        | via M2M/4G or E-Line (CYTA)
+        |
+  [Firewall / Radius Server]
+        |
+  [RTU / IEC 104 Gateway]  &lt;-- Site-level
+        |
+  [LighthiefEMS / Voltus EMS]
+        |
+   +---------+---------+-----------+
+   |         |         |           |
+ [PCS]    [BMS]   [Prot.Relay] [PQA]
+ Kehua    Linyang   IEC 61850   Meter
+ Modbus   Modbus    GOOSE
+ TCP      TCP</div>
+    </div>
+
+    <!-- 2. PROTOCOL -->
+    <div class="section" id="protocol">
+        <h2>2. Communication Protocol &amp; Parameters</h2>
+
+        <h3>2.1 IEC 60870-5-104 Configuration</h3>
+        <table>
+            <tr><th style="width:35%">Parameter</th><th style="width:25%">Value</th><th>Notes</th></tr>
+            <tr><td>Protocol</td><td><strong>IEC 60870-5-104</strong></td><td>Mandatory for BESS &ge;120 kW</td></tr>
+            <tr><td>Transport</td><td>TCP/IP</td><td>&mdash;</td></tr>
+            <tr><td>Port</td><td><strong>2404</strong></td><td>Standard IEC 104 port</td></tr>
+            <tr><td>Direction</td><td>DSO &rarr; Site (RTU)</td><td>DSO is controlling station</td></tr>
+        </table>
+
+        <h3>2.2 RTU Timing Parameters</h3>
+        <table>
+            <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+            <tr><td>t0</td><td>30 s</td><td>Connection establishment timeout</td></tr>
+            <tr><td>t1</td><td>15 s</td><td>Send/test APDU timeout</td></tr>
+            <tr><td>t2</td><td>10 s</td><td>Acknowledge timeout (t2 &lt; t1)</td></tr>
+            <tr><td>t3</td><td>20 s</td><td>Test frame timeout (idle state)</td></tr>
+            <tr><td>k</td><td>12 APDUs</td><td>Max outstanding I-format APDUs</td></tr>
+            <tr><td>w</td><td>8 APDUs</td><td>Latest acknowledge threshold</td></tr>
+        </table>
+
+        <h3>2.3 Communication Link Options</h3>
+        <table>
+            <tr><th>Type</th><th>Provider</th><th>Monthly Cost</th><th>Latency</th></tr>
+            <tr><td>M2M (2G/4G)</td><td>CYTA</td><td>~&euro;15&ndash;25</td><td>50&ndash;200 ms</td></tr>
+            <tr><td>E-Line (Ethernet P2P)</td><td>CYTA</td><td>~&euro;160&ndash;200</td><td>&lt;10 ms</td></tr>
+            <tr><td>Fiber Optic</td><td>EAC network</td><td>~&euro;25</td><td>&lt;5 ms</td></tr>
+        </table>
+    </div>
+
+    <!-- 3. ACTIVE POWER CURTAILMENT -->
+    <div class="section" id="active-power">
+        <h2>3. Active Power Curtailment Signals</h2>
+        <p>These are the primary curtailment signals. The DSO enables remote active power control, then sends a setpoint to limit output.</p>
+
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:10%">Direction</th>
+                <th style="width:28%">Signal</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td class="cmd-addr">25</td>
+                <td>C_DC_NA_1</td>
+                <td><span class="signal-dir-send">DSO &rarr; Site</span></td>
+                <td><strong>Active Power SCADA Control</strong></td>
+                <td>Enable / Disable remote P control. Must be enabled before setpoints are accepted.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">125</td>
+                <td>M_DP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>Active Power Control Feedback</td>
+                <td>Confirms control mode is active/inactive.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">30</td>
+                <td>C_SE_NB_1</td>
+                <td><span class="signal-dir-send">DSO &rarr; Site</span></td>
+                <td><strong>Active Power Setpoint (kW)</strong></td>
+                <td>Range: <strong>0 &ndash; P<sub>installed</sub></strong>. This is the main curtailment command. IEEE 754 float.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">503</td>
+                <td>M_ME_NC_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>Active Power Setpoint Feedback</td>
+                <td>Reports the actual achieved active power back to DSO.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">103</td>
+                <td>M_SP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>Setpoint Accepted / Rejected</td>
+                <td>3-second pulse confirming receipt and acceptance of command.</td>
+            </tr>
+        </table>
+
+        <div class="warning-box">
+            <strong>EMS Requirement:</strong> When Addr 30 receives a value lower than the current output, the EMS must begin ramping down <strong>immediately</strong> (acknowledge within 3 s) and reach the setpoint within <strong>60 seconds</strong>. Minimum interval between successive DSO commands is 20 seconds.
+        </div>
+    </div>
+
+    <!-- 4. DISCRETE CURTAILMENT LEVELS -->
+    <div class="section" id="discrete-levels">
+        <h2>4. Discrete Curtailment Levels</h2>
+        <p>In addition to continuous setpoints, the DSO issues <strong>pre-defined step commands</strong> (double commands) for standardized curtailment:</p>
+
+        <table>
+            <tr>
+                <th style="width:12%">Level</th>
+                <th style="width:20%">Power Output</th>
+                <th style="width:25%">Use Case</th>
+                <th>EMS Action Required</th>
+            </tr>
+            <tr class="curtailment-level-1">
+                <td><strong>Level 1</strong></td>
+                <td><span class="badge badge-green">100%</span> of P<sub>installed</sub></td>
+                <td>Normal operation</td>
+                <td>No curtailment. Full dispatch per market/optimization schedule.</td>
+            </tr>
+            <tr class="curtailment-level-2">
+                <td><strong>Level 2</strong></td>
+                <td><span class="badge badge-orange">60%</span> of P<sub>installed</sub></td>
+                <td>Grid congestion</td>
+                <td>Limit max discharge to 60%. Adjust optimization accordingly.</td>
+            </tr>
+            <tr class="curtailment-level-3">
+                <td><strong>Level 3</strong></td>
+                <td><span class="badge badge-red">30%</span> of P<sub>installed</sub></td>
+                <td>High congestion</td>
+                <td>Limit max discharge to 30%. May switch to charging if beneficial.</td>
+            </tr>
+            <tr class="curtailment-level-4">
+                <td><strong>Level 4</strong></td>
+                <td><span class="badge" style="background:#7f1d1d;color:white;">0%</span> (Zero Export)</td>
+                <td>Emergency curtailment</td>
+                <td>Full stop of grid export. Transition to standby or self-consumption only.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 5. REACTIVE POWER -->
+    <div class="section" id="reactive-power">
+        <h2>5. Reactive Power Control Signals</h2>
+        <p>The DSO can independently control reactive power for voltage management and power quality:</p>
+
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:10%">Direction</th>
+                <th style="width:28%">Signal</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td class="cmd-addr">26</td>
+                <td>C_DC_NA_1</td>
+                <td><span class="signal-dir-send">DSO &rarr; Site</span></td>
+                <td><strong>Reactive Power SCADA Control</strong></td>
+                <td>Enable / Disable remote Q control.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">126</td>
+                <td>M_DP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>Reactive Power Control Feedback</td>
+                <td>Confirms Q control mode active/inactive.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">31</td>
+                <td>C_SE_NB_1</td>
+                <td><span class="signal-dir-send">DSO &rarr; Site</span></td>
+                <td><strong>Reactive Power Setpoint (kVAr)</strong></td>
+                <td>Range: <strong>&minus;Q<sub>max</sub> to +Q<sub>max</sub></strong>. IEEE 754 float. Q<sub>max</sub> = P<sub>installed</sub> &times; 0.6</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">504</td>
+                <td>M_ME_NC_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>Reactive Power Setpoint Feedback</td>
+                <td>Reports achieved reactive power to DSO.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">104</td>
+                <td>M_SP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>Setpoint Accepted / Rejected</td>
+                <td>3-second pulse acknowledging Q command.</td>
+            </tr>
+        </table>
+
+        <h3>5.1 Q(V) Autonomous Control Curve</h3>
+        <p>When not overridden by DSO setpoint, the PCS operates on this voltage-dependent reactive power curve:</p>
+        <table>
+            <tr><th>Voltage</th><th>Per-Unit</th><th>Q / S<sub>rated</sub></th><th>Behavior</th></tr>
+            <tr><td>212 V</td><td>0.92 pu</td><td><strong>+40%</strong></td><td>Maximum capacitive (supplying)</td></tr>
+            <tr><td>223 V</td><td>0.97 pu</td><td>0%</td><td>Deadband start</td></tr>
+            <tr><td>230 V</td><td>1.00 pu</td><td>0%</td><td>Reference voltage</td></tr>
+            <tr><td>237 V</td><td>1.03 pu</td><td>0%</td><td>Deadband end</td></tr>
+            <tr><td>246 V</td><td>1.07 pu</td><td><strong>&minus;40%</strong></td><td>Maximum inductive (absorbing)</td></tr>
+        </table>
+    </div>
+
+    <!-- 6. BESS-SPECIFIC -->
+    <div class="section" id="bess-specific">
+        <h2>6. BESS-Specific Control Signals</h2>
+
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:10%">Direction</th>
+                <th style="width:28%">Signal</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td class="cmd-addr">27</td>
+                <td>C_DC_NA_1</td>
+                <td><span class="signal-dir-send">DSO &rarr; Site</span></td>
+                <td><strong>BESS Active Power SCADA Control</strong></td>
+                <td>Activate / Deactivate BESS power dispatch.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">127</td>
+                <td>M_DP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>BESS Active Power Control Feedback</td>
+                <td>Confirms BESS dispatch is active/inactive.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">113</td>
+                <td>M_SP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td><strong>BESS Availability</strong></td>
+                <td>1 = Available, 0 = Unavailable. Must reflect actual operational status.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">102</td>
+                <td>M_SP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td><strong>Market Participation Status</strong></td>
+                <td>0 = Deactivated, 1 = Activated. DSO curtailment overrides this.</td>
+            </tr>
+        </table>
+
+        <div class="critical-box">
+            <strong>Priority Rule:</strong> DSO curtailment commands (Addr 25, 30) take <strong>absolute priority</strong> over Market Participation (Addr 102). When DSO issues a curtailment setpoint, the EMS must immediately suspend market dispatch and comply with the DSO command.
+        </div>
+    </div>
+
+    <!-- 7. CB CONTROL -->
+    <div class="section" id="cb-control">
+        <h2>7. Circuit Breaker Control (Hard Disconnect)</h2>
+
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:10%">Direction</th>
+                <th style="width:28%">Signal</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td class="cmd-addr">10</td>
+                <td>C_DC_NA_1</td>
+                <td><span class="signal-dir-send">DSO &rarr; Site</span></td>
+                <td><strong>Circuit Breaker Control</strong></td>
+                <td><strong>01 = Open</strong> (disconnect), <strong>10 = Close</strong> (reconnect)</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">100</td>
+                <td>M_DP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>CB Status Feedback</td>
+                <td>Confirms actual breaker position.</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">101</td>
+                <td>M_SP_NA_1</td>
+                <td><span class="signal-dir-recv">Site &rarr; DSO</span></td>
+                <td>CB SCADA Control Mode</td>
+                <td>0 = Remote (DSO has control), 1 = Local (manual control)</td>
+            </tr>
+        </table>
+
+        <div class="warning-box">
+            <strong>Reconnection Protocol:</strong> After any CB disconnect event, the EMS must enforce a <strong>3-minute waiting period</strong> before reconnection, followed by a power ramp rate of <strong>10% P<sub>Amax</sub> per minute</strong> (approximately 10 minutes to full power).
+        </div>
+    </div>
+
+    <!-- 8. TELEMETRY -->
+    <div class="section" id="telemetry">
+        <h2>8. Telemetry &amp; Monitoring Signals</h2>
+        <p>These measurement signals are continuously reported to the DSO/EKED for monitoring and are used to verify curtailment compliance:</p>
+
+        <h3>8.1 Power Quality Analyzer Signals</h3>
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:30%">Signal</th>
+                <th style="width:22%">Range</th>
+                <th>Hysteresis</th>
+            </tr>
+            <tr>
+                <td class="cmd-addr">500</td>
+                <td>M_ME_NC_1</td>
+                <td>Output Voltage (avg L-L)</td>
+                <td>0 &ndash; 30 kV</td>
+                <td>1 V (LV) / 50 V (MV)</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">501</td>
+                <td>M_ME_NC_1</td>
+                <td><strong>Output Active Power</strong></td>
+                <td>0 &ndash; P<sub>installed</sub></td>
+                <td>100 W</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">502</td>
+                <td>M_ME_NC_1</td>
+                <td><strong>Output Reactive Power</strong></td>
+                <td>&minus;Q<sub>max</sub> to +Q<sub>max</sub></td>
+                <td>100 VAr</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">503</td>
+                <td>M_ME_NC_1</td>
+                <td>Active Power Setpoint Feedback</td>
+                <td>0 &ndash; P<sub>installed</sub></td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">504</td>
+                <td>M_ME_NC_1</td>
+                <td>Reactive Power Setpoint Feedback</td>
+                <td>&minus;Q<sub>max</sub> to +Q<sub>max</sub></td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">505</td>
+                <td>M_ME_NC_1</td>
+                <td>PV Plant Availability</td>
+                <td>0 &ndash; 100%</td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">509</td>
+                <td>M_ME_NC_1</td>
+                <td>Power Factor (cos &phi;)</td>
+                <td>0 &ndash; 1</td>
+                <td>0.005</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">510</td>
+                <td>M_ME_NC_1</td>
+                <td>Net Active Power</td>
+                <td>&mdash;</td>
+                <td>Zero-export only</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">511</td>
+                <td>M_ME_NC_1</td>
+                <td>Net Reactive Power</td>
+                <td>&mdash;</td>
+                <td>Zero-export only</td>
+            </tr>
+        </table>
+
+        <h3>8.2 Weather Station Signals (&ge;500 kW plants)</h3>
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:30%">Signal</th>
+                <th style="width:12%">Unit</th>
+                <th>Range / Hysteresis</th>
+            </tr>
+            <tr>
+                <td class="cmd-addr">506</td>
+                <td>M_ME_NC_1</td>
+                <td>Solar Irradiance</td>
+                <td>W/m&sup2;</td>
+                <td>0 &ndash; 1200, Hyst 1</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">507</td>
+                <td>M_ME_NC_1</td>
+                <td>Air Temperature</td>
+                <td>&deg;C</td>
+                <td>&minus;100 to +100, Hyst 0.5</td>
+            </tr>
+            <tr>
+                <td class="cmd-addr">508</td>
+                <td>M_ME_NC_1</td>
+                <td>Wind Speed Average</td>
+                <td>m/s</td>
+                <td>0 &ndash; 100, Hyst 0.1</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 9. PROTECTION SIGNALS -->
+    <div class="section" id="protection">
+        <h2>9. Protection Signals</h2>
+        <p>Grid protection relay status signals reported to DSO for fault monitoring:</p>
+
+        <table>
+            <tr>
+                <th style="width:10%">IEC Addr</th>
+                <th style="width:14%">Type ID</th>
+                <th style="width:35%">Signal</th>
+                <th>States</th>
+            </tr>
+            <tr><td class="cmd-addr">105</td><td>M_SP_NA_1</td><td>Overcurrent Protection</td><td>0 = Idle, 1 = Operated</td></tr>
+            <tr><td class="cmd-addr">106</td><td>M_SP_NA_1</td><td>Grid Relay Malfunction</td><td>0 = OK, 1 = Fault</td></tr>
+            <tr><td class="cmd-addr">107</td><td>M_SP_NA_1</td><td>Overfrequency Protection</td><td>0 = Idle, 1 = Operated</td></tr>
+            <tr><td class="cmd-addr">108</td><td>M_SP_NA_1</td><td>Underfrequency Protection</td><td>0 = Idle, 1 = Operated</td></tr>
+            <tr><td class="cmd-addr">109</td><td>M_SP_NA_1</td><td>Overvoltage Protection</td><td>0 = Idle, 1 = Operated</td></tr>
+            <tr><td class="cmd-addr">110</td><td>M_SP_NA_1</td><td>Undervoltage Protection</td><td>0 = Idle, 1 = Operated</td></tr>
+            <tr><td class="cmd-addr">111</td><td>M_SP_NA_1</td><td>Loss of Mains (ROCOF)</td><td>0 = Idle, 1 = Operated</td></tr>
+            <tr><td class="cmd-addr">112</td><td>M_SP_NA_1</td><td>Earth Fault Protection</td><td>0 = Idle, 1 = Operated (MV only)</td></tr>
+        </table>
+    </div>
+
+    <!-- 10. AUTOMATIC CURTAILMENT -->
+    <div class="section" id="auto-curtailment">
+        <h2>10. Automatic Curtailment (Local Firmware &mdash; No SCADA Command)</h2>
+        <p>These curtailment behaviors are implemented <strong>locally in the PCS firmware</strong> and activate automatically without DSO commands. The EMS must be aware of these and not counteract them.</p>
+
+        <h3>10.1 Frequency-Based Active Power Curtailment (LFSM-O)</h3>
+        <table>
+            <tr><th style="width:22%">Frequency Range</th><th style="width:28%">BESS Discharging Mode</th><th style="width:28%">BESS Charging Mode</th><th>Recovery</th></tr>
+            <tr>
+                <td><strong>47.0 &ndash; 50.2 Hz</strong></td>
+                <td><span class="badge badge-green">Normal operation</span></td>
+                <td><span class="badge badge-green">Normal operation</span></td>
+                <td>&mdash;</td>
+            </tr>
+            <tr>
+                <td><strong>50.2 &ndash; 50.7 Hz</strong></td>
+                <td><span class="badge badge-orange">Reduce discharge</span> per 100% P<sub>M</sub>/Hz droop</td>
+                <td>Continue normal charging</td>
+                <td>10% P<sub>Amax</sub>/min</td>
+            </tr>
+            <tr>
+                <td><strong>50.7 Hz (f<sub>transition</sub>)</strong></td>
+                <td><span class="badge badge-red">Switch to charging</span></td>
+                <td><span class="badge badge-orange">Increase charge rate</span></td>
+                <td>10% P<sub>Amax</sub>/min</td>
+            </tr>
+            <tr>
+                <td><strong>50.7 &ndash; 52.0 Hz</strong></td>
+                <td>Maximum charging rate</td>
+                <td>Maximum charging rate</td>
+                <td>10% P<sub>Amax</sub>/min</td>
+            </tr>
+            <tr>
+                <td><strong>&gt; 52.0 Hz</strong></td>
+                <td colspan="2" style="text-align:center;"><span class="badge badge-red">DISCONNECT</span> (protection trip, 0.2s)</td>
+                <td>3 min + ramp</td>
+            </tr>
+            <tr>
+                <td><strong>&lt; 47.0 Hz</strong></td>
+                <td colspan="2" style="text-align:center;"><span class="badge badge-red">DISCONNECT</span> (protection trip, 0.2s)</td>
+                <td>3 min + ramp</td>
+            </tr>
+        </table>
+
+        <h3>10.2 Voltage-Based Active Power Curtailment P(V)</h3>
+
+        <h4>Discharging Mode</h4>
+        <table>
+            <tr><th>Voltage</th><th>Per-Unit</th><th>Discharge Power</th></tr>
+            <tr><td>&le; 246 V</td><td>&le; 1.07 pu</td><td><span class="badge badge-green">100%</span> (normal)</td></tr>
+            <tr><td>246 &ndash; 253 V</td><td>1.07 &ndash; 1.10 pu</td><td><span class="badge badge-orange">Ramp 100% &rarr; 0%</span></td></tr>
+            <tr><td>&ge; 253 V</td><td>&ge; 1.10 pu</td><td><span class="badge badge-red">0%</span> (stop export)</td></tr>
+        </table>
+
+        <h4>Charging Mode</h4>
+        <table>
+            <tr><th>Voltage</th><th>Per-Unit</th><th>Charge Power</th></tr>
+            <tr><td>&ge; 214 V</td><td>&ge; 0.93 pu</td><td><span class="badge badge-green">100%</span> (full charging)</td></tr>
+            <tr><td>207 &ndash; 214 V</td><td>0.90 &ndash; 0.93 pu</td><td><span class="badge badge-orange">Ramp 0% &rarr; 100%</span></td></tr>
+            <tr><td>&lt; 207 V</td><td>&lt; 0.90 pu</td><td><span class="badge badge-red">0%</span> (stop charging)</td></tr>
+        </table>
+    </div>
+
+    <!-- 11. RESPONSE TIMES -->
+    <div class="section" id="response-times">
+        <h2>11. Response Time Requirements</h2>
+
+        <table>
+            <tr><th style="width:40%">Parameter</th><th style="width:25%">Requirement</th><th>Notes</th></tr>
+            <tr>
+                <td>Setpoint Acknowledgment (Addr 103/104)</td>
+                <td><strong>&lt; 3 seconds</strong></td>
+                <td>3-second pulse on acceptance</td>
+            </tr>
+            <tr>
+                <td>Power Adjustment Completion</td>
+                <td><strong>&lt; 60 seconds</strong></td>
+                <td>From command to achieved setpoint</td>
+            </tr>
+            <tr>
+                <td>Minimum Interval Between Commands</td>
+                <td><strong>&ge; 20 seconds</strong></td>
+                <td>DSO will not send faster than this</td>
+            </tr>
+            <tr>
+                <td>Active Power Accuracy</td>
+                <td><strong>&pm;2%</strong></td>
+                <td>(P<sub>set</sub> &minus; P<sub>achieved</sub>) / P<sub>set</sub></td>
+            </tr>
+            <tr>
+                <td>Reactive Power Accuracy</td>
+                <td><strong>&pm;2%</strong></td>
+                <td>(Q<sub>set</sub> &minus; Q<sub>achieved</sub>) / Q<sub>set</sub></td>
+            </tr>
+            <tr>
+                <td>Reconnection Delay (after CB trip)</td>
+                <td><strong>3 minutes</strong></td>
+                <td>Mandatory waiting period</td>
+            </tr>
+            <tr>
+                <td>Power Ramp After Reconnection</td>
+                <td><strong>10% P<sub>Amax</sub> / min</strong></td>
+                <td>~10 min to full power</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 12. EMS ACTIONS -->
+    <div class="section" id="ems-actions">
+        <h2>12. Required EMS Actions &amp; Implementation Notes</h2>
+
+        <div class="success-box">
+            <strong>Summary for Voltus EMS Integration:</strong> The EMS must implement an IEC 60870-5-104 server (slave) that listens for DSO commands on port 2404 and maps them to internal PCS control via Modbus TCP. Below are the key implementation requirements.
+        </div>
+
+        <h3>12.1 Command Processing Priority</h3>
+        <table>
+            <tr><th style="width:8%">Priority</th><th style="width:30%">Source</th><th>Behavior</th></tr>
+            <tr><td><strong>1</strong></td><td>Protection (local firmware)</td><td>Frequency/voltage trips and LFSM-O. Cannot be overridden.</td></tr>
+            <tr><td><strong>2</strong></td><td>DSO SCADA Curtailment</td><td>Addr 25/30 (P) and Addr 26/31 (Q). Overrides all market dispatch.</td></tr>
+            <tr><td><strong>3</strong></td><td>DSO CB Control</td><td>Addr 10. Hard disconnect &mdash; highest operational command.</td></tr>
+            <tr><td><strong>4</strong></td><td>Market Dispatch / Optimization</td><td>Only active when DSO is not curtailing. Addr 102 must be active.</td></tr>
+        </table>
+
+        <h3>12.2 Signal Mapping: IEC 104 &harr; Modbus TCP (Kehua PCS)</h3>
+        <table>
+            <tr><th>IEC 104 Signal</th><th>IEC Addr</th><th>Modbus Register</th><th>Data Type</th></tr>
+            <tr><td>Active Power Setpoint</td><td class="cmd-addr">30</td><td>40001&ndash;40002</td><td>Float32</td></tr>
+            <tr><td>Reactive Power Setpoint</td><td class="cmd-addr">31</td><td>40003&ndash;40004</td><td>Float32</td></tr>
+            <tr><td>Active Power Actual</td><td class="cmd-addr">501</td><td>30001&ndash;30002</td><td>Float32</td></tr>
+            <tr><td>Reactive Power Actual</td><td class="cmd-addr">502</td><td>30003&ndash;30004</td><td>Float32</td></tr>
+            <tr><td>PCS Operating Mode</td><td>&mdash;</td><td>40005</td><td>UINT16</td></tr>
+            <tr><td>PCS Start/Stop</td><td>&mdash;</td><td>40006</td><td>UINT16</td></tr>
+            <tr><td>PCS Frequency</td><td>&mdash;</td><td>30013&ndash;30014</td><td>Float32</td></tr>
+            <tr><td>PCS Fault Code</td><td>&mdash;</td><td>30017</td><td>UINT16</td></tr>
+        </table>
+
+        <h3>12.3 Zero Export Operation</h3>
+        <table>
+            <tr><th style="width:25%">Parameter</th><th>Requirement</th></tr>
+            <tr><td>Charging Window</td><td>08:00 &ndash; 18:00 daily</td></tr>
+            <tr><td>Discharging Window</td><td>18:00 &ndash; 24:00 daily</td></tr>
+            <tr><td>Grid Export</td><td><strong>0 kW at all times</strong></td></tr>
+            <tr><td>Control Method (&le;120 kW)</td><td>Remote control receiver (dual receiver)</td></tr>
+            <tr><td>Control Method (&gt;120 kW)</td><td>SCADA control via Addr 30</td></tr>
+            <tr><td>Verification Signals</td><td>Addr 510 (Net P), Addr 511 (Net Q)</td></tr>
+        </table>
+
+        <h3>12.4 Curtailment Event Logging</h3>
+        <p>The EMS must log all curtailment events for regulatory reporting (CERA Decision 189/2023 requires monthly curtailed energy data):</p>
+        <table>
+            <tr><th style="width:30%">Field</th><th>Description</th></tr>
+            <tr><td>Timestamp</td><td>Start and end time of curtailment event (UTC+2)</td></tr>
+            <tr><td>Command Type</td><td>Analog setpoint / Discrete level / CB trip</td></tr>
+            <tr><td>Commanded Value</td><td>Setpoint received (kW or level)</td></tr>
+            <tr><td>Achieved Value</td><td>Actual power during curtailment (kW)</td></tr>
+            <tr><td>Curtailed Energy</td><td>Calculated lost energy (kWh) based on available vs curtailed</td></tr>
+            <tr><td>Response Time</td><td>Time from command receipt to setpoint achieved</td></tr>
+            <tr><td>Source</td><td>DSO / Protection / Auto (LFSM-O, P(V))</td></tr>
+        </table>
+    </div>
+
+    <!-- COMPLETE SIGNAL REFERENCE -->
+    <div class="section" style="page-break-before: always;">
+        <h2>Appendix: Complete IEC 60870-5-104 Signal Reference</h2>
+        <p>All confirmed SCADA addresses in a single reference table:</p>
+
+        <table>
+            <tr>
+                <th style="width:8%">Addr</th>
+                <th style="width:12%">Type ID</th>
+                <th style="width:8%">Dir</th>
+                <th style="width:35%">Signal</th>
+                <th style="width:15%">Category</th>
+                <th>Notes</th>
+            </tr>
+            <!-- Control Commands -->
+            <tr style="background:#e0e7ff;"><td colspan="6"><strong>Control Commands (DSO &rarr; Site)</strong></td></tr>
+            <tr><td class="cmd-addr">10</td><td>C_DC_NA_1</td><td>CMD</td><td>Circuit Breaker Control</td><td>CB</td><td>01=Open, 10=Close</td></tr>
+            <tr><td class="cmd-addr">25</td><td>C_DC_NA_1</td><td>CMD</td><td>Active Power SCADA Control</td><td>P Control</td><td>Enable/Disable</td></tr>
+            <tr><td class="cmd-addr">26</td><td>C_DC_NA_1</td><td>CMD</td><td>Reactive Power SCADA Control</td><td>Q Control</td><td>Enable/Disable</td></tr>
+            <tr><td class="cmd-addr">27</td><td>C_DC_NA_1</td><td>CMD</td><td>BESS Active Power Control</td><td>BESS</td><td>Activate/Deactivate</td></tr>
+            <tr><td class="cmd-addr">30</td><td>C_SE_NB_1</td><td>CMD</td><td>Active Power Setpoint</td><td>P Curtailment</td><td>0 &ndash; P<sub>inst</sub> (kW)</td></tr>
+            <tr><td class="cmd-addr">31</td><td>C_SE_NB_1</td><td>CMD</td><td>Reactive Power Setpoint</td><td>Q Control</td><td>&pm;Q<sub>max</sub> (kVAr)</td></tr>
+            <!-- Status Feedback -->
+            <tr style="background:#e0e7ff;"><td colspan="6"><strong>Status Feedback (Site &rarr; DSO)</strong></td></tr>
+            <tr><td class="cmd-addr">100</td><td>M_DP_NA_1</td><td>MON</td><td>CB Status Feedback</td><td>CB</td><td>&mdash;</td></tr>
+            <tr><td class="cmd-addr">101</td><td>M_SP_NA_1</td><td>MON</td><td>CB SCADA Control Mode</td><td>CB</td><td>0=Remote, 1=Local</td></tr>
+            <tr><td class="cmd-addr">102</td><td>M_SP_NA_1</td><td>MON</td><td>Market Participation Status</td><td>Market</td><td>0=Off, 1=On</td></tr>
+            <tr><td class="cmd-addr">103</td><td>M_SP_NA_1</td><td>MON</td><td>P Setpoint Accepted/Rejected</td><td>P Control</td><td>3s pulse</td></tr>
+            <tr><td class="cmd-addr">104</td><td>M_SP_NA_1</td><td>MON</td><td>Q Setpoint Accepted/Rejected</td><td>Q Control</td><td>3s pulse</td></tr>
+            <tr><td class="cmd-addr">113</td><td>M_SP_NA_1</td><td>MON</td><td>BESS Availability</td><td>BESS</td><td>0/1</td></tr>
+            <tr><td class="cmd-addr">125</td><td>M_DP_NA_1</td><td>MON</td><td>P Control Feedback</td><td>P Control</td><td>&mdash;</td></tr>
+            <tr><td class="cmd-addr">126</td><td>M_DP_NA_1</td><td>MON</td><td>Q Control Feedback</td><td>Q Control</td><td>&mdash;</td></tr>
+            <tr><td class="cmd-addr">127</td><td>M_DP_NA_1</td><td>MON</td><td>BESS P Control Feedback</td><td>BESS</td><td>&mdash;</td></tr>
+            <!-- Protection -->
+            <tr style="background:#e0e7ff;"><td colspan="6"><strong>Protection Signals (Site &rarr; DSO)</strong></td></tr>
+            <tr><td class="cmd-addr">105</td><td>M_SP_NA_1</td><td>MON</td><td>Overcurrent Protection</td><td>Protection</td><td>0=Idle, 1=Trip</td></tr>
+            <tr><td class="cmd-addr">106</td><td>M_SP_NA_1</td><td>MON</td><td>Grid Relay Malfunction</td><td>Protection</td><td>0=OK, 1=Fault</td></tr>
+            <tr><td class="cmd-addr">107</td><td>M_SP_NA_1</td><td>MON</td><td>Overfrequency Protection</td><td>Protection</td><td>0=Idle, 1=Trip</td></tr>
+            <tr><td class="cmd-addr">108</td><td>M_SP_NA_1</td><td>MON</td><td>Underfrequency Protection</td><td>Protection</td><td>0=Idle, 1=Trip</td></tr>
+            <tr><td class="cmd-addr">109</td><td>M_SP_NA_1</td><td>MON</td><td>Overvoltage Protection</td><td>Protection</td><td>0=Idle, 1=Trip</td></tr>
+            <tr><td class="cmd-addr">110</td><td>M_SP_NA_1</td><td>MON</td><td>Undervoltage Protection</td><td>Protection</td><td>0=Idle, 1=Trip</td></tr>
+            <tr><td class="cmd-addr">111</td><td>M_SP_NA_1</td><td>MON</td><td>Loss of Mains (ROCOF)</td><td>Protection</td><td>0=Idle, 1=Trip</td></tr>
+            <tr><td class="cmd-addr">112</td><td>M_SP_NA_1</td><td>MON</td><td>Earth Fault Protection</td><td>Protection</td><td>MV only</td></tr>
+            <!-- Measurements -->
+            <tr style="background:#e0e7ff;"><td colspan="6"><strong>Measurement Signals (Site &rarr; DSO)</strong></td></tr>
+            <tr><td class="cmd-addr">500</td><td>M_ME_NC_1</td><td>MON</td><td>Output Voltage (avg L-L)</td><td>Telemetry</td><td>0&ndash;30 kV</td></tr>
+            <tr><td class="cmd-addr">501</td><td>M_ME_NC_1</td><td>MON</td><td>Output Active Power</td><td>Telemetry</td><td>Hyst 100 W</td></tr>
+            <tr><td class="cmd-addr">502</td><td>M_ME_NC_1</td><td>MON</td><td>Output Reactive Power</td><td>Telemetry</td><td>Hyst 100 VAr</td></tr>
+            <tr><td class="cmd-addr">503</td><td>M_ME_NC_1</td><td>MON</td><td>P Setpoint Feedback</td><td>Telemetry</td><td>IEEE 754</td></tr>
+            <tr><td class="cmd-addr">504</td><td>M_ME_NC_1</td><td>MON</td><td>Q Setpoint Feedback</td><td>Telemetry</td><td>IEEE 754</td></tr>
+            <tr><td class="cmd-addr">505</td><td>M_ME_NC_1</td><td>MON</td><td>PV Plant Availability</td><td>Telemetry</td><td>0&ndash;100%</td></tr>
+            <tr><td class="cmd-addr">506</td><td>M_ME_NC_1</td><td>MON</td><td>Solar Irradiance</td><td>Weather</td><td>&ge;500 kW plants</td></tr>
+            <tr><td class="cmd-addr">507</td><td>M_ME_NC_1</td><td>MON</td><td>Air Temperature</td><td>Weather</td><td>&ge;500 kW plants</td></tr>
+            <tr><td class="cmd-addr">508</td><td>M_ME_NC_1</td><td>MON</td><td>Wind Speed</td><td>Weather</td><td>&ge;500 kW plants</td></tr>
+            <tr><td class="cmd-addr">509</td><td>M_ME_NC_1</td><td>MON</td><td>Power Factor (cos &phi;)</td><td>Telemetry</td><td>Hyst 0.005</td></tr>
+            <tr><td class="cmd-addr">510</td><td>M_ME_NC_1</td><td>MON</td><td>Net Active Power</td><td>Zero Export</td><td>If applicable</td></tr>
+            <tr><td class="cmd-addr">511</td><td>M_ME_NC_1</td><td>MON</td><td>Net Reactive Power</td><td>Zero Export</td><td>If applicable</td></tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p><strong>Lighthief Cyprus Ltd</strong> &mdash; Confidential Technical Reference</p>
+        <p>Source: EAC Technical Guide for Storage &ndash; Edition 2025.1 | TSO BESS ANNEX-II-Appendix-2 | DSO Compliance Doc LCY-DSO-001 v3.0</p>
+        <p>Prepared for: <strong>Voltus EMS Integration</strong> | Document Ref: LCY-SCADA-CURTAIL-2026-001 | 15 February 2026</p>
+    </div>
+
+</body>
+</html>

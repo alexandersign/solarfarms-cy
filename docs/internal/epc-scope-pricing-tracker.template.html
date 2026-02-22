@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPC Scope & Pricing Tracker - Cyprus BESS Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --solar-500: #f59e0b;
+            --solar-600: #d97706;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --white: #ffffff;
+            --green-500: #22c55e;
+            --green-100: #dcfce7;
+            --yellow-500: #eab308;
+            --yellow-100: #fef9c3;
+            --red-500: #ef4444;
+            --red-100: #fee2e2;
+            --blue-500: #3b82f6;
+            --blue-100: #dbeafe;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+
+        .print-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            display: flex;
+            gap: 8px;
+        }
+
+        .print-btn {
+            background: var(--gray-900);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .print-btn:hover {
+            background: var(--solar-500);
+            color: var(--gray-900);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+            color: var(--white);
+            padding: 30px;
+            margin: -20px -20px 30px -20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        header .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        header .meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        header .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header .meta-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
+        }
+
+        header .meta-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--solar-500);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: var(--gray-50);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .section-badge {
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .badge-verified {
+            background: var(--green-100);
+            color: var(--green-500);
+        }
+
+        .badge-pending {
+            background: var(--yellow-100);
+            color: var(--yellow-500);
+        }
+
+        .badge-missing {
+            background: var(--red-100);
+            color: var(--red-500);
+        }
+
+        .badge-info {
+            background: var(--blue-100);
+            color: var(--blue-500);
+        }
+
+        .section-content {
+            padding: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        th, td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        tr:hover {
+            background: var(--gray-50);
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .font-mono {
+            font-family: 'SF Mono', 'Monaco', monospace;
+            font-size: 10px;
+        }
+
+        .text-muted {
+            color: var(--gray-500);
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .status-verified {
+            background: var(--green-100);
+            color: #166534;
+        }
+
+        .status-quote {
+            background: var(--blue-100);
+            color: #1e40af;
+        }
+
+        .status-estimate {
+            background: var(--yellow-100);
+            color: #854d0e;
+        }
+
+        .status-missing {
+            background: var(--red-100);
+            color: #991b1b;
+        }
+
+        .status-pending {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .dot-green { background: var(--green-500); }
+        .dot-yellow { background: var(--yellow-500); }
+        .dot-red { background: var(--red-500); }
+        .dot-blue { background: var(--blue-500); }
+        .dot-gray { background: var(--gray-400); }
+
+        .highlight-row {
+            background: var(--solar-500) !important;
+            color: var(--gray-900);
+        }
+
+        .highlight-row td {
+            font-weight: 700;
+        }
+
+        .total-row {
+            background: var(--gray-900) !important;
+            color: var(--white);
+        }
+
+        .total-row td {
+            font-weight: 700;
+            border-bottom: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .summary-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .summary-card-title {
+            font-size: 11px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .summary-card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .summary-card-sub {
+            font-size: 11px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--green-500);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .timeline-date {
+            width: 80px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--gray-500);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .timeline-desc {
+            font-size: 10px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+
+        .note-box {
+            background: var(--yellow-100);
+            border-left: 3px solid var(--yellow-500);
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 11px;
+        }
+
+        .note-box-title {
+            font-weight: 700;
+            color: var(--yellow-500);
+            margin-bottom: 4px;
+        }
+
+        @media print {
+            .print-controls { display: none !important; }
+            body { font-size: 9px; }
+            .container { padding: 10px; max-width: 100%; }
+            header { margin: -10px -10px 20px -10px; padding: 20px; }
+            .section { break-inside: avoid; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr 1fr; }
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 10mm;
+        }
+    </style>
+</head>
+<body>
+    <div class="print-controls">
+        <button class="print-btn" onclick="window.print()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            Export PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>EPC SCOPE & PRICING TRACKER</h1>
+            <div class="subtitle">Cyprus BESS Portfolio - {{PORTFOLIO.parks}} Parks | {{PORTFOLIO.mwh}} MWh | v4 FINAL 20 Feb 2026</div>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="meta-label">Reference Price (5MW/20MWh)</span>
+                    <span class="meta-value">€112,945/MWh</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Payment Terms</span>
+                    <span class="meta-value">25/50/20/5</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Delivery</span>
+                    <span class="meta-value">13+7 weeks</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">O&M Cost</span>
+                    <span class="meta-value">€{{LTSA.tierC.ratePerMWh}}/MWh/yr</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Warranty</span>
+                    <span class="meta-value">5 Years</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="grid-3" style="margin-bottom: 30px;">
+            <div class="summary-card">
+                <div class="summary-card-title">Pricing Verification</div>
+                <div class="summary-card-value">44%</div>
+                <div class="summary-card-sub">15 of 34 items verified</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 44%;"></div></div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">RFI/RFP Status</div>
+                <div class="summary-card-value">6 Pending</div>
+                <div class="summary-card-sub">Awaiting supplier responses</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: var(--yellow-500);"></div></div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-card-title">Project Readiness</div>
+                <div class="summary-card-value">70%</div>
+                <div class="summary-card-sub">Scope definition complete</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 70%; background: var(--blue-500);"></div></div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: CONFIRMED CLIENT PRICING -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title">1. CONFIRMED CLIENT PRICING (4 Feb 2026)</span>
+                <span class="section-badge badge-verified">✓ CONFIRMED</span>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>System Configuration</th>
+                            <th class="text-right">Price per MWh</th>
+                            <th class="text-right">Total Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td><strong>5.0MW / 20MWh</strong></td>
+                            <td class="text-right font-mono"><strong>€112,945</strong></td>
+                            <td class="text-right font-mono">€2,258,900</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>5.0MW / 15MWh</strong></td>
+                            <td class="text-right font-mono">€130,792</td>
+                            <td class="text-right font-mono">€1,961,880</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>5.0MW / 10MWh</strong></td>
+                            <td class="text-right font-mono">€136,106</td>
+                            <td class="text-right font-mono">€1,361,060</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.5MW / 10MWh</strong></td>
+                            <td class="text-right font-mono">€120,630</td>
+                            <td class="text-right font-mono">€1,206,300</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.5MW / 8.36MWh</strong></td>
+                            <td class="text-right font-mono">€135,560</td>
+                            <td class="text-right font-mono">€1,133,282</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>8.0MW / 60MWh</strong></td>
+                            <td class="text-right font-mono">€100,052</td>
+                            <td class="text-right font-mono">€6,003,120</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>12MW / 40MWh</strong></td>
+                            <td class="text-right font-mono">€114,990</td>
+                            <td class="text-right font-mono">€4,599,600</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>25MW / 100MWh</strong></td>
+                            <td class="text-right font-mono">€106,279</td>
+                            <td class="text-right font-mono">€10,627,900</td>
+                            <td><span class="status status-verified">✓ Confirmed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note-box" style="margin-top: 16px; background: var(--green-100); border-left-color: var(--green-500);">
+                    <div class="note-box-title" style="color: var(--green-500);">Payment Terms Confirmed</div>
+                    25% advance | 50% ready to ship | 20% on site | 5% pass SAT
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: CIF EQUIPMENT (LINYANG) -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title">2. CIF EQUIPMENT - LINYANG (Quote LY202601271)</span>
+                <span class="section-badge badge-verified">✓ Verified</span>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Supplier</th>
+                            <th>Model/Spec</th>
+                            <th class="text-center">Status</th>
+                            <th>RFI Required</th>
+                            <th class="text-right">Response Due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Battery Container</strong></td>
+                            <td>Linyang</td>
+                            <td>ME 5.015 MWh (EVE 314Ah LFP)</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PCS (Inverter)</strong></td>
+                            <td>Kehua</td>
+                            <td>BCS1250K-C-HUD / BCS10000K-C-HUD</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MV Skid (Container)</strong></td>
+                            <td>Linyang</td>
+                            <td>Integrated PCS + Transformer</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MV Transformer</strong></td>
+                            <td>Kehua</td>
+                            <td>SL-10000 (10MW only)</td>
+                            <td class="text-center"><span class="status status-quote"><span class="status-dot dot-blue"></span>Partial</span></td>
+                            <td>Confirm models for 1-8MW sizes</td>
+                            <td class="text-right font-bold">5 Feb</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MV Switchgear</strong></td>
+                            <td>❓ Unknown</td>
+                            <td>❓ SF6 or air-insulated?</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Pending</span></td>
+                            <td>Confirm brand & model</td>
+                            <td class="text-right font-bold" style="color: var(--red-500);">5 Feb</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RMU</strong></td>
+                            <td>Schneider</td>
+                            <td>❓ RM6 / SM6 / Premset?</td>
+                            <td class="text-center"><span class="status status-quote"><span class="status-dot dot-blue"></span>Partial</span></td>
+                            <td>Confirm model</td>
+                            <td class="text-right font-bold">5 Feb</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Protection Relays</strong></td>
+                            <td>❓ Unknown</td>
+                            <td>❓ ABB / Schneider?</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Pending</span></td>
+                            <td>Confirm brand & model</td>
+                            <td class="text-right font-bold" style="color: var(--red-500);">5 Feb</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Auxiliary Transformer</strong></td>
+                            <td>Schneider</td>
+                            <td>❓ kVA TBD</td>
+                            <td class="text-center"><span class="status status-quote"><span class="status-dot dot-blue"></span>Partial</span></td>
+                            <td>Confirm model & size</td>
+                            <td class="text-right font-bold">5 Feb</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BMS</strong></td>
+                            <td>Linyang</td>
+                            <td>Integrated (BAMS/BCMU/BMU)</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fire Suppression</strong></td>
+                            <td>Linyang</td>
+                            <td>Integrated in container</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Liquid Cooling</strong></td>
+                            <td>Linyang</td>
+                            <td>Integrated in container</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 3: SCOPE BREAKDOWN - INCLUDED IN PACKAGE -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title">3. ITEMS NOW INCLUDED IN COMPLETE PACKAGE (Per Client Doc)</span>
+                <span class="section-badge badge-verified">✓ CONFIRMED</span>
+            </div>
+            <div class="section-content">
+                <div class="note-box" style="background: var(--green-100); border-left-color: var(--green-500);">
+                    <div class="note-box-title" style="color: var(--green-500);">These items are BUNDLED in the confirmed client price</div>
+                    Previously shown as separate EPC adders - now included in package pricing.
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cost Item</th>
+                            <th>Previous Status</th>
+                            <th class="text-center">New Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Import & Customs Duties</strong></td>
+                            <td>€43,815 (2.37%)</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Bundled in package price</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Civil Works, Concrete Bases & Cable Laying</strong></td>
+                            <td>Client pays</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Bundled in package price</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Drainage System</strong></td>
+                            <td>Client pays</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Bundled in package price</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Surge Protection (SPDs)</strong></td>
+                            <td>€5,000 adder</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Bundled in package price</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Internal Earthing Grid</strong></td>
+                            <td>Included</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Plus soil resistivity test</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Installation & Commissioning</strong></td>
+                            <td>✅ CONFIRMED in CIF (15 Feb 2026)</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Linyang: 4PL + 8CN (12 on-site). Mech install, DC/AC cabling, SAT. Cold comm: Lighthief. Hot: Shared.</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>ETEK Engineer Certification</strong></td>
+                            <td>TBC</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Declaration of compliance</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Basic EMS License Fee</strong></td>
+                            <td>TBC</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>In O&M cost (€{{LTSA.tierC.ratePerMWh}}/MWh/yr)</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>EOL Recycling</strong></td>
+                            <td>TBC</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>INCLUDED</span></td>
+                            <td>Zero net cost, possible cash back</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>EMS/SCADA (Voltus)</strong></td>
+                            <td>Voltus EMS + WAGO PFC200. SCADA Local: Basic €15K / Advanced €30K. SCADA Global: €60K/group. Updated 16 Feb 2026. Total: €3.99M.</td>
+                            <td class="text-right font-mono">✅ QUOTED</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Confirmed</span></td>
+                            <td>Per client doc 4 Feb</td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>CERA License</strong></td>
+                            <td>CERA</td>
+                            <td class="text-right font-mono">€2,000</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Verified</span></td>
+                            <td>Regulatory (€0.10/kWh)</td>
+                            <td class="text-muted">-</td>
+                            <td class="text-right text-muted">-</td>
+                        </tr>
+                        <!-- QUOTE RECEIVED - NEEDS RFI -->
+                    </tbody>
+                </table>
+
+                <h4 style="margin: 24px 0 12px 0; color: var(--red-500);">❌ CLIENT PAYS SEPARATELY</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cost Item</th>
+                            <th>Supplier</th>
+                            <th class="text-center">Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>External Lightning Protection (LPS)</strong></td>
+                            <td>DEHN — €429.41/BESS + €617.52/MV SKID</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>✅ QUOTED</span></td>
+                            <td>DEHN quotation received. HVI Light Plus, LPS III/IV. Portfolio: €148,538. Install by StrikeRA (UK).</td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>Site Earthing Enhancement</strong></td>
+                            <td>DEHN — N/A (site-dependent contingency)</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Client Pays</span></td>
+                            <td>Base earthing grid quoted @ €793.59/structure (INCLUDED). Enhancement: depends on soil conditions, priced separately.</td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>EAC Testing & Connection Fees</strong></td>
+                            <td>EAC/DSO</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Client Pays</span></td>
+                            <td>Grid connection charges</td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>Communication Equipment to TSO/EDC</strong></td>
+                            <td>TBD</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Client Pays</span></td>
+                            <td>TSO/EDC communication link</td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>VAT</strong></td>
+                            <td>Cyprus Tax Authority</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Client Pays</span></td>
+                            <td>19% VAT on total</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 4: COMMERCIAL TERMS - RFI PENDING -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title">4. COMMERCIAL TERMS - LINYANG RFI STATUS</span>
+                <span class="section-badge badge-missing">Awaiting Confirmation</span>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Current/Proposed Value</th>
+                            <th class="text-center">Status</th>
+                            <th>RFI Document</th>
+                            <th class="text-right">Response Due</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>Delay LDs</strong></td>
+                            <td>0.1-0.2%/day, 10% cap (excl. shipping)</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Unconfirmed</span></td>
+                            <td>FINAL_RFI v1.6 Section B6</td>
+                            <td class="text-right font-bold" style="color: var(--red-500);">2 Feb</td>
+                            <td><span class="status status-missing">CRITICAL</span></td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>Performance LDs</strong></td>
+                            <td>TBD - need Linyang proposal</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Unconfirmed</span></td>
+                            <td>FINAL_RFI v1.6 Section B6</td>
+                            <td class="text-right font-bold" style="color: var(--red-500);">2 Feb</td>
+                            <td><span class="status status-missing">CRITICAL</span></td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>Availability LDs</strong></td>
+                            <td>TBD - need Linyang proposal</td>
+                            <td class="text-center"><span class="status status-missing"><span class="status-dot dot-red"></span>Unconfirmed</span></td>
+                            <td>FINAL_RFI v1.6 Section B6</td>
+                            <td class="text-right font-bold" style="color: var(--red-500);">2 Feb</td>
+                            <td><span class="status status-missing">CRITICAL</span></td>
+                        </tr>
+                        <tr style="background: #fef9c3;">
+                            <td><strong>Advance Payment Guarantee</strong></td>
+                            <td>100% bank guarantee requested</td>
+                            <td class="text-center"><span class="status status-estimate"><span class="status-dot dot-yellow"></span>Pending</span></td>
+                            <td>FINAL_RFI v1.6 Section B2</td>
+                            <td class="text-right font-bold">7 Feb</td>
+                            <td><span class="status status-quote">HIGH</span></td>
+                        </tr>
+                        <tr style="background: #fef9c3;">
+                            <td><strong>Performance Bond</strong></td>
+                            <td>Corporate guarantee (form TBD)</td>
+                            <td class="text-center"><span class="status status-estimate"><span class="status-dot dot-yellow"></span>Pending</span></td>
+                            <td>FINAL_RFI v1.6 Section B3</td>
+                            <td class="text-right font-bold">7 Feb</td>
+                            <td><span class="status status-quote">HIGH</span></td>
+                        </tr>
+                        <tr style="background: #fef9c3;">
+                            <td><strong>SOH Year 10</strong></td>
+                            <td>79.58% minimum (at 1 CPD)</td>
+                            <td class="text-center"><span class="status status-estimate"><span class="status-dot dot-yellow"></span>Pending</span></td>
+                            <td>FINAL_RFI v1.6 Section B7</td>
+                            <td class="text-right font-bold">7 Feb</td>
+                            <td><span class="status status-quote">HIGH</span></td>
+                        </tr>
+                        <tr style="background: #fef9c3;">
+                            <td><strong>SOH Year 15</strong></td>
+                            <td>73.61% minimum (at 1 CPD)</td>
+                            <td class="text-center"><span class="status status-estimate"><span class="status-dot dot-yellow"></span>Pending</span></td>
+                            <td>FINAL_RFI v1.6 Section B7</td>
+                            <td class="text-right font-bold">7 Feb</td>
+                            <td><span class="status status-quote">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Warranty Period</strong></td>
+                            <td>5 years standard</td>
+                            <td class="text-center"><span class="status status-estimate"><span class="status-dot dot-yellow"></span>Pending</span></td>
+                            <td>FINAL_RFI v1.6 Section B7</td>
+                            <td class="text-right">7 Feb</td>
+                            <td><span class="status status-pending">MEDIUM</span></td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>Payment Terms</strong></td>
+                            <td>25% advance, 50% ready to ship, 20% on site, 5% SAT</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Confirmed</span></td>
+                            <td>Client doc 4 Feb 2026</td>
+                            <td class="text-right text-muted">-</td>
+                            <td><span class="status status-verified">DONE</span></td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>System RTE</strong></td>
+                            <td>86.32% (full system AC-AC incl. cabling)</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Confirmed</span></td>
+                            <td>Linyang RTE Calculation.pdf (87.8% PCS-level, adjusted for cabling losses)</td>
+                            <td class="text-right text-muted">-</td>
+                            <td><span class="status status-verified">DONE</span></td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td><strong>PCS Efficiency</strong></td>
+                            <td>≥99% max, ~98% rated power</td>
+                            <td class="text-center"><span class="status status-verified"><span class="status-dot dot-green"></span>Confirmed</span></td>
+                            <td>Kehua Datasheet</td>
+                            <td class="text-right text-muted">-</td>
+                            <td><span class="status status-verified">DONE</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 5: SCOPE OF WORK (CONFIRMED) -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title">5. SCOPE OF WORK - CONFIRMED (4 Feb 2026)</span>
+                <span class="section-badge badge-verified">✓ CONFIRMED</span>
+            </div>
+            <div class="section-content">
+                <div class="grid-2">
+                    <div>
+                        <h4 style="margin-bottom: 12px; color: var(--green-500);">✓ INCLUDED IN COMPLETE PACKAGE PRICE</h4>
+                        <table>
+                            <tbody>
+                                <tr style="background: #f0fdf4;"><td><strong>✓ Import & Customs Duties</strong></td></tr>
+                                <tr style="background: #f0fdf4;"><td><strong>✓ Civil works, concrete bases & cable laying</strong></td></tr>
+                                <tr style="background: #f0fdf4;"><td><strong>✓ Drainage system</strong></td></tr>
+                                <tr><td>✓ Battery containers (ME 5.015 MWh, EVE 314Ah LFP)</td></tr>
+                                <tr><td>✓ PCS / Inverters (Kehua BCS1250K-C / BCS1000K-C-HUD)</td></tr>
+                                <tr><td>✓ MV Skid (Transformer + Switchgear)</td></tr>
+                                <tr><td>✓ RMU & Switchgear (Schneider RM AirSeT 12-24kV)</td></tr>
+                                <tr><td>✓ BMS, Liquid Cooling, Fire Suppression</td></tr>
+                                <tr style="background: #f0fdf4;"><td><strong>✓ Surge Protection (SPDs)</strong></td></tr>
+                                <tr><td>✓ Internal Earthing Grid + soil resistivity test</td></tr>
+                                <tr><td>✅ EMS/SCADA — Voltus (Poland). WAGO PFC200 PLC. €3.99M total (Feb 16 quote). SCADA tiered: Basic/Advanced.</td></tr>
+                                <tr><td>✅ EMS license included in Voltus quote. SCADA maint: €363K/yr.</td></tr>
+                                <tr style="background: #f0fdf4;"><td><strong>✓ Installation & Commissioning (4-6 weeks)</strong></td></tr>
+                                <tr><td>✓ ETEK engineer certification</td></tr>
+                                <tr><td>✓ EU Battery Passport compliant</td></tr>
+                                <tr><td>✓ EOL Recycling (zero net cost)</td></tr>
+                                <tr><td>✓ 5-year manufacturer warranty</td></tr>
+                                <tr><td>✓ Grid Forming Capability</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 12px; color: var(--red-500);">✗ EXCLUDED (Client Pays Separately)</h4>
+                        <table>
+                            <tbody>
+                                <tr style="background: #fee2e2;"><td><strong>✗ EAC testing & connection fees</strong></td></tr>
+                                <tr style="background: #fee2e2;"><td><strong>✗ External Lightning Protection (LPS)</strong> - DEHN, coordinated by Lighthief</td></tr>
+                                <tr style="background: #fee2e2;"><td><strong>✗ Site Earthing enhancement</strong> (if needed)</td></tr>
+                                <tr style="background: #fee2e2;"><td><strong>✗ Communication equipment to TSO/EDC</strong></td></tr>
+                                <tr><td>✗ VAT (19%)</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="note-box" style="margin-top: 16px; background: var(--green-100); border-left-color: var(--green-500);">
+                            <div class="note-box-title" style="color: var(--green-500);">Key Scope Changes (vs EPC Sheet)</div>
+                            Civil works: <strong>NOW INCLUDED</strong><br>
+                            Drainage: <strong>NOW INCLUDED</strong><br>
+                            Cement bases: <strong>NOW INCLUDED</strong><br>
+                            SPDs: <strong>NOW INCLUDED</strong><br>
+                            Import duties: <strong>NOW INCLUDED</strong><br>
+                            Commissioning: <strong>NOW INCLUDED</strong>
+                        </div>
+                        <div class="note-box" style="margin-top: 12px;">
+                            <div class="note-box-title">External LPS — DEHN Quoted ✅</div>
+                            LPS + SPD + Earthing: DEHN quotation received, €9,210 ref for 5MW/20MWh park.<br>
+                            Installation: StrikeRA (UK), €2,156/park — needs Lighthief confirmation.<br>
+                            Earthing enhancement: site-dependent, priced separately.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: RFI/RFP TIMELINE -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-title">6. RFI/RFP RESPONSE TIMELINE</span>
+                <span class="section-badge badge-pending">6 Items Pending</span>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Due Date</th>
+                            <th>Item</th>
+                            <th>Vendor</th>
+                            <th>Document</th>
+                            <th class="text-center">Status</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fee2e2;">
+                            <td class="font-bold" style="color: var(--red-500);">2 Feb (TODAY)</td>
+                            <td>LDs (Delay/Performance/Availability)</td>
+                            <td>Linyang</td>
+                            <td>FINAL_RFI v1.6</td>
+                            <td class="text-center"><span class="status status-missing">CRITICAL</span></td>
+                            <td>🚨 URGENT</td>
+                        </tr>
+                        <tr style="background: #fef9c3;">
+                            <td class="font-bold">5 Feb</td>
+                            <td>MV Equipment Brand Names</td>
+                            <td>Linyang</td>
+                            <td>FINAL_RFI v1.6</td>
+                            <td class="text-center"><span class="status status-estimate">Awaiting</span></td>
+                            <td>🔴 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">7 Feb</td>
+                            <td>APG / Performance Bond Terms</td>
+                            <td>Linyang</td>
+                            <td>FINAL_RFI v1.6</td>
+                            <td class="text-center"><span class="status status-estimate">Awaiting</span></td>
+                            <td>🔴 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">7 Feb</td>
+                            <td>SOH Guarantee Confirmation</td>
+                            <td>Linyang</td>
+                            <td>FINAL_RFI v1.6</td>
+                            <td class="text-center"><span class="status status-estimate">Awaiting</span></td>
+                            <td>🔴 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold">7 Feb</td>
+                            <td>Lightning Protection Quote</td>
+                            <td>DEHN</td>
+                            <td>lightning-protection-rfq</td>
+                            <td class="text-center"><span class="status status-verified">✅ RECEIVED</span></td>
+                            <td>✅ CONFIRMED</td>
+                        </tr>
+                        <tr>
+                            <td>14 Feb</td>
+                            <td>Spare Parts List</td>
+                            <td>Linyang + Kehua</td>
+                            <td>rfi-spares-list</td>
+                            <td class="text-center"><span class="status status-quote">RFP Sent</span></td>
+                            <td>🟡 MEDIUM</td>
+                        </tr>
+                        <tr>
+                            <td>14 Feb</td>
+                            <td>LTSA Rate Lock-in</td>
+                            <td>Linyang</td>
+                            <td>FINAL_RFI v1.6</td>
+                            <td class="text-center"><span class="status status-estimate">Awaiting</span></td>
+                            <td>🟡 MEDIUM</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin: 20px 0 12px 0; color: var(--red-500);">Missing RFP Documents - Action Required</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Target Vendor</th>
+                            <th>Create By</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fee2e2;">
+                            <td>Mechanical + Electrical Installation</td>
+                            <td>Cyprus EPC Contractor</td>
+                            <td class="font-bold" style="color: var(--red-500);">3 Feb</td>
+                            <td>🔴 HIGH</td>
+                        </tr>
+                        <tr style="background: #dcfce7;">
+                            <td><s>Insurance (CAR/EAR)</s> ✅</td>
+                            <td>Agent — 0.75% of CIF</td>
+                            <td class="font-bold" style="color: #16a34a;">Verified</td>
+                            <td>✅ DONE</td>
+                        </tr>
+                        <tr style="background: #f0fdf4;">
+                            <td>Civil Works</td>
+                            <td>Kamil — €2,000/MWh confirmed</td>
+                            <td>13 Feb ✅</td>
+                            <td>✅ CONFIRMED</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="margin-top: 40px; padding: 20px; background: var(--gray-50); border-radius: 8px; text-align: center;">
+            <div style="font-size: 10px; color: var(--gray-500);">
+                <strong>LIGHTHIEF CYPRUS LTD</strong> | Company No: HE 477423 | TIN: 60187188Q<br>
+                28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+                Document: LCY-EPC-SCOPE-PRICING-2026 | Version 2.0 | Last Updated: 5 February 2026 (Confirmed)<br>
+                <strong>INTERNAL USE ONLY - CONFIDENTIAL</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('beforeprint', function() {
+            document.body.classList.add('printing');
+        });
+        window.addEventListener('afterprint', function() {
+            document.body.classList.remove('printing');
+        });
+    </script>
+</body>
+</html>

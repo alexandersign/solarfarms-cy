@@ -58,9 +58,9 @@ export async function sendContactNotification(data: ContactEmailData) {
     
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-      replyTo: 'alexander.papacosta@lighthief.com',
+      replyTo: 'office@lighthief.com',
       to: [
-        'alexander.papacosta@lighthief.com'
+        'office@lighthief.com'
       ],
       subject: `NEW LEAD NOTIFICATION - ${data.investmentSize}`,
       html: getContactNotificationTemplate(data),
@@ -85,7 +85,7 @@ export async function sendContactAutoresponder(data: ContactEmailData) {
   try {
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-      replyTo: 'alexander.papacosta@lighthief.com',
+      replyTo: 'office@lighthief.com',
       to: [data.email], // Send autoresponder to customer email
       subject: 'Thank you for your interest in Cyprus Solar Investments',
       html: getContactAutoresponderTemplate(data),
@@ -110,7 +110,7 @@ export async function sendNewsletterWelcome(data: NewsletterEmailData) {
   try {
     const { data: emailResult, error } = await resend.emails.send({
       from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-      replyTo: 'alexander.papacosta@lighthief.com',
+      replyTo: 'office@lighthief.com',
       to: [data.email],
       subject: 'Welcome to SolarFarms.cy - Your Solar Investment Journey Begins',
       html: getNewsletterWelcomeTemplate(data),
@@ -258,7 +258,7 @@ function getContactAutoresponderTemplate(data: ContactEmailData): string {
             
             <p><strong>Contact Information:</strong><br>
             General: office@lighthief.com | +357 77 77 00 50<br>
-            Business Development: Alexander Papacosta - alexander.papacosta@lighthief.com | +357 99 164 158<br>
+            Business Development: Alexander Papacosta - office@lighthief.com | +357 99 164 158<br>
             Investor Relations: Akradiusz Sybaris - a.sybaris@lighthief.com | +357 95 152 788</p>
             
             <p>Company Registration: HE 477423 | TIN: 60187188Q<br>
@@ -318,7 +318,7 @@ export async function sendLandAssessmentNotification(data: LandAssessmentEmailDa
       replyTo: 'a.sybaris@lighthief.com',
       to: [
         'a.sybaris@lighthief.com',
-        'alexander.papacosta@lighthief.com'
+        'office@lighthief.com'
       ],
       subject: `🌍 NEW LAND ASSESSMENT - ${data.location} - ${data.plotSize}`,
       html: getLandAssessmentNotificationTemplate(data),

@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Commission Program — Lighthief Group</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #2b6cb0;
+            --accent-light: #ebf8ff;
+            --gold: #b7791f;
+            --gold-light: #fefcbf;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --bg-alt: #f7fafc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            font-size: 9pt;
+            line-height: 1.5;
+            background: var(--bg);
+        }
+        .page {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 25px 30px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+        .header h1 { font-size: 18pt; font-weight: 700; letter-spacing: -0.3px; }
+        .header .subtitle { opacity: 0.9; font-size: 10pt; margin-top: 3px; }
+        .confidential-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 3px 12px;
+            border-radius: 4px;
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        .doc-info {
+            display: flex;
+            gap: 20px;
+            font-size: 7.5pt;
+            color: var(--text-light);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        /* Sections */
+        .section { margin-bottom: 24px; }
+        .section-title {
+            font-size: 11pt;
+            color: var(--primary);
+            font-weight: 700;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+        h3 {
+            font-size: 9.5pt;
+            color: var(--primary-light);
+            margin: 12px 0 8px;
+        }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 8.5pt; }
+        th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-alt); font-weight: 600; color: var(--primary); font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.3px; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .total-row { background: linear-gradient(90deg, #ebf8ff 0%, #e6fffa 100%) !important; font-weight: 700; }
+
+        /* Pricing highlight */
+        .price { font-weight: 600; color: var(--primary); }
+        .commission { font-weight: 700; color: #276749; font-size: 9pt; }
+
+        /* Info boxes */
+        .info-box {
+            margin: 12px 0;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 4px solid;
+            font-size: 8pt;
+        }
+        .info-box.blue { background: #ebf8ff; border-color: var(--accent); }
+        .info-box.gold { background: var(--gold-light); border-color: var(--gold); }
+        .info-box.green { background: #f0fff4; border-color: #276749; }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .card .card-value {
+            font-size: 16pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 5px 0;
+        }
+        .card .card-label {
+            font-size: 7pt;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        .step {
+            flex: 1;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 8pt;
+            font-weight: 700;
+            line-height: 24px;
+            margin-bottom: 6px;
+        }
+        .step-title { font-size: 8pt; font-weight: 700; color: var(--primary); }
+        .step-desc { font-size: 7pt; color: var(--text-light); margin-top: 3px; }
+
+        /* Two columns */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 12px 0;
+        }
+        .col-box {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 15px;
+        }
+        .col-box h3 { margin-top: 0; }
+        .col-box ul { padding-left: 16px; }
+        .col-box li { margin-bottom: 3px; font-size: 8pt; }
+
+        /* Tier badges */
+        .tier-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 7pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tier-a { background: #e6fffa; color: #234e52; }
+        .tier-b { background: #ebf8ff; color: #2a4365; }
+        .tier-c { background: var(--gold-light); color: #744210; }
+
+        /* Footer */
+        .footer {
+            margin-top: 25px;
+            padding-top: 12px;
+            border-top: 2px solid var(--primary);
+            font-size: 7pt;
+            color: var(--text-light);
+            text-align: center;
+        }
+        .footer strong { color: var(--primary); }
+
+        /* Revenue bar chart */
+        .revenue-bars { margin: 12px 0; }
+        .revenue-bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .revenue-bar-label {
+            width: 120px;
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .revenue-bar-track {
+            flex: 1;
+            height: 22px;
+            background: #edf2f7;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .revenue-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 7pt;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+        .bar-curtailment { background: linear-gradient(90deg, #2b6cb0 0%, #3182ce 100%); }
+        .bar-arbitrage { background: linear-gradient(90deg, #2f855a 0%, #48bb78 100%); }
+        .bar-ancillary { background: linear-gradient(90deg, #b7791f 0%, #d69e2e 100%); }
+        .revenue-bar-value {
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-left: 8px;
+            flex-shrink: 0;
+            width: 80px;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            align-items: stretch;
+            margin: 15px 0;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--border);
+            z-index: 0;
+        }
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 8px;
+        }
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin: 0 auto 6px;
+        }
+        .dot-active { background: var(--accent); box-shadow: 0 0 0 3px rgba(43,108,176,0.2); }
+        .dot-future { background: #cbd5e0; border: 2px solid #a0aec0; }
+        .timeline-label { font-size: 7pt; font-weight: 600; color: var(--primary); }
+        .timeline-desc { font-size: 6.5pt; color: var(--text-light); margin-top: 2px; }
+
+        /* Curtailment chart */
+        .curtailment-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 80px;
+            margin: 12px 0;
+            padding: 0 10px;
+        }
+        .curtailment-year {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .curtailment-bar {
+            width: 100%;
+            background: linear-gradient(180deg, #e53e3e 0%, #fc8181 100%);
+            border-radius: 3px 3px 0 0;
+            min-height: 2px;
+        }
+        .curtailment-pct {
+            font-size: 7pt;
+            font-weight: 700;
+            color: #e53e3e;
+            margin-bottom: 3px;
+        }
+        .curtailment-yr {
+            font-size: 6.5pt;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Page break helpers */
+        .page-break-before { page-break-before: always; }
+        .page-break-after { page-break-after: always; }
+        .avoid-break { page-break-inside: avoid; }
+
+        /* Print / PDF Export */
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+            body { font-size: 8.5pt; background: white; }
+            .page { padding: 0; max-width: none; margin: 0; }
+            .header { border-radius: 0; margin-bottom: 15px; padding: 20px 25px; }
+            .section { page-break-inside: avoid; margin-bottom: 16px; }
+            table { page-break-inside: avoid; font-size: 8pt; }
+            .card-grid, .steps, .timeline, .revenue-bars { page-break-inside: avoid; }
+            .curtailment-chart { page-break-inside: avoid; }
+            tr:nth-child(even), .total-row { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .info-box { page-break-inside: avoid; }
+            h2, h3 { page-break-after: avoid; }
+            .footer { page-break-inside: avoid; }
+            @page { margin: 12mm 10mm; size: A4; }
+            @page :first { margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Print Button -->
+        <div class="no-print" style="text-align:right;margin-bottom:8px;">
+            <button onclick="window.print()" style="background:var(--primary);color:white;border:none;padding:8px 20px;border-radius:5px;font-size:8.5pt;font-weight:600;cursor:pointer;letter-spacing:0.3px;">Export PDF</button>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1>Referral Commission Program</h1>
+            <div class="subtitle">Lighthief Group — BESS EPC Turnkey Solutions, Cyprus</div>
+            <div class="confidential-badge">Confidential — Approved Partners Only</div>
+        </div>
+        <div class="doc-info">
+            <div><strong>Reference:</strong> LCY-REF-2026-001</div>
+            <div><strong>Date:</strong> February 2026</div>
+            <div><strong>Issued by:</strong> Lighthief Cyprus Ltd</div>
+            <div><strong>Validity:</strong> Until revoked</div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="section">
+            <h2 class="section-title">About Lighthief Group</h2>
+            <p style="margin-bottom:10px;">Lighthief Group is the exclusive EPC turnkey provider for utility-scale Battery Energy Storage Systems (BESS) in Cyprus. We partner with a <strong>Tier 1 OEM</strong> equipment manufacturer and a <strong>Tier 1 cell producer</strong> (top-5 global) to deliver bankable, fully certified BESS installations for licensed PV park owners.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-label">EPC Portfolio</div>
+                    <div class="card-value">800+</div>
+                    <div class="card-label">MWh Under Contract</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">OEM Partnership</div>
+                    <div class="card-value">Tier 1</div>
+                    <div class="card-label">Global BESS Manufacturer</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Cell Technology</div>
+                    <div class="card-value">LFP</div>
+                    <div class="card-label">Tier 1 Producer (Top-5 Global)</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Certifications</div>
+                    <div class="card-value">Full</div>
+                    <div class="card-label">EN 50549 · IEC 62619 · UL 9540A</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Opportunity -->
+        <div class="section">
+            <h2 class="section-title">Market Opportunity</h2>
+            <div class="two-col">
+                <div class="col-box">
+                    <h3>Cyprus BESS Demand</h3>
+                    <ul>
+                        <li><strong>800+ MW</strong> of licensed PV capacity requiring storage</li>
+                        <li><strong>25-47%</strong> RES curtailment rate (2024-2025)</li>
+                        <li>Regulatory mandate: BESS required for all new RES licenses</li>
+                        <li>Typical project: <strong>1 MW — 10 MW</strong> (€500K — €5M)</li>
+                    </ul>
+                </div>
+                <div class="col-box">
+                    <h3>Why Clients Choose Lighthief</h3>
+                    <ul>
+                        <li><strong>Exclusive</strong> Cyprus distributor for Tier 1 global OEM</li>
+                        <li><strong>Full EPC turnkey</strong> — single contract, single point of contact</li>
+                        <li><strong>Certified</strong> to all Cyprus DSO/TSO grid codes</li>
+                        <li><strong>5+5 year warranty</strong> with 24/7 O&M support</li>
+                        <li><strong>Fast delivery</strong> — 24-26 weeks from contract to commissioning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Investment Case -->
+        <div class="section">
+            <h2 class="section-title">The Investment Case — Why BESS in Cyprus Now</h2>
+
+            <h3>The Problem: Curtailment Is Destroying Solar Revenue</h3>
+            <p style="margin-bottom:8px;font-size:8.5pt;">Cyprus PV park owners are losing a significant and growing portion of their revenue to grid curtailment — energy that is generated but cannot be exported because the grid cannot absorb it.</p>
+
+            <div style="display:flex;gap:15px;align-items:flex-start;">
+                <div style="flex:1;">
+                    <div class="curtailment-chart">
+                        <div class="curtailment-year">
+                            <div class="curtailment-pct">~0%</div>
+                            <div class="curtailment-bar" style="height:1px;background:#cbd5e0;"></div>
+                            <div class="curtailment-yr">2021</div>
+                        </div>
+                        <div class="curtailment-year">
+                            <div class="curtailment-pct">3.5%</div>
+                            <div class="curtailment-bar" style="height:6%;"></div>
+                            <div class="curtailment-yr">2022</div>
+                        </div>
+                        <div class="curtailment-year">
+                            <div class="curtailment-pct">13%</div>
+                            <div class="curtailment-bar" style="height:22%;"></div>
+                            <div class="curtailment-yr">2023</div>
+                        </div>
+                        <div class="curtailment-year">
+                            <div class="curtailment-pct">29%</div>
+                            <div class="curtailment-bar" style="height:50%;"></div>
+                            <div class="curtailment-yr">2024</div>
+                        </div>
+                        <div class="curtailment-year">
+                            <div class="curtailment-pct" style="font-size:8pt;">47%</div>
+                            <div class="curtailment-bar" style="height:82%;"></div>
+                            <div class="curtailment-yr"><strong>2025</strong></div>
+                        </div>
+                    </div>
+                    <div style="text-align:center;font-size:7pt;color:var(--text-light);">Cyprus Average Solar Curtailment Rate (% of generation lost)</div>
+                </div>
+                <div style="flex:1;">
+                    <div class="info-box" style="background:#fff5f5;border-color:#e53e3e;margin-top:0;">
+                        <strong style="color:#e53e3e;">Revenue at Risk</strong><br><br>
+                        A <strong>5 MW solar park</strong> losing 40% of output at current market prices forfeits approximately<br>
+                        <span style="font-size:14pt;font-weight:700;color:#e53e3e;">€400K — €500K</span><br>
+                        <strong>per year</strong> in lost revenue.
+                    </div>
+                </div>
+            </div>
+
+            <h3>The Solution: BESS Captures Lost Revenue</h3>
+            <p style="margin-bottom:8px;font-size:8.5pt;">A Battery Energy Storage System stores curtailed solar energy during midday (when the grid rejects it) and discharges during peak evening hours (when prices are highest).</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Window</th>
+                        <th>Avg Market Price</th>
+                        <th>BESS Action</th>
+                        <th>Revenue Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Midday</strong> (10:00 — 14:00)</td>
+                        <td>~€100/MWh</td>
+                        <td style="color:#2b6cb0;font-weight:600;">CHARGE from curtailed solar</td>
+                        <td>Cost: <strong>€0</strong> (solar would be wasted)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peak Evening</strong> (17:00 — 21:00)</td>
+                        <td>~€183/MWh</td>
+                        <td style="color:#276749;font-weight:600;">DISCHARGE and sell to grid</td>
+                        <td>Revenue: <strong>~€161/MWh</strong> (net of efficiency)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size:7pt;color:var(--text-light);">Source: TSOC Day-Ahead Market data, verified Oct 2025 — Feb 2026 (134 trading days, 6,432 half-hourly records).</p>
+        </div>
+
+        <!-- Three Revenue Streams -->
+        <div class="section">
+            <h2 class="section-title">Three Revenue Streams</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot dot-active"></div>
+                    <div class="timeline-label">Curtailment Recovery</div>
+                    <div class="timeline-desc">Available now<br>Primary revenue</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot dot-future"></div>
+                    <div class="timeline-label">Energy Arbitrage</div>
+                    <div class="timeline-desc">Expected 2026-2027<br>Regulatory change pending</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot dot-future"></div>
+                    <div class="timeline-label">Ancillary Services</div>
+                    <div class="timeline-desc">Future market<br>FCR, aFRR, capacity</div>
+                </div>
+            </div>
+
+            <h3>1. Curtailment Recovery (Available Now)</h3>
+            <p style="margin-bottom:8px;font-size:8.5pt;">The primary revenue driver today. BESS captures solar energy that would otherwise be wasted and sells it during peak evening hours at full market price.</p>
+            <table>
+                <tbody>
+                    <tr><td style="width:40%"><strong>Charge cost</strong></td><td><strong>€0</strong> — curtailed solar (would be wasted without BESS)</td></tr>
+                    <tr><td><strong>Discharge revenue</strong></td><td><strong>~€183/MWh</strong> average peak evening price</td></tr>
+                    <tr><td><strong>System efficiency</strong></td><td><strong>86.32%</strong> AC-AC round-trip efficiency</td></tr>
+                    <tr><td><strong>Net revenue per cycle</strong></td><td><strong>~€161/MWh</strong> discharged</td></tr>
+                    <tr><td><strong>Daily cycles</strong></td><td>1 cycle per day</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2. Energy Arbitrage (Expected 2026-2027)</h3>
+            <p style="margin-bottom:8px;font-size:8.5pt;">When regulations allow BESS to charge from the grid, operators can buy cheap midday energy and sell at peak prices — adding a second daily revenue cycle.</p>
+            <table>
+                <tbody>
+                    <tr><td style="width:40%"><strong>Buy price (midday)</strong></td><td>~€100/MWh</td></tr>
+                    <tr><td><strong>Sell price (peak evening)</strong></td><td>~€183/MWh</td></tr>
+                    <tr><td><strong>Gross spread</strong></td><td><strong>~€83/MWh</strong> per cycle</td></tr>
+                    <tr><td><strong>Net after efficiency</strong></td><td><strong>~€72/MWh</strong> per cycle</td></tr>
+                </tbody>
+            </table>
+
+            <h3>3. Ancillary Services (Future Grid Market)</h3>
+            <p style="margin-bottom:8px;font-size:8.5pt;">As Cyprus develops its electricity market, BESS operators will provide grid stability services for additional revenue. In mature EU markets, these generate significant returns.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th class="text-right">EU Benchmark Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Frequency Regulation (FCR)</strong></td>
+                        <td>Sub-second response to frequency deviations</td>
+                        <td class="text-right">€20K — €50K /MW/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Secondary Reserve (aFRR)</strong></td>
+                        <td>Automatic frequency restoration reserve</td>
+                        <td class="text-right">€15K — €40K /MW/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Capacity Payments</strong></td>
+                        <td>Availability-based compensation</td>
+                        <td class="text-right">€10K — €30K /MW/yr</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="info-box blue" style="font-size:7.5pt;">
+                <strong>Note:</strong> Ancillary services markets are under regulatory development in Cyprus. Revenue benchmarks shown are from mature EU markets (Germany, UK, Ireland). Lighthief BESS systems are pre-certified for grid services (IEC 61850, sub-second response capability).
+            </div>
+        </div>
+
+        <!-- Investment Returns -->
+        <div class="section">
+            <h2 class="section-title">Investment Returns</h2>
+
+            <h3>Projected Revenue by Source (per 10 MWh BESS per year)</h3>
+            <div class="revenue-bars">
+                <div class="revenue-bar-row">
+                    <div class="revenue-bar-label">Curtailment Recovery</div>
+                    <div class="revenue-bar-track">
+                        <div class="revenue-bar-fill bar-curtailment" style="width:85%;">Available now</div>
+                    </div>
+                    <div class="revenue-bar-value">€400K — €500K</div>
+                </div>
+                <div class="revenue-bar-row">
+                    <div class="revenue-bar-label">+ Arbitrage</div>
+                    <div class="revenue-bar-track">
+                        <div class="revenue-bar-fill bar-arbitrage" style="width:45%;">Expected 2026-27</div>
+                    </div>
+                    <div class="revenue-bar-value">+€200K — €260K</div>
+                </div>
+                <div class="revenue-bar-row">
+                    <div class="revenue-bar-label">+ Ancillary Services</div>
+                    <div class="revenue-bar-track">
+                        <div class="revenue-bar-fill bar-ancillary" style="width:25%;">Future market</div>
+                    </div>
+                    <div class="revenue-bar-value">+€50K — €150K</div>
+                </div>
+            </div>
+
+            <h3>Return Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th class="text-center">Conservative</th>
+                        <th class="text-center">Moderate</th>
+                        <th class="text-center">Optimistic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Revenue Assumption</strong></td>
+                        <td class="text-center" style="font-size:7pt;">Curtailment only</td>
+                        <td class="text-center" style="font-size:7pt;">Curtailment + partial arbitrage</td>
+                        <td class="text-center" style="font-size:7pt;">All three streams</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simple Payback</strong></td>
+                        <td class="text-center price">6 — 7 years</td>
+                        <td class="text-center price">5 — 6 years</td>
+                        <td class="text-center price">4 — 5 years</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Project IRR</strong></td>
+                        <td class="text-center price">10 — 12%</td>
+                        <td class="text-center price">12 — 15%</td>
+                        <td class="text-center price">15%+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>15-Year Cash Return</strong></td>
+                        <td class="text-center price">~180%</td>
+                        <td class="text-center price">~200%</td>
+                        <td class="text-center price">~250%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
+                <div class="card" style="border-left:3px solid #2b6cb0;">
+                    <div class="card-label">System Efficiency</div>
+                    <div class="card-value" style="font-size:14pt;">86.32%</div>
+                    <div class="card-label">Round-trip (AC-AC)</div>
+                </div>
+                <div class="card" style="border-left:3px solid #276749;">
+                    <div class="card-label">System Availability</div>
+                    <div class="card-value" style="font-size:14pt;">97%</div>
+                    <div class="card-label">Guaranteed (with LTSA)</div>
+                </div>
+                <div class="card" style="border-left:3px solid var(--gold);">
+                    <div class="card-label">Project Lifetime</div>
+                    <div class="card-value" style="font-size:14pt;">15-20</div>
+                    <div class="card-label">Years (with extended warranty)</div>
+                </div>
+            </div>
+
+            <div class="info-box green">
+                <strong>Key Insight:</strong> Even under conservative assumptions (curtailment recovery only, current regulations), BESS projects in Cyprus deliver <strong>10-12% IRR</strong> with a <strong>6-year payback</strong>. As the market matures and additional revenue streams become available, returns improve significantly. The window of opportunity is now — as more BESS is deployed, curtailment spreads will compress.
+            </div>
+        </div>
+
+        <!-- Typical Pricing -->
+        <div class="section">
+            <h2 class="section-title">Typical Project Pricing</h2>
+            <div class="info-box blue">
+                <strong>Turnkey EPC</strong> — All prices include: equipment, import, installation, commissioning, insurance, EMS/SCADA, and DSO grid connection support. Prices exclude VAT (19%).
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>System Size</th>
+                        <th class="text-center">Energy Capacity</th>
+                        <th class="text-right">Indicative €/MWh</th>
+                        <th class="text-right">Typical Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1 MW</strong></td>
+                        <td class="text-center">3 — 5 MWh</td>
+                        <td class="text-right price">€155,000 — €190,000</td>
+                        <td class="text-right price">€500K — €950K</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1.5 — 2.5 MW</strong></td>
+                        <td class="text-center">8 — 10 MWh</td>
+                        <td class="text-right price">€135,000 — €155,000</td>
+                        <td class="text-right price">€1.1M — €1.6M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3 — 5 MW</strong></td>
+                        <td class="text-center">10 — 20 MWh</td>
+                        <td class="text-right price">€125,000 — €140,000</td>
+                        <td class="text-right price">€1.3M — €2.8M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6 — 10 MW</strong></td>
+                        <td class="text-center">25 — 40 MWh</td>
+                        <td class="text-right price">€115,000 — €130,000</td>
+                        <td class="text-right price">€2.9M — €5.2M</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size:7.5pt;color:var(--text-light);margin-top:4px;">Final pricing subject to project-specific quotation. Formal proposal provided within 5 business days of receiving project details.</p>
+        </div>
+
+        <!-- EPC Scope -->
+        <div class="section">
+            <h2 class="section-title">EPC Turnkey Scope</h2>
+            <div class="two-col">
+                <div class="col-box">
+                    <h3>Included in Price</h3>
+                    <ul>
+                        <li><strong>BESS:</strong> Containerised LFP battery system (Tier 1 OEM)</li>
+                        <li><strong>PCS:</strong> Integrated power conversion + MV transformer + switchgear</li>
+                        <li><strong>EMS/SCADA:</strong> Energy management with DSO-compliant telemetry</li>
+                        <li><strong>Civil:</strong> Concrete platforms, cable trenches, drainage</li>
+                        <li><strong>Electrical:</strong> MV/LV cabling, terminations, earthing, protection</li>
+                        <li><strong>Import:</strong> CIF delivery, customs clearance, inland transport</li>
+                        <li><strong>Insurance:</strong> Construction All-Risk (CAR/EAR)</li>
+                        <li><strong>Commissioning:</strong> Full testing, DSO coordination, SAT</li>
+                    </ul>
+                </div>
+                <div class="col-box">
+                    <h3>Client Responsibility</h3>
+                    <ul>
+                        <li>EAC testing fees (paid directly to EAC)</li>
+                        <li>DSO connection fees & metering</li>
+                        <li>Land lease / acquisition</li>
+                        <li>VAT (19%)</li>
+                    </ul>
+                    <h3 style="margin-top:15px;">Warranty & Support</h3>
+                    <ul>
+                        <li><strong>Standard:</strong> 5-year full warranty</li>
+                        <li><strong>Extended:</strong> Optional years 6-10</li>
+                        <li><strong>O&M:</strong> 24/7/365 monitoring, 4-hour response</li>
+                        <li><strong>Availability:</strong> 97% guaranteed (with LTSA)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Commission Structure -->
+        <div class="section">
+            <h2 class="section-title">Referral Commission Structure</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Description</th>
+                        <th class="text-center">Commission Rate</th>
+                        <th>Payment Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tier-badge tier-a">Tier A</span></td>
+                        <td><strong>Introduction</strong> — Referrer provides client details and facilitates an introductory meeting</td>
+                        <td class="text-center commission">2.0%</td>
+                        <td>Client signs EPC contract</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tier-badge tier-b">Tier B</span></td>
+                        <td><strong>Qualified Lead</strong> — Client has confirmed intent (licensed PV park, budget confirmed)</td>
+                        <td class="text-center commission">3.0%</td>
+                        <td>Client signs EPC contract</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tier-badge tier-c">Tier C</span></td>
+                        <td><strong>Multi-Project</strong> — Client with 2 or more parks</td>
+                        <td class="text-center commission">3.5%</td>
+                        <td>Per contract signed</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Commission Examples</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th class="text-right">Project Value</th>
+                        <th class="text-center">Tier</th>
+                        <th class="text-right">Your Commission</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Single 1.5 MW park (10 MWh)</td>
+                        <td class="text-right">~€1,400,000</td>
+                        <td class="text-center"><span class="tier-badge tier-a">A</span></td>
+                        <td class="text-right commission">€28,000</td>
+                    </tr>
+                    <tr>
+                        <td>Single 1.5 MW park (10 MWh) — qualified</td>
+                        <td class="text-right">~€1,400,000</td>
+                        <td class="text-center"><span class="tier-badge tier-b">B</span></td>
+                        <td class="text-right commission">€42,000</td>
+                    </tr>
+                    <tr>
+                        <td>Large 5 MW park (20 MWh)</td>
+                        <td class="text-right">~€2,700,000</td>
+                        <td class="text-center"><span class="tier-badge tier-b">B</span></td>
+                        <td class="text-right commission">€81,000</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Client with 3 parks (30 MWh total)</td>
+                        <td class="text-right">~€3,900,000</td>
+                        <td class="text-center"><span class="tier-badge tier-c">C</span></td>
+                        <td class="text-right commission">€136,500</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box gold">
+                <strong>Degressive Scale:</strong> Standard commission rate applies on the first €3M of contract value. For contracts exceeding €3M, a rate of 1.5% applies on the balance above €3M. Portfolios above €10M are subject to individual agreement.
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="section">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Notify</div>
+                    <div class="step-desc">Share prospective client details with your Lighthief contact</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Validate</div>
+                    <div class="step-desc">We confirm the referral is valid within 3 business days</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Introduce</div>
+                    <div class="step-desc">You facilitate an introductory meeting with the client</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">We Deliver</div>
+                    <div class="step-desc">Lighthief manages the full proposal and contract process</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Get Paid</div>
+                    <div class="step-desc">30% on client advance payment, 70% on final client payment</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Terms -->
+        <div class="section">
+            <h2 class="section-title">Key Terms</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width:30%"><strong>Exclusivity Period</strong></td>
+                        <td><strong>12 months</strong> from date of valid introduction</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Schedule</strong></td>
+                        <td>30% on client advance payment, 70% on final client payment. Net 30 days.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eligibility</strong></td>
+                        <td>Registered business entity or licensed professional. Signed Referral Agreement required.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pipeline Protection</strong></td>
+                        <td>No commission on clients already in Lighthief's active pipeline at time of introduction.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authority</strong></td>
+                        <td>Referrer has no authority to negotiate pricing or terms on behalf of Lighthief.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tax</strong></td>
+                        <td>Commission calculated on net contract value (excl. VAT). Subject to applicable withholding tax.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2 class="section-title">Contact — Referral Program</h2>
+            <div style="display:flex;gap:30px;align-items:center;padding:10px 0;">
+                <div>
+                    <div style="font-size:11pt;font-weight:700;color:var(--primary);">Alexander Papacosta</div>
+                    <div style="font-size:8pt;color:var(--text-light);margin-bottom:6px;">Managing Director</div>
+                    <table style="margin:0;border:none;">
+                        <tr style="border:none;"><td style="border:none;padding:2px 8px 2px 0;font-size:8pt;color:var(--text-light);">Email</td><td style="border:none;padding:2px;font-size:8pt;"><strong>office@lighthief.com</strong></td></tr>
+                        <tr style="border:none;"><td style="border:none;padding:2px 8px 2px 0;font-size:8pt;color:var(--text-light);">Phone</td><td style="border:none;padding:2px;font-size:8pt;"><strong>+357 99 164 158</strong></td></tr>
+                        <tr style="border:none;"><td style="border:none;padding:2px 8px 2px 0;font-size:8pt;color:var(--text-light);">Web</td><td style="border:none;padding:2px;font-size:8pt;"><strong>www.lighthief.com</strong></td></tr>
+                    </table>
+                </div>
+                <div style="flex:1;text-align:right;font-size:7.5pt;color:var(--text-light);">
+                    <strong style="color:var(--primary);">Lighthief Cyprus Ltd</strong><br>
+                    28 October Ave 249<br>
+                    Lophitis Business Center I, Office 201<br>
+                    3035 Limassol, Cyprus
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>CONFIDENTIAL</strong> — This document is intended solely for approved referral partners of Lighthief Cyprus Ltd.</p>
+            <p style="margin-top:4px;">Referral commissions subject to execution of a formal Referral Agreement. All pricing is indicative and subject to project-specific quotation.</p>
+            <p style="margin-top:4px;">Lighthief Cyprus Ltd reserves the right to amend this program at any time with 30 days written notice.</p>
+            <p style="margin-top:8px;"><strong>© 2026 Lighthief Cyprus Ltd. All rights reserved.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

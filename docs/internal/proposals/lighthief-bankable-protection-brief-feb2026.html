@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief BESS — Bankable Warranties, Insurance &amp; Performance Protection</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;color:#1a1a2e;line-height:1.55;max-width:800px;margin:0 auto;padding:40px 32px;font-size:12.5px}
+@media print{
+  body{padding:16px 20px;font-size:11.5px;max-width:100%}
+  .page-break{page-break-before:always}
+  .card,.guarantee-table,.ld-table,.insurance-table{break-inside:avoid}
+  h1{font-size:20px!important}
+  h2{font-size:15px!important}
+}
+
+/* Header */
+.doc-header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #1e3a5f;padding-bottom:14px;margin-bottom:8px}
+.doc-header img{height:38px}
+.doc-header .doc-title{text-align:right}
+.doc-header .doc-title h1{font-size:18px;font-weight:700;color:#1e3a5f;margin-bottom:2px}
+.doc-header .doc-title .ref{font-size:10px;color:#64748b}
+.confidential{text-align:center;background:#fef2f2;color:#991b1b;font-size:10px;font-weight:600;padding:4px 0;margin-bottom:20px;border:1px solid #fecaca;letter-spacing:1px;text-transform:uppercase}
+
+/* Summary strip */
+.summary-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0}
+.summary-item{text-align:center;padding:14px 6px;border-radius:8px;border:1px solid #e2e8f0}
+.summary-item .big{font-size:20px;font-weight:800;display:block;margin-bottom:2px}
+.summary-item .label{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:0.4px}
+.si-green{background:#f0fdf4;border-color:#86efac}.si-green .big{color:#16a34a}
+.si-blue{background:#eff6ff;border-color:#93c5fd}.si-blue .big{color:#2563eb}
+.si-amber{background:#fffbeb;border-color:#fcd34d}.si-amber .big{color:#d97706}
+.si-purple{background:#f5f3ff;border-color:#c4b5fd}.si-purple .big{color:#7c3aed}
+.si-red{background:#fef2f2;border-color:#fecaca}.si-red .big{color:#dc2626}
+
+/* Sections */
+.section{margin-top:28px}
+.section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.section-hdr .num{background:#1e3a5f;color:#fff;font-weight:700;font-size:11px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-hdr h2{font-size:14px;font-weight:700;color:#0f172a}
+.section-intro{font-size:12px;color:#475569;margin-bottom:12px;line-height:1.6}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11.5px}
+th,td{border:1px solid #e2e8f0;padding:6px 10px;text-align:left}
+th{background:#f1f5f9;font-weight:600;color:#334155;font-size:10.5px;text-transform:uppercase;letter-spacing:0.3px}
+td{color:#475569}
+tr:nth-child(even){background:#f8fafc}
+.highlight-row td{background:#eff6ff!important;font-weight:600;color:#1e3a5f}
+
+/* Cards */
+.card{border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin:10px 0;background:#fafbfc}
+.card h3{font-size:13px;font-weight:700;margin-bottom:6px;color:#0f172a}
+.card .detail{font-size:11.5px;color:#475569;margin-bottom:3px}
+.card .detail strong{color:#0f172a}
+
+/* Flow */
+.flow-row{display:flex;align-items:stretch;gap:0;margin:12px 0}
+.flow-box{flex:1;padding:12px 14px;text-align:center;font-size:11.5px;font-weight:600;border:1px solid #cbd5e1}
+.flow-box.oem{background:#eff6ff;border-color:#93c5fd;color:#1e40af}
+.flow-box.lighthief{background:#f0fdf4;border-color:#86efac;color:#166534}
+.flow-box.client{background:#fefce8;border-color:#fde047;color:#854d0e}
+.flow-box .sub{font-size:10px;font-weight:400;color:#64748b;display:block;margin-top:2px}
+.flow-arrow{width:28px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#94a3b8;flex-shrink:0}
+
+/* SOH bars */
+.soh-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.soh-year{width:50px;font-size:11px;font-weight:600;color:#334155;text-align:right}
+.soh-bar-bg{flex:1;height:16px;background:#e2e8f0;border-radius:4px;position:relative;overflow:hidden}
+.soh-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#16a34a,#22c55e)}
+.soh-pct{width:50px;font-size:11px;font-weight:600;color:#166534}
+
+/* LD worked example */
+.example-box{background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #2563eb;padding:12px 16px;margin:10px 0;font-size:11.5px;border-radius:0 6px 6px 0}
+.example-box strong{color:#1e3a5f}
+.formula-box{background:#eff6ff;border:1px solid #93c5fd;padding:10px 16px;border-radius:6px;margin:8px 0;font-size:12px;text-align:center;font-weight:600;color:#1e40af}
+
+.tags{margin-bottom:8px}
+.tag{display:inline-block;font-size:9px;font-weight:600;padding:2px 8px;border-radius:10px;margin-right:4px}
+.tag-confirmed{background:#dcfce7;color:#166534}
+.tag-bankable{background:#dbeafe;color:#1e40af}
+.tag-insured{background:#f3e8ff;color:#6b21a8}
+
+.note{font-size:10.5px;color:#64748b;font-style:italic;margin:6px 0;line-height:1.5}
+.footer{margin-top:30px;padding-top:12px;border-top:2px solid #1e3a5f;font-size:10px;color:#64748b;text-align:center;line-height:1.6}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.cols-2{grid-template-columns:1fr}.summary-strip{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAA/CAYAAABaSPX0AAABe2lDQ1BJQ0MgUHJvZmlsZQAAeJx1kc8rRFEUxz8zyMSIYmFh8RJWiJGJjcVMfhUWM6P82rx55s2o+fF6byTZKtspSmz8WvAXsFXWShEpWbMlNug5z1MzyZzbuedzv/ee073ngjeW1jJWZQ9ksnkzMhpSZmbnlOpnKvHhp592VbOMyehIjLL2fovHidddTq3y5/612sWEpYHHJzykGWZeeEx4YiVvOLwl3KSl1EXhE+FOUy4ofOPocZefHE66/OmwGYuEwdsgrCRLOF7CWsrMCMvLacukl7Xf+zgv8Sey01GJreItWEQYJYTCOMOECdLLoMxBugjQLSvK5Pf85E+Rk1xNZoNVTJZIkiJPp6jLUj0hURc9ISPNqtP/v3219L6AW90fgqpH235th+pN+CrY9seBbX8dQsUDnGeL+bl9GHgTvVDU2vagfh1OL4pafBvONqD53lBN9UeqEPfqOrwcQ90sNF5Bzbzbs999ju4gtiZfdQk7u9Ah5+sXvgGVSGf7/WoJLAAAOH9JREFUeNrtfXmcJVlV5nfujXhL7lVdXdVNQ9PCD5BuNu2WHapKaEUYRdRMFBHRYcAZVBB0FPU3WakzKoPwm1FGAVGYZpvJdEVEEDCrWBpoukdAq9EG7KabXmrN/S0R955v/oiI9+K9F/Eqt2oazNu8Xxb5MiJu3OXcc77znXMEu9AICDhvgGmKiHZ+v3bDQRfY76DHdVA+TsCHK3AZgEkq6wAMRBzAphE5T8g9InIbgM/D8uZwo/VFufRla537cd4CgMiMx17ba3vt31yTHQsrztu8AGHzfQ/3kOeq+u8DcW1gzUGphgAJOA96hfcKkiABEYExAmsMEBjAGgBA3GgDkK+JMTdKIH9jo+gjMv6S08kzZ83CwjUyM7MnuPbaXtsTWJsSVLMGOEYRIQFxrfd+v1Bepl6/JxwdqQIebEaIIkcAqdYlAlBERPo0tER6QZhINkBEbKUaAtUKAMA1much8n7CvL0y8qOf6mpc0yoi3JvKvbbX9gRWofl3fHHWHj065wDArb13hlZ+KagG18EI4rUWVNWl9zb9wmlrQpEdYReG1pqROtiKoMIPMXavD8d/4niRlncxW2L+DpePuyFAScqFpk4E3Pp9IcCs4DgMjgDAEQDH02+vIXCSkDkKtnvv7Y/Nhd657NoLj9UubJS+Z1/sdy2b3828a9FzN9Pf+3Ns7heBRc4aY+aUBKKVG55kwvC3bb1yFM6jtd7SZIDFiGDXFxCTpiJiqhMjwtjDq7472mj/yuiBl959fwqtb8aWaMTXyGbHiIuzAY4c83va6177ptSwMoHAxdnAPfERcxD7y0E1sO21pk+ErJhNnMDsSt78Rhg0Ey8gvDwgUp0cNb4dnXJR+z/VJn7yzxMTcUa3o3lstt1++ztqU1OoTflAl0yjsM8f/ei+9Z3iazz15jGEoV3q/2IJ2LcPOB3H/tChn13fnNYzbzJBdfvt76g9aMo/2gof6TyvgNdxGMSErAYV+/WA+JJMvuxfyjDKYe3UqTePHQxDu7QEYN9gnxHHXkr6TC4GWLptdODa/PX33NOUx8xF/YJ46V8fND5wzW617Nn70BB5Rdx57u3vqC1PLdd4foRlz9637541kTkt1JLO/d44TE0K5/dhALAvEplpbnpdZMNW" alt="Lighthief Cyprus Ltd" style="height:38px;">
+  <div class="doc-title">
+    <h1>Bankable Protection Brief</h1>
+    <div class="ref">LCY-BANK-BRIEF-FEB2026 · Version 1.0 · February 2026</div>
+  </div>
+</div>
+<div class="confidential">Confidential — For Client &amp; Financing Parties Only</div>
+
+<p class="section-intro" style="margin-bottom:20px;">
+  This document summarises the contractual warranties, performance guarantees, liquidated damages mechanisms, and insurance protections applicable to BESS (Battery Energy Storage System) EPC projects delivered by <strong>Lighthief Cyprus Ltd</strong>. It is designed for review by end clients, project financiers, and lending institutions to support bankability assessments and credit due diligence.
+</p>
+
+<!-- KPI STRIP -->
+<div class="summary-strip">
+  <div class="summary-item si-green"><span class="big">5yr</span><span class="label">Base Warranty</span></div>
+  <div class="summary-item si-blue"><span class="big">15yr</span><span class="label">Max Extended</span></div>
+  <div class="summary-item si-amber"><span class="big">97%</span><span class="label">Availability Guar.</span></div>
+  <div class="summary-item si-purple"><span class="big">5%</span><span class="label">Performance Bond</span></div>
+  <div class="summary-item si-red"><span class="big">€30</span><span class="label">/MWh/day LD rate</span></div>
+</div>
+
+
+<!-- ═══════ SECTION 1: PARTIES & CHAIN ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">1</span><h2>Contracting Parties &amp; Guarantee Chain</h2></div>
+
+  <div class="flow-row">
+    <div class="flow-box oem">Linyang Energy Storage<span class="sub">OEM Manufacturer · SHA:601222 · Jiangsu, China</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box lighthief">Lighthief Cyprus Ltd<span class="sub">EPC Contractor · HE 477423 · Limassol</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box client">End Client<span class="sub">Asset Owner · Cyprus</span></div>
+  </div>
+
+  <table>
+    <tr><th>Protection</th><th>Origin</th><th>Mechanism</th><th>Client Receives</th></tr>
+    <tr><td>Equipment Warranty (5yr)</td><td>Linyang OEM</td><td>Direct OEM warranty + Lighthief pass-through</td><td>OEM Warranty Certificate per park</td></tr>
+    <tr><td>Extended Warranty (Yr 6–15)</td><td>Linyang OEM</td><td>LTSA Tier C with OEM warranty reserve (~1.9%)</td><td>LTSA Schedule 2 pricing table</td></tr>
+    <tr><td>Performance Bond (5%)</td><td>Linyang (Bank)</td><td>Corporate-backed bank guarantee</td><td>Bank guarantee instrument</td></tr>
+    <tr><td>Advance Payment Guarantee</td><td>Linyang (Bank)</td><td>100% of advance, bank guarantee</td><td>Bank guarantee instrument</td></tr>
+    <tr><td>Product Liability (€5M)</td><td>Linyang / AXA</td><td>AXA insurance policy</td><td>Certificate of Insurance</td></tr>
+    <tr><td>CAR/EAR Insurance</td><td>Lighthief (Marsh)</td><td>Full contract value, LEG3/06 clause</td><td>Client named as additional insured</td></tr>
+    <tr><td>SOH Guarantee</td><td>Linyang / LTSA</td><td>Annual testing + bankable LDs</td><td>Annual SOH Certificate</td></tr>
+    <tr><td>Availability Guarantee</td><td>LTSA Tier C</td><td>97% target + direct LDs</td><td>Monthly availability reports</td></tr>
+  </table>
+</div>
+
+
+<!-- ═══════ SECTION 2: EPC WARRANTIES ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">2</span><h2>EPC Agreement — Warranties &amp; Financial Protections</h2></div>
+
+  <div class="cols-2">
+    <div class="card">
+      <h3>Base Warranty — 5 Years</h3>
+      <div class="tags"><span class="tag tag-confirmed">OEM CONFIRMED</span></div>
+      <div class="detail"><strong>OEM Scope:</strong> Battery containers, PCS, BMS, cooling, fire suppression, auxiliary systems</div>
+      <div class="detail"><strong>EPC Scope:</strong> Civil works, cabling, grounding — 2 years</div>
+      <div class="detail"><strong>Cycle Life:</strong> 15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25±2°C</div>
+      <div class="detail"><strong>Chemistry:</strong> LFP (Lithium Iron Phosphate) — UL9540A certified, no thermal propagation</div>
+      <div class="detail"><strong>Enclosures:</strong> C5 corrosion-rated (coastal/industrial)</div>
+    </div>
+    <div class="card">
+      <h3>Payment Milestones &amp; Security</h3>
+      <div class="tags"><span class="tag tag-confirmed">V3 CONFIRMED</span></div>
+      <div class="detail"><strong>25%</strong> Advance — protected by Advance Payment Guarantee (100%)</div>
+      <div class="detail"><strong>50%</strong> Ex-Works — equipment ready to ship from factory</div>
+      <div class="detail"><strong>20%</strong> DAP Limassol — equipment arrived at site</div>
+      <div class="detail"><strong>5%</strong> Performance holdback — released at PAC</div>
+    </div>
+  </div>
+
+  <div class="cols-2">
+    <div class="card">
+      <h3>Performance Bond</h3>
+      <div class="tags"><span class="tag tag-bankable">BANKABLE</span></div>
+      <div class="detail"><strong>Amount:</strong> 5% of Contract Price</div>
+      <div class="detail"><strong>Form:</strong> Corporate-backed bank guarantee (international bank)</div>
+      <div class="detail"><strong>Validity:</strong> 1 month before delivery → PAC</div>
+      <div class="detail"><strong>Call Conditions:</strong> Material failure, abandonment, insolvency of contractor</div>
+    </div>
+    <div class="card">
+      <h3>Advance Payment Guarantee</h3>
+      <div class="tags"><span class="tag tag-bankable">BANKABLE</span></div>
+      <div class="detail"><strong>Coverage:</strong> 100% of client advance payment</div>
+      <div class="detail"><strong>Form:</strong> On-demand bank guarantee (international bank)</div>
+      <div class="detail"><strong>Release:</strong> Upon delivery + 30 days, or pro-rata against milestones</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════ SECTION 3: DELAY LDs ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">3</span><h2>Liquidated Damages — Delay Protection</h2></div>
+
+  <p class="section-intro">Delay LDs distinguish between full park delays (Critical Path Equipment) and partial delays (individual battery containers), ensuring the LD exposure is proportionate to the actual impact on commissioning.</p>
+
+  <table>
+    <tr><th>Delay Type</th><th>Trigger</th><th>LD Base</th><th>Rate</th><th>Cap</th></tr>
+    <tr class="highlight-row"><td>Full Park Delay</td><td>PCS, MV transformer, or MV switchgear late</td><td>Entire park contract value</td><td>0.1% → 0.15% → 0.2%/day (tiered)</td><td>10% of park value</td></tr>
+    <tr><td>Partial Delay</td><td>Battery container(s) late</td><td>Value of delayed goods only</td><td>0.1% → 0.15% → 0.2%/day (tiered)</td><td>10% of delayed goods value</td></tr>
+  </table>
+
+  <div class="example-box">
+    <strong>Worked Example — Full Park Delay:</strong> A €2M park has a PCS delayed by 45 days beyond agreed delivery.<br>
+    Days 1–30: 30 × 0.1% × €2,000,000 = <strong>€60,000</strong><br>
+    Days 31–45: 15 × 0.15% × €2,000,000 = <strong>€45,000</strong><br>
+    Total LD: <strong>€105,000</strong> (5.25% of contract value)<br><br>
+    <strong>Worked Example — Partial Delay:</strong> 1 of 4 battery containers (value €250,000) delayed by 20 days.<br>
+    20 × 0.1% × €250,000 = <strong>€5,000</strong> (LD on delayed goods only; park partially operational)
+  </div>
+</div>
+
+
+<!-- ═══════ SECTION 4: LTSA & AVAILABILITY ═══════ -->
+<div class="section page-break">
+  <div class="section-hdr"><span class="num">4</span><h2>LTSA Tier C — Availability &amp; Performance Guarantees</h2></div>
+
+  <p class="section-intro">The Long-Term Service Agreement (LTSA) provides ongoing O&M coverage with bankable performance guarantees. Tier C is the standard service tier, including availability guarantee, SOH guarantee, preventive/corrective maintenance, 24/7 monitoring, and local spare parts.</p>
+
+  <table>
+    <tr><th>SLA Element</th><th>Guarantee</th><th>LD / Consequence</th></tr>
+    <tr class="highlight-row"><td>Annual Availability</td><td>≥ 97%</td><td><strong>€30 per MWh per day</strong> for every MWh below 97%</td></tr>
+    <tr><td>Availability 95–97%</td><td>Service Fee reduction</td><td>5% fee reduction</td></tr>
+    <tr><td>Availability 93–95%</td><td>Service Fee reduction</td><td>10% fee reduction</td></tr>
+    <tr><td>Availability 90–93%</td><td>Service Fee reduction</td><td>15% fee reduction</td></tr>
+    <tr><td>Availability &lt;90%</td><td>Service Fee reduction + termination right</td><td>20% fee reduction + Client may terminate</td></tr>
+    <tr><td>Remote Response</td><td>≤ 4 hours</td><td>€500/day SLA credit</td></tr>
+    <tr><td>On-site Response</td><td>≤ 5 business days</td><td>€500/day SLA credit</td></tr>
+    <tr><td>Maintenance Allowance</td><td>10 days/year (240 hours)</td><td>Excluded from availability calculation</td></tr>
+  </table>
+
+  <div class="formula-box">
+    Availability LD = (97% − Actual %) × System Capacity (MWh) × €30 × Days Below Target
+  </div>
+
+  <div class="example-box">
+    <strong>Worked Example — Availability LD (20 MWh system):</strong><br>
+    Annual availability measured at 94% (3% below target).<br>
+    Daily LD = 3% × 20 MWh × €30 = <strong>€18/day</strong><br>
+    If below 97% for 60 days: €18 × 60 = <strong>€1,080</strong> (plus 5% fee reduction for 95–97% band)
+  </div>
+</div>
+
+
+<!-- ═══════ SECTION 5: SOH GUARANTEE ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">5</span><h2>State of Health (SOH) Guarantee &amp; Bankable LDs</h2></div>
+
+  <p class="section-intro">The SOH guarantee ensures minimum battery capacity throughout the contract life. If measured SOH falls below the guaranteed degradation curve, a bankable LD mechanism ensures financial compensation proportionate to lost capacity.</p>
+
+  <h3 style="font-size:13px;margin:14px 0 8px;color:#0f172a;">Guaranteed SOH Degradation Curve</h3>
+  <div class="soh-row"><div class="soh-year">Year 1</div><div class="soh-bar-bg"><div class="soh-bar-fill" style="width:95%"></div></div><div class="soh-pct">≥ 95%</div></div>
+  <div class="soh-row"><div class="soh-year">Year 2</div><div class="soh-bar-bg"><div class="soh-bar-fill" style="width:92%"></div></div><div class="soh-pct">≥ 92%</div></div>
+  <div class="soh-row"><div class="soh-year">Year 3</div><div class="soh-bar-bg"><div class="soh-bar-fill" style="width:89%"></div></div><div class="soh-pct">≥ 89%</div></div>
+  <div class="soh-row"><div class="soh-year">Year 5</div><div class="soh-bar-bg"><div class="soh-bar-fill" style="width:85%"></div></div><div class="soh-pct">≥ 85%</div></div>
+  <div class="soh-row"><div class="soh-year">Year 10</div><div class="soh-bar-bg"><div class="soh-bar-fill" style="width:79.58%"></div></div><div class="soh-pct">≥ 79.58%</div></div>
+  <div class="soh-row"><div class="soh-year">Year 15</div><div class="soh-bar-bg"><div class="soh-bar-fill" style="width:70%"></div></div><div class="soh-pct">≥ 70%</div></div>
+
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">SOH Capacity Shortfall LD Mechanism</h3>
+  <div class="tags"><span class="tag tag-bankable">BANKABLE</span> <span class="tag tag-confirmed">V3 CONFIRMED</span></div>
+
+  <div class="formula-box" style="margin:12px 0;">
+    Daily SOH LD = Lost Capacity (MWh) × €30 per MWh per day<br>
+    <span style="font-size:11px;font-weight:400;">Lost Capacity = (Guaranteed SOH% − Actual SOH%) × Rated System Capacity (MWh)</span>
+  </div>
+
+  <table>
+    <tr><th>Element</th><th>Value</th></tr>
+    <tr><td><strong>Trigger</strong></td><td>Annual SOH measurement shows Actual SOH &lt; Guaranteed SOH by ≥ 1%</td></tr>
+    <tr><td><strong>Measurement</strong></td><td>OEM-approved capacity test protocol; independently verifiable</td></tr>
+    <tr><td><strong>Materiality Threshold</strong></td><td>≥ 1% shortfall (within BMS tolerance: no claim)</td></tr>
+    <tr><td><strong>Remedy Grace Period</strong></td><td>90 days for Service Provider to remedy (augmentation or module replacement)</td></tr>
+    <tr><td><strong>LD Accrual Start</strong></td><td>Day 91 after verified shortfall, if not remedied</td></tr>
+    <tr><td><strong>LD Accrual Stop</strong></td><td>Date SOH is restored to guaranteed level (verified by re-test)</td></tr>
+    <tr><td><strong>LD Rate</strong></td><td><strong>€30 per Lost MWh per day</strong> (consistent with Availability LD rate)</td></tr>
+    <tr><td><strong>Annual Cap</strong></td><td>20% of annual LTSA Service Fee</td></tr>
+    <tr><td><strong>Lifetime Cap</strong></td><td>50% of total Service Fees paid</td></tr>
+    <tr><td><strong>Combined Cap (SOH + Avail.)</strong></td><td>30% of annual Service Fee</td></tr>
+  </table>
+
+  <div class="example-box">
+    <strong>Worked Example 1 — Minor Shortfall (20 MWh system, Year 5):</strong><br>
+    Guaranteed SOH: 85% · Actual SOH: 83% (2% shortfall)<br>
+    Lost Capacity = 2% × 20 MWh = <strong>0.4 MWh</strong><br>
+    Daily LD = 0.4 × €30 = <strong>€12/day</strong><br>
+    Grace period: 90 days (no LDs accrue). If unremedied for 120 days past grace: €12 × 120 = <strong>€1,440</strong><br><br>
+    <strong>Worked Example 2 — Significant Shortfall (100 MWh system, Year 10):</strong><br>
+    Guaranteed SOH: 79.58% · Actual SOH: 75% (4.58% shortfall)<br>
+    Lost Capacity = 4.58% × 100 MWh = <strong>4.58 MWh</strong><br>
+    Daily LD = 4.58 × €30 = <strong>€137.40/day</strong><br>
+    If unremedied for 180 days past grace: €137.40 × 180 = <strong>€24,732</strong> (subject to annual cap)
+  </div>
+
+  <p class="note">Bankability rationale: The €30/MWh/day rate is the same metric used for availability LDs, enabling lenders to model a single LD rate across both availability and SOH performance. The formula is deterministic, measurable, time-pressured (90-day remedy), and capped — meeting standard project finance requirements.</p>
+</div>
+
+
+<!-- ═══════ SECTION 6: EXTENDED WARRANTY ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">6</span><h2>Extended Warranty &amp; LTSA Pricing (OEM Confirmed)</h2></div>
+
+  <table>
+    <tr><th>Period</th><th>BESS Warranty</th><th>PCS + MVS Warranty</th><th>Combined Add-On</th><th>LTSA O&M</th><th>Total Annual Cost</th></tr>
+    <tr><td><strong>Years 1–5</strong></td><td colspan="2" style="text-align:center">Included in EPC price</td><td>€0</td><td>€1,740/MWh/yr</td><td><strong>€1,740/MWh/yr</strong></td></tr>
+    <tr class="highlight-row"><td><strong>Years 6–10</strong></td><td>€913.92</td><td>€747.76</td><td><strong>€1,661.68</strong></td><td>€1,740/MWh/yr</td><td><strong>€3,401.68/MWh/yr</strong></td></tr>
+    <tr class="highlight-row"><td><strong>Years 11–15</strong></td><td>€1,157.62</td><td>€926.10</td><td><strong>€2,083.72</strong></td><td>€1,740/MWh/yr</td><td><strong>€3,823.72/MWh/yr</strong></td></tr>
+    <tr><td>Years 16–20</td><td colspan="5" style="text-align:center;color:#94a3b8;font-style:italic;">Not confirmed — subject to future negotiation</td></tr>
+  </table>
+
+  <p class="note">Group order O&M rate: €1,740/MWh/yr (Tier C). Non-group standard: €2,469.59/MWh/yr. Extended warranty pricing confirmed by Linyang OEM via RFI V3 (February 2026). Alternative: upfront spare parts at €1,000–1,250/MWh.</p>
+</div>
+
+
+<!-- ═══════ SECTION 7: LD CAPS SUMMARY ═══════ -->
+<div class="section page-break">
+  <div class="section-hdr"><span class="num">7</span><h2>Aggregate LD Caps &amp; Liability Summary</h2></div>
+
+  <table>
+    <tr><th>LD Type</th><th>Rate</th><th>Cap</th><th>Contract Reference</th></tr>
+    <tr><td>Delay LDs — Full Park</td><td>0.1–0.2%/day of park value</td><td>10% of park contract value</td><td>EPC §8.4</td></tr>
+    <tr><td>Delay LDs — Partial</td><td>0.1–0.2%/day of delayed goods</td><td>10% of delayed goods value</td><td>EPC §8.4</td></tr>
+    <tr><td>Availability Direct LD</td><td>€30/day/MWh below 97%</td><td>20% of annual LTSA fee</td><td>LTSA §9.4A</td></tr>
+    <tr><td>SOH Capacity Shortfall LD</td><td>€30/day per Lost MWh</td><td>Annual: 20% · Lifetime: 50%</td><td>LTSA §10.5</td></tr>
+    <tr><td>Combined SOH + Availability</td><td>—</td><td>30% of annual LTSA fee</td><td>LTSA §10.5(c)</td></tr>
+    <tr><td>EPC Total Contractor Liability</td><td>—</td><td>100% of Contract Price</td><td>EPC §13.2</td></tr>
+    <tr><td>OEM Total Liability</td><td>—</td><td>10% of contract value</td><td>Per Linyang V3 RFI</td></tr>
+  </table>
+</div>
+
+
+<!-- ═══════ SECTION 8: INSURANCE ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">8</span><h2>Insurance Programme — Lighthief Cyprus Ltd</h2></div>
+
+  <p class="section-intro">Lighthief maintains a comprehensive insurance programme placed via international broker, covering all phases from construction through operations. The programme has been structured to meet project finance and bankability requirements for BESS installations.</p>
+
+  <div class="tags"><span class="tag tag-insured">MARSH BROKERED</span> <span class="tag tag-bankable">BANKABLE</span></div>
+
+  <table>
+    <tr><th>Coverage</th><th>Limit</th><th>Underwriter / Provider</th><th>Key Features</th></tr>
+    <tr class="highlight-row"><td>Construction All Risks (CAR/EAR)</td><td>Full Contract Value</td><td>Lighthief via Marsh</td><td>LEG3/06 defects clause; covers repair + resultant damage</td></tr>
+    <tr><td>Public Liability</td><td>€10M aggregate</td><td>Lighthief via Marsh</td><td>Third-party injury/damage during construction &amp; operations</td></tr>
+    <tr><td>Professional Indemnity (E&O)</td><td>€5M aggregate</td><td>Lighthief via Marsh</td><td>Design/engineering errors, advisory liability</td></tr>
+    <tr><td>Delay in Start-Up (DSU)</td><td>12-month indemnity</td><td>Lighthief via Marsh</td><td>Revenue protection during construction delay events</td></tr>
+    <tr><td>Inland Transit (Port → Site)</td><td>€2M per shipment / €10M agg.</td><td>Lighthief via Marsh</td><td>Limassol port to all project sites across Cyprus</td></tr>
+    <tr><td>Product Liability (EPC scope)</td><td>€5M</td><td>Lighthief via Marsh</td><td>Lighthief-installed components (cabling, civil, grounding)</td></tr>
+    <tr><td>D&O + Legal Protection</td><td>€2M + defense costs</td><td>Lighthief via Marsh</td><td>Director/officer personal liability, legal defense</td></tr>
+    <tr><td>Cyber Liability</td><td>€500K</td><td>Lighthief via Marsh</td><td>SCADA/EMS, data breach, ransomware protection</td></tr>
+    <tr><td>Advance Payment Guarantee</td><td>€15M aggregate facility</td><td>Surety Bond</td><td>100% protection of client advance payments</td></tr>
+    <tr><td>Environmental / Pollution</td><td>€2M aggregate</td><td>Lighthief via Marsh</td><td>Electrolyte spill, soil contamination, cleanup costs</td></tr>
+  </table>
+
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">OEM Upstream Insurance (Linyang)</h3>
+  <table>
+    <tr><th>Coverage</th><th>Limit</th><th>Insurer</th></tr>
+    <tr><td>Product Liability</td><td>€5,000,000</td><td>AXA (confirmed V3)</td></tr>
+    <tr><td>Professional Indemnity</td><td>€2,000,000</td><td>Linyang corporate</td></tr>
+    <tr><td>Manufacturing Defect Indemnity</td><td>Full indemnification</td><td>Contractual obligation</td></tr>
+    <tr><td>Warranty Reserve</td><td>~1.9% of system value/year</td><td>On Linyang financial book (confirmed V3)</td></tr>
+  </table>
+
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">Marine / Transit Insurance</h3>
+  <div class="card">
+    <div class="detail"><strong>Sea Voyage (China → Cyprus):</strong> Covered by Linyang under CIF Incoterms® 2020 — seller's responsibility. Marine cargo insurance rate: 0.75% of CIF value.</div>
+    <div class="detail"><strong>Inland Transit (Limassol → Sites):</strong> Covered by Lighthief inland transit policy — €2M per shipment.</div>
+    <div class="detail"><strong>Client Named Insured:</strong> Client is named as additional insured on Lighthief's CAR/EAR and inland transit policies during the construction phase.</div>
+  </div>
+
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">Insurance Tracking &amp; Compliance</h3>
+  <div class="card">
+    <div class="detail"><strong>Insurance Register:</strong> Both parties maintain a register of all applicable policies, updated annually and within 14 days of any renewal.</div>
+    <div class="detail"><strong>Renewal Certificates:</strong> Current certificates of insurance provided within 14 days of policy renewal.</div>
+    <div class="detail"><strong>Lapse Notification:</strong> Immediate written notice if any required policy lapses or is not renewed. Obligations may be suspended if required insurance is not maintained.</div>
+  </div>
+</div>
+
+
+<!-- ═══════ SECTION 9: FIRE SAFETY ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">9</span><h2>BESS Fire Safety &amp; Risk Mitigation</h2></div>
+
+  <div class="cols-2">
+    <div class="card">
+      <h3>Battery Chemistry &amp; Certification</h3>
+      <div class="detail"><strong>Chemistry:</strong> LFP (Lithium Iron Phosphate) — inherently thermally stable</div>
+      <div class="detail"><strong>Cell Manufacturer:</strong> Eve Energy Co., Ltd (314Ah LFP cells)</div>
+      <div class="detail"><strong>UL9540A:</strong> PASSED — no thermal propagation between modules</div>
+      <div class="detail"><strong>IEC 62619:</strong> Certified — secondary lithium cells safety</div>
+      <div class="detail"><strong>IEC 63056:</strong> Certified — ESS safety requirements</div>
+      <div class="detail"><strong>UN 38.3:</strong> Certified — transport safety</div>
+      <div class="detail"><strong>Fire Retardant:</strong> UL 94 V-0 certified materials</div>
+    </div>
+    <div class="card">
+      <h3>Container Protection &amp; Monitoring</h3>
+      <div class="detail"><strong>Fire Suppression:</strong> Integrated aerosol system per container (auto-activation)</div>
+      <div class="detail"><strong>Fire Detection:</strong> Multi-zone smoke, heat, and gas (H₂, CO) detection</div>
+      <div class="detail"><strong>BMS:</strong> Real-time cell-level voltage, temperature, and current monitoring with auto-shutdown</div>
+      <div class="detail"><strong>Container Spacing:</strong> Minimum 6m (exceeds FM 5-33 and insurer 4.5m minimum)</div>
+      <div class="detail"><strong>Enclosure:</strong> IP55 rated, C5 corrosion protection</div>
+      <div class="detail"><strong>24/7 Monitoring:</strong> Voltus SCADA + Lighthief NOC — critical alerts ≤1 hour</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════ SECTION 10: TRACKING CHECKLIST ═══════ -->
+<div class="section page-break">
+  <div class="section-hdr"><span class="num">10</span><h2>Guarantee &amp; Insurance Tracking — Per Park Checklist</h2></div>
+
+  <p class="section-intro">Each BESS park benefits from the following trackable instruments and certificates. This checklist can be used by lenders and clients to verify that all protections are in place throughout the project lifecycle.</p>
+
+  <table>
+    <tr><th style="width:4%">#</th><th style="width:28%">Instrument / Document</th><th style="width:16%">Issued By</th><th style="width:16%">When</th><th style="width:16%">Held By</th><th style="width:10%">Phase</th><th style="width:10%">☐</th></tr>
+    <tr><td>1</td><td>Advance Payment Guarantee (Bank)</td><td>OEM Bank</td><td>At contract signing</td><td>Client / Lender</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>2</td><td>Performance Bond — 5% (Bank)</td><td>OEM Bank</td><td>1 month pre-delivery</td><td>Client / Lender</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>3</td><td>Marine/Transit Insurance Certificate</td><td>Linyang (CIF)</td><td>Per shipment</td><td>Contractor file</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>4</td><td>CAR/EAR Insurance Certificate</td><td>Lighthief (Marsh)</td><td>During construction</td><td>Client named insured</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>5</td><td>Inland Transit Insurance Certificate</td><td>Lighthief (Marsh)</td><td>Per shipment</td><td>Contractor file</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>6</td><td>OEM Warranty Certificate (5yr)</td><td>Linyang</td><td>At PAC</td><td>Client</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>7</td><td>Product Liability Certificate (AXA)</td><td>Linyang / AXA</td><td>Annual renewal</td><td>Contractor file</td><td>Both</td><td>☐</td></tr>
+    <tr><td>8</td><td>PAC Certificate</td><td>Contractor + Client</td><td>At commissioning</td><td>Both parties</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>9</td><td>Performance Bond Release</td><td>Client</td><td>At PAC</td><td>Returned to bank</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>10</td><td>LTSA Execution (Tier C)</td><td>Both parties</td><td>At or before PAC</td><td>Both parties</td><td>O&M</td><td>☐</td></tr>
+    <tr><td>11</td><td>Annual SOH Certificate</td><td>Service Provider</td><td>Annually</td><td>Client / Lender</td><td>O&M</td><td>☐</td></tr>
+    <tr><td>12</td><td>Monthly Availability Report</td><td>Service Provider</td><td>Monthly</td><td>Client / Lender</td><td>O&M</td><td>☐</td></tr>
+    <tr><td>13</td><td>Insurance Compliance Register</td><td>Both parties</td><td>Annual / on renewal</td><td>Both parties</td><td>Both</td><td>☐</td></tr>
+    <tr><td>14</td><td>FAC Certificate</td><td>Contractor + Client</td><td>Within 12 months of PAC</td><td>Both parties</td><td>EPC</td><td>☐</td></tr>
+    <tr><td>15</td><td>Extended Warranty Activation</td><td>Both + OEM</td><td>Before Year 5 expiry</td><td>Both parties</td><td>O&M</td><td>☐</td></tr>
+  </table>
+</div>
+
+
+<!-- ═══════ SECTION 11: KEY TERMS SUMMARY ═══════ -->
+<div class="section">
+  <div class="section-hdr"><span class="num">11</span><h2>Key Commercial Terms — Quick Reference</h2></div>
+
+  <table>
+    <tr><th>Term</th><th>Value</th><th>Reference</th></tr>
+    <tr><td>Battery Chemistry</td><td>LFP (Lithium Iron Phosphate)</td><td>Schedule A</td></tr>
+    <tr><td>Cycle Life</td><td>15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25±2°C</td><td>Schedule A</td></tr>
+    <tr><td>Base Warranty</td><td>5 years (OEM equipment) / 2 years (EPC works)</td><td>EPC §10</td></tr>
+    <tr><td>Extended Warranty</td><td>Up to 15 years (via LTSA Tier C)</td><td>EPC §10.6, LTSA Sch.2</td></tr>
+    <tr><td>Performance Bond</td><td>5% corporate bank guarantee</td><td>EPC §7.6</td></tr>
+    <tr><td>Advance Payment Guarantee</td><td>100% of advance</td><td>EPC §7.5</td></tr>
+    <tr><td>Availability Guarantee</td><td>97% annual</td><td>LTSA §9</td></tr>
+    <tr><td>Availability LD</td><td>€30/MWh/day</td><td>LTSA §9.4A</td></tr>
+    <tr><td>SOH Guarantee</td><td>≥85% Y5, ≥79.58% Y10, ≥70% Y15</td><td>LTSA §10.2</td></tr>
+    <tr><td>SOH LD</td><td>€30/Lost MWh/day (after 90-day grace)</td><td>LTSA §10.5</td></tr>
+    <tr><td>Delay LD</td><td>0.1–0.2%/day, cap 10%</td><td>EPC §8.4</td></tr>
+    <tr><td>LTSA Service Tier</td><td>Tier C (highest offered)</td><td>LTSA §4.1</td></tr>
+    <tr><td>O&M Rate (Group)</td><td>€1,740/MWh/year</td><td>LTSA §5</td></tr>
+    <tr><td>SCADA/EMS Monitoring</td><td>24/7 (Voltus + Lighthief NOC)</td><td>LTSA §6</td></tr>
+    <tr><td>Payment Terms</td><td>25% / 50% / 20% / 5% holdback</td><td>EPC §7.1</td></tr>
+    <tr><td>CAR/EAR Insurance</td><td>Full contract value (LEG3/06)</td><td>EPC §14</td></tr>
+    <tr><td>OEM Product Liability</td><td>€5M (AXA)</td><td>Distribution Agreement</td></tr>
+    <tr><td>Contractor Total Liability</td><td>100% of Contract Price</td><td>EPC §13.2</td></tr>
+  </table>
+</div>
+
+
+<!-- ═══════ SECTION 12: BESS REVENUE MODEL ═══════ -->
+<div class="section page-break">
+  <div class="section-hdr"><span class="num">12</span><h2>BESS Revenue Model — Worked Example: Galascope 1 (Esperia Energy Group)</h2></div>
+
+  <p class="section-intro">
+    The following financial model demonstrates the bankable revenue case for a 5 MW / 20 MWh BESS installation at <strong>Galascope 1</strong>, Famagusta district.
+    The primary revenue stream is <strong>curtailment recovery</strong> — storing otherwise-wasted solar energy during curtailment periods and discharging during evening peak pricing.
+    <strong>All revenue projections are validated against 365 days of actual hourly curtailment data from the Galascope 2.5 MW park (Jan–Dec 2025), scaled 2× for the 5 MW configuration.</strong>
+    Technical parameters use Linyang-confirmed specifications. Market data sourced from 134 verified TSOC DAM settlement files (Oct 2025 – Feb 2026).
+  </p>
+
+  <!-- SYSTEM & INVESTMENT -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.1 System Configuration &amp; Investment</h3>
+
+  <div class="cols-2">
+    <div class="card">
+      <h3>BESS System</h3>
+      <div class="detail"><strong>Configuration:</strong> 5 MW / 20 MWh (4-hour duration)</div>
+      <div class="detail"><strong>Containers:</strong> 4× 5.015 MWh (20'HC LFP)</div>
+      <div class="detail"><strong>Chemistry:</strong> LFP (Eve Energy 314Ah cells)</div>
+      <div class="detail"><strong>PCS:</strong> 4× BCS1250K (Linyang)</div>
+      <div class="detail"><strong>Depth of Discharge:</strong> 90%</div>
+      <div class="detail"><strong>Round-Trip Efficiency:</strong> 86.32% AC-AC full system (incl. cabling losses)</div>
+      <div class="detail"><strong>Cycle Life:</strong> 7,000 cycles @ 90% DOD, 70% EOL</div>
+    </div>
+    <div class="card">
+      <h3>Investment &amp; Operating Costs</h3>
+      <div class="detail"><strong>Turnkey EPC Price:</strong> €2,258,900 (€112.95/kWh)</div>
+      <div class="detail"><strong>LTSA Tier C (Yr 1–5):</strong> €34,800/yr (€1,740/MWh/yr)</div>
+      <div class="detail"><strong>LTSA + Ext. Warranty (Yr 6–10):</strong> €68,034/yr (€3,401.68/MWh/yr)</div>
+      <div class="detail"><strong>LTSA + Ext. Warranty (Yr 11–15):</strong> €76,474/yr (€3,823.72/MWh/yr)</div>
+      <div class="detail"><strong>SCADA/EMS Annual:</strong> ~€5,000/yr (20% of quoted)</div>
+      <div class="detail"><strong>Total 15-Year Operating:</strong> €971,540</div>
+    </div>
+  </div>
+
+  <!-- PV & CURTAILMENT — ACTUAL DATA -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.2 PV Park &amp; Actual Curtailment Data (Galascope 2.5 MW, Full Year 2025)</h3>
+
+  <div class="card">
+    <div class="detail"><strong>Reference Park:</strong> Galascope 2.5 MW, Famagusta district (actual operational data)</div>
+    <div class="detail"><strong>Data Period:</strong> 365 days (1 Jan – 31 Dec 2025), daily resolution</div>
+    <div class="detail"><strong>PV Installed Capacity:</strong> 2,512.3 kWp (2.5 MW)</div>
+    <div class="detail"><strong>Annual PV Yield (exported):</strong> 2,873.6 MWh</div>
+    <div class="detail"><strong>Annual Curtailed (export-limited):</strong> 2,148.6 MWh</div>
+    <div class="detail"><strong>Total Potential Production:</strong> 5,022.2 MWh</div>
+    <div class="detail"><strong>Annual Curtailment Rate:</strong> <span style="color:#dc2626;font-weight:700;">42.8%</span></div>
+    <div class="detail"><strong>Days with curtailment:</strong> 348 of 365 (95.3%)</div>
+    <div class="detail"><strong>Scaling to 5 MW Galascope 1:</strong> All values × 2 (linear scaling, same location/grid constraint)</div>
+  </div>
+
+  <h3 style="font-size:12px;margin:14px 0 6px;color:#334155;">Monthly Curtailment Profile (Actual 2025 — 2.5 MW Park)</h3>
+  <table style="font-size:11px;">
+    <tr><th>Month</th><th>PV Yield</th><th>Curtailed</th><th>Total Potential</th><th>Curt. Rate</th><th>Curt. Days</th><th>Avg Sun Hrs</th></tr>
+    <tr><td>January</td><td>128.0 MWh</td><td>117.6 MWh</td><td>245.6 MWh</td><td>47.9%</td><td>28/31</td><td>8.7h</td></tr>
+    <tr><td>February</td><td>162.1 MWh</td><td>107.2 MWh</td><td>269.2 MWh</td><td>39.8%</td><td>26/28</td><td>~9h</td></tr>
+    <tr class="highlight-row"><td><strong>March</strong></td><td>150.6 MWh</td><td><strong>286.0 MWh</strong></td><td>436.6 MWh</td><td><strong>65.5%</strong></td><td>31/31</td><td>~10h</td></tr>
+    <tr class="highlight-row"><td><strong>April</strong></td><td>175.8 MWh</td><td><strong>276.1 MWh</strong></td><td>451.9 MWh</td><td><strong>61.1%</strong></td><td>28/30</td><td>11.7h</td></tr>
+    <tr class="highlight-row"><td><strong>May</strong></td><td>298.1 MWh</td><td><strong>297.6 MWh</strong></td><td>595.7 MWh</td><td><strong>50.0%</strong></td><td>31/31</td><td>~12h</td></tr>
+    <tr><td>June</td><td>432.7 MWh</td><td>188.3 MWh</td><td>621.0 MWh</td><td>30.3%</td><td>29/30</td><td>13.3h</td></tr>
+    <tr><td>July</td><td>486.8 MWh</td><td>127.2 MWh</td><td>614.0 MWh</td><td style="color:#16a34a;">20.7%</td><td>28/31</td><td>13.1h</td></tr>
+    <tr><td>August</td><td>408.1 MWh</td><td>141.7 MWh</td><td>549.8 MWh</td><td>25.8%</td><td>30/31</td><td>12.4h</td></tr>
+    <tr><td>September</td><td>310.0 MWh</td><td>146.4 MWh</td><td>456.4 MWh</td><td>32.1%</td><td>30/30</td><td>11.3h</td></tr>
+    <tr class="highlight-row"><td><strong>October</strong></td><td>125.9 MWh</td><td><strong>249.6 MWh</strong></td><td>375.5 MWh</td><td><strong>66.5%</strong></td><td>31/31</td><td>10.1h</td></tr>
+    <tr><td>November</td><td>109.0 MWh</td><td>130.2 MWh</td><td>239.2 MWh</td><td>54.4%</td><td>30/30</td><td>8.9h</td></tr>
+    <tr><td>December</td><td>86.5 MWh</td><td>80.7 MWh</td><td>167.2 MWh</td><td>48.2%</td><td>26/31</td><td>7.8h</td></tr>
+    <tr class="highlight-row"><td><strong>ANNUAL</strong></td><td><strong>2,873.6 MWh</strong></td><td><strong>2,148.6 MWh</strong></td><td><strong>5,022.2 MWh</strong></td><td><strong>42.8%</strong></td><td><strong>348/365</strong></td><td>—</td></tr>
+  </table>
+  <p class="note">
+    <strong>Key seasonal pattern:</strong> Highest curtailment in shoulder months (Mar 65.5%, Oct 66.5%) when solar production is high but A/C demand is low.
+    Lowest curtailment in July (20.7%) when peak summer demand absorbs solar output.
+    Curtailment occurs on 95.3% of all days — it is a systemic, daily event, not an occasional spike.
+  </p>
+
+  <!-- MARKET PRICES -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.3 Market Price Environment (Verified DAM Data — Cross-Validated)</h3>
+
+  <p style="font-size:11px;color:#334155;margin-bottom:10px;">
+    Source: <strong>137 TSOC DAM settlement files</strong> (Oct 2025 – Feb 2026), <strong>6,576 deduplicated half-hourly records</strong> across 137 trading days.
+    All prices are actual cleared day-ahead auction results from the Cyprus competitive electricity market.
+  </p>
+
+  <h3 style="font-size:12px;margin:14px 0 6px;color:#334155;">Hourly Price Profile — Cyprus Duck Curve (Actual DAM Data)</h3>
+  <table style="font-size:10.5px;">
+    <tr><th>Hour</th><th>Avg €/MWh</th><th>Median</th><th>P10</th><th>P90</th><th>Zero-Price %</th><th>Role</th></tr>
+    <tr><td>00–05</td><td>€170.49</td><td>€170</td><td>€155</td><td>€187</td><td>0.0%</td><td>Overnight base</td></tr>
+    <tr><td>06–08</td><td>€172.11</td><td>€173</td><td>€158</td><td>€188</td><td>0.5%</td><td>Morning ramp</td></tr>
+    <tr style="background:#fef3c7;"><td>09</td><td>€146.09</td><td>€159</td><td>€69</td><td>€179</td><td style="color:#dc2626;">5.8%</td><td>Solar onset</td></tr>
+    <tr style="background:#fef3c7;"><td>10</td><td>€102.79</td><td>€152</td><td>€0</td><td>€171</td><td style="color:#dc2626;">21.5%</td><td rowspan="3" style="text-align:center;vertical-align:middle;color:#dc2626;font-weight:700;">BESS<br>Charging<br>Window</td></tr>
+    <tr style="background:#fef3c7;"><td>11</td><td style="color:#dc2626;font-weight:600;">€80.43</td><td>€38.50</td><td>€0</td><td>€170</td><td style="color:#dc2626;font-weight:600;">33.6%</td></tr>
+    <tr style="background:#fef3c7;"><td>12</td><td style="color:#dc2626;font-weight:600;">€77.83</td><td>€19.90</td><td>€0</td><td>€170</td><td style="color:#dc2626;font-weight:600;">35.0%</td></tr>
+    <tr style="background:#fef3c7;"><td>13</td><td>€104.89</td><td>€154</td><td>€0</td><td>€172</td><td style="color:#dc2626;">22.6%</td><td>Solar recovery</td></tr>
+    <tr style="background:#fef3c7;"><td>14</td><td>€141.52</td><td>€164</td><td>€13</td><td>€178</td><td>5.5%</td><td>Afternoon</td></tr>
+    <tr><td>15–16</td><td>€171.28</td><td>€175</td><td>€155</td><td>€187</td><td>0.5%</td><td>Pre-peak ramp</td></tr>
+    <tr class="highlight-row"><td><strong>17</strong></td><td><strong>€181.17</strong></td><td>€183</td><td>€163</td><td>€193</td><td>0.0%</td><td rowspan="4" style="text-align:center;vertical-align:middle;color:#16a34a;font-weight:700;">BESS<br>Discharge<br>Window</td></tr>
+    <tr class="highlight-row"><td><strong>18</strong></td><td><strong>€185.58</strong></td><td>€185</td><td>€170</td><td>€195</td><td>0.0%</td></tr>
+    <tr class="highlight-row"><td><strong>19</strong></td><td><strong>€186.29</strong></td><td>€185</td><td>€170</td><td>€195</td><td>0.0%</td></tr>
+    <tr class="highlight-row"><td><strong>20</strong></td><td><strong>€183.47</strong></td><td>€184</td><td>€169</td><td>€194</td><td>0.0%</td></tr>
+    <tr><td>21–23</td><td>€176.61</td><td>€178</td><td>€161</td><td>€190</td><td>0.0%</td><td>Late evening</td></tr>
+  </table>
+
+  <h3 style="font-size:12px;margin:14px 0 6px;color:#334155;">Time-of-Use Band Summary</h3>
+  <table>
+    <tr><th>Band</th><th>Average MCP</th><th>Zero-Price %</th><th>≤€50 %</th><th>Relevance</th></tr>
+    <tr style="background:#fef3c7;"><td>Midday Trough (09–14)</td><td style="color:#dc2626;">€102.40</td><td style="color:#dc2626;">23.7%</td><td style="color:#dc2626;">37.6%</td><td>Curtailment window — free BESS charging</td></tr>
+    <tr><td>Afternoon Recovery (14–17)</td><td>€161.35</td><td>2.2%</td><td>6.0%</td><td>Transition period</td></tr>
+    <tr class="highlight-row"><td><strong>Peak Evening (17–21)</strong></td><td><strong>€184.13</strong></td><td><strong>0.0%</strong></td><td><strong>0.0%</strong></td><td><strong>BESS discharge — primary revenue</strong></td></tr>
+    <tr><td>Off-Peak / Night (21–09)</td><td>€172.04</td><td>0.0%</td><td>0.0%</td><td>Secondary / base</td></tr>
+  </table>
+
+  <h3 style="font-size:12px;margin:14px 0 6px;color:#334155;">Discharge Price Validation — €175/MWh Model Assumption</h3>
+  <div class="example-box">
+    <strong>Cross-validation of the €175/MWh blended discharge price used in the revenue model:</strong><br><br>
+    <table style="font-size:11px;">
+      <tr><th>Strategy</th><th>Avg Price €/MWh</th><th>vs Model</th><th>Verdict</th></tr>
+      <tr><td>Fixed 17:00–21:00 (4hr block)</td><td style="font-weight:700;color:#16a34a;">€184.13</td><td style="color:#16a34a;">+€9.13 (+5.2%)</td><td style="color:#16a34a;">Model is conservative</td></tr>
+      <tr><td>Optimal 4 highest-priced hours/day</td><td style="font-weight:700;color:#16a34a;">€184.40</td><td style="color:#16a34a;">+€9.40 (+5.4%)</td><td style="color:#16a34a;">Model is conservative</td></tr>
+      <tr><td>Extended peak 16:00–21:00</td><td style="font-weight:700;color:#16a34a;">€182.41</td><td style="color:#16a34a;">+€7.41 (+4.2%)</td><td style="color:#16a34a;">Model is conservative</td></tr>
+    </table>
+    <br>
+    <strong>Conclusion:</strong> The model's €175/MWh assumption is <strong>5.2% below the actual DAM peak average</strong>.
+    This data covers only autumn/winter months (Oct–Feb) — summer evening prices are expected to be higher due to A/C demand.
+    The €175/MWh assumption is validated as conservative. Using the actual €184.13/MWh would improve payback from 4.4yr to <strong>~4.1yr</strong>.
+  </div>
+
+  <h3 style="font-size:12px;margin:14px 0 6px;color:#334155;">Monthly Peak Price Trend</h3>
+  <table style="font-size:11px;">
+    <tr><th>Month</th><th>All-Day Avg</th><th>Peak 17–21</th><th>Spread</th><th>Trend</th></tr>
+    <tr><td>Oct 2025</td><td>€147.23</td><td>€179.51</td><td>€32.28</td><td>Autumn — moderate solar suppression</td></tr>
+    <tr><td>Nov 2025</td><td>€155.49</td><td>€185.48</td><td>€29.99</td><td>Winter onset — rising peak demand</td></tr>
+    <tr><td>Dec 2025</td><td>€158.76</td><td>€179.23</td><td>€20.47</td><td>Holiday period — lower spread</td></tr>
+    <tr><td>Jan 2026</td><td>€169.22</td><td>€188.75</td><td>€19.53</td><td>Winter peak — high base prices</td></tr>
+    <tr class="highlight-row"><td><strong>Feb 2026</strong></td><td><strong>€164.65</strong></td><td><strong>€192.07</strong></td><td><strong>€27.42</strong></td><td><strong>Solar returning — widening spread</strong></td></tr>
+  </table>
+  <p class="note">
+    Source: 137 TSOC DAM files, 6,576 deduplicated half-hourly records, Oct 2025 – Feb 2026.
+    Peak evening prices are <strong>trending upward</strong> (€179→€192). The Feb 2026 spread of €27.42 reflects solar's return pushing midday prices down while evening demand stays high.
+    <strong>Summer months (not yet in dataset) are expected to show the strongest duck curve</strong> — higher midday curtailment and higher evening A/C demand.
+  </p>
+
+  <!-- 4-HOUR BESS CONSTRAINT ANALYSIS — NEW SECTION -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.4 4-Hour BESS Duration Constraint — Actual Daily Analysis</h3>
+
+  <div class="example-box">
+    <strong>Critical sizing question:</strong> A 4-hour BESS (5 MW / 20 MWh) can store a maximum of 20 MWh per day.
+    If daily curtailment exceeds 20 MWh → the BESS overflows (energy wasted).
+    If daily curtailment is less than 20 MWh → the BESS is partially filled (capacity underutilized).
+    The actual daily curtailment data determines true system utilization — not averages.
+  </div>
+
+  <table style="font-size:11px;">
+    <tr><th>BESS Fill Level</th><th>Days (2.5MW)</th><th>Days (5MW, 2×)</th><th>Implication</th></tr>
+    <tr><td>0% — no curtailment</td><td>17 days (4.7%)</td><td>17 days (4.7%)</td><td>No charging opportunity</td></tr>
+    <tr><td>1–25% fill</td><td>69 days (18.9%)</td><td>69 days</td><td>Short curtailment window or low intensity</td></tr>
+    <tr><td>25–50% fill</td><td>71 days (19.5%)</td><td>71 days</td><td>Partial charge — 2–3 hour equivalent</td></tr>
+    <tr><td>50–75% fill</td><td>98 days (26.8%)</td><td>98 days</td><td>Good utilization — 3–4 hour equivalent</td></tr>
+    <tr><td>75–99% fill</td><td>48 days (13.2%)</td><td>48 days</td><td>Near-full charge — close to 4 hours</td></tr>
+    <tr class="highlight-row"><td><strong>100% fill (overflow)</strong></td><td><strong>62 days (17.0%)</strong></td><td><strong>62 days</strong></td><td><strong>BESS full — excess curtailment wasted</strong></td></tr>
+  </table>
+
+  <div class="cols-2" style="margin-top:12px;">
+    <div class="card">
+      <h3>Capture Efficiency (2.5MW / 10MWh)</h3>
+      <div class="detail"><strong>Annual curtailed:</strong> 2,148.6 MWh</div>
+      <div class="detail"><strong>BESS captured:</strong> 1,991.4 MWh (<strong>92.7%</strong>)</div>
+      <div class="detail"><strong>Overflow lost:</strong> 157.1 MWh (7.3%)</div>
+      <div class="detail"><strong>Average daily fill:</strong> 54.6%</div>
+      <div class="detail"><strong>Days at 100%:</strong> 62 of 365</div>
+    </div>
+    <div class="card">
+      <h3>Capture Efficiency (5MW / 20MWh, scaled 2×)</h3>
+      <div class="detail"><strong>Annual curtailed:</strong> 4,297.1 MWh</div>
+      <div class="detail"><strong>BESS captured:</strong> 3,982.8 MWh (<strong>92.7%</strong>)</div>
+      <div class="detail"><strong>Overflow lost:</strong> 314.3 MWh (7.3%)</div>
+      <div class="detail"><strong>Average daily fill:</strong> 54.6%</div>
+      <div class="detail"><strong>Days at 100%:</strong> 62 of 365</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:12px;margin:14px 0 6px;color:#334155;">Monthly BESS Performance (2.5MW / 10MWh — Actual Data)</h3>
+  <table style="font-size:11px;">
+    <tr><th>Month</th><th>Curtailed</th><th>Captured</th><th>Overflow</th><th>Capture %</th><th>Full Days</th><th>Partial</th><th>Zero</th><th>Avg Fill</th></tr>
+    <tr><td>Jan</td><td>117.6 MWh</td><td>117.6 MWh</td><td>0.0 MWh</td><td>100.0%</td><td>0</td><td>28</td><td>3</td><td>38.0%</td></tr>
+    <tr><td>Feb</td><td>107.2 MWh</td><td>106.3 MWh</td><td>0.8 MWh</td><td>99.2%</td><td>1</td><td>25</td><td>2</td><td>38.0%</td></tr>
+    <tr class="highlight-row"><td><strong>Mar</strong></td><td>286.0 MWh</td><td>260.1 MWh</td><td><strong>25.9 MWh</strong></td><td>90.9%</td><td><strong>12</strong></td><td>19</td><td>0</td><td><strong>83.9%</strong></td></tr>
+    <tr class="highlight-row"><td><strong>Apr</strong></td><td>276.1 MWh</td><td>220.0 MWh</td><td><strong>56.0 MWh</strong></td><td>79.7%</td><td><strong>15</strong></td><td>13</td><td>2</td><td><strong>73.3%</strong></td></tr>
+    <tr class="highlight-row"><td><strong>May</strong></td><td>297.6 MWh</td><td>256.1 MWh</td><td><strong>41.5 MWh</strong></td><td>86.0%</td><td><strong>15</strong></td><td>16</td><td>0</td><td><strong>82.6%</strong></td></tr>
+    <tr><td>Jun</td><td>188.3 MWh</td><td>167.2 MWh</td><td>21.1 MWh</td><td>88.8%</td><td>5</td><td>24</td><td>1</td><td>55.7%</td></tr>
+    <tr><td>Jul</td><td>127.2 MWh</td><td>122.8 MWh</td><td>4.4 MWh</td><td>96.6%</td><td>4</td><td>24</td><td>3</td><td>39.6%</td></tr>
+    <tr><td>Aug</td><td>141.7 MWh</td><td>139.8 MWh</td><td>1.9 MWh</td><td>98.7%</td><td>2</td><td>28</td><td>1</td><td>45.1%</td></tr>
+    <tr><td>Sep</td><td>146.4 MWh</td><td>145.9 MWh</td><td>0.5 MWh</td><td>99.7%</td><td>1</td><td>29</td><td>0</td><td>48.6%</td></tr>
+    <tr class="highlight-row"><td><strong>Oct</strong></td><td>249.6 MWh</td><td>244.6 MWh</td><td>5.0 MWh</td><td>98.0%</td><td><strong>7</strong></td><td>24</td><td>0</td><td><strong>78.9%</strong></td></tr>
+    <tr><td>Nov</td><td>130.2 MWh</td><td>130.2 MWh</td><td>0.0 MWh</td><td>100.0%</td><td>0</td><td>30</td><td>0</td><td>43.4%</td></tr>
+    <tr><td>Dec</td><td>80.7 MWh</td><td>80.7 MWh</td><td>0.0 MWh</td><td>100.0%</td><td>0</td><td>26</td><td>5</td><td>26.0%</td></tr>
+  </table>
+  <p class="note">
+    <strong>Key insight:</strong> The 4-hour BESS captures <strong>92.7%</strong> of all curtailed energy. Overflow is concentrated in Mar–May (spring) when curtailment is most intense — 42 of 62 overflow days.
+    Summer months (Jul–Aug) show near-perfect capture (96–99%) because curtailment events are shorter and lower-intensity due to A/C demand absorbing grid supply.
+    The 4-hour duration is well-matched to the Galascope curtailment profile.
+  </p>
+
+  <!-- MODEL ASSUMPTIONS -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.5 Revenue Model — Data-Validated Assumptions</h3>
+
+  <table>
+    <tr><th>Parameter</th><th>Value</th><th>Basis</th></tr>
+    <tr class="highlight-row"><td><strong>Curtailment data source</strong></td><td><strong>Actual 2025 daily data</strong></td><td><strong>365 days from Galascope 2.5 MW, scaled 2× for 5 MW</strong></td></tr>
+    <tr><td>Annual curtailed energy (5MW)</td><td>4,297 MWh</td><td>Actual 2025 data × 2 (42.8% of total potential)</td></tr>
+    <tr><td>BESS capture (after 4hr constraint)</td><td>3,983 MWh</td><td>92.7% of curtailed — 7.3% overflow on high days</td></tr>
+    <tr><td>Charge Cost</td><td>€0/MWh</td><td>Curtailed energy — zero opportunity cost</td></tr>
+    <tr><td>Blended Discharge Price</td><td>€175/MWh</td><td>Weighted: 80% peak evening (€183) + 20% shoulder (€158)</td></tr>
+    <tr><td>Round-Trip Efficiency</td><td>86.32%</td><td>Full system AC-AC incl. cabling losses (Linyang PCS-level = 87.8%)</td></tr>
+    <tr><td>Depth of Discharge</td><td>90%</td><td>Linyang operating specification</td></tr>
+    <tr><td>SOH Degradation</td><td>Linyang guaranteed curve</td><td>Year-by-year usable capacity reduction modeled</td></tr>
+    <tr><td>Electricity Price Escalation</td><td>0%</td><td>Conservative — no real price increase assumed</td></tr>
+    <tr><td>Curtailment growth assumption</td><td>Flat (2025 level)</td><td>Conservative — actual trend is strongly upward</td></tr>
+    <tr><td>Secondary Revenue</td><td>€0</td><td>No arbitrage, grid services, or frequency regulation</td></tr>
+  </table>
+
+  <!-- SOH DEGRADATION TABLE -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.6 SOH Degradation &amp; Actual Capture Impact</h3>
+
+  <table>
+    <tr><th>Year</th><th>SOH %</th><th>Usable Capacity (MWh)</th><th>Energy Captured (MWh)</th><th>Cumul. Cycles</th><th>Cycle Headroom</th></tr>
+    <tr><td>1</td><td>94.62%</td><td>17.03</td><td>3,755</td><td>221</td><td>96.8%</td></tr>
+    <tr><td>2</td><td>91.77%</td><td>16.52</td><td>3,708</td><td>445</td><td>93.6%</td></tr>
+    <tr><td>3</td><td>89.91%</td><td>16.18</td><td>3,677</td><td>672</td><td>90.4%</td></tr>
+    <tr><td>5</td><td>86.78%</td><td>15.62</td><td>3,620</td><td>1,133</td><td>83.8%</td></tr>
+    <tr><td>10</td><td>79.58%</td><td>14.32</td><td>3,475</td><td>2,375</td><td>66.1%</td></tr>
+    <tr class="highlight-row"><td><strong>15</strong></td><td><strong>73.61%</strong></td><td><strong>13.25</strong></td><td><strong>3,333</strong></td><td><strong>2,947</strong></td><td><strong>57.9%</strong></td></tr>
+  </table>
+  <p class="note">
+    <strong>Usable Capacity</strong> = 20 MWh × SOH% × 90% DOD. <strong>Energy Captured</strong> = sum of min(daily curtailed × 2, usable capacity) across 365 days.
+    SOH values from Linyang confirmed degradation curve. Even at Year 15 (SOH 73.6%), the 13.25 MWh usable capacity exceeds the daily curtailment on 303 of 365 days.
+    Only <strong>2,947 of 7,000 warranted cycles used (42%)</strong> — significant residual life beyond Year 15.
+  </p>
+
+  <!-- 15-YEAR CASH FLOW -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.7 15-Year Cash Flow Projection (Data-Validated)</h3>
+
+  <table style="font-size:10.5px;">
+    <tr>
+      <th>Year</th><th>SOH %</th><th>Usable MWh</th><th>Captured (MWh)</th><th>Discharged (MWh)</th>
+      <th>Revenue (€)</th><th>OpCost (€)</th><th>Net Cash (€)</th><th>Cumulative (€)</th>
+    </tr>
+    <tr><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:#dc2626;font-weight:600;">−2,258,900</td><td style="color:#dc2626;">−2,258,900</td></tr>
+    <tr><td>1</td><td>94.6%</td><td>17.03</td><td>3,755</td><td>3,241</td><td>567,175</td><td>39,800</td><td style="font-weight:600;">527,375</td><td style="color:#dc2626;">−1,731,525</td></tr>
+    <tr><td>2</td><td>91.8%</td><td>16.52</td><td>3,708</td><td>3,201</td><td>560,175</td><td>39,800</td><td style="font-weight:600;">520,375</td><td style="color:#dc2626;">−1,211,150</td></tr>
+    <tr><td>3</td><td>89.9%</td><td>16.18</td><td>3,677</td><td>3,174</td><td>555,450</td><td>39,800</td><td style="font-weight:600;">515,650</td><td style="color:#dc2626;">−695,500</td></tr>
+    <tr><td>4</td><td>88.4%</td><td>15.90</td><td>3,649</td><td>3,150</td><td>551,250</td><td>39,800</td><td style="font-weight:600;">511,450</td><td style="color:#dc2626;">−184,050</td></tr>
+    <tr style="background:#f0fdf4;"><td><strong>5</strong></td><td>86.8%</td><td>15.62</td><td>3,620</td><td>3,125</td><td>546,875</td><td>39,800</td><td style="font-weight:700;color:#16a34a;">507,075</td><td style="font-weight:700;color:#16a34a;">+323,025</td></tr>
+    <tr><td>6</td><td>85.3%</td><td>15.36</td><td>3,593</td><td>3,101</td><td>542,675</td><td>73,034</td><td style="font-weight:600;">469,641</td><td style="color:#16a34a;">+792,666</td></tr>
+    <tr><td>7</td><td>83.9%</td><td>15.10</td><td>3,565</td><td>3,077</td><td>538,475</td><td>73,034</td><td style="font-weight:600;">465,441</td><td style="color:#16a34a;">+1,258,107</td></tr>
+    <tr><td>8</td><td>82.5%</td><td>14.84</td><td>3,536</td><td>3,052</td><td>534,100</td><td>73,034</td><td style="font-weight:600;">461,066</td><td style="color:#16a34a;">+1,719,173</td></tr>
+    <tr><td>9</td><td>81.0%</td><td>14.58</td><td>3,506</td><td>3,026</td><td>529,550</td><td>73,034</td><td style="font-weight:600;">456,516</td><td style="color:#16a34a;">+2,175,689</td></tr>
+    <tr><td>10</td><td>79.6%</td><td>14.32</td><td>3,475</td><td>3,000</td><td>525,000</td><td>73,034</td><td style="font-weight:600;">451,966</td><td style="color:#16a34a;">+2,627,655</td></tr>
+    <tr><td>11</td><td>78.4%</td><td>14.11</td><td>3,448</td><td>2,976</td><td>520,800</td><td>81,474</td><td style="font-weight:600;">439,326</td><td style="color:#16a34a;">+3,066,981</td></tr>
+    <tr><td>12</td><td>77.2%</td><td>13.90</td><td>3,420</td><td>2,952</td><td>516,600</td><td>81,474</td><td style="font-weight:600;">435,126</td><td style="color:#16a34a;">+3,502,107</td></tr>
+    <tr><td>13</td><td>76.0%</td><td>13.68</td><td>3,392</td><td>2,928</td><td>512,400</td><td>81,474</td><td style="font-weight:600;">430,926</td><td style="color:#16a34a;">+3,933,033</td></tr>
+    <tr><td>14</td><td>74.8%</td><td>13.47</td><td>3,363</td><td>2,903</td><td>508,025</td><td>81,474</td><td style="font-weight:600;">426,551</td><td style="color:#16a34a;">+4,359,584</td></tr>
+    <tr class="highlight-row"><td><strong>15</strong></td><td><strong>73.6%</strong></td><td><strong>13.25</strong></td><td><strong>3,333</strong></td><td><strong>2,877</strong></td><td><strong>503,475</strong></td><td>81,474</td><td style="font-weight:700;">422,001</td><td style="font-weight:700;color:#16a34a;">+4,781,585</td></tr>
+  </table>
+
+  <p class="note">
+    <strong>Data-validated model:</strong> Each year's "Captured" is computed day-by-day from actual 2025 curtailment records, applying the BESS capacity constraint (min of daily curtailment and usable capacity with SOH degradation).
+    Revenue declines gradually from €567K (Year 1) to €503K (Year 15) as SOH reduces usable capacity — an <strong>11.2% decline over 15 years</strong>.
+    Green row indicates payback year (early Year 5). All values use €175/MWh blended discharge price and 86.32% full system AC-AC RTE (incl. cabling losses).
+  </p>
+
+  <!-- KEY METRICS -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.8 Key Financial Metrics</h3>
+
+  <div class="summary-strip" style="grid-template-columns:repeat(4,1fr);">
+    <div class="summary-item si-green"><span class="big">4.4yr</span><span class="label">Simple Payback</span></div>
+    <div class="summary-item si-blue"><span class="big">~21%</span><span class="label">IRR (15yr)</span></div>
+    <div class="summary-item si-amber"><span class="big">212%</span><span class="label">15yr ROI</span></div>
+    <div class="summary-item si-purple"><span class="big">57.9%</span><span class="label">Cycle Headroom</span></div>
+  </div>
+
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Notes</th></tr>
+    <tr class="highlight-row"><td><strong>Simple Payback Period</strong></td><td><strong>4.4 years</strong></td><td>Investment recovered during Year 5</td></tr>
+    <tr><td>Internal Rate of Return (IRR)</td><td>~21%</td><td>15-year project life, no terminal value</td></tr>
+    <tr><td>Total 15-Year Gross Revenue</td><td>€8,012,025</td><td>Sum of annual revenue (declining with SOH)</td></tr>
+    <tr><td>Total 15-Year Operating Costs</td><td>€971,540</td><td>LTSA + extended warranty + SCADA/EMS</td></tr>
+    <tr><td>15-Year Net Profit</td><td>€4,781,585</td><td>After all operating costs, before tax</td></tr>
+    <tr><td>15-Year ROI</td><td>212%</td><td>(Net Profit) / Investment</td></tr>
+    <tr><td>Year 1 Net Revenue</td><td>€527,375</td><td>First year cash flow (highest)</td></tr>
+    <tr><td>Year 15 Net Revenue</td><td>€422,001</td><td>Final year cash flow (lowest due to SOH + warranty costs)</td></tr>
+    <tr><td>BESS Capture Efficiency</td><td>92.7%</td><td>4-hour BESS captures 92.7% of all curtailed energy</td></tr>
+    <tr><td>Average Daily BESS Utilization</td><td>54.6%</td><td>Average daily fill level across 365 days</td></tr>
+    <tr><td>Lifetime BESS Cycles (15yr)</td><td>2,947 of 7,000</td><td>42% of warranted cycles — 58% residual headroom</td></tr>
+    <tr><td>Average Daily Cycles</td><td>0.54</td><td>Well within safe operating range</td></tr>
+  </table>
+
+  <!-- BESS UTILIZATION DETAIL -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.9 BESS Utilization &amp; Degradation Impact</h3>
+
+  <div class="example-box">
+    <strong>How degradation affects the data-validated model:</strong><br><br>
+    Unlike a flat-assumption model, this projection uses actual daily curtailment data to determine BESS fill each day.<br>
+    At Year 1 (SOH 94.6%), the 17.03 MWh usable capacity captures 3,755 MWh/year across 365 days. After 86.32% RTE: 3,241 MWh discharged.<br>
+    At Year 15 (SOH 73.6%), usable capacity drops to 13.25 MWh — but this still exceeds the daily curtailment on <strong>303 of 365 days</strong>. After RTE: 2,877 MWh discharged.<br><br>
+    The degradation impact is moderate: <strong>Year 15 captures 3,333 MWh vs Year 1's 3,755 MWh — an 11.2% decline over 15 years.</strong><br>
+    This decline comes entirely from the 62 highest-curtailment days (mostly Mar–May) where the degraded BESS can no longer fully capture the excess.<br><br>
+    <strong>Revenue remains curtailment-driven, not degradation-driven.</strong> The BESS has surplus capacity on 83% of days even at end-of-life. All values use 86.32% full-system AC-AC RTE (incl. cabling losses).
+  </div>
+
+  <div class="card">
+    <h3>Cycle Life Analysis</h3>
+    <div class="detail"><strong>Warranted cycles:</strong> 7,000 @ 90% DOD, 70% EOL</div>
+    <div class="detail"><strong>Projected 15-year usage:</strong> 2,947 cycles (42%)</div>
+    <div class="detail"><strong>Projected 20-year usage:</strong> ~3,929 cycles (56%) — system can safely operate beyond 15 years</div>
+    <div class="detail"><strong>Years to 7,000 cycles at current rate:</strong> ~35.6 years</div>
+    <div class="detail"><strong>Average daily cycles:</strong> 0.54 — the battery operates at roughly half its rated cycling capacity</div>
+  </div>
+
+  <!-- SENSITIVITY -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.10 Sensitivity Analysis</h3>
+
+  <table>
+    <tr><th>Scenario</th><th>Curtailment</th><th>Discharge Price</th><th>Payback</th><th>15yr IRR</th><th>15yr Net Profit</th></tr>
+    <tr style="background:#fef2f2;"><td>Downside (−20% curt, −€25/MWh)</td><td>34%</td><td>€150/MWh</td><td>~6.8 years</td><td>~13%</td><td>~€2.6M</td></tr>
+    <tr class="highlight-row"><td><strong>Base Case (Actual 2025 Data)</strong></td><td><strong>42.8%</strong></td><td><strong>€175/MWh</strong></td><td><strong>4.4 years</strong></td><td><strong>~21%</strong></td><td><strong>€4.8M</strong></td></tr>
+    <tr style="background:#f0fdf4;"><td>Upside (+20% curt, +€15/MWh)</td><td>51%</td><td>€190/MWh</td><td>~3.4 years</td><td>~27%</td><td>~€6.9M</td></tr>
+  </table>
+
+  <p class="note">
+    <strong>Base case uses actual 2025 data</strong> — not projections or assumptions. This is the strongest possible foundation for bankable modeling.<br>
+    <strong>Downside conservatism:</strong> Assumes curtailment drops 20% from current levels — highly unlikely given Cyprus RE capacity is still growing rapidly.<br>
+    <strong>Upside factors not modeled:</strong>
+    (1) Curtailment trend is still increasing — 2026+ likely exceeds 2025 levels.
+    (2) No secondary revenue from arbitrage, grid services, or frequency regulation.
+    (3) No terminal value for the battery beyond Year 15 (58% cycle life remaining).
+    (4) No electricity price escalation over 15 years.
+  </p>
+
+  <!-- REVENUE WATERFALL -->
+  <h3 style="font-size:13px;margin:16px 0 8px;color:#0f172a;">12.11 Revenue Waterfall — Year 1 (Actual Data)</h3>
+
+  <div style="margin:12px 0;">
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#334155;">Total PV Potential</div>
+      <div style="height:18px;background:#fcd34d;border-radius:3px;width:500px;position:relative"><span style="position:absolute;right:6px;top:1px;font-size:10px;font-weight:600;">10,044 MWh (5MW, scaled 2×)</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#334155;">Curtailed (42.8%)</div>
+      <div style="height:18px;background:#f87171;border-radius:3px;width:214px;position:relative"><span style="position:absolute;right:6px;top:1px;font-size:10px;font-weight:600;">4,297 MWh</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#334155;">BESS Captured (92.7%)</div>
+      <div style="height:18px;background:#60a5fa;border-radius:3px;width:198px;position:relative"><span style="position:absolute;right:6px;top:1px;font-size:10px;font-weight:600;">3,983 MWh (Yr1: 3,755 w/ SOH)</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#334155;">Overflow Lost (7.3%)</div>
+      <div style="height:18px;background:#fecaca;border:1px solid #f87171;border-radius:3px;width:16px;position:relative"><span style="position:absolute;left:22px;top:1px;font-size:10px;font-weight:600;color:#dc2626;white-space:nowrap;">314 MWh</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#334155;">BESS Discharged (86.32%)</div>
+      <div style="height:18px;background:#2563eb;border-radius:3px;width:171px;position:relative"><span style="position:absolute;right:6px;top:1px;font-size:10px;font-weight:600;color:#fff;">3,241 MWh (×86.32% RTE)</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#334155;font-weight:700;">Gross Revenue</div>
+      <div style="height:18px;background:#16a34a;border-radius:3px;width:171px;position:relative"><span style="position:absolute;right:6px;top:1px;font-size:10px;font-weight:600;color:#fff;">€567,175 (×€175/MWh)</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#dc2626;">Operating Costs</div>
+      <div style="height:18px;background:#fecaca;border:1px solid #f87171;border-radius:3px;width:20px;position:relative"><span style="position:absolute;left:26px;top:1px;font-size:10px;font-weight:600;color:#dc2626;white-space:nowrap;">€39,800 (Yr 1–5)</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:6px 0;">
+      <div style="width:145px;font-size:11px;text-align:right;color:#16a34a;font-weight:700;">Net Cash Flow</div>
+      <div style="height:18px;background:#bbf7d0;border:2px solid #16a34a;border-radius:3px;width:159px;position:relative"><span style="position:absolute;right:6px;top:0px;font-size:10px;font-weight:700;color:#166534;">€527,375/yr (Year 1)</span></div>
+    </div>
+  </div>
+
+  <p class="note" style="margin-top:16px;">
+    <strong>Key insight for lenders:</strong> This model is built on <strong>365 days of actual operational curtailment data</strong>, not assumptions or projections.
+    The 4-hour BESS captures 92.7% of curtailed energy with only 7.3% overflow — proving the duration is well-matched to the curtailment profile.
+    Revenue declines only 11.2% over 15 years despite SOH degradation, because the BESS maintains surplus capacity on 83% of days even at end-of-life.
+    Only 42% of warranted cycle life is consumed — the system has significant residual value beyond the 15-year model horizon. RTE: 86.32% full-system AC-AC (incl. cabling losses).
+  </p>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Lighthief Cyprus Ltd</strong> · HE 477423 · 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+  office@lighthief.com · +357 77 77 00 50 · BESS Project: Alexander Papacosta +357 99 164 158<br><br>
+  Source Documents: EPC Agreement v3.0 · LTSA v3.0 · RFI — Legal Guarantees Confirmation / Linyang V3 (Feb 2026)<br>
+  Insurance RFP: LCY-RFP-INS-COMPREHENSIVE-2026 v2.0 (placed via Marsh)<br>
+  Market Data: 134 verified TSOC DAM settlement files (Oct 2025 – Feb 2026)<br>
+  Curtailment Data: Galascope 2.5MW park — 12 months actual daily data (Jan–Dec 2025), scaled 2× for 5MW<br>
+  Degradation Curve: Linyang confirmed SOH specifications (0.5P, 1 cycle/day, 25±2°C)<br><br>
+  <em>This document is confidential and intended solely for the named recipient and their financing parties. It does not constitute a legal opinion, financial advice, or guarantee of future revenue. Actual performance may vary based on market conditions, curtailment levels, and system operation.</em>
+</div>
+
+</body>
+</html>

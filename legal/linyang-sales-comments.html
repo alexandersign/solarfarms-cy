@@ -117,6 +117,50 @@
             font-size: 12px;
             font-style: italic;
         }
+        .confirmed {
+            background-color: #ecfdf5;
+            border-left: 4px solid #059669;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .confirmed strong {
+            color: #059669;
+        }
+        .modified {
+            background-color: #fffbeb;
+            border-left: 4px solid #d97706;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .modified strong {
+            color: #92400e;
+        }
+        .status-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .tag-confirmed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .tag-modified {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .tag-pending {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .tag-new {
+            background: #dbeafe;
+            color: #1e40af;
+        }
         @media print {
             body {
                 max-width: 100%;
@@ -136,10 +180,15 @@
 <h1>SALES CONTRACT<br>LIGHTHIEF COMMENTS</h1>
 
 <div class="header-info">
-    <strong>Document:</strong> Sales Contract Comments<br>
+    <strong>Document:</strong> Sales Contract — Proposed Amendments (Updated with RFI Responses)<br>
     <strong>Prepared by:</strong> Lighthief Cyprus Ltd<br>
-    <strong>Date:</strong> January 2026<br>
-    <strong>Purpose:</strong> Markup of Linyang's proposed Sales Contract with required amendments for Cyprus market
+    <strong>Date:</strong> February 2026 (updated from January 2026)<br>
+    <strong>Purpose:</strong> Markup of Linyang's proposed Sales Contract with required amendments for Cyprus market<br>
+    <strong>RFI Source:</strong> Linyang RFI V1 Answers (Klaudia / Solarfun) — February 2026<br><br>
+    <span class="status-tag tag-confirmed">✅ CONFIRMED</span> = Linyang agreed in RFI &nbsp;
+    <span class="status-tag tag-modified">⚠️ MODIFIED</span> = Linyang proposed different terms &nbsp;
+    <span class="status-tag tag-pending">🔴 PENDING</span> = Awaiting response &nbsp;
+    <span class="status-tag tag-new">➕ NEW</span> = Lighthief addition
 </div>
 
 <hr>
@@ -314,21 +363,22 @@ The Buyer shall be responsible for:
 
 <hr>
 
-<h2>6. Terms of Payment</h2>
+<h2>6. Terms of Payment <span class="status-tag tag-confirmed">✅ CONFIRMED BY RFI</span></h2>
 
 <p>The total value of the whole Contract shall be paid by the BUYER to the SELLER's account as follows:</p>
 <p><strong>50% T/T advance payment to start production; 50% T/T before shipment.</strong></p>
 
 <div class="comment critical">
-<strong>LIGHTHIEF COMMENT — CRITICAL:</strong> Please amend payment terms:
+<strong>LIGHTHIEF COMMENT — CONFIRMED BY LINYANG RFI (Feb 2026):</strong> Payment terms amended per Linyang confirmation:
 <br><br>
-The payment structure should be aligned with the Distribution Agreement standard milestones:
+The payment structure as confirmed by Linyang (Klaudia, RFI V1 Answers, Feb 2026):
 <ul>
-<li><strong>(a) 30% advance payment</strong> by T/T within seven (7) days of contract effectiveness;</li>
-<li><strong>(b) 60% payment</strong> by T/T prior to shipment of the Commodities from the manufacturing facility;</li>
-<li><strong>(c) 10% final payment</strong> by T/T upon successful installation, commissioning, and provisional acceptance on site.</li>
+<li><strong>(a) 25% advance payment</strong> by T/T within seven (7) days of contract effectiveness;</li>
+<li><strong>(b) 50% payment</strong> by T/T when Commodities are ready for shipment (Ex-Works);</li>
+<li><strong>(c) 20% payment</strong> by T/T upon arrival of Commodities on site (DAP);</li>
+<li><strong>(d) 5% performance holdback</strong> by T/T upon successful completion of SAT and provisional acceptance on site.</li>
 </ul>
-<strong>REASON:</strong> The 10% retention protects the Buyer until commissioning is complete and allows for punch list items to be resolved.
+<strong>STATUS:</strong> ✅ Confirmed by Linyang — all four milestones agreed.
 </div>
 
 <p>In addition to all other remedies available under this Contract or at law, the SELLER is entitled to suspend or cancel future deliveries of Commodities without notice where the BUYER has failed to make payments within [ten] business days after the due date.</p>
@@ -374,11 +424,21 @@ USD Account No：IBAN PL07 1140 1010 0000 7549 2800 1003</p>
 
 <hr>
 
-<h2>8. Warranty</h2>
+<h2>8. Warranty <span class="status-tag tag-confirmed">✅ 5-YR WARRANTY CONFIRMED</span></h2>
 
 <p>The SELLER shall, under the approval of both Parties, repair or replace any Commodities or part of the Commodities which it affirms are materially defective arising from faulty design, material or workmanship where the defect appears within the period of <strong>5 years</strong>.</p>
 
-<p class="accepted">LIGHTHIEF COMMENT: Accepted — 5-year warranty confirmed.</p>
+<div class="confirmed">
+<strong>✅ CONFIRMED BY LINYANG RFI (Feb 2026):</strong>
+<ul>
+<li><strong>Standard Warranty:</strong> 5 years from COD — ✅ Confirmed</li>
+<li><strong>SOH Guarantees:</strong> Year 5 ≥85%, Year 10 ≥79.58%, Year 15 ≥70% — ✅ Confirmed</li>
+<li><strong>PCS Efficiency:</strong> ≥98% at rated power — ✅ Confirmed</li>
+<li><strong>System RTE:</strong> ≥87% at POC (MV side, without AUX) — ✅ Confirmed</li>
+<li><strong>Cycle Life:</strong> 7,000 cycles @ 70% EOL, 90% DOD — ⚠️ Modified (was 8,000 proposed)</li>
+<li><strong>Extended Warranty Max:</strong> 15 years (not 20) — ⚠️ Modified</li>
+</ul>
+</div>
 
 <p>Except for the warranty set forth herein, SELLER makes no warranty whatsoever with respect to the Commodities, including any (i) warranty of merchantability; (ii) warranty of fitness for a particular purpose; or (iv) warranty against infringement of intellectual property rights of a third party.</p>
 
@@ -458,6 +518,53 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 <strong>8C.1</strong> Availability guarantees, performance guarantees, state-of-health guarantees, liquidated damages, or service-level commitments shall apply only if an LTSA is executed with the end customer and shall be governed exclusively by the LTSA. No such guarantees are implied under this Contract.
 </div>
 
+<div class="modified">
+<strong>⚠️ RFI ALERT — SOH REMEDY COSTS (Feb 2026):</strong>
+<br><br>
+Linyang has confirmed SOH remedy options (augmentation, module replacement, pro-rata refund) but states:
+<br><br>
+<strong>🔴 "Service fees, on-site replacement costs, labor costs, etc. are NOT included."</strong>
+<br><br>
+Only damaged/defective components are covered under warranty. This is a significant gap:
+<ul>
+<li><strong>SOH Verification:</strong> Independent 3rd party testing accepted, but <strong>client pays if capacity meets spec</strong></li>
+<li><strong>Remedy Timeline:</strong> 120 days proposed — needs clarification on scope (production, logistics, service?)</li>
+<li><strong>Remedy Cost:</strong> Only defective components covered — service, labor, transport NOT included</li>
+</ul>
+<strong>ACTION REQUIRED:</strong> Negotiate to include service labor during warranty period, or price separately for client proposals.
+</div>
+
+<hr>
+
+<h2>NEW SECTION REQUIRED: Performance Guarantees &amp; SOH <span class="status-tag tag-confirmed">✅ CONFIRMED</span></h2>
+
+<div class="confirmed">
+<strong>SECTION 8D – PERFORMANCE GUARANTEES (RFI Confirmed — Feb 2026)</strong>
+<br><br>
+<strong>8D.1 State of Health (SOH) Guarantees:</strong>
+<table>
+<thead><tr><th>Period</th><th>SOH Guarantee</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Year 5</td><td>≥85%</td><td>✅ Confirmed</td></tr>
+<tr><td>Year 10</td><td>≥79.58%</td><td>✅ Confirmed</td></tr>
+<tr><td>Year 15</td><td>≥70%</td><td>✅ Confirmed</td></tr>
+<tr><td>Year 20</td><td>≥60% (proposed)</td><td>⚠️ Only 15 years covered</td></tr>
+</tbody>
+</table>
+<strong>8D.2 PCS Efficiency:</strong> ≥98% at rated power — ✅ Confirmed
+<br>
+<strong>8D.3 System Round-Trip Efficiency:</strong> ≥87% at POC (MV side, excluding auxiliary consumption) — ✅ Confirmed
+<br>
+<strong>8D.4 Cycle Life:</strong> 7,000 cycles at 70% End-of-Life, 90% Depth of Discharge — ✅ Confirmed (modified from 8,000 proposed)
+<br><br>
+<strong>8D.5 SOH Remedy Options:</strong>
+<ul>
+<li>(a) Battery Augmentation — ✅ Available (Linyang preferred)</li>
+<li>(b) Module Replacement — ✅ Available (Linyang preferred)</li>
+<li>(c) Pro-Rata Refund — ✅ Available</li>
+</ul>
+</div>
+
 <hr>
 
 <h2>9. Limitation of Liability</h2>
@@ -510,6 +617,159 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 <li>(d) Third-party systems not supplied by the Seller.</li>
 </ul>
 <strong>NOTE:</strong> The Buyer does NOT indemnify for claims arising from the Seller's installation and commissioning works.
+</div>
+
+<hr>
+
+<h2>NEW SECTION: Financial Guarantees <span class="status-tag tag-modified">⚠️ PARTIALLY CONFIRMED</span></h2>
+
+<div class="confirmed">
+<strong>SECTION 9B – FINANCIAL GUARANTEES (RFI Confirmed — Feb 2026)</strong>
+<br><br>
+<strong>9B.1 Advance Payment Guarantee (APG):</strong>
+<table>
+<thead><tr><th>Requirement</th><th>Proposed</th><th>Linyang Response</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Form</td><td>Bank Guarantee</td><td>Bank Guarantee</td><td>✅ Confirmed</td></tr>
+<tr><td>Coverage</td><td>100% of advance payment</td><td>100% of advance payment</td><td>✅ Confirmed</td></tr>
+<tr><td>Issuing Bank</td><td>International (Cyprus/EU)</td><td>International</td><td>✅ Confirmed</td></tr>
+<tr><td>Validity</td><td>Until delivery + 30 days</td><td>Until delivery + 30 days</td><td>✅ Confirmed</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="modified">
+<strong>9B.2 Performance Bond:</strong>
+<table>
+<thead><tr><th>Requirement</th><th>Proposed</th><th>Linyang Response</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Form</td><td>Bank Guarantee</td><td>Bank Guarantee</td><td>✅ Confirmed</td></tr>
+<tr><td>Coverage</td><td>10% of contract value</td><td><strong>5% only</strong></td><td>⚠️ Modified</td></tr>
+<tr><td>Validity</td><td>Warranty + 6 months</td><td>Issued 1 month before delivery, valid until warranty start</td><td>⚠️ Modified</td></tr>
+<tr><td>Parent Company Backing</td><td>Linyang Energy guarantee</td><td><strong>NO — Rejected</strong></td><td>🔴 Rejected</td></tr>
+</tbody>
+</table>
+<strong>⚠️ NOTE:</strong> Performance bond reduced to 5%. No parent company (Linyang Energy) backing. Consider credit risk mitigation.
+</div>
+
+<div class="confirmed">
+<strong>9B.3 Other Financial Protections:</strong>
+<table>
+<thead><tr><th>Protection</th><th>Proposed</th><th>Linyang Response</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Product Liability Insurance</td><td>€5M</td><td>€5M (AXA)</td><td>✅ Confirmed</td></tr>
+<tr><td>OEM Warranty Reserve</td><td>1.9%</td><td>1.9% (on Linyang books)</td><td>✅ Confirmed</td></tr>
+<tr><td>Performance Retention</td><td>5% held PAC→FAC</td><td>Confirmed (if 5% bond accepted)</td><td>✅ Confirmed</td></tr>
+<tr><td>Claim Response Time</td><td>—</td><td>48 hours (excl. weekends/holidays)</td><td>✅ Confirmed</td></tr>
+<tr><td>Warranty Reserve Fund</td><td>Requested</td><td><strong>NOT available</strong></td><td>🔴 Not available</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2>NEW SECTION: Liquidated Damages <span class="status-tag tag-modified">⚠️ MODIFIED BY LINYANG</span></h2>
+
+<div class="modified">
+<strong>SECTION 9C – LIQUIDATED DAMAGES (RFI Response — Feb 2026)</strong>
+<br><br>
+<strong>9C.0 Definitions for LD Purposes:</strong>
+<table>
+<thead><tr><th>Term</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td><strong>Critical Path Equipment</strong></td><td>Equipment whose delay prevents commissioning of the <strong>entire order or park</strong>. Includes: Power Conversion System (PCS), Medium-Voltage Switchgear/Skid (MV Skid), and main step-up transformer. Delay to any Critical Path Equipment constitutes a <strong>Full Order Delay</strong>.</td></tr>
+<tr><td><strong>Non-Critical Path Equipment</strong></td><td>Equipment whose delay prevents commissioning of only a <strong>portion</strong> of the total ordered capacity. Battery containers (BESS units) are Non-Critical Path Equipment when delivered individually as part of a multi-container order, <strong>provided</strong> the PCS and MV infrastructure are available to commission the remaining containers.</td></tr>
+<tr><td><strong>Full Order Delay</strong></td><td>Delay caused by late delivery, defect, or unavailability of any Critical Path Equipment, resulting in <strong>no portion</strong> of the order being capable of commissioning.</td></tr>
+<tr><td><strong>Partial Delay</strong></td><td>Delay caused by late delivery, defect, or unavailability of Non-Critical Path Equipment, where the remaining equipment <strong>is capable</strong> of commissioning at reduced capacity.</td></tr>
+<tr><td><strong>Affected Capacity</strong></td><td>The proportion of total ordered energy capacity (MWh) that cannot be commissioned due to the delayed equipment, expressed as a percentage of total capacity.</td></tr>
+<tr><td><strong>LD Value</strong></td><td>For a <strong>Full Order Delay</strong>: the total order value (all goods). For a <strong>Partial Delay</strong>: the value of the delayed goods only (= order value × Affected Capacity %).</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="modified">
+<strong>9C.1 Delay Liquidated Damages:</strong>
+<table>
+<thead><tr><th>Category</th><th>Lighthief Position</th><th>Linyang Position (RFI)</th><th>Agreed Approach</th></tr></thead>
+<tbody>
+<tr><td>Days 1–30 delay</td><td>0.1% of <strong>contract value</strong>/day</td><td>0.1% of <strong>delayed goods</strong>/day</td><td>0.1% of <strong>LD Value</strong>/day</td></tr>
+<tr><td>Days 31–60 delay</td><td>0.15% of <strong>contract value</strong>/day</td><td>0.15% of <strong>delayed goods</strong>/day</td><td>0.15% of <strong>LD Value</strong>/day</td></tr>
+<tr><td>Days 61+ delay</td><td>0.2% of contract value/day</td><td>—</td><td>0.2% of <strong>LD Value</strong>/day</td></tr>
+<tr><td>LD Cap (per order)</td><td>10% of contract value</td><td>10% of <strong>delayed goods</strong></td><td>10% of <strong>LD Value</strong></td></tr>
+</tbody>
+</table>
+
+<br>
+<strong>9C.1.1 Application of Full Order Delay vs Partial Delay:</strong>
+<br><br>
+<table>
+<thead><tr><th>Scenario</th><th>Example</th><th>LD Value Basis</th></tr></thead>
+<tbody>
+<tr><td><strong>PCS delayed</strong> for a park order</td><td>Park has 5× battery containers + 1× PCS. PCS is late → entire park cannot export power.</td><td><strong>Full order value</strong> — PCS is Critical Path Equipment; all containers are idle without it.</td></tr>
+<tr><td><strong>MV Skid delayed</strong> for a park order</td><td>Park has 3× containers + MV Skid. MV Skid is late → no grid connection possible.</td><td><strong>Full order value</strong> — MV Skid is Critical Path; entire park blocked.</td></tr>
+<tr><td><strong>1 battery container delayed</strong> out of 5</td><td>Park has 5× containers + PCS + MV. Container #3 is late but 4 others commission normally.</td><td><strong>Delayed container value only</strong> (20% of park capacity = 20% of order value). Remaining 80% proceeds to acceptance.</td></tr>
+<tr><td><strong>2 battery containers delayed</strong> out of 5</td><td>Containers #3 and #5 late; 3 others commission normally.</td><td><strong>40% of order value</strong> (2/5 Affected Capacity). Remaining 60% proceeds.</td></tr>
+<tr><td><strong>Partial → Full escalation</strong></td><td>Only 1 container delayed, but PCS minimum load requires ≥2 containers. Only 1 available → PCS cannot operate.</td><td><strong>Recalculated as Full Order Delay</strong> from date of escalation — entire order value becomes LD basis.</td></tr>
+</tbody>
+</table>
+
+<br>
+<strong>LIGHTHIEF POSITION:</strong> We accept Linyang's "delayed goods" basis <strong>provided</strong> the definitions above are incorporated verbatim. This ensures that where a delay to a single component (PCS, MV Skid) renders the entire order non-functional, the LD Value reflects the full economic impact to the Buyer. "Delayed goods" must mean "goods whose delay causes loss of commissioning revenue", not merely "goods physically late".
+</div>
+
+<div class="modified">
+<strong>9C.2 Availability Liquidated Damages:</strong>
+<table>
+<thead><tr><th>Category</th><th>Proposed (Lighthief)</th><th>Linyang Response</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Target Availability</td><td>97% annual</td><td>Needs formula definition</td><td>⚠️ Needs agreement</td></tr>
+<tr><td>LD Rate</td><td>€50/day/MWh</td><td><strong>€30/day/MWh</strong></td><td>⚠️ Modified (matches client docs)</td></tr>
+<tr><td>Maintenance Allowance</td><td>8 days/year</td><td><strong>10 days/year</strong> recommended</td><td>⚠️ Modified</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="confirmed">
+<strong>9C.3 Availability Exclusions (All Confirmed ✅):</strong>
+<ul>
+<li>Force Majeure — ✅</li>
+<li>Grid Outages (DSO/TSO) — ✅</li>
+<li>Curtailment — ✅</li>
+<li>Scheduled Maintenance (within allowance) — ✅</li>
+<li>Customer-Caused Downtime — ✅</li>
+</ul>
+</div>
+
+<div class="modified">
+<strong>9C.4 Total LD Caps:</strong>
+<table>
+<thead><tr><th>Category</th><th>Proposed</th><th>Linyang Response</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Delay LDs</td><td>10% of contract</td><td>10% of <strong>delayed goods</strong></td><td>⚠️ Modified</td></tr>
+<tr><td>Availability LDs</td><td>Uncapped</td><td>Uncapped</td><td>✅ Confirmed</td></tr>
+<tr><td><strong>Total Combined Cap</strong></td><td>15% of contract</td><td><strong>10% of contract</strong></td><td>🔴 Rejected</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="confirmed">
+<strong>9C.5 CLIENT-FACING LD CLAUSE — Required in All End-Customer EPC Contracts:</strong>
+<br><br>
+The following clause structure has been adopted in all Lighthief client EPC contracts (client_sales.md Section 8.4). Linyang must acknowledge that the upstream LD obligations support these downstream commitments:
+<br><br>
+<table>
+<thead><tr><th>Sub-Section</th><th>Client Contract Clause</th><th>Upstream Support Required</th></tr></thead>
+<tbody>
+<tr><td><strong>8.4.1</strong></td><td>Definitions: Critical Path Equipment (PCS, MV Skid, transformer) vs Non-Critical Path Equipment (battery containers)</td><td>Linyang to acknowledge classification of equipment types</td></tr>
+<tr><td><strong>8.4.1(d)</strong></td><td>Full Park Delay — delay to Critical Path Equipment blocks entire park commissioning → LDs on full park Contract Price</td><td>Linyang's upstream LD (on "delayed goods") must cover full order value when Critical Path item is delayed</td></tr>
+<tr><td><strong>8.4.1(e)</strong></td><td>Partial Delay — delay to Non-Critical Path Equipment → LDs on Affected Capacity % only</td><td>Aligns with Linyang's "delayed goods" basis for individual container delays</td></tr>
+<tr><td><strong>8.4.3(b)(iii)</strong></td><td>Escalation: Partial → Full Park Delay if remaining capacity falls below PCS minimum load</td><td>Linyang must accept recalculation to full order LD Value if partial delay causes total park shutdown</td></tr>
+<tr><td><strong>8.4.4</strong></td><td>LD Cap: 10% of Contract Price per park (aggregate of Full + Partial)</td><td>Linyang's 10% of delayed goods cap must support this downstream cap</td></tr>
+<tr><td><strong>8.4.7</strong></td><td>Extension of Time: day-for-day for excluded events; 7 Business Day notice required</td><td>Linyang must provide timely delay notifications to support Lighthief's client obligations</td></tr>
+</tbody>
+</table>
+<br>
+<strong>LIGHTHIEF POSITION:</strong> These definitions ensure "delayed goods" is interpreted to include the full economic impact of Critical Path delays, not merely the physical cost of the late item. Linyang's confirmation of the Section 9C.0 definitions above satisfies this requirement.
 </div>
 
 <hr>
@@ -591,7 +851,7 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 <strong>14.4 Buyer Cure Right and Deposit Return:</strong>
 <ul>
 <li>(a) If a Force Majeure event affecting the Seller's delivery obligations continues for a period exceeding <strong>sixty (60) days</strong>, the Buyer may, upon written notice, cancel the affected order without liability.</li>
-<li>(b) Upon such cancellation, the Seller shall <strong>refund the Buyer's advance payment (30% deposit)</strong> within thirty (30) days, less any documented costs for materials already procured and non-recoverable.</li>
+<li>(b) Upon such cancellation, the Seller shall <strong>refund the Buyer's advance payment (25% deposit)</strong> within thirty (30) days, less any documented costs for materials already procured and non-recoverable.</li>
 <li>(c) The Seller shall provide reasonable evidence of claimed non-recoverable costs within fourteen (14) days of the cancellation notice.</li>
 </ul>
 <strong>14.5 No Abuse of Force Majeure:</strong> Force Majeure events shall not be invoked for normal commercial risks including factory scheduling, routine material procurement, or internal production delays not caused by external events.
@@ -610,7 +870,7 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 <div class="comment">
 <strong>LIGHTHIEF COMMENT:</strong> Please insert Buyer notice address:
 <br><br>
-<strong>alexander.papacosta@lighthief.com; office@lighthief.com</strong>
+<strong>office@lighthief.com</strong>
 </div>
 
 <p class="accepted">LIGHTHIEF COMMENT: Section 15 otherwise accepted as drafted.</p>
@@ -705,9 +965,104 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 
 <hr>
 
+<h2>NEW SECTION: LTSA Rates <span class="status-tag tag-confirmed">✅ CONFIRMED</span></h2>
+
+<div class="confirmed">
+<strong>SECTION 21 – LONG-TERM SERVICE AGREEMENT (LTSA) RATES (RFI Confirmed — Feb 2026)</strong>
+<br><br>
+<strong>21.1 Tier C — Availability Guarantee + Premium O&amp;M:</strong>
+<table>
+<thead><tr><th>Component</th><th>Rate (€/MWh/year)</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>BESS Maintenance</td><td>€815.72</td><td>✅ Confirmed</td></tr>
+<tr><td>PCS + MVS Maintenance</td><td>€924.28</td><td>✅ Confirmed</td></tr>
+<tr><td><strong>TOTAL LTSA (Tier C)</strong></td><td><strong>€1,740.00</strong></td><td>✅ Confirmed</td></tr>
+</tbody>
+</table>
+<strong>21.2 Tier C Features (All Confirmed):</strong>
+<ul>
+<li>Remote Monitoring 24/7 — ✅</li>
+<li>Preventive Maintenance (Quarterly) — ✅</li>
+<li>Corrective Maintenance — ✅</li>
+<li>Spare Parts — ✅</li>
+<li>Availability LDs — €30/day/MWh (modified from €50)</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>NEW SECTION: Extended Warranty Costs <span class="status-tag tag-confirmed">✅ CONFIRMED BY RFI V3</span></h2>
+
+<div class="confirmed">
+<strong>SECTION 22 – EXTENDED WARRANTY PRICING (RFI V3 Response — Feb 2026)</strong>
+<br><br>
+<strong>22.1 Years 6–10 (✅ Confirmed — V1 &amp; V3):</strong>
+<table>
+<thead><tr><th>Component</th><th>Proposed (€/MWh/yr)</th><th>Linyang Confirmed</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>BESS</td><td>€913.92</td><td>€913.92</td><td>✅ Confirmed</td></tr>
+<tr><td>PCS + MVS</td><td>€747.76</td><td>€747.76</td><td>✅ Confirmed</td></tr>
+<tr><td><strong>Total Yr 6–10</strong></td><td><strong>€1,661.68</strong></td><td><strong>€1,661.68</strong></td><td>✅ Confirmed</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="confirmed">
+<strong>22.2 Years 11–15 (✅ CONFIRMED — RFI V3 resolved previous conflict):</strong>
+<table>
+<thead><tr><th>Component</th><th>Proposed (€/MWh/yr)</th><th>Linyang V3 Confirmed</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>BESS</td><td>€1,157.62</td><td><strong>€1,157.62</strong></td><td>✅ Confirmed (V3)</td></tr>
+<tr><td>PCS + MVS</td><td>€926.10</td><td><strong>€926.10</strong></td><td>✅ Confirmed (V3)</td></tr>
+<tr><td><strong>Total Yr 11–15</strong></td><td><strong>€2,083.72</strong></td><td><strong>€2,083.72</strong></td><td>✅ Confirmed (V3)</td></tr>
+</tbody>
+</table>
+<strong>✅ RESOLVED:</strong> The previous V1 conflict (€5,268.45 vs €2,083.72) has been resolved. Linyang V3 confirms the client-proposed rates for Years 11–15. This applies under 1 cycle/day condition, maximum 15 years from COD.
+</div>
+
+<div class="confirmed">
+<strong>22.3 Combined LTSA + Extended Warranty Summary (All Confirmed V3):</strong>
+<table>
+<thead><tr><th>Period</th><th>Tier C Maintenance</th><th>Warranty Add-On</th><th>Total €/MWh/Year</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Years 1–5</td><td>€1,740.00</td><td>Included (base warranty)</td><td><strong>€1,740.00</strong></td><td>✅ Confirmed</td></tr>
+<tr><td>Years 6–10</td><td>€1,740.00</td><td>+€1,661.68</td><td><strong>€3,401.68</strong></td><td>✅ Confirmed</td></tr>
+<tr><td>Years 11–15</td><td>€1,740.00</td><td>+€2,083.72</td><td><strong>€3,823.72</strong></td><td>✅ Confirmed (V3)</td></tr>
+<tr><td>Years 16–20</td><td colspan="3" style="text-align:center;color:var(--gray-400);">Not available — maximum warranty extension is 15 years from COD</td><td>❌ N/A</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="confirmed">
+<strong>22.4 Performance Bond — Corporate Guarantee (5%):</strong>
+<br><br>
+The Performance Bond is structured as a <strong>5% Bank Guarantee</strong> (corporate guarantee, not parent company backed). Linyang Energy (SHA: 601222) does <strong>not</strong> guarantee obligations of the subsidiary. The bond is issued 1 month before first delivery, valid until warranty start date. Extension is acceptable if 100% of contract value has been received.
+<br><br>
+<strong>Note:</strong> No parent company backing is available. The corporate guarantee is issued by Linyang's operating entity through an international bank acceptable in Cyprus/EU.
+</div>
+
+<div class="confirmed">
+<strong>22.4 Spares Alternative (✅ Confirmed):</strong>
+<br>
+Upfront spares: <strong>€1,000–1,250/MWh</strong> — recommended as cost-effective alternative to extended warranty beyond Year 10.
+</div>
+
+<hr>
+
 <h2>Attachment: Payment and Delivery Date Plan</h2>
 
-<p><strong>Payment:</strong> [To be completed per project]</p>
+<div class="confirmed">
+<strong>Payment Milestones (RFI Confirmed — Feb 2026):</strong>
+<table>
+<thead><tr><th>Milestone</th><th>Percentage</th><th>Trigger</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>(a) Advance Payment</td><td>25%</td><td>Within 7 days of contract effectiveness</td><td>✅ Confirmed</td></tr>
+<tr><td>(b) Ready to Ship (Ex-Works)</td><td>50%</td><td>Commodities ready for shipment</td><td>✅ Confirmed</td></tr>
+<tr><td>(c) Arrival on Site (DAP)</td><td>20%</td><td>Commodities arrive on site</td><td>✅ Confirmed</td></tr>
+<tr><td>(d) SAT Completion</td><td>5%</td><td>Successful completion of SAT / PAC</td><td>✅ Confirmed</td></tr>
+</tbody>
+</table>
+</div>
 
 <hr>
 
@@ -720,123 +1075,291 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 <th>Current</th>
 <th>Required Change</th>
 <th>Priority</th>
+<th>RFI Status (Feb 2026)</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>NEW</td>
-<td>Missing</td>
-<td>Add Subordination to Distribution Agreement (Section 1A)</td>
+<tr style="background:#ecfdf5">
+<td>Section 6</td>
+<td>50%/50% payment</td>
+<td>Change to 25%/50%/20%/5% milestones</td>
 <td class="priority-high">🔴 CRITICAL</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED</span></td>
+</tr>
+<tr style="background:#ecfdf5">
+<td>Section 8</td>
+<td>—</td>
+<td>5-year warranty, SOH guarantees (85%/79.58%/70%)</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED</span></td>
+</tr>
+<tr style="background:#ecfdf5">
+<td>NEW — 9B.1</td>
+<td>Missing</td>
+<td>Advance Payment Guarantee (100% BG)</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED</span></td>
+</tr>
+<tr style="background:#ecfdf5">
+<td>NEW — 21</td>
+<td>Missing</td>
+<td>LTSA Tier C — €1,740/MWh/year</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED</span></td>
+</tr>
+<tr style="background:#ecfdf5">
+<td>NEW — 22.1</td>
+<td>Missing</td>
+<td>Extended Warranty Yr 6–10 — €1,661.68/MWh/yr</td>
+<td class="priority-medium">🟡 MEDIUM</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED</span></td>
+</tr>
+<tr style="background:#ecfdf5">
+<td>NEW — 9B.3</td>
+<td>Missing</td>
+<td>Product Liability Insurance €5M (AXA)</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED</span></td>
+</tr>
+<tr style="background:#fffbeb">
+<td>Section 8</td>
+<td>8,000 cycles</td>
+<td>Cycle life: 7,000 cycles @ 70% EOL, 90% DOD</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-modified">⚠️ MODIFIED</span></td>
+</tr>
+<tr style="background:#fffbeb">
+<td>NEW — 9B.2</td>
+<td>10% bond</td>
+<td>Performance Bond: 5% only, no parent backing</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-modified">⚠️ MODIFIED</span></td>
+</tr>
+<tr style="background:#fffbeb">
+<td>NEW — 9C.1</td>
+<td>% of contract</td>
+<td>Delay LDs: 0.1%/0.15%/0.2% of <strong>LD Value</strong> — Full Order Delay (Critical Path) = full order value; Partial Delay = delayed goods only</td>
+<td class="priority-high">🔴 AGREED WITH DEFINITIONS</td>
+<td><span class="status-tag tag-modified">⚠️ MODIFIED</span></td>
+</tr>
+<tr style="background:#fffbeb">
+<td>NEW — 9C.4</td>
+<td>15% combined cap</td>
+<td>Total LD cap: 10% of contract (reduced from 15%)</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-modified">⚠️ MODIFIED</span></td>
+</tr>
+<tr style="background:#f0fff0">
+<td>NEW — 22.2</td>
+<td>€2,084/MWh/yr</td>
+<td>Extended Warranty Yr 11–15: €2,083.72/MWh/yr — CONFIRMED (V3)</td>
+<td class="priority-medium">✅ RESOLVED</td>
+<td><span class="status-tag tag-confirmed">✅ CONFIRMED V3</span></td>
+</tr>
+<tr style="background:#fff0f0">
+<td>Section 8</td>
+<td>SOH remedy incl.</td>
+<td>SOH remedy: service/labor costs NOT included</td>
+<td class="priority-high">🔴 CRITICAL</td>
+<td><span class="status-tag tag-modified">⚠️ MAJOR CONFLICT</span></td>
+</tr>
+<tr>
+<td>NEW — 1A</td>
+<td>Missing</td>
+<td>Add Subordination to Distribution Agreement</td>
+<td class="priority-high">🔴 CRITICAL</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 4/5</td>
 <td>CIF Gdańsk</td>
 <td>Change to CIF Limassol, Cyprus</td>
 <td class="priority-high">🔴 CRITICAL</td>
-</tr>
-<tr>
-<td>Section 6</td>
-<td>50%/50% payment</td>
-<td>Change to 30%/60%/10% milestones</td>
-<td class="priority-high">🔴 CRITICAL</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 6</td>
 <td>Missing</td>
 <td>Add End-Customer Dependency clause</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 8</td>
 <td>30-day warranty start</td>
 <td>Change to 6 months from shipment</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 8</td>
 <td>Missing</td>
 <td>Add Coastal Installation / C5 Enclosure</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 8</td>
 <td>Missing</td>
 <td>Add Manufacturing Defect Carve-Out for warranty cap</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 9</td>
 <td>Missing</td>
 <td>Add Manufacturing Defect Carve-Out for liability cap</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 12</td>
 <td>Polish law, Warsaw arbitration</td>
 <td>Change to Singapore law, SIAC arbitration</td>
 <td class="priority-high">🔴 CRITICAL</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 12</td>
 <td>Missing</td>
 <td>Add Cyprus Carve-Out for interim relief</td>
 <td class="priority-high">🔴 HIGH</td>
-</tr>
-<tr>
-<td>Section 12</td>
-<td>Missing</td>
-<td>Add three (3) arbitrators</td>
-<td class="priority-medium">🟡 MEDIUM</td>
-</tr>
-<tr>
-<td>Section 12</td>
-<td>Missing</td>
-<td>Add English Prevails clause</td>
-<td class="priority-medium">🟡 MEDIUM</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
 <td>Section 14</td>
 <td>Missing</td>
 <td>Add Force Majeure Cure Period (60 days)</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-pending">🔴 PENDING</span></td>
 </tr>
 <tr>
-<td>Section 14</td>
+<td>NEW — 5A</td>
 <td>Missing</td>
-<td>Add No Abuse of Force Majeure</td>
+<td>Add Installation Responsibilities</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-new">➕ NEW</span></td>
+</tr>
+<tr>
+<td>NEW — 9A</td>
+<td>Missing</td>
+<td>Add Indemnities</td>
+<td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-new">➕ NEW</span></td>
+</tr>
+<tr>
+<td>NEW — 18</td>
+<td>Missing</td>
+<td>Add Pre-Shipment Inspection</td>
 <td class="priority-medium">🟡 MEDIUM</td>
+<td><span class="status-tag tag-new">➕ NEW</span></td>
 </tr>
 <tr>
-<td>NEW</td>
+<td>NEW — 19</td>
 <td>Missing</td>
-<td>Add Installation Responsibilities (Section 5A)</td>
+<td>Add Data Protection (GDPR)</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-new">➕ NEW</span></td>
 </tr>
 <tr>
-<td>NEW</td>
+<td>NEW — 20</td>
 <td>Missing</td>
-<td>Add Pre-Shipment Inspection (Section 18)</td>
-<td class="priority-medium">🟡 MEDIUM</td>
-</tr>
-<tr>
-<td>NEW</td>
-<td>Missing</td>
-<td>Add Data Protection (Section 19)</td>
+<td>Add Anti-Bribery / Compliance</td>
 <td class="priority-high">🔴 HIGH</td>
+<td><span class="status-tag tag-new">➕ NEW</span></td>
 </tr>
-<tr>
-<td>NEW</td>
-<td>Missing</td>
-<td>Add Anti-Bribery/Compliance (Section 20)</td>
-<td class="priority-high">🔴 HIGH</td>
+</tbody>
+</table>
+
+<hr>
+
+<h2>ANNEX: RFI CONFIRMED TERMS — February 2026</h2>
+
+<p>The following terms were confirmed by Linyang (via Klaudia / Solarfun Renewable Energy Poland) in the RFI V1 Answers response received February 2026. These terms should be incorporated into the final Sales Contract.</p>
+
+<h3>Confirmed Without Modification ✅</h3>
+<table>
+<thead><tr><th>#</th><th>Term</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Payment Terms</td><td>25% advance / 50% ex-works / 20% DAP / 5% SAT</td></tr>
+<tr><td>2</td><td>Standard Warranty</td><td>5 years from COD (per project)</td></tr>
+<tr><td>3</td><td>SOH Year 5</td><td>≥85%</td></tr>
+<tr><td>4</td><td>SOH Year 10</td><td>≥79.58%</td></tr>
+<tr><td>5</td><td>SOH Year 15</td><td>≥70%</td></tr>
+<tr><td>6</td><td>PCS Efficiency</td><td>≥98% at rated power</td></tr>
+<tr><td>7</td><td>System RTE</td><td>≥87% at POC (MV side, excl. AUX)</td></tr>
+<tr><td>8</td><td>LTSA Tier C Total</td><td>€1,740/MWh/year (BESS €815.72 + PCS/MVS €924.28)</td></tr>
+<tr><td>9</td><td>Extended Warranty Yr 6–10</td><td>€1,661.68/MWh/year</td></tr>
+<tr><td>10</td><td>APG</td><td>100% bank guarantee, international bank</td></tr>
+<tr><td>11</td><td>Product Liability Insurance</td><td>€5M via AXA</td></tr>
+<tr><td>12</td><td>OEM Warranty Reserve</td><td>1.9% (on Linyang books)</td></tr>
+<tr><td>13</td><td>Claim Response Time</td><td>48 hours (excl. weekends/holidays)</td></tr>
+<tr><td>14</td><td>Availability Exclusions</td><td>Force Majeure, Grid, Curtailment, Maint., Customer-caused</td></tr>
+<tr><td>15</td><td>Upfront Spares Option</td><td>€1,000–1,250/MWh</td></tr>
+</tbody>
+</table>
+
+<h3>Modified by Linyang ⚠️</h3>
+<table>
+<thead><tr><th>#</th><th>Term</th><th>Lighthief Proposed</th><th>Linyang Response</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cycle Life</td><td>≥8,000 cycles at 1C</td><td>7,000 cycles @ 70% EOL, 90% DOD</td><td>Moderate — acceptable</td></tr>
+<tr><td>2</td><td>Extended Warranty Max</td><td>20 years</td><td>15 years (1 cycle/day condition)</td><td>Moderate — acceptable</td></tr>
+<tr><td>3</td><td>Performance Bond</td><td>10% of TCV</td><td>5% of TCV, no parent backing</td><td>High — reduced protection</td></tr>
+<tr><td>4</td><td>Delay LDs Basis</td><td>% of contract value</td><td>% of delayed goods only</td><td>High — reduced protection</td></tr>
+<tr><td>5</td><td>Total LD Cap</td><td>15% of contract</td><td>10% of contract</td><td>High — reduced protection</td></tr>
+<tr><td>6</td><td>Availability LD Rate</td><td>€50/day/MWh</td><td>€30/day/MWh</td><td>Low — matches client docs</td></tr>
+<tr><td>7</td><td>Maintenance Allowance</td><td>8 days/year</td><td>10 days/year</td><td>Low — acceptable</td></tr>
+</tbody>
+</table>
+
+<h3>Critical Conflicts 🔴 Requiring Resolution</h3>
+<table>
+<thead><tr><th>#</th><th>Issue</th><th>Client-Facing Doc</th><th>Linyang Position</th><th>Required Action</th></tr></thead>
+<tbody>
+<tr style="background:#f0fff0">
+<td>1</td>
+<td><strong>Extended Warranty Yr 11–15 BESS</strong></td>
+<td>€1,157/MWh/yr</td>
+<td><strong>€1,157.62/MWh/yr — ✅ CONFIRMED (V3)</strong></td>
+<td>✅ Resolved — V3 confirms client rates</td>
 </tr>
-<tr>
-<td>NEW</td>
-<td>Missing</td>
-<td>Add Indemnities (Section 9A)</td>
-<td class="priority-high">🔴 HIGH</td>
+<tr style="background:#fff0f0">
+<td>2</td>
+<td><strong>SOH Remedy Costs</strong></td>
+<td>Included under warranty</td>
+<td>Service/labor NOT included</td>
+<td>Clarify scope, price separately</td>
 </tr>
+<tr style="background:#fff0f0">
+<td>3</td>
+<td><strong>Performance Bond — Corporate Guarantee</strong></td>
+<td>10% with parent backing</td>
+<td>5% bank guarantee (corporate), no parent backing</td>
+<td>Accept 5% corporate guarantee</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Open Items — Awaiting Linyang Response</h3>
+<table>
+<thead><tr><th>#</th><th>Item</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Subordination to Distribution Agreement (Section 1A)</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>2</td><td>CIF Limassol amendment (Section 4/5)</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>3</td><td>Warranty commencement — 6 months from shipment</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>4</td><td>Coastal / C5 Enclosure provision</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>5</td><td>Manufacturing Defect Carve-Out (warranty + liability cap)</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>6</td><td>End-Customer Dependency clause</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>7</td><td>Singapore law / SIAC arbitration</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>8</td><td>Force Majeure cure period &amp; deposit return</td><td>Proposed — pending acceptance</td></tr>
+<tr><td>9</td><td>Installation Responsibilities (Section 5A)</td><td>New section — pending acceptance</td></tr>
+<tr><td>10</td><td>Indemnities (Section 9A)</td><td>New section — pending acceptance</td></tr>
+<tr><td>11</td><td>Pre-Shipment Inspection (Section 18)</td><td>New section — pending acceptance</td></tr>
+<tr><td>12</td><td>Data Protection / GDPR (Section 19)</td><td>New section — pending acceptance</td></tr>
+<tr><td>13</td><td>Anti-Bribery / Compliance (Section 20)</td><td>New section — pending acceptance</td></tr>
+<tr><td>14</td><td>Availability formula definition for 863.5 MWh</td><td>Needs formula agreement</td></tr>
+<tr><td>15</td><td>SOH remedy timeline scope (120 days)</td><td>Needs scope clarification</td></tr>
 </tbody>
 </table>
 
@@ -844,7 +1367,9 @@ The warranty shall apply where the Commodities have been installed by the SELLER
 
 <div class="header-info">
 <strong>Document prepared by:</strong> Lighthief Cyprus Ltd<br>
-<strong>Date:</strong> January 2026
+<strong>Original date:</strong> January 2026<br>
+<strong>Updated:</strong> February 2026 — incorporating Linyang RFI V1 Answers<br>
+<strong>Contact:</strong> office@lighthief.com
 </div>
 
 </body>

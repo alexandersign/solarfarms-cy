@@ -5,14 +5,19 @@
 
 ## DOCUMENTS RECEIVED (PCS+SKID+Transformer Folder)
 
-### 1. PCS Technical Specifications
+### 1. PCS Technical Specifications — By Tier
 
-| Document | Content Summary | RFI Question Answered |
-|----------|-----------------|----------------------|
-| **BCS1000K~1250K-C-HUD Series.pdf** | Full datasheet: 1000kW/1250kW specs, efficiency ≥99%, IP65, EN50549-2 compliance | ✅ E1: PCS specs confirmed |
-| **BCS10000K-C-HUD T8.pdf** | 10MW containerized PCS+Transformer specs, 0.69/35kV ratio | ✅ Large system specs |
-| **Copy of BCS8000K~10000K-C-HUD T8--20251215.pdf** | Updated 8-10MW specs (Dec 2025) | ✅ Latest large system specs |
-| **Copy of BCS1250K-C-HUD Series -250828.pdf** | Updated 1.25MW specs (Aug 2025) | ✅ Latest 1.25MW specs |
+| Document | Tier | MW Range | Content Summary | RFI Question Answered |
+|----------|:----:|:--------:|-----------------|----------------------|
+| **BCS1000~1250K-C-HUD T1.pdf** | T1 | 1–1.25 MW | Full datasheet for BCS1000K/1250K containerized PCS | ✅ Q26: 1MW & 1.25MW skid specs |
+| **BCS1000K~1250K-C-HUD Series.pdf** | T1 | 1–1.25 MW | Detailed specs: efficiency ≥99%, IP65, EN50549-2 compliance | ✅ E1: PCS specs confirmed |
+| **Copy of BCS1250K-C-HUD Series -250828.pdf** | T1 | 1.25 MW | Updated 1.25MW specs (Aug 2025) | ✅ Latest 1.25MW specs |
+| **BCS2000K-C-HUD-T2 Datasheet .pdf** | T2 | 2 MW | Full datasheet for BCS2000K containerized PCS | ✅ Q26: 2MW skid specs |
+| **BCS4000K-C-HUD T4--20250827.pdf** | T4 | 4 MW | Full datasheet for BCS4000K containerized PCS (Aug 2025) | ✅ Q26: 4MW skid specs |
+| **BCS10000K-C-HUD T8.pdf** | T8 | 8–10 MW | 10MW containerized PCS+Transformer specs, 0.69/35kV ratio | ✅ Q25: Large system specs |
+| **Copy of BCS8000K~10000K-C-HUD T8--20251215.pdf** | T8 | 8–10 MW | Updated 8-10MW specs (Dec 2025) | ✅ Latest large system specs |
+
+> **Coverage: COMPLETE.** Only 4 MV skid models exist: T1, T2, T4, T8. All datasheets received. PCS units are 1.00MW or 1.25MW; all park MW sizes are achieved by combining skids with the appropriate number of PCS units (e.g. 5MW = T4 skid + 4× 1.25MW PCS).
 
 ### 2. Efficiency & Performance Data
 
@@ -81,7 +86,7 @@
 | C1: Frequency Response Curves | EN 50549-2 | ✅ **AVAILABLE** - FRT characteristics document |
 | C1: IEC 60870-5-104 Point List | SCADA | ✅ **AVAILABLE** - IEC104 Point List Excel |
 | C1: Protection Settings Guide | - | ❌ Still Missing |
-| C2: MV Skid Datasheets (all sizes) | Multiple | ⚠️ **PARTIAL** - Only 10MW available |
+| C2: MV Skid Datasheets (all sizes) | Multiple | ✅ **COMPLETE** - All 4 skid models (T1, T2, T4, T8) received. Park MW sizes use combinations of skids + 1.00/1.25MW PCS units. |
 | C2: MV Transformer Datasheets | All sizes | ⚠️ **PARTIAL** - Only 10MVA available |
 
 ### Section E: PCS Documentation
@@ -125,7 +130,7 @@
 1. **A1: MV Equipment Brand/Model Names** - Not in any document
 2. **B1-B7: All Commercial Terms** - No commercial docs
 3. **C1: Protection Settings Guide** - Not available
-4. **C2: Smaller MV Skid Datasheets** (1-8MW) - Not available
+4. ~~**C2: MV Skid Datasheets**~~ — ✅ RESOLVED. Only 4 skid models exist (T1/T2/T4/T8), all received. Park MW sizes use PCS count combinations.
 5. **C2: Smaller Transformer Datasheets** - Not available
 6. **C3: FAT/SAT Procedures** - Not available
 7. **E1: Installation/Commissioning Manuals** - Not available

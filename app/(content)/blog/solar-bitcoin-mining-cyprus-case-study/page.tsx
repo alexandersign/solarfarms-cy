@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { 
   Calendar, 
   Clock, 
@@ -41,6 +42,16 @@ export const metadata: Metadata = {
 export default function SolarBitcoinMiningCaseStudyPage() {
   return (
     <article className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Solar Bitcoin Mining in Cyprus: 5MW Case Study with BESS Analysis",
+        "author": { "@type": "Person", "name": "Alexander Papacosta" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-01-08",
+        "description": "Real-world case study: How a 5MW Cyprus solar farm can generate additional revenue through Bitcoin mining. Analysis with and without BESS, off-grid solutions, and 8% tax advantage.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/solar-bitcoin-mining-cyprus-case-study"
+      }} />
       {/* Hero Section */}
       <section className="relative section-padding bg-gradient-to-br from-orange-900 via-amber-900 to-yellow-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">

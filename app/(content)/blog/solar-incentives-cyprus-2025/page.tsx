@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Calendar, User, Clock, Euro, Gift, TrendingUp, FileText, Globe, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -150,6 +151,16 @@ const financialBenefits = [
 export default function SolarIncentivesCyprus2025Article() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "2025 Solar Incentives in Cyprus | Government Support for Solar Farms",
+        "author": { "@type": "Organization", "name": "Lighthief Cyprus Policy Team" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-09-11",
+        "description": "Complete guide to 2025 solar incentives in Cyprus. Government support, EU funding, tax benefits, and policy updates for solar farm investments.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/solar-incentives-cyprus-2025"
+      }} />
       {/* Article Header */}
       <section className="section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50">
         <div className="container">

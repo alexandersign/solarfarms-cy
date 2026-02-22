@@ -56,7 +56,7 @@ Lighthief operates as a **dedicated BESS EPC contractor and O&M service provider
 
 | Metric | Value |
 |--------|-------|
-| **Total Capacity** | 863.5 MWh |
+| **Total Capacity** | 881.78 MWh |
 | **Total Parks** | 51 |
 | **Districts** | Famagusta, Larnaca, Limassol, Nicosia, Paphos |
 | **Total EPC Contract Value (Portfolio)** | **~€92–104 Million** |
@@ -77,7 +77,7 @@ Lighthief operates as a **dedicated BESS EPC contractor and O&M service provider
 | **TBC** | 18 | 183.5 | €23,935,922 | €92,034,037 | 100% |
 | **TOTAL** | **42+** | **771.5+** | **€92,034,037** | — | — |
 
-> **Note:** 42 parks with confirmed pricing shown above. Remaining ~9 parks (~92 MWh) have incomplete pricing data. Full portfolio is 51 parks / 863.5 MWh / ~€104M.
+> **Note:** 42 parks with confirmed pricing shown above. Remaining ~9 parks (~92 MWh) have incomplete pricing data. Full portfolio is 51 parks / 881.78 MWh / ~€104M.
 
 ### 2.3 Peak Construction Exposure by Quarter
 
@@ -122,7 +122,7 @@ Lighthief operates as a **dedicated BESS EPC contractor and O&M service provider
 | Group 5 | G5 | 5 | 49 |
 | Group 6 | G6 | 3 | 15 |
 | Other SPVs | Various | 25 | ~357.5 |
-| **Total** | — | **51** | **~863.5** |
+| **Total** | — | **51** | **~881.78** |
 
 > **Note:** Individual client and SPV names are redacted. Lighthief and Linyang are the only named parties in this document.
 
@@ -227,7 +227,7 @@ Lighthief operates as a **dedicated BESS EPC contractor and O&M service provider
 | **Manufacturing Defect Indemnity** | Linyang indemnifies Lighthief for all manufacturing defects |
 | **Technical Support SLA** | Critical: 4 hrs response, 5 days on-site |
 | **Spare Parts Warehouse** | 950 m² in Poland |
-| **Training** | 5-day initial + quarterly webinars + annual refresher |
+| **Training** | 3-week initial training in Poland for Engineers + quarterly webinars + annual refresher |
 | **Governing Law** | Singapore (SIAC arbitration) |
 
 ### Key Insurance Implication
@@ -304,7 +304,7 @@ Lighthief is **indemnified by Linyang** for all claims arising from manufacturin
 | **Tier A** | Basic monitoring + bi-annual maintenance | Remote monitoring 24/7 |
 | **Tier B** | Tier A + corrective maintenance, PCS/MVS service | Emergency response |
 | **Tier C** | Tier B + **97% Availability Guarantee** | Local team, spare parts, Availability LDs |
-| **Tier D** | Tier C + **SOH Performance Warranty** | Cell augmentation, module replacement |
+| ~~Tier D~~ | *Not offered — Tier C is the highest service tier* | — |
 
 > **Standard offering: Tier C** — 97% annual availability guarantee with dedicated local service team and spare parts warehouse.
 
@@ -335,7 +335,7 @@ Lighthief is **indemnified by Linyang** for all claims arising from manufacturin
 - Third-party EMS or software failures
 - Periods when BESS is not dispatched
 
-### 7.4 SOH Performance Warranty (Tier D — Premium)
+### 7.4 SOH Performance Warranty (Not Offered)
 
 **Guaranteed Minimum State of Health (1 cycle/day):**
 
@@ -384,7 +384,7 @@ The following guarantees have been formally confirmed by Linyang via RFI (Februa
 | Product Liability Insurance | €5,000,000 (AXA) | ✅ Confirmed |
 | OEM Warranty Reserve | ~1.9% of system value/year | ✅ Confirmed |
 | Advance Payment Guarantee | 100% of advance, bank guarantee | ✅ Confirmed |
-| Performance Bond | 5% bank guarantee | ✅ Confirmed |
+| Performance Bond | 5% corporate guarantee (bank) | ✅ Confirmed |
 | Availability Exclusions | FM, grid, curtailment, client-caused | ✅ Confirmed |
 | SOH Remedy — Augmentation | Available | ✅ Confirmed |
 | SOH Remedy — Module Replacement | Available | ✅ Confirmed |
@@ -395,7 +395,9 @@ The following guarantees have been formally confirmed by Linyang via RFI (Februa
 | Item | Originally Proposed | Linyang Confirmed | Note |
 |------|-------------------|-------------------|------|
 | Extended Warranty Max | 20 years | **15 years** (1 cycle/day) | OEM cap at 15 years |
-| Performance Bond | 10% | **5%** | Bank guarantee form |
+| Extended Warranty Yr 6-10 | €1,661.68/MWh/yr | **€1,661.68/MWh/yr** | ✅ Confirmed (V1 & V3) |
+| Extended Warranty Yr 11-15 | €2,083.72/MWh/yr | **€2,083.72/MWh/yr** | ✅ Confirmed (V3 — previous V1 conflict resolved) |
+| Performance Bond | 10% | **5% corporate guarantee** | Bank issued, no parent backing |
 | Delay LD Basis | % of contract value | % of **delayed goods** value | Narrower scope |
 | Availability LD Rate | €50/day/MWh | **€30/day/MWh** | Lower rate confirmed |
 | SOH Remedy Costs | Full coverage | **Components only** — service/labour/logistics excluded | Lighthief bears service costs |
@@ -413,7 +415,7 @@ Client groups submitted the following requests through the legal RFI process. Th
 | 2 | **Performance Bond** (held until SAT) | ✅ 5% retention until FAC + 5% Linyang bond | ✅ 5% bank guarantee |
 | 3 | **Delay Liquidated Damages** | ✅ 0.1–0.2%/day, capped at 10% | Lighthief bears risk |
 | 4 | **Availability Warranty ≥ 97%** | ✅ Tier C LTSA with LDs | ✅ Backed by Linyang LTSA |
-| 5 | **SOH/Degradation Guarantee** | ✅ Tier D LTSA — augmentation + replacement | ✅ OEM warranty reserve (~1.9%) |
+| 5 | **SOH/Degradation Guarantee** | ✅ Tier C LTSA — augmentation + replacement | ✅ OEM warranty reserve (~1.9%) |
 | 6 | **Step-In Rights** for key suppliers (Eve, Kehua) | ⚠️ Tripartite structure available for projects > €2M | ✅ €5M product liability survives |
 | 7 | **Parent Company Backing** | ❌ Not available from Linyang parent | — |
 | 8 | **Warranty Reserve Fund** (escrow) | ❌ Not available — OEM holds reserve on own books | ~1.9% reserve confirmed |
@@ -484,7 +486,7 @@ Client groups submitted the following requests through the legal RFI process. Th
 │  │  │  ✔ 5% retention until Final Acceptance                      │     │   │
 │  │  │  ✔ 24/7 monitoring + dedicated field team (5 engineers)      │     │   │
 │  │  │  ✔ Local spare parts warehouse (Cyprus)                     │     │   │
-│  │  │  ✔ SOH guarantee with augmentation (Tier D, optional)       │     │   │
+│  │  │  ✔ SOH guarantee with augmentation (not currently offered)       │     │   │
 │  │  │  ✔ €1M general commercial liability insurance                │     │   │
 │  │  │  ✔ €1M professional indemnity insurance                     │     │   │
 │  │  │  ✔ CAR insurance (full contract value during construction)   │     │   │
@@ -541,12 +543,18 @@ Client groups submitted the following requests through the legal RFI process. Th
 │  LIGHTHIEF (EPC / O&M)                                                      │
 │  ├── General Commercial Liability: €1,000,000                               │
 │  ├── Professional Indemnity:       €1,000,000                               │
-│  ├── CAR Insurance:                Full contract value (construction phase)  │
-│  ├── Employer's Liability:         Per Cyprus law                           │
-│  └── [Recommended] Marine Cargo:   €85M annual shipments                    │
+│  ├── CAR Insurance (LEG3):        Full contract value (construction phase)  │
+│  ├── Delay in Start-Up (DSU):     12-month indemnity                        │
+│  ├── Inland Transit:              €2M per shipment (port to site)           │
+│  ├── Employer's Liability:        Per Cyprus law                            │
+│  ├── D&O + Legal Protection:      €2,000,000                               │
+│  ├── Environmental / Pollution:   €1,000,000                                │
+│  └── APG / Surety Bond Facility:  €15M aggregate                           │
 │         │                                                                   │
-│         │  Covers: EPC works, site operations, professional advice          │
+│         │  Covers: EPC works, site operations, professional advice,         │
+│         │          construction delays, inland transit, pollution events     │
 │         │  Does NOT cover: OEM defects (covered by Linyang above)           │
+│         │  Note: Marine cargo NOT required — CIF terms, Linyang insures     │
 │         ▼                                                                   │
 │  CLIENT SPV                                                                 │
 │  ├── Property/Asset Insurance:     Full BESS replacement value              │
@@ -697,11 +705,17 @@ The BESS risk profile supports LEG3 adoption:
 | 3 | Professional Indemnity (E&O) | €2M per claim / €5M aggregate | HIGH | €10,000–25,000 |
 | 4 | D&O + Directors Legal Protection | €2M + defence costs (non-eroding) | HIGH | €5,000–12,000 |
 | 5 | **CAR/EAR (with LEG3)** | **€50M any one project / €104M aggregate** | **HIGH** | **€150,000–300,000** |
-| 6 | Marine Cargo | €85M annual shipments (CIF China → Cyprus) | HIGH | €60,000–120,000 |
-| 7 | Cyber Liability | €500K | MEDIUM | €2,000–5,000 |
-| 8 | Product Liability (Lighthief scope) | €5M | MEDIUM | €5,000–10,000 |
-| 9 | Legal Expenses | €250K | MEDIUM | €2,000–4,000 |
-| — | **TOTAL ESTIMATE** | — | — | **€240,000–490,000** |
+| 6 | Delay in Start-Up (DSU) | 12-month indemnity | HIGH | €10,000–25,000 |
+| 7 | Inland Transit / Goods in Transit | €2M per shipment / €10M aggregate | HIGH | €5,000–12,000 |
+| 8 | APG / Surety Bond Facility | €15M aggregate | HIGH | €50,000–150,000 |
+| 9 | Product Liability (Lighthief scope) | €5M | MEDIUM | €5,000–10,000 |
+| 10 | Cyber Liability | €500K | MEDIUM | €2,000–5,000 |
+| 11 | Environmental / Pollution Liability | €1M per occurrence / €2M aggregate | MEDIUM | €3,000–8,000 |
+| 12 | Sabotage & Terrorism | Per CAR/EAR limits | MEDIUM | €5,000–15,000 |
+| 13 | Legal Expenses | €250K | MEDIUM | €2,000–4,000 |
+| — | **TOTAL ESTIMATE** | — | — | **€253,000–584,000** |
+
+> **Note:** Marine cargo insurance is **not required**. All equipment is purchased CIF Limassol (Incoterms® 2020) from Linyang — sea voyage insurance is the seller's responsibility under CIF terms.
 
 ### 14.2 CAR/EAR — Recommended Structure
 
@@ -717,16 +731,19 @@ The BESS risk profile supports LEG3 adoption:
 | **Premium Basis** | Deposit + adjustable based on declarations |
 | **Peak Exposure** | €41.8M (Q2 2026) |
 
-### 14.3 Marine Cargo Timeline
+### 14.3 Inland Transit Requirements
 
-| Delivery Period | Shipping Period | Equipment Value |
-|-----------------|-----------------|-----------------|
-| Q2 2026 | Q4 2025 – Q1 2026 | €29.4M |
-| Q3–Q4 2026 | Q1–Q2 2026 | €24.1M |
-| 2027 | Q3–Q4 2026 | €2.3M |
-| TBC | TBC | €23.9M |
+| Route | Frequency | Equipment Value per Shipment |
+|-------|-----------|----------------------------|
+| Port of Limassol → Famagusta district (7 parks) | ~15 shipments | €500K–€2M |
+| Port of Limassol → Nicosia district (30 parks) | ~40 shipments | €500K–€2M |
+| Port of Limassol → Limassol district (5 parks) | ~8 shipments | €500K–€2M |
+| Port of Limassol → Paphos district (3 parks) | ~5 shipments | €500K–€2M |
+| Port of Limassol → Larnaca district (2 parks) | ~3 shipments | €500K–€2M |
 
-**Route:** Shanghai/Ningbo (China) → Limassol (Cyprus). **Cargo:** BESS containers (~43 tonnes each), MV equipment, cables.
+**Cargo:** BESS containers (~43 tonnes each), MV SKID equipment, cables. **Transport:** Heavy haulage low-loader trucks.
+
+> **Note:** Marine cargo (China → Cyprus) is **not required** — covered by Linyang under CIF Incoterms® 2020.
 
 ### 14.4 Special Conditions for CAR/EAR
 
@@ -756,36 +773,44 @@ All subcontractors working on Lighthief projects must provide:
 | Public Liability | €10M | | | |
 | Professional Indemnity | €5M | | | |
 | D&O + Legal Protection | €2M + defence | | | |
-| CAR/EAR (LEG3) | €104M | | | |
-| Marine Cargo | €85M | | | |
-| Cyber Liability | €500K | | | |
+| CAR/EAR (LEG3) | €50M per project / €104M agg. | | | |
+| Delay in Start-Up (DSU) | 12-month indemnity | | | |
+| Inland Transit | €2M per shipment / €10M agg. | | | |
+| APG / Surety Bond Facility | €15M aggregate | | | |
 | Product Liability | €5M | | | |
+| Cyber Liability | €500K | | | |
+| Environmental / Pollution | €2M aggregate | | | |
+| Sabotage & Terrorism | Per CAR/EAR limits | | | |
 | Legal Expenses | €250K | | | |
 | **TOTAL** | — | **€** | — | — |
 
-**Package Discount Available?** ☐ Yes — ___% discount ☐ No
+**Package Discount Available?** ☐ Yes — ___% discount for combined construction folio program ☐ No
 
 ### 14.7 Requested Quote Packages
 
 **Package A: Minimum Contractual Requirements**
 - General Commercial Liability: €1,000,000
 - Professional Indemnity: €1,000,000
-- CAR (with LEG3): €5,000,000 annual aggregate
+- CAR (with LEG3): €50,000,000 per project
 - Employer's Liability: Per Cyprus law
+- Inland Transit: €2,000,000 per shipment
 
 **Package B: Recommended Full Coverage**
 - All Package A, PLUS:
-- Goods in Transit: €2,000,000
 - D&O + Legal Protection: €2,000,000
+- Delay in Start-Up (DSU): 12-month indemnity
+- APG / Surety Bond Facility: €15,000,000 aggregate
 - Cyber Liability: €500,000
-- Marine Cargo: €85,000,000
+- Legal Expenses: €250,000
 
 **Package C: Enhanced Coverage**
-- All Package B with increased limits:
-- General Commercial Liability: €2,000,000
-- Professional Indemnity: €2,000,000
+- All Package B with increased limits, PLUS:
+- General Commercial Liability: €5,000,000 per occurrence / €10,000,000 aggregate
+- Professional Indemnity: €2,000,000 per claim / €5,000,000 aggregate
 - CAR (with LEG3): €50M per project / €104M aggregate
 - Product Liability: €5,000,000
+- Environmental / Pollution Liability: €1,000,000
+- Sabotage & Terrorism: Per CAR/EAR limits
 
 ### 14.8 Documents Available for Underwriting
 
@@ -806,11 +831,12 @@ The following documents are available upon request:
 
 | Milestone | Date |
 |-----------|------|
-| Document Issued | 10 February 2026 |
-| Broker Questions Due | 17 February 2026 |
-| **Proposals Due** | **24 February 2026** |
-| Broker/Insurer Selection | 28 February 2026 |
-| Policy Inception | 1 March 2026 |
+| Document Originally Issued | 10 February 2026 |
+| **Document Revised** | **20 February 2026** |
+| Broker Questions Due | 7 March 2026 |
+| **Proposals Due** | **14 March 2026** |
+| Broker/Insurer Selection | 21 March 2026 |
+| Policy Inception | 1 April 2026 |
 
 ---
 
@@ -833,7 +859,7 @@ The following documents are available upon request:
 
 | Name | Role | Email |
 |------|------|-------|
-| **Alexander Papacosta** | Cyprus Director | alexander.papacosta@lighthief.com |
+| **Alexander Papacosta** | Cyprus Director | office@lighthief.com |
 
 **Lighthief Cyprus Ltd**
 28 October Avenue 249, Lophitis Business Center 1, Office 201

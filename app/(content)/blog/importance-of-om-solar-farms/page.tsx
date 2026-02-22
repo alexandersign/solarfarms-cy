@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Calendar, User, Clock, TrendingUp, Shield, AlertTriangle, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -71,6 +72,16 @@ const costOfPoorOM = [
 export default function OMImportanceArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why O&M is Critical for Solar Farm Success",
+        "author": { "@type": "Organization", "name": "Lighthief Cyprus Technical Team" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-09-11",
+        "description": "Discover why professional O&M services are essential for solar farm success. Learn how proper maintenance can boost ROI by 15% and extend asset life.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/importance-of-om-solar-farms"
+      }} />
       {/* Article Header */}
       <section className="section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50">
         <div className="container">

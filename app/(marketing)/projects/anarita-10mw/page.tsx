@@ -320,8 +320,7 @@ export default function Anarita10MWProjectPage() {
                     <span className="font-semibold text-blue-800">BESS Revenue Streams</span>
                   </div>
                   <ul className="space-y-1 text-sm text-blue-700">
-                    <li>• Curtailment recovery: ~€500k/year</li>
-                    <li>• Curtailment recovery at peak prices (€183/MWh avg, €161/MWh per discharge at 87.8% RTE): ~€400-600k/year</li>
+                    <li>• Curtailment recovery at peak prices (€183/MWh avg, €158/MWh per discharge at 86.32% AC-AC RTE): ~€500-600k/year</li>
                     <li>• Grid services potential: Additional upside</li>
                   </ul>
                 </div>

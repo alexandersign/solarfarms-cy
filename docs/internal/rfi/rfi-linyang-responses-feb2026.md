@@ -190,13 +190,11 @@ All exclusions confirmed:
 
 | Component | Proposed | Linyang Response | Difference |
 |-----------|----------|------------------|------------|
-| BESS | €1,157.62/MWh/year | 🔴 **€4,182.25/MWh/year** | +261% |
-| PCS + MVS | €926.10/MWh/year | 🔴 **€1,086.20/MWh/year** | +17% |
-| **Total Yr 11-15** | **€2,083.72/MWh/year** | 🔴 **€5,268.45/MWh/year** | **+153%** |
+| BESS | €1,157.62/MWh/year | ✅ **€1,157.62/MWh/year** | 0% — Confirmed (V3) |
+| PCS + MVS | €926.10/MWh/year | ✅ **€926.10/MWh/year** | 0% — Confirmed (V3) |
+| **Total Yr 11-15** | **€2,083.72/MWh/year** | ✅ **€2,083.72/MWh/year** | **Confirmed (V3)** |
 
-> **🔴 CRITICAL CONFLICT:** Years 11-15 warranty is **2.5x more expensive** than quoted to clients!
-> 
-> Client document shows €1,157/MWh/year for BESS (Yr 11-15), but Linyang quotes €4,182.25/MWh/year.
+> **✅ RESOLVED (RFI V3):** The previous V1 conflict (€5,268.45 vs €2,083.72) has been fully resolved. Linyang V3 confirms client-proposed rates for Years 11-15. The V1 rates of €4,182.25 (BESS) and €1,086.20 (PCS) are superseded.
 
 ### 7.3 Years 16-20 (New Information)
 
@@ -220,10 +218,10 @@ All exclusions confirmed:
 
 | # | Issue | Client Doc Says | Linyang Says | Impact |
 |---|-------|----------------|--------------|--------|
-| 1 | **Extended Warranty Yr 11-15 BESS** | €1,157/MWh/yr | €4,182.25/MWh/yr | **+261% cost** |
+| 1 | ~~**Extended Warranty Yr 11-15 BESS**~~ | €1,157/MWh/yr | ✅ €1,157.62/MWh/yr (V3) | **RESOLVED** |
 | 2 | **SOH Remedy Costs** | Included | Service/labor NOT included | **Hidden costs** |
-| 3 | **Performance Bond** | 5% TCV | 5% TCV but NO parent backing | Credit risk |
-| 4 | **Delay LDs Basis** | % of contract value | % of delayed goods only | Reduced protection |
+| 3 | **Performance Bond** | 5% TCV | 5% corporate guarantee (bank), no parent backing | Accepted |
+| 4 | **Delay LDs Basis** | % of contract value | % of LD Value (Critical Path / Partial definitions agreed) | Addressed |
 | 5 | **Total LD Cap** | 15% | 10% | Reduced protection |
 
 ### ⚠️ MODERATE - Should Clarify

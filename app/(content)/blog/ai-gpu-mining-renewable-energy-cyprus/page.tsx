@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { 
   Calendar, 
   Clock, 
@@ -43,6 +44,16 @@ export const metadata: Metadata = {
 export default function AIGPUMiningPage() {
   return (
     <article className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI GPU Mining with Renewable Energy in Cyprus: The Off-Grid Opportunity",
+        "author": { "@type": "Person", "name": "Alexander Papacosta" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-01-08",
+        "description": "How Cyprus solar parks can power AI compute infrastructure. Off-grid data centers, GPU mining economics, and the global AI processing power demand.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/ai-gpu-mining-renewable-energy-cyprus"
+      }} />
       {/* Hero Section */}
       <section className="relative section-padding bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">

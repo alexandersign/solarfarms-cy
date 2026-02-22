@@ -402,7 +402,7 @@ Lighthief Cyprus Ltd
 Lophitis Business Center 1, Office 201
 3035 Limassol, Cyprus
 
-📧 alexander.papacosta@lighthief.com
+📧 office@lighthief.com
 📱 +357 99 164 158
 
 ---

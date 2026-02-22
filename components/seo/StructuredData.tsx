@@ -41,7 +41,7 @@ export const organizationSchema = {
       "@type": "ContactPoint", 
       "telephone": "+357-99-164-158",
       "contactType": "sales",
-      "email": "alexander.papacosta@lighthief.com",
+      "email": "office@lighthief.com",
       "availableLanguage": ["English", "Greek"]
     },
     {

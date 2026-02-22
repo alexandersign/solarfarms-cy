@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -36,6 +37,16 @@ export const metadata: Metadata = {
 export default function CyprusCurtailmentBESSArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Cyprus Solar Curtailment Crisis 2025: How BESS Protects Your Investment ROI",
+        "author": { "@type": "Person", "name": "Alexander Papacosta" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-11-26",
+        "description": "Curtailment surged from 0% to 45.8% in 4 years. Learn how Battery Energy Storage Systems (BESS) can recover lost revenue and protect your solar investment ROI in Cyprus.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/cyprus-curtailment-crisis-bess-solution"
+      }} />
       {/* Hero */}
       <section className="section-padding bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
         <div className="container">
@@ -723,7 +734,7 @@ export default function CyprusCurtailmentBESSArticle() {
                 </Button>
               </div>
               <p className="mt-6 text-sm opacity-75">
-                Contact Alexander Papacosta: +357 99 164 158 | alexander.papacosta@lighthief.com
+                Contact Alexander Papacosta: +357 99 164 158 | office@lighthief.com
               </p>
             </div>
 

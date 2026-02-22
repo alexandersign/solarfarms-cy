@@ -7,20 +7,31 @@
 
 ---
 
-# BESS CIVIL WORKS COST ESTIMATE
-
-**Document Reference:** LCY-CIVIL-EST-001
-**Date:** January 2026
-**Purpose:** Estimate ground preparation costs for BESS installations in Cyprus
-**Status:** EXCLUDED FROM BASE EPC - Optional Extra Charge
+> ## ✅ CONFIRMED CIVIL WORKS RATE — 13 February 2026
+> **Kamil confirmed: €2,000 per MWh (flat rate)**  
+> **Scope:** Platforms, trenches, cabling labour (excluding cable cost), water trenches  
+> **Status:** NOW INCLUDED IN EPC — Spreadsheet column AJ updated  
+> **Portfolio total:** €1,763,560 (882 MWh × €2,000)  
+> **Previous estimate:** €4,000 per container platform (pads only) — SUPERSEDED  
+> **Margin impact:** Civil works cost of €1.76M included in v4 installed cost. Portfolio margin: 10.7% (v4 Final)
 
 ---
 
-## IMPORTANT: EXCLUSIONS & LIMITATIONS
+# BESS CIVIL WORKS COST ESTIMATE
 
-### Civil Works - EXCLUDED
-> Civil and ground works are **NOT INCLUDED** in the standard EPC quotation.
-> Available as optional extra at costs shown below.
+**Document Reference:** LCY-CIVIL-EST-001
+**Date:** January 2026 (Updated 13 February 2026)
+**Purpose:** Estimate ground preparation costs for BESS installations in Cyprus
+**Status:** ✅ INCLUDED IN EPC — Kamil confirmed €2,000/MWh
+
+---
+
+## IMPORTANT: CONFIRMED PRICING
+
+### Civil Works - NOW INCLUDED ✅
+> Civil works are **NOW INCLUDED** in the EPC turnkey price at **€2,000/MWh**.
+> Confirmed by Kamil, 13 February 2026.
+> Previous estimates below are retained for reference only.
 
 ### Cable Limitation - 50m Per Connection
 > The quoted EPC price includes cabling up to **50 meters per connection** only.
@@ -261,10 +272,7 @@ Civil Works = 882 × €70 = €61,740
 ### Material Availability
 | Material | Local Source | Import Required |
 |----------|--------------|-----------------|
-| Crusher run (5/10) | ✅ Local quarries | - |
-| Geotextile membrane | ⚠️ Limited | May need import |
-| A393 mesh | ✅ Local | - |
-| Concrete | ✅ Local batching | - |
+| Cru
 
 ### Regulatory Requirements
 From CyprusDSO.md §18 (Κ.Δ.Π. 15/2026):

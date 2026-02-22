@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Calendar, User, Clock, TrendingUp, Globe, Euro, Zap, Target } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -98,6 +99,16 @@ const competitiveAnalysis = [
 export default function CyprusMarketAnalysisArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Cyprus Solar Market Analysis 2025 | Investment Opportunities & Market Trends",
+        "author": { "@type": "Organization", "name": "Lighthief Cyprus Market Research" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-09-11",
+        "description": "Comprehensive analysis of Cyprus solar market in 2025. Government targets, investment opportunities, electricity rates, and why Cyprus leads EU solar potential.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/cyprus-solar-market-analysis-2025"
+      }} />
       {/* Article Header */}
       <section className="section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50">
         <div className="container">

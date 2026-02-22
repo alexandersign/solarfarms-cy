@@ -136,7 +136,7 @@ export default function MarketPage() {
                     In Cyprus, BESS currently generates revenue through <strong>curtailment recovery</strong> &mdash; 
                     storing solar energy that would otherwise be curtailed by the DSO, and discharging it 
                     at evening peak prices (&euro;183/MWh avg). Revenue per MWh discharged: <strong>&euro;160.67</strong> (charge 
-                    at &euro;0, discharge at peak, 87.8% round-trip efficiency).
+                    at &euro;0, discharge at peak, 86.32% AC-AC round-trip efficiency).
                   </p>
                   <p>
                     With <strong>29.4% midday curtailment rates</strong> (periods &le;&euro;50, 09&ndash;15) across Cyprus solar parks 
@@ -147,7 +147,7 @@ export default function MarketPage() {
                     <strong>Future upside:</strong> When legislation enables BESS participation in the 
                     Day-Ahead Market (DAM), additional arbitrage revenue from buying at midday prices 
                     (&euro;101/MWh) and selling at peak (&euro;183/MWh) &mdash; a spread of &euro;81.86/MWh 
-                    yielding <strong>&euro;71.87 net per MWh</strong> after 87.8% RTE &mdash; will create a further revenue stream.
+                    yielding <strong>&euro;70.66 net per MWh</strong> after 86.32% RTE &mdash; will create a further revenue stream.
                     Grid ancillary services represent additional future potential.
                   </p>
                 </div>

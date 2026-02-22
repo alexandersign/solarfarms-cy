@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Calendar, User, Clock, Shield, AlertTriangle, CheckCircle, TrendingDown, Umbrella, FileText } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -171,6 +172,16 @@ const mitigationStrategies = [
 export default function RiskMitigationSolarInvestmentsArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Risk Mitigation in Solar Farm Investments",
+        "author": { "@type": "Organization", "name": "Lighthief Cyprus Risk Management" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-09-11",
+        "description": "Comprehensive guide to managing risks in solar farm investments. Insurance, warranties, diversification strategies, and how to protect your renewable energy returns.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/risk-mitigation-solar-investments"
+      }} />
       {/* Article Header */}
       <section className="section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50">
         <div className="container">

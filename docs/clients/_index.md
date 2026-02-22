@@ -20,10 +20,10 @@
 
 | Metric | Value |
 |--------|-------|
-| **Total Clients** | 41 projects |
-| **Total PV Capacity** | 125 MW |
-| **Total BESS Power** | 206 MW |
-| **Total BESS Energy** | 739 MWh |
+| **Total Clients** | 51 projects (46 active + 5 Esperia 2028) |
+| **Total PV Capacity** | ~180 MW |
+| **Total BESS Power** | 249 MW |
+| **Total BESS Energy** | 881.78 MWh |
 
 ---
 
@@ -100,7 +100,7 @@
 | Client Price | €1,222,144 | €122.21 |
 | Non-Group Price | €1,368,801 | €136.88 |
 
-### Quotation Reference: LY202601271 (47 Projects - GROUP ORDER) ✅ UPDATED 27 JAN 2026
+### Quotation Reference: LY202601271 (51 Projects - GROUP ORDER) ✅ UPDATED 27 JAN 2026
 
 | Size Range | CIF €/kWh | Est. Installed €/kWh | Client €/kWh | Non-Group €/kWh |
 |------------|-----------|----------------------|--------------|-----------------|

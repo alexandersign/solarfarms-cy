@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BESS Financial Proposal — 7 MW / 20 MWh | Lighthief Cyprus</title>
+<style>
+  :root {
+    --primary: #1a365d;
+    --primary-light: #2b6cb0;
+    --accent: #ed8936;
+    --accent-dark: #c05621;
+    --green: #38a169;
+    --green-dark: #276749;
+    --red: #e53e3e;
+    --gray-50: #f7fafc;
+    --gray-100: #edf2f7;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e0;
+    --gray-500: #718096;
+    --gray-600: #4a5568;
+    --gray-700: #2d3748;
+    --gray-800: #1a202c;
+    --gray-900: #171923;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--gray-800);
+    line-height: 1.6;
+    background: #fff;
+    font-size: 14px;
+  }
+
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  /* PDF Export Bar */
+  .export-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+  .export-bar span { font-size: 13px; opacity: .8; }
+  .export-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .export-btn:hover { background: var(--accent-dark); }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 48px 0 40px;
+    margin-top: 48px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { font-size: 18px; opacity: .85; margin-bottom: 20px; }
+  .header-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px; opacity: .75; }
+  .header-meta a { color: #fff; text-decoration: underline; }
+  .logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .logo-dot { width: 40px; height: 40px; border-radius: 8px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: #fff; }
+
+  /* KPI Strip */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: -28px 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+  .kpi-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    text-align: center;
+  }
+  .kpi-card .value { font-size: 26px; font-weight: 800; color: var(--primary); }
+  .kpi-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-500); margin-top: 2px; }
+  .kpi-card.green .value { color: var(--green-dark); }
+  .kpi-card.accent .value { color: var(--accent-dark); }
+
+  /* Sections */
+  .section { margin: 36px 0; page-break-inside: avoid; }
+  .section h2 {
+    font-size: 20px; font-weight: 700; color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 6px; margin-bottom: 16px;
+  }
+  .section h3 { font-size: 16px; font-weight: 600; color: var(--gray-700); margin: 20px 0 10px; }
+  .section p { margin-bottom: 12px; color: var(--gray-700); }
+
+  /* Callout */
+  .callout {
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary-light);
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+  }
+  .callout.warn { border-left-color: var(--accent); background: #fffaf0; }
+  .callout.success { border-left-color: var(--green); background: #f0fff4; }
+  .callout.danger { border-left-color: var(--red); background: #fff5f5; }
+  .callout strong { color: var(--gray-900); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  thead th:not(:first-child) { text-align: right; }
+  tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  tbody td:not(:first-child) { text-align: right; }
+  tbody tr:nth-child(even) { background: var(--gray-50); }
+  tbody tr.highlight { background: #ebf8ff; font-weight: 600; }
+  tbody tr.total { background: var(--gray-100); font-weight: 700; border-top: 2px solid var(--gray-300); }
+  tbody tr.total td { padding: 10px 12px; }
+  .small-table { max-width: 600px; }
+  .mid-table { max-width: 780px; }
+
+  /* Comparison highlight */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .compare-card {
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid var(--gray-200);
+  }
+  .compare-card.bad { border-color: var(--red); background: #fff5f5; }
+  .compare-card.good { border-color: var(--green); background: #f0fff4; }
+  .compare-card h4 { font-size: 14px; margin-bottom: 8px; }
+  .compare-card .big { font-size: 28px; font-weight: 800; }
+  .compare-card.bad .big { color: var(--red); }
+  .compare-card.good .big { color: var(--green-dark); }
+
+  /* List */
+  ul, ol { margin: 8px 0 12px 24px; }
+  li { margin-bottom: 4px; }
+
+  /* Footer */
+  .footer {
+    background: var(--gray-900);
+    color: var(--gray-300);
+    padding: 32px 0;
+    margin-top: 48px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer-links { margin-bottom: 8px; }
+  .footer-links a { margin: 0 12px; }
+
+  /* Print / PDF */
+  @media print {
+    .export-bar { display: none !important; }
+    .header { margin-top: 0; padding: 32px 0 28px; }
+    .kpi-strip { margin-top: -20px; }
+    .kpi-card { box-shadow: none; border: 1px solid var(--gray-200); }
+    body { font-size: 12px; }
+    .section { page-break-inside: avoid; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    .footer { background: #fff; color: var(--gray-600); border-top: 1px solid var(--gray-300); }
+    @page { margin: 1.5cm 1.2cm; size: A4; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Export Bar -->
+<div class="export-bar" id="exportBar">
+  <span>BESS Financial Proposal — 7 MW / 20 MWh Independent Client</span>
+  <button class="export-btn" onclick="exportPDF()">Export as PDF</button>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="container">
+    <div class="logo-row">
+      <div class="logo-dot">LH</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">Lighthief Cyprus Ltd</div>
+        <div style="font-size:12px;opacity:.7;">Renewable Energy &amp; BESS Solutions</div>
+      </div>
+    </div>
+    <h1>BESS Financial Proposal</h1>
+    <div class="subtitle">7 MW / 20 MWh — Independent Client Pricing</div>
+    <div class="header-meta">
+      <span>February 2026</span>
+      <span>Commercial — Confidential</span>
+      <span><a href="https://solarfarms.cy">solarfarms.cy</a></span>
+      <span><a href="https://lighthief.com">lighthief.com</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- KPI Strip -->
+<div class="container">
+  <div class="kpi-strip">
+    <div class="kpi-card green">
+      <div class="value">17.0%</div>
+      <div class="label">Year 1 ROI</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="value">5.9 yr</div>
+      <div class="label">Payback Period</div>
+    </div>
+    <div class="kpi-card accent">
+      <div class="value">€406K</div>
+      <div class="label">Net Annual Income (Y1)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="value">€2.38M</div>
+      <div class="label">BESS Investment</div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. Executive Summary -->
+<div class="container">
+<div class="section">
+  <h2>1. Executive Summary</h2>
+  <p>This proposal presents a detailed financial analysis for deploying a <strong>7 MW / 20 MWh Battery Energy Storage System (BESS)</strong> alongside a <strong>7 MWp fixed-tilt bifacial PV park</strong> in Cyprus.</p>
+  <p>All market data is sourced exclusively from <strong>134 verified TSOC Day-Ahead Market (DAM) Excel files</strong> covering every trading day from <strong>1 October 2025 to 11 February 2026</strong> — the complete dataset since the Cyprus Competitive Electricity Market launch.</p>
+  <p>The analysis demonstrates that BESS deployed for <strong>curtailment recovery</strong> — the only legal revenue model for BESS in Cyprus as of February 2026 — delivers a compelling return on investment, transforming otherwise-wasted solar energy into peak-priced revenue.</p>
+  <div class="callout success">
+    <strong>Key finding:</strong> A 7 MW PV park loses <strong>€419,808/year</strong> to curtailment. A 20 MWh BESS recovers this energy and generates <strong>€406,291 net income in Year 1</strong>, paying for itself in <strong>5.9 years</strong> and producing <strong>€2.41M in pure profit over 15 years</strong>.
+  </div>
+  <p>Additionally, Lighthief Cyprus offers to <strong>acquire Ready-to-Build (RTB) stage solar projects at a maximum price of €350,000 per MW</strong>.</p>
+</div>
+
+<!-- 2. Verified Market Data -->
+<div class="section">
+  <h2>2. Verified Market Data Summary</h2>
+  <div class="callout">
+    <strong>Source:</strong> 134 TSOC DAM Excel files &nbsp;|&nbsp; 6,432 half-hourly records &nbsp;|&nbsp; 1 Oct 2025 – 11 Feb 2026<br>
+    <strong>Download:</strong> <a href="https://tsoc.org.cy/competitive-electricity-market/mms-reports/day-ahead-market-daily-activity-reports-en/">tsoc.org.cy — DAM Reports</a>
+  </div>
+
+  <h3>2.1 Overall Market Statistics</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Verified Value</th></tr></thead>
+    <tbody>
+      <tr><td>Average MCP (all periods)</td><td><strong>€158.19/MWh</strong></td></tr>
+      <tr><td>Median MCP</td><td><strong>€171.00/MWh</strong></td></tr>
+      <tr><td>Solar Hours Average (06:00–17:00)</td><td><strong>€140.88/MWh</strong></td></tr>
+      <tr><td>Midday Average (10:00–14:00)</td><td><strong>€101.13/MWh</strong></td></tr>
+      <tr><td>Peak Evening Average (17:00–21:00)</td><td><strong>€182.99/MWh</strong></td></tr>
+      <tr><td>Peak–Midday Spread</td><td><strong>€81.86/MWh</strong></td></tr>
+      <tr><td>Price Range</td><td>€0.00 – €500.00/MWh</td></tr>
+      <tr><td>Zero-Price Periods (≤€1)</td><td>336 of 6,432 (5.2%)</td></tr>
+      <tr><td>Low-Price Periods (≤€10)</td><td>467 of 6,432 (7.3%)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.2 Daily Spread Reliability</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Verified Value</th></tr></thead>
+    <tbody>
+      <tr><td>Days with positive peak–midday spread</td><td><strong>134 / 134 (100%)</strong></td></tr>
+      <tr><td>Days with spread &gt; €40</td><td>82 / 134 (61.2%)</td></tr>
+      <tr><td>Days with spread &gt; €80</td><td>72 / 134 (53.7%)</td></tr>
+      <tr><td>Days with spread &gt; €100</td><td>63 / 134 (47.0%)</td></tr>
+      <tr><td>Average daily spread</td><td><strong>€81.86/MWh</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.3 Curtailment Indicators</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Verified Value</th></tr></thead>
+    <tbody>
+      <tr><td>Days with midday avg ≤ €50/MWh</td><td>35 / 134 (26.1%)</td></tr>
+      <tr><td>Days with midday avg ≤ €80/MWh</td><td>57 / 134 (42.5%)</td></tr>
+      <tr><td>Days hitting zero price</td><td>57 / 134 (42.5%)</td></tr>
+      <tr><td>Deep curtailment periods (MCP ≤€10, 09–15)</td><td>463 periods</td></tr>
+      <tr><td>Low-price midday periods (MCP ≤€50, 09–15)</td><td>29.4% of all midday periods</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.4 Monthly Breakdown</h3>
+  <table>
+    <thead>
+      <tr><th>Month</th><th>Days</th><th>Avg MCP</th><th>Solar Avg</th><th>Midday Avg</th><th>Peak Avg</th><th>Spread</th><th>Curtail Days (≤€50)</th><th>Zero-Price Days</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Oct 2025</td><td>31</td><td>€147</td><td>€126</td><td>€79</td><td>€178</td><td>€99</td><td>11</td><td>13</td></tr>
+      <tr><td>Nov 2025</td><td>30</td><td>€155</td><td>€132</td><td>€82</td><td>€185</td><td>€103</td><td>9</td><td>21</td></tr>
+      <tr><td>Dec 2025</td><td>31</td><td>€159</td><td>€145</td><td>€111</td><td>€179</td><td>€67</td><td>8</td><td>13</td></tr>
+      <tr><td>Jan 2026</td><td>31</td><td>€169</td><td>€160</td><td>€138</td><td>€188</td><td>€50</td><td>4</td><td>4</td></tr>
+      <tr><td>Feb 2026</td><td>11</td><td>€164</td><td>€142</td><td>€85</td><td>€192</td><td>€107</td><td>3</td><td>6</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Key observation:</strong> Spreads are highly seasonal. Autumn and late winter show €99–107/MWh spreads. Deep winter compresses to €50–67/MWh. Summer is expected to deliver the highest spreads as solar curtailment intensifies.</p>
+</div>
+
+<!-- 3. Regulatory Context -->
+<div class="section">
+  <h2>3. Regulatory Context</h2>
+  <div class="callout warn">
+    <strong>As of February 2026, BESS in Cyprus cannot buy electricity from the DAM grid.</strong>
+  </div>
+  <p>BESS revenue is legally limited to <strong>curtailment recovery only</strong>:</p>
+  <ul>
+    <li><strong>Charge cost = €0</strong> — energy is stored from the park's own curtailed solar production (DSO dispatch-down orders)</li>
+    <li><strong>Discharge at peak evening prices</strong> — verified average <strong>€182.99/MWh</strong></li>
+    <li>Grid arbitrage (buy at midday, sell at peak) requires new legislation — expected but <strong>not yet enacted</strong></li>
+    <li>Future arbitrage, when legal, will provide <strong>additional</strong> revenue on top of curtailment recovery</li>
+  </ul>
+</div>
+
+<!-- 4. BESS Pricing -->
+<div class="section">
+  <h2>4. BESS System — 7 MW / 20 MWh Pricing</h2>
+
+  <h3>4.1 EPC Cost Breakdown</h3>
+  <div class="callout">
+    <strong>Source:</strong> <em>Bess - EPC System Cost v2.xlsx</em> — Pricing_Model_All_Projects<br>
+    <strong>Reference project:</strong> Nicosia1 / Esperia Tseri (7 MW / 20 MWh, 5 containers, 1 MV skid)<br>
+    <strong>Independent pricing:</strong> +10% on all costs (no group discount)
+  </div>
+
+  <table class="mid-table">
+    <thead><tr><th>Component</th><th>Group EPC</th><th>Independent (+10%)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CIF (Linyang equipment)</strong></td><td>€2,001,736</td><td>€2,201,910</td></tr>
+      <tr><td>Port &amp; Customs</td><td>€7,000</td><td>€7,700</td></tr>
+      <tr><td>Crane + Inland Transport</td><td>€11,800</td><td>€12,980</td></tr>
+      <tr><td>LV Cabling</td><td>€9,800</td><td>€10,780</td></tr>
+      <tr><td>MV Cabling</td><td>€3,500</td><td>€3,850</td></tr>
+      <tr><td>MV Terminations</td><td>€2,200</td><td>€2,420</td></tr>
+      <tr><td>Protection Engineering</td><td>€5,000</td><td>€5,500</td></tr>
+      <tr><td>Remote Trip</td><td>€3,000</td><td>€3,300</td></tr>
+      <tr><td>UPS / Auxiliary</td><td>€2,000</td><td>€2,200</td></tr>
+      <tr class="highlight"><td><strong>Subtotal — Adders (excl. EMS)</strong></td><td><strong>€44,300</strong></td><td><strong>€48,730</strong></td></tr>
+      <tr><td>Voltus EMS</td><td>€46,718</td><td>€51,390</td></tr>
+      <tr><td>SCADA Local</td><td>€15,000</td><td>€16,500</td></tr>
+      <tr><td>SCADA Global (standalone, no group)</td><td>€60,000</td><td>€66,000</td></tr>
+      <tr class="highlight"><td><strong>Subtotal — EMS/SCADA</strong></td><td><strong>€121,718</strong></td><td><strong>€133,890</strong></td></tr>
+      <tr class="total"><td><strong>TOTAL EPC COST</strong></td><td><strong>€2,167,754</strong></td><td><strong>€2,384,529</strong></td></tr>
+      <tr class="total"><td><strong>Cost per MWh</strong></td><td><strong>€108,388/MWh</strong></td><td><strong>€119,226/MWh</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.2 BESS System Specifications</h3>
+  <table class="small-table">
+    <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Rated Power</td><td>7 MW</td></tr>
+      <tr><td>Rated Energy</td><td>20 MWh</td></tr>
+      <tr><td>Duration</td><td>2.86 hours</td></tr>
+      <tr><td>Round-Trip Efficiency (RTE)</td><td>86.32% AC-AC (full system incl. cabling)</td></tr>
+      <tr><td>Battery Sets / MV Skids / Containers</td><td>4 / 1 / 5</td></tr>
+      <tr><td>Cycle Life</td><td>6,000 cycles at 100% DoD / 80% SOH</td></tr>
+      <tr><td>OEM Warranty</td><td>5 years (base) / 15 years with LTSA</td></tr>
+      <tr><td>Annual Degradation</td><td>2.5% capacity per year</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 5. PV Park -->
+<div class="section">
+  <h2>5. PV Park — 7 MWp Fixed-Tilt Bifacial</h2>
+
+  <h3>5.1 Production Estimate</h3>
+  <table class="small-table">
+    <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Installed Capacity</td><td>7 MWp</td></tr>
+      <tr><td>Technology</td><td>Fixed-tilt, bifacial modules</td></tr>
+      <tr><td>Annual Yield</td><td>1,650 kWh/kWp (Cyprus standard)</td></tr>
+      <tr><td>Annual Production</td><td><strong>11,550 MWh</strong></td></tr>
+      <tr><td>Capacity Factor</td><td>22%</td></tr>
+      <tr><td>System Availability / Annual Degradation</td><td>99% / 0.5%/year</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Revenue Without BESS (PV Only — Open Market)</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Annual Production</td><td>11,550 MWh</td></tr>
+      <tr><td>Curtailment Rate</td><td>25.8% (2024 Cyprus average)</td></tr>
+      <tr><td>Curtailed Energy (lost)</td><td>2,980 MWh/year</td></tr>
+      <tr><td>Energy Sold to Market</td><td>8,570 MWh/year</td></tr>
+      <tr><td>Avg Solar-Hour Selling Price</td><td>€140.88/MWh (verified)</td></tr>
+      <tr class="highlight"><td><strong>Annual PV Revenue</strong></td><td><strong>€1,207,356</strong></td></tr>
+      <tr style="background:#fff5f5;"><td><strong>Revenue Lost to Curtailment</strong></td><td style="color:var(--red);"><strong>€419,808/year</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout danger">
+    <strong>€419,808 per year</strong> of solar energy is wasted because there is no storage to capture it.
+  </div>
+</div>
+
+<!-- 6. Financial Model -->
+<div class="section">
+  <h2>6. Financial Model — BESS Curtailment Recovery</h2>
+
+  <h3>6.1 BESS Revenue Calculation</h3>
+  <p>Under the current Cyprus regulatory framework, BESS charges exclusively from <strong>curtailed solar</strong> (charge cost = €0) and discharges at <strong>verified peak evening prices</strong> (€182.99/MWh average, 134 days of data).</p>
+
+  <table class="mid-table">
+    <thead><tr><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Charge cost</td><td><strong>€0/MWh</strong></td><td>Curtailed energy — would be wasted</td></tr>
+      <tr><td>Discharge price</td><td><strong>€182.99/MWh</strong></td><td>Verified peak avg (17:00–21:00), 134 days</td></tr>
+      <tr><td>RTE</td><td>86.32%</td><td>Full system AC-AC incl. cabling</td></tr>
+      <tr><td>Revenue per MWh stored</td><td><strong>€157.96/MWh</strong></td><td>€182.99 × 0.8632</td></tr>
+    </tbody>
+  </table>
+
+  <h3>How much curtailed energy can BESS capture?</h3>
+  <table class="small-table">
+    <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Annual curtailed energy from 7 MW park</td><td>2,980 MWh</td></tr>
+      <tr><td>BESS capacity per cycle</td><td>20 MWh</td></tr>
+      <tr><td>Max annual BESS absorption (1 cycle/day)</td><td>7,300 MWh</td></tr>
+      <tr class="highlight"><td><strong>Actual BESS utilisation</strong></td><td><strong>2,980 MWh charged</strong></td></tr>
+      <tr><td>Energy discharged after RTE (86.32%)</td><td><strong>2,572 MWh</strong></td></tr>
+      <tr class="total"><td><strong>Annual discharge revenue</strong></td><td><strong>€470,696</strong></td></tr>
+    </tbody>
+  </table>
+  <p>The 20 MWh BESS is <strong>more than sufficient</strong> to absorb all curtailed energy from a 7 MW park.</p>
+
+  <h3>6.2 Annual Revenue Summary — Year 1</h3>
+  <table class="mid-table">
+    <thead><tr><th>Revenue Stream</th><th>Without BESS</th><th>With BESS</th><th>Difference</th></tr></thead>
+    <tbody>
+      <tr><td>PV Market Revenue</td><td>€1,207,356</td><td>€1,207,356</td><td>—</td></tr>
+      <tr class="highlight"><td><strong>BESS Curtailment Recovery</strong></td><td>€0</td><td><strong>€470,696</strong></td><td style="color:var(--green-dark);"><strong>+€470,696</strong></td></tr>
+      <tr class="total"><td><strong>Gross Revenue</strong></td><td><strong>€1,207,356</strong></td><td><strong>€1,678,052</strong></td><td style="color:var(--green-dark);"><strong>+€470,696</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.3 Operating Costs — BESS</h3>
+  <table class="small-table">
+    <thead><tr><th>Cost Item</th><th>Annual Cost</th></tr></thead>
+    <tbody>
+      <tr><td>BESS Preventive &amp; Corrective Maintenance</td><td>€23,152</td></tr>
+      <tr><td>PCS + MVS Maintenance</td><td>€26,239</td></tr>
+      <tr><td>Insurance (0.75% of CIF)</td><td>€15,013</td></tr>
+      <tr class="total"><td><strong>Total BESS O&amp;M</strong></td><td><strong>€64,405</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.4 Net BESS Income — Year 1</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>BESS Gross Revenue</td><td>€470,696</td></tr>
+      <tr><td>BESS O&amp;M Costs</td><td>(€64,405)</td></tr>
+      <tr class="total"><td><strong>Net BESS Income</strong></td><td style="color:var(--green-dark);"><strong>€406,291</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7. Investment Return -->
+<div class="section">
+  <h2>7. Investment Return Analysis</h2>
+
+  <h3>7.1 BESS Return on Investment</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>BESS Investment (independent pricing)</td><td><strong>€2,384,529</strong></td></tr>
+      <tr><td>Annual Net BESS Income (Year 1)</td><td><strong>€406,291</strong></td></tr>
+      <tr class="highlight"><td><strong>Simple ROI</strong></td><td><strong>17.0%</strong></td></tr>
+      <tr class="highlight"><td><strong>Simple Payback</strong></td><td><strong>5.9 years</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.2 Multi-Year Projection (15-Year, with Degradation)</h3>
+  <p>Battery capacity degrades at 2.5%/year. PV output degrades at 0.5%/year. Curtailment rate held constant at 25.8%. O&amp;M held constant at €64,405/year.</p>
+
+  <table>
+    <thead>
+      <tr><th>Year</th><th>PV Output (MWh)</th><th>Curtailed (MWh)</th><th>Discharged (MWh)</th><th>BESS Revenue</th><th>O&amp;M</th><th>Net Income</th><th>Cumulative</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>11,550</td><td>2,980</td><td>2,572</td><td>€470,696</td><td>€64,405</td><td>€406,291</td><td>€406,291</td></tr>
+      <tr><td>2</td><td>11,492</td><td>2,965</td><td>2,495</td><td>€456,634</td><td>€64,405</td><td>€392,229</td><td>€798,520</td></tr>
+      <tr><td>3</td><td>11,435</td><td>2,950</td><td>2,421</td><td>€442,992</td><td>€64,405</td><td>€378,587</td><td>€1,177,107</td></tr>
+      <tr><td>4</td><td>11,378</td><td>2,935</td><td>2,349</td><td>€429,758</td><td>€64,405</td><td>€365,353</td><td>€1,542,460</td></tr>
+      <tr><td>5</td><td>11,321</td><td>2,921</td><td>2,278</td><td>€416,919</td><td>€64,405</td><td>€352,514</td><td>€1,894,974</td></tr>
+      <tr class="highlight"><td><strong>6</strong></td><td>11,264</td><td>2,906</td><td>2,210</td><td>€404,463</td><td>€64,405</td><td>€340,058</td><td><strong>€2,235,032</strong></td></tr>
+      <tr><td>7</td><td>11,208</td><td>2,892</td><td>2,144</td><td>€392,380</td><td>€64,405</td><td>€327,975</td><td>€2,563,007</td></tr>
+      <tr><td>8</td><td>11,152</td><td>2,877</td><td>2,080</td><td>€380,657</td><td>€64,405</td><td>€316,252</td><td>€2,879,259</td></tr>
+      <tr><td>9</td><td>11,096</td><td>2,863</td><td>2,018</td><td>€369,285</td><td>€64,405</td><td>€304,880</td><td>€3,184,139</td></tr>
+      <tr><td>10</td><td>11,041</td><td>2,848</td><td>1,958</td><td>€358,253</td><td>€64,405</td><td>€293,848</td><td>€3,477,987</td></tr>
+      <tr><td>11</td><td>10,985</td><td>2,834</td><td>1,899</td><td>€347,550</td><td>€64,405</td><td>€283,145</td><td>€3,761,132</td></tr>
+      <tr><td>12</td><td>10,930</td><td>2,820</td><td>1,843</td><td>€337,167</td><td>€64,405</td><td>€272,762</td><td>€4,033,894</td></tr>
+      <tr><td>13</td><td>10,876</td><td>2,806</td><td>1,787</td><td>€327,094</td><td>€64,405</td><td>€262,689</td><td>€4,296,583</td></tr>
+      <tr><td>14</td><td>10,821</td><td>2,792</td><td>1,734</td><td>€317,322</td><td>€64,405</td><td>€252,917</td><td>€4,549,500</td></tr>
+      <tr class="total"><td><strong>15</strong></td><td><strong>10,767</strong></td><td><strong>2,778</strong></td><td><strong>1,682</strong></td><td><strong>€307,842</strong></td><td><strong>€64,405</strong></td><td><strong>€243,437</strong></td><td><strong>€4,792,937</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.3 Return Summary</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>BESS Investment</td><td><strong>€2,384,529</strong></td></tr>
+      <tr><td>Total 15-Year Net Income</td><td><strong>€4,792,937</strong></td></tr>
+      <tr class="highlight"><td><strong>Total 15-Year Profit</strong></td><td style="color:var(--green-dark);"><strong>€2,408,408</strong></td></tr>
+      <tr><td>Simple Payback</td><td><strong>5.9 years</strong></td></tr>
+      <tr><td>Year 1 ROI</td><td><strong>17.0%</strong></td></tr>
+      <tr><td>15-Year Cash-on-Cash Return</td><td><strong>201%</strong></td></tr>
+      <tr><td>NPV (8% discount rate)</td><td><strong>€491,278</strong></td></tr>
+      <tr><td>IRR</td><td><strong>11.6%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.4 With BESS vs Without BESS — 15 Years</h3>
+  <div class="compare-grid">
+    <div class="compare-card bad">
+      <h4>Without BESS</h4>
+      <div class="big">€0</div>
+      <p style="font-size:13px;margin-top:4px;">from curtailed energy</p>
+      <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">15-Year PV Revenue: €17,490,003<br>Curtailment wasted: €6,081,430</p>
+    </div>
+    <div class="compare-card good">
+      <h4>With BESS (+€2.38M investment)</h4>
+      <div class="big">+€2,408,408</div>
+      <p style="font-size:13px;margin-top:4px;">pure profit from recovered energy</p>
+      <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">15-Year Total: €22,282,940<br>Payback in 5.9 years, then pure profit</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8. Curtailment Impact -->
+<div class="section">
+  <h2>8. Impact of Curtailment on a 7 MW Park (Without BESS)</h2>
+
+  <h3>8.1 Annual Curtailment Loss</h3>
+  <table class="small-table">
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Annual Production</td><td>11,550 MWh</td></tr>
+      <tr><td>Curtailment Rate</td><td>25.8%</td></tr>
+      <tr><td>Curtailed Energy</td><td>2,980 MWh</td></tr>
+      <tr><td>Lost Revenue at Solar-Hour Price (€140.88/MWh)</td><td style="color:var(--red);"><strong>€419,808/year</strong></td></tr>
+      <tr><td>Lost Revenue at Midday Price (€101.13/MWh)</td><td style="color:var(--red);"><strong>€301,367/year</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.2 Curtailment Loss Over Park Lifetime</h3>
+  <p>Includes 0.5%/year PV degradation. Curtailment rate held constant.</p>
+  <table class="mid-table">
+    <thead><tr><th>Horizon</th><th>Conservative (midday rate)</th><th>Realistic (solar-hour rate)</th></tr></thead>
+    <tbody>
+      <tr><td>Year 1</td><td>€301,367</td><td>€419,808</td></tr>
+      <tr><td>5-Year Cumulative</td><td>€1,491,794</td><td>€2,078,156</td></tr>
+      <tr><td>10-Year Cumulative</td><td>€2,946,664</td><td>€4,104,875</td></tr>
+      <tr><td>15-Year Cumulative</td><td>€4,365,524</td><td>€6,081,430</td></tr>
+      <tr class="total"><td><strong>25-Year Cumulative</strong></td><td style="color:var(--red);"><strong>€7,098,758</strong></td><td style="color:var(--red);"><strong>€9,888,984</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout danger">
+    Over the PV park's 25-year lifetime, <strong>€7.1M to €9.9M of energy revenue is permanently destroyed</strong> by curtailment without BESS.
+  </div>
+
+  <h3>8.3 Verified Curtailment Patterns (134 TSOC DAM files)</h3>
+  <ul>
+    <li><strong>42.5%</strong> of all days hit zero price at some point during solar hours</li>
+    <li><strong>26.1%</strong> of days have midday average below €50/MWh</li>
+    <li><strong>29.4%</strong> of midday periods (09:00–15:00) see MCP ≤ €50</li>
+    <li><strong>463 deep curtailment periods</strong> with MCP ≤ €10 during midday</li>
+    <li>Curtailment is <strong>100% correlated with solar production</strong> — it cannot be avoided</li>
+    <li><strong>100% of days</strong> (134/134) showed positive peak-midday spread — BESS is profitable every single day</li>
+  </ul>
+</div>
+
+<!-- 9. Future Upside -->
+<div class="section">
+  <h2>9. Future Revenue Upside — DAM Arbitrage (Not Yet Legal)</h2>
+  <p>When legislation enables BESS to buy electricity from the DAM, an additional revenue stream opens:</p>
+
+  <table class="small-table">
+    <thead><tr><th>Parameter</th><th>Verified Value</th></tr></thead>
+    <tbody>
+      <tr><td>Buy price (midday, 10:00–14:00)</td><td>€101.13/MWh</td></tr>
+      <tr><td>Sell price (peak, 17:00–21:00)</td><td>€182.99/MWh</td></tr>
+      <tr><td>Gross spread</td><td>€81.86/MWh</td></tr>
+      <tr class="highlight"><td><strong>Net per MWh after RTE (86.32%)</strong></td><td><strong>€70.66/MWh</strong></td></tr>
+    </tbody>
+  </table>
+
+  <table class="small-table" style="margin-top:12px;">
+    <thead><tr><th>Scenario</th><th>Additional Annual Revenue</th></tr></thead>
+    <tbody>
+      <tr><td>100 arbitrage days/year × 20 MWh</td><td><strong>€121,990</strong></td></tr>
+      <tr><td>200 arbitrage days/year × 20 MWh</td><td><strong>€243,980</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    Future arbitrage could add <strong>€122K–244K/year</strong> on top of curtailment recovery. This is <strong>not included</strong> in the core financial model above.
+  </div>
+</div>
+
+<!-- 10. RTB Offer -->
+<div class="section">
+  <h2>10. RTB Acquisition Offer</h2>
+  <p>Lighthief Cyprus Ltd is actively acquiring <strong>Ready-to-Build (RTB) solar park projects</strong> across all Cyprus districts.</p>
+
+  <table class="mid-table">
+    <thead><tr><th>Parameter</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>Maximum Acquisition Price</strong></td><td><strong>€350,000 per MW</strong></td></tr>
+      <tr class="highlight"><td><strong>For 7 MW RTB Project</strong></td><td><strong>Up to €2,450,000</strong></td></tr>
+      <tr><td>Eligible Districts</td><td>Nicosia, Limassol, Larnaca, Paphos, Famagusta</td></tr>
+      <tr><td>Minimum Size</td><td>1 MW</td></tr>
+      <tr><td>Requirements</td><td>Valid CERA license/exemption, grid connection, environmental clearance</td></tr>
+      <tr><td>Closing Timeline</td><td>30–60 days from due diligence completion</td></tr>
+      <tr><td>Payment Terms</td><td>Cash at closing, escrow available</td></tr>
+    </tbody>
+  </table>
+
+  <h3>What We Acquire</h3>
+  <ul>
+    <li>CERA production license or license exemption</li>
+    <li>Grid connection agreement (DSO/TSOC)</li>
+    <li>Environmental Impact Assessment approval</li>
+    <li>Land lease or ownership rights</li>
+    <li>Planning permits</li>
+  </ul>
+</div>
+
+<!-- 11. Why Lighthief -->
+<div class="section">
+  <h2>11. Why Lighthief Cyprus</h2>
+  <table class="mid-table">
+    <thead><tr><th>Capability</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Established</td><td>2015 — over a decade in renewables</td></tr>
+      <tr><td>Global Presence</td><td>11 countries across Europe and Asia</td></tr>
+      <tr><td>Team</td><td>150+ engineers and specialists</td></tr>
+      <tr><td>R&amp;D Center</td><td>23-hectare facility in Poland (2×8 MW PV, 1 MW biogas, BESS lab)</td></tr>
+      <tr><td>Assets Managed</td><td>Hundreds of MW across solar, wind, and biogas</td></tr>
+      <tr><td>BESS Partner</td><td>Linyang Energy (Tier-1 OEM, 6,000-cycle warranty)</td></tr>
+      <tr><td>EMS/SCADA</td><td>Voltus Energy Management Systems</td></tr>
+      <tr><td>Certifications</td><td>NATO Certified, EU Grants Recipient</td></tr>
+      <tr><td>Cyprus Office</td><td>Limassol — fully licensed, locally staffed</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 12. Data Sources -->
+<div class="section">
+  <h2>12. Data Sources &amp; Methodology</h2>
+  <table>
+    <thead><tr><th>Data Point</th><th>Source</th><th>Verification</th></tr></thead>
+    <tbody>
+      <tr><td>Market prices (MCP)</td><td>134 TSOC DAM Excel files (Oct 1, 2025 – Feb 11, 2026)</td><td>Direct download from <a href="https://tsoc.org.cy/competitive-electricity-market/mms-reports/day-ahead-market-daily-activity-reports-en/">tsoc.org.cy</a></td></tr>
+      <tr><td>6,432 half-hourly records</td><td>Parsed and validated programmatically</td><td>Stored in market-data.json</td></tr>
+      <tr><td>BESS pricing</td><td>Bess - EPC System Cost v2.xlsx</td><td>Verified CIF from Linyang, itemised adders</td></tr>
+      <tr><td>BESS specifications</td><td>Linyang OEM datasheets</td><td>86.32% full system AC-AC RTE, 6,000 cycles, 2.5%/yr degradation</td></tr>
+      <tr><td>O&amp;M costs</td><td>LTSA rates from Voltus/Linyang</td><td>Verified per-MWh rates</td></tr>
+      <tr><td>Curtailment rate (25.8%)</td><td>Cyprus 2024 national average</td><td>CERA / TSOC published data</td></tr>
+      <tr><td>PV yield (1,650 kWh/kWp)</td><td>Cyprus standard — PVGIS / industry consensus</td><td>Conservative for bifacial fixed-tilt</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>No projections, estimates, or third-party models are used for market pricing.</strong> All revenue calculations use verified, actual market data from the TSOC DAM.
+  </div>
+</div>
+
+<!-- 13. Disclaimers -->
+<div class="section">
+  <h2>13. Disclaimers</h2>
+  <ol>
+    <li>Market prices shown are historical averages from the first 134 days of the Cyprus open market. Future prices may vary.</li>
+    <li>Curtailment rate (25.8%) is the 2024 Cyprus national average. Individual park curtailment rates may be higher or lower depending on location, DSO district, and grid conditions.</li>
+    <li>BESS regulatory status is current as of February 2026. Grid arbitrage requires legislation that has not yet been enacted.</li>
+    <li>Independent client pricing includes a 10% premium over group EPC rates. This covers standalone project management, SCADA, and logistics without group efficiencies.</li>
+    <li>All figures exclude VAT, grid connection costs, and land-related expenses.</li>
+    <li>PV revenue calculations assume open-market (merchant) selling. PPA contracts would yield different figures.</li>
+  </ol>
+</div>
+
+<!-- Contact -->
+<div class="section" style="text-align:center;padding:32px 0;">
+  <h2 style="border:none;text-align:center;">Contact</h2>
+  <p style="font-size:16px;"><strong>Lighthief Cyprus Ltd</strong> (HE 477423)</p>
+  <p>Alexander Papacosta — Cyprus Director</p>
+  <p><a href="mailto:office@lighthief.com">office@lighthief.com</a> &nbsp;|&nbsp; +357 99 164 158</p>
+  <p style="color:var(--gray-500);font-size:13px;margin-top:8px;">28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+</div>
+
+</div><!-- /container -->
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://solarfarms.cy">solarfarms.cy</a>
+    <a href="https://lighthief.com">lighthief.com</a>
+  </div>
+  <p>Prepared by Lighthief Cyprus Ltd — February 2026 — Commercial &amp; Confidential</p>
+</div>
+
+<script>
+function exportPDF() {
+  document.getElementById('exportBar').style.display = 'none';
+  window.print();
+  setTimeout(() => {
+    document.getElementById('exportBar').style.display = 'flex';
+  }, 1000);
+}
+</script>
+
+</body>
+</html>

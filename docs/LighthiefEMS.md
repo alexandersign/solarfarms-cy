@@ -232,7 +232,7 @@
 | **PCS** | **98.20%** | **98.50%** |
 | DC Cable | 99.80% | 99.80% |
 | **Battery** | **96.50%** | **97.50%** |
-| **System RTE (AC-AC)** | - | **87.8%** |
+| **System RTE (AC-AC)** | - | **86.32%** (full system incl. cabling; PCS-level = 87.8%) |
 
 ---
 

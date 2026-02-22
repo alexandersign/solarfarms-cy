@@ -8,7 +8,7 @@
 ---
 
 # EPC SCOPE STATUS TRACKER
-## Cyprus BESS Portfolio - 863.5 MWh / 47 Parks
+## Cyprus BESS Portfolio - 881.78 MWh / 51 Parks
 
 ---
 
@@ -28,11 +28,11 @@
 |----------|-------|-------------|-------------------|----------------|------------|
 | Equipment Supply (Linyang) | 8 | 5 | 2 | 1 | 63% |
 | Logistics & Customs | 4 | 3 | 1 | 0 | 75% |
-| EPC Services | 12 | 2 | 3 | 7 | 17% |
+| EPC Services | 12 | 2 (+2 client-paid) | 3 | 5 | 33% |
 | SCADA/EMS | 3 | 2 | 1 | 0 | 67% |
 | Civil Works | 2 | 1 | 0 | 1 | 50% |
 | Compliance & Legal | 5 | 2 | 0 | 3 | 40% |
-| **TOTAL** | **34** | **15** | **7** | **12** | **44%** |
+| **TOTAL** | **34** | **17** | **7** | **10** | **50%** |
 
 ---
 
@@ -97,7 +97,7 @@
 | 1 | **Customs Clearance** | Interfreight | ✅ **VERIFIED** | Jan 2026 | €85/declaration | logistics-quote-interfreight | - |
 | 2 | **Landing Charges** | Interfreight | ✅ **VERIFIED** | Jan 2026 | €450-650/container | logistics-quote-interfreight | - |
 | 3 | **Import Duty** | Cyprus Customs | ✅ **VERIFIED** | Interfreight | ~2.37% weighted avg | logistics-quote-interfreight | - |
-| 4 | **Inland Transport** | A. Soulis | ⚠️ **QUOTE REC** | Nov 2024 | €2,360/container | rfq-transport-asoulis | Verify other routes |
+| 4 | **Inland Transport** | A. Soulis | ✅ **CONFIRMED** | Feb 2026 | €2,360/container | rfq-transport-asoulis | 6× 20ft trucks (43T). 40ft TBC. |
 
 ### Inland Transport Routes - Status
 
@@ -119,7 +119,7 @@
 | # | Service | Supplier | Status | Quote | Price/Unit | RFP Doc |
 |---|---------|----------|--------|-------|------------|---------|
 | 1 | **EMS/SCADA** | Voltus Energy | ✅ **VERIFIED** | Jan 2026 | €31-179k/site | Voltus Price.xlsx |
-| 2 | **Inland Transport** | A. Soulis | ✅ **VERIFIED** | Nov 2024 | €2,360/container | rfq-transport-asoulis |
+| 2 | **Inland Transport** | A. Soulis | ✅ **CONFIRMED** | Feb 2026 | €2,360/container | rfq-transport-asoulis | 6× 20ft (43T). 40ft TBC. |
 
 ### 3.2 Quotes Received - Needs RFI to Lock
 
@@ -144,8 +144,8 @@
 | 2 | **Electrical Installation** | TBD Cyprus EPC | 🔴 **NO RFP** | rfp-electrical-installation | Per site | 🔴 HIGH | 3 Feb |
 | 3 | **MV Cabling** | TBD Cyprus EPC | 🔴 **NO RFP** | rfp-electrical-installation | €3.5-7k/site | 🔴 HIGH | 3 Feb |
 | 4 | **LV Cabling** | TBD Cyprus EPC | 🔴 **NO RFP** | rfp-electrical-installation | €1.4-35k/site | 🔴 HIGH | 3 Feb |
-| 5 | **Protection Relay Testing** | TBD | 🔴 **NO RFP** | rfp-protection-testing | €5-6k/site | 🟡 MEDIUM | 7 Feb |
-| 6 | **Earthing/Grounding** | TBD | 🔴 **NO RFP** | rfp-earthing-grounding | TBD | 🟡 MEDIUM | 7 Feb |
+| 5 | **Protection Relay Testing** | TBD | ⚠️ **CLIENT-PAID** | Per Dino, Feb 2026 | €5-6k/site | — | Client responsibility |
+| 6 | **Earthing/Grounding Enhancement** | TBD | ⚠️ **CLIENT-PAID** | Per Dino, Feb 2026 | TBD | — | Removed from EPC cost model |
 | 7 | **Insurance (CAR/EAR)** | TBD Broker | 🔴 **NO RFP** | rfp-insurance-car-ear | 0.75% of CIF | 🟡 MEDIUM | 14 Feb |
 | 8 | **Cybersecurity (NIS2)** | TBD | 🔴 **NO RFP** | rfp-cybersecurity-nis2 | TBD | 🟢 LOW | 21 Feb |
 | 9 | **Remote Trip System** | TBD | 🔴 **NO RFP** | rfp-remote-trip-ups | €3k/site | 🟢 LOW | 14 Feb |
@@ -178,7 +178,7 @@
 
 | # | Service | Supplier | Status | Quote | Price | RFP Doc |
 |---|---------|----------|--------|-------|-------|---------|
-| 1 | **Concrete Platforms** | TBD Local EPC | 📋 **INTERNAL EST** | - | €4,000/platform | civil-works-estimate.md |
+| 1 | **Concrete Platforms** | TBD Local EPC | ✅ **CONFIRMED** | Kamil, Feb 2026 | ✅ €2,000/MWh confirmed (Kamil, Feb 2026). Portfolio: €1,763,560. Platforms, trenches, cabling labour, water trenches. | civil-works-estimate.md |
 | 2 | **Full Civil Works** | TBD Local EPC | 🔴 **NO RFP** | - | €51-95/m² | concrete-base-rfp |
 
 ### Civil Works - Internal Budget Estimates
@@ -254,12 +254,12 @@
 | **Import Duty** | 2.37% weighted | ✅ **VERIFIED** | Interfreight | - |
 | **Landing Charges** | €500/container | ✅ **VERIFIED** | Interfreight | - |
 | **Customs Clearance** | €85/declaration | ✅ **VERIFIED** | Interfreight | - |
-| **Inland Transport** | €2,360/container | ✅ **VERIFIED** | A. Soulis | Verify other routes |
+| **Inland Transport** | €2,360/container | ✅ **CONFIRMED** | A. Soulis | 6× 20ft trucks (43T). 40ft TBC. |
 | **Mechanical Install** | €20-70k/site | 📋 **ESTIMATE** | Internal | 🔴 Need contractor quote |
 | **LV Cabling** | €1.4k/MW | 📋 **ESTIMATE** | Internal | 🔴 Need contractor quote |
 | **MV Cabling** | €3.5k/MV Skid | 📋 **ESTIMATE** | Internal | 🔴 Need contractor quote |
 | **MV Terminations** | €2.2k/MV Skid | 📋 **ESTIMATE** | Internal | 🔴 Need contractor quote |
-| **Protection Eng** | €5-6k/site | 📋 **ESTIMATE** | Internal | 🔴 Need contractor quote |
+| **Protection Testing / DSO** | €5-6k/site | ⚠️ **CLIENT-PAID** | Per Dino, Feb 2026 | Removed from EPC cost model |
 | **SCADA/EMS** | €31-179k/site | ✅ **VERIFIED** | Voltus | - |
 | **Remote Trip** | €3k/site | 📋 **ESTIMATE** | Internal | 🟡 Need quote |
 | **Export Logic** | €2k/site | 📋 **ESTIMATE** | Internal | Check if Voltus covers |
@@ -288,7 +288,7 @@
 - [ ] 🔴 Follow up Linyang on APG/Performance Bond terms
 - [ ] 🔴 Follow up Linyang on SOH written confirmation
 - [ ] 🔴 Follow up DEHN on lightning protection quote
-- [ ] 🟡 Request A. Soulis quotes for Nicosia/Paphos/Famagusta routes
+- [x] ✅ A. Soulis fleet confirmed: 6× 20ft trucks (43T). 40ft TBC. Follow up on 40ft and route pricing for Nicosia/Paphos/Famagusta.
 - [ ] 🟡 Create Insurance RFP for local broker
 
 ### Next Week (By 14 Feb)

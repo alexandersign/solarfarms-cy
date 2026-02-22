@@ -22,7 +22,7 @@
 |--------|-----------|-----------|--------|
 | **Effective Duty Rate** | 2.7% | **0.9%** | -1.8% |
 | **Duty on €1M CIF** | €27,000 | **€9,000** | -€18,000 |
-| **Portfolio Savings (€84.7M CIF)** | €2.29M | **€0.76M** | **-€1.53M** |
+| **Portfolio Savings (€86.0M CIF)** | €2.29M | **€0.76M** | **-€1.53M** |
 
 ---
 
@@ -125,7 +125,7 @@ Where:
 | Duty Amount | €49,915 | €16,759 | **€33,156** |
 | As % of CIF | 2.7% | 0.91% | -1.79% |
 
-### Full Portfolio Impact (863.5 MWh)
+### Full Portfolio Impact (881.78 MWh)
 
 | Metric | Old (2.7%) | New (0.9%) | Savings |
 |--------|------------|------------|---------|
@@ -236,4 +236,4 @@ Import Duty = CIF × 0.009 (0.9% weighted blended rate)
 > 8507 60 00 90 and 8504 40 respectively."
 
 **Portfolio Impact:**
-> Correcting from 2.7% to 0.9% saves approximately **€1.52M** across the 863.5 MWh portfolio.
+> Correcting from 2.7% to 0.9% saves approximately **€1.52M** across the 881.78 MWh portfolio.

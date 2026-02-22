@@ -600,7 +600,7 @@ For standalone BESS, the system should support grid frequency by **discharging**
 
 | TSO Requirement | Linyang/Kehua | Status |
 |-----------------|---------------|--------|
-| RTE ≥ 80% | **87.8%** system RTE | ✅ Compliant |
+| RTE ≥ 80% | **86.32%** full system AC-AC RTE | ✅ Compliant |
 | RTE ≥ 75% (10-year) | ~82% estimated | ✅ Compliant |
 | Standby ≤ 15%/day | ~2% aux power | ✅ Compliant |
 | Availability ≥ 92% | **97%** with LTSA | ✅ Exceeds |

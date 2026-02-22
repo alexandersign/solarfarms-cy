@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solinvest / SolarFarms.cy — Complete Marketing Strategy & Campaign Playbook</title>
+<style>
+  :root {
+    --bg: #0c0f14;
+    --surface: #141820;
+    --surface-2: #1a1f2b;
+    --border: #2a3040;
+    --text: #e0e4ec;
+    --text-muted: #8892a4;
+    --accent: #f59e0b;
+    --accent-2: #10b981;
+    --accent-3: #3b82f6;
+    --red: #ef4444;
+    --green: #22c55e;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+  
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 60px 48px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 700px;
+  }
+  .hero .meta {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(245,158,11,0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(245,158,11,0.2);
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+  .toc h2 { font-size: 20px; margin-bottom: 16px; color: var(--accent); }
+  .toc ol { padding-left: 24px; }
+  .toc li { margin-bottom: 8px; }
+  .toc a { color: var(--accent-3); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Sections */
+  section { margin-bottom: 56px; }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    color: #fff;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--accent);
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: var(--accent-2);
+  }
+  p { margin-bottom: 14px; }
+  
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .card-accent {
+    border-left: 4px solid var(--accent);
+  }
+  .card-green {
+    border-left: 4px solid var(--accent-2);
+  }
+  .card-blue {
+    border-left: 4px solid var(--accent-3);
+  }
+  .card-red {
+    border-left: 4px solid var(--red);
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+  thead { background: var(--surface-2); }
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:hover { background: rgba(255,255,255,0.02); }
+  
+  /* Lists */
+  ul, ol { padding-left: 24px; margin-bottom: 16px; }
+  li { margin-bottom: 6px; }
+  
+  /* Keyword pills */
+  .keyword-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 20px;
+  }
+  .keyword {
+    display: inline-block;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text);
+  }
+  .keyword.high { border-color: var(--red); color: var(--red); }
+  .keyword.medium { border-color: var(--accent); color: var(--accent); }
+  .keyword.low { border-color: var(--accent-2); color: var(--accent-2); }
+  
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-investor { background: rgba(245,158,11,0.15); color: var(--accent); }
+  .badge-parkowner { background: rgba(16,185,129,0.15); color: var(--accent-2); }
+  .badge-both { background: rgba(59,130,246,0.15); color: var(--accent-3); }
+  
+  /* Ad preview */
+  .ad-preview {
+    background: #fff;
+    color: #202124;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 12px 0;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+  }
+  .ad-preview .ad-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #202124;
+    background: #f1f3f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+  .ad-preview .ad-url {
+    font-size: 13px;
+    color: #202124;
+    margin-bottom: 2px;
+  }
+  .ad-preview .ad-title {
+    font-size: 18px;
+    color: #1a0dab;
+    text-decoration: none;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .ad-preview .ad-desc {
+    font-size: 13px;
+    color: #4d5156;
+    line-height: 1.5;
+  }
+  
+  /* Callout */
+  .callout {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .callout.red {
+    background: rgba(239,68,68,0.08);
+    border-color: rgba(239,68,68,0.25);
+  }
+  .callout.green {
+    background: rgba(34,197,94,0.08);
+    border-color: rgba(34,197,94,0.25);
+  }
+  .callout.blue {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.25);
+  }
+  
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .hero { padding: 32px 24px; }
+    .hero h1 { font-size: 24px; }
+  }
+  
+  /* Phase badges */
+  .phase {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .phase-1 { background: rgba(239,68,68,0.15); color: var(--red); }
+  .phase-2 { background: rgba(245,158,11,0.15); color: var(--accent); }
+  .phase-3 { background: rgba(16,185,129,0.15); color: var(--accent-2); }
+
+  strong { color: #fff; }
+  code {
+    background: var(--surface-2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'SF Mono', monospace;
+  }
+
+  .separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 48px 0;
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; color: #000; font-size: 11px; }
+    .card, .toc { border: 1px solid #ccc; }
+    .hero { background: #f5f5f5; }
+    h2 { border-bottom-color: #333; color: #000; }
+    h3 { color: #555; }
+    .ad-preview { border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <h1>SolarFarms.cy — <span>Marketing Strategy & Campaign Playbook</span></h1>
+  <p class="subtitle">Complete Google Ads campaign structure, content strategy, audience targeting, and article assets for PV+BESS investor acquisition and existing park owner conversion in Cyprus.</p>
+  <div class="meta">
+    <span>February 2026</span>
+    <span>2 Audiences</span>
+    <span>6 Campaigns</span>
+    <span>2 Article Assets</span>
+    <span>Full Keyword Library</span>
+  </div>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#audiences">Target Audiences & Personas</a></li>
+    <li><a href="#funnel">Marketing Funnel Architecture</a></li>
+    <li><a href="#campaigns">Google Ads Campaign Structure (Ready to Upload)</a></li>
+    <li><a href="#keywords">Complete Keyword Library</a></li>
+    <li><a href="#negatives">Negative Keyword List</a></li>
+    <li><a href="#adcopy">Ad Copy — All Headlines & Descriptions</a></li>
+    <li><a href="#budget">Budget Allocation & KPIs</a></li>
+    <li><a href="#landing">Landing Page Requirements</a></li>
+    <li><a href="#tracking">Conversion Tracking Setup</a></li>
+    <li><a href="#content">Content Strategy & Article Assets</a></li>
+    <li><a href="#article-cyprus">ARTICLE: Why Cyprus Lags Behind the EU on BESS</a></li>
+    <li><a href="#article-partner">ARTICLE: How to Choose a BESS Partner</a></li>
+    <li><a href="#financials">Detailed Curtailment Financials for PV Park Owners</a></li>
+    <li><a href="#excel">Google Ads Excel Upload Guide</a></li>
+    <li><a href="#linkedin">LinkedIn & Retargeting Strategy</a></li>
+    <li><a href="#timeline">Implementation Timeline</a></li>
+  </ol>
+</div>
+
+<!-- ==================== 1. AUDIENCES ==================== -->
+<section id="audiences">
+<h2>1. Target Audiences & Personas</h2>
+
+<div class="grid-2">
+
+<div class="card card-accent">
+  <span class="badge badge-investor">AUDIENCE A</span>
+  <h3>HNI & Family Offices — New Solar+BESS Investors</h3>
+  <table>
+    <tr><td><strong>Profile</strong></td><td>High-net-worth individuals, family offices, small institutional investors</td></tr>
+    <tr><td><strong>Budget</strong></td><td>€1.75M – €14M+ (1–10 MW projects)</td></tr>
+    <tr><td><strong>Geography</strong></td><td>Cyprus, Greece, UK, Germany, Middle East (UAE, Lebanon diaspora)</td></tr>
+    <tr><td><strong>Language</strong></td><td>English (primary), Greek (secondary)</td></tr>
+    <tr><td><strong>Motivation</strong></td><td>8–13% IRR, green credentials, EU asset, passive income</td></tr>
+    <tr><td><strong>Decision Timeline</strong></td><td>3–9 months</td></tr>
+    <tr><td><strong>Key Concern</strong></td><td>Bankability, counterparty risk, regulatory stability</td></tr>
+    <tr><td><strong>Where They Search</strong></td><td>Google, LinkedIn, financial news, energy conferences</td></tr>
+  </table>
+</div>
+
+<div class="card card-green">
+  <span class="badge badge-parkowner">AUDIENCE B</span>
+  <h3>Existing PV Park Owners — BESS Retrofit</h3>
+  <table>
+    <tr><td><strong>Profile</strong></td><td>Owners/operators of 1–25 MW solar parks in Cyprus already suffering curtailment</td></tr>
+    <tr><td><strong>Budget</strong></td><td>€850K – €6M+ (BESS-only EPC)</td></tr>
+    <tr><td><strong>Geography</strong></td><td>Cyprus only (they already have parks here)</td></tr>
+    <tr><td><strong>Language</strong></td><td>Greek (primary), English (secondary)</td></tr>
+    <tr><td><strong>Motivation</strong></td><td>Stop losing €200K+/yr to curtailment, recover revenue, future-proof for DAM</td></tr>
+    <tr><td><strong>Decision Timeline</strong></td><td>1–4 months (urgent — curtailment is NOW)</td></tr>
+    <tr><td><strong>Key Concern</strong></td><td>Price per MWh, warranty, O&M costs, ROI payback</td></tr>
+    <tr><td><strong>Where They Search</strong></td><td>Google (Cyprus energy news), industry WhatsApp groups, CERA publications, LinkedIn</td></tr>
+  </table>
+</div>
+
+</div>
+
+<div class="callout">
+  <strong>Why Audience B is high-priority:</strong> PV park owners are losing money <em>right now</em>. Curtailment hit 47% in 2025 — a 5 MW park is losing ~€200K–€580K/year. The decision cycle is short, the pain is acute, and the ROI case is undeniable (15–17% BESS ROI, 5.8-year payback). These are faster conversions than new investors.
+</div>
+</section>
+
+<!-- ==================== 2. FUNNEL ==================== -->
+<section id="funnel">
+<h2>2. Marketing Funnel Architecture</h2>
+
+<div class="card card-blue">
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>Audience A (New Investors)</th>
+      <th>Audience B (Park Owners)</th>
+      <th>Channel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Awareness</strong></td>
+      <td>Articles: "Cyprus Solar Investment 8–13% IRR"<br>Display ads on finance/energy sites</td>
+      <td>Article: "How Cyprus Lags in EU on BESS"<br>Article: "Choosing a BESS Partner"</td>
+      <td>Google Display, LinkedIn, content SEO</td>
+    </tr>
+    <tr>
+      <td><strong>Interest</strong></td>
+      <td>Lead magnet: Free Investment Guide PDF<br>Company presentation download</td>
+      <td>Lead magnet: BESS ROI Calculator<br>Curtailment Financial Analysis</td>
+      <td>Google Search ads, landing pages</td>
+    </tr>
+    <tr>
+      <td><strong>Consideration</strong></td>
+      <td>Email nurture (5–7 emails over 6 weeks)<br>Live TSOC market data on website</td>
+      <td>Email nurture (3–4 emails over 2 weeks)<br>Custom BESS proposal</td>
+      <td>Email automation, retargeting ads</td>
+    </tr>
+    <tr>
+      <td><strong>Decision</strong></td>
+      <td>1-on-1 consultation<br>Site visit / Zoom presentation</td>
+      <td>Site survey + technical proposal<br>Custom financial model</td>
+      <td>Direct sales</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<!-- ==================== 3. CAMPAIGNS ==================== -->
+<section id="campaigns">
+<h2>3. Google Ads Campaign Structure</h2>
+
+<p>Below is the exact structure to enter into the <code>Create New Campaign(s).xlsx</code> template. Each campaign has its ad groups, targeting, and bidding strategy defined.</p>
+
+<div class="card card-accent">
+<span class="phase phase-1">CAMPAIGN 1</span>
+<h3>Brand Defense</h3>
+<table>
+  <tr><td><strong>Campaign Name</strong></td><td>Brand — SolarFarms / Lighthief</td></tr>
+  <tr><td><strong>Type</strong></td><td>Search</td></tr>
+  <tr><td><strong>Audience</strong></td><td><span class="badge badge-both">Both</span></td></tr>
+  <tr><td><strong>Bidding</strong></td><td>Target Impression Share (95%+, absolute top)</td></tr>
+  <tr><td><strong>Daily Budget</strong></td><td>€15</td></tr>
+  <tr><td><strong>Networks</strong></td><td>Search only (no Display)</td></tr>
+  <tr><td><strong>Locations</strong></td><td>Cyprus, Greece, UK, Germany, UAE</td></tr>
+  <tr><td><strong>Languages</strong></td><td>English, Greek</td></tr>
+  <tr><td><strong>Ad Groups</strong></td><td>1. SolarFarms Brand<br>2. Lighthief Brand</td></tr>
+</table>
+</div>
+
+<div class="card card-accent">
+<span class="phase phase-1">CAMPAIGN 2</span>
+<h3>Solar Investment Cyprus — New Investors</h3>
+<table>
+  <tr><td><strong>Campaign Name</strong></td><td>Search — Solar Investment Cyprus [HNI]</td></tr>
+  <tr><td><strong>Type</strong></td><td>Search</td></tr>
+  <tr><td><strong>Audience</strong></td><td><span class="badge badge-investor">Investors</span></td></tr>
+  <tr><td><strong>Bidding</strong></td><td>Maximize Conversions (once tracking is live; manual CPC until then)</td></tr>
+  <tr><td><strong>Daily Budget</strong></td><td>€80</td></tr>
+  <tr><td><strong>Networks</strong></td><td>Search only</td></tr>
+  <tr><td><strong>Locations</strong></td><td>Cyprus, Greece, UK, Germany, UAE, Switzerland</td></tr>
+  <tr><td><strong>Languages</strong></td><td>English</td></tr>
+  <tr><td><strong>Ad Groups</strong></td><td>
+    1. Solar Farm Investment<br>
+    2. Renewable Energy Investment Cyprus<br>
+    3. Green Investment High Yield<br>
+    4. Cyprus Energy Investment
+  </td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="phase phase-1">CAMPAIGN 3</span>
+<h3>BESS Curtailment Recovery — Park Owners</h3>
+<table>
+  <tr><td><strong>Campaign Name</strong></td><td>Search — BESS Curtailment Cyprus [Park Owners]</td></tr>
+  <tr><td><strong>Type</strong></td><td>Search</td></tr>
+  <tr><td><strong>Audience</strong></td><td><span class="badge badge-parkowner">Park Owners</span></td></tr>
+  <tr><td><strong>Bidding</strong></td><td>Manual CPC (small audience, precise targeting)</td></tr>
+  <tr><td><strong>Daily Budget</strong></td><td>€60</td></tr>
+  <tr><td><strong>Networks</strong></td><td>Search only</td></tr>
+  <tr><td><strong>Locations</strong></td><td>Cyprus</td></tr>
+  <tr><td><strong>Languages</strong></td><td>English, Greek</td></tr>
+  <tr><td><strong>Ad Groups</strong></td><td>
+    1. Solar Curtailment Solution<br>
+    2. BESS for Solar Parks<br>
+    3. Battery Storage Cyprus EPC<br>
+    4. Solar Park Revenue Loss
+  </td></tr>
+</table>
+</div>
+
+<div class="card card-accent">
+<span class="phase phase-2">CAMPAIGN 4</span>
+<h3>BESS Investment — Investor + Technical</h3>
+<table>
+  <tr><td><strong>Campaign Name</strong></td><td>Search — BESS Investment [HNI+Technical]</td></tr>
+  <tr><td><strong>Type</strong></td><td>Search</td></tr>
+  <tr><td><strong>Audience</strong></td><td><span class="badge badge-both">Both</span></td></tr>
+  <tr><td><strong>Bidding</strong></td><td>Maximize Conversions</td></tr>
+  <tr><td><strong>Daily Budget</strong></td><td>€50</td></tr>
+  <tr><td><strong>Networks</strong></td><td>Search only</td></tr>
+  <tr><td><strong>Locations</strong></td><td>Cyprus, Greece, UK, Germany, UAE</td></tr>
+  <tr><td><strong>Languages</strong></td><td>English</td></tr>
+  <tr><td><strong>Ad Groups</strong></td><td>
+    1. Battery Storage Investment<br>
+    2. BESS ROI<br>
+    3. Energy Storage Europe
+  </td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<span class="phase phase-2">CAMPAIGN 5</span>
+<h3>Competitor / Alternative Investment</h3>
+<table>
+  <tr><td><strong>Campaign Name</strong></td><td>Search — Alternative Investments [HNI]</td></tr>
+  <tr><td><strong>Type</strong></td><td>Search</td></tr>
+  <tr><td><strong>Audience</strong></td><td><span class="badge badge-investor">Investors</span></td></tr>
+  <tr><td><strong>Bidding</strong></td><td>Manual CPC (test phase)</td></tr>
+  <tr><td><strong>Daily Budget</strong></td><td>€40</td></tr>
+  <tr><td><strong>Networks</strong></td><td>Search only</td></tr>
+  <tr><td><strong>Locations</strong></td><td>Cyprus, Greece, UK, Germany</td></tr>
+  <tr><td><strong>Languages</strong></td><td>English</td></tr>
+  <tr><td><strong>Ad Groups</strong></td><td>
+    1. Alternative to Bonds<br>
+    2. Green Investment EU<br>
+    3. Passive Income Real Assets
+  </td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<span class="phase phase-3">CAMPAIGN 6</span>
+<h3>Retargeting / Demand Gen</h3>
+<table>
+  <tr><td><strong>Campaign Name</strong></td><td>Display — Retargeting [All Visitors]</td></tr>
+  <tr><td><strong>Type</strong></td><td>Demand Gen / Display</td></tr>
+  <tr><td><strong>Audience</strong></td><td><span class="badge badge-both">Both</span></td></tr>
+  <tr><td><strong>Bidding</strong></td><td>Maximize Conversions</td></tr>
+  <tr><td><strong>Daily Budget</strong></td><td>€25</td></tr>
+  <tr><td><strong>Networks</strong></td><td>Display, YouTube, Discover</td></tr>
+  <tr><td><strong>Targeting</strong></td><td>
+    1. Website visitors (all pages) — 30 days<br>
+    2. Website visitors (investment/BESS pages) — 90 days<br>
+    3. Similar audiences to converters
+  </td></tr>
+</table>
+</div>
+
+<div class="callout">
+  <strong>Total Daily Budget: €270 | Monthly: ~€8,100</strong><br>
+  Start with Campaigns 1–3 (€155/day = ~€4,650/mo). Add Campaigns 4–6 after first month once tracking is validated. Adjust based on CPA data.
+</div>
+</section>
+
+<!-- ==================== 4. KEYWORDS ==================== -->
+<section id="keywords">
+<h2>4. Complete Keyword Library</h2>
+<p>Ready to enter into the <code>Add Keyword(s).xlsx</code> template. Organized by campaign and ad group with match types.</p>
+
+<h3>Campaign 1: Brand Defense</h3>
+<h4>Ad Group: SolarFarms Brand</h4>
+<div class="keyword-group">
+  <span class="keyword">[solarfarms.cy]</span>
+  <span class="keyword">[solarfarms cyprus]</span>
+  <span class="keyword">[solar farms cy]</span>
+  <span class="keyword">"solarfarms"</span>
+  <span class="keyword">[solar farms cyprus investment]</span>
+</div>
+<h4>Ad Group: Lighthief Brand</h4>
+<div class="keyword-group">
+  <span class="keyword">[lighthief]</span>
+  <span class="keyword">[lighthief cyprus]</span>
+  <span class="keyword">[lighthief solar]</span>
+  <span class="keyword">"lighthief energy"</span>
+  <span class="keyword">[lighthief bess]</span>
+</div>
+
+<h3>Campaign 2: Solar Investment Cyprus</h3>
+<h4>Ad Group: Solar Farm Investment</h4>
+<div class="keyword-group">
+  <span class="keyword medium">"solar farm investment"</span>
+  <span class="keyword medium">"invest in solar farm"</span>
+  <span class="keyword medium">"solar park investment"</span>
+  <span class="keyword high">[solar farm investment cyprus]</span>
+  <span class="keyword medium">"buy solar farm europe"</span>
+  <span class="keyword">"solar farm for sale cyprus"</span>
+  <span class="keyword">"solar energy investment opportunities"</span>
+  <span class="keyword high">[turnkey solar farm]</span>
+</div>
+
+<h4>Ad Group: Renewable Energy Investment Cyprus</h4>
+<div class="keyword-group">
+  <span class="keyword medium">"renewable energy investment cyprus"</span>
+  <span class="keyword">"clean energy investment europe"</span>
+  <span class="keyword">"green energy project cyprus"</span>
+  <span class="keyword medium">"cyprus renewable energy"</span>
+  <span class="keyword">"solar investment mediterranean"</span>
+  <span class="keyword">"pv investment eu"</span>
+</div>
+
+<h4>Ad Group: Green Investment High Yield</h4>
+<div class="keyword-group">
+  <span class="keyword high">"high yield green investment"</span>
+  <span class="keyword">"sustainable investment 10% return"</span>
+  <span class="keyword">"green energy high roi"</span>
+  <span class="keyword">"renewable energy returns"</span>
+  <span class="keyword">"solar farm roi"</span>
+  <span class="keyword">"solar farm returns"</span>
+</div>
+
+<h4>Ad Group: Cyprus Energy Investment</h4>
+<div class="keyword-group">
+  <span class="keyword">"cyprus energy market"</span>
+  <span class="keyword">"invest in cyprus"</span>
+  <span class="keyword">"cyprus investment opportunities"</span>
+  <span class="keyword">"cyprus solar market"</span>
+  <span class="keyword">"cyprus electricity market"</span>
+</div>
+
+<h3>Campaign 3: BESS Curtailment Recovery (Park Owners)</h3>
+<h4>Ad Group: Solar Curtailment Solution</h4>
+<div class="keyword-group">
+  <span class="keyword high">"solar curtailment cyprus"</span>
+  <span class="keyword high">"curtailment solution"</span>
+  <span class="keyword high">[solar curtailment recovery]</span>
+  <span class="keyword">"reduce solar curtailment"</span>
+  <span class="keyword">"curtailment loss solar park"</span>
+  <span class="keyword">"κούρεμα φωτοβολταϊκών κύπρος"</span>
+  <span class="keyword">"περικοπή ηλιακής ενέργειας"</span>
+</div>
+
+<h4>Ad Group: BESS for Solar Parks</h4>
+<div class="keyword-group">
+  <span class="keyword high">"bess for solar park"</span>
+  <span class="keyword high">"battery storage solar farm"</span>
+  <span class="keyword">"add battery to solar park"</span>
+  <span class="keyword">"solar plus storage cyprus"</span>
+  <span class="keyword">"bess retrofit solar"</span>
+  <span class="keyword">"co-located bess"</span>
+  <span class="keyword">"αποθήκευση ενέργειας φωτοβολταϊκό"</span>
+</div>
+
+<h4>Ad Group: Battery Storage Cyprus EPC</h4>
+<div class="keyword-group">
+  <span class="keyword high">"bess epc cyprus"</span>
+  <span class="keyword">"battery storage installer cyprus"</span>
+  <span class="keyword">"bess contractor cyprus"</span>
+  <span class="keyword">"battery storage system price"</span>
+  <span class="keyword">"bess cost per mwh"</span>
+  <span class="keyword">"linyang battery cyprus"</span>
+</div>
+
+<h4>Ad Group: Solar Park Revenue Loss</h4>
+<div class="keyword-group">
+  <span class="keyword high">"solar park losing money"</span>
+  <span class="keyword">"solar farm revenue drop"</span>
+  <span class="keyword">"cyprus solar park problems"</span>
+  <span class="keyword">"tsoc curtailment"</span>
+  <span class="keyword">"eac curtailment solar"</span>
+  <span class="keyword">"cera bess license"</span>
+</div>
+
+<h3>Campaign 4: BESS Investment</h3>
+<h4>Ad Group: Battery Storage Investment</h4>
+<div class="keyword-group">
+  <span class="keyword medium">"battery storage investment"</span>
+  <span class="keyword">"bess investment opportunity"</span>
+  <span class="keyword">"energy storage investment europe"</span>
+  <span class="keyword">"invest in battery storage"</span>
+  <span class="keyword">"grid scale battery investment"</span>
+</div>
+
+<h4>Ad Group: BESS ROI</h4>
+<div class="keyword-group">
+  <span class="keyword">"bess roi"</span>
+  <span class="keyword">"battery storage returns"</span>
+  <span class="keyword">"bess payback period"</span>
+  <span class="keyword">"bess revenue model"</span>
+  <span class="keyword">"energy storage economics"</span>
+</div>
+
+<h3>Campaign 5: Alternative Investment</h3>
+<h4>Ad Group: Alternative to Bonds</h4>
+<div class="keyword-group">
+  <span class="keyword">"alternative to bonds"</span>
+  <span class="keyword">"better than bonds investment"</span>
+  <span class="keyword">"real asset investment"</span>
+  <span class="keyword">"infrastructure investment"</span>
+  <span class="keyword">"fixed income alternative"</span>
+</div>
+
+<h4>Ad Group: Green Investment EU</h4>
+<div class="keyword-group">
+  <span class="keyword">"esg investment europe"</span>
+  <span class="keyword">"green bond alternative"</span>
+  <span class="keyword">"sustainable investment high return"</span>
+  <span class="keyword">"impact investing energy"</span>
+</div>
+
+<h4>Ad Group: Passive Income Real Assets</h4>
+<div class="keyword-group">
+  <span class="keyword">"passive income from solar"</span>
+  <span class="keyword">"income producing real assets"</span>
+  <span class="keyword">"cash flow investment europe"</span>
+</div>
+</section>
+
+<!-- ==================== 5. NEGATIVES ==================== -->
+<section id="negatives">
+<h2>5. Negative Keyword List</h2>
+<p>Critical — apply at account level to ALL campaigns. These prevent your ads from showing to the wrong audience.</p>
+
+<div class="grid-2">
+<div class="card card-red">
+<h4>Residential / Homeowner (Block Everywhere)</h4>
+<div class="keyword-group">
+  <span class="keyword high">home solar panels</span>
+  <span class="keyword high">residential solar</span>
+  <span class="keyword high">solar panels for house</span>
+  <span class="keyword high">rooftop solar</span>
+  <span class="keyword high">solar panel installation home</span>
+  <span class="keyword high">net metering home</span>
+  <span class="keyword high">solar water heater</span>
+  <span class="keyword high">home battery</span>
+  <span class="keyword high">powerwall</span>
+  <span class="keyword high">solar panel cost</span>
+  <span class="keyword high">how much do solar panels cost</span>
+  <span class="keyword high">solar panel calculator</span>
+  <span class="keyword high">solar roof</span>
+</div>
+</div>
+
+<div class="card card-red">
+<h4>Jobs / Careers (Block Everywhere)</h4>
+<div class="keyword-group">
+  <span class="keyword high">solar jobs</span>
+  <span class="keyword high">solar engineer</span>
+  <span class="keyword high">solar installer job</span>
+  <span class="keyword high">renewable energy career</span>
+  <span class="keyword high">bess engineer</span>
+  <span class="keyword high">solar technician</span>
+  <span class="keyword high">energy jobs cyprus</span>
+</div>
+</div>
+
+<div class="card card-red">
+<h4>DIY / Education (Block Everywhere)</h4>
+<div class="keyword-group">
+  <span class="keyword high">how to build solar panel</span>
+  <span class="keyword high">diy solar</span>
+  <span class="keyword high">solar panel kit</span>
+  <span class="keyword high">solar energy pdf</span>
+  <span class="keyword high">solar panel diagram</span>
+  <span class="keyword high">what is solar energy</span>
+  <span class="keyword high">solar panel types</span>
+  <span class="keyword high">solar panel efficiency</span>
+</div>
+</div>
+
+<div class="card card-red">
+<h4>Stock Market / Trading (Block Everywhere)</h4>
+<div class="keyword-group">
+  <span class="keyword high">solar stock</span>
+  <span class="keyword high">solar etf</span>
+  <span class="keyword high">enphase stock</span>
+  <span class="keyword high">first solar stock</span>
+  <span class="keyword high">renewable energy stock</span>
+  <span class="keyword high">bess stock</span>
+  <span class="keyword high">battery stock</span>
+  <span class="keyword high">tesla stock</span>
+  <span class="keyword high">clean energy etf</span>
+</div>
+</div>
+
+<div class="card card-red">
+<h4>Wrong Geography / Off-Market</h4>
+<div class="keyword-group">
+  <span class="keyword high">solar farm usa</span>
+  <span class="keyword high">solar investment india</span>
+  <span class="keyword high">solar africa</span>
+  <span class="keyword high">solar farm australia</span>
+  <span class="keyword high">solar farm texas</span>
+  <span class="keyword high">solar farm uk</span>
+</div>
+</div>
+
+<div class="card card-red">
+<h4>Low Intent / Irrelevant</h4>
+<div class="keyword-group">
+  <span class="keyword high">free</span>
+  <span class="keyword high">cheap</span>
+  <span class="keyword high">subsidy</span>
+  <span class="keyword high">government grant</span>
+  <span class="keyword high">used solar panels</span>
+  <span class="keyword high">second hand</span>
+  <span class="keyword high">lease</span>
+  <span class="keyword high">rent solar</span>
+  <span class="keyword high">solar loan</span>
+  <span class="keyword high">small solar</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ==================== 6. AD COPY ==================== -->
+<section id="adcopy">
+<h2>6. Ad Copy — Headlines & Descriptions</h2>
+<p>Enter these into the <code>Create Responsive Search Ad(s).xlsx</code> template. Each RSA needs up to 15 headlines and 4 descriptions. Pin headlines 1–3 for best performance.</p>
+
+<h3>Campaign 2: Solar Investment Cyprus — Ad Group "Solar Farm Investment"</h3>
+
+<div class="ad-preview">
+  <span class="ad-label">Sponsored</span>
+  <div class="ad-url">solarfarms.cy/invest</div>
+  <div class="ad-title">Solar Farm Investment Cyprus | 8–13% IRR | Turnkey PV+BESS</div>
+  <div class="ad-desc">Invest in solar farms in Cyprus — 3,300+ sun hours, 25-year asset life. Turnkey EPC+O&M from a single partner with 15+ years experience. Download our free investment guide today.</div>
+</div>
+
+<h4>Headlines (15)</h4>
+<table>
+  <thead><tr><th>#</th><th>Headline (max 30 chars)</th><th>Pin</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Solar Farm Investment Cyprus</td><td>Pin 1</td></tr>
+    <tr><td>2</td><td>8–13% Annual Returns</td><td>Pin 2</td></tr>
+    <tr><td>3</td><td>Turnkey PV + BESS Projects</td><td>Pin 3</td></tr>
+    <tr><td>4</td><td>Free Investment Guide</td><td></td></tr>
+    <tr><td>5</td><td>3,300+ Sun Hours Per Year</td><td></td></tr>
+    <tr><td>6</td><td>25-Year Passive Income</td><td></td></tr>
+    <tr><td>7</td><td>From €1.75M — Full Turnkey</td><td></td></tr>
+    <tr><td>8</td><td>15+ Years Experience</td><td></td></tr>
+    <tr><td>9</td><td>EU-Based Real Asset</td><td></td></tr>
+    <tr><td>10</td><td>Single EPC+O&M Partner</td><td></td></tr>
+    <tr><td>11</td><td>7–10 Year Payback Period</td><td></td></tr>
+    <tr><td>12</td><td>Bankable Solar + Storage</td><td></td></tr>
+    <tr><td>13</td><td>100s MW Under Management</td><td></td></tr>
+    <tr><td>14</td><td>Talk to Our Team Today</td><td></td></tr>
+    <tr><td>15</td><td>Download Free Guide Now</td><td></td></tr>
+  </tbody>
+</table>
+
+<h4>Descriptions (4)</h4>
+<table>
+  <thead><tr><th>#</th><th>Description (max 90 chars)</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Invest in turnkey solar farms in Cyprus. 8–13% IRR, 25-year asset life, single EPC+O&M partner.</td></tr>
+    <tr><td>2</td><td>3,300+ sun hours/year. Tier-1 BESS. Full bankability package. Download our free investment guide.</td></tr>
+    <tr><td>3</td><td>From 1 MW to 10+ MW projects. Turnkey EPC, O&M, and ready-to-build permitting included.</td></tr>
+    <tr><td>4</td><td>EU-based real asset with verified market data. 300+ sunny days. Speak with our investment team.</td></tr>
+  </tbody>
+</table>
+
+<h3>Campaign 3: BESS Curtailment — Ad Group "Solar Curtailment Solution"</h3>
+
+<div class="ad-preview">
+  <span class="ad-label">Sponsored</span>
+  <div class="ad-url">solarfarms.cy/energy-storage</div>
+  <div class="ad-title">Losing Revenue to Curtailment? | BESS Recovers 50%+ | From €100/kWh</div>
+  <div class="ad-desc">Cyprus solar curtailment hit 47% in 2025. Your 5 MW park is losing €200K+/year. Our BESS solution recovers curtailed energy and sells at peak prices (€183/MWh). 5.8-year payback.</div>
+</div>
+
+<h4>Headlines (15)</h4>
+<table>
+  <thead><tr><th>#</th><th>Headline (max 30 chars)</th><th>Pin</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Stop Losing to Curtailment</td><td>Pin 1</td></tr>
+    <tr><td>2</td><td>BESS Recovers 50%+ Revenue</td><td>Pin 2</td></tr>
+    <tr><td>3</td><td>From €100/kWh Installed</td><td>Pin 3</td></tr>
+    <tr><td>4</td><td>47% Curtailment in 2025</td><td></td></tr>
+    <tr><td>5</td><td>5.8-Year BESS Payback</td><td></td></tr>
+    <tr><td>6</td><td>Sell at €183/MWh Peak Price</td><td></td></tr>
+    <tr><td>7</td><td>17.4% BESS ROI</td><td></td></tr>
+    <tr><td>8</td><td>Turnkey BESS EPC Cyprus</td><td></td></tr>
+    <tr><td>9</td><td>15-Year Warranty Available</td><td></td></tr>
+    <tr><td>10</td><td>7,000 Cycle Battery Life</td><td></td></tr>
+    <tr><td>11</td><td>Free Curtailment Analysis</td><td></td></tr>
+    <tr><td>12</td><td>Your Park Is Losing €200K+/yr</td><td></td></tr>
+    <tr><td>13</td><td>86.32% Round-Trip Efficiency</td><td></td></tr>
+    <tr><td>14</td><td>Get Your Custom BESS Quote</td><td></td></tr>
+    <tr><td>15</td><td>Tier-1 Linyang LFP Systems</td><td></td></tr>
+  </tbody>
+</table>
+
+<h4>Descriptions (4)</h4>
+<table>
+  <thead><tr><th>#</th><th>Description (max 90 chars)</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>47% curtailment in 2025 — your solar park is losing €200K+/year. BESS recovers 50%+ at €183/MWh.</td></tr>
+    <tr><td>2</td><td>Turnkey BESS EPC from €100/kWh. 15-year warranty. 86.32% RTE. Payback in under 6 years.</td></tr>
+    <tr><td>3</td><td>Tier-1 Linyang LFP batteries. 7,000 cycles. Full O&M included. Get your custom proposal today.</td></tr>
+    <tr><td>4</td><td>Free curtailment financial analysis for your park. See exactly how much BESS would recover.</td></tr>
+  </tbody>
+</table>
+
+<h3>Campaign 5: Alternative Investment — Ad Group "Alternative to Bonds"</h3>
+
+<div class="ad-preview">
+  <span class="ad-label">Sponsored</span>
+  <div class="ad-url">solarfarms.cy/invest</div>
+  <div class="ad-title">Beyond Bonds: 8–13% From Solar | Real Asset, EU-Based | 25-Year Cash Flow</div>
+  <div class="ad-desc">Looking beyond fixed income? Solar farms in Cyprus deliver 8–13% annual returns on real infrastructure. EU-regulated, 25-year lifespan, tangible asset. Free guide available.</div>
+</div>
+</section>
+
+<!-- ==================== 7. BUDGET ==================== -->
+<section id="budget">
+<h2>7. Budget Allocation & KPIs</h2>
+
+<div class="card card-accent">
+<h3>Phase 1: Months 1–2 (Validation)</h3>
+<table>
+  <thead>
+    <tr><th>Campaign</th><th>Daily</th><th>Monthly</th><th>Target CPA</th><th>Expected Leads/mo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1. Brand</td><td>€15</td><td>€450</td><td>€10</td><td>45</td></tr>
+    <tr><td>2. Solar Investment</td><td>€80</td><td>€2,400</td><td>€150</td><td>16</td></tr>
+    <tr><td>3. BESS Curtailment</td><td>€60</td><td>€1,800</td><td>€100</td><td>18</td></tr>
+    <tr><td colspan="2"><strong>Total Phase 1</strong></td><td><strong>€4,650</strong></td><td></td><td><strong>79 leads</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card card-green">
+<h3>Phase 2: Months 3–4 (Scale)</h3>
+<table>
+  <thead>
+    <tr><th>Campaign</th><th>Daily</th><th>Monthly</th><th>Target CPA</th><th>Expected Leads/mo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1–3 (continued)</td><td>€155</td><td>€4,650</td><td>—</td><td>79</td></tr>
+    <tr><td>4. BESS Investment</td><td>€50</td><td>€1,500</td><td>€120</td><td>12</td></tr>
+    <tr><td>5. Alt Investment</td><td>€40</td><td>€1,200</td><td>€130</td><td>9</td></tr>
+    <tr><td>6. Retargeting</td><td>€25</td><td>€750</td><td>€50</td><td>15</td></tr>
+    <tr><td colspan="2"><strong>Total Phase 2</strong></td><td><strong>€8,100</strong></td><td></td><td><strong>115 leads</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <strong>ROI Benchmark:</strong> At €4,650–€8,100/month spend, you need just <strong>1 conversion per quarter</strong> to be wildly profitable. A single 5 MW BESS EPC deal at €2.26M with 13% margin = <strong>€293K gross profit</strong>. That's 3–5 years of ad spend returned on a single deal.
+</div>
+</section>
+
+<!-- ==================== 8. LANDING PAGES ==================== -->
+<section id="landing">
+<h2>8. Landing Page Requirements</h2>
+
+<div class="grid-2">
+<div class="card card-accent">
+  <h4>Page 1: /invest (For Campaign 2, 4, 5)</h4>
+  <ul>
+    <li>Hero: "Solar Farm Investment Cyprus — 8-13% IRR"</li>
+    <li>Investment tier table (1/5/10 MW)</li>
+    <li>TSOC live market data chart</li>
+    <li>Trust signals: 15+ years, 100s MW, 11 countries</li>
+    <li>Lead form: Name, Email, Phone, Investment Range</li>
+    <li>CTA: "Download Investment Guide" + "Book a Consultation"</li>
+    <li>Testimonials / case studies if available</li>
+  </ul>
+</div>
+
+<div class="card card-green">
+  <h4>Page 2: /bess (For Campaign 3)</h4>
+  <ul>
+    <li>Hero: "Your Solar Park Is Losing €200K+/yr to Curtailment"</li>
+    <li>Curtailment crisis chart (0% → 47% over 4 years)</li>
+    <li>BESS financial model: cost vs. recovered revenue</li>
+    <li>Pricing table: €97–€168K per MWh</li>
+    <li>Warranty & specs: 15-year LTSA, 86.32% RTE, 6K cycles</li>
+    <li>Lead form: Name, Email, Park Location, MW Size</li>
+    <li>CTA: "Get Free Curtailment Analysis" + "Request BESS Quote"</li>
+  </ul>
+</div>
+</div>
+</section>
+
+<!-- ==================== 9. TRACKING ==================== -->
+<section id="tracking">
+<h2>9. Conversion Tracking Setup</h2>
+
+<div class="callout red">
+  <strong>CRITICAL: Do NOT spend on ads until tracking is live.</strong> Without conversion tracking, Google cannot optimize your campaigns, and you cannot measure ROI. This is step 1 before any campaign goes live.
+</div>
+
+<div class="card card-accent">
+<h3>Step-by-Step Setup</h3>
+<table>
+  <thead><tr><th>Step</th><th>Action</th><th>Tool</th><th>Time</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Create Google Tag Manager (GTM) account</strong><br>Go to tagmanager.google.com → Create account → Create container (Web) → Install GTM snippet in site &lt;head&gt; and &lt;body&gt;</td>
+      <td>GTM</td>
+      <td>15 min</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Create conversion actions in Google Ads</strong><br>Google Ads → Goals → Conversions → New Conversion Action:<br>
+        • <code>form_submission_invest</code> — Contact form on /invest<br>
+        • <code>form_submission_bess</code> — Contact form on /bess<br>
+        • <code>guide_download</code> — Investment guide download<br>
+        • <code>phone_call</code> — Click-to-call (if phone shown)<br>
+        Set value: €500 for form submissions, €100 for guide downloads
+      </td>
+      <td>Google Ads</td>
+      <td>20 min</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Install Google Ads conversion tag via GTM</strong><br>GTM → Tags → New → Google Ads Conversion Tracking → Enter Conversion ID + Label from step 2 → Trigger: Form Submission (custom event) or Thank You page view</td>
+      <td>GTM</td>
+      <td>20 min</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Install Google Ads remarketing tag</strong><br>GTM → Tags → New → Google Ads Remarketing → Enter Conversion ID → Trigger: All Pages</td>
+      <td>GTM</td>
+      <td>10 min</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Link Google Analytics 4 (GA4)</strong><br>Create GA4 property → Install via GTM → Link to Google Ads account</td>
+      <td>GA4 + GTM</td>
+      <td>15 min</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Test conversions</strong><br>GTM → Preview mode → Submit a test form → Verify conversion fires in Google Ads → Verify in GA4 real-time</td>
+      <td>GTM Preview</td>
+      <td>15 min</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Set up audience lists for retargeting</strong><br>Google Ads → Audience Manager → Create lists:<br>
+        • All visitors (30 days)<br>
+        • /invest visitors (90 days)<br>
+        • /bess visitors (90 days)<br>
+        • Guide downloaders (180 days)<br>
+        • Converters (365 days)
+      </td>
+      <td>Google Ads</td>
+      <td>15 min</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Total setup time: ~2 hours.</strong></p>
+</div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 10. CONTENT STRATEGY ==================== -->
+<section id="content">
+<h2>10. Content Strategy & Article Assets</h2>
+
+<p>Two articles are ready below. These serve as:</p>
+<ul>
+  <li><strong>SEO content</strong> — drives organic traffic from park owners searching for curtailment/BESS info</li>
+  <li><strong>Lead magnets</strong> — share on LinkedIn, email to prospects, use as Google Ads landing page content</li>
+  <li><strong>Authority builders</strong> — establishes Lighthief/SolarFarms as the Cyprus BESS knowledge leader</li>
+  <li><strong>Retargeting fuel</strong> — anyone who reads these articles gets cookied for retargeting Campaign 6</li>
+</ul>
+
+<div class="grid-2">
+  <div class="card card-green">
+    <h4>Article 1: How Cyprus Lags Behind the EU on BESS</h4>
+    <p><span class="badge badge-parkowner">Park Owners</span></p>
+    <p>Detailed analysis with curtailment financials, EU comparison, and hard market data. Designed to make PV park owners feel the urgency and see the regulatory injustice.</p>
+    <p><a href="#article-cyprus" style="color:var(--accent)">Jump to article →</a></p>
+  </div>
+  <div class="card card-blue">
+    <h4>Article 2: How to Choose a BESS Partner</h4>
+    <p><span class="badge badge-both">Both Audiences</span></p>
+    <p>Practical guide positioning Lighthief as the trusted choice. Covers bankability, warranties, O&M, and red flags to watch for.</p>
+    <p><a href="#article-partner" style="color:var(--accent)">Jump to article →</a></p>
+  </div>
+</div>
+
+<h3>Additional Content to Create (Future)</h3>
+<table>
+  <thead><tr><th>Article</th><th>Audience</th><th>Purpose</th><th>Priority</th></tr></thead>
+  <tbody>
+    <tr><td>Cyprus Solar Investment Guide 2026</td><td><span class="badge badge-investor">Investors</span></td><td>Lead magnet PDF + blog post</td><td>High</td></tr>
+    <tr><td>BESS ROI Calculator (Interactive)</td><td><span class="badge badge-parkowner">Park Owners</span></td><td>On-site tool — enter park size, get ROI</td><td>High</td></tr>
+    <tr><td>TSOC Market Data: What It Means for Your Park</td><td><span class="badge badge-parkowner">Park Owners</span></td><td>Monthly update blog post</td><td>Medium</td></tr>
+    <tr><td>Why Cyprus Solar Beats European Alternatives</td><td><span class="badge badge-investor">Investors</span></td><td>SEO + LinkedIn</td><td>Medium</td></tr>
+    <tr><td>Case Study: 5 MW BESS Retrofit (when complete)</td><td><span class="badge badge-both">Both</span></td><td>Proof of delivery</td><td>High (when available)</td></tr>
+  </tbody>
+</table>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 11. ARTICLE: CYPRUS LAGS ==================== -->
+<section id="article-cyprus">
+<h2>11. ARTICLE: Why Cyprus Is Falling Behind the EU on Battery Storage — And What It's Costing Your Solar Park</h2>
+
+<div class="callout">
+  <strong>Publish this on:</strong> solarfarms.cy/blog, LinkedIn (condensed version), and as a downloadable PDF lead magnet.<br>
+  <strong>Target audience:</strong> PV park owners in Cyprus who are suffering from curtailment.<br>
+  <strong>Goal:</strong> Educate, create urgency, establish authority, drive leads for BESS retrofit.
+</div>
+
+<div class="card" style="padding: 40px;">
+
+<p style="color: var(--text-muted); font-size: 13px; margin-bottom: 8px;">ANALYSIS — FEBRUARY 2026</p>
+<h3 style="font-size: 26px; color: #fff; margin-bottom: 20px;">Why Cyprus Is Falling Behind the EU on Battery Storage — And What It's Costing Your Solar Park</h3>
+
+<p>If you own a solar park in Cyprus, you already know the numbers are getting worse. Curtailment in 2025 reached <strong>47%</strong> — nearly half of all distributed solar generation was wasted. A 5 MW park that should generate 8,500 MWh/year is now producing barely 4,500 MWh of revenue-generating output. At current PPA rates, that's <strong>€200,000–€580,000 per year evaporating</strong>.</p>
+
+<p>But here's what most park owners don't know: <strong>this problem is almost entirely unique to Cyprus in the EU</strong>. Every other European country has either solved it or is solving it faster. Here's the evidence.</p>
+
+<h4>The Curtailment Crisis: By the Numbers</h4>
+
+<table>
+  <thead><tr><th>Year</th><th>Curtailed Energy</th><th>Curtailment Rate</th><th>Lost Revenue (5 MW park)</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td>~0 GWh</td><td>~0%</td><td>€0</td></tr>
+    <tr><td>2023</td><td>~90 GWh</td><td>~15%</td><td>~€120,000</td></tr>
+    <tr><td>2024</td><td>167 GWh</td><td>29%</td><td>~€290,000</td></tr>
+    <tr><td><strong>2025</strong></td><td><strong>306 GWh</strong></td><td><strong>47%</strong></td><td><strong>€200K–€580K</strong></td></tr>
+  </tbody>
+</table>
+
+<p>In just four years, the curtailment rate went from near-zero to nearly half of all generation. The trend is <strong>accelerating</strong> — it nearly doubled from 2024 to 2025 alone (+83%). There is no sign of it stopping. Every new rooftop PV installation makes it worse.</p>
+
+<h4>How Does Cyprus Compare to the EU?</h4>
+
+<table>
+  <thead><tr><th>Metric</th><th>Cyprus</th><th>EU Average</th></tr></thead>
+  <tbody>
+    <tr><td>Solar curtailment rate</td><td><strong>47%</strong></td><td>&lt;5%</td></tr>
+    <tr><td>Grid-scale BESS deployed</td><td><strong>0 MW</strong></td><td>Thousands of MW</td></tr>
+    <tr><td>Grid carbon intensity</td><td>493 gCO₂/kWh</td><td>~230 gCO₂/kWh</td></tr>
+    <tr><td>Can BESS buy from the grid?</td><td><strong>No</strong></td><td>Yes (in 10+ countries)</td></tr>
+    <tr><td>Can co-located BESS charge from grid?</td><td><strong>No (Category B)</strong></td><td>Yes (Germany, Spain, NL, Belgium, Austria)</td></tr>
+    <tr><td>BESS discharge cap</td><td><strong>50% of PV capacity</strong></td><td>No cap (unique to Cyprus)</td></tr>
+  </tbody>
+</table>
+
+<p>Cyprus is the <strong>only EU country with zero grid-scale BESS deployed</strong>. It has the highest curtailment rate, the highest fossil fuel dependency (76% vs EU average 33%), and among the highest electricity prices. And the regulatory framework actively works against private BESS deployment.</p>
+
+<h4>The Six Restrictions Holding Cyprus Back</h4>
+
+<p>We've analysed the regulatory frameworks of 14 EU countries. Here's what we found:</p>
+
+<table>
+  <thead><tr><th>#</th><th>Cyprus Restriction</th><th>EU Standard</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>BESS cannot buy from the Day-Ahead Market</td><td>Every other EU market allows this</td><td style="color:var(--red)"><strong>Unique to Cyprus</strong></td></tr>
+    <tr><td>2</td><td>Category B BESS cannot charge from grid</td><td>5 major EU countries allow unrestricted grid charging</td><td style="color:var(--red)"><strong>Minority position</strong></td></tr>
+    <tr><td>3</td><td>50% maximum discharge cap</td><td>No other EU country has this</td><td style="color:var(--red)"><strong>Unique to Cyprus</strong></td></tr>
+    <tr><td>4</td><td>Software power limiting prohibited</td><td>Germany actively encourages it (EEG §8a)</td><td style="color:var(--red)"><strong>Opposite of EU trend</strong></td></tr>
+    <tr><td>5</td><td>Combined output capped at PV capacity</td><td>Most countries cap at grid connection capacity</td><td style="color:var(--accent)"><strong>Overly restrictive</strong></td></tr>
+    <tr><td>6</td><td>TSOC owns 120 MW BESS while private BESS faces all above</td><td>EU Directive generally prohibits TSO storage ownership</td><td style="color:var(--red)"><strong>ACER issued warning</strong></td></tr>
+  </tbody>
+</table>
+
+<h4>What the 50% Discharge Cap Actually Costs You</h4>
+
+<p>This is the restriction most park owners don't understand, and it's the most expensive. Let's use real TSOC Day-Ahead Market data from October 2025 – February 2026 (134 days of actual market clearing prices).</p>
+
+<p><strong>Peak hours (17:00–21:00) average price: €182.99/MWh</strong><br>
+<strong>Midday hours (10:00–14:00) average price: €101.13/MWh</strong><br>
+<strong>Price at 19:00 (daily high): €186/MWh</strong><br>
+<strong>Price at 12:00 (daily low): €77/MWh</strong></p>
+
+<p>Take a <strong>10 MW PV + 10 MW / 40 MWh BESS</strong> (4-hour duration, Category B):</p>
+
+<table>
+  <thead><tr><th>Scenario</th><th>Discharge Power</th><th>Discharge Window</th><th>Revenue/Cycle</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Without 50% cap</strong> (as in Germany, Spain)</td><td>10 MW</td><td>17:00–21:00 (peak only)</td><td><strong>€7,320</strong></td></tr>
+    <tr><td><strong>With 50% cap</strong> (Cyprus reality)</td><td>5 MW</td><td>13:00–21:00 (forced early start)</td><td><strong>€6,330</strong></td></tr>
+    <tr><td colspan="3"><strong>Lost per cycle</strong></td><td style="color:var(--red)"><strong>€990 (13.5%)</strong></td></tr>
+  </tbody>
+</table>
+
+<p>Over a year (~330 cycles), that's <strong>€240,000–€330,000 lost annually</strong> on a single 10 MW installation. Over 15 years: <strong>€3.6–€5.0 million</strong> in foregone revenue.</p>
+
+<p>The cap forces you to start discharging at 13:00 when prices are €105/MWh instead of concentrating output at 17:00–21:00 when prices are €183/MWh. You're selling into the solar trough — the exact hours the battery was meant to avoid.</p>
+
+<h4>The Must-Run Problem: Why Curtailment Exists</h4>
+
+<p>TSOC mandates 210–250 MW of conventional thermal generation running at all times for "grid inertia." This means even when solar could power the entire island, <strong>fossil fuel plants keep running and solar gets curtailed to make room</strong>.</p>
+
+<p>The cost to consumers: <strong>€250–350 million per year in EU carbon allowance (ETS) costs</strong>, passed directly through electricity bills. The cumulative ETS bill from 2018–2025: approximately <strong>€1.28 billion</strong>.</p>
+
+<p>How have other countries solved this?</p>
+<ul>
+  <li><strong>Ireland</strong> — Reduced must-run thermal from ~50% to ~20% using BESS for inertia (DS3 programme, operational since 2016)</li>
+  <li><strong>Germany</strong> — Launched a dedicated inertia services market in January 2026, paying BESS €8,000–17,000/MW/year</li>
+  <li><strong>UK</strong> — 12.5+ GW of BESS deployed through the Stability Pathfinder programme</li>
+</ul>
+
+<p>Cyprus has done none of this. There is no inertia services market. BESS cannot compete with thermal plants for grid stability contracts. The result: a self-reinforcing cycle where solar is curtailed to protect fossil generation, and BESS is blocked from providing the alternative.</p>
+
+<h4>What You Can Do Right Now</h4>
+
+<p>Despite the regulatory constraints, <strong>BESS is already profitable under Category B</strong> — even with the restrictions:</p>
+
+<table>
+  <thead><tr><th>Metric</th><th>5 MW + 20 MWh BESS</th><th>7 MW + 20 MWh BESS</th></tr></thead>
+  <tbody>
+    <tr><td>BESS EPC Cost</td><td>€2.26M (€112.9K/MWh)</td><td>€2.38M (€108.4K/MWh)</td></tr>
+    <tr><td>Annual Curtailment Recovered</td><td>~1,290 MWh</td><td>~2,616 MWh</td></tr>
+    <tr><td>Revenue at Peak Prices</td><td>~€294K/yr</td><td>~€479K/yr</td></tr>
+    <tr><td>Annual O&M Cost</td><td>~€35K/yr</td><td>~€64K/yr</td></tr>
+    <tr><td>Net Annual Income</td><td>~€259K/yr</td><td>~€414K/yr</td></tr>
+    <tr><td><strong>Simple ROI</strong></td><td><strong>11.5%</strong></td><td><strong>17.4%</strong></td></tr>
+    <tr><td><strong>Payback Period</strong></td><td><strong>8.7 years</strong></td><td><strong>5.8 years</strong></td></tr>
+    <tr><td>15-Year Net Income</td><td>~€3.9M</td><td>~€4.9M</td></tr>
+    <tr><td>IRR</td><td>~10%</td><td>~12%</td></tr>
+  </tbody>
+</table>
+
+<p>And when Cyprus finally passes DAM arbitrage legislation (which every other EU country already has), your BESS will be able to charge from the grid and earn an additional <strong>€71.87/MWh in arbitrage revenue</strong> on top of curtailment recovery. Future-proofing your investment now means being first in line when the rules change.</p>
+
+<h4>Next Steps</h4>
+
+<p>Lighthief offers turnkey BESS EPC from <strong>€100/kWh for large portfolios</strong> to <strong>€168/kWh for single installations</strong>, including Tier-1 Linyang LFP systems with up to 15-year LTSA warranties, 86.32% AC-AC round-trip efficiency, and 7,000 cycles.</p>
+
+<p><strong>Get a free curtailment analysis for your specific park</strong> — we'll show you exactly how much you're losing and what BESS would recover. Contact us at <strong>solarfarms.cy/energy-storage</strong> or email <strong>invest@solarfarms.cy</strong>.</p>
+
+</div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 12. ARTICLE: CHOOSING BESS PARTNER ==================== -->
+<section id="article-partner">
+<h2>12. ARTICLE: How to Choose a BESS Partner — 10 Questions Every Solar Park Owner Must Ask</h2>
+
+<div class="callout">
+  <strong>Publish on:</strong> solarfarms.cy/blog, LinkedIn, email to prospects.<br>
+  <strong>Target audience:</strong> Both investors and park owners evaluating BESS options.<br>
+  <strong>Goal:</strong> Position Lighthief as the transparent, bankable choice. Create a checklist that inherently favours your strengths.
+</div>
+
+<div class="card" style="padding: 40px;">
+
+<p style="color: var(--text-muted); font-size: 13px; margin-bottom: 8px;">GUIDE — FEBRUARY 2026</p>
+<h3 style="font-size: 26px; color: #fff; margin-bottom: 20px;">How to Choose a BESS Partner: 10 Questions Every Solar Park Owner Must Ask Before Signing</h3>
+
+<p>Choosing the wrong battery storage partner can turn a profitable asset into a 15-year headache. The BESS market in Cyprus is new — most park owners have never procured a battery system before. Unlike solar panels (where EPC quality varies but the technology is commoditised), BESS systems have critical differences in cell chemistry, warranty terms, integration quality, and ongoing service that dramatically affect your returns.</p>
+
+<p>Here are the 10 questions you must ask — and the answers that separate serious partners from box-sellers.</p>
+
+<h4>1. Who manufactured the cells, and are they Tier-1?</h4>
+<p>The cells are the heart of the system. Ask for the cell manufacturer, model, and whether they are rated by independent agencies (BNEF Tier 1, DNV, TÜV). Cells from unknown or white-label manufacturers carry significantly higher failure risk.</p>
+<p><strong>What good looks like:</strong> Named Tier-1 cell manufacturer (CATL, BYD, EVE, CALB), with UL 9540A fire safety certification, and independently verified cycle life data.</p>
+<div class="callout green">
+  <strong>Lighthief uses:</strong> EVE 314Ah LFP cells (via Linyang Energy) — Tier-1 rated, UL 9540A certified, 7,000 cycles at 90% DoD guaranteed to 70% EOL (Linyang RFI confirmed Feb 2026).
+</div>
+
+<h4>2. What is the actual round-trip efficiency (AC-to-AC)?</h4>
+<p>Many suppliers quote DC-to-DC efficiency (which ignores inverter and transformer losses). Always ask for <strong>AC-to-AC round-trip efficiency</strong> — this is what matters for revenue. The difference between 85% and 90% RTE is significant over 15 years.</p>
+<p><strong>What good looks like:</strong> ≥86% AC-to-AC RTE, tested under operating conditions, with contractual guarantee.</p>
+<div class="callout green">
+  <strong>Lighthief guarantees:</strong> 86.32% AC-to-AC RTE (full system incl. cabling), contractually guaranteed, verified by Linyang factory testing.
+</div>
+
+<h4>3. What exactly does the warranty cover — and what doesn't it?</h4>
+<p>This is where most buyers get burned. A "5-year warranty" can mean very different things:</p>
+<ul>
+  <li><strong>Product warranty</strong> = manufacturing defects only (limited)</li>
+  <li><strong>Performance warranty</strong> = guaranteed SOH and RTE over time (comprehensive)</li>
+  <li><strong>Capacity guarantee</strong> = specific MWh capacity at defined year milestones</li>
+</ul>
+<p>Ask for the warranty document. Read the exclusions. Understand what triggers a claim and what the remedy is (repair, replace, or cash compensation).</p>
+<p><strong>What good looks like:</strong> 5-year base product + performance warranty, with optional LTSA extension to 10–15 years, including SOH milestones (e.g., ≥85% at Year 5, ≥79.6% at Year 10, ≥70% at Year 15).</p>
+<div class="callout green">
+  <strong>Lighthief offers:</strong> 5-year base warranty + LTSA extensions up to 15 years. Guaranteed SOH: ≥85% Year 5, ≥79.6% Year 10, ≥70% Year 15. Extended warranty pricing: Years 6–10 at €913/MWh/yr (BESS) + €747/MWh (PCS).
+</div>
+
+<h4>4. Who provides O&M, and what's included?</h4>
+<p>BESS systems need active maintenance — thermal management, cell balancing, firmware updates, fire suppression checks. The cheapest system is worthless if the O&M provider is unreachable or unqualified.</p>
+<p><strong>What good looks like:</strong> Single-source O&M from the EPC contractor, with 24/7 remote monitoring, guaranteed response times, and a fixed annual fee that includes all routine maintenance.</p>
+<div class="callout green">
+  <strong>Lighthief O&M:</strong> €1,740/MWh/year all-inclusive (BESS + PCS + monitoring). Same team that built it maintains it. No third-party handoffs. Optional 97% availability guarantee at €2,201/MWh/year.
+</div>
+
+<h4>5. Is the EPC contractor also the O&M provider?</h4>
+<p>When the company that designed and built the system also maintains it, there's <strong>no finger-pointing</strong>. If a cell fails, they can't blame the installer. If the PCS underperforms, they can't blame the manufacturer. Single-source accountability is worth more than any discount from splitting contracts.</p>
+<div class="callout green">
+  <strong>Lighthief:</strong> Single partner for EPC + O&M. We design, procure, build, commission, and maintain. One contract, one counterparty, one phone number.
+</div>
+
+<h4>6. What is the total installed cost per MWh — not just the equipment cost?</h4>
+<p>Some suppliers quote CIF equipment cost (which excludes installation, civil works, grid connection, commissioning, and testing). Always compare <strong>total installed cost per MWh</strong> (sometimes called "all-in EPC cost").</p>
+<table>
+  <thead><tr><th>System Size</th><th>Typical Range (Cyprus, 2026)</th></tr></thead>
+  <tbody>
+    <tr><td>5.015 MWh (1 PA container)</td><td>€160,000–€170,000/MWh</td></tr>
+    <tr><td>10 MWh (2 containers)</td><td>€124,000–€136,000/MWh</td></tr>
+    <tr><td>20 MWh (4 containers)</td><td>€112,000–€131,000/MWh</td></tr>
+    <tr><td>40+ MWh (8+ containers)</td><td>€97,000–€115,000/MWh</td></tr>
+  </tbody>
+</table>
+<p>Be wary of quotes significantly below these ranges — they likely exclude installation, civil works, or import duties.</p>
+
+<h4>7. What is the delivery timeline, and is it contractually binding?</h4>
+<p>Supply chain delays can kill project economics — every month without BESS is another month of curtailment losses. Get a contractual delivery date with liquidated damages for delays.</p>
+<p><strong>What good looks like:</strong> 24–26 weeks from contract signing (90 days manufacturing + 30 days shipping + installation). Contractual milestone payments tied to delivery.</p>
+<div class="callout green">
+  <strong>Lighthief delivery:</strong> 24–26 weeks. Payment structure: 25% advance / 50% on delivery / 20% on commissioning / 5% retention. Linyang production capacity is pre-allocated for Cyprus pipeline.
+</div>
+
+<h4>8. Is the system bankable? Can I get debt financing?</h4>
+<p>If you're financing the BESS with debt (which you should — leverage boosts IRR from ~12% to 15–20%), the lender will scrutinise the EPC contractor, the warranty, and the revenue model. Ask your BESS partner: "Have your systems been financed by Cyprus banks before?"</p>
+<p><strong>What good looks like:</strong> EPC contract structured for bank acceptance. Insurance package included. Warranty bankable. Revenue model backed by market data (not projections).</p>
+<div class="callout green">
+  <strong>Lighthief financing support:</strong> Solar+BESS projects qualify for up to 70% LTV at 4.0–4.5% interest. Our EPC contracts and warranty packages are structured for Cyprus bank acceptance. We provide TSOC market data (134-day verified dataset) for revenue underwriting.
+</div>
+
+<h4>9. What happens when DAM arbitrage legislation passes?</h4>
+<p>Cyprus is the only EU country where BESS cannot buy from the Day-Ahead Market. When this changes (and it will — EU Directive 2019/944 requires it), your BESS will unlock additional revenue of approximately <strong>€71.87/MWh per cycle in grid arbitrage</strong>.</p>
+<p>Ask your BESS partner: "Is the system designed to support grid charging when legislation changes? Will the connection infrastructure allow reclassification from Category B to Category C?"</p>
+<div class="callout green">
+  <strong>Lighthief designs for the future:</strong> All our installations are designed with connection infrastructure that supports future reclassification to Category C (grid-charging capable). When the law changes, your system is ready — no additional hardware cost.
+</div>
+
+<h4>10. Can I see the actual market data backing the revenue projection?</h4>
+<p>Any BESS salesperson can promise returns. The question is: <strong>is the projection based on real market data or assumptions?</strong></p>
+<p>Ask for:</p>
+<ul>
+  <li>Actual TSOC DAM clearing prices (not estimates)</li>
+  <li>Actual curtailment rates for your specific park's location and capacity</li>
+  <li>Conservative scenario (what if curtailment drops to 30%? 20%?)</li>
+</ul>
+<div class="callout green">
+  <strong>Lighthief provides:</strong> All revenue projections are built on 134 days of actual TSOC DAM data (October 2025 – February 2026, the complete dataset since market launch). We provide the raw data for your own independent verification. Our website (solarfarms.cy) shows live market data.
+</div>
+
+<h4>Summary: The BESS Partner Checklist</h4>
+
+<table>
+  <thead><tr><th>Criterion</th><th>Red Flag</th><th>Green Flag</th></tr></thead>
+  <tbody>
+    <tr><td>Cell manufacturer</td><td>Unnamed / white-label</td><td>Named Tier-1 (EVE, CATL, BYD)</td></tr>
+    <tr><td>RTE specification</td><td>DC-to-DC only</td><td>AC-to-AC contractually guaranteed</td></tr>
+    <tr><td>Warranty</td><td>Product only, 2–3 years</td><td>Performance + capacity, 5yr + LTSA to 15yr</td></tr>
+    <tr><td>O&M</td><td>Separate contractor / TBD</td><td>Same company, fixed fee, 24/7 monitoring</td></tr>
+    <tr><td>EPC+O&M</td><td>Different companies</td><td>Single source</td></tr>
+    <tr><td>Pricing</td><td>Equipment-only quote</td><td>All-in installed cost per MWh</td></tr>
+    <tr><td>Delivery</td><td>Vague timeline</td><td>Contractual dates with LD</td></tr>
+    <tr><td>Bankability</td><td>No track record</td><td>Bank-accepted contracts, insurance</td></tr>
+    <tr><td>Future-proofing</td><td>Category B only, no upgrade path</td><td>Designed for Cat C reclassification</td></tr>
+    <tr><td>Revenue model</td><td>Based on assumptions</td><td>Based on actual TSOC data</td></tr>
+  </tbody>
+</table>
+
+<p style="margin-top: 24px;"><strong>Ready to see the numbers for your specific park?</strong> Contact Lighthief for a free curtailment analysis and custom BESS proposal at <strong>solarfarms.cy/energy-storage</strong>.</p>
+
+</div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 13. FINANCIALS ==================== -->
+<section id="financials">
+<h2>13. Detailed Curtailment Financials for PV Park Owners</h2>
+
+<p>This section provides ready-to-use financial data for conversations with park owners. All figures are based on actual TSOC DAM data (134 days, Oct 2025 – Feb 2026).</p>
+
+<h3>Cyprus TSOC Market Pricing (Verified Data)</h3>
+<div class="card">
+<table>
+  <thead><tr><th>Time Window</th><th>Average MCP (€/MWh)</th><th>Character</th></tr></thead>
+  <tbody>
+    <tr><td>Midday Solar (10:00–14:00)</td><td><strong>€101.13</strong></td><td>Deep solar trough — charging window</td></tr>
+    <tr><td>Solar Hours (06:00–17:00)</td><td>€140.88</td><td>Below average</td></tr>
+    <tr><td>Overall Average</td><td>€158.19</td><td>Baseline</td></tr>
+    <tr><td>Off-Peak Night (22:00–05:00)</td><td>€171.49</td><td>Demand-driven floor</td></tr>
+    <tr><td><strong>Evening Peak (17:00–21:00)</strong></td><td><strong>€182.99</strong></td><td><strong>Highest — BESS discharge target</strong></td></tr>
+    <tr><td>BESS Revenue per MWh (86.32% RTE)</td><td><strong>€157.94</strong></td><td>Net after efficiency loss</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>What Curtailment Is Costing by Park Size</h3>
+<div class="card card-red">
+<table>
+  <thead><tr><th>Park Size</th><th>Expected Generation</th><th>Curtailed (47%)</th><th>Revenue Lost/Year</th><th>Revenue Lost Over 15 Years</th></tr></thead>
+  <tbody>
+    <tr><td>1 MW</td><td>1,700 MWh</td><td>799 MWh</td><td>€40K–€116K</td><td>€600K–€1.7M</td></tr>
+    <tr><td>2.5 MW</td><td>4,250 MWh</td><td>1,998 MWh</td><td>€100K–€290K</td><td>€1.5M–€4.4M</td></tr>
+    <tr><td><strong>5 MW</strong></td><td><strong>8,500 MWh</strong></td><td><strong>3,995 MWh</strong></td><td><strong>€200K–€580K</strong></td><td><strong>€3.0M–€8.7M</strong></td></tr>
+    <tr><td>7 MW</td><td>11,550 MWh</td><td>5,429 MWh</td><td>€280K–€812K</td><td>€4.2M–€12.2M</td></tr>
+    <tr><td>10 MW</td><td>17,000 MWh</td><td>7,990 MWh</td><td>€400K–€1.16M</td><td>€6.0M–€17.4M</td></tr>
+    <tr><td>25 MW</td><td>42,500 MWh</td><td>19,975 MWh</td><td>€1.0M–€2.9M</td><td>€15M–€43.5M</td></tr>
+  </tbody>
+</table>
+<p style="font-size: 13px; color: var(--text-muted);">Revenue range based on PPA rates €0.10–€0.19/kWh and TSOC DAM pricing. Lower end = net metering/PPA; upper end = full DAM exposure.</p>
+</div>
+
+<h3>BESS Economics by Configuration</h3>
+<div class="card card-green">
+<table>
+  <thead><tr><th>Configuration</th><th>BESS EPC Cost</th><th>€/MWh</th><th>Annual Revenue</th><th>Annual O&M</th><th>Net Income</th><th>ROI</th><th>Payback</th></tr></thead>
+  <tbody>
+    <tr><td>5 MW / 10 MWh</td><td>€1.36M</td><td>€136K</td><td>€207K</td><td>€18K</td><td>€189K</td><td>13.9%</td><td>7.2 yr</td></tr>
+    <tr><td>5 MW / 15 MWh</td><td>€1.96M</td><td>€131K</td><td>€253K</td><td>€26K</td><td>€227K</td><td>11.6%</td><td>8.6 yr</td></tr>
+    <tr><td><strong>5 MW / 20 MWh</strong></td><td><strong>€2.26M</strong></td><td><strong>€113K</strong></td><td><strong>€294K</strong></td><td><strong>€35K</strong></td><td><strong>€259K</strong></td><td><strong>11.5%</strong></td><td><strong>8.7 yr</strong></td></tr>
+    <tr><td><strong>7 MW / 20 MWh</strong></td><td><strong>€2.38M</strong></td><td><strong>€108K</strong></td><td><strong>€479K</strong></td><td><strong>€64K</strong></td><td><strong>€414K</strong></td><td><strong>17.4%</strong></td><td><strong>5.8 yr</strong></td></tr>
+    <tr><td>10 MW / 40 MWh</td><td>€4.60M</td><td>€115K</td><td>€585K</td><td>€70K</td><td>€515K</td><td>11.2%</td><td>8.9 yr</td></tr>
+    <tr><td>25 MW / 100 MWh</td><td>€10.63M</td><td>€106K</td><td>€1.46M</td><td>€174K</td><td>€1.29M</td><td>12.1%</td><td>8.2 yr</td></tr>
+  </tbody>
+</table>
+<p style="font-size: 13px; color: var(--text-muted);">Revenue based on curtailment recovery at TSOC peak pricing (€160.67/MWh net of RTE). O&M at €1,740/MWh/year. Group pricing for 20+ MWh orders.</p>
+</div>
+
+<h3>15-Year Investment Summary (7 MW / 20 MWh — Best ROI Configuration)</h3>
+<div class="card card-accent">
+<table>
+  <tr><td>Total BESS EPC Investment</td><td><strong>€2,384,529</strong></td></tr>
+  <tr><td>Annual Net Income (after O&M)</td><td>€414,361</td></tr>
+  <tr><td>15-Year Cumulative Net Income</td><td><strong>€4,891,682</strong></td></tr>
+  <tr><td>Cash-on-Cash Return (15 years)</td><td><strong>205%</strong></td></tr>
+  <tr><td>NPV (8% discount rate)</td><td>€550,038</td></tr>
+  <tr><td>IRR</td><td><strong>12.0%</strong></td></tr>
+  <tr><td>Simple ROI</td><td>17.4%</td></tr>
+  <tr><td>Payback Period</td><td>5.8 years</td></tr>
+</table>
+<p style="margin-top: 16px; font-size: 14px;">And this is <em>without</em> DAM arbitrage revenue. When legislation passes, add an estimated <strong>€71.87/MWh in additional arbitrage revenue</strong> — potentially doubling the annual income.</p>
+</div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 14. EXCEL GUIDE ==================== -->
+<section id="excel">
+<h2>14. Google Ads Excel Upload Guide</h2>
+
+<div class="callout blue">
+  <strong>Two options to create campaigns:</strong><br>
+  <strong>Option A (Recommended for first time):</strong> Create campaigns manually in the Google Ads web interface using the data in this document. This lets you verify each setting step by step.<br>
+  <strong>Option B (Bulk upload):</strong> Populate the 3 Excel templates and upload via Google Ads → Tools → Bulk Actions → Uploads.
+</div>
+
+<h3>How to Fill the Excel Templates</h3>
+
+<div class="card">
+<h4>File 1: Create New Campaign(s).xlsx</h4>
+<table>
+  <thead><tr><th>Column</th><th>What to Enter</th><th>Example (Campaign 2)</th></tr></thead>
+  <tbody>
+    <tr><td>Campaign</td><td>Campaign name from Section 3</td><td>Search — Solar Investment Cyprus [HNI]</td></tr>
+    <tr><td>Budget</td><td>Daily budget in €</td><td>80</td></tr>
+    <tr><td>Bid Strategy Type</td><td>Bidding strategy</td><td>Manual CPC (change to Maximize Conversions after)</td></tr>
+    <tr><td>Campaign Type</td><td>Search, Display, etc.</td><td>Search</td></tr>
+    <tr><td>Networks</td><td>Search, Display, or Both</td><td>Search</td></tr>
+    <tr><td>Languages</td><td>Language codes</td><td>en</td></tr>
+    <tr><td>Target Country</td><td>Country codes</td><td>CY;GR;GB;DE;AE;CH</td></tr>
+    <tr><td>Ad Group</td><td>Ad group name</td><td>Solar Farm Investment</td></tr>
+    <tr><td>Max CPC</td><td>Maximum cost per click</td><td>€5.00 (adjust after first week)</td></tr>
+  </tbody>
+</table>
+<p>Create one row per ad group. Campaign 2 needs 4 rows (4 ad groups). Repeat for all 6 campaigns.</p>
+</div>
+
+<div class="card">
+<h4>File 2: Add Keyword(s).xlsx</h4>
+<table>
+  <thead><tr><th>Column</th><th>What to Enter</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Campaign</td><td>Must exactly match campaign name</td><td>Search — Solar Investment Cyprus [HNI]</td></tr>
+    <tr><td>Ad Group</td><td>Must exactly match ad group name</td><td>Solar Farm Investment</td></tr>
+    <tr><td>Keyword</td><td>Keyword with match type symbols</td><td>"solar farm investment"</td></tr>
+    <tr><td>Match Type</td><td>Broad / Phrase / Exact</td><td>Phrase</td></tr>
+    <tr><td>Max CPC</td><td>Override bid (optional)</td><td>€5.00</td></tr>
+  </tbody>
+</table>
+<p>Match type symbols: [exact match], "phrase match", broad match (no symbols).<br>
+Enter ALL keywords from Section 4. One keyword per row. Also add negative keywords as a separate campaign-level negative list.</p>
+</div>
+
+<div class="card">
+<h4>File 3: Create Responsive Search Ad(s).xlsx</h4>
+<table>
+  <thead><tr><th>Column</th><th>What to Enter</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Campaign</td><td>Must exactly match</td><td>Search — Solar Investment Cyprus [HNI]</td></tr>
+    <tr><td>Ad Group</td><td>Must exactly match</td><td>Solar Farm Investment</td></tr>
+    <tr><td>Headline 1–15</td><td>Headlines from Section 6</td><td>Solar Farm Investment Cyprus</td></tr>
+    <tr><td>Description 1–4</td><td>Descriptions from Section 6</td><td>Invest in turnkey solar farms in Cyprus...</td></tr>
+    <tr><td>Final URL</td><td>Landing page URL</td><td>https://solarfarms.cy/invest</td></tr>
+    <tr><td>Path 1</td><td>Display path</td><td>invest</td></tr>
+    <tr><td>Path 2</td><td>Display path</td><td>cyprus</td></tr>
+  </tbody>
+</table>
+<p>Create 1 RSA per ad group minimum (2 per ad group is better for testing).</p>
+</div>
+
+<h3>Upload Process</h3>
+<ol>
+  <li>Fill all 3 Excel files using the data in this document</li>
+  <li>Go to Google Ads → <strong>Tools & Settings</strong> → <strong>Bulk Actions</strong> → <strong>Uploads</strong></li>
+  <li>Upload <code>Create New Campaign(s).xlsx</code> first — this creates the campaign + ad group structure</li>
+  <li>Upload <code>Add Keyword(s).xlsx</code> second — this populates the keywords</li>
+  <li>Upload <code>Create Responsive Search Ad(s).xlsx</code> third — this creates the ads</li>
+  <li>After upload, review each campaign in the web interface to verify settings</li>
+  <li>Set campaigns to <strong>Paused</strong> initially — only enable once conversion tracking is verified (Section 9)</li>
+</ol>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 15. LINKEDIN ==================== -->
+<section id="linkedin">
+<h2>15. LinkedIn & Retargeting Strategy</h2>
+
+<h3>Why LinkedIn Matters More Than Google for Audience A</h3>
+<p>For HNI and family office investors with €1.75M+ to deploy, <strong>LinkedIn targeting is more precise than Google Search</strong>. You can target by:</p>
+<ul>
+  <li><strong>Job Title:</strong> CEO, CFO, Managing Director, Investment Manager, Family Office, Fund Manager</li>
+  <li><strong>Industry:</strong> Financial Services, Investment Management, Real Estate, Energy</li>
+  <li><strong>Company Size:</strong> 11-50 (family offices), 51-200, 201-500</li>
+  <li><strong>Geography:</strong> Cyprus, Greece, UK, Germany, UAE, Switzerland</li>
+  <li><strong>Seniority:</strong> Director, VP, C-Suite, Owner</li>
+</ul>
+
+<h3>LinkedIn Content Calendar</h3>
+<table>
+  <thead><tr><th>Week</th><th>Post Type</th><th>Content</th><th>CTA</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Article share</td><td>"Why Cyprus Lags Behind the EU on BESS" (condensed)</td><td>Link to full article</td></tr>
+    <tr><td>2</td><td>Data post</td><td>TSOC market data chart: Peak €183/MWh vs Midday €77/MWh</td><td>"See the full analysis"</td></tr>
+    <tr><td>3</td><td>Article share</td><td>"How to Choose a BESS Partner" (key takeaways)</td><td>Link to full article</td></tr>
+    <tr><td>4</td><td>Investment post</td><td>"8-13% IRR from Cyprus solar — here's the math"</td><td>Download guide</td></tr>
+    <tr><td>5</td><td>Industry news</td><td>Comment on latest CERA/TSOC development</td><td>Authority building</td></tr>
+    <tr><td>6</td><td>Case study</td><td>Curtailment analysis for a specific park scenario</td><td>"Get your own analysis"</td></tr>
+  </tbody>
+</table>
+<p>Repeat 6-week cycle. Post 2–3 times per week. Each post should link back to solarfarms.cy for retargeting pixel.</p>
+
+<h3>Retargeting Flow</h3>
+<div class="card card-blue">
+<table>
+  <tr><td><strong>Day 0</strong></td><td>Visitor lands on solarfarms.cy (from Google Ad, LinkedIn, or organic)</td></tr>
+  <tr><td><strong>Day 1–7</strong></td><td>Google Display retargeting: "Download our free solar investment guide"</td></tr>
+  <tr><td><strong>Day 8–14</strong></td><td>Google Display retargeting: "See our latest BESS curtailment analysis"</td></tr>
+  <tr><td><strong>Day 15–30</strong></td><td>Google Display retargeting: "Talk to our investment team" (direct CTA)</td></tr>
+  <tr><td><strong>Day 31–90</strong></td><td>Reduced frequency: Monthly touchpoint with new content/data</td></tr>
+</table>
+</div>
+
+<h3>Email Nurture Sequence (After Lead Capture)</h3>
+<div class="grid-2">
+<div class="card card-accent">
+  <h4>Sequence A: New Investors</h4>
+  <table>
+    <tr><td>Email 1 (Day 0)</td><td>Welcome + Investment Guide PDF</td></tr>
+    <tr><td>Email 2 (Day 3)</td><td>Why Cyprus? — Sun hours, market data, EU stability</td></tr>
+    <tr><td>Email 3 (Day 7)</td><td>How BESS adds value — curtailment recovery explained</td></tr>
+    <tr><td>Email 4 (Day 14)</td><td>Investment tiers & financial projections</td></tr>
+    <tr><td>Email 5 (Day 21)</td><td>Bankability — warranties, O&M, insurance</td></tr>
+    <tr><td>Email 6 (Day 30)</td><td>Case study + "Book a call" CTA</td></tr>
+    <tr><td>Email 7 (Day 45)</td><td>Latest market update + final push</td></tr>
+  </table>
+</div>
+
+<div class="card card-green">
+  <h4>Sequence B: Park Owners</h4>
+  <table>
+    <tr><td>Email 1 (Day 0)</td><td>Welcome + "Your park is losing €X/yr" calculator link</td></tr>
+    <tr><td>Email 2 (Day 2)</td><td>How Cyprus lags behind EU on BESS (article link)</td></tr>
+    <tr><td>Email 3 (Day 5)</td><td>BESS financial breakdown for their park size range</td></tr>
+    <tr><td>Email 4 (Day 10)</td><td>How to choose a BESS partner (article link)</td></tr>
+    <tr><td>Email 5 (Day 15)</td><td>"Get your free curtailment analysis" — direct CTA</td></tr>
+  </table>
+</div>
+</div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ==================== 16. TIMELINE ==================== -->
+<section id="timeline">
+<h2>16. Implementation Timeline</h2>
+
+<div class="card">
+<table>
+  <thead><tr><th>Week</th><th>Task</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Week 1</strong></td><td>
+      Set up Google Tag Manager + conversion tracking (Section 9)<br>
+      Create audience lists for retargeting<br>
+      Set up GA4 + link to Google Ads<br>
+      Create /invest and /bess landing pages (Section 8)
+    </td><td><span class="phase phase-1">PRIORITY</span></td></tr>
+    <tr><td><strong>Week 2</strong></td><td>
+      Publish Article 1: "Why Cyprus Lags Behind EU on BESS"<br>
+      Publish Article 2: "How to Choose a BESS Partner"<br>
+      Populate & upload Google Ads templates (or create manually)<br>
+      Launch Campaigns 1–3 (Brand + Solar Investment + BESS Curtailment)
+    </td><td><span class="phase phase-1">PRIORITY</span></td></tr>
+    <tr><td><strong>Week 3</strong></td><td>
+      Monitor campaign performance — check search terms report daily<br>
+      Add negative keywords from actual search query data<br>
+      First LinkedIn posts (from content calendar)<br>
+      Set up email automation for lead nurture
+    </td><td><span class="phase phase-2">OPTIMISE</span></td></tr>
+    <tr><td><strong>Week 4</strong></td><td>
+      Performance review: CTR, CPC, conversions, CPA<br>
+      Adjust bids and budgets based on data<br>
+      Launch Campaign 4 (BESS Investment) if budget allows<br>
+      Second round of LinkedIn content
+    </td><td><span class="phase phase-2">OPTIMISE</span></td></tr>
+    <tr><td><strong>Month 2</strong></td><td>
+      Launch Campaign 5 (Alternative Investment)<br>
+      Launch Campaign 6 (Retargeting) — requires sufficient audience size<br>
+      A/B test ad copy variations<br>
+      Create BESS ROI Calculator (interactive on-site tool)
+    </td><td><span class="phase phase-3">SCALE</span></td></tr>
+    <tr><td><strong>Month 3+</strong></td><td>
+      Scale winning campaigns<br>
+      Pause underperforming ad groups<br>
+      Launch Greek-language campaign variants<br>
+      Publish monthly market data updates<br>
+      Consider LinkedIn Ads (if Google CPAs are acceptable)
+    </td><td><span class="phase phase-3">SCALE</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout green" style="margin-top: 32px;">
+  <strong>Remember:</strong> You're selling €1.75M–€14M projects. You don't need 1,000 leads. You need <strong>10–20 qualified conversations per quarter</strong>, from which 1–3 convert. At €4,650/month ad spend and a single 5 MW deal worth €293K in margin, the payback on your entire annual marketing spend is achieved with <strong>one deal</strong>.
+</div>
+
+</section>
+
+<!-- Footer -->
+<div style="text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border); margin-top: 48px;">
+  Solinvest / SolarFarms.cy / Lighthief Cyprus Ltd — Marketing Strategy & Campaign Playbook<br>
+  Prepared February 2026 | All market data from TSOC DAM (134-day verified dataset, Oct 2025 – Feb 2026)<br>
+  For internal use only
+</div>
+
+</div>
+</body>
+</html>

@@ -109,18 +109,13 @@
             color: var(--white);
             padding: 60px 40px;
             page-break-after: always;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
         }
 
         .cover-logo {
-            width: 180px;
-            margin-bottom: 40px;
-        }
-
-        .cover h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
+            width: 240px;
+            margin-bottom: 48px;
         }
 
         .cover-tagline {
@@ -592,31 +587,60 @@
 
         /* Print Styles */
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
             .print-controls {
                 display: none !important;
             }
 
             body {
                 font-size: 10pt;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                margin: 0;
+                padding: 0;
             }
 
             .page {
-                padding: 20px;
+                padding: 15mm;
                 max-width: 100%;
             }
 
             .cover {
-                min-height: auto;
-                padding: 40px;
+                min-height: 100vh;
+                padding: 50px 40px;
+                margin: -15mm;
+                width: calc(100% + 30mm);
+            }
+
+            .cover-logo {
+                width: 200px;
+            }
+
+            .cover-tagline {
+                font-size: 18px;
+            }
+
+            .cover-stats {
+                gap: 30px;
+                margin-top: 30px;
+            }
+
+            .cover-stat-value {
+                font-size: 28px;
+            }
+
+            .cover-stat-label {
+                font-size: 11px;
             }
 
             .section-dark,
             .section-gold,
             .section-gray {
-                margin: 0 -20px;
-                padding: 30px 20px;
+                margin: 0 -15mm;
+                padding: 25px 15mm;
             }
 
             .stats-grid {
@@ -635,14 +659,33 @@
                 font-size: 22px;
             }
 
-            .stat-value, .cover-stat-value {
+            .stat-value {
                 font-size: 24px;
+            }
+
+            .partner-logo {
+                filter: grayscale(100%) !important;
+                opacity: 0.7 !important;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .page-break {
+                page-break-after: always;
+                break-after: page;
             }
         }
 
         @page {
             size: A4;
             margin: 15mm;
+        }
+
+        @page :first {
+            margin: 0;
         }
     </style>
 </head>
@@ -661,8 +704,7 @@
     <!-- COVER PAGE -->
     <div class="cover">
         <img src="logo/lighthief-logo.png" alt="Lighthief Logo" class="cover-logo">
-        <h1>LIGHTHIEF</h1>
-        <p class="cover-tagline">European-Asian Renewable Energy O&M Operator</p>
+        <p class="cover-tagline">European-Asian Renewable Energy O&amp;M Operator</p>
         
         <div class="cover-stats">
             <div class="cover-stat">
@@ -861,7 +903,7 @@
                         <span class="country-tag">CY</span>
                         <span class="country-tag">GR</span>
                     </div>
-                    <div class="team-email">alexander.papacosta@lighthief.com</div>
+                    <div class="team-email">office@lighthief.com</div>
                 </div>
                 
                 <div class="team-card">
@@ -1001,6 +1043,7 @@
                 <img src="images/lighithief-service-man_files/logo_0006_logo.png" alt="Partner" class="partner-logo">
                 <img src="images/lighithief-service-man_files/logo_0004_logoedpb_new_dark.png" alt="Partner" class="partner-logo">
                 <img src="images/lighithief-service-man_files/logo_0003_pcz_logo_pol_poziom_kolor.png" alt="PCZ" class="partner-logo">
+                <img src="logo/linyang_logo.jpg" alt="Linyang" class="partner-logo">
             </div>
         </section>
 

@@ -1275,7 +1275,7 @@ export function BESSFinanceCalculator() {
                       </div>
                     </FormField>
 
-                    <FormField label="Round-Trip Efficiency (%)" tooltip="Tier-1 LFP system RTE: 87.8% AC-AC">
+                    <FormField label="Round-Trip Efficiency (%)" tooltip="Tier-1 LFP full system RTE: 86.32% AC-AC incl. cabling">
                       <div className="flex items-center gap-2">
                         <Slider
                           value={[inputs.battery.roundTripEfficiency]}

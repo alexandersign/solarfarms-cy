@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       try {
         await resend.emails.send({
           from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-          to: ['alexander.papacosta@lighthief.com'],
+          to: ['office@lighthief.com'],
           subject: `BESS Calculator Lead - ${validated.email}`,
           html: `
             <!DOCTYPE html>
@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
       try {
         await resend.emails.send({
           from: 'SolarFarms.cy <noreply@solarfarms.cy>',
-          replyTo: 'alexander.papacosta@lighthief.com',
+          replyTo: 'office@lighthief.com',
           to: [validated.email],
           subject: 'Your BESS Investment Analysis | SolarFarms.cy',
           html: `

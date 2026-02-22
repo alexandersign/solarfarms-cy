@@ -191,12 +191,12 @@ export function getDailyStatsLastNDays(n: number): DailyStats[] {
  * CURRENT revenue model: Curtailment recovery
  *   → Charge cost = €0 (storing otherwise-curtailed solar energy)
  *   → Discharge at peak evening prices (€183/MWh avg)
- *   → Revenue per MWh discharged = €183 × 87.8% RTE = €160.67/MWh
+ *   → Revenue per MWh discharged = €183 × 86.32% RTE = €157.94/MWh
  *   → Annual: €146,608 (2.5 MWh/day) to €222,844 (3.8 MWh/day)
  * 
  * FUTURE revenue (when legislation enables BESS market participation):
  *   → Grid arbitrage: buy at midday (€101/MWh), sell at peak (€183/MWh)
- *   → Net: €81.86 spread × 87.8% RTE = €71.87/MWh per cycle
+ *   → Net: €81.86 spread × 86.32% RTE = €70.66/MWh per cycle
  */
 export function calculateBESSArbitrage(data: MarketDataSummary): {
   avgDailySpread: number
@@ -218,7 +218,7 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
   const middayAvgPrice = (stats as any).middayAvg || avgChargePrice
   const avgDailySpread = avgDischargePrice - middayAvgPrice
   
-  const rte = 0.878 // 87.8% round-trip efficiency (Linyang spec)
+  const rte = 0.8632 // 86.32% full system AC-AC RTE incl. cabling
   
   // FUTURE: Grid arbitrage revenue (not yet legal)
   // Buy at midday, sell at peak

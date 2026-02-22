@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief EPC — Detailed Scope &amp; Pricing Breakdown</title>
+<style>
+:root {
+  --navy: #0f172a;
+  --blue: #2563eb;
+  --green: #059669;
+  --red: #dc2626;
+  --amber: #d97706;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-400: #94a3b8;
+  --border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; background: #fff; color: var(--navy); line-height: 1.6; max-width: 1000px; margin: 0 auto; padding: 30px 24px; }
+h1 { font-size: 22px; text-align: center; margin-bottom: 4px; }
+.subtitle { text-align: center; font-size: 12px; color: var(--gray-400); margin-bottom: 24px; }
+h2 { font-size: 16px; margin: 28px 0 12px; padding: 8px 12px; border-radius: 6px; }
+h3 { font-size: 13px; margin: 16px 0 8px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+th { background: var(--navy); color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:nth-child(even) { background: var(--gray-50); }
+.cat-header { background: var(--gray-100); font-weight: 700; font-size: 12px; color: var(--navy); }
+.cat-header td { padding: 10px; border-bottom: 2px solid var(--navy); }
+.included { background: #ecfdf5; }
+.included td:first-child { color: var(--green); font-weight: 600; }
+.excluded { background: #fef2f2; }
+.excluded td:first-child { color: var(--red); font-weight: 600; }
+.optional { background: #fffbeb; }
+.optional td:first-child { color: var(--amber); font-weight: 600; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+.tag-inc { background: #d1fae5; color: #065f46; }
+.tag-exc { background: #fee2e2; color: #991b1b; }
+.tag-opt { background: #fef3c7; color: #92400e; }
+.tag-conf { background: #dbeafe; color: #1e40af; }
+.note { font-size: 11px; color: var(--gray-400); padding: 8px 12px; background: var(--gray-50); border-left: 3px solid var(--gray-200); margin: 8px 0 16px; border-radius: 0 4px 4px 0; }
+.total-row td { font-weight: 700; border-top: 2px solid var(--navy); background: var(--gray-100); }
+.summary-box { border: 2px solid var(--navy); border-radius: 8px; padding: 16px; margin: 20px 0; }
+.summary-box h3 { margin-top: 0; }
+.flex-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media print {
+  body { max-width: 100%; padding: 15px; font-size: 11px; }
+  h2 { break-after: avoid; }
+  table { break-inside: auto; }
+  tr { break-inside: avoid; }
+  .page-break { break-before: page; }
+}
+</style>
+</head>
+<body>
+
+<h1>BESS EPC — Detailed Scope &amp; Pricing Breakdown</h1>
+<div class="subtitle">
+  Lighthief Cyprus Ltd · February 2026 · CONFIDENTIAL — INTERNAL USE ONLY<br>
+  Source: Confirmed Adder Rates Spreadsheet v4 Final — 20 Feb 2026 · Group Presentation · Voltus EMS Quote · DEHN Quotation
+</div>
+
+<!-- ═══ SECTION 1: INCLUDED ═══ -->
+<h2 style="background:#ecfdf5;color:var(--green);border:1px solid var(--green);">
+  ✓ INCLUDED IN TURNKEY EPC PRICE
+</h2>
+
+<h3>A. Equipment Supply (CIF Limassol)</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:32%">Item</th><th style="width:28%">Specification</th><th style="width:18%">Cost Basis</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>1</td><td>✓ Battery Containers</td><td>Linyang ME 5.015 MWh · EVE LF314 LFP · Liquid cooled · IP54</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>2</td><td>✓ PCS / Inverters</td><td>Kehua BCS1250K-C / BCS1000K-C-HUD · EN 50549-2</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>3</td><td>✓ MV Skid (PCS + Transformer)</td><td>PCS + MV Transformer (0.69/33kV) integrated</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>4</td><td>✓ RMU &amp; Switchgear</td><td>Schneider RM AirSeT 12–24kV</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>5</td><td>✓ BMS (3-Level)</td><td>BMU / BCMU / BAMS · 30 NTC sensors/module</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>6</td><td>✓ Liquid Cooling (HVAC)</td><td>45kW per container · integrated</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>7</td><td>✓ Fire Suppression System</td><td>Aerosol + H₂/CO gas detection + ventilation + aqueous backup</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>8</td><td>✓ Grid-Forming Capability</td><td>VSG, Black Start, PQ, VF modes built into PCS</td><td>CIF Linyang quote</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+</tbody>
+</table>
+<div class="note"><strong>CIF pricing:</strong> Full portfolio CIF total = {{FINANCIALS.cifTotalM}} ({{PORTFOLIO.parks}} parks · {{PORTFOLIO.mwh}} MWh). Average CIF cost ≈ €97,490/MWh across portfolio. Per-MWh cost varies by park size due to fixed MV Skid costs.</div>
+
+<h3>B. Logistics &amp; Import</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:32%">Item</th><th style="width:18%">Rate</th><th style="width:12%">Basis</th><th style="width:16%">Typical Cost</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>1</td><td>✓ Import Duty</td><td>2.66% of CIF</td><td>Per CIF value</td><td>~€2,254/MWh</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>2</td><td>✓ Port &amp; Customs Clearance</td><td>€4,000–€12,000 / park</td><td>Flat per park</td><td>~€700–1,600/MWh</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>3</td><td>✓ Crane + Inland Transport</td><td>€2,360 / container</td><td>Per container</td><td>~€940–1,573/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+  <tr class="included"><td>4</td><td>✓ Marine / Transit Insurance</td><td>0.75% of CIF</td><td>Per CIF value</td><td>~€636/MWh</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Portfolio total logistics:</strong> ~€961,160 (duty + port + crane + insurance). Average ≈ €1,090/MWh.</div>
+
+<h3>C. Electrical Works</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:32%">Item</th><th style="width:18%">Rate</th><th style="width:12%">Basis</th><th style="width:16%">Typical Cost</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>5</td><td>✓ LV Cabling (DC)</td><td>€1,400–€16,800 / park</td><td>~€700/container</td><td>~€350–420/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+  <tr class="included"><td>6</td><td>✓ MV Cabling (AC)</td><td>€3,500–€7,000 / park</td><td>Per park (1–2 MV)</td><td>~€175–700/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+  <tr class="included"><td>7</td><td>✓ MV Terminations</td><td>€2,200–€4,400 / park</td><td>Per park (1–2 MV)</td><td>~€110–550/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+  <tr class="included"><td>8</td><td>✓ Protection Engineering</td><td>€5,000–€6,000 / park</td><td>Flat per park</td><td>~€150–1,250/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+  <tr class="included"><td>9</td><td>✓ Remote Trip / SCADA Comms</td><td>€3,000 / park</td><td>Flat per park</td><td>~€75–750/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+  <tr class="included"><td>10</td><td>✓ UPS &amp; Auxiliary Supply</td><td>€2,000 / park</td><td>Flat per park</td><td>~€50–500/MWh</td><td><span class="tag tag-conf">ESTIMATE</span></td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Portfolio total electrical:</strong> €1,292,300. Average ≈ €1,466/MWh. Per-MWh cost is higher for small parks due to fixed per-park charges.</div>
+
+<h3>D. Lightning &amp; Surge Protection (DEHN)</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:32%">Item</th><th style="width:25%">Rate</th><th style="width:21%">Basis</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>11</td><td>✓ Internal LPS (Lightning Prot.)</td><td>20HC: €429.41/cnt · 40HC MV: €617.52</td><td>Per container/skid</td><td><span class="tag tag-conf">DEHN QUOTED</span></td></tr>
+  <tr class="included"><td>12</td><td>✓ SPD (Surge Protection Devices)</td><td>DC €199.28/cnt + LV €336.47/MV + MV €498.92 + Aux €163.74 + Comms €134.37/structure</td><td>Per component type</td><td><span class="tag tag-conf">DEHN QUOTED</span></td></tr>
+  <tr class="included"><td>13</td><td>✓ Site Earthing Grid</td><td>€793.59 / structure</td><td>Per BESS+MV structure</td><td><span class="tag tag-conf">DEHN QUOTED</span></td></tr>
+  <tr class="included"><td>14</td><td>✓ LPS/SPD Installation Labor</td><td>€1,600 / park</td><td>Flat per park</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Portfolio total DEHN:</strong> €527,585 (LPS + SPD + Earthing + Labor). Average ≈ €598/MWh. Typical per-park: €2,500 (small) to €15,000 (large).</div>
+
+<h3>E. Civil Works</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:32%">Item</th><th style="width:18%">Rate</th><th style="width:12%">Basis</th><th style="width:16%">Typical Cost</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>15</td><td>✓ Civil Works (all-inclusive)</td><td>€2,000 / MWh</td><td>Per MWh capacity</td><td>€2,000/MWh</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Includes:</strong> Site preparation, grading, compaction, concrete foundations for containers &amp; skids, cable trenches, cabling labour (excl. cable material), water drainage trenches. Confirmed by Kamil (Feb 2026).<br><strong>Portfolio total civil:</strong> €1,763,560.</div>
+
+<h3>F. EMS &amp; SCADA (Voltus Energy)</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:32%">Item</th><th style="width:18%">Rate</th><th style="width:12%">Basis</th><th style="width:16%">Typical Cost</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>17</td><td>✓ Voltus EMS (HW + Config + Install)</td><td>Per park — see Voltus quote</td><td>Per container config</td><td>€26,304–€75,792/park</td><td><span class="tag tag-conf">VOLTUS QUOTED</span></td></tr>
+  <tr class="included"><td>18</td><td>✓ SCADA Local — Basic</td><td>€15,000 / park</td><td>&lt;10 MWh parks</td><td>€15,000/park</td><td><span class="tag tag-conf">VOLTUS QUOTED</span></td></tr>
+  <tr class="included"><td>19</td><td>✓ SCADA Local — Advanced</td><td>€30,000 / park</td><td>≥10 MWh parks</td><td>€30,000/park</td><td><span class="tag tag-conf">VOLTUS QUOTED</span></td></tr>
+  <tr class="included"><td>20</td><td>✓ SCADA Global (shared)</td><td>€60,000 / client group</td><td>Split across parks</td><td>€2,400–€6,667/park</td><td><span class="tag tag-conf">VOLTUS QUOTED</span></td></tr>
+</tbody>
+</table>
+<div class="note"><strong>Portfolio total EMS/SCADA:</strong> €3,993,617. Average ≈ €4,529/MWh.<br>
+<strong>Payment:</strong> 50% advance / 20% before delivery / 30% after acceptance.<br>
+<strong>Annual Subscription (Lighthief internal cost):</strong> 20% of quoted EMS/SCADA amount per year = <strong>€798,723/yr portfolio total</strong> (~€15,661/park/yr average). Covers: software updates, cloud hosting, external data feeds, cybersecurity maintenance, integrations.<br>
+<strong>Client SCADA Access:</strong> 10 user accounts per client group (read-only dashboards). Lighthief retains full admin/write access.<br>
+<strong>Post-Subscription:</strong> If subscription lapses, system degrades to local-only EMS — no cloud, SCADA, or external data feeds.</div>
+
+<h3>G. Services &amp; Compliance (Included)</h3>
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:35%">Item</th><th style="width:35%">Detail</th><th style="width:25%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="included"><td>—</td><td>✓ OEM Installation &amp; Commissioning</td><td>Linyang factory-trained technicians, 4–6 weeks per site</td><td><span class="tag tag-conf">INCLUDED IN CIF</span></td></tr>
+  <tr class="included"><td>—</td><td>✓ ETEK Certification</td><td>Licensed electrical engineer declaration for EAC</td><td><span class="tag tag-inc">INCLUDED</span></td></tr>
+  <tr class="included"><td>—</td><td>✓ EU Battery Passport</td><td>Full compliance documentation per EU regulation</td><td><span class="tag tag-inc">INCLUDED</span></td></tr>
+  <tr class="included"><td>—</td><td>✓ End-of-Life Recycling Program</td><td>Zero net cost disposal — Lighthief-managed</td><td><span class="tag tag-inc">INCLUDED</span></td></tr>
+  <tr class="included"><td>—</td><td>✓ 5-Year OEM Warranty</td><td>All components — Linyang-backed (see Warranty section)</td><td><span class="tag tag-conf">CONFIRMED</span></td></tr>
+  <tr class="included"><td>—</td><td>✓ Project Management</td><td>Lighthief coordination from design to handover</td><td><span class="tag tag-inc">INCLUDED</span></td></tr>
+</tbody>
+</table>
+
+<!-- ═══ COST STACK SUMMARY ═══ -->
+<div class="summary-box">
+<h3>INCLUDED COST STACK — Portfolio Summary (v4 Final — 20 Feb 2026)</h3>
+<table>
+<thead>
+  <tr><th>Category</th><th style="text-align:right">Portfolio Total (€)</th><th style="text-align:right">% of Installed Cost</th><th style="text-align:right">Avg €/MWh</th></tr>
+</thead>
+<tbody>
+  <tr><td>CIF Hardware (Linyang)</td><td style="text-align:right">€{{FINANCIALS.cifTotal}}</td><td style="text-align:right">88.1%</td><td style="text-align:right">€97,490</td></tr>
+  <tr><td>Physical Adders (Logistics, Electrical, DEHN, Civil)</td><td style="text-align:right">€7,642,204</td><td style="text-align:right">7.8%</td><td style="text-align:right">€8,668</td></tr>
+  <tr><td>EMS / SCADA (Voltus)</td><td style="text-align:right">€3,993,617</td><td style="text-align:right">4.1%</td><td style="text-align:right">€4,529</td></tr>
+  <tr class="total-row"><td><strong>TOTAL INSTALLED COST</strong></td><td style="text-align:right"><strong>€{{FINANCIALS.installedCost}}</strong></td><td style="text-align:right"><strong>100%</strong></td><td style="text-align:right"><strong>~€110,700/MWh</strong></td></tr>
+  <tr style="background:#ecfdf5;"><td><strong>CLIENT REVENUE</strong></td><td style="text-align:right"><strong>€{{FINANCIALS.clientRevenue}}</strong></td><td style="text-align:right">—</td><td style="text-align:right"><strong>~€123,900/MWh</strong></td></tr>
+  <tr style="background:#dbeafe;"><td><strong>NET MARGIN ({{FINANCIALS.netMarginPct}}%)</strong></td><td style="text-align:right"><strong>€{{FINANCIALS.netMargin}}</strong></td><td style="text-align:right">—</td><td style="text-align:right"><strong>~€13,200/MWh</strong></td></tr>
+</tbody>
+</table>
+<div class="note" style="margin-top:8px;">
+  <strong>{{PORTFOLIO.parks}} parks · {{PORTFOLIO.mwh}} MWh total capacity</strong><br>
+  <strong>Removed from v4 (not in installed cost):</strong> Earthing Enhancement contingency (€163,150), Lighthief Supervision (€255,000).<br>
+  <strong>Moved to client-paid in v4:</strong> Protection Testing / DSO (€313,750 = €1,250 × {{PORTFOLIO.containers}} containers — per Dino).
+</div>
+</div>
+
+<!-- ═══ SECTION 2: EXCLUDED ═══ -->
+<h2 class="page-break" style="background:#fef2f2;color:var(--red);border:1px solid var(--red);">
+  ✗ EXCLUDED — CLIENT PAYS SEPARATELY
+</h2>
+
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:30%">Item</th><th style="width:30%">Description</th><th style="width:18%">Estimated Cost</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="excluded"><td>1</td><td>✗ EAC Testing &amp; Connection Fees</td><td>Grid connection testing, metering, and EAC administrative fees — paid by park owner directly to EAC</td><td>€3,000–€10,000 / park<br>(~€7,000 budget)</td><td><span class="tag tag-exc">CLIENT COST</span></td></tr>
+  <tr class="excluded"><td>2</td><td>✗ External Lightning Protection (LPS)</td><td>External lightning rods &amp; down conductors — DEHN design, coordinated by Lighthief</td><td>Quoted per site<br>(separate DEHN quote)</td><td><span class="tag tag-exc">CLIENT COST</span></td></tr>
+  <tr class="excluded"><td>3</td><td>✗ Site Earthing Enhancement</td><td>Additional earthing works only if existing soil resistivity is inadequate (rare). Internal earthing IS included.</td><td>€2,000–€5,000 / site<br>(only if required)</td><td><span class="tag tag-exc">IF REQUIRED</span></td></tr>
+  <tr class="excluded"><td>4</td><td>✗ Electrical Drawings / As-Built</td><td><strong>REQUIRED</strong> — licensed engineer drawings, single-line diagrams, as-built documentation for EAC and building permit</td><td><strong>€5,000–€15,000 / site</strong><br>(depends on complexity)</td><td><span class="tag tag-exc">REQUIRED</span></td></tr>
+  <tr class="excluded"><td>5</td><td>✗ Communication to TSO/DSO</td><td>Fibre optic or dedicated communication link from site to TSO/EAC control centre</td><td>€2,000–€8,000 / site<br>(depends on distance)</td><td><span class="tag tag-exc">CLIENT COST</span></td></tr>
+  <tr class="excluded"><td>6</td><td>✗ VAT (19%)</td><td>Cyprus standard VAT rate — applied on invoicing</td><td>19% of EPC price</td><td><span class="tag tag-exc">STATUTORY</span></td></tr>
+  <tr class="excluded"><td>7</td><td>✗ PCC Bay Extension</td><td>New bay at Point of Common Coupling — only if DSO requires dedicated bay</td><td>€15,000–€40,000 / site<br>(if applicable)</td><td><span class="tag tag-exc">IF REQUIRED</span></td></tr>
+  <tr class="excluded"><td>8</td><td>✗ Land / Lease Costs</td><td>Site lease, purchase or use agreement — client responsibility</td><td>Varies</td><td><span class="tag tag-exc">CLIENT COST</span></td></tr>
+  <tr class="excluded"><td>9</td><td>✗ Building / Planning Permits</td><td>Municipal building permits, town planning approvals if required</td><td>€1,000–€5,000 / site</td><td><span class="tag tag-exc">CLIENT COST</span></td></tr>
+  <tr class="excluded"><td>10</td><td>✗ Protection Testing / DSO</td><td>Protection relay testing &amp; DSO-mandated commissioning — €1,250/container (was €313,750 portfolio total in v3, removed from EPC per Dino)</td><td>€1,250 / container</td><td><span class="tag tag-exc">CLIENT PAYS</span></td></tr>
+</tbody>
+</table>
+
+<div class="note">
+  <strong>Estimated total excluded costs per site:</strong><br>
+  • Minimum (small park, no PCC bay): ~€12,000–€25,000<br>
+  • Typical (medium park): ~€20,000–€45,000<br>
+  • Maximum (large park, PCC bay required): ~€40,000–€80,000<br>
+  <strong>Electrical Drawings / As-Built is REQUIRED</strong> — this is not optional. Client must arrange a licensed electrical engineer separately.
+</div>
+
+<!-- ═══ SECTION 3: OPTIONAL ADD-ONS ═══ -->
+<h2 style="background:#fffbeb;color:var(--amber);border:1px solid var(--amber);">
+  ⚡ OPTIONAL ADD-ONS (Coordinated by Lighthief)
+</h2>
+
+<table>
+<thead>
+  <tr><th style="width:5%">#</th><th style="width:30%">Item</th><th style="width:30%">Description</th><th style="width:18%">Estimated Cost</th><th style="width:17%">Status</th></tr>
+</thead>
+<tbody>
+  <tr class="optional"><td>1</td><td>⚡ External LPS Design &amp; Install</td><td>Full external lightning protection system (DEHN) — lightning rods, conductors, earth terminations</td><td>Quoted per site<br>(DEHN assessment)</td><td><span class="tag tag-opt">ON REQUEST</span></td></tr>
+  <tr class="optional"><td>2</td><td>⚡ Enhanced Site Earthing</td><td>Additional earthing if soil resistivity test shows inadequate existing earthing</td><td>€2,000–€5,000 / site</td><td><span class="tag tag-opt">IF NEEDED</span></td></tr>
+  <tr class="optional"><td>3</td><td>⚡ Fencing &amp; Security Upgrades</td><td>Perimeter fencing, CCTV, access control beyond standard</td><td>€5,000–€15,000 / site</td><td><span class="tag tag-opt">ON REQUEST</span></td></tr>
+</tbody>
+</table>
+
+<!-- ═══ SECTION 4: POST-INSTALLATION SERVICES ═══ -->
+<h2 class="page-break" style="background:#dbeafe;color:var(--blue);border:1px solid var(--blue);">
+  🔧 POST-INSTALLATION SERVICES — LTSA &amp; Warranty
+</h2>
+
+<h3>LTSA Tier C — Availability Guarantee + Premium O&amp;M</h3>
+<table>
+<thead>
+  <tr><th style="width:35%">Service Component</th><th style="width:20%">Rate</th><th style="width:20%">Basis</th><th style="width:25%">Status</th></tr>
+</thead>
+<tbody>
+  <tr><td><strong>BESS Maintenance</strong></td><td>€815.72/MWh/year</td><td>Per MWh installed</td><td><span class="tag tag-conf">✅ LINYANG CONFIRMED</span></td></tr>
+  <tr><td><strong>PCS + MVS Maintenance</strong></td><td>€924.28/MWh/year</td><td>Per MWh installed</td><td><span class="tag tag-conf">✅ LINYANG CONFIRMED</span></td></tr>
+  <tr class="total-row"><td><strong>TOTAL LTSA Tier C</strong></td><td><strong>€{{LTSA.tierC.ratePerMWh}}/MWh/year</strong></td><td>Group rate</td><td><span class="tag tag-conf">✅ CONFIRMED</span></td></tr>
+</tbody>
+</table>
+
+<div class="note">
+  <strong>Tier C includes:</strong> Remote Monitoring 24/7 · Preventive Maintenance (Quarterly) · Corrective Maintenance · Spare Parts · Availability LDs (€30/day/MWh) · Firmware updates · Consumables<br>
+  <strong>Availability target:</strong> ≥97% annual · Max 48 hrs operational downtime per park per year · Scheduled maintenance ≤10 days/year (midnight–6am)<br>
+  <strong>Group discount:</strong> 30% below standard individual rates
+</div>
+
+<h3>Warranty Coverage</h3>
+<table>
+<thead>
+  <tr><th>Period</th><th>Coverage</th><th>SOH Guarantee</th><th>Cost</th><th>Status</th></tr>
+</thead>
+<tbody>
+  <tr style="background:#ecfdf5;"><td><strong>Years 1–5</strong></td><td>Standard OEM Warranty (all components)</td><td>≥85.0%</td><td><strong>Included in turnkey price</strong></td><td><span class="tag tag-inc">INCLUDED</span></td></tr>
+  <tr><td><strong>Years 6–10</strong></td><td>Extended Warranty</td><td>≥79.58%</td><td>€{{WARRANTY.extendedYr6to10.totalPerMWh}}/MWh/year</td><td><span class="tag tag-conf">✅ CONFIRMED</span></td></tr>
+  <tr><td><strong>Years 11–15</strong></td><td>Extended Warranty (max)</td><td>≥70.0%</td><td>€{{WARRANTY.extendedYr11to15.totalPerMWh}}/MWh/year</td><td><span class="tag tag-conf">✅ CONFIRMED (V3)</span></td></tr>
+  <tr><td><strong>Alternative: Upfront Spares</strong></td><td>Spare parts package (recommended for Yr 11+)</td><td>—</td><td>€1,000–€1,250/MWh (one-time)</td><td><span class="tag tag-conf">✅ CONFIRMED</span></td></tr>
+</tbody>
+</table>
+
+<div class="note">
+  <strong>✅ Years 11–15 Confirmed (V3):</strong> Linyang RFI V3 confirms extended warranty Yr 11–15 at €{{WARRANTY.extendedYr11to15.totalPerMWh}}/MWh/year (BESS €{{WARRANTY.extendedYr11to15.bessPerMWh}} + PCS/MVS €926.10). Previous V1 conflict (€5,268.45) is resolved.<br>
+  <strong>Warranty commencement:</strong> Earlier of (a) commissioning date; or (b) 6 months after shipment from factory.<br>
+  <strong>SOH remedy:</strong> Augmentation, module replacement, or pro-rata refund available. Note: service/labor costs NOT included — only defective components covered.
+</div>
+
+<h3>Extended Warranty Cost Comparison</h3>
+<table>
+<thead>
+  <tr><th>Period</th><th>BESS (€/MWh/yr)</th><th>PCS+MVS (€/MWh/yr)</th><th>Total (€/MWh/yr)</th><th>10 MWh Park Annual Cost</th></tr>
+</thead>
+<tbody>
+  <tr style="background:#ecfdf5;"><td>Years 1–5</td><td colspan="3" style="text-align:center;"><em>Included in turnkey price</em></td><td>€0</td></tr>
+  <tr><td>Years 6–10</td><td>€{{WARRANTY.extendedYr6to10.bessPerMWh}}</td><td>€747.76</td><td><strong>€{{WARRANTY.extendedYr6to10.totalPerMWh}}</strong></td><td>€16,617</td></tr>
+  <tr style="background:#f0fff0;"><td>Years 11–15</td><td>€{{WARRANTY.extendedYr11to15.bessPerMWh}}</td><td>€926.10</td><td><strong>€{{WARRANTY.extendedYr11to15.totalPerMWh}}</strong></td><td>€20,837</td></tr>
+  <tr><td>Years 16–20 (ref. only)</td><td>€3,858.75</td><td>€2,315.25</td><td><strong>€6,174.00</strong></td><td>€61,740</td></tr>
+</tbody>
+</table>
+
+<!-- ═══ SECTION 5: REFERENCE TABLES ═══ -->
+<h2 class="page-break" style="background:var(--gray-100);color:var(--navy);border:1px solid var(--gray-200);">
+  📊 REFERENCE — Per-MWh Cost Ranges by Park Size
+</h2>
+
+<table>
+<thead>
+  <tr><th>Park Size</th><th>Example</th><th>CIF/MWh</th><th>Adders/MWh</th><th>EMS·SCADA/MWh</th><th>Installed/MWh</th><th>Client Price/MWh</th></tr>
+</thead>
+<tbody>
+  <tr><td><strong>Small (3–5 MWh)</strong></td><td>Greendorado Agriv. (3 MWh)</td><td>~€95,000</td><td>~€12,500</td><td>~€14,600</td><td>~€193,100</td><td>~€209,400</td></tr>
+  <tr><td><strong>Medium (8–15 MWh)</strong></td><td>Dianary 1 (10 MWh)</td><td>~€85,000</td><td>~€6,000</td><td>~€6,600</td><td>~€117,900</td><td>~€120,600</td></tr>
+  <tr><td><strong>Large (20–40 MWh)</strong></td><td>ELESTORE 1 (40 MWh)</td><td>~€84,000</td><td>~€4,300</td><td>~€2,700</td><td>~€107,700</td><td>~€115,000</td></tr>
+  <tr><td><strong>Extra Large (60–100 MWh)</strong></td><td>Esperia Frenaros (100 MWh)</td><td>~€82,000</td><td>~€2,200</td><td>~€1,800</td><td>~€96,000</td><td>~€110,000</td></tr>
+</tbody>
+</table>
+
+<div class="note">
+  <strong>Key observation:</strong> Per-MWh costs decrease significantly with park size due to fixed per-park charges (port clearance, protection engineering, UPS, SCADA). Small parks (3–5 MWh) have ~2× higher per-MWh adder costs than large parks (40+ MWh).<br>
+  <strong>Economies of scale apply to:</strong> Port/customs, protection engineering, remote trip, UPS, SCADA local, SCADA global (shared).
+</div>
+
+<h3>Voltus EMS/SCADA — Hourly Rates (Additional Work)</h3>
+<table>
+<thead>
+  <tr><th>Service</th><th>Rate</th><th>Notes</th></tr>
+</thead>
+<tbody>
+  <tr><td>Hourly rate (per person)</td><td>€80 net</td><td>Additional work beyond scope</td></tr>
+  <tr><td>Daily rate (up to 8h, per person)</td><td>€1,000 net</td><td>On-site or remote</td></tr>
+  <tr><td>Travel &amp; accommodation</td><td>Billed separately</td><td>For on-site visits</td></tr>
+  <tr><td>Technical support (subscription)</td><td>1 hr/month included</td><td>Unused hours don't carry over</td></tr>
+</tbody>
+</table>
+
+<!-- ═══ FOOTER ═══ -->
+<hr style="margin:30px 0;border:none;border-top:2px solid var(--navy);">
+
+<div style="text-align:center;font-size:11px;color:var(--gray-400);">
+  <strong>Document prepared by:</strong> Lighthief Cyprus Ltd<br>
+  <strong>Date:</strong> February 2026<br>
+  <strong>Classification:</strong> INTERNAL — CONFIDENTIAL<br>
+  <strong>Sources:</strong> Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx (v4 Final — 20 Feb 2026) · Group Order Presentation · Voltus EMS Quote · DEHN Quotation · Linyang RFI V3 Answers<br>
+  <strong>Contact:</strong> office@lighthief.com
+</div>
+
+</body>
+</html>

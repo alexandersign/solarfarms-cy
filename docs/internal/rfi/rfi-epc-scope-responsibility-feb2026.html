@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RFI — EPC Scope & Responsibility Matrix | Linyang × Lighthief</title>
+<style>
+  @page { size: A4; margin: 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 10pt; line-height: 1.45; color: #1a1a2e; background: #fff; }
+  
+  .header { background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%); color: #fff; padding: 28px 32px; margin-bottom: 0; }
+  .header h1 { font-size: 18pt; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .header .subtitle { font-size: 11pt; color: #8ecae6; font-weight: 500; }
+  .header .meta { display: flex; gap: 32px; margin-top: 14px; font-size: 8.5pt; color: #a8dadc; }
+  .header .meta span { display: flex; align-items: center; gap: 4px; }
+  
+  .confidential-bar { background: #c1121f; color: #fff; text-align: center; font-size: 8pt; font-weight: 700; padding: 5px; letter-spacing: 2px; }
+  
+  .content { padding: 24px 32px; max-width: 210mm; }
+  
+  h2 { font-size: 13pt; color: #0d1b2a; border-bottom: 2.5px solid #0d1b2a; padding-bottom: 4px; margin: 24px 0 12px; }
+  h3 { font-size: 11pt; color: #1b4965; margin: 16px 0 8px; }
+  h4 { font-size: 10pt; color: #457b9d; margin: 12px 0 6px; }
+  
+  p { margin-bottom: 8px; }
+  
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 9pt; }
+  th { background: #0d1b2a; color: #fff; padding: 7px 8px; text-align: left; font-weight: 600; font-size: 8.5pt; }
+  td { padding: 6px 8px; border-bottom: 1px solid #dee2e6; vertical-align: top; }
+  tr:nth-child(even) { background: #f8f9fa; }
+  tr:hover { background: #e8f4f8; }
+  
+  .scope-table th:nth-child(1) { width: 4%; }
+  .scope-table th:nth-child(2) { width: 26%; }
+  .scope-table th:nth-child(3) { width: 9%; text-align: center; }
+  .scope-table th:nth-child(4) { width: 9%; text-align: center; }
+  .scope-table th:nth-child(5) { width: 9%; text-align: center; }
+  .scope-table th:nth-child(6) { width: 12%; text-align: right; }
+  .scope-table th:nth-child(7) { width: 12%; text-align: right; }
+  .scope-table th:nth-child(8) { width: 19%; }
+  
+  .scope-table td:nth-child(3),
+  .scope-table td:nth-child(4),
+  .scope-table td:nth-child(5) { text-align: center; }
+  .scope-table td:nth-child(6),
+  .scope-table td:nth-child(7) { text-align: right; font-family: 'Consolas', monospace; font-size: 9pt; }
+  
+  .checkbox { display: inline-block; width: 14px; height: 14px; border: 2px solid #457b9d; border-radius: 2px; margin: 0 2px; vertical-align: middle; }
+  .checkbox.filled { background: #0d1b2a; border-color: #0d1b2a; }
+  
+  .price-input { display: inline-block; min-width: 80px; border-bottom: 1.5px solid #457b9d; padding: 2px 4px; color: #c1121f; font-weight: 600; }
+  
+  .section-cat { background: #1b4965 !important; color: #fff; font-weight: 700; font-size: 9.5pt; }
+  .section-cat td { color: #fff; border-bottom: none; }
+  
+  .status-green { color: #2d6a4f; font-weight: 600; }
+  .status-amber { color: #e76f00; font-weight: 600; }
+  .status-red { color: #c1121f; font-weight: 600; }
+  .status-grey { color: #6c757d; font-style: italic; }
+  
+  .note { background: #fff3cd; border-left: 4px solid #e76f00; padding: 10px 14px; margin: 12px 0; font-size: 9pt; }
+  .note.critical { background: #f8d7da; border-color: #c1121f; }
+  .note.info { background: #d1ecf1; border-color: #0c7b93; }
+  
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  
+  .sign-block { border: 2px solid #0d1b2a; padding: 20px; margin: 12px 0; page-break-inside: avoid; }
+  .sign-block h4 { margin: 0 0 16px; color: #0d1b2a; font-size: 11pt; }
+  .sign-line { border-bottom: 1px solid #333; margin: 28px 0 4px; width: 85%; }
+  .sign-label { font-size: 8.5pt; color: #666; }
+  
+  .summary-box { background: #f0f4f8; border: 1px solid #dee2e6; border-radius: 4px; padding: 16px; margin: 12px 0; }
+  .summary-box h4 { margin-bottom: 8px; }
+  
+  @media print {
+    body { font-size: 9pt; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .confidential-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-cat { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content { padding: 16px 0; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    .sign-block { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="confidential-bar">CONFIDENTIAL — COMMERCIAL IN CONFIDENCE — NOT FOR DISTRIBUTION</div>
+
+<div class="header">
+  <h1>REQUEST FOR INFORMATION</h1>
+  <div class="subtitle">EPC Scope of Work & Responsibility Matrix — Linyang Energy × Lighthief Group</div>
+  <div class="meta">
+    <span><strong>Reference:</strong>&nbsp; LCY-RFI-EPC-SCOPE-2026-001</span>
+    <span><strong>Date:</strong>&nbsp; 13 February 2026</span>
+    <span><strong>Version:</strong>&nbsp; 1.0</span>
+    <span><strong>Status:</strong>&nbsp; FOR REVIEW & SIGN-OFF</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- INTRODUCTION -->
+<h2>1. Purpose</h2>
+
+<p>This RFI establishes the <strong>EPC scope of work boundaries</strong> between <strong>Linyang Energy</strong> (OEM & EPC lead) and <strong>Lighthief Group</strong> (local EPC partner & project developer) for the Cyprus BESS portfolio.</p>
+
+<p>For each EPC work item, both parties must agree on:</p>
+<ul style="margin: 8px 0 8px 24px;">
+  <li><strong>Responsibility</strong> — who performs the work (Linyang, Lighthief, or shared)</li>
+  <li><strong>Pricing</strong> — whether the cost is included in CIF, additional to CIF, or on Lighthief's account</li>
+  <li><strong>Scope definition</strong> — what exactly is included and excluded</li>
+</ul>
+
+<div class="note critical">
+  <strong>⚠️ CRITICAL:</strong> All items marked with a price field require either confirmation that they are included in CIF, 
+  or a separate price quotation from the responsible party. Items left blank will be assumed as <strong>NOT included</strong> 
+  in the CIF price and will need separate procurement.
+</div>
+
+<h2>2. Project Reference</h2>
+
+<table>
+  <tr><th style="width:35%">Parameter</th><th>Value</th></tr>
+  <tr><td>Portfolio</td><td>Cyprus BESS — 51 parks across 6 client groups</td></tr>
+  <tr><td>Total Capacity</td><td>~249 MW / ~863.5 MWh</td></tr>
+  <tr><td>Equipment Supplier</td><td>Linyang Energy (batteries, BMS, cooling, fire suppression) + Kehua Tech (PCS)</td></tr>
+  <tr><td>MV SKID</td><td>Linyang integrated (Transformer + RMU + Switchgear + Protection)</td></tr>
+  <tr><td>CIF Quote Reference</td><td>LY202601271 (27 Jan 2026) — Group Order</td></tr>
+  <tr><td>Container Types</td><td>BESS: 20' HC (43t) | MV SKID T1/T2: 20' Std (15-20t) | MV SKID T4/T8: 40' HC (35-38t)</td></tr>
+</table>
+
+<!-- SCOPE MATRIX -->
+<h2>3. EPC Scope of Work — Responsibility Matrix</h2>
+
+<p>For each item, tick (<span class="checkbox filled"></span>) the responsible party and enter price if applicable. 
+Items marked <span class="status-red">?</span> require clarification.</p>
+
+<h3>A. Equipment Supply & Delivery (CIF Limassol Port)</h3>
+
+<table class="scope-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Work Item / Deliverable</th>
+      <th>Linyang</th>
+      <th>Lighthief</th>
+      <th>Shared</th>
+      <th>Linyang Price</th>
+      <th>Lighthief Price</th>
+      <th>Notes / Clarification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="section-cat"><td colspan="8">A. EQUIPMENT SUPPLY & CIF DELIVERY</td></tr>
+    <tr>
+      <td>A1</td>
+      <td><strong>Battery Containers</strong> (ME 5.015 MWh, 20' HC)</td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed in LY202601271</td>
+    </tr>
+    <tr>
+      <td>A2</td>
+      <td><strong>PCS</strong> (Kehua BCS C-series)</td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed</td>
+    </tr>
+    <tr>
+      <td>A3</td>
+      <td><strong>MV SKID</strong> (Transformer + RMU + Switchgear)</td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed</td>
+    </tr>
+    <tr>
+      <td>A4</td>
+      <td><strong>BMS</strong> (Battery Management System)</td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed</td>
+    </tr>
+    <tr>
+      <td>A5</td>
+      <td><strong>Liquid Cooling System</strong></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed</td>
+    </tr>
+    <tr>
+      <td>A6</td>
+      <td><strong>Fire Suppression System</strong></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed. Brand?</td>
+    </tr>
+    <tr>
+      <td>A7</td>
+      <td><strong>Auxiliary Systems Cabinet</strong></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirm exact contents</td>
+    </tr>
+    <tr>
+      <td>A8</td>
+      <td><strong>CIF Shipping to Limassol Port</strong></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">B. MECHANICAL INSTALLATION & COMMISSIONING</td></tr>
+    <tr>
+      <td>B1</td>
+      <td><strong>Mechanical Installation</strong> — unloading containers onto foundations, mechanical connections between containers, alignment</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ CONFIRMED: LINYANG (4PL + 8CN, 12 on-site)</td>
+    </tr>
+    <tr>
+      <td>B2</td>
+      <td><strong>Electrical Installation</strong> — DC cabling between BESS & PCS, AC cabling PCS to MV SKID, control cabling</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ CONFIRMED: LINYANG (DC/AC cabling BESS↔PCS)</td>
+    </tr>
+    <tr>
+      <td>B3</td>
+      <td><strong>LV Cabling</strong> — auxiliary power, lighting, comms between containers</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LIGHTHIEF</td>
+    </tr>
+    <tr>
+      <td>B4</td>
+      <td><strong>MV Cabling</strong> — MV SKID to Point of Common Coupling (PCC)</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LIGHTHIEF (cost + install)</td>
+    </tr>
+    <tr>
+      <td>B5</td>
+      <td><strong>MV Terminations</strong> — cable termination & testing at SKID and PCC</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ SHARED</td>
+    </tr>
+    <tr>
+      <td>B6</td>
+      <td><strong>Commissioning — System Level</strong><br>Pre-commissioning checks, energisation, BMS/PCS start-up, charge/discharge tests, performance verification</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ Cold: LIGHTHIEF · Hot: SHARED · System: SHARED + VOLTUS</td>
+    </tr>
+    <tr>
+      <td>B7</td>
+      <td><strong>Commissioning — DSO Witness Test</strong><br>Coordination with EAC/DSO for grid connection approval, protection relay testing under DSO witness</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ SHARED</td>
+    </tr>
+    <tr>
+      <td>B8</td>
+      <td><strong>FAT (Factory Acceptance Test)</strong><br>Witness testing at Linyang/Kehua factory before shipping</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LIGHTHIEF (1× Polish engineer)</td>
+    </tr>
+    <tr>
+      <td>B9</td>
+      <td><strong>SAT (Site Acceptance Test)</strong><br>On-site performance verification, handover to client</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LINYANG (SAT report)</td>
+    </tr>
+    <tr>
+      <td>B10</td>
+      <td><strong>Linyang Supervision Personnel</strong><br>On-site engineers for installation supervision across all 51 parks</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LINYANG: 12 + LIGHTHIEF: 30 (5×6)</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">C. PROTECTION, EARTHING & SAFETY SYSTEMS</td></tr>
+    <tr>
+      <td>C1</td>
+      <td><strong>Protection Relay Configuration</strong><br>Settings calculation, upload, and testing of MV protection relays</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Relays are in SKID — who configures them?</td>
+    </tr>
+    <tr>
+      <td>C2</td>
+      <td><strong>SPD (Surge Protection Devices)</strong><br>DC SPD (1500V), LV SPD (400V), MV SPD (11/22kV), Comms SPD</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>DEHN quoted</td>
+      <td>❓ Are any SPDs already inside containers/SKID?</td>
+    </tr>
+    <tr>
+      <td>C3</td>
+      <td><strong>Lightning Protection System (LPS)</strong><br>Air terminals, down conductors, HVI insulated system per IEC 62305</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>DEHN quoted</td>
+      <td>Lighthief procures from DEHN. Confirm no overlap.</td>
+    </tr>
+    <tr>
+      <td>C4</td>
+      <td><strong>Earthing / Grounding System</strong><br>Earth grid, earth electrodes, bonding of all containers to earth</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>DEHN quoted</td>
+      <td>❓ Does Linyang provide earth bars on containers?</td>
+    </tr>
+    <tr>
+      <td>C5</td>
+      <td><strong>Remote Trip System</strong><br>DSO remote trip relay, communications, interlock with PCS</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Is remote trip interface built into PCS/SKID?</td>
+    </tr>
+    <tr>
+      <td>C6</td>
+      <td><strong>UPS / Auxiliary Power</strong><br>Uninterruptible power for BMS, SCADA, communications during outage</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Is UPS included in Aux Cabinet (A7)?</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">D. SCADA, EMS & CONTROLS</td></tr>
+    <tr>
+      <td>D1</td>
+      <td><strong>EMS/SCADA System</strong><br>Energy Management System, local SCADA, global monitoring</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>Voltus quoted</td>
+      <td>✅ Lighthief scope via Voltus Energy</td>
+    </tr>
+    <tr>
+      <td>D2</td>
+      <td><strong>PPC (Power Plant Controller)</strong><br>Active/reactive power control, frequency response, grid code compliance</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>Voltus incl.?</td>
+      <td>✅ NOT NEEDED (= WAGU in Voltus EMS) — CONFIRMED 15 Feb 2026</td>
+    </tr>
+    <tr>
+      <td>D3</td>
+      <td><strong>DSO IEC 60870-5-104 Gateway</strong><br>Protocol conversion for EAC/DSO communication</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>Voltus incl.?</td>
+      <td>❓ Confirm who provides IEC-104 server to DSO</td>
+    </tr>
+    <tr>
+      <td>D4</td>
+      <td><strong>Modbus TCP Integration</strong><br>Internal communication: EMS ↔ PCS ↔ BMS point mapping & testing</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Who performs point-to-point verification?</td>
+    </tr>
+    <tr>
+      <td>D5</td>
+      <td><strong>Cybersecurity / NIS2 Compliance</strong><br>Firewall, access control, network segmentation per EU NIS2</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Does Linyang provide hardened OS / firewall?</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">E. CIVIL WORKS & SITE PREPARATION</td></tr>
+    <tr>
+      <td>E1</td>
+      <td><strong>Concrete Foundations / Platforms</strong><br>Reinforced concrete pads for BESS + MV SKID containers</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>✅ €2,000/MWh civil works (Kamil confirmed)</td>
+      <td>Lighthief scope. Foundation drawings from Linyang?</td>
+    </tr>
+    <tr>
+      <td>E2</td>
+      <td><strong>Drainage & Water Management</strong><br>Surface water drainage, spill containment for cooling fluid</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>Included in civil works €2,000/MWh</td>
+      <td>Lighthief scope. Any Linyang requirements?</td>
+    </tr>
+    <tr>
+      <td>E3</td>
+      <td><strong>Access Roads / Hardstanding</strong><br>Crane access, container delivery truck turning area</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>Site-dependent</td>
+      <td>Lighthief scope</td>
+    </tr>
+    <tr>
+      <td>E4</td>
+      <td><strong>Fencing & Security</strong><br>Perimeter fence, access gates, CCTV</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Typically client/developer scope. Confirm.</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">F. LOGISTICS & IMPORT</td></tr>
+    <tr>
+      <td>F1</td>
+      <td><strong>Port Handling & Customs Clearance</strong></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>Interfreight quoted</td>
+      <td>✅ Lighthief via Interfreight</td>
+    </tr>
+    <tr>
+      <td>F2</td>
+      <td><strong>Import Duty</strong> (3.0% weighted average of CIF)</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>3.0% of CIF</td>
+      <td>✅ Lighthief. Rate confirmed.</td>
+    </tr>
+    <tr>
+      <td>F3</td>
+      <td><strong>Heavy Transport & Crane</strong> (port to site)</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>—</td>
+      <td>🟡 A. Soulis</td>
+      <td>✅ Lighthief via A. Soulis. Amber — formal quote pending.</td>
+    </tr>
+    <tr>
+      <td>F4</td>
+      <td><strong>Marine Insurance</strong> (China → Limassol)</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>0.75% of CIF</td>
+      <td>✅ CONFIRMED: Included in CIF Incoterms (15 Feb 2026)</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">G. DOCUMENTATION & COMPLIANCE</td></tr>
+    <tr>
+      <td>G1</td>
+      <td><strong>As-Built Documentation</strong><br>Final drawings, cable schedules, test certificates</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Who prepares as-built? Joint?</td>
+    </tr>
+    <tr>
+      <td>G2</td>
+      <td><strong>O&M Manuals</strong><br>Operation & maintenance documentation for handover</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LINYANG (Michael prepares disks)</td>
+    </tr>
+    <tr>
+      <td>G3</td>
+      <td><strong>DSO Application Support</strong><br>Technical data for EAC/CERA grid connection application</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LINYANG (Michael)</td>
+    </tr>
+    <tr>
+      <td>G4</td>
+      <td><strong>CE Marking & Certificates</strong><br>CE-LVD, CE-EMC, IEC 62619, UN38.3 for all equipment</td>
+      <td><span class="checkbox filled"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td>Incl. in CIF</td>
+      <td>—</td>
+      <td>✅ Confirmed. Certificates received.</td>
+    </tr>
+    <tr>
+      <td>G5</td>
+      <td><strong>Training</strong><br>Operator training for client/Lighthief maintenance team</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>✅ LINYANG (Poland, Apr-Jun 2026)</td>
+    </tr>
+
+    <tr class="section-cat"><td colspan="8">H. WARRANTY & ONGOING SUPPORT</td></tr>
+    <tr>
+      <td>H1</td>
+      <td><strong>Defects Liability Period</strong><br>Post-commissioning defect rectification</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ Duration? Typically 12-24 months post-SAT.</td>
+    </tr>
+    <tr>
+      <td>H2</td>
+      <td><strong>Warranty Service Response</strong><br>On-site response time for warranty claims</td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="checkbox"></span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="price-input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>❓ SLA for response? Linyang's nearest service base?</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SUMMARY -->
+<h2>4. Summary of Open Items Requiring Price</h2>
+
+<div class="summary-box">
+  <h4>Items where responsibility is unclear — please tick and price:</h4>
+  <table>
+    <tr><th>#</th><th>Item</th><th>Current Assumption</th><th>Impact if NOT in CIF</th></tr>
+    <tr><td>B1</td><td><strong>Mechanical Installation</strong></td><td>✅ CONFIRMED: LINYANG (4PL + 8CN, 12 on-site)</td><td>—</td></tr>
+    <tr><td>B2</td><td><strong>Electrical Installation (internal)</strong></td><td>✅ CONFIRMED: LINYANG (DC/AC cabling BESS↔PCS)</td><td>—</td></tr>
+    <tr><td>B6</td><td><strong>Commissioning (system level)</strong></td><td>✅ Cold: LIGHTHIEF · Hot: SHARED · System: SHARED + VOLTUS</td><td>—</td></tr>
+    <tr><td>B7</td><td><strong>DSO Witness Commissioning</strong></td><td>✅ SHARED</td><td>—</td></tr>
+    <tr><td>C1</td><td><strong>Protection Relay Config</strong></td><td>Unclear</td><td class="status-amber">€275K</td></tr>
+    <tr><td>C2</td><td><strong>SPD (if not in containers)</strong></td><td>Lighthief (DEHN)</td><td>€156K — DEHN quoted</td></tr>
+    <tr><td>C5</td><td><strong>Remote Trip System</strong></td><td>Unclear</td><td class="status-amber">€153K</td></tr>
+    <tr><td>C6</td><td><strong>UPS / Aux Power</strong></td><td>Unclear</td><td class="status-amber">€102K</td></tr>
+    <tr><td>D2</td><td><strong>PPC Controller</strong></td><td>✅ NOT NEEDED (= WAGU in Voltus EMS) — CONFIRMED 15 Feb 2026</td><td>—</td></tr>
+    <tr><td colspan="3" style="text-align:right; font-weight:700;">TOTAL UNCLEAR ITEMS:</td><td class="status-red"><strong>~€5.9M</strong></td></tr>
+  </table>
+</div>
+
+<div class="note info">
+  <strong>ℹ️ NOTE:</strong> If Linyang confirms <strong>B1 (Mechanical Install)</strong> and <strong>B6 (Commissioning)</strong> are included in CIF, 
+  the total EPC adder burden drops from ~€12M to ~€7.9M, improving portfolio margins from 4.9% to 7.9%.
+  This is the single most important clarification in this document.
+</div>
+
+<!-- SIGN-OFF -->
+<h2>5. Sign-Off</h2>
+
+<p>Both parties confirm they have reviewed this EPC Scope of Work and Responsibility Matrix. 
+All ticked checkboxes and filled prices represent binding commercial commitments.</p>
+
+<div class="two-col">
+  <div class="sign-block">
+    <h4>LINYANG ENERGY</h4>
+    <p style="font-size:9pt; color:#666; margin-bottom:20px;">Represented by:</p>
+    <div class="sign-line"></div>
+    <div class="sign-label"><strong>Name:</strong> Kamil Talar</div>
+    <div class="sign-label"><strong>Title:</strong> Regional Sales Director — Central Europe</div>
+    <div style="margin-top:20px;"></div>
+    <div class="sign-line"></div>
+    <div class="sign-label"><strong>Signature</strong></div>
+    <div style="margin-top:16px;"></div>
+    <div class="sign-line" style="width:45%;"></div>
+    <div class="sign-label"><strong>Date</strong></div>
+  </div>
+
+  <div class="sign-block">
+    <h4>LIGHTHIEF GROUP</h4>
+    <p style="font-size:9pt; color:#666; margin-bottom:20px;">Represented by:</p>
+    <div class="sign-line"></div>
+    <div class="sign-label"><strong>Name:</strong> Alexander Papacosta</div>
+    <div class="sign-label"><strong>Title:</strong> Cyprus Director, Lighthief Cyprus Ltd</div>
+    <div style="margin-top:20px;"></div>
+    <div class="sign-line"></div>
+    <div class="sign-label"><strong>Signature</strong></div>
+    <div style="margin-top:16px;"></div>
+    <div class="sign-line" style="width:45%;"></div>
+    <div class="sign-label"><strong>Date</strong></div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>Next Steps:</strong><br>
+  1. Linyang to complete all ❓ items with checkbox + price within <strong>5 business days</strong><br>
+  2. Both parties to schedule a call to review completed matrix<br>
+  3. Final signed version to be appended to the EPC Framework Agreement
+</div>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #dee2e6;">
+
+<p style="font-size: 8pt; color: #999; text-align: center;">
+  LCY-RFI-EPC-SCOPE-2026-001 v1.0 | 13 February 2026 | Lighthief Cyprus Ltd | CONFIDENTIAL
+</p>
+
+</div>
+</body>
+</html>

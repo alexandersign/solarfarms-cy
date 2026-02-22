@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BESS Portfolio Summary — Parks, Capacity & On-Site Teams | Lighthief Cyprus Ltd</title>
+<style>
+  @page { size: A3 landscape; margin: 10mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, -apple-system, Arial, sans-serif; font-size: 9pt; line-height: 1.4; color: #1a1a1a; background: #f5f5f5; padding: 16px; }
+
+  .container { max-width: 1400px; margin: 0 auto; background: #fff; border: 1px solid #d0d0d0; border-radius: 4px; overflow: hidden; }
+
+  .sheet-header { background: linear-gradient(135deg, #1b4965, #2d6a4f); color: #fff; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .sheet-header h1 { font-size: 15pt; font-weight: 700; }
+  .sheet-header .meta { text-align: right; font-size: 8.5pt; opacity: 0.85; }
+
+  .sheet-tabs { display: flex; background: #e8e8e8; border-bottom: 2px solid #1b4965; }
+  .tab { padding: 6px 18px; font-size: 8.5pt; font-weight: 600; cursor: pointer; border-right: 1px solid #ccc; background: #e8e8e8; color: #555; transition: all 0.2s; }
+  .tab.active { background: #fff; color: #1b4965; border-bottom: 2px solid #fff; margin-bottom: -2px; }
+  .tab:hover:not(.active) { background: #f0f0f0; }
+
+  .sheet { display: none; padding: 0; }
+  .sheet.active { display: block; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  th, td { border: 1px solid #c0c0c0; padding: 4px 6px; }
+  th { background: #1b4965; color: #fff; font-weight: 600; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.4px; position: sticky; top: 0; z-index: 2; }
+  .r { text-align: right; }
+  .c { text-align: center; }
+  .b { font-weight: 700; }
+
+  tr:nth-child(even) { background: #f8fafb; }
+  tr:hover { background: #eef6ff; }
+
+  .b1-bg { background: #dbeafe !important; }
+  .b2-bg { background: #fef3c7 !important; }
+  .b3a-bg { background: #d1fae5 !important; }
+  .b3b-bg { background: #f3e8ff !important; }
+  .total-row { background: #1b4965 !important; color: #fff; font-weight: 700; }
+  .total-row td { border-color: #0e3450; }
+  .subtotal-row { background: #e2e8f0 !important; font-weight: 700; }
+  .group-header { background: #f1f5f9; font-weight: 700; color: #1b4965; font-size: 8pt; }
+
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 7pt; font-weight: 700; }
+  .tag-b1 { background: #dbeafe; color: #1e40af; }
+  .tag-b2 { background: #fef3c7; color: #92400e; }
+  .tag-b3a { background: #d1fae5; color: #065f46; }
+  .tag-b3b { background: #f3e8ff; color: #6b21a8; }
+
+  .status-tbc { color: #b91c1c; font-weight: 600; }
+  .status-likely { color: #9a6e00; font-weight: 600; }
+
+  .kpi-strip { display: flex; gap: 8px; padding: 12px 16px; background: #f8fafc; border-bottom: 1px solid #e0e0e0; }
+  .kpi { flex: 1; text-align: center; padding: 8px; border-radius: 4px; border: 1px solid #ddd; }
+  .kpi .v { font-size: 14pt; font-weight: 700; }
+  .kpi .l { font-size: 7pt; text-transform: uppercase; letter-spacing: 0.8px; color: #666; margin-top: 2px; }
+  .kpi-blue { background: #eef6ff; border-color: #b3d4f7; }
+  .kpi-blue .v { color: #1b4965; }
+  .kpi-green { background: #eefbf2; border-color: #a8e6c3; }
+  .kpi-green .v { color: #16703a; }
+  .kpi-amber { background: #fff8e6; border-color: #f5d67b; }
+  .kpi-amber .v { color: #9a6e00; }
+  .kpi-red { background: #fff0f0; border-color: #f5b3b3; }
+  .kpi-red .v { color: #b91c1c; }
+
+  .note { padding: 8px 16px; font-size: 8pt; color: #666; background: #fffde7; border-top: 1px solid #f0c040; }
+
+  .scroll-wrap { max-height: 70vh; overflow-y: auto; }
+
+  .print-btn { position: fixed; top: 12px; right: 12px; background: #1b4965; color: #fff; border: none; padding: 7px 16px; border-radius: 4px; cursor: pointer; font-size: 9pt; z-index: 100; font-family: inherit; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+  .print-btn:hover { background: #2d6a4f; }
+
+  @media print {
+    body { padding: 0; background: #fff; }
+    .container { border: none; border-radius: 0; }
+    .print-btn, .sheet-tabs { display: none; }
+    .sheet { display: block !important; page-break-after: always; }
+    .scroll-wrap { max-height: none; overflow: visible; }
+    th { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Export PDF</button>
+
+<div class="container">
+
+<div class="sheet-header">
+  <div>
+    <h1>BESS Portfolio Summary</h1>
+    <div style="font-size:8.5pt; opacity:0.85; margin-top:2px;">51 Parks &bull; 249 MW &bull; 882 MWh &bull; Order dates TBC</div>
+  </div>
+  <div class="meta">
+    <strong>Lighthief Cyprus Ltd</strong><br>
+    v2 &bull; 20 Feb 2026
+  </div>
+</div>
+
+<div class="sheet-tabs">
+  <div class="tab active" onclick="showSheet('parks')">All Parks (41)</div>
+  <div class="tab" onclick="showSheet('batches')">By Batch</div>
+  <div class="tab" onclick="showSheet('teams')">Teams On-Site</div>
+  <div class="tab" onclick="showSheet('leadtime')">Lead Times</div>
+</div>
+
+<!-- ═══════════ SHEET 1: ALL PARKS ═══════════ -->
+<div class="sheet active" id="sheet-parks">
+
+<div class="kpi-strip">
+  <div class="kpi kpi-blue"><div class="v">41</div><div class="l">Parks</div></div>
+  <div class="kpi kpi-green"><div class="v">249</div><div class="l">MW (BESS Output)</div></div>
+  <div class="kpi kpi-amber"><div class="v">882</div><div class="l">MWh (Storage)</div></div>
+  <div class="kpi kpi-red"><div class="v">TBC</div><div class="l">Order Dates</div></div>
+</div>
+
+<div class="scroll-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="width:3%;">#</th>
+      <th style="width:14%;">Park Name</th>
+      <th style="width:10%;">Owner Group</th>
+      <th style="width:7%;" class="c">District</th>
+      <th style="width:6%;" class="c">PV MW<sub>DC</sub></th>
+      <th style="width:6%;" class="c">BESS MW</th>
+      <th style="width:5%;" class="c">MWh</th>
+      <th style="width:7%;" class="c">Batch</th>
+      <th style="width:9%;" class="c">Order (Intended)</th>
+      <th style="width:7%;" class="c">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ══ BATCH 1 ══ -->
+    <tr class="group-header b1-bg"><td colspan="10">BATCH 1 — 2025 Delayed + Q1 2026 Orders (27 Parks, 85 MW, 281 MWh)</td></tr>
+
+    <tr><td class="c">1</td><td>Easy Power 1</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">5.58</td><td class="r b">5.00</td><td class="r">10</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">2</td><td>Easy Power 2</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">4.69</td><td class="r b">3.00</td><td class="r">10</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">3</td><td>Easy Power 3</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">7.94</td><td class="r b">5.00</td><td class="r">15</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">4</td><td>Easy Power 4</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">1.83</td><td class="r b">2.50</td><td class="r">10</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">5</td><td>Dianary 1</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">3.20</td><td class="r b">3.50</td><td class="r">10</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">6</td><td>Waneron</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">3.00</td><td class="r b">3.00</td><td class="r">12</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">7</td><td>Greendorado (Nic)</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">2.10</td><td class="r b">3.00</td><td class="r">10</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">8</td><td>Greendorado (Lar)</td><td>ABIO</td><td class="c">Larnaca</td><td class="r">0.75</td><td class="r b">1.00</td><td class="r">5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">9</td><td>Polemi</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">1.80</td><td class="r b">4.00</td><td class="r">15</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">10</td><td>Potamia p151</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">1.57</td><td class="r b">4.00</td><td class="r">15</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">11</td><td>Potamia p208</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">4.63</td><td class="r b">7.00</td><td class="r">30</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+
+    <tr><td class="c">12</td><td>Galascope 1</td><td>Esperia</td><td class="c">Famagusta</td><td class="r">5.00</td><td class="r b">5.00</td><td class="r">15</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">13</td><td>Galascope 2</td><td>Esperia</td><td class="c">Famagusta</td><td class="r">2.50</td><td class="r b">2.50</td><td class="r">8</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+
+    <tr><td class="c">14</td><td>Classone Breeze</td><td>Andreadis</td><td class="c">Limassol</td><td class="r">1.50</td><td class="r b">1.51</td><td class="r">5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">15</td><td>Classone Garden</td><td>Andreadis</td><td class="c">Limassol</td><td class="r">3.00</td><td class="r b">3.29</td><td class="r">10</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+
+    <tr><td class="c">16</td><td>Paphos 1</td><td>Kerasi</td><td class="c">Paphos</td><td class="r">3.15</td><td class="r b">2.50</td><td class="r">7.5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">17</td><td>Paphos 2</td><td>Kerasi</td><td class="c">Paphos</td><td class="r">3.00</td><td class="r b">2.50</td><td class="r">7.5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">18</td><td>Paphos 3</td><td>Kerasi</td><td class="c">Paphos</td><td class="r">1.50</td><td class="r b">1.50</td><td class="r">5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+
+    <tr><td class="c">19</td><td>L&amp;T Sun Energy</td><td>Timotheos</td><td class="c">Limassol</td><td class="r">5.00</td><td class="r b">5.00</td><td class="r">15</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">20</td><td>AGM Sunfield 1</td><td>Timotheos</td><td class="c">Nicosia</td><td class="r">5.00</td><td class="r b">5.00</td><td class="r">15</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">21</td><td>AGM Sunfield 2</td><td>Timotheos</td><td class="c">Nicosia</td><td class="r">4.50</td><td class="r b">1.50</td><td class="r">5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">22</td><td>AGM Sunfield 3</td><td>Timotheos</td><td class="c">Nicosia</td><td class="r">1.00</td><td class="r b">1.00</td><td class="r">4</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">23</td><td>L&amp;T Solar Power</td><td>Timotheos</td><td class="c">Famagusta</td><td class="r">1.50</td><td class="r b">1.50</td><td class="r">5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">24</td><td>L&amp;T Res Systems</td><td>Timotheos</td><td class="c">Famagusta</td><td class="r">1.00</td><td class="r b">1.00</td><td class="r">4</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">25</td><td>L&amp;T Energia</td><td>Timotheos</td><td class="c">Nicosia</td><td class="r">1.50</td><td class="r b">1.50</td><td class="r">5</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">26</td><td>L&amp;T PV Tech</td><td>Timotheos</td><td class="c">Nicosia</td><td class="r">1.00</td><td class="r b">1.00</td><td class="r">4</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+    <tr><td class="c">27</td><td>AGM Lightpower</td><td>Timotheos</td><td class="c">Nicosia</td><td class="r">8.00</td><td class="r b">8.00</td><td class="r">24</td><td class="c"><span class="tag tag-b1">B1</span></td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+
+    <tr class="subtotal-row b1-bg"><td></td><td colspan="3">Batch 1 Subtotal (27 parks)</td><td class="r">84.74</td><td class="r b">85.30</td><td class="r b">281</td><td class="c">B1</td><td class="c">~Mar 2026</td><td class="status-likely">Likely</td></tr>
+
+    <!-- ══ BATCH 2 ══ -->
+    <tr class="group-header b2-bg"><td colspan="10">BATCH 2 — Q2 2026 Orders (8 Parks, 79 MW, 255 MWh)</td></tr>
+
+    <tr><td class="c">28</td><td>ELESTORE 1</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">—</td><td class="r b">12.00</td><td class="r b">40</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">29</td><td>ELESTORE 2</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">—</td><td class="r b">12.00</td><td class="r b">40</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">30</td><td>ELESTORE 3</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">—</td><td class="r b">12.00</td><td class="r b">40</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">31</td><td>ELESTORE 4</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">—</td><td class="r b">12.00</td><td class="r b">40</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">32</td><td>ELESTORE 5</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">—</td><td class="r b">12.00</td><td class="r b">40</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">33</td><td>Esperia Fam (Famagusta)</td><td>Esperia</td><td class="c">Famagusta</td><td class="r">8.00</td><td class="r b">6.50</td><td class="r b">20</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">34</td><td>Renergetic</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">7.50</td><td class="r b">5.00</td><td class="r b">10</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">35</td><td>My Sun Park (Monargouli)</td><td>Karis</td><td class="c">Limassol</td><td class="r">7.70</td><td class="r b">7.70</td><td class="r">25</td><td class="c"><span class="tag tag-b2">B2</span></td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+
+    <tr class="subtotal-row b2-bg"><td></td><td colspan="3">Batch 2 Subtotal (8 parks)</td><td class="r">23.20</td><td class="r b">79.20</td><td class="r b">255</td><td class="c">B2</td><td class="c">~Apr 2026</td><td class="status-tbc">TBC</td></tr>
+
+    <!-- ══ BATCH 3A ══ -->
+    <tr class="group-header b3a-bg"><td colspan="10">BATCH 3A — Q3 2026 Orders (3 Parks, 12.5 MW, 50 MWh)</td></tr>
+
+    <tr><td class="c">36</td><td>Dianary 2</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">1.40</td><td class="r b">2.50</td><td class="r b">10</td><td class="c"><span class="tag tag-b3a">B3A</span></td><td class="c">~Jul 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">37</td><td>Dianary 3</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">4.99</td><td class="r b">8.00</td><td class="r b">35</td><td class="c"><span class="tag tag-b3a">B3A</span></td><td class="c">~Jul 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">38</td><td>Greendorado (Lar Q3)</td><td>ABIO</td><td class="c">Larnaca</td><td class="r">1.80</td><td class="r b">2.00</td><td class="r b">5</td><td class="c"><span class="tag tag-b3a">B3A</span></td><td class="c">~Jul 2026</td><td class="status-tbc">TBC</td></tr>
+
+    <tr class="subtotal-row b3a-bg"><td></td><td colspan="3">Batch 3A Subtotal (3 parks)</td><td class="r">8.19</td><td class="r b">12.50</td><td class="r b">50</td><td class="c">B3A</td><td class="c">~Jul 2026</td><td class="status-tbc">TBC</td></tr>
+
+    <!-- ══ BATCH 3B ══ -->
+    <tr class="group-header b3b-bg"><td colspan="10">BATCH 3B — Q4 2026 Orders (3 Parks, 38 MW, 170 MWh)</td></tr>
+
+    <tr><td class="c">39</td><td>Esperia Limassol</td><td>Esperia</td><td class="c">Limassol</td><td class="r">8.00</td><td class="r b">8.00</td><td class="r">60</td><td class="c"><span class="tag tag-b3b">B3B</span></td><td class="c">~Oct 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">40</td><td>Esperia Frenaros</td><td>Esperia</td><td class="c">Famagusta</td><td class="r">8.75</td><td class="r b">25.00</td><td class="r">100</td><td class="c"><span class="tag tag-b3b">B3B</span></td><td class="c">~Oct 2026</td><td class="status-tbc">TBC</td></tr>
+    <tr><td class="c">41</td><td>Solarity 1st Phase</td><td>ABIO</td><td class="c">Nicosia</td><td class="r">6.10</td><td class="r b">5.00</td><td class="r">10</td><td class="c"><span class="tag tag-b3b">B3B</span></td><td class="c">~Oct 2026</td><td class="status-tbc">TBC</td></tr>
+
+    <tr class="subtotal-row b3b-bg"><td></td><td colspan="3">Batch 3B Subtotal (3 parks)</td><td class="r">22.85</td><td class="r b">38.00</td><td class="r b">170</td><td class="c">B3B</td><td class="c">~Oct 2026</td><td class="status-tbc">TBC</td></tr>
+
+    <!-- GRAND TOTAL -->
+    <tr class="total-row"><td></td><td colspan="3">PORTFOLIO TOTAL (51 parks incl. 5 Esperia 2028)</td><td class="r">—</td><td class="r b">249</td><td class="r b">881.78</td><td colspan="3" class="c">Mar 2026 – Oct 2026 (intended) + 2028</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="note">
+  <strong>Source:</strong> Hybrid Storage - List of PV plants &amp; owners.pdf (21 Nov 2025).<br>
+  <strong>PV MW<sub>DC</sub></strong> = installed solar plant capacity. <strong>BESS MW</strong> = battery output power (PCS rating). <strong>MWh</strong> = battery storage capacity.<br>
+  ELESTORE 1-5 are standalone BESS (no PV plant). v4 Excel SSOT total: 249 MW / 881.78 MWh (51 parks incl. 5 Esperia 2028). The Nov 2025 PDF covered only the original scope before ABIO's Feb 2026 RFP additions.
+</div>
+</div>
+
+<!-- ═══════════ SHEET 2: BY BATCH ═══════════ -->
+<div class="sheet" id="sheet-batches">
+
+<div class="kpi-strip">
+  <div class="kpi kpi-blue"><div class="v">4</div><div class="l">Batches</div></div>
+  <div class="kpi kpi-green"><div class="v">140 days</div><div class="l">Order → CIF</div></div>
+  <div class="kpi kpi-amber"><div class="v">270 days</div><div class="l">Order → PAC</div></div>
+  <div class="kpi kpi-red"><div class="v">~15 mo</div><div class="l">If all orders placed</div></div>
+</div>
+
+<div class="scroll-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="width:6%;">Batch</th>
+      <th style="width:22%;">Client Groups</th>
+      <th class="c" style="width:5%;">Parks</th>
+      <th class="c" style="width:7%;">BESS MW</th>
+      <th class="c" style="width:6%;">MWh</th>
+      <th class="c" style="width:9%;">Intended Order</th>
+      <th class="c" style="width:7%;">Status</th>
+      <th class="c" style="width:10%;">CIF (+140d)</th>
+      <th class="c" style="width:10%;">Install Start</th>
+      <th class="c" style="width:10%;">PAC (+270d)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="b1-bg">
+      <td class="c"><span class="tag tag-b1">B1</span></td>
+      <td>ABIO (11) + Galascope (2) + Andreadis (2) + Kerasi (3) + Timotheos (9)</td>
+      <td class="c b">27</td><td class="c b">85.3</td><td class="c b">281</td>
+      <td class="c b">~Mar 2026</td><td class="c status-likely">Likely</td>
+      <td class="c">~Jul 2026</td><td class="c">~Aug 2026</td><td class="c b">~Nov 2026</td>
+    </tr>
+    <tr class="b2-bg">
+      <td class="c"><span class="tag tag-b2">B2</span></td>
+      <td>ELESTORE 1-5 (standalone) + Esperia Fam + Renergetic + Karis</td>
+      <td class="c b">8</td><td class="c b">79.2</td><td class="c b">255</td>
+      <td class="c b">~Apr 2026</td><td class="c status-tbc">TBC</td>
+      <td class="c">~Sep 2026</td><td class="c">~Sep 2026</td><td class="c b">~Jan 2027</td>
+    </tr>
+    <tr class="b3a-bg">
+      <td class="c"><span class="tag tag-b3a">B3A</span></td>
+      <td>Dianary 2-3 + Greendorado Lar</td>
+      <td class="c b">3</td><td class="c b">12.5</td><td class="c b">50</td>
+      <td class="c b">~Jul 2026</td><td class="c status-tbc">TBC</td>
+      <td class="c">~Dec 2026</td><td class="c">~Dec 2026</td><td class="c b">~Mar 2027</td>
+    </tr>
+    <tr class="b3b-bg">
+      <td class="c"><span class="tag tag-b3b">B3B</span></td>
+      <td>Esperia Lim + Esperia Frenaros + Solarity</td>
+      <td class="c b">3</td><td class="c b">38.0</td><td class="c b">170</td>
+      <td class="c b">~Oct 2026</td><td class="c status-tbc">TBC</td>
+      <td class="c">~Mar 2027</td><td class="c">~Mar 2027</td><td class="c b">~Jun 2027</td>
+    </tr>
+    <tr class="total-row">
+      <td class="c b">ALL</td><td>Full Portfolio</td>
+      <td class="c b">51</td><td class="c b">249</td><td class="c b">882</td>
+      <td class="c" colspan="2">Mar – Oct 2026</td>
+      <td class="c" colspan="3">~15 months total</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="note">All CIF/Install/PAC dates shift 1:1 if order date changes. Only Batch 1 has near-term visibility (2025 delayed orders). ELESTORE parks are standalone BESS (12 MW / 40 MWh each, no PV co-location).</div>
+</div>
+
+<!-- ═══════════ SHEET 3: TEAMS ON-SITE ═══════════ -->
+<div class="sheet" id="sheet-teams">
+
+<div class="kpi-strip">
+  <div class="kpi kpi-blue"><div class="v">12</div><div class="l">Linyang Install</div></div>
+  <div class="kpi kpi-green"><div class="v">4</div><div class="l">Linyang Comm.</div></div>
+  <div class="kpi kpi-amber"><div class="v">10–15</div><div class="l">LH Civil Subs</div></div>
+  <div class="kpi kpi-red"><div class="v">26–31</div><div class="l">Peak On-Site</div></div>
+</div>
+
+<div class="scroll-wrap">
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:20%;">Team</th>
+      <th class="c" style="width:6%;">Persons</th>
+      <th class="c" style="width:7%;">Employer</th>
+      <th class="c" style="width:10%;">Deploy at</th>
+      <th class="c" style="width:8%;">Duration</th>
+      <th style="width:30%;">Scope</th>
+      <th class="c" style="width:8%;">Batch Rule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fef3c7;">
+      <td class="b">Civil Works Crew</td>
+      <td class="c b">10–15</td>
+      <td class="c">Lighthief subs</td>
+      <td class="c b">Order + 60d</td>
+      <td class="c">~3 mo/batch</td>
+      <td>Foundations, concrete blocks, cable trenches, drainage, grounding</td>
+      <td class="c">Per batch</td>
+    </tr>
+    <tr style="background:#bbf7d0;">
+      <td class="b">Installation Team</td>
+      <td class="c b">12</td>
+      <td class="c">Linyang</td>
+      <td class="c b">Order + 140d</td>
+      <td class="c">~2 mo/batch</td>
+      <td>Container placement, DC/AC cabling, MV cabling, thermal inspection</td>
+      <td class="c">Per batch</td>
+    </tr>
+    <tr>
+      <td style="padding-left:16px;">— Project Leaders</td>
+      <td class="c">4</td>
+      <td class="c">Linyang (PL)</td>
+      <td class="c" colspan="4">Polish-speaking, Linyang Poland. Supervise + interface with Lighthief.</td>
+    </tr>
+    <tr>
+      <td style="padding-left:16px;">— Technicians</td>
+      <td class="c">8</td>
+      <td class="c">Linyang (CN)</td>
+      <td class="c" colspan="4">Chinese technicians, factory-trained. Hands-on installation.</td>
+    </tr>
+    <tr style="background:#bfdbfe;">
+      <td class="b">Commissioning Engineers</td>
+      <td class="c b">4</td>
+      <td class="c">Linyang</td>
+      <td class="c b">Order + 200d</td>
+      <td class="c">~2 mo/batch</td>
+      <td>Cold/hot commissioning, BMS, Kehua PCS, EMS/SCADA, SAT reports</td>
+      <td class="c">Per batch</td>
+    </tr>
+    <tr style="background:#fce7f3;">
+      <td class="b">Crane Operator</td>
+      <td class="c b">1</td>
+      <td class="c">Pre-booked</td>
+      <td class="c b">Order + 140d</td>
+      <td class="c">~1wk/10 cont.</td>
+      <td>Container positioning on foundations. Only 1 suitable crane in Cyprus.</td>
+      <td class="c">Per batch</td>
+    </tr>
+    <tr style="background:#e0e7ff;">
+      <td class="b">Lighthief Engineers</td>
+      <td class="c b">2–3</td>
+      <td class="c">Lighthief</td>
+      <td class="c b">Throughout</td>
+      <td class="c">Continuous</td>
+      <td>Supervision, cold commissioning, DSO interface, quality control</td>
+      <td class="c">Continuous</td>
+    </tr>
+    <tr style="background:#fef9c3;">
+      <td class="b">FAT Inspector</td>
+      <td class="c b">1</td>
+      <td class="c">Lighthief</td>
+      <td class="c b">Order + 80d</td>
+      <td class="c">~2 weeks</td>
+      <td>Factory acceptance test at Linyang China. Travels before each batch ships.</td>
+      <td class="c">Per batch</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Team</th>
+      <th rowspan="2" class="c">Size</th>
+      <th colspan="15" class="c">2026 → 2027 (projected if orders placed as intended)</th>
+    </tr>
+    <tr>
+      <th class="c">Mar</th><th class="c">Apr</th><th class="c">May</th><th class="c">Jun</th><th class="c">Jul</th>
+      <th class="c">Aug</th><th class="c">Sep</th><th class="c">Oct</th><th class="c">Nov</th><th class="c">Dec</th>
+      <th class="c">Jan'27</th><th class="c">Feb</th><th class="c">Mar</th><th class="c">Apr</th><th class="c">May</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fef3c7;">
+      <td class="b">Civil Works (LH Subs)</td><td class="c b">10–15</td>
+      <td class="c">—</td><td class="c">—</td><td class="c">—</td>
+      <td class="c" style="background:#fde68a;">B1</td>
+      <td class="c" style="background:#fde68a;">B1</td>
+      <td class="c" style="background:#fde68a;">B1+B2</td>
+      <td class="c" style="background:#fde68a;">B2</td>
+      <td class="c" style="background:#fde68a;">B2</td>
+      <td class="c" style="background:#fde68a;">3A</td>
+      <td class="c">—</td><td class="c">—</td>
+      <td class="c" style="background:#fde68a;">3B</td>
+      <td class="c" style="background:#fde68a;">3B</td>
+      <td class="c" style="background:#fde68a;">3B</td>
+      <td class="c">—</td>
+    </tr>
+    <tr style="background:#bbf7d0;">
+      <td class="b">Linyang Install</td><td class="c b">12</td>
+      <td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td>
+      <td class="c" style="background:#86efac;">B1</td>
+      <td class="c" style="background:#86efac;">B1</td>
+      <td class="c" style="background:#86efac;">B1+B2</td>
+      <td class="c" style="background:#86efac;">B2</td>
+      <td class="c" style="background:#86efac;">B2+3A</td>
+      <td class="c" style="background:#86efac;">3A</td>
+      <td class="c">—</td>
+      <td class="c" style="background:#86efac;">3B</td>
+      <td class="c" style="background:#86efac;">3B</td>
+      <td class="c">—</td>
+    </tr>
+    <tr style="background:#bfdbfe;">
+      <td class="b">Linyang Comm.</td><td class="c b">4</td>
+      <td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td>
+      <td class="c" style="background:#93c5fd;">B1</td>
+      <td class="c" style="background:#93c5fd;">B1</td>
+      <td class="c" style="background:#93c5fd;">B1+B2</td>
+      <td class="c" style="background:#93c5fd;">B2</td>
+      <td class="c" style="background:#93c5fd;">3A</td>
+      <td class="c">—</td>
+      <td class="c" style="background:#93c5fd;">3B</td>
+      <td class="c" style="background:#93c5fd;">3B</td>
+    </tr>
+    <tr class="total-row">
+      <td><strong>TOTAL ON-SITE</strong></td><td class="c b">—</td>
+      <td class="c">0</td><td class="c">0</td><td class="c">0</td>
+      <td class="c">10–15</td><td class="c">10–15</td>
+      <td class="c b" style="color:#fbbf24;">22–27</td>
+      <td class="c b" style="color:#fbbf24;">22–27</td>
+      <td class="c b" style="color:#fbbf24;">26–31</td>
+      <td class="c b" style="color:#fbbf24;">22–27</td>
+      <td class="c">16–19</td>
+      <td class="c">4</td>
+      <td class="c">10–15</td>
+      <td class="c b" style="color:#fbbf24;">22–27</td>
+      <td class="c">14–19</td>
+      <td class="c">0</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="note">Projected dates assume orders placed as intended. All dates shift 1:1 with actual order placement. Gap in Feb '27 between Phase 1 (B1+B2+3A) and Phase 2 (B3B).</div>
+</div>
+
+<!-- ═══════════ SHEET 4: LEAD TIMES ═══════════ -->
+<div class="sheet" id="sheet-leadtime">
+
+<div class="kpi-strip">
+  <div class="kpi kpi-blue"><div class="v">Day 0</div><div class="l">Order Placed</div></div>
+  <div class="kpi kpi-green"><div class="v">+90</div><div class="l">Production Done</div></div>
+  <div class="kpi kpi-amber"><div class="v">+140</div><div class="l">CIF Limassol</div></div>
+  <div class="kpi kpi-red"><div class="v">+270</div><div class="l">PAC (~9 mo)</div></div>
+</div>
+
+<div class="scroll-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="width:4%;">Step</th>
+      <th style="width:24%;">Milestone</th>
+      <th class="c" style="width:10%;">Days from Order</th>
+      <th style="width:16%;">Responsible</th>
+      <th style="width:8%;">Payment</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="c b">0</td><td class="b">Order Placed</td><td class="c b">Day 0</td><td>Lighthief + Linyang</td><td class="c b">25%</td><td>Contract signed. Electrical designs finalised. CT class confirmed with DSO.</td></tr>
+    <tr><td class="c">1</td><td>Production Start</td><td class="c b">+7</td><td>Linyang factory</td><td class="c">—</td><td>Factory begins manufacturing containers.</td></tr>
+    <tr><td class="c">2</td><td>DQG Drawings to Lighthief</td><td class="c b">+14</td><td>Linyang → Lighthief</td><td class="c">—</td><td>Foundation layouts, platform dimensions. Lighthief briefs civil subcontractors.</td></tr>
+    <tr style="background:#fff8e6;"><td class="c b">3</td><td class="b">Civil Works Start</td><td class="c b">+60</td><td>Lighthief subcontractors</td><td class="c">—</td><td>Foundations, trenches, drainage. 1 month before equipment CIF.</td></tr>
+    <tr><td class="c">4</td><td>FAT Inspection</td><td class="c b">+80 – +90</td><td>Lighthief engineer (China)</td><td class="c">—</td><td>2-week window. 1 engineer to Linyang factory.</td></tr>
+    <tr><td class="c b">5</td><td class="b">Production Complete</td><td class="c b">+90</td><td>Linyang</td><td class="c b">50%</td><td>50% due before containers loaded on vessel.</td></tr>
+    <tr><td class="c">6</td><td>Ship from China</td><td class="c b">+93</td><td>Linyang (CIF)</td><td class="c">—</td><td>~3 days loading. Shanghai → Limassol.</td></tr>
+    <tr style="background:#eef6ff;"><td class="c b">7</td><td class="b">CIF Limassol</td><td class="c b">+140</td><td>Lighthief</td><td class="c">—</td><td>50 days sea freight. Import duty 2.66% + VAT 19%.</td></tr>
+    <tr><td class="c">8</td><td>Port Clearance</td><td class="c b">+147</td><td>Lighthief / Interfreight</td><td class="c">—</td><td>7 days customs clearance.</td></tr>
+    <tr style="background:#bbf7d0;"><td class="c b">9</td><td class="b">Linyang Install Crew Arrives</td><td class="c b">+140</td><td>Linyang</td><td class="c b">20%</td><td>12 persons (4 PL + 8 CN). 20% DAP on site delivery.</td></tr>
+    <tr><td class="c">10</td><td>Installation Window</td><td class="c b">+150 – +210</td><td>Linyang + LH subs</td><td class="c">—</td><td>~60 days. Container placement, cabling, EMS install.</td></tr>
+    <tr style="background:#bfdbfe;"><td class="c b">11</td><td class="b">Commissioning Crew Arrives</td><td class="c b">+200</td><td>Linyang</td><td class="c">—</td><td>4 engineers. Cold + hot commissioning.</td></tr>
+    <tr><td class="c">12</td><td>Cold + Hot Commissioning</td><td class="c b">+210 – +250</td><td>Linyang + Lighthief</td><td class="c">—</td><td>~40 days. BMS, PCS, charge/discharge, SCADA.</td></tr>
+    <tr style="background:#d1fae5;"><td class="c b">13</td><td class="b">PAC (Provisional Acceptance)</td><td class="c b">+270</td><td>All</td><td class="c b">5%</td><td>SAT report. Final 5% to Linyang. ~9 months total.</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="note">Rule of thumb: Order + 140 days = CIF. Order + 270 days = PAC. These lead times apply to every batch regardless of when the order is placed.</div>
+</div>
+
+</div>
+
+<script>
+function showSheet(id) {
+  document.querySelectorAll('.sheet').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sheet-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

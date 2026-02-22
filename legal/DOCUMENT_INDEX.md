@@ -58,7 +58,7 @@
 │   │  • Tier A: Basic Monitoring + Bi-Annual Maintenance                  │   │
 │   │  • Tier B: + Corrective Maintenance (PCS/MVS)                        │   │
 │   │  • Tier C: + 97% Availability Guarantee + Local Spares               │   │
-│   │  • Tier D: + SOH Guarantee + Performance Warranty                    │   │
+│   │  • Tier D: Not offered — Tier C is the highest tier                    │   │
 │   │  • Governing Law: Cyprus (Cyprus Courts)                             │   │
 │   └─────────────────────────────────────────────────────────────────────┘   │
 │                                                                              │
@@ -327,11 +327,11 @@ All documents include consistent Force Majeure provisions covering:
 **Warranty Extension (OEM Confirmed Costs):**
 | Extension | OEM Cost | Status |
 |-----------|----------|--------|
-| BESS Warranty Extension (Yr 6-10) | €913.92 | ✅ Confirmed |
-| BESS Warranty Extension (Yr 11-15) | €4,182.25 | ✅ Confirmed (was €1,157.62) |
+| BESS Warranty Extension (Yr 6-10) | €913.92 | ✅ Confirmed (V1 & V3) |
+| BESS Warranty Extension (Yr 11-15) | €1,157.62 | ✅ Confirmed (V3 — previous V1 conflict €4,182.25 resolved) |
 | BESS Warranty Extension (Yr 16-20) | N/A | ❌ Not available (15-year max) |
-| PCS Warranty Extension (Yr 6-10) | €747.76 | ✅ Confirmed |
-| PCS Warranty Extension (Yr 11-15) | €1,086.20 | ✅ Confirmed (was €926.10) |
+| PCS+MVS Warranty Extension (Yr 6-10) | €747.76 | ✅ Confirmed (V1 & V3) |
+| PCS+MVS Warranty Extension (Yr 11-15) | €926.10 | ✅ Confirmed (V3 — previous V1 rate €1,086.20 revised down) |
 | PCS Warranty Extension (Yr 16-20) | N/A | ❌ Not available (15-year max) |
 
 **Alternative:** Upfront spares package at €1,000–1,250/MWh (confirmed)
@@ -339,7 +339,7 @@ All documents include consistent Force Majeure provisions covering:
 *Pricing last verified: February 2026 (Linyang RFI V1 Answers)*
 
 ### LTSA Tier Comparison
-| Feature | Tier A | Tier B | Tier C | Tier D |
+| Feature | Tier A | Tier B | Tier C |
 |---------|--------|--------|--------|--------|
 | 24/7 Remote Monitoring | ✓ | ✓ | ✓ | ✓ |
 | Bi-Annual On-Site Maintenance | ✓ | ✓ | ✓ | ✓ |
@@ -383,7 +383,7 @@ All documents include consistent Force Majeure provisions covering:
 
 *Note: CPD = Cycles per Day, P = Power rating*
 
-### SOH Guarantee Milestones (Tier D) — OEM Confirmed
+### SOH Guarantee Milestones — OEM Confirmed (Not Currently Offered)
 | Year | OEM Guaranteed SOH | Client LTSA Guarantee | Status |
 |------|--------------------|-----------------------|--------|
 | 5 | ≥85% | 85% | ✅ Confirmed |

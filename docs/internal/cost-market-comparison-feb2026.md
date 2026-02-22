@@ -7,6 +7,8 @@
 
 ---
 
+> ## ⚠️ SUPERSEDED: Civil works now confirmed at €2,000/MWh (Kamil, Feb 2026). The €4,000/platform estimates below are for reference only.
+
 # COST COMPARISON: Our Pricing vs Market Rates
 
 **Document Reference:** LCY-COST-COMPARISON-FEB2026
@@ -280,11 +282,11 @@ Original Installed Cost (EPC Sheet):  €1,989,953 (€99.50/kWh)
   - LPS External (client pays):          -€4,200
   - Import Duty Correction:             -€32,676
 ─────────────────────────────────────────────────
-Revised Installed Cost:               €2,039,795 (€102.0/kWh)
+Revised Installed Cost:               €2,017,197 (€100.9/kWh)
 
 Client Price:                         €2,258,900 (€112.95/kWh)
-Margin:                               €219,105 (€10.96/kWh)
-Margin %:                             9.7%
+Margin:                               €241,703 (€12.09/kWh)
+Margin %:                             10.7%
 ```
 
 ### Margin Comparison
@@ -293,7 +295,7 @@ Margin %:                             9.7%
 |----------|----------------|--------------|----------|----------|
 | **Original EPC Sheet** | €1,989,953 | €2,258,900 | €268,947 | 11.9% |
 | **Previous Estimate** | €2,013,077 | €2,258,900 | €245,823 | 10.9% |
-| **🔴 VERIFIED (with Voltus)** | €2,039,795 | €2,258,900 | **€219,105** | **9.7%** |
+| **🔴 VERIFIED (v4 spreadsheet)** | €2,017,197 | €2,258,900 | **€241,703** | **10.7%** |
 
 ---
 
@@ -324,7 +326,7 @@ Margin %:                             9.7%
 | 1 | Transport | €2,360/container | €2,000-3,000 | ✅ Aligned |
 | 2 | Insurance (CAR/EAR) | 0.75% | 0.5-1.5% | ✅ Aligned |
 | 3 | O&M | €1,740/MWh/yr | $3,750-6,250/MWh/yr | ✅ Competitive |
-| 4 | Overall installed | €102/kWh | $125/kWh | ✅ 18% below market |
+| 4 | Overall installed | €101/kWh | $125/kWh | ✅ 19% below market |
 
 ---
 
@@ -334,9 +336,9 @@ Margin %:                             9.7%
 
 | Metric | Original | Verified | vs Market |
 |--------|----------|----------|-----------|
-| Installed Cost | €99.50/kWh | **€102.0/kWh** | **18% below** $125/kWh benchmark |
+| Installed Cost | €99.50/kWh | **€100.9/kWh** | **19% below** $125/kWh benchmark |
 | Client Price | €112.95/kWh | €112.95/kWh | **16% below** global avg ($165) |
-| Margin | 11.9% | **9.7%** | Acceptable but tighter |
+| Margin | 11.9% | **10.7%** | Acceptable |
 
 ### Competitive Advantage
 Our pricing REMAINS **competitive** because:
@@ -344,7 +346,7 @@ Our pricing REMAINS **competitive** because:
 2. Payment terms (25/50/20/5) are favorable
 3. O&M pricing (€1,740/MWh) is below market
 4. EVE cells are Tier 1 quality
-5. Even with verified costs, we're 18% below market benchmark
+5. Even with verified costs, we're 19% below market benchmark
 
 ### Key Cost Items Now Verified
 
@@ -358,9 +360,9 @@ Our pricing REMAINS **competitive** because:
 
 ```
 Original margin (EPC sheet):     11.9% (€268,947)
-After Voltus verification:        9.7% (€219,105)
+After v4 verification:           10.7% (€241,703)
 ───────────────────────────────────────────────────
-Margin reduction:                -2.2% (-€49,842)
+Margin reduction:                -1.2% (-€27,244)
 ```
 
 ### ⚠️ ACTION REQUIRED

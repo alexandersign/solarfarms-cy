@@ -191,7 +191,7 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <ul className="space-y-1 text-sm text-green-700">
                     <li>• Curtailment elimination</li>
-                    <li>• Curtailment recovery at peak prices (€183/MWh avg evening peak, €161/MWh per discharge at 87.8% RTE)</li>
+                    <li>• Curtailment recovery at peak prices (€183/MWh avg evening peak, €158/MWh per discharge at 86.32% AC-AC RTE)</li>
                     <li>• Grid stabilization revenue potential</li>
                   </ul>
                 </div>
@@ -244,11 +244,19 @@ export default function AgiosTheodorosProjectPage() {
                     <span className="text-gray-600">RTB Acquisition</span>
                     <span className="font-semibold">€1.00M</span>
                   </div>
+                  <div className="flex justify-between items-center py-2 border-b">
+                    <span className="text-gray-600">Development</span>
+                    <span className="font-semibold">€0.35M</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b">
+                    <span className="text-gray-600 text-sm">(Grid, permits, fees, contingency)</span>
+                    <span></span>
+                  </div>
                 </div>
                 <div className="bg-solar-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-solar-800">Total CAPEX</span>
-                    <span className="text-2xl font-bold text-solar-700">€4.24M</span>
+                    <span className="text-2xl font-bold text-solar-700">€4.59M</span>
                   </div>
                 </div>
               </CardContent>
@@ -273,14 +281,14 @@ export default function AgiosTheodorosProjectPage() {
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Equity (RTB + 30%)</span>
-                    <span className="font-semibold">€1.97M</span>
+                    <span className="text-gray-600">Equity (RTB + Dev + 30%)</span>
+                    <span className="font-semibold">€2.32M</span>
                   </div>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-green-800">Equity Required</span>
-                    <span className="text-2xl font-bold text-green-700">€1.97M</span>
+                    <span className="text-2xl font-bold text-green-700">€2.32M</span>
                   </div>
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
@@ -320,8 +328,12 @@ export default function AgiosTheodorosProjectPage() {
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
+                    <span className="text-gray-600">Debt Service</span>
+                    <span className="font-semibold text-red-600">~€211k/yr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Net Cash Flow</span>
-                    <span className="font-semibold text-green-600">~€950K/yr</span>
+                    <span className="font-semibold text-green-600">~€735K/yr</span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-solar-500 to-solar-600 rounded-lg p-4 mt-4 text-white">
@@ -350,10 +362,10 @@ export default function AgiosTheodorosProjectPage() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { percent: 25, equity: '€410k', revenue: '~€238k/yr' },
-              { percent: 50, equity: '€825k', revenue: '~€475k/yr' },
-              { percent: 75, equity: '€1.24M', revenue: '~€713k/yr' },
-              { percent: 100, equity: '€1.65M', revenue: '~€950k/yr', featured: true },
+              { percent: 25, equity: '€580k', revenue: '~€184k/yr' },
+              { percent: 50, equity: '€1.16M', revenue: '~€367k/yr' },
+              { percent: 75, equity: '€1.74M', revenue: '~€551k/yr' },
+              { percent: 100, equity: '€2.32M', revenue: '~€735k/yr', featured: true },
             ].map((option) => (
               <Card 
                 key={option.percent} 

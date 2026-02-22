@@ -85,7 +85,7 @@ const offices = [
     city: "Business Development",
     address: "Alexander Papacosta\nCyprus Director",
     phone: "+357 99 164 158", 
-    email: "alexander.papacosta@lighthief.com",
+    email: "office@lighthief.com",
     hours: "Mon-Fri 9AM-6PM CET",
     primary: false
   },

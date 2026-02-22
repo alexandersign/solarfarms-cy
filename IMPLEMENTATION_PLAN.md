@@ -43,7 +43,7 @@ Your SolarFarms.cy platform is now **fully developed and ready for business oper
 - ✅ **Team Notifications**: Routes to actual Lighthief emails
 - ✅ **Autoresponders**: Professional welcome emails
 - ✅ **HTML Templates**: Beautifully designed email templates
-- ✅ **Real Contact Routing**: office@lighthief.com, alexander.papacosta@lighthief.com, a.sybaris@lighthief.com
+- ✅ **Real Contact Routing**: office@lighthief.com, office@lighthief.com, a.sybaris@lighthief.com
 
 ### **🔍 SEO & Content**
 - ✅ **Expert Articles**: 5 comprehensive blog posts

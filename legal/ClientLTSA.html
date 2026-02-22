@@ -230,8 +230,8 @@
 
 <div class="header-info">
     <strong>Document Reference:</strong> LCY-LTSA-001 &nbsp;|&nbsp; 
-    <strong>Version:</strong> 2.3 &nbsp;|&nbsp; 
-    <strong>Template Date:</strong> January 2026
+    <strong>Version:</strong> 3.0 &nbsp;|&nbsp; 
+    <strong>Template Date:</strong> February 2026
 </div>
 
 <div class="divider"></div>
@@ -329,14 +329,9 @@ A company incorporated under the laws of [●], with registered office at [●]<
 </ul>
 </div>
 
-<div class="tier-box tier-d">
-<h4>TIER D – PREMIUM SERVICE WITH PERFORMANCE WARRANTY (Includes Tier C plus)</h4>
-<ul>
-<li>(a) State of Health (SOH) Guarantee against Degradation Curve;</li>
-<li>(b) Performance Warranty with tiered remedies;</li>
-<li>(c) Cell augmentation or replacement provisions;</li>
-<li>(d) Extended warranty coverage options.</li>
-</ul>
+<div class="tier-box tier-d" style="opacity:0.5;">
+<h4>TIER D — NOT CURRENTLY OFFERED</h4>
+<p><em>Tier C is the highest service tier available. SOH Guarantee and augmentation provisions are included in Tier C.</em></p>
 </div>
 
 <h3>4.2 Core Services (All Tiers)</h3>
@@ -536,13 +531,14 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <h3>8.2 Response Time Commitments</h3>
 <p>The Service Provider commits to the following Response Times:</p>
 <table>
-<tr><th>Alert Type</th><th>Initial Response</th><th>On-Site Attendance (if required)</th></tr>
-<tr><td><strong>Critical Alerts</strong></td><td>Within 4 hours</td><td>Within 24 hours</td></tr>
-<tr><td><strong>Major Alerts</strong></td><td>Within 24 hours</td><td>Within 72 hours</td></tr>
-<tr><td><strong>Minor Alerts</strong></td><td>Within 72 hours</td><td>Next scheduled maintenance</td></tr>
+<tr><th>Alert Type</th><th>Initial Remote Response</th><th>On-Site Attendance (if required)</th></tr>
+<tr><td><strong>Critical Alerts</strong></td><td>Within 2 hours</td><td>Within 8 hours</td></tr>
+<tr><td><strong>Major Alerts</strong></td><td>Within 8 hours</td><td>Within 48 hours</td></tr>
+<tr><td><strong>Minor Alerts</strong></td><td>Within 48 hours</td><td>Next scheduled maintenance visit or within 5 business days, whichever is sooner</td></tr>
 </table>
 
 <p><strong>Response Time Measurement:</strong> Response Time is measured from the timestamp of alert generation in the Monitoring Platform, not from Client notification.</p>
+<p><strong>Clarification — Response vs Resolution:</strong> The Response Times set out above apply to initial response and on-site attendance only. Resolution time depends on fault severity, spare parts availability, and OEM support requirements, and is not subject to the Response Time commitments in this Section.</p>
 
 <h3>8.3 Response Scope</h3>
 <p>Initial response shall include:</p>
@@ -571,12 +567,34 @@ A company incorporated under the laws of [●], with registered office at [●]<
 </ul>
 
 <h3>8.6 Service Level Credits</h3>
-<p>Where the Service Provider fails to meet the Response Time commitments set out in Section 8.2 on more than three (3) occasions in any calendar quarter, the Client shall be entitled to a service credit equal to five percent (5%) of the quarterly Service Fee for that quarter.</p>
+<ul>
+<li>(a) <strong>Critical Alert Breach:</strong> Where the Service Provider fails to achieve on-site attendance within the eight (8) hour commitment for a Critical Alert, the Client shall be entitled to a service credit of one hundred euros (€100) for each full hour of delay beyond the eight (8) hour commitment, up to a maximum of one thousand euros (€1,000) per incident.</li>
+<li>(b) <strong>Major Alert Breach:</strong> Where the Service Provider fails to achieve on-site attendance within the forty-eight (48) hour commitment for a Major Alert, the Client shall be entitled to a service credit of fifty euros (€50) for each full hour of delay beyond the forty-eight (48) hour commitment, up to a maximum of five hundred euros (€500) per incident.</li>
+<li>(c) <strong>Quarterly Cap:</strong> The total Service Level Credits payable under this Section 8.6 in any calendar quarter shall not exceed ten percent (10%) of the quarterly Service Fee for that quarter.</li>
+<li>(d) <strong>Remediation Plan:</strong> Where three (3) or more Service Level breaches occur in any calendar quarter, the Client may request a written remediation plan from the Service Provider. The Service Provider shall deliver such plan within fourteen (14) days of the request, detailing root cause analysis and corrective actions.</li>
+<li>(e) <strong>Sole Remedy:</strong> The Service Level Credits set out in this Section 8.6 shall be the Client's sole and exclusive remedy for failure to meet the Response Time commitments, and the Client shall not be entitled to claim additional damages for Response Time breaches beyond the Service Level Credits.</li>
+</ul>
 
-<h2>9. AVAILABILITY GUARANTEE (TIER C AND D ONLY)</h2>
+<h3>8.7 Escalation Protocol</h3>
+<p>The Service Provider shall maintain the following escalation procedure for Critical Alerts:</p>
+<ul>
+<li>(a) <strong>Acknowledgement:</strong> All Critical Alerts shall be acknowledged by the duty technician within thirty (30) minutes of alert generation.</li>
+<li>(b) <strong>Auto-Escalation:</strong> If the primary duty technician does not acknowledge a Critical Alert within thirty (30) minutes, the Monitoring Platform shall automatically escalate the alert to the backup technician and the operations manager simultaneously.</li>
+<li>(c) <strong>Management Escalation:</strong> If on-site attendance has not been dispatched within four (4) hours of a Critical Alert, the operations manager shall escalate to the Service Provider's senior management and notify the Client's designated contact.</li>
+<li>(d) <strong>Client Notification:</strong> The Client shall receive status updates at intervals of no more than two (2) hours from the time of a Critical Alert until the issue is resolved or the situation is stabilised.</li>
+</ul>
+
+<h3>8.8 Coverage Hours</h3>
+<ul>
+<li>(a) The Response Time commitments set out in Section 8.2 for Critical Alerts and Major Alerts apply on a <strong>twenty-four hours a day, seven days a week, three hundred and sixty-five days a year (24/7/365)</strong> basis, including weekends, public holidays, and night hours.</li>
+<li>(b) The Response Time commitment for Minor Alerts applies during <strong>business hours</strong> (Monday to Friday, 08:00–17:00 local time), excluding public holidays. Where a Minor Alert is raised outside business hours, the Response Time shall commence at the start of the next business day.</li>
+<li>(c) The Service Provider shall maintain a staffed duty roster at all times sufficient to meet the 24/7/365 commitment for Critical and Major Alerts, with a minimum of one (1) qualified technician on-call and a designated backup at all times.</li>
+</ul>
+
+<h2>9. AVAILABILITY GUARANTEE (TIER C)</h2>
 
 <h3>9.1 Availability Commitment</h3>
-<p>Where the Client has selected Tier C or Tier D services, the Service Provider guarantees that the BESS shall achieve a minimum annual Availability of <strong>ninety-seven percent (97%)</strong>, calculated in accordance with Schedule 4.</p>
+<p>Where the Client has selected Tier C services, the Service Provider guarantees that the BESS shall achieve a minimum annual Availability of <strong>ninety-seven percent (97%)</strong>, calculated in accordance with Schedule 4.</p>
 
 <h3>9.2 Calculation of Availability</h3>
 <div class="formula">
@@ -591,7 +609,7 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <h3>9.3 Exclusions from Unavailable Hours</h3>
 <p>The following shall not count as Unavailable Hours:</p>
 <ul>
-<li>(a) Scheduled Downtime for preventive maintenance (maximum 48 hours per year);</li>
+<li>(a) Scheduled Downtime for preventive maintenance (maximum 10 days per year);</li>
 <li>(b) Downtime caused by grid unavailability, curtailment, or grid operator instruction;</li>
 <li>(c) Downtime caused by Force Majeure events;</li>
 <li>(d) Downtime caused by Client actions, third parties, or unauthorised modifications;</li>
@@ -609,17 +627,29 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <tr><td>Below 90%</td><td>20% of annual Service Fee</td></tr>
 </table>
 
+<h3>9.4A Direct Availability Liquidated Damages</h3>
+<p>In addition to the fee reductions in Section 9.4, direct Availability Liquidated Damages shall apply:</p>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Availability Target</td><td>97% annual</td></tr>
+<tr><td>LD Rate for shortfall below 97%</td><td><strong>€30 per day per MWh</strong></td></tr>
+<tr><td>Scheduled Maintenance Allowance</td><td>10 days per year (not counted as downtime)</td></tr>
+</table>
+<div class="info-box">
+<strong>Example (20 MWh System):</strong> If availability = 95% (shortfall of 2% = 7.26 days excess downtime beyond allowance), LD = 7.26 days × €30/day × 20 MWh = <strong>€4,356</strong>.
+</div>
+
 <h3>9.5 Cap on Availability Liquidated Damages</h3>
 <p>The maximum Availability Liquidated Damages payable in any year shall not exceed <strong>twenty percent (20%)</strong> of the annual Service Fee.</p>
 
 <h3>9.6 Sole Remedy</h3>
 <p>The Availability Liquidated Damages set out in this Section shall be the Client's sole and exclusive remedy for failure to achieve the Availability Guarantee, and the Client shall not be entitled to claim additional damages for unavailability beyond the Liquidated Damages.</p>
 
-<h2>10. STATE OF HEALTH (SOH) AND PERFORMANCE WARRANTY (TIER D ONLY)</h2>
+<h2>10. STATE OF HEALTH (SOH) AND PERFORMANCE WARRANTY (TIER C)</h2>
 
 <h3>10.1 SOH Guarantee — OEM Pass-Through</h3>
 <ul>
-<li>(a) Where the Client has selected Tier D services, the Service Provider guarantees that the BESS shall maintain a minimum State of Health in accordance with the Degradation Curve set out in Schedule 5.</li>
+<li>(a) Where the Client has selected Tier C services, the Service Provider guarantees that the BESS shall maintain a minimum State of Health in accordance with the Degradation Curve set out in Schedule 5.</li>
 <li>(b) <strong>OEM-Backed Guarantee:</strong> The SOH Guarantee is a pass-through guarantee provided by the OEM (Linyang) and is backed by the OEM's warranty reserve. The Service Provider's obligation under this Section is to facilitate the OEM's warranty and ensure proper maintenance is performed.</li>
 <li>(c) <strong>Manufacturing Defect Determination:</strong> Where SOH underperformance is attributable to a manufacturing defect or design flaw in the OEM equipment, the OEM's determination of the defect shall govern.</li>
 <li>(d) <strong>No Double Liability:</strong> The Service Provider shall not be liable under both this Section 10 and Section 14.5 for the same underlying issue.</li>
@@ -629,14 +659,12 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <p>The Guaranteed SOH at the end of each contract year shall be as follows (subject to adjustment based on actual cycling and operating conditions):</p>
 <table>
 <tr><th>End of Year</th><th>Guaranteed Minimum SOH</th></tr>
-<tr><td>1</td><td>98% of original rated capacity</td></tr>
-<tr><td>2</td><td>96% of original rated capacity</td></tr>
-<tr><td>3</td><td>94% of original rated capacity</td></tr>
-<tr><td>4</td><td>92% of original rated capacity</td></tr>
-<tr><td>5</td><td>90% of original rated capacity</td></tr>
-<tr><td>10</td><td>80% of original rated capacity</td></tr>
-<tr><td>15</td><td>70% of original rated capacity</td></tr>
-<tr><td>20</td><td>60% of original rated capacity</td></tr>
+<tr><td>1</td><td>≥ 95% of original rated capacity</td></tr>
+<tr><td>2</td><td>≥ 92%</td></tr>
+<tr><td>3</td><td>≥ 89%</td></tr>
+<tr><td>5</td><td>≥ 85% (V3 RFI confirmed)</td></tr>
+<tr><td>10</td><td>≥ 79.58% (V3 RFI confirmed)</td></tr>
+<tr><td>15</td><td>≥ 70% (V3 RFI confirmed, maximum warranty period)</td></tr>
 </table>
 
 <h3>10.3 SOH Measurement</h3>
@@ -676,19 +704,59 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <ul>
 <li>(i) The Service Provider shall use commercially reasonable efforts to source equivalent replacement cells from alternative suppliers;</li>
 <li>(ii) The Service Provider's liability shall be limited to the caps set out in Section 10.5;</li>
-<li>(iii) The Service Provider may, at its option, terminate the Tier D service and refund a pro-rata portion of Tier D premiums paid;</li>
-<li>(iv) The Client shall have the right to downgrade to Tier C without penalty.</li>
+<li>(iii) The Service Provider may, at its option, terminate the SOH Guarantee element of the Tier C service and refund a pro-rata portion of SOH premiums paid.</li>
 </ul>
 
-<h3>10.5 SOH Liquidated Damages Calculation</h3>
-<p>Where Liquidated Damages are payable for SOH underperformance:</p>
+<h3>10.5 SOH Capacity Shortfall Liquidated Damages</h3>
+
+<p>Where the measured SOH falls below the Guaranteed SOH by more than one percent (1%), the following bankable LD mechanism shall apply:</p>
+
+<h4>(a) SOH LD Formula</h4>
 <div class="formula">
-<strong>LD = (Guaranteed SOH - Actual SOH) x System Capacity x EUR [●] per kWh</strong>
+<strong>Daily SOH LD = Lost Capacity (MWh) × €30 per MWh per day</strong>
+<br><br>
+Where: Lost Capacity = (Guaranteed SOH% − Actual SOH%) × Rated System Capacity (MWh)
 </div>
+
+<h4>(b) SOH LD Trigger and Timing</h4>
+<table>
+<tr><th>Element</th><th>Value</th></tr>
+<tr><td><strong>Trigger</strong></td><td>Annual SOH measurement shows Actual SOH &lt; Guaranteed SOH by ≥ 1%</td></tr>
+<tr><td><strong>Measurement Method</strong></td><td>OEM-approved capacity test protocol; independently verifiable</td></tr>
+<tr><td><strong>Materiality Threshold</strong></td><td>≥ 1% shortfall (within BMS measurement tolerance: no claim)</td></tr>
+<tr><td><strong>Remedy Grace Period</strong></td><td>90 days from date of verified shortfall for Service Provider to remedy (augmentation or module replacement)</td></tr>
+<tr><td><strong>LD Accrual Start</strong></td><td>Day 91 after verified shortfall, if not remedied</td></tr>
+<tr><td><strong>LD Accrual Stop</strong></td><td>Date SOH is restored to Guaranteed SOH level (verified by re-test)</td></tr>
+<tr><td><strong>LD Rate</strong></td><td><strong>€30 per Lost MWh per day</strong> (consistent with Availability LD rate)</td></tr>
+</table>
+
+<h4>(c) SOH LD Caps</h4>
 <ul>
-<li>(a) The per-kWh rate shall be the prevailing market rate for equivalent battery modules at the time of claim;</li>
-<li>(b) The maximum SOH Liquidated Damages payable over the Term shall not exceed <strong>fifty percent (50%)</strong> of the total Service Fees paid.</li>
+<li>(i) <strong>Annual Cap:</strong> The maximum SOH Liquidated Damages payable in any twelve-month period shall not exceed <strong>twenty percent (20%)</strong> of the annual Service Fee.</li>
+<li>(ii) <strong>Lifetime Cap:</strong> The maximum aggregate SOH Liquidated Damages payable over the entire Term shall not exceed <strong>fifty percent (50%)</strong> of the total Service Fees paid.</li>
+<li>(iii) <strong>Interaction with Availability LDs:</strong> SOH LDs and Availability LDs are separate and cumulative, but the combined total in any year shall not exceed <strong>thirty percent (30%)</strong> of the annual Service Fee.</li>
 </ul>
+
+<h4>(d) Bankable SOH LD — Worked Examples</h4>
+<div class="info-box">
+<strong>Example 1 — Minor Shortfall (20 MWh system, Year 5):</strong><br>
+Guaranteed SOH: 85% · Actual SOH: 83% (2% shortfall)<br>
+Lost Capacity = 2% × 20 MWh = <strong>0.4 MWh</strong><br>
+Daily LD = 0.4 × €30 = <strong>€12/day</strong><br>
+Grace period: 90 days (no LDs accrue)<br>
+If unremedied for 120 days past grace: €12 × 120 = <strong>€1,440</strong><br>
+If unremedied for full year past grace: €12 × 275 = <strong>€3,300</strong>
+<br><br>
+<strong>Example 2 — Significant Shortfall (100 MWh system, Year 10):</strong><br>
+Guaranteed SOH: 79.58% · Actual SOH: 75% (4.58% shortfall)<br>
+Lost Capacity = 4.58% × 100 MWh = <strong>4.58 MWh</strong><br>
+Daily LD = 4.58 × €30 = <strong>€137.40/day</strong><br>
+If unremedied for 180 days past grace: €137.40 × 180 = <strong>€24,732</strong><br>
+(Subject to annual cap of 20% of Service Fee)
+</div>
+
+<h4>(e) Sole Remedy</h4>
+<p>The SOH Liquidated Damages set out in this Section, together with the augmentation and replacement remedies in Section 10.4, shall be the Client's sole and exclusive remedy for SOH underperformance. The Client shall not be entitled to claim additional damages beyond these remedies.</p>
 
 <h3>10.6 OEM Warranty Reserve</h3>
 <p>The SOH Guarantee is backed by the OEM's warranty reserve. The Service Provider shall ensure that adequate warranty provisions are maintained with the OEM to fulfil the obligations under this Section.</p>
@@ -764,6 +832,15 @@ A company incorporated under the laws of [●], with registered office at [●]<
 </li>
 <li>(b) The Service Provider maintains General Commercial Liability and Professional Indemnity Insurance of minimum EUR 1,000,000 each.</li>
 <li>(c) Each Party shall provide evidence of insurance upon reasonable request.</li>
+</ul>
+
+<h4>12.4A Insurance Compliance Tracking</h4>
+<ul>
+<li>(a) Both Parties shall maintain an insurance compliance register documenting all required policies, their coverage limits, expiry dates, and renewal status.</li>
+<li>(b) Each Party shall provide updated certificates of insurance within fourteen (14) days of each policy renewal.</li>
+<li>(c) The Service Provider shall notify the Client immediately if any required insurance lapses or is materially amended.</li>
+<li>(d) Failure to maintain required insurance shall entitle the non-defaulting Party to suspend its obligations (including guarantees) until insurance is reinstated.</li>
+<li>(e) Annual insurance compliance shall be documented in the Annual Review Report (Section 5.6).</li>
 </ul>
 
 <h3>12.5 Operational Compliance</h3>
@@ -1165,7 +1242,7 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <tr><td>Nominal Voltage</td><td>3.2V</td></tr>
 <tr><td>Standard C-Rate</td><td>0.5C</td></tr>
 <tr><td>Maximum C-Rate</td><td>1C</td></tr>
-<tr><td>Cycle Life (to 80% SOH)</td><td>6,000 cycles (25°C, 100% DOD, 0.5C)</td></tr>
+<tr><td>Cycle Life</td><td>15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25±2°C (whichever comes first)</td></tr>
 <tr><td>Energy Density</td><td>183 Wh/kg</td></tr>
 </table>
 
@@ -1214,7 +1291,7 @@ A company incorporated under the laws of [●], with registered office at [●]<
 
 <p><strong>SYSTEM CAPACITY:</strong> [●] MWh</p>
 
-<p><strong>SELECTED SERVICE TIER:</strong> ☐ Tier A &nbsp;&nbsp; ☐ Tier B &nbsp;&nbsp; ☐ Tier C &nbsp;&nbsp; ☐ Tier D</p>
+<p><strong>SELECTED SERVICE TIER:</strong> ☐ Tier A &nbsp;&nbsp; ☐ Tier B &nbsp;&nbsp; ☐ Tier C</p>
 
 <div class="schedule-subheader">BASE SERVICE PRICING (Per MWh per Year)</div>
 
@@ -1226,8 +1303,8 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <tr><td>Preventive & Corrective Maintenance – PCS + MVS<br><em>(Includes remote monitoring + bi-annual servicing)</em></td><td>€1,311.97</td><td>€[●]</td></tr>
 <tr><td colspan="3"><strong>TIER C – Add Availability Guarantee</strong></td></tr>
 <tr><td>97% Availability Guarantee (Years 1-20)<br><em>(Includes local service team + spare parts warehouse)</em></td><td>€2,201.73</td><td>€[●]</td></tr>
-<tr><td colspan="3"><strong>TIER D – Add Performance Warranty</strong></td></tr>
-<tr><td>SOH/Performance Warranty<br><em>(Subject to OEM warranty reserve confirmation)</em></td><td>Price on Application</td><td>€[●]</td></tr>
+<tr><td colspan="3"><strong>TIER D – Not Currently Offered</strong></td></tr>
+<tr><td colspan="3"><em>Tier C is the highest service tier available. SOH Guarantee and augmentation provisions are included in Tier C.</em></td></tr>
 </table>
 
 <div class="schedule-subheader">OPTIONAL WARRANTY EXTENSIONS (Per MWh per Year)</div>
@@ -1236,10 +1313,40 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <tr><th>Warranty Extension</th><th>Years</th><th>EUR/MWh/Year</th><th>Selected</th></tr>
 <tr><td>BESS Performance & Product Warranty</td><td>6-10</td><td>€913.92</td><td>☐</td></tr>
 <tr><td>BESS Performance & Product Warranty</td><td>11-15</td><td>€1,157.62</td><td>☐</td></tr>
-<tr><td>BESS Performance & Product Warranty</td><td>16-20</td><td>€3,858.75</td><td>☐</td></tr>
+<tr><td colspan="4"><em>Years 16–20 extended warranty: pricing not yet confirmed — subject to future negotiation</em></td></tr>
 <tr><td>PCS + MVS Product Warranty</td><td>6-10</td><td>€747.76</td><td>☐</td></tr>
 <tr><td>PCS Product Warranty</td><td>11-15</td><td>€926.10</td><td>☐</td></tr>
-<tr><td>PCS Product Warranty</td><td>16-20</td><td>€2,315.25</td><td>☐</td></tr>
+</table>
+
+<div class="schedule-subheader">EMS/SCADA ANNUAL SUBSCRIPTION (Per MWh per Year)</div>
+
+<table>
+<tr><th>Component</th><th>EUR/MWh/Year</th><th>Annual Total</th></tr>
+<tr><td>EMS/SCADA Software Subscription<br><em>(20% of installed EMS/SCADA cost per year)</em></td><td>€[●]</td><td>€[●]</td></tr>
+</table>
+
+<p><strong>Calculation basis:</strong> Annual subscription = 20% of total installed EMS/SCADA cost (EMS hardware + SCADA Local + SCADA Global), divided by system capacity in MWh. Rate varies by park size and group allocation — portfolio range: €661 – €3,181/MWh/Year.</p>
+
+<p><strong>Subscription includes:</strong></p>
+<ul>
+<li>Software updates and patches</li>
+<li>Cloud hosting and data storage</li>
+<li>External data feeds (market prices, grid signals, weather)</li>
+<li>Cybersecurity maintenance and NIS2 compliance updates</li>
+<li>System integrations and API access</li>
+<li>10 read-only SCADA dashboard accounts per client group</li>
+<li>1 hour/month technical support per park (additional hours at €80/hr)</li>
+</ul>
+
+<p><strong>Post-Subscription:</strong> If the subscription lapses, the system degrades to local-only EMS operation — no cloud access, SCADA Global, or external data feeds.</p>
+
+<p><strong>EMS/SCADA Subscription for this System:</strong></p>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>System Capacity</td><td>[●] MWh</td></tr>
+<tr><td>Installed EMS/SCADA Cost</td><td>€[●]</td></tr>
+<tr><td>Annual Subscription (20%)</td><td>€[●]</td></tr>
+<tr><td>EUR/MWh/Year</td><td>€[●]</td></tr>
 </table>
 
 <div class="schedule-subheader">ANNUAL FEE SUMMARY</div>
@@ -1248,7 +1355,8 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <tr><th>Component</th><th>Annual Fee (EUR)</th></tr>
 <tr><td>Base Service Fee (Selected Tier)</td><td>€[●]</td></tr>
 <tr><td>Warranty Extension (if selected)</td><td>€[●]</td></tr>
-<tr><td><strong>TOTAL ANNUAL SERVICE FEE</strong></td><td><strong>€[●]</strong></td></tr>
+<tr><td>EMS/SCADA Annual Subscription</td><td>€[●]</td></tr>
+<tr><td><strong>TOTAL ANNUAL FEE</strong></td><td><strong>€[●]</strong></td></tr>
 <tr><td>VAT (19%)</td><td>€[●]</td></tr>
 <tr><td><strong>TOTAL INCLUDING VAT</strong></td><td><strong>€[●]</strong></td></tr>
 </table>
@@ -1303,7 +1411,8 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <div class="schedule-subheader">FEE EXCLUSIONS (ALL TIERS)</div>
 <ul>
 <li>Major component replacement beyond warranty scope</li>
-<li>EMS software, licences, and customisation</li>
+<li>EMS/SCADA annual subscription (charged separately — see EMS/SCADA section above)</li>
+<li>EMS software customisation beyond standard configuration</li>
 <li>Grid-related issues beyond point of interconnection</li>
 <li>Damage caused by Client, third parties, or Force Majeure</li>
 <li>Civil works or site infrastructure</li>
@@ -1446,7 +1555,7 @@ A company incorporated under the laws of [●], with registered office at [●]<
 <!-- SCHEDULE 4 -->
 
 <div class="schedule-header">SCHEDULE 4 – AVAILABILITY CALCULATION AND GUARANTEES</div>
-<p><em>(Applicable to Tier C and Tier D only)</em></p>
+<p><em>(Applicable to Tier C only)</em></p>
 
 <div class="schedule-subheader">AVAILABILITY FORMULA</div>
 
@@ -1466,14 +1575,14 @@ Where:
 <table>
 <tr><th>Service Tier</th><th>Guaranteed Availability</th></tr>
 <tr><td>Tier C</td><td>97% annual</td></tr>
-<tr><td>Tier D</td><td>97% annual (98% available on request)</td></tr>
+<!-- Tier D removed - not offered -->
 </table>
 
 <div class="schedule-subheader">EXCLUDED HOURS (Do not count as Unavailable)</div>
 
 <p>The following shall NOT count as Unavailable Hours:</p>
 <ol>
-<li>Scheduled Downtime (max 48 hours/year for maintenance)</li>
+<li>Scheduled Downtime (max 10 days/year — 240 hours — for maintenance)</li>
 <li>Grid unavailability or curtailment by grid operator</li>
 <li>Force Majeure events</li>
 <li>Client-caused issues or unauthorised modifications</li>
@@ -1507,7 +1616,7 @@ Where:
 <!-- SCHEDULE 5 -->
 
 <div class="schedule-header">SCHEDULE 5 – DEGRADATION CURVE AND SOH GUARANTEE</div>
-<p><em>(Applicable to Tier D only)</em></p>
+<p><em>(Not currently offered - Tier C is the highest tier)</em></p>
 
 <p><strong>Reference:</strong> Linyang Power Atlantic 5MWh BESS Degradation Curve Document</p>
 

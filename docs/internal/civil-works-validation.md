@@ -9,10 +9,12 @@
 
 # CIVIL WORKS COST VALIDATION
 
+> ## ⚠️ SUPERSEDED: Civil works confirmed at €2,000/MWh by Kamil (Feb 2026). This validation document is for historical reference only.
+
 **Document Reference:** LCY-CIVIL-VALIDATION-FEB2026  
 **Date:** 5 February 2026  
 **Assumption Under Review:** €4,000 per container platform  
-**Status:** ⚠️ NEEDS FIELD VALIDATION
+**Status:** ⚠️ SUPERSEDED - See confirmed rate above
 
 ---
 

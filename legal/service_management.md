@@ -115,7 +115,7 @@ DOCUMENTATION
 | Bi-Annual Maintenance Visit 2 | Every 6 months | Service Team | PAC + 6 months |
 | **Annual Ground Resistance Test** | Annually | Service Team | During maintenance visit |
 | Annual Review Report | Annually | O&M Manager | 30 days after anniversary |
-| Annual SOH Test (Tier D) | Annually | Technical Lead | 30 days before anniversary |
+| Annual SOH Test (if applicable) | Annually | Technical Lead | 30 days before anniversary |
 | Availability Report (Tier C/D) | Annually | O&M Manager | 15 days after year end |
 | LTSA Renewal Review | Annually | Commercial Team | 120 days before expiry |
 | Insurance Verification | Annually | Admin | January |

@@ -172,19 +172,55 @@ Contractor and Client are referred to individually as a “Party” and collecti
 8.2 Installation and commissioning shall commence upon site readiness and delivery.
 8.3 The typical installation and commissioning period is 4–6 weeks, subject to site conditions and authority availability.
 8.4 Delay Liquidated Damages
- (a) The Contractor shall achieve PAC by the date specified in the project schedule ("Target PAC Date"). The Target PAC Date shall be agreed in writing prior to commencement of works.
- (b) If the Contractor fails to achieve PAC by the Target PAC Date due to causes attributable to the Contractor, the Contractor shall pay to the Client liquidated damages ("Delay LDs") calculated as follows:
-  (i) 0.1% of the Contract Price per day of delay for the first thirty (30) days;
-  (ii) 0.15% of the Contract Price per day of delay from day thirty-one (31) to day sixty (60);
-  (iii) 0.2% of the Contract Price per day of delay from day sixty-one (61) onwards.
- (c) The maximum aggregate Delay LDs payable shall be capped at ten percent (10%) of the Contract Price.
- (d) Delay LDs shall be the Client's sole and exclusive remedy for delay, and the Client shall not be entitled to claim additional damages for delay beyond the Delay LDs.
- (e) Delay LDs shall not apply to delays caused by:
-  (i) Force Majeure events;
-  (ii) Client-caused delays, including late site access, delayed approvals, or failure to meet Client obligations;
-  (iii) grid authority or regulatory delays beyond the Contractor's control;
-  (iv) variations or change orders requested by the Client.
- (f) The Target PAC Date shall be extended day-for-day for any delays attributable to the causes set out in Section 8.4(e).
+
+8.4.1 Definitions
+
+ (a) "Target PAC Date" means the date by which PAC is to be achieved for the Park (or the relevant portion thereof), as agreed in writing prior to commencement of works.
+ (b) "Critical Path Equipment" means any equipment item whose delayed delivery or installation prevents the commissioning of the entire Park, including but not limited to the Power Conversion System (PCS), medium-voltage switchgear/skid (MV Skid), and the main step-up transformer. A delay to any Critical Path Equipment item shall constitute a Full Park Delay.
+ (c) "Non-Critical Path Equipment" means any equipment item whose delayed delivery or installation prevents the commissioning of only a portion of the Park's total installed capacity, but does not prevent the remaining portion from achieving commissioning. Battery containers (BESS units) delivered individually as part of a multi-container Park are Non-Critical Path Equipment, provided the PCS and MV infrastructure are available to commission the remaining containers.
+ (d) "Full Park Delay" means a delay to the Target PAC Date caused by the late delivery, defect, or unavailability of any Critical Path Equipment, resulting in no portion of the Park being capable of commissioning.
+ (e) "Partial Delay" means a delay caused by the late delivery, defect, or unavailability of one or more items of Non-Critical Path Equipment, where the remaining equipment is capable of commissioning and commercial operation at reduced capacity.
+ (f) "Affected Capacity" means, in respect of a Partial Delay, the proportion of the Park's total installed energy capacity (MWh) that cannot be commissioned due to the delayed Non-Critical Path Equipment, expressed as a percentage of total installed capacity.
+ (g) "LD Value" means, in respect of any delay:
+  (i) for a Full Park Delay — the total Contract Price for the Park; or
+  (ii) for a Partial Delay — the proportion of the Contract Price corresponding to the Affected Capacity (calculated as: Contract Price × Affected Capacity %).
+
+8.4.2 Obligation to Achieve PAC
+
+ The Contractor shall achieve PAC by the Target PAC Date. Where a Park comprises multiple equipment deliveries, the Contractor shall use commercially reasonable efforts to ensure that all equipment is delivered and installed within the agreed programme.
+
+8.4.3 Delay LD Calculation
+
+ (a) If the Contractor fails to achieve PAC (in whole or in part) by the Target PAC Date due to causes attributable to the Contractor, the Contractor shall pay to the Client liquidated damages ("Delay LDs") calculated on the relevant LD Value as follows:
+  (i) 0.1% of the LD Value per calendar day of delay for the first thirty (30) days;
+  (ii) 0.15% of the LD Value per calendar day of delay from day thirty-one (31) to day sixty (60);
+  (iii) 0.2% of the LD Value per calendar day of delay from day sixty-one (61) onwards.
+ (b) For the avoidance of doubt:
+  (i) Where a Full Park Delay occurs, the LD Value shall be the entire Contract Price for the Park, and Delay LDs shall accrue from the Target PAC Date until the date on which PAC is achieved for the full Park.
+  (ii) Where a Partial Delay occurs, the LD Value shall be the Contract Price multiplied by the Affected Capacity percentage, and Delay LDs shall accrue from the Target PAC Date until the date on which the delayed equipment is commissioned and integrated into commercial operation. The non-delayed portion of the Park shall proceed to PAC on schedule without LD liability.
+  (iii) Where a Partial Delay subsequently escalates into a Full Park Delay (for example, where a delayed battery container prevents the PCS from operating at minimum load), the LD Value shall be recalculated as a Full Park Delay from the date of escalation.
+
+8.4.4 LD Cap
+
+ (a) The maximum aggregate Delay LDs payable in respect of any single Park shall not exceed ten percent (10%) of the Contract Price for that Park.
+ (b) The cap under Section 8.4.4(a) applies to the aggregate of all Full Park Delay LDs and Partial Delay LDs for the same Park.
+
+8.4.5 Sole Remedy
+
+ Delay LDs shall be the Client's sole and exclusive remedy for delay to commissioning. The Client shall not be entitled to claim general, consequential, or additional damages for delay beyond the Delay LDs, save for the Contractor's obligation to complete the works.
+
+8.4.6 Exclusions
+
+ Delay LDs shall not apply to delays caused by:
+  (i) Force Majeure events (Section 12);
+  (ii) Client-caused delays, including but not limited to late site access, delayed grid connection approvals, failure to provide required permits, or failure to meet obligations under Section 5A;
+  (iii) grid authority (EAC/TSOC) or regulatory delays beyond the Contractor's reasonable control;
+  (iv) variations or change orders requested or caused by the Client;
+  (v) delays in customs clearance or port handling beyond the Contractor's reasonable control, provided the Contractor can demonstrate timely shipment.
+
+8.4.7 Extension of Time
+
+ The Target PAC Date shall be extended day-for-day for any delays attributable to the causes set out in Section 8.4.6. The Contractor shall notify the Client in writing within seven (7) Business Days of becoming aware of any event entitling an extension of time, together with reasonable evidence of the delay and its expected duration.
 
 9. ACCEPTANCE
 9.1 Provisional Acceptance (PAC)

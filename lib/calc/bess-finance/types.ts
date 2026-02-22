@@ -81,7 +81,7 @@ export interface BatteryInputs {
   durationHours: number // 2, 3, or 4 hours
   powerMW: number // Derived: capacityMWh / durationHours
   chemistry: BatteryChemistry
-  roundTripEfficiency: number // % (87.8 system AC-AC for Linyang LFP)
+  roundTripEfficiency: number // % (86.32 full system AC-AC incl. cabling for Linyang LFP)
   maxDoD: number // Max depth of discharge %
   minSoC: number // Min state of charge %
   dailyCycles: number
@@ -926,7 +926,7 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
     durationHours: 4,
     powerMW: 2.5,
     chemistry: 'LFP',
-    roundTripEfficiency: 87.8, // System RTE AC-AC (from linyang.md)
+    roundTripEfficiency: 86.32, // Full system AC-AC RTE incl. cabling (PCS-level = 87.8%)
     maxDoD: 90,
     minSoC: 10,
     dailyCycles: 1,

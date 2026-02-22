@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Calendar, User, Clock, Euro, TrendingUp, Calculator, Building, CreditCard } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -113,6 +114,16 @@ const bankPartners = [
 export default function SolarFinancingStrategiesArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Solar Farm Financing Strategies 2025 | Maximize ROI with Smart Financing",
+        "author": { "@type": "Person", "name": "Alexander Papacosta" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-09-11",
+        "description": "Comprehensive guide to solar farm financing options in Cyprus. Bank loans, leverage strategies, and how to boost ROI from 18% to 45%+ with smart financing.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/solar-farm-financing-strategies-2025"
+      }} />
       {/* Article Header */}
       <section className="section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50">
         <div className="container">

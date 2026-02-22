@@ -363,7 +363,7 @@ export default function InvestmentGuidePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
-                  <span><strong>€{marketData ? (marketData.peakHoursAvg * 0.878).toFixed(0) : '161'}/MWh curtailment recovery value</strong> &mdash; Charge curtailed solar (€0), discharge at peak ({marketData ? `€${marketData.peakHoursAvg.toFixed(0)}` : '€183'}/MWh × 87.8% RTE)</span>
+                  <span><strong>€{marketData ? (marketData.peakHoursAvg * 0.8632).toFixed(0) : '158'}/MWh curtailment recovery value</strong> &mdash; Charge curtailed solar (€0), discharge at peak ({marketData ? `€${marketData.peakHoursAvg.toFixed(0)}` : '€183'}/MWh × 86.32% RTE)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-1 text-amber-600 flex-shrink-0" />
@@ -493,7 +493,7 @@ export default function InvestmentGuidePage() {
               <DataTable
                 headers={['Parameter', 'Specification']}
                 rows={[
-                  ['Round-Trip Efficiency', '87.8% (AC-AC)'],
+                  ['Round-Trip Efficiency', '86.32% AC-AC (full system incl. cabling)'],
                   ['Cycle Life', '6,000+ cycles @ 100% DoD (80% SOH)'],
                   ['Container Capacity', '5.015 MWh per 20HC container'],
                   ['Base Warranty', '5 years OEM'],
@@ -534,8 +534,8 @@ export default function InvestmentGuidePage() {
             <HighlightBox>
               <strong className="text-amber-900">Why BESS is Essential in Cyprus:</strong>
               <ol className="mt-2 space-y-1 text-amber-800 list-decimal pl-6">
-                <li><strong>Curtailment Recovery (Current):</strong> Store curtailed solar (€0 cost), discharge at €183/MWh peak &mdash; €160.67/MWh net, €146k&ndash;223k/year</li>
-                <li><strong>Future Arbitrage:</strong> €81.86 peak-midday spread × 87.8% RTE = €71.87 net/MWh (~€65.6k/year) &mdash; when legislation permits</li>
+                <li><strong>Curtailment Recovery (Current):</strong> Store curtailed solar (€0 cost), discharge at €183/MWh peak &mdash; €157.94/MWh net, €144k&ndash;219k/year</li>
+                <li><strong>Future Arbitrage:</strong> €81.86 peak-midday spread × 86.32% RTE = €70.66 net/MWh (~€64.5k/year) &mdash; when legislation permits</li>
                 <li><strong>Enhanced Financing:</strong> Solar+BESS qualifies for 70% debt (vs €500k/MW cap for solar-only)</li>
                 <li><strong>Future Grid Services:</strong> Frequency regulation, spinning reserve (market opening)</li>
               </ol>
@@ -609,11 +609,11 @@ export default function InvestmentGuidePage() {
             <p className="text-gray-700 mb-4">
               BESS in Cyprus currently earns revenue through <strong>curtailment recovery</strong>: during DSO-ordered
               production cutbacks, BESS stores energy that would otherwise be wasted (€0 charge cost) and discharges
-              at evening peak prices (€183/MWh avg). With 25&ndash;45% curtailment rates, this yields <strong>€160.67
-              per MWh discharged</strong> &mdash; or <strong>€146,608&ndash;222,844/year</strong> (2.5&ndash;3.8 MWh/day).
+              at evening peak prices (€183/MWh avg). With 25&ndash;45% curtailment rates, this yields <strong>€157.94
+              per MWh discharged</strong> &mdash; or <strong>€144,120&ndash;219,007/year</strong> (2.5&ndash;3.8 MWh/day).
               Arbitrage (buying at midday, selling at peak) is <strong>not yet legal</strong> in Cyprus as of Feb 2026;
-              when legislation passes, the €81.86/MWh peak-midday spread (€71.87 net after 87.8% RTE) will unlock an
-              additional ~€65,585/year (at 2.5 MWh/day).
+              when legislation passes, the €81.86/MWh peak-midday spread (€70.66 net after 86.32% RTE) will unlock an
+              additional ~€64,478/year (at 2.5 MWh/day).
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 avoid-break">
@@ -653,11 +653,11 @@ export default function InvestmentGuidePage() {
             <InfoBox>
               <strong>Current (curtailment recovery):</strong> BESS charges during DSO-curtailed hours (typically
               10:00&ndash;14:00 peak solar) at €0 cost, discharges at evening peak (17:00&ndash;21:00) at €183/MWh avg.
-              After 87.8% round-trip efficiency: <strong>€160.67 per MWh discharged</strong>. Annual revenue:
-              €146,608 (2.5 MWh/day) to €222,844 (3.8 MWh/day). Based on 134 TSOC DAM files, Oct 2025&ndash;Feb 2026.
+              After 86.32% round-trip efficiency: <strong>€157.94 per MWh discharged</strong>. Annual revenue:
+              €144,120 (2.5 MWh/day) to €219,007 (3.8 MWh/day). Based on 134 TSOC DAM files, Oct 2025&ndash;Feb 2026.
               <br /><br />
               <strong>Future (when arbitrage legislation passes):</strong> DAM grid arbitrage at €81.86/MWh
-              peak-midday spread × 87.8% RTE = <strong>€71.87 net per MWh</strong>. Estimated annual: ~€65,585
+              peak-midday spread × 86.32% RTE = <strong>€70.66 net per MWh</strong>. Estimated annual: ~€64,478
               (at 2.5 MWh/day). Arbitrage is <em>not yet legal</em> in Cyprus as of Feb 2026. Additional ancillary
               services (frequency regulation, spinning reserve) will further increase revenue.
             </InfoBox>
@@ -808,7 +808,7 @@ export default function InvestmentGuidePage() {
                 <ul className="text-gray-700 text-sm space-y-1 list-disc pl-5">
                   <li>Curtailment recovery (current): store curtailed solar (€0 cost), sell at €{marketData ? marketData.peakHoursAvg.toFixed(0) : '183'}/MWh peak &mdash; €160.67/MWh net</li>
                   <li>Annual curtailment revenue: €146,608&ndash;222,844/year (2.5&ndash;3.8 MWh/day discharged)</li>
-                  <li>Future arbitrage: €{marketData ? (marketData.peakHoursAvg - marketData.solarHoursAvg).toFixed(0) : '82'}/MWh peak-midday spread × 87.8% RTE = €71.87 net/MWh (~€65.6k/year) &mdash; not yet legal (Feb 2026)</li>
+                  <li>Future arbitrage: €{marketData ? (marketData.peakHoursAvg - marketData.solarHoursAvg).toFixed(0) : '82'}/MWh peak-midday spread × 86.32% RTE = €70.66 net/MWh (~€64.5k/year) &mdash; not yet legal (Feb 2026)</li>
                   <li>Future: grid ancillary services (frequency regulation, spinning reserve)</li>
                 </ul>
               </div>
@@ -1033,7 +1033,7 @@ export default function InvestmentGuidePage() {
                   <p className="font-semibold text-base">Alexander Papacosta</p>
                   <p>Cyprus Director</p>
                   <p className="flex items-center gap-2"><Phone className="w-4 h-4" /> +357 99 164 158</p>
-                  <p className="flex items-center gap-2"><Mail className="w-4 h-4" /> alexander.papacosta@lighthief.com</p>
+                  <p className="flex items-center gap-2"><Mail className="w-4 h-4" /> office@lighthief.com</p>
                 </div>
               </div>
               <div className="border border-gray-200 rounded-lg p-5">
@@ -1102,7 +1102,7 @@ export default function InvestmentGuidePage() {
                   <li>97% annual availability guarantee (Tier C+)</li>
                   <li>SOH guarantee: 85% at Year 5, 70% at Year 15</li>
                   <li>Liquidated damages for underperformance</li>
-                  <li>Cell augmentation provisions (Tier D)</li>
+                  <li>Cell augmentation provisions (if applicable)</li>
                   <li>OEM-backed warranty reserve</li>
                 </ul>
               </div>
@@ -1121,7 +1121,7 @@ export default function InvestmentGuidePage() {
               />
             </div>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">14.4 SOH Degradation Guarantee (Tier D)</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">14.4 SOH Degradation Guarantee (Not Currently Offered)</h3>
             <div className="avoid-break">
               <DataTable
                 headers={['End of Year', 'Guaranteed SOH (1 cycle/day)', 'Guaranteed SOH (2 cycles/day)']}
@@ -1326,7 +1326,7 @@ export default function InvestmentGuidePage() {
                           <SelectItem value="A">Tier A — Basic Monitoring &amp; Maintenance (€1,158/MWh/yr)</SelectItem>
                           <SelectItem value="B">Tier B — Comprehensive O&amp;M (€2,470/MWh/yr)</SelectItem>
                           <SelectItem value="C">Tier C — Full Service + 97% Availability (€4,672/MWh/yr)</SelectItem>
-                          <SelectItem value="D">Tier D — Premium + SOH Warranty (POA)</SelectItem>
+                          <SelectItem value="D">Tier C — Premium + Availability Guarantee</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>

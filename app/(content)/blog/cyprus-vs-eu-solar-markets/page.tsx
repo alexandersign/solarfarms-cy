@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Calendar, User, Clock, Globe, TrendingUp, Euro, Sun, Target } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -106,6 +107,16 @@ const detailedAnalysis = [
 export default function CyprusVsEUSolarMarketsArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Cyprus vs Other EU Solar Markets | Why Cyprus Offers Superior Returns",
+        "author": { "@type": "Organization", "name": "Lighthief Cyprus Research Team" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2025-09-11",
+        "description": "Detailed comparison of Cyprus solar investments vs Germany, Spain, Italy. Why Cyprus delivers 15-20% ROI while other EU markets offer 8-14%.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/cyprus-vs-eu-solar-markets"
+      }} />
       {/* Article Header */}
       <section className="section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50">
         <div className="container">

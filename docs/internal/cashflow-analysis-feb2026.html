@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Cyprus — Project Cashflow Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2e3343;
+    --text: #e2e4ea;
+    --text-dim: #8b8fa3;
+    --accent: #4f8ff7;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --cyan: #06b6d4;
+    --purple: #a855f7;
+    --pink: #ec4899;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1033 0%, #0f1117 60%, #0a1628 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 40px;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .kpi {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .kpi .label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .kpi .value { font-size: 1.5rem; font-weight: 700; }
+  .kpi .value.negative { color: var(--red); }
+  .kpi .value.positive { color: var(--green); }
+  .kpi .value.warning { color: var(--amber); }
+  .kpi .note { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 32px 40px; }
+
+  .alert {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border-left: 4px solid;
+  }
+  .alert.critical { background: rgba(239,68,68,0.08); border-color: var(--red); }
+  .alert.warning { background: rgba(245,158,11,0.08); border-color: var(--amber); }
+  .alert.success { background: rgba(34,197,94,0.08); border-color: var(--green); }
+  .alert h3 { font-size: 1rem; margin-bottom: 8px; }
+  .alert.critical h3 { color: var(--red); }
+  .alert.warning h3 { color: var(--amber); }
+  .alert.success h3 { color: var(--green); }
+  .alert p, .alert li { font-size: 0.9rem; color: var(--text-dim); }
+  .alert ul { margin: 8px 0 0 20px; }
+
+  .section {
+    margin-bottom: 48px;
+  }
+  .section h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section .desc {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .chart-grid.full { grid-template-columns: 1fr; }
+  @media (max-width: 960px) { .chart-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .card .card-desc {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .card canvas { max-height: 340px; }
+  .card.tall canvas { max-height: 440px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--surface2);
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    position: sticky;
+    top: 0;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'Fira Code', monospace; }
+  td.pos { color: var(--green); font-weight: 600; }
+  td.neg { color: var(--red); font-weight: 600; }
+  td.warn { color: var(--amber); font-weight: 600; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  tr.total td { font-weight: 700; border-top: 2px solid var(--border); background: var(--surface2); }
+  tr.highlight td { background: rgba(239,68,68,0.06); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .tag.critical { background: rgba(239,68,68,0.15); color: var(--red); }
+  .tag.high { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .tag.medium { background: rgba(6,182,212,0.15); color: var(--cyan); }
+  .tag.ok { background: rgba(34,197,94,0.15); color: var(--green); }
+
+  .scenario-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .scenario-tab {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .scenario-tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .scenario-tab:hover:not(.active) { background: var(--surface2); color: var(--text); }
+
+  .timeline {
+    display: flex;
+    gap: 0;
+    margin: 20px 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .tl-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 14px auto 8px;
+    border: 2px solid;
+  }
+  .tl-dot.b1 { background: var(--accent); border-color: var(--accent); }
+  .tl-dot.b2 { background: var(--purple); border-color: var(--purple); }
+  .tl-dot.b3 { background: var(--cyan); border-color: var(--cyan); }
+  .tl-label { font-size: 0.7rem; color: var(--text-dim); }
+  .tl-value { font-size: 0.75rem; font-weight: 600; margin-top: 2px; }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .comparison-row .card { position: relative; }
+  .comparison-row .card.better::after {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--green);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .waterfall-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .waterfall-legend span {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .waterfall-legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+  @media print {
+    body { background: #fff; color: #111; }
+    .card { border: 1px solid #ddd; }
+    th { background: #f5f5f5; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Lighthief Cyprus Ltd — Project Cashflow Analysis</h1>
+  <div class="subtitle">BESS EPC Portfolio | 51 Active Parks | 882 MWh | 3 Delivery Batches | February 2026</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Total Client Revenue</div>
+      <div class="value">€109.2M</div>
+      <div class="note">51 parks</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Linyang CIF Cost</div>
+      <div class="value">€86.0M</div>
+      <div class="note">79% of revenue</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Peak Deficit (No Changes)</div>
+      <div class="value negative">-€28M</div>
+      <div class="note">Sep 2026 (incl. VAT drain)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Peak w/ April 1 Start</div>
+      <div class="value warning">-€26M</div>
+      <div class="note">Q3 VAT credit drops 91%</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Peak w/ Full Optimise</div>
+      <div class="value positive">-€3M</div>
+      <div class="note">Apr 1 + client imports</div>
+    </div>
+    <div class="kpi">
+      <div class="label">VAT Locked with Govt</div>
+      <div class="value warning">€7.8M → €4.8M → €0</div>
+      <div class="note">Current → Apr 1 → Optimised</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Working Capital Needed</div>
+      <div class="value negative">€28M → €4M</div>
+      <div class="note">Without → with restructuring</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Net Project Margin</div>
+      <div class="value">10.7%</div>
+      <div class="note">€11.64M net margin</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ALERTS -->
+  <div class="alert critical">
+    <h3>CRITICAL: €28M Cashflow Deficit Without Restructuring</h3>
+    <p>The project faces a severe cashflow deficit driven by a double VAT cash drain. Cyprus has NOT implemented postponed accounting for import VAT. Under the 8-month carry-forward rule (VAT Law Section 20), excess input VAT credit of ~€7.8M cannot be refunded until H2 2027.</p>
+    <ul>
+      <li><strong>€15.2M import VAT</strong> payable in cash at Limassol customs (Jul–Sep 2026)</li>
+      <li><strong>€8.4M output VAT</strong> remitted to tax dept on client advances (Q1–Q2) before any imports</li>
+      <li><strong>Linyang 20% DAP</strong> (€15.5M) due at delivery — no matching client payment until PAC 2–3 months later</li>
+      <li><strong>September 2026</strong> has -€13M outflow with zero revenue inflow</li>
+    </ul>
+  </div>
+
+  <div class="alert warning">
+    <h3>APRIL 1 STRATEGY: First Invoice April 1 — Q3 VAT Credit Drops 91%</h3>
+    <p>If no invoice is issued and no payment received before April 1 (both required under Article 65), the Q1 return is clean (€0). With a full April 1 project start, B1 pre-ship moves from Q2 to Q3 — where all three pre-ship invoices (€9.7M output) offset import VAT (€10.5M input). <strong>Q3 credit collapses from €9.2M to €0.85M.</strong> Total locked credit drops from €7.8M to €4.8M. Trade-off: project completes 1 month later.</p>
+  </div>
+
+  <div class="alert success">
+    <h3>BEST OUTCOME: April 1 Start + Client-as-Importer = Peak Deficit -€3M</h3>
+    <p>Combining the April 1 start with client-as-importer restructure (EPC split into Equipment Supply + Installation Services) eliminates the import VAT problem entirely. Peak negative drops from <strong>-€28M to -€3M</strong>, VAT locked = <strong>€0</strong>, no bank facility needed. Must be decided before contracts are signed.</p>
+  </div>
+
+  <!-- SECTION 1: DELIVERY TIMELINE -->
+  <div class="section">
+    <h2><span class="num">1</span> Delivery Batch Schedule</h2>
+    <div class="desc">3 production batches from Linyang, staggered CIF arrival at Limassol July–September 2026</div>
+    <div class="card">
+      <h3>Project Timeline — Key Milestones</h3>
+      <div class="card-desc">Contract signing through final acceptance, colour-coded by batch</div>
+      <canvas id="timelineChart" height="100"></canvas>
+    </div>
+    <div style="margin-top: 20px;">
+      <table>
+        <thead>
+          <tr><th>Batch</th><th>Parks</th><th>MWh</th><th>Client Groups</th><th class="num">CIF Value</th><th class="num">Client Revenue</th><th>CIF Arrival</th><th>PAC Target</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span style="color:var(--accent)">&#9679;</span> Batch 1</td><td>15</td><td>280</td><td>ABIO Phase 1</td><td class="num">€27.4M</td><td class="num">€31.6M</td><td>5 Jul 2026</td><td>31 Oct 2026</td></tr>
+          <tr><td><span style="color:var(--purple)">&#9679;</span> Batch 2</td><td>19</td><td>230</td><td>ABIO Ph.2 + Timotheou</td><td class="num">€22.5M</td><td class="num">€32.9M</td><td>20 Aug 2026</td><td>15 Jan 2027</td></tr>
+          <tr><td><span style="color:var(--cyan)">&#9679;</span> Batch 3</td><td>12</td><td>283</td><td>Esperia + Standalone</td><td class="num">€27.7M</td><td class="num">€28.3M</td><td>20 Sep 2026</td><td>28 Feb 2027</td></tr>
+          <tr class="total"><td>Total</td><td>51</td><td>882</td><td></td><td class="num">€86.0M</td><td class="num">€109.2M</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 2: PAYMENT TERMS COMPARISON -->
+  <div class="section">
+    <h2><span class="num">2</span> Payment Terms — Client vs Linyang</h2>
+    <div class="desc">The mismatch between what Lighthief collects and what it must pay at each milestone creates the structural deficit</div>
+    <div class="chart-grid">
+      <div class="card">
+        <h3>Milestone Payment Comparison</h3>
+        <div class="card-desc">Client 30/55/10/5 vs Linyang 25/50/20/5 — % at each stage</div>
+        <canvas id="milestoneChart"></canvas>
+      </div>
+      <div class="card">
+        <h3>Cashflow Buffer / Deficit by Milestone</h3>
+        <div class="card-desc">Difference between client collection and Linyang payment at each stage (€'000)</div>
+        <canvas id="bufferChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: MAIN CASHFLOW MODEL -->
+  <div class="section">
+    <h2><span class="num">3</span> Monthly Cashflow Model</h2>
+    <div class="desc">Scenario A (current terms 30/55/10/5) — all figures in €'000, including VAT output remittances and import VAT at customs. No VAT refund assumed (8-month rule).</div>
+
+    <div class="chart-grid full">
+      <div class="card tall">
+        <h3>Monthly Net Cashflow & Cumulative Position</h3>
+        <div class="card-desc">Bars = monthly net, Line = cumulative running balance. The red zone shows when Lighthief is in deficit.</div>
+        <canvas id="cashflowChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px; overflow-x: auto;">
+      <h3>Detailed Monthly Cashflow Table</h3>
+      <div class="card-desc">Scenario A: Client 30/55/10/5 | Linyang 25/50/20/5 | Including Q1/Q2 output VAT remittances | No VAT refund in 2026</div>
+      <table>
+        <thead>
+          <tr><th>Month</th><th class="num">Client Revenue</th><th class="num">Linyang</th><th class="num">Duty + Import VAT</th><th class="num">Output VAT Remitted</th><th class="num">Subcon + Ops</th><th class="num">Monthly Net</th><th class="num">Cumulative</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mar 2026</td><td class="num pos">+27,807</td><td class="num neg">-19,425</td><td class="num">—</td><td class="num">—</td><td class="num neg">-2,354</td><td class="num pos">+6,028</td><td class="num pos">+6,028</td></tr>
+          <tr><td>Apr 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-355</td><td class="num neg">-355</td><td class="num pos">+5,673</td></tr>
+          <tr><td>May 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-5,187</td><td class="num neg">-455</td><td class="num neg">-5,642</td><td class="num pos">+31</td></tr>
+          <tr><td>Jun 2026</td><td class="num pos">+17,361</td><td class="num neg">-13,714</td><td class="num">—</td><td class="num">—</td><td class="num neg">-1,123</td><td class="num pos">+2,524</td><td class="num pos">+2,555</td></tr>
+          <tr><td>Jul 2026</td><td class="num pos">+18,073</td><td class="num neg">-16,753</td><td class="num neg">-6,191</td><td class="num">—</td><td class="num neg">-921</td><td class="num neg">-5,792</td><td class="num neg">-3,237</td></tr>
+          <tr class="highlight"><td>Aug 2026</td><td class="num pos">+15,546</td><td class="num neg">-18,377</td><td class="num neg">-5,086</td><td class="num neg">-3,166</td><td class="num neg">-967</td><td class="num neg">-12,050</td><td class="num neg">-15,287</td></tr>
+          <tr class="highlight"><td><strong>Sep 2026</strong></td><td class="num">—</td><td class="num neg">-5,548</td><td class="num neg">-6,260</td><td class="num">—</td><td class="num neg">-1,243</td><td class="num neg"><strong>-13,051</strong></td><td class="num neg"><strong>-28,338</strong></td></tr>
+          <tr class="highlight"><td>Oct 2026</td><td class="num pos">+3,157</td><td class="num neg">-1,371</td><td class="num">—</td><td class="num">—</td><td class="num neg">-1,016</td><td class="num pos">+770</td><td class="num neg">-27,568</td></tr>
+          <tr class="highlight"><td>Nov 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-741</td><td class="num neg">-741</td><td class="num neg">-28,309</td></tr>
+          <tr><td>Dec 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-671</td><td class="num neg">-671</td><td class="num neg">-28,980</td></tr>
+          <tr><td>Jan 2027</td><td class="num pos">+3,286</td><td class="num neg">-1,127</td><td class="num">—</td><td class="num">—</td><td class="num neg">-463</td><td class="num pos">+1,696</td><td class="num neg">-27,284</td></tr>
+          <tr><td>Feb 2027</td><td class="num pos">+2,826</td><td class="num neg">-1,387</td><td class="num">—</td><td class="num">—</td><td class="num neg">-255</td><td class="num pos">+1,184</td><td class="num neg">-26,100</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.78rem; color:var(--text-dim); margin-top:12px;">* Output VAT remitted: Q1 return (€5.2M) due May 10; Q2 return (€3.2M) due Aug 10. No VAT refund modeled for 2026 per 8-month carry-forward rule. VAT refund claim earliest June 2027.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: COST BREAKDOWN -->
+  <div class="section">
+    <h2><span class="num">4</span> Cost Composition</h2>
+    <div class="desc">Where does the €109.2M in client revenue go? (Excludes client-paid items: Protection Testing/DSO, External LPS/LPD, Electrical Drawings/As-Built)</div>
+    <div class="chart-grid">
+      <div class="card">
+        <h3>Revenue Allocation</h3>
+        <div class="card-desc">Breakdown of total project costs vs. margin</div>
+        <canvas id="costPieChart"></canvas>
+      </div>
+      <div class="card">
+        <h3>Monthly Cash Outflows by Category</h3>
+        <div class="card-desc">Stacked bar showing composition of outflows each month</div>
+        <canvas id="outflowStackChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: VAT DEEP DIVE -->
+  <div class="section">
+    <h2><span class="num">5</span> Cyprus VAT Cashflow Crisis</h2>
+    <div class="desc">Cyprus has NOT implemented postponed accounting for imports. Under VAT Law 95(I)/2000 Section 20, excess input VAT is carried forward — refund only after 8 months.</div>
+
+    <div class="alert critical">
+      <h3>Double VAT Drain: €24M Total VAT Cash Exposure</h3>
+      <p>Output VAT on client advances (€8.4M) is remitted to the government in Q1–Q2 <strong>before</strong> any import VAT credit arises. Import VAT (€15.2M) is paid in cash at customs in Q3. The excess credit (~€8.8M) cannot be refunded until June 2027 at earliest.</p>
+    </div>
+
+    <div class="chart-grid">
+      <div class="card">
+        <h3>VAT Cash Position Over Time</h3>
+        <div class="card-desc">Net VAT cash held/owed — positive = Lighthief holds client VAT; negative = cash locked with government</div>
+        <canvas id="vatCashChart"></canvas>
+      </div>
+      <div class="card">
+        <h3>Quarterly VAT Returns</h3>
+        <div class="card-desc">Output VAT vs Input VAT by quarter — net payable or credit</div>
+        <canvas id="vatQuarterChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px; overflow-x: auto;">
+      <h3>Quarter-by-Quarter VAT Position</h3>
+      <table>
+        <thead><tr><th>Quarter</th><th>Due Date</th><th class="num">Output VAT</th><th class="num">Input VAT</th><th class="num">Net</th><th class="num">Running Credit</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Q1 2026 (Jan–Mar)</td><td>10 May 2026</td><td class="num">€5,282K</td><td class="num">€95K</td><td class="num neg">€5,187K payable</td><td class="num">—</td><td><span class="tag critical">Paid out</span></td></tr>
+          <tr><td>Q2 2026 (Apr–Jun)</td><td>10 Aug 2026</td><td class="num">€3,299K</td><td class="num">€133K</td><td class="num neg">€3,166K payable</td><td class="num">—</td><td><span class="tag critical">Paid out</span></td></tr>
+          <tr><td>Q3 2026 (Jul–Sep)</td><td>10 Nov 2026</td><td class="num">€6,389K</td><td class="num">€15,586K</td><td class="num pos">-€9,197K credit</td><td class="num warn">€9,197K</td><td><span class="tag high">Carry-forward</span></td></tr>
+          <tr><td>Q4 2026 (Oct–Dec)</td><td>10 Feb 2027</td><td class="num">€600K</td><td class="num">€210K</td><td class="num">+€390K (offset)</td><td class="num warn">€8,807K</td><td><span class="tag high">Still locked</span></td></tr>
+          <tr><td>Q1 2027 (Jan–Mar)</td><td>10 May 2027</td><td class="num">€1,161K</td><td class="num">€120K</td><td class="num">+€1,041K (offset)</td><td class="num warn">€7,766K</td><td><span class="tag high">Still locked</span></td></tr>
+          <tr><td>Jun 2027</td><td>—</td><td class="num" colspan="3">VAT 4B refund claim filed (8-month rule satisfied)</td><td class="num warn">€7,766K</td><td><span class="tag medium">Claim filed</span></td></tr>
+          <tr><td>Aug–Dec 2027</td><td>—</td><td class="num" colspan="3">Refund processed (2–6 month wait)</td><td class="num pos">€0</td><td><span class="tag ok">Recovered</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 6: SCENARIO COMPARISON -->
+  <div class="section">
+    <h2><span class="num">6</span> Scenario Comparison</h2>
+    <div class="desc">Four scenarios: Current terms, matched Linyang terms, April 1 start, and fully optimised (April 1 + client imports)</div>
+
+    <div class="chart-grid full">
+      <div class="card tall">
+        <h3>Cumulative Cashflow — 3 Base Scenarios</h3>
+        <div class="card-desc">Current (30/55/10/5) vs Matched (25/50/20/5) vs Optimised (Client imports + phased advance). See Section 9 for April 1 overlay.</div>
+        <canvas id="scenarioChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px; overflow-x:auto;">
+      <h3>All 4 Scenario Metrics</h3>
+      <table>
+        <thead>
+          <tr><th>Metric</th><th class="num">A: Current<br>(Mar, 30/55/10/5)</th><th class="num">B: Matched<br>(Mar, 25/50/20/5)</th><th class="num">D: April 1 Start<br>(Apr, 30/55/10/5)</th><th class="num">C: Optimised<br>(Apr + client imports)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Q1 VAT payable (May)</td><td class="num neg">€5,187K</td><td class="num neg">€5,187K</td><td class="num pos"><strong>€0</strong></td><td class="num pos"><strong>€0</strong></td></tr>
+          <tr><td>Q3 excess credit</td><td class="num neg">€9,197K</td><td class="num neg">€9,197K</td><td class="num pos"><strong>€851K</strong></td><td class="num pos"><strong>€0</strong></td></tr>
+          <tr><td>Peak negative cashflow</td><td class="num neg">-€28,338K</td><td class="num neg">-€22,000K</td><td class="num warn">-€25,682K</td><td class="num pos"><strong>-€3,107K</strong></td></tr>
+          <tr><td>Months in negative</td><td class="num neg">10 (May–Feb)</td><td class="num warn">8 (May–Dec)</td><td class="num warn">8 (Aug–Mar)</td><td class="num pos">3 (Aug–Oct)</td></tr>
+          <tr><td>Working capital needed</td><td class="num neg">~€28M</td><td class="num warn">~€22M</td><td class="num warn">~€26M</td><td class="num pos"><strong>~€4M</strong></td></tr>
+          <tr><td>VAT credit locked</td><td class="num neg">€7,766K</td><td class="num neg">€7,766K</td><td class="num warn">€4,848K</td><td class="num pos"><strong>€0</strong></td></tr>
+          <tr><td>Project completion</td><td class="num">Feb 2027</td><td class="num">Feb 2027</td><td class="num">Mar 2027</td><td class="num">Mar 2027</td></tr>
+          <tr><td>Bank facility cost</td><td class="num neg">~€700K</td><td class="num warn">~€550K</td><td class="num warn">~€500K</td><td class="num pos"><strong>~€10K</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 7: ISSUES -->
+  <div class="section">
+    <h2><span class="num">7</span> Critical Issues</h2>
+    <div class="desc">6 identified issues ranked by severity and financial impact</div>
+    <div class="card" style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>#</th><th>Issue</th><th>Severity</th><th class="num">Impact (€)</th><th>Root Cause</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Import VAT at customs — no postponed accounting in Cyprus</td><td><span class="tag critical">Critical</span></td><td class="num neg">€15.2M</td><td>Cyprus hasn't implemented EU Art. 211</td><td>Client as importer of record</td></tr>
+          <tr><td>2</td><td>Output VAT on advances remitted before imports</td><td><span class="tag critical">Critical</span></td><td class="num neg">€8.4M</td><td>Art. 65 tax point on receipt of payment</td><td><strong>April 1 start</strong> — clean Q1</td></tr>
+          <tr><td>3</td><td>Q3 €9.2M credit locked by 8-month rule</td><td><span class="tag critical">Critical</span></td><td class="num neg">€7.8M</td><td>VAT Law §20; only B2+B3 pre-ship in Q3</td><td><strong>April 1 start</strong> — all 3 pre-ship in Q3, credit → €0.85M</td></tr>
+          <tr><td>4</td><td>Linyang 20% DAP vs Client 10% PAC mismatch</td><td><span class="tag critical">Critical</span></td><td class="num neg">€6.3M</td><td>Different milestone definitions</td><td>Switch client terms to 25/50/20/5</td></tr>
+          <tr><td>5</td><td>September/October "Cash Cliff" — €13M out, €0 in</td><td><span class="tag high">High</span></td><td class="num neg">€13.1M</td><td>B3 arrival + no matching revenue</td><td>April 1 shifts cliff to Oct; add delivery milestone</td></tr>
+          <tr><td>6</td><td>Negative end position before retention</td><td><span class="tag high">High</span></td><td class="num neg">€2.5M</td><td>Margin consumed by VAT timing costs</td><td>Combined restructuring</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 8: SOLUTIONS -->
+  <div class="section">
+    <h2><span class="num">8</span> Recommended Solutions</h2>
+    <div class="desc">Tiered action plan — Tier 0 (April 1 + client imports) must be decided before contracts are signed</div>
+
+    <div class="chart-grid">
+      <div class="card">
+        <h3>Solution Impact — Reduction in Peak Deficit</h3>
+        <div class="card-desc">Each solution's contribution to reducing the -€28M peak deficit — including April 1 start (€'000)</div>
+        <canvas id="solutionChart"></canvas>
+      </div>
+      <div class="card">
+        <h3>VAT Position: Current vs April 1 vs Optimised</h3>
+        <div class="card-desc">Lighthief's monthly VAT cash position under three scenarios</div>
+        <canvas id="vatCompareChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px; overflow-x:auto;">
+      <h3>Action Plan — Priority Order</h3>
+      <table>
+        <thead><tr><th>Priority</th><th>Action</th><th>Scenario</th><th class="num">Impact</th><th>Effort</th><th>Deadline</th></tr></thead>
+        <tbody>
+          <tr style="background:rgba(34,197,94,0.06)"><td><span class="tag critical">Tier 0</span></td><td><strong>April 1 Start — no invoice/payment before April 1</strong></td><td>D → C</td><td class="num pos">Clean Q1; Q3 credit ↓ 91%</td><td>Low</td><td><strong>NOW — before contracts signed</strong></td></tr>
+          <tr style="background:rgba(34,197,94,0.06)"><td><span class="tag critical">Tier 0</span></td><td><strong>Client as importer of record (EPC split)</strong></td><td>C</td><td class="num pos">Eliminates €15.2M import VAT</td><td>High</td><td><strong>NOW — before contracts signed</strong></td></tr>
+          <tr><td><span class="tag critical">Tier 1</span></td><td>Switch client terms to 25/50/20/5</td><td>B</td><td class="num pos">Reduces peak by €5.6M</td><td>Low</td><td>Before Apr 2026</td></tr>
+          <tr><td><span class="tag critical">Tier 1</span></td><td>Phase advance: 10% at signing + 20% at production start</td><td>D2</td><td class="num pos">Saves €3.5M early</td><td>Low</td><td>Before Apr 2026</td></tr>
+          <tr><td><span class="tag high">Tier 2</span></td><td>Bonded warehouse at Limassol (if client import not feasible)</td><td>—</td><td class="num pos">Shifts €5M to later quarters</td><td>Medium</td><td>Apply now (4-6 wk)</td></tr>
+          <tr><td><span class="tag high">Tier 2</span></td><td>Apply for repayment trader / monthly VAT returns</td><td>—</td><td class="num pos">Faster offset (~€2-3M)</td><td>Low</td><td>Before Jun 2026</td></tr>
+          <tr><td><span class="tag medium">Tier 3</span></td><td>Register as Economic Operator with Cyprus Customs</td><td>—</td><td class="num">Required for bonded warehouse</td><td>Low</td><td>Immediately</td></tr>
+          <tr><td><span class="tag medium">Tier 3</span></td><td>Engage Cyprus tax advisor for VAT 4B pre-filing</td><td>—</td><td class="num">Faster refund processing</td><td>Low</td><td>Q2 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 9: APRIL 1 INVOICE STRATEGY -->
+  <div class="section">
+    <h2><span class="num">9</span> April 1 Invoice Strategy — VAT Game-Changer</h2>
+    <div class="desc">If no invoice is issued and no payment received before April 1, Q1 is clean. Combined with a 1-month project shift, B1 pre-ship moves into Q3 — where all three pre-ship invoices offset import VAT.</div>
+
+    <div class="alert warning">
+      <h3>Legal Requirement: Both Invoice AND Payment Must Be April 1+</h3>
+      <p>Under EU VAT Directive Article 65 (Cyprus Law 95(I)/2000 §11), the tax point is the <strong>earliest</strong> of: date of supply, date of invoice, or date payment is received. If the client pays in March but the invoice is April 1, the tax point is still March (Q1). <strong>Both must fall on or after April 1.</strong></p>
+    </div>
+
+    <div class="chart-grid">
+      <div class="card">
+        <h3>Q3 VAT Credit — Current vs April 1 Start</h3>
+        <div class="card-desc">The April 1 shift moves B1 pre-ship output into Q3, nearly eliminating the excess credit</div>
+        <canvas id="q3CompareChart"></canvas>
+      </div>
+      <div class="card">
+        <h3>Quarterly VAT — April 1 Start</h3>
+        <div class="card-desc">Output vs Input VAT per quarter with full April 1 start</div>
+        <canvas id="vatQuarterApr1Chart"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px; overflow-x:auto;">
+      <h3>Quarter-by-Quarter VAT — April 1 Start</h3>
+      <table>
+        <thead><tr><th>Quarter</th><th>Due</th><th class="num">Output</th><th class="num">Input</th><th class="num">Net</th><th class="num">Carry-Forward</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Q1 2026 (Jan–Mar)</td><td>10 May</td><td class="num">€0</td><td class="num">€20K</td><td class="num pos">~€0</td><td class="num">—</td><td><span class="tag ok">Clean</span></td></tr>
+          <tr><td>Q2 2026 (Apr–Jun)</td><td>10 Aug</td><td class="num">€5,283K</td><td class="num">€228K</td><td class="num neg">€5,055K payable</td><td class="num">—</td><td><span class="tag critical">Paid out</span></td></tr>
+          <tr><td>Q3 2026 (Jul–Sep)</td><td>10 Nov</td><td class="num pos">€9,687K</td><td class="num">€10,538K</td><td class="num pos">-€851K credit</td><td class="num">€851K</td><td><span class="tag ok">Near-neutral!</span></td></tr>
+          <tr><td>Q4 2026 (Oct–Dec)</td><td>10 Feb 27</td><td class="num">€600K</td><td class="num">€5,638K</td><td class="num warn">-€5,038K credit</td><td class="num warn">€5,889K</td><td><span class="tag high">Carry-forward</span></td></tr>
+          <tr><td>Q1 2027 (Jan–Mar)</td><td>10 May 27</td><td class="num">€1,161K</td><td class="num">€120K</td><td class="num">+€1,041K offset</td><td class="num warn">€4,848K</td><td><span class="tag high">Locked</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-grid full" style="margin-top:24px;">
+      <div class="card tall">
+        <h3>4-Scenario Comparison — Including April 1 Start</h3>
+        <div class="card-desc">Cumulative cashflow across all four modelled scenarios</div>
+        <canvas id="scenario4Chart"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px; overflow-x:auto;">
+      <h3>April 1 Full Start — Monthly Cashflow</h3>
+      <div class="card-desc">All contracts effective April 1. Client 30/55/10/5 | Linyang 25/50/20/5 | Months shift +1.</div>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Client Revenue</th><th class="num">Linyang</th><th class="num">Duty + Import VAT</th><th class="num">VAT Return</th><th class="num">Subcon + Ops</th><th class="num">Monthly Net</th><th class="num">Cumulative</th></tr></thead>
+        <tbody>
+          <tr><td>Apr 2026</td><td class="num pos">+27,807</td><td class="num neg">-19,425</td><td class="num">—</td><td class="num">—</td><td class="num neg">-2,354</td><td class="num pos">+6,028</td><td class="num pos">+6,028</td></tr>
+          <tr><td>May 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num pos">€0 (Q1 clean!)</td><td class="num neg">-355</td><td class="num neg">-355</td><td class="num pos">+5,673</td></tr>
+          <tr><td>Jun 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-455</td><td class="num neg">-455</td><td class="num pos">+5,218</td></tr>
+          <tr><td>Jul 2026</td><td class="num pos">+17,361</td><td class="num neg">-13,714</td><td class="num">—</td><td class="num">—</td><td class="num neg">-1,123</td><td class="num pos">+2,524</td><td class="num pos">+7,742</td></tr>
+          <tr class="highlight"><td>Aug 2026</td><td class="num pos">+18,073</td><td class="num neg">-16,753</td><td class="num neg">-6,191</td><td class="num neg">-5,055 (Q2)</td><td class="num neg">-921</td><td class="num neg">-10,847</td><td class="num neg">-3,105</td></tr>
+          <tr class="highlight"><td>Sep 2026</td><td class="num pos">+15,546</td><td class="num neg">-18,377</td><td class="num neg">-5,086</td><td class="num">—</td><td class="num neg">-967</td><td class="num neg">-8,884</td><td class="num neg">-11,989</td></tr>
+          <tr class="highlight"><td><strong>Oct 2026</strong></td><td class="num">—</td><td class="num neg">-5,548</td><td class="num neg">-6,260</td><td class="num">—</td><td class="num neg">-1,243</td><td class="num neg"><strong>-13,051</strong></td><td class="num neg"><strong>-25,040</strong></td></tr>
+          <tr><td>Nov 2026</td><td class="num pos">+3,157</td><td class="num neg">-1,371</td><td class="num">—</td><td class="num pos">€0 (Q3 credit)</td><td class="num neg">-1,016</td><td class="num pos">+770</td><td class="num neg">-24,270</td></tr>
+          <tr><td>Dec 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-741</td><td class="num neg">-741</td><td class="num neg">-25,011</td></tr>
+          <tr><td>Jan 2027</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-671</td><td class="num neg">-671</td><td class="num neg">-25,682</td></tr>
+          <tr><td>Feb 2027</td><td class="num pos">+3,286</td><td class="num neg">-1,127</td><td class="num">—</td><td class="num pos">€0 (Q4 credit)</td><td class="num neg">-463</td><td class="num pos">+1,696</td><td class="num neg">-23,986</td></tr>
+          <tr><td>Mar 2027</td><td class="num pos">+2,826</td><td class="num neg">-1,387</td><td class="num">—</td><td class="num">—</td><td class="num neg">-255</td><td class="num pos">+1,184</td><td class="num neg">-22,802</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:20px; overflow-x:auto;">
+      <h3>Full Scenario Comparison — All 4 Approaches</h3>
+      <table>
+        <thead><tr><th>Metric</th><th class="num">A: Current<br>(Mar, 30/55/10/5)</th><th class="num">B: Matched<br>(Mar, 25/50/20/5)</th><th class="num">D: April 1 Start<br>(Apr, 30/55/10/5)</th><th class="num">C: Optimised<br>(Apr + client imports)</th></tr></thead>
+        <tbody>
+          <tr><td>Q1 VAT payable</td><td class="num neg">€5,187K</td><td class="num neg">€5,187K</td><td class="num pos"><strong>€0</strong></td><td class="num pos"><strong>€0</strong></td></tr>
+          <tr><td>Q3 excess credit</td><td class="num neg">€9,197K</td><td class="num neg">€9,197K</td><td class="num pos"><strong>€851K</strong></td><td class="num pos"><strong>€0</strong></td></tr>
+          <tr><td>Total credit locked</td><td class="num neg">€7,766K</td><td class="num neg">€7,766K</td><td class="num warn">€4,848K</td><td class="num pos"><strong>€0</strong></td></tr>
+          <tr><td>Peak negative</td><td class="num neg">-€28,338K</td><td class="num neg">-€22,000K</td><td class="num warn">-€25,682K</td><td class="num pos"><strong>-€3,107K</strong></td></tr>
+          <tr><td>Working capital needed</td><td class="num neg">~€28M</td><td class="num warn">~€22M</td><td class="num warn">~€26M</td><td class="num pos"><strong>~€4M</strong></td></tr>
+          <tr><td>Project completion</td><td class="num">Feb 2027</td><td class="num">Feb 2027</td><td class="num">Mar 2027</td><td class="num">Mar 2027</td></tr>
+          <tr><td>1-month delay cost</td><td class="num">—</td><td class="num">—</td><td class="num">~€28K</td><td class="num">~€28K</td></tr>
+          <tr><td>Financing cost saved</td><td class="num">—</td><td class="num">~€150K</td><td class="num pos">~€200K</td><td class="num pos"><strong>~€700K</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert success" style="margin-top:24px;">
+      <h3>Recommendation: Implement April 1 Start Regardless</h3>
+      <p>The 1-month delay costs ~€28K in client opportunity cost but saves <strong>€2.9M in locked VAT capital</strong> and ~€200K in financing costs. If combined with client-as-importer, peak deficit drops from -€28M to <strong>-€3M</strong> and no bank facility is needed. <strong>This decision must be made before contracts are signed.</strong></p>
+    </div>
+  </div>
+
+  <!-- SECTION 10: RISK MATRIX -->
+  <div class="section">
+    <h2><span class="num">10</span> Risk Matrix</h2>
+    <div class="card" style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>Risk</th><th>Probability</th><th class="num">Impact</th><th>Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>VAT refund delayed &gt;8 months</td><td><span class="tag high">High</span></td><td class="num neg">€7.8M locked</td><td>April 1 start (↓ to €4.8M) + client imports (→ €0)</td></tr>
+          <tr><td>Client delays pre-shipment payment</td><td><span class="tag high">Medium</span></td><td class="num neg">€17M per batch</td><td>FAT inspection clause + contract penalty</td></tr>
+          <tr><td>Cyprus customs audit on large import</td><td><span class="tag high">Medium</span></td><td class="num neg">€15.2M delayed</td><td>Pre-clearance + bonded warehouse</td></tr>
+          <tr><td>Linyang demands payment before shipment</td><td><span class="tag medium">Low</span></td><td class="num neg">€13.7M per batch</td><td>APG bank guarantee protects advance</td></tr>
+          <tr><td>Subcontractor cost overruns (&gt;15%)</td><td><span class="tag high">Medium</span></td><td class="num neg">€2M additional</td><td>Fixed-price contracts where possible</td></tr>
+          <tr><td>EUR/CNY shift &gt;5%</td><td><span class="tag medium">Low</span></td><td class="num neg">€4M exposure</td><td>Linyang contract in EUR (confirmed)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Lighthief Cyprus Ltd — Internal Use Only — Cashflow Analysis — 20 February 2026<br>
+  All figures are estimates based on current quotations, proposals, and negotiated terms. Actual cashflows depend on contract execution, customs processing, and VAT authority responsiveness.
+</div>
+
+<script>
+const MONTHS = ['Mar 26','Apr 26','May 26','Jun 26','Jul 26','Aug 26','Sep 26','Oct 26','Nov 26','Dec 26','Jan 27','Feb 27'];
+
+Chart.defaults.color = '#8b8fa3';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+Chart.defaults.font.size = 11;
+const fmt = v => (v >= 0 ? '+' : '') + (v/1000).toFixed(1) + 'M';
+const fmtM = v => '€' + Math.abs(v/1000).toFixed(1) + 'M';
+
+// ── 1. Timeline Chart (horizontal bar / gantt-like) ──
+new Chart(document.getElementById('timelineChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Batch 1 — ABIO Ph.1','Batch 2 — ABIO Ph.2 + TIM','Batch 3 — ESP + Standalone'],
+    datasets: [
+      { label:'Production', data:[3,4.5,3], backgroundColor:'rgba(79,143,247,0.3)', borderColor:'#4f8ff7', borderWidth:1, borderRadius:4 },
+      { label:'Shipping', data:[1,1,1], backgroundColor:'rgba(168,85,247,0.3)', borderColor:'#a855f7', borderWidth:1, borderRadius:4 },
+      { label:'Construction', data:[3,3,3], backgroundColor:'rgba(34,197,94,0.3)', borderColor:'#22c55e', borderWidth:1, borderRadius:4 },
+      { label:'Commissioning', data:[2,2.5,2.5], backgroundColor:'rgba(6,182,212,0.3)', borderColor:'#06b6d4', borderWidth:1, borderRadius:4 },
+    ]
+  },
+  options: {
+    indexAxis:'y',
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, padding:16 }}},
+    scales:{
+      x:{ stacked:true, title:{ display:true, text:'Months from Order (Mar 2026)', color:'#8b8fa3' }, grid:{ color:'rgba(255,255,255,0.04)' }},
+      y:{ stacked:true, grid:{ display:false }}
+    }
+  }
+});
+
+// ── 2. Milestone Payment Comparison ──
+new Chart(document.getElementById('milestoneChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Advance','Pre-Shipment','Delivery / PAC','Retention'],
+    datasets: [
+      { label:'Client Payment %', data:[30,55,10,5], backgroundColor:'rgba(34,197,94,0.6)', borderColor:'#22c55e', borderWidth:1, borderRadius:4 },
+      { label:'Linyang Payment %', data:[25,50,20,5], backgroundColor:'rgba(239,68,68,0.6)', borderColor:'#ef4444', borderWidth:1, borderRadius:4 },
+    ]
+  },
+  options: {
+    responsive:true,
+    plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12 }}},
+    scales:{ y:{ title:{ display:true, text:'% of Contract', color:'#8b8fa3' }, grid:{ color:'rgba(255,255,255,0.04)' }}, x:{ grid:{ display:false }}}
+  }
+});
+
+// ── 3. Buffer/Deficit Chart ──
+new Chart(document.getElementById('bufferChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Advance\n(+5%)','Pre-Ship\n(+5%)','Delivery/PAC\n(-10%)','Retention\n(0%)'],
+    datasets: [{
+      label:'Buffer (+) / Deficit (-)',
+      data:[
+        (0.30-0.25)*109241,
+        (0.55-0.50)*109241,
+        (0.10-0.20)*109241,
+        0
+      ],
+      backgroundColor: ctx => ctx.raw >= 0 ? 'rgba(34,197,94,0.6)' : 'rgba(239,68,68,0.6)',
+      borderColor: ctx => ctx.raw >= 0 ? '#22c55e' : '#ef4444',
+      borderWidth:1,
+      borderRadius:4,
+    }]
+  },
+  options: {
+    responsive:true,
+    plugins:{
+      legend:{ display:false },
+      tooltip:{ callbacks:{ label: ctx => '€' + (ctx.raw/1000).toFixed(1) + 'M' }}
+    },
+    scales:{
+      y:{ title:{ display:true, text:'€\'000', color:'#8b8fa3' }, grid:{ color:'rgba(255,255,255,0.04)' }},
+      x:{ grid:{ display:false }}
+    }
+  }
+});
+
+// ── 4. Main Cashflow Chart ──
+const monthlyNet = [6028, -355, -5642, 2524, -5792, -12050, -13051, 770, -741, -671, 1696, 1184];
+const cumul = [];
+monthlyNet.reduce((acc,v,i) => { cumul[i] = acc + v; return cumul[i]; }, 0);
+
+new Chart(document.getElementById('cashflowChart'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      {
+        label: 'Monthly Net (€\'000)',
+        data: monthlyNet,
+        backgroundColor: monthlyNet.map(v => v >= 0 ? 'rgba(34,197,94,0.7)' : 'rgba(239,68,68,0.7)'),
+        borderColor: monthlyNet.map(v => v >= 0 ? '#22c55e' : '#ef4444'),
+        borderWidth: 1,
+        borderRadius: 4,
+        order: 2,
+      },
+      {
+        label: 'Cumulative (€\'000)',
+        data: cumul,
+        type: 'line',
+        borderColor: '#4f8ff7',
+        backgroundColor: 'rgba(79,143,247,0.1)',
+        borderWidth: 3,
+        pointRadius: 5,
+        pointBackgroundColor: cumul.map(v => v >= 0 ? '#4f8ff7' : '#ef4444'),
+        pointBorderColor: cumul.map(v => v >= 0 ? '#4f8ff7' : '#ef4444'),
+        fill: { target: 'origin', above: 'rgba(79,143,247,0.05)', below: 'rgba(239,68,68,0.08)' },
+        tension: 0.3,
+        order: 1,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16 }},
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': €' + (ctx.raw/1000).toFixed(1) + 'M'
+        }
+      },
+      annotation: undefined
+    },
+    scales: {
+      y: {
+        title: { display: true, text: '€\'000', color: '#8b8fa3' },
+        grid: { color: ctx => ctx.tick.value === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)' },
+      },
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 5. Cost Pie Chart ──
+new Chart(document.getElementById('costPieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Linyang CIF (€86.0M)','Physical Adders (€7.6M)','EMS / SCADA (€4.0M)','Net Margin (€11.6M)'],
+    datasets: [{
+      data: [85964, 7642, 3994, 11641],
+      backgroundColor: ['#ef4444','#f59e0b','#8b5cf6','#22c55e'],
+      borderColor: 'rgba(0,0,0,0.3)',
+      borderWidth: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12, font: { size: 11 }}},
+      tooltip: { callbacks: { label: ctx => ctx.label + ' (' + (ctx.raw/1092).toFixed(1) + '%)' }}
+    }
+  }
+});
+
+// ── 6. Outflow Stack Chart ──
+new Chart(document.getElementById('outflowStackChart'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label:'Linyang', data:[19425,0,0,13714,16753,18377,5548,1371,0,0,1127,1387], backgroundColor:'rgba(239,68,68,0.7)', borderRadius:2 },
+      { label:'Duty+VAT', data:[0,0,0,0,6191,5086,6260,0,0,0,0,0], backgroundColor:'rgba(236,72,153,0.7)', borderRadius:2 },
+      { label:'Output VAT', data:[0,0,5187,0,0,3166,0,0,0,0,0,0], backgroundColor:'rgba(168,85,247,0.7)', borderRadius:2 },
+      { label:'Subcon+Ops', data:[2354,355,455,1123,921,967,1243,1016,741,671,463,255], backgroundColor:'rgba(245,158,11,0.7)', borderRadius:2 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 }}, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': €' + (ctx.raw/1000).toFixed(1) + 'M' }}},
+    scales: {
+      y: { stacked: true, title: { display: true, text: 'Cash Out (€\'000)', color: '#8b8fa3' }, grid: { color:'rgba(255,255,255,0.04)' }},
+      x: { stacked: true, grid: { display: false }}
+    }
+  }
+});
+
+// ── 7. VAT Cash Position ──
+const vatPos = [5282, 5282, 95, 3394, 1461, -3161, -8589, -7989, -7989, -7989, -7599, -6438];
+new Chart(document.getElementById('vatCashChart'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      label: 'Net VAT Cash Position (€\'000)',
+      data: vatPos,
+      borderColor: '#a855f7',
+      backgroundColor: 'transparent',
+      borderWidth: 3,
+      pointRadius: 5,
+      pointBackgroundColor: vatPos.map(v => v >= 0 ? '#a855f7' : '#ef4444'),
+      pointBorderColor: vatPos.map(v => v >= 0 ? '#a855f7' : '#ef4444'),
+      fill: { target: 'origin', above: 'rgba(168,85,247,0.08)', below: 'rgba(239,68,68,0.12)' },
+      tension: 0.3,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => '€' + (ctx.raw/1000).toFixed(1) + 'M' + (ctx.raw < 0 ? ' (locked with govt)' : ' (held by Lighthief)') }}
+    },
+    scales: {
+      y: { title: { display: true, text: 'VAT Cash (€\'000)', color: '#8b8fa3' }, grid: { color: ctx => ctx.tick.value === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)' }},
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 8. Quarterly VAT Bar ──
+new Chart(document.getElementById('vatQuarterChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Q1 2026','Q2 2026','Q3 2026','Q4 2026','Q1 2027'],
+    datasets: [
+      { label:'Output VAT', data:[5282, 3299, 6389, 600, 1161], backgroundColor:'rgba(239,68,68,0.6)', borderRadius:4 },
+      { label:'Input VAT', data:[-95, -133, -15586, -210, -120], backgroundColor:'rgba(34,197,94,0.6)', borderRadius:4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 }}, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': €' + Math.abs(ctx.raw/1000).toFixed(1) + 'M' }}},
+    scales: {
+      y: { title: { display: true, text: '€\'000', color: '#8b8fa3' }, grid: { color:'rgba(255,255,255,0.04)' }},
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 9. Scenario Comparison Lines (original 3) ──
+const cumA = [6028, 5673, 31, 2555, -3237, -15287, -28338, -27568, -28309, -28980, -27284, -26100];
+const cumB = [1394, 1039, -4148, -3202, -4324, -12915, -20313, -21122, -21863, -22534, -19275, -19504];
+const cumC = [1394, 1039, 584, 7721, 5372, -419, -1557, -2366, -3107, -3778, 5259, 11252];
+
+new Chart(document.getElementById('scenarioChart'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label:'A: Current (30/55/10/5) — No VAT refund', data: cumA, borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,0.05)', borderWidth:3, tension:0.3, pointRadius:4, fill: false },
+      { label:'B: Matched (25/50/20/5) — No VAT refund', data: cumB, borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.05)', borderWidth:3, tension:0.3, pointRadius:4, borderDash:[8,4], fill: false },
+      { label:'C: Optimised (Client imports + phased adv)', data: cumC, borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:3, tension:0.3, pointRadius:5, fill: { target: 'origin', above: 'rgba(34,197,94,0.06)', below: 'rgba(239,68,68,0.04)' }},
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 14, padding: 16 }},
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label.split('—')[0].trim() + ': €' + (ctx.raw/1000).toFixed(1) + 'M' }}
+    },
+    scales: {
+      y: { title: { display: true, text: 'Cumulative (€\'000)', color: '#8b8fa3' }, grid: { color: ctx => ctx.tick.value === 0 ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.04)' }},
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 9b. Q3 VAT Credit Comparison (Current vs April 1) ──
+new Chart(document.getElementById('q3CompareChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Output VAT\n(pre-ship invoices)', 'Input VAT\n(import at customs)', 'NET credit'],
+    datasets: [
+      { label: 'Current (Mar start)', data: [6389, -15206, -9197], backgroundColor: 'rgba(239,68,68,0.6)', borderColor: '#ef4444', borderWidth:1, borderRadius: 4 },
+      { label: 'April 1 Start', data: [9687, -9778, -851], backgroundColor: 'rgba(34,197,94,0.6)', borderColor: '#22c55e', borderWidth:1, borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 12 }},
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': €' + (ctx.raw/1000).toFixed(1) + 'M' }}
+    },
+    scales: {
+      y: { title: { display: true, text: '€\'000', color: '#8b8fa3' }, grid: { color: 'rgba(255,255,255,0.04)' }},
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 9c. Quarterly VAT — April 1 Start ──
+new Chart(document.getElementById('vatQuarterApr1Chart'), {
+  type: 'bar',
+  data: {
+    labels: ['Q1 2026\n(CLEAN)','Q2 2026\n(Advance only)','Q3 2026\n(3 pre-ship + 2 imports)','Q4 2026\n(B3 import)','Q1 2027\n(2 PACs)'],
+    datasets: [
+      { label:'Output VAT', data:[0, 5283, 9687, 600, 1161], backgroundColor:'rgba(34,197,94,0.6)', borderRadius:4 },
+      { label:'Input VAT', data:[0, -228, -10538, -5638, -120], backgroundColor:'rgba(239,68,68,0.6)', borderRadius:4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 }}, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': €' + Math.abs(ctx.raw/1000).toFixed(1) + 'M' }}},
+    scales: {
+      y: { title: { display: true, text: '€\'000', color: '#8b8fa3' }, grid: { color:'rgba(255,255,255,0.04)' }},
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 9d. 4-Scenario Comparison (with April 1) ──
+const MONTHS13 = ['Mar 26','Apr 26','May 26','Jun 26','Jul 26','Aug 26','Sep 26','Oct 26','Nov 26','Dec 26','Jan 27','Feb 27','Mar 27'];
+const cumAx = [6028, 5673, 31, 2555, -3237, -15287, -28338, -27568, -28309, -28980, -27284, -26100, -26100];
+const cumBx = [1394, 1039, -4148, -3202, -4324, -12915, -20313, -21122, -21863, -22534, -19275, -19504, -19504];
+const cumDx = [0, 6028, 5673, 5218, 7742, -3105, -11989, -25040, -24270, -25011, -25682, -23986, -22802];
+const cumCx = [0, 1394, 1039, 584, 7721, 5372, -419, -1557, -2366, -3107, -3778, 5259, 11252];
+
+new Chart(document.getElementById('scenario4Chart'), {
+  type: 'line',
+  data: {
+    labels: MONTHS13,
+    datasets: [
+      { label:'A: Current (Mar, 30/55/10/5)', data: cumAx, borderColor:'#ef4444', borderWidth:2.5, tension:0.3, pointRadius:3, fill: false },
+      { label:'B: Matched (Mar, 25/50/20/5)', data: cumBx, borderColor:'#f59e0b', borderWidth:2.5, tension:0.3, pointRadius:3, borderDash:[8,4], fill: false },
+      { label:'D: April 1 Start (30/55/10/5)', data: cumDx, borderColor:'#06b6d4', borderWidth:3, tension:0.3, pointRadius:4, fill: false },
+      { label:'C: Optimised (Apr + client imports)', data: cumCx, borderColor:'#22c55e', borderWidth:3, tension:0.3, pointRadius:5, fill: { target: 'origin', above: 'rgba(34,197,94,0.06)', below: 'rgba(239,68,68,0.04)' }},
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 14, padding: 14 }},
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label.split('(')[0].trim() + ': €' + (ctx.raw/1000).toFixed(1) + 'M' }}
+    },
+    scales: {
+      y: { title: { display: true, text: 'Cumulative (€\'000)', color: '#8b8fa3' }, grid: { color: ctx => ctx.tick.value === 0 ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.04)' }},
+      x: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 10. Solution Impact Chart (waterfall) ──
+new Chart(document.getElementById('solutionChart'), {
+  type: 'bar',
+  data: {
+    labels: [
+      'Starting deficit',
+      'April 1 start\n(clean Q1 + Q3 neutral)',
+      'Client as importer\n(eliminates import VAT)',
+      'Match 25/50/20/5\n(align milestones)',
+      'Remaining deficit'
+    ],
+    datasets: [{
+      data: [-28338, 2656, 15200, 5600, -3107],
+      backgroundColor: ['rgba(239,68,68,0.7)','rgba(6,182,212,0.7)','rgba(34,197,94,0.7)','rgba(34,197,94,0.5)','rgba(245,158,11,0.7)'],
+      borderColor: ['#ef4444','#06b6d4','#22c55e','#22c55e','#f59e0b'],
+      borderWidth: 1,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => '€' + (Math.abs(ctx.raw)/1000).toFixed(1) + 'M' + (ctx.raw > 0 ? ' reduction' : '') }}
+    },
+    scales: {
+      x: { title: { display: true, text: '€\'000', color: '#8b8fa3' }, grid: { color:'rgba(255,255,255,0.04)' }},
+      y: { grid: { display: false }}
+    }
+  }
+});
+
+// ── 11. VAT Compare Chart ──
+const vatCurrent = [5282, 5282, 95, 3394, 1461, -3161, -8589, -7989, -7989, -7989, -7599, -6438];
+const vatApr1 =    [0,    0,    0,  5055, 5055, -851,  -851, -5889, -5889, -5889, -4848, -4848];
+const vatOptimised = [330, 330, 0, 660, 1760, 2960, 2200, 2400, 200, 200, 550, 350];
+new Chart(document.getElementById('vatCompareChart'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label:'A: Current (Mar start)', data: vatCurrent, borderColor:'#ef4444', borderWidth:2.5, tension:0.3, pointRadius:3, fill:{ target:'origin', below:'rgba(239,68,68,0.1)' }},
+      { label:'D: April 1 Start', data: vatApr1, borderColor:'#06b6d4', borderWidth:2.5, tension:0.3, pointRadius:3, borderDash:[6,3], fill: false },
+      { label:'C: Optimised (Apr + client imports)', data: vatOptimised, borderColor:'#22c55e', borderWidth:2.5, tension:0.3, pointRadius:3, fill:{ target:'origin', above:'rgba(34,197,94,0.08)' }},
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position:'bottom', labels:{ boxWidth:12 }},
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': €' + (ctx.raw/1000).toFixed(1) + 'M' }}
+    },
+    scales: {
+      y: { title:{ display:true, text:'VAT Cash (€\'000)', color:'#8b8fa3' }, grid:{ color: ctx => ctx.tick.value === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)' }},
+      x: { grid:{ display:false }}
+    }
+  }
+});
+</script>
+</body>
+</html>

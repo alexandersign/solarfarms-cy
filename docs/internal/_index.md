@@ -48,10 +48,10 @@ All internal documents follow a consistent naming pattern:
 | [**🔴 ABIO CIF ADDERS BREAKDOWN (HTML)**](./abio-cif-adders-margin-breakdown.html) | **CIF + adders margin detail - PDF export** | 🔴 **NEW** |
 | [**🔴 EPC SCOPE STATUS**](./epc-scope-status.md) | **Scope tracking across all EPC workstreams** | 🔴 **NEW** |
 | [**🔴 VOLTUS EMS/SCADA ALLOCATION**](./voltus-ems-cost-allocation.md) | **Actual Voltus quote - €76,718/park** | 🔴 **VERIFIED** |
-| [**🔴 COST vs MARKET COMPARISON**](./cost-market-comparison-feb2026.md) | **Updated with Voltus actual - Margin 9.7%** | 🔴 **UPDATED** |
+| [**🔴 COST vs MARKET COMPARISON**](./cost-market-comparison-feb2026.md) | **Updated with Voltus actual - Margin 10.7%** | 🔴 **UPDATED** |
 | [**🔴 CIVIL WORKS VALIDATION**](./civil-works-validation.md) | **€4,000/platform validated** | ✅ **VERIFIED** |
-| [**🔴 LINYANG RFI RESPONSES (Feb 2026)**](./rfi/rfi-linyang-responses-feb2026.md) | **CRITICAL - Conflicts identified** | 🔴 **REVIEW** |
-| [**🎯 CONFIRMED CLIENT PRICING (Feb 2026)**](./confirmed-client-pricing-feb2026.md) | **Client prices, scope - UPDATED w/RFI notes** | ⚠️ **CONFLICTS** |
+| [**✅ LINYANG RFI RESPONSES (Feb 2026)**](./rfi/rfi-linyang-responses-feb2026.md) | **V3 confirms Yr 11-15 warranty at client rates** | ✅ **V3 RESOLVED** |
+| [**🎯 CONFIRMED CLIENT PRICING (Feb 2026)**](./confirmed-client-pricing-feb2026.md) | **Client prices, scope - Warranty conflict resolved (V3)** | ✅ **UPDATED** |
 | [**🎯 EPC SCOPE & PRICING TRACKER (HTML)**](./epc-scope-pricing-tracker.html) | **Updated with confirmed data - PDF export** | ✅ **UPDATED** |
 | [**🎯 FINAL RFI LINYANG v1.6**](./rfi/rfi-linyang-final-feb2026.md) | **41 items - RECEIVED RESPONSES** | ✅ **RESPONSES IN** |
 | [**📋 RFI Master Tracker**](./rfi/rfi-master-tracker-jan2026.md) | **Track all RFI responses** | 🔴 **ACTIVE** |
@@ -68,7 +68,7 @@ All internal documents follow a consistent naming pattern:
 | [**FINAL RFI LINYANG (Feb 2026) - HTML**](./rfi/rfi-linyang-final-feb2026.html) | **41 items - PDF Export** | 🔴 **SEND** |
 | [**FINAL RFI LINYANG (Feb 2026) - MD**](./rfi/rfi-linyang-final-feb2026.md) | **Email body version** | 🔴 **SEND** |
 | [**Spares List RFI**](./rfi/rfi-spares-list-jan2026.md) | **Spare parts & lead times** | 🔴 **SEND** |
-| [**RFI Responses (Feb 2026)**](./rfi/rfi-linyang-responses-feb2026.md) | **Linyang answers - conflicts identified** | 🔴 **REVIEW** |
+| [**RFI Responses (Feb 2026)**](./rfi/rfi-linyang-responses-feb2026.md) | **Linyang answers - V3 resolves warranty conflict** | ✅ **V3 RESOLVED** |
 | [**EMS Provider RFI**](./rfi/rfi-ems-provider-feb2026.html) | **EMS/SCADA provider comparison** | ✅ Complete |
 | [**Legal Guarantees RFI**](./rfi/rfi-legal-guarantees-linyang-feb2026.html) | **Warranty, LDs, bonds** | ✅ Complete |
 | [**RFI Master Tracker**](./rfi/rfi-master-tracker-jan2026.md) | **Track all RFI responses** | 🔴 **ACTIVE** |
@@ -77,7 +77,7 @@ All internal documents follow a consistent naming pattern:
 
 | Document | Scope | Vendor Target |
 |----------|-------|---------------|
-| [Concrete Base RFP](./rfp/rfp-civil-concrete-base-jan2026.html) | Civil works - 47 parks | TBD Cyprus contractor |
+| [Concrete Base RFP](./rfp/rfp-civil-concrete-base-jan2026.html) | Civil works - 51 parks | TBD Cyprus contractor |
 | [SCADA/EMS RFP](./rfp/rfp-scada-ems-jan2026.html) | SCADA integration | Axol |
 | [Electrical Install RFP](./rfp/rfp-electrical-installation-jan2026.html) | MV/LV cabling & terminations | TBD |
 | [Cybersecurity RFP](./rfp/rfp-cybersecurity-nis2-jan2026.html) | NIS2 compliance | TBD |
@@ -106,7 +106,7 @@ All internal documents follow a consistent naming pattern:
 
 | Document | Purpose | Status |
 |----------|---------|--------|
-| [**GROUP EPC Proposal (PDF)**](./client-proposal-group-epc-jan2026.html) | **Full turnkey pricing - 47 parks** | ✅ **FINAL** |
+| [**GROUP EPC Proposal (PDF)**](./client-proposal-group-epc-jan2026.html) | **Full turnkey pricing - 51 parks** | ✅ **FINAL** |
 | [**ABIO POWER PROPOSAL (HTML)**](../clients/abio-power-proposal-feb2026.html) | **Abio Power - 19 parks, €27.5M** | ✅ **NEW** |
 | [**ABIO POWER PROPOSAL (MD)**](../clients/abio-power-proposal-feb2026.md) | **Source document** | ✅ **NEW** |
 | [**Spanercom Offer (Anarita)**](./offer-anarita-10mw-jan2026.html) | **10MW/40MWh - Paphos** | ✅ **NEW** |
@@ -203,7 +203,7 @@ All internal documents follow a consistent naming pattern:
 | **O&M Provider** | Lighthief Cyprus Limited |
 | **Standard Warranty** | 5 years |
 | **Extended BESS (Yr 6-10)** | €913/MWh/year |
-| **Extended BESS (Yr 11-15)** | ⚠️ €1,157/MWh/year (client doc) vs **€4,182/MWh/year** (Linyang actual) |
+| **Extended BESS (Yr 11-15)** | ✅ €1,157.62/MWh/year — Confirmed (V3, previous V1 conflict resolved) |
 | **RTE** | 86.32% (94.8% DC) |
 | **SOH Guarantee** | 15 years |
 | **Availability** | ≥97% |
@@ -257,14 +257,14 @@ All internal documents follow a consistent naming pattern:
 | **Extended Warranty** | Max Years | 20 years | **15 years max** | ⚠️ Shorter |
 | **Maintenance Days** | Allowance | 8 days/year | **10 days/year** | ⚠️ More downtime |
 
-### 🔴 CRITICAL CONFLICTS - MUST RESOLVE
+### OPEN ISSUES (Updated with RFI V3)
 
-| # | Issue | Client Doc Says | Linyang Says | Impact |
+| # | Issue | Client Doc Says | Linyang Says | Status |
 |---|-------|----------------|--------------|--------|
-| 1 | **Extended Warranty Yr 11-15 BESS** | €1,157/MWh/yr | **€4,182.25/MWh/yr** | **+261% cost** |
-| 2 | **Extended Warranty Yr 11-15 Total** | €2,084/MWh/yr | **€5,268.45/MWh/yr** | **+153% cost** |
-| 3 | **SOH Remedy Costs** | Parts + labor included | **Parts ONLY** (no labor/service) | Hidden costs |
-| 4 | **Performance Bond** | 5% TCV | 5% TCV but **NO parent company backing** | Credit risk |
+| 1 | ~~**Extended Warranty Yr 11-15 BESS**~~ | €1,157/MWh/yr | ✅ €1,157.62/MWh/yr (V3) | **RESOLVED** |
+| 2 | ~~**Extended Warranty Yr 11-15 Total**~~ | €2,084/MWh/yr | ✅ €2,083.72/MWh/yr (V3) | **RESOLVED** |
+| 3 | **SOH Remedy Costs** | Parts + labor included | **Parts ONLY** (no labor/service) | Open |
+| 4 | **Performance Bond** | 5% TCV | 5% corporate guarantee (bank), no parent backing | Accepted |
 | 5 | **Delay LDs Basis** | % of full contract value | % of **delayed goods only** | Reduced protection |
 | 6 | **Total LD Cap** | 15% of contract | **10% of contract** | Reduced protection |
 
@@ -272,9 +272,9 @@ All internal documents follow a consistent naming pattern:
 
 | Years | BESS (€/MWh/yr) | PCS+MVS (€/MWh/yr) | **Total (€/MWh/yr)** | Status |
 |-------|-----------------|--------------------|--------------------|--------|
-| **6-10** | €913.92 | €747.76 | **€1,661.68** | ✅ Confirmed |
-| **11-15** | €4,182.25 | €1,086.20 | **€5,268.45** | 🔴 2.5x higher than client doc |
-| **16-20** | €3,858.75 | €2,315.25 | **€6,174.00** | New data (not quoted to clients) |
+| **6-10** | €913.92 | €747.76 | **€1,661.68** | ✅ Confirmed (V1 & V3) |
+| **11-15** | €1,157.62 | €926.10 | **€2,083.72** | ✅ Confirmed (V3 — previous V1 conflict resolved) |
+| **16-20** | N/A | N/A | N/A | ❌ Not available (max 15 years) |
 
 ### Financial Guarantees Summary
 
@@ -356,7 +356,7 @@ O&M: €1,740/MWh/year via Lighthief Cyprus
 
 | Area | Responsible | Email | Status |
 |------|-------------|-------|--------|
-| **Cyprus Director** | Alexander Papacosta | alexander.papacosta@lighthief.com | ✅ Active |
+| **Cyprus Director** | Alexander Papacosta | office@lighthief.com | ✅ Active |
 | **ETEK Engineer / Site Lead** | Costas Hadjikyriacou | costas@lighthief.com | ✅ Active |
 | **Energy & BESS Consultant** | Andreas Christoforou | xristoforou.andreass@gmail.com | ✅ Joining |
 | **BESS Field Specialist** | Dawid Lesnikowski | — | Training (PL) |

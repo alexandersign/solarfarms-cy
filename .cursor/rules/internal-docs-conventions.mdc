@@ -1,0 +1,34 @@
+---
+description: Conventions for internal BESS project documents — data sources, naming, roles
+globs: docs/internal/**
+alwaysApply: false
+---
+
+# Internal Document Conventions
+
+## Key Data Sources (read BEFORE editing any doc)
+
+- **Park list (51 parks):** `docs/internal/Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx` (46 active + 5 Esperia 2028)
+- **Centralised data:** `lib/portfolio-data.ts` (Single Source of Truth)
+- **Linyang quotation:** `docs/clients/Group1_ABIO_Power/Sheet1-Table 1.csv`
+- **EPC adders:** `docs/internal/Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx`
+
+## Role Clarifications
+
+- **Civil works** are done by **Lighthief subcontractors**, NOT Kamil
+- **Kamil** is Linyang's project coordinator, NOT a civil works contractor
+- **Linyang** provides: factory production, install crew (12 persons), commissioning team (4 persons)
+- **Lighthief** manages: subcontractors, DSO interface, supervision, O&M
+
+## Timeline Assumptions (as of Feb 2026)
+
+- Pre-order phase: 6–8 weeks (CT class DSO confirmation is critical path)
+- Production: 90 days (Linyang confirmed)
+- Shipping: 50 days (Shanghai→Limassol, verified range 38–52 days)
+- Order dates are CLIENT-DEPENDENT and NOT confirmed
+- "Day 0" = Linyang production order (after ALL pre-conditions met)
+
+## Historical vs Living Documents
+
+- **Living** (use templates): proposals, pricing docs, business plan, timeline
+- **Historical** (never template): meeting notes, RFIs, RFPs, quotations, legal correspondence

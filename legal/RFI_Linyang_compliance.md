@@ -145,10 +145,10 @@ We request your urgent response to the following items.
 | **Document** | Written commitment for SOH warranty reserve and cell augmentation |
 | **Current Status** | Not yet formalised |
 | **Priority** | 🔴 CRITICAL |
-| **Reason** | Required for Tier D LTSA offerings to end clients |
+| **Reason** | Required for Tier C LTSA offerings to end clients |
 
 **Background:**
-Lighthief is offering Tier D Premium LTSA services that include an SOH (State of Health) Guarantee to end clients. This guarantee is backed by the OEM (Linyang) warranty reserve as stated in our LTSA Section 10.6.
+Lighthief is offering Tier C Premium LTSA services that include an SOH (State of Health) Guarantee to end clients. This guarantee is backed by the OEM (Linyang) warranty reserve as stated in our LTSA Section 10.6.
 
 **Request:** Please confirm the following in writing:
 
@@ -181,11 +181,11 @@ Lighthief is offering Tier D Premium LTSA services that include an SOH (State of
 | Linyang product liability insurance covers warranty reserve obligations | ☐ Confirmed |
 
 **Why This Matters:**
-If Lighthief offers Tier D LTSA services and the batteries degrade prematurely:
+If Lighthief offers Tier C LTSA services and the batteries degrade prematurely:
 1. The Client will claim under the SOH Guarantee (LTSA Section 10);
 2. Lighthief must augment the system or pay Liquidated Damages;
 3. Lighthief needs certainty that Linyang will supply replacement cells under warranty;
-4. Without this commitment, Lighthief cannot offer Tier D services.
+4. Without this commitment, Lighthief cannot offer Tier C services.
 
 **Requested Format:** Please provide a signed letter on Linyang letterhead confirming the above commitments, referencing the Distribution Agreement dated November 28, 2025.
 

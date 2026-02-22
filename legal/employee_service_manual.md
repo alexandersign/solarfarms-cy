@@ -216,7 +216,7 @@ Availability (%) = [(8,760 - Unavailable Hours) / 8,760] x 100
 - EMS failures
 - Non-dispatch periods
 
-### 3.5 Tier D Additional Requirements
+### 3.5 Tier C Premium Requirements (Not Offered)
 
 Everything in Tier A, B & C, plus:
 
@@ -768,7 +768,7 @@ Signed: ________________     Date: ________
 
 **Output:** Written summary report to client within 15 Business Days
 
-### 6.6 Annual SOH Testing (Tier D Only)
+### 6.6 Annual SOH Testing (Not Currently Offered)
 
 **Protocol:**
 1. Schedule test 30 days before PAC anniversary

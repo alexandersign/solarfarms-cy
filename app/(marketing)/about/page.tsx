@@ -47,7 +47,7 @@ const teamMembers = [
       "7Sun JV Partnership",
       "Crypto & AI Infrastructure Integration"
     ],
-    email: "alexander.papacosta@lighthief.com",
+    email: "office@lighthief.com",
     linkedin: true,
     image: "/images/team/alexander-papacosta.jpg"
   },

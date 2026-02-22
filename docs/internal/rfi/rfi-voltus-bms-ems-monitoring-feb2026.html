@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI - Voltus BMS Monitoring, EMS Optimization & Cybersecurity - February 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1f2937; padding: 40px; max-width: 1100px; margin: 0 auto; }
+        
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .header h1 { font-size: 22pt; margin-bottom: 8px; text-align: center; }
+        .header .subtitle { font-size: 13pt; opacity: 0.9; text-align: center; }
+
+        .section { margin-bottom: 30px; page-break-inside: avoid; }
+        h2 { color: #1e3a5f; border-bottom: 2px solid #1e3a5f; padding-bottom: 8px; margin-bottom: 15px; font-size: 14pt; }
+        h3 { color: #2d5a87; margin: 20px 0 10px 0; font-size: 12pt; }
+        h4 { color: #374151; margin: 15px 0 8px 0; font-size: 11pt; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #f3f4f6; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .highlight-box { background: #dbeafe; border: 1px solid #3b82f6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .success-box { background: #dcfce7; border: 1px solid #22c55e; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .response-cell { background: #fff7ed; min-height: 30px; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-orange { background: #ffedd5; color: #c2410c; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-purple { background: #f3e8ff; color: #7c3aed; }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 4px; }
+        p { margin-bottom: 10px; }
+
+        .context-note { font-size: 9.5pt; color: #6b7280; font-style: italic; margin-top: 4px; }
+
+        @media print {
+            body { padding: 20px; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+        }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: #1e3a5f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 12pt; z-index: 100; }
+        .print-btn:hover { background: #2d5a87; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-RFI-VOLTUS-2026-003</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 20 February 2026</div>
+                <div><strong>Priority:</strong> HIGH</div>
+            </div>
+        </div>
+        <h1>REQUEST FOR INFORMATION</h1>
+        <div class="subtitle">BMS Monitoring Depth, EMS Optimization & Market Capabilities, Cybersecurity Compliance</div>
+        <div style="text-align: center; margin-top: 8px; font-size: 11pt; opacity: 0.9;">Cyprus BESS Portfolio &mdash; Client Technical Due Diligence Response</div>
+    </div>
+
+    <!-- SECTION 1: PURPOSE -->
+    <div class="section">
+        <h2>1. PURPOSE</h2>
+
+        <p>Dear Voltus Team,</p>
+
+        <p>We have received a detailed technical due diligence questionnaire from one of our investor-clients covering BMS monitoring depth, EMS optimization and market capabilities, cybersecurity compliance, and KPI tracking. Many items are covered by our existing documentation and the Linyang OEM specifications. However, several questions specifically relate to <strong>Voltus EMS software capabilities</strong> that we need to confirm before responding to the client.</p>
+
+        <p>We have categorised each item below. Where we can answer from existing documentation, we have provided our draft response. Where Voltus input is required, the <span class="badge badge-orange">VOLTUS INPUT REQUIRED</span> tag is shown with a response field for your team.</p>
+
+        <div class="warning-box">
+            <strong>Response requested by: 25 February 2026</strong><br>
+            Client demo is scheduled for Wednesday 26 February. We need your input by Tuesday EOD at the latest to prepare the complete response package. Login credentials will be provided Monday.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Context:</strong> This questionnaire comes from a sophisticated investor who is evaluating our BESS package against bankability standards. The quality and detail of our response will directly impact contract progression. Please provide technically precise answers.
+        </div>
+    </div>
+
+    <!-- SECTION 2: BMS - CELL-LEVEL MONITORING -->
+    <div class="section">
+        <h2>2. BATTERY MONITORING SYSTEM &mdash; CELL-LEVEL MONITORING DEPTH</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>2.1</td>
+                <td><strong>Cell voltage monitoring</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <strong>Linyang BMS (BMU Level 1):</strong> 52 voltage samples per BMU (2 BMUs per pack, 96 BMUs per container). Cell voltage range 0&ndash;5V, accuracy &plusmn;5 mV, sampling period &le;100 ms. Operational cell voltage range: 2.5V&ndash;3.65V. Warning thresholds at &lt;2.6V / &gt;3.55V, critical at &lt;2.55V / &gt;3.60V.
+                    <br><br>Total per container: <strong>4,992 cell voltage measurement points</strong>, continuously sampled at 10 Hz.
+                </td>
+            </tr>
+            <tr>
+                <td>2.2</td>
+                <td><strong>Cell temperature monitoring</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <strong>Linyang BMS (BMU Level 1):</strong> 12 temperature samples per BMU, accuracy &plusmn;1&deg;C, sampling period &le;200 ms. Range: -40&deg;C to +105&deg;C. Operational limits: charge 0&deg;C to +55&deg;C, discharge -20&deg;C to +55&deg;C. Warning at &gt;50&deg;C, critical at &gt;53&deg;C.
+                    <br><br>Total per container: <strong>1,152 temperature measurement points</strong>, sampled at 5 Hz.
+                </td>
+            </tr>
+            <tr>
+                <td>2.3</td>
+                <td><strong>Internal resistance tracking</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Linyang BMS monitors insulation resistance at system level. 
+                    <br><br><strong>Question for Voltus:</strong> Does the Voltus EMS provide cell-level or module-level internal resistance tracking (AC impedance or DC resistance) as a derived metric from BMS data? If so, at what resolution and frequency? Is this logged historically for degradation trending?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2.4</td>
+                <td><strong>Cell imbalance detection</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <strong>Linyang BMS:</strong> Passive cell equalization with &ge;80 mA balancing current. Imbalance warning threshold: &gt;30 mV between cells; critical alarm: &gt;50 mV. BMU-level monitoring ensures per-cell visibility. Equalization status and delta voltage are reported to BAMS (Level 3) and available via Modbus TCP to EMS.
+                </td>
+            </tr>
+            <tr>
+                <td>2.5</td>
+                <td><strong>SOC estimation accuracy &lt;1%</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Linyang BMS (BCMU Level 2):</strong> SOC calculation accuracy is specified as &le;5%. Energy calculation error: &le;&plusmn;2%.
+                    <br><br>The client requests &lt;1% SOC accuracy. This is significantly tighter than the BMS hardware specification.
+                    <br><br><strong>Question for Voltus:</strong> Does the Voltus EMS apply any enhanced SOC estimation algorithms (e.g., Kalman filtering, coulomb counting with drift correction, OCV correlation) on top of the BMS-reported SOC to achieve higher accuracy? What SOC accuracy can realistically be guaranteed at the EMS level? Can you provide a technical brief on the SOC estimation methodology?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2.6</td>
+                <td><strong>SOH estimation with degradation model</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed from Linyang warranty:</strong> Degradation curves documented with guaranteed SOH milestones:
+                    <ul>
+                        <li>Initial SOH: 98.5% at COD</li>
+                        <li>Year 5: &ge;85%</li>
+                        <li>Year 10: &ge;79.58%</li>
+                        <li>Year 15: &ge;70%</li>
+                    </ul>
+                    Cycle life: 7,000 cycles (25&deg;C, 90% DoD, 0.5C/0.5C) to 70% EOL.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS include a real-time SOH estimation model that tracks actual degradation vs. the OEM warranty curve? Is this a physics-based model (impedance growth + capacity fade) or empirical? Is the degradation model configurable per cell chemistry (LFP-specific)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 3: ADVANCED DEGRADATION ANALYTICS -->
+    <div class="section">
+        <h2>3. ADVANCED DEGRADATION ANALYTICS</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>3.1</td>
+                <td><strong>Cycle counting algorithm</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Linyang warranty references cycle life (7,000 equivalent full cycles). BMS tracks cumulative charge/discharge energy.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS implement a rainflow cycle counting algorithm (or equivalent) to accurately count partial cycles and map them to equivalent full cycles? Is this per-container or per-cluster? Is the methodology aligned with IEC 62660-1?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3.2</td>
+                <td><strong>Throughput-based degradation tracking</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS track cumulative energy throughput (MWh in + MWh out) per container/cluster and correlate it with capacity degradation? Is this presented as a degradation-per-MWh metric? Can it differentiate between charge and discharge throughput impact?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3.3</td>
+                <td><strong>Calendar aging model</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Our Linyang degradation data shows first-year SOH drop of ~4&ndash;5% across all usage profiles, suggesting calendar aging is a meaningful contributor alongside cycling.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS include a calendar aging model that accounts for time-at-temperature and SOC-at-rest effects? Is this separable from cycle aging in the degradation dashboard? What inputs does it use (ambient temperature, average SOC, time)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3.4</td>
+                <td><strong>Dynamic DoD impact modelling</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Linyang specifications include cycle life at both 100% DoD (6,000 cycles to 80% SOH) and 90% DoD (7,000&ndash;8,000 cycles to 70% SOH), confirming DoD-dependent degradation.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS dynamically model the impact of varying DoD on battery degradation? Can it adjust dispatch strategies to optimize between revenue and battery lifetime? Is the DoD-cycle life curve configurable?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3.5</td>
+                <td><strong>Predictive EOL forecasting</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS provide a predictive End-of-Life forecast based on actual usage data (cycles, throughput, temperature history, calendar time)? Can it project the date at which SOH will reach the warranty threshold (70%)? Is this updated dynamically as operating conditions change?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 4: THERMAL & SAFETY MONITORING -->
+    <div class="section">
+        <h2>4. THERMAL &amp; SAFETY MONITORING</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>4.1</td>
+                <td><strong>Thermal runaway early detection</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    Multi-layer detection system per container:
+                    <ul>
+                        <li><strong>Cell-level:</strong> 1,152 temperature sensors (BMU), &le;200 ms sampling, warning &gt;50&deg;C, critical &gt;53&deg;C</li>
+                        <li><strong>Gas detection:</strong> 2&times; H&#8322; combustible gas detectors + 2&times; CO sensors per container</li>
+                        <li><strong>Smoke detection:</strong> 2&times; photoelectric smoke detectors per container</li>
+                        <li><strong>Heat detection:</strong> 2&times; spot-type heat detectors per container</li>
+                        <li><strong>Pack-level:</strong> 48&times; CO + temperature detection nozzles integrated per pack</li>
+                    </ul>
+                    <strong>Chemistry advantage:</strong> LFP (Lithium Iron Phosphate) is inherently the most thermally stable Li-ion chemistry. UL 9540A testing <strong>PASSED</strong> with no thermal propagation between modules.
+                </td>
+            </tr>
+            <tr>
+                <td>4.2</td>
+                <td><strong>Gas detection integration</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    Integrated into fire control panel per container:
+                    <ul>
+                        <li>2&times; H&#8322; (combustible gas) detectors &mdash; triggers explosion-proof fans at low threshold, emergency ventilation at high threshold</li>
+                        <li>2&times; CO (carbon monoxide) sensors &mdash; early indicator of cell decomposition</li>
+                        <li>Explosion vent panel for pressure relief</li>
+                        <li>Explosion-proof exhaust fan for gas evacuation</li>
+                    </ul>
+                    Gas thresholds are tied to the 4-stage alarm escalation sequence with automatic suppression activation.
+                </td>
+            </tr>
+            <tr>
+                <td>4.3</td>
+                <td><strong>Hotspot localization</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>BMS capability:</strong> 12 temperature sensors per BMU (96 BMUs per container = 1,152 points) provides module-level spatial resolution for temperature mapping. Min/Max cell temperature per cluster reported to BAMS and forwarded to EMS.
+                    <br><br><strong>Question for Voltus:</strong> Does the Voltus EMS provide a thermal map or hotspot visualization feature that leverages the 1,152 temperature data points per container? Can it identify and alert on localized thermal anomalies (e.g., specific rack/pack running consistently hotter)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>4.4</td>
+                <td><strong>HVAC performance monitoring</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>System specification:</strong> Liquid cooling (ethylene glycol + water), 45 kW capacity (0.5C) / 60 kW (1C). Internal target: 25&plusmn;5&deg;C. BMS controls thermal management start-stop and monitors temperature deviation.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS monitor HVAC/cooling system performance metrics (COP, coolant flow rate, inlet/outlet delta-T, compressor run-time, energy consumption)? Are HVAC efficiency degradation trends tracked? Are alerts generated for cooling performance degradation?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>4.5</td>
+                <td><strong>Fire system status integration</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    Fully integrated fire detection and suppression system per container:
+                    <ul>
+                        <li>Fire control panel with multi-zone detection</li>
+                        <li>4-stage alarm escalation: Primary (single detector) &rarr; Secondary (smoke+heat) &rarr; Gas threshold &rarr; Pack-level alarm</li>
+                        <li>Automatic aerosol suppression (6&times; container-level + 96&times; pack-level units)</li>
+                        <li>30-second countdown before suppression discharge</li>
+                        <li>Audible/visual alarms (indoor + outdoor)</li>
+                        <li>BMS automatic shutdown on fire alarm</li>
+                        <li>Water firefighting system as backup</li>
+                    </ul>
+                    Fire system status signals are available to the EMS via BMS/BAMS Modbus interface.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 5: FAULT DETECTION & DIAGNOSTICS -->
+    <div class="section">
+        <h2>5. FAULT DETECTION &amp; DIAGNOSTICS</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>5.1</td>
+                <td><strong>Real-time fault classification</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Linyang BMS fault categories:</strong> Overvoltage, undervoltage, overcurrent, short circuit, over/under temperature, insulation fault, leakage, cell imbalance. Each has warning and critical severity levels.
+                    <br><br><strong>Question for Voltus:</strong> Does the Voltus EMS provide fault classification beyond the BMS-level alarms? Specifically: (a) automatic categorization of faults by type/severity/location, (b) correlation of multiple alarm signals to identify root fault vs. cascading effects, (c) fault history analytics with classification trends?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>5.2</td>
+                <td><strong>Predictive maintenance analytics</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS include predictive maintenance features? Specifically: (a) anomaly detection using statistical/ML models on sensor data trends, (b) remaining useful life estimation for key components (cells, contactors, cooling system), (c) automated maintenance scheduling based on condition monitoring? If available, what data history is required before predictive models become effective?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>5.3</td>
+                <td><strong>Root cause analysis engine</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS provide automated or assisted root cause analysis (RCA) for fault events? Can it correlate time-stamped data across BMS, PCS, thermal, and grid signals to help operators identify the origin of a fault chain? Is this manual (data replay) or automated (rule-based/ML)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>5.4</td>
+                <td><strong>Alarm prioritization logic</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed system-level priority:</strong> Protection (local firmware, non-overridable) &gt; DSO SCADA curtailment &gt; DSO CB control &gt; Market dispatch. BMS alarms have warning vs. critical severity.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS provide configurable alarm prioritization within the SCADA/dashboard? (a) Severity-based filtering (info/warning/critical/emergency), (b) alarm suppression for known conditions, (c) alarm shelving during maintenance, (d) escalation rules (e.g., unacknowledged critical alarm &rarr; SMS/email after X minutes)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 6: DATA INFRASTRUCTURE -->
+    <div class="section">
+        <h2>6. DATA INFRASTRUCTURE</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>6.1</td>
+                <td><strong>High-resolution data logging (1s or sub-second)</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <ul>
+                        <li><strong>BMS hardware:</strong> Voltage sampling &le;100 ms (10 Hz), temperature &le;200 ms (5 Hz), current &le;100 ms</li>
+                        <li><strong>EMS data logging:</strong> 1-second resolution for real-time measurements, 7-day retention for raw data</li>
+                        <li><strong>Performance data:</strong> 1-minute resolution, 1-year full retention, 10-year aggregated</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>6.2</td>
+                <td><strong>Event-triggered recording</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Event logs are captured immediately with 5-year retention. Curtailment events are logged with start/end timestamps, commanded vs. achieved values, and curtailed energy (kWh).
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS support event-triggered high-resolution recording (e.g., increase logging frequency from 1s to sub-second when a fault/transient is detected)? Similar to a disturbance recorder or oscillography function? What triggers are configurable?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>6.3</td>
+                <td><strong>Time synchronization via NTP/GPS</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    GPS antenna is listed as required hardware per park (Lighthief to procure). IEC 60870-5-104 protocol requires time synchronization for DSO communication.
+                    <br><br><strong>Question for Voltus:</strong> Does the WAGO PFC200 / Voltus EMS support NTP and/or GPS-based time synchronization? What is the time accuracy achieved? Is the time source configurable (NTP primary, GPS fallback, or vice versa)? Is time sync status monitored and alarmed?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>6.4</td>
+                <td><strong>API export capability</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <ul>
+                        <li><strong>REST API:</strong> Available for cloud integration and external system data exchange</li>
+                        <li><strong>Export formats:</strong> CSV (analysis/reporting), JSON (API integration), IEC 61968 CIM (utility data exchange), Excel (client reports)</li>
+                        <li><strong>Reporting:</strong> Monthly performance report (within 10 business days), quarterly health report (within 15 business days), annual review (within 30 days)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>6.5</td>
+                <td><strong>Data retention policy</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <table style="margin:0;">
+                        <tr><th>Data Type</th><th>Resolution</th><th>Retention</th></tr>
+                        <tr><td>Real-time measurements</td><td>1 second</td><td>7 days (raw)</td></tr>
+                        <tr><td>Event logs</td><td>Immediate</td><td>5 years</td></tr>
+                        <tr><td>Performance data</td><td>1 minute</td><td>1 year (full), 10 years (aggregated)</td></tr>
+                        <tr><td>Alarm history</td><td>Immediate</td><td>5 years</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 7: EMS OPTIMIZATION CAPABILITY -->
+    <div class="section">
+        <h2>7. EMS &mdash; OPTIMIZATION CAPABILITY</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>7.1</td>
+                <td><strong>Multi-objective optimization engine</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Voltus EMS supports energy optimization including peak shaving, load shifting, and arbitrage. Multi-PCS coordination confirmed.
+                    <br><br><strong>Question for Voltus:</strong> Please describe the optimization engine architecture: (a) Is it a multi-objective optimizer (e.g., maximize revenue while minimizing degradation and maintaining grid obligations)? (b) What optimization algorithm is used (LP, MILP, dynamic programming, heuristic)? (c) What is the optimization horizon (rolling 24h, 48h, week-ahead)? (d) What is the dispatch resolution (1 min, 5 min, 15 min)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>7.2</td>
+                <td><strong>Revenue stacking optimization</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Can the EMS simultaneously optimize across multiple revenue streams (e.g., energy arbitrage + FCR + aFRR + DSO curtailment avoidance)? How does it handle conflicting obligations between services? Can revenue stream priorities be configured?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>7.3</td>
+                <td><strong>Constraint-aware dispatch</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed constraints:</strong> DSO curtailment commands have absolute priority over market dispatch. Protection (local firmware) cannot be overridden. BMS enforces voltage, current, and temperature limits.
+                    <br><br><strong>Question for Voltus:</strong> Beyond protection and DSO constraints, does the optimizer account for: (a) SOC limits (min/max), (b) ramp rate limits, (c) C-rate limits, (d) temperature-dependent power derating, (e) grid connection capacity limits, (f) contractual availability requirements?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>7.4</td>
+                <td><strong>Degradation-aware dispatch</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Degradation tracking and warranty monitoring are referenced as EMS features. Battery life monitoring is listed in BESS-specific features.
+                    <br><br><strong>Question for Voltus:</strong> Does the optimization engine incorporate a degradation cost function in its dispatch decisions? Specifically: (a) Does it assign a $/MWh degradation cost to each charge/discharge cycle? (b) Can it reduce cycling when marginal revenue is below marginal degradation cost? (c) Is the degradation model calibrated to Linyang LFP cycle life curves? (d) Can it adjust DoD dynamically based on price signals?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>7.5</td>
+                <td><strong>Stochastic optimization</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the optimizer use stochastic methods to account for uncertainty in price forecasts, RES generation, and load? (a) Is it scenario-based (Monte Carlo) or robust optimization? (b) How many scenarios are evaluated? (c) What is the computation time per optimization run? (d) Does it incorporate confidence intervals on forecasts?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 8: MARKET INTEGRATION -->
+    <div class="section">
+        <h2>8. MARKET INTEGRATION CAPABILITY</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>8.1</td>
+                <td><strong>Day-ahead market interface</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Market participation status is tracked (Address 102: 0=Deactivated, 1=Activated). Aggregators (ABIO, Synenergia) handle market interface for grouped parks.
+                    <br><br><strong>Question for Voltus:</strong> Does the EMS provide a direct interface to day-ahead electricity markets? (a) What market platforms are supported? (b) Can it generate and submit day-ahead bid schedules automatically? (c) Is there a day-ahead optimization module that produces an optimal charge/discharge schedule based on price forecasts? (d) How does it interface with third-party aggregators (ABIO, Synenergia)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>8.2</td>
+                <td><strong>Intraday continuous trading</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS support intraday continuous trading? (a) Can it revise dispatch schedules in near-real-time based on updated price signals? (b) What is the minimum lead time for schedule revision? (c) Can it interface with intraday trading platforms? (d) Is this relevant to the Cyprus market structure (currently under development by CERA/TSO)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>8.3</td>
+                <td><strong>Ancillary services bidding</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed grid services:</strong>
+                    <ul>
+                        <li>FCR: Activation &lt;30s (Voltus target &lt;1s), full response &lt;30s (target &lt;10s), configurable droop (4&ndash;6%), deadband (&plusmn;10 mHz)</li>
+                        <li>aFRR: Activation &lt;5 min (Voltus target &lt;30s), ramp rate 10&ndash;100% PM/min, accuracy &plusmn;5% (target &plusmn;2%)</li>
+                    </ul>
+                    <br><strong>Question for Voltus:</strong> Beyond the real-time response capability, does the EMS support the bidding process for ancillary services? (a) Can it calculate available capacity for bidding (accounting for SOC, degradation, other commitments)? (b) Can it generate ancillary service bid volumes automatically? (c) Is there an API or protocol for submitting bids to the TSO/market operator?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>8.4</td>
+                <td><strong>Automatic bid submission</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Can the EMS automatically submit bids to market/TSO platforms without manual intervention? (a) What market platforms are currently integrated? (b) Is this available for the Cyprus market (CERA/TSO)? (c) What is the failsafe if automatic submission fails?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>8.5</td>
+                <td><strong>TSO communication protocol compliance</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <strong>Native IEC 60870-5-104 support</strong> (mandatory for Cyprus DSO/EAC):
+                    <ul>
+                        <li>TCP/IP port 2404</li>
+                        <li>RTU functionality integrated in WAGO PFC200 (PPC + RTU + IEC-104 gateway)</li>
+                        <li>Full signal point list confirmed (active power, reactive power, CB control, telemetry, protection signals)</li>
+                        <li>IEC-104 timing parameters configured per DSO requirements (t0=30s, t1=15s, t2=10s, t3=20s)</li>
+                        <li>Discrete curtailment levels: 100% / 60% / 30% / 0%</li>
+                        <li>Response time: Command acknowledgment &lt;3s (target &lt;500ms), power adjustment &lt;60s (target &lt;10s)</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 9: FORECAST INTEGRATION -->
+    <div class="section">
+        <h2>9. FORECAST INTEGRATION</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>9.1</td>
+                <td><strong>Price forecasting module</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS include a built-in electricity price forecasting module? (a) What data sources does it use? (b) What forecast horizons are supported (day-ahead, week-ahead)? (c) What is the forecast accuracy (MAPE)? (d) Is it pre-trained for the Cyprus market or does it require market-specific calibration?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>9.2</td>
+                <td><strong>Volatility modelling</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS model price volatility for dispatch optimization? (a) Can it adjust bidding strategy based on expected price spreads? (b) Does it account for seasonal and intraday volatility patterns? (c) Can it identify high-value arbitrage windows dynamically?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>9.3</td>
+                <td><strong>Load &amp; RES forecast integration</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Can the EMS ingest external load and renewable energy (solar/wind) generation forecasts? (a) What input formats are supported (API, CSV, MQTT)? (b) Can it integrate with third-party forecast providers? (c) Is there a built-in solar generation forecast based on irradiance data? (d) How does the RES forecast influence dispatch decisions?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>9.4</td>
+                <td><strong>Scenario-based planning</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS support scenario-based planning for dispatch strategy evaluation? (a) Can operators compare multiple dispatch strategies (e.g., aggressive cycling vs. conservative) before committing? (b) Are "what-if" simulations available? (c) Can scenarios include different price forecast assumptions?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>9.5</td>
+                <td><strong>Machine learning forecasting engine</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS use machine learning for any forecasting function (price, load, generation, degradation)? (a) What ML techniques are employed (LSTM, gradient boosting, ensemble)? (b) Is the model re-trained automatically as new data is collected? (c) What is the minimum data history required for model training? (d) Can model performance be audited by the client?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 10: CYBERSECURITY COMPLIANCE -->
+    <div class="section">
+        <h2>10. CYBERSECURITY COMPLIANCE (IEC 62443)</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>10.1</td>
+                <td><strong>Role-based access control</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    RBAC implemented with multi-factor authentication (MFA) support. Defined security zones:
+                    <ul>
+                        <li>Zone 1: Field devices (PCS, BMS) &mdash; Modbus TCP (encrypted tunnel)</li>
+                        <li>Zone 2: Local SCADA/EMS &mdash; Internal only</li>
+                        <li>Zone 3: DMZ (IEC-104 gateway) &mdash; IEC-104 to DSO</li>
+                        <li>Zone 4: Cloud/remote access &mdash; HTTPS/REST API</li>
+                    </ul>
+                    VPN for remote access. Audit logging with 12-month minimum retention.
+                </td>
+            </tr>
+            <tr>
+                <td>10.2</td>
+                <td><strong>Network segmentation</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    OT/IT network separation implemented via 4-zone architecture (see 10.1). Industrial firewall (IEC 62443 certified) required per park. Managed switch with VLAN capability. DMZ between operational and enterprise networks.
+                </td>
+            </tr>
+            <tr>
+                <td>10.3</td>
+                <td><strong>Encrypted communication</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <ul>
+                        <li>TLS 1.3 minimum for all external communications</li>
+                        <li>TLS 1.2+ for SCADA communications</li>
+                        <li>Certificate-based authentication where supported</li>
+                        <li>Encrypted tunnel for Modbus TCP (Zone 1)</li>
+                        <li>IPSec/OpenVPN for remote access</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>10.4</td>
+                <td><strong>Intrusion detection system</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Real-time connection monitoring is documented for DSO communication. Firewall with whitelist rules per DSO IP.
+                    <br><br><strong>Question for Voltus:</strong> Does the Voltus EMS or the recommended network architecture include an intrusion detection/prevention system (IDS/IPS)? (a) Is this network-based or host-based? (b) Does it monitor for OT-specific threats (e.g., Modbus protocol anomalies, unauthorized SCADA commands)? (c) Is it integrated with the SCADA alarm system? (d) Is it a Voltus-provided component or third-party?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>10.5</td>
+                <td><strong>Secure firmware update</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> What is the secure firmware/software update process for the WAGO PFC200 and Voltus EMS software? (a) Are updates cryptographically signed? (b) Is rollback supported if an update fails? (c) Can updates be staged and tested before fleet-wide deployment? (d) What is the typical update frequency? (e) Are security patches prioritized with SLA?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>10.6</td>
+                <td><strong>Audit trail logging</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    All commands logged with timestamps. 12-month minimum retention. Curtailment event logging includes: timestamp (start/end UTC+2), command type (analog/discrete/CB trip), commanded vs. achieved values, curtailed energy (kWh), response time, source identification (DSO/Protection/Auto).
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 11: REMOTE DISPATCH -->
+    <div class="section">
+        <h2>11. REMOTE DISPATCH CAPABILITY</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>11.1</td>
+                <td><strong>Real-time dispatch override</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    DSO SCADA curtailment commands override market dispatch in real-time. Active power setpoint (Address 30) and discrete curtailment levels (100%/60%/30%/0%) can be commanded remotely. Command acknowledgment &lt;3s (target &lt;500ms).
+                </td>
+            </tr>
+            <tr>
+                <td>11.2</td>
+                <td><strong>TSO direct control interface</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    IEC 60870-5-104 native interface. Full signal point list:
+                    <ul>
+                        <li>Active/reactive power setpoints and feedback</li>
+                        <li>Circuit breaker control (open/close) and status</li>
+                        <li>Curtailment level commands</li>
+                        <li>Telemetry (voltage, power, PF, availability)</li>
+                        <li>Protection signals (overcurrent, frequency, voltage, earth fault, ROCOF)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>11.3</td>
+                <td><strong>Manual override hierarchy</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    <strong>Priority hierarchy (non-negotiable):</strong>
+                    <ol>
+                        <li><strong>Protection</strong> (local firmware) &mdash; Cannot be overridden</li>
+                        <li><strong>DSO SCADA curtailment</strong> &mdash; Absolute priority over all dispatch</li>
+                        <li><strong>DSO CB control</strong> &mdash; Hard disconnect</li>
+                        <li><strong>Market dispatch / optimization</strong> &mdash; Only active when DSO not curtailing</li>
+                    </ol>
+                    Local/remote mode selectable (Address 101: 0=Remote, 1=Local).
+                </td>
+            </tr>
+            <tr>
+                <td>11.4</td>
+                <td><strong>Fail-safe fallback logic</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed local firmware fallback:</strong>
+                    <ul>
+                        <li>LFSM-O (frequency-based): Automatic curtailment at 50.2&ndash;50.7 Hz, switch to charging at 50.7 Hz, disconnect &gt;52 Hz or &lt;47 Hz</li>
+                        <li>P(V) voltage-based: Automatic power adjustment at 1.07&ndash;1.10 pu</li>
+                    </ul>
+                    <strong>Question for Voltus:</strong> What happens when EMS communication is lost? (a) Does the WAGO controller revert to a pre-programmed safe mode? (b) What is the communication loss detection timeout? (c) Can the fallback dispatch schedule be pre-loaded? (d) Is there a "last known good" state retention? (e) How is communication restoration handled (automatic or manual re-sync)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 12: REDUNDANCY ARCHITECTURE -->
+    <div class="section">
+        <h2>12. REDUNDANCY ARCHITECTURE</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>12.1</td>
+                <td><strong>Dual EMS servers</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed:</strong> Linyang BAMS provides 2 redundant hosts per container for BMS management.
+                    <br><br><strong>Question for Voltus:</strong> What is the EMS server architecture for redundancy? (a) Is the SCADA Global deployed as dual-server (active/standby)? (b) If the primary EMS server fails, what is the failover time? (c) Is data synchronized between primary and standby servers? (d) For SCADA Local, is there any redundancy or is the WAGO PFC200 the single point of control?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>12.2</td>
+                <td><strong>Redundant communication lines</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Available communication options:</strong>
+                    <ul>
+                        <li>M2M (2G/4G) via CYTA: ~50&ndash;200 ms latency</li>
+                        <li>E-Line (Ethernet P2P) via CYTA: &lt;10 ms latency</li>
+                        <li>Fiber optic via EAC: &lt;5 ms latency</li>
+                    </ul>
+                    <strong>Question for Voltus:</strong> Does the EMS support automatic failover between communication paths (e.g., fiber primary, 4G backup)? (a) What is the failover detection time? (b) Is the switchover seamless or does it require re-establishment of IEC-104 connection? (c) Can both paths be active simultaneously (load balancing or hot standby)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>12.3</td>
+                <td><strong>Backup power supply</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    UPS for controls is listed as required hardware per park (Lighthief to procure).
+                    <br><br><strong>Question for Voltus:</strong> What are the UPS requirements for the WAGO PFC200 and EMS components? (a) What is the minimum runtime required (e.g., ride-through for grid fault vs. graceful shutdown)? (b) What is the power consumption of the WAGO controller + I/O modules? (c) Is there a recommended UPS specification?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>12.4</td>
+                <td><strong>Hot-standby failover</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Is hot-standby failover supported at any level of the EMS architecture? (a) WAGO controller level: is dual-PLC supported? (b) SCADA Local level: active/standby? (c) SCADA Global level: active/standby with automatic failover? (d) What is the RTO (recovery time objective) for each level?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>12.5</td>
+                <td><strong>Edge controller fallback mode</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed:</strong> WAGO PFC200 runs local firmware with automatic frequency-based (LFSM-O) and voltage-based (P(V)) curtailment, independent of EMS communication.
+                    <br><br><strong>Question for Voltus:</strong> Beyond protection-mode fallback, can the WAGO edge controller execute a pre-loaded dispatch schedule autonomously if cloud/central EMS connection is lost? (a) How long can it operate autonomously? (b) Can the fallback schedule be updated remotely before disconnection? (c) Does it log operations during autonomous mode for later sync?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 13: DATA LOGGING & KPIs -->
+    <div class="section">
+        <h2>13. DATA LOGGING RESOLUTION &amp; KPI MONITORING</h2>
+
+        <h3>13.1 Data Logging Resolution</h3>
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Client Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>13.1a</td>
+                <td><strong>Sub-second frequency data</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    BMS hardware samples at &le;100 ms (voltage/current) and &le;200 ms (temperature). EMS logs at 1-second resolution.
+                    <br><br><strong>Question for Voltus:</strong> Can the EMS log at sub-second resolution (e.g., 100 ms or 200 ms) for specific signals or during specific events? What is the storage impact and is this configurable per signal group?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>13.1b</td>
+                <td><strong>1-minute settlement aggregation</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>Performance data at 1-minute resolution with 1-year full retention and 10-year aggregated retention.</td>
+            </tr>
+            <tr>
+                <td>13.1c</td>
+                <td><strong>Market bid archive</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS archive all market bid submissions and outcomes? (a) Are bids stored with timestamp, volume, price, and acceptance status? (b) What is the retention period for bid archives? (c) Can bid history be exported for audit/reconciliation?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>13.1d</td>
+                <td><strong>KPI dashboarding</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>
+                    Lighthief Master Dashboard provides portfolio-wide access across all groups. Consolidated alarms, performance reports, and aggregator access (read-only for ABIO, Synenergia). SCADA Global supports multi-park master dashboard capability.
+                </td>
+            </tr>
+            <tr>
+                <td>13.1e</td>
+                <td><strong>Degradation tracking dashboard</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Is there a dedicated degradation tracking dashboard in the SCADA platform? (a) Does it display actual SOH vs. warranty curve? (b) Does it show cycle count, throughput, and calendar aging breakdown? (c) Is it available at container, park, and portfolio level? (d) Can it generate degradation reports for warranty claims?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>13.2 KPI Monitoring</h3>
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:20%;">KPI</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:65%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>13.2a</td>
+                <td><strong>Availability (%)</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>Tracked. Warranty requires &ge;97% availability. Address 505 reports PV Plant Availability in real-time telemetry. Monthly performance reports include availability metrics.</td>
+            </tr>
+            <tr>
+                <td>13.2b</td>
+                <td><strong>Round-trip efficiency (%)</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>System-level RTE specified at &ge;86.06%. Monitored via energy metering (grid-side and BESS-side meters). Includes PCS conversion losses, auxiliary consumption, and thermal management loads.</td>
+            </tr>
+            <tr>
+                <td>13.2c</td>
+                <td><strong>Revenue per MW</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS/SCADA dashboard calculate and display revenue per MW as a standard KPI? Can it break down revenue by source (arbitrage, FCR, aFRR, curtailment avoidance)? Is this available at park and portfolio level?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>13.2d</td>
+                <td><strong>Degradation cost per MWh</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS calculate degradation cost per MWh dispatched? (a) What cost model is used (replacement cost / cycle life, or incremental capacity loss valuation)? (b) Is this factored into dispatch optimization decisions? (c) Is it displayed as a KPI in the dashboard?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>13.2e</td>
+                <td><strong>Response time compliance</strong></td>
+                <td><span class="badge badge-green">CONFIRMED</span></td>
+                <td>Tracked in curtailment event logging: response time per command recorded, measured against DSO requirements (&lt;3s acknowledgment, &lt;60s power adjustment). Voltus targets: &lt;500ms acknowledgment, &lt;10s power adjustment.</td>
+            </tr>
+            <tr>
+                <td>13.2f</td>
+                <td><strong>State-of-charge accuracy drift</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS monitor SOC estimation accuracy over time (drift detection)? (a) Is there a periodic SOC recalibration routine (e.g., full charge to known OCV)? (b) Can SOC drift be alarmed when it exceeds a threshold? (c) Is the SOC drift tracked as a KPI?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>13.2g</td>
+                <td><strong>Auxiliary consumption ratio</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    Auxiliary consumption specified at &le;2.5% of rated energy capacity. Includes HVAC, BMS, fire system, lighting, and controls.
+                    <br><br><strong>Question for Voltus:</strong> Is auxiliary consumption ratio tracked as a real-time KPI in the dashboard? Can it be broken down by subsystem (cooling vs. controls vs. fire system)? Is there alerting for auxiliary consumption exceeding normal range?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 14: ADDITIONAL CONSIDERATIONS -->
+    <div class="section">
+        <h2>14. ADDITIONAL CONSIDERATIONS</h2>
+
+        <p>The client has specifically asked whether the following are taken into consideration and/or included in the package offer:</p>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:25%;">Item</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Response / Voltus Input</th>
+            </tr>
+            <tr>
+                <td>14.1</td>
+                <td><strong>Degradation-aware bidding logic</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> Does the EMS incorporate battery degradation costs into market bidding decisions? (a) Can it set a minimum bid price that covers the degradation cost of the dispatch? (b) Can it refuse to bid into low-value markets when degradation cost exceeds revenue? (c) Is this configurable per asset owner's risk preferences?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>14.2</td>
+                <td><strong>Latency risk in ancillary markets</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Communication latency options:</strong>
+                    <ul>
+                        <li>Fiber (EAC): &lt;5 ms &mdash; suitable for FCR (&lt;1s target)</li>
+                        <li>E-Line (CYTA): &lt;10 ms &mdash; suitable for FCR/aFRR</li>
+                        <li>M2M (4G): 50&ndash;200 ms &mdash; acceptable for aFRR, marginal for FCR</li>
+                    </ul>
+                    <strong>Question for Voltus:</strong> How does the EMS handle latency risk for ancillary service delivery? (a) Is communication latency monitored in real-time? (b) Does the system pre-position (anticipatory dispatch) to compensate for communication delay? (c) Is there an alarm when measured latency exceeds the threshold for the active service type? (d) What is Voltus's recommendation for the primary communication path for ancillary services in Cyprus?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>14.3</td>
+                <td><strong>Communication failure scenarios</strong></td>
+                <td><span class="badge badge-blue">PARTIAL &mdash; VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Confirmed fallback behaviour:</strong> WAGO local firmware provides autonomous protection response (LFSM-O frequency, P(V) voltage) independent of communication.
+                    <br><br><strong>Question for Voltus:</strong> Please describe the complete communication failure scenario handling: (a) EMS-to-site loss: What does the edge controller do? For how long? (b) Site-to-DSO loss: How is IEC-104 reconnection handled? (c) BMS-to-EMS loss: Can the PCS continue operating? (d) Multi-path failure: If all communication paths fail simultaneously? (e) What are the configurable timeouts before escalation at each level?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>14.4</td>
+                <td><strong>Ownership clauses in EMS vendor contract</strong></td>
+                <td><span class="badge badge-purple">COMMERCIAL / LEGAL</span></td>
+                <td>
+                    This is a commercial/legal question that will be addressed in the EMS vendor contract between Lighthief and Voltus.
+                    <br><br><strong>Question for Voltus:</strong> For client transparency, please confirm: (a) Who owns the operational data generated by the EMS? (b) Is the EMS software licensed or purchased? (c) What happens to EMS functionality if the Voltus service contract is not renewed? (d) Can the client/asset owner access all historical data in perpetuity? (e) Is there an escrow arrangement for the EMS source code?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>14.5</td>
+                <td><strong>Scalability beyond initial capacity</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    <strong>Question for Voltus:</strong> How does the EMS handle capacity expansion? (a) Can additional containers be added to an existing site without full re-commissioning? (b) Is the WAGO PFC200 I/O capacity sufficient for site expansion (additional PCS/containers)? (c) What is the maximum number of PCS/containers a single WAGO controller can manage? (d) Does the SCADA license need to be upgraded for capacity additions? (e) What is the process and cost for scaling an existing EMS installation?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>14.6</td>
+                <td><strong>Cyber penetration testing certification</strong></td>
+                <td><span class="badge badge-orange">VOLTUS INPUT REQUIRED</span></td>
+                <td>
+                    NIS2 compliance is mandatory for grid connection. IEC 62443 certified hardware is required per our specification.
+                    <br><br><strong>Question for Voltus:</strong> (a) Has the Voltus EMS platform undergone independent penetration testing? (b) If so, by which firm and when was the last test? (c) Can results/certification be shared with the client (redacted if needed)? (d) Is periodic penetration testing included in the maintenance contract? (e) Does Voltus hold any cybersecurity certifications (ISO 27001, IEC 62443 SL certification)?
+                    <div class="response-cell" style="margin-top:10px; padding:10px; min-height:60px;">
+                        <em>Voltus response:</em>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 15: SUMMARY -->
+    <div class="section">
+        <h2>15. RESPONSE SUMMARY</h2>
+
+        <table>
+            <tr>
+                <th>Category</th>
+                <th style="width:15%; text-align:center;"><span class="badge badge-green">CONFIRMED</span></th>
+                <th style="width:15%; text-align:center;"><span class="badge badge-blue">PARTIAL</span></th>
+                <th style="width:15%; text-align:center;"><span class="badge badge-orange">VOLTUS REQUIRED</span></th>
+                <th style="width:10%; text-align:center;">Total</th>
+            </tr>
+            <tr>
+                <td>Cell-Level Monitoring</td>
+                <td style="text-align:center;">3</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">6</td>
+            </tr>
+            <tr>
+                <td>Degradation Analytics</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">5</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>Thermal &amp; Safety</td>
+                <td style="text-align:center;">3</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>Fault Detection</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">4</td>
+            </tr>
+            <tr>
+                <td>Data Infrastructure</td>
+                <td style="text-align:center;">3</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>EMS Optimization</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>Market Integration</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">3</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>Forecast Integration</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">5</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>Cybersecurity (IEC 62443)</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">6</td>
+            </tr>
+            <tr>
+                <td>Remote Dispatch</td>
+                <td style="text-align:center;">3</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">4</td>
+            </tr>
+            <tr>
+                <td>Redundancy Architecture</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+            <tr>
+                <td>Data Logging &amp; KPIs</td>
+                <td style="text-align:center;">5</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">5</td>
+                <td style="text-align:center;">12</td>
+            </tr>
+            <tr>
+                <td>Additional Considerations</td>
+                <td style="text-align:center;">0</td>
+                <td style="text-align:center;">2</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">6</td>
+            </tr>
+            <tr style="background: #dbeafe !important; font-weight: bold;">
+                <td><strong>TOTAL</strong></td>
+                <td style="text-align:center;"><strong>22</strong></td>
+                <td style="text-align:center;"><strong>17</strong></td>
+                <td style="text-align:center;"><strong>34</strong></td>
+                <td style="text-align:center;"><strong>73</strong></td>
+            </tr>
+        </table>
+
+        <div class="success-box">
+            <strong>22 items (30%) can be fully answered</strong> from existing Linyang OEM specifications, EPC documentation, and confirmed system architecture.
+        </div>
+
+        <div class="highlight-box">
+            <strong>17 items (23%) are partially answered</strong> with hardware/system-level confirmation, but require Voltus input on EMS software-specific features.
+        </div>
+
+        <div class="warning-box">
+            <strong>34 items (47%) require Voltus input</strong> &mdash; primarily EMS optimization algorithms, market integration, forecasting, and advanced analytics that are Voltus software capabilities.
+        </div>
+    </div>
+
+    <!-- SECTION 16: RESPONSE INSTRUCTIONS -->
+    <div class="section">
+        <h2>16. RESPONSE INSTRUCTIONS</h2>
+
+        <p>Dear Voltus Team, please:</p>
+
+        <ol style="margin-left: 20px;">
+            <li>Fill in the orange response fields throughout this document</li>
+            <li>For features that <strong>are available</strong>: provide a brief technical description of how they work</li>
+            <li>For features that <strong>are not currently available</strong>: state clearly and indicate if they are on the product roadmap (with estimated timeline)</li>
+            <li>For features that <strong>could be added as customization</strong>: indicate scope and cost implications</li>
+            <li>Where relevant, reference specific SCADA screenshots or documentation that can be shared with the client during the Wednesday demo</li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>Deadline: Tuesday 25 February 2026 EOD</strong><br>
+            Demo scheduled: Wednesday 26 February 2026<br>
+            Please prioritize Sections 7 (EMS Optimization), 9 (Forecasting), and 14 (Additional Considerations) as these are the areas where the client will probe deepest.
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 9pt; color: #6b7280;">
+        <table style="border: none; font-size: 9pt;">
+            <tr style="background: none;">
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <strong>Prepared by:</strong> Lighthief Cyprus Ltd<br>
+                    <strong>Subject:</strong> RFI - BMS Monitoring, EMS Optimization &amp; Cybersecurity (LCY-RFI-VOLTUS-2026-003)<br>
+                    <strong>For:</strong> Voltus EMS Team
+                </td>
+                <td style="border: none; width: 50%; vertical-align: top; text-align: right;">
+                    <strong>Classification:</strong> Confidential<br>
+                    <strong>Pages:</strong> For internal use and vendor response only<br>
+                    Document Reference: LCY-RFI-VOLTUS-2026-003 | Version 1.0 | 20 February 2026
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -16,7 +16,7 @@
 | Project Management | 0 | 1 | 4 | 🔴 10% |
 | **OVERALL EPC READINESS** | | | | **🟡 ~43%** |
 
-**Bottom line:** You have strong commercial positioning (exclusive distributor, 51-park portfolio, OEM relationship) and confirmed equipment specs. **Major progress:** EN 50549-2 grid code certification now confirmed (TÜV cert + full test report), along with anti-islanding, LVRT/HVRT, and IEC 61850. Grid connection applications can now proceed. Remaining critical blockers: unsigned OEM contract, unresolved warranty pricing conflict, local subcontractor quotes not started, and some MV datasheets still incomplete for smaller site configs.
+**Bottom line:** You have strong commercial positioning (exclusive distributor, 51-park portfolio, OEM relationship) and confirmed equipment specs. **Major progress:** EN 50549-2 grid code certification now confirmed (TÜV cert + full test report), along with anti-islanding, LVRT/HVRT, and IEC 61850. Grid connection applications can now proceed. Remaining critical blockers: unsigned OEM contract, unresolved warranty pricing conflict, local subcontractor quotes not started. **MV skid datasheets now complete** — all 4 skid models (T1, T2, T4, T8) received; only these 4 exist, with park MW sizes achieved via PCS count combinations (1.00/1.25MW units).
 
 ---
 
@@ -33,12 +33,12 @@
 | Item | Status | Gap |
 |---|---|---|
 | EMS/SCADA (Voltus) | Jan 2026 quote received | New RFI sent (Feb 2026) for 3-group structure. BoM not confirmed. WAGO hardware scope unclear |
-| MV Skids (Linyang) | Included in CIF price | **14 of 15 MV Skid datasheets MISSING** — only 10MW config available |
+| MV Skids (Linyang) | Included in CIF price | ✅ **All 4 skid models received** (T1, T2, T4, T8). Park MW sizes use combinations of skids + 1.00/1.25MW PCS units. |
 
 ### 🔴 NOT READY
 | Item | Status | Action Required |
 |---|---|---|
-| Transformers | Part of MV Skid scope | **14 of 15 transformer datasheets MISSING**. Only 10MVA partial data available. Cannot do protection studies without these |
+| Transformers | Part of MV Skid scope | Transformer data available for T8 (10MVA). T1/T2/T4 skid datasheets received — extract transformer specs from each. Only 4 skid models exist. |
 | MV Interface Equipment | Not scoped | PCC bay extensions, MV cabling from skid to PCC — no design, no quotes |
 | Civil/Structural Materials | Not scoped | Concrete platforms, drainage, fencing, access roads — internal estimates only, no vendor quotes |
 | LPS / Earthing Materials | Not scoped | Lightning protection, earthing grid — listed as TBD in spreadsheet (columns AL, AO = all zeros) |
@@ -87,14 +87,14 @@
 | Item | Status | Gap |
 |---|---|---|
 | Certifications | 21+ complete | IEC 62933-5-2 notification received. UL 9540A Installation Level pending (site-specific). CE-LVD, CE-EMC, CB scheme, IEC 62477-1 all certified |
-| MV Skid Datasheets | Improved but incomplete | Additional PCS/transformer docs available. Still need site-specific MV skid configs for smaller sites |
+| MV Skid Datasheets | ✅ Complete | All 4 skid models (T1/T2/T4/T8) received. Only these 4 exist — park sizes use PCS count combinations. |
 
 ### 🔴 NOT READY
 | Item | Status | Action Required |
 |---|---|---|
 | Frequency Response Curves | MISSING | LFSM-O droop curves needed for TSO/DSO approval (FRT available but freq response settings separate) |
 | Protection Settings Guide | MISSING | Cannot design protection scheme without OEM protection settings. **EN 50549-2 cert notes: external interface protection is EPC scope** |
-| Protection Coordination Study | Not started | Requires remaining MV datasheets + transformer data + DSO settings. Can now proceed for 10MW/40MW configs |
+| Protection Coordination Study | Not started | MV skid datasheets complete (all 4 models). Still requires transformer impedance data extraction + DSO settings. Can now proceed for all configs. |
 | Grid Connection Applications | No evidence | Can now be submitted — EN 50549-2 cert is available. Must be filed per park to EAC |
 | Black Start / Sync Procedures | MISSING | Required for commissioning |
 
@@ -120,7 +120,7 @@
 ### 🔴 NOT READY
 | Item | Status | Action Required |
 |---|---|---|
-| **Extended Warranty Yr 11-15** | **CRITICAL PRICING GAP** | Linyang: €4,182/MWh/yr vs Client model: €1,158/MWh/yr — **261% more expensive**. Either renegotiate with Linyang or update client pricing |
+| **Extended Warranty Yr 11-15** | **CRITICAL PRICING GAP** | Linyang: €2,084/MWh/yr vs Client model: €1,158/MWh/yr — **80% more expensive**. Either renegotiate with Linyang or update client pricing |
 | Local EPC Cost Quotes | **No RFPs sent** | Mechanical install, electrical install, civil works, MV cabling, earthing — all internal estimates. No Cyprus subcontractor quotes |
 
 ---
@@ -177,7 +177,7 @@
 | Item | Gap |
 |---|---|
 | LTSA contract | Pricing confirmed but no signed LTSA document |
-| Availability formula | 97% target confirmed, but calculation methodology not defined for 863.5 MWh system |
+| Availability formula | 97% target confirmed, but calculation methodology not defined for 881.78 MWh system |
 
 ### 🔴 NOT READY
 | Item | Action Required |
@@ -206,7 +206,7 @@
 | 1 | ~~Get EN 50549-2 certification~~ | ✅ DONE | TÜV cert + 447-page test report confirmed (BCS1000K/1250K-C-HUD). Anti-islanding, LVRT/HVRT, IEC 61850 also available |
 | 2 | **Sign OEM Sales Agreement** (resolve 18 amendments) | 🔴 CRITICAL | Cannot order equipment. Cannot finalize client contracts |
 | 3 | **Resolve Extended Warranty Yr 11-15 pricing** (261% gap) | 🔴 CRITICAL | Client financial models are wrong. Either renegotiate or re-price |
-| 4 | **Obtain remaining MV Skid datasheets** (small/medium configs) | 🔴 HIGH | 40MW SLDs now available. Still need site-specific MV configs for 1-8 MW sites |
+| 4 | ~~Obtain remaining MV Skid datasheets~~ | ✅ DONE | All 4 skid models (T1/T2/T4/T8) received. Only these 4 exist — park MW sizes use PCS count combinations. |
 | 5 | **Create Master Project Schedule** with phased rollout | 🟢 DONE | Gantt chart live at solarfarms.cy/bess-project. 6 phases, 3 batches, ~65 tasks |
 | 6 | **Submit grid connection applications to EAC** (per park) | 🔴 HIGH | **Can now proceed** — EN 50549-2 cert available. Long lead time, start immediately |
 | 7 | **Issue RFPs to local Cyprus contractors** (civil, mech, elec) | 🔴 HIGH | 12+ cost columns in spreadsheet are empty — all local EPC works uncosted |
@@ -226,7 +226,7 @@ PHASE 1: PRE-ORDER (Current Phase)     ████████░░░░░�
   ✅ Distribution agreement signed
   ❌ OEM contract unsigned
   ❌ Client contracts unsigned
-  ❌ MV datasheets missing
+  ✅ MV datasheets complete (all 4 skid models: T1/T2/T4/T8)
 
 PHASE 2: ENGINEERING & DESIGN           ██░░░░░░░░░░░░░░ ~15%
   ✅ System architecture confirmed

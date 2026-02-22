@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -48,6 +49,16 @@ export const metadata: Metadata = {
 export default function BESSBankabilityArticle() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "BESS Bankability: Why the Right Service Partner Matters",
+        "author": { "@type": "Person", "name": "Alexander Papacosta" },
+        "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
+        "datePublished": "2026-02-10",
+        "description": "BESS bankability depends on the right EPC and O&M partner. Learn how Tier-1 OEM partnerships and multi-layered insurance make BESS assets bankable in Cyprus.",
+        "mainEntityOfPage": "https://solarfarms.cy/blog/bess-bankability-choosing-right-service-partner"
+      }} />
       {/* Hero */}
       <section className="section-padding bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50">
         <div className="container">
@@ -1129,7 +1140,7 @@ export default function BESSBankabilityArticle() {
                 </Button>
               </div>
               <p className="mt-6 text-sm opacity-75">
-                Contact Alexander Papacosta: +357 99 164 158 | alexander.papacosta@lighthief.com
+                Contact Alexander Papacosta: +357 99 164 158 | office@lighthief.com
               </p>
             </div>
 

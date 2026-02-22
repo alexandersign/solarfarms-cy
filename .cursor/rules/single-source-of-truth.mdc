@@ -1,0 +1,60 @@
+---
+description: SSOT architecture — all agents must use portfolio-data.ts as the single source of truth for project data
+alwaysApply: true
+---
+
+# Single Source of Truth (SSOT) Architecture
+
+This project uses a centralised data registry. **NEVER hardcode** project figures into documents.
+
+## Data Registry
+
+`lib/portfolio-data.ts` is the SINGLE SOURCE OF TRUTH for all portfolio data:
+- Parks, MW, MWh, container counts, batch assignments
+- Linyang pricing, client pricing, margins, adder costs
+- Payment terms, warranty rates, LTSA rates
+- Company info, OEM specs, CIF verification data
+
+## How It Works
+
+1. **Source data** lives in `lib/portfolio-data.ts` (68+ variables with `source` and `date` fields)
+2. **Templates** are `.template.html` / `.template.md` files using `{{VARIABLE.path}}` placeholders
+3. **Generator** (`scripts/generate-docs.ts`) reads templates → injects data → writes output files
+4. **Validator** (`scripts/validate-docs.ts`) scans for stale hardcoded values
+
+## Rules for ALL Agents
+
+### When updating project data (parks, pricing, margins, MWh, etc.):
+1. Update the value in `lib/portfolio-data.ts`
+2. Run `npm run docs:generate` to regenerate all templated documents
+3. Run `npm run docs:validate` to check for stale hardcoded values
+4. **NEVER** edit generated `.html`/`.md` files directly if a `.template.*` version exists
+
+### When creating new documents:
+1. Check if data already exists in `portfolio-data.ts` before hardcoding
+2. For living documents (proposals, pricing, specs), create a `.template.*` version
+3. Use `{{PORTFOLIO.mwh}}`, `{{PRICING.cifPerMwh}}`, etc. for dynamic values
+4. Historical documents (meeting notes, RFIs, quotations) do NOT need templates
+
+### When asked about project figures:
+1. Read `lib/portfolio-data.ts` FIRST to get current values
+2. Cross-reference with the v4 Excel: `docs/internal/Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx` (51 parks, confirmed SSOT)
+3. Do NOT trust figures in generated documents — they may be stale
+
+## Key Commands
+
+```bash
+npm run docs:generate   # Regenerate all templated docs
+npm run docs:validate   # Check for stale hardcoded values
+npm run docs:update     # Generate + validate in one step
+```
+
+## Common Variables
+
+| Placeholder | Example Value | What It Is |
+|------------|--------------|------------|
+| `{{PORTFOLIO.mwh}}` | 881.78 | Total portfolio MWh |
+| `{{PORTFOLIO.parks}}` | 51 | Total park count (46 active + 5 Esperia 2028) |
+| `{{PORTFOLIO.mw}}` | 249 | Total BESS MW |
+| `{{PRICING.cifPerMwh}}` | varies | CIF cost per MWh |
+| `{{PRICING.marginPercent}}` | varies | Portfolio margin % |

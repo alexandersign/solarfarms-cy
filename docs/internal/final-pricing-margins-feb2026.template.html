@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Pricing Verification & Margin Analysis — Feb 2026</title>
+<style>
+  @page { size: A4 landscape; margin: 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 9pt; line-height: 1.4; color: #1a1a2e; background: #fff; }
+  
+  .header { background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%); color: #fff; padding: 24px 28px; }
+  .header h1 { font-size: 17pt; font-weight: 700; letter-spacing: -0.3px; }
+  .header .subtitle { font-size: 10pt; color: #8ecae6; font-weight: 500; margin-top: 2px; }
+  .header .meta { display: flex; gap: 28px; margin-top: 10px; font-size: 8pt; color: #a8dadc; flex-wrap: wrap; }
+  
+  .conf-bar { background: #c1121f; color: #fff; text-align: center; font-size: 7.5pt; font-weight: 700; padding: 4px; letter-spacing: 2px; }
+  
+  .content { padding: 16px 28px; }
+  
+  h2 { font-size: 12pt; color: #0d1b2a; border-bottom: 2.5px solid #0d1b2a; padding-bottom: 3px; margin: 20px 0 10px; page-break-after: avoid; }
+  h3 { font-size: 10pt; color: #1b4965; margin: 14px 0 6px; }
+  h4 { font-size: 9pt; color: #457b9d; margin: 10px 0 4px; }
+  p { margin-bottom: 6px; }
+  
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 14px; font-size: 8pt; }
+  th { background: #0d1b2a; color: #fff; padding: 5px 6px; text-align: left; font-weight: 600; font-size: 7.5pt; white-space: nowrap; }
+  td { padding: 4px 6px; border-bottom: 1px solid #dee2e6; vertical-align: top; }
+  tr:nth-child(even) { background: #f8f9fa; }
+  
+  .r { text-align: right; font-family: 'Consolas', 'Courier New', monospace; font-size: 8pt; }
+  .c { text-align: center; }
+  .b { font-weight: 700; }
+  
+  .green { color: #2d6a4f; }
+  .amber { color: #e76f00; }
+  .red { color: #c1121f; }
+  .grey { color: #6c757d; }
+  
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 7pt; font-weight: 700; }
+  .tag-green { background: #d4edda; color: #155724; }
+  .tag-amber { background: #fff3cd; color: #856404; }
+  .tag-red { background: #f8d7da; color: #721c24; }
+  .tag-grey { background: #e9ecef; color: #495057; }
+  .tag-blue { background: #cce5ff; color: #004085; }
+  
+  .kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 12px 0; }
+  .kpi { background: #f0f4f8; border: 1px solid #dee2e6; border-radius: 4px; padding: 10px 12px; text-align: center; }
+  .kpi .val { font-size: 16pt; font-weight: 800; color: #0d1b2a; }
+  .kpi .lbl { font-size: 7.5pt; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .kpi.good .val { color: #2d6a4f; }
+  .kpi.warn .val { color: #e76f00; }
+  .kpi.bad .val { color: #c1121f; }
+  
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
+  .scenario { border: 2px solid #dee2e6; border-radius: 6px; padding: 14px; }
+  .scenario h4 { margin: 0 0 8px; font-size: 10pt; }
+  .scenario.best { border-color: #2d6a4f; }
+  .scenario.worst { border-color: #c1121f; }
+  .scenario .val { font-size: 20pt; font-weight: 800; }
+  
+  .note { background: #fff3cd; border-left: 4px solid #e76f00; padding: 8px 12px; margin: 10px 0; font-size: 8.5pt; }
+  .note.critical { background: #f8d7da; border-color: #c1121f; }
+  .note.info { background: #d1ecf1; border-color: #0c7b93; }
+  .note.success { background: #d4edda; border-color: #2d6a4f; }
+  
+  .group-header td { background: #1b4965 !important; color: #fff; font-weight: 700; font-size: 8.5pt; border: none; }
+  .subtotal td { background: #e8f4f8 !important; font-weight: 700; border-top: 2px solid #457b9d; }
+  .grand-total td { background: #0d1b2a !important; color: #fff; font-weight: 700; font-size: 9pt; }
+  
+  .neg { background: #fff0f0 !important; }
+  
+  .waterfall { margin: 12px 0; }
+  .wf-bar { display: flex; align-items: center; margin: 3px 0; font-size: 8pt; }
+  .wf-label { width: 180px; text-align: right; padding-right: 8px; }
+  .wf-fill { height: 18px; border-radius: 2px; display: flex; align-items: center; padding: 0 6px; color: #fff; font-weight: 600; font-size: 7.5pt; min-width: 40px; }
+  .wf-green { background: #2d6a4f; }
+  .wf-amber { background: #e76f00; }
+  .wf-blue { background: #457b9d; }
+  .wf-red { background: #c1121f; }
+  .wf-grey { background: #6c757d; }
+  
+  @media print {
+    body { font-size: 8pt; }
+    .header, .conf-bar, th, .group-header td, .grand-total td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content { padding: 10px 0; }
+    .kpi, .scenario, .note { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="conf-bar">STRICTLY CONFIDENTIAL — INTERNAL USE ONLY — NOT FOR CLIENT DISTRIBUTION</div>
+
+<div class="header">
+  <h1>EPC Pricing Verification & Margin Analysis</h1>
+  <div class="subtitle">Cyprus BESS Portfolio — Group Order ({{PORTFOLIO.parks}} Parks / {{PORTFOLIO.mwh}} MWh)</div>
+  <div class="meta">
+    <span><strong>Date:</strong> 20 February 2026</span>
+    <span><strong>Author:</strong> Alexander Papacosta</span>
+    <span><strong>Source:</strong> Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx</span>
+    <span><strong>CIF Quote:</strong> LY202601271 (Linyang, 27 Jan 2026)</span>
+    <span><strong>Voltus Quote:</strong> 2026-02-16 Cyprus EMS Project List - Voltus Price - new update SCADA.xlsx</span>
+    <span><strong>Status:</strong> V4 FINAL — 20 Feb 2026 (Client-paid exclusions applied)</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- KPIs -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="val">{{FINANCIALS.cifTotalM}}</div>
+    <div class="lbl">Total CIF (Equipment)</div>
+  </div>
+  <div class="kpi">
+    <div class="val">€11.6M</div>
+    <div class="lbl">EPC Adders (Civil+DEHN+EMS/SCADA)</div>
+  </div>
+  <div class="kpi">
+    <div class="val">{{FINANCIALS.installedCostM}}</div>
+    <div class="lbl">Full EPC Cost (All Confirmed)</div>
+  </div>
+  <div class="kpi good">
+    <div class="val">{{FINANCIALS.netMarginPct}}%</div>
+    <div class="lbl">Portfolio Blended Margin</div>
+  </div>
+  <div class="kpi warn">
+    <div class="val">5</div>
+    <div class="lbl">Parks Below 8% Margin</div>
+  </div>
+</div>
+
+<div class="note success">
+  <strong>✅ V4 FINAL UPDATE (20 Feb 2026):</strong> Client-paid exclusions confirmed (Protection Testing, Earthing Enhancement,
+  Lighthief Supervision). These items are now CLIENT-PAID and excluded from EPC cost base. Portfolio margin recovered
+  from 7.7% to <strong>{{FINANCIALS.netMarginPct}}%</strong> ({{FINANCIALS.netMarginM}}). Only 5 parks remain below 8% margin. Voltus EMS/SCADA unchanged at €3.99M.
+  5% volume discount still pending application.
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<h2>1. Executive Summary</h2>
+
+<div class="scenario-grid">
+  <div class="scenario" style="border-color:#2d6a4f;">
+    <h4 class="green">V4 FINAL — Client-Paid Exclusions Applied (20 Feb 2026)</h4>
+    <table>
+      <tr><td>Total CIF (Equipment)</td><td class="r b">{{FINANCIALS.cifTotalM}}</td></tr>
+      <tr><td>Total EPC Adders (Physical + EMS/SCADA)</td><td class="r">€11.6M</td></tr>
+      <tr><td><strong>Full EPC Cost</strong></td><td class="r b">{{FINANCIALS.installedCostM}}</td></tr>
+      <tr><td>Total Revenue</td><td class="r">{{FINANCIALS.clientRevenueM}}</td></tr>
+      <tr><td><strong>Portfolio margin (blended)</strong></td><td class="r b green">{{FINANCIALS.netMarginM}} ({{FINANCIALS.netMarginPct}}%)</td></tr>
+      <tr><td>Parks below 8% margin</td><td class="r amber"><strong>5 of {{PORTFOLIO.parks}}</strong></td></tr>
+      <tr><td>Voltus EMS/SCADA (all-in)</td><td class="r">€3.99M (+€1.67M vs old)</td></tr>
+      <tr><td>Civil works (Kamil)</td><td class="r">€1.76M</td></tr>
+      <tr><td>DEHN LPS/SPD/Earthing</td><td class="r">€0.55M (materials)</td></tr>
+      <tr><td>Excluded — CLIENT-PAID items</td><td class="r grey">€0.73M (Protection Testing, Earthing Enh., Supervision)</td></tr>
+      <tr><td>5% volume discount (pending)</td><td class="r green">-€0.20M (not yet applied)</td></tr>
+    </table>
+  </div>
+  <div class="scenario" style="border-color:#2d6a4f;">
+    <h4 class="green">✅ MARGIN RECOVERY — V4 Client-Paid Exclusions</h4>
+    <table>
+      <tr><td><strong>G1: ABIO (13 parks)</strong></td><td class="r green">6.7% → <strong>9.9%</strong> (+3.2pp)</td></tr>
+      <tr><td><strong>G2: ESP (11 parks)</strong></td><td class="r green">9.0% → <strong>11.5%</strong> (+2.5pp)</td></tr>
+      <tr><td><strong>G3: TIM (9 parks)</strong></td><td class="r green">8.8% → <strong>11.9%</strong> (+3.1pp)</td></tr>
+      <tr><td><strong>Standalone (6 parks)</strong></td><td class="r green">6.5% → <strong>~9.5%</strong> (+3.0pp)</td></tr>
+      <tr><td colspan="2" style="background:#d4edda;padding:8px;"><strong>Driver:</strong> Protection Testing (€314K), Earthing Enhancement (€163K), and Lighthief Supervision (€255K) confirmed as CLIENT-PAID — excluded from EPC cost base per v4 adders sheet.</td></tr>
+      <tr><td>Install confirmed in CIF</td><td class="r green">✅ Linyang: 12 engineers on-site</td></tr>
+      <tr><td><strong>Remaining action</strong></td><td class="r amber"><strong>Apply 5% Voltus volume discount (~€200K)</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="note success">
+  <strong>✅ CONFIRMED (15 Feb 2026 Meeting):</strong> Linyang's CIF includes mechanical installation (B1) and DC/AC electrical
+  installation (B2). Linyang provides 4 Polish + 8 Chinese engineers (12 total) on-site. SAT report by Linyang.
+  Commissioning split: Cold = Lighthief, Hot = Shared, System = Shared + Voltus. Worst case scenario eliminated.
+</div>
+
+<!-- PRICING FRAMEWORK -->
+<h2>2. EPC Adder Cost Stack — Verification Status</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:4%">#</th>
+      <th style="width:22%">Cost Item</th>
+      <th style="width:20%">Formula / Rate</th>
+      <th style="width:10%" class="c">Status</th>
+      <th style="width:10%" class="r">Portfolio Total</th>
+      <th style="width:8%" class="r">% of CIF</th>
+      <th style="width:26%">Source / Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- GREEN -->
+    <tr class="group-header"><td colspan="7">CONFIRMED — Quotation or Rate Received</td></tr>
+    <tr>
+      <td>1</td><td><strong>Import Duty</strong></td><td>3.0% of CIF (weighted avg)</td>
+      <td class="c"><span class="tag tag-green">CONFIRMED</span></td>
+      <td class="r b">€2,241,355</td><td class="r">3.0%</td>
+      <td>User confirmed. Batteries 2.7%, PCS 0%, Transformer 3.7%</td>
+    </tr>
+    <tr>
+      <td>2</td><td><strong>Insurance</strong></td><td>0.75% of CIF</td>
+      <td class="c"><span class="tag tag-green">CONFIRMED</span></td>
+      <td class="r b">€560,339</td><td class="r">0.75%</td>
+      <td>Agent confirmed rate</td>
+    </tr>
+    <tr>
+      <td>3</td><td><strong>LPS Lightning Protection</strong></td><td>BESS €429.41/cont + MV SKID €617.52/skid</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r b">€148,538</td><td class="r">0.20%</td>
+      <td>DEHN quotation received. HVI Light Plus solution, LPS III or IV. {{PORTFOLIO.containers}} BESS + 66 MV SKIDs.</td>
+    </tr>
+    <tr>
+      <td>4</td><td><strong>SPD Surge Protection</strong></td><td>DC €199.28/cont + LV €336.47/skid + MV €498.92/park + Aux €163.74/park + Comms €134.37/struct</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r b">€148,617</td><td class="r">0.20%</td>
+      <td>DEHN quotation received. Full SPD suite: DC 1500V, LV 400V, MV 22kV, Aux, Control/Comms.</td>
+    </tr>
+    <tr>
+      <td>5</td><td><strong>Earthing Grid + Electrodes</strong></td><td>€793.59 per structure (BESS + MV)</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r b">€251,568</td><td class="r">0.34%</td>
+      <td>DEHN quotation. 317 structures × €793.59. Enhancement: site-dependent (N/A in base quote).</td>
+    </tr>
+    <tr>
+      <td>5b</td><td><strong>LPS/SPD Installation Labor</strong></td><td>€1,600 per park</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r b">€81,600</td><td class="r">0.11%</td>
+      <td>Balanced rate: StrikeRA (UK) quoted £1,700 GBP, local estimate €500. Set at €1,600/park.</td>
+    </tr>
+    <tr style="background:#d4edda;">
+      <td colspan="4" class="b" style="text-align:right;">GREEN SUBTOTAL (incl. DEHN + Install)</td>
+      <td class="r b">€3,432,017</td><td class="r b">4.6%</td><td></td>
+    </tr>
+
+    <!-- IN SHEET (unquoted estimates) -->
+    <tr class="group-header"><td colspan="7">IN SPREADSHEET — Model Estimates (No Contractor Quote)</td></tr>
+    <tr>
+      <td>6</td><td><strong>Port & Customs</strong></td><td>€4K–24K per park (by size)</td>
+      <td class="c"><span class="tag tag-amber">ESTIMATE</span></td>
+      <td class="r b">€357,000</td><td class="r">0.48%</td>
+      <td>Based on Interfreight rates. Values in sheet.</td>
+    </tr>
+    <tr>
+      <td>7</td><td><strong>LV Cabling</strong></td><td>MW × €1,400</td>
+      <td class="c"><span class="tag tag-amber">ESTIMATE</span></td>
+      <td class="r b">€363,300</td><td class="r">0.49%</td>
+      <td>No contractor quote. RFP issued.</td>
+    </tr>
+    <tr>
+      <td>8</td><td><strong>MV Cabling</strong></td><td>€3,500 per MV SKID</td>
+      <td class="c"><span class="tag tag-amber">ESTIMATE</span></td>
+      <td class="r b">€245,000</td><td class="r">0.33%</td>
+      <td>No contractor quote. RFP issued.</td>
+    </tr>
+    <tr>
+      <td>9</td><td><strong>MV Terminations</strong></td><td>€2,200 per MV SKID</td>
+      <td class="c"><span class="tag tag-amber">ESTIMATE</span></td>
+      <td class="r b">€154,000</td><td class="r">0.21%</td>
+      <td>No contractor quote. RFP issued.</td>
+    </tr>
+    <tr>
+      <td>10</td><td><strong>Protection Engineering</strong></td><td>€5K (€6K if &gt;5MW)</td>
+      <td class="c"><span class="tag tag-amber">ESTIMATE</span></td>
+      <td class="r b">€275,000</td><td class="r">0.37%</td>
+      <td>No contractor quote. RFP issued.</td>
+    </tr>
+    <tr>
+      <td>11</td><td><strong>Remote Trip</strong></td><td>€3,000 fixed per park</td>
+      <td class="c"><span class="tag tag-grey">FIXED EST</span></td>
+      <td class="r b">€153,000</td><td class="r">0.20%</td>
+      <td>Internal estimate</td>
+    </tr>
+    <tr>
+      <td>12</td><td><strong>UPS / Aux Power</strong></td><td>€2,000 fixed per park</td>
+      <td class="c"><span class="tag tag-grey">FIXED EST</span></td>
+      <td class="r b">€102,000</td><td class="r">0.14%</td>
+      <td>Internal estimate</td>
+    </tr>
+    <tr>
+      <td>13a</td><td><strong>Voltus EMS (System+HW+Config+Install)</strong></td><td>Per new Voltus quote Feb 16 (€26K–€167K/park)</td>
+      <td class="c"><span class="tag tag-green">✅ UPDATED</span></td>
+      <td class="r b">€2,298,609</td><td class="r">2.67%</td>
+      <td>✅ Updated 16 Feb 2026. {{PORTFOLIO.parks}} parks. EMS slightly reduced (-€56K vs old).</td>
+    </tr>
+    <tr style="background:#fff3cd;">
+      <td>13b</td><td><strong>SCADA Local (BASIC/ADVANCED)</strong></td><td>BASIC €15K (≤8 MWh) / ADVANCED €30K (≥10 MWh)</td>
+      <td class="c"><span class="tag tag-red">⚠️ INCREASED</span></td>
+      <td class="r b red">€1,275,000</td><td class="r red">1.48%</td>
+      <td>⚠️ <strong>NEW TIER</strong> — 17 BASIC + 34 ADVANCED. Was €765K flat. Increase: <strong>+€510,000</strong>.</td>
+    </tr>
+    <tr style="background:#fff3cd;">
+      <td>13c</td><td><strong>SCADA Global (3 groups + 6 standalone)</strong></td><td>€60K/group × 3 + €60K/SA × 4 (2 free)</td>
+      <td class="c"><span class="tag tag-green">✅ QUOTED</span></td>
+      <td class="r b">€420,000</td><td class="r">0.49%</td>
+      <td>3 groups + 6 standalone = 9 instances, 2 free. Net = 7 × €60K = €420K.</td>
+    </tr>
+    <tr style="background:#f8d7da;">
+      <td></td><td colspan="2"><strong>TOTAL VOLTUS EMS/SCADA (13a+13b+13c)</strong></td>
+      <td class="c"><span class="tag tag-red">+€1.67M vs old</span></td>
+      <td class="r b red">€3,993,617</td><td class="r red">4.64%</td>
+      <td>Was €2,322,134 (EMS only). SCADA now included. Delta: <strong>+€1,671,475</strong>. 5% discount not applied.</td>
+    </tr>
+    <tr style="background:#fff3cd;">
+      <td colspan="4" class="b" style="text-align:right;">IN-SHEET SUBTOTAL</td>
+      <td class="r b">€3,971,434</td><td class="r b">5.3%</td><td></td>
+    </tr>
+
+    <!-- AMBER estimates -->
+    <tr class="group-header"><td colspan="7">AMBER — Derived Estimates (Pending Confirmation)</td></tr>
+    <tr>
+      <td>14</td><td><strong>A. Soulis Transport + Crane</strong></td><td>Type × district model (€1,965–€4,050)</td>
+      <td class="c"><span class="tag tag-amber">DERIVED</span></td>
+      <td class="r b">€819,050</td><td class="r">1.10%</td>
+      <td>🟡 From Nov 2025 Limassol ref quote. Formal 47-park quote OVERDUE.</td>
+    </tr>
+    <tr style="background:#e9ecef; text-decoration:line-through;">
+      <td>15</td><td><strong>Earthing Enhancement</strong></td><td>€650 per container (contingency)</td>
+      <td class="c"><span class="tag tag-grey">EXCLUDED</span></td>
+      <td class="r b" style="text-decoration:line-through;">€163,150</td><td class="r" style="text-decoration:line-through;">0.22%</td>
+      <td style="text-decoration:none;"><span class="tag tag-blue">CLIENT-PAID</span> Site-dependent. Not in v4 EPC cost base.</td>
+    </tr>
+    <tr style="background:#e9ecef; text-decoration:line-through;">
+      <td>16</td><td><strong>Protection Testing / DSO</strong></td><td>€1,250 per container</td>
+      <td class="c"><span class="tag tag-grey">EXCLUDED</span></td>
+      <td class="r b" style="text-decoration:line-through;">€313,750</td><td class="r" style="text-decoration:line-through;">0.42%</td>
+      <td style="text-decoration:none;"><span class="tag tag-blue">CLIENT-PAID — CONFIRMED</span> Per Dino confirmation. Not in v4 EPC cost base.</td>
+    </tr>
+    <tr>
+      <td>17</td><td><strong>Civil Works (Kamil)</strong></td><td>€2,000 per MWh — platforms, trenches, cabling labour, water trenches</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r b">€1,763,560</td><td class="r">1.81%</td>
+      <td>✅ Kamil confirmed €2,000/MWh. Platforms + trenches + cabling labour + water trenches. Feb 2026.</td>
+    </tr>
+    <tr>
+      <td>18</td><td><strong>Docs & Compliance</strong></td><td>€7,000 fixed per park</td>
+      <td class="c"><span class="tag tag-grey">FIXED EST</span></td>
+      <td class="r b">€357,000</td><td class="r">0.48%</td>
+      <td>Internal estimate</td>
+    </tr>
+    <tr style="background:#d4edda;">
+      <td>19</td><td><strong><del>Drainage & Water</del></strong></td><td><del>€2,000 per container</del></td>
+      <td class="c"><span class="tag tag-green">INCLUDED</span></td>
+      <td class="r b" style="text-decoration:line-through;">€502,000</td><td class="r" style="text-decoration:line-through;">0.67%</td>
+      <td>✅ Now included in Kamil civil works (item 17). Water trenches in €2,000/MWh scope.</td>
+    </tr>
+    <tr style="background:#e9ecef; text-decoration:line-through;">
+      <td>20</td><td><strong>Lighthief Supervision</strong></td><td>€5,000 per park</td>
+      <td class="c"><span class="tag tag-grey">EXCLUDED</span></td>
+      <td class="r b" style="text-decoration:line-through;">€255,000</td><td class="r" style="text-decoration:line-through;">0.34%</td>
+      <td style="text-decoration:none;"><span class="tag tag-blue">CLIENT-PAID</span> Not in v4 EPC cost base.</td>
+    </tr>
+    <tr style="background:#fff3cd;">
+      <td colspan="4" class="b" style="text-align:right;">AMBER SUBTOTAL (excl. drainage + client-paid items)</td>
+      <td class="r b">€2,939,610</td><td class="r b">3.4%</td><td></td>
+    </tr>
+
+    <!-- CONFIRMED IN LINYANG CIF -->
+    <tr class="group-header" style="background:#d4edda;"><td colspan="7">✅ CONFIRMED IN LINYANG CIF — Per 15 Feb 2026 Scope Meeting</td></tr>
+    <tr style="background:#f0fdf4;">
+      <td>21</td><td><strong>Mechanical Installation</strong></td><td>Linyang: 4 Polish + 8 Chinese (12 on-site)</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r green b">€0</td><td class="r">—</td>
+      <td>✅ In CIF. Container positioning, crane, foundations, connecting cables. Lighthief provides 30 support staff (5×6).</td>
+    </tr>
+    <tr style="background:#f0fdf4;">
+      <td>22</td><td><strong>DC/AC Electrical Install + SAT</strong></td><td>Linyang (training in Poland)</td>
+      <td class="c"><span class="tag tag-green">✅ CONFIRMED</span></td>
+      <td class="r green b">€0</td><td class="r">—</td>
+      <td>✅ In CIF. DC/AC cabling BESS↔PCS. Thermal camera check. SAT report by Linyang. Commissioning: Cold=LH, Hot=Shared.</td>
+    </tr>
+
+    <!-- NOT PRICED -->
+    <tr class="group-header"><td colspan="7">NOT PRICED — Zero in All Models</td></tr>
+    <tr>
+      <td>23</td><td><strong>Cybersecurity (NIS2)</strong></td><td>TBD</td>
+      <td class="c"><span class="tag tag-red">NO ESTIMATE</span></td>
+      <td class="r red">€0</td><td class="r">—</td>
+      <td>RFP due 14 Feb 2026</td>
+    </tr>
+    <tr>
+      <td>24</td><td><strong>PCC Bay Extension</strong></td><td>TBD (if required)</td>
+      <td class="c"><span class="tag tag-grey">TBD</span></td>
+      <td class="r grey">€0</td><td class="r">—</td>
+      <td>May be under Voltus or not needed</td>
+    </tr>
+
+    <!-- GRAND TOTAL -->
+    <tr class="grand-total">
+      <td colspan="4" style="text-align:right;">TOTAL EPC ADDERS (V4 — excl. client-paid items)</td>
+      <td class="r">€11,635,821</td><td class="r">13.5%</td><td>Physical €7,642,204 + EMS/SCADA €3,993,617</td>
+    </tr>
+    <tr class="grand-total">
+      <td colspan="4" style="text-align:right;"><del>WORST CASE</del> — ELIMINATED (Install confirmed in CIF, 15 Feb)</td>
+      <td class="r" style="text-decoration:line-through;">€13,958,351</td><td class="r" style="text-decoration:line-through;">16.2%</td><td></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- COST WATERFALL -->
+<h2>3. Cost Waterfall — CIF to Client Price (Base Case)</h2>
+
+<div class="waterfall">
+  <div class="wf-bar"><div class="wf-label b">CIF Equipment</div><div class="wf-fill wf-blue" style="width:55%;">{{FINANCIALS.cifTotalM}}</div></div>
+  <div class="wf-bar"><div class="wf-label green">+ Green (DEHN + confirmed)</div><div class="wf-fill wf-green" style="width:3%;">€3.43M</div></div>
+  <div class="wf-bar"><div class="wf-label">+ In-sheet (est. + EMS/SCADA)</div><div class="wf-fill wf-grey" style="width:5%;">€5.64M</div></div>
+  <div class="wf-bar"><div class="wf-label amber">+ Amber (civil works + other)</div><div class="wf-fill wf-amber" style="width:2%;">€2.94M</div></div>
+  <div class="wf-bar"><div class="wf-label grey">− Client-paid exclusions</div><div class="wf-fill wf-grey" style="width:1%;">−€0.73M</div></div>
+  <div class="wf-bar"><div class="wf-label b">= Full EPC Cost</div><div class="wf-fill wf-blue" style="width:60%;">{{FINANCIALS.installedCostM}} (€110,700/MWh)</div></div>
+  <div class="wf-bar"><div class="wf-label b green">= TOTAL REVENUE</div><div class="wf-fill wf-green" style="width:67%;">{{FINANCIALS.clientRevenueM}} → Margin {{FINANCIALS.netMarginM}} ({{FINANCIALS.netMarginPct}}%)</div></div>
+</div>
+
+<div class="note">
+  <strong>Voltus EMS/SCADA Cost Impact:</strong> Old EMS-only cost was €2.32M. New all-in (EMS + SCADA Local + SCADA Global)
+  is €3.99M. Net increase of <strong>€1.67M</strong> driven primarily by SCADA Local tiered pricing (+€510K) and
+  SCADA Global for 6 standalone parks (+€420K). A 5% portfolio discount (~€200K) has been offered but not yet applied.
+</div>
+
+<!-- GROUP MARGINS -->
+<h2>4. Margin Analysis by Client Group</h2>
+
+<h3>A. Locked Price Groups (ABIO + Esperia — Dino Prices)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th><th>Sub</th><th>District</th>
+      <th class="r">MW</th><th class="r">MWh</th>
+      <th class="r">CIF (€)</th><th class="r">Adders (€)</th><th class="r">EPC Base (€)</th>
+      <th class="r">Cost/MWh</th><th class="r">Dino/MWh</th><th class="r">Dino Total (€)</th>
+      <th class="r">Base Margin</th><th class="c">%</th>
+      <th class="r">Worst Margin</th><th class="c">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- GROUP 1: ABIO -->
+    <tr class="group-header"><td colspan="15">Group 1: ABIO Power — 13 parks | 95 MW | 315 MWh | Owner: Iacovos Charalambous</td></tr>
+    <tr><td>Nicosia20</td><td>ELE</td><td>Nicosia</td><td class="r">12</td><td class="r">40</td><td class="r">3,781,992</td><td class="r">428,939</td><td class="r">4,210,931</td><td class="r">105,273</td><td class="r">114,990</td><td class="r">4,599,600</td><td class="r green">+388,669</td><td class="c green">8.5%</td><td class="r green">+288,669</td><td class="c">6.3%</td></tr>
+    <tr><td>Nicosia21–24</td><td>ELE</td><td>Nicosia</td><td class="r">12×4</td><td class="r">40×4</td><td class="r" colspan="2"><em>Same as above × 4</em></td><td class="r">4,210,931 ea.</td><td class="r">105,273</td><td class="r">114,990</td><td class="r">4,599,600 ea.</td><td class="r green">+388,669 ea.</td><td class="c green">8.5%</td><td class="r green">+288,669 ea.</td><td class="c">6.3%</td></tr>
+    <tr><td>Nicosia15</td><td>DIA</td><td>Nicosia</td><td class="r">8</td><td class="r">35</td><td class="r">3,303,521</td><td class="r">370,679</td><td class="r">3,674,200</td><td class="r">104,977</td><td class="r">110,895</td><td class="r">3,881,325</td><td class="r green">+207,125</td><td class="c green">5.3%</td><td class="r">+119,625</td><td class="c amber">3.1%</td></tr>
+    <tr><td>Nicosia32</td><td>ABIO</td><td>Nicosia</td><td class="r">6</td><td class="r">25</td><td class="r">2,476,649</td><td class="r">265,207</td><td class="r">2,741,856</td><td class="r">109,674</td><td class="r">123,103</td><td class="r">3,077,575</td><td class="r green">+335,719</td><td class="c green">10.9%</td><td class="r green">+258,219</td><td class="c green">8.4%</td></tr>
+    <tr><td>Nicosia14</td><td>DIA</td><td>Nicosia</td><td class="r">2.5</td><td class="r">10</td><td class="r">974,457</td><td class="r">145,574</td><td class="r">1,120,031</td><td class="r">112,003</td><td class="r">120,630</td><td class="r">1,206,300</td><td class="r green">+86,269</td><td class="c green">7.2%</td><td class="r">+25,019</td><td class="c amber">2.1%</td></tr>
+    <tr><td>Nicosia6</td><td>EAS</td><td>Nicosia</td><td class="r">5</td><td class="r">10</td><td class="r">1,104,571</td><td class="r">153,953</td><td class="r">1,258,524</td><td class="r">125,852</td><td class="r">136,106</td><td class="r">1,361,060</td><td class="r green">+102,536</td><td class="c green">7.5%</td><td class="r">+35,036</td><td class="c amber">2.6%</td></tr>
+    <tr><td>Nicosia13</td><td>REN</td><td>Nicosia</td><td class="r">5</td><td class="r">10</td><td class="r">1,104,571</td><td class="r">153,953</td><td class="r">1,258,524</td><td class="r">125,852</td><td class="r">136,106</td><td class="r">1,361,060</td><td class="r green">+102,536</td><td class="c green">7.5%</td><td class="r">+35,036</td><td class="c amber">2.6%</td></tr>
+    <tr><td>Nicosia19</td><td>SOL</td><td>Nicosia</td><td class="r">5</td><td class="r">10</td><td class="r">1,104,571</td><td class="r">153,953</td><td class="r">1,258,524</td><td class="r">125,852</td><td class="r">136,106</td><td class="r">1,361,060</td><td class="r green">+102,536</td><td class="c green">7.5%</td><td class="r">+35,036</td><td class="c amber">2.6%</td></tr>
+    <tr><td>Nicosia31</td><td>ABIO</td><td>Nicosia</td><td class="r">2.5</td><td class="r">10</td><td class="r">974,457</td><td class="r">145,574</td><td class="r">1,120,031</td><td class="r">112,003</td><td class="r">120,630</td><td class="r">1,206,300</td><td class="r green">+86,269</td><td class="c green">7.2%</td><td class="r">+25,019</td><td class="c amber">2.1%</td></tr>
+    <tr><td>Larnaca2</td><td>GRD</td><td>Larnaca</td><td class="r">1</td><td class="r">5</td><td class="r">560,994</td><td class="r">104,421</td><td class="r">665,415</td><td class="r">133,083</td><td class="r">165,431</td><td class="r">827,155</td><td class="r green">+161,740</td><td class="c green">19.6%</td><td class="r green">+106,740</td><td class="c green">12.9%</td></tr>
+    <tr class="subtotal">
+      <td colspan="5"><strong>GROUP 1 TOTAL: 13 parks | 315 MWh</strong></td>
+      <td class="r">30,513,751</td><td class="r">3,630,129</td><td class="r">34,143,880</td>
+      <td class="r">108,394</td><td class="r">—</td><td class="r b">37,279,835</td>
+      <td class="r b green">+3,135,955</td><td class="c b green">8.4%</td>
+      <td class="r b">+2,180,955</td><td class="c b">5.8%</td>
+    </tr>
+
+    <!-- GROUP 2: ESPERIA -->
+    <tr class="group-header"><td colspan="15">Group 2: Esperia Energy — 11 parks | 79.5 MW | 310.5 MWh | Owner: Dino Constantinou</td></tr>
+    <tr><td>Famagusta4</td><td>ESP</td><td>Famagusta</td><td class="r">25</td><td class="r">100</td><td class="r">8,782,302</td><td class="r">917,655</td><td class="r">9,699,957</td><td class="r">97,000</td><td class="r">106,279</td><td class="r">10,627,900</td><td class="r green">+927,943</td><td class="c green">8.7%</td><td class="r green">+765,443</td><td class="c green">7.2%</td></tr>
+    <tr><td>Limassol1</td><td>ESP</td><td>Limassol</td><td class="r">8</td><td class="r">60</td><td class="r">4,937,363</td><td class="r">546,116</td><td class="r">5,483,479</td><td class="r">91,391</td><td class="r">100,052</td><td class="r">6,003,120</td><td class="r green">+519,641</td><td class="c green">8.7%</td><td class="r green">+419,641</td><td class="c green">7.0%</td></tr>
+    <tr><td>Nicosia3</td><td>ESP-28</td><td>Nicosia</td><td class="r">7.5</td><td class="r">25</td><td class="r">2,476,649</td><td class="r">295,045</td><td class="r">2,771,694</td><td class="r">110,868</td><td class="r">115,589</td><td class="r">2,889,725</td><td class="r">+118,031</td><td class="c">4.1%</td><td class="r">+36,781</td><td class="c amber">1.3%</td></tr>
+    <tr><td>Famagusta3</td><td>ESP</td><td>Famagusta</td><td class="r">6.5</td><td class="r">20</td><td class="r">1,951,711</td><td class="r">233,247</td><td class="r">2,184,958</td><td class="r">109,248</td><td class="r">115,589</td><td class="r">2,311,780</td><td class="r green">+126,822</td><td class="c green">5.5%</td><td class="r">+50,572</td><td class="c amber">2.2%</td></tr>
+    <tr><td>Famagusta5</td><td>ESP</td><td>Famagusta</td><td class="r">5</td><td class="r">20</td><td class="r">1,848,712</td><td class="r">227,285</td><td class="r">2,075,997</td><td class="r">103,800</td><td class="r">112,945</td><td class="r">2,258,900</td><td class="r green">+182,903</td><td class="c green">8.1%</td><td class="r">+110,403</td><td class="c">4.9%</td></tr>
+    <tr><td>Nicosia1</td><td>ESP-28</td><td>Nicosia</td><td class="r">7</td><td class="r">20</td><td class="r">2,001,736</td><td class="r">234,323</td><td class="r">2,236,059</td><td class="r">111,803</td><td class="r">115,589</td><td class="r">2,311,780</td><td class="r">+75,721</td><td class="c">3.3%</td><td class="r red"><strong>-1,779</strong></td><td class="c red"><strong>-0.1%</strong></td></tr>
+    <tr><td>Nicosia4</td><td>ESP-28</td><td>Nicosia</td><td class="r">6</td><td class="r">20</td><td class="r">1,907,319</td><td class="r">229,382</td><td class="r">2,136,701</td><td class="r">106,835</td><td class="r">115,589</td><td class="r">2,311,780</td><td class="r green">+175,079</td><td class="c green">7.6%</td><td class="r">+100,079</td><td class="c">4.3%</td></tr>
+    <tr><td>Famagusta1</td><td>GAL</td><td>Famagusta</td><td class="r">5</td><td class="r">15</td><td class="r">1,592,018</td><td class="r">215,946</td><td class="r">1,807,964</td><td class="r">120,531</td><td class="r">130,792</td><td class="r">1,961,880</td><td class="r green">+153,916</td><td class="c green">7.8%</td><td class="r">+83,916</td><td class="c">4.3%</td></tr>
+    <tr><td>Nicosia5</td><td>ESP-28</td><td>Nicosia</td><td class="r">4.5</td><td class="r">15</td><td class="r">1,562,533</td><td class="r">200,090</td><td class="r">1,762,623</td><td class="r">117,508</td><td class="r">130,792</td><td class="r">1,961,880</td><td class="r green">+199,257</td><td class="c green">10.2%</td><td class="r green">+130,507</td><td class="c green">6.7%</td></tr>
+    <tr><td>Famagusta2</td><td>GAL</td><td>Famagusta</td><td class="r">2.5</td><td class="r">8</td><td class="r">871,308</td><td class="r">142,606</td><td class="r">1,013,914</td><td class="r">126,739</td><td class="r">135,560</td><td class="r">1,084,480</td><td class="r green">+70,566</td><td class="c green">6.5%</td><td class="r">+10,316</td><td class="c amber">1.0%</td></tr>
+    <tr class="neg"><td>Nicosia2</td><td>ESP-28</td><td>Nicosia</td><td class="r">2.5</td><td class="r">7.5</td><td class="r">871,307</td><td class="r">141,706</td><td class="r">1,013,013</td><td class="r">135,068</td><td class="r">135,560</td><td class="r">1,016,700</td><td class="r amber">+3,687</td><td class="c amber">0.4%</td><td class="r red"><strong>-56,313</strong></td><td class="c red"><strong>-5.5%</strong></td></tr>
+    <tr class="subtotal">
+      <td colspan="5"><strong>GROUP 2 TOTAL: 11 parks | 310.5 MWh</strong></td>
+      <td class="r">28,802,958</td><td class="r">3,383,402</td><td class="r">32,186,360</td>
+      <td class="r">103,669</td><td class="r">—</td><td class="r b">34,739,925</td>
+      <td class="r b green">+2,553,565</td><td class="c b green">7.4%</td>
+      <td class="r b">+1,553,565</td><td class="c b">4.5%</td>
+    </tr>
+
+    <tr class="grand-total">
+      <td colspan="5">ALL LOCKED — 24 parks | 625.5 MWh</td>
+      <td class="r">59,316,709</td><td class="r">7,013,531</td><td class="r">66,330,240</td>
+      <td class="r">106,043</td><td class="r">—</td><td class="r">72,019,760</td>
+      <td class="r">+5,689,520</td><td class="c">7.9%</td>
+      <td class="r">+3,734,520</td><td class="c">5.2%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>B. Re-Quotable Groups (Target Margin Pricing)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th><th>Sub</th><th>District</th>
+      <th class="r">MW</th><th class="r">MWh</th>
+      <th class="r">CIF (€)</th><th class="r">EPC Base (€)</th><th class="r">Cost/MWh</th>
+      <th class="r">@10%/MWh</th><th class="r">@12%/MWh</th><th class="r">@15%/MWh</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="group-header"><td colspan="11">Group 3: Classone Solar — 2 parks | 4.8 MW | 15 MWh | Owner: Lampros Andreadis</td></tr>
+    <tr><td>Limassol3</td><td>CLS</td><td>Limassol</td><td class="r">3.29</td><td class="r">10</td><td class="r">1,007,809</td><td class="r">1,153,940</td><td class="r">115,394</td><td class="r">128,216</td><td class="r">131,130</td><td class="r">135,758</td></tr>
+    <tr><td>Limassol2</td><td>CLS</td><td>Limassol</td><td class="r">1.51</td><td class="r">5</td><td class="r">585,976</td><td class="r">691,248</td><td class="r">138,250</td><td class="r">153,611</td><td class="r">157,102</td><td class="r">162,647</td></tr>
+    <tr class="subtotal"><td colspan="6"><strong>Group 3 Total</strong></td><td class="r b">€1,845,188</td><td class="r">123,013</td><td class="r">136,681</td><td class="r b">139,787</td><td class="r">144,721</td></tr>
+
+    <tr class="group-header"><td colspan="11">Group 4: A. Kerasi (Paphos) — 3 parks | 6.5 MW | 20 MWh | Owner: A. Kerasi</td></tr>
+    <tr><td>Paphos1</td><td>PAP</td><td>Paphos</td><td class="r">2.5</td><td class="r">7.5</td><td class="r">871,307</td><td class="r">1,012,413</td><td class="r">134,988</td><td class="r">149,987</td><td class="r">153,396</td><td class="r">158,810</td></tr>
+    <tr><td>Paphos2</td><td>PAP</td><td>Paphos</td><td class="r">2.5</td><td class="r">7.5</td><td class="r">871,307</td><td class="r">1,012,413</td><td class="r">134,988</td><td class="r">149,987</td><td class="r">153,396</td><td class="r">158,810</td></tr>
+    <tr><td>Paphos3</td><td>PAP</td><td>Paphos</td><td class="r">1.5</td><td class="r">5</td><td class="r">541,046</td><td class="r">645,419</td><td class="r">129,084</td><td class="r">143,426</td><td class="r">146,686</td><td class="r">151,863</td></tr>
+    <tr class="subtotal"><td colspan="6"><strong>Group 4 Total</strong></td><td class="r b">€2,670,245</td><td class="r">133,512</td><td class="r">148,347</td><td class="r b">151,718</td><td class="r">157,073</td></tr>
+
+    <tr class="group-header"><td colspan="11">Group 5: My Sun Park — 1 park | 7.7 MW | 25 MWh | Owner: Ioannis Karis</td></tr>
+    <tr><td>Limassol4</td><td>MSP</td><td>Limassol</td><td class="r">7.7</td><td class="r">25</td><td class="r">2,523,652</td><td class="r">2,816,540</td><td class="r">112,662</td><td class="r">125,180</td><td class="r">128,025</td><td class="r">132,543</td></tr>
+    <tr class="subtotal"><td colspan="6"><strong>Group 5 Total</strong></td><td class="r b">€2,816,540</td><td class="r">112,662</td><td class="r">125,180</td><td class="r b">128,025</td><td class="r">132,543</td></tr>
+
+    <tr class="group-header"><td colspan="11">Group 6: Timotheou (L&T + AGM) — 9 parks | 25.5 MW | 81 MWh | Owner: Timotheos Timotheou</td></tr>
+    <tr><td>Nicosia30</td><td>AGM</td><td>Nicosia</td><td class="r">8</td><td class="r">24</td><td class="r">2,523,652</td><td class="r">2,821,160</td><td class="r">117,548</td><td class="r">130,609</td><td class="r">133,578</td><td class="r">138,292</td></tr>
+    <tr><td>Limassol5</td><td>LT</td><td>Limassol</td><td class="r">5</td><td class="r">15</td><td class="r">1,592,098</td><td class="r">1,791,597</td><td class="r">119,440</td><td class="r">132,711</td><td class="r">135,727</td><td class="r">140,517</td></tr>
+    <tr><td>Nicosia25</td><td>AGM</td><td>Nicosia</td><td class="r">5</td><td class="r">15</td><td class="r">1,592,098</td><td class="r">1,793,997</td><td class="r">119,600</td><td class="r">132,889</td><td class="r">135,909</td><td class="r">140,706</td></tr>
+    <tr><td>Fam.6/Nic.26/28</td><td>LT/AGM</td><td>Mixed</td><td class="r">1.5×3</td><td class="r">5×3</td><td class="r">~586K ea.</td><td class="r">~692K ea.</td><td class="r">~138,500</td><td class="r">~153,900</td><td class="r">~157,400</td><td class="r">~163,000</td></tr>
+    <tr><td>Fam.7/Nic.27/29</td><td>LT/AGM</td><td>Mixed</td><td class="r">1×3</td><td class="r">4×3</td><td class="r">~509K ea.</td><td class="r">~612K ea.</td><td class="r">~153,100</td><td class="r">~170,100</td><td class="r">~174,000</td><td class="r">~180,200</td></tr>
+    <tr class="subtotal"><td colspan="6"><strong>Group 6 Total</strong></td><td class="r b">€10,324,269</td><td class="r">127,460</td><td class="r">141,594</td><td class="r b">144,812</td><td class="r">149,923</td></tr>
+
+    <tr class="grand-total">
+      <td colspan="6">ALL UNLOCKED — 15 parks | 141 MWh</td>
+      <td class="r">€17,656,242</td><td class="r">€125,221/MWh</td>
+      <td class="r">€139,134</td><td class="r b">€142,297</td><td class="r">€147,319</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- PENDING ACTIONS -->
+<h2>5. Critical Pending Actions</h2>
+
+<table>
+  <thead>
+    <tr><th class="c">Priority</th><th>Action</th><th>Owner</th><th>Impact</th><th>Due</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="c"><span class="tag tag-red">CRITICAL</span></td>
+      <td><strong>RFI: Linyang Install + Commissioning scope</strong><br>Confirm B1 (Mechanical Install) + B6 (Commissioning) in CIF</td>
+      <td>Kamil Talar<br>(Linyang)</td>
+      <td class="r red b">±€2.88M</td>
+      <td>18 Feb</td>
+      <td><span class="tag tag-red">SENT</span></td>
+    </tr>
+    <tr>
+      <td class="c"><span class="tag tag-red">CRITICAL</span></td>
+      <td><strong>A. Soulis formal 47-park transport quote</strong><br>All districts, all container types, with crane</td>
+      <td>Stephanos Soulis</td>
+      <td class="r amber">±€230K</td>
+      <td>OVERDUE</td>
+      <td><span class="tag tag-red">OVERDUE</span></td>
+    </tr>
+    <tr>
+      <td class="c"><span class="tag tag-green">RESOLVED ✅</span></td>
+      <td><strong>Civil works — CONFIRMED</strong><br>Kamil: €2,000/MWh flat rate. Platforms, trenches, cabling labour, water trenches. Feb 2026.</td>
+      <td>Kamil (Civil Contractor)</td>
+      <td class="r green">€1,763,560</td>
+      <td>13 Feb ✅</td>
+      <td><span class="tag tag-green">CONFIRMED</span></td>
+    </tr>
+    <tr>
+      <td class="c"><span class="tag tag-amber">HIGH</span></td>
+      <td><strong>Electrical contractor quotes</strong> — LV/MV cabling + terminations<br>Currently model estimates, no quotes</td>
+      <td>TBD Contractor</td>
+      <td class="r amber">±€200K</td>
+      <td>21 Feb</td>
+      <td><span class="tag tag-amber">RFP ISSUED</span></td>
+    </tr>
+    <tr>
+      <td class="c"><span class="tag tag-red">CRITICAL</span></td>
+      <td><strong>Voltus Centralised SCADA pricing</strong> — single instance, 6 group logins, no SCADA Local<br>
+          <span style="font-size:7.5pt; color:#6c757d;">Previous model: €765K Local + €993K Global = €1.76M. New model: TBD (potential savings €765K–€1.7M)</span></td>
+      <td>Voltus Energy</td>
+      <td class="r green b">-€765K to -€1.7M</td>
+      <td>21 Feb</td>
+      <td><span class="tag tag-amber">RFI v1.1 SENT</span></td>
+    </tr>
+    <tr>
+      <td class="c"><span class="tag tag-green">RESOLVED ✅</span></td>
+      <td><strong>Protection testing scope — CLIENT-PAID CONFIRMED</strong><br>Dino confirmed: client pays protection testing / DSO for all groups. Excluded from EPC cost base in v4.</td>
+      <td>Dino Constantinou</td>
+      <td class="r green">€314K excluded</td>
+      <td>20 Feb ✅</td>
+      <td><span class="tag tag-green">CLIENT-PAID — CONFIRMED</span></td>
+    </tr>
+    <tr>
+      <td class="c"><span class="tag tag-grey">MEDIUM</span></td>
+      <td><strong>Cybersecurity / NIS2 RFP</strong></td>
+      <td>TBD Vendor</td>
+      <td class="r grey">Unknown</td>
+      <td>28 Feb</td>
+      <td><span class="tag tag-red">NOT SENT</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ASSUMPTIONS -->
+<h2>6. Key Assumptions & Risks</h2>
+
+<div class="note success">
+  <strong>Base Case Assumptions (for {{FINANCIALS.netMarginPct}}% portfolio margin):</strong><br>
+  1. ✅ Linyang CIF includes mechanical installation and commissioning — CONFIRMED 15 Feb 2026 meeting<br>
+  2. ✅ Import duty at 3.0% weighted average (confirmed)<br>
+  3. ✅ Insurance at 0.75% of CIF (confirmed)<br>
+  4. ✅ DEHN LPS/SPD/Earthing at confirmed quotation prices + install at €1,600/park<br>
+  5. ✅ Civil works at €2,000/MWh (Kamil confirmed)<br>
+  6. ✅ Protection Testing / DSO — CLIENT-PAID (Dino confirmed, excluded from v4)<br>
+  7. ✅ Earthing Enhancement — CLIENT-PAID (site-dependent, excluded from v4)<br>
+  8. ✅ Lighthief Supervision — excluded from v4 EPC cost base<br>
+  9. 🟡 A. Soulis transport at derived district rates (amber — ADR trucks required per meeting)<br>
+  10. Groups 3–6 re-quoted at minimum 12% margin
+</div>
+
+<div class="note critical">
+  <strong>Risk Register:</strong><br>
+  1. <strong>RFI Rejection</strong> — If Linyang does NOT include install+commissioning → margin drops to 5.2% (worst case)<br>
+  2. <strong>Cement overrun</strong> — If platforms cost €8K instead of €4K → -€1M across portfolio<br>
+  3. <strong>Nicosia2 (ESP-2028)</strong> — Only 0.4% base margin, -5.5% worst case. Smallest locked park.<br>
+  4. <strong>A. Soulis escalation</strong> — Formal quote may differ from derived model by ±15%<br>
+  5. <strong>Cybersecurity (NIS2)</strong> — Completely unpriced. Could add €50K–€200K.
+</div>
+
+<hr style="margin: 24px 0; border: none; border-top: 1px solid #dee2e6;">
+<p style="font-size: 7.5pt; color: #999; text-align: center;">
+  Lighthief Cyprus Ltd — EPC Pricing Verification & Margin Analysis — 20 February 2026 — v2.0 — Updated per v4 Adders<br>
+  Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx | CIF: LY202601271 | DEHN: Feb 2026 | A. Soulis: Nov 2025 (derived) | Voltus: Feb 2026<br>
+  STRICTLY CONFIDENTIAL — INTERNAL USE ONLY
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warehouse Agreements — Matero Ltd / Lighthief Cyprus Ltd — Ypsonas</title>
+  <style>
+    :root {
+      --primary: #1a365d;
+      --accent: #2b6cb0;
+      --bg: #f7fafc;
+      --border: #e2e8f0;
+      --text: #2d3748;
+      --muted: #718096;
+      --highlight: #ebf8ff;
+      --warn: #fefcbf;
+      --success: #f0fff4;
+      --danger: #fff5f5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 40px 50px;
+      text-align: center;
+    }
+    .header h1 { font-size: 22px; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .header .subtitle { font-size: 14px; opacity: 0.85; }
+    .header .confidential {
+      display: inline-block;
+      margin-top: 15px;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 4px 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .header-nda { background: #742a2a; }
+    .header-sale { background: #22543d; }
+    .header-leaseback { background: #553c9a; }
+    .body { padding: 50px; }
+    h2 {
+      font-size: 16px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+      margin: 35px 0 18px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h2:first-child { margin-top: 0; }
+    h3 {
+      font-size: 14px;
+      color: var(--accent);
+      margin: 22px 0 10px 0;
+    }
+    p { margin-bottom: 12px; font-size: 13.5px; }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 13px;
+    }
+    .info-table th {
+      text-align: left;
+      background: var(--primary);
+      color: white;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .info-table td {
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-table tr:nth-child(even) td { background: #f8fafc; }
+    .info-table .label { font-weight: 600; width: 35%; color: var(--primary); }
+    .financial-box {
+      background: var(--highlight);
+      border: 1px solid #bee3f8;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 18px 0;
+    }
+    .financial-box h4 {
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .warn-box {
+      background: var(--warn);
+      border: 1px solid #ecc94b;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 13px;
+    }
+    .success-box {
+      background: var(--success);
+      border: 1px solid #9ae6b4;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 13px;
+    }
+    .danger-box {
+      background: var(--danger);
+      border: 1px solid #feb2b2;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 13px;
+    }
+    ol.clauses {
+      counter-reset: clause;
+      list-style: none;
+      padding: 0;
+    }
+    ol.clauses > li {
+      counter-increment: clause;
+      margin: 12px 0;
+      padding-left: 30px;
+      position: relative;
+      font-size: 13.5px;
+    }
+    ol.clauses > li::before {
+      content: counter(clause) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    ol.sub-clauses {
+      counter-reset: sub-clause;
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 8px 20px;
+    }
+    ol.sub-clauses > li {
+      counter-increment: sub-clause;
+      margin: 6px 0;
+      padding-left: 26px;
+      position: relative;
+      font-size: 13px;
+    }
+    ol.sub-clauses > li::before {
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .alpha > li::before { content: "(" counter(sub-clause, lower-alpha) ")"; }
+    .roman > li::before { content: "(" counter(sub-clause, lower-roman) ")"; }
+    .sig-block {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      gap: 40px;
+    }
+    .sig-party {
+      flex: 1;
+      border-top: 2px solid var(--primary);
+      padding-top: 15px;
+    }
+    .sig-party .party-name { font-weight: 700; color: var(--primary); font-size: 14px; }
+    .sig-party .sig-line {
+      border-bottom: 1px solid var(--text);
+      height: 50px;
+      margin: 20px 0 5px 0;
+    }
+    .sig-party .sig-label { font-size: 11px; color: var(--muted); }
+    .page-break { page-break-before: always; margin-top: 40px; }
+    .schedule-header {
+      background: #edf2f7;
+      padding: 14px 20px;
+      border-left: 4px solid var(--accent);
+      margin: 25px 0 15px 0;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    .agreement-index {
+      background: #edf2f7;
+      border-radius: 6px;
+      padding: 20px 28px;
+      margin: 20px 0;
+    }
+    .agreement-index ol { margin: 10px 0 0 20px; font-size: 13.5px; }
+    .agreement-index li { margin: 8px 0; }
+    .standalone-label {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    @media print {
+      body { padding: 0; background: white; }
+      .container { border: none; box-shadow: none; page-break-after: always; }
+      .container:last-child { page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- OVERVIEW DOCUMENT — INDEX & LEGAL ANALYSIS                       -->
+<!-- ================================================================ -->
+<div class="container">
+  <div class="header">
+    <h1>Warehouse Transaction — Overview &amp; Legal Analysis</h1>
+    <div class="subtitle">Matero Ltd &amp; Lighthief Cyprus Ltd — Ypsonas, Limassol District</div>
+    <div class="confidential">Confidential — Draft for Legal Review</div>
+  </div>
+
+  <div class="body">
+    <h2>Transaction Structure — Four Separate Agreements</h2>
+
+    <p>At the instruction of the Landlord/Seller, the rental relationship and the sale/purchase arrangement are structured as <strong>completely independent agreements</strong>. This ensures that the lease stands on its own merits and the purchase option is a separate commercial undertaking, giving both parties flexibility and clean legal separation.</p>
+
+    <div class="agreement-index">
+      <ol>
+        <li><strong>Agreement A — Non-Disclosure Agreement (NDA)</strong> <span class="standalone-label">Standalone</span><br>
+          Protects confidential information disclosed during negotiations, specifically the Landlord's internal shareholder matters. Penalty for breach: <strong>€250,000</strong>.</li>
+        <li><strong>Agreement B — Commercial Lease Agreement</strong> <span class="standalone-label">Standalone</span><br>
+          Pure rental of 100% office + 50% warehouse for 12 months at €10,000/month, with automatic 5-year renewal. No reference to any sale or purchase.</li>
+        <li><strong>Agreement C — Option to Purchase Agreement</strong> <span class="standalone-label">Standalone</span><br>
+          Separate agreement granting Lighthief Cyprus Ltd an irrevocable option to buy the Property at a locked price of €1,764,000. Deposited at Land Registry under Specific Performance Law.</li>
+        <li><strong>Agreement D — Post-Sale Leaseback Agreement</strong> <span class="standalone-label">Conditional</span><br>
+          Conditional on the sale completing. Matero Ltd retains 50% warehouse for 3 years post-sale. Deposited at Land Registry for Matero's protection.</li>
+      </ol>
+    </div>
+
+    <div class="warn-box">
+      <strong>Why Separate Agreements:</strong> The Landlord/Seller has requested that the lease and sale arrangements be entirely independent. This means:
+      <ul style="margin: 8px 0 0 20px; font-size: 13px;">
+        <li>The lease does not depend on or reference the purchase option</li>
+        <li>Termination of the lease does not automatically affect the purchase option (and vice versa)</li>
+        <li>Each agreement can be enforced independently in court</li>
+        <li>The NDA stands alone and survives regardless of the outcome of either agreement</li>
+      </ul>
+    </div>
+
+    <h2>Cyprus Law Analysis</h2>
+
+    <h3>Applicable Legislation</h3>
+    <table class="info-table">
+      <tr>
+        <td class="label">Contract Law</td>
+        <td><strong>Cap. 149</strong> — Governs enforceability of all four agreements.</td>
+      </tr>
+      <tr>
+        <td class="label">Immovable Property</td>
+        <td><strong>Cap. 224</strong> — No estate or interest in immovable property can be created except under this law. Transfer must be registered at DLS.</td>
+      </tr>
+      <tr>
+        <td class="label">Specific Performance</td>
+        <td><strong>Law 81(I)/2011</strong> as amended by <strong>Law 132(I)/2023</strong> — Protects the Buyer. Agreement C (Option to Purchase) must be deposited at Land Registry within <strong>6 months</strong>.</td>
+      </tr>
+      <tr>
+        <td class="label">Transfer Law</td>
+        <td><strong>Law 9/1965</strong> — Governs mechanics of title transfer upon option exercise.</td>
+      </tr>
+      <tr>
+        <td class="label">Stamp Duty</td>
+        <td><strong>Law 239(I)/2025</strong> — Stamp Duty <strong>abolished from 1 January 2026</strong>. No stamp duty on any agreement.</td>
+      </tr>
+      <tr>
+        <td class="label">NDA Enforcement</td>
+        <td><strong>Cap. 149, §74</strong> — Liquidated damages clause (€250,000 penalty) is enforceable under Cyprus law provided it represents a genuine pre-estimate of loss. Courts may review if penalty is disproportionate.</td>
+      </tr>
+      <tr>
+        <td class="label">Transfer Fees</td>
+        <td>DLS transfer fees: 3% on first €85K; 5% on €85K–€170K; 8% above €170K. Currently <strong>50% discount</strong>. VAT at 19% may apply if property is new commercial; exempt if second-hand.</td>
+      </tr>
+    </table>
+
+    <h3>Financial Summary</h3>
+
+    <div class="financial-box">
+      <h4>Purchase Price Calculation (Agreement C)</h4>
+      <table class="info-table">
+        <tr><td class="label">Listed Sale Price</td><td>€2,100,000</td></tr>
+        <tr><td class="label">Less: Year 1 Rent Credit</td><td>(€120,000) — 12 months × €10,000</td></tr>
+        <tr><td class="label">Less: Seller Leaseback Value</td><td>(€216,000) — 36 months × €6,000</td></tr>
+        <tr><td class="label"><strong>Locked Purchase Price</strong></td><td><strong>€1,764,000</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="financial-box">
+      <h4>Year 1 Cash Flow — Lighthief Cyprus Ltd (Agreement B)</h4>
+      <table class="info-table">
+        <tr><td class="label">On Signing Lease</td><td>€80,000 — 6 months rent upfront (€60,000) + 2 months deposit (€20,000)</td></tr>
+        <tr><td class="label">Month 7</td><td>€10,000 — Resumption of monthly rental</td></tr>
+        <tr><td class="label">Months 8–12</td><td>€10,000/month</td></tr>
+        <tr><td class="label"><strong>Total Year 1</strong></td><td><strong>€120,000 rent + €20,000 deposit = €140,000</strong></td></tr>
+      </table>
+    </div>
+
+    <h2>Notes for Legal Counsel</h2>
+    <ol class="clauses">
+      <li><strong>Independence of Agreements:</strong> Agreements B and C must be drafted so that neither is conditional on the other. The lease operates independently. The option to purchase references the lease only to calculate the rent credit deduction — it does not make the lease a condition of the option or vice versa.</li>
+      <li><strong>NDA Penalty (€250,000):</strong> Under Cyprus law (Cap. 149 §74), a liquidated damages clause must represent a genuine pre-estimate of loss. Counsel should assess whether €250,000 is defensible as proportionate to the potential harm from disclosure of the shareholder buy-out information. If deemed a penalty rather than liquidated damages, a court may reduce it. Consider framing as "agreed damages" with supporting rationale.</li>
+      <li><strong>Property Search Certificate:</strong> Mandatory under Law 132(I)/2023 — must be obtained within 5 working days of signing Agreement C.</li>
+      <li><strong>Land Registry Deposits:</strong> Agreement C deposited under specific performance law within 6 months. Agreement D registered as memo of encumbrance (3-year term is below 15-year DLS threshold for lease registration).</li>
+      <li><strong>Stamp Duty:</strong> Abolished from 1 January 2026 (Law 239(I)/2025). None payable on any agreement.</li>
+      <li><strong>VAT:</strong> Verify if Property is subject to 19% VAT. Existing commercial property &gt;5 years may be exempt.</li>
+      <li><strong>Transfer Fees:</strong> On €1,764,000: approx. €108,580 before discount, approx. €54,290 after 50% discount. Confirm allocation.</li>
+      <li><strong>Corporate Authority:</strong> Board resolutions required from both parties. Critical for Matero Ltd given the shareholder situation.</li>
+      <li><strong>Partition Wall Permit:</strong> Building permit from Ypsonas Municipal Authority required. Landlord must cooperate.</li>
+      <li><strong>Greek Translation:</strong> May be required for Land Registry deposit. English version prevails in case of discrepancy.</li>
+      <li><strong>Pre-emption Rights:</strong> Confirm no Matero shareholders hold first-refusal rights over the Property.</li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    Overview Document — Draft February 2026 — Subject to Legal Review<br>
+    &copy; Lighthief Cyprus Ltd — Confidential
+  </div>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- AGREEMENT A — NON-DISCLOSURE AGREEMENT (NDA)                     -->
+<!-- ================================================================ -->
+<div class="container">
+  <div class="header header-nda">
+    <h1>Agreement A — Non-Disclosure Agreement</h1>
+    <div class="subtitle">Matero Ltd &amp; Lighthief Cyprus Ltd</div>
+    <div class="confidential">Confidential</div>
+  </div>
+
+  <div class="body">
+
+    <p style="text-align: center; font-weight: 700; color: var(--primary); margin: 20px 0; font-size: 15px;">
+      NON-DISCLOSURE AGREEMENT<br>
+      <span style="font-weight: 400; font-size: 12px;">Made under the Laws of the Republic of Cyprus (Cap. 149)</span>
+    </p>
+
+    <table class="info-table">
+      <tr><th colspan="2">Parties</th></tr>
+      <tr>
+        <td class="label">Disclosing Party</td>
+        <td><strong>Matero Ltd</strong>, a company registered under the laws of the Republic of Cyprus, Registration No. [________], with registered office at [________], Ypsonas, Limassol, Cyprus<br>(hereinafter "the <strong>Disclosing Party</strong>")</td>
+      </tr>
+      <tr>
+        <td class="label">Receiving Party</td>
+        <td><strong>Lighthief Cyprus Ltd</strong>, a company registered under the laws of the Republic of Cyprus, Registration No. [________], with registered office at [________], Cyprus<br>(hereinafter "the <strong>Receiving Party</strong>")</td>
+      </tr>
+    </table>
+
+    <p><strong>WHEREAS:</strong></p>
+    <ol class="clauses">
+      <li>The parties are engaged in commercial negotiations concerning the lease and potential future acquisition of warehouse and office premises owned by the Disclosing Party at Ypsonas, Limassol District, Cyprus (the "<strong>Transaction</strong>").</li>
+      <li>In the course of these negotiations, the Disclosing Party has disclosed and may continue to disclose sensitive commercial and corporate information, including but not limited to information concerning its internal shareholder structure, shareholder disputes, and planned shareholder restructuring (the "<strong>Shareholder Matters</strong>").</li>
+      <li>The Disclosing Party requires assurance that all Confidential Information, and in particular the Shareholder Matters, will be kept strictly confidential and not disclosed to any third party.</li>
+      <li>The Receiving Party acknowledges the sensitivity of this information and agrees to be bound by the terms of this Agreement.</li>
+    </ol>
+
+    <p><strong>NOW IT IS HEREBY AGREED AS FOLLOWS:</strong></p>
+
+    <h3>1. Definitions</h3>
+    <ol class="clauses">
+      <li>"<strong>Confidential Information</strong>" means all information disclosed by the Disclosing Party to the Receiving Party, whether orally, in writing, electronically, or by any other means, in connection with the Transaction, including but not limited to:
+        <ol class="sub-clauses alpha">
+          <li>The Shareholder Matters — all information relating to the identity, holdings, disputes, negotiations, buy-out terms, or restructuring of shareholders of the Disclosing Party;</li>
+          <li>The financial condition, assets, liabilities, revenue, and valuations of the Disclosing Party;</li>
+          <li>The terms, conditions, and existence of the Transaction and any related agreements;</li>
+          <li>Business plans, strategies, client lists, supplier relationships, and operational information of the Disclosing Party;</li>
+          <li>Any information that the Disclosing Party designates as confidential or that a reasonable person would consider confidential given the nature of the information and circumstances of disclosure.</li>
+        </ol>
+      </li>
+      <li>"<strong>Confidential Information</strong>" does <strong>not</strong> include information that:
+        <ol class="sub-clauses alpha">
+          <li>Is or becomes publicly available through no fault of the Receiving Party;</li>
+          <li>Was in the Receiving Party's possession prior to disclosure, as evidenced by written records;</li>
+          <li>Is independently developed by the Receiving Party without reference to the Confidential Information;</li>
+          <li>Is disclosed to the Receiving Party by a third party who is not under an obligation of confidentiality to the Disclosing Party;</li>
+          <li>Is required to be disclosed by law, regulation, or court order — provided the Receiving Party gives the Disclosing Party prompt written notice and cooperates in seeking protective measures.</li>
+        </ol>
+      </li>
+    </ol>
+
+    <h3>2. Obligations of the Receiving Party</h3>
+    <ol class="clauses">
+      <li>The Receiving Party shall keep all Confidential Information <strong>strictly confidential</strong> and shall not disclose, publish, or disseminate it to any third party without the prior written consent of the Disclosing Party.</li>
+      <li>The Receiving Party shall use the Confidential Information <strong>solely</strong> for the purpose of evaluating and performing the Transaction. No other use is permitted.</li>
+      <li>The Receiving Party shall restrict access to Confidential Information to its directors, officers, employees, and professional advisors (legal, financial, tax) who have a <strong>need to know</strong> and who are bound by obligations of confidentiality at least as restrictive as those in this Agreement.</li>
+      <li>The Receiving Party shall take all <strong>reasonable precautions</strong> to prevent unauthorised disclosure, including but not limited to physical and electronic security measures appropriate to the sensitivity of the information.</li>
+      <li>The Receiving Party shall <strong>not</strong> make copies, reproductions, or summaries of Confidential Information except as reasonably necessary for the purpose of the Transaction.</li>
+      <li>The Receiving Party shall be <strong>liable</strong> for any breach of this Agreement by its directors, officers, employees, or advisors as if the breach were committed by the Receiving Party itself.</li>
+    </ol>
+
+    <h3>3. Shareholder Matters — Enhanced Protection</h3>
+
+    <div class="danger-box">
+      <strong>Special Confidentiality — Shareholder Matters:</strong> The following enhanced obligations apply specifically to the Shareholder Matters, in addition to the general obligations in Clause 2.
+    </div>
+
+    <ol class="clauses">
+      <li>The Receiving Party acknowledges that the Shareholder Matters constitute <strong>highly sensitive commercial information</strong> and that any unauthorised disclosure could cause severe and irreparable harm to the Disclosing Party, its shareholders, and the value of the Property.</li>
+      <li>Information relating to the Shareholder Matters shall be disclosed <strong>only</strong> to the following persons within the Receiving Party's organisation:
+        <ol class="sub-clauses alpha">
+          <li>The director(s) of Lighthief Cyprus Ltd directly involved in the Transaction;</li>
+          <li>Legal counsel retained by Lighthief Cyprus Ltd in connection with the Transaction.</li>
+        </ol>
+      </li>
+      <li>The Shareholder Matters shall <strong>not</strong> be disclosed to any employee, contractor, consultant, investor, lender, or any other person not listed in Clause 3.2, regardless of any general need-to-know justification.</li>
+      <li>No written record, email, memo, or other documentation containing the Shareholder Matters shall be stored on any unsecured device, shared drive, or cloud service accessible to persons not authorised under Clause 3.2.</li>
+    </ol>
+
+    <h3>4. Agreed Damages for Breach — €250,000</h3>
+    <ol class="clauses">
+      <li>The parties acknowledge and agree that a breach of this Agreement, and in particular any unauthorised disclosure of the Shareholder Matters, would cause the Disclosing Party <strong>substantial and difficult-to-quantify harm</strong>, including but not limited to:
+        <ol class="sub-clauses alpha">
+          <li>Disruption to the ongoing shareholder restructuring process;</li>
+          <li>Potential loss of negotiating position with the affected shareholder(s);</li>
+          <li>Reputational damage to the Disclosing Party and its directors;</li>
+          <li>Potential diminution in the value of the Property or the Disclosing Party's business;</li>
+          <li>Third-party claims or litigation triggered by the disclosure.</li>
+        </ol>
+      </li>
+      <li>In view of the foregoing, the parties agree that in the event of any breach of this Agreement by the Receiving Party (including breach by its directors, officers, employees, or advisors), the Receiving Party shall pay to the Disclosing Party the sum of <strong>Two Hundred and Fifty Thousand Euro (€250,000)</strong> as <strong>agreed and liquidated damages</strong> (the "<strong>Agreed Penalty</strong>").</li>
+      <li>The Agreed Penalty represents a <strong>genuine pre-estimate</strong> of the minimum loss that the Disclosing Party would suffer from a breach, taking into account the factors listed in Clause 4.1 and the overall value of the Transaction (€2,100,000). The parties confirm that the Agreed Penalty is not a punitive sum and is proportionate to the potential harm.</li>
+      <li>Payment of the Agreed Penalty shall <strong>not</strong> relieve the Receiving Party of its continuing obligations under this Agreement, nor shall it limit the Disclosing Party's right to seek:
+        <ol class="sub-clauses alpha">
+          <li><strong>Injunctive relief</strong> — an order from the District Court of Limassol restraining further disclosure;</li>
+          <li><strong>Additional damages</strong> — if the Disclosing Party's actual loss exceeds the Agreed Penalty, the Disclosing Party may claim the excess.</li>
+        </ol>
+      </li>
+      <li>The Agreed Penalty shall be payable within <strong>thirty (30) days</strong> of written demand by the Disclosing Party, accompanied by reasonable particulars of the breach.</li>
+    </ol>
+
+    <h3>5. Return and Destruction of Information</h3>
+    <ol class="clauses">
+      <li>Upon the earlier of: (a) completion of the Transaction, (b) termination of negotiations, or (c) written request by the Disclosing Party, the Receiving Party shall promptly <strong>return or destroy</strong> all Confidential Information in its possession, including all copies, notes, and summaries.</li>
+      <li>The Receiving Party shall provide written confirmation of destruction within <strong>fourteen (14) days</strong> of the request.</li>
+      <li>The obligation to maintain confidentiality shall <strong>survive</strong> the return or destruction of materials.</li>
+    </ol>
+
+    <h3>6. Term and Survival</h3>
+    <ol class="clauses">
+      <li>This Agreement shall come into force on the date of execution and shall remain in effect for a period of <strong>five (5) years</strong> from the date of signing, regardless of whether the Transaction proceeds to completion.</li>
+      <li>The obligations concerning the Shareholder Matters (Clause 3) and the Agreed Penalty (Clause 4) shall survive the expiry or termination of this Agreement and shall continue in perpetuity or until the Shareholder Matters become publicly available through no fault of the Receiving Party.</li>
+    </ol>
+
+    <h3>7. No Licence or Obligation to Transact</h3>
+    <ol class="clauses">
+      <li>Nothing in this Agreement grants the Receiving Party any licence, right, or interest in the Confidential Information, the Property, or any intellectual property of the Disclosing Party.</li>
+      <li>This Agreement does not oblige either party to proceed with the Transaction or any part thereof.</li>
+    </ol>
+
+    <h3>8. Governing Law and Jurisdiction</h3>
+    <ol class="clauses">
+      <li>This Agreement shall be governed by and construed in accordance with the laws of the <strong>Republic of Cyprus</strong>, including the Law of Contract (Cap. 149).</li>
+      <li>Any dispute arising out of this Agreement shall be subject to the <strong>exclusive jurisdiction of the District Court of Limassol</strong>.</li>
+      <li>The Disclosing Party may seek <strong>interim or injunctive relief</strong> from any court of competent jurisdiction without the need for prior mediation.</li>
+    </ol>
+
+    <h3>9. General</h3>
+    <ol class="clauses">
+      <li>This Agreement constitutes the entire agreement between the parties regarding confidentiality. No prior oral or written agreements on confidentiality shall have effect.</li>
+      <li>No amendment shall be valid unless in writing and signed by both parties.</li>
+      <li>This Agreement is <strong>independent</strong> of any lease, sale, or other agreement between the parties. Its validity and enforceability are not contingent on any other arrangement.</li>
+      <li>If any provision is found invalid, the remaining provisions shall continue in full force.</li>
+    </ol>
+
+    <!-- SIGNATURE BLOCK — NDA -->
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="party-name">MATERO LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Disclosing Party</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div class="sig-party">
+        <div class="party-name">LIGHTHIEF CYPRUS LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Receiving Party</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 12px; color: var(--muted); text-align: center;"><em>Witnessed by:</em></p>
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 1 — Name, ID, Signature</div>
+      </div>
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 2 — Name, ID, Signature</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">Agreement A — NDA — Draft February 2026 — Subject to Legal Review</div>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- AGREEMENT B — COMMERCIAL LEASE AGREEMENT (PURE RENTAL)           -->
+<!-- ================================================================ -->
+<div class="container">
+  <div class="header">
+    <h1>Agreement B — Commercial Lease Agreement</h1>
+    <div class="subtitle">Warehouse &amp; Office Premises — Ypsonas, Limassol District, Cyprus</div>
+    <div class="confidential">Confidential — Draft for Legal Review</div>
+  </div>
+
+  <div class="body">
+
+    <p style="text-align: center; font-weight: 700; color: var(--primary); margin: 20px 0; font-size: 15px;">
+      COMMERCIAL LEASE AGREEMENT<br>
+      <span style="font-weight: 400; font-size: 12px;">Made under the Laws of the Republic of Cyprus</span>
+    </p>
+
+    <h3>Recitals</h3>
+
+    <table class="info-table">
+      <tr><th colspan="2">Parties</th></tr>
+      <tr>
+        <td class="label">Landlord</td>
+        <td><strong>Matero Ltd</strong>, a company registered under the laws of the Republic of Cyprus, Registration No. [________], with registered office at [________], Ypsonas, Limassol, Cyprus<br>(hereinafter "the <strong>Landlord</strong>")</td>
+      </tr>
+      <tr>
+        <td class="label">Tenant</td>
+        <td><strong>Lighthief Cyprus Ltd</strong>, a company registered under the laws of the Republic of Cyprus, Registration No. [________], with registered office at [________], Cyprus<br>(hereinafter "the <strong>Tenant</strong>")</td>
+      </tr>
+    </table>
+
+    <table class="info-table">
+      <tr><th colspan="2">Leased Premises</th></tr>
+      <tr>
+        <td class="label">Location</td>
+        <td>Ypsonas, Limassol District, Cyprus</td>
+      </tr>
+      <tr>
+        <td class="label">Title Deed / Registration</td>
+        <td>[Plot No. / Sheet / Plan to be inserted from DLS records]</td>
+      </tr>
+      <tr>
+        <td class="label">Leased Premises</td>
+        <td>100% of the office space and 50% of the warehouse space within the Property (the "<strong>Leased Premises</strong>")</td>
+      </tr>
+      <tr>
+        <td class="label">Retained Premises</td>
+        <td>50% of the warehouse space, retained by the Landlord for its own use (the "<strong>Retained Premises</strong>")</td>
+      </tr>
+    </table>
+
+    <p><strong>WHEREAS:</strong></p>
+    <ol class="clauses">
+      <li>The Landlord is the registered owner of warehouse and office premises at Ypsonas, Limassol District (the "<strong>Property</strong>").</li>
+      <li>The Tenant wishes to lease the Leased Premises for commercial purposes.</li>
+      <li>The Landlord wishes to retain and continue occupying the Retained Premises for its own commercial purposes.</li>
+    </ol>
+
+    <p><strong>NOW IT IS HEREBY AGREED AS FOLLOWS:</strong></p>
+
+    <h3>1. Definitions</h3>
+    <ol class="clauses">
+      <li>"<strong>Commencement Date</strong>" means the date of execution of this Agreement.</li>
+      <li>"<strong>Initial Lease Period</strong>" means twelve (12) consecutive calendar months from the Commencement Date.</li>
+      <li>"<strong>Monthly Rent</strong>" means Ten Thousand Euro (€10,000), comprising €4,000 for the office space and €6,000 for the warehouse space.</li>
+      <li>"<strong>Renewal Period</strong>" means five (5) years from the expiry of the Initial Lease Period.</li>
+      <li>"<strong>Partition Wall</strong>" means the mid-section dividing wall separating the Leased Premises from the Retained Premises.</li>
+    </ol>
+
+    <h3>2. Grant of Lease</h3>
+    <ol class="clauses">
+      <li>The Landlord leases the Leased Premises to the Tenant for the Initial Lease Period, commencing on the Commencement Date.</li>
+      <li>The Tenant shall have unrestricted access to the Leased Premises twenty-four (24) hours per day, seven (7) days per week.</li>
+      <li>The Landlord retains the right to occupy the Retained Premises for its own commercial purposes throughout the lease term.</li>
+      <li>Both parties shall share common areas (access roads, loading bays, parking) in accordance with the shared-use protocol in <strong>Schedule 1</strong>.</li>
+    </ol>
+
+    <h3>3. Rent and Payment</h3>
+    <ol class="clauses">
+      <li><strong>Monthly Rent</strong> of €10,000 is payable in advance on the first business day of each calendar month by bank transfer.</li>
+      <li><strong>Advance Payment:</strong> Upon execution, the Tenant shall pay <strong>€80,000</strong>:
+        <ol class="sub-clauses alpha">
+          <li>Six (6) months' rent in advance: €60,000;</li>
+          <li>Two (2) months' security deposit: €20,000.</li>
+        </ol>
+      </li>
+      <li>The advance covers Months 1 through 6. The next payment (Month 7) is due on the first business day of the seventh month following the Commencement Date.</li>
+      <li>Months 7 through 12 are payable monthly in advance.</li>
+      <li><strong>Security Deposit:</strong> The €20,000 deposit shall be returned without interest within thirty (30) days of the end of the lease, less any amounts lawfully deducted for damage, unpaid rent, or other liabilities.</li>
+      <li>All payments are in Euro (€), exclusive of VAT where applicable.</li>
+    </ol>
+
+    <h3>4. Partition Wall</h3>
+    <ol class="clauses">
+      <li>The Tenant shall erect the Partition Wall at its own cost within <strong>sixty (60) days</strong> of the Commencement Date.</li>
+      <li>The wall shall meet fire-rated standards per Cyprus Building Regulations.</li>
+      <li>The Tenant shall obtain all necessary building permits. The Landlord shall cooperate in the permit process as property owner.</li>
+      <li>The cost is borne entirely by the Tenant and is not deductible from rent.</li>
+      <li>The Partition Wall becomes a permanent fixture. If the lease terminates, the wall remains the Landlord's property unless the Landlord requests removal, in which case the Tenant shall remove it and restore the premises at its own cost.</li>
+      <li>Other tenant improvements require the Landlord's prior written consent.</li>
+    </ol>
+
+    <h3>5. Automatic Renewal</h3>
+    <ol class="clauses">
+      <li>Unless either party gives the other <strong>ninety (90) days'</strong> written notice before expiry of the Initial Lease Period, the lease shall <strong>automatically renew</strong> for a Renewal Period of <strong>five (5) years</strong>.</li>
+      <li>During the Renewal Period, the Monthly Rent shall remain <strong>€10,000</strong> and all terms of this Agreement continue to apply.</li>
+      <li>At the end of the Renewal Period, the lease shall terminate unless the parties agree in writing to a further extension.</li>
+    </ol>
+
+    <h3>6. Landlord's Obligations</h3>
+    <ol class="clauses">
+      <li>Deliver the Leased Premises in good and tenantable condition on the Commencement Date.</li>
+      <li>Structural repairs and maintenance of the building exterior, roof, and common areas.</li>
+      <li>Maintain building insurance covering the structure. The Tenant shall be added as an interested party.</li>
+      <li>Not mortgage, charge, or encumber the Property in a manner that would materially interfere with the Tenant's quiet enjoyment, without the Tenant's prior written consent.</li>
+    </ol>
+
+    <h3>7. Tenant's Obligations</h3>
+    <ol class="clauses">
+      <li>Pay the Monthly Rent punctually.</li>
+      <li>Use the Leased Premises for lawful commercial purposes only.</li>
+      <li>Internal repairs and maintenance, including utilities consumed by the Tenant.</li>
+      <li>Contents insurance and public liability insurance.</li>
+      <li>Erect the Partition Wall per Clause 4.</li>
+      <li>No sub-letting or assignment without the Landlord's prior written consent.</li>
+    </ol>
+
+    <h3>8. Utilities and Shared Costs</h3>
+    <ol class="clauses">
+      <li>Each party bears its own utility costs. Shared meters shall be split 50/50 or by sub-metering installed by the Tenant.</li>
+      <li>Municipal taxes, refuse, and common area maintenance apportioned by occupied space (50/50 warehouse; 100% office to Tenant).</li>
+    </ol>
+
+    <h3>9. Termination</h3>
+    <ol class="clauses">
+      <li>Not terminable during the Initial Lease Period except:
+        <ol class="sub-clauses alpha">
+          <li>By mutual written agreement;</li>
+          <li>For material breach, following thirty (30) days' written notice and failure to cure;</li>
+          <li>Insolvency, winding-up, or receivership of either party.</li>
+        </ol>
+      </li>
+      <li>Upon termination, the security deposit shall be returned per Clause 3.5.</li>
+    </ol>
+
+    <h3>10. Governing Law and Disputes</h3>
+    <ol class="clauses">
+      <li>Governed by the laws of the <strong>Republic of Cyprus</strong>.</li>
+      <li>Exclusive jurisdiction of the <strong>District Court of Limassol</strong>.</li>
+      <li>Parties shall attempt mediation under the Cyprus Mediation Law (L.159(I)/2012) before court proceedings. Mediation period: sixty (60) days.</li>
+    </ol>
+
+    <h3>11. General</h3>
+    <ol class="clauses">
+      <li><strong>Entire Agreement:</strong> This Agreement is the entire agreement between the parties concerning the lease. No oral or prior written agreement modifies these terms.</li>
+      <li><strong>Independence:</strong> This Agreement is <strong>independent</strong> of any other agreement between the parties. Its validity, performance, and enforceability are not conditional on any other arrangement.</li>
+      <li>Amendments must be in writing and signed by both parties.</li>
+      <li>Notices in writing to addresses in Schedule 2. Email with delivery confirmation is acceptable.</li>
+      <li>Severability, binding effect, waiver, counterparts, and language provisions apply in standard form.</li>
+      <li>Where a Greek translation is required for any purpose, the English version shall prevail in case of discrepancy.</li>
+    </ol>
+
+    <!-- SCHEDULES -->
+    <div class="schedule-header">Schedule 1 — Shared Use Protocol</div>
+    <p>To be annexed: Floor plan showing Leased Premises, Retained Premises, Partition Wall location, and common areas. Agreed items: access routes, parking allocation, loading bay use, signage, and security.</p>
+
+    <div class="schedule-header">Schedule 2 — Notices and Contact Details</div>
+    <table class="info-table">
+      <tr><th>Party</th><th>Contact Details</th></tr>
+      <tr>
+        <td class="label">Matero Ltd</td>
+        <td>Attention: [________]<br>Address: [________], Ypsonas, Limassol<br>Email: [________] | Tel: [________]</td>
+      </tr>
+      <tr>
+        <td class="label">Lighthief Cyprus Ltd</td>
+        <td>Attention: [________]<br>Address: [________], Cyprus<br>Email: [________] | Tel: [________]</td>
+      </tr>
+    </table>
+
+    <!-- SIGNATURE BLOCK — LEASE -->
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="party-name">MATERO LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Landlord</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div class="sig-party">
+        <div class="party-name">LIGHTHIEF CYPRUS LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Tenant</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 12px; color: var(--muted); text-align: center;"><em>Witnessed by:</em></p>
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 1 — Name, ID, Signature</div>
+      </div>
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 2 — Name, ID, Signature</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">Agreement B — Lease — Draft February 2026 — Subject to Legal Review</div>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- AGREEMENT C — OPTION TO PURCHASE (STANDALONE SALE AGREEMENT)     -->
+<!-- ================================================================ -->
+<div class="container">
+  <div class="header header-sale">
+    <h1>Agreement C — Option to Purchase Agreement</h1>
+    <div class="subtitle">Immovable Property — Ypsonas, Limassol District, Cyprus</div>
+    <div class="confidential">Confidential — Draft for Legal Review</div>
+  </div>
+
+  <div class="body">
+
+    <p style="text-align: center; font-weight: 700; color: var(--primary); margin: 20px 0; font-size: 15px;">
+      OPTION TO PURCHASE IMMOVABLE PROPERTY<br>
+      <span style="font-weight: 400; font-size: 12px;">Made under the Laws of the Republic of Cyprus<br>To be deposited at the District Land Registry under Law 81(I)/2011 as amended</span>
+    </p>
+
+    <div class="warn-box">
+      <strong>Land Registry Deposit Required:</strong> This Agreement must be deposited at the Limassol District Land Registry within <strong>six (6) months</strong> of execution, in accordance with the Sale of Immovable Property (Specific Performance) Law 81(I)/2011 as amended by Law 132(I)/2023. A property search certificate dated within 5 working days of signing must be attached.
+    </div>
+
+    <h3>Recitals</h3>
+
+    <table class="info-table">
+      <tr><th colspan="2">Parties</th></tr>
+      <tr>
+        <td class="label">Seller / Grantor of Option</td>
+        <td><strong>Matero Ltd</strong>, a company registered under the laws of the Republic of Cyprus, Registration No. [________], with registered office at [________], Ypsonas, Limassol, Cyprus<br>(hereinafter "the <strong>Seller</strong>")</td>
+      </tr>
+      <tr>
+        <td class="label">Buyer / Option Holder</td>
+        <td><strong>Lighthief Cyprus Ltd</strong>, a company registered under the laws of the Republic of Cyprus, Registration No. [________], with registered office at [________], Cyprus<br>(hereinafter "the <strong>Buyer</strong>")</td>
+      </tr>
+    </table>
+
+    <table class="info-table">
+      <tr><th colspan="2">Property</th></tr>
+      <tr>
+        <td class="label">Location</td>
+        <td>Ypsonas, Limassol District, Cyprus</td>
+      </tr>
+      <tr>
+        <td class="label">Description</td>
+        <td>Warehouse and office premises comprising the entirety of the Property, including all structures, fixtures, and improvements</td>
+      </tr>
+      <tr>
+        <td class="label">Title Deed / Registration</td>
+        <td>[Plot No. / Sheet / Plan to be inserted from DLS records]</td>
+      </tr>
+    </table>
+
+    <p><strong>WHEREAS:</strong></p>
+    <ol class="clauses">
+      <li>The Seller is the registered owner of the Property at the Department of Lands and Surveys.</li>
+      <li>The Buyer has entered into a separate commercial lease with the Seller (the "<strong>Lease Agreement</strong>") for the rental of part of the Property. That lease is a separate and independent arrangement.</li>
+      <li>The Seller is willing to grant the Buyer an irrevocable option to purchase the entirety of the Property at a locked price, subject to the terms set out herein.</li>
+      <li>The Seller has disclosed that it is in the process of a shareholder restructuring and may not be in a position to complete the sale before the expiry of the first year from the date hereof, but irrevocably commits to the locked purchase price.</li>
+    </ol>
+
+    <p><strong>NOW IT IS HEREBY AGREED AS FOLLOWS:</strong></p>
+
+    <h3>1. Definitions</h3>
+    <ol class="clauses">
+      <li>"<strong>Listed Price</strong>" means Two Million One Hundred Thousand Euro (€2,100,000).</li>
+      <li>"<strong>Rent Credit</strong>" means One Hundred and Twenty Thousand Euro (€120,000), representing the total rent paid by the Buyer to the Seller during the first twelve (12) months of the Lease Agreement (12 × €10,000).</li>
+      <li>"<strong>Leaseback Credit</strong>" means Two Hundred and Sixteen Thousand Euro (€216,000), representing the value of the Seller's post-sale occupancy of 50% of the warehouse space for thirty-six (36) months at €6,000 per month, as provided in Agreement D (Leaseback).</li>
+      <li>"<strong>Locked Purchase Price</strong>" means the Listed Price less the Rent Credit less the Leaseback Credit = <strong>€1,764,000</strong> (One Million Seven Hundred and Sixty-Four Thousand Euro).</li>
+      <li>"<strong>Option Period</strong>" means the period commencing twelve (12) months after the date of this Agreement and ending ninety (90) calendar days thereafter — i.e., a 90-day window beginning on the first anniversary of this Agreement.</li>
+      <li>"<strong>Extended Option Period</strong>" means the period of five (5) years following the expiry of the initial Option Period, during which the Option remains exercisable.</li>
+      <li>"<strong>DLS</strong>" means the Department of Lands and Surveys of the Republic of Cyprus.</li>
+    </ol>
+
+    <h3>2. Grant of Option</h3>
+    <ol class="clauses">
+      <li>The Seller hereby grants the Buyer an <strong>irrevocable and exclusive option</strong> to purchase the entirety of the Property at the Locked Purchase Price (the "<strong>Option</strong>").</li>
+      <li>The Option may be exercised by the Buyer at any time during the Option Period or the Extended Option Period by delivering a written Exercise Notice to the Seller.</li>
+      <li>The Exercise Notice shall be delivered by hand, registered post, or email with confirmed receipt to the Seller's address specified in Schedule 1.</li>
+    </ol>
+
+    <h3>3. Locked Purchase Price</h3>
+    <ol class="clauses">
+      <li>The Locked Purchase Price is <strong>irrevocably fixed at €1,764,000</strong>, calculated as:
+        <ol class="sub-clauses alpha">
+          <li>Listed Price: €2,100,000</li>
+          <li>Less Rent Credit: (€120,000)</li>
+          <li>Less Leaseback Credit: (€216,000)</li>
+          <li><strong>Locked Purchase Price: €1,764,000</strong></li>
+        </ol>
+      </li>
+      <li>The Locked Purchase Price shall <strong>not</strong> be subject to renegotiation, market revaluation, indexation, or adjustment for any reason whatsoever.</li>
+      <li>The price commitment survives any change in the Seller's corporate structure, shareholding, directorship, or management.</li>
+      <li>If the Buyer has paid more than twelve (12) months' rent under the Lease Agreement before exercising the Option, rent payments beyond the first twelve months shall <strong>not</strong> be credited against the purchase price unless separately agreed in writing.</li>
+    </ol>
+
+    <h3>4. Consideration</h3>
+    <ol class="clauses">
+      <li>The Monthly Rent payable under the Lease Agreement constitutes adequate consideration for the grant of this Option.</li>
+      <li>No separate option fee is payable.</li>
+    </ol>
+
+    <h3>5. Seller's Corporate Matters</h3>
+    <ol class="clauses">
+      <li>The Buyer acknowledges that the Seller has disclosed it is undergoing a shareholder restructuring and may not finalise the sale before the expiry of the initial twelve-month period.</li>
+      <li>Notwithstanding the above, the Seller <strong>irrevocably commits</strong> that:
+        <ol class="sub-clauses alpha">
+          <li>The Locked Purchase Price is binding regardless of the outcome of the shareholder restructuring;</li>
+          <li>No change in shareholding, directorship, or corporate control shall affect this Agreement;</li>
+          <li>Any successor, assignee, or transferee of the Seller's interest shall be bound by this Agreement.</li>
+        </ol>
+      </li>
+      <li>The Seller warrants full corporate authority to enter into this Agreement and that no shareholder or related party holds a pre-emption right, veto right, or right of first refusal over the Property.</li>
+    </ol>
+
+    <h3>6. Completion of Sale</h3>
+    <ol class="clauses">
+      <li>Upon exercise of the Option, completion shall take place within <strong>ninety (90) days</strong> of the Exercise Notice.</li>
+      <li>The Seller shall provide a Land Registry search certificate dated within <strong>five (5) working days</strong> of the sale contract execution, per Law 132(I)/2023.</li>
+      <li>The Property shall be conveyed <strong>free of all encumbrances</strong>, mortgages, charges, liens, and third-party claims, except as provided in Agreement D (Leaseback).</li>
+      <li>The Seller shall execute all documents necessary to transfer title at the DLS.</li>
+      <li>Any security deposit held under the Lease Agreement shall, at the Buyer's election, be credited toward the purchase price or refunded.</li>
+      <li><strong>Transfer Fees:</strong> Transfer fees at the DLS shall be borne by the Buyer unless otherwise agreed. Current rates apply with any applicable discounts.</li>
+    </ol>
+
+    <h3>7. Seller's Obligations During Option Period</h3>
+    <ol class="clauses">
+      <li>The Seller shall not sell, transfer, assign, mortgage, charge, encumber, or grant any interest in the Property to any third party during the term of this Agreement.</li>
+      <li>The Seller shall maintain the Property in its current condition and shall not permit any material deterioration.</li>
+      <li>The Seller shall notify the Buyer immediately of any legal proceedings, claims, or encumbrances that may affect the Property.</li>
+    </ol>
+
+    <h3>8. Land Registry Deposit</h3>
+    <ol class="clauses">
+      <li>This Agreement shall be deposited at the <strong>District Land Registry of Limassol</strong> within <strong>six (6) months</strong> of execution, under Law 81(I)/2011 as amended.</li>
+      <li>Deposit creates an enforceable proprietary right in favour of the Buyer. The Buyer may seek specific performance — a court order compelling the Seller to transfer the Property — if the Seller refuses to complete.</li>
+      <li>Costs of deposit shared equally unless otherwise agreed.</li>
+      <li>The Seller shall provide all documents required for registration, including the property search certificate.</li>
+    </ol>
+
+    <h3>9. Non-Exercise — Lapse</h3>
+    <ol class="clauses">
+      <li>If the Buyer does not exercise the Option during the Option Period or the Extended Option Period, the Option shall lapse and this Agreement shall terminate.</li>
+      <li>Lapse of the Option shall have <strong>no effect</strong> on the Lease Agreement, which shall continue independently on its own terms.</li>
+    </ol>
+
+    <h3>10. Governing Law and Disputes</h3>
+    <ol class="clauses">
+      <li>Governed by the laws of the <strong>Republic of Cyprus</strong>.</li>
+      <li>Exclusive jurisdiction of the <strong>District Court of Limassol</strong>.</li>
+      <li>Mediation attempt required before court proceedings (60-day period).</li>
+    </ol>
+
+    <h3>11. General</h3>
+    <ol class="clauses">
+      <li><strong>Independence:</strong> This Agreement is independent of the Lease Agreement. Its validity and enforceability are not conditional on the continuance of the Lease.</li>
+      <li><strong>Entire Agreement:</strong> This is the entire agreement concerning the option to purchase. No oral or prior agreement modifies these terms.</li>
+      <li>Amendments in writing signed by both parties.</li>
+      <li>Severability, binding effect, waiver, and counterparts provisions apply in standard form.</li>
+      <li>English version prevails if Greek translation is prepared.</li>
+    </ol>
+
+    <!-- SCHEDULE -->
+    <div class="schedule-header">Schedule 1 — Notices, Contact Details &amp; Property Particulars</div>
+    <table class="info-table">
+      <tr><th>Party</th><th>Contact Details</th></tr>
+      <tr>
+        <td class="label">Matero Ltd (Seller)</td>
+        <td>Attention: [________]<br>Address: [________], Ypsonas, Limassol<br>Email: [________] | Tel: [________]</td>
+      </tr>
+      <tr>
+        <td class="label">Lighthief Cyprus Ltd (Buyer)</td>
+        <td>Attention: [________]<br>Address: [________], Cyprus<br>Email: [________] | Tel: [________]</td>
+      </tr>
+    </table>
+
+    <div class="schedule-header">Schedule 2 — Property Search Certificate</div>
+    <p>To be attached: Certified property search from DLS dated within 5 working days of execution. Must disclose: registered owner, encumbrances, deposited contracts, planning zone.</p>
+
+    <div class="schedule-header">Schedule 3 — Financial Summary</div>
+    <div class="financial-box">
+      <table class="info-table">
+        <tr><th colspan="2">Locked Purchase Price Calculation</th></tr>
+        <tr><td class="label">Listed Price</td><td>€2,100,000</td></tr>
+        <tr><td class="label">Less: Rent Credit (Year 1)</td><td>(€120,000)</td></tr>
+        <tr><td class="label">Less: Leaseback Credit (3 years)</td><td>(€216,000)</td></tr>
+        <tr><td class="label"><strong>Locked Purchase Price</strong></td><td><strong>€1,764,000</strong></td></tr>
+        <tr><td class="label">Less: Security Deposit (if applied)</td><td>(€20,000)</td></tr>
+        <tr><td class="label"><strong>Net Due at Completion</strong></td><td><strong>€1,744,000</strong></td></tr>
+      </table>
+    </div>
+
+    <!-- SIGNATURE BLOCK — OPTION -->
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="party-name">MATERO LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Seller / Grantor of Option</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div class="sig-party">
+        <div class="party-name">LIGHTHIEF CYPRUS LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Buyer / Option Holder</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 12px; color: var(--muted); text-align: center;"><em>Witnessed by:</em></p>
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 1 — Name, ID, Signature</div>
+      </div>
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 2 — Name, ID, Signature</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">Agreement C — Option to Purchase — Draft February 2026 — Subject to Legal Review</div>
+</div>
+
+
+<!-- ================================================================ -->
+<!-- AGREEMENT D — POST-SALE LEASEBACK (CONDITIONAL)                  -->
+<!-- ================================================================ -->
+<div class="container">
+  <div class="header header-leaseback">
+    <h1>Agreement D — Post-Sale Leaseback Agreement</h1>
+    <div class="subtitle">Conditional on Completion of Sale — Ypsonas, Limassol District</div>
+    <div class="confidential">Confidential — Draft for Legal Review</div>
+  </div>
+
+  <div class="body">
+
+    <p style="text-align: center; font-weight: 700; color: var(--primary); margin: 20px 0; font-size: 15px;">
+      CONDITIONAL LEASEBACK AGREEMENT<br>
+      <span style="font-weight: 400; font-size: 12px;">Made under the Laws of the Republic of Cyprus</span>
+    </p>
+
+    <div class="warn-box">
+      <strong>Conditional Agreement:</strong> This Agreement becomes effective <strong>only</strong> upon completion of the sale of the Property from Matero Ltd to Lighthief Cyprus Ltd pursuant to Agreement C (Option to Purchase). If the sale is never completed, this Agreement has no force or effect. Upon activation, it shall be deposited at the Land Registry for the Leaseback Tenant's protection.
+    </div>
+
+    <h3>Recitals</h3>
+    <table class="info-table">
+      <tr><th colspan="2">Parties</th></tr>
+      <tr>
+        <td class="label">New Owner / Landlord</td>
+        <td><strong>Lighthief Cyprus Ltd</strong> (as purchaser and new registered owner)<br>(hereinafter "the <strong>New Landlord</strong>")</td>
+      </tr>
+      <tr>
+        <td class="label">Leaseback Tenant</td>
+        <td><strong>Matero Ltd</strong> (as former owner retaining 50% warehouse)<br>(hereinafter "the <strong>Leaseback Tenant</strong>")</td>
+      </tr>
+    </table>
+
+    <p><strong>WHEREAS:</strong></p>
+    <ol class="clauses">
+      <li>Pursuant to Agreement C, Lighthief Cyprus Ltd has exercised its Option to Purchase and acquired the Property.</li>
+      <li>The value of Matero Ltd's continued occupancy of 50% warehouse space for three (3) years has been deducted from the purchase price as the Leaseback Credit (€216,000).</li>
+      <li>The parties wish to formalise Matero Ltd's right to remain, protected by Land Registry registration.</li>
+    </ol>
+
+    <p><strong>NOW IT IS HEREBY AGREED AS FOLLOWS:</strong></p>
+
+    <h3>1. Leaseback Premises and Term</h3>
+    <ol class="clauses">
+      <li>The New Landlord grants the Leaseback Tenant a lease of 50% of the warehouse space (as separated by the Partition Wall) for <strong>three (3) years</strong> from the Completion Date (the "<strong>Leaseback Period</strong>").</li>
+      <li>The Leaseback Period is <strong>non-terminable</strong> by the New Landlord except for material breach.</li>
+    </ol>
+
+    <h3>2. Rent — Pre-Paid</h3>
+    <ol class="clauses">
+      <li>Valued at €6,000/month × 36 months = <strong>€216,000</strong>.</li>
+      <li>Fully pre-paid by deduction from the purchase price. <strong>No additional rent is payable.</strong></li>
+      <li>The Leaseback Tenant remains responsible for its share of utilities and operating costs (Clause 5).</li>
+    </ol>
+
+    <h3>3. Leaseback Tenant's Protections</h3>
+    <ol class="clauses">
+      <li><strong>Security of tenure</strong> for the full three years. The New Landlord shall not:
+        <ol class="sub-clauses alpha">
+          <li>Require the Leaseback Tenant to vacate before expiry;</li>
+          <li>Obstruct or interfere with the Leaseback Tenant's use;</li>
+          <li>Sell or transfer the Property without binding the new owner to this Agreement.</li>
+        </ol>
+      </li>
+      <li>This Agreement shall be deposited at the <strong>District Land Registry of Limassol</strong> simultaneously with the property transfer. Registration creates an enforceable real right protecting the Leaseback Tenant against removal by any subsequent owner.</li>
+      <li>The Leaseback Tenant may seek specific performance and/or injunctive relief if threatened with early removal.</li>
+    </ol>
+
+    <h3>4. Leaseback Tenant's Obligations</h3>
+    <ol class="clauses">
+      <li>Lawful commercial use only.</li>
+      <li>Maintain premises in good condition; internal repairs.</li>
+      <li>No sub-letting or assignment without the New Landlord's consent.</li>
+    </ol>
+
+    <h3>5. Utilities</h3>
+    <ol class="clauses">
+      <li>Leaseback Tenant pays proportionate utilities (50/50 warehouse split or sub-metered).</li>
+      <li>Municipal taxes and building insurance are the New Landlord's responsibility.</li>
+    </ol>
+
+    <h3>6. Expiry</h3>
+    <ol class="clauses">
+      <li>Vacate and deliver premises at end of Leaseback Period, fair wear and tear excepted.</li>
+      <li>No automatic right of renewal; new terms may be negotiated.</li>
+    </ol>
+
+    <h3>7. Governing Law</h3>
+    <ol class="clauses">
+      <li>Laws of the Republic of Cyprus. District Court of Limassol jurisdiction.</li>
+    </ol>
+
+    <!-- SIGNATURE BLOCK — LEASEBACK -->
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="party-name">LIGHTHIEF CYPRUS LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">New Landlord / Buyer</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div class="sig-party">
+        <div class="party-name">MATERO LTD</div>
+        <p style="font-size: 12px; color: var(--muted);">Leaseback Tenant / Former Owner</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorised Signatory — Name &amp; Title</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 12px; color: var(--muted); text-align: center;"><em>Witnessed by:</em></p>
+    <div class="sig-block">
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 1 — Name, ID, Signature</div>
+      </div>
+      <div class="sig-party">
+        <div class="sig-line"></div>
+        <div class="sig-label">Witness 2 — Name, ID, Signature</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">Agreement D — Leaseback — Draft February 2026 — Subject to Legal Review</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abio Power - CIF, Adders & Margin Breakdown (Updated Feb 12, 2026)</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2c5282;
+            --accent: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --border: #e2e8f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .header .doc-info {
+            text-align: right;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title .icon {
+            font-size: 1.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        tr:hover {
+            background: #edf2f7;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .price {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .price-large {
+            font-size: 1.05rem;
+            color: var(--accent);
+        }
+        
+        .highlight-row {
+            background: #ebf8ff !important;
+            font-weight: 600;
+        }
+        
+        .total-row {
+            background: linear-gradient(90deg, #ebf8ff 0%, #e6fffa 100%) !important;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .margin-row {
+            background: linear-gradient(90deg, #f0fff4 0%, #e6fffa 100%) !important;
+        }
+        
+        .discount-row {
+            background: #fffaf0 !important;
+            color: var(--warning);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .summary-card.accent {
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            border-color: var(--accent);
+        }
+        
+        .summary-label {
+            font-size: 0.75rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .summary-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .summary-card.accent .summary-value {
+            color: var(--accent);
+        }
+        
+        .formula-box {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .formula-box .comment {
+            color: #68d391;
+        }
+        
+        .formula-box .value {
+            color: #fbd38d;
+        }
+        
+        .info-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .info-box.green {
+            background: #f0fff4;
+            border-color: #38a169;
+        }
+        
+        .info-box.blue {
+            background: #ebf8ff;
+            border-color: #3182ce;
+        }
+        
+        .info-box.yellow {
+            background: #fffaf0;
+            border-color: #d69e2e;
+        }
+        
+        .config-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .config-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .config-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .config-badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .config-badge.new {
+            background: #3182ce;
+        }
+        
+        .footer {
+            background: #f8fafc;
+            padding: 20px 40px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+        
+        .watermark {
+            color: #cbd5e0;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30, 58, 95, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .print-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; }
+            .print-button { display: none; }
+            .section { page-break-inside: avoid; }
+            th { background: var(--primary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            tr:nth-child(even) { background: #f8fafc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .highlight-row, .total-row, .margin-row, .discount-row { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        
+        @page { margin: 1cm; size: A4 landscape; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>CIF, Adders & Margin Breakdown</h1>
+                <div class="subtitle">Abio Power Ltd - Cyprus BESS Portfolio (Updated 11-Park Group)</div>
+            </div>
+            <div class="doc-info">
+                <div><strong>Document:</strong> LCY-MARGIN-ABIO-FEB2026-v3</div>
+                <div><strong>Date:</strong> 12 February 2026</div>
+                <div><strong>CIF Source:</strong> Linyang LY202602111</div>
+                <div><strong>Classification:</strong> INTERNAL</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- New CIF Quotation Summary -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📦</span>
+                    New Linyang CIF Quotation (LY202602111 - 11 Feb 2026)
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Park</th>
+                            <th>Config</th>
+                            <th>Containers</th>
+                            <th>MV Skid</th>
+                            <th class="text-right">CIF Total</th>
+                            <th class="text-right">CIF €/kWh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Greendorado plots</strong></td>
+                            <td>1.25MW/5MWh</td>
+                            <td>1× 5.015MWh</td>
+                            <td>1.25MW (1)</td>
+                            <td class="text-right price">€564,553</td>
+                            <td class="text-right price">€112.55</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Agios Sozomenos</strong></td>
+                            <td>6MW/25MWh</td>
+                            <td>5× 5.015MWh</td>
+                            <td>3.6MW+2.4MW (2)</td>
+                            <td class="text-right price">€2,310,908</td>
+                            <td class="text-right price">€92.14</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Greendorado Agri</strong></td>
+                            <td>0.75MW/3.34MWh</td>
+                            <td>1× 3.343MWh</td>
+                            <td>0.75MW (1)</td>
+                            <td class="text-right price">€446,042</td>
+                            <td class="text-right price">€133.39</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Polemi 1494</strong></td>
+                            <td>1.25MW/8.35MWh</td>
+                            <td>2× 4.179MWh</td>
+                            <td>1.25MW (1)</td>
+                            <td class="text-right price">€829,622</td>
+                            <td class="text-right price">€99.24</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Potamia 151</strong></td>
+                            <td>1.25MW/8.35MWh</td>
+                            <td>2× 4.179MWh</td>
+                            <td>1.25MW (1)</td>
+                            <td class="text-right price">€829,622</td>
+                            <td class="text-right price">€99.24</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Potamia 208</strong></td>
+                            <td>4.5MW/20MWh</td>
+                            <td>4× 5.015MWh</td>
+                            <td>4.5MW (1)</td>
+                            <td class="text-right price">€1,815,301</td>
+                            <td class="text-right price">€90.48</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>Easy Power 2</strong></td>
+                            <td>4.5MW/10MWh</td>
+                            <td>2× 5.015MWh</td>
+                            <td>4.5MW (1)</td>
+                            <td class="text-right price">€1,071,160</td>
+                            <td class="text-right price">€106.78</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><strong>Renergetic 2</strong></td>
+                            <td>2.4MW/10MWh</td>
+                            <td>2× 5.015MWh</td>
+                            <td>2.4MW (1)</td>
+                            <td class="text-right price">€943,551</td>
+                            <td class="text-right price">€94.05</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><strong>Easy Power 4</strong></td>
+                            <td>1.8MW/8.35MWh</td>
+                            <td>2× 4.179MWh</td>
+                            <td>1.8MW (1)</td>
+                            <td class="text-right price">€852,929</td>
+                            <td class="text-right price">€102.03</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><strong>Greendorado Larnaca</strong></td>
+                            <td>1.8MW/8.35MWh</td>
+                            <td>2× 4.179MWh</td>
+                            <td>1.8MW (1)</td>
+                            <td class="text-right price">€852,929</td>
+                            <td class="text-right price">€102.03</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><strong>Waneron FIT</strong></td>
+                            <td>3MW/11.28MWh</td>
+                            <td>3× 3.761MWh</td>
+                            <td>3MW (1)</td>
+                            <td class="text-right price">€1,133,091</td>
+                            <td class="text-right price">€100.40</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="3"><strong>TOTAL (11 parks, 28.5MW / 118MWh)</strong></td>
+                            <td><strong>26 containers</strong></td>
+                            <td><strong>12 skids</strong></td>
+                            <td class="text-right price-large">€11,649,708</td>
+                            <td class="text-right price-large">€98.72 avg</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- EPC Adder Model -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🔧</span>
+                    EPC Cost Model (from Bess - EPC System Cost v2)
+                </h2>
+                <div class="formula-box">
+<span class="comment">// EPC ADDER FORMULA (validated against verified data)</span>
+EPC_Adders = Import_Customs + Insurance + Other_EPC
+
+Where:
+  Import_Customs        = CIF × <span class="value">3.0%</span>   <span class="comment">// weighted avg duty (2.66% BESS + customs fees)</span>
+  Insurance             = CIF × <span class="value">0.75%</span>  <span class="comment">// CAR/EAR construction insurance</span>
+  Other_EPC             = <span class="value">€5,000</span> base + n_containers × <span class="value">€1,500</span>  <span class="comment">// transport, civil, install, commissioning</span>
+
+<span class="comment">// EMS/SCADA (Voltus Energy - 11-park group)</span>
+  EMS per park          = <span class="value">€31,742</span>
+  SCADA Local per park  = <span class="value">€15,000</span>
+  SCADA Group (shared)  = <span class="value">€60,000 ÷ 11 = €5,455</span> per park
+  Total EMS/SCADA       = <span class="value">€52,197</span> per park
+
+<span class="comment">// PRICING</span>
+  Full EPC Cost  = CIF + EPC_Adders + EMS/SCADA
+  Client Price   = Full_EPC × <span class="value">1.13</span>  <span class="comment">// 13% margin</span>
+  Group Price    = Client_Price - (MWh × <span class="value">€500</span>)  <span class="comment">// group discount</span>
+
+<span class="comment">// VALIDATION (cross-checked with verified configurations)</span>
+  5MW/10MWh: Calc €48,421 vs Actual €48,080 → <span class="value">99.3% accurate</span>
+  3MW/10MWh: Calc €45,245 vs Actual €46,320 → <span class="value">97.7% accurate</span>
+                </div>
+            </div>
+            
+            <!-- Full Cost Breakdown -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📊</span>
+                    Full EPC Cost Breakdown (All 11 Parks)
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Park</th>
+                            <th>MWh</th>
+                            <th>Ctrs</th>
+                            <th class="text-right">CIF</th>
+                            <th class="text-right">EPC Adders</th>
+                            <th class="text-right">EMS/SCADA</th>
+                            <th class="text-right">Full EPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Greendorado plots</strong></td>
+                            <td>5.00</td>
+                            <td>1</td>
+                            <td class="text-right price">€564,553</td>
+                            <td class="text-right price">€27,671</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€644,421</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Agios Sozomenos</strong></td>
+                            <td>25.00</td>
+                            <td>5</td>
+                            <td class="text-right price">€2,310,908</td>
+                            <td class="text-right price">€99,159</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€2,462,264</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Greendorado Agri</strong></td>
+                            <td>3.34</td>
+                            <td>1</td>
+                            <td class="text-right price">€446,042</td>
+                            <td class="text-right price">€23,226</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€521,465</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Polemi 1494</strong></td>
+                            <td>8.35</td>
+                            <td>2</td>
+                            <td class="text-right price">€829,622</td>
+                            <td class="text-right price">€39,111</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€920,930</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Potamia 151</strong></td>
+                            <td>8.35</td>
+                            <td>2</td>
+                            <td class="text-right price">€829,622</td>
+                            <td class="text-right price">€39,111</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€920,930</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Potamia 208</strong></td>
+                            <td>20.00</td>
+                            <td>4</td>
+                            <td class="text-right price">€1,815,301</td>
+                            <td class="text-right price">€79,074</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€1,946,572</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>Easy Power 2</strong></td>
+                            <td>10.00</td>
+                            <td>2</td>
+                            <td class="text-right price">€1,071,160</td>
+                            <td class="text-right price">€48,169</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€1,171,526</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><strong>Renergetic 2</strong></td>
+                            <td>10.00</td>
+                            <td>2</td>
+                            <td class="text-right price">€943,551</td>
+                            <td class="text-right price">€43,384</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€1,039,132</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><strong>Easy Power 4</strong></td>
+                            <td>8.35</td>
+                            <td>2</td>
+                            <td class="text-right price">€852,929</td>
+                            <td class="text-right price">€39,985</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€945,111</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><strong>Greendorado Larnaca</strong></td>
+                            <td>8.35</td>
+                            <td>2</td>
+                            <td class="text-right price">€852,929</td>
+                            <td class="text-right price">€39,985</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€945,111</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><strong>Waneron FIT</strong></td>
+                            <td>11.28</td>
+                            <td>3</td>
+                            <td class="text-right price">€1,133,091</td>
+                            <td class="text-right price">€51,991</td>
+                            <td class="text-right price">€52,197</td>
+                            <td class="text-right price">€1,237,279</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="2"><strong>TOTAL</strong></td>
+                            <td><strong>118.01</strong></td>
+                            <td><strong>26</strong></td>
+                            <td class="text-right price-large">€11,649,708</td>
+                            <td class="text-right price-large">€530,866</td>
+                            <td class="text-right price-large">€574,167</td>
+                            <td class="text-right price-large">€12,754,741</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Client Pricing & Margin -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">💰</span>
+                    Client Pricing & Margin (13% + €500/MWh Group Discount)
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Park</th>
+                            <th>MWh</th>
+                            <th class="text-right">Full EPC</th>
+                            <th class="text-right">Client (13%)</th>
+                            <th class="text-right">Grp Disc</th>
+                            <th class="text-right">Final Price</th>
+                            <th class="text-right">€/MWh</th>
+                            <th class="text-right">Margin €</th>
+                            <th class="text-right">Margin %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Greendorado plots</strong></td>
+                            <td>5.00</td>
+                            <td class="text-right price">€644,421</td>
+                            <td class="text-right price">€728,196</td>
+                            <td class="text-right" style="color: var(--warning);">-€2,500</td>
+                            <td class="text-right price"><strong>€725,696</strong></td>
+                            <td class="text-right price">€145,139</td>
+                            <td class="text-right" style="color: var(--accent);">€81,275</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.6%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Agios Sozomenos</strong></td>
+                            <td>25.00</td>
+                            <td class="text-right price">€2,462,264</td>
+                            <td class="text-right price">€2,782,358</td>
+                            <td class="text-right" style="color: var(--warning);">-€12,500</td>
+                            <td class="text-right price"><strong>€2,769,858</strong></td>
+                            <td class="text-right price">€110,794</td>
+                            <td class="text-right" style="color: var(--accent);">€307,594</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.5%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Greendorado Agri</strong></td>
+                            <td>3.34</td>
+                            <td class="text-right price">€521,465</td>
+                            <td class="text-right price">€589,256</td>
+                            <td class="text-right" style="color: var(--warning);">-€1,670</td>
+                            <td class="text-right price"><strong>€587,586</strong></td>
+                            <td class="text-right price">€175,924</td>
+                            <td class="text-right" style="color: var(--accent);">€66,121</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.7%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Polemi 1494</strong></td>
+                            <td>8.35</td>
+                            <td class="text-right price">€920,930</td>
+                            <td class="text-right price">€1,040,651</td>
+                            <td class="text-right" style="color: var(--warning);">-€4,175</td>
+                            <td class="text-right price"><strong>€1,036,476</strong></td>
+                            <td class="text-right price">€124,129</td>
+                            <td class="text-right" style="color: var(--accent);">€115,546</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.5%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Potamia 151</strong></td>
+                            <td>8.35</td>
+                            <td class="text-right price">€920,930</td>
+                            <td class="text-right price">€1,040,651</td>
+                            <td class="text-right" style="color: var(--warning);">-€4,175</td>
+                            <td class="text-right price"><strong>€1,036,476</strong></td>
+                            <td class="text-right price">€124,129</td>
+                            <td class="text-right" style="color: var(--accent);">€115,546</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.5%</strong></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>6</td>
+                            <td><strong>Potamia 208</strong> *</td>
+                            <td>20.00</td>
+                            <td class="text-right price">€1,946,572</td>
+                            <td class="text-right price" style="text-decoration: line-through; opacity: 0.5;">€2,199,626</td>
+                            <td class="text-right" style="color: var(--warning);">Dino locked</td>
+                            <td class="text-right price"><strong>€2,248,900</strong></td>
+                            <td class="text-right price">€112,445</td>
+                            <td class="text-right" style="color: var(--accent);">€302,328</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>15.5%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>Easy Power 2</strong></td>
+                            <td>10.00</td>
+                            <td class="text-right price">€1,171,526</td>
+                            <td class="text-right price">€1,323,824</td>
+                            <td class="text-right" style="color: var(--warning);">-€5,000</td>
+                            <td class="text-right price"><strong>€1,318,824</strong></td>
+                            <td class="text-right price">€131,882</td>
+                            <td class="text-right" style="color: var(--accent);">€147,298</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.6%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><strong>Renergetic 2</strong></td>
+                            <td>10.00</td>
+                            <td class="text-right price">€1,039,132</td>
+                            <td class="text-right price">€1,174,219</td>
+                            <td class="text-right" style="color: var(--warning);">-€5,000</td>
+                            <td class="text-right price"><strong>€1,169,219</strong></td>
+                            <td class="text-right price">€116,922</td>
+                            <td class="text-right" style="color: var(--accent);">€130,087</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.5%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><strong>Easy Power 4</strong></td>
+                            <td>8.35</td>
+                            <td class="text-right price">€945,111</td>
+                            <td class="text-right price">€1,067,975</td>
+                            <td class="text-right" style="color: var(--warning);">-€4,175</td>
+                            <td class="text-right price"><strong>€1,063,800</strong></td>
+                            <td class="text-right price">€127,401</td>
+                            <td class="text-right" style="color: var(--accent);">€118,689</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.6%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><strong>Greendorado Larnaca</strong></td>
+                            <td>8.35</td>
+                            <td class="text-right price">€945,111</td>
+                            <td class="text-right price">€1,067,975</td>
+                            <td class="text-right" style="color: var(--warning);">-€4,175</td>
+                            <td class="text-right price"><strong>€1,063,800</strong></td>
+                            <td class="text-right price">€127,401</td>
+                            <td class="text-right" style="color: var(--accent);">€118,689</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.6%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><strong>Waneron FIT</strong></td>
+                            <td>11.28</td>
+                            <td class="text-right price">€1,237,279</td>
+                            <td class="text-right price">€1,398,125</td>
+                            <td class="text-right" style="color: var(--warning);">-€5,642</td>
+                            <td class="text-right price"><strong>€1,392,484</strong></td>
+                            <td class="text-right price">€123,446</td>
+                            <td class="text-right" style="color: var(--accent);">€155,205</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>12.5%</strong></td>
+                        </tr>
+                        <tr class="total-row" style="background: linear-gradient(90deg, #c6f6d5 0%, #b2f5ea 100%) !important;">
+                            <td colspan="2"><strong>TOTAL</strong></td>
+                            <td><strong>118.01</strong></td>
+                            <td class="text-right price-large">€12,754,741</td>
+                            <td class="text-right price-large">€14,472,132</td>
+                            <td class="text-right" style="color: var(--warning);"><strong>mixed</strong></td>
+                            <td class="text-right price-large" style="font-size: 1.1rem;">€14,413,125</td>
+                            <td class="text-right price-large">€122,139</td>
+                            <td class="text-right" style="color: var(--accent);"><strong>€1,658,384</strong></td>
+                            <td class="text-right" style="color: var(--accent);"><strong>13.0%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- EMS/SCADA Group Allocation -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📡</span>
+                    EMS/SCADA Costs (Voltus) - 11-Park Group
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th class="text-right">Per Park</th>
+                            <th class="text-right">Total (11 parks)</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>EMS (Voltus Energy)</strong></td>
+                            <td class="text-right price">€31,742</td>
+                            <td class="text-right price">€349,162</td>
+                            <td>Per-park EMS controller</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SCADA Local</strong></td>
+                            <td class="text-right price">€15,000</td>
+                            <td class="text-right price">€165,000</td>
+                            <td>Local SCADA controller per park</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SCADA Group (shared)</strong></td>
+                            <td class="text-right price">€5,455</td>
+                            <td class="text-right price">€60,000</td>
+                            <td>€60,000 ÷ 11 parks</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL EMS/SCADA</strong></td>
+                            <td class="text-right price-large">€52,197</td>
+                            <td class="text-right price-large">€574,167</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="info-box green">
+                    <strong>11-Park Group SCADA Benefit:</strong><br>
+                    Old allocation (5-park): €12,000/park → New (11-park): <strong>€5,455/park</strong><br>
+                    SCADA savings per park: <strong>€6,545</strong> | Total group savings: <strong>€72,000</strong>
+                </div>
+            </div>
+            
+            <!-- Summary Cards -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📋</span>
+                    Portfolio Summary
+                </h2>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-label">Total Parks</div>
+                        <div class="summary-value">11</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Total Capacity</div>
+                        <div class="summary-value">118 MWh</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Total CIF</div>
+                        <div class="summary-value">€11.65M</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Total EPC Cost</div>
+                        <div class="summary-value">€12.75M</div>
+                    </div>
+                    <div class="summary-card accent">
+                        <div class="summary-label">Client Revenue</div>
+                        <div class="summary-value">€14.41M</div>
+                    </div>
+                    <div class="summary-card accent">
+                        <div class="summary-label">Net Margin</div>
+                        <div class="summary-value">€1.66M</div>
+                    </div>
+                    <div class="summary-card accent">
+                        <div class="summary-label">Margin %</div>
+                        <div class="summary-value">13.0%</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Avg €/MWh</div>
+                        <div class="summary-value">€122,139</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pricing Waterfall -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🧮</span>
+                    Pricing Waterfall (Full Group)
+                </h2>
+                <div class="formula-box">
+<span class="comment">// STEP 1: Linyang CIF (LY202602111, 11 Feb 2026)</span>
+Total CIF (11 parks, 26 containers)     = <span class="value">€11,649,708</span>
+
+<span class="comment">// STEP 2: EPC Adders (per formula)</span>
+Import & Customs (€11,649,708 × 3.0%)   = <span class="value">€349,491</span>
+Insurance (€11,649,708 × 0.75%)         = <span class="value">€87,373</span>
+Other EPC (11 sites base + 26 ctrs)     = <span class="value">€94,002</span>
+──────────────────────────────────────────────────────
+Total EPC Adders                         = <span class="value">€530,866</span>
+
+<span class="comment">// STEP 3: EMS/SCADA (11-park group)</span>
+Total EMS/SCADA (11 × €52,197)           = <span class="value">€574,167</span>
+
+<span class="comment">// STEP 4: Full EPC Cost</span>
+€11,649,708 + €530,866 + €574,167       = <span class="value">€12,754,741</span>
+
+<span class="comment">// STEP 5: Client Price (13% margin)</span>
+€12,754,741 × 1.13                       = <span class="value">€14,412,858</span>
+
+<span class="comment">// STEP 6: Group Discount</span>
+118.01 MWh × €500/MWh                   = <span class="value">-€59,007</span>
+
+<span class="comment">// STEP 6b: Dino Locked Pricing (where applicable)</span>
+Potamia 208 (4.5MW/20MWh): Dino 5/20 locked €112,945 - €500 = <span class="value">€112,445/MWh</span>
+  → €112,445 × 20 = <span class="value">€2,248,900</span>  <span class="comment">// +€59,274 vs formula price</span>
+
+<span class="comment">// FINAL</span>
+<strong>Total Client Price</strong>                       = <span class="value">€14,413,125</span>
+<strong>Net Margin</strong> (after discount + Dino lock)  = <span class="value">€1,658,384</span>
+<strong>Margin %</strong> (on EPC cost)                   = <span class="value">13.0%</span>
+<strong>Average €/MWh</strong>                            = <span class="value">€122,139</span>
+                </div>
+            </div>
+            
+            <!-- Changes vs Previous -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🔄</span>
+                    Changes vs Previous Proposal (v2 → v3)
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th class="text-right">Previous (v2)</th>
+                            <th class="text-right">Updated (v3)</th>
+                            <th class="text-right">Change</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Parks</td>
+                            <td class="text-right">6</td>
+                            <td class="text-right"><strong>11</strong></td>
+                            <td class="text-right" style="color: #3182ce;">+5</td>
+                        </tr>
+                        <tr>
+                            <td>Total MW</td>
+                            <td class="text-right">21.5 MW</td>
+                            <td class="text-right"><strong>28.5 MW</strong></td>
+                            <td class="text-right" style="color: #3182ce;">+7 MW</td>
+                        </tr>
+                        <tr>
+                            <td>Total MWh</td>
+                            <td class="text-right">80 MWh</td>
+                            <td class="text-right"><strong>118 MWh</strong></td>
+                            <td class="text-right" style="color: #3182ce;">+38 MWh (+47.5%)</td>
+                        </tr>
+                        <tr>
+                            <td>Client Price</td>
+                            <td class="text-right">€9,957,543</td>
+                            <td class="text-right"><strong>€14,413,125</strong></td>
+                            <td class="text-right" style="color: #3182ce;">+€4,455,582</td>
+                        </tr>
+                        <tr>
+                            <td>Average €/MWh</td>
+                            <td class="text-right">€124,469</td>
+                            <td class="text-right"><strong>€122,139</strong></td>
+                            <td class="text-right" style="color: var(--accent);">-€2,330 (-1.9%)</td>
+                        </tr>
+                        <tr>
+                            <td>SCADA cost/park</td>
+                            <td class="text-right">€12,000</td>
+                            <td class="text-right"><strong>€5,455</strong></td>
+                            <td class="text-right" style="color: var(--accent);">-€6,545 (-55%)</td>
+                        </tr>
+                        <tr>
+                            <td>CIF source</td>
+                            <td class="text-right">Earlier quotation</td>
+                            <td class="text-right"><strong>LY202602111</strong></td>
+                            <td class="text-right">Updated 11 Feb 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="info-box blue">
+                    <strong>Key Changes:</strong><br>
+                    • 3 Paphos parks removed (not in new Linyang quotation)<br>
+                    • 8 new parks added (Greendorado, Agios Sozomenos, Easy Power, Renergetic, Waneron)<br>
+                    • Polemi, Potamia 151, Potamia 208 configs changed significantly (lower MW ratings)<br>
+                    • New container sizes: 4.179MWh, 3.761MWh, 3.343MWh (previously only 5.015MWh)<br>
+                    • Payment terms updated: 30%/70% (was 25%/50%/20%/5%)
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>
+                <strong>Lighthief Cyprus Ltd</strong> | 28 October Ave 249, Limassol 3035
+            </div>
+            <div>
+                <strong>Prepared by:</strong> Commercial Team | <strong>Reference:</strong> LCY-MARGIN-ABIO-FEB2026-v3
+            </div>
+        </div>
+        
+        <div class="watermark">
+            CONFIDENTIAL - INTERNAL USE ONLY | Updated 12 February 2026
+        </div>
+    </div>
+    
+    <button class="print-button" onclick="window.print()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Export to PDF
+    </button>
+</body>
+</html>

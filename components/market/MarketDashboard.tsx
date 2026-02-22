@@ -655,7 +655,7 @@ export function MarketDashboard() {
                   {formatPrice(bessData.estimatedRevenuePerMWhPerDay)}
                 </p>
                 <p className="text-xs text-gray-500">Daily Revenue</p>
-                <p className="text-xs text-gray-400">Per MWh (87.8% RTE)</p>
+                <p className="text-xs text-gray-400">Per MWh (86.32% RTE)</p>
               </div>
               
               <div className="text-center p-3 bg-green-100 rounded-lg shadow-sm border border-green-300">
@@ -669,7 +669,7 @@ export function MarketDashboard() {
             </div>
             
             <p className="text-xs text-gray-500 mt-4 text-center">
-              Based on 87.8% round-trip efficiency (OEM spec) &bull; 1 cycle/day &bull; 
+              Based on 86.32% round-trip efficiency (full system AC-AC) &bull; 1 cycle/day &bull; 
               Charge during solar hours (06-18), discharge during peak (17-21)
             </p>
           </CardContent>

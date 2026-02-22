@@ -12,6 +12,9 @@
     "market:parse": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/download-market-data.ts --parse-only",
     "market:fetch": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/fetch-tsoc-playwright.ts",
     "market:fetch-backfill": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/fetch-tsoc-playwright.ts --backfill",
+    "docs:generate": "tsx scripts/generate-docs.ts",
+    "docs:validate": "tsx scripts/validate-docs.ts",
+    "docs:update": "tsx scripts/generate-docs.ts && tsx scripts/validate-docs.ts",
     "sanity": "sanity dev",
     "sanity:build": "sanity build",
     "sanity:deploy": "sanity deploy"

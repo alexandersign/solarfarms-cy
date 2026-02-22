@@ -22,7 +22,7 @@ The competitor offers a comprehensive risk mitigation package including APG, ste
 | **3** | **Project Delay** | Delay LDs: 0.5%/week, grace period, capped at 10% | ✅ **MATCHED** - 0.1-0.2%/day, capped at 10% | ❌ No delay LDs from Linyang | 🟢 **MATCHED** | Lighthief bears delay risk |
 | **4** | **Performance failure at handover** | Performance Bond: 10% held until SAT | ✅ **MATCHED** - 5% retention until FAC | ❌ No upstream retention | 🟢 **MATCHED** | Consider increasing to 10% |
 | **5** | **BESS Availability** | Availability Warranty: ≥98%, O&M fee reduction | ✅ **MATCHED** - 97% guarantee (Tier C/D LTSA), up to 20% fee reduction | ✅ 97% with LTSA (€2,201.73/MWh/year) | 🟢 **MATCHED** | Competitor offers 98% vs our 97% |
-| **6** | **Cell performance & SOH** | Performance Warranty: SOH vs degradation curve, module replacement, augmentation, ~1.9% warranty reserve | ✅ **MATCHED** - Tier D LTSA: SOH guarantee, tiered remedies, augmentation provisions | ✅ Backed by OEM ~1.9% warranty reserve | 🟢 **MATCHED** | Full match with Tier D |
+| **6** | **Cell performance & SOH** | Performance Warranty: SOH vs degradation curve, module replacement, augmentation, ~1.9% warranty reserve | ✅ **MATCHED** - Tier C LTSA: SOH guarantee, tiered remedies, augmentation provisions | ✅ Backed by OEM ~1.9% warranty reserve | 🟢 **MATCHED** | Full match with Tier C |
 
 ---
 
@@ -209,11 +209,11 @@ The competitor offers a comprehensive risk mitigation package including APG, ste
 
 **Lighthief Current Position:**
 - ✅ **FULLY MATCHED**
-- Client LTSA Section 10 (Tier D): Complete SOH guarantee structure
+- Client LTSA Section 10: SOH guarantee structure (Tier D not offered — Tier C is highest)
 
 **Detailed Match Analysis:**
 
-| Feature | Competitor | Lighthief (Tier D LTSA) | Match |
+| Feature | Competitor | Lighthief (Tier C LTSA) | Match |
 |---------|-----------|------------------------|-------|
 | SOH Guarantee | ✅ Against degradation curve | ✅ Schedule 5 degradation curve | ✅ |
 | Year 5 SOH | Not specified | ≥85% (1 CPD) / ≥82% (2 CPD) | ✅ |
@@ -245,7 +245,7 @@ The competitor offers a comprehensive risk mitigation package including APG, ste
 | Performance Retention | ✅ Partial (5% vs 10%) | EPC §7.4 | ❌ None |
 | Availability 97% | ✅ Full match | LTSA §9 (Tier C/D) | ✅ Linyang LTSA |
 | Availability 98% | ✅ Available on request | LTSA §9.7 | ⚠️ Confirm pricing |
-| SOH Guarantee | ✅ Full match | LTSA §10 (Tier D) | ✅ Linyang warranty reserve |
+| SOH Guarantee | ✅ Full match | LTSA §10 (Tier C) | ✅ Linyang warranty reserve |
 | Module Replacement | ✅ Full match | LTSA §10.4(a) | ✅ OEM warranty |
 | Augmentation | ✅ Full match | LTSA §10.4(b) | ✅ OEM warranty reserve |
 
@@ -402,7 +402,7 @@ For projects requiring formal step-in rights (typically >€2M or bank-financed)
    > "We currently hold 5% retention until Final Acceptance. If required, we can increase to 10% or provide a bank guarantee at additional cost."
 
 4. **SOH Guarantee:**
-   > "Our Tier D LTSA provides full SOH guarantee against OEM degradation curve, with module replacement and augmentation provisions backed by Linyang's warranty reserve."
+   > "Our Tier C LTSA provides full SOH guarantee against OEM degradation curve, with module replacement and augmentation provisions backed by Linyang's warranty reserve."
 
 ### Quote Template Addition:
 

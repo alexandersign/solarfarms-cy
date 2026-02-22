@@ -80,7 +80,7 @@ export function BESSShowcase() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">
                 <TrendingUp className="w-8 h-8 text-green-400 mx-auto mb-3" />
-                <div className="text-3xl font-bold mb-1">87.8%</div>
+                <div className="text-3xl font-bold mb-1">86.32%</div>
                 <div className="text-sm text-cyprus-300">Round-Trip Efficiency</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">

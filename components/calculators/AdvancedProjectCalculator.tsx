@@ -1212,7 +1212,7 @@ export function AdvancedProjectCalculator() {
                           />
                         </FormField>
 
-                        <FormField label="Round Trip Efficiency (%)" tooltip="OEM system RTE: 87.8% AC-AC (editable for other brands)">
+                        <FormField label="Round Trip Efficiency (%)" tooltip="OEM full system RTE: 86.32% AC-AC incl. cabling (editable for other brands)">
                           <Input
                             type="number"
                             step="0.01"
