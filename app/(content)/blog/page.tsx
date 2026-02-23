@@ -58,6 +58,60 @@ export default function BlogPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* NEW - Battery Boom Article */}
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-cyan-200">
+              <div className="relative overflow-hidden rounded-t-lg">
+                <Image
+                  src="/images/solar-farm-aerial-unsplash.jpg"
+                  alt="Battery boom: prices fall and global capacity surges"
+                  width={400}
+                  height={250}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4">
+                  <Badge className="bg-cyan-600 text-white">MARKET TREND</Badge>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge variant="secondary" className="bg-white/90 text-gray-800">NEW</Badge>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <Badge variant="secondary" className="bg-cyan-100 text-cyan-800">Storage Market</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800">BESS</Badge>
+                </div>
+                <CardTitle className="group-hover:text-solar-600 transition-colors">
+                  <Link href="/blog/battery-boom-prices-fall-capacity-surges">
+                    The Battery Boom: Prices Fall, Capacity Surges
+                  </Link>
+                </CardTitle>
+                <CardDescription className="line-clamp-2">
+                  A practical look at the global storage inflection point and what lower battery costs plus faster deployment mean for project economics.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1">
+                      <User className="w-4 h-4" />
+                      <span>Alexander Papacosta</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>Feb 22, 2026</span>
+                    </div>
+                  </div>
+                  <Link
+                    href="/blog/battery-boom-prices-fall-capacity-surges"
+                    className="flex items-center space-x-1 text-solar-600 hover:text-solar-700 font-medium"
+                  >
+                    <span>Read</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* NEW - Why BESS No Longer Optional */}
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-red-200">
               <div className="relative overflow-hidden rounded-t-lg">
