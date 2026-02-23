@@ -625,15 +625,15 @@ export default function BESSInsuranceRiskArticle() {
               </div>
             </div>
 
-            {/* Section 5: What We've Learned from 881 MWh */}
+            {/* Section 5: What We've Learned from Large-Scale Deployment */}
             <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
               <div className="text-center mb-8">
                 <Badge className="mb-3 bg-indigo-600 text-white">Practical Experience</Badge>
                 <h2 className="text-3xl font-heading font-bold mb-4">
-                  What We&rsquo;ve Learned from 881&nbsp;MWh of Insurance Applications
+                  What We&rsquo;ve Learned from Large-Scale Insurance Applications
                 </h2>
                 <p className="text-lg text-gray-600">
-                  With a portfolio of 51 parks totalling 881&nbsp;MWh across Cyprus, we&rsquo;ve
+                  With a large-scale portfolio totalling hundreds of MWh across Cyprus, we&rsquo;ve
                   been through the insurance underwriting process at scale. Here are the practical
                   insights that save time, reduce premiums, and avoid surprises.
                 </p>
@@ -649,7 +649,7 @@ export default function BESSInsuranceRiskArticle() {
                     We&rsquo;ve confirmed that 0.75% of CIF value is a competitive marine insurance
                     rate for LFP BESS shipments from China to Cyprus. Rates above 1% typically
                     indicate the broker is either unfamiliar with BESS or hasn&rsquo;t shopped the
-                    specialist market. Our group volume helps achieve this benchmark consistently.
+                    specialist market. Portfolio volume helps achieve this benchmark consistently.
                   </p>
                 </div>
 
@@ -686,7 +686,7 @@ export default function BESSInsuranceRiskArticle() {
                     Group Policy Advantage
                   </h4>
                   <p className="text-gray-700 text-sm">
-                    A single group policy across 51 parks achieves meaningfully better rates than
+                    A single portfolio policy across multiple parks achieves meaningfully better rates than
                     individual policies for each site. Insurers prefer portfolio-level risk because
                     it diversifies their exposure across multiple locations. This is one of the key
                     advantages of aggregating BESS installations under a unified EPC/O&amp;M
@@ -908,7 +908,7 @@ export default function BESSInsuranceRiskArticle() {
                 Get Your BESS Insurance Right from Day One
               </h2>
               <p className="text-xl mb-6 opacity-90">
-                With 881&nbsp;MWh across 51 parks, we&rsquo;ve been through the insurance
+                With hundreds of MWh across our portfolio, we&rsquo;ve been through the insurance
                 underwriting process at scale. Let us help you navigate chemistry selection, OEM
                 qualification, and insurance structuring &mdash; before you commit to procurement.
               </p>

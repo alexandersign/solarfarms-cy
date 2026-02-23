@@ -18,9 +18,9 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'BESS Fire Safety and Thermal Management: Deploying 881 MWh in Cyprus Heat',
+  title: 'BESS Fire Safety and Thermal Management: Deploying Large-Scale BESS in Cyprus Heat',
   description:
-    'Outdoor BESS containers face 45°C Cyprus summers. We cover thermal management, fire suppression systems, container spacing, insurance requirements, and the engineering decisions behind our 881 MWh deployment.',
+    'Outdoor BESS containers face 45°C Cyprus summers. We cover thermal management, fire suppression systems, container spacing, insurance requirements, and the engineering decisions behind our large-scale BESS deployment.',
   keywords: [
     'BESS fire safety',
     'battery storage thermal management',
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'BESS Fire Safety and Thermal Management: Deploying 881 MWh in Cyprus Heat',
+  headline: 'BESS Fire Safety and Thermal Management: Deploying Large-Scale BESS in Cyprus Heat',
   description:
-    'Outdoor BESS containers face 45°C Cyprus summers. We cover thermal management, fire suppression systems, container spacing, insurance requirements, and the engineering decisions behind our 881 MWh deployment.',
+    'Outdoor BESS containers face 45°C Cyprus summers. We cover thermal management, fire suppression systems, container spacing, insurance requirements, and the engineering decisions behind our large-scale BESS deployment.',
   datePublished: '2025-10-07',
   author: {
     '@type': 'Person',
@@ -75,12 +75,12 @@ export default function BESSFireSafetyArticle() {
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
               BESS Fire Safety and Thermal Management
               <span className="block gradient-text mt-2">
-                Deploying 881&nbsp;MWh in Cyprus Heat
+                Deploying Large-Scale BESS in Cyprus Heat
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-6">
-              When ambient temperatures exceed 45&deg;C and you&apos;re responsible for 251 battery
-              containers spread across 51 solar parks, fire safety and thermal engineering stop being
+              When ambient temperatures exceed 45&deg;C and you&apos;re responsible for hundreds of battery
+              containers spread across multiple solar parks, fire safety and thermal engineering stop being
               line items on a spec sheet. They become the foundation every other decision is built on.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -108,8 +108,8 @@ export default function BESSFireSafetyArticle() {
               <p className="text-lg text-gray-700 mb-4">
                 BESS safety incidents make headlines. A single thermal event at a battery storage
                 facility draws the kind of media coverage that can stall permitting for an entire
-                region. As developers planning 251 containers across 51 parks &mdash; totalling
-                881&nbsp;MWh of lithium iron phosphate storage &mdash; safety engineering is not a
+                region. As developers planning hundreds of containers across our portfolio &mdash; totalling
+                hundreds of MWh of lithium iron phosphate storage &mdash; safety engineering is not a
                 feature we offer. It is the prerequisite for everything else.
               </p>
               <p className="text-lg text-gray-700 mb-4">
@@ -711,7 +711,7 @@ export default function BESSFireSafetyArticle() {
                     <p className="text-sm text-gray-600 mt-1">
                       LFP chemistry typically qualifies for lower premiums than NMC for utility-scale
                       installations. Some insurers now apply surcharges or exclusions for NMC
-                      above certain capacities. Our choice of LFP across all 51 parks was validated
+                      above certain capacities. Our choice of LFP across all parks in our portfolio was validated
                       during the insurance procurement process.
                     </p>
                   </div>
@@ -923,7 +923,7 @@ export default function BESSFireSafetyArticle() {
                 </div>
                 <div className="text-center bg-green-50 rounded-xl p-6">
                   <Shield className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-green-700">251</div>
+                  <div className="text-2xl font-bold text-green-700">Hundreds</div>
                   <div className="text-sm text-gray-600">Containers with integrated suppression</div>
                 </div>
               </div>
@@ -947,7 +947,7 @@ export default function BESSFireSafetyArticle() {
               <p className="text-xl mb-6 opacity-90">
                 Whether you&apos;re evaluating fire suppression options, reviewing container
                 layouts, or preparing for an insurance submission, our team can walk you through the
-                safety engineering decisions behind 881&nbsp;MWh of deployed LFP storage &mdash;
+                safety engineering decisions behind our large-scale LFP deployment &mdash;
                 and what they mean for your project.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -19,7 +19,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Warranties, Guarantees, and Performance Bonds: The BESS Buyer\'s Protection Checklist',
-  description: 'Not all BESS warranties are equal. We break down capacity warranties, availability guarantees, performance bonds, and LTSA structures — with the exact terms we secured for our 881 MWh portfolio.',
+  description: 'Not all BESS warranties are equal. We break down capacity warranties, availability guarantees, performance bonds, and LTSA structures — with the exact terms we secured for our portfolio.',
   keywords: [
     'BESS warranty guide',
     'battery storage performance guarantee',
@@ -36,7 +36,7 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'Warranties, Guarantees, and Performance Bonds: The BESS Buyer\'s Protection Checklist',
-  description: 'Not all BESS warranties are equal. We break down capacity warranties, availability guarantees, performance bonds, and LTSA structures — with the exact terms we secured for our 881 MWh portfolio.',
+  description: 'Not all BESS warranties are equal. We break down capacity warranties, availability guarantees, performance bonds, and LTSA structures — with the exact terms we secured for our portfolio.',
   datePublished: '2025-09-23',
   dateModified: '2025-09-23',
   author: {
@@ -84,7 +84,7 @@ export default function BESSWarrantiesGuaranteesArticle() {
             <p className="text-xl text-gray-600 mb-6">
               Not all BESS warranties are equal. We break down capacity warranties, availability
               guarantees, performance bonds, and LTSA structures &mdash; with the exact terms we
-              secured for our 881&nbsp;MWh portfolio.
+              secured for our portfolio.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
@@ -132,7 +132,7 @@ export default function BESSWarrantiesGuaranteesArticle() {
                 <CardContent className="pt-6">
                   <p className="text-lg text-indigo-800 font-medium">
                     <Lock className="w-5 h-5 inline-block mr-2 mb-1" />
-                    In our 881&nbsp;MWh portfolio, warranty terms were negotiated as a package &mdash;
+                    In our portfolio, warranty terms were negotiated as a package &mdash;
                     not line by line. The result is a comprehensive protection framework that satisfies
                     both investors and insurers. Here&rsquo;s what that looks like.
                   </p>
@@ -688,7 +688,7 @@ export default function BESSWarrantiesGuaranteesArticle() {
                         <p className="text-gray-600">
                           Should you purchase spare parts upfront or rely on warranty replacement? The answer
                           depends on lead times and your risk tolerance. For our portfolio, we maintain a
-                          shared spare parts pool across 51 parks &mdash; cost-effective and fast.
+                          shared spare parts pool across multiple parks &mdash; cost-effective and fast.
                         </p>
                       </div>
                     </div>
@@ -858,7 +858,7 @@ export default function BESSWarrantiesGuaranteesArticle() {
                   purchase price are wiped out by a single unwarrantied failure event.
                 </p>
                 <p className="text-indigo-800">
-                  For our 881&nbsp;MWh portfolio, we negotiated every term on this checklist &mdash; and
+                  For our portfolio, we negotiated every term on this checklist &mdash; and
                   confirmed extended warranty pricing upfront. The result is a warranty framework that
                   gives our investors and their insurers complete confidence in the asset&rsquo;s long-term
                   value.

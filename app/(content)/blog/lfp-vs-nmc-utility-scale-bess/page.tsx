@@ -21,7 +21,7 @@ import {
 export const metadata: Metadata = {
   title: 'LFP vs NMC for Utility-Scale BESS: Why Chemistry Matters for Your 20-Year Investment',
   description:
-    'We chose LFP (LiFePO4) for all 51 parks in our 881 MWh Cyprus portfolio. Here\u2019s why cycle life economics, fire safety, and insurance implications make LFP the clear winner for utility-scale BESS.',
+    'We chose LFP (LiFePO4) for our entire Cyprus BESS portfolio. Here\u2019s why cycle life economics, fire safety, and insurance implications make LFP the clear winner for utility-scale BESS.',
   keywords: [
     'LFP vs NMC utility scale',
     'LFP battery solar farm',
@@ -55,7 +55,7 @@ const articleSchema = {
   datePublished: '2026-01-27',
   image: 'https://solarfarms.cy/images/blog/lfp-vs-nmc-bess.jpg',
   description:
-    'We chose LFP (LiFePO4) for all 51 parks in our 881 MWh Cyprus portfolio. Here\u2019s why cycle life economics, fire safety, and insurance implications make LFP the clear winner for utility-scale BESS.',
+    'We chose LFP (LiFePO4) for our entire Cyprus BESS portfolio. Here\u2019s why cycle life economics, fire safety, and insurance implications make LFP the clear winner for utility-scale BESS.',
 }
 
 export default function LFPvsNMCArticle() {
@@ -77,7 +77,7 @@ export default function LFPvsNMCArticle() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-6">
-              When we committed to 881.78&nbsp;MWh of battery storage across 51 parks in Cyprus,
+              When we committed to hundreds of MWh of battery storage across our Cyprus portfolio,
               the first engineering decision wasn&apos;t about containers or inverters &mdash; it was
               about cell chemistry. We chose LFP. Every single park. Here&apos;s the business case
               behind that decision.
@@ -489,7 +489,7 @@ export default function LFPvsNMCArticle() {
                   the 60&ndash;120&deg;C margin between LFP&apos;s thermal runaway onset and peak summer
                   conditions is not a luxury &mdash; it&apos;s a fundamental safety requirement. With NMC,
                   that margin shrinks to as little as 105&deg;C, and every degree matters when you&apos;re
-                  deploying 176 containers across an island.&rdquo;
+                  deploying battery storage across an island.&rdquo;
                 </p>
                 <p className="text-sm text-gray-500 mt-3 pl-4">
                   &mdash; Alexander Papacosta, Managing Director, Lighthief Cyprus
@@ -584,7 +584,7 @@ export default function LFPvsNMCArticle() {
                   to the financial model. A project that cannot secure comprehensive insurance at
                   reasonable rates faces higher equity requirements, worse debt terms, and potentially
                   fails to reach financial close altogether. By choosing LFP, we ensured that every park
-                  in our 51-park portfolio qualifies for full CAR/EAR coverage during construction and
+                  in our portfolio qualifies for full CAR/EAR coverage during construction and
                   competitive property insurance rates during operations &mdash; making each project
                   individually bankable.
                 </p>
@@ -748,22 +748,14 @@ export default function LFPvsNMCArticle() {
                 <h3 className="text-lg font-semibold mb-4 text-center">
                   Portfolio at a Glance
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                   <div className="text-center bg-purple-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-purple-700">51</div>
-                    <div className="text-sm text-gray-600">Parks</div>
-                  </div>
-                  <div className="text-center bg-indigo-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-indigo-700">881.78</div>
-                    <div className="text-sm text-gray-600">MWh Total</div>
-                  </div>
-                  <div className="text-center bg-blue-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-blue-700">176</div>
-                    <div className="text-sm text-gray-600">Containers</div>
+                    <div className="text-2xl font-bold text-purple-700">100%</div>
+                    <div className="text-sm text-gray-600">LFP Chemistry</div>
                   </div>
                   <div className="text-center bg-green-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-green-700">100%</div>
-                    <div className="text-sm text-gray-600">LFP Chemistry</div>
+                    <div className="text-2xl font-bold text-green-700">Multi-park</div>
+                    <div className="text-sm text-gray-600">Cyprus Portfolio</div>
                   </div>
                 </div>
               </div>
@@ -777,7 +769,7 @@ export default function LFPvsNMCArticle() {
               <p className="text-xl mb-6 opacity-90">
                 Whether you&apos;re evaluating LFP vs NMC for a new project or reviewing an existing
                 proposal, our team can walk you through the 20-year financial implications of each
-                chemistry choice &mdash; with real data from 881&nbsp;MWh of deployed LFP systems.
+                chemistry choice &mdash; with real data from our deployed LFP systems.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="secondary" size="lg" className="bg-white text-cyprus-600 hover:bg-gray-100" asChild>

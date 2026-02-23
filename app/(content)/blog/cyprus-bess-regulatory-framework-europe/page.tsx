@@ -1028,7 +1028,7 @@ export default function CyprusBESSRegulatoryFrameworkArticle() {
               <p className="text-xl mb-6 opacity-90">
                 From CERA licensing to TSOC grid connection, we handle the regulatory
                 complexity so you can focus on returns. Our team has navigated the
-                permitting process for 51 parks across Cyprus.
+                permitting process for multiple parks across Cyprus.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="secondary" size="lg" className="bg-white text-cyprus-600 hover:bg-gray-100" asChild>

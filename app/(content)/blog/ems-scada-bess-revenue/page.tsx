@@ -332,7 +332,7 @@ export default function EMSSCADABESSRevenueArticle() {
               </h2>
               <p className="text-lg text-gray-700 mb-6">
                 SCADA (Supervisory Control and Data Acquisition) is the monitoring and control layer
-                that sits alongside the EMS. For multi-park portfolios like Lighthief&apos;s 51-park
+                that sits alongside the EMS. For multi-park portfolios like Lighthief&apos;s multi-park
                 deployment, there are two distinct SCADA tiers &mdash; and both are essential.
               </p>
 
@@ -429,7 +429,7 @@ export default function EMSSCADABESSRevenueArticle() {
                   enables portfolio-level insights that no single-park view can provide &mdash; identifying
                   underperforming sites, optimising maintenance schedules across the fleet, and providing
                   investors with consolidated performance reporting. For a portfolio like Lighthief&apos;s
-                  51-park deployment, fleet-level visibility is not optional; it&apos;s essential for
+                  multi-park deployment, fleet-level visibility is not optional; it&apos;s essential for
                   operational excellence.
                 </p>
               </div>
@@ -443,7 +443,7 @@ export default function EMSSCADABESSRevenueArticle() {
               </h2>
               <p className="text-lg text-gray-700 mb-6">
                 After evaluating multiple EMS providers, Lighthief selected Voltus as the EMS and SCADA
-                platform for our entire 51-park BESS portfolio. The decision was driven by five critical
+                platform for our entire multi-park BESS portfolio. The decision was driven by five critical
                 factors specific to the Cyprus market.
               </p>
 
@@ -508,7 +508,7 @@ export default function EMSSCADABESSRevenueArticle() {
                           <p className="text-sm text-gray-700">
                             Cloud-based monitoring with remote firmware updates, configuration changes,
                             and diagnostics. No truck rolls needed for software optimisation &mdash;
-                            critical when managing 51 distributed sites.
+                            critical when managing multiple distributed sites.
                           </p>
                         </div>
                       </div>
@@ -538,7 +538,7 @@ export default function EMSSCADABESSRevenueArticle() {
                           Total EMS/SCADA Investment
                         </div>
                         <div className="text-3xl font-bold text-green-700 mb-1">€3.99M</div>
-                        <div className="text-sm text-gray-600">Across 51 parks in our portfolio</div>
+                        <div className="text-sm text-gray-600">Across our portfolio</div>
                         <div className="text-xs text-gray-400 mt-2">
                           Includes local SCADA, global SCADA, EMS licensing, and integration
                         </div>
@@ -676,7 +676,7 @@ export default function EMSSCADABESSRevenueArticle() {
               <p className="text-lg text-gray-700 mb-6">
                 Whether you&apos;re evaluating EMS providers for a new project or considering an upgrade
                 to an existing system, here is a practical buyer&apos;s checklist based on our experience
-                planning deployment across 51 parks.
+                planning deployment across multiple parks.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -814,7 +814,7 @@ export default function EMSSCADABESSRevenueArticle() {
                 project&apos;s lifetime. We can help you choose, configure, and optimise the right system.
               </p>
               <p className="text-lg mb-8 opacity-80">
-                Lighthief has selected Voltus EMS for 51 parks with 881 MWh of planned battery storage.
+                Lighthief has selected Voltus EMS for our multi-park portfolio of planned battery storage.
                 We bring procurement and design experience to every EMS discussion.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

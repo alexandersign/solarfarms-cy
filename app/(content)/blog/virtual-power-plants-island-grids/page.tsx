@@ -419,14 +419,13 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
                 <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
                   <Users className="w-5 h-5 text-teal-600" />
                 </div>
-                <h2 className="text-3xl font-heading font-bold">How Our 881&nbsp;MWh Portfolio Could Become a VPP</h2>
+                <h2 className="text-3xl font-heading font-bold">How Our Portfolio Could Become a VPP</h2>
               </div>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                Lighthief&apos;s portfolio &mdash; 51 solar parks, 249&nbsp;MW of BESS capacity,
-                881&nbsp;MWh of storage &mdash; is not just a collection of individual battery
-                installations. Aggregated via Voltus Global&apos;s SCADA platform, it represents
-                a single 249&nbsp;MW virtual power plant.
+                Lighthief&apos;s portfolio &mdash; dozens of solar parks with hundreds of MW of BESS capacity
+                &mdash; is not just a collection of individual battery installations. Aggregated via Voltus
+                Global&apos;s SCADA platform, it represents a single large-scale virtual power plant.
               </p>
 
               <Card className="border-teal-200">
@@ -436,33 +435,33 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
                     Lighthief VPP &mdash; By the Numbers
                   </CardTitle>
                   <CardDescription>
-                    What 249&nbsp;MW of aggregated BESS means on Cyprus&apos;s grid
+                    What aggregated BESS capacity means on Cyprus&apos;s grid
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid md:grid-cols-4 gap-4">
                     <div className="text-center p-4 bg-teal-50 rounded-lg">
-                      <div className="text-3xl font-bold text-teal-700">249</div>
+                      <div className="text-3xl font-bold text-teal-700">Hundreds</div>
                       <div className="text-sm text-gray-600">MW BESS capacity</div>
                     </div>
                     <div className="text-center p-4 bg-teal-50 rounded-lg">
-                      <div className="text-3xl font-bold text-teal-700">881</div>
+                      <div className="text-3xl font-bold text-teal-700">Hundreds</div>
                       <div className="text-sm text-gray-600">MWh energy storage</div>
                     </div>
                     <div className="text-center p-4 bg-teal-50 rounded-lg">
-                      <div className="text-3xl font-bold text-teal-700">51</div>
+                      <div className="text-3xl font-bold text-teal-700">Dozens</div>
                       <div className="text-sm text-gray-600">distributed sites</div>
                     </div>
                     <div className="text-center p-4 bg-teal-50 rounded-lg">
-                      <div className="text-3xl font-bold text-teal-700">16.6%</div>
-                      <div className="text-sm text-gray-600">of peak grid demand</div>
+                      <div className="text-3xl font-bold text-teal-700">Significant</div>
+                      <div className="text-sm text-gray-600">share of peak grid demand</div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                On Cyprus&apos;s 1,500&nbsp;MW grid, 249&nbsp;MW represents 16.6% of peak demand.
+                On Cyprus&apos;s 1,500&nbsp;MW grid, our aggregated BESS capacity represents a significant share of peak demand.
                 That&apos;s not a niche participant &mdash; it&apos;s a systemically significant
                 resource. A VPP of this scale would have substantial market power for grid service
                 contracts, potentially commanding premium pricing due to the sheer scarcity of
@@ -485,7 +484,7 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
                   <CardContent>
                     <p className="text-sm text-gray-700 mb-3">
                       Voltus Global&apos;s SCADA platform provides centralised monitoring and
-                      dispatch for all 51 sites. Real-time telemetry, automated dispatch
+                      dispatch for all sites. Real-time telemetry, automated dispatch
                       commands, and settlement reporting form the technical foundation for
                       VPP operation. The infrastructure is being installed as part of the
                       initial BESS deployment &mdash; VPP-ready from day one.
@@ -510,14 +509,14 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700 mb-3">
-                      At 16.6% of peak demand, the Lighthief VPP would be the single largest
+                      At a significant share of peak demand, the Lighthief VPP would be the single largest
                       source of flexible capacity on Cyprus&apos;s grid. When ancillary service
                       markets open, this position enables favourable contract terms &mdash;
                       TSOC will need this capacity, and there are no comparable alternatives
                       on the island.
                     </p>
                     <Badge variant="outline" className="text-teal-700 border-teal-300">
-                      16.6% of peak demand
+                      Significant grid share
                     </Badge>
                   </CardContent>
                 </Card>
@@ -907,7 +906,7 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
                   Hawaii Electric &mdash; Kapolei Energy Storage project specifications and renewable achievement data
                 </li>
                 <li>
-                  Lighthief portfolio data &mdash; 51 parks, 249&nbsp;MW, 881&nbsp;MWh (Confirmed Adders v4, February 2026)
+                  Lighthief portfolio data (February 2026)
                 </li>
                 <li>
                   Revenue projections use conservative assumptions: 95% availability, and ancillary service pricing at the lower end of EU benchmarks

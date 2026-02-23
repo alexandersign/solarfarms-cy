@@ -166,12 +166,12 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4 flex items-center gap-3">
                 <BarChart3 className="w-8 h-8 text-green-500" />
-                The Revenue Case: Numbers from 51 Cyprus Parks
+                The Revenue Case: Numbers from Cyprus Parks
               </h2>
               <p className="text-lg text-gray-700 mb-4">
                 This isn&apos;t a theoretical exercise. Lighthief is currently deploying BESS across
-                a portfolio of <strong>51 solar parks</strong> in Cyprus &mdash; totalling
-                <strong> 249 MW</strong> of BESS capacity and <strong>881.78 MWh</strong> of storage.
+                a large portfolio of solar parks in Cyprus &mdash; one of the largest distributed
+                storage deployments in the Mediterranean region.
                 The financial case is built on verified operational data from parks already running on
                 the island.
               </p>
@@ -599,17 +599,18 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                         <p className="text-gray-700 mb-3">
                           BESS systems come in different durations &mdash; typically 2-hour, 3-hour,
                           or 4-hour configurations. The right choice depends on your curtailment
-                          profile and your view on future revenue streams. Under current Cyprus law
-                          (curtailment recovery only), shorter-duration systems often achieve faster
-                          payback because all three durations recover the same amount of energy.
+                          profile and your view on future revenue streams. Larger batteries capture
+                          significantly more curtailed energy (87% for 4-hour vs 57% for 2-hour),
+                          but because CAPEX scales proportionally, all three achieve similar payback
+                          periods of 4.5&ndash;5.0 years.
                         </p>
                         <div className="bg-amber-50 rounded-lg p-3">
                           <p className="text-sm text-gray-700">
                             <strong>Key trade-off:</strong> A 2-hour system (10 MWh for 5 MW) offers
-                            the fastest payback (~4.5 years at 47% curtailment). A 4-hour system
-                            (20 MWh for 5 MW) costs more upfront but is best positioned for future
-                            DAM arbitrage and grid services revenue, with the lowest &euro;/MWh
-                            installed cost.
+                            the fastest payback (~4.0 years) but captures only 57% of curtailment.
+                            A 4-hour system (20 MWh) captures 87% of curtailment, generates 53% more
+                            revenue, and pays back in 5.0 years &mdash; with the lowest &euro;/MWh
+                            installed cost and best future upside from DAM arbitrage.
                           </p>
                         </div>
                       </div>
@@ -637,8 +638,8 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                         </p>
                         <div className="bg-amber-50 rounded-lg p-3">
                           <p className="text-sm text-gray-700">
-                            <strong>Benchmark:</strong> Lighthief&apos;s confirmed group-order pricing
-                            for 5 MW / 20 MWh systems (4-hour duration) delivers <strong>15&ndash;20%
+                            <strong>Benchmark:</strong> Volume procurement for 5 MW / 20 MWh systems
+                            (4-hour duration) typically delivers <strong>15&ndash;20%
                             savings</strong> versus individual procurement &mdash; all-in including
                             grid connection, EMS, and 5% contingency.
                           </p>
@@ -699,7 +700,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                         <div className="bg-amber-50 rounded-lg p-3">
                           <p className="text-sm text-gray-700">
                             <strong>What &ldquo;good&rdquo; looks like:</strong> For a 5 MW / 20 MWh
-                            system at competitive group-order pricing, simple payback is ~8&ndash;9
+                            system at competitive volume pricing, simple payback is ~8&ndash;9
                             years at 47% curtailment (conservative model). With 70% project finance
                             at 4.5% interest, equity payback drops to ~6 years. When DAM arbitrage
                             legislation passes, payback falls below 5 years.
@@ -712,28 +713,28 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
               </div>
             </div>
 
-            {/* Section 6: Why Group Procurement Matters */}
+            {/* Section 6: Why Volume Procurement Matters */}
             <div>
               <h2 className="text-3xl font-heading font-bold mb-4 flex items-center gap-3">
                 <Users className="w-8 h-8 text-indigo-500" />
-                Why Group Procurement Matters
+                Why Volume Procurement Matters
               </h2>
               <p className="text-lg text-gray-700 mb-4">
                 BESS equipment follows the same economics as any manufactured product: volume
                 drives price. A single 5 MW park buying one battery container gets the retail
-                price. A group of 51 parks ordering 881.78 MWh of storage gets a fundamentally
-                different price from the manufacturer.
+                price. Aggregating hundreds of MWh of demand from multiple parks gets a
+                fundamentally different price from the manufacturer.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                Lighthief&apos;s 51-park group order achieves <strong>15&ndash;20% cost
-                reduction</strong> compared to individual procurement. This isn&apos;t a
-                negotiation tactic &mdash; it&apos;s the structural result of aggregating demand
-                across 249 MW of BESS capacity into a single OEM purchase order.
+                Volume procurement achieves <strong>15&ndash;20% cost reduction</strong> compared
+                to individual procurement. This isn&apos;t a negotiation tactic &mdash; it&apos;s
+                the structural result of aggregating demand across multiple sites into a single
+                OEM purchase order.
               </p>
 
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 mb-8">
                 <h3 className="text-xl font-bold text-center mb-6">
-                  Group Order Economics: How Volume Drives Value
+                  Volume Procurement: How Scale Drives Value
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -741,22 +742,22 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                     <div className="w-14 h-14 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Users className="w-7 h-7 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-indigo-700 mb-1">51</div>
-                    <div className="text-sm text-gray-600">Parks in Group Order</div>
+                    <div className="text-3xl font-bold text-indigo-700 mb-1">Multi-site</div>
+                    <div className="text-sm text-gray-600">Parks in Portfolio</div>
                   </div>
                   <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                     <div className="w-14 h-14 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Battery className="w-7 h-7 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-purple-700 mb-1">881.78</div>
-                    <div className="text-sm text-gray-600">MWh Total Storage</div>
+                    <div className="text-3xl font-bold text-purple-700 mb-1">Scale</div>
+                    <div className="text-sm text-gray-600">Aggregated MWh Demand</div>
                   </div>
                   <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                     <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Euro className="w-7 h-7 text-white" />
                     </div>
                     <div className="text-3xl font-bold text-green-700 mb-1">15&ndash;20%</div>
-                    <div className="text-sm text-gray-600">Lower Cost via Group Order</div>
+                    <div className="text-sm text-gray-600">Lower Cost via Volume</div>
                   </div>
                 </div>
 
@@ -782,7 +783,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       <span>
                         <strong>Shared engineering:</strong> Grid connection design, EMS
                         configuration, and commissioning protocols are developed once and deployed
-                        across all 51 sites.
+                        across multiple sites.
                       </span>
                     </div>
                     <div className="flex items-start gap-2 text-sm text-gray-700">
@@ -803,7 +804,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                     <div className="flex items-start gap-2 text-sm text-gray-700">
                       <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                       <span>
-                        <strong>Exclusive OEM terms:</strong> The group order volume secures
+                        <strong>Exclusive OEM terms:</strong> Volume procurement secures
                         exclusive distributor pricing, enhanced warranty terms, and direct factory
                         support that individual buyers cannot access.
                       </span>
@@ -815,10 +816,10 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
               <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
                 <p className="text-lg text-gray-700">
                   <Users className="inline w-5 h-5 mr-2 text-indigo-500" />
-                  <strong>The maths is simple:</strong> group-order pricing delivers
+                  <strong>The maths is simple:</strong> volume procurement delivers
                   15&ndash;20% savings compared to individual procurement. For a 5 MW / 20 MWh
                   system, that translates to significant CAPEX savings &mdash; enough to reduce
-                  payback by 1&ndash;2 years. Group procurement doesn&apos;t just lower costs
+                  payback by 1&ndash;2 years. Volume procurement doesn&apos;t just lower costs
                   &mdash; it structurally improves the investment case.
                 </p>
               </div>

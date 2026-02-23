@@ -18,7 +18,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'BESS Sizing for Solar Farms: How to Match Storage to Your Park\'s Revenue Potential',
-  description: 'How much BESS does your solar park need? We break down the sizing methodology using real curtailment data, evening peak pricing, and grid export constraints from our 51-park Cyprus portfolio.',
+  description: 'How much BESS does your solar park need? We break down the sizing methodology using real curtailment data, evening peak pricing, and grid export constraints from our Cyprus portfolio.',
   keywords: [
     'BESS sizing solar farm',
     'battery storage capacity MW MWh',
@@ -34,7 +34,7 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'BESS Sizing for Solar Farms: How to Match Storage to Your Park\'s Revenue Potential',
-  description: 'How much BESS does your solar park need? We break down the sizing methodology using real curtailment data, evening peak pricing, and grid export constraints from our 51-park Cyprus portfolio.',
+  description: 'How much BESS does your solar park need? We break down the sizing methodology using real curtailment data, evening peak pricing, and grid export constraints from our Cyprus portfolio.',
   datePublished: '2026-01-13',
   dateModified: '2026-01-13',
   author: {
@@ -79,7 +79,7 @@ export default function BESSSizingSolarFarmsArticle() {
               This is not the residential battery calculator approach. Utility-scale BESS sizing depends on
               your curtailment profile, grid export constraints, pricing windows, and investment horizon &mdash;
               not just how many panels you have on the roof. Here&apos;s the methodology we use across our
-              51-park Cyprus portfolio.
+              Cyprus portfolio.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>By Alexander Papacosta, Lighthief Cyprus</span>
@@ -135,7 +135,7 @@ export default function BESSSizingSolarFarmsArticle() {
               <p className="text-lg text-gray-700">
                 Get the sizing wrong and you either leave money on the table (undersized) or pay for capacity
                 you&apos;ll never use (oversized). This guide walks through the methodology we&apos;ve developed
-                across our 51-park, 881.78 MWh portfolio to get it right.
+                across our portfolio to get it right.
               </p>
             </div>
 
@@ -225,7 +225,7 @@ export default function BESSSizingSolarFarmsArticle() {
               <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8">
                 <h3 className="text-xl font-bold text-center mb-4">MW:MWh Ratios from Our Portfolio</h3>
                 <p className="text-center text-gray-600 text-sm mb-6">
-                  Standard configurations across the Lighthief 51-park portfolio
+                  Standard configurations across the Lighthief portfolio
                 </p>
                 <div className="grid grid-cols-3 gap-6 text-center">
                   <div className="bg-white rounded-xl p-5 shadow-sm">
@@ -259,8 +259,8 @@ export default function BESSSizingSolarFarmsArticle() {
               <p className="text-lg text-gray-700 mb-6">
                 Duration is the single most consequential sizing decision you&apos;ll make. It determines your
                 CAPEX, your daily dispatch window, and your ability to capture future revenue streams. Here&apos;s
-                how the three standard configurations compare, using confirmed February 2026 group pricing from
-                Lighthief&apos;s portfolio for a reference 5 MW park.
+                how the three standard configurations compare, using confirmed February 2026 pricing from
+                Lighthief for a reference 5 MW park.
               </p>
 
               <div className="overflow-x-auto mb-8">
@@ -282,7 +282,7 @@ export default function BESSSizingSolarFarmsArticle() {
                     </tr>
                     <tr className="border-b bg-gray-50">
                       <td className="p-4 text-gray-600 font-semibold">&euro;/MWh Installed</td>
-                      <td className="text-center p-4 font-bold text-blue-700" colSpan={3}>Contact for current group pricing &mdash; per-MWh cost decreases with longer duration</td>
+                      <td className="text-center p-4 font-bold text-blue-700" colSpan={3}>Contact for current pricing &mdash; per-MWh cost decreases with longer duration</td>
                     </tr>
                     <tr className="border-b">
                       <td className="p-4 text-gray-600 font-semibold">Total CAPEX</td>
@@ -295,10 +295,16 @@ export default function BESSSizingSolarFarmsArticle() {
                       <td className="text-center p-4">17:00&ndash;21:00</td>
                     </tr>
                     <tr className="border-b">
+                      <td className="p-4 text-gray-600 font-semibold">Year 1 Energy Captured</td>
+                      <td className="text-center p-4">2,459 MWh (57%)</td>
+                      <td className="text-center p-4">3,264 MWh (76%)</td>
+                      <td className="text-center p-4">3,755 MWh (87%)</td>
+                    </tr>
+                    <tr className="border-b bg-gray-50">
                       <td className="p-4 text-gray-600 font-semibold">Payback (47% curtailment)</td>
-                      <td className="text-center p-4 font-bold text-blue-700">4.5 years</td>
-                      <td className="text-center p-4 font-bold text-amber-700">7.0 years</td>
-                      <td className="text-center p-4 font-bold text-green-700">8.7 years</td>
+                      <td className="text-center p-4 font-bold text-blue-700">4.0 years</td>
+                      <td className="text-center p-4 font-bold text-amber-700">4.3 years</td>
+                      <td className="text-center p-4 font-bold text-green-700">4.3 years</td>
                     </tr>
                     <tr className="border-b bg-gray-50">
                       <td className="p-4 text-gray-600 font-semibold">Containers (@ 5.015 MWh each)</td>
@@ -319,15 +325,14 @@ export default function BESSSizingSolarFarmsArticle() {
               <div className="grid md:grid-cols-3 gap-4">
                 <Card className="border-2 border-blue-300 bg-blue-50/50">
                   <CardHeader className="pb-2">
-                    <Badge className="mb-1 bg-blue-600 text-white w-fit">Fastest ROI</Badge>
+                    <Badge className="mb-1 bg-blue-600 text-white w-fit">Lowest CAPEX</Badge>
                     <CardTitle className="text-lg">2-Hour System</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      Lowest CAPEX per MWh of the three options. Gets you into storage at the smallest capital
-                      outlay. Ideal for operators who want to recover curtailed energy immediately with
-                      minimal financial exposure. The 4.5-year payback at 47% curtailment delivers 22.2% ROI.
-                      Trade-off: only 2 hours of evening dispatch limits future arbitrage potential.
+                      Lowest capital outlay with 4.0-year payback and 26% ROI. However, captures only 57%
+                      of available curtailed energy &mdash; 1,839 MWh/yr overflows and is permanently lost.
+                      Only 2 hours of evening dispatch limits future arbitrage potential.
                     </p>
                   </CardContent>
                 </Card>
@@ -339,25 +344,23 @@ export default function BESSSizingSolarFarmsArticle() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      The middle ground with competitive per-MWh pricing. Covers most of the evening peak window
-                      (17:00&ndash;20:00) when prices average &euro;183/MWh. Seven-year payback is still
-                      comfortably within the 15-year warranty period. Captures more high-price hours than
-                      the 2-hour without the full capital commitment of 4-hour.
+                      Captures 76% of curtailment with 33% more revenue than the 2-hour system, for a
+                      near-identical 4.3-year payback. Covers most of the evening peak (17:00&ndash;20:00) when
+                      prices average &euro;183/MWh. Strong balance of capital outlay and energy recovery.
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-2 border-green-300 bg-green-50/50">
                   <CardHeader className="pb-2">
-                    <Badge className="mb-1 bg-green-600 text-white w-fit">Future-Proof</Badge>
+                    <Badge className="mb-1 bg-green-600 text-white w-fit">Most Revenue</Badge>
                     <CardTitle className="text-lg">4-Hour System</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-700">
-                      Best per-MWh cost &mdash; approximately 17% lower than the 2-hour system.
-                      Full evening coverage (17:00&ndash;21:00) captures every high-price hour. Best
-                      positioned for future grid services and DAM arbitrage. The 8.7-year payback drops
-                      to ~4.8 years once arbitrage legislation passes.
+                      Best per-MWh cost (~17% lower than 2-hour) and captures 87% of curtailment &mdash;
+                      53% more energy than the 2-hour system. Full evening coverage (17:00&ndash;21:00).
+                      Same 4.3-year payback as 3-hour, drops to ~3.0 years with DAM arbitrage.
                     </p>
                   </CardContent>
                 </Card>
@@ -365,7 +368,7 @@ export default function BESSSizingSolarFarmsArticle() {
 
               <div className="mt-6 bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg">
                 <p className="text-sm text-gray-500 italic">
-                  All pricing reflects confirmed Feb 2026 group pricing from Lighthief&apos;s portfolio,
+                  All pricing reflects confirmed Feb 2026 pricing from Lighthief,
                   including grid connection costs and 5% contingency. Total CAPEX includes EPC, civil works,
                   grid infrastructure, commissioning, and insurance.
                 </p>
@@ -379,47 +382,46 @@ export default function BESSSizingSolarFarmsArticle() {
                 Matching Duration to Your Curtailment Profile
               </h2>
               <p className="text-lg text-gray-700 mb-4">
-                Here&apos;s something that surprises most developers when they first see the numbers:
-                at Cyprus&apos;s current 47% curtailment rate, <strong>all three duration options recover
-                roughly the same amount of energy</strong>.
+                A common misconception is that all BESS sizes recover the same amount of curtailed energy,
+                since &ldquo;the constraint is the curtailment, not the battery.&rdquo; Our day-by-day analysis
+                of 365 days of real operational data from a 5 MW park proves this <strong>wrong</strong>.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                Why? Because the constraint is not the battery size &mdash; it&apos;s the available curtailed
-                energy from your park. A 5 MW park with trackers produces approximately 9,488 MWh/year gross.
-                At 47% curtailment, that&apos;s ~4,459 MWh of curtailed energy annually. At a realistic 50%
-                recovery rate (accounting for timing mismatches, partial-day curtailment, and system
-                availability), you can capture ~2,230 MWh per year.
+                Daily curtailment is highly variable &mdash; from 0 MWh on cloudy winter days to 40+ MWh
+                during spring peaks. A smaller battery overflows on high-curtailment days, and that spilled
+                energy is <strong>permanently lost</strong> to the PV park.
               </p>
 
               <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 mb-8">
                 <h3 className="text-xl font-bold text-center mb-6">
-                  Why Smaller Systems Give Faster Payback Today
+                  The Overflow Effect: Bigger Battery = More Revenue
                 </h3>
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-white rounded-xl p-5 shadow-sm text-center">
-                    <div className="text-sm font-semibold text-gray-600 mb-2">Annual Curtailed Energy</div>
-                    <div className="text-3xl font-bold text-red-600">4,459 MWh</div>
-                    <div className="text-xs text-gray-500 mt-1">5 MW park @ 47% curtailment</div>
+                    <div className="text-sm font-semibold text-blue-700 mb-2">2-Hour (10 MWh)</div>
+                    <div className="text-3xl font-bold text-blue-600">2,459 MWh</div>
+                    <div className="text-xs text-gray-500 mt-1">57% capture rate</div>
+                    <div className="text-xs text-red-500 mt-1">1,839 MWh lost (overflows 233 days)</div>
                   </div>
                   <div className="bg-white rounded-xl p-5 shadow-sm text-center">
-                    <div className="text-sm font-semibold text-gray-600 mb-2">Recoverable Energy</div>
-                    <div className="text-3xl font-bold text-amber-600">~2,230 MWh</div>
-                    <div className="text-xs text-gray-500 mt-1">50% recovery rate</div>
+                    <div className="text-sm font-semibold text-amber-700 mb-2">3-Hour (15 MWh)</div>
+                    <div className="text-3xl font-bold text-amber-600">3,264 MWh</div>
+                    <div className="text-xs text-gray-500 mt-1">76% capture rate</div>
+                    <div className="text-xs text-red-500 mt-1">1,033 MWh lost (overflows 149 days)</div>
                   </div>
                   <div className="bg-white rounded-xl p-5 shadow-sm text-center">
-                    <div className="text-sm font-semibold text-gray-600 mb-2">Revenue (All Systems)</div>
-                    <div className="text-3xl font-bold text-green-600">&euro;405,860</div>
-                    <div className="text-xs text-gray-500 mt-1">Same for 2h, 3h, and 4h</div>
+                    <div className="text-sm font-semibold text-green-700 mb-2">4-Hour (20 MWh)</div>
+                    <div className="text-3xl font-bold text-green-600">3,755 MWh</div>
+                    <div className="text-xs text-gray-500 mt-1">87% capture rate</div>
+                    <div className="text-xs text-red-500 mt-1">542 MWh lost (overflows 88 days)</div>
                   </div>
                 </div>
                 <div className="bg-white rounded-xl p-6 shadow-md">
                   <p className="text-gray-700 text-sm text-center">
-                    The daily curtailment window in Cyprus is typically 4&ndash;6 hours (roughly 09:00&ndash;15:00).
-                    Even a 2-hour system can absorb sufficient curtailed energy during this window because it
-                    charges at 5 MW over 2 hours (10 MWh per cycle), then discharges during the evening peak.
-                    With daily curtailed energy averaging ~12.2 MWh from a 5 MW park, all three systems capture
-                    comparable amounts. The bottleneck is the supply of curtailed energy, not the battery&apos;s
-                    storage capacity.
+                    Average daily curtailment is ~11.8 MWh, but this masks huge seasonal variability. March
+                    averages 18.5 MWh/day while December averages 5.2 MWh/day. A 2-hour system (8.5 MWh usable
+                    daily capacity after DoD and SOH) overflows on most spring and autumn days. That energy is
+                    revenue your PV park permanently loses.
                   </p>
                 </div>
               </div>
@@ -427,10 +429,10 @@ export default function BESSSizingSolarFarmsArticle() {
               <div className="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-lg">
                 <p className="text-lg text-gray-700">
                   <Battery className="inline w-5 h-5 mr-2 text-emerald-600" />
-                  <strong>The implication is powerful:</strong> if your only goal is curtailment recovery under
-                  current legislation, a 2-hour system delivers essentially the same annual revenue as a 4-hour
-                  system &mdash; at 61% of the capital cost. That&apos;s why it achieves a 4.5-year payback
-                  versus 8.7 years.
+                  <strong>The key insight:</strong> despite a 4-hour system capturing 53% more energy than a 2-hour,
+                  the payback periods converge (4.0 vs 4.3 years) because CAPEX scales proportionally. All three
+                  durations pay back within 4.3 years. The 4-hour system generates &euro;199K/yr more gross revenue
+                  (&euro;577K vs &euro;378K) &mdash; making it the strongest choice for absolute return.
                 </p>
               </div>
             </div>
@@ -507,7 +509,7 @@ export default function BESSSizingSolarFarmsArticle() {
                       </div>
                       <div className="bg-white rounded-lg p-4 shadow-sm">
                         <div className="text-sm text-gray-600">4-Hour Payback With Arbitrage</div>
-                        <div className="text-2xl font-bold text-green-700">~4.8 years</div>
+                        <div className="text-2xl font-bold text-green-700">~3.0 years</div>
                       </div>
                     </div>
                   </div>
@@ -515,18 +517,18 @@ export default function BESSSizingSolarFarmsArticle() {
               </Card>
 
               <p className="text-lg text-gray-700 mb-4">
-                The additional &euro;170K&ndash;&euro;280K/year from grid arbitrage transforms the economics
-                of the 4-hour system. Its payback drops from 8.7 years to approximately 4.8 years &mdash;
-                comparable to the 2-hour system&apos;s current payback.
+                The additional &euro;170K&ndash;&euro;280K/year from grid arbitrage further enhances
+                the 4-hour system&apos;s economics. Its already-strong 4.3-year payback drops to
+                approximately 3.0 years &mdash; significantly faster than any other duration.
               </p>
 
               <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
                 <p className="text-lg text-gray-700">
                   <TrendingUp className="inline w-5 h-5 mr-2 text-green-600" />
-                  <strong>The strategic insight:</strong> a 2-hour system is optimised for today. A 4-hour
-                  system is optimised for today <em>and</em> tomorrow. If you believe DAM arbitrage legislation
-                  will pass within the battery&apos;s 15-year warranty period (which is virtually certain given
-                  EU directives), the 4-hour system delivers superior lifetime returns.
+                  <strong>The strategic insight:</strong> a 4-hour system already captures 53% more energy
+                  than a 2-hour at the same 4.3-year payback. With future DAM arbitrage, the gap widens
+                  dramatically. If you believe legislation will pass within the 15-year warranty period (virtually
+                  certain given EU directives), the 4-hour system delivers far superior lifetime returns.
                 </p>
               </div>
             </div>
@@ -538,7 +540,7 @@ export default function BESSSizingSolarFarmsArticle() {
                 The Sizing Decision Framework
               </h2>
               <p className="text-lg text-gray-700 mb-6">
-                After sizing BESS for 51 parks across our portfolio, we&apos;ve distilled the decision into
+                After sizing BESS across our portfolio, we&apos;ve distilled the decision into
                 a practical framework. Use this to determine which duration best matches your objectives.
               </p>
 
@@ -558,9 +560,9 @@ export default function BESSSizingSolarFarmsArticle() {
                           <span className="font-semibold text-blue-700">2-hour system</span>
                         </div>
                         <p className="text-gray-600 text-sm mt-1">
-                          Fastest payback (4.5 years), lowest capital outlay (&euro;1.48M), same
-                          curtailment-recovery revenue as larger systems. Best for operators who want
-                          immediate ROI with minimal financial risk.
+                          Fastest payback (4.0 years) with lowest capital outlay. Captures 57% of
+                          curtailment (2,459 MWh/yr) &mdash; 1,839 MWh permanently lost. Best for
+                          operators with constrained capital who accept lower absolute revenue.
                         </p>
                       </div>
                     </div>
@@ -582,9 +584,9 @@ export default function BESSSizingSolarFarmsArticle() {
                           <span className="font-semibold text-amber-700">3-hour system</span>
                         </div>
                         <p className="text-gray-600 text-sm mt-1">
-                          Covers the core evening peak (17:00&ndash;20:00). Better positioned for DAM
-                          arbitrage when legislation arrives. Moderate capital increase over 2-hour
-                          (&euro;2.11M vs &euro;1.48M) for meaningfully more future capacity.
+                          Captures 76% of curtailment (3,264 MWh/yr) with payback matching
+                          the 4-hour system at 4.3 years. Covers the core evening peak (17:00&ndash;20:00)
+                          and generates 33% more revenue than 2-hour.
                         </p>
                       </div>
                     </div>
@@ -606,9 +608,9 @@ export default function BESSSizingSolarFarmsArticle() {
                           <span className="font-semibold text-green-700">4-hour system</span>
                         </div>
                         <p className="text-gray-600 text-sm mt-1">
-                          Best &euro;/MWh installed cost (~17% lower than 2-hour systems). Full
-                          evening dispatch window (17:00&ndash;21:00). Maximum arbitrage revenue when
-                          legislation passes. Payback drops to ~4.8 years with grid charging.
+                          Captures 87% of curtailment (3,755 MWh/yr) &mdash; 53% more than 2-hour.
+                          Best &euro;/MWh cost (~17% lower). Full evening dispatch (17:00&ndash;21:00).
+                          Payback: 4.3 years now, drops to ~3.0 years with grid arbitrage.
                         </p>
                       </div>
                     </div>
@@ -643,11 +645,11 @@ export default function BESSSizingSolarFarmsArticle() {
 
               <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg">
                 <p className="text-lg text-gray-700">
-                  <strong>Our recommendation for most clients:</strong> if you can afford it, go 4-hour. The
-                  17% per-MWh cost advantage over 2-hour, combined with the near-certainty of future DAM
-                  arbitrage legislation, means the 4-hour system delivers the best risk-adjusted lifetime
-                  return. If capital is constrained, the 2-hour system still delivers excellent ROI at
-                  current curtailment levels.
+                  <strong>Our recommendation for most clients:</strong> go 4-hour. It captures 87% of curtailment
+                  (vs 57% for 2-hour), generates &euro;199K/yr more revenue, and pays back in 4.3 years
+                  &mdash; the same payback as 3-hour. The 17% per-MWh cost advantage and future DAM
+                  arbitrage upside make it the strongest risk-adjusted investment. If capital is constrained,
+                  a 2-hour system still delivers 26% ROI with a 4.0-year payback.
                 </p>
               </div>
             </div>
@@ -711,16 +713,16 @@ export default function BESSSizingSolarFarmsArticle() {
               <div className="bg-gradient-to-r from-cyan-50 to-teal-50 rounded-2xl p-8">
                 <div className="grid md:grid-cols-3 gap-6 text-center">
                   <div>
-                    <div className="text-4xl font-bold text-cyan-700">881.78</div>
-                    <div className="text-sm text-gray-600 mt-1">Total MWh across portfolio</div>
+                    <div className="text-4xl font-bold text-cyan-700">5.015</div>
+                    <div className="text-sm text-gray-600 mt-1">MWh per Linyang container</div>
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-teal-700">51</div>
-                    <div className="text-sm text-gray-600 mt-1">Parks in Lighthief portfolio</div>
+                    <div className="text-4xl font-bold text-teal-700">2–16</div>
+                    <div className="text-sm text-gray-600 mt-1">Containers per typical system</div>
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-emerald-700">251</div>
-                    <div className="text-sm text-gray-600 mt-1">Linyang containers total</div>
+                    <div className="text-4xl font-bold text-emerald-700">20+</div>
+                    <div className="text-sm text-gray-600 mt-1">Tonnes per container</div>
                   </div>
                 </div>
                 <p className="text-center text-sm text-gray-500 mt-4">

@@ -34,16 +34,6 @@ interface Article {
 
 const articles: Article[] = [
   {
-    slug: 'lessons-year-one-bess-operations-cyprus',
-    title: 'Lessons from Year One: 881 MWh of BESS',
-    description: 'With 251 containers planned across 51 parks — engineering decisions, preparation lessons, and what every BESS investor should know.',
-    category: 'Case Study',
-    categoryColor: 'bg-cyan-100 text-cyan-800',
-    author: 'Alexander Papacosta',
-    date: 'Feb 20, 2026',
-    gradient: 'from-emerald-100 to-teal-100',
-  },
-  {
     slug: 'investors-guide-battery-energy-storage',
     title: "The Investor\u2019s Guide to Battery Energy Storage",
     description: "What BESS means for your solar park\u2019s revenue, grid connection, and asset valuation. Written for PV park owners, not hobbyists.",
@@ -74,19 +64,19 @@ const articles: Article[] = [
     image: '/images/IMG_0149.JPG',
   },
   {
-    slug: 'bess-costs-2026-capex-breakdown',
-    title: 'Understanding BESS Costs in 2026: CAPEX Breakdown',
-    description: 'Beyond the headline \u20AC/MWh figure \u2014 every cost layer from equipment to civil works, EMS, insurance, and import duties.',
-    category: 'Investment Guide',
+    slug: 'lithium-price-crash-bess-viability',
+    title: 'Lithium Prices Crashed 85% \u2014 Why BESS Is Now Viable',
+    description: 'From $80,000 to under $10,000 per tonne. How the lithium collapse made battery storage payback under 5 years and ignited global BESS deployment.',
+    category: 'Market Analysis',
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
-    date: 'Feb 3, 2026',
-    gradient: 'from-amber-100 to-yellow-100',
+    date: 'Jan 30, 2026',
+    gradient: 'from-green-100 to-emerald-100',
   },
   {
     slug: 'lfp-vs-nmc-utility-scale-bess',
     title: 'LFP vs NMC for Utility-Scale BESS',
-    description: 'Why we chose LFP for all 881 MWh across 51 parks \u2014 cycle life economics, fire safety, and insurance implications.',
+    description: 'Why LFP chemistry wins for utility-scale BESS \u2014 cycle life economics, fire safety, and insurance implications make the case clear.',
     category: 'Technology',
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
@@ -206,7 +196,7 @@ const articles: Article[] = [
   {
     slug: 'bess-fire-safety-thermal-management',
     title: 'BESS Fire Safety and Thermal Management',
-    description: 'Planning 251 containers for 45\u00B0C Cyprus summers. Thermal management, fire suppression, and engineering decisions.',
+    description: 'Designing BESS for 45\u00B0C Cyprus summers. Thermal management, fire suppression, and engineering decisions.',
     category: 'Technology',
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
@@ -246,7 +236,7 @@ const articles: Article[] = [
   {
     slug: 'bess-installation-container-to-grid',
     title: 'From Container Ship to Grid Connection',
-    description: 'Every phase of utility-scale BESS installation \u2014 factory to commissioning \u2014 based on our 51-park deployment.',
+    description: 'Every phase of utility-scale BESS installation \u2014 factory production to CIF delivery, civil works, and grid commissioning.',
     category: 'Case Study',
     categoryColor: 'bg-cyan-100 text-cyan-800',
     author: 'Alexander Papacosta',
@@ -262,16 +252,6 @@ const articles: Article[] = [
     author: 'Policy Team',
     date: 'Aug 28, 2025',
     image: '/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg',
-  },
-  {
-    slug: 'bess-group-procurement-cost-savings',
-    title: 'Group Procurement: 15\u201320% BESS Cost Savings',
-    description: 'How aggregating 51 parks into one 881 MWh order achieves Tier-1 OEM pricing no individual buyer can access.',
-    category: 'Investment Guide',
-    categoryColor: 'bg-green-100 text-green-800',
-    author: 'Alexander Papacosta',
-    date: 'Aug 19, 2025',
-    gradient: 'from-yellow-100 to-amber-100',
   },
   {
     slug: 'solar-farm-financing-strategies-2025',

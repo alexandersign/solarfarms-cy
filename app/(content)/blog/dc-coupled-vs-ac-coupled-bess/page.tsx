@@ -129,7 +129,7 @@ export default function DCvsACCoupledBESSArticle() {
                 <p className="text-gray-700">
                   Do you modify your existing solar system to integrate a shared DC bus with the battery
                   (DC-coupled), or do you leave the existing system untouched and add the battery as an
-                  independent AC-connected unit (AC-coupled)? For Cyprus&apos;s 51 operational PV parks,
+                  independent AC-connected unit (AC-coupled)? For our operational PV parks in Cyprus,
                   the answer was clear &mdash; but the reasoning is worth understanding.
                 </p>
               </div>
@@ -490,7 +490,7 @@ export default function DCvsACCoupledBESSArticle() {
                   Why We Use AC-Coupling in Cyprus
                 </h2>
                 <p className="text-lg text-gray-600">
-                  For the Lighthief portfolio &mdash; 51 parks, 881.78&nbsp;MWh, 251 containers &mdash;
+                  For the Lighthief portfolio &mdash; our multi-park portfolio &mdash;
                   AC-coupling is the standard. Here&apos;s why.
                 </p>
               </div>
@@ -503,7 +503,7 @@ export default function DCvsACCoupledBESSArticle() {
                     </div>
                     <h3 className="font-semibold text-lg mb-3">Existing Inverter Infrastructure</h3>
                     <p className="text-gray-700 text-sm mb-3">
-                      All 51 parks have operational inverters installed years ago. Replacing them for
+                      All parks in our portfolio have operational inverters installed years ago. Replacing them for
                       DC-coupling would mean scrapping functional equipment, incurring unnecessary
                       capital expenditure, and creating weeks of solar production downtime per park.
                       AC-coupling leaves the existing inverter infrastructure completely untouched.
@@ -773,7 +773,7 @@ export default function DCvsACCoupledBESSArticle() {
               <p className="text-xl mb-6 opacity-90">
                 Whether your park is 1&nbsp;MW or 10&nbsp;MW, we can assess the optimal coupling
                 architecture for your specific installation. Our engineering team has designed and
-                commissioned AC-coupled BESS across 51 parks &mdash; we know what works.
+                commissioned AC-coupled BESS across multiple parks &mdash; we know what works.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="secondary" size="lg" className="bg-white text-cyprus-600 hover:bg-gray-100" asChild>

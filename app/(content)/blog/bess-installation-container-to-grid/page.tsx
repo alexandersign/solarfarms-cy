@@ -20,7 +20,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'From Container Ship to Grid Connection: Inside a Utility-Scale BESS Installation',
-  description: 'What does it actually take to install a utility-scale BESS? We walk through every phase — from factory production to CIF delivery, civil works, electrical installation, and TSOC grid connection — based on our 51-park deployment timeline.',
+  description: 'What does it actually take to install a utility-scale BESS? We walk through every phase — from factory production to CIF delivery, civil works, electrical installation, and TSOC grid connection — based on our multi-park deployment timeline.',
   keywords: [
     'BESS installation timeline',
     'utility BESS construction',
@@ -37,7 +37,7 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'From Container Ship to Grid Connection: Inside a Utility-Scale BESS Installation',
-  description: 'What does it actually take to install a utility-scale BESS? We walk through every phase — from factory production to CIF delivery, civil works, electrical installation, and TSOC grid connection — based on our 51-park deployment timeline.',
+  description: 'What does it actually take to install a utility-scale BESS? We walk through every phase — from factory production to CIF delivery, civil works, electrical installation, and TSOC grid connection — based on our multi-park deployment timeline.',
   datePublished: '2025-09-02',
   dateModified: '2025-09-02',
   author: {
@@ -85,7 +85,7 @@ export default function BESSInstallationArticle() {
             <p className="text-xl text-gray-600 mb-6">
               What does it actually take to install a utility-scale BESS? We walk through every
               phase &mdash; from factory production to CIF delivery, civil works, electrical
-              installation, and TSOC grid connection &mdash; based on our 51-park deployment
+              installation, and TSOC grid connection &mdash; based on our multi-park deployment
               timeline.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -125,7 +125,7 @@ export default function BESSInstallationArticle() {
               </p>
               <p className="text-lg text-gray-700 mb-6">
                 Here&rsquo;s every phase of a utility-scale BESS installation, based on our planned
-                deployment of 251 containers across 51 solar parks in Cyprus. These aren&rsquo;t
+                multi-park deployment across Cyprus. These aren&rsquo;t
                 theoretical timelines &mdash; they&rsquo;re our confirmed production and
                 installation schedule.
               </p>
@@ -287,7 +287,7 @@ export default function BESSInstallationArticle() {
                     </div>
                   </div>
                   <p className="text-sm text-gray-500 mt-4">
-                    For a 251-container portfolio, these &ldquo;small&rdquo; per-unit costs add up
+                    For a multi-container deployment, these &ldquo;small&rdquo; per-unit costs add up
                     to a significant line item. They must be factored into every BESS CAPEX model.
                   </p>
                 </CardContent>
@@ -329,7 +329,7 @@ export default function BESSInstallationArticle() {
                 <Card className="border-gray-200">
                   <CardContent className="pt-6 text-center">
                     <Building2 className="w-8 h-8 text-sky-600 mx-auto mb-2" />
-                    <p className="text-2xl font-bold text-gray-900">51 sites</p>
+                    <p className="text-2xl font-bold text-gray-900">Multiple sites</p>
                     <p className="text-sm text-gray-500">coordinated delivery schedule</p>
                   </CardContent>
                 </Card>
@@ -795,8 +795,8 @@ export default function BESSInstallationArticle() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/blog/bess-costs-2026-capex-breakdown">
-                    See Our BESS Cost Breakdown
+                  <Link href="/blog/lithium-price-crash-bess-viability">
+                    Why BESS Costs Have Collapsed
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>

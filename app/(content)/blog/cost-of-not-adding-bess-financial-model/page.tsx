@@ -263,7 +263,7 @@ export default function CostOfNotAddingBESSArticle() {
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Installed cost</span>
-                        <span className="font-semibold">Competitive group-order rates</span>
+                        <span className="font-semibold">Competitive volume pricing</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Total CAPEX</span>
@@ -918,9 +918,9 @@ export default function CostOfNotAddingBESSArticle() {
                     </Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="border-emerald-300 text-emerald-700 hover:bg-emerald-50">
-                    <Link href="/blog/bess-costs-2026-capex-breakdown">
+                    <Link href="/blog/lithium-price-crash-bess-viability">
                       <Euro className="mr-2 h-5 w-5" />
-                      See Current BESS Pricing
+                      Why BESS Costs Have Collapsed
                     </Link>
                   </Button>
                 </div>
@@ -934,8 +934,8 @@ export default function CostOfNotAddingBESSArticle() {
                 <Card className="hover:shadow-md transition-shadow">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">
-                      <Link href="/blog/bess-costs-2026-capex-breakdown" className="hover:text-emerald-600 transition-colors">
-                        BESS Costs 2026: Full CAPEX Breakdown
+                      <Link href="/blog/lithium-price-crash-bess-viability" className="hover:text-emerald-600 transition-colors">
+                        Why Lithium Prices Make BESS Viable Now
                       </Link>
                     </CardTitle>
                   </CardHeader>
