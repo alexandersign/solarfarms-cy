@@ -120,6 +120,72 @@ export const newsletterService = {
   }
 }
 
+// LOI Submission Types
+export interface LOISubmission {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  investor_name: string
+  investor_company?: string
+  investor_address: string
+  investor_email: string
+  investor_phone?: string
+  project_name: string
+  project_reference?: string
+  project_capacity_mw?: number
+  estimated_investment?: number
+  investment_amount?: number
+  investment_type?: 'equity' | 'debt' | 'hybrid'
+  timeline?: string
+  bess_included?: boolean
+  ltsa_tier?: 'A' | 'B' | 'C' | 'D'
+  financing_required?: boolean
+  conditions?: string[]
+  loi_html?: string
+  source?: string
+  status?: 'received' | 'reviewed' | 'countersigned' | 'expired' | 'withdrawn'
+  notes?: string[]
+}
+
+export const loiSubmissionsService = {
+  async create(submission: LOISubmission) {
+    const { data, error } = await supabase
+      .from('loi_submissions')
+      .insert(submission)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async getAll() {
+    const { data, error } = await supabase
+      .from('loi_submissions')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return data as LOISubmission[]
+  },
+
+  async updateStatus(id: string, status: LOISubmission['status'], notes?: string) {
+    const updates: Record<string, unknown> = { status }
+    if (notes) {
+      updates.notes = supabase.rpc ? [notes] : [notes]
+    }
+    const { data, error } = await supabase
+      .from('loi_submissions')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+}
+
 // PV Prospects CRM Types
 export interface PvProspect {
   id?: string

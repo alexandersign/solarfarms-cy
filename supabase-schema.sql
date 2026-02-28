@@ -114,5 +114,50 @@ CREATE TRIGGER update_land_assessments_updated_at BEFORE UPDATE ON land_assessme
 INSERT INTO contacts (name, email, investment_size, timeline, message, source) VALUES
 ('Test Lead', 'test@example.com', '€500K - €1M', '6-12 months', 'Interested in solar farm investment opportunities in Cyprus', 'website');
 
+-- LOI Submissions Table
+CREATE TABLE IF NOT EXISTS loi_submissions (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  investor_name TEXT NOT NULL,
+  investor_company TEXT,
+  investor_address TEXT NOT NULL,
+  investor_email TEXT NOT NULL,
+  investor_phone TEXT,
+  project_name TEXT NOT NULL,
+  project_reference TEXT,
+  project_capacity_mw NUMERIC,
+  estimated_investment NUMERIC,
+  investment_amount NUMERIC,
+  investment_type TEXT CHECK (investment_type IN ('equity', 'debt', 'hybrid')),
+  timeline TEXT,
+  bess_included BOOLEAN DEFAULT false,
+  ltsa_tier TEXT CHECK (ltsa_tier IN ('A', 'B', 'C', 'D')),
+  financing_required BOOLEAN DEFAULT false,
+  conditions TEXT[],
+  loi_html TEXT,
+  source TEXT DEFAULT 'website',
+  status TEXT DEFAULT 'received' CHECK (status IN ('received', 'reviewed', 'countersigned', 'expired', 'withdrawn')),
+  notes TEXT[]
+);
+
+CREATE INDEX IF NOT EXISTS idx_loi_email ON loi_submissions(investor_email);
+CREATE INDEX IF NOT EXISTS idx_loi_status ON loi_submissions(status);
+CREATE INDEX IF NOT EXISTS idx_loi_created_at ON loi_submissions(created_at DESC);
+
+ALTER TABLE loi_submissions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public insert on loi_submissions" ON loi_submissions
+  FOR INSERT TO PUBLIC WITH CHECK (true);
+
+CREATE POLICY "Allow authenticated read on loi_submissions" ON loi_submissions
+  FOR SELECT TO authenticated WITH CHECK (true);
+
+CREATE POLICY "Allow authenticated update on loi_submissions" ON loi_submissions
+  FOR UPDATE TO authenticated WITH CHECK (true);
+
+CREATE TRIGGER update_loi_submissions_updated_at BEFORE UPDATE ON loi_submissions
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
 -- Verify tables were created
-SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('contacts', 'land_assessments', 'newsletter_subscribers');
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name IN ('contacts', 'land_assessments', 'newsletter_subscribers', 'loi_submissions');

@@ -138,26 +138,28 @@ export default function InvestmentGuidePage() {
         conditions: loiForm.conditions ? loiForm.conditions.split('\n').filter(c => c.trim()) : [],
       }
 
-      const response = await fetch('/api/generate-loi', {
+      const response = await fetch('/api/submit-loi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loiData),
       })
 
-      if (response.ok) {
+      const result = await response.json()
+
+      if (response.ok && result.success) {
         setLoiSubmitted(true)
-        // Also open the generated LOI for their records
-        const html = await response.text()
-        const loiWindow = window.open('', '_blank')
-        if (loiWindow) {
-          loiWindow.document.write(html)
-          loiWindow.document.close()
+        if (result.html) {
+          const loiWindow = window.open('', '_blank')
+          if (loiWindow) {
+            loiWindow.document.write(result.html)
+            loiWindow.document.close()
+          }
         }
       } else {
-        alert('Please fill in all required fields.')
+        alert(result.message || 'Please fill in all required fields.')
       }
     } catch {
-      alert('An error occurred. Please try again.')
+      alert('An error occurred. Please try again or contact office@lighthief.com directly.')
     } finally {
       setLoiSubmitting(false)
     }

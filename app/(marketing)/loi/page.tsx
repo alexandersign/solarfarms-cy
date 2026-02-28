@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { FileText, Download, Info } from 'lucide-react'
+import { FileText, Download, Info, Send, FileCheck, PenTool } from 'lucide-react'
 
 export default function LOIGeneratorPage() {
   const [formData, setFormData] = useState({
@@ -29,35 +29,35 @@ export default function LOIGeneratorPage() {
   })
   
   const [isGenerating, setIsGenerating] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [loiGenerated, setLoiGenerated] = useState(false)
+
+  const buildLoiData = () => ({
+    ...formData,
+    projectCapacityMW: parseFloat(formData.projectCapacityMW) || 0,
+    estimatedInvestment: parseFloat(formData.estimatedInvestment) || 0,
+    investmentAmount: parseFloat(formData.investmentAmount) || 0,
+    conditions: formData.conditions ? formData.conditions.split('\n').filter(c => c.trim()) : []
+  })
 
   const handleGenerate = async () => {
     setIsGenerating(true)
     try {
-      const loiData = {
-        ...formData,
-        projectCapacityMW: parseFloat(formData.projectCapacityMW),
-        estimatedInvestment: parseFloat(formData.estimatedInvestment),
-        investmentAmount: parseFloat(formData.investmentAmount),
-        conditions: formData.conditions ? formData.conditions.split('\n').filter(c => c.trim()) : []
-      }
-      
       const response = await fetch('/api/generate-loi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loiData)
+        body: JSON.stringify(buildLoiData())
       })
       
       if (response.ok) {
         const html = await response.text()
-        
-        // Open LOI in new window for review and printing
         const loiWindow = window.open('', '_blank')
         if (loiWindow) {
           loiWindow.document.write(html)
           loiWindow.document.close()
           loiWindow.focus()
-          
-          alert('Letter of Intent opened in new window. You can review, print, or save as PDF.')
+          setLoiGenerated(true)
         } else {
           alert('Please allow pop-ups to view your Letter of Intent.')
         }
@@ -65,10 +65,40 @@ export default function LOIGeneratorPage() {
         const error = await response.json()
         alert(error.message || 'Failed to generate LOI. Please check all required fields.')
       }
-    } catch (error) {
+    } catch {
       alert('An error occurred. Please try again.')
     } finally {
       setIsGenerating(false)
+    }
+  }
+
+  const handleDigitalSubmit = async () => {
+    setIsSubmitting(true)
+    try {
+      const response = await fetch('/api/submit-loi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(buildLoiData())
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setIsSubmitted(true)
+        if (result.html) {
+          const loiWindow = window.open('', '_blank')
+          if (loiWindow) {
+            loiWindow.document.write(result.html)
+            loiWindow.document.close()
+          }
+        }
+      } else {
+        alert(result.message || 'Please check all required fields.')
+      }
+    } catch {
+      alert('An error occurred. Please try again or contact office@lighthief.com directly.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -108,6 +138,27 @@ export default function LOIGeneratorPage() {
               </div>
             </div>
 
+            {isSubmitted ? (
+              <Card className="border-green-300 bg-green-50">
+                <CardContent className="pt-8 pb-8 text-center">
+                  <FileCheck className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-green-800 mb-2">LOI Successfully Submitted</h3>
+                  <p className="text-green-700 mb-4">
+                    Your Letter of Intent has been submitted to Lighthief Cyprus.
+                    We will review and contact you within 2 business days.
+                  </p>
+                  <p className="text-sm text-green-600 mb-6">
+                    A copy has been opened in a new window for your records. You can print it for physical signing.
+                  </p>
+                  <Button
+                    variant="outline"
+                    onClick={() => { setIsSubmitted(false); setLoiGenerated(false) }}
+                  >
+                    Generate Another LOI
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
             <Card>
               <CardHeader>
                 <CardTitle>LOI Information Form</CardTitle>
@@ -257,24 +308,45 @@ export default function LOIGeneratorPage() {
                   />
                 </div>
 
-                {/* Generate Button */}
-                <div className="pt-6 border-t">
-                  <Button 
-                    variant="gradient"
-                    size="lg"
-                    className="w-full"
-                    onClick={handleGenerate}
-                    disabled={isGenerating || !formData.investorName || !formData.investorEmail || !formData.projectName}
-                  >
-                    <FileText className="w-5 h-5 mr-2" />
-                    {isGenerating ? 'Generating LOI...' : 'Generate Letter of Intent'}
-                  </Button>
-                  <p className="text-sm text-gray-500 text-center mt-2">
-                    The LOI will be downloaded as an HTML file. You can print or convert to PDF.
+                {/* Action Buttons */}
+                <div className="pt-6 border-t space-y-3">
+                  <div className="grid md:grid-cols-2 gap-3">
+                    <Button 
+                      size="lg"
+                      className="w-full"
+                      variant="gradient"
+                      onClick={handleGenerate}
+                      disabled={isGenerating || !formData.investorName || !formData.investorEmail || !formData.projectName}
+                    >
+                      <PenTool className="w-4 h-4 mr-2" />
+                      {isGenerating ? 'Generating...' : 'Generate LOI (Print & Sign)'}
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="w-full border-green-500 text-green-700 hover:bg-green-50"
+                      onClick={handleDigitalSubmit}
+                      disabled={isSubmitting || !formData.investorName || !formData.investorEmail || !formData.projectName}
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      {isSubmitting ? 'Submitting...' : 'Submit LOI Digitally'}
+                    </Button>
+                  </div>
+                  <p className="text-xs text-gray-500 text-center">
+                    <strong>Print &amp; Sign:</strong> Opens LOI in new window for printing, signing, and returning to office@lighthief.com
+                    <br />
+                    <strong>Submit Digitally:</strong> Sends your LOI directly to Lighthief Cyprus and opens a copy for your records
                   </p>
+                  {loiGenerated && !isSubmitted && (
+                    <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3 text-center text-sm text-cyan-800">
+                      <FileCheck className="w-4 h-4 inline mr-1" />
+                      LOI generated and opened in new window. Print, sign, and email to <strong>office@lighthief.com</strong>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
+            )}
 
             {/* Instructions */}
             <Card className="mt-8">
