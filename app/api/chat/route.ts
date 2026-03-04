@@ -2,6 +2,8 @@ import { NextRequest } from 'next/server'
 import OpenAI from 'openai'
 import { buildSystemPrompt } from '@/lib/chat-knowledge-base'
 import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -135,10 +137,16 @@ export async function POST(request: NextRequest) {
     }
 
     const systemPrompt = buildSystemPrompt()
+    const liveMarketData = getLatestMarketStats()
 
-    const contextNote = visitorName
-      ? `\n\nThe visitor's name is ${visitorName}. Use it naturally in conversation when appropriate (don't overuse it).`
-      : ''
+    const contextNote = [
+      visitorName
+        ? `\nThe visitor's name is ${visitorName}. Use it naturally in conversation when appropriate (don't overuse it).`
+        : '',
+      liveMarketData
+        ? `\n\n## Live Market Data (auto-updated daily from TSOC)\n${liveMarketData}`
+        : '',
+    ].join('')
 
     const stream = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
@@ -214,5 +222,55 @@ async function saveChatLead(
     )
   } catch {
     // Silently fail — lead capture is best-effort
+  }
+}
+
+let cachedMarketStats: { data: string; loadedAt: number } | null = null
+const MARKET_CACHE_TTL = 3_600_000 // 1 hour
+
+function getLatestMarketStats(): string | null {
+  try {
+    if (cachedMarketStats && Date.now() - cachedMarketStats.loadedAt < MARKET_CACHE_TTL) {
+      return cachedMarketStats.data
+    }
+
+    const filePath = path.join(process.cwd(), 'market/data/market-data.json')
+    if (!fs.existsSync(filePath)) return null
+
+    const raw = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+    const stats = raw.statistics?.overall
+    const dateRange = raw.dateRange
+    const lastUpdated = raw.lastUpdated
+
+    if (!stats) return null
+
+    const hourly: Array<{ hour: number; avgPrice: number }> = raw.statistics?.hourlyAvg || []
+    const middayAvg = hourly
+      .filter((h) => h.hour >= 10 && h.hour <= 14)
+      .reduce((sum, h) => sum + h.avgPrice, 0) / 5
+    const peakAvg = hourly
+      .filter((h) => h.hour >= 17 && h.hour <= 20)
+      .reduce((sum, h) => sum + h.avgPrice, 0) / 4
+    const lowestHour = hourly.reduce((min, h) => (h.avgPrice < min.avgPrice ? h : min), hourly[0])
+    const highestHour = hourly.reduce((max, h) => (h.avgPrice > max.avgPrice ? h : max), hourly[0])
+
+    const result = [
+      `Data last updated: ${new Date(lastUpdated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`,
+      `Dataset period: ${dateRange?.start} to ${dateRange?.end} (${raw.totalFiles} TSOC DAM files, ${raw.totalRecords?.toLocaleString()} half-hourly records)`,
+      `Overall average MCP: €${stats.avgPrice?.toFixed(1)}/MWh`,
+      `Solar hours average (06:00-17:00): €${stats.solarHoursAvg?.toFixed(1)}/MWh`,
+      `Peak hours average (17:00-21:00): €${stats.peakHoursAvg?.toFixed(1)}/MWh`,
+      `Midday average (10:00-14:00): €${middayAvg?.toFixed(1)}/MWh`,
+      `Evening peak average (17:00-20:00): €${peakAvg?.toFixed(1)}/MWh`,
+      `Peak-to-midday arbitrage spread: €${(peakAvg - middayAvg)?.toFixed(1)}/MWh`,
+      `Lowest average hour: ${lowestHour?.hour}:00 at €${lowestHour?.avgPrice?.toFixed(1)}/MWh`,
+      `Highest average hour: ${highestHour?.hour}:00 at €${highestHour?.avgPrice?.toFixed(1)}/MWh`,
+      `Price range: €${stats.minPrice}/MWh to €${stats.maxPrice}/MWh`,
+    ].join('\n')
+
+    cachedMarketStats = { data: result, loadedAt: Date.now() }
+    return result
+  } catch {
+    return null
   }
 }

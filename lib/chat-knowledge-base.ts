@@ -133,6 +133,55 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 - The EMS automates charge/discharge decisions based on: electricity prices, grid demand signals, curtailment forecasts, battery state of health, and weather data.
 - Revenue uplift from an optimised EMS vs basic time-of-use scheduling: 15-30% additional revenue.
 
+## Cyprus Day-Ahead Market (DAM) Data
+
+We track and publish real TSOC Day-Ahead Market data on our website at /market. This is based on official TSOC DAM activity reports updated daily.
+
+### Key DAM Price Statistics (from our TSOC dataset, Oct 2025 – Mar 2026)
+- **Overall average MCP (Market Clearing Price)**: ~€170/MWh
+- **Median MCP**: €174/MWh
+- **Minimum MCP**: €1/MWh (occurs during deep solar curtailment midday)
+- **Maximum MCP**: €500/MWh (price cap, during peak evening demand)
+
+### Hourly Price Profile (average €/MWh by hour of day)
+The Cyprus DAM shows a distinctive "solar duck curve" pattern:
+- **Night (00:00–05:00)**: €171–175/MWh — stable baseload pricing
+- **Morning (06:00–08:00)**: €167–177/MWh — morning ramp-up
+- **Midday solar dip (09:00–14:00)**: €80–142/MWh — prices crash as solar floods the grid
+  - Hour 11 (11:00): ~€82/MWh
+  - Hour 12 (12:00): ~€80/MWh (lowest average — peak solar generation)
+  - Hour 13 (13:00): ~€104/MWh
+- **Afternoon recovery (15:00–16:00)**: €166–176/MWh — solar output fading
+- **Evening peak (17:00–20:00)**: €183–188/MWh — highest prices, demand peaks as solar drops off
+  - Hour 19 (19:00): ~€188/MWh (highest average hour)
+- **Late evening (21:00–23:00)**: €175–181/MWh — declining demand
+
+### BESS Arbitrage Opportunity
+The price spread between midday low and evening peak is the core BESS arbitrage opportunity:
+- **Average midday price (10:00–14:00)**: ~€101/MWh
+- **Average evening peak price (17:00–21:00)**: ~€183/MWh
+- **Average daily spread**: ~€82/MWh — this is the gross arbitrage margin per MWh cycled
+- **Net arbitrage per MWh** (after round-trip efficiency losses): ~€72/MWh
+- **Round-trip efficiency**: ~87.8% (AC-AC for Tier-1 LFP systems)
+- **Days with positive arbitrage spread**: 100% of days in the dataset
+
+### Zero and Low Price Periods
+- **Zero-price periods**: 336 half-hours (5.2% of all periods) — when solar oversupply crashes prices
+- **Low-price periods (≤€10/MWh)**: 467 half-hours (7.3%)
+- **Midday curtailment-risk periods (≤€50, 09:00–15:00)**: ~29% of midday periods
+- These low/zero-price periods represent both risk (for solar revenue) and opportunity (for BESS charging at minimal cost)
+
+### Solar Revenue Impact
+- **Solar hours average (06:00–17:00)**: ~€147/MWh — this is what solar parks earn on average
+- **Overall wholesale average**: ~€170/MWh — solar parks earn below market average because they generate during the cheapest hours
+- Solar parks with BESS can shift production to higher-priced hours, capturing the spread
+
+### Important Note on BESS Market Participation
+Currently, BESS systems in Cyprus cannot directly buy energy from the DAM for arbitrage. The primary revenue model is **curtailment recovery** — storing energy that would otherwise be curtailed (zero revenue) and selling it during peak hours. As the competitive market evolves and new rules are adopted, direct DAM participation for storage is expected to open up.
+
+### Live Market Data
+Visitors can view our full interactive market dashboard with historical DAM charts, hourly heatmaps, and BESS arbitrage analysis at [Market Data](/market).
+
 ## Cyprus Regulatory & Market Framework
 
 ### Regulatory Bodies
