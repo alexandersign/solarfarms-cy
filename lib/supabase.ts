@@ -172,7 +172,7 @@ export const loiSubmissionsService = {
   async updateStatus(id: string, status: LOISubmission['status'], notes?: string) {
     const updates: Record<string, unknown> = { status }
     if (notes) {
-      updates.notes = supabase.rpc ? [notes] : [notes]
+      updates.notes = notes
     }
     const { data, error } = await supabase
       .from('loi_submissions')
