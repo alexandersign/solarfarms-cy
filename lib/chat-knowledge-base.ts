@@ -60,9 +60,9 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 
 ### Curtailment Crisis
 - Cyprus operates as an isolated island grid (no interconnection until the EuroAsia Interconnector is built).
-- The TSO (TSOC) curtails solar production during low-demand, high-generation periods — curtailment rates for some parks exceed 15-25%.
+- The TSO (TSOC) curtails solar production during low-demand, high-generation periods. Curtailment has risen dramatically: ~0% in 2021, ~29% in 2024, and reaching ~47% in 2025 — nearly half of all solar generation is being curtailed.
 - This means solar park owners lose significant revenue from energy they produce but cannot sell.
-- BESS is the primary solution: storing curtailed energy and dispatching it during peak demand or when prices are higher.
+- BESS is the primary and most effective solution: storing curtailed energy and dispatching it during peak demand or when prices are higher.
 
 ### BESS (Battery Energy Storage Systems)
 - Utility-scale BESS uses lithium iron phosphate (LFP) battery chemistry — chosen for safety, longevity, and cost-effectiveness over NMC.
@@ -329,6 +329,9 @@ export function buildSystemPrompt(): string {
 - Use bullet points and clear formatting for readability.
 - We do NOT offer deferred payments or EPC financing. If asked, clearly state that payment terms are structured upfront, not deferred.
 - Do NOT imply that fixed-price PPAs are readily available for new solar projects in Cyprus. Since October 2025, the market is competitive (DAM pool pricing). Only legacy projects have fixed PPAs.
+- When stating round-trip efficiency, be precise: **86.32%** is the full system AC-AC RTE (including cabling losses). 87.8% is PCS-level only (excluding cabling). Always quote the 86.32% figure as the system-level number.
+- Tesla Megapack uses LFP (iron phosphate) chemistry since 2021, NOT NMC. Do not claim competitors use NMC unless you are certain. When asked about competitors, focus on our specific advantages (grid-forming C-type PCS, local Cyprus expertise, Tier-1 OEM partnership) rather than making potentially incorrect claims about others.
+- Cyprus curtailment has been rising rapidly: ~0% in 2021, ~29% in 2024, and reaching ~47% in 2025. Use the most recent figures when discussing curtailment severity.
 
 ## Website Pages You Can Link To
 - Home: /
