@@ -91,12 +91,20 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 - Warranty-backed capacity retention: typically 70-80% of nameplate capacity after 15 years.
 
 ### Financing Structures
-- **Equity financing**: 100% equity provides the simplest structure. Typical returns of 8-12% IRR.
-- **Project finance (debt + equity)**: 60-70% debt / 30-40% equity is common. Leverage can boost equity IRR to 12-18%.
-- **Cyprus bank lending rates**: Typically Euribor + 2.5-4.0% spread for renewable energy projects.
-- **EPC financing**: Some turnkey providers offer deferred payment terms.
-- **Power Purchase Agreements (PPAs)**: Long-term PPAs provide revenue certainty that enables bank financing.
-- **Green bonds**: Emerging in the Cyprus market for larger portfolios.
+- **Equity financing**: 100% equity provides the simplest structure. Typical returns of 8-12% IRR. Investors maintain full control without debt covenants.
+- **Project finance (debt + equity)**: 60-70% debt / 30-40% equity is common. Leverage can boost equity IRR to 12-18%. Loans are structured against projected project cash flows.
+- **Cyprus bank lending rates**: Typically Euribor + 2.5-4.0% spread for renewable energy projects. Standard loan terms of 12-15 years.
+- **Green bonds**: An emerging option in the Cyprus market for larger portfolios seeking ESG-aligned capital.
+- **EU Green Deal funding**: Up to 30% of project costs available through EU funding mechanisms, with low-interest financing options.
+- **Tax incentives**: 20% renewable energy investment tax credit, accelerated 5-year depreciation, reduced 10% corporate tax rate for qualifying projects.
+
+### Revenue Models — PPAs vs Open Market
+- **Legacy Feed-in Tariff PPAs**: Older solar projects in Cyprus operate under fixed-price PPAs with guaranteed rates for 15-20 years. These provide revenue certainty but rates are often lower than current market prices.
+- **Competitive Electricity Market (CEM)**: Since October 2025, Cyprus operates a competitive electricity market. New solar projects sell energy at pool prices through the Day-Ahead Market (DAM) at half-hourly clearing prices — there are no standard fixed-price PPAs for new sellers.
+- **Bilateral contracts (Forward Market)**: Licensed producers can sell energy through bilateral contracts to unregulated suppliers, but this market is still developing and there is no established bilateral PPA market for solar generators yet.
+- **Merchant exposure**: Most new solar projects in Cyprus are effectively merchant — their revenue depends on DAM pool prices. This makes revenue less predictable but current average DAM prices (~€170/MWh overall, ~€147/MWh during solar hours) are competitive.
+- **BESS as revenue stabiliser**: Adding BESS allows shifting output from low-price midday hours (~€80-100/MWh) to high-price evening peak hours (~€183-188/MWh), reducing merchant risk and improving revenue predictability.
+- **EU support scheme**: The European Commission approved a €300M renewable energy support scheme for Cyprus including 15-year feed-in tariff guarantees for qualifying projects — implementation is ongoing.
 
 ### Key Financial Metrics Explained
 - **LCOE (Levelised Cost of Energy)**: Total lifetime cost / total lifetime energy. Cyprus solar LCOE is among the lowest in Europe at €30-50/MWh.
@@ -214,7 +222,7 @@ Visitors can view our full interactive market dashboard with historical DAM char
 - **Climate risk**: Cyprus's hot climate requires robust thermal management — poorly designed systems can degrade faster.
 
 ### Bankability Requirements
-- Lenders and investors look for: proven technology, bankable warranties, experienced O&M providers, comprehensive insurance, independent engineer reports, and strong PPAs or revenue certainty.
+- Lenders and investors look for: proven technology, bankable warranties, experienced O&M providers, comprehensive insurance, independent engineer reports, and demonstrable revenue streams (whether from DAM pool sales, legacy PPAs, or bilateral contracts).
 - Long-term Service Agreements (LTSA) provide performance guarantees and scheduled maintenance over 10-20 years.
 
 ## O&M (Operations & Maintenance)
@@ -283,6 +291,8 @@ export function buildSystemPrompt(): string {
 - If asked about something outside your knowledge, politely say you don't have that information and suggest contacting the team.
 - Format links as markdown: [Link Text](url) so they render as clickable links.
 - Use bullet points and clear formatting for readability.
+- We do NOT offer deferred payments or EPC financing. If asked, clearly state that payment terms are structured upfront, not deferred.
+- Do NOT imply that fixed-price PPAs are readily available for new solar projects in Cyprus. Since October 2025, the market is competitive (DAM pool pricing). Only legacy projects have fixed PPAs.
 
 ## Website Pages You Can Link To
 - Home: /
