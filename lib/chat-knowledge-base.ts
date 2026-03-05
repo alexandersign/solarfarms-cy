@@ -86,9 +86,9 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 ### BESS Investment Returns
 - Adding BESS to an existing PV park can increase overall project IRR by 2-5 percentage points.
 - BESS-specific returns depend on the revenue stacking model (curtailment recovery + arbitrage + ancillary services).
-- Typical BESS capex: €150-250/kWh at utility-scale (prices have dropped significantly due to lithium price declines since 2023).
-- BESS operational life: 15-20 years (with augmentation) or 6,000-10,000 cycles for LFP chemistry.
-- Warranty-backed capacity retention: typically 70-80% of nameplate capacity after 15 years.
+- Typical BESS capex: €150-250/kWh at utility-scale (prices have dropped significantly due to lithium price declines since 2023). Contact us for current project-specific pricing.
+- BESS operational life: 15-20 years (with augmentation). Our LFP systems are rated for 6,000 cycles (100% DoD) to 8,000 cycles (90% DoD).
+- Warranty-backed SOH retention: ≥85% at Year 5, ≥79.6% at Year 10, ≥70% at Year 15.
 
 ### Financing Structures
 - **Equity financing**: 100% equity provides the simplest structure. Typical returns of 8-12% IRR. Investors maintain full control without debt covenants.
@@ -117,7 +117,7 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 ## Technology & Technical Knowledge
 
 ### LFP vs NMC Battery Chemistry
-- **LFP (Lithium Iron Phosphate)**: Preferred for utility-scale BESS — safer (no thermal runaway risk), longer cycle life (6,000-10,000 cycles), lower cost per cycle, but lower energy density.
+- **LFP (Lithium Iron Phosphate)**: Preferred for utility-scale BESS — safer (no thermal runaway risk), longer cycle life (6,000–8,000+ cycles), lower cost per cycle, but lower energy density. Our systems use EVE LFP 314Ah prismatic cells.
 - **NMC (Nickel Manganese Cobalt)**: Higher energy density, but higher risk of thermal events, shorter cycle life (3,000-5,000 cycles), more expensive per cycle.
 - For stationary utility-scale applications in Cyprus's hot climate, LFP is the clear choice.
 
@@ -130,6 +130,42 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 - **Thermal management**: Active liquid cooling or HVAC systems — critical in Cyprus's hot climate (summer temps >40°C).
 - **Fire suppression**: Mandatory safety system — typically aerosol or gas-based for LFP systems.
 - **Containerised solutions**: Most utility-scale BESS arrives in pre-assembled 20ft or 40ft containers.
+
+### Our BESS Equipment Specifications
+We deploy Tier-1 equipment from Linyang Energy with Kehua C-type Power Conversion Systems:
+
+**Battery Containers (Linyang ME 5.015 MWh)**:
+- Capacity: 5,015 kWh per 20-foot High Cube container
+- Cells: EVE LFP (Lithium Iron Phosphate) 314Ah prismatic cells
+- Cycle life: 6,000 cycles at 100% DoD to 80% State of Health (SOH), or 8,000 cycles at 90% DoD to 70% SOH
+- Round-trip efficiency: 86.32% full system AC-AC (including cabling losses), 87.8% at PCS level
+- Thermal management: Liquid cooling (ethylene glycol + water), 60 kW cooling capacity
+- Protection: IP55 rated, C4 anti-corrosion (ISO 12944)
+- Certifications: IEC 62619, IEC 63056, UN 3536
+
+**Power Conversion System (Kehua BCS1250K-C-HUD)**:
+- Rated output: 1,250 kW per unit (1,375 kVA max)
+- DC voltage range: 1,060–1,500 Vdc
+- Max efficiency: ≥99%
+- Protection: IP65, C5 corrosion protection (suitable for coastal installations)
+- Grid code certification: EN 50549-2 (TÜV certified)
+
+**Grid-Forming Capabilities (C-Type PCS)**:
+The Kehua C-type PCS provides **full grid-forming capability**, not just grid-following. This is a significant technical advantage:
+- **VSG (Virtual Synchronous Generator)**: Emulates the inertia and damping of a conventional synchronous generator, stabilising grid frequency
+- **Black-Start**: Can energise a dead grid without external power — critical for island grids like Cyprus
+- **VF (Voltage-Frequency) Mode**: Independently creates and maintains grid voltage and frequency
+- **PQ (Active/Reactive Power) Mode**: Standard grid-following power injection
+- **Multi-Mode Switching**: Can seamlessly switch between grid-forming and grid-following modes
+- **Millisecond-level response time** to EMS commands
+
+Grid-forming capability is particularly important for Cyprus as an isolated island grid. As renewable penetration increases, the grid needs sources of synthetic inertia — grid-forming BESS provides this, unlike grid-following systems that depend on existing grid stability.
+
+**Warranty & SOH Guarantees**:
+- Base warranty: 5 years (PCS, battery containers, auxiliary equipment)
+- Extended warranty available: up to 15–20 years through Long-Term Service Agreement (LTSA)
+- SOH guarantees: ≥85% at Year 5, ≥79.6% at Year 10, ≥70% at Year 15
+- Coastal location warranty adjustments apply depending on distance from coastline
 
 ### AC-Coupled vs DC-Coupled BESS
 - **AC-coupled**: BESS connects to the AC bus — simpler to retrofit to existing solar farms, more flexible, but slightly lower round-trip efficiency.
