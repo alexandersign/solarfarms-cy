@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reply to Paweł — 7SUN Cyprus Update</title>
+<style>
+  :root {
+    --primary: #1a5632;
+    --primary-light: #e8f5e9;
+    --accent: #f57c00;
+    --accent-light: #fff3e0;
+    --red: #c62828;
+    --red-light: #ffebee;
+    --blue: #1565c0;
+    --blue-light: #e3f2fd;
+    --text: #212121;
+    --text-light: #616161;
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --border: #e0e0e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    padding: 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--primary), #2e7d32);
+    color: white;
+    padding: 40px;
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header .meta { opacity: 0.85; font-size: 0.95em; }
+  .header .meta span { margin-right: 20px; }
+  .content { padding: 40px; }
+
+  h2 {
+    font-size: 1.35em;
+    color: var(--primary);
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 1.1em; color: var(--text); margin: 24px 0 12px; }
+
+  p { margin-bottom: 14px; }
+  strong { color: var(--text); }
+  ul, ol { margin: 10px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 0.9em;
+  }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: #f5f5f5; }
+  tr:last-child td { border-bottom: none; }
+
+  .section-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .critical-box {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+  .critical-box strong { color: var(--red); }
+
+  .success-box {
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+  .success-box strong { color: var(--primary); }
+
+  .info-box {
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+  .info-box strong { color: var(--blue); }
+
+  .warning-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+  .warning-box strong { color: var(--accent); }
+
+  .file-tag {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.85em;
+    margin: 2px 0;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-critical { background: var(--red); color: white; }
+  .badge-high { background: var(--accent); color: white; }
+  .badge-medium { background: var(--blue); color: white; }
+  .badge-low { background: #9e9e9e; color: white; }
+  .badge-hold { background: #ff9800; color: white; }
+  .badge-go { background: var(--primary); color: white; }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .comparison-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .comparison-card.woo { border-top: 3px solid #9e9e9e; }
+  .comparison-card.react { border-top: 3px solid var(--primary); }
+  .comparison-card h4 { margin-bottom: 8px; }
+  .comparison-card .stat { font-size: 1.6em; font-weight: 700; margin: 8px 0; }
+  .comparison-card.woo .stat { color: #616161; }
+  .comparison-card.react .stat { color: var(--primary); }
+
+  .agenda-list { counter-reset: agenda; list-style: none; margin-left: 0; }
+  .agenda-list li {
+    counter-increment: agenda;
+    padding: 10px 0 10px 40px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .agenda-list li::before {
+    content: counter(agenda);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer {
+    background: #f5f5f5;
+    padding: 24px 40px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85em;
+    color: var(--text-light);
+  }
+  .file-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .file-list .file-item {
+    background: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-family: 'Consolas', monospace;
+    font-size: 0.85em;
+  }
+
+  .print-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
+  }
+  .print-btn:hover { background: #2e7d32; }
+
+  @media print {
+    body { padding: 0; background: white; }
+    .container { box-shadow: none; }
+    .print-btn { display: none; }
+    h2 { break-after: avoid; }
+    .section-card { break-inside: avoid; }
+    table { break-inside: avoid; }
+  }
+  @media (max-width: 700px) {
+    .header { padding: 24px; }
+    .content { padding: 24px; }
+    .comparison-grid { grid-template-columns: 1fr; }
+    .file-list { grid-template-columns: 1fr; }
+    table { font-size: 0.8em; }
+    td, th { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Export PDF</button>
+
+<div class="container">
+
+<div class="header">
+  <h1>Reply to Paweł — 7SUN Cyprus Update</h1>
+  <div class="meta">
+    <span><strong>Date:</strong> February 2026</span>
+    <span><strong>From:</strong> Aleksander</span>
+    <span><strong>To:</strong> Paweł (7sun.eu)</span>
+  </div>
+</div>
+
+<div class="content">
+
+<p>Hi Paweł,</p>
+<p>Great to hear from you. Let me address each point — we've actually done quite a lot of homework already.</p>
+
+<!-- SECTION 1 -->
+<h2>1. Pricing Confirmation — H1-H5 Are Selling Prices</h2>
+
+<p>Thank you for confirming. We had already worked out that H1-H5 are suggested selling prices for installers (not our cost), and we've built our entire business model around that assumption. Our current working estimate is that our internal purchase price is approximately 80% of H1 — but this is a rough placeholder.</p>
+
+<div class="critical-box">
+  <strong>Yes, please send us the actual purchase prices for your stock.</strong> This is the single most important thing we need right now. It will allow us to:
+  <ul style="margin-top:8px;">
+    <li>Finalize our first order</li>
+    <li>Set competitive Cyprus pricing</li>
+    <li>Confirm margins on every product category</li>
+  </ul>
+</div>
+
+<div class="info-box">
+  <strong>Research file:</strong> <span class="file-tag">7SUN_First_Stock_List.md</span> — contains our complete proposed first delivery with product-by-product analysis, margins calculated at estimated cost, and Cyprus market positioning for every SKU.
+</div>
+
+<!-- SECTION 2 -->
+<h2>2. Market Research — Yes, It's Done</h2>
+
+<p>We have extensive market research ready. Here's what we've prepared:</p>
+
+<table>
+  <tr><th>File</th><th>Contents</th></tr>
+  <tr>
+    <td><span class="file-tag">7SUN_Cyprus_Business_Plan.md + .html</span></td>
+    <td>Full business plan: Cyprus solar market analysis (957 MW installed, ~120 MW/year growth), competitive landscape, price comparison vs Trikkis Energy, business model, financial projections, risk analysis</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">7SUN_First_Stock_List.md + .html</span></td>
+    <td>Detailed first delivery stock list with product-by-product selection rationale, margin calculations, net billing sizing (4.16 kWp limit), competitive positioning vs local prices</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">7SUN_Marketing_Plan.md + .html</span></td>
+    <td>Complete ad manager plan (Meta + Google Ads), campaign structures, audience targeting, creative library, content calendar, landing pages, KPIs, budget</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">7SUN_SWOT_Analysis.md + .html</span></td>
+    <td>Full SWOT analysis for the Cyprus market entry</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">7SUN_Cyprus_Installers_Database.md</span></td>
+    <td>Database of <strong>390+ RES Fund certified solar installers</strong> in Cyprus — from the official government registry, with contact details</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">7SUN_Website_Infrastructure_Plan.md + .html</span></td>
+    <td>Technical architecture for the 7sun.cy e-commerce platform</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">7SUN_Website_Proposal_for_7sun.md + .html</span></td>
+    <td>Executive summary + cost comparison for 7sun to review</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">Trikkis CY-Pricelist-01-09-2025.pdf</span></td>
+    <td>Competitor pricelist (Trikkis Energy) — full Huawei, Jinko, REC pricing with retail/wholesale/pallet tiers</td>
+  </tr>
+  <tr>
+    <td><span class="file-tag">KYPROS - Green Energy Solution roadmap-1.xlsx</span></td>
+    <td>Competitive market analysis from Green Energy Group / Costas at Asbis (end 2024) — their Cyprus distribution plans and product roadmap</td>
+  </tr>
+</table>
+
+<p>All documents are available in both Markdown and HTML (with PDF export) formats.</p>
+
+<!-- SECTION 3 -->
+<h2>3. Which Products Could Be Successful — Summary</h2>
+
+<p>Based on our research + feedback from our local Electrical Engineer, here are the key findings:</p>
+
+<h3>Panels (2-4 models recommended, not more)</h3>
+<ul>
+  <li><strong>Longi 455W</strong> and <strong>JA Solar 450W</strong> — both Tier 1, both NOT widely sold in Cyprus by anyone. These are our exclusive advantage.</li>
+  <li><strong>Jinko 455W</strong> — most requested brand in Cyprus (but Trikkis also sells Jinko, so less exclusive)</li>
+  <li>All panels sized to fit the <strong>Cyprus 4.16 kWp single-phase net billing limit</strong> (max 5kW inverter, 1kW oversizing rule)</li>
+  <li>Our local EE recommends max 2-4 panel models. Installers go for the cheapest.</li>
+</ul>
+
+<h3>Inverters — Deye Single-Phase Hybrid is Our Key Product</h3>
+
+<div class="success-box">
+  <strong>Deye SUN-5K-SG03LP1-EU</strong> — the most affordable 5kW single-phase hybrid + storage combo for net billing in Cyprus.
+  <br><br>
+  Trikkis sells Huawei L-series single-phase hybrids (SUN2000L-5KTL/L1 at €616 wholesale), <strong>BUT</strong> Huawei LUNA batteries are very expensive (€1,725 + €698 controller = €2,423 for 5kWh storage).
+  <br><br>
+  <strong>Our Deye 5K + SE-G5.1 PRO-B battery kit: €1,650-1,850 wholesale — 40-46% cheaper than the Huawei equivalent complete kit (€3,039)</strong>
+</div>
+
+<h3>Important Local Intel from Our Electrical Engineer</h3>
+
+<div class="warning-box">
+  <strong>Issues requiring discussion on Friday:</strong>
+  <ul style="margin-top:8px;">
+    <li><strong>SolarEdge is already represented in Cyprus by BIGSOLAR (Epiphaniou Group)</strong> — we need to verify if we can sell SolarEdge or if there's a channel conflict</li>
+    <li><strong>Solax is represented by EV Energy CY</strong> — affects our Solax micro inverter plans</li>
+    <li><strong>Micro inverters may not be fully legislated in Cyprus</strong> — EAC grid programming requirements may not be met. Needs verification before we commit stock.</li>
+    <li><strong>Deye SE-G5.1 batteries are NOT waterproof</strong> — installation guidance needed (indoor/covered only)</li>
+    <li><strong>FoxESS</strong> is growing in Europe and may not yet have a Cyprus representative — potential opportunity for a complete inverter series</li>
+    <li>EE recommends <strong>1-2 inverter brands with complete series</strong>, not random models from many brands</li>
+  </ul>
+</div>
+
+<h3>Strategic Recommendation for First Order</h3>
+
+<table>
+  <tr><th>#</th><th>Category</th><th>Recommendation</th><th>Status</th></tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Panels</strong></td>
+    <td>2-4 models: Longi 455W, JA Solar 450W, possibly Jinko 455W &amp; 500W</td>
+    <td><span class="badge badge-go">GO</span></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Deye 5K Hybrid Inverter</strong></td>
+    <td>Primary net billing inverter — single-phase, 5kW compliant</td>
+    <td><span class="badge badge-go">GO</span></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Deye Batteries</strong></td>
+    <td>SE-G5.1 PRO-B stackable (5.15-20.6 kWh) — 40-46% cheaper than Huawei LUNA kit</td>
+    <td><span class="badge badge-go">GO</span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Huawei 3-Phase</strong></td>
+    <td>Source locally from Trikkis (unbeatable local pricing, same-day availability)</td>
+    <td><span class="badge badge-go">LOCAL</span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>SolarEdge</strong></td>
+    <td>ON HOLD — need to clarify BIGSOLAR/Epiphaniou situation</td>
+    <td><span class="badge badge-hold">HOLD</span></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Micro Inverters</strong></td>
+    <td>ON HOLD — need to verify EAC legislation compliance</td>
+    <td><span class="badge badge-hold">HOLD</span></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>FoxESS</strong></td>
+    <td>Evaluate as second inverter brand with complete series</td>
+    <td><span class="badge badge-medium">EVALUATE</span></td>
+  </tr>
+</table>
+
+<div class="info-box">
+  <strong>Research files:</strong> <span class="file-tag">7SUN_First_Stock_List.md</span> (full product analysis), <span class="file-tag">7SUN_Cyprus_Business_Plan.md</span> (Section 3-4: competitive analysis + price comparison), <span class="file-tag">KYPROS - Green Energy Solution roadmap-1.xlsx</span> (Costas/Asbis competitive analysis from end 2024)
+</div>
+
+<!-- SECTION 4 -->
+<h2>4. Online Meeting — Friday Works</h2>
+
+<p>Yes, let's do an online meeting on Friday. Proposed agenda:</p>
+
+<ol class="agenda-list">
+  <li>Confirm purchase prices (if you can send them before the call, even better)</li>
+  <li>Walk through our market research and first stock list</li>
+  <li>Discuss the SolarEdge/Solax channel conflict issue</li>
+  <li>Agree on the website approach (see below)</li>
+  <li>Align on timeline for first delivery</li>
+</ol>
+
+<p>Please send a calendar invite with a time that works for you.</p>
+
+<!-- SECTION 5 -->
+<h2>5. Website Platform — React vs WooCommerce</h2>
+
+<p>I understand the argument for speed-to-market with a WooCommerce clone. Here's our analysis:</p>
+
+<div class="info-box">
+  <strong>Detailed comparison files:</strong><br>
+  <span class="file-tag">7SUN_Website_Proposal_for_7sun.md + .html</span> (executive summary + cost comparison)<br>
+  <span class="file-tag">7SUN_Website_Infrastructure_Plan.md + .html</span> (full technical architecture)
+</div>
+
+<h3>The Key Question: What's "Fast Enough" vs "Right"?</h3>
+
+<table>
+  <tr><th>Feature</th><th>WooCommerce Clone</th><th>Our Stack (Medusa.js + Next.js)</th></tr>
+  <tr><td><strong>Time to Launch</strong></td><td>4-6 weeks</td><td>~12 weeks (MVP in 6-8)</td></tr>
+  <tr><td><strong>Cost to Build</strong></td><td>€25,000-40,000</td><td>€2,500–5,500 (internal + consultant)</td></tr>
+  <tr><td><strong>Page Speed</strong></td><td>1.5-4 seconds</td><td><strong>0.2-0.8 seconds</strong></td></tr>
+  <tr><td><strong>AI Chatbot</strong></td><td>Basic plugin</td><td><strong>Native GPT-4o with product API</strong></td></tr>
+  <tr><td><strong>AI Voice Agent</strong></td><td>Not possible</td><td><strong>ElevenLabs 24/7 Greek+English</strong></td></tr>
+  <tr><td><strong>Auto-Verify Installers</strong></td><td>Not possible</td><td><strong>Fuzzy-match 390+ RES Fund DB</strong></td></tr>
+  <tr><td><strong>B2B Tiered Pricing</strong></td><td>Plugin ($149-299/yr)</td><td><strong>Native</strong></td></tr>
+  <tr><td><strong>Greek Translation</strong></td><td>Manual (WPML)</td><td><strong>Auto AI on every sync</strong></td></tr>
+  <tr><td><strong>3-Year Total Cost</strong></td><td>€133K-148K</td><td><strong>~€19,100–22,100</strong></td></tr>
+</table>
+
+<h3>My Proposal: Pragmatic Hybrid Approach</h3>
+
+<div class="success-box">
+  <strong>Best of both worlds:</strong>
+  <ol style="margin-top:8px;">
+    <li><strong>Phase 1 (Immediate):</strong> Launch a simple WooCommerce landing page / catalog from the 7sun.eu clone — basic product listing, price enquiry form, "coming soon" wholesale portal. Live in 2-3 weeks, starts capturing leads.</li>
+    <li><strong>Phase 2 (Parallel):</strong> Build the full Medusa.js + Next.js platform with AI automation, wholesale auto-verification, and all the features WooCommerce can't deliver. This becomes the real 7sun.cy.</li>
+    <li><strong>Cutover:</strong> When the React platform is ready, we redirect traffic and have a modern, scalable system that runs on AI with minimal human interaction.</li>
+  </ol>
+  <p style="margin-top:12px;">This way we <strong>sell fast</strong> (your WooCommerce speed) AND <strong>build right</strong> (our long-term platform).</p>
+</div>
+
+<p>We can discuss the details on Friday.</p>
+
+<!-- SECTION 6 -->
+<h2>6. Your Team Calling Local Installers</h2>
+
+<p>Thank you for the offer — and yes, this could be very helpful, but with a focused scope:</p>
+
+<h3>What We Already Have</h3>
+<ul>
+  <li>Database of <strong>390+ certified installers</strong> from the Cyprus RES Fund registry (names, companies, phone numbers, locations) — see <span class="file-tag">7SUN_Cyprus_Installers_Database.md</span></li>
+  <li>Competitive pricing analysis vs Trikkis (the main distributor they all currently use)</li>
+</ul>
+
+<h3>What Would Be Most Valuable From Your Team</h3>
+<p>Calling <strong>10-15 of the largest installers</strong> in Limassol and Nicosia to ask:</p>
+<ul>
+  <li>What brands/models are they currently installing? (panels, inverters, batteries)</li>
+  <li>What's their biggest pain point with current suppliers? (stock, price, delivery, support?)</li>
+  <li>Would they be interested in Deye single-phase hybrid kits for net billing?</li>
+  <li>What's their monthly volume? (how many systems per month?)</li>
+</ul>
+
+<p>We can provide the contact list and a call script. The calls would ideally be in <strong>Greek</strong> (most installers in Cyprus are Greek-speaking), but some larger companies have English-speaking staff.</p>
+
+<!-- SECTION 7 -->
+<h2>Summary — What We Need From You</h2>
+
+<table>
+  <tr><th>#</th><th>Action</th><th>Priority</th><th>Timeline</th></tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Send purchase prices</strong> for stock (not H1-H5, our actual cost per SKU)</td>
+    <td><span class="badge badge-critical">CRITICAL</span></td>
+    <td>Before Friday</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Friday online meeting</strong> — send calendar invite</td>
+    <td><span class="badge badge-high">HIGH</span></td>
+    <td>This week</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Confirm SolarEdge status</strong> — can we sell SE in Cyprus given BIGSOLAR is the local rep?</td>
+    <td><span class="badge badge-high">HIGH</span></td>
+    <td>Friday call</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Review our research files</strong> — I'll share the full pack (all files listed above)</td>
+    <td><span class="badge badge-medium">MEDIUM</span></td>
+    <td>Before Friday</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Installer calls</strong> — your team calls 10-15 Cyprus installers (we provide contacts + script)</td>
+    <td><span class="badge badge-medium">MEDIUM</span></td>
+    <td>Next 2 weeks</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Agree on website approach</strong> — WooCommerce quick-start vs full platform</td>
+    <td><span class="badge badge-medium">MEDIUM</span></td>
+    <td>Friday call</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Brand assets</strong> — 7sun logo (SVG), brand guidelines for 7sun.cy</td>
+    <td><span class="badge badge-low">LOW</span></td>
+    <td>When ready</td>
+  </tr>
+</table>
+
+<p>Looking forward to the Friday call. I'll share all the research files before then so you can review.</p>
+
+<p>Best regards,<br><strong>Alex</strong></p>
+
+</div><!-- end content -->
+
+<div class="footer">
+  <strong>Attached Research Files:</strong>
+  <div class="file-list">
+    <div class="file-item">7SUN_Cyprus_Business_Plan.md + .html</div>
+    <div class="file-item">7SUN_First_Stock_List.md + .html</div>
+    <div class="file-item">7SUN_Marketing_Plan.md + .html</div>
+    <div class="file-item">7SUN_SWOT_Analysis.md + .html</div>
+    <div class="file-item">7SUN_Website_Proposal_for_7sun.md + .html</div>
+    <div class="file-item">7SUN_Website_Infrastructure_Plan.md + .html</div>
+    <div class="file-item">7SUN_Cyprus_Installers_Database.md</div>
+    <div class="file-item">Trikkis CY-Pricelist-01-09-2025.pdf</div>
+    <div class="file-item">KYPROS - Green Energy Solution roadmap-1.xlsx</div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+</body>
+</html>

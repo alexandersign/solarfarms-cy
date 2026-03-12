@@ -32,7 +32,7 @@ const omBenefits = [
   },
   {
     title: "Risk Mitigation",
-    impact: "99.5% uptime",
+    impact: "97%+ availability SLA",
     description: "Proactive monitoring and maintenance prevent costly failures and revenue loss from system downtime."
   },
   {
@@ -180,7 +180,7 @@ export default function OMImportanceArticle() {
                       <li>• O&M cost: €28,125 (2.5%)</li>
                       <li>• Net profit: €1,096,875</li>
                       <li>• 25-year NPV: €16.5M</li>
-                      <li>• System availability: 99.5%</li>
+                      <li>• System availability: &ge;97% (SLA target)</li>
                     </ul>
                   </div>
                   
@@ -293,8 +293,8 @@ export default function OMImportanceArticle() {
                 <h3 className="text-xl font-semibold text-green-900 mb-4">Our O&M Results</h3>
                 <div className="grid md:grid-cols-3 gap-6 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-green-700">99.7%</div>
-                    <div className="text-sm text-green-600">Average Uptime</div>
+                    <div className="text-2xl font-bold text-green-700">&ge;97%</div>
+                    <div className="text-sm text-green-600">Availability SLA Target</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-green-700">12%</div>

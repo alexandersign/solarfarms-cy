@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Contract Review RFP — Lighthief → Y. Georgiades & Associates LLC</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px 30px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; }
+
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--gray-800); }
+
+        .doc-title { text-align: center; margin-bottom: 25px; }
+        .doc-title h1 { font-size: 22px; color: var(--primary); margin-bottom: 5px; }
+        .doc-title .subtitle { font-size: 14px; color: var(--gray-600); }
+
+        .recipient-badge {
+            display: inline-block; background: var(--primary); color: white;
+            padding: 6px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; margin-top: 8px;
+        }
+
+        .value-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #dd6b20);
+            color: white; padding: 6px 18px; border-radius: 4px;
+            font-size: 16px; font-weight: 700; margin-top: 8px;
+        }
+
+        .info-box {
+            background: var(--gray-50); border: 1px solid var(--gray-200);
+            border-radius: 8px; padding: 15px 20px; margin-bottom: 25px;
+        }
+
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .info-item { display: flex; gap: 10px; }
+        .info-item .label { font-weight: 600; color: var(--gray-600); min-width: 130px; }
+        .info-item .value { color: var(--gray-800); }
+
+        .section { margin-bottom: 25px; page-break-inside: avoid; }
+        .section h2 { font-size: 16px; color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-bottom: 15px; }
+        .section h3 { font-size: 13px; color: var(--primary-light); margin: 15px 0 10px 0; }
+        .section h4 { font-size: 12px; color: var(--gray-700); margin: 10px 0 8px 0; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10pt; }
+        th, td { border: 1px solid var(--gray-200); padding: 8px 10px; text-align: left; }
+        th { background: var(--primary); color: white; font-weight: 600; font-size: 9pt; }
+        tr:nth-child(even) { background: var(--gray-50); }
+        tr:hover { background: var(--gray-100); }
+        .table-compact th, .table-compact td { padding: 6px 8px; font-size: 9pt; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; }
+        .badge-signed { background: #c6f6d5; color: #276749; }
+        .badge-template { background: #bee3f8; color: #2a4365; }
+        .badge-active { background: #feebc8; color: #c05621; }
+        .badge-pending { background: #fefcbf; color: #975a16; }
+
+        .callout { padding: 12px 15px; border-radius: 6px; margin: 10px 0; font-size: 10pt; }
+        .callout-info { background: #ebf8ff; border-left: 4px solid #3182ce; }
+        .callout-warning { background: #fffaf0; border-left: 4px solid var(--accent); }
+        .callout-success { background: #f0fff4; border-left: 4px solid var(--success); }
+
+        ul, ol { margin: 10px 0 10px 20px; }
+        li { margin-bottom: 5px; }
+
+        .summary-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white; padding: 20px; border-radius: 8px; margin: 20px 0;
+        }
+        .summary-box h3 { color: white; margin-bottom: 15px; font-size: 14px; }
+        .summary-box p { color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+
+        .contract-flow {
+            background: var(--gray-50); border: 2px solid var(--gray-200);
+            border-radius: 8px; padding: 20px; margin: 15px 0;
+            font-family: 'Courier New', monospace; font-size: 10pt; line-height: 1.8;
+        }
+        .contract-flow .node {
+            background: var(--primary); color: white; padding: 4px 12px; border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif; font-weight: 600; font-size: 10pt; display: inline-block;
+        }
+        .contract-flow .node-accent {
+            background: var(--accent); color: white; padding: 4px 12px; border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif; font-weight: 600; font-size: 10pt; display: inline-block;
+        }
+        .contract-flow .connector { color: var(--gray-600); font-size: 14px; text-align: center; display: block; margin: 4px 0; }
+        .contract-flow .agreement {
+            font-family: 'Segoe UI', sans-serif; color: var(--accent); font-size: 9pt;
+            font-weight: 600; text-align: center; display: block; margin: 2px 0;
+        }
+        .contract-flow .detail {
+            font-family: 'Segoe UI', sans-serif; color: var(--gray-600); font-size: 9pt; margin-left: 20px;
+        }
+
+        .contact-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
+        .contact-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 15px; }
+        .contact-card h4 { color: var(--primary); margin-bottom: 10px; }
+
+        .footer {
+            margin-top: 30px; padding-top: 15px; border-top: 2px solid var(--gray-200);
+            text-align: center; font-size: 9pt; color: var(--gray-600);
+        }
+
+        .print-btn {
+            position: fixed; top: 20px; right: 20px; background: var(--primary); color: white;
+            border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer;
+            font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000;
+        }
+        .print-btn:hover { background: var(--primary-light); }
+
+        @media print {
+            .print-btn { display: none; }
+            body { font-size: 10pt; }
+            .container { max-width: 100%; padding: 0; }
+            .section { page-break-inside: avoid; }
+            .header { margin-bottom: 15px; }
+            table { font-size: 9pt; }
+            @page { margin: 15mm; size: A4; }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">&#128196; Export PDF</button>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Reference:</strong> LCY-RFP-LEGAL-2026</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 24 February 2026</div>
+                <div><strong>Classification:</strong> Commercial &mdash; Confidential</div>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <div class="doc-title">
+            <h1>LEGAL CONTRACT REVIEW &mdash; REQUEST FOR PROPOSAL</h1>
+            <div class="subtitle">Lighthief Cyprus Ltd &rarr; Y. Georgiades &amp; Associates LLC</div>
+            <div><span class="recipient-badge">For: Yiannos Georgiades | Advocate &amp; Legal Consultant</span></div>
+            <div><span class="value-highlight">Portfolio Value: ~&euro;109,000,000</span></div>
+        </div>
+
+        <!-- Document Info -->
+        <div class="info-box">
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">From:</span>
+                    <span class="value">Lighthief Cyprus Ltd</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">To:</span>
+                    <span class="value">Y. Georgiades &amp; Associates LLC</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Subject:</span>
+                    <span class="value">Legal Review of BESS Group Order Contract Suite</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Portfolio Value:</span>
+                    <span class="value" style="font-weight: 700; color: var(--primary);">~&euro;109,000,000</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Contact:</span>
+                    <span class="value">Alexander Papacosta, Director</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Total Contracts:</span>
+                    <span class="value">5 core agreements + 2 third-party contracts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <div class="summary-box">
+                <h3>EXECUTIVE SUMMARY</h3>
+                <p>Lighthief Cyprus Ltd (<strong>HE 477423</strong>) is the exclusive Battery Energy Storage System (BESS) distributor, EPC contractor, and O&amp;M service provider for Linyang Energy in Cyprus. We are preparing to execute a group purchase order for <strong>51 utility-scale BESS projects</strong> totalling <strong>881.78 MWh / 249 MW</strong> with an aggregate EPC contract value of <strong>~&euro;109 million</strong>.</p>
+                <p>Before placing the order, we require an <strong>independent legal review</strong> of our entire contract suite &mdash; upstream (OEM supply), downstream (client EPC and service), and third-party (EMS/SCADA) &mdash; to ensure our contractual position is sound, risk allocation is appropriate, and terms are enforceable under Cyprus law and applicable foreign jurisdictions.</p>
+                <p>We are inviting Y. Georgiades &amp; Associates LLC to quote for this review engagement. All contracts will be provided in full upon engagement.</p>
+            </div>
+        </div>
+
+        <!-- Section 1: Company Background -->
+        <div class="section">
+            <h2>1. Company &amp; Project Background</h2>
+
+            <h3>1.1 Company Information</h3>
+            <table>
+                <tr><th style="width: 200px;">Item</th><th>Details</th></tr>
+                <tr><td><strong>Company Name</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+                <tr><td><strong>Registration</strong></td><td>HE 477423 (Cyprus)</td></tr>
+                <tr><td><strong>TIN</strong></td><td>60187188Q</td></tr>
+                <tr><td><strong>Business Activity</strong></td><td>Exclusive BESS Distributor, EPC Contractor &amp; O&amp;M Service Provider</td></tr>
+                <tr><td><strong>Address</strong></td><td>28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</td></tr>
+                <tr><td><strong>Director</strong></td><td>Alexander Papacosta</td></tr>
+                <tr><td><strong>OEM Partner</strong></td><td>Linyang (Jiangsu Linyang Energy Storage Technology Co., Ltd) &mdash; exclusive distributor for Cyprus</td></tr>
+                <tr><td><strong>Current Employees</strong></td><td>6 (projected 25 within 12 months)</td></tr>
+            </table>
+
+            <h3>1.2 Group Order Overview</h3>
+            <table>
+                <tr><th style="width: 200px;">Metric</th><th>Value</th></tr>
+                <tr><td><strong>Total Capacity</strong></td><td>881.78 MWh (249 MW)</td></tr>
+                <tr><td><strong>Total Parks</strong></td><td>51 (46 active + 5 Esperia 2028)</td></tr>
+                <tr><td><strong>Battery Containers</strong></td><td>251 containers</td></tr>
+                <tr><td><strong>CIF Equipment Value</strong></td><td>&euro;85,963,925</td></tr>
+                <tr><td><strong>Total EPC Revenue</strong></td><td>~&euro;109,241,187</td></tr>
+                <tr><td><strong>Net Margin</strong></td><td>~&euro;11.64M (10.7%)</td></tr>
+                <tr><td><strong>Client Groups</strong></td><td>6 independent client groups (see Section 4)</td></tr>
+                <tr><td><strong>Delivery</strong></td><td>3 batches: Jul 2026, Aug 2026, Sep 2026</td></tr>
+                <tr><td><strong>Incoterms</strong></td><td>CIF Limassol (Incoterms&reg; 2020)</td></tr>
+            </table>
+
+            <div class="callout callout-info">
+                <strong>Context:</strong> All 51 projects are BESS installations co-located at existing solar parks across Cyprus. Each client is an independent solar park project company. Lighthief acts as EPC contractor (turnkey delivery) and ongoing service provider (LTSA). Linyang is the OEM supplier of the battery containers and power conversion systems.
+            </div>
+        </div>
+
+        <!-- Section 2: Contract Structure -->
+        <div class="section">
+            <h2>2. Contractual Structure</h2>
+
+            <p>The contract suite consists of three tiers: upstream (OEM supply), downstream (client-facing), and third-party (specialist subcontractors). The following diagram illustrates the contractual flow:</p>
+
+            <div class="contract-flow">
+                <span class="node">Linyang / Solarfun Poland (OEM)</span>
+                <span class="connector">&darr;</span>
+                <span class="agreement">Distribution Agreement (LCY-DIST-001 v2.1)</span>
+                <span class="agreement">Blended Sales Agreement (LCY-BLENDED-001 v1.0)</span>
+                <span class="connector">&darr;</span>
+                <span class="node">Lighthief Cyprus Ltd (EPC Contractor)</span>
+                <span class="connector">&darr;</span>
+                <span class="agreement">EPC Agreement (LCY-EPC-001 v3.0) &mdash; per client</span>
+                <span class="agreement">LTSA (LCY-LTSA-001 v3.0) &mdash; per client</span>
+                <span class="connector">&darr;</span>
+                <span class="node-accent">End Customers (6 client groups, 51 projects)</span>
+                <br><br>
+                <span class="node">Voltus Energy (EMS/SCADA)</span>
+                <span class="detail">&rarr; Third-party subcontractor for energy management &amp; SCADA systems</span>
+            </div>
+        </div>
+
+        <!-- Section 3: Contracts for Review -->
+        <div class="section">
+            <h2>3. Contracts Requiring Review</h2>
+
+            <h3>3.1 Upstream Agreements (Lighthief &harr; Linyang/Solarfun)</h3>
+
+            <table>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>Contract</th>
+                    <th>Reference</th>
+                    <th>Version</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><strong>A1</strong></td>
+                    <td><strong>Distribution Agreement</strong></td>
+                    <td>LCY-DIST-001</td>
+                    <td>v2.1</td>
+                    <td>28 Nov 2025</td>
+                    <td><span class="badge badge-signed">SIGNED</span></td>
+                </tr>
+                <tr>
+                    <td><strong>A2</strong></td>
+                    <td><strong>Blended Sales Agreement &amp; OEM Performance Framework</strong></td>
+                    <td>LCY-BLENDED-001</td>
+                    <td>v1.0</td>
+                    <td>22 Feb 2026</td>
+                    <td><span class="badge badge-active">ACTIVE</span></td>
+                </tr>
+            </table>
+
+            <h4>A1 &mdash; Distribution Agreement (LCY-DIST-001 v2.1)</h4>
+            <table class="table-compact">
+                <tr><th style="width: 180px;">Detail</th><th>Description</th></tr>
+                <tr><td><strong>Parties</strong></td><td><em>Seller:</em> Solarfun Renewable Energy Poland sp. z o.o. (Warsaw) + Jiangsu Linyang Energy Storage Technology Co., Ltd (Nanjing)<br><em>Buyer:</em> Lighthief Cyprus Ltd</td></tr>
+                <tr><td><strong>Purpose</strong></td><td>Exclusive BESS distribution rights for Cyprus territory</td></tr>
+                <tr><td><strong>Term</strong></td><td>3 years (renewable)</td></tr>
+                <tr><td><strong>Exclusivity</strong></td><td>Sole distributor in Cyprus; 12-month post-termination tail</td></tr>
+                <tr><td><strong>Anti-Circumvention</strong></td><td>Penalty fees: &euro;75,000&ndash;&euro;500,000 depending on contract value</td></tr>
+                <tr><td><strong>Governing Law</strong></td><td>Singapore (SIAC arbitration, 3 arbitrators); Cyprus Courts carve-out for Sections 7&ndash;9 (client protection, anti-circumvention, penalties)</td></tr>
+                <tr><td><strong>Status</strong></td><td>Signed February 2026</td></tr>
+                <tr><td><strong>Page Count</strong></td><td>~30 pages (estimated)</td></tr>
+            </table>
+
+            <h4>A2 &mdash; Blended Sales Agreement &amp; OEM Performance Framework (LCY-BLENDED-001 v1.0)</h4>
+            <table class="table-compact">
+                <tr><th style="width: 180px;">Detail</th><th>Description</th></tr>
+                <tr><td><strong>Parties</strong></td><td>Same as Distribution Agreement</td></tr>
+                <tr><td><strong>Structure</strong></td><td><strong>Part A:</strong> Sales Agreement (equipment supply, warranty, payment, delivery)<br><strong>Part B:</strong> OEM Performance Commitments (binding performance guarantees)<br><strong>Part C:</strong> Back-to-Back Service Framework (seller obligations for downstream commitments)</td></tr>
+                <tr><td><strong>Payment Terms</strong></td><td>25% advance / 50% ex-works / 20% DAP / 5% SAT holdback</td></tr>
+                <tr><td><strong>Warranty</strong></td><td>5 years from PAC; SOH guarantees: Yr5 &ge;85%, Yr10 &ge;79.58%, Yr15 &ge;70%</td></tr>
+                <tr><td><strong>Extended Warranty</strong></td><td>Yr 6&ndash;10: &euro;1,661.68/MWh/yr; Yr 11&ndash;15: &euro;2,083.72/MWh/yr</td></tr>
+                <tr><td><strong>Performance Bond</strong></td><td>5% of contract price</td></tr>
+                <tr><td><strong>Delay LDs</strong></td><td>0.1&ndash;0.2% per day of delayed goods value (10% cap)</td></tr>
+                <tr><td><strong>Governing Law</strong></td><td>Singapore (SIAC arbitration) + Cyprus interim relief</td></tr>
+                <tr><td><strong>Page Count</strong></td><td>~50 pages (estimated &mdash; 3 parts)</td></tr>
+            </table>
+
+            <h3>3.2 Downstream Agreements (Lighthief &harr; End Customers)</h3>
+
+            <table>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>Contract</th>
+                    <th>Reference</th>
+                    <th>Version</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><strong>B1</strong></td>
+                    <td><strong>EPC Agreement (Template)</strong></td>
+                    <td>LCY-EPC-001</td>
+                    <td>v3.0</td>
+                    <td>22 Feb 2026</td>
+                    <td><span class="badge badge-template">TEMPLATE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>B2</strong></td>
+                    <td><strong>Long-Term Service Agreement (Template)</strong></td>
+                    <td>LCY-LTSA-001</td>
+                    <td>v3.0</td>
+                    <td>22 Feb 2026</td>
+                    <td><span class="badge badge-template">TEMPLATE</span></td>
+                </tr>
+            </table>
+
+            <h4>B1 &mdash; EPC Agreement (LCY-EPC-001 v3.0)</h4>
+            <table class="table-compact">
+                <tr><th style="width: 180px;">Detail</th><th>Description</th></tr>
+                <tr><td><strong>Parties</strong></td><td><em>Contractor:</em> Lighthief Cyprus Ltd<br><em>Client:</em> [End customer legal name] &mdash; template for 51 individual contracts</td></tr>
+                <tr><td><strong>Purpose</strong></td><td>Turnkey BESS delivery, installation, and commissioning</td></tr>
+                <tr><td><strong>Payment Terms</strong></td><td>30% advance / 55% pre-shipment / 10% PAC / 5% retention (released after 24-month DLP)</td></tr>
+                <tr><td><strong>Delay LDs</strong></td><td>Days 1&ndash;30: 0.1%/day; Days 31&ndash;60: 0.15%/day; Day 61+: 0.2%/day (10% cap)</td></tr>
+                <tr><td><strong>Warranty</strong></td><td>5 years from PAC</td></tr>
+                <tr><td><strong>Governing Law</strong></td><td>Cyprus (Cyprus Courts)</td></tr>
+                <tr><td><strong>Page Count</strong></td><td>~35 pages (estimated)</td></tr>
+            </table>
+
+            <h4>B2 &mdash; Long-Term Service Agreement (LCY-LTSA-001 v3.0)</h4>
+            <table class="table-compact">
+                <tr><th style="width: 180px;">Detail</th><th>Description</th></tr>
+                <tr><td><strong>Parties</strong></td><td><em>Service Provider:</em> Lighthief Cyprus Ltd<br><em>Client:</em> [End customer legal name] &mdash; template for 51 individual contracts</td></tr>
+                <tr><td><strong>Purpose</strong></td><td>Ongoing monitoring, maintenance, and performance guarantees for 15 years</td></tr>
+                <tr><td><strong>Service Tiers</strong></td><td><strong>Tier A:</strong> Basic Monitoring &amp; Maintenance (&euro;1,157.62/MWh/yr)<br><strong>Tier B:</strong> + PCS/MVS Corrective Maintenance (&euro;1,311.97/MWh/yr additional)<br><strong>Tier C:</strong> + 97% Availability Guarantee (&euro;2,201.73/MWh/yr additional)</td></tr>
+                <tr><td><strong>SOH Guarantees</strong></td><td>Yr5 &ge;85%, Yr10 &ge;79.58%, Yr15 &ge;70%</td></tr>
+                <tr><td><strong>Response Times</strong></td><td>Critical: 2hrs remote / 8hrs on-site; Major: 8hrs remote / 48hrs on-site</td></tr>
+                <tr><td><strong>Availability LD</strong></td><td>&euro;30/MWh/day for availability below 97%</td></tr>
+                <tr><td><strong>Governing Law</strong></td><td>Cyprus (Cyprus Courts)</td></tr>
+                <tr><td><strong>Page Count</strong></td><td>~30 pages (estimated)</td></tr>
+            </table>
+
+            <h3>3.3 Third-Party Agreements</h3>
+
+            <table>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>Contract</th>
+                    <th>Reference</th>
+                    <th>Version</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><strong>C1</strong></td>
+                    <td><strong>Voltus EMS/SCADA &mdash; Part I: Functional, Technical &amp; Commercial Scope</strong></td>
+                    <td>VOLTUS-EMS-PT1</td>
+                    <td>&mdash;</td>
+                    <td>Feb 2026</td>
+                    <td><span class="badge badge-active">ACTIVE</span></td>
+                </tr>
+                <tr>
+                    <td><strong>C2</strong></td>
+                    <td><strong>Voltus EMS/SCADA &mdash; Part II: General Terms (Implementation, Service &amp; Warranty)</strong></td>
+                    <td>VOLTUS-EMS-PT2</td>
+                    <td>&mdash;</td>
+                    <td>Feb 2026</td>
+                    <td><span class="badge badge-active">ACTIVE</span></td>
+                </tr>
+            </table>
+
+            <h4>C1/C2 &mdash; Voltus EMS/SCADA Order Agreements</h4>
+            <table class="table-compact">
+                <tr><th style="width: 180px;">Detail</th><th>Description</th></tr>
+                <tr><td><strong>Parties</strong></td><td><em>Supplier:</em> Voltus Energy<br><em>Client:</em> Lighthief Cyprus Ltd</td></tr>
+                <tr><td><strong>Purpose</strong></td><td>Energy Management System (EMS) and SCADA platform for the full portfolio</td></tr>
+                <tr><td><strong>Contract Value</strong></td><td>&euro;3,993,617 (EMS: &euro;2,298,609 + Local SCADA: &euro;1,275,000 + Global SCADA: &euro;420,008)</td></tr>
+                <tr><td><strong>Payment Terms</strong></td><td>50% advance / 20% pre-delivery / 30% acceptance</td></tr>
+                <tr><td><strong>Page Count</strong></td><td>~40 pages combined (estimated)</td></tr>
+            </table>
+        </div>
+
+        <!-- Section 4: Client Groups -->
+        <div class="section">
+            <h2>4. Client Groups &amp; Portfolio Breakdown</h2>
+            <p>For context, the downstream contracts will be executed with the following independent client groups. Each group may have multiple project companies (SPVs):</p>
+
+            <table class="table-compact">
+                <tr>
+                    <th>Group</th>
+                    <th>Client</th>
+                    <th>Parks</th>
+                    <th>MW</th>
+                    <th>MWh</th>
+                    <th>CIF Value (&euro;)</th>
+                    <th>EPC Revenue (&euro;)</th>
+                </tr>
+                <tr>
+                    <td>G1</td>
+                    <td>ABIO Power</td>
+                    <td>25</td>
+                    <td>125.0</td>
+                    <td>430.28</td>
+                    <td>&euro;41,765,838</td>
+                    <td>&euro;52,609,992</td>
+                </tr>
+                <tr>
+                    <td>G2</td>
+                    <td>Esperia Energy</td>
+                    <td>11</td>
+                    <td>79.5</td>
+                    <td>310.50</td>
+                    <td>&euro;28,802,958</td>
+                    <td>&euro;36,412,812</td>
+                </tr>
+                <tr>
+                    <td>G3</td>
+                    <td>Timotheos Timotheou</td>
+                    <td>9</td>
+                    <td>25.5</td>
+                    <td>81.00</td>
+                    <td>&euro;8,994,033</td>
+                    <td>&euro;11,818,919</td>
+                </tr>
+                <tr>
+                    <td>G4</td>
+                    <td>A. Kerasi</td>
+                    <td>3</td>
+                    <td>6.5</td>
+                    <td>20.00</td>
+                    <td>&euro;2,283,660</td>
+                    <td>&euro;3,061,370</td>
+                </tr>
+                <tr>
+                    <td>G5</td>
+                    <td>Lampros Andreadis</td>
+                    <td>2</td>
+                    <td>4.8</td>
+                    <td>15.00</td>
+                    <td>&euro;1,593,785</td>
+                    <td>&euro;2,117,420</td>
+                </tr>
+                <tr>
+                    <td>G6</td>
+                    <td>Ioannis Karis</td>
+                    <td>1</td>
+                    <td>7.7</td>
+                    <td>25.00</td>
+                    <td>&euro;2,523,652</td>
+                    <td>&euro;3,220,675</td>
+                </tr>
+                <tr style="background: var(--gray-100) !important; font-weight: 700;">
+                    <td></td>
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong>51</strong></td>
+                    <td><strong>249</strong></td>
+                    <td><strong>881.78</strong></td>
+                    <td><strong>&euro;85,963,925</strong></td>
+                    <td><strong>&euro;109,241,187</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 5: Scope of Review -->
+        <div class="section">
+            <h2>5. Scope of Legal Review Requested</h2>
+
+            <p>We are requesting a comprehensive legal review of the above contract suite, with particular attention to the following areas:</p>
+
+            <h3>5.1 General Review (All Contracts)</h3>
+            <ul>
+                <li>Enforceability under Cyprus law and the designated governing law for each agreement</li>
+                <li>Consistency and alignment of terms across the entire contract suite (upstream &harr; downstream)</li>
+                <li>Risk allocation &mdash; identification of any disproportionate or unfavourable risk assumptions by Lighthief</li>
+                <li>Adequacy of limitation of liability and indemnity provisions</li>
+                <li>Termination rights, consequences, and survival clauses</li>
+                <li>Force majeure provisions &mdash; scope and adequacy</li>
+                <li>Intellectual property and data ownership provisions</li>
+                <li>Adequacy of dispute resolution mechanisms</li>
+            </ul>
+
+            <h3>5.2 Upstream Agreements &mdash; Specific Issues</h3>
+            <ul>
+                <li><strong>Split jurisdiction:</strong> Singapore (SIAC) for general disputes vs Cyprus Courts for client protection (Sections 7&ndash;9) &mdash; is this enforceable and practical?</li>
+                <li><strong>Anti-circumvention:</strong> Review penalty fee structure (&euro;75K&ndash;&euro;500K) for enforceability in Cyprus and Singapore</li>
+                <li><strong>Exclusivity provisions:</strong> Adequacy of the 12-month post-termination tail and territory protection</li>
+                <li><strong>Back-to-back alignment:</strong> Do the upstream supply terms adequately protect Lighthief against downstream EPC commitments (delay LDs, warranty, performance)?</li>
+                <li><strong>Payment flow risk:</strong> Lighthief pays 25% advance + 50% ex-works to Linyang but only collects 30% advance + 55% pre-shipment from clients &mdash; cashflow gap analysis</li>
+                <li><strong>Performance bond:</strong> 5% of contract price &mdash; appropriateness and form</li>
+                <li><strong>SOH guarantees:</strong> Enforceability of state-of-health performance commitments across 15 years</li>
+                <li><strong>Coastal warranty restrictions:</strong> C5-rated enclosures required for installations within 5km of coast &mdash; contractual implications</li>
+            </ul>
+
+            <h3>5.3 Downstream Agreements &mdash; Specific Issues</h3>
+            <ul>
+                <li><strong>Template suitability:</strong> Are the EPC and LTSA templates suitable for use across 51 separate project contracts with different counterparties?</li>
+                <li><strong>Delay liquidated damages:</strong> Review graduated LD structure (0.1%&ndash;0.2%/day, 10% cap) for enforceability as a genuine pre-estimate of loss</li>
+                <li><strong>Retention mechanism:</strong> 5% retention held for 24-month DLP &mdash; adequacy and client objection risk</li>
+                <li><strong>LTSA availability guarantees:</strong> 97% availability commitment with LD exposure (&euro;30/MWh/day) &mdash; commercial risk assessment</li>
+                <li><strong>Client SPV risk:</strong> Many clients are special purpose vehicles &mdash; parent company guarantee requirements?</li>
+                <li><strong>PAC/FAC definitions:</strong> Clarity and completeness of acceptance criteria</li>
+                <li><strong>Insurance requirements:</strong> Do downstream contracts adequately require client cooperation on insurance and site access?</li>
+            </ul>
+
+            <h3>5.4 Third-Party Agreements &mdash; Specific Issues</h3>
+            <ul>
+                <li><strong>Voltus terms alignment:</strong> Do the Voltus EMS/SCADA terms integrate with the EPC and LTSA obligations?</li>
+                <li><strong>Liability gaps:</strong> If the EMS fails, is Lighthief exposed under the LTSA availability guarantee without adequate recourse against Voltus?</li>
+                <li><strong>IP ownership:</strong> Who owns the data, SCADA configurations, and EMS algorithms?</li>
+            </ul>
+
+            <h3>5.5 Cross-Cutting Issues</h3>
+            <ul>
+                <li><strong>Cyprus regulatory compliance:</strong> Gazette No. 5992 (16/01/2026) &mdash; any contractual implications of the new BESS regulations?</li>
+                <li><strong>VAT treatment:</strong> 19% VAT on EPC contracts &mdash; any VAT structuring considerations?</li>
+                <li><strong>Import duty:</strong> 2.66% weighted average import duty &mdash; any customs classification risks?</li>
+                <li><strong>Insurance requirements:</strong> Alignment between contractual insurance obligations and actual coverage being procured</li>
+                <li><strong>Data protection / GDPR:</strong> Any data sharing or processing provisions that need attention?</li>
+            </ul>
+        </div>
+
+        <!-- Section 6: Deliverables -->
+        <div class="section">
+            <h2>6. Expected Deliverables</h2>
+
+            <table>
+                <tr><th style="width: 50px;">#</th><th>Deliverable</th><th>Description</th></tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Contract Review Memorandum</strong></td>
+                    <td>Comprehensive written opinion covering all contracts listed in Section 3, addressing the specific issues in Section 5, with risk ratings (high / medium / low) for each identified issue</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Redline Recommendations</strong></td>
+                    <td>Tracked-change recommendations for any contract amendments prior to execution or use</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Risk Matrix</strong></td>
+                    <td>Summary matrix of contractual risks, gaps, and recommended mitigations</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>Briefing Call</strong></td>
+                    <td>1-hour briefing to walk through findings and discuss priority actions</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 7: Quotation Request -->
+        <div class="section">
+            <h2>7. Quotation Request</h2>
+
+            <p>Please provide a quotation including:</p>
+
+            <table>
+                <tr><th style="width: 50px;">#</th><th>Item</th><th>Details Required</th></tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Fixed Fee or Fee Estimate</strong></td>
+                    <td>For the full scope of review as described in Sections 3&ndash;6. A fixed fee is preferred; if hourly, please provide a capped estimate.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Hourly Rates</strong></td>
+                    <td>Partner and associate hourly rates (for any out-of-scope work)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Timeline</strong></td>
+                    <td>Estimated number of working days from receipt of all contracts to delivery of the review memorandum</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>Team</strong></td>
+                    <td>Proposed team members and their relevant experience in energy / infrastructure / EPC contracts</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Conflicts Check</strong></td>
+                    <td>Confirmation of no conflicts of interest with any parties named in this RFP</td>
+                </tr>
+            </table>
+
+            <div class="callout callout-warning">
+                <strong>Estimated total page count:</strong> Approximately 185&ndash;220 pages across all 7 contracts (5 core + 2 Voltus). All contracts will be provided in Word/PDF format upon engagement.
+            </div>
+        </div>
+
+        <!-- Section 8: Key Dates -->
+        <div class="section">
+            <h2>8. Key Dates</h2>
+
+            <table>
+                <tr><th style="width: 200px;">Milestone</th><th>Date</th></tr>
+                <tr><td><strong>RFP Issued</strong></td><td>24 February 2026</td></tr>
+                <tr><td><strong>Clarification Questions</strong></td><td>By 28 February 2026</td></tr>
+                <tr><td><strong>Quotation Due</strong></td><td>7 March 2026</td></tr>
+                <tr><td><strong>Engagement Decision</strong></td><td>By 10 March 2026</td></tr>
+                <tr><td><strong>Contracts Delivered to Counsel</strong></td><td>Within 2 business days of engagement</td></tr>
+                <tr><td><strong>Review Completion Target</strong></td><td>Before group order placement (target: 1 March 2026 onwards)</td></tr>
+            </table>
+
+            <div class="callout callout-info">
+                <strong>Urgency:</strong> The group purchase order for 251 battery containers (&euro;86M CIF) is scheduled for placement in early March 2026. Legal review of the full contract suite is required before or concurrent with order placement to ensure Lighthief's position is adequately protected.
+            </div>
+        </div>
+
+        <!-- Section 9: Governing Law Summary -->
+        <div class="section">
+            <h2>9. Governing Law &amp; Jurisdiction Summary</h2>
+
+            <p>The contracts span multiple jurisdictions. We specifically require counsel's view on the practical enforceability of this split-jurisdiction model:</p>
+
+            <table>
+                <tr>
+                    <th>Contract</th>
+                    <th>Governing Law</th>
+                    <th>Dispute Resolution</th>
+                    <th>Carve-Out</th>
+                </tr>
+                <tr>
+                    <td>Distribution Agreement</td>
+                    <td>Singapore</td>
+                    <td>SIAC Arbitration (3 arbitrators)</td>
+                    <td>Sections 7&ndash;9: Cyprus Courts (at Distributor's option)</td>
+                </tr>
+                <tr>
+                    <td>Blended Sales Agreement</td>
+                    <td>Singapore</td>
+                    <td>SIAC Arbitration (3 arbitrators)</td>
+                    <td>Cyprus interim relief</td>
+                </tr>
+                <tr>
+                    <td>EPC Agreement</td>
+                    <td>Cyprus</td>
+                    <td>Cyprus Courts</td>
+                    <td>&mdash;</td>
+                </tr>
+                <tr>
+                    <td>LTSA</td>
+                    <td>Cyprus</td>
+                    <td>Cyprus Courts</td>
+                    <td>&mdash;</td>
+                </tr>
+                <tr>
+                    <td>Voltus EMS/SCADA</td>
+                    <td>TBC</td>
+                    <td>TBC</td>
+                    <td>&mdash;</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="section">
+            <h2>10. Contact Information</h2>
+
+            <div class="contact-box">
+                <div class="contact-card">
+                    <h4>Lighthief Cyprus Ltd (Instructing Party)</h4>
+                    <p><strong>Alexander Papacosta</strong><br>Director &amp; BESS Project Lead</p>
+                    <p>28 October Avenue 249, Lophitis Business Center 1<br>Office 201, 3035 Limassol, Cyprus</p>
+                    <p>T: +357 99 164 158<br>E: office@lighthief.com<br>W: solarfarms.cy</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Y. Georgiades &amp; Associates LLC</h4>
+                    <p><strong>Yiannos Georgiades</strong><br>Advocate &amp; Legal Consultant</p>
+                    <p>2 Ayiou Pavlou &amp; Kadmou Street<br>Wisdom Tower, 3rd Floor<br>1105 Nicosia, Cyprus<br>P.O. Box 24144, 1701 Nicosia</p>
+                    <p>T: +357 22 819 292<br>F: +357 22 778 444<br>E: yiannos.georgiades@gmadvocates.com<br>W: www.gmadvocates.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Closing -->
+        <div class="section">
+            <div class="callout callout-success">
+                <strong>Next Steps:</strong> Should you require any clarification or wish to discuss the scope before quoting, please contact Alexander Papacosta directly at +357 99 164 158 or office@lighthief.com. We are happy to arrange an introductory call at your convenience.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Lighthief Cyprus Ltd</strong> | HE 477423 | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+            <p>This document is confidential and intended solely for the named recipient. &copy; 2026 Lighthief Cyprus Ltd. All rights reserved.</p>
+            <p style="margin-top: 5px; font-size: 8pt; color: #a0aec0;">Ref: LCY-RFP-LEGAL-2026 v1.0 | Generated 24 February 2026</p>
+        </div>
+
+    </div>
+</body>
+</html>

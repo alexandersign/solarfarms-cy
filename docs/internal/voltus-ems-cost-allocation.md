@@ -1,63 +1,62 @@
-> ## ⚠️ PRICING NOTICE — SINGLE SOURCE OF TRUTH
+> ## PRICING NOTICE — SINGLE SOURCE OF TRUTH
 > **All pricing in this document is SUPERSEDED by the master spreadsheet:**  
 > **`docs/Bess - EPC System Cost v2.xlsx`** (Sheet: `Pricing_Model_All_Projects`)  
 > If any price, cost, or margin figure in this document conflicts with the spreadsheet, **the spreadsheet prevails**.  
-> *Last verified: 16 February 2026*
+> *Last verified: 26 February 2026*
 
 ---
 
 # VOLTUS EMS/SCADA COST ALLOCATION
 
-**Document Reference:** LCY-VOLTUS-ALLOCATION-FEB2026-R3  
-**Date:** 16 February 2026  
-**Source:** `2026-02-16 Cyprus EMS Project List - Voltus Price - new update SCADA.xlsx`  
-**Previous Version:** R2 (27 January 2026, 6 groups)  
-**Status:** ✅ UPDATED — New Voltus quote received, 3 groups + 6 standalone
+**Document Reference:** LCY-VOLTUS-ALLOCATION-FEB2026-R4  
+**Date:** 26 February 2026  
+**Source:** `2026-02-24 Cyprus EMS Project List - Voltus Price - new update SCADA.xlsx`  
+**Previous Version:** R3 (16 February 2026, 2-tier SCADA)  
+**Status:** UPDATED — New 5-tier SCADA Local, EMS subscription pricing, Order Agreement received
 
 ---
 
-## ⚠️ CRITICAL CHANGE — SCADA LOCAL TIERED PRICING
+## COST ALLOCATION RULES
 
-> **NEW:** Voltus has introduced a two-tier SCADA Local pricing model effective Feb 2026:
->
-> | Tier | Threshold | SCADA Local (capex) | Maintenance/yr |
-> |------|-----------|---------------------|----------------|
-> | **BASIC** | ≤8 MWh | €15,000 | €3,000 |
-> | **ADVANCED** | ≥10 MWh | €30,000 | €6,000 |
->
-> **Impact:** 34 of 51 parks are ADVANCED (≥10 MWh). SCADA Local capex increased from €765,000 to **€1,275,000 (+€510,000)**.
+> **Client pays:** EMS capex + SCADA Local capex + EMS subscription (annual) + SCADA Local maintenance (annual)  
+> **Lighthief (EPC/OM) pays:** SCADA Global capex + SCADA Global maintenance (annual)  
+> **No portfolio discount** — removed from pricing model
 
 ---
 
-## 1. COST STRUCTURE (Updated Feb 2026)
+## 1. COST STRUCTURE (Updated 24 Feb 2026)
 
-### Per-Park Costs (EMS)
+### Per-Park Costs (EMS) — Client-Facing
+
 | Component | Description |
 |-----------|-------------|
 | System + Hardware | WAGO PFC200 PLC, I/O Modules, EMS software |
 | Remote Configuration & Preparation | Software setup, grid integration |
 | On-site Installation + Training | Labor for installation and training |
+| EMS Subscription | ~10% of EMS hardware cost per year (mandatory for advanced features) |
 
-### Per-Park Costs (SCADA Local)
-| Component | BASIC (≤8 MWh) | ADVANCED (≥10 MWh) |
-|-----------|-----------------|---------------------|
-| SCADA Local (one-time) | €15,000 | €30,000 |
-| SCADA Local maintenance | €3,000/year | €6,000/year |
+### Per-Park Costs (SCADA Local) — Client-Facing — 5-Tier Model
 
-### Per-Group Costs (SCADA Global)
-| Component | Cost |
-|-----------|------|
-| SCADA Global (on-premise) | €60,000 (one-time per group) |
-| SCADA Global maintenance | €12,000/year |
+| Tier | MWh Range | Capex (one-time) | Maintenance/yr (20%) | Parks |
+|------|-----------|------------------:|---------------------:|------:|
+| MINI | ≤4 MWh | €12,000 | €2,400 | 6 |
+| BASIC | 5 MWh | €15,000 | €3,000 | 5 |
+| STANDARD | 7.5–8 MWh | €20,000 | €4,000 | 5 |
+| ADVANCED | ≥10 MWh | €30,000 | €6,000 | 33 |
+| MEGA | ≥60 MWh | €80,000 | €16,000 | 2 |
 
-### Volume Discounts (New)
-| Discount | Detail |
-|----------|--------|
-| Portfolio discount | 5% on full 51-park order |
-| Free SCADA Global | 2 free instances (1 installation + 1 service) |
-| Maintenance discount | Available, pending final SCADA Global count |
+### Per-Group Costs (SCADA Global) — Lighthief EPC/OM Cost
+
+| Group | Capex (one-time) | Maintenance/yr |
+|-------|------------------:|---------------:|
+| G1: ABIO | €60,000 | €12,000 |
+| G2: Esperia | €60,000 | €12,000 |
+| G3: Timotheos | €50,000 | €10,000 |
+| Standalone | €0 | €0 |
+| **Lighthief Total** | **€170,000** | **€34,000** |
 
 ### BoM Scope Clarification
+
 | Included by Voltus | NOT included (Lighthief to procure) |
 |--------------------|--------------------------------------|
 | WAGO PFC200 PLC Controller | Energy Meters (grid-side, BESS-side) |
@@ -76,10 +75,8 @@
 
 ### G1: ABIO POWER — 25 parks — Aggregator: ABIO
 
-SCADA Global Share: **€2,400 per park** (€60,000 ÷ 25 parks)
-
-Parks: Greendorado (Agrivoltaic, Larnaca 1, Larnaca 2, 1), Agios Sozomenos, Dianary (1, 2, 3), 
-ELESTORE (1-5), Easy Power (1, 2, 3, 4), Polemi, Potamia (p151, p208), 
+Parks: Greendorado (Agrivoltaic, Larnaca 1, Larnaca 2, 1), Agios Sozomenos, Dianary (1, 2, 3),
+ELESTORE (1-5), Easy Power (1, 2, 3, 4), Polemi, Potamia (p151, p208),
 Renergetic (1, 2), Solarity, Solartech 3 Extension, Waneron
 
 | Metric | Value |
@@ -87,16 +84,15 @@ Renergetic (1, 2), Solarity, Solartech 3 Extension, Waneron
 | Total MW | 125.0 |
 | Total MWh | 430.3 |
 | Containers | 125 (33 MV + 92 BESS) |
-| EMS Total | €1,131,275 |
-| SCADA Local | €675,000 (4 BASIC + 21 ADVANCED) |
-| SCADA Global | €60,000 |
-| **Group Total** | **€1,866,275** |
+| EMS Capex | €1,131,275 |
+| SCADA Local Capex | €677,000 |
+| **Client Capex Total** | **€1,808,275** |
+| Client Annual (EMS sub + SCADA Local maint) | **€190,334/yr** |
+| **Client Annual per MWh** | **€442/MWh** |
 
 ### G2: ESPERIA ENERGY — 11 parks — Aggregator: Synenergia
 
-SCADA Global Share: **€5,455 per park** (€60,000 ÷ 11 parks)
-
-Parks: Esperia Famagusta (1, 2), Esperia Frenaros, Esperia Limassol, 
+Parks: Esperia Famagusta (1, 2), Esperia Frenaros, Esperia Limassol,
 Galascope (1, 2), Esperia Tseri (1, 2a, 2b, 2c, 3)
 
 | Metric | Value |
@@ -104,16 +100,15 @@ Galascope (1, 2), Esperia Tseri (1, 2a, 2b, 2c, 3)
 | Total MW | 79.5 |
 | Total MWh | 310.5 |
 | Containers | 79 (16 MV + 63 BESS) |
-| EMS Total | €666,726 |
-| SCADA Local | €300,000 (2 BASIC + 9 ADVANCED) |
-| SCADA Global | €60,000 |
-| **Group Total** | **€1,026,726** |
+| EMS Capex | €666,726 |
+| SCADA Local Capex | €410,000 |
+| **Client Capex Total** | **€1,076,726** |
+| Client Annual (EMS sub + SCADA Local maint) | **€114,776/yr** |
+| **Client Annual per MWh** | **€370/MWh** |
 
 ### G3: TIMOTHEOS TIMOTHEOU — 9 parks
 
-SCADA Global Share: **€6,667 per park** (€60,000 ÷ 9 parks)
-
-Parks: L&T (Res Systems, Solar Power, Sun Energy, Energia, PV Tech), 
+Parks: L&T (Res Systems, Solar Power, Sun Energy, Energia, PV Tech),
 AGM (Lightpower, Sunfield 1, Sunfield 2, Sunfield 3)
 
 | Metric | Value |
@@ -121,106 +116,226 @@ AGM (Lightpower, Sunfield 1, Sunfield 2, Sunfield 3)
 | Total MW | 25.5 |
 | Total MWh | 81.0 |
 | Containers | 27 (10 MV + 17 BESS) |
-| EMS Total | €293,295 |
-| SCADA Local | €180,000 (5 BASIC + 4 ADVANCED) |
-| SCADA Global | €60,000 |
-| **Group Total** | **€533,295** |
+| EMS Capex | €293,295 |
+| SCADA Local Capex | €171,000 |
+| **Client Capex Total** | **€464,295** |
+| Client Annual (EMS sub + SCADA Local maint) | **€48,206/yr** |
+| **Client Annual per MWh** | **€595/MWh** |
 
-### Standalone — 6 parks (Individual SCADA Global each)
+### Standalone — 6 parks (No SCADA Global)
 
-| Park | Owner | MW | MWh | EMS | SCADA Local | SCADA Global | Total |
-|------|-------|---:|----:|----:|------------:|-------------:|------:|
-| Classone Solar Breeze | L. Andreadis | 1.5 | 5 | €26,304 | €15,000 | €60,000 | €101,304 |
-| Classone Solar Garden | L. Andreadis | 3.3 | 10 | €33,374 | €30,000 | **FREE** | €63,374 |
-| Paphos 1 | A Kerasi | 2.5 | 7.5 | €33,374 | €15,000 | €60,000 | €108,374 |
-| Paphos 2 | A Kerasi | 2.5 | 7.5 | €33,374 | €15,000 | €60,000 | €108,374 |
-| Paphos 3 | A Kerasi | 1.5 | 5 | €26,304 | €15,000 | €60,000 | €101,304 |
-| My Sun Park | I. Karis | 7.7 | 25 | €54,583 | €30,000 | **FREE** | €84,583 |
-| **TOTAL** | | **19.0** | **60.0** | **€207,313** | **€120,000** | **€240,000** | **€567,313** |
+| Park | Owner | MW | MWh | EMS Capex | SCADA Local | Client Capex | Annual/yr | EUR/MWh |
+|------|-------|---:|----:|----------:|------------:|-------------:|----------:|--------:|
+| Classone Solar Breeze | L. Andreadis | 1.5 | 5 | €26,304 | €12,000 | €38,304 | €3,638 | €728 |
+| Classone Solar Garden | L. Andreadis | 3.3 | 10 | €33,374 | €20,000 | €53,374 | €5,596 | €560 |
+| Paphos 1 | A Kerasi | 2.5 | 7.5 | €33,374 | €15,000 | €48,374 | €4,596 | €613 |
+| Paphos 2 | A Kerasi | 2.5 | 7.5 | €33,374 | €20,000 | €53,374 | €5,596 | €746 |
+| Paphos 3 | A Kerasi | 1.5 | 5 | €26,304 | €12,000 | €38,304 | €3,638 | €728 |
+| My Sun Park | I. Karis | 7.7 | 25 | €54,583 | €30,000 | €84,583 | €8,670 | €347 |
+| **TOTAL** | | **19.0** | **60.0** | **€207,313** | **€109,000** | **€316,313** | **€31,734** | **€529** |
 
-*Note: 2 free SCADA Global instances allocated to largest standalone parks (My Sun Park, Classone Solar Garden)*
+#### Standalone Per-Client Summary
+
+| Client | Parks | MWh | Annual/yr | EUR/MWh |
+|--------|------:|----:|----------:|--------:|
+| L. Andreadis | 2 | 15.0 | €9,234 | €616 |
+| A Kerasi | 3 | 20.0 | €13,830 | €692 |
+| I. Karis | 1 | 25.0 | €8,670 | €347 |
 
 ---
 
 ## 3. PORTFOLIO COST SUMMARY
 
+### Client-Facing Capex
+
 | Component | Groups (3) | Standalone (6) | **TOTAL** |
-|-----------|-----------|----------------|-----------|
+|-----------|----------:|---------------:|----------:|
 | EMS (System+HW+Config+Install) | €2,091,296 | €207,313 | **€2,298,609** |
-| SCADA Local | €1,155,000 | €120,000 | **€1,275,000** |
-| SCADA Global | €180,000 | €240,000 | **€420,000** |
-| **TOTAL** | **€3,426,296** | **€567,313** | **€3,993,617** |
+| SCADA Local | €1,258,000 | €109,000 | **€1,367,000** |
+| **Client Capex Total** | **€3,349,296** | **€316,313** | **€3,665,609** |
 
-### Before vs After Comparison
+### Lighthief EPC/OM Capex
 
-| Metric | Old (Jan 2026, 6 grp) | New (Feb 2026, 3+6) | Delta |
-|--------|----------------------|---------------------|-------|
-| EMS Quotes | €2,354,992 | €2,298,609 | **-€56,383** |
-| SCADA Local | €765,000 (all @€15k) | €1,275,000 (tiered) | **+€510,000** |
-| SCADA Global | €360,000 (6 groups) | €420,000 (3+4 SA) | **+€60,000** |
-| **Total EMS/SCADA** | **€3,479,992** | **€3,993,609** | **+€513,617** |
-| **With 5% discount** | - | **€3,793,929** | **+€313,937** |
+| Component | Cost |
+|-----------|-----:|
+| SCADA Global (3 groups) | €170,000 |
 
----
+### Grand Total Capex (All Parties)
 
-## 4. MARGIN IMPACT ANALYSIS (Updated)
+| | Amount |
+|--|-------:|
+| Client-facing | €3,665,609 |
+| Lighthief SCADA Global | €170,000 |
+| **Total** | **€3,835,609** |
 
-### Group-Level Margins
+### Capex Comparison (R3 → R4)
 
-| Group | Parks | MWh | Installed Cost | Revenue | Old Margin | New Margin | Change |
-|-------|------:|----:|---------------:|--------:|-----------:|-----------:|-------:|
-| G1: ABIO | 25 | 430.3 | €47,401,603 | €52,609,992 | 8.0% | **9.9%** | +1.9pp |
-| G2: ESP | 11 | 310.5 | €33,145,514 | €36,412,812 | 9.9% | **9.0%** | -0.9pp |
-| G3: TIM | 9 | 81.0 | €10,780,781 | €11,818,919 | 10.9% | **8.8%** | -2.1pp |
-| Standalone | 6 | 60.0 | €7,854,789 | €8,399,464 | 10.9% | **6.5%** | -4.4pp |
-| **TOTAL** | **51** | **881.8** | **€97,599,747** | **€109,241,187** | — | **10.7%** | — |
+| Component | R3 (16 Feb) | R4 (24 Feb) | Delta |
+|-----------|----------:|----------:|------:|
+| EMS | €2,298,609 | €2,298,609 | €0 |
+| SCADA Local | €1,275,000 | €1,367,000 | **+€92,000** |
+| SCADA Global | €420,000 | €170,000 | **-€250,000** |
+| **Total** | **€3,993,609** | **€3,835,609** | **-€158,000** |
 
-### Problem Parks (Margin < 8%)
-
-28 out of 51 parks now have margins below 8%. Key concerns:
-
-| Category | Parks | Avg Margin | Root Cause |
-|----------|------:|------------|------------|
-| LOCKED price, <5% | 12 | 3.4% | Client prices already committed, SCADA increase erodes margin |
-| LOCKED price, 5-8% | 8 | 6.4% | ELESTORE/ESP-LIM with thin pre-existing margins |
-| 13% price, <8% | 8 | 5.3% | Standalone parks bearing full SCADA Global cost |
+Key changes: Standalone parks no longer carry SCADA Global. G3 SCADA Global reduced €60k→€50k. New €80k MEGA tier hits Esperia Frenaros and Limassol (+€100k on G2 SCADA Local).
 
 ---
 
-## 5. ANNUAL MAINTENANCE
+## 4. CLIENT-FACING ANNUAL SUBSCRIPTION & MAINTENANCE
 
-| Component | Count | Unit Cost | Total/Year |
-|-----------|------:|----------:|-----------:|
-| SCADA Local BASIC (≤8 MWh) | 17 parks | €3,000 | €51,000 |
-| SCADA Local ADVANCED (≥10 MWh) | 34 parks | €6,000 | €204,000 |
-| SCADA Global (3 groups + 6 SA) | 9 instances | €12,000 | €108,000 |
-| **TOTAL** | | | **€363,000/year** |
+### Per-Group Summary
 
-*Old maintenance total was €225,000/year. Increase: +€138,000/year.*
+| Group | MWh | EMS Sub/yr | SCADA Local Maint/yr | **Client Total/yr** | **EUR/MWh** |
+|-------|----:|-----------:|---------------------:|--------------------:|------------:|
+| G1: ABIO | 430.3 | €54,935 | €135,400 | **€190,334** | **€442** |
+| G2: Esperia | 310.5 | €32,776 | €82,000 | **€114,776** | **€370** |
+| G3: Timotheos | 81.0 | €14,006 | €34,200 | **€48,206** | **€595** |
+| Standalone | 60.0 | €9,934 | €21,800 | €31,734 | €529 |
+| **TOTAL** | **881.8** | **€111,651** | **€273,400** | **€385,050** | **€437** |
+
+### Per-Park Detail — G1: ABIO POWER (€442/MWh group average)
+
+| Park | MWh | EMS Sub | SCADA Maint | Total/yr | EUR/MWh |
+|------|----:|--------:|------------:|---------:|--------:|
+| Greendorado Agrivoltaic | 3.0 | €1,238 | €2,400 | €3,638 | €1,213 |
+| Greendorado Larnaca 1 | 5.0 | €1,238 | €3,000 | €4,238 | €848 |
+| Greendorado Larnaca 2 | 5.0 | €1,238 | €3,000 | €4,238 | €848 |
+| Greendorado 1 | 8.0 | €1,596 | €4,000 | €5,596 | €700 |
+| Agios Sozomenos | 25.0 | €2,670 | €6,000 | €8,670 | €347 |
+| Dianary 1 | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Dianary 2 | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Dianary 3 | 35.0 | €3,386 | €6,000 | €9,386 | €268 |
+| ELESTORE 1 | 40.0 | €3,744 | €6,000 | €9,744 | €244 |
+| ELESTORE 2 | 40.0 | €3,744 | €6,000 | €9,744 | €244 |
+| ELESTORE 3 | 40.0 | €3,744 | €6,000 | €9,744 | €244 |
+| ELESTORE 4 | 40.0 | €3,744 | €6,000 | €9,744 | €244 |
+| ELESTORE 5 | 40.0 | €3,744 | €6,000 | €9,744 | €244 |
+| Easy Power 1 | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Easy Power 2 | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Easy Power 3 | 10.0 | €1,954 | €6,000 | €7,954 | €795 |
+| Easy Power 4 | 8.0 | €1,596 | €3,000 | €4,596 | €575 |
+| Polemi | 10.0 | €1,954 | €6,000 | €7,954 | €795 |
+| Potamia p151 | 10.0 | €1,954 | €6,000 | €7,954 | €795 |
+| Potamia p208 | 20.0 | €3,028 | €6,000 | €9,028 | €451 |
+| Renergetic 1 | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Renergetic 2 | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Solarity | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Solartech 3 Ext. | 10.0 | €1,596 | €6,000 | €7,596 | €760 |
+| Waneron | 11.3 | €1,596 | €6,000 | €7,596 | €673 |
+
+### Per-Park Detail — G2: ESPERIA ENERGY (€370/MWh group average)
+
+| Park | MWh | EMS Sub | SCADA Maint | Total/yr | EUR/MWh |
+|------|----:|--------:|------------:|---------:|--------:|
+| Esperia Famagusta | 20.0 | €2,312 | €6,000 | €8,312 | €416 |
+| Esperia Famagusta 2 | 20.0 | €2,312 | €6,000 | €8,312 | €416 |
+| Esperia Frenaros | 100.0 | €8,402 | €16,000 | €24,402 | €244 |
+| Esperia Limassol | 60.0 | €5,357 | €16,000 | €21,357 | €356 |
+| Galascope 1 | 15.0 | €1,954 | €6,000 | €7,954 | €530 |
+| Galascope 2 | 8.0 | €1,596 | €4,000 | €5,596 | €700 |
+| Esperia Tseri | 20.0 | €2,312 | €6,000 | €8,312 | €416 |
+| Esperia Tseri 2a | 7.5 | €1,596 | €4,000 | €5,596 | €746 |
+| Esperia Tseri 2b | 25.0 | €2,670 | €6,000 | €8,670 | €347 |
+| Esperia Tseri 2c | 20.0 | €2,312 | €6,000 | €8,312 | €416 |
+| Esperia Tseri 3 | 15.0 | €1,954 | €6,000 | €7,954 | €530 |
+
+### Per-Park Detail — G3: TIMOTHEOS (€595/MWh group average)
+
+| Park | MWh | EMS Sub | SCADA Maint | Total/yr | EUR/MWh |
+|------|----:|--------:|------------:|---------:|--------:|
+| L&T Res Systems | 4.0 | €1,238 | €2,400 | €3,638 | €910 |
+| L&T Solar Power | 5.0 | €1,238 | €3,000 | €4,238 | €848 |
+| L&T Sun Energy | 15.0 | €1,954 | €6,000 | €7,954 | €530 |
+| L&T Energia | 5.0 | €1,238 | €3,000 | €4,238 | €848 |
+| L&T PV Tech | 4.0 | €1,238 | €2,400 | €3,638 | €910 |
+| AGM Lightpower | 24.0 | €2,670 | €6,000 | €8,670 | €361 |
+| AGM Sunfield 1 | 15.0 | €1,954 | €6,000 | €7,954 | €530 |
+| AGM Sunfield 2 | 5.0 | €1,238 | €3,000 | €4,238 | €848 |
+| AGM Sunfield 3 | 4.0 | €1,238 | €2,400 | €3,638 | €910 |
 
 ---
 
-## 6. KEY FINDINGS & ACTIONS
+## 5. LIGHTHIEF EPC/OM ANNUAL COSTS
 
-### ❌ CRITICAL ISSUES
+| Component | Count | Annual/yr |
+|-----------|------:|----------:|
+| SCADA Global G1 | 1 | €12,000 |
+| SCADA Global G2 | 1 | €12,000 |
+| SCADA Global G3 | 1 | €10,000 |
+| **Lighthief Total** | **3** | **€34,000/yr** |
 
-1. **SCADA Local price surge (+€510k):** The BASIC/ADVANCED split doubles cost for 34 parks. Negotiate with Voltus.
-2. **Portfolio margin is 10.7%:** Per v4 spreadsheet (€97.6M installed / €109.2M revenue). Client-paid items (Protection Testing, External LPS, Electrical Drawings) removed from cost model.
-3. **Review parks below 8% margin:** Some parks may still have thin margins — check v4 spreadsheet for current per-park data.
-4. **Standalone parks severely impacted:** €60k SCADA Global per park makes small standalone parks uneconomic.
+---
 
-### 📋 ACTION ITEMS
+## 6. ORDER AGREEMENT TERMS (New — Feb 2026)
 
-1. **Negotiate SCADA Local:** Push for flat €15k or reduced ADVANCED rate for full portfolio
-2. **Apply 5% discount:** Confirm discount applies to total including SCADA (saves ~€200k)
-3. **Review LOCKED pricing:** Parks with <5% margin need client price renegotiation
-4. **Standalone grouping:** Explore grouping Paphos (3 parks) + Classone (2 parks) under one SCADA Global
+Source: `ORDER AGREEMENT PART I & II - EMS SCADA`
+
+### Payment Terms
+
+| Milestone | Percentage |
+|-----------|:----------:|
+| Advance (within 7 days of signing) | 50% |
+| Before delivery | 20% |
+| After acceptance | 30% |
+
+### Subscription Model
+
+| Term | Detail |
+|------|--------|
+| Available periods | 1, 3, 5, or 10 years |
+| Billing options | Monthly, annual upfront, or lump-sum for entire period |
+| Includes | Updates, cybersecurity, database admin, protocol maintenance, advanced EMS modes, external data |
+| Support included | 1 hour/month basic (unused time does not carry over) |
+| Additional support | €80/hour or €1,000/day (8h) |
+
+### If Subscription Expires
+
+System reverts to **local-only EMS** — no access to:
+- SCADA (local or global)
+- Cloud and synchronization
+- Historical data stored by Voltus
+- External data sources (energy prices, weather forecasts, operator signals)
+- Advanced modes (arbitrage, Peak Shaving, Zero/Set import/export)
+
+### Implementation Timeline
+
+| Phase | Duration |
+|-------|----------|
+| Project start | 6–8 weeks from signing + advance payment |
+| System delivery | 28 days from customer readiness |
+| Commissioning & acceptance | 14 days from installation readiness |
+| Warranty response | 36 working hours |
+
+### Warranty
+
+- Covers software and hardware defects
+- Extendable to 1, 3, 5, or 10 years (requires active subscription + latest software version)
+- Does NOT cover: third-party interference, customer infrastructure issues, external device failures
+
+---
+
+## 7. KEY FINDINGS & ACTIONS
+
+### Critical Issues
+
+1. **G3 highest cost per MWh (€595/MWh):** 9 small parks with only 81 MWh — many below 10 MWh hit the expensive MINI/BASIC SCADA tiers.
+2. **New €80k MEGA tier:** Esperia Frenaros (100 MWh) and Limassol (60 MWh) now €80k SCADA Local each instead of €30k — adds €100k to G2.
+3. **EMS subscription is mandatory:** Without it, system loses all advanced functionality. €111,651/yr across portfolio.
+4. **Subscription lock-in:** If client stops paying, system becomes a basic local controller with no SCADA visibility.
+5. **Small parks disproportionately expensive:** Any park below 10 MWh pays €700-€1,213/MWh annually vs €244/MWh for 40 MWh parks.
+
+### Action Items
+
+1. **Negotiate MEGA tier:** Push back on €80k for Frenaros/Limassol — these are within the same group, should not be penalized for size
+2. **Negotiate subscription rates:** 10% of hardware cost annually is steep — push for volume reduction on 51-park portfolio
+3. **Review LOCKED pricing:** Parks with thin margins need to factor in annual subscription as client cost
+4. **Subscription term decision:** Evaluate lump-sum vs annual — longer term may offer discount
 5. **Lighthief procurement:** Cost the BoM items NOT included by Voltus (meters, switches, routers, cabinets, UPS, CT/VTs)
 6. **Send Voltus:** BMS Modbus register map (WRDF-0I002-103) + Kehua IEC-104 point list (WRWF-0I002-06)
 
 ---
 
 *Document prepared by: Lighthief Cyprus Ltd*  
-*Last updated: 16 February 2026*  
+*Last updated: 26 February 2026*  
 *Classification: INTERNAL - CONFIDENTIAL*  
-*Source: Voltus Energy — 2026-02-16 Cyprus EMS Project List - Voltus Price - new update SCADA.xlsx*
+*Source: Voltus Energy — 2026-02-24 Cyprus EMS Project List - Voltus Price - new update SCADA.xlsx*

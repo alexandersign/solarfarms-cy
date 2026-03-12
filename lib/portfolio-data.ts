@@ -4,7 +4,7 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 22 February 2026
+// Last updated: 10 March 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx
 // Confirmed: v4 Excel = total SSOT (51 parks incl. 5 Esperia 2028)
 // ===================================================================
@@ -25,11 +25,14 @@ interface MetaInfo {
 export const PORTFOLIO = {
   parks: 51,
   mw: 249,
-  mwh: 881.78,
-  containers: 251,
+  mwh: 886.78,
+  containers: 252,
   districts: 5,
-  orderDate: '2026-03-01',
-  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx', date: '2026-02-20' } as MetaInfo,
+  orderDate: '2026-04-01',
+  firstClientInvoiceDate: '2026-04-01',
+  vatStartQuarter: 'Q2 2026',
+  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx', date: '2026-02-20',
+           note: 'April 1 start confirmed: no client invoice or payment before 1 Apr 2026. Clean Q1 VAT. Linyang production order may be placed earlier.' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -73,7 +76,7 @@ export const ADDERS = {
   dehnLpsSpdEarthing: { total: 446_384.61,   status: 'quoted' as DataStatus,    supplier: 'DEHN + StrikeRA' },
   dehnInstallLabour:  { total: 81_600.00,    status: 'confirmed' as DataStatus, rate: '€1,600 per park', supplier: 'StrikeRA' },
   civilWorks:         { total: 1_763_560.00, status: 'confirmed' as DataStatus, rate: '€2,000 per MWh', supplier: 'Lighthief subcontractors' },
-  marineInsurance:    { total: 644_729.40,   status: 'confirmed' as DataStatus, rate: '0.75% of CIF' },
+  insurance:          { total: 644_729.40,   status: 'pending' as DataStatus, rate: '0.75% of CIF budget', note: 'EPC construction insurance (CAR/EAR, TPL, PI). Marine cargo NOT needed — Linyang CIF. Budget: 0.75% of CIF. Awaiting final quotes from Marsh (due 14 Mar) and Holland/Jaap NBI. Linyang AXA policy received 9 Mar — has Absolute Pollution Exclusion (thermal runaway gap), Pure Financial Loss Exclusion, and Cyber exclusion. Lighthief Environmental Liability policy must cover BESS-specific pollution risks that AXA excludes.' },
   docsCompliance:     { total: 357_000.00,   status: 'estimated' as DataStatus, rate: '€7,000 per park' },
   lvCabling:          { total: 363_300.00,   status: 'estimated' as DataStatus },
   mvCabling:          { total: 245_000.00,   status: 'estimated' as DataStatus, rate: '€3,500 per MV feeder' },
@@ -120,7 +123,7 @@ interface GroupData {
 
 export const GROUPS: GroupData[] = [
   { name: 'ABIO Power', key: 'abio', parks: 25, mw: 125.0, mwh: 430.28, cif: 41_765_837.86, installedCost: 47_388_800.60, revenue: 52_609_991.53, margin: 5_221_190.94, marginPct: 9.92 },
-  { name: 'Esperia Energy', key: 'esperia', parks: 11, mw: 79.5, mwh: 310.50, cif: 28_802_957.61, installedCost: 32_218_768.88, revenue: 36_412_811.96, margin: 4_194_043.09, marginPct: 11.52 },
+  { name: 'Esperia Energy', key: 'esperia', parks: 11, mw: 79.5, mwh: 315.50, cif: 28_802_957.61, installedCost: 32_218_768.88, revenue: 36_412_811.96, margin: 4_194_043.09, marginPct: 11.52 },
   { name: 'Timotheos Timotheou', key: 'timotheos', parks: 9, mw: 25.5, mwh: 81.00, cif: 8_994_033.00, installedCost: 10_408_394.01, revenue: 11_818_919.17, margin: 1_410_525.16, marginPct: 11.93 },
   { name: 'A. Kerasi', key: 'kerasi', parks: 3, mw: 6.5, mwh: 20.00, cif: 2_283_660.00, installedCost: 2_841_296.88, revenue: 3_061_369.92, margin: 220_073.03, marginPct: 7.19 },
   { name: 'Lampros Andreadis', key: 'lampros', parks: 2, mw: 4.8, mwh: 15.00, cif: 1_593_785.00, installedCost: 1_923_085.24, revenue: 2_117_419.61, margin: 194_334.36, marginPct: 9.18 },
@@ -128,34 +131,61 @@ export const GROUPS: GroupData[] = [
 ];
 
 // ─────────────────────────────────────────────
-// BATCH SCHEDULE
+// BATCH SCHEDULE (Revised 6 March 2026)
+// Previous 3-batch plan (27 Feb 2026 RFIs) was aspirational.
+// Rebuilt from confirmed commitments only.
+// Old plan: B1=15/280, B2=19/230, B3=12/288 (all unconfirmed)
 // ─────────────────────────────────────────────
+
+export type BatchStatus = 'confirmed' | 'pipeline' | 'unplaced';
 
 export const BATCHES = [
   {
-    id: 1, name: 'Batch 1: ABIO Phase 1',
-    groups: ['ABIO Phase 1'],
-    parks: 15, mwh: 280, containers: 80,
-    productionStart: '2026-03-08', productionEnd: '2026-06-05',
-    fatDate: '2026-06-05', shipDate: '2026-06-05',
-    cifDate: '2026-07-05', pacDate: '2026-10-31',
+    id: 1, name: 'Batch 1: Confirmed',
+    status: 'confirmed' as BatchStatus,
+    groups: ['ABIO (5 parks)', 'Galascope (2 parks)', 'Timotheos (3 parks)', 'Lampros (2 parks)'],
+    parks: 12, mw: 41.3, mwh: 131.28, containers: 41,
+    cif: 13_210_000, installed: 15_139_000, revenue: 16_955_000, margin: 1_816_000, marginPct: 10.71,
+    productionStart: '2026-04-01', productionEnd: '2026-06-30',
+    fatDate: '2026-06-30', shipDate: '2026-07-01',
+    cifDate: '2026-08-20', pacDate: '2026-12-31',
+    _meta: { source: 'ABIO SLD drawings (Nov-Dec 2025), Dino/Timotheos verbal, Lampros confirmed', date: '2026-03-06' } as MetaInfo,
   },
   {
-    id: 2, name: 'Batch 2: ABIO Ph.2 + TIM',
-    groups: ['ABIO Phase 2', 'Timotheos'],
-    parks: 19, mwh: 230, containers: 90,
-    productionStart: '2026-04-15', productionEnd: '2026-07-15',
-    shipDate: '2026-07-20',
-    cifDate: '2026-08-20', pacDate: '2027-01-15',
+    id: 2, name: 'Batch 2: Pipeline',
+    status: 'pipeline' as BatchStatus,
+    groups: ['Soteria (committed to sign)', 'Esperia core (TBC)', 'ABIO Phase 2 (TBC)'],
+    parks: 0, mwh: 0, containers: 0,
+    productionStart: '', productionEnd: '',
+    shipDate: '',
+    cifDate: '', pacDate: '',
+    _meta: { source: 'Early signals only — Soteria committed but no system details', date: '2026-03-06' } as MetaInfo,
   },
   {
-    id: 3, name: 'Batch 3: ESP + Standalone',
-    groups: ['Esperia Phase 1', 'Standalone'],
-    parks: 12, mwh: 283, containers: 81,
-    productionStart: '2026-05-15', productionEnd: '2026-08-15',
-    shipDate: '2026-08-20',
-    cifDate: '2026-09-20', pacDate: '2027-02-28',
+    id: 3, name: 'Batch 3: Unplaced',
+    status: 'unplaced' as BatchStatus,
+    groups: ['ELESTORE (5/200MWh)', 'Esperia remaining', 'A. Kerasi (3/20MWh)', 'Ioannis Karis (1/25MWh)', 'Timotheos remaining (6/46MWh)', 'ABIO remaining (20/379MWh)'],
+    parks: 0, mwh: 0, containers: 0,
+    productionStart: '', productionEnd: '',
+    shipDate: '',
+    cifDate: '', pacDate: '',
+    _meta: { source: 'No RFI responses returned, no drawings, no contracts signed', date: '2026-03-06' } as MetaInfo,
   },
+] as const;
+
+export const BATCH1_PARKS = [
+  { name: 'Easy Power 1',     group: 'ABIO',      mw: 5.0,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_361_050 },
+  { name: 'Easy Power 2',     group: 'ABIO',      mw: 4.5,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_401_540 },
+  { name: 'Dianary 1',        group: 'ABIO',      mw: 2.5,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_206_300 },
+  { name: 'Waneron',          group: 'ABIO',      mw: 3.0,  mwh: 11.28, containers: 3,  district: 'Nicosia',   revenue: 1_472_981 },
+  { name: 'Solartech 3 Ext',  group: 'ABIO',      mw: 2.5,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_206_300 },
+  { name: 'Galascope 1',      group: 'Galascope',  mw: 5.0,  mwh: 20,    containers: 6,  district: 'Famagusta', revenue: 2_258_900 },
+  { name: 'Galascope 2',      group: 'Galascope',  mw: 2.5,  mwh: 10,    containers: 3,  district: 'Famagusta', revenue: 1_206_300 },
+  { name: 'AGM Sunfield 1',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Nicosia',   revenue: 1_961_880 },
+  { name: 'L&T Sun Energy',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Limassol',  revenue: 1_961_880 },
+  { name: 'TBC (5 MWh park)', group: 'Timotheos',  mw: 1.5,  mwh: 5,     containers: 2,  district: 'TBC',       revenue: 800_000 },
+  { name: 'Solar Breeze',     group: 'Lampros',    mw: 1.51, mwh: 5,     containers: 2,  district: 'Limassol',  revenue: 795_443 },
+  { name: 'Solar Garden',     group: 'Lampros',    mw: 3.29, mwh: 10,    containers: 3,  district: 'Limassol',  revenue: 1_321_976 },
 ] as const;
 
 export const ESP_2028 = {
@@ -172,13 +202,13 @@ export const FAC_DATE = '2027-03-31';
 
 export const PAYMENT_TERMS = {
   client: {
-    advance:     { pct: 30, trigger: 'Within 7 days of contract signing' },
+    advance:     { pct: 30, trigger: 'On or after 1 April 2026 (no invoice/payment before April 1 — clean Q1 VAT)' },
     preShipment: { pct: 55, trigger: 'Equipment ready, factory inspection passed' },
     pac:         { pct: 10, trigger: 'System commissioned & grid-connected' },
     retention:   { pct: 5,  trigger: 'Released after 24-month DLP' },
   },
   linyang: {
-    advance:     { pct: 25, trigger: 'Order date' },
+    advance:     { pct: 25, trigger: 'Order date (may precede client billing start)' },
     preShipment: { pct: 50, trigger: 'Ready to ship' },
     dap:         { pct: 20, trigger: 'Delivery at Place (site arrival)' },
     sat:         { pct: 5,  trigger: 'Site Acceptance Test completion' },
@@ -194,6 +224,13 @@ export const PAYMENT_TERMS = {
 // WARRANTY & LTSA
 // ─────────────────────────────────────────────
 
+// COMMERCIAL STRUCTURE:
+// - LTSA (O&M):       Client → Lighthief.  Lighthief keeps 100%. Only Lighthief's
+//                      own operating costs (field team, spares, vehicles) are deducted.
+// - Extended Warranty: Client → Linyang DIRECTLY. NOT a Lighthief cost or revenue item.
+//                      Lighthief may facilitate/coordinate but does not handle the funds.
+// - Base Warranty:     Included in Linyang CIF price (Years 1–5). No additional cost.
+
 export const WARRANTY = {
   baseYears: 5,
   maxExtendedYears: 15,
@@ -206,16 +243,21 @@ export const WARRANTY = {
     year15: 70,
   },
 
+  // Extended warranty: paid by CLIENT directly to Linyang — not a Lighthief P&L item
   extendedYr6to10: {
     bessPerMWh: 913.92,
     pcsPerMWh: 747.76,
     totalPerMWh: 1_661.68,
+    paidBy: 'client' as const,
+    paidTo: 'Linyang' as const,
     status: 'confirmed' as DataStatus,
   },
   extendedYr11to15: {
     bessPerMWh: 1_157.62,
     pcsPerMWh: 926.10,
     totalPerMWh: 2_083.72,
+    paidBy: 'client' as const,
+    paidTo: 'Linyang' as const,
     status: 'confirmed' as DataStatus,
     note: 'V1 conflict (€4,182.25) superseded by V3 confirmed pricing',
   },
@@ -223,6 +265,8 @@ export const WARRANTY = {
     bessPerMWh: 3_858.75,
     pcsPerMWh: 2_315.25,
     totalPerMWh: 6_174.00,
+    paidBy: 'client' as const,
+    paidTo: 'Linyang' as const,
     status: 'quoted' as DataStatus,
   },
 
@@ -235,6 +279,9 @@ export const WARRANTY = {
   _meta: { source: 'RFI V3 Linyang', date: '2026-02-15', rfiDoc: 'rfi-linyang-final-feb2026' } as MetaInfo,
 } as const;
 
+// LTSA = Lighthief's O&M service agreement. Revenue is retained by Lighthief in full.
+// Only Lighthief operating costs (field engineers, spares, SCADA, vehicles) are deducted.
+// Extended warranty is a SEPARATE arrangement: client pays Linyang directly.
 export const LTSA = {
   tierC: {
     ratePerMWh: 1_740,
@@ -242,15 +289,136 @@ export const LTSA = {
     pcsMvsMaintenancePerMWh: 924.28,
     duration: 15,
     availabilityTarget: 97,
-    responseTimeHours: 4,
+    maintenanceAllowanceDays: 10,
+    maintenanceAllowanceHours: 240,
+    plannedMaintenanceDays: 8,
     provider: 'Lighthief Cyprus Ltd',
+    fieldEngineers: 6,
+    revenueRetainedBy: 'Lighthief' as const,
     status: 'confirmed' as DataStatus,
+  },
+  sla: {
+    critical: { remoteHours: 4, onSiteHours: 8, resolutionHours: 48, coverage: '24/7/365', creditPerHour: 100, creditCap: 1_000 },
+    major:    { remoteHours: 8, onSiteHours: 48, resolutionHours: 120, coverage: '24/7/365', creditPerHour: 50, creditCap: 500 },
+    minor:    { remoteHours: 48, onSite: 'Next scheduled visit or 5 business days', coverage: 'Business hours (Mon–Fri 08:00–17:00)' },
+    quarterlyCreditCap: '10% of quarterly Service Fee',
   },
   availabilityLD: {
     ratePerDayPerMWh: 30,
     status: 'confirmed' as DataStatus,
   },
-  _meta: { source: 'confirmed-client-pricing-feb2026.md', date: '2026-02-05' } as MetaInfo,
+  _meta: { source: 'confirmed-client-pricing-feb2026.md + ClientLTSA.md §8.2', date: '2026-02-20' } as MetaInfo,
+} as const;
+
+// ─────────────────────────────────────────────
+// O&M OPEX MODEL (Recurring, Steady-State Annual)
+// Source: opex-plan-2026.md + real-world overestimates
+// All costs are fully loaded (incl. social insurance,
+// accommodation, employer contributions).
+// ─────────────────────────────────────────────
+
+export const OM_OPEX = {
+  personnel: {
+    fieldEngineers:      { headcount: 6, monthlyLoaded: 4_500, annual: 324_000, note: '5 minimum + 1 buffer for leave/growth. €4,500 = €3,000 gross + €900 accommodation + €600 social' },
+    driverLogistics:     { headcount: 1, monthlyLoaded: 2_200, annual:  26_400, note: 'Warehouse ops, equipment transport, forklift, deliveries' },
+    omBackOffice:        { headcount: 1, monthlyLoaded: 2_500, annual:  30_000, note: 'Work orders, CMMS, client reporting, spare parts procurement' },
+    omManager:           { headcount: 1, monthlyLoaded: 3_500, annual:  21_000, note: '50% allocation to O&M (balance is sales/project management)', allocation: 0.5 },
+  },
+  personnelTotal: 401_400,
+
+  fleet: {
+    serviceVans:         { count: 4, monthlyPerUnit: 1_235, annual: 59_280, note: '3 shift vehicles + 1 logistics. Lease + insurance + fuel + maintenance' },
+    forklift:            { count: 1, monthlyPerUnit:   980, annual: 11_760, note: 'Rented. Battery module handling, warehouse ops' },
+  },
+  fleetTotal: 71_040,
+
+  premises: {
+    warehouse:           { annual: 66_600, note: '50% share of 10,000 sqft Limassol warehouse. €5,000/mo rent + €550/mo utilities/security' },
+  },
+  premisesTotal: 66_600,
+
+  operations: {
+    scadaGlobalMaint:    { annual: 34_000, note: '3 groups × Voltus annual maintenance' },
+    sparesParts:         { annual: 60_000, note: 'Critical BESS/PCS/MV spares. Increases ~20% after Year 5 as fleet ages' },
+    toolsConsumables:    { annual: 12_000, note: 'PPE, calibration, minor replacement parts' },
+    itMonitoringCmms:    { annual: 10_000, note: 'SCADA access, CMMS software, mobile data, cloud' },
+    insuranceCompliance: { annual: 10_000, note: 'Employer liability, PI, equipment cover, ETEK renewal, H&S' },
+    trainingAnnual:      { annual:  5_000, note: 'Linyang refresher, local H&S, HV safety recert' },
+    travelMisc:          { annual:  6_000, note: 'Inter-district travel, overnight stays, office supplies' },
+  },
+  operationsTotal: 137_000,
+
+  subtotal: 676_040,
+  contingencyRate: 0.10,
+  contingency: 67_604,
+  total: 743_644,
+  totalRounded: 744_000,
+
+  assumptions: [
+    '6 field engineers (1 buffer over 5-minimum workload model)',
+    '2 engineers per HV maintenance visit (safety requirement)',
+    'Fully loaded engineer cost = €4,500/mo (incl. accommodation, social insurance)',
+    '10 planned maintenance days per park per year',
+    '100–200 reactive calls per year across 51 parks',
+    'Warehouse at 50% share (€5,000/mo rent)',
+    '4 service vehicles (3 shift + 1 logistics/driver)',
+    '10% contingency on all recurring OPEX',
+    'Extended warranty is client-paid directly to Linyang (no P&L impact)',
+    'Spare parts budget increases ~20% after Year 5 as fleet ages',
+  ],
+
+  _meta: { source: 'opex-plan-2026.md + real-world overestimates', date: '2026-03-03' } as MetaInfo,
+} as const;
+
+// ─────────────────────────────────────────────
+// CYPRUS TAX & SOCIAL INSURANCE (2026 Reform)
+// Enacted: 22 Dec 2025, effective 1 Jan 2026
+// ─────────────────────────────────────────────
+
+export const CYPRUS_TAX = {
+  corporateTax: 15,   // Increased from 12.5% → 15% on 1 Jan 2026 (OECD Pillar II alignment)
+  vatStandard: 19,
+  vatReduced: [9, 5, 3],
+
+  stampDuty: 0,       // Fully abolished 1 Jan 2026
+
+  dividendSdc: 5,     // SDC on dividends for CY-resident individuals (reduced from 17%)
+  dividendWhtTreaty: 0,   // WHT on dividends to treaty / EU recipients
+  dividendWhtLowTax: 5,   // WHT if recipient in jurisdiction with <7.5% tax
+  dividendWhtBlacklist: 17, // WHT if recipient in EU non-cooperative jurisdiction
+
+  deemedDividend: false,    // DDD abolished for profits earned from 2026 onwards
+  lossCarryForwardYears: 7, // Extended from 5 to 7 years
+
+  ipBoxEffectiveRate: 3,    // ~3% effective (80% deduction on qualifying IP income at 15% CIT)
+
+  socialInsurance: {
+    employee: 8.8,
+    employer: 8.8,
+    socialCohesionFund: 2.0,    // Employer-only, uncapped
+    redundancyFund: 1.2,        // Employer-only
+    industrialTrainingFund: 0.5, // Employer-only
+    totalEmployer: 12.5,        // 8.8 + 2.0 + 1.2 + 0.5
+    totalEmployee: 8.8,
+    maxInsurableEarnings: 68_904, // Annual cap (€5,742/month)
+    selfEmployed: 16.6,
+  },
+
+  gesyHealthcare: {
+    employee: 2.65,
+    employer: 2.90,
+    selfEmployed: 4.0,
+    pensioner: 2.65,
+    cap: 180_000,     // Annual earnings cap
+  },
+
+  totalEmployerBurden: 15.4,  // SI (12.5%) + GeSY (2.9%) ≈ 15.4% of gross salary
+
+  _meta: {
+    source: 'Cyprus Tax Reform 2026 (Parliament approved 22 Dec 2025, published 31 Dec 2025)',
+    date: '2026-01-01',
+    note: 'CIT 12.5%→15%, stamp duty abolished, SDC dividends 17%→5%, DDD abolished, loss c/f 5→7yr',
+  } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -330,8 +498,9 @@ export const RFI_STATUS = {
   civilWorksPricing:    { status: 'confirmed' as DataStatus, version: 'V1',  date: '2026-02-13', doc: 'civil-works-estimate.md' },
   dehnPricing:          { status: 'quoted' as DataStatus,    version: 'V1',  date: '2026-01-28', doc: 'rfq-dehn-lightning-protection-jan2026' },
   transportPricing:     { status: 'confirmed' as DataStatus,  version: 'V2',  date: '2026-02-22', doc: 'rfq-transport-asoulis-jan2026', note: '6× 20ft trucks confirmed (43T). 40ft TBC.' },
-  insurancePricing:     { status: 'pending' as DataStatus,   version: null,  date: null, doc: 'rfp-insurance-comprehensive-feb2026' },
-  performanceBond:      { status: 'pending' as DataStatus,   version: null,  date: null, doc: null, note: '5% vs 10% — unresolved' },
+  insurancePricing:     { status: 'pending' as DataStatus,   version: null,  date: null, doc: 'rfp-insurance-comprehensive-feb2026', note: 'Budget €644,729 (0.75% CIF). Holland NBI: €350K (excl. marine cargo). Marsh RFP due 14 Mar. Holland NBI has €10M/site CAR limit — inadequate vs €50M needed.' },
+  performanceBond:      { status: 'confirmed' as DataStatus,  version: 'V1',  date: '2026-02-10', doc: 'linyang-blended-sales-ltsa', note: '5% bank guarantee (corporate), no parent company backing. Agreed per Linyang RFI.' },
+  linyangAxaInsurance:  { status: 'confirmed' as DataStatus,  version: 'V1',  date: '2026-03-09', doc: 'legal/in-negotiation/linyang-sales/linyang-axa-product-liability-policy-mar2026.pdf', note: 'AXA Tianping CGL policy received 9 Mar 2026. 36 pages — policy terms + endorsements only. MISSING: declarations page (named insured, limits €5M, territory, period, product schedule). KEY EXCLUSIONS: Absolute Pollution, Pure Financial Loss, Pure Indirect Third-Party Financial Loss, Silicon, Professional, Cyber/Network, Terrorism, Sanctions (PRC/EU/UK/US), PFAS, Nuclear, Asbestos, Lead. Insured Products clause limits coverage to products listed in schedule (not provided). Mandatory Safety Standards clause requires product compliance with destination country standards. ACTION: Request declarations page + product schedule from Linyang.' },
   mvSkidDatasheets:     { status: 'confirmed' as DataStatus,  version: 'V2',  date: '2026-02-22', doc: 'legal/linyang_hardware_specs_docs/PCS+SKID+Transformer', note: 'All 4 skid models received: T1, T2, T4, T8. PCS units are 1.00MW or 1.25MW; all park MW sizes are combinations of skids + PCS count.' },
 } as const;
 
@@ -400,28 +569,47 @@ export const HISTORICAL_PATHS = [
 // Flat map of all {{VARIABLE}} placeholders used in templates
 // ─────────────────────────────────────────────
 
+function fmtDate(iso: string): string {
+  if (!iso) return 'TBC';
+  const d = new Date(iso + 'T00:00:00');
+  if (isNaN(d.getTime())) return 'TBC';
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
 export function getTemplateVars(): Record<string, string> {
   return {
     'PORTFOLIO.parks':       String(PORTFOLIO.parks),
     'PORTFOLIO.mw':          String(PORTFOLIO.mw),
     'PORTFOLIO.mwh':         String(PORTFOLIO.mwh),
+    'PORTFOLIO.mwhRounded':  String(Math.round(PORTFOLIO.mwh)),
     'PORTFOLIO.containers':  String(PORTFOLIO.containers),
     'PORTFOLIO.districts':   String(PORTFOLIO.districts),
     'PORTFOLIO.orderDate':   PORTFOLIO.orderDate,
+    'PORTFOLIO.firstClientInvoiceDate': PORTFOLIO.firstClientInvoiceDate,
+    'PORTFOLIO.firstClientInvoiceDateFmt': fmtDate(PORTFOLIO.firstClientInvoiceDate),
+    'PORTFOLIO.vatStartQuarter': PORTFOLIO.vatStartQuarter,
 
     'FINANCIALS.cifTotal':               FINANCIALS.cifTotal.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'FINANCIALS.cifTotalM':              `€${(FINANCIALS.cifTotal / 1e6).toFixed(1)}M`,
+    'FINANCIALS.cifTotalK':              String(Math.round(FINANCIALS.cifTotal / 1000)),
     'FINANCIALS.cifAvgPerMWh':           FINANCIALS.cifAvgPerMWh.toLocaleString('en-IE'),
     'FINANCIALS.installedCost':          FINANCIALS.installedCost.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'FINANCIALS.installedCostM':         `€${(FINANCIALS.installedCost / 1e6).toFixed(1)}M`,
     'FINANCIALS.clientRevenue':          FINANCIALS.clientRevenue.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'FINANCIALS.clientRevenueM':         `€${(FINANCIALS.clientRevenue / 1e6).toFixed(1)}M`,
+    'FINANCIALS.clientRevenueK':         String(Math.round(FINANCIALS.clientRevenue / 1000)),
     'FINANCIALS.netMargin':              FINANCIALS.netMargin.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'FINANCIALS.netMarginM':             `€${(FINANCIALS.netMargin / 1e6).toFixed(2)}M`,
+    'FINANCIALS.netMarginK':             String(Math.round(FINANCIALS.netMargin / 1000)),
     'FINANCIALS.netMarginPct':           String(FINANCIALS.netMarginRounded),
     'FINANCIALS.importDutyRate':         String(FINANCIALS.importDutyRate),
     'FINANCIALS.physicalAdders':         FINANCIALS.physicalAdders.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'FINANCIALS.physicalAddersM':        `€${(FINANCIALS.physicalAdders / 1e6).toFixed(1)}M`,
+    'FINANCIALS.physicalAddersK':        String(Math.round(FINANCIALS.physicalAdders / 1000)),
     'FINANCIALS.emsScadaTotal':          FINANCIALS.emsScadaTotal.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'FINANCIALS.emsScadaM':              `€${(FINANCIALS.emsScadaTotal / 1e6).toFixed(1)}M`,
+    'FINANCIALS.emsScadaK':              String(Math.round(FINANCIALS.emsScadaTotal / 1000)),
+    'FINANCIALS.vatRate':                String(FINANCIALS.vatRate),
 
     'WARRANTY.baseYears':                   String(WARRANTY.baseYears),
     'WARRANTY.maxExtendedYears':            String(WARRANTY.maxExtendedYears),
@@ -438,7 +626,14 @@ export function getTemplateVars(): Record<string, string> {
 
     'LTSA.tierC.ratePerMWh':          LTSA.tierC.ratePerMWh.toLocaleString('en-IE'),
     'LTSA.tierC.availabilityTarget':   String(LTSA.tierC.availabilityTarget),
-    'LTSA.tierC.responseTimeHours':    String(LTSA.tierC.responseTimeHours),
+    'LTSA.tierC.maintenanceAllowanceDays': String(LTSA.tierC.maintenanceAllowanceDays),
+    'LTSA.tierC.fieldEngineers':       String(LTSA.tierC.fieldEngineers),
+    'LTSA.sla.critical.remoteHours':   String(LTSA.sla.critical.remoteHours),
+    'LTSA.sla.critical.onSiteHours':   String(LTSA.sla.critical.onSiteHours),
+    'LTSA.sla.critical.resolutionHours': String(LTSA.sla.critical.resolutionHours),
+    'LTSA.sla.major.remoteHours':      String(LTSA.sla.major.remoteHours),
+    'LTSA.sla.major.onSiteHours':      String(LTSA.sla.major.onSiteHours),
+    'LTSA.sla.major.resolutionHours':  String(LTSA.sla.major.resolutionHours),
     'LTSA.availabilityLD.ratePerDayPerMWh': String(LTSA.availabilityLD.ratePerDayPerMWh),
 
     'PAYMENT.client.advance':     String(PAYMENT_TERMS.client.advance.pct),
@@ -457,6 +652,19 @@ export function getTemplateVars(): Record<string, string> {
     'OEM.gridCodeCert':        OEM.gridCodeCert,
     'OEM.incoterms':           OEM.incoterms,
 
+    'CYPRUS_TAX.corporateTax':        String(CYPRUS_TAX.corporateTax),
+    'CYPRUS_TAX.vatStandard':         String(CYPRUS_TAX.vatStandard),
+    'CYPRUS_TAX.stampDuty':           String(CYPRUS_TAX.stampDuty),
+    'CYPRUS_TAX.dividendSdc':         String(CYPRUS_TAX.dividendSdc),
+    'CYPRUS_TAX.dividendWhtTreaty':   String(CYPRUS_TAX.dividendWhtTreaty),
+    'CYPRUS_TAX.lossCarryForwardYears': String(CYPRUS_TAX.lossCarryForwardYears),
+    'CYPRUS_TAX.ipBoxEffectiveRate':  String(CYPRUS_TAX.ipBoxEffectiveRate),
+    'CYPRUS_TAX.totalEmployerBurden': String(CYPRUS_TAX.totalEmployerBurden),
+    'CYPRUS_TAX.socialInsurance.employee': String(CYPRUS_TAX.socialInsurance.employee),
+    'CYPRUS_TAX.socialInsurance.employer': String(CYPRUS_TAX.socialInsurance.totalEmployer),
+    'CYPRUS_TAX.gesyHealthcare.employee': String(CYPRUS_TAX.gesyHealthcare.employee),
+    'CYPRUS_TAX.gesyHealthcare.employer': String(CYPRUS_TAX.gesyHealthcare.employer),
+
     'COMPANY.name':            COMPANY.name,
     'COMPANY.legalName':       COMPANY.legalName,
     'COMPANY.address':         COMPANY.address,
@@ -468,17 +676,34 @@ export function getTemplateVars(): Record<string, string> {
     'COMPANY.bessProjectPhone': COMPANY.bessProjectPhone,
 
     'BATCH1.parks': String(BATCHES[0].parks),
+    'BATCH1.mw':    String(BATCHES[0].mw),
     'BATCH1.mwh':   String(BATCHES[0].mwh),
+    'BATCH1.containers': String(BATCHES[0].containers),
+    'BATCH1.status': BATCHES[0].status,
+    'BATCH1.revenue': BATCHES[0].revenue.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.revenueM': `€${(BATCHES[0].revenue / 1e6).toFixed(1)}M`,
+    'BATCH1.cif':    BATCHES[0].cif.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.cifM':   `€${(BATCHES[0].cif / 1e6).toFixed(1)}M`,
+    'BATCH1.margin': BATCHES[0].margin.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.marginPct': String(BATCHES[0].marginPct),
     'BATCH1.cifDate': BATCHES[0].cifDate,
+    'BATCH1.cifDateFmt': fmtDate(BATCHES[0].cifDate),
     'BATCH1.pacDate': BATCHES[0].pacDate,
+    'BATCH1.pacDateFmt': fmtDate(BATCHES[0].pacDate),
     'BATCH2.parks': String(BATCHES[1].parks),
     'BATCH2.mwh':   String(BATCHES[1].mwh),
-    'BATCH2.cifDate': BATCHES[1].cifDate,
-    'BATCH2.pacDate': BATCHES[1].pacDate,
+    'BATCH2.status': BATCHES[1].status,
+    'BATCH2.cifDate': BATCHES[1].cifDate || 'TBC',
+    'BATCH2.cifDateFmt': fmtDate(BATCHES[1].cifDate),
+    'BATCH2.pacDate': BATCHES[1].pacDate || 'TBC',
+    'BATCH2.pacDateFmt': fmtDate(BATCHES[1].pacDate),
     'BATCH3.parks': String(BATCHES[2].parks),
     'BATCH3.mwh':   String(BATCHES[2].mwh),
-    'BATCH3.cifDate': BATCHES[2].cifDate,
-    'BATCH3.pacDate': BATCHES[2].pacDate,
+    'BATCH3.status': BATCHES[2].status,
+    'BATCH3.cifDate': BATCHES[2].cifDate || 'TBC',
+    'BATCH3.cifDateFmt': fmtDate(BATCHES[2].cifDate),
+    'BATCH3.pacDate': BATCHES[2].pacDate || 'TBC',
+    'BATCH3.pacDateFmt': fmtDate(BATCHES[2].pacDate),
     'FAC_DATE':      FAC_DATE,
   };
 }

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Response - BMS Monitoring &amp; EMS Capabilities - February 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1f2937; padding: 40px; max-width: 1100px; margin: 0 auto; }
+        
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .header h1 { font-size: 20pt; margin-bottom: 8px; text-align: center; }
+        .header .subtitle { font-size: 12pt; opacity: 0.9; text-align: center; }
+
+        .section { margin-bottom: 30px; page-break-inside: avoid; }
+        h2 { color: #1e3a5f; border-bottom: 2px solid #1e3a5f; padding-bottom: 8px; margin-bottom: 15px; font-size: 14pt; }
+        h3 { color: #2d5a87; margin: 20px 0 10px 0; font-size: 12pt; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #f3f4f6; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .highlight-box { background: #dbeafe; border: 1px solid #3b82f6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .success-box { background: #dcfce7; border: 1px solid #22c55e; padding: 15px; border-radius: 5px; margin: 15px 0; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-pending { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+
+        .spec-table td:first-child { font-weight: 600; width: 35%; background: #f8fafc; }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 4px; }
+        p { margin-bottom: 10px; }
+
+        @media print {
+            body { padding: 20px; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+        }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: #1e3a5f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 12pt; z-index: 100; }
+        .print-btn:hover { background: #2d5a87; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-TR-TT-2026-001</div>
+                <div><strong>Version:</strong> 1.0 (DRAFT)</div>
+                <div><strong>Date:</strong> 20 February 2026</div>
+                <div><strong>Classification:</strong> Client Confidential</div>
+            </div>
+        </div>
+        <h1>TECHNICAL RESPONSE</h1>
+        <div class="subtitle">Battery Monitoring System &amp; EMS Capabilities Assessment</div>
+        <div style="text-align: center; margin-top: 8px; font-size: 11pt; opacity: 0.9;">Response to Technical Due Diligence Questionnaire &mdash; Mr. Timotheos Timotheou</div>
+    </div>
+
+    <!-- INTRODUCTION -->
+    <div class="section">
+        <h2>1. INTRODUCTION</h2>
+
+        <p>Dear Mr. Timotheou,</p>
+
+        <p>Thank you for your detailed technical questionnaire. We appreciate the thoroughness of your due diligence process &mdash; it reflects exactly the level of scrutiny that bankable BESS investments require.</p>
+
+        <p>This document provides our comprehensive response covering:</p>
+        <ul>
+            <li><strong>Battery Monitoring System (BMS)</strong> &mdash; Cell-level monitoring, degradation analytics, thermal &amp; safety, fault detection, data infrastructure</li>
+            <li><strong>Energy Management System (EMS)</strong> &mdash; Optimization, market integration, forecasting, cybersecurity, remote dispatch, redundancy, KPI monitoring</li>
+            <li><strong>Additional Considerations</strong> &mdash; Degradation-aware bidding, latency risk, communication failure scenarios, ownership, scalability, cyber testing</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>EMS Live Demo:</strong> A live demonstration of the Voltus EMS/SCADA platform is scheduled for <strong>Wednesday 26 February 2026</strong>. Login credentials will be provided on Monday. We encourage you to prepare specific scenarios you would like to see demonstrated.
+        </div>
+
+        <div class="warning-box">
+            <strong>Note:</strong> Items marked <span class="badge badge-pending">DEMO WEDNESDAY</span> will be demonstrated live during the EMS platform walkthrough with the Voltus team. Detailed written responses for these items are being finalised and will be appended to the final version of this document.
+        </div>
+    </div>
+
+    <!-- SECTION 2: BMS CELL-LEVEL MONITORING -->
+    <div class="section">
+        <h2>2. BATTERY MONITORING SYSTEM &mdash; CELL-LEVEL MONITORING DEPTH</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Cell voltage monitoring</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    The Linyang 3-level BMS provides comprehensive cell voltage monitoring:
+                    <ul>
+                        <li><strong>52 voltage samples per BMU</strong> (Battery Management Unit), 2 BMUs per pack, 96 BMUs per container</li>
+                        <li><strong>4,992 cell voltage measurement points per container</strong></li>
+                        <li>Accuracy: &plusmn;5 mV</li>
+                        <li>Sampling rate: &le;100 ms (10 Hz continuous)</li>
+                        <li>Operational range: 2.5V&ndash;3.65V per cell</li>
+                        <li>Warning threshold: &lt;2.6V / &gt;3.55V; Critical: &lt;2.55V / &gt;3.60V</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Cell temperature monitoring</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <ul>
+                        <li><strong>12 temperature sensors per BMU</strong>, providing 1,152 temperature points per container</li>
+                        <li>Accuracy: &plusmn;1&deg;C</li>
+                        <li>Sampling rate: &le;200 ms (5 Hz continuous)</li>
+                        <li>Full range: -40&deg;C to +105&deg;C</li>
+                        <li>Operating limits: Charge 0&ndash;55&deg;C, Discharge -20&ndash;55&deg;C</li>
+                        <li>Warning: &gt;50&deg;C; Critical: &gt;53&deg;C</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Internal resistance tracking</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    System-level insulation resistance monitoring is included in the Linyang BMS. Cell/module-level internal resistance as a derived metric for degradation trending is available through the EMS analytics platform. Details to be demonstrated live.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Cell imbalance detection</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <ul>
+                        <li>Passive cell equalization with &ge;80 mA balancing current</li>
+                        <li>Imbalance warning: &gt;30 mV between cells in a string</li>
+                        <li>Critical alarm: &gt;50 mV (triggers protective action)</li>
+                        <li>Per-cell visibility from BMU level, reported to EMS via BAMS Modbus TCP</li>
+                        <li>Equalization status continuously monitored</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>SOC estimation accuracy &lt;1%</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    The Linyang BMS (BCMU Level 2) provides SOC calculation with &le;5% accuracy at hardware level, with energy calculation error &le;&plusmn;2%. The Voltus EMS applies enhanced estimation algorithms on top of BMS data for improved accuracy. SOC methodology and achievable accuracy to be demonstrated and discussed in the live session.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>SOH estimation with degradation model</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    SOH is tracked with OEM-provided degradation model with guaranteed milestones:
+                    <table class="spec-table" style="margin-top:8px; font-size:9.5pt;">
+                        <tr><td>Initial SOH at COD</td><td>98.5%</td></tr>
+                        <tr><td>Year 5 guarantee</td><td>&ge;85%</td></tr>
+                        <tr><td>Year 10 guarantee</td><td>&ge;79.58%</td></tr>
+                        <tr><td>Year 15 guarantee (EOL)</td><td>&ge;70%</td></tr>
+                        <tr><td>Cycle life</td><td>7,000 cycles (25&deg;C, 90% DoD, 0.5C/0.5C)</td></tr>
+                    </table>
+                    Real-time SOH estimation in the EMS tracks actual performance vs. warranty curve. EMS degradation analytics to be shown in Wednesday demo.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 3: DEGRADATION ANALYTICS -->
+    <div class="section">
+        <h2>3. ADVANCED DEGRADATION ANALYTICS</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Cycle counting algorithm</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    The BMS tracks cumulative charge/discharge energy. OEM warranty is based on 7,000 equivalent full cycles. The EMS cycle counting methodology and its presentation in the dashboard will be demonstrated live.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Throughput-based degradation tracking</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    Cumulative energy throughput is metered at both grid-side and BESS-side. Correlation with capacity degradation available in the EMS analytics. To be shown in the degradation dashboard during demo.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Calendar aging model</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    <strong>Context from our data:</strong> Linyang degradation curves show a first-year SOH drop of ~4&ndash;5% across all usage profiles (0.25P and 0.5P, 1 and 2 CPD), which indicates meaningful calendar aging beyond cycle-only degradation. Documented degradation rates range from 1.5&ndash;2.7% annually from Year 2 onward depending on usage intensity. EMS calendar aging model to be discussed in demo.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Dynamic DoD impact modelling</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    <strong>Confirmed from OEM data:</strong> DoD-dependent cycle life is documented:
+                    <ul>
+                        <li>100% DoD: 6,000 cycles to 80% SOH</li>
+                        <li>90% DoD: 7,000&ndash;8,000 cycles to 70% SOH</li>
+                    </ul>
+                    The EMS dispatch optimization incorporates DoD as a variable. Dynamic modelling capability to be demonstrated.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Predictive EOL forecasting</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    The EMS combines actual usage data (cycles, throughput, temperature history, calendar time) to project remaining useful life. Predictive EOL forecasting and its presentation to be demonstrated live.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 4: THERMAL & SAFETY -->
+    <div class="section">
+        <h2>4. THERMAL &amp; SAFETY MONITORING</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Thermal runaway early detection</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    Multi-layer detection system per container providing defence-in-depth:
+                    <ul>
+                        <li><strong>Cell-level temperature:</strong> 1,152 sensors, &le;200 ms sampling, warning &gt;50&deg;C, critical &gt;53&deg;C</li>
+                        <li><strong>Gas detection:</strong> 2&times; H&#8322; combustible gas detectors + 2&times; CO carbon monoxide sensors</li>
+                        <li><strong>Smoke detection:</strong> 2&times; photoelectric smoke detectors</li>
+                        <li><strong>Heat detection:</strong> 2&times; spot-type heat detectors</li>
+                        <li><strong>Pack-level:</strong> 48&times; CO + temperature detection nozzles integrated per pack</li>
+                    </ul>
+                    <strong>Chemistry advantage:</strong> LFP (Lithium Iron Phosphate) is the most thermally stable lithium-ion chemistry. Our cells have passed <strong>UL 9540A</strong> testing with <strong>zero thermal propagation</strong> between modules.
+                    <br><br>Additional safety certifications: IEC 62619, IEC 63056, UL 94 V-0 (fire retardant).
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Gas detection integration</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    Fully integrated into the fire control panel with automatic escalation:
+                    <ul>
+                        <li>H&#8322; combustible gas: Low threshold &rarr; explosion-proof exhaust fans activate; High threshold &rarr; emergency ventilation</li>
+                        <li>CO sensors: Early indicator of cell decomposition, triggers alarm cascade</li>
+                        <li>Explosion vent panel for over-pressure relief</li>
+                        <li>Gas concentration monitoring controls fan operation (auto-shutdown when safe)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Hotspot localization</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    <strong>Hardware basis:</strong> With 12 temperature sensors per BMU (1,152 per container), module-level spatial resolution is available for identifying thermal anomalies. Min/Max cell temperature per cluster is reported to the EMS. Thermal visualization and hotspot alerting features in the SCADA platform to be demonstrated.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>HVAC performance monitoring</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    <strong>System specification:</strong> Industrial liquid cooling (ethylene glycol + water mixture), 45 kW capacity. Maintains internal temperature at 25&plusmn;5&deg;C. 10 main longitudinal cooling branches, each splitting to 8 sub-branches for uniform cooling.
+                    <br><br>HVAC monitoring metrics in the EMS to be demonstrated. Temperature deviation from setpoint is continuously monitored with alarm thresholds.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Fire system status integration</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    Comprehensive fire detection &amp; suppression with 4-stage alarm escalation:
+                    <ol>
+                        <li><strong>Primary:</strong> Single detector triggered &rarr; audible/visual alarm</li>
+                        <li><strong>Secondary:</strong> Smoke + heat simultaneous &rarr; outdoor alarm, aerosol initiation</li>
+                        <li><strong>Tertiary:</strong> Gas threshold &rarr; explosion-proof ventilation</li>
+                        <li><strong>Quaternary:</strong> Pack-level detection &rarr; 30-second countdown &rarr; aerosol discharge</li>
+                    </ol>
+                    <strong>Suppression hardware per container:</strong>
+                    <ul>
+                        <li>6&times; container-level aerosol units (FK-5-1-12 / Novec 1230 equivalent)</li>
+                        <li>96&times; pack-level aerosol units</li>
+                        <li>1&times; water firefighting backup system</li>
+                        <li>BMS automatic shutdown on fire alarm</li>
+                    </ul>
+                    Fire system status signals are transmitted to the EMS via BMS/BAMS Modbus interface.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 5: FAULT DETECTION -->
+    <div class="section">
+        <h2>5. FAULT DETECTION &amp; DIAGNOSTICS</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Real-time fault classification</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    <strong>BMS fault categories (confirmed):</strong> Overvoltage, undervoltage, overcurrent, short circuit, over/under temperature, insulation fault, leakage, cell imbalance. Each with warning and critical severity levels.
+                    <br><br>EMS-level fault classification, correlation, and trend analytics to be demonstrated in the SCADA platform.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Predictive maintenance analytics</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>EMS predictive maintenance capabilities to be demonstrated live.</td>
+            </tr>
+            <tr>
+                <td><strong>Root cause analysis engine</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    EMS data logging captures time-stamped data across BMS, PCS, thermal, and grid signals at 1-second resolution, enabling event correlation and root cause investigation. RCA tooling in the platform to be demonstrated.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Alarm prioritization logic</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <strong>System-level priority hierarchy (non-overridable):</strong>
+                    <ol>
+                        <li><strong>Protection</strong> (local firmware) &mdash; Cannot be overridden by any entity</li>
+                        <li><strong>DSO SCADA curtailment</strong> &mdash; Absolute priority over market dispatch</li>
+                        <li><strong>DSO CB control</strong> &mdash; Hard disconnect capability</li>
+                        <li><strong>Market dispatch / optimization</strong> &mdash; Active only when DSO is not curtailing</li>
+                    </ol>
+                    BMS alarms have warning vs. critical severity. SCADA alarm management features (filtering, escalation) to be shown in demo.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 6: DATA INFRASTRUCTURE -->
+    <div class="section">
+        <h2>6. DATA INFRASTRUCTURE</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>High-resolution data logging (1s or sub-second)</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <ul>
+                        <li><strong>BMS hardware:</strong> Voltage/current sampling &le;100 ms (10 Hz); temperature &le;200 ms (5 Hz)</li>
+                        <li><strong>EMS data logging:</strong> 1-second resolution for real-time measurements</li>
+                        <li><strong>Performance data:</strong> 1-minute aggregation for long-term storage</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Event-triggered recording</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    Event logs are captured immediately with 5-year retention. Curtailment events include: start/end timestamps (UTC+2), command type, commanded vs. achieved values, curtailed energy (kWh), response time, source identification. Event-triggered high-resolution recording to be demonstrated.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Time synchronization via NTP/GPS</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    GPS antenna is included per site for time synchronization. IEC 60870-5-104 requires precise time stamping for DSO communication. NTP/GPS configuration to be confirmed during platform demo.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>API export capability</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <ul>
+                        <li><strong>REST API:</strong> Full data export for integration with external systems</li>
+                        <li><strong>Export formats:</strong> CSV, JSON, IEC 61968 CIM (utility standard), Excel</li>
+                        <li><strong>Automated reporting:</strong> Monthly performance (10 BD), quarterly health (15 BD), annual review (30 days)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Data retention policy</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <table class="spec-table" style="font-size: 9.5pt;">
+                        <tr><td>Real-time measurements</td><td>1-second resolution, 7 days raw</td></tr>
+                        <tr><td>Event logs</td><td>Immediate capture, <strong>5 years</strong> retention</td></tr>
+                        <tr><td>Performance data</td><td>1-minute resolution, 1 year full, <strong>10 years aggregated</strong></td></tr>
+                        <tr><td>Alarm history</td><td>Immediate capture, <strong>5 years</strong> retention</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 7: EMS OPTIMIZATION -->
+    <div class="section">
+        <h2>7. EMS &mdash; MARKET OPTIMIZATION &amp; DISPATCH SYSTEM</h2>
+
+        <h3>7.1 EMS Optimization Capability</h3>
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Multi-objective optimization engine</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    The Voltus EMS supports energy optimization including peak shaving, load shifting, arbitrage, and grid services coordination. Multi-PCS coordination across containers is confirmed. Optimization engine architecture to be demonstrated live.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Revenue stacking optimization</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Revenue stacking capability across multiple market services to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Constraint-aware dispatch</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <strong>Confirmed constraint hierarchy:</strong>
+                    <ol>
+                        <li>BMS protection limits (voltage, current, temperature) &mdash; hardware-enforced</li>
+                        <li>DSO curtailment commands &mdash; absolute priority via IEC-104</li>
+                        <li>Grid connection capacity limits &mdash; per license</li>
+                        <li>SOC limits and C-rate constraints &mdash; configurable in EMS</li>
+                        <li>Market dispatch optimization &mdash; operates within all above constraints</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Degradation-aware dispatch</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Battery degradation tracking and warranty monitoring are integrated EMS features. Degradation-aware dispatch logic to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Stochastic optimization</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Optimization under uncertainty and scenario analysis capabilities to be demonstrated.</td>
+            </tr>
+        </table>
+
+        <h3>7.2 Market Integration Capability</h3>
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Day-ahead market interface</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Market interface operates in conjunction with aggregators (ABIO Power, Synenergia) who handle bid submission to the Cyprus electricity market. EMS generates optimized dispatch schedules. Interface details to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Intraday continuous trading</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>To be demonstrated. Note: the Cyprus electricity market structure is currently being developed by CERA/TSO, and intraday trading capabilities will be aligned with market design as it evolves.</td>
+            </tr>
+            <tr>
+                <td><strong>Ancillary services bidding</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <strong>Confirmed grid service capabilities:</strong>
+                    <ul>
+                        <li><strong>FCR:</strong> Activation &lt;30s (target &lt;1s), full response &lt;30s (target &lt;10s), configurable droop 4&ndash;6%, deadband &plusmn;10 mHz</li>
+                        <li><strong>aFRR:</strong> Activation &lt;5 min (target &lt;30s), ramp rate 10&ndash;100% PM/min, accuracy &plusmn;5% (target &plusmn;2%)</li>
+                        <li><strong>VSG Mode:</strong> Virtual synchronous generator with inertia emulation (confirmed by Kehua PCS)</li>
+                    </ul>
+                    Bidding process and automated volume calculation to be shown in demo.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Automatic bid submission</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Automatic bidding interface and failsafe mechanisms to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>TSO communication protocol compliance</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <strong>Full IEC 60870-5-104 native support</strong> (mandatory for Cyprus DSO/EAC):
+                    <ul>
+                        <li>TCP/IP port 2404, RTU integrated in WAGO PFC200</li>
+                        <li>Complete signal point list: active/reactive power, CB control, telemetry, protection</li>
+                        <li>Discrete curtailment levels: 100% / 60% / 30% / 0%</li>
+                        <li>Command acknowledgment: &lt;3s (target &lt;500ms)</li>
+                        <li>Power adjustment: &lt;60s (target &lt;10s)</li>
+                        <li>Control accuracy: &plusmn;2% (target &plusmn;1%)</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <h3>7.3 Forecast Integration</h3>
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Price forecasting module</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Forecasting capabilities and data sources to be demonstrated live.</td>
+            </tr>
+            <tr>
+                <td><strong>Volatility modelling</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Price volatility analysis and its impact on dispatch strategy to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Load &amp; RES forecast integration</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>External forecast integration capability (API, third-party providers) to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Scenario-based planning</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Scenario analysis and "what-if" simulation tools to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Machine learning forecasting engine</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>ML-based forecasting methodology, training requirements, and auditability to be discussed in demo.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 8: CYBERSECURITY -->
+    <div class="section">
+        <h2>8. CYBERSECURITY COMPLIANCE (IEC 62443)</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Role-based access control</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    RBAC with multi-factor authentication (MFA). Four security zones:
+                    <ol>
+                        <li>Field devices (PCS/BMS) &mdash; Modbus TCP encrypted tunnel</li>
+                        <li>Local SCADA/EMS &mdash; internal access only</li>
+                        <li>DMZ (IEC-104 gateway) &mdash; DSO interface</li>
+                        <li>Cloud/remote &mdash; HTTPS/REST API with VPN</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Network segmentation</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    OT/IT network separation via 4-zone architecture. Per-park: IEC 62443 certified industrial firewall, managed switch with VLAN capability, DMZ between operational and enterprise networks. DSO firewall rules whitelist specific IP addresses only.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Encrypted communication</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <ul>
+                        <li>TLS 1.3 for all external communications</li>
+                        <li>TLS 1.2+ for SCADA communications</li>
+                        <li>Certificate-based authentication where supported</li>
+                        <li>Encrypted Modbus TCP tunnel for field devices</li>
+                        <li>IPSec/OpenVPN for remote access</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Intrusion detection system</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    Real-time connection monitoring is active for DSO communication. IDS/IPS capability within the Voltus platform and recommended network architecture to be discussed.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Secure firmware update</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Firmware update process, cryptographic signing, rollback capability, and staging to be discussed.</td>
+            </tr>
+            <tr>
+                <td><strong>Audit trail logging</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    All commands logged with timestamps, 12-month minimum retention. Comprehensive curtailment event logging: timestamp (UTC+2), command type, commanded vs. achieved values, curtailed energy (kWh), response time, source identification (DSO/Protection/Auto). Full audit trail for NIS2 compliance.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 9: REMOTE DISPATCH -->
+    <div class="section">
+        <h2>9. REMOTE DISPATCH CAPABILITY</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Real-time dispatch override</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>DSO commands override market dispatch in real-time. Active power setpoint (IEC-104 Address 30) and discrete curtailment (100%/60%/30%/0%). Command acknowledgment &lt;500ms target.</td>
+            </tr>
+            <tr>
+                <td><strong>TSO direct control interface</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    Native IEC 60870-5-104 with complete signal set: active/reactive power setpoints, circuit breaker control, telemetry (voltage, power, power factor, availability), and protection signals (overcurrent, frequency, voltage, earth fault, ROCOF).
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Manual override hierarchy</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    <strong>Non-negotiable priority:</strong> (1) Protection &rarr; (2) DSO curtailment &rarr; (3) DSO CB control &rarr; (4) Market dispatch. Local/remote mode selectable. Protection cannot be overridden by any entity.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Fail-safe fallback logic</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    WAGO PFC200 local firmware provides autonomous protection independent of communication:
+                    <ul>
+                        <li><strong>LFSM-O (frequency):</strong> Automatic curtailment 50.2&ndash;50.7 Hz, switch to charging &gt;50.7 Hz, disconnect &gt;52 Hz or &lt;47 Hz</li>
+                        <li><strong>P(V) (voltage):</strong> Automatic power adjustment at 1.07&ndash;1.10 pu</li>
+                    </ul>
+                    Full communication failure scenario handling to be detailed in demo.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 10: REDUNDANCY -->
+    <div class="section">
+        <h2>10. REDUNDANCY ARCHITECTURE</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Dual EMS servers</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Linyang BAMS provides 2 redundant hosts per container for BMS management. EMS server redundancy architecture (SCADA Local and Global) to be confirmed during demo.</td>
+            </tr>
+            <tr>
+                <td><strong>Redundant communication lines</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    Multiple communication paths available:
+                    <ul>
+                        <li><strong>Fiber optic (EAC):</strong> &lt;5 ms latency &mdash; primary for ancillary services</li>
+                        <li><strong>E-Line Ethernet (CYTA):</strong> &lt;10 ms latency</li>
+                        <li><strong>M2M 4G (CYTA):</strong> 50&ndash;200 ms &mdash; backup path</li>
+                    </ul>
+                    Automatic failover between paths to be demonstrated.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Backup power supply</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>UPS for all control equipment (WAGO PFC200, network switches, routers) included per site. Ensures ride-through during grid disturbances and graceful shutdown capability.</td>
+            </tr>
+            <tr>
+                <td><strong>Hot-standby failover</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Failover architecture and recovery time objectives at each level to be discussed during demo.</td>
+            </tr>
+            <tr>
+                <td><strong>Edge controller fallback mode</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    WAGO PFC200 runs local firmware independently of EMS cloud/central connection. Autonomous protection (LFSM-O, P(V)) operates regardless of communication status. Edge fallback capabilities and autonomous operation duration to be demonstrated.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 11: DATA LOGGING & KPIs -->
+    <div class="section">
+        <h2>11. DATA LOGGING RESOLUTION &amp; KPI MONITORING</h2>
+
+        <h3>11.1 Data Logging</h3>
+        <table>
+            <tr>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Sub-second frequency data</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>BMS hardware samples at &le;100 ms for voltage/current and &le;200 ms for temperature. EMS logs at 1-second resolution standard; sub-second capability to be confirmed in demo.</td>
+            </tr>
+            <tr>
+                <td><strong>1-minute settlement aggregation</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>Performance data at 1-minute resolution, 1-year full retention, 10-year aggregated.</td>
+            </tr>
+            <tr>
+                <td><strong>Market bid archive</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Market bid archiving, retention, and export capabilities to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>KPI dashboarding</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>
+                    Lighthief Master Dashboard provides portfolio-wide visibility:
+                    <ul>
+                        <li>Real-time and historical performance data</li>
+                        <li>Consolidated alarms across portfolio</li>
+                        <li>Multi-park management (SCADA Global)</li>
+                        <li>Role-based access for asset owners and aggregators</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Degradation tracking dashboard</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Dedicated degradation dashboard (SOH vs. warranty curve, cycle count, throughput) to be demonstrated.</td>
+            </tr>
+        </table>
+
+        <h3>11.2 KPI Monitoring</h3>
+        <table>
+            <tr>
+                <th style="width:30%;">KPI</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Availability (%)</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>Warranty requires &ge;97% availability. Real-time availability reported (IEC-104 Address 505). Monthly reporting included.</td>
+            </tr>
+            <tr>
+                <td><strong>Round-trip efficiency (%)</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>System-level RTE &ge;86.06%. Metered at grid-side and BESS-side. Includes PCS conversion, auxiliary consumption, and thermal management.</td>
+            </tr>
+            <tr>
+                <td><strong>Revenue per MW</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Revenue tracking and breakdown by service type to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Degradation cost per MWh</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>Degradation cost modelling and its integration into dispatch to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Response time compliance</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>Response time per command is logged against DSO requirements (&lt;3s ack, &lt;60s adjustment). Voltus targets: &lt;500ms ack, &lt;10s adjustment. Compliance tracking in monthly reports.</td>
+            </tr>
+            <tr>
+                <td><strong>State-of-charge accuracy drift</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>SOC accuracy monitoring and recalibration routines to be demonstrated.</td>
+            </tr>
+            <tr>
+                <td><strong>Auxiliary consumption ratio</strong></td>
+                <td><span class="badge badge-green">Included</span></td>
+                <td>Auxiliary consumption specified at &le;2.5% of rated energy capacity (includes HVAC, BMS, fire system, lighting, controls). Metered and tracked. Breakdown by subsystem to be shown in demo.</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 12: ADDITIONAL CONSIDERATIONS -->
+    <div class="section">
+        <h2>12. ADDITIONAL CONSIDERATIONS</h2>
+
+        <table>
+            <tr>
+                <th style="width:30%;">Item</th>
+                <th style="width:10%;">Status</th>
+                <th style="width:60%;">Lighthief Response</th>
+            </tr>
+            <tr>
+                <td><strong>Degradation-aware bidding logic</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    Battery degradation is a core consideration in our BESS operations strategy. The EMS incorporates degradation costs into dispatch optimization. Specific bidding logic and configurability per asset owner to be demonstrated.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Latency risk in ancillary markets</strong></td>
+                <td><span class="badge badge-green">Addressed</span></td>
+                <td>
+                    Communication latency is managed through infrastructure selection:
+                    <ul>
+                        <li><strong>FCR delivery:</strong> Fiber optic (&lt;5 ms) or E-Line (&lt;10 ms) recommended</li>
+                        <li><strong>aFRR delivery:</strong> All paths suitable (5 min activation window)</li>
+                        <li><strong>DSO commands:</strong> &lt;500ms acknowledgment target regardless of path</li>
+                    </ul>
+                    Real-time latency monitoring and alerting in the EMS to be demonstrated. Pre-positioning strategies for low-latency service delivery will be discussed.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Communication failure scenarios</strong></td>
+                <td><span class="badge badge-green">Addressed</span></td>
+                <td>
+                    Multi-layer resilience:
+                    <ol>
+                        <li><strong>Primary path failure:</strong> Automatic failover to secondary communication (fiber &rarr; 4G)</li>
+                        <li><strong>All comms lost:</strong> WAGO edge controller operates autonomously with local firmware (LFSM-O, P(V))</li>
+                        <li><strong>Protection:</strong> Always local, never dependent on communication</li>
+                    </ol>
+                    Detailed failure scenario handling (timeouts, restoration, re-sync) to be covered in demo.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Ownership clauses in EMS vendor contract</strong></td>
+                <td><span class="badge badge-blue">Under Review</span></td>
+                <td>
+                    EMS vendor contract between Lighthief and Voltus will address: data ownership, software licensing terms, continuity provisions, historical data access, and escrow arrangements. We will provide the relevant contract clauses for your review as part of the EPC agreement documentation. These are standard provisions in our vendor contracts to protect asset owner interests.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Scalability beyond initial capacity</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    The modular container-based architecture is inherently scalable. WAGO PFC200 I/O capacity, SCADA licensing, and expansion process to be discussed in demo.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Cyber penetration testing certification</strong></td>
+                <td><span class="badge badge-pending">DEMO WEDNESDAY</span></td>
+                <td>
+                    NIS2 compliance is mandatory for grid connection in Cyprus. IEC 62443 certified industrial firewall is part of the per-site hardware specification. Voltus platform cybersecurity certifications and penetration testing status to be discussed.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section">
+        <h2>13. SUMMARY &amp; NEXT STEPS</h2>
+
+        <div class="success-box">
+            <strong>Direct Confirmation: ~55% of items</strong> are fully confirmed from OEM specifications, system architecture documentation, and confirmed EPC scope. These include the complete cell-level monitoring infrastructure, thermal &amp; safety systems, cybersecurity architecture, TSO compliance, data infrastructure, and key KPIs.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Live Demo: ~45% of items</strong> relate to Voltus EMS software-specific features (optimization algorithms, market integration, forecasting, advanced analytics) that will be demonstrated live on <strong>Wednesday 26 February 2026</strong>. Written confirmations for these items will be provided following the demo.
+        </div>
+
+        <h3>Next Steps</h3>
+        <table class="spec-table">
+            <tr><td>Monday 24 Feb</td><td>Login credentials for Voltus EMS platform provided</td></tr>
+            <tr><td>Wednesday 26 Feb</td><td>Live EMS/SCADA demo with Voltus team</td></tr>
+            <tr><td>Friday 28 Feb</td><td>Final written response with all "Demo Wednesday" items completed</td></tr>
+        </table>
+
+        <p style="margin-top: 20px;">We are confident that our integrated solution (Linyang BMS + Voltus EMS + Lighthief EPC &amp; O&amp;M) provides a bankable, institutionally robust BESS package. The Wednesday demo will allow you to verify these capabilities firsthand.</p>
+
+        <p>Please do not hesitate to send any follow-up questions ahead of the demo so we can prepare specific demonstrations.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 9pt; color: #6b7280;">
+        <table style="border: none; font-size: 9pt;">
+            <tr style="background: none;">
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <strong>Prepared by:</strong> Lighthief Cyprus Ltd<br>
+                    <strong>For:</strong> Mr. Timotheos Timotheou<br>
+                    <strong>Subject:</strong> Technical Response &mdash; BMS &amp; EMS Capabilities
+                </td>
+                <td style="border: none; width: 50%; vertical-align: top; text-align: right;">
+                    <strong>Classification:</strong> Client Confidential<br>
+                    <strong>Ref:</strong> LCY-TR-TT-2026-001 | Version 1.0 (DRAFT)<br>
+                    <strong>Date:</strong> 20 February 2026
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

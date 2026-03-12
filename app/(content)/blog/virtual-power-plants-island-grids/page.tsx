@@ -296,7 +296,7 @@ export default function VirtualPowerPlantsIslandGridsArticle() {
                         a) Frequency Containment Reserve (FCR)
                       </CardTitle>
                       <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
-                        &euro;30&ndash;80K/MW/yr
+                        &euro;50&ndash;120K/MW/yr
                       </Badge>
                     </div>
                   </CardHeader>

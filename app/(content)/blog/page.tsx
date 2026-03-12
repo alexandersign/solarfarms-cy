@@ -34,6 +34,16 @@ interface Article {
 
 const articles: Article[] = [
   {
+    slug: 'bess-installation-quality-workmanship-risks',
+    title: 'Why BESS Projects Fail in Year One: Installation Quality on Solar Farms',
+    description: 'More than 50% of BESS failures happen in the first 2 years. That is not ageing — it is construction. We examine the workmanship gaps that hide between responsibilities.',
+    category: 'Construction Risk',
+    categoryColor: 'bg-red-100 text-red-800',
+    author: 'Alexander Papacosta',
+    date: 'Feb 26, 2026',
+    gradient: 'from-red-100 to-orange-100',
+  },
+  {
     slug: 'investors-guide-battery-energy-storage',
     title: "The Investor\u2019s Guide to Battery Energy Storage",
     description: "What BESS means for your solar park\u2019s revenue, grid connection, and asset valuation. Written for PV park owners, not hobbyists.",
@@ -106,7 +116,7 @@ const articles: Article[] = [
   {
     slug: 'solar-bitcoin-mining-cyprus-case-study',
     title: 'Solar Bitcoin Mining in Cyprus: 5MW Case Study',
-    description: 'How a 5MW park generates BTC from curtailed energy. Analysis with/without BESS, 8% tax advantage, and off-grid solutions.',
+    description: 'How a 5MW park generates BTC from curtailed energy. Analysis with/without BESS, Cyprus tax advantages, and off-grid solutions.',
     category: 'Case Study',
     categoryColor: 'bg-orange-100 text-orange-800',
     author: 'Alexander Papacosta',
@@ -156,7 +166,7 @@ const articles: Article[] = [
   {
     slug: 'cyprus-curtailment-crisis-bess-solution',
     title: 'Cyprus Curtailment Crisis: The BESS Solution',
-    description: 'Curtailment surged from 0% to 45.8% in 4 years. Learn how Battery Storage protects your solar investment ROI.',
+    description: 'Curtailment surged from 0% to 47% in 4 years. Learn how Battery Storage protects your solar investment ROI.',
     category: 'Market Alert',
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Alexander Papacosta',

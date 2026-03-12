@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthief Review Comments — Linyang Sales Contract V1 (6 March 2026)</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.65;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        h1 { text-align: center; font-size: 22px; border-bottom: 2px solid #000; padding-bottom: 14px; margin-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 13px; color: #555; margin-bottom: 30px; }
+        h2 { font-size: 17px; margin-top: 38px; margin-bottom: 12px; border-bottom: 1px solid #ccc; padding-bottom: 6px; }
+        h3 { font-size: 15px; margin-top: 22px; margin-bottom: 8px; }
+        p, li { font-size: 13.5px; margin-bottom: 10px; }
+        ul, ol { margin-left: 18px; }
+
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; vertical-align: middle; margin-left: 6px; }
+        .tag-critical   { background: #fee2e2; color: #991b1b; }
+        .tag-important  { background: #fef3c7; color: #92400e; }
+        .tag-minor      { background: #e0e7ff; color: #3730a3; }
+        .tag-call       { background: #dbeafe; color: #1e40af; }
+        .tag-insert     { background: #ede9fe; color: #5b21b6; }
+
+        .comment-box {
+            border-left: 4px solid #228B22;
+            background: #f0fff0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 13px;
+        }
+        .comment-box.critical {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+        .comment-box.important {
+            border-left-color: #d97706;
+            background: #fffbeb;
+        }
+        .comment-box.info {
+            border-left-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .section-ref {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #374151;
+        }
+
+        .proposed-text {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'Georgia', serif;
+            font-size: 13px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+
+        .current-text {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'Georgia', serif;
+            font-size: 13px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            text-decoration: line-through;
+            color: #7f1d1d;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; }
+        th { background: #f9fafb; font-weight: 700; }
+        tr.highlight { background: #fffbeb; }
+
+        .summary-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .num { font-size: 28px; font-weight: 700; }
+        .stat-card .num.red { color: #dc2626; }
+        .stat-card .num.amber { color: #d97706; }
+        .stat-card .num.green { color: #059669; }
+        .stat-card .label { font-size: 12px; color: #6b7280; margin-top: 4px; }
+
+        .toc { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 18px 24px; margin: 20px 0; }
+        .toc h3 { margin-top: 0; }
+        .toc ol { font-size: 13px; }
+        .toc li { margin-bottom: 4px; }
+        .toc a { color: #1e40af; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        hr { border: none; border-top: 1px solid #e5e7eb; margin: 30px 0; }
+
+        @media print {
+            body { max-width: 100%; padding: 20px; font-size: 12px; }
+            .comment-box, .proposed-text { break-inside: avoid; }
+            h2 { break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lighthief Review Comments<br>Linyang Sales Contract V1 — 6 March 2026</h1>
+<p class="subtitle">
+    Document Under Review: <strong>rev260306 — Linyang sales contract - Lighthief - V1</strong><br>
+    Reviewed by: Lighthief Cyprus Ltd — Legal &amp; Commercial<br>
+    Date of Review: 6 March 2026<br>
+    Context: Post-call review — incorporating agreed points from Lighthief / Linyang call (March 2026)<br>
+    Objective: Merge sales contract and guarantee framework into a single binding agreement
+</p>
+
+<!-- ═══════════ EXECUTIVE SUMMARY ═══════════ -->
+
+<h2>Executive Summary</h2>
+
+<p>Following our call, Linyang has requested that the guarantee framework be merged directly into the Sales Contract rather than maintained as a separate document. We welcome this approach — a single integrated agreement provides clarity for both parties and simplifies execution.</p>
+
+<p>This review identifies the sections that require completion, amendment, or insertion to achieve a comprehensive contract covering both equipment supply and the associated commercial guarantees. Where items were discussed on our call, we have noted the agreed position. All other comments arise from our review of the contract text.</p>
+
+<div class="summary-card">
+    <div class="stat-card"><div class="num red">7</div><div class="label">Sections Requiring Insertion</div></div>
+    <div class="stat-card"><div class="num amber">8</div><div class="label">Sections Requiring Amendment</div></div>
+    <div class="stat-card"><div class="num green">5</div><div class="label">Items Discussed on Call</div></div>
+</div>
+
+<!-- ═══════════ TABLE OF CONTENTS ═══════════ -->
+
+<div class="toc">
+    <h3>Table of Contents</h3>
+    <ol>
+        <li><a href="#c1">Payment Terms — 30/60/10 Structure, Late Payment Framework &amp; Default</a> <span class="tag tag-call">DISCUSSED ON CALL</span></li>
+        <li><a href="#c2">Affiliate Coverage — Anti-Circumvention Protection (Art. 1A)</a> <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></li>
+        <li><a href="#c3">Installation Scope — Complete Blanked Items (Art. 5A)</a> <span class="tag tag-critical">CRITICAL</span></li>
+        <li><a href="#c4">No Cross-Liability — Restore (Art. 5C)</a> <span class="tag tag-critical">CRITICAL</span></li>
+        <li><a href="#c5">Late Payment Framework &amp; End-Customer Pass-Through (Art. 6)</a> <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></li>
+        <li><a href="#c6">Late Payment Interest Rate (Art. 6)</a> <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></li>
+        <li><a href="#c7">Non-Conforming Goods — Return Cost (Art. 5.6)</a> <span class="tag tag-important">IMPORTANT</span></li>
+        <li><a href="#c8">INSERT: Product Performance Warranties (New Section 8D)</a> <span class="tag tag-critical">CRITICAL</span> <span class="tag tag-call">DISCUSSED ON CALL</span></li>
+        <li><a href="#c9">INSERT: Financial Guarantees — APG &amp; Performance Bond (New Section 9B)</a> <span class="tag tag-critical">CRITICAL</span> <span class="tag tag-call">DISCUSSED ON CALL</span></li>
+        <li><a href="#c10">INSERT: Delay Liquidated Damages (New Section 9C)</a> <span class="tag tag-critical">CRITICAL</span></li>
+        <li><a href="#c11">Liability Cap — Restore to 100% (Art. 9)</a> <span class="tag tag-critical">CRITICAL</span></li>
+        <li><a href="#c12">INSERT: Commissioning &amp; Provisional Acceptance (New Section 10)</a> <span class="tag tag-critical">CRITICAL</span></li>
+        <li><a href="#c13">Force Majeure — Complete Cure Mechanism (Art. 15)</a> <span class="tag tag-important">IMPORTANT</span></li>
+        <li><a href="#c14">INSERT: Insurance Requirements (New Section 16)</a> <span class="tag tag-important">IMPORTANT</span></li>
+        <li><a href="#c15">Confidentiality — Governing Law Reference (Art. 16)</a> <span class="tag tag-minor">MINOR</span></li>
+        <li><a href="#c16">INSERT: Product Compliance Standards (Art. 20)</a> <span class="tag tag-important">IMPORTANT</span></li>
+        <li><a href="#c17">INSERT: No Set-Off for LTSA Matters (Art. 8C)</a> <span class="tag tag-minor">MINOR</span></li>
+    </ol>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 1: PAYMENT TERMS                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c1">Comment 1: Payment Terms — 30/60/10 Structure, Late Payment Framework &amp; Default <span class="tag tag-call">DISCUSSED ON CALL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 6 — Terms of Payment</span></p>
+
+<p><strong>Issue:</strong> Payment milestone percentages are currently blank. As discussed on our call, Linyang has proposed a <strong>30/60/10</strong> structure. We understand Linyang's preference and appreciate the increased holdback at 10% (vs. the standard 5%). However, the current structure places <strong>90% of payment before delivery</strong>, which creates significant cash flow exposure for the Buyer, particularly given Cyprus import VAT obligations. Additionally, the contract requires a comprehensive <strong>late payment framework</strong> governing interest, default triggers, and the consequences of non-payment — for both the Buyer-Seller and Buyer-Client relationships.</p>
+
+<div class="comment-box info">
+    <strong>CONTEXT — CYPRUS VAT:</strong> Under Cyprus customs law, the Buyer (importer) pays 19% VAT on the CIF value at point of import before goods can be released. For a batch with CIF value of approximately EUR 28M, this represents approximately EUR 5.3M in VAT payable at customs clearance. With 90% already paid pre-shipment, the Buyer must finance both the final 10% payment and the VAT obligation simultaneously upon arrival.
+</div>
+
+<h3>Linyang Proposed Structure:</h3>
+<table>
+    <tr><th>Milestone</th><th>%</th><th>Trigger</th></tr>
+    <tr><td>Advance</td><td>30%</td><td>Contract signing / PO</td></tr>
+    <tr><td>Pre-Shipment (FAT)</td><td>60%</td><td>Ex-Works ready / FAT passed</td></tr>
+    <tr><td>Holdback</td><td>10%</td><td>SAT / PAC</td></tr>
+</table>
+
+<h3>Lighthief Proposed Adjustment:</h3>
+
+<div class="comment-box">
+    <strong>LIGHTHIEF COMMENT:</strong> We would like to propose a slight adjustment to the milestone structure, shifting a portion of the pre-shipment payment to a post-delivery (DAP) milestone. This allows Lighthief to manage VAT cash flow without reducing Linyang's total pre-delivery exposure materially.
+</div>
+
+<table>
+    <tr><th>Milestone</th><th>Linyang (30/60/10)</th><th>Lighthief Proposed</th><th>Trigger</th></tr>
+    <tr><td>Advance</td><td>30%</td><td><strong>30%</strong></td><td>Contract signing / PO — unchanged</td></tr>
+    <tr><td>Pre-Shipment (FAT)</td><td>60%</td><td><strong>50%</strong></td><td>Factory inspection passed, ready to ship</td></tr>
+    <tr><td>Arrival (DAP)</td><td>—</td><td><strong>10%</strong></td><td>CIF Limassol, customs cleared, goods on site</td></tr>
+    <tr><td>SAT / Holdback</td><td>10%</td><td><strong>10%</strong></td><td>Commissioning + PAC signed</td></tr>
+</table>
+
+<div class="comment-box info">
+    <strong>RATIONALE:</strong> Under this adjustment:
+    <ul>
+        <li>Linyang receives <strong>80% before shipment</strong> (vs. 90% under 30/60/10) — a reduction of only 10%</li>
+        <li>The 10% DAP milestone is payable upon arrival and customs clearance — typically 4–6 weeks after Ex-Works</li>
+        <li>Linyang's total pre-delivery exposure reduces from 90% to 80%, which is still well above industry norms for CIF contracts</li>
+        <li>The holdback remains at 10% as Linyang proposed</li>
+        <li>The DAP milestone gives Lighthief a short window to arrange VAT financing against confirmed delivery</li>
+    </ul>
+    If the 30/50/10/10 adjustment is not acceptable, we are open to discussing 30/55/5/10 as a compromise — maintaining 85% pre-delivery while still creating a small post-arrival milestone for VAT management.
+</div>
+
+<h3>Late Payment Framework (Agreed on Call):</h3>
+
+<div class="comment-box critical">
+    <strong>LIGHTHIEF COMMENT — LATE PAYMENT &amp; DEFAULT:</strong> As discussed on our call, the following framework governs late payments and protects both parties:
+</div>
+
+<table>
+    <tr><th>Milestone</th><th>Late Payment Risk</th><th>Consequence</th></tr>
+    <tr><td><strong>Milestone 1 — 30% Advance</strong></td><td>None — prepaid on contract signing. No late payment can occur by definition.</td><td>N/A</td></tr>
+    <tr><td><strong>Milestone 2 — FAT Payment (50–60%)</strong></td><td>Late payment by Buyer (whether caused by Buyer or by end-customer delay)</td><td>Interest charged to Buyer at <strong>EU Directive 2011/7/EU statutory rate</strong> (ECB main refinancing rate + 8% per annum, simple interest). Buyer passes the same rate to end-customer. Delivery schedule extends day-for-day during such late payment period.</td></tr>
+    <tr><td><strong>Milestone 3 — DAP (if applicable)</strong></td><td>As above</td><td>As above</td></tr>
+    <tr><td><strong>Any milestone &gt;60 days late</strong></td><td>Default trigger</td><td>Both the Buyer-Seller contract and the Buyer-Client contract may be terminated. <strong>The advance payment (30%) is non-refundable upon Buyer default.</strong></td></tr>
+</table>
+
+<div class="comment-box info">
+    <strong>WHY THIS PROTECTS BOTH PARTIES:</strong>
+    <ul>
+        <li><strong>Seller protection:</strong> Guaranteed interest income on any late payment at statutory EU rates. Clear 60-day default trigger with non-refundable advance — Seller retains 30% if Buyer defaults.</li>
+        <li><strong>Buyer protection:</strong> Clean pass-through mechanism to end-customer at the same statutory rate. No punitive compound interest. Clear 60-day window before default — enough time to resolve end-customer payment issues without immediate termination.</li>
+        <li><strong>Mutual protection:</strong> Both contracts (Seller-Buyer and Buyer-Client) share the same default trigger, preventing a situation where one contract terminates but the other survives.</li>
+    </ul>
+</div>
+
+<h3>Proposed Contract Text — Insert into Article 6:</h3>
+<div class="proposed-text"><strong>Payment Milestones:</strong>
+
+(a) Thirty percent (30%) advance payment by T/T within seven (7) days of contract effectiveness or purchase order signing;
+
+(b) Fifty percent (50%) payment by T/T when the Products are ready for shipment (Ex-Works) from the manufacturing facility, upon Seller's written confirmation of successful Factory Acceptance Testing (FAT) and photographic evidence of readiness;
+
+(c) Ten percent (10%) payment by T/T upon arrival of the Products on site (CIF Limassol) and completion of port clearance, following Buyer confirmation that the Commodities conform to the applicable Quotation;
+
+(d) Ten percent (10%) performance holdback by T/T upon successful completion of Site Acceptance Testing (SAT) and Provisional Acceptance of the Products on site.
+
+<strong>Late Payment:</strong>
+
+(e) Where the Buyer fails to make any payment under Article 6(b)–(d) by the due date, the Buyer shall pay interest on the overdue amount at the rate prescribed by EU Directive 2011/7/EU (the European Central Bank main refinancing rate plus eight percent (8%) per annum), calculated on a simple interest basis from the day following the due date until the date of actual payment.
+
+(f) Where the Buyer's payment under Article 6(b)–(d) is delayed, the Seller's delivery and commissioning obligations shall be extended day-for-day by the period of such late payment, without penalty to the Seller.
+
+<strong>Default:</strong>
+
+(g) If any payment under Article 6(b)–(d) remains unpaid for more than sixty (60) calendar days after the due date, the Seller may terminate this Contract by written notice. Upon such termination, the advance payment made under Article 6(a) shall be non-refundable and shall be retained by the Seller as agreed liquidated damages for the Buyer's default.
+
+(h) For the avoidance of doubt, the advance payment under Article 6(a) is a pre-payment and no late payment interest or default provisions apply to it, as it is due and payable prior to the commencement of any Seller obligations.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 2: AFFILIATE COVERAGE              -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c2">Comment 2: Affiliate Coverage — Anti-Circumvention Protection (Art. 1A) <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 1A — Contractual Context</span></p>
+
+<p><strong>Issue:</strong> As discussed on our call, the current Art. 1A.3 text naming only Solarfun and Jiangsu Linyang is <strong>accepted as-is</strong>. However, the Sales Contract should include an explicit <strong>anti-circumvention clause</strong> to protect the commercial structure. Under the agreed model, the Buyer receives CIF-0 distributor pricing from the Seller and adds its own margins for end-customers. This structure only works if the Seller (and any related entity) cannot contract directly with end-customers introduced by the Buyer within the Territory.</p>
+
+<div class="comment-box">
+    <strong>LIGHTHIEF COMMENT:</strong> We accept Art. 1A.3 as currently drafted. In place of broader affiliate binding, we propose a new Art. 1A.4 anti-circumvention clause. This protects the distributor pricing model and is consistent with the exclusivity and client protection provisions in the Distribution Agreement.
+</div>
+
+<h3>Current Text (Art. 1A.3) — ACCEPTED:</h3>
+<div class="proposed-text">For the avoidance of doubt, references to the Seller in this Contract include Solarfun Renewable Energy Poland sp. z o.o., Jiangsu Linyang Energy Storage Technology Co., Ltd.</div>
+
+<h3>Proposed New Clause — Insert as Art. 1A.4:</h3>
+<div class="proposed-text"><strong>1A.4 Anti-Circumvention:</strong>
+
+The Seller shall not, and shall procure that its Affiliates, subsidiaries, parent companies, and any related entities shall not, directly or indirectly:
+
+(a) enter into any sales, supply, distribution, service, or maintenance contract with any end-customer introduced by the Buyer within the Territory (Republic of Cyprus);
+
+(b) solicit, approach, or accept orders from any end-customer with whom the Buyer has an existing or pending commercial relationship within the Territory; or
+
+(c) supply Commodities or services to any third party for resale or installation within the Territory, where such supply would circumvent the Buyer's exclusive distribution rights under the Distribution Agreement.
+
+This obligation shall survive termination of this Contract for a period of two (2) years and is without prejudice to the broader exclusivity and client protection provisions in the Distribution Agreement, which shall prevail in the event of any conflict.</div>
+
+<div class="comment-box info">
+    <strong>COMMERCIAL NOTE:</strong> This clause protects the agreed commercial model: Linyang provides equipment at CIF-0 distributor pricing; Lighthief adds margins and manages end-customer relationships in Cyprus. The anti-circumvention clause ensures neither party's commercial interests are undermined by direct approaches to introduced clients. The full exclusivity and territory protection is governed by the Distribution Agreement — this clause provides a specific, enforceable safeguard within the Sales Contract itself.
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 3: INSTALLATION SCOPE              -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c3">Comment 3: Installation Scope — Complete Blanked Items (Art. 5A) <span class="tag tag-critical">CRITICAL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 5A — Seller Scope — Installation and Commissioning</span></p>
+
+<p><strong>Issue:</strong> Several items in the Seller's installation scope appear incomplete. Item (a) is blank, and items relating to installation supervision and workmanship warranty are absent. For a contract where the Seller is responsible for OEM installation and commissioning, the scope must be clearly defined to avoid disputes during site works.</p>
+
+<h3>Current Text:</h3>
+<div class="current-text">(a) ;
+(b) OEM commissioning and system configuration;
+(c) Connection of battery modules, PCS, BMS, and cooling systems;
+(d) OEM testing protocols and verification;</div>
+
+<h3>Proposed Replacement:</h3>
+<div class="proposed-text">(a) Equipment installation and assembly by factory-trained technicians;
+(b) OEM commissioning and system configuration;
+(c) Connection of battery modules, PCS, BMS, and cooling systems;
+(d) OEM testing protocols and verification;
+(e) Installation supervision and quality assurance;
+(f) Installation workmanship warranty (5 years from PAC).</div>
+
+<div class="comment-box">
+    <strong>LIGHTHIEF COMMENT:</strong> Item (f) is particularly important — the Seller is performing installation and commissioning, so a workmanship warranty on that scope is standard practice. Without this, any installation defect would fall into a gap between the product warranty (which covers manufacturing) and the Buyer's EPC scope (which does not include OEM installation).
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 4: NO CROSS-LIABILITY              -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c4">Comment 4: No Cross-Liability — Restore (Art. 5C) <span class="tag tag-critical">CRITICAL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">After Article 5B (Buyer Scope) — insert as Article 5C</span></p>
+
+<p><strong>Issue:</strong> The contract defines separate scopes for Seller (installation/commissioning) and Buyer (EPC works) but does not include a clause confirming that neither party is liable for defects in the other's scope. This is essential to prevent cross-claims — particularly given the indemnities in Section 9A already contemplate this separation.</p>
+
+<h3>Proposed Insertion — after Art. 5B:</h3>
+<div class="proposed-text"><strong>No Cross-Liability:</strong>
+(a) The Seller is NOT liable for defects in the Buyer's EPC works;
+(b) The Buyer is NOT liable for defects in the Seller's installation and commissioning.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 5: END-CUSTOMER DEPENDENCY         -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c5">Comment 5: Late Payment Framework &amp; End-Customer Pass-Through (Art. 6) <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 6 — Terms of Payment (existing "no default" sub-clause)</span></p>
+
+<p><strong>Issue:</strong> The contract includes a clause stating the Buyer shall not be deemed in default due to end-customer payment delays. As discussed on our call, Linyang does not accept automatic deadline extensions for late end-customer payments. We accept this position. Instead, we propose amending the existing clause to align with the <strong>late payment framework</strong> set out in Comment 1 — under which late payments (regardless of cause) incur EU statutory interest, the delivery schedule extends day-for-day, and non-payment beyond 60 days triggers default.</p>
+
+<div class="comment-box">
+    <strong>LIGHTHIEF COMMENT:</strong> The existing "no default" clause should be replaced with the structured late payment framework agreed on our call. This gives Linyang certainty (interest accrues from day one of any late payment) while giving Lighthief a clear mechanism to pass through the same charges to the end-customer.
+</div>
+
+<h3>Current Text:</h3>
+<div class="current-text">The Buyer shall not be deemed in default, nor shall shipment suspension, interest, penalties, or termination rights arise, due solely to delays in end-customer payment beyond the Buyer's reasonable control.</div>
+
+<h3>Proposed Replacement:</h3>
+<div class="proposed-text"><strong>Late Payment and End-Customer Pass-Through:</strong>
+
+(a) The Buyer's payment obligations under this Contract are absolute and are not conditional upon the Buyer's receipt of payment from any end-customer.
+
+(b) Where the Buyer fails to make any payment under Article 6(b)–(d) by the due date, interest shall accrue at the rate prescribed by EU Directive 2011/7/EU (ECB main refinancing rate + 8% per annum, simple interest), regardless of whether the delay is caused by the Buyer or by the Buyer's end-customer.
+
+(c) Where late payment occurs, the Seller's delivery and commissioning obligations shall be extended day-for-day by the period of such late payment, without penalty to the Seller.
+
+(d) If any payment under Article 6(b)–(d) remains unpaid for more than sixty (60) calendar days after the due date, the Seller may terminate this Contract in accordance with Article 6(g).
+
+(e) The Buyer shall include equivalent late payment and default provisions in its downstream contracts with end-customers, ensuring that EU Directive 2011/7/EU statutory interest rates and sixty (60) day default triggers are mirrored in the Buyer-Client agreement.</div>
+
+<div class="comment-box info">
+    <strong>NOTE:</strong> This framework cross-references the late payment and default provisions in Comment 1 (Article 6(e)–(h)). Both sets of provisions should be read together. The intention is that Articles 6(e)–(h) set out the mechanics, while this clause clarifies the treatment of end-customer-caused delays and the pass-through obligation.
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 6: INTEREST RATE                   -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c6">Comment 6: Late Payment Interest Rate (Art. 6) <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 6 — Cyprus interest rate sub-clause</span></p>
+
+<p><strong>Issue:</strong> The contract specifies <strong>2% per month, compounded monthly</strong> for Cyprus contracts. This equates to an effective annual rate of approximately 26.8%, which is commercially punitive and may be unenforceable under Cyprus law. As discussed on our call and set out in Comments 1 and 5, all late payment interest under this contract should follow the <strong>EU Directive 2011/7/EU</strong> statutory rate. This provides a single, consistent, legally defensible rate across the entire contract.</p>
+
+<h3>Current Text:</h3>
+<div class="current-text">For contracts where the end destination is Cyprus, the interest rate shall be 2% per month, compounded monthly, as per Cyprus commercial practice.</div>
+
+<h3>Proposed Replacement:</h3>
+<div class="proposed-text">For contracts where the end destination is Cyprus, the interest rate on late payments shall be the rate prescribed by EU Directive 2011/7/EU on combating late payment in commercial transactions — being the European Central Bank (ECB) main refinancing rate plus eight percent (8%) per annum, calculated on a simple interest basis. This rate shall apply to all late payment obligations under this Article 6 and shall be the sole interest rate applicable to overdue amounts.</div>
+
+<div class="comment-box info">
+    <strong>NOTE:</strong> The EU Directive 2011/7/EU rate is currently approximately 12% per annum (ECB rate ~4% + 8%). This is commercially firm — significantly higher than standard commercial lending rates — while being legally defensible and consistent across all EU/EEA jurisdictions. Using this rate also ensures consistency with the late payment framework in Articles 6(e)–(h) and the end-customer pass-through in Comment 5, where the same rate applies throughout the contractual chain.
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 7: NON-CONFORMING GOODS            -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c7">Comment 7: Non-Conforming Goods — Return Cost (Art. 5.6) <span class="tag tag-important">IMPORTANT</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 5, §5.6 — Non-conforming Commodities</span></p>
+
+<p><strong>Issue:</strong> The contract requires the Buyer to return non-conforming goods <strong>at Buyer's expense</strong>. Where non-conformance is confirmed as a Seller defect, this cost allocation is unfair.</p>
+
+<h3>Current Text:</h3>
+<div class="current-text">BUYER shall ship, at its expense and risk of loss, the nonconforming Commodities to SELLER's facility within [five] days of SELLER's receipt of Buyer's written notice</div>
+
+<h3>Proposed Replacement:</h3>
+<div class="proposed-text">BUYER shall ship the nonconforming Commodities to the SELLER's facility within ten (10) Business Days of the SELLER's confirmation that the claim is accepted. Shipping costs and risk of loss for confirmed non-conforming Commodities shall be borne by the SELLER. Where the SELLER disputes the non-conformance, the Parties shall follow the dispute procedure in Article 12 and shipping costs shall be borne by the Party determined to be at fault.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 8: PERFORMANCE WARRANTIES          -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c8">Comment 8: INSERT — Product Performance Warranties (New Section 8D) <span class="tag tag-critical">CRITICAL</span> <span class="tag tag-insert">INSERT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">After Article 8C (LTSA Separation) — insert as new Section 8D</span></p>
+
+<p><strong>Issue:</strong> As discussed on our call, we are merging the guarantee framework into this contract. The contract currently contains a 5-year product warranty (Art. 8) and correctly separates LTSA-governed service commitments (Art. 8C). However, the product's <strong>inherent performance characteristics</strong> — State of Health, Round-Trip Efficiency, cycle life, and PCS efficiency — are not warranted anywhere in the contract. These are OEM product specifications, not service-level commitments, and must be warranted as product characteristics independent of any LTSA.</p>
+
+<div class="comment-box critical">
+    <strong>LIGHTHIEF COMMENT:</strong> Without binding performance specifications, the Buyer has no contractual basis to hold the Seller accountable for product performance. The Seller's warranty (Art. 8) covers defects in "design, material or workmanship" but does not define what constitutes acceptable performance. Section 8C explicitly excludes performance guarantees from this contract unless an LTSA exists — but product-level specifications are distinct from service-level guarantees and should be warranted here.
+</div>
+
+<h3>Proposed New Section — Insert as "Section 8D — PRODUCT PERFORMANCE WARRANTIES":</h3>
+<div class="proposed-text"><strong>8D.1 State of Health (SOH) Guarantees:</strong>
+
+The Seller warrants that the battery cells and modules, when operated in accordance with the Seller's guidelines (1 cycle/day average, 90% DoD, 25&plusmn;2&deg;C), shall retain the following minimum State of Health:
+(a) Year 5: &ge; 85% SOH;
+(b) Year 10: &ge; 79.58% SOH;
+(c) Year 15: &ge; 70% SOH.
+
+SOH remedy: The Seller shall supply replacement cells/modules (FOB or CIF Limassol as applicable) to restore capacity above the guaranteed threshold. Replacement parts are at Seller's cost; installation labour is at Buyer's cost unless an LTSA provides otherwise.
+
+<strong>8D.2 Round-Trip Efficiency (RTE):</strong>
+
+The Seller warrants that the full system AC-AC Round-Trip Efficiency, including PCS conversion, auxiliary consumption, and internal DC/AC cabling losses within the Seller's supply scope, shall be not less than 86.32% at rated power under standard test conditions (0.5C charge / 0.5C discharge, 25&plusmn;2&deg;C).
+
+This warranty is conditional upon the Buyer's external MV cabling (from MV Skid to Point of Common Coupling) conforming to the cable specifications and maximum allowable loss parameters set out in the Seller's system design drawings. The Seller shall provide the Buyer with the applicable cable loss budget and specifications within fourteen (14) days of contract signing. Any RTE shortfall attributable solely to Buyer-supplied cables exceeding the specified loss ratings shall not constitute a breach of this warranty.
+
+<strong>8D.3 Cycle Life:</strong>
+
+The Seller warrants a minimum cycle life of 7,000 equivalent full cycles at a standard charge/discharge rate of 0.5C/0.5C, at 90% Depth of Discharge (DoD) to 70% End of Life (EOL), at 25&plusmn;2&deg;C, under the operating conditions specified in the Seller's Warranty Terms (Version 2).
+
+For the avoidance of doubt, the maximum charge/discharge rate is 1C. Operation at rates exceeding 0.5C may affect achievable cycle life and shall be governed by the degradation curves provided in the Seller's Warranty Terms V2.
+
+<strong>8D.4 PCS Efficiency:</strong>
+
+The Seller warrants PCS conversion efficiency of not less than 98% at rated power.
+
+<strong>8D.5 Remedies:</strong>
+
+If the Products fail to meet the performance thresholds in &sect;8D.1&ndash;8D.4, the Seller's obligation shall be limited to repair or replacement of defective components in accordance with Article 8 (Warranty). For the avoidance of doubt, availability LDs and revenue-based compensation remain governed exclusively by any applicable LTSA under Article 8C.
+
+<strong>8D.6 Reference Documents:</strong>
+
+The following Seller documents form part of the performance warranty and are incorporated by reference:
+(a) Warranty Terms — Version 2;
+(b) Battery Container Specification (3.34 MWh);
+(c) PCS Datasheets (BCS-C-HUD series);
+(d) RTE Calculation Report (including cable loss budget assumptions).</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 9: FINANCIAL GUARANTEES            -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c9">Comment 9: INSERT — Financial Guarantees — APG &amp; Performance Bond (New Section 9B) <span class="tag tag-critical">CRITICAL</span> <span class="tag tag-insert">INSERT</span> <span class="tag tag-call">DISCUSSED ON CALL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">After Section 9A (Indemnities) — insert as new Section 9B</span></p>
+
+<p><strong>Issue:</strong> As discussed on our call, the guarantee framework is to be incorporated into this contract. The contract currently contains no provisions requiring the Seller to provide financial security for advance payments or performance obligations. Given the contract value (EUR 85M+ across all batches), financial guarantees are essential and standard for equipment supply contracts of this magnitude.</p>
+
+<div class="comment-box critical">
+    <strong>LIGHTHIEF COMMENT:</strong> Under the proposed 30/50/10/10 payment structure, Lighthief pays 30% advance. Across all batches, this represents significant exposure with no bank-backed security for return of funds in the event of non-delivery.
+</div>
+
+<h3>Proposed New Section — Insert as "Section 9B — FINANCIAL GUARANTEES":</h3>
+<div class="proposed-text"><strong>9B.1 Advance Payment Guarantee (APG):</strong>
+
+The Seller shall provide an unconditional, irrevocable bank guarantee ("APG") equal to one hundred percent (100%) of the advance payment, issued by an internationally recognised bank acceptable to the Buyer. The APG shall:
+(a) be delivered to the Buyer prior to or simultaneously with the advance payment;
+(b) remain valid until full delivery of the Commodities plus thirty (30) days;
+(c) be callable on demand in the event of Seller default or failure to deliver.
+
+<strong>9B.2 Performance Bond:</strong>
+
+The Seller shall provide a performance bond equal to five percent (5%) of the total contract value, issued as a corporate guarantee backed by a bank. The performance bond shall:
+(a) be delivered within fourteen (14) days of receipt of the advance payment under Article 6(a);
+(b) remain valid until final acceptance of the Commodities;
+(c) cover defects in materials, workmanship, and non-performance during the warranty period.
+
+<strong>9B.3 Product Liability Insurance (AXA):</strong>
+
+The Seller shall maintain product liability insurance with a minimum coverage of EUR 5,000,000 per occurrence. The Seller has confirmed that such insurance is currently held with AXA. The Seller represents and warrants that:
+
+(a) the policy covers products supplied under this Contract for installation in the Republic of Cyprus;
+(b) coverage shall be maintained for the duration of this Contract and the warranty period;
+(c) the Seller shall provide a copy of the AXA insurance certificate to the Buyer within fourteen (14) days of contract signing and upon each policy renewal.
+
+The Buyer shall be entitled to verify the following upon receipt of the insurance certificate:
+(i) geographic scope — confirmation that products sold into / installed in the Republic of Cyprus are covered;
+(ii) coverage limits — per-occurrence and aggregate limits;
+(iii) exclusions — whether BESS-specific risks (thermal runaway, fire, battery deflagration) are excluded;
+(iv) named insured — confirmation that Linyang ESS / Jiangsu Linyang Energy Storage Technology Co., Ltd is a named insured;
+(v) policy period — annual renewable or project-specific.
+
+If, upon review, the insurance coverage is found to be materially inadequate for the risks associated with this Contract, the Parties shall discuss in good faith any necessary enhancements to the coverage.
+
+<strong>9B.4 Condition Precedent:</strong>
+
+The Buyer's obligation to make the advance payment under Article 6(a) shall not become due until the Seller delivers the APG under Section 9B.1.
+
+<strong>9B.5 Buyer Financial Standing:</strong>
+
+The Seller has requested a credit assessment of the Buyer. The Buyer notes that under the agreed payment structure, eighty to ninety percent (80–90%) of the contract value is prepaid before delivery, and the advance payment under Article 6(a) is non-refundable upon Buyer default (Article 6(g)). The Seller's credit exposure to the Buyer is therefore limited to the ten percent (10%) holdback under Article 6(d).
+
+Notwithstanding the above, the Buyer shall, upon reasonable request:
+(a) provide a bank reference letter or confirmation of good standing from its principal banking institution; and/or
+(b) provide evidence of funded end-customer contracts supporting each Purchase Order placed under this Contract.
+
+For the avoidance of doubt, Lighthief Cyprus Ltd (Company No. HE 477423) is a wholly-owned subsidiary of Lighthief International Ltd. A letter of support from the parent entity may be provided upon request.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 10: DELAY LDs                      -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c10">Comment 10: INSERT — Delay Liquidated Damages (New Section 9C) <span class="tag tag-critical">CRITICAL</span> <span class="tag tag-insert">INSERT</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">After new Section 9B — insert as Section 9C</span></p>
+
+<p><strong>Issue:</strong> The contract contains no financial penalty for late delivery. For a contract of this value, with downstream client commitments that carry their own delay penalties, a delivery delay framework is essential. Without this, Lighthief bears the full financial risk of any Seller delay with no recourse.</p>
+
+<h3>Proposed New Section — Insert as "Section 9C — DELIVERY DELAY LIQUIDATED DAMAGES":</h3>
+<div class="proposed-text"><strong>9C.0 Definitions for LD Purposes:</strong>
+
+"Critical Path Equipment" — Equipment whose delay prevents commissioning of the entire order or park. Includes: Power Conversion System (PCS), Medium-Voltage Switchgear/Skid (MV Skid), and main step-up transformer. Delay to any Critical Path Equipment constitutes a Full Order Delay.
+
+"Non-Critical Path Equipment" — Equipment whose delay prevents commissioning of only a portion of the total ordered capacity. Battery containers (BESS units) are Non-Critical Path Equipment when delivered individually as part of a multi-container order, provided the PCS and MV infrastructure are available to commission the remaining containers.
+
+"Full Order Delay" — Delay caused by late delivery, defect, or unavailability of any Critical Path Equipment, resulting in no portion of the order being capable of commissioning.
+
+"Partial Delay" — Delay caused by late delivery, defect, or unavailability of Non-Critical Path Equipment, where the remaining equipment is capable of commissioning at reduced capacity.
+
+"Affected Capacity" — The proportion of total ordered energy capacity (MWh) that cannot be commissioned due to the delayed equipment, expressed as a percentage of total capacity.
+
+"LD Value" — For a Full Order Delay: the total order value (all goods). For a Partial Delay: the value of the delayed goods only (= order value &times; Affected Capacity %).
+
+<strong>9C.1 Delay Liquidated Damages:</strong>
+
+(a) Days 1&ndash;30 of delay: 0.1% of LD Value per day;
+(b) Days 31&ndash;60 of delay: 0.15% of LD Value per day;
+(c) Days 61+ of delay: 0.2% of LD Value per day;
+(d) Cap: aggregate delay LDs shall not exceed 10% of LD Value per order.
+
+<strong>9C.2 Application:</strong>
+
+(a) PCS or MV Skid delayed &rarr; Full Order Delay &rarr; LD Value = total order value.
+(b) Individual battery container delayed (others can commission) &rarr; Partial Delay &rarr; LD Value = value of delayed container(s) only.
+(c) Delay LDs begin on the day following the agreed delivery date and accrue daily until actual delivery or termination.
+
+<strong>9C.3 Exclusions:</strong>
+
+Delay LDs shall not apply where the delay is caused by:
+(a) Buyer's failure to pay on time;
+(b) Force Majeure under Article 15;
+(c) Buyer's failure to provide site readiness as required.
+
+<strong>9C.4 Total Combined LD Cap:</strong>
+
+The aggregate of all liquidated damages under this Contract (delay + availability, if applicable) shall not exceed ten percent (10%) of the total contract value.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 11: LIABILITY CAP                  -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c11">Comment 11: Liability Cap — Restore to 100% (Art. 9) <span class="tag tag-critical">CRITICAL</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 9 — Limitation of Liability</span></p>
+
+<p><strong>Issue:</strong> The general liability cap is set at <strong>10% of total charges</strong>. On a EUR 85M+ contract, this limits recovery to approximately EUR 8.5M regardless of actual damage. This is commercially inadequate for a contract of this magnitude. The 10% cap is appropriate for warranty-specific claims (already addressed in Art. 8B), but the <strong>general</strong> liability cap for all breaches should reflect the full contract value.</p>
+
+<div class="comment-box critical">
+    <strong>LIGHTHIEF COMMENT:</strong> We accept the 10% cap for warranty services under Article 8B. However, the general liability cap covering all breaches, including non-delivery, fundamental breach, and indemnity obligations, must be restored to 100% of the total price paid. A 10% general cap does not provide adequate protection and is below market standard for equipment supply contracts of this value.
+</div>
+
+<h3>Current Text:</h3>
+<div class="current-text">Subject to other clauses in this section, the total liability of the SELLER of all breaches of duty under this Contract shall not in any event or under any circumstances, exceed ten percent of total charges.</div>
+
+<h3>Proposed Replacement:</h3>
+<div class="proposed-text">Subject to other clauses in this section, the total aggregate liability of the SELLER for all breaches of duty under this Contract shall not exceed one hundred percent (100%) of the total price paid by the BUYER to the SELLER for the Products giving rise to the claim. For the avoidance of doubt, this general liability cap is without prejudice to the warranty-specific liability cap in Section 8B, which shall apply to warranty claims independently.</div>
+
+<div class="comment-box info">
+    <strong>ALTERNATIVE:</strong> If 100% is not acceptable, we would consider a tiered approach:
+    <ul>
+        <li>10% for warranty claims (Art. 8B — already agreed)</li>
+        <li>50% for general contractual breaches</li>
+        <li>100% for fraud, wilful misconduct, and manufacturing defect indemnities (Art. 9A carve-out)</li>
+    </ul>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 12: COMMISSIONING / PAC            -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c12">Comment 12: INSERT — Commissioning &amp; Provisional Acceptance (New Section 10) <span class="tag tag-critical">CRITICAL</span> <span class="tag tag-insert">INSERT</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">After Article 5 (Scope) — insert as new Section 10</span></p>
+
+<p><strong>Issue:</strong> The contract references "PAC" as the warranty commencement date (Art. 8) and "SAT" as the holdback payment trigger (Art. 6(d)), but neither term is defined. Without a commissioning and acceptance section, there is no contractual mechanism to determine when the warranty period begins, when the holdback becomes payable, or how to handle minor defects at handover.</p>
+
+<h3>Proposed New Section — Insert as "Section 10 — COMMISSIONING AND PROVISIONAL ACCEPTANCE":</h3>
+<div class="proposed-text"><strong>10.1 Commissioning:</strong>
+Commissioning shall be performed in accordance with the Seller's standard commissioning procedures and technical documentation, following completion of installation and site readiness confirmation by the Buyer.
+
+<strong>10.2 Provisional Acceptance:</strong>
+Upon successful completion of commissioning and demonstration that the Products operate in accordance with agreed specifications, the Parties shall execute a Provisional Acceptance Certificate ("PAC").
+
+<strong>10.3 Effect of Provisional Acceptance:</strong>
+Provisional Acceptance shall:
+(a) confirm completion of installation and commissioning;
+(b) trigger the Buyer's obligation to make the holdback payment under Article 6(d); and
+(c) mark the commencement of the base warranty period under Article 8.
+
+<strong>10.4 Minor Defects:</strong>
+Minor defects that do not materially affect system operation shall not prevent Provisional Acceptance, provided such defects are recorded in a punch list and remedied by the Seller within a reasonable time.
+
+<strong>10.5 Site Readiness:</strong>
+The Buyer shall ensure that the site is ready for installation in accordance with the Seller's technical requirements, including:
+(a) Completed foundations and civil works;
+(b) AC connection point ready for termination;
+(c) Grounding system installed;
+(d) Clear access for equipment and personnel.
+Delays arising from site unavailability or non-compliance shall automatically extend the installation and commissioning schedule without penalty to the Seller.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 13: FORCE MAJEURE CURE             -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c13">Comment 13: Force Majeure — Complete Cure Mechanism (Art. 15) <span class="tag tag-important">IMPORTANT</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 15 — Force Majeure, Buyer Cure Right sub-section</span></p>
+
+<p><strong>Issue:</strong> The contract includes a "Buyer Cure Right and Deposit Return" heading but the cure period is blank and the deposit refund mechanism is incomplete. The section currently reads: <em>"If a Force Majeure event affecting the Seller's delivery obligations continues for a period exceeding () days,"</em> with no further provisions.</p>
+
+<div class="comment-box important">
+    <strong>LIGHTHIEF COMMENT:</strong> The Force Majeure cure right needs to be completed. Without a defined cure period and refund mechanism, the Buyer has no exit from a prolonged Force Majeure situation and no way to recover advance payments.
+</div>
+
+<h3>Proposed Completion — Replace existing Buyer Cure Right text:</h3>
+<div class="proposed-text"><strong>Buyer Cure Right and Deposit Return:</strong>
+(a) If a Force Majeure event affecting the Seller's delivery obligations continues for a period exceeding sixty (60) days, the Buyer may, upon written notice, cancel the affected order without liability.
+
+(b) Upon such cancellation, the Seller shall refund the Buyer's advance payment within thirty (30) days, less any documented costs for materials already procured and non-recoverable.
+
+(c) The Seller shall provide reasonable evidence of claimed non-recoverable costs within fourteen (14) days of the cancellation notice.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 14: INSURANCE                      -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c14">Comment 14: INSERT — Insurance Requirements (New Section 16) <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-insert">INSERT</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Insert before current Article 16 (Notices) as new Section 16 — renumber subsequent sections</span></p>
+
+<p><strong>Issue:</strong> The contract contains no insurance obligations. Given the Seller has confirmed product liability insurance of EUR 5M (AXA), incorporating this as a contractual obligation adds certainty for both parties and supports the downstream insurance requirements of our end-customers and their lenders.</p>
+
+<h3>Proposed New Section — Insert as "Section 16 — INSURANCE":</h3>
+<div class="proposed-text"><strong>16.1 Seller Insurance:</strong>
+The Seller shall maintain, at its own cost:
+(a) product liability insurance with a minimum coverage of EUR 5,000,000 per occurrence; and
+(b) professional indemnity insurance with a minimum coverage of EUR 2,000,000 per occurrence,
+in each case valid for sales into the Republic of Cyprus, for the duration of this Contract and the warranty period.
+
+<strong>16.2 Buyer Insurance:</strong>
+The Buyer shall maintain:
+(a) general commercial liability insurance with a minimum coverage of EUR 1,000,000 per occurrence; and
+(b) professional indemnity insurance with a minimum coverage of EUR 1,000,000 per occurrence where the Buyer performs installation, EPC, or related services.
+
+<strong>16.3 Proof of Insurance:</strong>
+Each Party shall provide reasonable evidence of insurance coverage upon written request by the other Party.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 15: CONFIDENTIALITY LAW            -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c15">Comment 15: Confidentiality — Governing Law Reference (Art. 16) <span class="tag tag-minor">MINOR</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 16 — Confidentiality Clause, final sentence</span></p>
+
+<p><strong>Issue:</strong> The confidentiality clause states it is governed by <em>"the applicable laws of the Republic of Poland."</em> The contract's governing law is Singapore (Art. 12.1) and the Buyer is a Cyprus entity. Poland has no connection to this contract.</p>
+
+<h3>Current Text:</h3>
+<div class="current-text">This confidentiality clause is permanent unless the confidential information is made public or disclosed in accordance with the applicable laws of the Republic of Poland..</div>
+
+<h3>Proposed Replacement:</h3>
+<div class="proposed-text">This confidentiality clause shall survive termination of the Contract for a period of five (5) years, unless the confidential information enters the public domain through no fault of the receiving Party or is required to be disclosed under applicable law or regulation, including the laws of the Republic of Cyprus and Singapore.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 16: PRODUCT COMPLIANCE             -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c16">Comment 16: INSERT — Product Compliance Standards (Art. 20) <span class="tag tag-important">IMPORTANT</span> <span class="tag tag-insert">INSERT</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">Article 20 — Compliance with Laws, after §20.3</span></p>
+
+<p><strong>Issue:</strong> Article 20 covers anti-bribery and trade sanctions but does not require the Products to meet specific technical standards for market entry in Cyprus. The Products must comply with applicable IEC standards, CE marking, and Cyprus DSO grid codes — these are regulatory requirements for installation and grid connection.</p>
+
+<h3>Proposed Addition — Insert after §20.3 as new §20.4–20.5:</h3>
+<div class="proposed-text"><strong>20.4 Product Standards Compliance:</strong>
+The Products supplied under this Contract shall comply with:
+(a) IEC standards applicable to battery energy storage systems (including IEC 62619, IEC 62477);
+(b) CE marking requirements for products placed on the European Union/EEA market;
+(c) applicable Cyprus Distribution System Operator (DSO) grid codes and technical regulations; and
+(d) any additional standards specified in the applicable Quotation.
+
+<strong>20.5 Certificates of Compliance:</strong>
+Upon request, the Seller shall provide certificates of compliance, test reports, and documentation evidencing compliance with applicable standards, including but not limited to CE certificates, IEC test reports, and type approval documentation.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMMENT 17: NO SET-OFF FOR LTSA            -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2 id="c17">Comment 17: INSERT — No Set-Off for LTSA Matters (Art. 8C) <span class="tag tag-minor">MINOR</span></h2>
+
+<p><strong>Location:</strong> <span class="section-ref">After Article 8C (LTSA Separation) — add as §8C.2</span></p>
+
+<p><strong>Issue:</strong> Article 8C correctly separates LTSA obligations from this Sales Contract but does not prevent set-off. Without this, either party could withhold payments under this contract citing LTSA or EMS disputes.</p>
+
+<h3>Proposed Insertion:</h3>
+<div class="proposed-text"><strong>8C.2 No Set-Off:</strong>
+The Buyer shall not withhold, defer, or set off payments under this Contract due to performance or service matters governed by an LTSA or by third-party EMS arrangements. Similarly, the Seller shall not withhold delivery or services under this Contract due to disputes arising under any LTSA.</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SUMMARY TABLE                              -->
+<!-- ═══════════════════════════════════════════ -->
+
+<h2>Summary: All Comments</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width:4%;">#</th>
+            <th style="width:24%;">Issue</th>
+            <th style="width:8%;">Priority</th>
+            <th style="width:8%;">Type</th>
+            <th style="width:16%;">Location</th>
+            <th style="width:40%;">Action Required</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Payment terms + late payment framework</td>
+            <td style="color:#1e40af;font-weight:700;">CALL</td>
+            <td>Amend</td>
+            <td>Art. 6</td>
+            <td>Populate <strong>30/50/10/10</strong>; add EU Dir. 2011/7/EU late payment interest; 60-day default trigger; advance non-refundable on default</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Affiliate &amp; anti-circumvention</td>
+            <td style="color:#1e40af;font-weight:700;">CALL</td>
+            <td>Insert</td>
+            <td>Art. 1A.4</td>
+            <td>Accept Art. 1A.3 as-is; add anti-circumvention clause preventing direct contracts with introduced clients in Cyprus</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Installation scope blanks</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Amend</td>
+            <td>Art. 5A</td>
+            <td>Complete items (a), (e), (f) — installation, supervision, workmanship warranty</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>No Cross-Liability</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Insert</td>
+            <td>New Art. 5C</td>
+            <td>Neither party liable for other's scope defects</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Late payment framework &amp; end-customer pass-through</td>
+            <td style="color:#1e40af;font-weight:700;">CALL</td>
+            <td>Amend</td>
+            <td>Art. 6</td>
+            <td>Replace "no default" clause with EU late payment rates; 60-day default; mirror in downstream contracts</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Interest rate — EU Directive 2011/7/EU</td>
+            <td style="color:#1e40af;font-weight:700;">CALL</td>
+            <td>Amend</td>
+            <td>Art. 6</td>
+            <td>Replace 2%/month compound with ECB+8% simple interest per EU Directive 2011/7/EU</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Non-conforming goods return</td>
+            <td style="color:#d97706;font-weight:700;">IMPORTANT</td>
+            <td>Amend</td>
+            <td>Art. 5 &sect;5.6</td>
+            <td>Confirmed defects returned at Seller cost</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Performance warranties (SOH/RTE)</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Insert</td>
+            <td>New Art. 8D</td>
+            <td>SOH 85/79.58/70%, RTE &ge;86.32%, 7,000 cycles, PCS &ge;98%</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Financial guarantees (APG/Bond/AXA/Credit)</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Insert</td>
+            <td>New Art. 9B</td>
+            <td>100% APG; 5% bond (post-advance); AXA &euro;5M policy + verification; credit check response (bank ref / funded PO evidence)</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Delay LDs</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Insert</td>
+            <td>New Art. 9C</td>
+            <td>0.1/0.15/0.2% per day, 10% combined cap</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Liability cap at 10%</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Amend</td>
+            <td>Art. 9</td>
+            <td>Restore to 100% (or tiered 10/50/100%)</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Commissioning / PAC undefined</td>
+            <td style="color:#dc2626;font-weight:700;">CRITICAL</td>
+            <td>Insert</td>
+            <td>New Art. 10</td>
+            <td>Define PAC, SAT, punch list, site readiness</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>Force Majeure cure incomplete</td>
+            <td style="color:#d97706;font-weight:700;">IMPORTANT</td>
+            <td>Amend</td>
+            <td>Art. 15</td>
+            <td>60-day cure, deposit refund within 30 days</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>Insurance section missing</td>
+            <td style="color:#d97706;font-weight:700;">IMPORTANT</td>
+            <td>Insert</td>
+            <td>New Art. 16</td>
+            <td>Seller: &euro;5M PL + &euro;2M PI; Buyer: &euro;1M each</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>Confidentiality refs Poland</td>
+            <td style="color:#3730a3;font-weight:700;">MINOR</td>
+            <td>Amend</td>
+            <td>Art. 16</td>
+            <td>Replace "Republic of Poland" with Cyprus/Singapore</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>Product compliance standards</td>
+            <td style="color:#d97706;font-weight:700;">IMPORTANT</td>
+            <td>Insert</td>
+            <td>Art. 20</td>
+            <td>IEC, CE marking, Cyprus DSO grid codes</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>No set-off for LTSA</td>
+            <td style="color:#3730a3;font-weight:700;">MINOR</td>
+            <td>Insert</td>
+            <td>Art. 8C</td>
+            <td>No cross-contract set-off</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>Acknowledgement: Items Correctly Present in V1</h2>
+
+<p>We note and appreciate the following provisions already present in the contract:</p>
+
+<table>
+    <thead><tr><th>Item</th><th>Contract Reference</th></tr></thead>
+    <tbody>
+        <tr><td>Subordination to Distribution Agreement</td><td>Art. 1A</td></tr>
+        <tr><td>CIF Limassol delivery</td><td>Art. 4/5</td></tr>
+        <tr><td>Seller Installation &amp; Commissioning scope (structure)</td><td>Art. 5A</td></tr>
+        <tr><td>Buyer EPC scope</td><td>Art. 5B</td></tr>
+        <tr><td>End-Customer Payment Provisions (to be amended per Comment 5)</td><td>Art. 6</td></tr>
+        <tr><td>5-Year Warranty</td><td>Art. 8</td></tr>
+        <tr><td>Warranty commencement (PAC or 6mo from shipment)</td><td>Art. 8</td></tr>
+        <tr><td>Coastal C5 restrictions (Cyprus)</td><td>Art. 8A</td></tr>
+        <tr><td>Warranty 10% cap + manufacturing defect carve-out</td><td>Art. 8B</td></tr>
+        <tr><td>LTSA Separation</td><td>Art. 8C</td></tr>
+        <tr><td>Indemnities (Seller for manufacturing, Buyer for EPC)</td><td>Art. 9A</td></tr>
+        <tr><td>Singapore Law / SIAC Arbitration</td><td>Art. 12</td></tr>
+        <tr><td>Cyprus Carve-Out for Distribution disputes</td><td>Art. 12.2</td></tr>
+        <tr><td>Interim Relief in Cyprus courts</td><td>Art. 12.3</td></tr>
+        <tr><td>English as binding language</td><td>Art. 12.3 &amp; Art. 17</td></tr>
+        <tr><td>Force Majeure no-abuse clause</td><td>Art. 15</td></tr>
+        <tr><td>Pre-Shipment Inspection &amp; FAT</td><td>Art. 18</td></tr>
+        <tr><td>GDPR / Data Protection</td><td>Art. 19</td></tr>
+        <tr><td>Anti-Bribery &amp; Compliance</td><td>Art. 20</td></tr>
+    </tbody>
+</table>
+
+<hr>
+
+<p style="text-align:center; font-size: 12px; color: #6b7280; margin-top: 40px;">
+    Lighthief Cyprus Ltd — Contract Review Comments<br>
+    Linyang Sales Contract V1 — 6 March 2026<br>
+    Prepared for submission to Linyang ESS (Conor Yang, Tom Wieckowski)
+</p>
+
+</body>
+</html>

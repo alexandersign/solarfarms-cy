@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthief Greece IKE — Team & Roles</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #0ea5e9;
+            --accent-light: #e0f2fe;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --green: #16a34a;
+            --amber: #d97706;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+        .page { max-width: 900px; margin: 0 auto; padding: 40px; position: relative; }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: var(--accent); color: white; border: none; padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; z-index: 100; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(14,165,233,0.3); transition: background 0.2s; }
+        .print-btn:hover { background: #0284c7; }
+
+        .header { background: linear-gradient(135deg, var(--primary) 0%, #0c4a6e 100%); color: white; padding: 48px 40px; margin: -40px -40px 40px; border-radius: 0 0 12px 12px; }
+        .header h1 { font-size: 28px; margin-bottom: 4px; }
+        .header .subtitle { font-size: 16px; opacity: 0.85; margin-bottom: 20px; }
+        .header .meta { display: flex; gap: 32px; flex-wrap: wrap; font-size: 13px; opacity: 0.8; }
+        .header .meta span { display: flex; align-items: center; gap: 6px; }
+
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge.pending { background: var(--amber); }
+        .badge.confirmed { background: var(--green); }
+        .badge.recruiting { background: var(--accent); }
+        .badge.planned { background: var(--muted); }
+
+        h2 { font-size: 20px; color: var(--primary); margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+        h3 { font-size: 16px; color: var(--primary); margin: 24px 0 12px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 14px; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-alt); color: var(--primary); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        tr:last-child td { border-bottom: none; }
+        tbody tr:nth-child(even) { background: var(--bg-alt); }
+
+        .structure-box { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 16px 0; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.8; white-space: pre; overflow-x: auto; }
+
+        .role-card { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 28px 28px 24px; margin: 24px 0; }
+        .role-card h3 { margin-top: 0; font-size: 18px; }
+        .role-card table { margin: 12px 0 16px; }
+        .role-card table td:first-child { font-weight: 600; white-space: nowrap; color: var(--primary); width: 180px; }
+
+        .role-card .responsibilities { margin: 16px 0; }
+        .role-card .responsibilities h4 { font-size: 14px; color: var(--primary); margin: 16px 0 8px; }
+        .role-card .responsibilities ul { padding-left: 20px; font-size: 14px; }
+        .role-card .responsibilities li { margin: 4px 0; color: var(--text); }
+
+        .role-card .sub-heading { font-size: 13px; font-weight: 600; color: var(--accent); margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.3px; }
+
+        .kpi-table th { background: var(--primary); color: white; }
+        .kpi-table td:nth-child(2) { color: var(--green); font-weight: 600; }
+
+        .requirements-list { padding-left: 20px; font-size: 14px; margin: 8px 0 16px; }
+        .requirements-list li { margin: 4px 0; }
+
+        .section-note { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; }
+
+        .totals-row td { font-weight: 700; border-top: 2px solid var(--primary); background: var(--accent-light) !important; }
+
+        .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+
+        @media print {
+            .print-btn { display: none !important; }
+            body { font-size: 11pt; }
+            .page { padding: 10px; max-width: 100%; }
+            .header { margin: -10px -10px 20px; padding: 24px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            h2 { page-break-after: avoid; margin-top: 24px; }
+            table, .role-card, .structure-box { page-break-inside: avoid; }
+            .role-card { break-inside: avoid; }
+            th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .kpi-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .totals-row td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        @media (max-width: 700px) {
+            .header .meta { flex-direction: column; gap: 8px; }
+            .role-card { padding: 20px 16px; }
+            .role-card table td:first-child { width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Export</button>
+
+<div class="page">
+
+    <div class="header">
+        <h1>Lighthief Greece IKE</h1>
+        <div class="subtitle">Team &amp; Roles — LGR-TEAM-001</div>
+        <div class="meta">
+            <span>Last Updated: March 2026</span>
+            <span>Status: <span class="badge pending">Pre-incorporation</span></span>
+            <span>Roles defined, recruitment pending</span>
+        </div>
+    </div>
+
+    <!-- ═══════ ORGANISATIONAL STRUCTURE ═══════ -->
+
+    <h2>Organisational Structure</h2>
+
+    <div class="structure-box">Alexander Papacosta — Managing Director (non-resident, unpaid)
+│  Strategic direction, group coordination, key client relationships
+│
+└── TEE-Licensed Engineer / Country Lead  ←  FIRST HIRE (mandatory)
+    │  Technical authority, tender submissions, business development
+    │
+    ├── Energy Engineer / Project Manager  ←  Second hire
+    │   Project execution, grid connection, site coordination
+    │
+    ├── Junior Engineer / Technician  ←  Project-based
+    │   Field support, commissioning, O&amp;M
+    │
+    └── Office Administrator  ←  When volume justifies
+        Finance admin, procurement, scheduling</div>
+
+    <!-- ═══════ TEAM ROSTER ═══════ -->
+
+    <h2>Team Roster</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Role</th>
+                <th>Name</th>
+                <th>Monthly Gross</th>
+                <th>Type</th>
+                <th>Start Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Managing Director</td>
+                <td>Alexander Papacosta</td>
+                <td>— (unpaid)</td>
+                <td>Director</td>
+                <td>At incorporation</td>
+                <td><span class="badge confirmed">Confirmed</span></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>TEE-Licensed Engineer / Country Lead</td>
+                <td>TBC</td>
+                <td>€3,300 – €4,700</td>
+                <td>Employee</td>
+                <td>Week 6–8</td>
+                <td><span class="badge recruiting">Recruiting</span></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Energy Engineer / Project Manager</td>
+                <td>TBC</td>
+                <td>€2,200 – €3,200</td>
+                <td>Employee</td>
+                <td>Month 6–12</td>
+                <td><span class="badge planned">Planned</span></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Office Administrator</td>
+                <td>TBC</td>
+                <td>€1,500 – €2,000</td>
+                <td>Employee</td>
+                <td>When needed</td>
+                <td><span class="badge planned">Planned</span></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Junior Engineer / Technician</td>
+                <td>TBC</td>
+                <td>€1,300 – €1,800</td>
+                <td>Employee or contract</td>
+                <td>Project-based</td>
+                <td><span class="badge planned">Planned</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ═══════ ROLE DESCRIPTIONS ═══════ -->
+
+    <h2>Role Descriptions</h2>
+
+    <!-- Role 1 -->
+    <div class="role-card">
+        <h3>Role 1: Managing Director</h3>
+        <table>
+            <tr><td>Title</td><td>Managing Director (Διαχειριστής)</td></tr>
+            <tr><td>Holder</td><td>Alexander Papacosta</td></tr>
+            <tr><td>Location</td><td>Limassol, Cyprus (non-resident)</td></tr>
+            <tr><td>Employment</td><td>Not employed by the Greek entity — no salary, no EFKA</td></tr>
+            <tr><td>Authority</td><td>Full legal representation of the IKE, contract signing, bank account authority</td></tr>
+            <tr><td>Accountability</td><td>Joint &amp; several liability to the Greek state for tax/EFKA debts</td></tr>
+        </table>
+
+        <div class="responsibilities">
+            <h4>Responsibilities</h4>
+            <ul>
+                <li>Overall strategic direction for Lighthief Greece</li>
+                <li>Capital allocation and investment decisions</li>
+                <li>Key client and partner relationship management</li>
+                <li>Group-level coordination with Lighthief Cyprus and Poland entities</li>
+                <li>Board/shareholder resolutions and corporate governance</li>
+                <li>Financial oversight and approval of major expenditures</li>
+                <li>Representation at industry events and senior stakeholder meetings</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Role 2 -->
+    <div class="role-card" style="border-left-color: var(--green);">
+        <h3>Role 2: TEE-Licensed Engineer / Country Lead</h3>
+        <table>
+            <tr><td>Title</td><td>Country Lead &amp; Chief Engineer (Υπεύθυνος Μηχανικός &amp; Επικεφαλής Ελλάδας)</td></tr>
+            <tr><td>Reports to</td><td>Alexander Papacosta (Managing Director)</td></tr>
+            <tr><td>Location</td><td>Athens, Greece</td></tr>
+            <tr><td>Employment</td><td>Full-time employee</td></tr>
+            <tr><td>Salary Range</td><td>€3,300 – €4,700/month gross (€40,000 – €56,000/year)</td></tr>
+            <tr><td>Employer Cost</td><td>€4,070 – €5,690/month (incl. ~22% employer SI)</td></tr>
+            <tr><td>Priority</td><td><strong style="color: var(--green);">FIRST HIRE — mandatory for tender participation</strong></td></tr>
+        </table>
+
+        <div class="responsibilities">
+            <h4>Requirements</h4>
+            <ul class="requirements-list">
+                <li>Graduate of Greek polytechnic (ΕΜΠ, ΑΠΘ, Πολυτεχνείο Κρήτης) or EU-recognised equivalent</li>
+                <li>Active TEE membership with practice licence (Άδεια Ασκήσεως Επαγγέλματος)</li>
+                <li>5–10+ years in energy sector (BESS, RES, grid connection, MV/HV systems)</li>
+                <li>Familiarity with RAE/RAAEY permitting, ADMIE grid code, HEDNO processes</li>
+                <li>English fluency (for internal Lighthief communication)</li>
+            </ul>
+
+            <h4>Responsibilities</h4>
+
+            <div class="sub-heading">Technical Authority (50%)</div>
+            <ul>
+                <li>Sign off on all engineering designs and technical studies</li>
+                <li>Prepare and submit tender documents to RAE/RAAEY</li>
+                <li>Grid connection applications to ADMIE (transmission) and HEDNO (distribution)</li>
+                <li>Technical due diligence on BESS projects</li>
+                <li>Protection system design and review</li>
+                <li>MV/HV electrical engineering, single-line diagrams, relay settings</li>
+                <li>Compliance with Greek grid code and EN standards</li>
+                <li>Interface with Lighthief Cyprus engineering team and OEMs (Linyang, Kehua, Voltus)</li>
+                <li>Commissioning supervision and technical acceptance</li>
+            </ul>
+
+            <div class="sub-heading">Business Development (30%)</div>
+            <ul>
+                <li>Market intelligence — track Greek BESS pipeline, tenders, and regulatory changes</li>
+                <li>Relationship building with key developers (METLEN, PPC, Terna Energy, Motor Oil/MORE)</li>
+                <li>Attend RAE/RAAEY consultations and industry events (e.g., TIF-Helexpo, Athens Energy Forum)</li>
+                <li>Prepare proposals and RFP responses</li>
+                <li>Identify co-investment and partnership opportunities</li>
+                <li>Build local subcontractor network (civil, electrical, crane/transport)</li>
+            </ul>
+
+            <div class="sub-heading">Country Management (20%)</div>
+            <ul>
+                <li>First point of contact for all Greek operations</li>
+                <li>Coordinate with accountant, lawyer, and registered office provider</li>
+                <li>Budget tracking and monthly reporting to Managing Director</li>
+                <li>Recruitment of additional team members as pipeline grows</li>
+                <li>Health &amp; safety compliance for Greek operations</li>
+            </ul>
+        </div>
+
+        <h4>KPIs</h4>
+        <table class="kpi-table">
+            <thead>
+                <tr><th>KPI</th><th>Target</th><th>Review</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Tender submissions</td><td>≥4 per year</td><td>Quarterly</td></tr>
+                <tr><td>Pipeline value</td><td>≥€5M within 12 months</td><td>Quarterly</td></tr>
+                <tr><td>Project wins</td><td>≥1 contract within 18 months</td><td>Semi-annual</td></tr>
+                <tr><td>Developer relationships</td><td>≥5 active relationships</td><td>Quarterly</td></tr>
+                <tr><td>Technical deliverables</td><td>On-time, zero rejected submissions</td><td>Per project</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Role 3 -->
+    <div class="role-card">
+        <h3>Role 3: Energy Engineer / Project Manager</h3>
+        <table>
+            <tr><td>Title</td><td>Energy Engineer / Project Manager (Μηχανικός Ενέργειας / Υπεύθυνος Έργου)</td></tr>
+            <tr><td>Reports to</td><td>Country Lead</td></tr>
+            <tr><td>Location</td><td>Athens, Greece (with site travel)</td></tr>
+            <tr><td>Employment</td><td>Full-time employee</td></tr>
+            <tr><td>Salary Range</td><td>€2,200 – €3,200/month gross (€26,000 – €38,000/year)</td></tr>
+            <tr><td>Employer Cost</td><td>€2,640 – €3,860/month (incl. ~22% employer SI)</td></tr>
+            <tr><td>Timing</td><td>Second hire — when first project is secured or pipeline exceeds €10M</td></tr>
+        </table>
+
+        <div class="responsibilities">
+            <h4>Requirements</h4>
+            <ul class="requirements-list">
+                <li>Engineering degree (electrical, mechanical, or energy engineering)</li>
+                <li>TEE registration preferred (or eligible)</li>
+                <li>3–5 years experience in energy/renewables projects</li>
+                <li>Familiarity with BESS technology, grid connection, and construction processes</li>
+                <li>AutoCAD/ETAP proficiency</li>
+                <li>English fluency</li>
+            </ul>
+
+            <h4>Responsibilities</h4>
+            <ul>
+                <li>Detailed project planning, scheduling, and cost tracking</li>
+                <li>Grid connection process management with ADMIE/HEDNO</li>
+                <li>Subcontractor coordination (civil works, electrical installation, crane/transport)</li>
+                <li>Site supervision during construction and commissioning</li>
+                <li>Quality assurance and inspection documentation</li>
+                <li>Environmental permit and building permit coordination</li>
+                <li>Interface with Linyang installation crew during commissioning</li>
+                <li>O&amp;M setup for completed projects (procedures, SCADA handover)</li>
+                <li>Health &amp; safety on-site compliance</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Role 4 -->
+    <div class="role-card">
+        <h3>Role 4: Office Administrator</h3>
+        <table>
+            <tr><td>Title</td><td>Office Administrator (Διοικητικός Υπάλληλος)</td></tr>
+            <tr><td>Reports to</td><td>Country Lead</td></tr>
+            <tr><td>Location</td><td>Athens, Greece</td></tr>
+            <tr><td>Employment</td><td>Full-time employee</td></tr>
+            <tr><td>Salary Range</td><td>€1,500 – €2,000/month gross (€18,000 – €24,000/year)</td></tr>
+            <tr><td>Employer Cost</td><td>€1,825 – €2,440/month (incl. ~22% employer SI)</td></tr>
+            <tr><td>Timing</td><td>When team exceeds 2 people or administrative volume justifies</td></tr>
+        </table>
+
+        <div class="responsibilities">
+            <h4>Requirements</h4>
+            <ul class="requirements-list">
+                <li>Fluent Greek and English</li>
+                <li>Experience with Greek business administration, invoicing, and procurement</li>
+                <li>Familiarity with myDATA / e-invoicing systems</li>
+                <li>Proficiency in Microsoft Office / Google Workspace</li>
+            </ul>
+
+            <h4>Responsibilities</h4>
+            <ul>
+                <li>Invoice processing and coordination with accountant</li>
+                <li>Purchase order management and supplier payments</li>
+                <li>Travel booking and expense management</li>
+                <li>Document management, filing, and translation support</li>
+                <li>Meeting scheduling and calendar management</li>
+                <li>Office / registered address coordination</li>
+                <li>Support with ERGANI and EFKA filings</li>
+                <li>Client and subcontractor contract administration</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Role 5 -->
+    <div class="role-card">
+        <h3>Role 5: Junior Engineer / Technician</h3>
+        <table>
+            <tr><td>Title</td><td>Junior Engineer / Field Technician (Βοηθός Μηχανικός / Τεχνικός)</td></tr>
+            <tr><td>Reports to</td><td>Country Lead or Project Manager</td></tr>
+            <tr><td>Location</td><td>Athens or project sites across Greece</td></tr>
+            <tr><td>Employment</td><td>Full-time employee or fixed-term contract</td></tr>
+            <tr><td>Salary Range</td><td>€1,300 – €1,800/month gross (€16,000 – €22,000/year)</td></tr>
+            <tr><td>Employer Cost</td><td>€1,590 – €2,200/month (incl. ~22% employer SI)</td></tr>
+            <tr><td>Timing</td><td>Hired per project or when O&amp;M portfolio reaches ≥50 MWh</td></tr>
+        </table>
+
+        <div class="responsibilities">
+            <h4>Requirements</h4>
+            <ul class="requirements-list">
+                <li>Engineering degree or technical diploma (ΑΤΕΙ / ΙΕΚ acceptable)</li>
+                <li>1–3 years field experience in electrical installations or energy projects</li>
+                <li>Valid driving licence (travel to remote sites)</li>
+                <li>Willingness to work on-site in varying conditions</li>
+            </ul>
+
+            <h4>Responsibilities</h4>
+            <ul>
+                <li>On-site construction support and supervision</li>
+                <li>Cable installation, termination, and testing</li>
+                <li>Equipment receiving, inspection, and inventory</li>
+                <li>Commissioning assistance under senior engineer direction</li>
+                <li>Preventive maintenance routines (O&amp;M phase)</li>
+                <li>SCADA data collection and fault reporting</li>
+                <li>Health &amp; safety compliance on-site</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ═══════ SECONDED STAFF ═══════ -->
+
+    <h2>Seconded Staff (from Lighthief Group)</h2>
+
+    <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">
+        In addition to Greek hires, Lighthief Greece may draw on seconded engineers from the Poland/Cyprus entities for specific project phases:
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Base Entity</th>
+                <th>Specialism</th>
+                <th>Deployment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dawid Lesnikowski</td>
+                <td>Lighthief International (PL)</td>
+                <td>BESS commissioning, protection systems</td>
+                <td>Commissioning phase (2–4 weeks per project)</td>
+            </tr>
+            <tr>
+                <td>Szymon</td>
+                <td>Lighthief International (PL)</td>
+                <td>BMS/EMS integration, SCADA</td>
+                <td>Commissioning phase</td>
+            </tr>
+            <tr>
+                <td>Kacper</td>
+                <td>Lighthief International (PL)</td>
+                <td>MV systems, fault diagnostics</td>
+                <td>Commissioning phase</td>
+            </tr>
+            <tr>
+                <td>Costas Hadjikyriacou</td>
+                <td>Lighthief Cyprus</td>
+                <td>ETEK Licensed Engineer, project planning</td>
+                <td>Advisory / technical review</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-note">
+        <strong>Posted Workers:</strong> Posted workers comply with EU Posting of Workers Directive — ERGANI notification and Greek labour minimums apply.
+    </div>
+
+    <!-- ═══════ HIRING ROADMAP ═══════ -->
+
+    <h2>Hiring Roadmap</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Phase</th>
+                <th>Timeline</th>
+                <th>Hires</th>
+                <th>Trigger</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Phase 0</strong></td>
+                <td>Incorporation</td>
+                <td>Alexander Papacosta (Director, unpaid)</td>
+                <td>Company formation</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 1</strong></td>
+                <td>Week 6–8</td>
+                <td>TEE Engineer / Country Lead</td>
+                <td>Mandatory for operations</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 2</strong></td>
+                <td>Month 6–12</td>
+                <td>Energy Engineer / PM</td>
+                <td>First project secured or pipeline &gt;€10M</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 3</strong></td>
+                <td>Month 12–18</td>
+                <td>Office Administrator</td>
+                <td>Team &gt;2 people or admin volume</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 4</strong></td>
+                <td>Per project</td>
+                <td>Junior Engineer / Technician</td>
+                <td>Active construction or O&amp;M</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ═══════ PAYROLL ESTIMATE ═══════ -->
+
+    <h2>Payroll Estimate (Steady State — 3 Employees)</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Gross/mo</th>
+                <th>Employer SI (~22%)</th>
+                <th>Total Employer Cost/mo</th>
+                <th>Annual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Country Lead (TEE)</td>
+                <td>€4,000</td>
+                <td>€880</td>
+                <td>€4,880</td>
+                <td>€58,560</td>
+            </tr>
+            <tr>
+                <td>Energy Engineer / PM</td>
+                <td>€2,800</td>
+                <td>€616</td>
+                <td>€3,416</td>
+                <td>€40,992</td>
+            </tr>
+            <tr>
+                <td>Office Admin</td>
+                <td>€1,700</td>
+                <td>€374</td>
+                <td>€2,074</td>
+                <td>€24,888</td>
+            </tr>
+            <tr class="totals-row">
+                <td>Total</td>
+                <td>€8,500</td>
+                <td>€1,870</td>
+                <td>€10,370</td>
+                <td>€124,440</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ═══════ FOOTER ═══════ -->
+
+    <div class="footer">
+        <p>Document prepared: March 2026 · Author: Lighthief Strategy</p>
+        <p>Status: Pre-incorporation — roles defined, recruitment pending</p>
+        <p style="margin-top: 8px;"><strong>CONFIDENTIAL</strong> — Lighthief Cyprus Ltd · HE 477423</p>
+    </div>
+
+</div>
+</body>
+</html>

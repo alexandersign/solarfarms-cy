@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI - EMS Provider - Comprehensive Technical & Commercial Questionnaire - Cyprus BESS Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1f2937; padding: 40px; max-width: 1100px; margin: 0 auto; }
+
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .header h1 { font-size: 22pt; margin-bottom: 8px; text-align: center; }
+        .header .subtitle { font-size: 13pt; opacity: 0.9; text-align: center; }
+
+        .section { margin-bottom: 30px; page-break-inside: avoid; }
+        h2 { color: #1e3a5f; border-bottom: 2px solid #1e3a5f; padding-bottom: 8px; margin-bottom: 15px; font-size: 14pt; }
+        h3 { color: #2d5a87; margin: 20px 0 10px 0; font-size: 12pt; }
+        h4 { color: #374151; margin: 15px 0 8px 0; font-size: 11pt; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #f3f4f6; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .highlight-box { background: #dbeafe; border: 1px solid #3b82f6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .success-box { background: #dcfce7; border: 1px solid #22c55e; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .response-cell { background: #fff7ed; min-height: 30px; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+        .badge-required { background: #fee2e2; color: #991b1b; }
+        .badge-preferred { background: #fef3c7; color: #92400e; }
+        .badge-optional { background: #dcfce7; color: #166534; }
+
+        .total-row { background: #dbeafe !important; font-weight: bold; }
+        .group-header { background: #e0e7ff !important; font-weight: 600; }
+
+        .architecture-box { background: #f0f4f8; border: 2px solid #2d5a87; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: 'Courier New', monospace; font-size: 10pt; white-space: pre-line; line-height: 1.8; }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        ol { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 4px; }
+        p { margin-bottom: 10px; }
+
+        .toc { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 15px 0; }
+        .toc a { color: #2d5a87; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .toc ol { counter-reset: toc; list-style: none; margin-left: 0; }
+        .toc li { counter-increment: toc; margin-bottom: 4px; padding-left: 0; }
+        .toc li::before { content: counter(toc) ". "; font-weight: 600; color: #1e3a5f; }
+
+        @media print {
+            body { padding: 20px; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+        }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: #1e3a5f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 12pt; z-index: 100; }
+        .print-btn:hover { background: #2d5a87; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-RFI-EMS-2026-004</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 27 February 2026</div>
+                <div><strong>Classification:</strong> CONFIDENTIAL</div>
+            </div>
+        </div>
+        <h1>REQUEST FOR INFORMATION</h1>
+        <div class="subtitle">Comprehensive EMS / SCADA / PPC Technical &amp; Commercial Questionnaire</div>
+        <div style="text-align: center; margin-top: 8px; font-size: 11pt; opacity: 0.9;">Cyprus BESS Portfolio &mdash; 51 Parks | 249 MW | 882 MWh</div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="section">
+        <div class="toc">
+            <h3 style="margin-top:0;">Table of Contents</h3>
+            <ol>
+                <li><a href="#s1">Introduction &amp; Portfolio Overview</a></li>
+                <li><a href="#s2">System Architecture &amp; Hardware Requirements</a></li>
+                <li><a href="#s3">PPC Functionality &amp; Grid Code Compliance</a></li>
+                <li><a href="#s4">Communication Protocols &amp; DSO Integration</a></li>
+                <li><a href="#s5">Battery Monitoring &mdash; Cell-Level Monitoring Depth</a></li>
+                <li><a href="#s6">Advanced Degradation Analytics</a></li>
+                <li><a href="#s7">Thermal &amp; Safety Monitoring</a></li>
+                <li><a href="#s8">Fault Detection &amp; Diagnostics</a></li>
+                <li><a href="#s9">Data Infrastructure &amp; Logging</a></li>
+                <li><a href="#s10">EMS Optimization Capability</a></li>
+                <li><a href="#s11">Market Integration &amp; Revenue Optimisation</a></li>
+                <li><a href="#s12">Forecast Integration</a></li>
+                <li><a href="#s13">Remote Dispatch &amp; Fail-Safe Logic</a></li>
+                <li><a href="#s14">Redundancy &amp; High Availability</a></li>
+                <li><a href="#s15">Cybersecurity &amp; NIS2 Compliance</a></li>
+                <li><a href="#s16">KPI Monitoring &amp; Reporting</a></li>
+                <li><a href="#s17">Fleet Management &amp; Multi-Site SCADA</a></li>
+                <li><a href="#s18">Commercial &amp; Licensing Model</a></li>
+                <li><a href="#s19">Support, Warranty &amp; SLA</a></li>
+                <li><a href="#s20">Company Qualifications &amp; References</a></li>
+                <li><a href="#s21">Response Instructions</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- SECTION 1: INTRODUCTION -->
+    <div class="section" id="s1">
+        <h2>1. INTRODUCTION &amp; PORTFOLIO OVERVIEW</h2>
+
+        <p>Lighthief Cyprus Ltd is the EPC contractor, exclusive OEM distributor, and long-term O&amp;M service provider for a portfolio of Battery Energy Storage System (BESS) projects across Cyprus. We are seeking proposals from qualified EMS (Energy Management System) providers for the supply, integration, and ongoing support of EMS, PPC (Power Plant Controller), RTU, and SCADA systems across the entire portfolio.</p>
+
+        <div class="highlight-box">
+            <strong>Portfolio Summary:</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>51 Parks</strong> across 5 districts (Nicosia, Famagusta, Limassol, Larnaca, Paphos)</li>
+                <li><strong>249 MW</strong> total power capacity</li>
+                <li><strong>881.78 MWh</strong> total energy capacity</li>
+                <li><strong>251 containers</strong> (66 MV Skids + 185 BESS containers)</li>
+                <li><strong>3 client groups + 6 standalone parks</strong></li>
+                <li><strong>Target deployment:</strong> Q2 2026 &ndash; Q4 2027</li>
+            </ul>
+        </div>
+
+        <h3>1.1 BESS Equipment (OEM Supplied)</h3>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Manufacturer</th>
+                <th>Model / Specification</th>
+                <th>Communication</th>
+            </tr>
+            <tr>
+                <td><strong>Battery Containers</strong></td>
+                <td>Linyang Energy</td>
+                <td>Power Atlantic 5.015 MWh, 20HC, LFP (EVE 314Ah), Liquid Cooling</td>
+                <td>Modbus TCP, CAN, RS485</td>
+            </tr>
+            <tr>
+                <td><strong>PCS (Inverter)</strong></td>
+                <td>Kehua Tech</td>
+                <td>BCS-C-HUD series (1000K / 1250K / 2500K), EN 50549-2 certified</td>
+                <td>Modbus TCP, IEC 61850, IEC 104</td>
+            </tr>
+            <tr>
+                <td><strong>BMS</strong></td>
+                <td>Linyang (3-level)</td>
+                <td>BMU (L1) / BCMU (L2) / BAMS (L3) &mdash; 96 BMUs per container</td>
+                <td>CAN, RS485, Modbus TCP</td>
+            </tr>
+            <tr>
+                <td><strong>MV Transformer</strong></td>
+                <td>Kehua</td>
+                <td>SL-10000 series, Oil-immersed, 0.69/35kV, Dy11-y11</td>
+                <td>Modbus, condition monitoring</td>
+            </tr>
+            <tr>
+                <td><strong>Switchgear / RMU</strong></td>
+                <td>Schneider (via Linyang)</td>
+                <td>SF6 or Air-insulated, 11kV / 22kV</td>
+                <td>IEC 61850, Modbus</td>
+            </tr>
+        </table>
+
+        <h3>1.2 Regulatory Context</h3>
+        <table>
+            <tr>
+                <th>Authority</th>
+                <th>Role</th>
+                <th>Key Requirement</th>
+            </tr>
+            <tr>
+                <td><strong>EAC</strong> (Electricity Authority of Cyprus)</td>
+                <td>Distribution System Operator (DSO)</td>
+                <td>IEC 60870-5-104 mandatory, grid connection &le;8MW per park</td>
+            </tr>
+            <tr>
+                <td><strong>TSOC</strong></td>
+                <td>Transmission System Operator (TSO)</td>
+                <td>Grid connections &gt;8MW, ancillary services market</td>
+            </tr>
+            <tr>
+                <td><strong>CERA</strong></td>
+                <td>Energy Regulatory Authority</td>
+                <td>Market licensing, tariff structure, NIS2 compliance</td>
+            </tr>
+        </table>
+
+        <h3>1.3 Portfolio Structure</h3>
+        <table>
+            <tr>
+                <th>Group</th>
+                <th>Parks</th>
+                <th>MW</th>
+                <th>MWh</th>
+                <th>Containers</th>
+                <th>Aggregator</th>
+            </tr>
+            <tr>
+                <td><strong>G1: ABIO Power</strong></td>
+                <td>25</td>
+                <td>125.0</td>
+                <td>430.3</td>
+                <td>125</td>
+                <td>ABIO</td>
+            </tr>
+            <tr>
+                <td><strong>G2: Esperia Energy</strong></td>
+                <td>11</td>
+                <td>79.5</td>
+                <td>310.5</td>
+                <td>79</td>
+                <td>Synenergia</td>
+            </tr>
+            <tr>
+                <td><strong>G3: Timotheos</strong></td>
+                <td>9</td>
+                <td>25.5</td>
+                <td>81.0</td>
+                <td>27</td>
+                <td>TBC</td>
+            </tr>
+            <tr>
+                <td><strong>Standalone</strong></td>
+                <td>6</td>
+                <td>19.0</td>
+                <td>60.0</td>
+                <td>20</td>
+                <td>Various</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>51</strong></td>
+                <td><strong>249.0</strong></td>
+                <td><strong>881.8</strong></td>
+                <td><strong>251</strong></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h3>1.4 Site Size Categories</h3>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Capacity Range</th>
+                <th>PCS Units</th>
+                <th>MV Skids</th>
+                <th>Parks (approx.)</th>
+            </tr>
+            <tr><td>Small</td><td>1&ndash;3 MW / 3&ndash;10 MWh</td><td>1&ndash;2</td><td>1</td><td>~20</td></tr>
+            <tr><td>Medium</td><td>4&ndash;8 MW / 10&ndash;25 MWh</td><td>3&ndash;6</td><td>1&ndash;2</td><td>~18</td></tr>
+            <tr><td>Large</td><td>10&ndash;15 MW / 35&ndash;40 MWh</td><td>8&ndash;10</td><td>2</td><td>~8</td></tr>
+            <tr><td>XL</td><td>20&ndash;30 MW / 60&ndash;100 MWh</td><td>15&ndash;23</td><td>2&ndash;3</td><td>~5</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 2: SYSTEM ARCHITECTURE & HARDWARE -->
+    <div class="section" id="s2">
+        <h2>2. SYSTEM ARCHITECTURE &amp; HARDWARE REQUIREMENTS</h2>
+
+        <h3>2.1 Per-Site Architecture</h3>
+        <div class="architecture-box">
+<strong>Required Architecture per Park:</strong>
+
+    Cyprus DSO (EAC)
+         |
+         | IEC 60870-5-104 (TCP/IP, Port 2404)
+         |
+    [EMS / PPC / RTU Controller] &mdash; Central site controller
+         |
+         |--- Modbus TCP ---> Kehua PCS (BCS-C-HUD) &mdash; P/Q setpoints
+         |--- Modbus TCP ---> Linyang BMS (BAMS Level 3) &mdash; battery monitoring
+         |--- IEC 61850 / Modbus ---> Protection Relays, MV Switchgear
+         |--- EMS Software &mdash; Dispatch, optimization, grid services
+         |
+    SCADA Local (per park) ---> SCADA Global (per group / fleet)
+        </div>
+
+        <h3>2.2 Hardware Scope &mdash; Please Specify What Is Included</h3>
+        <table>
+            <tr>
+                <th style="width:35%;">Component</th>
+                <th style="width:15%;">Priority</th>
+                <th style="width:50%;">Your Offer (included / excluded / optional)</th>
+            </tr>
+            <tr>
+                <td><strong>PPC / RTU / EMS Controller</strong><br>(Combined or separate hardware)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>I/O Modules</strong><br>(Digital/analog I/O, power measurement inputs)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Energy Meters</strong><br>(Grid-side, BESS-side power metering)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Network Switch (managed)</strong></td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Industrial Router / VPN Firewall</strong></td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>4G/LTE Modem / SIM Router</strong></td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Control Cabinet / Enclosure</strong></td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>UPS for Controls</strong></td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>GPS Antenna (for time sync)</strong></td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>CT/VT Transducers</strong></td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>EMS Software License</strong></td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Local Software</strong></td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Global / Fleet Management</strong></td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>HMI / Local Display</strong></td>
+                <td><span class="badge badge-optional">OPTIONAL</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>2.3 Detailed Bill of Materials</h3>
+        <div class="highlight-box">
+            Please provide a detailed BoM for each site size category (Small / Medium / Large / XL), including part numbers, quantities, and unit prices.
+        </div>
+    </div>
+
+    <!-- SECTION 3: PPC & GRID CODE -->
+    <div class="section" id="s3">
+        <h2>3. PPC FUNCTIONALITY &amp; GRID CODE COMPLIANCE</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:40%;">Question</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:45%;">Response</th>
+            </tr>
+            <tr>
+                <td>3.1</td>
+                <td>Is the PPC hardware-based (dedicated controller) or software running on the EMS platform?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.2</td>
+                <td>Does the PPC support multi-PCS coordination (dispatching setpoints to up to 23 PCS units per park)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.3</td>
+                <td>Can the PPC provide grid-forming / Virtual Synchronous Generator (VSG) control modes?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.4</td>
+                <td>Is black-start capability supported?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.5</td>
+                <td>Are droop control curves configurable (P-f and Q-V)? What range of droop settings (%) is supported?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.6</td>
+                <td>Is ramp rate limiting configurable (kW/s or %/min)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.7</td>
+                <td>Can the PPC execute Volt-Var (Q(U)), Freq-Watt (P(f)), and Volt-Watt (P(V)) curves per EN 50549-2?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.8</td>
+                <td>What is the power factor control range (leading/lagging)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.9</td>
+                <td>Does the PPC support LFSM-O (Limited Frequency Sensitive Mode &mdash; Over-frequency) with configurable activation threshold and droop?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>3.10</td>
+                <td>Can the PPC enforce DSO curtailment levels (100% / 60% / 30% / 0%) as discrete commands?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 4: COMMUNICATION PROTOCOLS -->
+    <div class="section" id="s4">
+        <h2>4. COMMUNICATION PROTOCOLS &amp; DSO INTEGRATION</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:40%;">Question</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:45%;">Response</th>
+            </tr>
+            <tr>
+                <td>4.1</td>
+                <td>Is <strong>IEC 60870-5-104</strong> supported natively or via a protocol gateway? (Native is mandatory for Cyprus DSO)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.2</td>
+                <td>Can you provide a sample IEC-104 point list for a BESS site? (Active power, reactive power, CB control, curtailment, telemetry, protection signals)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.3</td>
+                <td>Is <strong>Modbus TCP/RTU</strong> supported for PCS and BMS integration? Can you interface with Kehua PCS (BCS-C-HUD) and Linyang BMS (BAMS) via Modbus TCP?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.4</td>
+                <td>Is <strong>IEC 61850</strong> (MMS, GOOSE) supported for substation communication and protection relay integration?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.5</td>
+                <td>Is <strong>DNP3</strong> supported for future-proofing?</td>
+                <td><span class="badge badge-optional">OPTIONAL</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.6</td>
+                <td>What is the command acknowledgment time for IEC-104 commands? (Requirement: &le;3 seconds, target &lt;500ms)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.7</td>
+                <td>What is the power adjustment time from setpoint command to achieved output? (Requirement: &le;60 seconds, target &lt;10 seconds)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.8</td>
+                <td>What control accuracy can be achieved relative to setpoint? (Requirement: &plusmn;2%, target &plusmn;1%)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.9</td>
+                <td>What communication links are supported (4G/LTE, Ethernet point-to-point, fiber optic)? Does the system support automatic failover between communication paths?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>4.10</td>
+                <td>Does the system provide <strong>REST API</strong> capability for cloud integration and third-party data exchange?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 5: BATTERY MONITORING -->
+    <div class="section" id="s5">
+        <h2>5. BATTERY MONITORING &mdash; CELL-LEVEL MONITORING DEPTH</h2>
+
+        <p>Our BESS uses a 3-level BMS with 96 BMUs per container. Each BMU provides 52 voltage samples and 12 temperature samples, yielding 4,992 voltage points and 1,152 temperature points per container.</p>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>5.1</td>
+                <td><strong>Cell voltage monitoring:</strong> Can the EMS ingest and display all cell-level voltage data from the BMS (4,992 data points per container, sampled at &le;100ms)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>5.2</td>
+                <td><strong>Cell temperature monitoring:</strong> Can the EMS ingest and display all cell-level temperature data (1,152 points per container, sampled at &le;200ms)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>5.3</td>
+                <td><strong>Internal resistance tracking:</strong> Does the EMS provide cell-level or module-level internal resistance tracking (AC impedance or DC resistance) as a derived metric from BMS data? At what resolution and frequency? Is this logged historically for degradation trending?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>5.4</td>
+                <td><strong>Cell imbalance detection:</strong> Does the EMS monitor cell voltage imbalance and alert on threshold exceedance (e.g., &gt;30mV warning, &gt;50mV critical)? Is equalization status reported?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>5.5</td>
+                <td><strong>SOC estimation accuracy:</strong> What SOC estimation accuracy can be guaranteed at the EMS level? Does the EMS apply enhanced algorithms (Kalman filtering, coulomb counting with drift correction, OCV correlation) on top of BMS-reported SOC? Can you provide a technical brief on the SOC estimation methodology?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>5.6</td>
+                <td><strong>SOH estimation with degradation model:</strong> Does the EMS include a real-time SOH estimation model that tracks actual degradation vs. OEM warranty curve? Is it physics-based (impedance growth + capacity fade) or empirical? Is it configurable per cell chemistry (LFP-specific)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 6: DEGRADATION ANALYTICS -->
+    <div class="section" id="s6">
+        <h2>6. ADVANCED DEGRADATION ANALYTICS</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>6.1</td>
+                <td><strong>Cycle counting algorithm:</strong> Does the EMS implement a rainflow cycle counting algorithm (or equivalent) to accurately count partial cycles and map them to equivalent full cycles? Is this per-container or per-cluster? Is the methodology aligned with IEC 62660-1?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>6.2</td>
+                <td><strong>Throughput-based degradation tracking:</strong> Does the EMS track cumulative energy throughput (MWh in + MWh out) per container/cluster and correlate it with capacity degradation? Is this presented as a degradation-per-MWh metric?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>6.3</td>
+                <td><strong>Calendar aging model:</strong> Does the EMS include a calendar aging model that accounts for time-at-temperature and SOC-at-rest effects? Is this separable from cycle aging in the degradation dashboard?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>6.4</td>
+                <td><strong>Dynamic DoD impact modelling:</strong> Does the EMS dynamically model the impact of varying Depth of Discharge on battery degradation? Can it adjust dispatch strategies to optimize between revenue and battery lifetime? Is the DoD-cycle life curve configurable?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>6.5</td>
+                <td><strong>Predictive EOL forecasting:</strong> Does the EMS provide a predictive End-of-Life forecast based on actual usage data (cycles, throughput, temperature history, calendar time)? Can it project the date at which SOH will reach the warranty threshold (70%)? Is this updated dynamically?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 7: THERMAL & SAFETY -->
+    <div class="section" id="s7">
+        <h2>7. THERMAL &amp; SAFETY MONITORING</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>7.1</td>
+                <td><strong>Thermal runaway early detection:</strong> Does the EMS integrate BMS temperature data, gas detection (H&#8322;, CO), and smoke detection signals to provide multi-layer thermal runaway early warning? What is the detection methodology?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>7.2</td>
+                <td><strong>Hotspot localization:</strong> Does the EMS provide a thermal map or hotspot visualization feature that leverages per-BMU temperature data? Can it identify localized thermal anomalies (e.g., specific rack running consistently hotter)?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>7.3</td>
+                <td><strong>HVAC/cooling performance monitoring:</strong> Does the EMS monitor cooling system metrics (COP, coolant flow rate, inlet/outlet delta-T, compressor run-time, energy consumption)? Are HVAC efficiency degradation trends tracked?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>7.4</td>
+                <td><strong>Fire system status integration:</strong> Does the EMS integrate with the fire detection and suppression system? Can it display fire alarm zone status, suppression system readiness, and actuate emergency shutdown commands?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>7.5</td>
+                <td><strong>Gas detection integration:</strong> Does the EMS receive and process H&#8322; combustible gas and CO sensor signals? Are gas concentration trends logged and alarmed at configurable thresholds?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 8: FAULT DETECTION -->
+    <div class="section" id="s8">
+        <h2>8. FAULT DETECTION &amp; DIAGNOSTICS</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>8.1</td>
+                <td><strong>Real-time fault classification:</strong> Does the EMS provide fault classification beyond BMS-level alarms? (a) Automatic categorization by type/severity/location, (b) correlation of multiple alarm signals to identify root fault vs. cascading effects, (c) fault history analytics with trend analysis.</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>8.2</td>
+                <td><strong>Predictive maintenance analytics:</strong> Does the EMS include predictive maintenance features? (a) Anomaly detection using statistical/ML models on sensor data trends, (b) remaining useful life estimation for key components (cells, contactors, cooling system), (c) automated maintenance scheduling based on condition monitoring. What data history is required before predictive models become effective?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>8.3</td>
+                <td><strong>Root cause analysis engine:</strong> Does the EMS provide automated or assisted root cause analysis (RCA) for fault events? Can it correlate time-stamped data across BMS, PCS, thermal, and grid signals to help operators identify the origin of a fault chain?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>8.4</td>
+                <td><strong>Alarm prioritization &amp; management:</strong> Does the EMS provide: (a) severity-based filtering (info/warning/critical/emergency), (b) alarm suppression for known conditions, (c) alarm shelving during maintenance, (d) escalation rules (e.g., unacknowledged critical &rarr; SMS/email after X minutes)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 9: DATA INFRASTRUCTURE -->
+    <div class="section" id="s9">
+        <h2>9. DATA INFRASTRUCTURE &amp; LOGGING</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>9.1</td>
+                <td><strong>High-resolution data logging:</strong> What is the minimum data logging resolution? Can the EMS log at 1-second resolution for real-time measurements? Is sub-second resolution (100ms, 200ms) available for specific signals?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>9.2</td>
+                <td><strong>Event-triggered recording:</strong> Does the EMS support event-triggered high-resolution recording (increase logging frequency when a fault/transient is detected)? Similar to a disturbance recorder or oscillography function? What triggers are configurable?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>9.3</td>
+                <td><strong>Time synchronization:</strong> Does the EMS support NTP and/or GPS-based time synchronization? What time accuracy is achieved? Is time sync status monitored and alarmed?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>9.4</td>
+                <td><strong>Data retention policy:</strong> What are the data retention periods for: (a) raw real-time measurements, (b) event logs, (c) performance data, (d) alarm history? Are these configurable?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>9.5</td>
+                <td><strong>API &amp; data export:</strong> Is a REST API available for external data access? What export formats are supported (CSV, JSON, IEC 61968 CIM, Excel)? Is there a rate limit on API calls?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>9.6</td>
+                <td><strong>Data ownership:</strong> Who owns the operational data generated by the EMS? Can the client/asset owner access all historical data in perpetuity? What happens to stored data if the EMS service contract is not renewed?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 10: EMS OPTIMIZATION -->
+    <div class="section" id="s10">
+        <h2>10. EMS OPTIMIZATION CAPABILITY</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>10.1</td>
+                <td><strong>Multi-objective optimization engine:</strong> Describe the optimization engine architecture: (a) Is it a multi-objective optimizer (maximize revenue while minimizing degradation and maintaining grid obligations)? (b) What optimization algorithm is used (LP, MILP, dynamic programming, heuristic)? (c) What is the optimization horizon (rolling 24h, 48h, week-ahead)? (d) What is the dispatch resolution (1 min, 5 min, 15 min)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.2</td>
+                <td><strong>Revenue stacking optimization:</strong> Can the EMS simultaneously optimize across multiple revenue streams (e.g., energy arbitrage + FCR + aFRR + curtailment avoidance)? How does it handle conflicting obligations between services? Can revenue stream priorities be configured?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.3</td>
+                <td><strong>Constraint-aware dispatch:</strong> Does the optimizer account for: (a) SOC limits (min/max), (b) ramp rate limits, (c) C-rate limits, (d) temperature-dependent power derating, (e) grid connection capacity limits, (f) contractual availability requirements?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.4</td>
+                <td><strong>Degradation-aware dispatch:</strong> Does the optimization engine incorporate a degradation cost function? (a) Does it assign a &euro;/MWh degradation cost to each charge/discharge cycle? (b) Can it reduce cycling when marginal revenue is below marginal degradation cost? (c) Is the degradation model configurable per LFP cycle life curves? (d) Can it adjust DoD dynamically based on price signals?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.5</td>
+                <td><strong>Stochastic optimization:</strong> Does the optimizer use stochastic methods to account for uncertainty in price forecasts, RES generation, and load? (a) Is it scenario-based (Monte Carlo) or robust optimization? (b) How many scenarios are evaluated? (c) What is the computation time per optimization run?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.6</td>
+                <td><strong>Degradation-aware bidding logic:</strong> Does the EMS incorporate battery degradation costs into market bidding decisions? (a) Can it set a minimum bid price that covers the degradation cost of the dispatch? (b) Can it refuse to bid into low-value markets when degradation cost exceeds revenue? (c) Is this configurable per asset owner&rsquo;s risk preferences?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.7</td>
+                <td><strong>Peak shaving / load shifting:</strong> Does the EMS support peak shaving and load shifting optimization? Can these modes operate alongside market participation?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>10.8</td>
+                <td><strong>Arbitrage optimization:</strong> Does the EMS include a time-of-use arbitrage module? What inputs does it use (price forecasts, historical prices, price signals)?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 11: MARKET INTEGRATION -->
+    <div class="section" id="s11">
+        <h2>11. MARKET INTEGRATION &amp; REVENUE OPTIMISATION</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>11.1</td>
+                <td><strong>Day-ahead market interface:</strong> Does the EMS provide a direct interface to day-ahead electricity markets? (a) What market platforms are supported? (b) Can it generate and submit day-ahead bid schedules automatically? (c) Is there a day-ahead optimization module producing optimal charge/discharge schedules based on price forecasts? (d) How does it interface with third-party aggregators?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>11.2</td>
+                <td><strong>Intraday continuous trading:</strong> Does the EMS support intraday continuous trading? (a) Can it revise dispatch schedules in near-real-time based on updated price signals? (b) What is the minimum lead time for schedule revision? (c) Is this relevant to the Cyprus market structure (currently under development by CERA/TSO)?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>11.3</td>
+                <td><strong>Ancillary services (FCR/aFRR):</strong> Does the EMS support bidding and delivery for frequency regulation services? (a) Can it calculate available capacity for bidding (accounting for SOC, degradation, other commitments)? (b) What is the activation time for FCR (target &lt;1 second) and aFRR (target &lt;30 seconds)? (c) Can FCR droop settings (4&ndash;6%) and deadband (&plusmn;10 mHz) be configured? (d) Is the response accuracy within &plusmn;2% of setpoint?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>11.4</td>
+                <td><strong>Automatic bid submission:</strong> Can the EMS automatically submit bids to market/TSO platforms without manual intervention? (a) What market platforms are currently integrated? (b) Is the Cyprus market (CERA/TSO) currently supported or planned? (c) What is the failsafe if automatic submission fails?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>11.5</td>
+                <td><strong>Latency risk in ancillary markets:</strong> How does the EMS handle latency risk for ancillary service delivery? (a) Is communication latency monitored in real-time? (b) Does the system pre-position (anticipatory dispatch) to compensate for communication delay? (c) Is there an alarm when measured latency exceeds the threshold for the active service type?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 12: FORECAST INTEGRATION -->
+    <div class="section" id="s12">
+        <h2>12. FORECAST INTEGRATION</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>12.1</td>
+                <td><strong>Price forecasting module:</strong> Does the EMS include a built-in electricity price forecasting module? (a) What data sources does it use? (b) What forecast horizons are supported (day-ahead, week-ahead)? (c) What is the forecast accuracy (MAPE)? (d) Is it pre-trained for the Cyprus market or does it require market-specific calibration?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>12.2</td>
+                <td><strong>Volatility modelling:</strong> Does the EMS model price volatility for dispatch optimization? (a) Can it adjust bidding strategy based on expected price spreads? (b) Does it account for seasonal and intraday volatility patterns? (c) Can it identify high-value arbitrage windows dynamically?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>12.3</td>
+                <td><strong>Load &amp; RES forecast integration:</strong> Can the EMS ingest external load and renewable energy (solar/wind) generation forecasts? (a) What input formats are supported (API, CSV, MQTT)? (b) Can it integrate with third-party forecast providers? (c) Is there a built-in solar generation forecast? (d) How does the RES forecast influence dispatch decisions?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>12.4</td>
+                <td><strong>Scenario-based planning:</strong> Does the EMS support scenario-based planning for dispatch strategy evaluation? (a) Can operators compare multiple dispatch strategies before committing? (b) Are &ldquo;what-if&rdquo; simulations available? (c) Can scenarios include different price forecast assumptions?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>12.5</td>
+                <td><strong>Machine learning forecasting engine:</strong> Does the EMS use machine learning for any forecasting function? (a) What ML techniques are employed (LSTM, gradient boosting, ensemble)? (b) Is the model re-trained automatically as new data is collected? (c) What minimum data history is required? (d) Can model performance be audited by the client?</td>
+                <td><span class="badge badge-optional">OPTIONAL</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 13: REMOTE DISPATCH -->
+    <div class="section" id="s13">
+        <h2>13. REMOTE DISPATCH &amp; FAIL-SAFE LOGIC</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>13.1</td>
+                <td><strong>Manual override hierarchy:</strong> What is the command priority hierarchy? (Required: Protection &gt; DSO SCADA curtailment &gt; DSO CB control &gt; Market dispatch. Local protection must be non-overridable.)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>13.2</td>
+                <td><strong>Real-time dispatch override:</strong> Can DSO curtailment commands override market dispatch in real-time? What is the response time?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>13.3</td>
+                <td><strong>Fail-safe fallback logic:</strong> What happens when EMS communication is lost? (a) Does the edge controller revert to a pre-programmed safe mode? (b) What is the communication loss detection timeout? (c) Can a fallback dispatch schedule be pre-loaded? (d) Is there &ldquo;last known good&rdquo; state retention? (e) How is communication restoration handled?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>13.4</td>
+                <td><strong>Autonomous frequency/voltage response:</strong> Can the edge controller execute automatic frequency-based (LFSM-O: curtailment 50.2&ndash;50.7Hz, charging at 50.7Hz) and voltage-based (P(V): 1.07&ndash;1.10 pu) protection responses independently of EMS communication?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>13.5</td>
+                <td><strong>Communication failure scenarios:</strong> Describe the handling of: (a) EMS-to-site loss, (b) site-to-DSO loss (IEC-104 reconnection), (c) BMS-to-EMS loss, (d) multi-path simultaneous failure. What are the configurable timeouts at each level?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>13.6</td>
+                <td><strong>Edge controller autonomy:</strong> Can the edge controller execute a pre-loaded dispatch schedule autonomously if central EMS connection is lost? (a) How long can it operate autonomously? (b) Can the schedule be updated remotely before disconnection? (c) Does it log operations during autonomous mode for later sync?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 14: REDUNDANCY -->
+    <div class="section" id="s14">
+        <h2>14. REDUNDANCY &amp; HIGH AVAILABILITY</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>14.1</td>
+                <td><strong>EMS server redundancy:</strong> What is the EMS server architecture for redundancy? (a) Dual-server (active/standby) supported? (b) Failover time? (c) Is data synchronized between primary and standby?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>14.2</td>
+                <td><strong>Redundant communication lines:</strong> Does the EMS support automatic failover between communication paths (e.g., fiber primary, 4G backup)? What is failover detection time? Is switchover seamless?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>14.3</td>
+                <td><strong>UPS requirements:</strong> What are the UPS requirements for the EMS edge controller and network equipment? What minimum runtime is needed (ride-through vs. graceful shutdown)? What is the power consumption?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>14.4</td>
+                <td><strong>Hot-standby failover:</strong> Is hot-standby failover supported? (a) Edge controller level: dual-PLC? (b) SCADA Local: active/standby? (c) SCADA Global: automatic failover? (d) What is the RTO (Recovery Time Objective) at each level?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>14.5</td>
+                <td><strong>System availability SLA:</strong> What system availability can be guaranteed? (Target: &ge;99.5% for SCADA, &ge;99.9% for edge controller)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 15: CYBERSECURITY -->
+    <div class="section" id="s15">
+        <h2>15. CYBERSECURITY &amp; NIS2 COMPLIANCE</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>15.1</td>
+                <td><strong>Role-based access control (RBAC):</strong> Is RBAC implemented? What roles are supported (administrator, operator, viewer, aggregator)? Is multi-factor authentication (MFA) supported?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.2</td>
+                <td><strong>Network segmentation:</strong> Does the architecture support OT/IT network separation with defined security zones? Is an IEC 62443 certified industrial firewall included or recommended?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.3</td>
+                <td><strong>Encrypted communication:</strong> What encryption standards are used? (Requirements: TLS 1.3 minimum for external, TLS 1.2+ for SCADA, encrypted tunnel for Modbus TCP, IPSec/OpenVPN for remote access)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.4</td>
+                <td><strong>Intrusion detection system:</strong> Does the EMS or network architecture include IDS/IPS? (a) Network-based or host-based? (b) Does it monitor for OT-specific threats (Modbus protocol anomalies, unauthorized SCADA commands)? (c) Is it integrated with the alarm system?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.5</td>
+                <td><strong>Secure firmware/software update:</strong> What is the secure update process? (a) Cryptographically signed updates? (b) Rollback supported? (c) Staged deployment before fleet-wide rollout? (d) Update frequency? (e) Security patch SLA?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.6</td>
+                <td><strong>Audit trail logging:</strong> Are all user actions and commands logged with timestamps? What is the minimum retention period? Is tamper-evident logging supported?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.7</td>
+                <td><strong>Penetration testing:</strong> Has the EMS platform undergone independent penetration testing? (a) By which firm and when? (b) Can results be shared? (c) Is periodic pen testing included in the maintenance contract? (d) Does the company hold ISO 27001, IEC 62443 SL, or other cybersecurity certifications?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>15.8</td>
+                <td><strong>NIS2 Directive compliance:</strong> Is the platform fully compliant with the EU NIS2 Directive for critical infrastructure (energy sector)? Provide a compliance statement or gap analysis.</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 16: KPI MONITORING -->
+    <div class="section" id="s16">
+        <h2>16. KPI MONITORING &amp; REPORTING</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">KPI</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>16.1</td>
+                <td><strong>Availability (%):</strong> Does the EMS track and report system availability? (Target: &ge;97%)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.2</td>
+                <td><strong>Round-trip efficiency (%):</strong> Does the EMS calculate and display AC-AC round-trip efficiency including PCS losses, auxiliaries, and thermal management? (System specification: &ge;86%)</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.3</td>
+                <td><strong>Revenue per MW:</strong> Does the EMS calculate revenue per MW? Can it break down by source (arbitrage, FCR, aFRR, curtailment avoidance)? Available at park and portfolio level?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.4</td>
+                <td><strong>Degradation cost per MWh:</strong> Does the EMS calculate degradation cost per MWh dispatched? What cost model is used? Is this factored into dispatch optimization and displayed as a KPI?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.5</td>
+                <td><strong>Response time compliance:</strong> Does the EMS track DSO command response times and report compliance rates against regulatory requirements?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.6</td>
+                <td><strong>SOC accuracy drift:</strong> Does the EMS monitor SOC estimation accuracy over time? Is there periodic SOC recalibration (e.g., full charge to known OCV)? Can SOC drift be alarmed?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.7</td>
+                <td><strong>Auxiliary consumption ratio:</strong> Is auxiliary consumption tracked as a real-time KPI? Can it be broken down by subsystem (cooling, controls, fire system)? Alerting when exceeding normal range?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.8</td>
+                <td><strong>Degradation tracking dashboard:</strong> Is there a dedicated degradation dashboard showing actual SOH vs. warranty curve, cycle count, throughput, and calendar aging breakdown? Available at container, park, and portfolio level? Can it generate reports for warranty claims?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.9</td>
+                <td><strong>Automated reporting:</strong> What reporting cadence is supported? (Target: monthly performance report within 10 business days, quarterly health report within 15 business days, annual review within 30 days). Are reports generated automatically or manually?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>16.10</td>
+                <td><strong>Market bid archive:</strong> Does the EMS archive all market bid submissions and outcomes? Are bids stored with timestamp, volume, price, and acceptance status? What is the retention period?</td>
+                <td><span class="badge badge-preferred">PREFERRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 17: FLEET MANAGEMENT -->
+    <div class="section" id="s17">
+        <h2>17. FLEET MANAGEMENT &amp; MULTI-SITE SCADA</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">Requirement</th>
+                <th style="width:10%;">Priority</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>17.1</td>
+                <td><strong>Master SCADA dashboard:</strong> Can Lighthief (as EPC/O&amp;M provider) have a single master dashboard across all 51 parks, spanning all 3 groups and 6 standalone parks?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>17.2</td>
+                <td><strong>Group-level SCADA:</strong> Can each client group have its own SCADA Global instance providing consolidated view across their parks only?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>17.3</td>
+                <td><strong>Aggregator access:</strong> Can third-party aggregators (ABIO, Synenergia) have read-only access to their respective group&rsquo;s SCADA data?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>17.4</td>
+                <td><strong>Consolidated alarms:</strong> Can Lighthief receive consolidated alarm/fault notifications for all 51 parks in a single interface?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>17.5</td>
+                <td><strong>Portfolio-wide reporting:</strong> Can portfolio-wide performance reports be generated across all groups?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>17.6</td>
+                <td><strong>Scalability:</strong> How does the EMS handle capacity expansion? (a) Can additional containers/PCS be added to an existing site without full re-commissioning? (b) What is the maximum number of PCS/containers a single edge controller can manage? (c) Does the SCADA license need upgrade for capacity additions?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>17.7</td>
+                <td><strong>SCADA architecture:</strong> Is the SCADA Global deployed on-premises, cloud-based, or hybrid? What server hardware is required? What is the hosting model?</td>
+                <td><span class="badge badge-required">REQUIRED</span></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 18: COMMERCIAL -->
+    <div class="section" id="s18">
+        <h2>18. COMMERCIAL &amp; LICENSING MODEL</h2>
+
+        <h3>18.1 Per-Site Pricing</h3>
+        <table>
+            <tr>
+                <th>Cost Component</th>
+                <th>Small (1&ndash;3 MW)</th>
+                <th>Medium (4&ndash;8 MW)</th>
+                <th>Large (10&ndash;15 MW)</th>
+                <th>XL (20&ndash;30 MW)</th>
+            </tr>
+            <tr>
+                <td><strong>EMS Hardware + Software</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Remote Configuration &amp; Preparation</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>On-site Installation + Training</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Local (per park)</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Commissioning &amp; DSO Testing</strong></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>18.2 Fleet / Group-Level Pricing</h3>
+        <table>
+            <tr>
+                <th style="width:50%;">Cost Component</th>
+                <th style="width:50%;">Price</th>
+            </tr>
+            <tr>
+                <td><strong>SCADA Global (per group, one-time)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Master Dashboard / Fleet Portal (one-time)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Global server hardware (if on-premises)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>18.3 Annual / Recurring Costs</h3>
+        <table>
+            <tr>
+                <th style="width:50%;">Cost Component</th>
+                <th style="width:50%;">Annual Cost</th>
+            </tr>
+            <tr>
+                <td><strong>EMS software subscription / license renewal (per park)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Local maintenance (per park)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>SCADA Global maintenance (per group)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Cloud / remote monitoring (per park or portfolio)</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Remote support / helpdesk</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td><strong>Software updates included in subscription?</strong></td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+
+        <h3>18.4 Volume &amp; Contract Questions</h3>
+        <table>
+            <tr>
+                <th style="width:50%;">Question</th>
+                <th style="width:50%;">Response</th>
+            </tr>
+            <tr>
+                <td>Is there a volume discount for a 51-park portfolio order?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Is there a discount for multi-year subscription commitment (3, 5, or 10 years)?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can standalone parks receive discounted pricing if ordered as part of the portfolio?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Is the EMS software licensed perpetually or subscription-based? If subscription expires, what functionality remains?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Is there an escrow arrangement for EMS source code?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>What payment terms are offered (advance, milestone-based, etc.)?</td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 19: SUPPORT & WARRANTY -->
+    <div class="section" id="s19">
+        <h2>19. SUPPORT, WARRANTY &amp; SLA</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:40%;">Question</th>
+                <th style="width:55%;">Response</th>
+            </tr>
+            <tr>
+                <td>19.1</td>
+                <td>Hardware warranty period?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.2</td>
+                <td>Software warranty / bug fix period?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.3</td>
+                <td>Is the warranty extendable (1, 3, 5, 10 years)? Under what conditions?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.4</td>
+                <td>Remote support availability hours? (24/7 or business hours?)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.5</td>
+                <td>Response time SLA for critical faults? For non-critical issues?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.6</td>
+                <td>Is on-site support available in Cyprus? If not, what is the mobilization time?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.7</td>
+                <td>Is operator training included? How many days? On-site or remote?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.8</td>
+                <td>What documentation is provided (user manual, integration guide, API documentation, network architecture guide)?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.9</td>
+                <td>What is the typical implementation timeline from contract signing to first site go-live?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>19.10</td>
+                <td>Is FAT (Factory Acceptance Test) and SAT (Site Acceptance Test) support included?</td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 20: COMPANY QUALIFICATIONS -->
+    <div class="section" id="s20">
+        <h2>20. COMPANY QUALIFICATIONS &amp; REFERENCES</h2>
+
+        <table>
+            <tr>
+                <th style="width:40%;">Information</th>
+                <th style="width:60%;">Response</th>
+            </tr>
+            <tr>
+                <td>Company legal name</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Country / HQ location</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Years in BESS EMS business</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Total BESS projects delivered (MW / MWh)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Total fleet under active management (MW / MWh)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>EU / Cyprus / Mediterranean references</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Kehua PCS integration experience? (BCS-C-HUD series)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Linyang BMS integration experience?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>IEC 60870-5-104 integration experience? (How many DSOs?)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Largest single BESS site managed (MW / MWh)?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Largest fleet / portfolio managed (total MW / MWh)?</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Number of full-time engineering staff dedicated to EMS</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Company certifications (ISO 9001, ISO 27001, IEC 62443, etc.)</td>
+                <td class="response-cell"></td>
+            </tr>
+            <tr>
+                <td>Can you provide 3 reference contacts from similar BESS EMS projects?</td>
+                <td class="response-cell"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 21: RESPONSE INSTRUCTIONS -->
+    <div class="section" id="s21">
+        <h2>21. RESPONSE INSTRUCTIONS</h2>
+
+        <div class="highlight-box">
+            <strong>Please submit your response to:</strong><br><br>
+            <strong>Email:</strong> office@lighthief.com<br>
+            <strong>Subject:</strong> RFI Response &mdash; EMS Cyprus BESS Portfolio (LCY-RFI-EMS-2026-004)<br>
+            <strong>Deadline:</strong> [To be confirmed]<br><br>
+            <strong>Response deliverables:</strong>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>Completed RFI questionnaire (this document, all response fields filled)</li>
+                <li>Company profile / capabilities brochure</li>
+                <li>Reference project list with contact details</li>
+                <li>Technical architecture proposal (system diagram per site size category)</li>
+                <li>Indicative pricing (budget level acceptable at RFI stage)</li>
+                <li>Detailed Bill of Materials per site size category (Small / Medium / Large / XL)</li>
+                <li>Sample IEC 60870-5-104 point list for BESS site</li>
+                <li>Cybersecurity compliance statement (NIS2 / IEC 62443)</li>
+                <li>Implementation timeline proposal</li>
+            </ol>
+        </div>
+
+        <div class="warning-box">
+            <strong>Important Notes:</strong>
+            <ul>
+                <li>All proposals must be valid for a minimum of 90 days from submission date</li>
+                <li>Pricing must be in EUR (&euro;)</li>
+                <li>This RFI does not constitute a commitment to purchase &mdash; it is an information-gathering exercise to evaluate EMS providers for our portfolio</li>
+                <li>Lighthief reserves the right to issue a formal RFP to shortlisted respondents</li>
+                <li>All information provided will be treated as confidential</li>
+            </ul>
+        </div>
+
+        <h3>21.1 Evaluation Criteria</h3>
+        <table>
+            <tr>
+                <th>Criteria</th>
+                <th>Weight</th>
+            </tr>
+            <tr><td>Technical capability (EMS features, optimization, grid compliance)</td><td>30%</td></tr>
+            <tr><td>Integration experience (Kehua PCS, Linyang BMS, IEC-104)</td><td>20%</td></tr>
+            <tr><td>Fleet management &amp; scalability (51 parks, multi-group SCADA)</td><td>15%</td></tr>
+            <tr><td>Cybersecurity &amp; NIS2 compliance</td><td>10%</td></tr>
+            <tr><td>Commercial terms (capex, annual costs, licensing model)</td><td>15%</td></tr>
+            <tr><td>Support, warranty &amp; SLA (availability, response time, Cyprus presence)</td><td>10%</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td></tr>
+        </table>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section">
+        <h2>QUESTIONNAIRE SUMMARY</h2>
+        <table>
+            <tr>
+                <th>Section</th>
+                <th>Questions</th>
+                <th>Focus Area</th>
+            </tr>
+            <tr><td>1. Introduction</td><td>&mdash;</td><td>Portfolio context &amp; BESS specifications</td></tr>
+            <tr><td>2. System Architecture</td><td>14</td><td>Hardware scope &amp; BoM</td></tr>
+            <tr><td>3. PPC &amp; Grid Code</td><td>10</td><td>Power plant control &amp; EN 50549-2</td></tr>
+            <tr><td>4. Communication Protocols</td><td>10</td><td>IEC-104, Modbus, DSO integration</td></tr>
+            <tr><td>5. Battery Monitoring</td><td>6</td><td>Cell-level data, SOC/SOH estimation</td></tr>
+            <tr><td>6. Degradation Analytics</td><td>5</td><td>Cycle counting, calendar aging, EOL forecast</td></tr>
+            <tr><td>7. Thermal &amp; Safety</td><td>5</td><td>Thermal runaway, gas detection, fire system</td></tr>
+            <tr><td>8. Fault Detection</td><td>4</td><td>Classification, predictive maintenance, RCA</td></tr>
+            <tr><td>9. Data Infrastructure</td><td>6</td><td>Logging resolution, retention, APIs</td></tr>
+            <tr><td>10. EMS Optimization</td><td>8</td><td>Multi-objective, degradation-aware dispatch</td></tr>
+            <tr><td>11. Market Integration</td><td>5</td><td>Day-ahead, intraday, ancillary services</td></tr>
+            <tr><td>12. Forecast Integration</td><td>5</td><td>Price, RES, load forecasting</td></tr>
+            <tr><td>13. Remote Dispatch</td><td>6</td><td>Fail-safe, priority hierarchy, autonomy</td></tr>
+            <tr><td>14. Redundancy</td><td>5</td><td>Server, communication, UPS, failover</td></tr>
+            <tr><td>15. Cybersecurity</td><td>8</td><td>RBAC, encryption, NIS2, IEC 62443</td></tr>
+            <tr><td>16. KPI Monitoring</td><td>10</td><td>Availability, RTE, revenue, degradation</td></tr>
+            <tr><td>17. Fleet Management</td><td>7</td><td>Multi-site SCADA, aggregator access</td></tr>
+            <tr><td>18. Commercial</td><td>16</td><td>Capex, opex, licensing, discounts</td></tr>
+            <tr><td>19. Support &amp; Warranty</td><td>10</td><td>SLA, training, documentation, timeline</td></tr>
+            <tr><td>20. Company Qualifications</td><td>14</td><td>Experience, references, certifications</td></tr>
+            <tr class="total-row">
+                <td><strong>TOTAL QUESTIONS</strong></td>
+                <td><strong>154</strong></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 10pt; color: #6b7280;">
+        <table style="border: none; font-size: 9pt;">
+            <tr style="background: none;">
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <strong>Prepared by:</strong> Lighthief Cyprus Ltd<br>
+                    28 October Avenue 249, Lophitis Business Center 1, Office 201<br>
+                    3035 Limassol, Cyprus<br>
+                    Email: office@lighthief.com | Tel: +357 99 164 158
+                </td>
+                <td style="border: none; width: 50%; vertical-align: top; text-align: right;">
+                    <strong>Classification:</strong> CONFIDENTIAL<br>
+                    <strong>Document Ref:</strong> LCY-RFI-EMS-2026-004<br>
+                    <strong>Version:</strong> 1.0 | 27 February 2026<br>
+                    For intended recipients only
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

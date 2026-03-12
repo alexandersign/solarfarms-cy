@@ -1,0 +1,55 @@
+# GridMind Market Configuration - Spain
+#
+# Grid code: RD 413/2014
+# DSO: Endesa / I-DE
+# TSO: REE (Red Electrica de Espana)
+# Exchange: OMIE
+
+market:
+  name: "Spain"
+  code: "ES"
+  dso: "Endesa / I-DE"
+  tso: "REE"
+  timezone: "Europe/Madrid"
+  currency: "EUR"
+
+grid:
+  nominal_frequency_hz: 50.0
+  nominal_voltage_lv_v: 230.0
+  nominal_voltage_mv_v: 20000.0
+
+protection:
+  undervoltage_stage1:
+    threshold_pu: 0.85
+    time_s: 1.5
+  overvoltage_stage1:
+    threshold_pu: 1.10
+    time_s: 0.5
+  underfrequency_stage1:
+    threshold_hz: 47.5
+    time_s: 0.5
+  overfrequency_stage1:
+    threshold_hz: 51.5
+    time_s: 0.5
+
+trading:
+  exchange: "OMIE"
+  bidding_zone: "10YES-REE------0"
+  gate_closure_da_minutes: 840
+  gate_closure_id_minutes: 60
+  products:
+    day_ahead:
+      resolution_minutes: 60
+      block_bids: true
+    intraday:
+      continuous: true
+      auction: true
+      resolution_minutes: 60
+  balancing:
+    fcr:
+      enabled: true
+    afrr:
+      enabled: true
+      activation_time_s: 300
+    mfrr:
+      enabled: true

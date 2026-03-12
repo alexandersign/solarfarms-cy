@@ -423,13 +423,14 @@ export default function BESSInsuranceRiskArticle() {
                   <CardContent className="pt-4">
                     <p className="text-gray-700 text-sm mb-2">
                       Covers damage to equipment during ocean freight, port handling, and overland
-                      transport from the factory to the installation site. Essential for CIF
-                      (Cost, Insurance, and Freight) shipments where the supplier bears transit risk.
+                      transport from the factory to the installation site. Under CIF Incoterms,
+                      the supplier (Linyang) bears transit risk and arranges marine cargo insurance &mdash;
+                      the buyer does not need to procure this separately.
                     </p>
                     <div className="flex items-center space-x-2 text-sm">
                       <Euro className="w-4 h-4 text-blue-600" />
-                      <span className="font-semibold text-blue-800">Benchmark: 0.75% of CIF value</span>
-                      <span className="text-gray-500">(confirmed competitive rate for LFP)</span>
+                      <span className="font-semibold text-blue-800">Included in CIF terms</span>
+                      <span className="text-gray-500">(supplier-arranged marine cargo cover)</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -646,10 +647,10 @@ export default function BESSInsuranceRiskArticle() {
                     Marine Insurance Benchmark
                   </h4>
                   <p className="text-gray-700 text-sm">
-                    We&rsquo;ve confirmed that 0.75% of CIF value is a competitive marine insurance
-                    rate for LFP BESS shipments from China to Cyprus. Rates above 1% typically
-                    indicate the broker is either unfamiliar with BESS or hasn&rsquo;t shopped the
-                    specialist market. Portfolio volume helps achieve this benchmark consistently.
+                    Under CIF Incoterms, marine cargo insurance is the supplier&rsquo;s responsibility.
+                    The buyer&rsquo;s key insurance cost is EPC construction insurance (CAR/EAR, TPL, PI),
+                    which we budget at 0.75% of CIF value. Ensure your broker understands the split
+                    between transit risk (supplier) and construction risk (buyer/EPC).
                   </p>
                 </div>
 

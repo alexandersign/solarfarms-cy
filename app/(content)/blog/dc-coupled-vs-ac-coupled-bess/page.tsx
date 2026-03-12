@@ -525,11 +525,11 @@ export default function DCvsACCoupledBESSArticle() {
                       Each Linyang container includes an integrated power conversion system (PCS), which
                       means the battery inverter is built into the container itself. The system arrives
                       as a complete, self-contained AC-ready unit &mdash; connect it to the park&apos;s
-                      AC bus and it&apos;s operational. System-level RTE: 87.8%.
+                      AC bus and it&apos;s operational. Full-system AC-AC RTE: 86.32%.
                     </p>
                     <div className="flex items-center space-x-2 text-sm">
                       <CheckCircle className="w-4 h-4 text-green-600" />
-                      <span className="text-green-700 font-semibold">87.8% system-level round-trip efficiency</span>
+                      <span className="text-green-700 font-semibold">86.32% full-system AC-AC round-trip efficiency</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -583,8 +583,8 @@ export default function DCvsACCoupledBESSArticle() {
                   </div>
                   <div className="text-center bg-blue-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600 mb-1">AC-Coupled RTE</div>
-                    <div className="text-3xl font-bold text-blue-600">87.8%</div>
-                    <div className="text-xs text-gray-500">Linyang system-level</div>
+                    <div className="text-3xl font-bold text-blue-600">86.32%</div>
+                    <div className="text-xs text-gray-500">Linyang full-system AC-AC</div>
                   </div>
                   <div className="text-center bg-green-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600 mb-1">Efficiency Gap</div>
@@ -593,7 +593,7 @@ export default function DCvsACCoupledBESSArticle() {
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mt-4 text-center">
-                  The 2&ndash;4% efficiency gap represents approximately &euro;6,000&ndash;15,000/year
+                  The 4&ndash;6% efficiency gap represents approximately &euro;6,000&ndash;15,000/year
                   in lost revenue for a 5&nbsp;MW system &mdash; far less than the cost of inverter
                   replacement, extended installation time, and production downtime that DC-coupling would
                   require for a retrofit.

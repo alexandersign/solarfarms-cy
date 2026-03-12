@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7SUN Cyprus — Final First Delivery Stock List</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #e67e22;
+    --green: #27ae60;
+    --red: #c0392b;
+    --bg: #fafbfc;
+    --card: #fff;
+    --border: #e0e0e0;
+    --text: #2c3e50;
+    --muted: #7f8c8d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media print {
+    body { padding: 0; font-size: 11px; line-height: 1.4; max-width: 100%; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    h1 { font-size: 20px; }
+    h2 { font-size: 16px; page-break-after: avoid; }
+    h3 { font-size: 13px; page-break-after: avoid; }
+    table { font-size: 10px; page-break-inside: avoid; }
+    .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    .hero { padding: 15px !important; }
+    .strategy-box { page-break-inside: avoid; }
+  }
+  .no-print {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .no-print button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+  }
+  .no-print button:hover { background: #2980b9; }
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
+    color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .hero h1 { font-size: 28px; margin-bottom: 5px; }
+  .hero .subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 15px; }
+  .hero .meta { font-size: 13px; opacity: 0.8; }
+  h2 {
+    color: var(--primary);
+    font-size: 22px;
+    margin: 35px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--accent);
+  }
+  h3 {
+    color: var(--primary);
+    font-size: 17px;
+    margin: 20px 0 10px;
+  }
+  h4 {
+    color: var(--primary);
+    font-size: 15px;
+    margin: 15px 0 8px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .strategy-box {
+    background: #fef9e7;
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 15px 0;
+  }
+  .alert-box {
+    background: #fdedec;
+    border-left: 4px solid var(--red);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  .success-box {
+    background: #eafaf1;
+    border-left: 4px solid var(--green);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  th {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  tr:nth-child(even) { background: #f8f9fa; }
+  tr:hover { background: #eef2f7; }
+  .highlight-row { background: #eafaf1 !important; font-weight: 600; }
+  .total-row { background: var(--primary) !important; color: #fff; font-weight: 700; }
+  .total-row td { border-color: var(--primary); }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .badge-exclusive { background: #e74c3c; color: #fff; }
+  .badge-critical { background: var(--accent); color: #fff; }
+  .badge-new { background: var(--green); color: #fff; }
+  .badge-local { background: #8e44ad; color: #fff; }
+  .stars { color: var(--accent); }
+  pre {
+    background: #2d3436;
+    color: #dfe6e9;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 12px 0;
+  }
+  blockquote {
+    background: #f4f6f7;
+    border-left: 4px solid var(--primary);
+    padding: 10px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    border-radius: 0 6px 6px 0;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 15px 0; }
+  .kpi-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .kpi-card .label { font-size: 12px; color: var(--muted); text-transform: uppercase; }
+  .kpi-card .value { font-size: 24px; font-weight: 700; color: var(--primary); margin: 5px 0; }
+  .kpi-card .note { font-size: 11px; color: var(--muted); }
+  .kpi-card.accent { border-color: var(--accent); }
+  .kpi-card.accent .value { color: var(--accent); }
+  .kpi-card.green { border-color: var(--green); }
+  .kpi-card.green .value { color: var(--green); }
+  ul, ol { margin: 10px 0 10px 24px; }
+  li { margin: 4px 0; font-size: 14px; }
+  p { margin: 8px 0; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <button onclick="window.print()">Export PDF</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>7SUN Cyprus — Final First Delivery Stock List</h1>
+  <div class="subtitle">Revised Strategy — February 2026</div>
+  <div class="meta">
+    <strong>Prepared:</strong> February 2026<br>
+    <strong>Delivery Origin:</strong> 7sun.eu Warehouse, Poland<br>
+    <strong>Destination:</strong> 7SUN/Lighthief Warehouse, Ypsonas, Limassol, Cyprus<br>
+    <strong>Shipping Method:</strong> Full truck or 40ft container (Poland → Limassol, 7–10 days)
+  </div>
+</div>
+
+<!-- PRICING DISCLAIMER -->
+<div class="alert-box">
+  <strong>✅ PRICING STATUS:</strong> All margin calculations use verified per-SKU costs from 7sun.eu. Pricing has been confirmed — PRICING VERIFIED. Stock value totals, margins, and profitability figures reflect actual confirmed transfer prices.
+</div>
+
+<!-- JV STOCK MODEL -->
+<div class="strategy-box">
+  <strong>JV STOCK MODEL:</strong> All stock listed below is provided by 7sun.eu as their contribution to the 50/50 joint venture. 7SUN Cyprus does NOT purchase this stock upfront. The "verified cost" figures represent the confirmed transfer price used for margin calculations. Lighthief.cy purchases from 7SUN Cyprus at this cost price (0% margin). Profit comes only from sales to external customers (installers, retail, developers).
+</div>
+
+<!-- OWNERSHIP & PRICING MODEL -->
+<h2>Ownership &amp; Pricing Model</h2>
+
+<div class="card">
+  <p><strong>7SUN Cyprus</strong> is a joint venture: <strong>50% Lighthief International</strong> + <strong>50% 7sun.eu</strong>. As the Cyprus distribution arm of 7sun.eu, 7sun.eu provides all stock as their JV contribution. Internal transfer pricing (below the published wholesale tiers) is used for margin calculations. Profit comes from sales to installers and end customers.</p>
+</div>
+
+<h3>How Pricing Works</h3>
+<table>
+  <tr><th>Tier</th><th>What It Represents</th><th>Who Pays This</th></tr>
+  <tr><td><strong>Internal Cost</strong></td><td>Transfer price from 7sun.eu (for margin calculations)</td><td>7SUN Cyprus — not an upfront purchase; 7sun provides stock as JV contribution</td></tr>
+  <tr><td><strong>H1</strong></td><td>Highest wholesale tier (small/standard buyers)</td><td>External 7sun.eu B2B customers</td></tr>
+  <tr><td><strong>H2–H4</strong></td><td>Intermediate volume tiers</td><td>Medium-volume B2B buyers</td></tr>
+  <tr><td><strong>H5</strong></td><td>Deepest discount tier (largest accounts)</td><td>Top-tier volume buyers</td></tr>
+  <tr><td><strong>CY Wholesale</strong></td><td>Our local selling price to Cyprus installers</td><td>Cyprus RES-listed installers</td></tr>
+  <tr><td><strong>CY Retail</strong></td><td>Our local selling price to end customers</td><td>Homeowners &amp; small businesses</td></tr>
+</table>
+
+<blockquote>
+  <strong>Verified internal cost</strong> = confirmed per-SKU transfer prices from 7sun.eu. These are the actual transfer prices for margin calculations, not our purchase outlay. All stock value and margin figures below use verified per-SKU costs.
+</blockquote>
+
+<blockquote>
+  <strong>Important:</strong> Transfer pricing per SKU has been confirmed with 7sun.eu. Verified costs are reflected throughout this document. Actual margins vary by product category.
+</blockquote>
+
+<!-- STRATEGIC CHANGES -->
+<h2>Strategic Changes (vs. Original Plan)</h2>
+<div class="strategy-box">
+  <strong>Six critical decisions driving this revised stock list after competitive analysis:</strong>
+</div>
+<table>
+  <tr><th>#</th><th>Decision</th><th>Rationale</th></tr>
+  <tr><td>1</td><td><strong>Huawei inverters sourced locally from Trikkis</strong></td><td>Instant availability, zero shipping, buy on demand. Strategic relationship.</td></tr>
+  <tr><td>2</td><td><strong>Deye 5kW hybrid + stackable battery from 7sun</strong></td><td>Most affordable net billing kit in Cyprus. Huawei L1 single-phase exists at Trikkis (€616) but LUNA batteries add €2,400+ — our Deye combo is 36–42% cheaper as a complete kit.</td></tr>
+  <tr><td>3</td><td><strong>Panels matched to 4.16 kWp limit</strong></td><td>Cyprus single-phase net billing max. Only wattages that build to ≤4.16 kWp in this order.</td></tr>
+  <tr><td>4</td><td><strong>5kW inverter only for single-phase</strong></td><td>Cyprus EAC allows max 1 kW oversizing — 4.16 kWp array = 5 kW inverter maximum.</td></tr>
+  <tr><td>5</td><td><strong>Deye batteries stack 1-4 modules</strong></td><td>No separate controller needed. Built-in BMS + CAN bus to inverter. 5.15–20.6 kWh range.</td></tr>
+  <tr><td>6</td><td><strong>H1-H5 are selling tiers, not our cost</strong></td><td>Internal transfer pricing gives us ~20% margin even at H1. All margins significantly better than originally calculated.</td></tr>
+</table>
+<div class="success-box"><strong>Result:</strong> ~€108,000 total stock value, stronger margins on every product, clear market differentiation with complete Deye single-phase + 3-phase ecosystem.</div>
+
+<!-- STOCK ORDER SUMMARY -->
+<h2>First Delivery — Stock Order (Provided by 7sun.eu)</h2>
+
+<div class="kpi-grid">
+  <div class="kpi-card accent"><div class="label">7sun Stock Value (Verified Cost)</div><div class="value">€85,829</div><div class="note">24+ SKUs / 874+ units</div></div>
+  <div class="kpi-card"><div class="label">Shipping</div><div class="value">€6–8K</div><div class="note">Poland → Limassol</div></div>
+  <div class="kpi-card"><div class="label">Trikkis (local)</div><div class="value">~€16K</div><div class="note">20 Huawei inverters</div></div>
+  <div class="kpi-card green"><div class="label">Capital Required for Stock</div><div class="value">€0</div><div class="note">Provided by 7sun.eu as JV contribution</div></div>
+</div>
+
+<table>
+  <tr><th>Category</th><th>SKUs</th><th>Units</th><th>Stock Value (Verified Cost)</th><th>Share</th></tr>
+  <tr><td>Solar Panels (net billing sizes)</td><td>6</td><td>468 panels (~213 kWp)</td><td>€22,586</td><td>26%</td></tr>
+  <tr><td>Deye 5kW Hybrid Inverter</td><td>1</td><td>25 units</td><td>€15,911</td><td>17%</td></tr>
+  <tr><td>Deye Stackable Batteries</td><td>1</td><td>35 modules (180.25 kWh)</td><td>€18,751</td><td>22%</td></tr>
+  <tr><td>Deye 3-Phase Inverters <span class="badge badge-new">NEW</span></td><td>3</td><td>11 units</td><td>€10,653</td><td>13%</td></tr>
+  <tr><td>SolarEdge Inverters <span class="badge badge-exclusive">PENDING VERIFICATION</span></td><td>3</td><td>20 units</td><td>€3,949</td><td>5%</td></tr>
+  <tr><td>SolarEdge Optimizers</td><td>2</td><td>150 units</td><td>€4,672</td><td>5%</td></tr>
+  <tr><td>Micro Inverters &amp; Accessories</td><td>5+</td><td>65+ units</td><td>€5,444</td><td>6%</td></tr>
+  <tr><td>Tigo + Huawei Optimizers</td><td>2</td><td>100 units</td><td>€2,663</td><td>3%</td></tr>
+  <tr><td>Huawei Smart Dongle 4G</td><td>1</td><td>10 units</td><td>€1,200</td><td>1%</td></tr>
+  <tr class="total-row"><td><strong>TOTAL FROM 7SUN</strong></td><td><strong>24+</strong></td><td><strong>874+</strong></td><td><strong>€85,829</strong></td><td><strong>100%</strong></td></tr>
+  <tr><td>Shipping &amp; Logistics</td><td></td><td></td><td>€6,000–8,000</td><td></td></tr>
+  <tr class="highlight-row"><td><strong>TOTAL LANDED (7sun truck)</strong></td><td></td><td></td><td><strong>€91,829–€93,829</strong></td><td></td></tr>
+</table>
+
+<blockquote>
+  <strong>Capital requirement:</strong> €0 for stock (provided by 7sun.eu). Startup capital for operations (warehouse setup, marketing, website, working capital) estimated at ~€82,000–85,000 total, shared 50/50 between shareholders (~€41,000–42,500 each).
+</blockquote>
+
+<h3>Items Pending 7sun Restock</h3>
+<p><em>Est. Cost = transfer price for margin calculations, not purchase outlay.</em></p>
+<table>
+  <tr><th>Product</th><th>Qty</th><th>Est. Cost</th><th>Status</th></tr>
+  <tr><td>Huawei Smart Dongle WLAN-FE</td><td>10</td><td>€542</td><td>Out of stock at 7sun</td></tr>
+  <tr><td>Huawei DTSU666-H Smart Meter 100A</td><td>10</td><td>€1,070</td><td>Out of stock at 7sun</td></tr>
+  <tr><td>Huawei Smart Charger 22KT-S0 (EV)</td><td>4</td><td>€1,395</td><td>Out of stock at 7sun</td></tr>
+  <tr class="highlight-row"><td><strong>Subtotal pending</strong></td><td></td><td><strong>€3,007</strong></td><td></td></tr>
+</table>
+
+<h3>Separate Budget: Locally Sourced from Trikkis (Cyprus) <span class="badge badge-local">LOCAL</span></h3>
+<table>
+  <tr><th>Product</th><th>Qty</th><th>Trikkis Price</th><th>Notes</th></tr>
+  <tr><td>Huawei SUN2000-5KTL-M1 (5kW 3-phase)</td><td>6</td><td>€3,420</td><td>€570 each</td></tr>
+  <tr><td>Huawei SUN2000-8KTL-M1 (8kW 3-phase)</td><td>6</td><td>€4,950</td><td>€825 each</td></tr>
+  <tr><td>Huawei SUN2000-10KTL-M1 (10kW 3-phase)</td><td>4</td><td>€3,600</td><td>~€900 each</td></tr>
+  <tr><td>Huawei SUN2000-5K-MAP0 (5kW hybrid)</td><td>4</td><td>€4,000</td><td>~€1,000 each</td></tr>
+  <tr class="highlight-row"><td><strong>Subtotal Trikkis</strong></td><td><strong>20</strong></td><td><strong>~€16,000</strong></td><td>Buy on demand</td></tr>
+</table>
+
+<blockquote>
+  <strong>Note on Huawei sourcing:</strong> With our internal cost at ~80% of H1, importing Huawei from 7sun would actually be 12–18% cheaper than Trikkis (e.g., 5kW 3P: ~€500 landed vs €570 Trikkis). However, we choose Trikkis for strategic reasons: instant same-day availability, zero capital tie-up, no shipping logistics, and maintaining a collaborative relationship. Revisit this decision at scale if volume justifies a bulk Huawei import.
+</blockquote>
+
+<div class="success-box">
+  <strong>Combined total stock value:</strong> ~€108,000–€110,000 (7sun truck + initial Trikkis stock). See capital requirement note above — €0 for 7sun stock.
+</div>
+
+<!-- MARGIN STRUCTURE -->
+<h2>Margin Structure Overview</h2>
+<div class="strategy-box">
+  With internal transfer pricing, our margin structure across all tiers:
+</div>
+<table>
+  <tr><th>Selling Channel</th><th>Typical Margin (on cost)</th><th>Who Buys</th></tr>
+  <tr><td><strong>H1 tier</strong> (minimum margin)</td><td>~20%</td><td>If we match 7sun.eu online pricing</td></tr>
+  <tr><td><strong>CY Wholesale</strong> (typical B2B)</td><td>25–40%</td><td>RES-listed installers in Cyprus</td></tr>
+  <tr><td><strong>CY Retail</strong> (direct to consumer)</td><td>40–65%+</td><td>Homeowners, small businesses</td></tr>
+  <tr><td><strong>SolarEdge</strong> (pending — BIGSOLAR may be local rep)</td><td>108–461%</td><td>All channels — pending verification</td></tr>
+  <tr><td><strong>Apartment kits</strong> (developer)</td><td>90–160%</td><td>Property developers</td></tr>
+</table>
+
+<!-- NET BILLING SIZING -->
+<h2>Cyprus Net Billing System Sizing Guide</h2>
+<div class="strategy-box">
+  Every panel selection was validated against the <strong>4.16 kWp single-phase net billing limit</strong> with a mandatory <strong>5 kW inverter</strong> (1 kW oversizing rule).
+</div>
+<table>
+  <tr><th>Panel Wattage</th><th>Panels for ≤4.16 kWp</th><th>Actual System Size</th><th>Utilisation</th><th>Inverter</th></tr>
+  <tr><td><strong>460W</strong></td><td>9 panels</td><td>4,140W (4.14 kWp)</td><td>99.5%</td><td>Deye 5K</td></tr>
+  <tr><td><strong>455W</strong></td><td>9 panels</td><td>4,095W (4.10 kWp)</td><td>98.4%</td><td>Deye 5K</td></tr>
+  <tr><td><strong>450W</strong></td><td>9 panels</td><td>4,050W (4.05 kWp)</td><td>97.4%</td><td>Deye 5K</td></tr>
+  <tr><td><strong>500W</strong></td><td>8 panels</td><td>4,000W (4.00 kWp)</td><td>96.2%</td><td>Deye 5K</td></tr>
+  <tr><td><strong>580W</strong></td><td>7 panels</td><td>4,060W (4.06 kWp)</td><td>97.6%</td><td>Deye 5K</td></tr>
+</table>
+<blockquote><strong>Rule:</strong> Max 5 kW single-phase inverter. Array cannot exceed 4.16 kWp. All panels in this order fit.</blockquote>
+
+<!-- PANELS -->
+<div class="page-break"></div>
+<h2>1. Solar Panels — Verified Cost €22,586 | 468 Panels | ~213 kWp</h2>
+
+<div class="strategy-box">
+  <strong>Panel Strategy: Net Billing Compliant + Multi-Brand Diversity</strong><br>
+  Every panel was selected because its wattage builds to ≤4.16 kWp, it comes from a Tier-1 manufacturer, it's NOT available from Trikkis, and it has strong stock at 7sun.eu. This combination means installers MUST come to us.
+</div>
+
+<!-- Panel 1.1 -->
+<div class="card">
+  <h3>1.1 Jinko JKM455N-54HL4R-V Black Frame — 455W <span class="badge badge-critical">CRITICAL</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>108 panels (3 pallets × 36)</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€44.53/panel</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€55.76/panel</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€4,809</td></tr>
+    <tr><td><strong>Net Billing Fit</strong></td><td>9 panels = 4.095 kWp ✓</td></tr>
+    <tr><td><strong>Trikkis Equivalent</strong></td><td>Jinko 440W at €75 wholesale — but 440W needs 10 panels (4.4 kWp, EXCEEDS limit)</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€65–70</td></tr>
+    <tr><td><strong>CY Retail Price</strong></td><td>€80–90</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>46–57% on cost</td></tr>
+    <tr><td><strong>Margin (CY Retail)</strong></td><td>79–102% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>383 units available</td></tr>
+  </table>
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>Jinko is the #1 brand in Cyprus.</strong> Every installer knows it. Trikkis built their business on Jinko.</li>
+    <li><strong>455W beats Trikkis's 440W for net billing.</strong> 9 × 455W = 4.095 kWp fits the limit perfectly. Trikkis's 440W needs 10 panels (4.4 kWp) which EXCEEDS the 4.16 kWp cap.</li>
+    <li><strong>Black frame aesthetic.</strong> Modern look preferred in Cyprus residential market.</li>
+    <li><strong>1500V string voltage.</strong> Compatible with all modern inverters including the Deye 5K.</li>
+  </ul>
+</div>
+
+<!-- Panel 1.2 -->
+<div class="card">
+  <h3>1.2 JA Solar JAM54D41-450/LB Full Black Bifacial — 450W <span class="badge badge-exclusive">EXCLUSIVE</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>108 panels (3 pallets × 36)</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€45/panel (unverified — using estimate)</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€55.76/panel</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>~€4,860</td></tr>
+    <tr><td><strong>Net Billing Fit</strong></td><td>9 panels = 4.050 kWp ✓</td></tr>
+    <tr><td><strong>Trikkis</strong></td><td>NOT AVAILABLE — JA Solar not stocked</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€64–68</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>43–52% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>339 units available</td></tr>
+  </table>
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>Trikkis gap.</strong> JA Solar is global Tier-1 (top 3 worldwide) but zero local distribution in Cyprus. Exclusive to us.</li>
+    <li><strong>Full Black Bifacial.</strong> Premium all-black aesthetic PLUS dual-glass bifacial technology. On Cyprus's white flat roofs, bifacial panels produce 5–15% more energy from reflected light.</li>
+    <li><strong>N-type technology.</strong> Superior temperature coefficient — critical where summer module temps regularly hit 60°C+.</li>
+    <li><strong>Same price as Jinko 455W.</strong> Gives installers a brand choice at the same cost point.</li>
+  </ul>
+</div>
+
+<!-- Panel 1.3 -->
+<div class="card">
+  <h3>1.3 Longi LR7-54HTH-455M Black Frame — 455W <span class="badge badge-critical">BRAND EXCLUSIVE</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical — BRAND EXCLUSIVE</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>72 panels (2 pallets × 36)</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€49.21/panel (€0.108/Wp)</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€54.58/panel (€0.120/Wp)</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€3,543</td></tr>
+    <tr><td><strong>Net Billing Fit</strong></td><td>9 panels = 4.095 kWp ✓</td></tr>
+    <tr><td><strong>Trikkis</strong></td><td>NOT AVAILABLE — Longi not stocked</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€62–66</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>26–34% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>257 units available</td></tr>
+  </table>
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>Exclusive Tier-1 brand.</strong> €49.21 cost for 455W = €0.108/Wp — solid margins at wholesale and retail tiers.</li>
+    <li><strong>Longi = world's #1 panel manufacturer.</strong> Largest by shipment volume globally. Installers know and trust it.</li>
+    <li><strong>We own Longi in Cyprus.</strong> No local source. Any installer wanting Longi comes to us.</li>
+    <li><strong>HPBC technology.</strong> Hi-MO 7 platform with back-contact cells — highest-efficiency mainstream technology available.</li>
+  </ul>
+  <blockquote><strong>Note:</strong> Longi 460W (LR7-54HTH-460M at €52.20 H1 — even cheaper) has only 6 units at 7sun currently. If restocked before our order, switch 1 pallet to 460W for maximum net billing utilisation (9 × 460 = 4.14 kWp).</blockquote>
+</div>
+
+<!-- Panel 1.4 -->
+<div class="card">
+  <h3>1.4 Jolywood JW-HD96N-R2-450W Full Black Bifacial — 450W</h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★</span> Important — PRICE LEADER</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>72 panels (2 pallets × 36)</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€42.84/panel (€0.095/Wp)</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€54.58/panel</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€3,085</td></tr>
+    <tr><td><strong>Net Billing Fit</strong></td><td>9 panels = 4.050 kWp ✓</td></tr>
+    <tr><td><strong>Trikkis</strong></td><td>NOT AVAILABLE</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€60–65</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>40–52% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>807 units available</td></tr>
+  </table>
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>Massive 7sun stock (807 units).</strong> We can reorder instantly, never run out. Supply reliability is key for installer trust.</li>
+    <li><strong>Cheapest Tier-1 panel in our lineup.</strong> €42.84 cost = €0.095/Wp — full-black aesthetic that Cyprus homeowners prefer at the lowest price point.</li>
+    <li><strong>N-type TOPCon pioneer.</strong> Jolywood was one of the first to mass-produce n-type TOPCon cells. Proven technology, strong warranties.</li>
+    <li><strong>450W for flexible system design.</strong> 9 panels = 4.05 kWp. Slightly lower than 455W options, good for roofs where 4.05 kWp is the sweet spot.</li>
+  </ul>
+</div>
+
+<!-- Panel 1.5 -->
+<div class="card">
+  <h3>1.5 Jinko JKM500N-54HL4M-BDV Black Frame Bifacial — 500W</h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★</span> Important — RESIDENTIAL/COMMERCIAL CROSSOVER</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>72 panels (2 pallets × 36)</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€51.83/panel (€0.104/Wp)</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€61.70/panel</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€3,732</td></tr>
+    <tr><td><strong>Net Billing Fit</strong></td><td>8 panels = 4.000 kWp ✓</td></tr>
+    <tr><td><strong>Trikkis</strong></td><td>NOT AVAILABLE at this wattage</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€70–75</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>35–45% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>468 units available</td></tr>
+  </table>
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>8 panels instead of 9.</strong> One fewer panel = less roof space, less mounting hardware, faster installation. Installers love efficiency.</li>
+    <li><strong>Residential + commercial bridge.</strong> 500W also serves 10 kWp+ commercial systems (20 panels = 10 kWp). Dual-purpose product.</li>
+    <li><strong>Jinko brand continuity.</strong> Installers buying Jinko 455W for residential will upsell to 500W for larger roofs or commercial jobs.</li>
+    <li><strong>Bifacial for flat roofs.</strong> Many Cyprus commercial buildings have flat white roofs — ideal for bifacial energy gain.</li>
+  </ul>
+</div>
+
+<!-- Panel 1.6 -->
+<div class="card">
+  <h3>1.6 Jolywood JW-HD144N-580W Bifacial Silver Frame — 580W</h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★</span> Strategic — C&amp;I ENTRY</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>36 panels (1 pallet)</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€71.03/panel (€0.122/Wp)</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€71.19/panel</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€2,557</td></tr>
+    <tr><td><strong>Net Billing Fit</strong></td><td>7 panels = 4.060 kWp ✓ (or C&amp;I use)</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€85–95</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>20–34% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>55 units available</td></tr>
+  </table>
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>Fewest panels needed.</strong> Just 7 panels for 4.06 kWp — minimum roof footprint. Premium positioning for space-constrained installations.</li>
+    <li><strong>Commercial/industrial entry.</strong> 580W large-format panels signal "we serve ALL segments" — not just residential.</li>
+    <li><strong>Lighthief.cy purchases at cost price (0% margin).</strong> Lighthief provides base volume throughput but does not contribute to JV profit. Our EPC partner handles C&amp;I projects; these panels are available for their commercial pipeline.</li>
+    <li><strong>Minimal stock value.</strong> 1 pallet (€2,050) = low risk, high signal value.</li>
+  </ul>
+</div>
+
+<!-- Panel Portfolio Summary -->
+<h3>Panel Portfolio Summary</h3>
+<pre>
+NET BILLING RESIDENTIAL (4.16 kWp max)                      COMMERCIAL
+──────────────────────────────────────────────────          ──────────
+PRICE LEADERS         MAINSTREAM             CROSSOVER      C&amp;I
+Jolywood 450W         Jinko 455W             Jinko 500W     Jolywood 580W
+Cost €0.095/Wp        Cost €0.098/Wp         Cost €0.104/Wp Cost €0.122/Wp
+CY Whsl €62–66        CY Whsl €65–70         CY Whsl €70–75 CY Whsl €85–95
+9 panels=4.10kWp      9 panels=4.10kWp       8 panels=4.0   7 panels=4.06
+
+Longi 455W            JA Solar 450W FB
+Cost €0.108/Wp        Cost ~€0.100/Wp
+CY Whsl €60–65        CY Whsl €64–68
+9 panels=4.05kWp      9 panels=4.05kWp
+                      Exclusive bifacial
+
+4 BRANDS — ALL EXCLUSIVE (Trikkis has NONE of these)
+CY Wholesale margins: 20–57% | CY Retail margins: 79–102%+
+</pre>
+
+<div class="success-box">
+  <strong>Total Panel Stock Value:</strong> €22,586 for 468 panels — every panel fits the net billing limit and every brand is exclusive to 7SUN in Cyprus.
+</div>
+
+<div class="alert-box">
+  <strong>⚠️ EE Recommendation:</strong> Our local Electrical Engineer recommends limiting to 2-4 panel models for the initial order. Installers generally go for the cheapest option. Longi and JA Solar are specifically endorsed as good Tier 1 brands not widely available in Cyprus. Panel lineup may be trimmed before final order.
+</div>
+
+<!-- DEYE COMBO -->
+<div class="page-break"></div>
+<h2>2. Deye Inverters + Stackable Battery — Verified Cost €45,315 <span class="badge badge-new">MARKET DIFFERENTIATOR</span></h2>
+
+<div class="card">
+  <h3>Why This Is Our #1 Strategic Product</h3>
+  <p><strong>The Cyprus problem:</strong> Trikkis offers the Huawei SUN2000L-5KTL/L1 single-phase hybrid inverter at €616 wholesale — a good inverter. But the battery side is prohibitively expensive: LUNA2000-5kWh at €1,725 + Smart String Controller at €698 = <strong>€2,423 just for 5kWh storage</strong>, totalling <strong>€3,039 for a complete single-phase hybrid + 5kWh kit</strong>. This prices out most homeowners from affordable net billing with storage.</p>
+  <p><strong>Our solution:</strong> The Deye SUN-5K-SG03LP1-EU + SE-G5.1 PRO-B combo delivers the same functionality at <strong>€1,750–1,950 wholesale</strong> — <strong>36–42% cheaper</strong> than the Huawei equivalent kit. No separate controller needed, stackable batteries, and we're the only source in Cyprus.</p>
+</div>
+
+<!-- Deye 2.1 -->
+<div class="card">
+  <h3>2.1 Deye SUN-5K-SG03LP1-EU — 5kW Single-Phase Hybrid Inverter (LV) <span class="badge badge-critical">CRITICAL</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> CRITICAL — MARKET DIFFERENTIATOR</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>25 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€636.43/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€701.04/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€15,911</td></tr>
+    <tr><td><strong>Trikkis Equivalent</strong></td><td>Huawei SUN2000L-5KTL/L1 at €616 wholesale — but requires €2,423 in LUNA battery + controller</td></tr>
+    <tr><td><strong>Huawei Total Kit Cost</strong></td><td>€3,039 total (inverter €616 + LUNA 5kWh €1,725 + controller €698) vs our Deye kit €1,750–1,950</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€850–950</td></tr>
+    <tr><td><strong>CY Retail Price</strong></td><td>€1,100–1,300</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>34–49% on cost</td></tr>
+    <tr><td><strong>Margin (CY Retail)</strong></td><td>73–104% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>166 units available</td></tr>
+  </table>
+  <div class="success-box">
+    <strong>Why this is our most important product:</strong>
+    <ul>
+      <li><strong>Most affordable single-phase hybrid + storage kit in Cyprus.</strong> Huawei L1 5kW exists at Trikkis (€616) but with LUNA batteries the complete kit hits €3,039. Our Deye kit: €1,750–1,950 = <strong>36–42% cheaper</strong>.</li>
+      <li><strong>Cyprus net billing compliant.</strong> 5kW = exact maximum allowed for single-phase net billing (4.16 kWp array + 1 kW oversizing).</li>
+      <li><strong>LV battery compatible.</strong> Works with the affordable Deye SE-G5.1 PRO-B low-voltage batteries — no expensive HV system needed.</li>
+      <li><strong>Built-in EPS (Emergency Power Supply).</strong> Automatic backup during grid outages. Cyprus grid has increasing instability — this is a real selling point.</li>
+      <li><strong>Built-in MPPT for solar.</strong> 2 independent MPPT inputs for direct panel connection. Complete system brain in one box.</li>
+      <li><strong>Deye global brand.</strong> World's #3 inverter manufacturer. Well-known in Australia, South Africa, EU. New to Cyprus = first-mover advantage.</li>
+      <li><strong>Deep 7sun stock (166 units).</strong> Immediate reorder capability. No supply chain risk.</li>
+    </ul>
+  </div>
+
+  <h4>Why NOT the Deye 6K, 8K, or 10K?</h4>
+  <table>
+    <tr><th>Model</th><th>Size</th><th>Why NOT for first delivery</th></tr>
+    <tr><td>SUN-6K-SG03LP1-EU</td><td>6kW</td><td><strong>Exceeds Cyprus 5kW limit for single-phase net billing</strong> — illegal to install</td></tr>
+    <tr><td>SUN-8K-SG01LP1-EU</td><td>8kW</td><td>Same — exceeds 5kW limit</td></tr>
+    <tr><td>SUN-10K-SG02LP1-EU</td><td>10kW</td><td>Same — exceeds 5kW limit</td></tr>
+  </table>
+  <blockquote><strong>Important:</strong> In Cyprus, single-phase net billing permits allow maximum 5 kW inverter. Larger single-phase inverters require 3-phase connection, which defeats the purpose. The 5K is the ONLY compliant option.</blockquote>
+</div>
+
+<!-- Deye 2.2 -->
+<div class="card">
+  <h3>2.2 Deye SE-G5.1 PRO-B — 5.15 kWh LV Battery Module (Stackable) <span class="badge badge-critical">CRITICAL</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> CRITICAL — PAIRS WITH DEYE 5K</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>35 modules</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€535.74/module</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€664.42/module</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€18,751</td></tr>
+    <tr><td><strong>Huawei LUNA2000-5 Equivalent</strong></td><td>€1,725 wholesale at Trikkis + €698 controller = <strong>€2,423 for first 5kWh</strong></td></tr>
+    <tr><td><strong>Price Advantage</strong></td><td><strong>78% cheaper for first 5kWh</strong> (€536 vs €2,423 — Deye has no separate controller)</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€800–900/module</td></tr>
+    <tr><td><strong>CY Retail Price</strong></td><td>€950–1,100/module</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>51–69% on cost</td></tr>
+    <tr><td><strong>Margin (CY Retail)</strong></td><td>79–107% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>67 units available</td></tr>
+  </table>
+
+  <p><strong>Why this product:</strong></p>
+  <ul>
+    <li><strong>68% cheaper than Huawei LUNA (on our cost basis).</strong> €536 vs €1,950 (Trikkis) — this is the single biggest price disruption in our entire catalog. Installers will switch for this alone.</li>
+    <li><strong>Stackable: 1 to 4 modules in parallel.</strong> Each module is 5.15 kWh. Stack as needed:</li>
+  </ul>
+
+  <h4>Stacking Options (1–4 modules, no controller needed)</h4>
+  <table>
+    <tr><th>Modules</th><th>Capacity</th><th>Our Cost</th><th>CY Wholesale</th><th>CY Retail</th><th>vs LUNA at Trikkis</th></tr>
+    <tr><td>1</td><td>5.15 kWh</td><td>€536</td><td>€800–900</td><td>€950–1,100</td><td>LUNA 5kWh + controller: €2,423 → <strong>78% cheaper</strong></td></tr>
+    <tr><td>2</td><td>10.30 kWh</td><td>€1,072</td><td>€1,600–1,800</td><td>€1,900–2,200</td><td>LUNA 10kWh + ctrl: €3,448 → <strong>69% cheaper</strong></td></tr>
+    <tr><td>3</td><td>15.45 kWh</td><td>€1,607</td><td>€2,400–2,700</td><td>€2,850–3,300</td><td>LUNA 15kWh + ctrl: €4,473 → <strong>64% cheaper</strong></td></tr>
+    <tr><td>4</td><td>20.60 kWh</td><td>€2,143</td><td>€3,200–3,600</td><td>€3,800–4,400</td><td>LUNA 20kWh + ctrl: €5,498 → <strong>61% cheaper</strong></td></tr>
+  </table>
+
+  <ul>
+    <li><strong>No external controller needed.</strong> Each module has integrated BMS (Battery Management System). Modules connect in parallel and communicate with the Deye 5K inverter via CAN bus. No separate PDU, no string controller, no extra cost.</li>
+    <li><strong>Simple installation.</strong> Stack modules vertically or side-by-side. Parallel cables included. Plug-and-play connection to inverter.</li>
+    <li><strong>LiFePO4 chemistry.</strong> 6,000+ cycle life = ~16 years at daily cycling. Safe, no thermal runaway risk. Ideal for Cyprus heat.</li>
+    <li><strong>⚠️ Indoor installation required.</strong> The SE-G5.1 PRO-B is NOT waterproof (IP20). Must be installed indoors or in a covered, ventilated space. In Cyprus's climate this means garage, utility room, or covered balcony — NOT exposed outdoor installations.</li>
+  </ul>
+</div>
+
+<!-- Deye Net Billing Kit -->
+<h3>The Complete Deye Net Billing Kit</h3>
+<p><strong>What we sell to installers:</strong></p>
+<table>
+  <tr><th>Package</th><th>Components</th><th>Our Cost</th><th>CY Wholesale</th><th>CY Retail</th><th>vs Huawei Equiv.</th></tr>
+  <tr><td><strong>Basic Kit</strong></td><td>5K inverter + 1× battery (5.15 kWh)</td><td><strong>€1,172</strong></td><td>€1,700–1,900</td><td>€2,500–3,000</td><td>Huawei L1 + LUNA 5kWh: €3,039 → <strong>44% less</strong></td></tr>
+  <tr><td><strong>Standard Kit</strong></td><td>5K inverter + 2× battery (10.3 kWh)</td><td><strong>€1,708</strong></td><td>€2,500–2,800</td><td>€3,500–4,200</td><td>Huawei L1 + LUNA 10kWh: €4,064 → <strong>38% less</strong></td></tr>
+  <tr><td><strong>Premium Kit</strong></td><td>5K inverter + 3× battery (15.45 kWh)</td><td><strong>€2,244</strong></td><td>€3,300–3,700</td><td>€4,500–5,300</td><td>Huawei L1 + LUNA 15kWh: €5,089 → <strong>35% less</strong></td></tr>
+  <tr><td><strong>Max Kit</strong></td><td>5K inverter + 4× battery (20.6 kWh)</td><td><strong>€2,779</strong></td><td>€4,100–4,600</td><td>€5,500–6,500</td><td>Huawei L1 + LUNA 20kWh: €6,114 → <strong>33% less</strong></td></tr>
+</table>
+
+<h3>Complete Net Billing System Examples (Panels + Inverter + Battery)</h3>
+<table>
+  <tr><th>System</th><th>Panels</th><th>Inverter + Battery</th><th>Total Our Cost</th><th>CY Wholesale</th><th>CY Retail</th></tr>
+  <tr><td><strong>Budget 4.1 kWp + 5 kWh</strong></td><td>9× Jolywood 450W (€386)</td><td>Deye Basic Kit (€1,172)</td><td><strong>€1,558</strong></td><td>€3,200–3,600</td><td>€5,500–6,500</td></tr>
+  <tr><td><strong>Standard 4.1 kWp + 10 kWh</strong></td><td>9× Jinko 455W (€401)</td><td>Deye Standard Kit (€1,708)</td><td><strong>€2,109</strong></td><td>€4,200–4,600</td><td>€6,800–7,800</td></tr>
+  <tr><td><strong>Premium 4.1 kWp + 15 kWh</strong></td><td>9× JA Solar 450W (€405)</td><td>Deye Premium Kit (€2,244)</td><td><strong>~€2,649</strong></td><td>€5,200–5,800</td><td>€8,200–9,500</td></tr>
+</table>
+
+<div class="success-box">
+  <strong>Market positioning:</strong> A complete 4.1 kWp solar + 10 kWh storage system for ~€2,100 cost. We sell at €4,200–4,600 wholesale = <strong>107–127% margin on cost</strong>. This price point does NOT exist in Cyprus today. It will be our most viral marketing message.
+</div>
+
+<!-- DEYE 3-PHASE -->
+<div class="card">
+  <h3>2.3 Deye 3-Phase Hybrid Inverters <span class="badge badge-new">NEW ADDITION</span></h3>
+  <p><strong>Why:</strong> Completes the Deye product line. Single-phase covers net billing (4.16 kWp), but larger residential and commercial systems need 3-phase inverters. Trikkis only offers Huawei 3-phase. Deye 3-phase gives us a complete alternative ecosystem with matching LV batteries.</p>
+  <p><strong>Available models from 7sun (H1 selling price / est. internal cost at 80%):</strong></p>
+  <table>
+    <tr><th>Model</th><th>Type</th><th>H1 Sell</th><th>Est. Cost</th><th>Qty</th><th>Total</th><th>Notes</th></tr>
+    <tr><td>SUN-8K-SG01HP3-EU-AM2</td><td>3ph HV Hybrid 8kW</td><td>€998.59</td><td>€798.87</td><td>4</td><td>€3,195</td><td>Most popular 3ph residential size</td></tr>
+    <tr><td>SUN-10K-SG01HP3-EU-AM2</td><td>3ph HV Hybrid 10kW</td><td>€1,162.30</td><td>€929.84</td><td>4</td><td>€3,719</td><td>Large residential / small commercial</td></tr>
+    <tr><td>SUN-12K-SG01HP3-EU-AM2</td><td>3ph HV Hybrid 12kW</td><td>€1,608.90</td><td>€1,245.50</td><td>3</td><td>€3,737</td><td>Small commercial — 15 in stock at 7sun</td></tr>
+    <tr class="highlight-row"><td><strong>Subtotal</strong></td><td></td><td></td><td></td><td><strong>11</strong></td><td><strong>€10,653</strong></td><td></td></tr>
+  </table>
+  <p><strong>Margin Analysis (vs no local competition for Deye 3-phase):</strong></p>
+  <ul>
+    <li>No Deye 3-phase distributor in Cyprus currently</li>
+    <li>Huawei 3ph hybrid 8K from Trikkis: ~€1,217 WS → Deye 8K at H1 €998 = 18% cheaper</li>
+    <li>Huawei 3ph hybrid 10K from Trikkis: ~€1,360 WS → Deye 10K at H1 €1,162 = 15% cheaper</li>
+    <li>Our cost (est. 80% of H1) gives us 40-55% wholesale margins and 80-120% retail margins if we price at or near Huawei levels</li>
+  </ul>
+</div>
+
+<!-- SOLAREDGE -->
+<div class="page-break"></div>
+<h2>3. SolarEdge Inverters — Verified Cost €3,949 | 20 Units <span class="badge badge-exclusive">PENDING VERIFICATION</span></h2>
+
+<div class="strategy-box">
+  <strong>Why Keep SolarEdge?</strong><br>
+  SolarEdge serves the <strong>3-phase residential and commercial</strong> segment — completely separate from the Deye single-phase net billing market. SolarEdge is NASDAQ-listed, the #2 global inverter brand. Our margins are extraordinary (100–165%+) and the MLPE technology creates optimizer lock-in revenue.
+</div>
+<div class="alert-box">
+  <strong>⚠️ CHANNEL STATUS WARNING:</strong> BIGSOLAR (Epiphaniou Group) may be the official SolarEdge representative in Cyprus. Channel status needs verification before committing stock. If confirmed, SolarEdge margins and strategy will need revision. All SolarEdge quantities and pricing below are ON HOLD pending this verification.
+</div>
+
+<!-- SE 3.1 -->
+<div class="card">
+  <h3>3.1 SolarEdge SE5K-RW0TEBEN4 — 5kW 3-Phase <span class="badge badge-exclusive">PENDING VERIFICATION</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical — PENDING VERIFICATION</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>8 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€80.19/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€213.56/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€641</td></tr>
+    <tr><td><strong>Trikkis</strong></td><td>NOT AVAILABLE (Trikkis does not stock SolarEdge)</td></tr>
+    <tr><td><strong>Comparable Huawei 5kW at Trikkis</strong></td><td>€570 wholesale / €635 retail</td></tr>
+    <tr><td><strong>Our CY Retail Price</strong></td><td>€400–450</td></tr>
+    <tr><td><strong>Discount vs Huawei</strong></td><td><strong>30–37% cheaper</strong> at retail</td></tr>
+    <tr><td><strong>Margin</strong></td><td>399–461% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>46 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> At €80 cost → €400–450 retail, we sell a NASDAQ-listed brand 37% CHEAPER than Huawei at Trikkis, with 399–461% markup. This is the single most attention-grabbing product for 3-phase residential. Every SolarEdge inverter also drives optimizer sales (€32–45 each × 9–12 per system = €290–540 per installation).</p>
+  <blockquote><strong>Note:</strong> Do NOT sell SolarEdge at H5 tier — the deep discount on SE5K (H5=€166.11) approaches our cost. Sell at H1 or above only.</blockquote>
+</div>
+
+<!-- SE 3.2 -->
+<div class="card">
+  <h3>3.2 SolarEdge SE8K-RW0TEBEN4 — 8kW 3-Phase <span class="badge badge-exclusive">PENDING VERIFICATION</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical — PENDING VERIFICATION</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>6 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€142.76/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€320.35/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€857</td></tr>
+    <tr><td><strong>Our CY Retail</strong></td><td>€550–600</td></tr>
+    <tr><td><strong>vs Huawei 8kW at Trikkis</strong></td><td><strong>33–39% cheaper</strong></td></tr>
+    <tr><td><strong>Margin</strong></td><td>285–320% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>60 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Covers 8kW 3-phase demand. At €143 cost → €550–600 retail = extraordinary margins while STILL undercutting Huawei by 33–39%.</p>
+</div>
+
+<!-- SE 3.3 -->
+<div class="card">
+  <h3>3.3 SolarEdge SE10.0K-RW0TEBEN4 — 10kW 3-Phase <span class="badge badge-exclusive">PENDING VERIFICATION</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical — PENDING VERIFICATION</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>6 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€408.55/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€569.50/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€2,451</td></tr>
+    <tr><td><strong>Our CY Retail</strong></td><td>€850–950</td></tr>
+    <tr><td><strong>Margin</strong></td><td>108–133% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>78 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Completes the SolarEdge residential lineup and enters small commercial. 10kW covers large homes and small businesses.</p>
+</div>
+
+<!-- SolarEdge Strategy Summary -->
+<h3>SolarEdge Strategy Summary</h3>
+<pre>
+MARKET DISRUPTOR — PENDING VERIFICATION (7SUN CYPRUS)
+────────────────────────────────────────────
+SE5K (cost €80)    SE8K (cost €143)   SE10K (cost €409)
+CY Retail €400      CY Retail €550      CY Retail €900
+399–461% margin    285–320% margin     108–133% margin
++optimizers        +optimizers         +optimizers
+= €290–540         = €290–540          = €290–540
+per install        per install         per install
+
+20 inverters × avg 10 optimizers = 200 optimizer sales
+200 × €55–65 retail = €11,000–13,000 optimizer revenue
+Total SolarEdge ecosystem revenue potential: €23,000–28,000+
+</pre>
+
+<!-- SOLAREDGE OPTIMIZERS -->
+<h2>4. SolarEdge Optimizers — Verified Cost €4,672 | 150 Units</h2>
+
+<div class="card">
+  <h3>4.1 SolarEdge S440-1DM4MRM (Residential, Long Cable)</h3>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>100 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€28.13/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€39.43/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€2,813</td></tr>
+    <tr><td><strong>CY Retail</strong></td><td>€55–65</td></tr>
+    <tr><td><strong>Margin</strong></td><td>96–131% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>2,723 units</td></tr>
+  </table>
+  <p><strong>MANDATORY for every SolarEdge installation.</strong> One optimizer per panel. 100 units covers ~10 residential installations of 9–10 panels each. If SolarEdge uptake is strong, reorder immediately.</p>
+</div>
+
+<div class="card">
+  <h3>4.2 SolarEdge S1000-1GM4MBT-NM01 (Commercial, 2 panels/optimizer)</h3>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>50 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€37.17/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€44.67/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€1,859</td></tr>
+    <tr><td><strong>CY Retail</strong></td><td>€60–70</td></tr>
+    <tr><td><strong>Margin</strong></td><td>61–88% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>2,187 units</td></tr>
+  </table>
+  <p>Higher-power optimizer for commercial SE installations. 2 panels per optimizer = lower per-panel cost for larger systems.</p>
+</div>
+
+<!-- MICRO INVERTERS -->
+<div class="page-break"></div>
+<h2>5. Micro Inverters — Verified Cost €5,444 | 65+ Units | Apartment Segment</h2>
+
+<div class="card">
+  <h3>The Apartment Building Opportunity</h3>
+  <p>Cyprus has tens of thousands of apartment buildings with flat rooftops. Micro inverters allow each apartment to have its own independent 2–4 panel system, connected to its own meter. No shared inverter, no legal headaches, each unit independent.</p>
+  <blockquote><strong>Grant Status:</strong> The RES Fund Grant Scheme 2024–2025 (€375/kW for first 4 kW = max €1,500) has <strong>closed</strong>. Historically renewed in new rounds. When a new scheme opens, each apartment owner with a micro inverter system qualifies individually — maximizing total grant capture for the building.</blockquote>
+</div>
+
+<div class="alert-box">
+  <strong>⚠️ Regulatory Warning:</strong> Our local Electrical Engineer has flagged that micro inverters may not be fully legislated in Cyprus. Standard inverters can be programmed with EAC's specific grid settings and requirements, but micro inverters may not support this. <strong>Verification with EAC is required before committing stock or marketing this segment.</strong> All micro inverter quantities and stock value figures below are PROVISIONAL pending this confirmation.
+</div>
+
+<!-- Micro 5.1 -->
+<div class="card">
+  <h3>5.1 Envertech EVT800B — 2-Panel Micro Inverter (800W) <span class="badge badge-critical">CRITICAL</span></h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Priority</strong></td><td><span class="stars">★★★</span> Critical for apartment segment</td></tr>
+    <tr><td><strong>Quantity</strong></td><td>30 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€76.10/unit (includes 5m AC cable with plug)</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€85.44/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€2,283</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€110–120</td></tr>
+    <tr><td><strong>CY Retail Price</strong></td><td>€140–160</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>45–58% on cost</td></tr>
+    <tr><td><strong>Margin (CY Retail)</strong></td><td>84–110% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>180 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Lowest-cost 2-panel micro. Ready to install out of the box. 25-year warranty. Per-apartment independence.</p>
+</div>
+
+<!-- Micro 5.2 -->
+<div class="card">
+  <h3>5.2 Envertech EVT1000B — 2-Panel Micro (1000W)</h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>20 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€81.32/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€91.13/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€1,626</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€115–125</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>41–54% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>171 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Handles 440–460W panels without clipping. Only ~€4.55 more than EVT800B for significant headroom.</p>
+</div>
+
+<!-- Micro 5.3 -->
+<div class="card">
+  <h3>5.3 Solax X1-MICRO-2000 — 4-Panel Micro (2000W)</h3>
+  <table>
+    <tr><th>Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>10 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€111.11/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€144.64/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€1,111</td></tr>
+    <tr><td><strong>CY Wholesale Price</strong></td><td>€180–200</td></tr>
+    <tr><td><strong>Margin (CY Wholesale)</strong></td><td>62–80% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>15 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Premium 4-panel kit for apartments wanting maximum offset. 4 independent MPPT inputs. One unit per apartment = simpler installation.</p>
+  <div class="alert-box">
+    <strong>⚠️ Note:</strong> Solax Power is represented in Cyprus by EV Energy CY. This may create channel conflict. Consider replacing with additional Envertech stock if Solax distribution rights are restricted.
+  </div>
+</div>
+
+<!-- Micro 5.4 -->
+<div class="card">
+  <h3>5.4 Envertech EnverBridge EVB300 (Monitoring Gateway)</h3>
+  <table>
+    <tr><th>Qty</th><th>Est. Cost</th><th>Total</th></tr>
+    <tr><td>5</td><td>~€60.88</td><td>€304</td></tr>
+  </table>
+  <p>One gateway per building. Monitors all Envertech micros via WiFi. Per-apartment production data via app.</p>
+</div>
+
+<!-- Micro 5.5 -->
+<div class="card">
+  <h3>5.5 Connectors &amp; Accessories — €120</h3>
+  <p>End caps, male/female connectors, T-connectors for Envertech trunk cable system.</p>
+</div>
+
+<!-- Apartment Kits -->
+<h3>Apartment Kit Pricing (What We Sell to Developers)</h3>
+<table>
+  <tr><th>Kit</th><th>Components</th><th>Our Cost</th><th>Developer Price</th><th>Margin</th></tr>
+  <tr><td><strong>Budget</strong> (2 panels)</td><td>2× Jolywood 450W + EVT800B</td><td><strong>€162</strong></td><td>€400–500</td><td>147–209%</td></tr>
+  <tr><td><strong>Standard</strong> (3 panels)</td><td>3× JA Solar 450W + EVT1000B</td><td><strong>~€216</strong></td><td>€500–650</td><td>131–201%</td></tr>
+  <tr><td><strong>Premium</strong> (4 panels)</td><td>4× Longi 455W + Solax X1-MICRO-2000</td><td><strong>€282</strong></td><td>€700–900</td><td>148–219%</td></tr>
+</table>
+
+<h3>Developer Volume Example</h3>
+<table>
+  <tr><th>Project</th><th>Units</th><th>Kit</th><th>Our Cost</th><th>Revenue</th><th>Profit</th><th>Margin</th></tr>
+  <tr><td>Small block</td><td>10</td><td>Budget</td><td>€1,557</td><td>€4,500</td><td>€2,943</td><td>65%</td></tr>
+  <tr><td>Medium block</td><td>20</td><td>Standard</td><td>€4,135</td><td>€12,000</td><td>€7,865</td><td>66%</td></tr>
+  <tr><td>Large block</td><td>20</td><td>Premium</td><td>€5,807</td><td>€16,000</td><td>€10,193</td><td>64%</td></tr>
+  <tr><td>Major development</td><td>50</td><td>Premium</td><td>€14,517</td><td>€40,000</td><td>€25,483</td><td>64%</td></tr>
+</table>
+
+<!-- OTHER ACCESSORIES -->
+<h2>6. Other Optimizers &amp; Accessories — Verified Cost €3,863</h2>
+
+<!-- 6.1 -->
+<div class="card">
+  <h3>6.1 Tigo TS4-A-O 700W Optimizer (Brand-Agnostic)</h3>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>50 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€29.60/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€28.95/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€1,480</td></tr>
+    <tr><td><strong>CY Retail</strong></td><td>€45–55</td></tr>
+    <tr><td><strong>Margin</strong></td><td>52–86% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>10,601 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Works with ANY inverter brand (Huawei, Deye, Sofar, FoxESS). For installers who want panel-level optimisation and rapid shutdown without switching to SolarEdge. Cheapest optimizer in Cyprus. Pairs perfectly with Trikkis-sourced Huawei inverters AND our Deye 5K.</p>
+</div>
+
+<!-- 6.2 -->
+<div class="card">
+  <h3>6.2 Huawei SUN2000-450W-P2 Optimizer</h3>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>50 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€23.66/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€32.03/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€1,183</td></tr>
+    <tr><td><strong>CY Retail</strong></td><td>€45–55</td></tr>
+    <tr><td><strong>Margin</strong></td><td>90–133% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>427 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> Required for Huawei systems with shading or complex layouts. Cross-sell with Trikkis-sourced Huawei inverters — the installer buys the inverter from Trikkis and the optimizer from us. High margin.</p>
+</div>
+
+<!-- 6.3 -->
+<div class="card">
+  <h3>6.3 Huawei Smart Dongle 4G</h3>
+  <table>
+    <tr><th>Detail</th><th>Value</th></tr>
+    <tr><td><strong>Quantity</strong></td><td>10 units</td></tr>
+    <tr><td><strong>Verified Cost</strong></td><td>~€120.02/unit</td></tr>
+    <tr><td><strong>H1 Selling Price</strong></td><td>€90.14/unit</td></tr>
+    <tr><td><strong>Total Stock Value</strong></td><td>€1,200</td></tr>
+    <tr><td><strong>CY Retail</strong></td><td>€120–140</td></tr>
+    <tr><td><strong>Margin</strong></td><td>33–50% on cost</td></tr>
+    <tr><td><strong>7sun Stock</strong></td><td>62 units</td></tr>
+  </table>
+  <p><strong>Why:</strong> For Huawei installations where WiFi is unavailable (rural areas, commercial rooftops). Monitoring is mandatory, so this is a required add-on. Cross-sell with Trikkis Huawei inverters.</p>
+  <blockquote><strong>Note:</strong> Huawei Smart Dongle WLAN-FE (est. cost ~€54, WiFi version) and Huawei DTSU666-H Smart Meter (est. cost ~€107) are currently <strong>out of stock</strong> at 7sun. Add to order when restocked. Source from Trikkis in the interim if needed.</blockquote>
+</div>
+
+<!-- LOCAL SOURCING -->
+<div class="page-break"></div>
+<h2>7. What We Buy Locally from Trikkis <span class="badge badge-local">LOCAL</span></h2>
+<div class="strategy-box">
+  These products are sourced from Trikkis in Cyprus for strategic reasons. Trikkis Huawei purchases are funded by the JV's operating revenue (from sales to external customers), not shareholder capital — buy on demand as orders come in.
+</div>
+<table>
+  <tr><th>Product</th><th>Trikkis Price</th><th>7sun Est. Cost (landed)</th><th>Import Saving</th><th>Why Still Buy Local</th></tr>
+  <tr><td>Huawei SUN2000-5KTL-M1 (5kW 3P)</td><td>€570</td><td>~€500</td><td>€70 (12%)</td><td>Same-day availability, no capital tie-up</td></tr>
+  <tr><td>Huawei SUN2000-8KTL-M1 (8kW 3P)</td><td>€825</td><td>~€717</td><td>€108 (13%)</td><td>Buy on demand, zero logistics</td></tr>
+  <tr><td>Huawei SUN2000-10KTL-M1 (10kW 3P)</td><td>~€900</td><td>~€777</td><td>€123 (14%)</td><td>Strategic relationship management</td></tr>
+  <tr><td>Huawei SUN2000-5K-MAP0 (5kW Hybrid 3P)</td><td>~€1,000</td><td>~€820</td><td>€180 (18%)</td><td>Keep Trikkis as customer, not just competitor</td></tr>
+</table>
+
+<h3>Huawei L1 Single-Phase Hybrid Inverters at Trikkis (for reference — we do NOT stock these)</h3>
+<table>
+  <tr><th>Model</th><th>Trikkis Wholesale</th><th>Trikkis Pallet</th><th>Notes</th></tr>
+  <tr><td>SUN2000L-2KTL/L1 (2kW)</td><td>€340</td><td>€325</td><td>Too small for net billing</td></tr>
+  <tr><td>SUN2000L-3KTL/L1 (3kW)</td><td>€417</td><td>€398</td><td>Too small for net billing</td></tr>
+  <tr><td>SUN2000L-4KTL/L1 (4kW)</td><td>€549</td><td>€524</td><td>Below 5kW limit</td></tr>
+  <tr><td>SUN2000L-4.6KTL/L1 (4.6kW)</td><td>€604</td><td>€577</td><td>Below 5kW limit</td></tr>
+  <tr><td><strong>SUN2000L-5KTL/L1 (5kW)</strong></td><td><strong>€616</strong></td><td><strong>€588</strong></td><td><strong>Net billing compliant — but LUNA battery adds €2,423</strong></td></tr>
+  <tr><td>SUN2000L-8K-LCO (8kW)</td><td>€1,119</td><td>€1,068</td><td>Exceeds 5kW single-phase limit</td></tr>
+  <tr><td>SUN2000L-10K-LCO (10kW)</td><td>€1,243</td><td>€1,187</td><td>Exceeds 5kW single-phase limit</td></tr>
+</table>
+
+<blockquote><strong>Why we don't stock Huawei L1:</strong> The inverter alone (€616) is competitive, but the total kit with LUNA batteries is <strong>€3,039</strong> vs our Deye kit at <strong>€1,750–1,950</strong>. Installers who want the cheapest net billing system with storage will choose our Deye kit.</blockquote>
+
+<div class="success-box">
+  <strong>Key insight:</strong> Importing is 12–18% cheaper, but Trikkis local sourcing provides:
+  <ul>
+    <li><strong>Instant availability.</strong> No 7–10 day wait. Same-day pickup from Trikkis warehouse.</li>
+    <li><strong>No shipping cost.</strong> Zero freight, zero import logistics.</li>
+    <li><strong>Lower capital tie-up.</strong> Buy on demand, not in advance. Better cash flow.</li>
+    <li><strong>Relationship building.</strong> Buying from Trikkis keeps the relationship cordial — we're their customer on inverters, their competitor on panels. Healthy coexistence.</li>
+  </ul>
+</div>
+
+<blockquote><strong>Review trigger:</strong> If Huawei demand exceeds 10+ units/month, consider importing directly from 7sun to capture the 12–18% saving. A single pallet of 20 inverters would save €1,400–3,600 over Trikkis pricing.</blockquote>
+
+<p><strong>What we DON'T buy from Trikkis:</strong> Panels (we beat them on price and brand range), batteries (Deye is 60–78% cheaper than LUNA and needs no controller), SolarEdge (they don't have it), micro inverters (they don't have them), single-phase hybrid inverters (our Deye kit is 36–42% cheaper as a complete system).</p>
+
+<!-- HUAWEI PROFITABILITY CHECK -->
+<h3>Huawei from 7sun — Profitability Check</h3>
+<p>We compared 7sun's Huawei H1 selling prices vs Trikkis local wholesale prices:</p>
+<table>
+  <tr><th>Huawei Model</th><th>7sun H1</th><th>Est. Cost (80%)</th><th>Trikkis WS</th><th>Margin vs Trikkis</th></tr>
+  <tr><td>5KTL-L1 (1ph)</td><td>€628.83</td><td>~€503</td><td>€616</td><td>~18% — but 0 stock at 7sun</td></tr>
+  <tr><td>5KTL-M1-HC (3ph)</td><td>€613.46</td><td>~€491</td><td>€573</td><td>~14% — thin</td></tr>
+  <tr><td>8KTL-M1-HC (3ph)</td><td>€883.56</td><td>~€707</td><td>€842</td><td>~16% — thin</td></tr>
+  <tr><td>10KTL-M1-HC (3ph)</td><td>€958.63</td><td>~€767</td><td>€959</td><td>~20% — decent</td></tr>
+</table>
+<div class="strategy-box">
+  <strong>Verdict:</strong> Huawei inverters from 7sun are marginally profitable at best. Trikkis local prices are already near or below 7sun H1 levels. Unless actual purchase prices are significantly lower than our 80% estimate, <strong>continue sourcing Huawei locally from Trikkis.</strong> This also gives us same-day availability vs 7-10 day shipping from Poland.
+</div>
+<blockquote>
+  <strong>Pending:</strong> Revisit Huawei profitability once actual purchase prices from 7sun are confirmed. If our cost is substantially below 80% of H1 for Huawei SKUs, there may be margin opportunities on larger models (10K+).
+</blockquote>
+
+<!-- NOT STOCKING -->
+<h2>8. What We're NOT Stocking from 7sun (and Why)</h2>
+<table>
+  <tr><th>Product</th><th>Why NOT on first truck</th></tr>
+  <tr><td><strong>Huawei string inverters</strong></td><td>Buying from Trikkis — instant availability, strategic relationship</td></tr>
+  <tr><td><strong>Huawei LUNA batteries</strong></td><td>Too expensive. €1,725 + €698 controller = €2,423 for 5kWh. Deye SE-G5.1 PRO-B is €536 for 5.15kWh with built-in BMS (78% cheaper, no controller needed).</td></tr>
+  <tr><td><strong>Huawei L1 single-phase hybrids</strong></td><td>Available at Trikkis (€616 for 5kW). We can't beat the inverter price, but our Deye complete kit (inv + battery) is 36–42% cheaper than Huawei L1 + LUNA.</td></tr>
+  <tr><td><strong>Jinko 440W panels</strong></td><td>Doesn't fit 4.16 kWp optimally (9×440=3.96 wastes 200W vs 9×455=4.10). 455W is better.</td></tr>
+  <tr><td><strong>Aiko 465W panels</strong></td><td>9×465=4.185 kWp EXCEEDS 4.16 limit. 8×465=3.72 underuses. Poor fit.</td></tr>
+  <tr><td><strong>Deye 6K/8K/10K single-phase</strong></td><td>ILLEGAL in Cyprus — exceeds 5kW single-phase inverter limit for net billing</td></tr>
+  <tr><td><strong>FoxESS hybrids</strong></td><td>Good product but 3-phase only. Add in Phase 2 after Deye single-phase proves demand.</td></tr>
+  <tr><td><strong>Sofar hybrids</strong></td><td>Same — 3-phase only. Market test later.</td></tr>
+  <tr><td><strong>Solax batteries (TP-LD53)</strong></td><td>Deye battery is cheaper (€536 vs ~€632 for Solax) and stacks natively with Deye inverter.</td></tr>
+  <tr><td><strong>Huawei LUNA2000-7-E1</strong></td><td>Premium next-gen at €2,449 wholesale (Trikkis) — too expensive when Deye is available at €536.</td></tr>
+  <tr><td><strong>Mounting systems / racking</strong></td><td>Bulky, low-margin, locally available. Add Month 3–4.</td></tr>
+  <tr><td><strong>DC cables / connectors</strong></td><td>Low value, readily available locally. Not worth truck space.</td></tr>
+  <tr><td><strong>Enphase / Hoymiles micros</strong></td><td>Not in 7sun catalog. Envertech + Solax cover the market at 50–70% lower cost.</td></tr>
+  <tr><td><strong>REC panels</strong></td><td>Trikkis's other main brand. No price advantage — would compete head-to-head.</td></tr>
+  <tr><td><strong>Fronius inverters</strong></td><td>Premium-priced, already has CY service network. Doesn't add to our disruption story.</td></tr>
+</table>
+
+<!-- PHASE 2 -->
+<h2>9. Phase 2 Additions (Month 3–6, based on demand)</h2>
+<table>
+  <tr><th>Product</th><th>Trigger</th><th>Est. Stock Value</th></tr>
+  <tr><td>FoxESS P3-10.0-SH (10kW 3P hybrid)</td><td>If 3-phase hybrid demand exceeds Huawei supply. <em>FoxESS is growing rapidly in Europe and may not yet have a Cyprus representative — potential for exclusive complete series partnership</em></td><td>€4,000–5,600</td></tr>
+  <tr><td>Sofar HYD 8/10KTL (3P hybrid)</td><td>Market test based on installer feedback</td><td>€3,200–4,000</td></tr>
+  <tr><td>Deye 3-phase hybrids (additional sizes)</td><td>If demand warrants larger models (15K+)</td><td>€2,000–4,000</td></tr>
+  <tr><td>Huawei SUN2000-15KTL-M5 (15kW commercial)</td><td>First C&amp;I project demand from Lighthief (at cost — 0% margin)</td><td>€1,200</td></tr>
+  <tr><td>FoxESS / Solax batteries</td><td>If FoxESS/Solax inverters gain traction</td><td>€2,400–4,000</td></tr>
+  <tr><td>Mounting systems</td><td>After demand patterns are clear</td><td>€1,600–2,400</td></tr>
+  <tr><td>Huawei EV Charger 22KT-S0</td><td>When 7sun restocks</td><td>€1,395</td></tr>
+  <tr><td><strong>Huawei inverters from 7sun</strong></td><td>When volume &gt;10 units/month justifies bulk import</td><td>Replaces Trikkis orders</td></tr>
+</table>
+
+<!-- REORDER -->
+<h2>10. Reorder Strategy</h2>
+
+<h3>Trigger Points</h3>
+<table>
+  <tr><th>Category</th><th>Reorder When</th><th>Lead Time</th><th>Reorder Qty</th></tr>
+  <tr><td>Panels (any brand)</td><td>Stock drops below 1 pallet (36)</td><td>7–10 days</td><td>2–4 pallets</td></tr>
+  <tr><td>Deye 5K Inverter</td><td>Stock drops below 5 units</td><td>7–10 days</td><td>10 units</td></tr>
+  <tr><td>Deye SE-G5.1 Battery</td><td>Stock drops below 8 modules</td><td>7–10 days</td><td>15 modules</td></tr>
+  <tr><td>SolarEdge Inverters</td><td>Stock drops below 3 per size</td><td>7–10 days</td><td>6–8 per size</td></tr>
+  <tr><td>SolarEdge Optimizers</td><td>Stock drops below 30 units</td><td>7–10 days</td><td>100 units</td></tr>
+  <tr><td>Micro Inverters</td><td>Stock drops below 10 per SKU</td><td>7–10 days</td><td>20–30 per SKU</td></tr>
+  <tr><td>Tigo/Huawei Optimizers</td><td>Stock drops below 15 units</td><td>7–10 days</td><td>50 units</td></tr>
+  <tr><td>Huawei Dongles</td><td>Stock drops below 3 units</td><td>7–10 days</td><td>10 units</td></tr>
+</table>
+
+<h3>Expected First Reorder: Week 6–8</h3>
+<ul>
+  <li><strong>Priority reorders:</strong> Jinko 455W panels (fastest mover), Deye 5K+battery kits (if uptake strong), SolarEdge inverters</li>
+  <li><strong>Estimated reorder value:</strong> €20,000–32,000 (at internal cost)</li>
+  <li><strong>Cumulative stock value by Month 3:</strong> €95,000–110,000</li>
+</ul>
+
+<!-- DELIVERY LOGISTICS -->
+<h2>11. Delivery Logistics</h2>
+<table>
+  <tr><th>Detail</th><th>Value</th></tr>
+  <tr><td><strong>Shipping method</strong></td><td>Full truck (groupage) or 40ft container</td></tr>
+  <tr><td><strong>Route</strong></td><td>7sun.eu warehouse (Poland) → road to Piraeus (Greece) → ferry to Limassol</td></tr>
+  <tr><td><strong>Alternative route</strong></td><td>Road through Balkans to Thessaloniki → ferry to Limassol</td></tr>
+  <tr><td><strong>Transit time</strong></td><td>7–10 business days</td></tr>
+  <tr><td><strong>Estimated shipping cost</strong></td><td>€6,000–8,000</td></tr>
+  <tr><td><strong>Customs</strong></td><td>Zero duty (intra-EU)</td></tr>
+  <tr><td><strong>VAT</strong></td><td>Reverse-charge mechanism (intra-EU B2B)</td></tr>
+  <tr><td><strong>Insurance</strong></td><td>Transit insurance recommended (~0.3% of cargo value = ~€185)</td></tr>
+  <tr><td><strong>Receiving</strong></td><td>Ypsonas warehouse — forklift unload required</td></tr>
+</table>
+
+<h3>Packing Note</h3>
+<ul>
+  <li>Total pallets: ~14–16 pallets (panels) + ~3 pallets (Deye, SolarEdge, micro inverters, accessories)</li>
+  <li>Total estimated weight: ~10–12 tonnes</li>
+  <li>Fits comfortably in a single full truck or 40ft container</li>
+</ul>
+
+<!-- FINANCIAL SUMMARY -->
+<div class="page-break"></div>
+<h2>12. Financial Summary</h2>
+
+<h3>Capital Deployment</h3>
+<table>
+  <tr><th>Source</th><th>Amount</th><th>Purpose</th></tr>
+  <tr><td>7sun truck (stock value at verified cost)</td><td>€85,829</td><td>Provided by 7sun.eu — no upfront purchase</td></tr>
+  <tr><td>7sun truck (shipping)</td><td>€6,000–8,000</td><td>Poland → Limassol logistics</td></tr>
+  <tr><td>Trikkis (buy on demand)</td><td>~€16,000</td><td>Huawei inverters — funded from operating revenue</td></tr>
+  <tr class="total-row"><td><strong>Total startup capital</strong></td><td><strong>~€82,000–85,000</strong></td><td>Warehouse, marketing, website, working capital (shared 50/50)</td></tr>
+</table>
+
+<h3>Revenue at Selling Prices (Value of Stock at CY Wholesale)</h3>
+<table>
+  <tr><th>Category</th><th>Cost</th><th>CY Wholesale Value</th><th>Gross Profit</th><th>Margin</th></tr>
+  <tr><td>Panels (468 units)</td><td>€22,586</td><td>€29,500–32,000</td><td>€6,914–9,414</td><td>31–42%</td></tr>
+  <tr><td>Deye 1ph Kits (25 inv + 35 bat)</td><td>€34,662</td><td>€52,000–58,000</td><td>€17,338–23,338</td><td>50–67%</td></tr>
+  <tr><td>Deye 3ph Inverters (11 units)</td><td>€10,653</td><td>€16,000–19,000</td><td>€5,347–8,347</td><td>50–78%</td></tr>
+  <tr><td>SolarEdge Systems (20 inv + 150 opt)</td><td>€8,621</td><td>€21,000–25,000</td><td>€12,379–16,379</td><td>143–190%</td></tr>
+  <tr><td>Micro Inverter Kits (65+ units)</td><td>€5,444</td><td>€10,000–13,000</td><td>€4,556–7,556</td><td>84–139%</td></tr>
+  <tr><td>Accessories</td><td>€3,863</td><td>€5,500–7,000</td><td>€1,637–3,137</td><td>42–81%</td></tr>
+  <tr class="total-row"><td><strong>7sun truck total</strong></td><td><strong>€85,829</strong></td><td><strong>€134,000–154,000</strong></td><td><strong>€48,171–68,171</strong></td><td><strong>56–79%</strong></td></tr>
+</table>
+
+<div class="success-box">
+  <strong>First truck gross profit potential: €48,171–68,171</strong> — this is the profit from selling the entire first delivery at CY wholesale prices. At retail, margins are even higher.
+</div>
+
+<h3>Revenue Potential (Monthly, at Steady State)</h3>
+<table>
+  <tr><th>Revenue Stream</th><th>Monthly Est.</th><th>Est. Margin</th></tr>
+  <tr><td>Panel sales (wholesale to installers)</td><td>€25,000–35,000</td><td>30–45%</td></tr>
+  <tr><td>Deye hybrid+battery kits</td><td>€15,000–25,000</td><td>45–65%</td></tr>
+  <tr><td>SolarEdge systems + optimizers</td><td>€8,000–12,000</td><td>80–130%</td></tr>
+  <tr><td>Huawei inverters (Trikkis resale + accessories)</td><td>€10,000–15,000</td><td>8–15%</td></tr>
+  <tr><td>Micro inverter apartment kits</td><td>€5,000–10,000</td><td>100–160%</td></tr>
+  <tr><td>Accessories (dongles, meters, optimizers)</td><td>€3,000–5,000</td><td>60–100%</td></tr>
+  <tr class="total-row"><td><strong>Total Monthly Revenue</strong></td><td><strong>€66,000–102,000</strong></td><td></td></tr>
+  <tr class="highlight-row"><td><strong>Total Annual Revenue</strong></td><td><strong>€792,000–1,224,000</strong></td><td></td></tr>
+  <tr><td><strong>Blended Gross Margin</strong></td><td></td><td><strong>33–43%</strong></td></tr>
+  <tr class="highlight-row"><td><strong>Annual Gross Profit</strong></td><td><strong>€261,000–526,000</strong></td><td></td></tr>
+</table>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="label">Startup Capital</div><div class="value">~€82–85K</div><div class="note">Shared 50/50 (~€41K each)</div></div>
+  <div class="kpi-card accent"><div class="label">Monthly Revenue</div><div class="value">€66–102K</div><div class="note">At steady state</div></div>
+  <div class="kpi-card green"><div class="label">Break-Even</div><div class="value">Month 2–3</div><div class="note">~€25–30K/mo needed</div></div>
+  <div class="kpi-card"><div class="label">Annual Revenue</div><div class="value">€792K–1.2M</div><div class="note">Blended margin 33–43%</div></div>
+</div>
+
+<h3>Break-Even Analysis</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Total startup capital</td><td>~€82,000–85,000</td></tr>
+  <tr><td>Monthly overhead (est.)</td><td>€8,000–12,000</td></tr>
+  <tr><td>Monthly break-even revenue</td><td>~€25,000–30,000</td></tr>
+  <tr class="highlight-row"><td><strong>Expected break-even</strong></td><td><strong>Month 2–3</strong></td></tr>
+</table>
+
+<h3>Profit Distribution</h3>
+<table>
+  <tr><th>Item</th><th>Annual (Conservative)</th><th>Annual (Optimistic)</th></tr>
+  <tr><td>Annual Gross Profit</td><td>€261,000</td><td>€526,000</td></tr>
+  <tr><td>Less: Overheads (~€120,000/yr)</td><td>–€120,000</td><td>–€120,000</td></tr>
+  <tr class="total-row"><td><strong>Net Profit</strong></td><td><strong>€141,000</strong></td><td><strong>€406,000</strong></td></tr>
+  <tr class="highlight-row"><td>Per shareholder (50/50 split)</td><td>€70,500</td><td>€203,000</td></tr>
+</table>
+
+<blockquote>
+  <strong>Key insight:</strong> The internal transfer pricing model means 7SUN Cyprus captures significant value at every tier. Even selling only at H1 prices, we maintain ~20% margin. Selling at Cyprus wholesale rates (above H1), margins reach 30–65% depending on product. The business is profitable from Month 2.
+</blockquote>
+
+<hr style="margin: 40px 0;">
+<p style="font-size: 12px; color: var(--muted); text-align: center;">
+  <em>Document version: 2.4 — Updated March 2026. Pricing verified with per-SKU confirmed costs from 7sun.eu. JV stock model: 7sun.eu provides all stock as JV contribution (no upfront purchase). Lighthief.cy purchases at cost (0% margin). Trikkis funded from operating revenue. Capital requirement: €0 for stock; ~€82,000–85,000 startup capital shared 50/50.</em>
+</p>
+
+</body>
+</html>

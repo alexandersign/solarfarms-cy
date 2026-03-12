@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PV Installation Contract — Aurolia Ltd / Greenland Family Park</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        h1 + p.subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        h2 {
+            font-size: 16px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+        h3 {
+            font-size: 14px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        p, li {
+            margin-bottom: 10px;
+        }
+        ol, ul {
+            padding-left: 25px;
+        }
+        ol li {
+            margin-bottom: 12px;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .parties-box {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .parties-box h3 {
+            margin-top: 0;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .col-num {
+            width: 40px;
+            text-align: center;
+        }
+        .col-amount {
+            width: 120px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .total-row td {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning-box strong {
+            color: #856404;
+        }
+        .acknowledgment-section {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 4px solid #495057;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .acknowledgment-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .risk-section {
+            border-left-color: #dc3545;
+            background-color: #fef2f2;
+        }
+        .risk-section h3 {
+            color: #721c24;
+        }
+        .obligations-section {
+            border-left-color: #0d6efd;
+            background-color: #f0f4ff;
+        }
+        .obligations-section h3 {
+            color: #084298;
+        }
+        .safety-section {
+            border-left-color: #198754;
+            background-color: #f0faf4;
+        }
+        .safety-section h3 {
+            color: #0a5c36;
+        }
+        .regularization-section {
+            border-left-color: #6c757d;
+        }
+        .signature-block {
+            margin-top: 50px;
+            page-break-inside: avoid;
+        }
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .signature-party {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .signature-party h3 {
+            margin-top: 0;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 100%;
+            margin: 30px 0 5px 0;
+        }
+        .signature-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .initials-box {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 30px 0;
+            background-color: #fafafa;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        .initials-box p {
+            margin-bottom: 5px;
+        }
+        .initials-line {
+            display: inline-block;
+            border-bottom: 1px solid #000;
+            width: 200px;
+            margin-top: 15px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+        .divider {
+            border-top: 2px solid #000;
+            margin: 40px 0;
+        }
+        .pdf-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Georgia', serif;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+        }
+        .pdf-button:hover {
+            background-color: #555;
+        }
+        .contract-ref {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+                font-size: 12px;
+            }
+            .pdf-button {
+                display: none !important;
+            }
+            .signature-block {
+                page-break-inside: avoid;
+            }
+            .acknowledgment-section {
+                page-break-inside: avoid;
+            }
+            h2 {
+                page-break-after: avoid;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+            .parties-box {
+                page-break-inside: avoid;
+            }
+        }
+        @page {
+            margin: 2cm;
+            size: A4;
+        }
+    </style>
+</head>
+<body>
+
+<button class="pdf-button" onclick="exportPDF()">Export PDF</button>
+
+<!-- HEADER -->
+<h1>PHOTOVOLTAIC INSTALLATION CONTRACT</h1>
+<p class="subtitle">Self-Consumption System — Zero Export</p>
+<p class="contract-ref">Ref: LCY-PV-AUR-001 &nbsp;|&nbsp; Estimate No. 1022 &nbsp;|&nbsp; Date: 09/02/2026</p>
+
+<div class="divider"></div>
+
+<!-- PARTIES -->
+<h2>1. Parties</h2>
+
+<div class="two-column">
+    <div class="parties-box">
+        <h3>Contractor</h3>
+        <p>
+            <strong>Lighthief Cyprus Ltd</strong><br>
+            28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+            Limassol 3035, Cyprus<br><br>
+            Email: lighthiefcyprus@gmail.com<br>
+            Tel: +357 794342577<br>
+            Web: www.lighthief.cy<br><br>
+            <strong>Authorized Representative:</strong> Alexander Papacosta
+        </p>
+    </div>
+    <div class="parties-box">
+        <h3>Client</h3>
+        <p>
+            <strong>AUROLIA LTD</strong><br>
+            4506 Eftagonia, Limassol, Cyprus<br><br>
+            Email: damir.radzhibaev@gmail.com<br><br><br>
+            <strong>Authorized Representative:</strong> Mr Damir Radzhibaev
+        </p>
+    </div>
+</div>
+
+<!-- PROJECT DESCRIPTION -->
+<h2>2. Project Description</h2>
+
+<p>The Contractor shall supply, install, and commission a photovoltaic system for self-consumption with zero export at the Client's premises at <strong>Greenland Family Park</strong>.</p>
+
+<table>
+    <tr>
+        <th style="width:40%;">Parameter</th>
+        <th>Specification</th>
+    </tr>
+    <tr>
+        <td>PV Modules</td>
+        <td>REC 400–430 Wp Pure R Alpha Series</td>
+    </tr>
+    <tr>
+        <td>Total Installed Capacity</td>
+        <td><strong>60 kWp</strong></td>
+    </tr>
+    <tr>
+        <td>Inverters</td>
+        <td>Jinko / Deye Hybrid Inverters (battery-ready)</td>
+    </tr>
+    <tr>
+        <td>Operating Mode</td>
+        <td><strong>Self-consumption only (Zero Export)</strong></td>
+    </tr>
+    <tr>
+        <td>Included</td>
+        <td>Mounting system, cabling, electrical protections, monitoring &amp; programming</td>
+    </tr>
+</table>
+
+<!-- CONTRACT PRICE -->
+<h2>3. Contract Price</h2>
+
+<table>
+    <tr>
+        <td><strong>Total Contract Price (VAT Included)</strong></td>
+        <td class="col-amount"><strong>&euro;48,000.00</strong></td>
+    </tr>
+    <tr>
+        <td>Net Amount (Excl. VAT)</td>
+        <td class="col-amount">&euro;40,336.13</td>
+    </tr>
+    <tr>
+        <td>VAT (19%)</td>
+        <td class="col-amount">&euro;7,663.87</td>
+    </tr>
+</table>
+
+<!-- PAYMENT TERMS -->
+<h2>4. Payment Terms</h2>
+
+<p>The total contract amount shall be paid in seven (7) instalments as follows:</p>
+
+<table>
+    <tr>
+        <th class="col-num">#</th>
+        <th>Amount</th>
+        <th>Due Date</th>
+        <th>Milestone</th>
+    </tr>
+    <tr>
+        <td class="col-num">1</td>
+        <td class="col-amount">&euro;12,000</td>
+        <td>16/02/2026</td>
+        <td>Deposit</td>
+    </tr>
+    <tr>
+        <td class="col-num">2</td>
+        <td class="col-amount">&euro;8,000</td>
+        <td>28/02/2026</td>
+        <td>2 days prior to installation</td>
+    </tr>
+    <tr>
+        <td class="col-num">3</td>
+        <td class="col-amount">&euro;8,000</td>
+        <td>23/03/2026</td>
+        <td>Last day of installation</td>
+    </tr>
+    <tr>
+        <td class="col-num">4</td>
+        <td class="col-amount">&euro;5,000</td>
+        <td>15/04/2026</td>
+        <td>Electrical installation &amp; commissioning</td>
+    </tr>
+    <tr>
+        <td class="col-num">5</td>
+        <td class="col-amount">&euro;5,000</td>
+        <td>15/05/2026</td>
+        <td>Post-commissioning</td>
+    </tr>
+    <tr>
+        <td class="col-num">6</td>
+        <td class="col-amount">&euro;5,000</td>
+        <td>15/06/2026</td>
+        <td>Post-commissioning</td>
+    </tr>
+    <tr>
+        <td class="col-num">7</td>
+        <td class="col-amount">&euro;5,000</td>
+        <td>15/07/2026</td>
+        <td>Final payment</td>
+    </tr>
+    <tr class="total-row">
+        <td class="col-num"></td>
+        <td class="col-amount">&euro;48,000</td>
+        <td colspan="2">Total (all instalments VAT-inclusive)</td>
+    </tr>
+</table>
+
+<!-- INSTALLATION & COMMISSIONING -->
+<h2>5. Installation &amp; Commissioning</h2>
+
+<table>
+    <tr>
+        <th style="width:50%;">Milestone</th>
+        <th>Date</th>
+    </tr>
+    <tr>
+        <td>Contract Signing / Project Initiation Date (PID)</td>
+        <td><strong>09/02/2026</strong></td>
+    </tr>
+    <tr>
+        <td>Installation Start</td>
+        <td>3 weeks after signing</td>
+    </tr>
+    <tr>
+        <td>Installation Duration</td>
+        <td>4 Mechanical Days + 2 Electrical/Commissioning Days</td>
+    </tr>
+</table>
+
+<h3>Planned Installation Programme</h3>
+
+<table>
+    <tr>
+        <th>Day</th>
+        <th>Date</th>
+        <th>Scope</th>
+    </tr>
+    <tr>
+        <td>Monday</td>
+        <td>02/03/2026</td>
+        <td>Roof Rails Installation</td>
+    </tr>
+    <tr>
+        <td>Monday</td>
+        <td>09/03/2026</td>
+        <td>Roof Rails Completion &amp; Panels (Sauna Area)</td>
+    </tr>
+    <tr>
+        <td>Monday</td>
+        <td>16/03/2026</td>
+        <td>Main Panel Installation</td>
+    </tr>
+    <tr>
+        <td>Monday</td>
+        <td>23/03/2026</td>
+        <td>Final Panel Installation &amp; Mechanical Completion</td>
+    </tr>
+    <tr>
+        <td>Tuesday</td>
+        <td>24/03/2026</td>
+        <td>Cabling, Electrical Installation &amp; Ground Works</td>
+    </tr>
+    <tr>
+        <td>Wednesday</td>
+        <td>25/03/2026</td>
+        <td>Testing, Programming &amp; Commissioning</td>
+    </tr>
+</table>
+
+<p>The Contractor shall make reasonable efforts to adhere to this schedule, subject to weather conditions, material availability, and grid operator requirements.</p>
+
+<!-- ESTIMATE REFERENCE -->
+<h2>6. Estimate Reference</h2>
+
+<table>
+    <tr>
+        <td style="width:40%;">Estimate No.</td>
+        <td>1022</td>
+    </tr>
+    <tr>
+        <td>Estimate Date</td>
+        <td>03/12/2025</td>
+    </tr>
+    <tr>
+        <td>Expiry Date</td>
+        <td>30/01/2026</td>
+    </tr>
+</table>
+
+<!-- CLIENT ACKNOWLEDGMENT -->
+<h2>7. Client Acknowledgment — Regulatory Status</h2>
+
+<!-- A. System Classification -->
+<div class="acknowledgment-section">
+    <h3>A. System Classification</h3>
+
+    <p>The Client acknowledges and understands the following:</p>
+
+    <ol>
+        <li><strong>The System is installed as a private self-consumption installation operating in zero-export mode.</strong> No energy is intended to be exported to the EAC distribution network at any time.</li>
+
+        <li><strong>No application has been submitted to the Electricity Authority of Cyprus (EAC) or any Distribution System Operator (DSO)</strong> for grid connection approval, Net Billing participation, or any other form of feed-in authorization for this System.</li>
+
+        <li><strong>This decision was made at the Client's express request.</strong> The Contractor has advised the Client that under Cyprus Distribution Rules and the RES Technical Guide (Edition 2023.2 / 2025), any generating installation operating in parallel with the distribution network — regardless of export setting — requires prior DSO approval, technical submission, and inspection before energization.</li>
+
+        <li><strong>The Client has elected to proceed without DSO authorization</strong>, having been fully informed of the regulatory requirements and the consequences of non-compliance.</li>
+    </ol>
+</div>
+
+<!-- B. Regulatory Risks -->
+<div class="acknowledgment-section risk-section">
+    <h3>B. Regulatory Risks</h3>
+
+    <p>The Client acknowledges that operating a photovoltaic system without DSO/EAC authorization carries the following risks:</p>
+
+    <table>
+        <tr>
+            <th style="width:30%;">Risk</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Non-compliance notice</strong></td>
+            <td>EAC may issue a formal notice requiring immediate disconnection of the system</td>
+        </tr>
+        <tr>
+            <td><strong>Supply disconnection</strong></td>
+            <td>EAC may disconnect or seal the meter supply to protect the network</td>
+        </tr>
+        <tr>
+            <td><strong>Future application refusal</strong></td>
+            <td>EAC may refuse Net Billing or other RES applications for this installation until compliance is achieved</td>
+        </tr>
+        <tr>
+            <td><strong>Contractor reporting</strong></td>
+            <td>The licensed electrical contractor may be reported to ETEK or EAC for non-compliant installation</td>
+        </tr>
+        <tr>
+            <td><strong>Administrative penalties</strong></td>
+            <td>Fines or penalties may be imposed under Cyprus electricity law for unauthorized parallel generation</td>
+        </tr>
+        <tr>
+            <td><strong>Insurance implications</strong></td>
+            <td>The Client's property or liability insurance may be affected if the installation is found to be non-compliant</td>
+        </tr>
+    </table>
+</div>
+
+<!-- C. Client Obligations -->
+<div class="acknowledgment-section obligations-section">
+    <h3>C. Client Obligations</h3>
+
+    <p>The Client agrees to the following obligations:</p>
+
+    <ol>
+        <li><strong>Not to modify the zero-export settings</strong> or any protection/safety configuration of the system without prior written approval from the Contractor.</li>
+
+        <li><strong>Not to tamper with, bypass, or disable</strong> the export limitation equipment, current transformers (CTs), or any hardware safety interlocks installed as part of this system.</li>
+
+        <li><strong>To inform the Contractor immediately</strong> if contacted by EAC, the DSO, CERA, or any regulatory authority regarding this installation.</li>
+
+        <li><strong>To bear sole responsibility</strong> for any regulatory penalties, fines, disconnection costs, or remediation works arising from the absence of DSO authorization.</li>
+
+        <li><strong>Not to hold the Contractor liable</strong> for any consequences arising from the Client's decision to operate the system without DSO/EAC authorization, provided the system has been installed in accordance with applicable electrical safety standards and the zero-export configuration is functioning as designed.</li>
+
+        <li><strong>To maintain the diesel generator interlock and transfer switch</strong> in proper working order and not to modify the electrical topology without the Contractor's involvement.</li>
+    </ol>
+</div>
+
+<!-- D. Safety Measures -->
+<div class="acknowledgment-section safety-section">
+    <h3>D. Safety Measures Installed</h3>
+
+    <p>The Contractor confirms that the following safety measures have been designed and shall be installed to ensure the system operates safely and does not export energy to the distribution network:</p>
+
+    <table>
+        <tr>
+            <th class="col-num">#</th>
+            <th style="width:25%;">Safety Measure</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td class="col-num">1</td>
+            <td><strong>Zero-export controller</strong></td>
+            <td>CT-based real-time power measurement at the point of common coupling (PCC), dynamically limiting inverter output to prevent any grid export</td>
+        </tr>
+        <tr>
+            <td class="col-num">2</td>
+            <td><strong>Hardware fail-safe</strong></td>
+            <td>Independent reverse power relay and/or AC contactor that physically disconnects the PV system if export is detected or if the zero-export controller loses communication</td>
+        </tr>
+        <tr>
+            <td class="col-num">3</td>
+            <td><strong>Generator interlock</strong></td>
+            <td>Automatic transfer switch (ATS) and control logic ensuring proper coordination between grid supply, PV system, and diesel generator — preventing uncontrolled parallel operation</td>
+        </tr>
+        <tr>
+            <td class="col-num">4</td>
+            <td><strong>Anti-islanding protection</strong></td>
+            <td>Active loss-of-mains detection on all inverters, preventing the system from energizing the grid during a power outage</td>
+        </tr>
+        <tr>
+            <td class="col-num">5</td>
+            <td><strong>DC and AC isolation</strong></td>
+            <td>Lockable isolators on all DC string inputs and AC inverter outputs, allowing complete physical disconnection for maintenance or emergency</td>
+        </tr>
+        <tr>
+            <td class="col-num">6</td>
+            <td><strong>Surge protection</strong></td>
+            <td>Type 1+2 surge protection on DC side and Type 2 on AC side</td>
+        </tr>
+        <tr>
+            <td class="col-num">7</td>
+            <td><strong>Labeling and signage</strong></td>
+            <td>All switchgear labeled per EN 60204-1, including dual-supply warnings at the main distribution board</td>
+        </tr>
+    </table>
+</div>
+
+<!-- E. Future Regularization -->
+<div class="acknowledgment-section regularization-section">
+    <h3>E. Future Regularization</h3>
+
+    <p>The Client acknowledges that:</p>
+
+    <ol>
+        <li><strong>Regularization is possible.</strong> Should the Client wish to bring the installation into full DSO compliance at a future date, the Contractor can assist with preparing and submitting a Net Billing application to EAC, including all required documentation, protection settings, and inspection coordination.</li>
+
+        <li><strong>Regularization is a separate service</strong> and will be quoted independently. It typically involves additional equipment (ripple control receiver), EAC inspection fees, and a processing timeline of 2–6 months.</li>
+
+        <li><strong>The Contractor has maintained full installation documentation</strong> (single line diagram, protection settings, commissioning records, test certificates) to facilitate future regularization if required.</li>
+    </ol>
+</div>
+
+<!-- CANCELLATION -->
+<h2>8. Cancellation</h2>
+
+<p>If the Client cancels the contract after signing:</p>
+
+<ul>
+    <li>All payments made are non-refundable.</li>
+    <li>Equipment ordered and works completed shall be payable in full.</li>
+</ul>
+
+<!-- GOVERNING LAW -->
+<h2>9. Governing Law</h2>
+
+<p>This Agreement shall be governed by and interpreted in accordance with the laws of the Republic of Cyprus.</p>
+
+<p>The courts of Cyprus shall have exclusive jurisdiction.</p>
+
+<!-- ACKNOWLEDGMENT INITIALS -->
+<div class="initials-box">
+    <p><strong>CLIENT ACKNOWLEDGMENT CONFIRMATION</strong></p>
+    <p style="font-size:12px; color:#555;">By initialing below, the Client confirms they have read, understood, and accepted<br>Sections A through E of the Client Acknowledgment (Section 7) above,<br>including all regulatory risks and obligations described therein.</p>
+    <br>
+    <p>Client Initials (Sections A–E): <span class="initials-line">&nbsp;</span></p>
+</div>
+
+<!-- SIGNATURES -->
+<h2>10. Signatures</h2>
+
+<div class="signature-grid">
+    <div class="signature-party">
+        <h3>For the Client</h3>
+        <p>
+            <strong>Name:</strong> Mr Damir Radzhibaev<br>
+            <strong>For:</strong> AUROLIA LTD
+        </p>
+        <div class="signature-line"></div>
+        <p class="signature-label">Signature</p>
+        <div class="signature-line"></div>
+        <p class="signature-label">Date</p>
+    </div>
+    <div class="signature-party">
+        <h3>For the Contractor</h3>
+        <p>
+            <strong>Name:</strong> Alexander Papacosta<br>
+            <strong>For:</strong> Lighthief Cyprus Ltd
+        </p>
+        <div class="signature-line"></div>
+        <p class="signature-label">Signature</p>
+        <div class="signature-line"></div>
+        <p class="signature-label">Date: 09/02/2026</p>
+    </div>
+</div>
+
+<hr>
+<p style="text-align:center; font-size:11px; color:#999;">
+    Lighthief Cyprus Ltd &nbsp;|&nbsp; Ref: LCY-PV-AUR-001 &nbsp;|&nbsp; Estimate 1022 &nbsp;|&nbsp; Contract Date: 09/02/2026
+</p>
+
+<script>
+function exportPDF() {
+    const button = document.querySelector('.pdf-button');
+    button.style.display = 'none';
+    window.print();
+    setTimeout(() => { button.style.display = 'block'; }, 1000);
+}
+</script>
+
+</body>
+</html>

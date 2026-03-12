@@ -399,7 +399,7 @@ export default function BESSInstallationArticle() {
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                          <span>Fire access roads (minimum 3.5m width)</span>
+                          <span>Fire access roads (minimum 4m width)</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />

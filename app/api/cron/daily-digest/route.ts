@@ -3,8 +3,14 @@ import { alexTasksService, PROJECT_LABELS, PROJECT_COLORS } from '@/lib/alex-tas
 import type { AlexTask, Priority } from '@/lib/alex-tasks'
 import { sendEmail } from '@/lib/email'
 
-const RECIPIENT = 'alexander.papacosta@lighthief.com'
+const RECIPIENT = process.env.DIGEST_EMAIL_TO || 'alexander.papacosta@lighthief.com'
 const DASHBOARD_URL = 'https://solarfarms.cy/alex/dashboard'
+
+// What triggers sending:
+// 1. Vercel Cron (schedule: 0 5 * * 1-5 = 05:00 UTC Mon–Fri). Vercel GETs this URL and
+//    sends Authorization: Bearer <CRON_SECRET>. Requires CRON_SECRET in Vercel env.
+// 2. Manual: "Send Digest Now" in /alex uses Authorization: Bearer <ALEX_TASKS_SECRET>.
+// If CRON_SECRET is missing in Vercel, the scheduled digest never runs (401).
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('authorization')
@@ -33,8 +39,29 @@ export async function GET(request: NextRequest) {
       html,
     })
 
+    if (!result.success) {
+      return NextResponse.json(
+        {
+          error: 'Email not sent',
+          success: false,
+          message: (result as { message?: string }).message || 'Email service not configured or send failed',
+          summary: {
+            totalActive: digest.totalActive,
+            overdue: digest.overdue.length,
+            dueToday: digest.dueToday.length,
+            dueThisWeek: digest.dueThisWeek.length,
+            blocked: digest.blocked.length,
+            recentlyCompleted: digest.recentlyCompleted.length,
+          },
+          timestamp: new Date().toISOString(),
+        },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json({
-      success: result.success,
+      success: true,
+      to: RECIPIENT,
       summary: {
         totalActive: digest.totalActive,
         overdue: digest.overdue.length,

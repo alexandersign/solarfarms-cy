@@ -299,16 +299,16 @@
 
 <div class="header">
   <h1>Lighthief Cyprus Ltd — Project Cashflow Analysis</h1>
-  <div class="subtitle">BESS EPC Portfolio | 51 Active Parks | 882 MWh | 3 Delivery Batches | February 2026</div>
+  <div class="subtitle">BESS EPC Portfolio | {{PORTFOLIO.parks}} Active Parks | {{PORTFOLIO.mwhRounded}} MWh | 3 Delivery Batches | February 2026</div>
   <div class="kpi-row">
     <div class="kpi">
       <div class="label">Total Client Revenue</div>
-      <div class="value">€109.2M</div>
-      <div class="note">51 parks</div>
+      <div class="value">{{FINANCIALS.clientRevenueM}}</div>
+      <div class="note">{{PORTFOLIO.parks}} parks</div>
     </div>
     <div class="kpi">
       <div class="label">Linyang CIF Cost</div>
-      <div class="value">€86.0M</div>
+      <div class="value">{{FINANCIALS.cifTotalM}}</div>
       <div class="note">79% of revenue</div>
     </div>
     <div class="kpi">
@@ -338,8 +338,8 @@
     </div>
     <div class="kpi">
       <div class="label">Net Project Margin</div>
-      <div class="value">10.7%</div>
-      <div class="note">€11.64M net margin</div>
+      <div class="value">{{FINANCIALS.netMarginPct}}%</div>
+      <div class="note">{{FINANCIALS.netMarginM}} net margin</div>
     </div>
   </div>
 </div>
@@ -383,10 +383,10 @@
           <tr><th>Batch</th><th>Parks</th><th>MWh</th><th>Client Groups</th><th class="num">CIF Value</th><th class="num">Client Revenue</th><th>CIF Arrival</th><th>PAC Target</th></tr>
         </thead>
         <tbody>
-          <tr><td><span style="color:var(--accent)">&#9679;</span> Batch 1</td><td>15</td><td>280</td><td>ABIO Phase 1</td><td class="num">€27.4M</td><td class="num">€31.6M</td><td>5 Jul 2026</td><td>31 Oct 2026</td></tr>
-          <tr><td><span style="color:var(--purple)">&#9679;</span> Batch 2</td><td>19</td><td>230</td><td>ABIO Ph.2 + Timotheou</td><td class="num">€22.5M</td><td class="num">€32.9M</td><td>20 Aug 2026</td><td>15 Jan 2027</td></tr>
-          <tr><td><span style="color:var(--cyan)">&#9679;</span> Batch 3</td><td>12</td><td>283</td><td>Esperia + Standalone</td><td class="num">€27.7M</td><td class="num">€28.3M</td><td>20 Sep 2026</td><td>28 Feb 2027</td></tr>
-          <tr class="total"><td>Total</td><td>51</td><td>882</td><td></td><td class="num">€86.0M</td><td class="num">€109.2M</td><td></td><td></td></tr>
+          <tr><td><span style="color:var(--accent)">&#9679;</span> Batch 1</td><td>{{BATCH1.parks}}</td><td>{{BATCH1.mwh}}</td><td>ABIO Phase 1</td><td class="num">€27.4M</td><td class="num">€31.6M</td><td>{{BATCH1.cifDateFmt}}</td><td>{{BATCH1.pacDateFmt}}</td></tr>
+          <tr><td><span style="color:var(--purple)">&#9679;</span> Batch 2</td><td>{{BATCH2.parks}}</td><td>{{BATCH2.mwh}}</td><td>ABIO Ph.2 + Timotheou</td><td class="num">€22.5M</td><td class="num">€32.9M</td><td>{{BATCH2.cifDateFmt}}</td><td>{{BATCH2.pacDateFmt}}</td></tr>
+          <tr><td><span style="color:var(--cyan)">&#9679;</span> Batch 3</td><td>{{BATCH3.parks}}</td><td>{{BATCH3.mwh}}</td><td>Esperia + Standalone</td><td class="num">€27.7M</td><td class="num">€28.3M</td><td>{{BATCH3.cifDateFmt}}</td><td>{{BATCH3.pacDateFmt}}</td></tr>
+          <tr class="total"><td>Total</td><td>{{PORTFOLIO.parks}}</td><td>{{PORTFOLIO.mwhRounded}}</td><td></td><td class="num">{{FINANCIALS.cifTotalM}}</td><td class="num">{{FINANCIALS.clientRevenueM}}</td><td></td><td></td></tr>
         </tbody>
       </table>
     </div>
@@ -399,7 +399,7 @@
     <div class="chart-grid">
       <div class="card">
         <h3>Milestone Payment Comparison</h3>
-        <div class="card-desc">Client 30/55/10/5 vs Linyang 25/50/20/5 — % at each stage</div>
+        <div class="card-desc">Client {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}} vs Linyang {{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}} — % at each stage</div>
         <canvas id="milestoneChart"></canvas>
       </div>
       <div class="card">
@@ -413,7 +413,7 @@
   <!-- SECTION 3: MAIN CASHFLOW MODEL -->
   <div class="section">
     <h2><span class="num">3</span> Monthly Cashflow Model</h2>
-    <div class="desc">Scenario A (current terms 30/55/10/5) — all figures in €'000, including VAT output remittances and import VAT at customs. No VAT refund assumed (8-month rule).</div>
+    <div class="desc">Scenario A (current terms {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}}) — all figures in €'000, including VAT output remittances and import VAT at customs. No VAT refund assumed (8-month rule).</div>
 
     <div class="chart-grid full">
       <div class="card tall">
@@ -425,7 +425,7 @@
 
     <div class="card" style="margin-top: 20px; overflow-x: auto;">
       <h3>Detailed Monthly Cashflow Table</h3>
-      <div class="card-desc">Scenario A: Client 30/55/10/5 | Linyang 25/50/20/5 | Including Q1/Q2 output VAT remittances | No VAT refund in 2026</div>
+      <div class="card-desc">Scenario A: Client {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}} | Linyang {{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}} | Including Q1/Q2 output VAT remittances | No VAT refund in 2026</div>
       <table>
         <thead>
           <tr><th>Month</th><th class="num">Client Revenue</th><th class="num">Linyang</th><th class="num">Duty + Import VAT</th><th class="num">Output VAT Remitted</th><th class="num">Subcon + Ops</th><th class="num">Monthly Net</th><th class="num">Cumulative</th></tr>
@@ -452,7 +452,7 @@
   <!-- SECTION 4: COST BREAKDOWN -->
   <div class="section">
     <h2><span class="num">4</span> Cost Composition</h2>
-    <div class="desc">Where does the €109.2M in client revenue go? (Excludes client-paid items: Protection Testing/DSO, External LPS/LPD, Electrical Drawings/As-Built)</div>
+    <div class="desc">Where does the {{FINANCIALS.clientRevenueM}} in client revenue go? (Excludes client-paid items: Protection Testing/DSO, External LPS/LPD, Electrical Drawings/As-Built)</div>
     <div class="chart-grid">
       <div class="card">
         <h3>Revenue Allocation</h3>
@@ -515,7 +515,7 @@
     <div class="chart-grid full">
       <div class="card tall">
         <h3>Cumulative Cashflow — 3 Base Scenarios</h3>
-        <div class="card-desc">Current (30/55/10/5) vs Matched (25/50/20/5) vs Optimised (Client imports + phased advance). See Section 9 for April 1 overlay.</div>
+        <div class="card-desc">Current ({{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}}) vs Matched ({{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}}) vs Optimised (Client imports + phased advance). See Section 9 for April 1 overlay.</div>
         <canvas id="scenarioChart"></canvas>
       </div>
     </div>
@@ -524,7 +524,7 @@
       <h3>All 4 Scenario Metrics</h3>
       <table>
         <thead>
-          <tr><th>Metric</th><th class="num">A: Current<br>(Mar, 30/55/10/5)</th><th class="num">B: Matched<br>(Mar, 25/50/20/5)</th><th class="num">D: April 1 Start<br>(Apr, 30/55/10/5)</th><th class="num">C: Optimised<br>(Apr + client imports)</th></tr>
+          <tr><th>Metric</th><th class="num">A: Current<br>(Mar, {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}})</th><th class="num">B: Matched<br>(Mar, {{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}})</th><th class="num">D: April 1 Start<br>(Apr, {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}})</th><th class="num">C: Optimised<br>(Apr + client imports)</th></tr>
         </thead>
         <tbody>
           <tr><td>Q1 VAT payable (May)</td><td class="num neg">€5,187K</td><td class="num neg">€5,187K</td><td class="num pos"><strong>€0</strong></td><td class="num pos"><strong>€0</strong></td></tr>
@@ -642,7 +642,7 @@
 
     <div class="card" style="margin-top:20px; overflow-x:auto;">
       <h3>April 1 Full Start — Monthly Cashflow</h3>
-      <div class="card-desc">All contracts effective April 1. Client 30/55/10/5 | Linyang 25/50/20/5 | Months shift +1.</div>
+      <div class="card-desc">All contracts effective April 1. Client {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}} | Linyang {{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}} | Months shift +1.</div>
       <table>
         <thead><tr><th>Month</th><th class="num">Client Revenue</th><th class="num">Linyang</th><th class="num">Duty + Import VAT</th><th class="num">VAT Return</th><th class="num">Subcon + Ops</th><th class="num">Monthly Net</th><th class="num">Cumulative</th></tr></thead>
         <tbody>
@@ -665,7 +665,7 @@
     <div class="card" style="margin-top:20px; overflow-x:auto;">
       <h3>Full Scenario Comparison — All 4 Approaches</h3>
       <table>
-        <thead><tr><th>Metric</th><th class="num">A: Current<br>(Mar, 30/55/10/5)</th><th class="num">B: Matched<br>(Mar, 25/50/20/5)</th><th class="num">D: April 1 Start<br>(Apr, 30/55/10/5)</th><th class="num">C: Optimised<br>(Apr + client imports)</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">A: Current<br>(Mar, {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}})</th><th class="num">B: Matched<br>(Mar, {{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}})</th><th class="num">D: April 1 Start<br>(Apr, {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}})</th><th class="num">C: Optimised<br>(Apr + client imports)</th></tr></thead>
         <tbody>
           <tr><td>Q1 VAT payable</td><td class="num neg">€5,187K</td><td class="num neg">€5,187K</td><td class="num pos"><strong>€0</strong></td><td class="num pos"><strong>€0</strong></td></tr>
           <tr><td>Q3 excess credit</td><td class="num neg">€9,197K</td><td class="num neg">€9,197K</td><td class="num pos"><strong>€851K</strong></td><td class="num pos"><strong>€0</strong></td></tr>
@@ -750,8 +750,8 @@ new Chart(document.getElementById('milestoneChart'), {
   data: {
     labels: ['Advance','Pre-Shipment','Delivery / PAC','Retention'],
     datasets: [
-      { label:'Client Payment %', data:[30,55,10,5], backgroundColor:'rgba(34,197,94,0.6)', borderColor:'#22c55e', borderWidth:1, borderRadius:4 },
-      { label:'Linyang Payment %', data:[25,50,20,5], backgroundColor:'rgba(239,68,68,0.6)', borderColor:'#ef4444', borderWidth:1, borderRadius:4 },
+      { label:'Client Payment %', data:[{{PAYMENT.client.advance}},{{PAYMENT.client.preShipment}},{{PAYMENT.client.pac}},{{PAYMENT.client.retention}}], backgroundColor:'rgba(34,197,94,0.6)', borderColor:'#22c55e', borderWidth:1, borderRadius:4 },
+      { label:'Linyang Payment %', data:[{{PAYMENT.linyang.advance}},{{PAYMENT.linyang.preShipment}},{{PAYMENT.linyang.dap}},{{PAYMENT.linyang.sat}}], backgroundColor:'rgba(239,68,68,0.6)', borderColor:'#ef4444', borderWidth:1, borderRadius:4 },
     ]
   },
   options: {
@@ -765,13 +765,13 @@ new Chart(document.getElementById('milestoneChart'), {
 new Chart(document.getElementById('bufferChart'), {
   type: 'bar',
   data: {
-    labels: ['Advance\n(+5%)','Pre-Ship\n(+5%)','Delivery/PAC\n(-10%)','Retention\n(0%)'],
+    labels: ['Advance\n(+'+({{PAYMENT.client.advance}}-{{PAYMENT.linyang.advance}})+'%)','Pre-Ship\n(+'+({{PAYMENT.client.preShipment}}-{{PAYMENT.linyang.preShipment}})+'%)','Delivery/PAC\n('+({{PAYMENT.client.pac}}-{{PAYMENT.linyang.dap}})+'%)','Retention\n(0%)'],
     datasets: [{
       label:'Buffer (+) / Deficit (-)',
       data:[
-        (0.30-0.25)*109241,
-        (0.55-0.50)*109241,
-        (0.10-0.20)*109241,
+        ({{PAYMENT.client.advance}}/100-{{PAYMENT.linyang.advance}}/100)*{{FINANCIALS.clientRevenueK}},
+        ({{PAYMENT.client.preShipment}}/100-{{PAYMENT.linyang.preShipment}}/100)*{{FINANCIALS.clientRevenueK}},
+        ({{PAYMENT.client.pac}}/100-{{PAYMENT.linyang.dap}}/100)*{{FINANCIALS.clientRevenueK}},
         0
       ],
       backgroundColor: ctx => ctx.raw >= 0 ? 'rgba(34,197,94,0.6)' : 'rgba(239,68,68,0.6)',
@@ -855,9 +855,9 @@ new Chart(document.getElementById('cashflowChart'), {
 new Chart(document.getElementById('costPieChart'), {
   type: 'doughnut',
   data: {
-    labels: ['Linyang CIF (€86.0M)','Physical Adders (€7.6M)','EMS / SCADA (€4.0M)','Net Margin (€11.6M)'],
+    labels: ['Linyang CIF ({{FINANCIALS.cifTotalM}})','Physical Adders ({{FINANCIALS.physicalAddersM}})','EMS / SCADA ({{FINANCIALS.emsScadaM}})','Net Margin ({{FINANCIALS.netMarginM}})'],
     datasets: [{
-      data: [85964, 7642, 3994, 11641],
+      data: [{{FINANCIALS.cifTotalK}}, {{FINANCIALS.physicalAddersK}}, {{FINANCIALS.emsScadaK}}, {{FINANCIALS.netMarginK}}],
       backgroundColor: ['#ef4444','#f59e0b','#8b5cf6','#22c55e'],
       borderColor: 'rgba(0,0,0,0.3)',
       borderWidth: 2,
@@ -956,8 +956,8 @@ new Chart(document.getElementById('scenarioChart'), {
   data: {
     labels: MONTHS,
     datasets: [
-      { label:'A: Current (30/55/10/5) — No VAT refund', data: cumA, borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,0.05)', borderWidth:3, tension:0.3, pointRadius:4, fill: false },
-      { label:'B: Matched (25/50/20/5) — No VAT refund', data: cumB, borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.05)', borderWidth:3, tension:0.3, pointRadius:4, borderDash:[8,4], fill: false },
+      { label:'A: Current ({{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}}) — No VAT refund', data: cumA, borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,0.05)', borderWidth:3, tension:0.3, pointRadius:4, fill: false },
+      { label:'B: Matched ({{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}}) — No VAT refund', data: cumB, borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.05)', borderWidth:3, tension:0.3, pointRadius:4, borderDash:[8,4], fill: false },
       { label:'C: Optimised (Client imports + phased adv)', data: cumC, borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:3, tension:0.3, pointRadius:5, fill: { target: 'origin', above: 'rgba(34,197,94,0.06)', below: 'rgba(239,68,68,0.04)' }},
     ]
   },
@@ -1031,9 +1031,9 @@ new Chart(document.getElementById('scenario4Chart'), {
   data: {
     labels: MONTHS13,
     datasets: [
-      { label:'A: Current (Mar, 30/55/10/5)', data: cumAx, borderColor:'#ef4444', borderWidth:2.5, tension:0.3, pointRadius:3, fill: false },
-      { label:'B: Matched (Mar, 25/50/20/5)', data: cumBx, borderColor:'#f59e0b', borderWidth:2.5, tension:0.3, pointRadius:3, borderDash:[8,4], fill: false },
-      { label:'D: April 1 Start (30/55/10/5)', data: cumDx, borderColor:'#06b6d4', borderWidth:3, tension:0.3, pointRadius:4, fill: false },
+      { label:'A: Current (Mar, {{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}})', data: cumAx, borderColor:'#ef4444', borderWidth:2.5, tension:0.3, pointRadius:3, fill: false },
+      { label:'B: Matched (Mar, {{PAYMENT.linyang.advance}}/{{PAYMENT.linyang.preShipment}}/{{PAYMENT.linyang.dap}}/{{PAYMENT.linyang.sat}})', data: cumBx, borderColor:'#f59e0b', borderWidth:2.5, tension:0.3, pointRadius:3, borderDash:[8,4], fill: false },
+      { label:'D: April 1 Start ({{PAYMENT.client.advance}}/{{PAYMENT.client.preShipment}}/{{PAYMENT.client.pac}}/{{PAYMENT.client.retention}})', data: cumDx, borderColor:'#06b6d4', borderWidth:3, tension:0.3, pointRadius:4, fill: false },
       { label:'C: Optimised (Apr + client imports)', data: cumCx, borderColor:'#22c55e', borderWidth:3, tension:0.3, pointRadius:5, fill: { target: 'origin', above: 'rgba(34,197,94,0.06)', below: 'rgba(239,68,68,0.04)' }},
     ]
   },

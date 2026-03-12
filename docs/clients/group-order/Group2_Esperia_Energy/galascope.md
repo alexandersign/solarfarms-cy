@@ -1,0 +1,202 @@
+> ## ⚠️ PRICING NOTICE — SINGLE SOURCE OF TRUTH
+> **All pricing in this document is SUPERSEDED by the master spreadsheet:**  
+> **`docs/Bess - EPC System Cost v2.xlsx`** (Sheet: `Pricing_Model_All_Projects`)  
+> If any price, cost, or margin figure in this document conflicts with the spreadsheet, **the spreadsheet prevails**.  
+> Individual order pricing (non-group) = spreadsheet columns BL-BR (+15% on CIF & subcontractor adders).  
+> *Last verified: 7 February 2026*
+
+---
+
+# Galascope Limited - BESS Portfolio
+
+> **CONFIDENTIAL - INTERNAL USE ONLY**
+
+---
+
+## Client Information
+
+| Field | Value |
+|-------|-------|
+| **Client Name** | Galascope Limited |
+| **Project Type** | Hybrid (RES + BESS) - Category B |
+| **District** | Famagusta |
+| **Status** | ✅ Ordered (Q4 2025) |
+
+---
+
+## Projects Overview
+
+| Project | PV Power | BESS Power | BESS Energy | Duration | Timeline |
+|---------|----------|------------|-------------|----------|----------|
+| Galascope 1 | 5.00 MW | 5.0 MW | 20 MWh | 4 hr | Q4 2025 |
+| Galascope 2 | 2.50 MW | 2.5 MW | 8 MWh | 3.2 hr | Q4 2025 |
+| **TOTAL** | 7.50 MW | **7.5 MW** | **28 MWh** | - | - |
+
+---
+
+## Pricing (Quotation LY202511281)
+
+### Four-Tier Pricing (All prices ex VAT)
+
+| Project | CIF (Linyang) | Installed Cost | Client Price | Non-Group | €/kWh (CIF) |
+|---------|---------------|----------------|--------------|-----------|-------------|
+| Galascope 1 (5MW/20MWh) | TBC | TBC | €2,258,900 | TBC | TBC |
+| Galascope 2 (2.5MW/8MWh) | €791,740 | €923,697 | €1,084,620 | €1,214,774 | €94.71 |
+| **TOTALS** | **TBC** | **TBC** | **€3,343,520** | **TBC** | - |
+
+### EPC Adders Summary ⚠️ VERIFY
+
+| Project | Containers | Adders Total | Status |
+|---------|------------|--------------|--------|
+| Galascope 1 | 6 | TBC | ⚠️ VERIFY |
+| Galascope 2 | 3 | €110,580 | ⚠️ VERIFY |
+
+> 📋 **See**: [Pricing Verification Tracker](../internal/pricing-verification.md)
+
+### System Configuration (from Quotation)
+
+| Project | Battery | MV Skid | PCS Count |
+|---------|---------|---------|-----------|
+| Galascope 1 | 4× 5.015MWh (20HC) | 1.725MW + 3.45MW | 4 × BCS1250K |
+| Galascope 2 | 2× 4.179MWh (20HC) | 2.5MW | 2 × BCS1250K |
+
+---
+
+## System Configuration
+
+### Project 1: 5MW/20MWh
+
+| Component | Specification | Quantity |
+|-----------|--------------|----------|
+| Battery Container | 20HC 5.015MWh LFP | 4 sets |
+| MV Skid (Primary) | 1.725MW | 1 set |
+| MV Skid (Secondary) | 3.45MW | 1 set |
+
+### Project 2: 2.5MW/8MWh
+
+| Component | Specification | Quantity |
+|-----------|--------------|----------|
+| Battery Container | 20HC 4.179MWh LFP | 2 sets |
+| MV Skid | 2.5MW | 1 set |
+
+---
+
+## Timeline
+
+| Milestone | Target Date |
+|-----------|-------------|
+| Order Confirmed | Q4 2025 |
+| Production | In Progress |
+| Shipment | Q1 2026 |
+| Installation | Q1 2026 |
+| Commissioning | Q1 2026 |
+
+---
+
+## DSO Requirements
+
+| Requirement | Status |
+|-------------|--------|
+| Category | B (Hybrid) |
+| SCADA Connection | Required |
+| Grid Export | Per dispatch schedule |
+| Grid Charging | Not allowed |
+
+---
+
+## Existing Solar Plant SCADA Infrastructure
+
+> **Source**: CYRI04.E19.00.001_1.pdf (5MW) and CYRI04.E19.00.002_1.pdf (2.5MW) — received March 2026
+
+Both Galascope solar plants are already operational with full SCADA/IEC 104 infrastructure. This is critical context for BESS integration planning.
+
+### Galascope 1 (5MW PV)
+
+| Parameter | Value |
+|-----------|-------|
+| **ASDU Address** | 114 |
+| **Network Subnet** | 10.2.1.x |
+| **PLC** | Yaskawa (Simatic) @ 10.2.1.1 |
+| **IEC 104 Gateway** | IXXAT @ 10.2.1.2 |
+| **GPRS Router** | Teltonika @ 10.2.1.3 |
+| **Smart Logger** | Huawei @ 10.2.1.10 |
+| **PQM** | Siemens @ 10.2.1.11 |
+| **Protection Relay** | Siemens @ 10.2.1.12 |
+| **Modbus Gateway** | ICP/DAs @ 10.2.1.30 |
+| **Frequency Relay** | ABB CM-UFD (RS485 RTU) |
+| **Router** | Mikrotik @ 10.2.1.254 |
+| **Inverters** | 44× Huawei (4 groups × 11) |
+| **EAC GPRS User** | Galascope1_PV |
+
+### Galascope 2 (2.5MW PV)
+
+| Parameter | Value |
+|-----------|-------|
+| **ASDU Address** | 115 |
+| **Network Subnet** | 10.2.2.x |
+| **PLC** | Yaskawa (Simatic) @ 10.2.2.1 |
+| **IEC 104 Gateway** | IXXAT @ 10.2.2.2 |
+| **GPRS Router** | Teltonika @ 10.2.2.3 |
+| **Smart Logger** | Huawei @ 10.2.2.10 |
+| **PQM** | Siemens @ 10.2.2.11 |
+| **Protection Relay** | Siemens @ 10.2.2.12 |
+| **Modbus Gateway** | ICP/DAs @ 10.2.2.30 |
+| **Frequency Relay** | ABB CM-UFD (RS485 RTU) |
+| **Router** | Mikrotik @ 10.2.2.254 |
+| **Inverters** | 22× Huawei (2 groups × 11) |
+| **EAC GPRS User** | Galascope2_PV |
+
+### BESS Integration Implications
+
+1. **IEC 104 already deployed** — Both plants use IXXAT gateways for DSO communication. Voltus EMS must coordinate a separate ASDU address (e.g. 116/117) to avoid conflicts.
+2. **Curtailment setpoints active** — Active Power setpoints at 100%/60%/30%/0% are already handled by DSO. BESS will intercept curtailed energy.
+3. **Modbus register maps available** — Full PLC-to-Gateway data exchange tables documented, enabling precise PCS integration points.
+4. **Network is segregated** — Each plant on separate /24 subnet. BESS will likely need its own subnet or VLAN.
+
+---
+
+## MV/LV Equipment Data Sheets Received
+
+> The following equipment data sheets were provided by the client (March 2026):
+
+| Document | Equipment | Key Specs |
+|----------|-----------|-----------|
+| MV data sheet_SM6_IM_DMVLA.pdf | Schneider SM6 indoor MV switchgear | 7.2-36 kV, up to 25 kA/1s, vacuum CB (DMVL-A) |
+| MV data sheet_RM6_DI.pdf | Schneider RM6 gas-insulated switchgear | Up to 24 kV, SF6 sealed-for-life, 20 kA/1s, IP67 tank |
+| MV data sheet MV terminal kits_RSTI_Tyco.pdf | Raychem RSTI-58 screened connectors | 800A, up to 24 kV, CENELEC type "C" bushings |
+| LV data sheet_ABB_ACB_4P_1000VAC.pdf | ABB Emax2 E2.2S ACB | 1250A, 4-pole, 900V, 50 kA Icu |
+| LV data sheet_ABB_MCCB_4P_1000VAC.pdf | ABB Tmax T4L250 MCCB | 250A, 4-pole, 1000V AC, 12 kA at 1kV |
+| LV panel_11_MCCB_4P_800VAC.pdf | LV panel assembly drawing | 2000×1750×700mm panel |
+
+### Equipment Analysis
+
+- **SM6 / RM6**: Client is evaluating MV switchgear options for either BESS MV room or grid connection point. SM6 (indoor, modular) is typical for BESS installations. RM6 (compact, SF6) is more common for secondary distribution.
+- **ABB ACB 1250A**: Suitable as BESS LV main breaker on PCS output side (690V AC). Ekip Dip LSI protection trip unit provides full overcurrent protection.
+- **ABB MCCB 250A**: Likely for auxiliary/distribution circuits within the BESS compound.
+- **RSTI-58 connectors**: MV cable terminations for connecting to SM6/RM6 switchgear — standard for BESS MV interconnection.
+
+---
+
+## Other Documents Received
+
+| Document | Description |
+|----------|-------------|
+| Galascope_2.5MW_SLD_MCTS.PDF | Single Line Diagram for Galascope 2.5MW (MV connection) |
+| new title deed 647.pdf | Land title deed for site |
+| Kανόνες Μεταφοράς και Διανομής_4_0_0_Ενοποιημένοι.pdf | Cyprus T&D Rules v4.0.0 (Consolidated) — Greek language |
+
+---
+
+## Data Discrepancy Flag
+
+> **⚠️ Galascope 2 MWh discrepancy**: This document and the group proposal template show Galascope 2 as **2.5MW/8MWh** (2× 4.179 MWh containers per original quotation LY202511281). However, `lib/portfolio-data.ts` shows Galascope 2 as **10 MWh with 3 containers**. The proposal template also shows 2× 5MWh containers. These need reconciliation — confirm with Dino which container configuration is confirmed.
+
+---
+
+## Notes
+
+- First confirmed orders from client list
+- Both projects in Famagusta district
+- Combined delivery recommended for logistics efficiency
+- Full SCADA documentation now available for both existing PV plants
+- Client is actively evaluating MV/LV equipment for BESS BoP

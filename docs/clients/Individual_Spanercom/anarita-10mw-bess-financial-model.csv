@@ -1,0 +1,276 @@
+ANARITA 10 MW BESS — FINANCIAL MODEL
+Prepared for: Muminjon (Spanercom)
+Date: 5 March 2026 (updated 6 March 2026 — availability correction)
+Lighthief Cyprus Ltd
+
+=== INPUT PARAMETERS (MODIFY THESE) ===
+Parameter,Value,Unit,Source
+PV Installed Capacity,10,MW,Client
+Annual Specific Yield,1932,kWh/kWp,"PVSyst simulation (verified May-24 to Oct-25)"
+Annual PV Production,19324,MWh,PVSyst EAST+WEST combined
+Park Configuration,"Fixed Tilt (EAST + WEST arrays)",,Client confirmed
+PV Annual Degradation,0.50,%,Industry standard
+Peak Discharge Price,182.99,EUR/MWh,TSOC DAM 134-day verified avg (17:00-21:00)
+Price Dataset Period,Oct 2025 - Feb 2026,134 days,"TSOC DAM verified. Summer months not yet available. Model assumes this price level year-round — actual summer peak prices may differ."
+Round-Trip Efficiency (RTE),86.32,%,Linyang AC-AC full system
+Net Revenue per MWh Stored,157.96,EUR/MWh,Peak price x RTE
+BESS Availability,97,%,Guaranteed (LTSA Tier C)
+LTSA Cost Rate,2469.59,EUR/MWh/yr,Confirmed Linyang RFI V3
+Insurance (estimated),15000,EUR/yr,Budget estimate
+Cycles per Day,1,,"Annual average assumption. Winter months (Dec-Jan) may average 0.7-0.8 cycles due to shorter days and lower curtailment. Summer months may see higher curtailment but still limited to 1 cycle by BESS capacity."
+BESS EOL Definition,70,%,SOH threshold
+
+=== BESS OPTIONS & PRICING ===
+Option,Power (MW),Energy (MWh),Containers,Price (EUR),EUR/kWh,Duration (hrs)
+Option A,10,20,4 x 5 MWh,3033000,151.65,2
+Option B,10,30,6 x 5 MWh,4040500,134.68,3
+Option C,10,40,8 x 5 MWh,5048000,126.20,4
+
+=== SOH DEGRADATION (1 cycle/day at 0.25P) ===
+Year,SOH (%),Effective MWh (20),Effective MWh (30),Effective MWh (40)
+0,100.00,20.00,30.00,40.00
+1,94.62,18.92,28.39,37.85
+2,92.66,18.53,27.80,37.06
+3,90.70,18.14,27.21,36.28
+4,88.74,17.75,26.62,35.50
+5,86.78,17.36,26.03,34.71
+6,85.34,17.07,25.60,34.14
+7,83.90,16.78,25.17,33.56
+8,82.46,16.49,24.74,32.98
+9,81.02,16.20,24.31,32.41
+10,79.58,15.92,23.87,31.83
+11,78.39,15.68,23.52,31.36
+12,77.20,15.44,23.16,30.88
+13,76.01,15.20,22.80,30.40
+14,74.82,14.96,22.45,29.93
+15,73.61,14.72,22.08,29.44
+
+=== YEAR 1 SCENARIO ANALYSIS ===
+,,,,,
+Curtailment Rate,45%,50%,55%,60%,70%
+Annual Curtailed (MWh),8696,9662,10628,11594,13527
+Avg Daily Curtailed (MWh),23.82,26.47,29.12,31.77,37.06
+,,,,,
+--- OPTION A: 10 MW / 20 MWh ---,,,,,
+BESS Price (EUR),3033000,,,,
+O&M + Insurance (EUR/yr),64392,,,,
+Max Annual Throughput (MWh),7081,7081,7081,7081,7081
+Capture Efficiency,0.92,0.95,0.95,0.95,0.97
+Annual Captured (MWh),7081,7081,7081,7081,7081
+Annual Discharged (MWh),6112,6112,6112,6112,6112
+Gross Revenue (EUR),1118493,1118493,1118493,1118493,1118493
+O&M + Insurance (EUR),64392,64392,64392,64392,64392
+Net Income (EUR),1054101,1054101,1054101,1054101,1054101
+ROI (%),34.7,34.7,34.7,34.7,34.7
+Simple Payback (years),2.9,2.9,2.9,2.9,2.9
+"Note: Option A is throughput-capped at all curtailment rates >= 45%. The 20 MWh battery completes one full cycle per available day (354/365), making revenue independent of curtailment rate. This is both a strength (predictable income) and a limitation (cannot benefit from increasing curtailment).",,,,,
+,,,,,
+--- OPTION B: 10 MW / 30 MWh ---,,,,,
+BESS Price (EUR),4040500,,,,
+O&M + Insurance (EUR/yr),89088,,,,
+Max Annual Throughput (MWh),10622,10622,10622,10622,10622
+Capture Efficiency,0.82,0.88,0.88,0.92,0.95
+Annual Captured (MWh),6917,8248,9072,10347,10622
+Annual Discharged (MWh),5971,7119,7831,8931,9169
+Gross Revenue (EUR),1092573,1302691,1432846,1634203,1677735
+O&M + Insurance (EUR),89088,89088,89088,89088,89088
+Net Income (EUR),1003485,1213603,1343758,1545115,1588647
+ROI (%),24.8,30.0,33.2,38.2,39.3
+Simple Payback (years),4.0,3.3,3.0,2.6,2.5
+Note: Throughput-capped at 70% curtailment. Best balance of cost vs revenue sensitivity,,,,,
+,,,,,
+--- OPTION C: 10 MW / 40 MWh ---,,,,,
+BESS Price (EUR),5048000,,,,
+O&M + Insurance (EUR/yr),113784,,,,
+Max Annual Throughput (MWh),14162,14162,14162,14162,14162
+Capture Efficiency,0.82,0.82,0.82,0.82,0.88
+Annual Captured (MWh),6917,7686,8453,9222,11544
+Annual Discharged (MWh),5971,6634,7296,7960,9965
+Gross Revenue (EUR),1092573,1213871,1335001,1456467,1823488
+O&M + Insurance (EUR),113784,113784,113784,113784,113784
+Net Income (EUR),978789,1100087,1221217,1342683,1709704
+ROI (%),19.4,21.8,24.2,26.6,33.9
+Simple Payback (years),5.2,4.6,4.1,3.8,3.0
+Note: Never throughput-capped. Higher O&M reduces ROI. Becomes competitive above 70% curtailment,,,,,
+
+=== CAPTURE EFFICIENCY RULES ===
+"Formula: captured = min(BESS_MWh × 365 × 0.97, curtailed_annual × CE × 0.97)"
+"Note: 97% availability is applied to BOTH the throughput cap AND the curtailment-limited capture to reflect scheduled and unscheduled downtime (~11 days/year)"
+,,,
+Ratio (Avg Daily / BESS MWh),Capture Efficiency,Rationale
+> 1.5,0.97,Abundant surplus — near-guaranteed full daily cycle
+> 1.2,0.95,Strong surplus — very high fill probability
+> 1.0,0.92,Surplus exceeds capacity — reliable daily fill
+> 0.8,0.88,Near-parity — occasional partial cycles
+> 0.6,0.82,Moderate shortfall — frequent partial fills
+< 0.6,0.72,Significant shortfall — many days with incomplete charge
+
+=== 15-YEAR PROJECTION: OPTION B (30 MWh) AT 50% CURTAILMENT (CURRENT PARK BASELINE) ===
+,,,,,,,,,,,
+"Assumptions: PV base 19324 MWh (PVSyst verified) | PV degrades 0.5%/yr | Curtailment rate held at 50% | O&M constant at EUR 89088/yr | Peak price constant at EUR 182.99/MWh | 97% availability applied to all captured energy",,,,,,,,,,,
+,,,,,,,,,,,
+Year,PV Production (MWh),SOH (%),Effective BESS (MWh),Annual Curtailed (MWh),Annual Captured (MWh),Discharged (MWh),Revenue (EUR),O&M (EUR),Net Income (EUR),Cumulative Net (EUR)
+1,19324,94.62,28.39,9662,8248,7119,1302691,89088,1213603,1213603
+2,19228,92.66,27.80,9614,8206,7083,1296102,89088,1207014,2420617
+3,19132,90.70,27.21,9566,8164,7047,1289504,89088,1200416,3621033
+4,19036,88.74,26.62,9518,8122,7011,1282912,89088,1193824,4814857
+5,18941,86.78,26.03,9471,8452,7297,1335168,89088,1246080,6060937
+6,18846,85.34,25.60,9423,8409,7260,1328398,89088,1239310,7300247
+7,18752,83.90,25.17,9376,8367,7223,1321618,89088,1232530,8532777
+8,18659,82.46,24.74,9329,8325,7187,1315028,89088,1225940,9758717
+9,18565,81.02,24.31,9283,8284,7152,1308625,89088,1219537,10978254
+10,18473,79.58,23.87,9236,8242,7115,1301857,89088,1212769,12191023
+11,18380,78.39,23.52,9190,8201,7080,1295449,89088,1206361,13397384
+12,18289,77.20,23.16,9144,8160,7044,1288862,89088,1199774,14597158
+13,18197,76.01,22.80,9099,8072,6968,1274950,89088,1185862,15783020
+14,18107,74.82,22.45,9053,7948,6861,1255398,89088,1166310,16949330
+15,18016,73.61,22.08,9008,7817,6748,1234711,89088,1145623,18094953
+,,,,,,,,,,,
+--- 15-YEAR SUMMARY ---,,,,,,,,,,,
+Total Revenue (EUR),,,,,,,,19431273,,,
+Total O&M (EUR),,,,,,,,1336320,,,
+Total Net Income (EUR),,,,,,,,,18094953,,
+BESS Investment (EUR),,,,,,,,,4040500,,
+Net Profit After Investment (EUR),,,,,,,,,14054453,,
+Total Return Multiple,,,,,,,,,4.48x,,
+Annualised ROI (%),,,,,,,,,29.9,,
+Payback Period (years),,,,,,,,,3.3,,
+,,,,,,,,,,,
+Key observations:,,,,,,,,,,,
+"Years 1-4: Capture efficiency 0.88 (ratio < 1.0, curtailed energy slightly below BESS capacity)",,,,,,,,,,,
+"Years 5-12: Capture efficiency rises to 0.92 (ratio crosses 1.0 as BESS degrades, improving fill rates)",,,,,,,,,,,
+"Years 13-15: BESS throughput becomes the binding constraint (max throughput < available curtailed × CE × 0.97)",,,,,,,,,,,
+"Year 5 net income INCREASES despite degradation — higher CE more than offsets smaller battery",,,,,,,,,,,
+
+=== FUTURE REVENUE OPPORTUNITIES (NOT IN BASE MODEL) ===
+,,,,,
+Service,Parameter,Value,Unit,Notes
+,,,,,
+1. FCR (Frequency Containment Reserve),,,,,
+,Estimated rate,10-15,EUR/MW/hr of activation,
+,Typical activation hours,2000-4000,hrs/yr,
+,Revenue potential (10 MW),200000-600000,EUR/yr,
+,Note,,,,"Requires TSO market opening and grid-forming capability (C-series PCS ready)"
+,,,,,
+2. aFRR (Automatic Frequency Restoration Reserve),,,,,
+,Estimated rate,5-10,EUR/MW/hr,
+,Typical activation,1000-3000,hrs/yr,
+,Revenue potential (10 MW),50000-300000,EUR/yr,
+,Note,,,,Requires < 5 min activation (C-series PCS capable)
+,,,,,
+3. Grid Arbitrage (requires new legislation),,,,,
+,Buy price (midday avg),101.13,EUR/MWh,
+,Sell price (peak avg),182.99,EUR/MWh,
+,Gross spread,81.86,EUR/MWh,
+,Net per MWh (after RTE),70.66,EUR/MWh,Spread x RTE
+,Annual at 1 cycle/day (20 MWh),516000,EUR/yr,20 x 70.66 x 365
+,Annual at 1 cycle/day (30 MWh),774000,EUR/yr,30 x 70.66 x 365
+,Annual at 1 cycle/day (40 MWh),1032000,EUR/yr,40 x 70.66 x 365
+,Note,,,,"Only on non-curtailment days. Curtailment recovery remains more profitable (EUR 0 charge cost)"
+
+=== MONTHLY CURTAILMENT PATTERN (Cyprus DAM Data Oct 2025 - Feb 2026) ===
+,,,,,
+Month,Peak Evening Price (EUR/MWh),Midday Price (EUR/MWh),Spread (EUR/MWh),Solar Share %
+October,177.69,78.89,98.80,27.9%
+November,184.77,81.50,103.27,22.5%
+December,147.55,98.30,49.25,17.1%
+January,188.26,121.26,67.00,15.2%
+February,191.88,84.75,107.13,22.3%
+,,,,,
+Weighted Average Peak (134-day),182.99,,,
+Note: Summer months (Jun-Sep) expected to show higher curtailment and higher midday-to-peak spreads,,,,,
+
+=== ACTUAL PARK CURTAILMENT DATA (Spanercom Anarita — EAST + WEST Combined) ===
+Source: energy_production_Oct2025.xlsx | Data period: May 2024 - Oct 2025 | Configuration: Fixed tilt
+,,,,,
+Month,Energy Yield (MWh),Est. Potential Yield (MWh),PVSyst Est. (MWh),Curtailment %
+May-24,1023,1854,1921,45%
+Jun-24,1670,1888,1987,12%
+Jul-24,1791,1916,2034,7%
+Aug-24,1703,1788,1944,5%
+Sep-24,1225,1589,1724,23%
+Oct-24,941,1617,1461,42%
+Nov-24,645,1160,1108,44%
+Dec-24,694,951,922,27%
+Jan-25,600,1179,955,49%
+Feb-25,655,1198,1086,45%
+Mar-25,566,1648,1513,66%
+Apr-25,578,1731,1669,67%
+May-25,850,1769,1921,52%
+Jun-25,1376,1898,1987,28%
+Jul-25,1438,1968,2034,27%
+Aug-25,1147,1878,1944,39%
+Sep-25,965,1725,1724,44%
+Oct-25,467,1139,1461,59%
+
+=== CURTAILMENT TREND ANALYSIS ===
+Period,Average Curtailment %,Notes
+May-Aug 2024 (summer),18%,Low curtailment — early market period
+Sep-Dec 2024 (autumn/winter),34%,Curtailment increasing
+Jan-Apr 2025 (winter/spring),57%,High curtailment — spring peak
+May-Oct 2025 (summer/autumn),42%,Summer lower but still elevated
+Full 2025 (Jan-Oct),48%,Current baseline
+Trend,INCREASING,"0% (2021) → 45.8% national (2025) → 48% this park (2025)"
+
+=== OPTION COMPARISON SUMMARY ===
+,,,,,
+Metric,Option A (20 MWh),Option B (30 MWh),Option C (40 MWh),Notes
+BESS Price (EUR),3033000,4040500,5048000,
+EUR/kWh,151.65,134.68,126.20,Best unit cost: Option C
+Year 1 Net at 50% curt (EUR),1054101,1213603,1100087,Best net: Option B
+Year 1 ROI at 50% curt (%),34.7,30.0,21.8,Best ROI: Option A
+Simple Payback at 50% (yrs),2.9,3.3,4.6,Best payback: Option A
+Year 1 Net at 55% curt (EUR),1054101,1343758,1221217,Best net: Option B
+Year 1 ROI at 55% curt (%),34.7,33.2,24.2,Best ROI: Option A
+Simple Payback at 55% (yrs),2.9,3.0,4.1,Best payback: Option A
+15-Year Total Net (EUR),n/a,18094953,n/a,Option B projected at 50%
+Throughput utilisation at 50%,100%,78%,54%,Option A maxed out
+Revenue sensitivity to curt,None,High,Very High,Option A insensitive
+,,,,,
+RECOMMENDATION,,,,,
+"Based on verified park data showing 48% curtailment in 2025 (rising from 18% in summer 2024), Option B (30 MWh) is recommended. At 50% baseline it delivers 30.0% ROI, and if curtailment rises to 60% (trend suggests this within 1-2 years), ROI increases to 38.2%. Option A (20 MWh) has a higher current ROI (34.7%) but cannot benefit from increasing curtailment. Option C (40 MWh) is undersized for current curtailment but becomes competitive above 70%.",,,,,
+
+=== LEVELIZED COST OF STORAGE (LCOS) ===
+
+15-Year Cost Stack,Option A (20 MWh),Option B (30 MWh),Option C (40 MWh)
+Capital (BESS EPC Turnkey),3033000,4040500,5048000
+O&M — LTSA Tier C (15 years),965880,1336320,1706760
+Extended Warranty Yr 6-10,166168,249252,332336
+Extended Warranty Yr 11-15,208372,312558,416744
+Total 15-Year Cost,4373420,5938630,7503840
+
+System LCOS (full utilisation 1 cycle/day),,,
+15-Year Discharged (MWh),76153,114230,152306
+System LCOS (EUR/MWh),57.42,51.99,49.27
+
+Application LCOS (at 50% curtailment),,,
+15-Year Discharged at 50% (MWh),76153,106200,88900
+Utilisation vs Full Capacity,100%,93%,58%
+Application LCOS (EUR/MWh),57.42,55.92,84.41
+
+Revenue Margin,,,
+Revenue per MWh Discharged,182.99,182.99,182.99
+Application LCOS,57.42,55.92,84.41
+Margin per MWh (EUR),100.54,102.04,73.55
+Margin %,63.7%,64.6%,46.6%
+
+Note: System LCOS assumes full daily cycling. Application LCOS reflects actual utilisation under curtailment recovery at 50%.
+Note: All three options competitive with global 4-hour LFP benchmarks ($60-100/MWh).
+Note: Margin driven by EUR 0 charge cost — no energy purchase cost under curtailment recovery.
+
+=== METHODOLOGY NOTES ===
+1. All revenues based on curtailment recovery only (zero-cost charge from otherwise-curtailed energy)
+2. Peak discharge price verified from 134 days of Cyprus TSOC DAM data (17:00-21:00 window)
+3. RTE of 86.32% is AC-AC full system including PCS and auxiliary loads (Linyang C-series verified)
+4. SOH degradation curve from Linyang cycle-life data at 0.25P charge/discharge rate
+5. Capture efficiency accounts for temporal mismatch between curtailment events and BESS state-of-charge
+6. LTSA rate of EUR 2469.59/MWh/yr covers preventive maintenance and equipment replacement
+7. Insurance estimated at EUR 15000/yr — actual quotes may vary based on site and cover scope
+8. FCR/aFRR revenues excluded from base model pending TSO market framework development
+9. Grid arbitrage excluded pending legislative changes allowing BESS grid charging
+10. No inflation adjustment applied — all values in 2026 EUR
+11. PV production based on PVSyst simulation verified against 18 months of actual meter data (May 2024 — Oct 2025)
+12. Curtailment rates from actual DSO dispatch-down records for Spanercom Anarita EAST + WEST arrays
+13. 97% availability factor applied to both throughput-capped and curtailment-limited capture calculations
+14. Peak price based on 134-day Oct-Feb dataset. Summer peak prices not yet available — model assumes year-round constancy.
+15. One cycle per day is an annual average. Seasonal variation (lower in winter, higher in summer) not separately modelled.

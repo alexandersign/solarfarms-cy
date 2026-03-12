@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABIO Power Group &mdash; BESS Turnkey Proposal | Lighthief</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669}
+        body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+        .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+        .logo{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}.logo span{color:var(--accent)}
+        .tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+        .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+        h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+        h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+        h2::after{content:'';display:block}
+        h3{font-size:9.5pt;color:var(--primary);margin:10px 0 5px}
+        table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+        th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600;white-space:normal}
+        td{padding:5px 7px;border-bottom:1px solid var(--border);word-wrap:break-word}
+        tr:nth-child(even){background:#fafbfc}
+        .r{text-align:right}.c{text-align:center}
+        .price{font-weight:700;color:var(--accent)}
+        .total-row{background:var(--primary)!important;color:#fff;font-weight:700}
+        .total-row td{border:none}
+        .sub-total{background:#edf2f7!important;font-weight:600}
+        .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 20px}
+        .metric-box{background:var(--bg);border-radius:8px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
+        .metric-box .val{font-size:18pt;font-weight:800;color:var(--primary)}
+        .metric-box .lbl{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+        .box{border:1px solid var(--border);border-radius:6px;padding:12px}
+        .box h3{margin-top:0}
+        .box ul{margin-left:16px}.box li{margin-bottom:3px}
+        .highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .savings{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .warn{background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+        .team-card{border:1px solid var(--border);border-radius:6px;padding:10px;font-size:8pt}
+        .team-card strong{color:var(--primary);font-size:9pt}.team-card .role{color:var(--accent);font-size:7.5pt;font-weight:600}
+        .phase{background:var(--bg);padding:6px 12px;border-left:3px solid var(--accent);margin:14px 0 6px;font-weight:600;color:var(--primary);font-size:9pt}
+        .footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+        .note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+        .print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .print-btn:hover{background:var(--accent)}
+        ul{margin-left:18px}li{margin-bottom:3px}
+        .incl{color:var(--ok)}.excl{color:#dc2626}
+        .logo-img{height:32px;vertical-align:middle}
+        .partner-strip{display:flex;align-items:center;justify-content:center;gap:28px;padding:16px 0;margin:18px 0 8px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
+        .partner-strip img{height:36px;object-fit:contain}
+        .partner-strip .voltus-logo{filter:invert(1);height:28px}
+        .partner-strip .partner-label{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-right:8px}
+        @media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}.page-break{page-break-before:always}}
+
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">&#128424; Print / PDF</button>
+
+<!-- PAGE 1: Cover -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>CONFIDENTIAL</strong><br>Ref: LCY-GRP1-2026-FEB<br>Date: February 2026<br>Valid: 30 days</div>
+    </div>
+
+    <h1>BESS Turnkey EPC Group Proposal</h1>
+    <p style="font-size:12pt;color:var(--accent);font-weight:600;margin-bottom:20px;">Prepared for: ABIO Power</p>
+
+    <div class="metric-grid">
+        <div class="metric-box"><div class="val">25</div><div class="lbl">BESS Parks</div></div>
+        <div class="metric-box"><div class="val">430.3 MWh</div><div class="lbl">Total Energy</div></div>
+        <div class="metric-box"><div class="val">~&euro;52,609,992</div><div class="lbl">Portfolio Value</div></div>
+        <div class="metric-box"><div class="val">125 MW</div><div class="lbl">Total Power</div></div>
+    </div>
+
+    <div class="two-col">
+        <div class="box">
+            <h3>Lighthief Cyprus Ltd</h3>
+            <ul>
+                <li>Exclusive EPC partner for Linyang Energy in Cyprus</li>
+                <li>Part of Lighthief European Group &mdash; Poland HQ with 150+ engineers</li>
+                <li>Full turnkey: procurement, installation, commissioning, O&amp;M</li>
+                <li>{{PORTFOLIO.mwh}} MWh total BESS portfolio across {{PORTFOLIO.parks}} parks in Cyprus</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Equipment &amp; Technology</h3>
+            <ul>
+                <li><strong>Battery:</strong> Linyang (EVE cells, CATL-grade LFP)</li>
+                <li><strong>PCS:</strong> Kehua Tech &mdash; Tier 1, 3rd largest globally</li>
+                <li><strong>EMS:</strong> Voltus Energy (Cyprus-based, IEC 60870-5-104)</li>
+                <li><strong>Warranty:</strong> 5-year OEM + optional 15-year extended</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <strong>Group Order Advantage:</strong> As part of the {{PORTFOLIO.mwh}} MWh Cyprus portfolio, ABIO Power benefits from volume-negotiated pricing on hardware, EMS, logistics, and installation &mdash; significantly below individual order rates.
+    </div>
+
+    <div class="partner-strip">
+        <span class="partner-label">Technology Partners</span>
+        <img src="{{LOGO_LINYANG}}" alt="Linyang Energy" title="Linyang Energy &mdash; Battery OEM">
+        <img src="{{LOGO_KEHUA}}" alt="Kehua Tech" title="Kehua Tech &mdash; Power Conversion">
+        <img src="{{LOGO_VOLTUS}}" alt="Voltus Energy" title="Voltus Energy &mdash; EMS/SCADA" class="voltus-logo">
+    </div>
+</div>
+
+<!-- PAGE 2: Pricing -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Project Pricing &mdash; ABIO Power</div>
+    </div>
+
+    <h2>Turnkey EPC Pricing</h2>
+    <p class="note">All prices exclude VAT (19%). Prices are final turnkey EPC delivered.</p>
+
+
+    <div class="phase">ABIO STANDALONE &mdash; 4 Projects | 11.7 MW | 48 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Greendorado Agrivoltaic</td><td class="c">Larnaca</td><td class="c">0.8</td><td class="c">3</td><td class="c">1&times; 5MWh</td><td class="c">0.8 MW</td><td class="r">&euro;209.42</td><td class="r price">&euro;628,265</td></tr>
+            <tr><td>Agios Sozomenos</td><td class="c">Nicosia</td><td class="c">6</td><td class="c">25</td><td class="c">5&times; 5MWh</td><td class="c">6 MW</td><td class="r">&euro;125.46</td><td class="r price">&euro;3,136,513</td></tr>
+            <tr><td>Renergetic 2</td><td class="c">Nicosia</td><td class="c">2.4</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">2.4 MW</td><td class="r">&euro;124.60</td><td class="r price">&euro;1,245,983</td></tr>
+            <tr><td>Solartech 3 Extension</td><td class="c">Nicosia</td><td class="c">2.5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">2.5 MW</td><td class="r">&euro;120.63</td><td class="r price">&euro;1,206,300</td></tr>
+            <tr class="sub-total"><td colspan="6">ABIO STANDALONE Subtotal</td><td class="r">&euro;129.52</td><td class="r">&euro;6,217,061</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">DIANARY &mdash; 3 Projects | 13 MW | 55 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Dianary 1</td><td class="c">Nicosia</td><td class="c">2.5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">2.5 MW</td><td class="r">&euro;120.63</td><td class="r price">&euro;1,206,300</td></tr>
+            <tr><td>Dianary 2</td><td class="c">Nicosia</td><td class="c">2.5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">2.5 MW</td><td class="r">&euro;120.63</td><td class="r price">&euro;1,206,300</td></tr>
+            <tr><td>Dianary 3</td><td class="c">Nicosia</td><td class="c">8</td><td class="c">35</td><td class="c">7&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;119.96</td><td class="r price">&euro;4,198,621</td></tr>
+            <tr class="sub-total"><td colspan="6">DIANARY Subtotal</td><td class="r">&euro;120.20</td><td class="r">&euro;6,611,221</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">EASY POWER &mdash; 4 Projects | 16.3 MW | 38 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Easy Power 1</td><td class="c">Nicosia</td><td class="c">5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">5 MW</td><td class="r">&euro;136.10</td><td class="r price">&euro;1,361,050</td></tr>
+            <tr><td>Easy Power 2</td><td class="c">Nicosia</td><td class="c">4.5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">4.5 MW</td><td class="r">&euro;140.15</td><td class="r price">&euro;1,401,540</td></tr>
+            <tr><td>Easy Power 3</td><td class="c">Nicosia</td><td class="c">5</td><td class="c">10</td><td class="c">3&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;136.10</td><td class="r price">&euro;1,361,050</td></tr>
+            <tr><td>Easy Power 4</td><td class="c">Nicosia</td><td class="c">1.8</td><td class="c">8</td><td class="c">2&times; 5MWh</td><td class="c">1.8 MW</td><td class="r">&euro;142.12</td><td class="r price">&euro;1,136,949</td></tr>
+            <tr class="sub-total"><td colspan="6">EASY POWER Subtotal</td><td class="r">&euro;138.44</td><td class="r">&euro;5,260,589</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">ELESTORE &mdash; 5 Projects | 60 MW | 200 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>ELESTORE 1</td><td class="c">Nicosia</td><td class="c">12</td><td class="c">40</td><td class="c">8&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;114.99</td><td class="r price">&euro;4,599,600</td></tr>
+            <tr><td>ELESTORE 2</td><td class="c">Nicosia</td><td class="c">12</td><td class="c">40</td><td class="c">8&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;114.99</td><td class="r price">&euro;4,599,600</td></tr>
+            <tr><td>ELESTORE 3</td><td class="c">Nicosia</td><td class="c">12</td><td class="c">40</td><td class="c">8&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;114.99</td><td class="r price">&euro;4,599,600</td></tr>
+            <tr><td>ELESTORE 4</td><td class="c">Nicosia</td><td class="c">12</td><td class="c">40</td><td class="c">8&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;114.99</td><td class="r price">&euro;4,599,600</td></tr>
+            <tr><td>ELESTORE 5</td><td class="c">Nicosia</td><td class="c">12</td><td class="c">40</td><td class="c">8&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;114.99</td><td class="r price">&euro;4,599,600</td></tr>
+            <tr class="sub-total"><td colspan="6">ELESTORE Subtotal</td><td class="r">&euro;114.99</td><td class="r">&euro;22,998,000</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">GREENDORADO &mdash; 3 Projects | 4.0 MW | 18 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Greendorado Larnaca 1</td><td class="c">Larnaca</td><td class="c">1.2</td><td class="c">5</td><td class="c">1&times; 5MWh</td><td class="c">1.2 MW</td><td class="r">&euro;154.08</td><td class="r price">&euro;770,397</td></tr>
+            <tr><td>Greendorado Larnaca 2</td><td class="c">Larnaca</td><td class="c">1</td><td class="c">5</td><td class="c">1&times; 5MWh</td><td class="c">1 MW</td><td class="r">&euro;153.15</td><td class="r price">&euro;765,751</td></tr>
+            <tr><td>Greendorado 1</td><td class="c">Nicosia</td><td class="c">1.8</td><td class="c">8</td><td class="c">2&times; 5MWh</td><td class="c">1.8 MW</td><td class="r">&euro;142.12</td><td class="r price">&euro;1,136,949</td></tr>
+            <tr class="sub-total"><td colspan="6">GREENDORADO Subtotal</td><td class="r">&euro;148.51</td><td class="r">&euro;2,673,096</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">POLEMI &mdash; 1 Project | 1.2 MW | 10 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Polemi</td><td class="c">Nicosia</td><td class="c">1.2</td><td class="c">10</td><td class="c">3&times; 5MWh</td><td class="c">1.2 MW</td><td class="r">&euro;112.96</td><td class="r price">&euro;1,129,579</td></tr>
+            <tr class="sub-total"><td colspan="6">POLEMI Subtotal</td><td class="r">&euro;112.96</td><td class="r">&euro;1,129,579</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">POTAMIA &mdash; 2 Projects | 5.8 MW | 30 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Potamia p151</td><td class="c">Nicosia</td><td class="c">1.2</td><td class="c">10</td><td class="c">3&times; 5MWh</td><td class="c">1.2 MW</td><td class="r">&euro;112.96</td><td class="r price">&euro;1,129,579</td></tr>
+            <tr><td>Potamia p208</td><td class="c">Nicosia</td><td class="c">4.5</td><td class="c">20</td><td class="c">6&times; 5MWh</td><td class="c">2&times; MV</td><td class="r">&euro;119.79</td><td class="r price">&euro;2,395,785</td></tr>
+            <tr class="sub-total"><td colspan="6">POTAMIA Subtotal</td><td class="r">&euro;117.51</td><td class="r">&euro;3,525,364</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">RENERGETIC &mdash; 1 Project | 5 MW | 10 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Renergetic</td><td class="c">Nicosia</td><td class="c">5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">5 MW</td><td class="r">&euro;136.10</td><td class="r price">&euro;1,361,050</td></tr>
+            <tr class="sub-total"><td colspan="6">RENERGETIC Subtotal</td><td class="r">&euro;136.10</td><td class="r">&euro;1,361,050</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">SOLARITY &mdash; 1 Project | 5 MW | 10 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Solarity</td><td class="c">Nicosia</td><td class="c">5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">5 MW</td><td class="r">&euro;136.10</td><td class="r price">&euro;1,361,050</td></tr>
+            <tr class="sub-total"><td colspan="6">SOLARITY Subtotal</td><td class="r">&euro;136.10</td><td class="r">&euro;1,361,050</td></tr>
+        </tbody>
+    </table>
+
+    <div class="phase">WANERON &mdash; 1 Project | 3 MW | 11.3 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Waneron</td><td class="c">Nicosia</td><td class="c">3</td><td class="c">11.3</td><td class="c">2&times; 5MWh</td><td class="c">3 MW</td><td class="r">&euro;130.58</td><td class="r price">&euro;1,472,981</td></tr>
+            <tr class="sub-total"><td colspan="6">WANERON Subtotal</td><td class="r">&euro;130.58</td><td class="r">&euro;1,472,981</td></tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr class="total-row"><td colspan="6" style="border:none"><strong>GRAND TOTAL &mdash; 25 Projects | 125 MW | 430.3 MWh</strong></td><td class="r" style="border:none">&euro;122.27</td><td class="r" style="border:none">&euro;52,609,992</td></tr>
+    </table>
+    <p class="note">All prices exclude VAT (19%). Prices are final turnkey EPC delivered.</p>
+
+</div>
+
+<!-- PAGE 3: EPC Scope -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">EPC Scope &mdash; ABIO Power</div>
+    </div>
+
+    <h2>EPC Scope of Works</h2>
+
+    <div class="two-col">
+        <div class="box">
+            <h3 class="incl">&#10003; Included in EPC Price</h3>
+            <ul>
+                <li>BESS containers (LFP battery + BMS + HVAC + fire suppression)</li>
+                <li>PCS/MV Skid (inverter + transformer + MV switchgear)</li>
+                <li>EMS system (Voltus &mdash; energy management + SCADA)</li>
+                <li>Shipping to Limassol + import customs clearance</li>
+                <li>Crane offloading + inland transport to site</li>
+                <li>Civil works: concrete platforms, trenches, drainage</li>
+                <li>LV &amp; MV cabling (DC bus, AC feeder connections)</li>
+                <li>MV terminations and protection engineering</li>
+                <li>Surge protection (DEHN SPD) + earthing grid</li>
+                <li>Remote trip / SCADA communications infrastructure</li>
+                <li>UPS &amp; auxiliary power supply</li>
+                <li>Construction insurance (CAR/EAR, TPL, PI)</li>
+                <li>Documentation &amp; statutory compliance (EAC/CERA)</li>
+                <li>Full commissioning and DSO witness testing</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3 class="excl">&#10007; Excluded / Client Responsibility</h3>
+            <ul>
+                <li>Land / site lease and preparation beyond civil works</li>
+                <li>Grid connection agreement and PCC bay extension (if needed)</li>
+                <li>External lightning protection system (LPS &mdash; building-mounted, DEHN quoted per site)</li>
+                <li>Protection testing / DSO inspection fees</li>
+                <li>VAT (19%) &mdash; payable by importer of record</li>
+                <li>CERA licence application fees</li>
+                <li>Electrical drawings / as-built engineering drawings (&euro;5,000&ndash;&euro;15,000 per site, budget range)</li>
+                <li>Any works beyond the battery storage compound boundary</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Technical Specifications</h2>
+    <table>
+        <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Battery Chemistry</strong></td><td>LFP (Lithium Iron Phosphate) &mdash; EVE cells</td></tr>
+            <tr><td><strong>Container Model</strong></td><td>Power Atlantic ME 5.015 MWh / ME 4.179 MWh (20HC)</td></tr>
+            <tr><td><strong>Cycle Life</strong></td><td>15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25&plusmn;2&deg;C</td></tr>
+            <tr><td><strong>Round Trip Efficiency</strong></td><td>&ge; 86.32% (AC-AC full system incl. cabling)</td></tr>
+            <tr><td><strong>PCS</strong></td><td>Kehua Tech &mdash; bi-directional, 4-quadrant capable</td></tr>
+            <tr><td><strong>EMS/SCADA</strong></td><td>Voltus Energy &mdash; IEC 60870-5-104, DSO compliant</td></tr>
+            <tr><td><strong>Fire Suppression</strong></td><td>Integrated aerosol system per container</td></tr>
+            <tr><td><strong>Operating Temp</strong></td><td>-20&deg;C to +55&deg;C (liquid cooled)</td></tr>
+            <tr><td><strong>Design Life</strong></td><td>25 years (with augmentation strategy)</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PAGE 4: Warranties & Payment -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Warranties &amp; Terms &mdash; ABIO Power</div>
+    </div>
+
+    <h2>Warranty &amp; Performance Guarantees</h2>
+    <table>
+        <thead><tr><th>Coverage</th><th>Period</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Standard OEM Warranty</strong></td><td>5 Years</td><td>Full BESS, PCS, BMS coverage &mdash; included in EPC price</td></tr>
+            <tr><td><strong>Capacity Guarantee</strong></td><td>15 Years</td><td>&ge; 70% SOH at Year 15 (degradation curve guaranteed)</td></tr>
+            <tr><td><strong>Availability Guarantee</strong></td><td>Per O&amp;M contract</td><td>&ge; 97% system availability with LD penalties</td></tr>
+            <tr><td><strong>Performance Bond</strong></td><td>Pre-delivery to PAC + 30 days</td><td>5% of contract value (OEM bank guarantee)</td></tr>
+            <tr><td><strong>Defects Liability</strong></td><td>24 months post-PAC</td><td>5% retention released after DLP</td></tr>
+        </tbody>
+    </table>
+
+    <h2>O&amp;M &amp; Extended Warranty (Optional)</h2>
+    <table>
+        <thead><tr><th>Service</th><th class="r">&euro;/MWh/Year</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>O&amp;M Maintenance</strong></td><td class="r price">&euro;{{LTSA.tierC.ratePerMWh}}</td><td>Tier C: preventive &amp; corrective maintenance, 24/7 monitoring, spare parts, 97% availability guarantee</td></tr>
+            <tr><td><strong>Extended Warranty (BESS) Yr 6&ndash;10</strong></td><td class="r">&euro;{{WARRANTY.extendedYr6to10.bessPerMWh}}</td><td>OEM-backed battery warranty extension</td></tr>
+            <tr><td><strong>Extended Warranty (PCS+MVS) Yr 6&ndash;10</strong></td><td class="r">&euro;747.76</td><td>OEM-backed inverter/transformer warranty</td></tr>
+        </tbody>
+    </table>
+
+    <h2>EMS/SCADA Annual Subscription</h2>
+    <table>
+        <thead><tr><th>Service</th><th class="r">&euro;/MWh/Year</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>EMS/SCADA Subscription</strong></td><td class="r price">&euro;442</td><td>Software updates, cloud hosting, data feeds, cybersecurity, integrations</td></tr>
+        </tbody>
+    </table>
+    <h2>Payment Terms</h2>
+    <table>
+        <thead><tr><th>Milestone</th><th class="c">%</th><th>Trigger</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Advance Payment</strong></td><td class="c">30%</td><td>Within 7 days of contract signing</td></tr>
+            <tr><td><strong>Pre-Shipment</strong></td><td class="c">55%</td><td>Equipment ready for shipment (factory inspection)</td></tr>
+            <tr><td><strong>Provisional Acceptance (PAC)</strong></td><td class="c">10%</td><td>System commissioned and grid-connected</td></tr>
+            <tr><td><strong>Retention</strong></td><td class="c">5%</td><td>Released after 24-month defects liability period</td></tr>
+            <tr class="total-row"><td colspan="2" style="border:none"><strong>Total</strong></td><td style="border:none"><strong>100%</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Insurance Coverage</h2>
+    <table>
+        <thead><tr><th>Policy</th><th>Coverage</th><th>Basis</th><th>Status</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Construction Insurance (CAR/EAR)</strong></td><td>All construction works until PAC</td><td>Full contract value</td><td style="color:var(--ok);font-weight:700;">&#10003; Included in EPC price</td></tr>
+            <tr><td><strong>Contractor&rsquo;s All Risk (CAR)</strong></td><td>All installation works until PAC</td><td>Full contract value</td><td style="color:var(--ok);font-weight:700;">&#10003; Included in EPC price</td></tr>
+            <tr><td><strong>Product Liability</strong></td><td>Manufacturing defects</td><td>&euro;5,000,000 (AXA)</td><td style="color:var(--ok);font-weight:700;">&#10003; OEM covers</td></tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <strong>Lighthief Cyprus Ltd</strong> | Energy Storage EPC &amp; O&amp;M<br>
+        Confidential &mdash; Prepared for ABIO Power | February 2026<br>
+        Pricing valid for 30 days from date of issue.
+    </div>
+</div>
+
+</body>
+</html>

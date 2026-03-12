@@ -20,7 +20,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Cyprus Solar Curtailment Crisis 2025: How BESS Protects Your Investment ROI',
-  description: 'Curtailment surged from 0% to 45.8% in 4 years. Learn how Battery Energy Storage Systems (BESS) can recover lost revenue and protect your solar investment ROI in Cyprus.',
+  description: 'Curtailment surged from 0% to 47% in 4 years. Learn how Battery Energy Storage Systems (BESS) can recover lost revenue and protect your solar investment ROI in Cyprus.',
   keywords: [
     'Cyprus solar curtailment',
     'BESS Cyprus',
@@ -44,7 +44,7 @@ export default function CyprusCurtailmentBESSArticle() {
         "author": { "@type": "Person", "name": "Alexander Papacosta" },
         "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
         "datePublished": "2025-11-26",
-        "description": "Curtailment surged from 0% to 45.8% in 4 years. Learn how Battery Energy Storage Systems (BESS) can recover lost revenue and protect your solar investment ROI in Cyprus.",
+        "description": "Curtailment surged from 0% to 47% in 4 years. Learn how Battery Energy Storage Systems (BESS) can recover lost revenue and protect your solar investment ROI in Cyprus.",
         "mainEntityOfPage": "https://solarfarms.cy/blog/cyprus-curtailment-crisis-bess-solution"
       }} />
       {/* Hero */}
@@ -61,7 +61,7 @@ export default function CyprusCurtailmentBESSArticle() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-6">
-              Curtailment has surged from 0% to 45.8% in just four years. Battery Energy Storage Systems (BESS) 
+              Curtailment has surged from 0% to 47% in just four years. Battery Energy Storage Systems (BESS) 
               are now essential for protecting solar investment returns in Cyprus.
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -86,7 +86,7 @@ export default function CyprusCurtailmentBESSArticle() {
               <p className="text-lg text-gray-700 mb-4">
                 Cyprus is experiencing a dramatic surge in solar curtailment - when grid operators force solar parks 
                 to reduce or stop production despite available sunshine. Real-world data from operational parks shows 
-                a shocking trend: curtailment has increased from essentially 0% in 2021 to a staggering 45.8% in 2025.
+                a shocking trend: curtailment has increased from essentially 0% in 2021 to a staggering 47% in 2025.
               </p>
               <p className="text-lg text-gray-700 mb-6">
                 This isn't a theoretical problem. For a typical 5MW solar park, this translates to millions of euros 
@@ -102,7 +102,7 @@ export default function CyprusCurtailmentBESSArticle() {
                   Cyprus Curtailment Crisis: The BESS Opportunity
                 </h3>
                 <p className="text-gray-600">
-                  Curtailment increased from 0% to 45.8% in just 4 years - making BESS essential for ROI protection
+                  Curtailment increased from 0% to 47% in just 4 years - making BESS essential for ROI protection
                 </p>
               </div>
 
@@ -155,12 +155,12 @@ export default function CyprusCurtailmentBESSArticle() {
                     <div className="relative h-32 bg-gradient-to-t from-red-500 to-red-200 rounded-lg overflow-hidden">
                       <div 
                         className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-green-500 to-green-300"
-                        style={{ height: '73.3%' }}
+                        style={{ height: '71%' }}
                       />
                     </div>
                     <div className="mt-2">
                       <div className="text-xs text-gray-500">Curtailment</div>
-                      <div className="text-lg font-bold text-orange-600">26.7%</div>
+                      <div className="text-lg font-bold text-orange-600">29%</div>
                     </div>
                   </div>
 
@@ -169,12 +169,12 @@ export default function CyprusCurtailmentBESSArticle() {
                     <div className="relative h-32 bg-gradient-to-t from-red-500 to-red-200 rounded-lg overflow-hidden">
                       <div 
                         className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-green-500 to-green-300"
-                        style={{ height: '54.2%' }}
+                        style={{ height: '53%' }}
                       />
                     </div>
                     <div className="mt-2">
                       <div className="text-xs text-gray-500">Curtailment</div>
-                      <div className="text-lg font-bold text-red-600">45.8%</div>
+                      <div className="text-lg font-bold text-red-600">47%</div>
                     </div>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function CyprusCurtailmentBESSArticle() {
                   <CardContent>
                     <ul className="space-y-2 text-gray-700">
                       <li>• Production: 5,599 MWh</li>
-                      <li>• Curtailment: 4,598 MWh (45.8%)</li>
+                      <li>• Curtailment: 4,700 MWh (47%)</li>
                       <li>• Revenue: ~€1.06M (at €190/MWh)</li>
                       <li className="font-semibold text-red-600">• €873K lost annually ✗</li>
                     </ul>
@@ -462,7 +462,7 @@ export default function CyprusCurtailmentBESSArticle() {
                   <ul className="space-y-3">
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span><strong>Official Tier-1 Reseller:</strong> Direct partnerships with leading BESS manufacturers (Tesla, BYD, Huawei, Sungrow)</span>
+                      <span><strong>Exclusive Cyprus Distributor:</strong> Direct partnership with Linyang Energy (Kehua PCS, EVE LFP cells) &mdash; factory-integrated containerised BESS</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -553,16 +553,16 @@ export default function CyprusCurtailmentBESSArticle() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div className="flex justify-between">
-                      <span>BESS Equipment:</span>
-                      <span className="font-semibold">€140,000 per MWh</span>
+                      <span>BESS Installed Cost:</span>
+                      <span className="font-semibold">~€113,000 per MWh</span>
                     </div>
                     <div className="flex justify-between text-sm text-gray-600">
-                      <span>5MW park (2.5 MWh/MW):</span>
-                      <span>12.5 MWh total</span>
+                      <span>5MW park (4 MWh/MW):</span>
+                      <span>20 MWh total</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Total BESS Investment:</span>
-                      <span className="font-bold text-lg">€1,750,000</span>
+                      <span className="font-bold text-lg">~€2,260,000</span>
                     </div>
                     <div className="flex justify-between border-t pt-2">
                       <span>Annual O&M:</span>

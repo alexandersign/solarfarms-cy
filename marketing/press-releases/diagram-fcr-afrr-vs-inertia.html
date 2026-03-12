@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Resilience: Centralised vs Distributed Energy Storage</title>
+<style>
+  body { margin: 0; padding: 40px 20px; background: #fff; font-family: 'Inter', -apple-system, sans-serif; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .title { font-size: 20px; text-align: center; color: #1a1a2e; margin-bottom: 4px; font-weight: 700; }
+  .subtitle { text-align: center; font-size: 13px; color: #6b7280; margin-bottom: 32px; }
+  .panels { display: flex; gap: 32px; }
+  .panel { flex: 1; }
+  .legend { display: flex; justify-content: center; gap: 32px; margin-top: 24px; font-size: 12px; color: #6b7280; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #9ca3af; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+
+  @media (max-width: 700px) {
+    .panels { flex-direction: column; }
+  }
+  @media print {
+    body { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="title">Grid Resilience: Centralised Generation vs Distributed Storage</div>
+<p class="subtitle">Why battery storage across the island is more resilient than a single power station</p>
+
+<div class="panels">
+
+<!-- LEFT PANEL: CYPRUS TODAY -->
+<div class="panel">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 400">
+  <defs>
+    <linearGradient id="seaL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow1">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+    <radialGradient id="danger-pulse" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background sea -->
+  <rect width="440" height="400" rx="12" fill="url(#seaL)" stroke="#cbd5e1" stroke-width="1"/>
+
+  <!-- Panel label -->
+  <rect x="0" y="0" width="440" height="34" rx="12" fill="#dc2626"/>
+  <rect x="0" y="16" width="440" height="18" fill="#dc2626"/>
+  <text x="220" y="23" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" letter-spacing="0.5">CYPRUS TODAY — CENTRALISED &amp; VULNERABLE</text>
+
+  <!-- Cyprus outline (simplified) -->
+  <path d="M 82,195 C 78,185 75,175 80,165 C 85,155 95,148 105,142 C 112,138 118,132 128,130 
+           C 138,128 148,130 155,128 C 162,126 168,120 178,118 C 188,116 195,118 205,116 
+           C 212,114 218,112 228,112 C 238,112 245,114 255,116 C 265,118 272,115 280,114 
+           C 290,113 298,116 305,118 C 315,122 322,125 330,130 C 338,135 345,138 348,142 
+           C 352,148 358,155 362,162 C 365,168 370,175 368,180 
+           C 365,186 360,188 355,192 C 348,196 340,198 332,200 
+           C 324,202 315,200 308,202 C 298,205 290,210 280,212 
+           C 270,214 260,215 250,218 C 240,220 230,225 220,228 
+           C 210,230 200,232 190,232 C 180,232 170,230 160,228 
+           C 150,226 140,222 130,220 C 120,218 110,215 102,210 
+           C 94,205 88,200 82,195 Z"
+        fill="#f5f0e8" stroke="#c8b89a" stroke-width="1.5" filter="url(#shadow1)"/>
+
+  <!-- Karpaz peninsula -->
+  <path d="M 362,162 C 368,158 375,155 382,150 C 388,146 394,142 400,140 C 405,139 410,140 414,142"
+        fill="none" stroke="#c8b89a" stroke-width="1.5"/>
+  <path d="M 362,162 C 368,158 375,155 382,150 C 388,146 394,142 400,140 C 405,139 410,140 414,142 
+           C 412,146 408,148 402,150 C 396,152 390,155 385,158 C 378,162 372,166 368,170 
+           C 366,174 365,178 365,180"
+        fill="#f5f0e8" stroke="#c8b89a" stroke-width="1.5"/>
+
+  <!-- City labels (subtle) -->
+  <text x="175" y="168" text-anchor="middle" fill="#a3917a" font-size="9" font-weight="500">Nicosia</text>
+  <circle cx="175" cy="172" r="2" fill="#a3917a"/>
+  <text x="115" y="205" text-anchor="middle" fill="#a3917a" font-size="9" font-weight="500">Paphos</text>
+  <circle cx="115" cy="195" r="2" fill="#a3917a"/>
+  <text x="195" y="218" text-anchor="middle" fill="#a3917a" font-size="9" font-weight="500">Limassol</text>
+  <circle cx="195" cy="210" r="2" fill="#a3917a"/>
+  <text x="295" y="175" text-anchor="middle" fill="#a3917a" font-size="9" font-weight="500">Larnaca</text>
+  <circle cx="295" cy="180" r="2" fill="#a3917a"/>
+
+  <!-- VASILIKOS — single red danger point -->
+  <circle cx="248" cy="212" r="40" fill="url(#danger-pulse)"/>
+  <circle cx="248" cy="212" r="24" fill="url(#danger-pulse)"/>
+  <circle cx="248" cy="212" r="10" fill="#dc2626" filter="url(#glow-red)"/>
+  <text x="248" y="216" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">⚡</text>
+
+  <!-- Vasilikos label -->
+  <line x1="248" y1="225" x2="248" y2="250" stroke="#dc2626" stroke-width="1"/>
+  <rect x="190" y="252" width="116" height="38" rx="5" fill="#dc2626"/>
+  <text x="248" y="267" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">VASILIKOS</text>
+  <text x="248" y="280" text-anchor="middle" fill="#fecaca" font-size="8">Single point of failure</text>
+
+  <!-- Fuel dependency line from sea -->
+  <line x1="248" y1="300" x2="248" y2="345" stroke="#92400e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="248" y="343" text-anchor="middle" fill="#92400e" font-size="8">🛢</text>
+  <rect x="170" y="348" width="156" height="28" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="248" y="366" text-anchor="middle" fill="#92400e" font-size="9" font-weight="600">Imported fuel by tanker</text>
+
+  <!-- Risk callouts -->
+  <rect x="16" y="305" width="130" height="56" rx="6" fill="#fff" stroke="#fca5a5" stroke-width="1"/>
+  <text x="81" y="322" text-anchor="middle" fill="#dc2626" font-size="9" font-weight="700">⚠ No FCR service</text>
+  <text x="81" y="336" text-anchor="middle" fill="#dc2626" font-size="9" font-weight="700">⚠ No aFRR service</text>
+  <text x="81" y="350" text-anchor="middle" fill="#dc2626" font-size="9" font-weight="700">⚠ No inertia market</text>
+
+  <rect x="294" y="305" width="130" height="56" rx="6" fill="#fff" stroke="#fca5a5" stroke-width="1"/>
+  <text x="359" y="322" text-anchor="middle" fill="#92400e" font-size="9" font-weight="600">210–250 MW thermal</text>
+  <text x="359" y="336" text-anchor="middle" fill="#92400e" font-size="9" font-weight="600">must run at all times</text>
+  <text x="359" y="350" text-anchor="middle" fill="#92400e" font-size="9" font-weight="600">even when sun shines</text>
+
+</svg>
+</div>
+
+<!-- RIGHT PANEL: EU STANDARD WITH DISTRIBUTED BESS -->
+<div class="panel">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 400">
+  <defs>
+    <linearGradient id="seaR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="safe-pulse" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow2">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background sea -->
+  <rect width="440" height="400" rx="12" fill="url(#seaR)" stroke="#cbd5e1" stroke-width="1"/>
+
+  <!-- Panel label -->
+  <rect x="0" y="0" width="440" height="34" rx="12" fill="#16a34a"/>
+  <rect x="0" y="16" width="440" height="18" fill="#16a34a"/>
+  <text x="220" y="23" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" letter-spacing="0.5">WITH DISTRIBUTED BESS — RESILIENT &amp; DECENTRALISED</text>
+
+  <!-- Cyprus outline (same shape) -->
+  <path d="M 82,195 C 78,185 75,175 80,165 C 85,155 95,148 105,142 C 112,138 118,132 128,130 
+           C 138,128 148,130 155,128 C 162,126 168,120 178,118 C 188,116 195,118 205,116 
+           C 212,114 218,112 228,112 C 238,112 245,114 255,116 C 265,118 272,115 280,114 
+           C 290,113 298,116 305,118 C 315,122 322,125 330,130 C 338,135 345,138 348,142 
+           C 352,148 358,155 362,162 C 365,168 370,175 368,180 
+           C 365,186 360,188 355,192 C 348,196 340,198 332,200 
+           C 324,202 315,200 308,202 C 298,205 290,210 280,212 
+           C 270,214 260,215 250,218 C 240,220 230,225 220,228 
+           C 210,230 200,232 190,232 C 180,232 170,230 160,228 
+           C 150,226 140,222 130,220 C 120,218 110,215 102,210 
+           C 94,205 88,200 82,195 Z"
+        fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" filter="url(#shadow2)"/>
+
+  <!-- Karpaz peninsula -->
+  <path d="M 362,162 C 368,158 375,155 382,150 C 388,146 394,142 400,140 C 405,139 410,140 414,142 
+           C 412,146 408,148 402,150 C 396,152 390,155 385,158 C 378,162 372,166 368,170 
+           C 366,174 365,178 365,180"
+        fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+
+  <!-- City labels -->
+  <text x="175" y="160" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="500">Nicosia</text>
+  <text x="115" y="197" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="500">Paphos</text>
+  <text x="195" y="218" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="500">Limassol</text>
+  <text x="295" y="170" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="500">Larnaca</text>
+
+  <!-- Distributed BESS nodes -->
+  <!-- Paphos region -->
+  <circle cx="105" cy="185" r="14" fill="url(#safe-pulse)"/>
+  <circle cx="105" cy="185" r="6" fill="#16a34a" filter="url(#glow-green)"/>
+  <text x="105" y="188" text-anchor="middle" fill="#fff" font-size="6" font-weight="700">⚡</text>
+  <circle cx="125" cy="175" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="125" cy="175" r="5" fill="#16a34a"/>
+  <text x="125" y="178" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+
+  <!-- Limassol region -->
+  <circle cx="185" cy="205" r="14" fill="url(#safe-pulse)"/>
+  <circle cx="185" cy="205" r="6" fill="#16a34a" filter="url(#glow-green)"/>
+  <text x="185" y="208" text-anchor="middle" fill="#fff" font-size="6" font-weight="700">⚡</text>
+  <circle cx="210" cy="212" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="210" cy="212" r="5" fill="#16a34a"/>
+  <text x="210" y="215" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+  <circle cx="165" cy="210" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="165" cy="210" r="5" fill="#16a34a"/>
+  <text x="165" y="213" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+
+  <!-- Vasilikos area (still exists but smaller role) -->
+  <circle cx="248" cy="210" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="248" cy="210" r="5" fill="#16a34a"/>
+  <text x="248" y="213" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+
+  <!-- Larnaca region -->
+  <circle cx="290" cy="185" r="14" fill="url(#safe-pulse)"/>
+  <circle cx="290" cy="185" r="6" fill="#16a34a" filter="url(#glow-green)"/>
+  <text x="290" y="188" text-anchor="middle" fill="#fff" font-size="6" font-weight="700">⚡</text>
+  <circle cx="315" cy="178" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="315" cy="178" r="5" fill="#16a34a"/>
+  <text x="315" y="181" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+
+  <!-- Nicosia region -->
+  <circle cx="178" cy="168" r="14" fill="url(#safe-pulse)"/>
+  <circle cx="178" cy="168" r="6" fill="#16a34a" filter="url(#glow-green)"/>
+  <text x="178" y="171" text-anchor="middle" fill="#fff" font-size="6" font-weight="700">⚡</text>
+  <circle cx="205" cy="155" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="205" cy="155" r="5" fill="#16a34a"/>
+  <text x="205" y="158" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+  <circle cx="155" cy="155" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="155" cy="155" r="5" fill="#16a34a"/>
+  <text x="155" y="158" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+
+  <!-- Eastern / Famagusta -->
+  <circle cx="340" cy="155" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="340" cy="155" r="5" fill="#16a34a"/>
+  <text x="340" y="158" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+  <circle cx="260" cy="150" r="10" fill="url(#safe-pulse)"/>
+  <circle cx="260" cy="150" r="5" fill="#16a34a"/>
+  <text x="260" y="153" text-anchor="middle" fill="#fff" font-size="5" font-weight="700">⚡</text>
+
+  <!-- Connection mesh (subtle lines between nodes) -->
+  <g stroke="#86efac" stroke-width="0.6" opacity="0.4">
+    <line x1="105" y1="185" x2="125" y2="175"/>
+    <line x1="125" y1="175" x2="165" y2="210"/>
+    <line x1="165" y1="210" x2="185" y2="205"/>
+    <line x1="185" y1="205" x2="210" y2="212"/>
+    <line x1="210" y1="212" x2="248" y2="210"/>
+    <line x1="248" y1="210" x2="290" y2="185"/>
+    <line x1="290" y1="185" x2="315" y2="178"/>
+    <line x1="178" y1="168" x2="155" y2="155"/>
+    <line x1="178" y1="168" x2="205" y2="155"/>
+    <line x1="205" y1="155" x2="260" y2="150"/>
+    <line x1="260" y1="150" x2="290" y2="185"/>
+    <line x1="260" y1="150" x2="340" y2="155"/>
+    <line x1="178" y1="168" x2="125" y2="175"/>
+    <line x1="178" y1="168" x2="185" y2="205"/>
+    <line x1="205" y1="155" x2="290" y2="185"/>
+    <line x1="315" y1="178" x2="340" y2="155"/>
+  </g>
+
+  <!-- Services provided callouts -->
+  <rect x="16" y="305" width="130" height="56" rx="6" fill="#fff" stroke="#86efac" stroke-width="1"/>
+  <text x="81" y="322" text-anchor="middle" fill="#16a34a" font-size="9" font-weight="700">✓ FCR in &lt;30 seconds</text>
+  <text x="81" y="336" text-anchor="middle" fill="#16a34a" font-size="9" font-weight="700">✓ aFRR in 5–15 min</text>
+  <text x="81" y="350" text-anchor="middle" fill="#16a34a" font-size="9" font-weight="700">✓ Grid-forming inertia</text>
+
+  <rect x="294" y="305" width="130" height="56" rx="6" fill="#fff" stroke="#86efac" stroke-width="1"/>
+  <text x="359" y="322" text-anchor="middle" fill="#166534" font-size="9" font-weight="600">No single point of failure</text>
+  <text x="359" y="336" text-anchor="middle" fill="#166534" font-size="9" font-weight="600">No fuel import dependency</text>
+  <text x="359" y="350" text-anchor="middle" fill="#166534" font-size="9" font-weight="600">Reduces must-run thermal</text>
+
+  <!-- Bottom bar -->
+  <rect x="56" y="372" width="328" height="22" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="220" y="387" text-anchor="middle" fill="#166534" font-size="9" font-weight="600">Each node: BESS co-located with existing solar park</text>
+
+</svg>
+</div>
+
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div> Centralised thermal (single fuel source)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div> Distributed BESS (grid-forming, solar-charged)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#86efac"></div> Grid mesh (redundant connections)</div>
+</div>
+
+<p class="footer">Battery storage systems with grid-forming inverters (such as the Kehua BCS series deployed in Cyprus) can provide synthetic inertia, FCR, and aFRR services — the same stability services that currently require fossil fuel plants to run 24/7. Distributing these systems across the island eliminates the single-point-of-failure risk inherent in centralised generation.</p>
+
+</div>
+</body>
+</html>

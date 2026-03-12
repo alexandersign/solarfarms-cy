@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — Port Clearance &amp; Customs Services | Interfreight | February 2026</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container { max-width: 210mm; margin: 0 auto; padding: 25px 35px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; text-transform: uppercase; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--primary); }
+
+        .doc-title {
+            text-align: center; margin: 25px 0 15px;
+            font-size: 20px; font-weight: 700; color: var(--primary);
+            padding: 15px; background: var(--gray-50); border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .doc-subtitle {
+            text-align: center; margin: -5px 0 25px;
+            font-size: 13px; color: var(--gray-600);
+        }
+
+        h2 {
+            color: var(--primary); font-size: 16px;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 8px; margin: 30px 0 15px;
+        }
+
+        h3 { color: var(--primary-light); font-size: 13px; margin: 20px 0 10px; }
+
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 10px 0 20px; font-size: 10pt;
+        }
+
+        th, td { padding: 8px 10px; border: 1px solid var(--gray-200); text-align: left; }
+
+        th {
+            background: var(--primary); color: white;
+            font-weight: 600; font-size: 9pt; text-transform: uppercase;
+        }
+
+        tr:nth-child(even) { background: var(--gray-50); }
+
+        .totals-row { font-weight: 700; background: var(--gray-100) !important; }
+        .total-row { background: var(--primary) !important; color: white; font-weight: bold; }
+        .total-row td { border-color: var(--primary); color: white; }
+        .subtotal-row { background: var(--primary-light) !important; color: white; font-weight: 600; }
+        .subtotal-row td { border-color: var(--primary-light); color: white; }
+        .batch-header { background: var(--accent) !important; color: white; font-weight: bold; }
+        .batch-header td { border-color: var(--accent); font-size: 11pt; color: white; }
+
+        .info-box {
+            background: var(--gray-50); border-left: 4px solid var(--primary-light);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .warning-box {
+            background: #fffff0; border-left: 4px solid var(--warning);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .highlight-box {
+            background: #f0fff4; border-left: 4px solid var(--success);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .danger-box {
+            background: #fff5f5; border-left: 4px solid var(--danger);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .vendor-box {
+            background: var(--primary); color: white;
+            padding: 18px 22px; margin: 20px 0; border-radius: 6px;
+        }
+        .vendor-box h3 { color: var(--accent); margin-bottom: 10px; }
+        .vendor-box p { margin: 4px 0; }
+
+        .contact-box {
+            background: var(--primary); color: white;
+            padding: 18px 22px; margin: 20px 0; border-radius: 6px;
+        }
+        .contact-box h3 { color: var(--accent); margin-bottom: 10px; }
+        .contact-box p { margin: 4px 0; }
+
+        .container-spec {
+            display: inline-block; background: #e8f4fd; padding: 14px 18px;
+            border-radius: 6px; margin: 6px; border-left: 4px solid #3498db;
+            vertical-align: top; width: calc(50% - 20px);
+        }
+        .container-spec strong { display: block; margin-bottom: 4px; }
+
+        .weight-warning { color: var(--danger); font-weight: bold; }
+
+        .price-input { background: #fffde7; border: 1px dashed var(--accent); padding: 5px; min-width: 80px; }
+
+        .section-intro { font-size: 10.5pt; color: var(--gray-700); margin-bottom: 15px; }
+
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+
+        .toc { margin: 20px 0 30px; }
+        .toc ol { padding-left: 20px; }
+        .toc li { padding: 4px 0; font-size: 10.5pt; }
+        .toc a { color: var(--primary-light); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        .footer {
+            margin-top: 40px; padding-top: 15px;
+            border-top: 2px solid var(--gray-200);
+            font-size: 9pt; color: var(--gray-600);
+            text-align: center;
+        }
+
+        @media print {
+            body { font-size: 10pt; }
+            .container { padding: 10px 20px; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="company-name">LIGHTHIEF</div>
+                <div class="company-tagline">Energy Storage Solutions — Cyprus</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <strong>REQUEST FOR PROPOSAL</strong><br>
+            Ref: LCY-RFP-PORT-2026-001<br>
+            Date: 26 February 2026<br>
+            Classification: COMMERCIAL — CONFIDENTIAL
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="doc-title">Port Clearance, Customs &amp; IMO Handling Services — BESS Equipment Import</div>
+    <div class="doc-subtitle">
+        All 2026 Batches — 46 Parks · 251 Containers · CIF Limassol · €86.0M CIF Value<br>
+        Equipment: Linyang Energy LFP Battery Energy Storage Systems (IMO Class 9)
+    </div>
+
+    <!-- VENDOR -->
+    <div class="vendor-box">
+        <h3>TO: INTERFREIGHT LOGISTICS</h3>
+        <p><strong>Attention:</strong> Vasilis N. Markides, Director</p>
+        <p><strong>Tel:</strong> +357 25 877 587 &nbsp;|&nbsp; <strong>Direct:</strong> +357 25 827 272 &nbsp;|&nbsp; <strong>Mobile:</strong> +357 99 464 613</p>
+        <p><strong>Email:</strong> markides@interfreightlogistics.com</p>
+        <p><strong>Address:</strong> 37 Galileou Str., Limassol, CY 3015, Cyprus</p>
+        <p><strong>Web:</strong> www.interfreightlogistics.com</p>
+    </div>
+
+    <!-- REFERENCE TABLE -->
+    <table>
+        <tr><th colspan="2">Document Reference</th></tr>
+        <tr><td><strong>From</strong></td><td>Costas — Lighthief Cyprus Ltd (<a href="mailto:costas@lighthief.com">costas@lighthief.com</a>)</td></tr>
+        <tr><td><strong>Company</strong></td><td>Lighthief Cyprus Ltd, 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol</td></tr>
+        <tr><td><strong>Previous Quotation</strong></td><td>LCY-LOGISTICS-INTERFREIGHT-2026 (31 January 2026) — rates received</td></tr>
+        <tr><td><strong>This Document</strong></td><td>LCY-RFP-PORT-2026-001 — Formal RFP with confirmed batch schedule, container quantities, CIF values, and full programme timeline</td></tr>
+        <tr><td><strong>Proposal Deadline</strong></td><td><strong>12 March 2026</strong></td></tr>
+        <tr><td><strong>First Vessel Arrival</strong></td><td>5 July 2026 (Batch 1)</td></tr>
+        <tr><td><strong>Last Vessel Arrival</strong></td><td>20 September 2026 (Batch 3)</td></tr>
+    </table>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+            <li><a href="#s1">Project Overview</a></li>
+            <li><a href="#s2">Container Specifications — Types, Sizes &amp; Weights</a></li>
+            <li><a href="#s3">2026 Batch Schedule &amp; Port ETA</a></li>
+            <li><a href="#s4">Import Duty &amp; HS Code Classification</a></li>
+            <li><a href="#s5">Scope of Services</a></li>
+            <li><a href="#s6">Port Storage &amp; IMO Handling</a></li>
+            <li><a href="#s7">CIF Values &amp; Customs Declaration Schedule</a></li>
+            <li><a href="#s8">Pricing Template</a></li>
+            <li><a href="#s9">Terms &amp; Conditions</a></li>
+            <li><a href="#s10">Required Information from Vendor</a></li>
+        </ol>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: PROJECT OVERVIEW                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s1">1. Project Overview</h2>
+
+    <p class="section-intro">
+        Lighthief Cyprus Ltd is importing 251 containerised Battery Energy Storage System (BESS) units from Linyang Energy (Shanghai, China) under CIF Limassol terms. Interfreight Logistics is requested to provide comprehensive port clearance, customs brokerage, and IMO container handling services for the full 2026 import programme across 3 delivery batches.
+    </p>
+
+    <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td><strong>Total Parks (2026 delivery)</strong></td><td>46</td></tr>
+        <tr><td><strong>Total Installed Capacity</strong></td><td>221.5 MW / 793 MWh</td></tr>
+        <tr><td><strong>Total Containers</strong></td><td><strong>251</strong></td></tr>
+        <tr><td><strong>Total CIF Value</strong></td><td><strong>€85,963,925</strong></td></tr>
+        <tr><td><strong>Import Duty (weighted avg.)</strong></td><td>2.66% of CIF = <strong>€2,286,640</strong></td></tr>
+        <tr><td><strong>Delivery Batches</strong></td><td>3 (July – September 2026)</td></tr>
+        <tr><td><strong>Port of Arrival</strong></td><td>Limassol Port — Eurogate Container Terminal (ECTL)</td></tr>
+        <tr><td><strong>Incoterms</strong></td><td>CIF Limassol (Linyang responsible for marine cargo insurance)</td></tr>
+        <tr><td><strong>IMO Classification</strong></td><td>Class 9 — Lithium Batteries (LFP chemistry)</td></tr>
+        <tr><td><strong>Shipping Origin</strong></td><td>Shanghai, China</td></tr>
+        <tr><td><strong>Equipment Manufacturer</strong></td><td>Linyang Energy Co., Ltd</td></tr>
+        <tr><td><strong>Estimated Total Weight</strong></td><td>~10,200 tonnes (all containers)</td></tr>
+    </table>
+
+    <div class="highlight-box">
+        <strong>Previous Engagement:</strong> Interfreight provided an indicative quotation (31 January 2026, Ref: LCY-LOGISTICS-INTERFREIGHT-2026) covering customs clearance at €85/declaration, landing charges €450–€650/container, and inland transport rates. This RFP seeks a formal binding proposal for the full 2026 programme with confirmed volumes, CIF values, and batch schedule.
+    </div>
+
+    <div class="info-box">
+        <strong>Scope Boundary:</strong> Heavy transport from Limassol Port to site and crane unloading is handled separately by A. Soulis Special Lifting &amp; Heavy Haulage under contract LCY-RFP-CRANE-2026-001. Interfreight's scope covers all port-side services: customs clearance, port landing coordination, ECTL storage management, import duty facilitation, and IMO/DG handling.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: CONTAINER SPECIFICATIONS                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s2">2. Container Specifications — Types, Sizes &amp; Weights</h2>
+
+    <p class="section-intro">
+        All containers are classified as IMO Class 9 (Lithium Batteries, UN 3536 — Lithium batteries installed in cargo transport unit). Two container types are used across the portfolio.
+    </p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 15px 0;">
+        <div class="container-spec">
+            <strong style="font-size: 12pt; color: var(--primary);">TYPE A — Battery Container (BESS)</strong>
+            <strong>ISO Type:</strong> 20' High Cube (20HC)<br>
+            <strong>External Dimensions:</strong> 6,058 mm × 2,438 mm × 2,896 mm<br>
+            <strong>Weight (loaded):</strong> <span class="weight-warning">~41.5 – 43 tonnes</span><br>
+            <strong>Contents:</strong> LFP Battery Cells (EVE 314Ah) + BMS + HVAC + Fire Suppression<br>
+            <strong>Capacity:</strong> 5.015 MWh per container<br>
+            <strong>HS Code:</strong> 8507 60 00 90<br>
+            <strong>IMO Class:</strong> 9 (Lithium batteries)<br>
+            <strong>UN Number:</strong> UN 3536
+        </div>
+        <div class="container-spec">
+            <strong style="font-size: 12pt; color: var(--primary);">TYPE B — MV SKID / PCS Container</strong>
+            <strong>ISO Type:</strong> 40' High Cube (40HC) or 20' High Cube (20HC)*<br>
+            <strong>Dimensions (40HC):</strong> 12,192 mm × 2,438 mm × 2,896 mm<br>
+            <strong>Dimensions (20HC):</strong> 6,058 mm × 2,438 mm × 2,896 mm<br>
+            <strong>Weight (loaded):</strong> <span class="weight-warning">~28 – 38 tonnes</span><br>
+            <strong>Contents:</strong> PCS Inverter (Kehua) + MV Transformer + Switchgear<br>
+            <strong>HS Codes:</strong> 8504 40 (PCS), 8504 21/23 (Transformer), 8537 (Switchgear)<br>
+            <strong>IMO Class:</strong> Non-IMO (no lithium batteries)<br>
+            <strong>*Note:</strong> Smaller parks (≤2.5 MW) use 20HC skids
+        </div>
+    </div>
+
+    <h3>2.1 Container Summary for Customs Planning</h3>
+    <table>
+        <tr><th>Container Type</th><th>ISO Size</th><th>Est. Quantity</th><th>Unit Weight</th><th>IMO Class</th><th>Primary HS Code</th><th>Duty Rate</th></tr>
+        <tr><td>BESS Battery Container</td><td>20' High Cube</td><td>~159</td><td>41.5–43 t</td><td><strong>Class 9</strong></td><td>8507 60 00 90</td><td>2.7%</td></tr>
+        <tr><td>MV SKID (large, ≥5 MW)</td><td>40' High Cube</td><td>~55</td><td>35–38 t</td><td>Non-IMO</td><td>8504 40 / 8504 21 / 8537</td><td>0%–3.7%</td></tr>
+        <tr><td>MV SKID (small, ≤2.5 MW)</td><td>20' High Cube</td><td>~37</td><td>28–32 t</td><td>Non-IMO</td><td>8504 40 / 8504 23 / 8537</td><td>0%–3.7%</td></tr>
+        <tr class="total-row"><td colspan="2"><strong>TOTAL</strong></td><td><strong>251</strong></td><td>~10,200 t</td><td colspan="3">Mixed IMO / Non-IMO</td></tr>
+    </table>
+
+    <div class="warning-box">
+        <strong>IMO Handling Critical:</strong> Approximately 159 of 251 containers are IMO Class 9 (BESS with lithium batteries). ECTL applies daily IMO storage charges from Day 1 (no free storage period). Rapid clearance of IMO containers is essential to minimise port storage costs. Non-IMO MV SKID containers receive 4 days free storage under standard ECTL terms.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: 2026 BATCH SCHEDULE & PORT ETA               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s3">3. 2026 Batch Schedule &amp; Port ETA</h2>
+
+    <p class="section-intro">
+        All containers ship from Shanghai to Limassol (~50 days transit). Three vessel arrivals are planned. Lighthief will provide 14 days advance notice of confirmed vessel details and ETA for each batch.
+    </p>
+
+    <table>
+        <tr>
+            <th>Batch</th>
+            <th>Description</th>
+            <th>Parks</th>
+            <th>Containers</th>
+            <th>MWh</th>
+            <th>ETA Limassol Port</th>
+            <th>IMO Containers (est.)</th>
+            <th>Non-IMO Containers (est.)</th>
+        </tr>
+        <tr style="background: #fff3e0;">
+            <td><strong>Batch 1</strong></td>
+            <td>ABIO Phase 1</td>
+            <td>15</td>
+            <td><strong>80</strong></td>
+            <td>280</td>
+            <td><strong>5 July 2026</strong></td>
+            <td>~56</td>
+            <td>~24</td>
+        </tr>
+        <tr style="background: #e3f2fd;">
+            <td><strong>Batch 2</strong></td>
+            <td>ABIO Phase 2 + Timotheos</td>
+            <td>19</td>
+            <td><strong>90</strong></td>
+            <td>230</td>
+            <td><strong>20 August 2026</strong></td>
+            <td>~46</td>
+            <td>~44</td>
+        </tr>
+        <tr style="background: #e8f5e9;">
+            <td><strong>Batch 3</strong></td>
+            <td>Esperia Phase 1 + Standalone</td>
+            <td>12</td>
+            <td><strong>81</strong></td>
+            <td>283</td>
+            <td><strong>20 September 2026</strong></td>
+            <td>~57</td>
+            <td>~24</td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="2"><strong>TOTAL — ALL 2026 BATCHES</strong></td>
+            <td><strong>46</strong></td>
+            <td><strong>251</strong></td>
+            <td><strong>793</strong></td>
+            <td>Jul – Sep 2026</td>
+            <td><strong>~159</strong></td>
+            <td><strong>~92</strong></td>
+        </tr>
+    </table>
+
+    <h3>3.1 Target Port Clearance Times</h3>
+    <table>
+        <tr><th>Batch</th><th>Vessel ETA</th><th>Target Clearance Complete</th><th>Max Days at Port</th><th>Reason</th></tr>
+        <tr><td>Batch 1 (80 containers)</td><td>5 July 2026</td><td>12 July 2026</td><td>7 days</td><td>Heavy transport contractor (A. Soulis) mobilised for 12 July pickup</td></tr>
+        <tr><td>Batch 2 (90 containers)</td><td>20 August 2026</td><td>27 August 2026</td><td>7 days</td><td>Concurrent with Batch 1 site installation — tight crane schedule</td></tr>
+        <tr><td>Batch 3 (81 containers)</td><td>20 September 2026</td><td>27 September 2026</td><td>7 days</td><td>Final batch — all 3 batches in construction simultaneously</td></tr>
+    </table>
+
+    <div class="danger-box">
+        <strong>Storage Cost Risk:</strong> At ECTL IMO rates, each day of delay beyond clearance costs ~€22–€45 per IMO container. For Batch 1 (56 IMO containers), a 3-day delay = ~€3,760–€7,530 in additional storage. Rapid pre-clearance documentation is critical.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: IMPORT DUTY & HS CODE CLASSIFICATION         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s4">4. Import Duty &amp; HS Code Classification</h2>
+
+    <p class="section-intro">
+        The total portfolio CIF value is €85,963,925. Import duty is confirmed at a weighted average of 2.66%, based on the HS code composition of each container type. Interfreight is requested to confirm HS code classification and advise on BTI (Binding Tariff Information) ruling if recommended.
+    </p>
+
+    <h3>4.1 HS Code Schedule</h3>
+    <table>
+        <tr><th>HS Code</th><th>Description</th><th>Applicable Equipment</th><th>Duty Rate</th><th>Est. CIF Share</th></tr>
+        <tr><td><strong>8507 60 00 90</strong></td><td>Lithium-ion accumulators (LFP battery containers)</td><td>BESS containers — cells, modules, BMS, cooling, fire suppression</td><td><strong>2.7%</strong></td><td>~70%</td></tr>
+        <tr><td><strong>8504 40</strong></td><td>Static converters (PCS inverters)</td><td>Kehua BCS1000K / BCS1250K power conversion systems</td><td><strong>0%</strong></td><td>~15%</td></tr>
+        <tr><td><strong>8504 21 / 8504 23</strong></td><td>Liquid dielectric transformers (≤650 kVA / &gt;10,000 kVA)</td><td>MV step-up transformers in MV SKID containers</td><td><strong>3.7%</strong></td><td>~10%</td></tr>
+        <tr><td><strong>8537</strong></td><td>Switchgear and control panels</td><td>MV switchgear, ring main units, protection relays in MV SKID</td><td><strong>2.1%</strong></td><td>~5%</td></tr>
+    </table>
+
+    <h3>4.2 Weighted Duty Calculation</h3>
+    <table>
+        <tr><th>Component</th><th>Est. % of CIF</th><th>Duty Rate</th><th>Weighted Contribution</th></tr>
+        <tr><td>Battery Containers (HS 8507)</td><td>70%</td><td>2.7%</td><td>1.89%</td></tr>
+        <tr><td>PCS Inverters (HS 8504 40)</td><td>15%</td><td>0%</td><td>0.00%</td></tr>
+        <tr><td>MV Transformers (HS 8504 21/23)</td><td>10%</td><td>3.7%</td><td>0.37%</td></tr>
+        <tr><td>MV Switchgear (HS 8537)</td><td>5%</td><td>2.1%</td><td>0.105%</td></tr>
+        <tr class="totals-row"><td><strong>Weighted Average</strong></td><td>100%</td><td></td><td><strong>2.37%</strong></td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Note:</strong> The portfolio model uses a confirmed weighted rate of <strong>2.66%</strong> (vs. the 2.37% indicative calculation above). The difference reflects the actual CIF value split per Linyang commercial invoices, which may differ from the estimated percentages. Total import duty budget: <strong>€2,286,640</strong>.
+    </div>
+
+    <h3>4.3 BTI Advisory</h3>
+    <table>
+        <tr><th>Question</th><th>Detail</th></tr>
+        <tr><td>Is a BTI ruling recommended?</td><td>Given portfolio value (€86M) and duty exposure (€2.3M), a BTI ruling on HS 8507 60 00 90 would provide certainty. Interfreight to advise on cost, timeline, and benefit.</td></tr>
+        <tr><td>Mixed-content containers</td><td>Each BESS container includes batteries, BMS electronics, cooling (HVAC), and fire suppression. Confirm whether the entire container is classified under HS 8507 (principal function) or if individual components require separate declarations.</td></tr>
+        <tr><td>MV SKID classification</td><td>Each MV SKID container holds PCS + transformer + switchgear. Confirm whether a single HS code (HS 8504 40, principal function) applies or if components are declared separately.</td></tr>
+        <tr><td>CE marking requirements</td><td>Confirm documentation requirements for CE compliance at import — are declarations of conformity sufficient, or are original certificates required at port?</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: SCOPE OF SERVICES                            -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s5">5. Scope of Services</h2>
+
+    <h3>5.1 Services Required from Interfreight</h3>
+    <table>
+        <tr><th>#</th><th>Service</th><th>Description</th></tr>
+        <tr><td>1</td><td><strong>Pre-Arrival Documentation</strong></td><td>Prepare all customs declarations in advance of vessel arrival based on packing lists and commercial invoices from Linyang. Goal: clearance within 48 hours of vessel discharge.</td></tr>
+        <tr><td>2</td><td><strong>Import Customs Clearance</strong></td><td>Submit customs declarations to Republic of Cyprus customs authority. Handle all HS code classification and duty calculations. Manage documentary queries and customs examinations if required.</td></tr>
+        <tr><td>3</td><td><strong>Port Landing Coordination</strong></td><td>Coordinate with ECTL (Eurogate Container Terminal Limassol) for container discharge, positioning in yard, and release for collection. Manage landing charges with shipping line/agents.</td></tr>
+        <tr><td>4</td><td><strong>IMO / DG Container Handling</strong></td><td>Manage IMO Class 9 documentation and ECTL IMO yard placement for ~159 BESS containers. Coordinate with ECTL DG desk for timely release.</td></tr>
+        <tr><td>5</td><td><strong>Port Storage Management</strong></td><td>Monitor and minimise port storage charges. Prioritise clearance of IMO containers (Day 1 charges). Coordinate with Lighthief and A. Soulis on container pickup scheduling.</td></tr>
+        <tr><td>6</td><td><strong>Import Duty Facilitation</strong></td><td>Calculate and facilitate payment of import duties (~€2.3M total). Provide duty payment schedule aligned with batch arrivals. Advise on deferred payment schemes if available.</td></tr>
+        <tr><td>7</td><td><strong>VAT Import Processing</strong></td><td>Calculate and process VAT at 19% on CIF + duty value. Coordinate with Lighthief's accountant for VAT recovery documentation.</td></tr>
+        <tr><td>8</td><td><strong>Delivery Release Coordination</strong></td><td>Issue release orders to ECTL for container collection by A. Soulis heavy transport. Coordinate pickup scheduling across 3 batches to ensure orderly port exit.</td></tr>
+        <tr><td>9</td><td><strong>Documentation &amp; Record-Keeping</strong></td><td>Maintain complete import file per batch: customs declarations, duty receipts, release orders, storage invoices. Provide copies to Lighthief for audit and insurance purposes.</td></tr>
+    </table>
+
+    <h3>5.2 Items NOT in Interfreight Scope</h3>
+    <table>
+        <tr><th>Item</th><th>Handled By</th></tr>
+        <tr><td>Marine cargo insurance</td><td>Linyang Energy (CIF terms — seller's responsibility)</td></tr>
+        <tr><td>Heavy transport from port to sites</td><td>A. Soulis Special Lifting &amp; Heavy Haulage (LCY-RFP-CRANE-2026-001)</td></tr>
+        <tr><td>Crane unloading at destination sites</td><td>A. Soulis Special Lifting &amp; Heavy Haulage</td></tr>
+        <tr><td>Import duty payment (principal)</td><td>Lighthief Cyprus Ltd (Interfreight facilitates, Lighthief pays)</td></tr>
+        <tr><td>VAT payment (principal)</td><td>Lighthief Cyprus Ltd</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: PORT STORAGE & IMO HANDLING                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s6">6. Port Storage &amp; IMO Handling</h2>
+
+    <p class="section-intro">
+        Based on ECTL published tariffs (January 2026), the following storage charges apply. Given the IMO classification of BESS containers, storage cost management is a key performance metric for this engagement.
+    </p>
+
+    <h3>6.1 Non-IMO Containers (MV SKID — ~92 containers)</h3>
+    <table>
+        <tr><th>Period</th><th>20' Container</th><th>40' / 40' HC Container</th></tr>
+        <tr><td>First 4 days</td><td colspan="2" style="text-align:center; color: var(--success); font-weight: bold;">FREE</td></tr>
+        <tr><td>5th – 6th day</td><td>€8.97 / day</td><td>€17.94 / day</td></tr>
+        <tr><td>7th day</td><td>€17.94</td><td>€35.88</td></tr>
+        <tr><td>8th day</td><td>€26.92</td><td>€53.84</td></tr>
+        <tr><td>From 9th day onwards</td><td>€35.89 / day</td><td>€71.78 / day</td></tr>
+    </table>
+
+    <h3>6.2 IMO Containers (BESS — ~159 containers, Class 9 Lithium Batteries)</h3>
+    <table>
+        <tr><th>Period</th><th>20' Container</th><th>40' / 40' HC Container</th></tr>
+        <tr><td style="color: var(--danger); font-weight: bold;">Day 1 (no free period)</td><td>€22.43</td><td>€44.86</td></tr>
+        <tr><td>Day 2 onwards</td><td>€44.86 / day</td><td>€89.72 / day</td></tr>
+    </table>
+    <p style="font-size: 9pt; color: var(--gray-600); margin-top: 4px;">No IMO surcharge fee on first Sunday.</p>
+
+    <h3>6.3 Storage Cost Scenarios (IMO BESS containers only)</h3>
+    <table>
+        <tr><th>Clearance Speed</th><th>Days at Port</th><th>Cost per 20HC IMO Container</th><th>Batch 1 Impact (56 IMO)</th><th>Full Programme (159 IMO)</th></tr>
+        <tr style="background: #f0fff4;"><td><strong>Best case</strong></td><td>2 days</td><td>€67</td><td>€3,770</td><td>€10,700</td></tr>
+        <tr><td>Target</td><td>4 days</td><td>€157</td><td>€8,790</td><td>€24,960</td></tr>
+        <tr><td>Acceptable</td><td>7 days</td><td>€292</td><td>€16,330</td><td>€46,370</td></tr>
+        <tr style="background: #fff5f5;"><td><strong>Worst case</strong></td><td>14 days</td><td>€606</td><td>€33,940</td><td>€96,350</td></tr>
+    </table>
+
+    <div class="warning-box">
+        <strong>Cost Optimisation Target:</strong> Interfreight to propose a clearance strategy that achieves ≤4 days average port dwell time for IMO containers. Pre-arrival documentation and advance customs filing are expected to be part of the approach.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: CIF VALUES & CUSTOMS DECLARATION SCHEDULE    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s7">7. CIF Values &amp; Customs Declaration Schedule</h2>
+
+    <h3>7.1 CIF Value by Batch</h3>
+    <table>
+        <tr><th>Batch</th><th>Containers</th><th>MWh</th><th>Est. CIF Value</th><th>Est. Import Duty (2.66%)</th><th>Est. VAT (19%)</th></tr>
+        <tr><td>Batch 1</td><td>80</td><td>280</td><td>~€27,340,000</td><td>~€727,000</td><td>~€5,333,000</td></tr>
+        <tr><td>Batch 2</td><td>90</td><td>230</td><td>~€24,920,000</td><td>~€663,000</td><td>~€4,861,000</td></tr>
+        <tr><td>Batch 3</td><td>81</td><td>283</td><td>~€33,704,000</td><td>~€897,000</td><td>~€6,574,000</td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>251</strong></td><td><strong>793</strong></td><td><strong>€85,963,925</strong></td><td><strong>€2,286,640</strong></td><td><strong>~€16,768,000</strong></td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>CIF Source References:</strong> Linyang Quotation LY202601271 (40 parks, €74,314,218) + LY202602111 (11 parks, €11,649,708) = €85,963,925 total. Commercial invoices per batch will be provided to Interfreight 21 days before vessel arrival.
+    </div>
+
+    <h3>7.2 Customs Declaration Strategy</h3>
+    <table>
+        <tr><th>Approach</th><th>Declarations per Batch</th><th>Total Declarations</th><th>Cost at €85/decl.</th><th>Notes</th></tr>
+        <tr><td>Per-park declaration</td><td>15 / 19 / 12</td><td>46</td><td>€3,910</td><td>Simplest — one declaration per park, matching commercial invoices</td></tr>
+        <tr><td>Per-container-type per batch</td><td>2 / 2 / 2</td><td>6</td><td>€510</td><td>Two declarations per batch (BESS + MV SKID), grouped by HS code</td></tr>
+        <tr><td>Per-batch declaration</td><td>1 / 1 / 1</td><td>3</td><td>€255</td><td>Single declaration per batch with multiple HS codes (+€8.50/additional code)</td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Interfreight to advise:</strong> Which declaration strategy minimises cost while ensuring correct duty calculation and clean audit trail? SSOT budget: €4,335 (51 declarations at €85 each, covering all 51 parks including 5 deferred to 2028).
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: PRICING TEMPLATE                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s8">8. Pricing Template</h2>
+
+    <p class="section-intro">
+        Please complete the pricing tables below. All rates should be exclusive of VAT, import duties, and ECTL port storage charges (which are pass-through costs billed separately).
+    </p>
+
+    <h3>8.1 Customs Clearance</h3>
+    <table>
+        <tr><th>Service</th><th>Unit</th><th>Est. Quantity</th><th>Rate (€)</th><th>Total (€)</th></tr>
+        <tr><td>Customs declaration (up to 5 HS codes)</td><td>Per declaration</td><td>46–51</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Additional HS codes (beyond 5 per declaration)</td><td>Per code</td><td>TBD</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Pre-arrival documentation preparation</td><td>Per batch</td><td>3</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Customs examination attendance (if requested)</td><td>Per container (2 hrs)</td><td>Contingency</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Customs examination — additional hours</td><td>Per hour</td><td>Contingency</td><td class="price-input"></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>8.2 Port Landing Charges</h3>
+    <table>
+        <tr><th>Container Type</th><th>Est. Quantity</th><th>Landing Charge (€)</th><th>Total (€)</th></tr>
+        <tr><td>20' High Cube (BESS + small MV SKID)</td><td>~196</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>40' High Cube (large MV SKID)</td><td>~55</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>251</strong></td><td></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>8.3 IMO / DG Handling</h3>
+    <table>
+        <tr><th>Service</th><th>Unit</th><th>Est. Quantity</th><th>Rate (€)</th><th>Total (€)</th></tr>
+        <tr><td>IMO Class 9 documentation &amp; ECTL DG coordination</td><td>Per IMO container</td><td>~159</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>IMO container pre-notification to ECTL</td><td>Per batch</td><td>3</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>DG safety data sheet filing</td><td>Per product type</td><td>1 (LFP battery)</td><td class="price-input"></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>8.4 Coordination &amp; Release</h3>
+    <table>
+        <tr><th>Service</th><th>Unit</th><th>Est. Quantity</th><th>Rate (€)</th><th>Total (€)</th></tr>
+        <tr><td>Container release order to ECTL</td><td>Per container</td><td>251</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Pickup scheduling coordination with A. Soulis</td><td>Per batch</td><td>3</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Import file documentation package per batch</td><td>Per batch</td><td>3</td><td class="price-input"></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>8.5 Programme Totals</h3>
+    <table>
+        <tr><th>Cost Category</th><th>Batch 1 (80 cnt.)</th><th>Batch 2 (90 cnt.)</th><th>Batch 3 (81 cnt.)</th><th>Total (251 cnt.)</th></tr>
+        <tr><td>Customs clearance</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Port landing charges</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>IMO / DG handling</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Coordination &amp; release</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr class="total-row"><td><strong>TOTAL (excl. duty, VAT, ECTL storage)</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>8.6 Volume Discount</h3>
+    <table>
+        <tr><th>Tier</th><th>Description</th><th>Discount Offered (%)</th></tr>
+        <tr><td>Full 2026 Programme</td><td>251 containers, 3 batches, €86M CIF value</td><td class="price-input"></td></tr>
+        <tr><td>Framework Agreement</td><td>12-month standing rate for all port clearance services</td><td class="price-input"></td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 9: TERMS & CONDITIONS                           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s9">9. Terms &amp; Conditions</h2>
+
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Price Validity</strong></td><td>Pricing to remain valid for 12 months from contract signature</td></tr>
+        <tr><td><strong>Advance Notice</strong></td><td>Lighthief provides 14 days notice of vessel ETA; Interfreight to have documentation prepared 7 days before arrival</td></tr>
+        <tr><td><strong>Clearance SLA</strong></td><td>Target ≤4 days port dwell time for IMO containers; ≤7 days for non-IMO</td></tr>
+        <tr><td><strong>Reporting</strong></td><td>Daily status update during active clearance periods; weekly report between batches</td></tr>
+        <tr><td><strong>Payment Terms</strong></td><td>30 days from completion of each batch clearance (per batch invoice)</td></tr>
+        <tr><td><strong>Duty / VAT Payments</strong></td><td>Lighthief pays duties and VAT directly to customs. Interfreight facilitates calculation and filing only.</td></tr>
+        <tr><td><strong>ECTL Storage Charges</strong></td><td>Pass-through at actual ECTL tariff rates. Interfreight to minimise storage days through proactive clearance.</td></tr>
+        <tr><td><strong>Insurance</strong></td><td>Professional indemnity insurance — min €1,000,000. Errors &amp; omissions coverage for customs misclassification.</td></tr>
+        <tr><td><strong>Confidentiality</strong></td><td>All CIF values, commercial invoices, and client information strictly confidential</td></tr>
+        <tr><td><strong>Force Majeure</strong></td><td>Standard force majeure clause — customs strikes, port closures, regulatory changes</td></tr>
+        <tr><td><strong>Customs Penalties</strong></td><td>Any penalties resulting from Interfreight's errors in classification or filing are Interfreight's responsibility</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 10: REQUIRED INFORMATION                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s10">10. Required Information from Vendor</h2>
+
+    <p class="section-intro">
+        Please provide the following with your proposal by <strong>12 March 2026</strong>:
+    </p>
+
+    <table>
+        <tr><th>#</th><th>Item</th><th>Detail</th></tr>
+        <tr><td>1</td><td><strong>Completed pricing tables</strong></td><td>Sections 8.1 through 8.6</td></tr>
+        <tr><td>2</td><td><strong>HS code confirmation</strong></td><td>Confirm HS code classification for BESS containers (8507 60 00 90) and MV SKID components. Advise if BTI ruling is recommended.</td></tr>
+        <tr><td>3</td><td><strong>Declaration strategy recommendation</strong></td><td>Recommend optimal customs declaration approach (per-park, per-type, per-batch) for cost and compliance</td></tr>
+        <tr><td>4</td><td><strong>Pre-clearance capability</strong></td><td>Confirm ability to prepare and pre-file declarations before vessel arrival</td></tr>
+        <tr><td>5</td><td><strong>IMO handling experience</strong></td><td>Reference projects involving IMO Class 9 container clearance at Limassol Port</td></tr>
+        <tr><td>6</td><td><strong>Clearance SLA commitment</strong></td><td>Confirm ability to clear containers within 4 days (IMO) / 7 days (non-IMO)</td></tr>
+        <tr><td>7</td><td><strong>Duty deferral options</strong></td><td>Advise on any available import duty deferral or payment scheduling mechanisms</td></tr>
+        <tr><td>8</td><td><strong>Insurance certificates</strong></td><td>Professional indemnity (min €1M) and errors &amp; omissions coverage</td></tr>
+        <tr><td>9</td><td><strong>Capacity confirmation</strong></td><td>Confirm ability to handle 80–90 containers per batch within the target clearance windows</td></tr>
+        <tr><td>10</td><td><strong>Point of contact</strong></td><td>Dedicated project contact for the BESS import programme (single point of coordination)</td></tr>
+    </table>
+
+    <!-- CONTACT -->
+    <div class="contact-box">
+        <h3>Lighthief Contact for This RFP</h3>
+        <p><strong>Costas</strong></p>
+        <p>Email: <a href="mailto:costas@lighthief.com" style="color: var(--accent);">costas@lighthief.com</a></p>
+        <p>Company: Lighthief Cyprus Ltd</p>
+        <p>Address: 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+        <p>Tel: +357 77 77 00 50</p>
+        <p style="margin-top: 10px;"><strong>Reference:</strong> LCY-RFP-PORT-2026-001</p>
+        <p><strong>Proposal Deadline:</strong> 12 March 2026</p>
+    </div>
+
+    <div class="warning-box">
+        <strong>Confidentiality:</strong> This RFP and all information contained herein — including CIF values, import volumes, and client structure — is confidential and intended solely for Interfreight Logistics. It may not be shared with third parties without written consent from Lighthief Cyprus Ltd.
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>
+            <strong>Lighthief Cyprus Ltd</strong> · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+            Costas · costas@lighthief.com · +357 77 77 00 50<br><br>
+            Document: LCY-RFP-PORT-2026-001 · Classification: COMMERCIAL — CONFIDENTIAL<br>
+            Supersedes: LCY-LOGISTICS-INTERFREIGHT-2026 (31 January 2026 indicative quotation)<br>
+            Date: 26 February 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

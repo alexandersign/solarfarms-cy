@@ -11,14 +11,14 @@
 | **From** | Lighthief Cyprus Ltd |
 | **To** | Marsh Specialty — Renewable Energy Team (Europe / UK) |
 | **Subject** | BESS Portfolio Construction & Project Insurance Program |
-| **Portfolio Value** | ~€104,000,000 |
+| **Portfolio Value** | ~€109,000,000 |
 | **Response Due** | 14 March 2026 |
 
 ---
 
 ## EXECUTIVE SUMMARY
 
-Lighthief Cyprus Ltd is the exclusive EPC contractor and O&M service provider for Linyang Battery Energy Storage Systems in Cyprus. We are constructing and commissioning **47 utility-scale BESS projects** totalling **863.5 MWh** with an aggregate EPC contract value of **~€104 million** across all five districts of Cyprus, with peak construction activity in Q2 2026.
+Lighthief Cyprus Ltd is the exclusive EPC contractor and O&M service provider for Linyang Battery Energy Storage Systems in Cyprus. We are constructing and commissioning **51 utility-scale BESS projects** totalling **881.78 MWh** with an aggregate EPC contract value of **~€109 million** across all five districts of Cyprus, with peak construction activity in Q3–Q4 2026.
 
 We are seeking Marsh Specialty's expertise to design and place a **comprehensive construction and project insurance program** covering the full lifecycle of our BESS portfolio — from equipment arrival through construction, testing, commissioning, and the extended maintenance period.
 
@@ -42,81 +42,87 @@ This RFP covers **project-specific insurance lines only**. General business insu
 | **OEM Partner** | Linyang (Jiangsu Linyang Energy Storage Technology Co., Ltd) — exclusive distributor for Cyprus |
 | **Cell Manufacturer** | Eve Energy Co., Ltd (Linyang is a shareholder in Eve Energy) |
 | **PCS Manufacturer** | Kehua Technology (BCS1250K-C, EN 50549-2 certified) |
-| **Current Employees** | 5 (projected 10 within 12 months) |
+| **Current Employees** | 6 (projected 25 within 12 months) |
 | **Claims History** | NIL — no claims filed since incorporation |
 
 ### 1.2 Portfolio Scale
 
 | Metric | Value |
 |--------|-------|
-| **Total Capacity** | 863.5 MWh |
-| **Total Parks** | 47 (confirmed pricing) + 4 (pricing TBC) = 51 |
-| **Total EPC Contract Value** | ~€92–104 Million |
+| **Total Capacity** | 881.78 MWh (249 MW) |
+| **Total Parks** | 51 (all confirmed pricing) |
+| **Total Containers** | 251 battery containers |
+| **Total EPC Contract Value** | ~€109 Million |
+| **CIF Equipment Value** | €85,963,925 |
 | **Largest Single Project** | ~€10.6 Million (100 MWh) |
 | **Typical Project Range** | €300,000 to €5,000,000 |
 | **Battery Chemistry** | LFP (Lithium Iron Phosphate) — 100% of portfolio |
 | **Districts** | Famagusta, Larnaca, Limassol, Nicosia, Paphos |
-| **Client SPVs** | Multiple independent solar park project companies |
+| **Client SPVs** | Multiple independent solar park project companies (6 groups, G1–G6) |
 
-### 1.3 Project Values by Size Category
+### 1.3 Portfolio by Client Group
 
-| Park Size | Count | Value Range (€) | Total Value (€) |
-|-----------|-------|-----------------|-----------------|
-| Small (4–5 MWh) | 8 | 500,000 – 700,000 | ~5,000,000 |
-| Medium (7.5–15 MWh) | 18 | 900,000 – 1,800,000 | ~22,000,000 |
-| Large (20–40 MWh) | 17 | 2,000,000 – 4,500,000 | ~52,000,000 |
-| Extra Large (60–100 MWh) | 4 | 5,500,000 – 10,000,000 | ~25,000,000 |
-| **TOTAL** | **47** | — | **~€104,000,000** |
+| Client Group | Parks | MW | MWh | EPC Value (€) |
+|-------------|-------|-----|------|--------------|
+| Group 1 | 25 | 125.0 | 430.28 | €52,609,992 |
+| Group 2 | 11 | 79.5 | 310.50 | €36,412,812 |
+| Group 3 | 9 | 25.5 | 81.00 | €11,818,919 |
+| Group 4 | 3 | 6.5 | 20.00 | €3,061,370 |
+| Group 5 | 2 | 4.8 | 15.00 | €2,117,420 |
+| Group 6 | 1 | 7.7 | 25.00 | €3,220,675 |
+| **TOTAL** | **51** | **249** | **881.78** | **€109,241,187** |
 
 ### 1.4 Site Locations
 
 | District | Parks | Est. Total Value (€) |
 |----------|-------|---------------------|
-| Nicosia | 30 | ~70,000,000 |
+| Nicosia | 33 | ~75,000,000 |
 | Famagusta | 7 | ~15,000,000 |
-| Limassol | 5 | ~12,000,000 |
-| Paphos | 3 | ~3,000,000 |
-| Larnaca | 2 | ~1,500,000 |
-| **TOTAL** | **47** | **~€104,000,000** |
+| Limassol | 6 | ~12,000,000 |
+| Paphos | 3 | ~4,000,000 |
+| Larnaca | 2 | ~3,000,000 |
+| **TOTAL** | **51** | **~€109,000,000** |
 
 ### 1.5 Equipment per Project (Typical)
 
 | Equipment | Manufacturer | Approx. Value per Unit |
 |-----------|-------------|----------------------|
-| Battery Container (5 MWh, ~43 tonnes) | Linyang / Eve Energy cells | ~€400,000 |
-| MV SKID (PCS + Transformer) | Linyang / Kehua | ~€200,000–400,000 |
-| Cables & Accessories | Various | ~€3M total (portfolio) |
-| Civil Works (foundations, fencing, access) | Subcontracted locally | ~€3M total (portfolio) |
+| Battery Container (5.015 MWh, ~43 tonnes) | Linyang / Eve Energy LFP cells | ~€400,000 |
+| MV SKID (PCS + Transformer) — T1/T2/T4/T8 models | Linyang / Kehua | ~€200,000–400,000 |
+| Cables & Accessories (LV + MV) | Various | ~€3M total (portfolio) |
+| Civil Works (foundations, fencing, access) | Lighthief subcontractors | €1,763,560 total (€2,000/MWh) |
+| Lightning Protection & SPD | DEHN / StrikeRA | €528,000 total (portfolio) |
+| EMS / SCADA | Voltus Energy | €3,993,617 total (portfolio) |
+
+Total portfolio: 251 battery containers across 51 parks. System RTE: ≥86.32% (AC-AC incl. cabling).
 
 ---
 
 ## 2. CONSTRUCTION TIMELINE & PEAK EXPOSURE
 
-### 2.1 Delivery Schedule
+### 2.1 Delivery Schedule (SSOT Batch Plan)
 
-| Period | Parks | MWh | EPC Value (€) | Cumulative (€) |
-|--------|-------|-----|---------------|----------------|
-| **2025** (in progress) | 7 | 68 | €9,016,370 | €9,016,370 |
-| **Q1 2026** | 2 | 25 | €3,322,940 | €12,339,310 |
-| **Q2 2026** (peak) | 8 | 255 | €29,441,585 | €41,780,895 |
-| **Q3 2026** | 3 | 50 | €6,066,240 | €47,847,135 |
-| **Q4 2026** | 3 | 170 | €17,992,080 | €65,839,215 |
-| **2027** | 1 | 20 | €2,258,900 | €68,098,115 |
-| **TBC** | 18 | 183.5 | €23,935,922 | €92,034,037 |
-| **TOTAL** | **42+** | **771.5+** | **€92,034,037** | — |
+| Batch | Client Groups | Parks | MWh | Containers | CIF Arrival | Target PAC | Est. EPC Value (€) |
+|-------|--------------|-------|-----|------------|-------------|------------|-------------------|
+| **Batch 1** | G1 Phase 1 | 15 | 280 | 80 | Jul 2026 | Oct 2026 | ~€34,700,000 |
+| **Batch 2** | G1 Ph.2 + G3 | 19 | 230 | 90 | Aug 2026 | Jan 2027 | ~€28,500,000 |
+| **Batch 3** | G2 Ph.1 + G4/G5/G6 | 12 | 283 | 81 | Sep 2026 | Feb 2027 | ~€35,100,000 |
+| **Batch 4** | G2 Phase 2 | 5 | 87.5 | — | TBD 2028 | TBD 2028 | ~€10,800,000 |
+| **TOTAL** | | **51** | **881** | **251** | — | — | **~€109,000,000** |
+
+> **Key dates:** Contract signing target: 1 March 2026. Production lead time: 90 days. Shipping: ~50 days (CIF Limassol). All three 2026 batches overlap in construction during Q3–Q4 2026.
 
 ### 2.2 Peak Construction Exposure
 
-| Quarter | New Value at Risk | Active Construction* | Peak Exposure |
-|---------|-------------------|---------------------|---------------|
-| Q4 2025 | €9.0M | €9.0M | €9.0M |
-| Q1 2026 | €3.3M | €12.3M | €12.3M |
-| **Q2 2026** | **€29.4M** | **€41.8M** | **€41.8M** |
-| Q3 2026 | €6.1M | €35.0M | €35.0M |
-| Q4 2026 | €18.0M | €24.1M | €24.1M |
-| Q1 2027 | €2.3M | €20.3M | €20.3M |
+| Quarter | Arriving (CIF) | Active Construction* | Peak Exposure |
+|---------|---------------|---------------------|---------------|
+| Q2 2026 | — | Pre-arrival prep, civil works | ~€5M |
+| **Q3 2026** | **Batch 1 + Batch 2** | **~€63M (34 parks arriving/under construction)** | **~€63M** |
+| **Q4 2026** | **Batch 3** | **All 3 batches active (46 parks)** | **~€98M** |
+| Q1 2027 | — | Batch 2 + 3 commissioning | ~€55M |
+| Q2 2027 | — | Final commissioning, FAC | ~€20M |
 
-*Assumes 6-month construction period per project. **Peak exposure: €41.8M in Q2 2026.**
+*Assumes 4–5 month construction + commissioning period per batch. **Peak exposure: ~€98M in Q4 2026** when all three batches overlap in active construction.
 
 ---
 
@@ -126,7 +132,7 @@ This RFP covers **project-specific insurance lines only**. General business insu
 
 | # | Coverage | Limit / Structure | Priority |
 |---|----------|-------------------|----------|
-| 1 | **Construction All Risks (CAR)** | €50M any one project / €104M aggregate | CRITICAL |
+| 1 | **Construction All Risks (CAR)** | €50M any one project / €109M aggregate | CRITICAL |
 | 2 | **Erection All Risks (EAR)** | Combined with CAR | CRITICAL |
 | 3 | **Delay in Start-Up (DSU)** | 12-month indemnity period | HIGH |
 | 4 | **Third Party Liability** | €5M per occurrence / €10M aggregate | HIGH |
@@ -149,14 +155,14 @@ This RFP covers **project-specific insurance lines only**. General business insu
 |------|-------------|
 | **Structure** | Single Annual Policy with Declaration Basis |
 | **Sum Insured (Any One Project)** | €50,000,000 |
-| **Aggregate Limit** | €104,000,000 |
-| **Period** | 1 April 2026 – 31 March 2027 (renewable) |
-| **Extended to** | 31 March 2028 (for 2027 projects) |
+| **Aggregate Limit** | €109,000,000 |
+| **Period** | 1 April 2026 – 31 March 2028 (covering all 3 batches + FAC) |
+| **Extended to** | 31 March 2029 (for Esperia 2028 batch) |
 | **Basis** | Declarations — new projects reported monthly |
 | **Premium** | Deposit + adjustable based on declarations |
 | **Defects Clause** | **LEG3/06 REQUIRED** |
 | **Maintenance Period** | 24 months post-PAC |
-| **Peak Exposure** | €41.8M (Q2 2026) |
+| **Peak Exposure** | ~€98M (Q4 2026 — all 3 batches in construction) |
 
 **Material Damage Coverage:**
 - All equipment during erection and installation
@@ -196,7 +202,7 @@ This RFP covers **project-specific insurance lines only**. General business insu
 | **Waiting Period** | 30 days |
 | **Basis** | Linked to CAR/EAR — same insurer |
 
-**Exposure:** Lighthief's EPC contracts include delay LDs of 0.1–0.2% per day, capped at 10% of contract value. A material damage event causing 60+ days delay on a €5M project exposes Lighthief to ~€500K in delay LDs.
+**Exposure:** Lighthief's EPC contracts include delay LDs of 0.1–0.2% per day, capped at 10% of contract value. A material damage event causing 60+ days delay on a €5M project exposes Lighthief to ~€500K in delay LDs. With all 3 batches overlapping in Q3–Q4 2026, a port incident or customs delay could affect multiple projects simultaneously.
 
 ---
 
@@ -216,11 +222,11 @@ This RFP covers **project-specific insurance lines only**. General business insu
 | Item | Requirement |
 |------|-------------|
 | **Sum Insured** | €2,000,000 per shipment / €10,000,000 annual aggregate |
-| **Route** | Port of Limassol → 47 project sites across 5 districts |
-| **Cargo** | BESS containers (~43 tonnes), MV SKID, cables, switchgear |
+| **Route** | Port of Limassol → 51 project sites across 5 districts |
+| **Cargo** | BESS containers (~43 tonnes each), MV SKID (T1/T2/T4/T8), cables, switchgear |
 | **Coverage** | All risks: loading/unloading, temporary port storage, inland heavy haulage |
-| **Frequency** | ~60–80 shipments/year |
-| **Vehicles** | Third-party haulage (low-loader heavy transport) |
+| **Frequency** | 251 containers + MV skids — ~80–100 inland shipments over 6 months |
+| **Vehicles** | A. Soulis haulage — 6 trucks confirmed for 20ft 43T containers; 40ft TBC |
 
 > Marine cargo (China → Limassol) is NOT required — covered by Linyang under CIF Incoterms® 2020.
 
@@ -253,7 +259,7 @@ This RFP covers **project-specific insurance lines only**. General business insu
 |------|-------------|
 | **Limit** | Aligned with CAR/EAR per-project limit |
 | **Coverage** | Physical damage + business interruption |
-| **Context** | 47 BESS sites across rural Cyprus, limited physical security during construction |
+| **Context** | 51 BESS sites across rural Cyprus, limited physical security during construction |
 
 ---
 
@@ -262,7 +268,7 @@ This RFP covers **project-specific insurance lines only**. General business insu
 | Item | Requirement |
 |------|-------------|
 | **Limit** | €500,000 |
-| **Systems at Risk** | Voltus SCADA/EMS (24/7 monitoring of 47 sites), BMS remote access, client portals |
+| **Systems at Risk** | Voltus SCADA/EMS (24/7 monitoring of 51 sites), BMS remote access, client portals |
 | **Regulations** | GDPR, NIS2 Directive (critical energy infrastructure) |
 
 ---
@@ -324,10 +330,10 @@ This RFP covers **project-specific insurance lines only**. General business insu
 
 | Measure | Detail |
 |---------|--------|
-| **Emergency Plans** | Site-specific plans for all 47 parks |
+| **Emergency Plans** | Site-specific plans for all 51 parks |
 | **Fire Brigade** | Pre-incident plans shared with local services; LFP-specific response protocols |
-| **24/7 Monitoring** | Voltus SCADA + Lighthief NOC; critical alerts escalated within 1 hour |
-| **On-Site Response** | 5 dedicated BESS field engineers; maximum 90 minutes to any site in Cyprus |
+| **24/7 Monitoring** | Voltus SCADA/EMS + Lighthief NOC; critical alerts escalated within 1 hour |
+| **On-Site Response** | Dedicated BESS field engineers; maximum 90 minutes to any site in Cyprus; 4-hour response SLA |
 | **Water Cooling** | Recommended for thermal event containment (per LEARISK and NFPA 855) |
 
 ### 4.5 Risk Assessment Summary
@@ -373,6 +379,7 @@ EVE ENERGY (Cell Mfr) + KEHUA (PCS Mfr)
     LIGHTHIEF — EPC Contractor + O&M Provider (Limassol, Cyprus)
           │   Exclusive Linyang distributor for Cyprus
           │   Civil works, cabling, grounding, project management
+          │   Preventive maintenance & EMS via Voltus
           │
     EPC Agreement + LTSA (per project)
           │
@@ -384,7 +391,8 @@ EVE ENERGY (Cell Mfr) + KEHUA (PCS Mfr)
 
 | Scope | Warranted By | Period |
 |-------|-------------|--------|
-| Battery containers, PCS, BMS, cooling, fire suppression | **Linyang (OEM)** | 5 years from PAC (extendable to 15) |
+| Battery containers, PCS, BMS, cooling, fire suppression | **Linyang (OEM)** | 5 years from PAC (extendable to 15 — confirmed V3 RFI) |
+| SOH Guarantee (85% Y5, 79.58% Y10, 70% Y15) | **Linyang (OEM)** | Up to 15 years (backed by blended sales agreement) |
 | OEM installation & commissioning workmanship | **Linyang (OEM)** | 5 years from PAC |
 | Civil works, foundations, site preparation | **Lighthief (EPC)** | 2 years from PAC |
 | AC/DC cabling, grounding (Lighthief-installed) | **Lighthief (EPC)** | 2 years from PAC |
@@ -399,6 +407,8 @@ EVE ENERGY (Cell Mfr) + KEHUA (PCS Mfr)
 | **Delay LDs** | 0.1%/day (days 1–30), 0.15%/day (31–60), 0.2%/day (61+), capped at 10% |
 | **Liability Cap** | 100% of Contract Price (excludes OEM manufacturing defects) |
 | **Delivery** | CIF Limassol (Incoterms® 2020) — Linyang to Lighthief |
+| **LTSA** | 97% availability guarantee, SOH monitoring, 15-year extended warranty option |
+| **Availability Responsibility** | Maintenance: Lighthief · Product performance: Linyang (OEM) |
 
 ---
 
@@ -419,7 +429,7 @@ Certificates of Insurance required before work commences. Lighthief to be named 
 
 | Coverage | Limit / Structure | Premium (€) | Deductible (€) | Insurer / Syndicate |
 |----------|-------------------|-------------|----------------|---------------------|
-| CAR/EAR (LEG3, declaration basis) | €50M per project / €104M agg. | | | |
+| CAR/EAR (LEG3, declaration basis) | €50M per project / €109M agg. | | | |
 | Delay in Start-Up (DSU) | 12-month indemnity | | | |
 | Third Party Liability (construction) | €5M per occ. / €10M agg. | | | |
 | Inland Transit | €2M per shipment / €10M agg. | | | |
@@ -452,7 +462,7 @@ Please provide:
 10. Insurer / syndicate financial strength rating (AM Best / S&P)
 11. BESS project references and loss experience
 12. Risk engineering services available (site surveys, PML modeling, NatCat analysis)
-13. Capacity confirmation — ability to write full €104M program or co-insurance structure
+13. Capacity confirmation — ability to write full €109M program or co-insurance structure
 
 ---
 
@@ -465,8 +475,8 @@ Available immediately upon request:
 - [ ] EPC Agreement template (LDs, warranty, payment, liability cap)
 - [ ] LTSA template (availability SLA, SOH guarantee, service tiers)
 - [ ] Linyang product certifications (UL9540A, IEC 62619, IEC 63056, UN 38.3, FM 5-33)
-- [ ] Project portfolio with delivery timeline and per-project values
-- [ ] Site location map (all 47 parks with GPS coordinates by district)
+- [ ] Project portfolio with delivery timeline and per-project values (51 parks, 6 groups)
+- [ ] Site location map (all 51 parks with GPS coordinates by district)
 - [ ] Typical site layout drawing (container spacing, fire access, PV separation)
 - [ ] Financial statements (Lighthief Cyprus Ltd)
 - [ ] Company registration documents (HE 477423)
@@ -489,8 +499,10 @@ Available immediately upon request:
 | Broker Selection | 21 March 2026 |
 | Risk Engineering Survey (if required) | April 2026 |
 | Policy Inception | 1 April 2026 (target) |
-| First Project at Risk | Q1 2026 (already in progress) |
-| **Peak Construction Exposure** | **Q2 2026 (~€41.8M)** |
+| First Equipment CIF Arrival | July 2026 (Batch 1 — 15 parks, 280 MWh) |
+| **Peak Construction Exposure** | **Q4 2026 (~€98M — all 3 batches overlapping)** |
+| Target Full Portfolio PAC | February 2027 (Batch 3) |
+| FAC (All Parks) | 31 March 2027 |
 
 ---
 

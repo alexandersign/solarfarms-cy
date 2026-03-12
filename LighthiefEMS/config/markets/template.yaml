@@ -1,0 +1,74 @@
+# GridMind Market Configuration Template
+#
+# Copy this file and customize for a new EU market.
+# All values must be verified against the specific national grid code.
+
+market:
+  name: "Country Name"
+  code: "XX"       # ISO 3166-1 alpha-2
+  dso: "DSO Name"
+  tso: "TSO Name"
+  timezone: "Europe/City"
+  currency: "EUR"
+
+grid:
+  nominal_frequency_hz: 50.0
+  nominal_voltage_lv_v: 230.0
+  nominal_voltage_mv_v: 20000.0
+
+protection:
+  undervoltage_stage1:
+    threshold_pu: 0.85
+    time_s: 1.5
+  overvoltage_stage1:
+    threshold_pu: 1.10
+    time_s: 0.2
+  underfrequency_stage1:
+    threshold_hz: 47.5
+    time_s: 0.5
+  overfrequency_stage1:
+    threshold_hz: 51.5
+    time_s: 0.5
+
+lfsm_o:
+  activation_hz: 50.2
+  droop_per_hz: 0.4   # 40% PM per Hz (typical EU)
+  recovery_rate_per_min: 0.2
+
+qu_curve:
+  points:
+    - [0.92, 0.40]
+    - [0.97, 0.00]
+    - [1.00, 0.00]
+    - [1.03, 0.00]
+    - [1.07, -0.40]
+
+scada:
+  protocol: "IEC 60870-5-104"
+  port: 2404
+  common_address: 1
+
+# Market-specific trading parameters
+trading:
+  exchange: "Exchange Name"
+  gate_closure_da_minutes: 720  # 12h before delivery
+  gate_closure_id_minutes: 30   # 30min before delivery
+  products:
+    day_ahead:
+      resolution_minutes: 60
+      block_bids: true
+    intraday:
+      continuous: true
+      auction: true
+      resolution_minutes: 15
+  balancing:
+    fcr:
+      enabled: true
+      product_length_hours: 4
+      symmetric: true
+    afrr:
+      enabled: true
+      activation_time_s: 300
+    mfrr:
+      enabled: true
+      activation_time_s: 750

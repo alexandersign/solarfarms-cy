@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Engineer Guide — Aurolia 60kWp PV System Setup</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+        h1 { text-align: center; font-size: 22px; margin-bottom: 5px; letter-spacing: 1px; }
+        h1 + p.subtitle { text-align: center; font-size: 14px; margin-top: 0; margin-bottom: 0; color: #555; }
+        .doc-ref { text-align: center; font-size: 11px; color: #999; margin-top: 5px; margin-bottom: 0; }
+        h2 {
+            font-size: 16px; margin-top: 35px; margin-bottom: 15px;
+            border-bottom: 2px solid #000; padding-bottom: 8px; text-transform: uppercase;
+        }
+        h3 { font-size: 14px; margin-top: 25px; margin-bottom: 10px; font-weight: bold; }
+        p, li { margin-bottom: 10px; }
+        ol, ul { padding-left: 25px; }
+        ol li { margin-bottom: 12px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f0f0f0; font-weight: bold; }
+        .col-num { width: 40px; text-align: center; }
+
+        .divider { border-top: 2px solid #000; margin: 40px 0; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
+
+        /* Colored section boxes */
+        .section-box {
+            padding: 20px; margin: 20px 0; border-radius: 0 5px 5px 0;
+            border: 1px solid #dee2e6; border-left: 5px solid #333;
+        }
+        .section-box h3 { margin-top: 0; }
+
+        .critical-box { border-left-color: #dc3545; background-color: #fef2f2; }
+        .critical-box h3 { color: #721c24; }
+        .critical-box strong.label { color: #721c24; }
+
+        .mandatory-box { border-left-color: #0d6efd; background-color: #f0f4ff; }
+        .mandatory-box h3 { color: #084298; }
+
+        .safety-box { border-left-color: #198754; background-color: #f0faf4; }
+        .safety-box h3 { color: #0a5c36; }
+
+        .info-box { border-left-color: #6c757d; background-color: #f8f9fa; }
+        .info-box h3 { color: #333; }
+
+        .warning-box { border-left-color: #ffc107; background-color: #fff8e1; }
+        .warning-box h3 { color: #856404; }
+
+        .checklist-box { border-left-color: #333; background-color: #fafafa; }
+
+        /* Diagrams */
+        pre.diagram {
+            background-color: #f8f9fa; border: 1px solid #ddd;
+            padding: 20px; font-family: 'Courier New', monospace;
+            font-size: 12px; line-height: 1.4; overflow-x: auto;
+            white-space: pre; margin: 20px 0;
+        }
+
+        /* Two-column */
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        /* PDF button */
+        .pdf-button {
+            position: fixed; top: 20px; right: 20px; background-color: #333;
+            color: #fff; border: none; padding: 12px 24px; font-size: 14px;
+            cursor: pointer; border-radius: 5px; font-family: 'Georgia', serif;
+            z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+        }
+        .pdf-button:hover { background-color: #555; }
+
+        @media print {
+            body { max-width: 100%; padding: 15px; font-size: 11.5px; }
+            .pdf-button { display: none !important; }
+            h2 { page-break-after: avoid; }
+            table, .section-box, pre.diagram { page-break-inside: avoid; }
+        }
+        @page { margin: 1.8cm; size: A4; }
+    </style>
+</head>
+<body>
+
+<button class="pdf-button" onclick="exportPDF()">Export PDF</button>
+
+<h1>ELECTRICAL ENGINEER GUIDE</h1>
+<p class="subtitle">60 kWp Zero-Export PV System — DSO-Compliant Configuration</p>
+<p class="doc-ref">Ref: LCY-PV-AUR-001 / EE Guide &nbsp;|&nbsp; Aurolia Ltd — Greenland Family Park &nbsp;|&nbsp; March 2026</p>
+
+<div class="divider"></div>
+
+<!-- OBJECTIVE -->
+<div class="section-box mandatory-box">
+    <h3>Document Objective</h3>
+    <p>This document provides the electrical engineer with all technical requirements to configure the 60 kWp PV installation at Greenland Family Park to be <strong>technically equivalent to a DSO-compliant zero-export system</strong>, as defined by the EAC RES Technical Guide (Edition 2023.2) and the DSO Technical Guide for Storage (Edition 2025.1).</p>
+    <p>Although no EAC application has been submitted for this installation (per client decision), the system must be engineered to the same protection, safety, and zero-export standards as if formal DSO approval were in place. This ensures personnel safety, grid integrity, and the ability to regularize the installation retroactively if required.</p>
+</div>
+
+<!-- 1. SYSTEM SPECIFICATION -->
+<h2>1. System Specification</h2>
+
+<table>
+    <tr><th style="width:40%;">Parameter</th><th>Value</th></tr>
+    <tr><td>PV Modules</td><td>REC 400–430 Wp Pure R Alpha Series</td></tr>
+    <tr><td>Total PV Capacity</td><td><strong>60 kWp</strong></td></tr>
+    <tr><td>Inverter 1</td><td><strong>JKS-20H-EI</strong> — Jinko 20 kW Hybrid (3-phase, 2 MPPTs)</td></tr>
+    <tr><td>Inverter 2</td><td><strong>JKS-20H-EI</strong> — Jinko 20 kW Hybrid (3-phase, 2 MPPTs)</td></tr>
+    <tr><td>Inverter 3</td><td><strong>JKS-15H-EI</strong> — Jinko 15 kW Hybrid (3-phase, 2 MPPTs)</td></tr>
+    <tr><td>Total Inverter Capacity</td><td><strong>55 kW</strong></td></tr>
+    <tr><td>Export Limit</td><td><strong>0 kW (zero export)</strong></td></tr>
+    <tr><td>Battery Storage</td><td>None at present (inverters are battery-ready)</td></tr>
+    <tr><td>Diesel Generator</td><td><strong>Stamford S1L2-Y1</strong> — 62.5 kVA / 50 kW continuous, 400V, 90.2A, 3-phase, Star connection, IP23</td></tr>
+    <tr><td>Grid Connection</td><td>LV 3-phase, 400V</td></tr>
+    <tr><td>Applicable Standard</td><td>VDE-AR-N 4105:2018-11 (systems &lt; 120 kWp, LV)</td></tr>
+</table>
+
+<!-- INVERTER CONFIRMED SPECS -->
+<div class="section-box safety-box">
+    <h3>Confirmed Inverter Capabilities (Datasheet JKS-6-20H-EI-A7)</h3>
+    <table>
+        <tr><th style="width:40%;">Capability</th><th>Value</th></tr>
+        <tr><td>Grid Certifications</td><td><strong>EN 50549-1, VDE 4105</strong>, VDE 0124, 2016/631 EU</td></tr>
+        <tr><td>Five Native Ports</td><td>PV, Battery, <strong>Diesel Generator</strong>, Smart Load, Grid</td></tr>
+        <tr><td>Anti-Islanding</td><td>Built-in</td></tr>
+        <tr><td>Communication</td><td>RS485 + CAN</td></tr>
+        <tr><td>Power Factor Range</td><td>0.8 leading to 0.8 lagging (exceeds DSO 0.9 requirement)</td></tr>
+        <tr><td>Built-in Surge Protection</td><td>DC Type II / AC Type III</td></tr>
+        <tr><td>Other Built-in Protection</td><td>Insulation resistance detection, RCMU, overcurrent, short circuit, reverse polarity</td></tr>
+        <tr><td>Efficiency (Max / Euro / MPPT)</td><td>97.6% / 97.0% / 99.9%</td></tr>
+        <tr><td>Off-Grid Peak Power</td><td>1.5&times; rated for 10 seconds</td></tr>
+        <tr><td>Max DC Input Voltage</td><td>1000V</td></tr>
+        <tr><td>MPPT Range (20kW)</td><td>500–850V (2 MPPTs, max 26A each)</td></tr>
+        <tr><td>MPPT Range (15kW)</td><td>420–850V (2 MPPTs)</td></tr>
+        <tr><td>IP Rating</td><td>IP65</td></tr>
+        <tr><td>Operating Temperature</td><td>-40 to 60&deg;C (derating above 45&deg;C)</td></tr>
+    </table>
+    <p><strong>Key finding:</strong> The inverter has a <strong>native diesel generator input port</strong>. This means the generator can connect directly to the inverter rather than requiring a separate ATS. The inverter manages the grid/generator/PV switching internally. Confirm with the installation manual whether the internal transfer logic meets the interlock requirements in Section 4, or whether an external ATS is still preferred for this site.</p>
+</div>
+
+<!-- PANEL CONFIRMED SPECS -->
+<div class="section-box info-box">
+    <h3>PV String Configuration — REC Alpha Pure-R (Confirmed)</h3>
+    <table>
+        <tr><th>Parameter</th><th>410 Wp</th><th>430 Wp</th></tr>
+        <tr><td>Voc</td><td>59.2V</td><td>59.7V</td></tr>
+        <tr><td>Vmpp</td><td>49.4V</td><td>50.5V</td></tr>
+        <tr><td>Isc</td><td>8.84A</td><td>8.91A</td></tr>
+        <tr><td>Impp</td><td>8.30A</td><td>8.52A</td></tr>
+        <tr><td>Voc at -10&deg;C (worst case)</td><td>~64.2V</td><td>~64.7V</td></tr>
+        <tr><td>Panel count for 60 kWp</td><td>147 panels</td><td>140 panels</td></tr>
+    </table>
+    <table>
+        <tr><th>String Sizing</th><th>JKS-20H-EI (500–850V)</th><th>JKS-15H-EI (420–850V)</th></tr>
+        <tr><td>Min panels per string</td><td>10–11 panels</td><td>9 panels</td></tr>
+        <tr><td>Max panels per string (Voc at -10&deg;C &le; 1000V)</td><td>15 panels</td><td>15 panels</td></tr>
+        <tr><td>Recommended string length</td><td>12–14 panels</td><td>10–14 panels</td></tr>
+        <tr><td>Max input current per MPPT</td><td>26A (allows 2 strings of ~8.9A)</td><td>22.8A (allows 2 strings of ~8.9A)</td></tr>
+    </table>
+</div>
+
+<!-- 2. PROTECTION SETTINGS -->
+<h2>2. Mandatory Protection Settings</h2>
+
+<div class="critical-box section-box">
+    <h3>These Settings Are Non-Negotiable</h3>
+    <p>Per the EAC RES Technical Guide Table 1 (systems &ge; 10.4 kWp), all three inverters must have the following protection parameters configured. Since the total system is &ge; 20 kWp, an <strong>external grid protection relay</strong> is also required.</p>
+</div>
+
+<h3>2.1 Inverter Internal Protection (All 3 Units)</h3>
+
+<table>
+    <tr>
+        <th>Protection</th>
+        <th>Parameter</th>
+        <th>Setting</th>
+        <th>Trip Time</th>
+    </tr>
+    <tr>
+        <td>Undervoltage U&lt;</td>
+        <td>Phase voltage</td>
+        <td><strong>0.9 Un (207V)</strong></td>
+        <td><strong>200 ms</strong></td>
+    </tr>
+    <tr>
+        <td>Overvoltage U&gt;</td>
+        <td>Phase voltage</td>
+        <td><strong>1.15 Un (264.5V)</strong></td>
+        <td><strong>200 ms</strong></td>
+    </tr>
+    <tr>
+        <td>Underfrequency f&lt;</td>
+        <td>Grid frequency</td>
+        <td><strong>47.0 Hz</strong></td>
+        <td><strong>200 ms</strong></td>
+    </tr>
+    <tr>
+        <td>Overfrequency f&gt;</td>
+        <td>Grid frequency</td>
+        <td><strong>51.5 Hz</strong></td>
+        <td><strong>200 ms</strong></td>
+    </tr>
+    <tr>
+        <td>Anti-Islanding (LoM)</td>
+        <td>Loss of Mains</td>
+        <td><strong>Active</strong> (DIN VDE 0126-1-1)</td>
+        <td><strong>200–1000 ms</strong></td>
+    </tr>
+    <tr>
+        <td>DC Injection</td>
+        <td>DC component</td>
+        <td><strong>&lt; 1% of In</strong></td>
+        <td><strong>&lt; 200 ms</strong></td>
+    </tr>
+    <tr>
+        <td>THDi</td>
+        <td>Current harmonics</td>
+        <td><strong>&lt; 5%</strong></td>
+        <td>Per datasheet</td>
+    </tr>
+</table>
+
+<h3>2.2 External Grid Protection Relay (Mandatory for &ge; 20 kWp)</h3>
+
+<div class="section-box warning-box">
+    <h3>External Relay Required</h3>
+    <p>A dedicated external grid protection relay must be installed between the inverter AC output and the point of connection. This relay must mirror the inverter protection settings and provide a <strong>hardwired trip path</strong> independent of inverter software.</p>
+</div>
+
+<table>
+    <tr>
+        <th>Relay Function</th>
+        <th>Setting</th>
+        <th>Trip Time</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td>Undervoltage U&lt;</td>
+        <td>0.9 Un (207V)</td>
+        <td>200 ms</td>
+        <td>Trip AC contactor</td>
+    </tr>
+    <tr>
+        <td>Overvoltage U&gt;</td>
+        <td>1.15 Un (264.5V)</td>
+        <td>200 ms</td>
+        <td>Trip AC contactor</td>
+    </tr>
+    <tr>
+        <td>Underfrequency f&lt;</td>
+        <td>47.0 Hz</td>
+        <td>200 ms</td>
+        <td>Trip AC contactor</td>
+    </tr>
+    <tr>
+        <td>Overfrequency f&gt;</td>
+        <td>51.5 Hz</td>
+        <td>200 ms</td>
+        <td>Trip AC contactor</td>
+    </tr>
+    <tr>
+        <td>ROCOF (Rate of Change of Frequency)</td>
+        <td>2.5 Hz/s</td>
+        <td>200 ms</td>
+        <td>Trip AC contactor</td>
+    </tr>
+    <tr>
+        <td>Reverse Power (export detection)</td>
+        <td>&gt; 0.2 kW export</td>
+        <td>2 seconds</td>
+        <td>Trip AC contactor</td>
+    </tr>
+</table>
+
+<h3>2.3 Reconnection After Trip</h3>
+
+<table>
+    <tr><th style="width:50%;">Parameter</th><th>Value</th></tr>
+    <tr><td>Minimum reconnection delay</td><td><strong>&ge; 180 seconds</strong> (3 minutes)</td></tr>
+    <tr><td>Power ramp rate</td><td><strong>&le; 10% P<sub>Amax</sub> per minute</strong></td></tr>
+    <tr><td>Full recovery time</td><td>~13 minutes (0% to 100%)</td></tr>
+</table>
+
+<h3>2.4 Frequency Response (LFSM-O)</h3>
+
+<table>
+    <tr><th>Frequency Range</th><th>Action</th><th>Gradient</th></tr>
+    <tr><td>47.0 – 50.2 Hz</td><td>Normal operation</td><td>—</td></tr>
+    <tr><td>50.2 – 51.2 Hz</td><td>Active power reduction</td><td><strong>10% P<sub>M</sub> per 0.1 Hz</strong></td></tr>
+    <tr><td>&gt; 51.5 Hz</td><td>Disconnect</td><td>200 ms</td></tr>
+    <tr><td>&lt; 47.0 Hz</td><td>Disconnect</td><td>200 ms</td></tr>
+</table>
+
+<p>P<sub>M</sub> = Active power at the moment frequency exceeds 50.2 Hz.</p>
+
+<!-- 3. ZERO EXPORT CONFIGURATION -->
+<h2>3. Zero Export Configuration</h2>
+
+<h3>3.1 Architecture Overview</h3>
+
+<p>The zero-export system requires <strong>three independent layers</strong> to be failsafe:</p>
+
+<pre class="diagram">
+ LAYER 1: SOFTWARE                LAYER 2: HARDWARE              LAYER 3: PHYSICAL
+ ┌──────────────────┐            ┌──────────────────┐           ┌──────────────────┐
+ │  CT Meter at PCC │            │  Reverse Power   │           │  Lockable AC     │
+ │        ↓         │            │  Relay at PCC    │           │  Isolator on     │
+ │  RS485 → Master  │            │        ↓         │           │  each inverter   │
+ │  Inverter        │            │  Trip Signal →   │           │        +         │
+ │        ↓         │            │  AC Contactor    │           │  Lockable DC     │
+ │  Master limits   │            │  (shunt trip)    │           │  Isolator on     │
+ │  all 3 inverters │            │        +         │           │  each string     │
+ │  dynamically     │            │  Heartbeat       │           │        +         │
+ │                  │            │  Watchdog        │           │  Emergency Stop  │
+ └──────────────────┘            └──────────────────┘           └──────────────────┘
+    Response: &lt;2s                 Response: 2s trip              Manual isolation
+    Accuracy: ±2%                  Fail-safe on loss              For maintenance
+</pre>
+
+<h3>3.2 Layer 1 — CT Measurement &amp; Software Limiting</h3>
+
+<div class="section-box mandatory-box">
+    <h3>CT Placement Is Critical</h3>
+    <p>CTs must be installed at the <strong>Point of Common Coupling (PCC)</strong> — on the main incomer cables, immediately after the EAC revenue meter and before any load distribution. Incorrect CT placement will result in uncontrolled export.</p>
+</div>
+
+<table>
+    <tr><th style="width:40%;">Parameter</th><th>Requirement</th></tr>
+    <tr><td>CT location</td><td><strong>PCC — main incomer, after EAC meter</strong></td></tr>
+    <tr><td>CT type</td><td>Split-core or solid-core, ratio appropriate to main incomer rating</td></tr>
+    <tr><td>CT polarity</td><td><strong>Must be correct on all 3 phases</strong> — reversed CT = uncontrolled export</td></tr>
+    <tr><td>Meter type</td><td>Jinko-compatible Smart Meter or CT clamp (confirm with inverter datasheet)</td></tr>
+    <tr><td>Communication</td><td>RS485 (shielded twisted pair) from meter to master inverter</td></tr>
+    <tr><td>Export limit setting</td><td><strong>0 kW</strong> (zero feed-in / zero export mode)</td></tr>
+    <tr><td>Response time</td><td>&lt; 2 seconds</td></tr>
+</table>
+
+<h3>3.3 Inverter Communication Chain</h3>
+
+<pre class="diagram">
+  ┌──────────────┐        RS485         ┌──────────────┐        RS485         ┌──────────────┐
+  │   CT METER   │ ────────────────────→ │  INVERTER 1  │ ────────────────────→ │  INVERTER 2  │
+  │   at PCC     │   Shielded pair      │  20kW MASTER │   Shielded pair      │  20kW SLAVE  │
+  └──────────────┘                       └──────────────┘                       └──────┬───────┘
+                                                                                       │ RS485
+                                                                                       ↓
+                                                                               ┌──────────────┐
+                                                                               │  INVERTER 3  │
+                                                                               │  15kW SLAVE  │
+                                                                               └──────────────┘
+</pre>
+
+<table>
+    <tr><th>Connection</th><th>From</th><th>To</th><th>Cable</th></tr>
+    <tr><td>CT meter → Master</td><td>Smart Meter RS485 port</td><td>Inverter 1 RS485-IN</td><td>Shielded twisted pair, &lt;100m</td></tr>
+    <tr><td>Master → Slave 1</td><td>Inverter 1 RS485-OUT</td><td>Inverter 2 RS485-IN</td><td>Shielded twisted pair</td></tr>
+    <tr><td>Slave 1 → Slave 2</td><td>Inverter 2 RS485-OUT</td><td>Inverter 3 RS485-IN</td><td>Shielded twisted pair</td></tr>
+</table>
+
+<div class="section-box warning-box">
+    <h3>RS485 Wiring Rules</h3>
+    <ul>
+        <li>Daisy-chain topology only — no star or tee connections</li>
+        <li>120&Omega; termination resistor at each end of the bus</li>
+        <li>Shield grounded at <strong>one end only</strong> to prevent ground loops</li>
+        <li>Maximum cable length 100m (total run)</li>
+        <li>Do not run alongside power cables — maintain &ge;300mm separation</li>
+    </ul>
+</div>
+
+<h3>3.4 Layer 2 — Hardware Fail-Safe</h3>
+
+<table>
+    <tr><th style="width:30%;">Component</th><th>Specification</th><th>Wiring</th></tr>
+    <tr>
+        <td><strong>Reverse power relay</strong></td>
+        <td>Directional power relay at PCC; trip threshold &gt;0.2 kW export for &gt;2 seconds</td>
+        <td>CT fed from PCC CTs; relay output → shunt-trip coil on AC contactor</td>
+    </tr>
+    <tr>
+        <td><strong>AC contactor</strong></td>
+        <td>3-pole + N contactor with shunt-trip coil, rated &ge; 80A</td>
+        <td>Installed on combined AC output of all 3 inverters, upstream of connection to DB</td>
+    </tr>
+    <tr>
+        <td><strong>CT heartbeat watchdog</strong></td>
+        <td>If RS485 communication from CT meter is lost for &gt;5 seconds → trip</td>
+        <td>Implemented via inverter firmware (confirm capability) or via external timer relay monitoring meter heartbeat</td>
+    </tr>
+    <tr>
+        <td><strong>Inverter enable signal</strong></td>
+        <td>All inverter "Enable" / "Remote Shutdown" DI terminals wired in parallel</td>
+        <td>Reverse power relay NO contact → all inverter Enable DI (removes enable on trip)</td>
+    </tr>
+</table>
+
+<h3>3.5 Layer 3 — Physical Isolation</h3>
+
+<table>
+    <tr><th style="width:30%;">Component</th><th>Location</th><th>Specification</th></tr>
+    <tr><td><strong>AC isolator (per inverter)</strong></td><td>Adjacent to each inverter</td><td>Lockable rotary isolator, IP65 if outdoor</td></tr>
+    <tr><td><strong>DC isolator (per string)</strong></td><td>Adjacent to each inverter DC input</td><td>Lockable DC isolator, rated &ge; string Voc &times; 1.2</td></tr>
+    <tr><td><strong>Emergency stop</strong></td><td>At main DB and at inverter location</td><td>Red mushroom-head, latching, wired to AC contactor shunt-trip</td></tr>
+    <tr><td><strong>Main PV isolator</strong></td><td>At main distribution board</td><td>4-pole isolator (3P+N), lockable</td></tr>
+</table>
+
+<!-- 4. GENERATOR INTERLOCK -->
+<h2>4. Diesel Generator Interlock</h2>
+
+<div class="section-box critical-box">
+    <h3>Generator &amp; PV Must Never Both Backfeed the Grid</h3>
+    <p>The ATS, inverter mode switching, and reverse power protection must work together to prevent any scenario where PV or generator power reaches the EAC meter in the export direction.</p>
+</div>
+
+<h3>4.1 Control Logic</h3>
+
+<table>
+    <tr><th>ATS Position</th><th>Grid</th><th>Generator</th><th>PV Inverter Mode</th><th>Export Limit</th></tr>
+    <tr>
+        <td><strong>Grid</strong></td>
+        <td>ON</td>
+        <td>OFF</td>
+        <td>Grid-tied</td>
+        <td>0 kW (zero export via CT at PCC)</td>
+    </tr>
+    <tr>
+        <td><strong>Generator</strong></td>
+        <td>OFF</td>
+        <td>ON</td>
+        <td>Off-grid / Island</td>
+        <td>Limited to &le;<strong>25 kW</strong> (50% of 50 kW generator continuous rating)</td>
+    </tr>
+    <tr>
+        <td><strong>Transition (grid lost)</strong></td>
+        <td>Failing</td>
+        <td>Starting</td>
+        <td>Shutdown (or island if battery available)</td>
+        <td>0 kW until mode confirmed</td>
+    </tr>
+    <tr>
+        <td><strong>Transition (grid restored)</strong></td>
+        <td>Returning</td>
+        <td>Cooling down</td>
+        <td>Wait 180s → ramp at 10%/min</td>
+        <td>0 kW (zero export)</td>
+    </tr>
+</table>
+
+<h3>4.2 Interlock Wiring</h3>
+
+<table>
+    <tr><th>Signal</th><th>From</th><th>To</th><th>Function</th></tr>
+    <tr>
+        <td><strong>ATS position contact</strong></td>
+        <td>ATS auxiliary contact (dry contact, NO)</td>
+        <td>All inverter "Grid/Off-Grid" DI terminal</td>
+        <td>Grid position = grid-tied mode; Generator position = off-grid mode</td>
+    </tr>
+    <tr>
+        <td><strong>Generator running signal</strong></td>
+        <td>Generator controller (dry contact)</td>
+        <td>Inverter DI or external PLC</td>
+        <td>Limits PV output to &le;25 kW (50% of 50 kW generator continuous)</td>
+    </tr>
+    <tr>
+        <td><strong>Generator reverse power</strong></td>
+        <td>Generator controller RPP function</td>
+        <td>AC contactor shunt-trip (backup)</td>
+        <td>Trips PV if power flows into generator</td>
+    </tr>
+</table>
+
+<h3>4.3 Site Survey — Items to Confirm Before SLD</h3>
+
+<table>
+    <tr><th style="width:45%;">Item</th><th>Check</th></tr>
+    <tr><td>Generator kVA rating</td><td>☑ <strong>62.5 kVA / 50 kW continuous</strong> (Stamford S1L2-Y1)</td></tr>
+    <tr><td>ATS type (manual / automatic)</td><td>☐ Manual &nbsp;&nbsp; ☐ Automatic</td></tr>
+    <tr><td>ATS pole count</td><td>☐ 3-pole &nbsp;&nbsp; ☐ 4-pole (switches neutral)</td></tr>
+    <tr><td>ATS auxiliary contacts available</td><td>☐ Yes (dry contact) &nbsp;&nbsp; ☐ No (need to add)</td></tr>
+    <tr><td>Generator N-E bond</td><td>☐ Bonded at generator &nbsp;&nbsp; ☐ Floating neutral</td></tr>
+    <tr><td>Generator has reverse power protection</td><td>☐ Built-in &nbsp;&nbsp; ☐ External required</td></tr>
+    <tr><td>Existing earthing arrangement</td><td>☐ TN-C-S &nbsp;&nbsp; ☐ TN-S &nbsp;&nbsp; ☐ TT</td></tr>
+    <tr><td>RCD on main incomer</td><td>☐ Yes (rating: ___) &nbsp;&nbsp; ☐ No</td></tr>
+</table>
+
+<!-- 5. EARTHING AND NEUTRAL -->
+<h2>5. Earthing &amp; Neutral Coordination</h2>
+
+<table>
+    <tr><th style="width:40%;">Consideration</th><th>Requirement</th></tr>
+    <tr>
+        <td>Generator N-E bond</td>
+        <td>If bonded at generator: ATS must be 4-pole (switch neutral) to avoid parallel N-E paths during grid operation</td>
+    </tr>
+    <tr>
+        <td>PV neutral reference</td>
+        <td>Hybrid inverters require stable neutral reference in island mode; confirm inverter creates its own neutral or needs external bond</td>
+    </tr>
+    <tr>
+        <td>RCD coordination</td>
+        <td>Multiple sources (grid + PV + generator) can cause nuisance RCD trips; verify RCD compatibility with inverter leakage current (Type B RCD may be required)</td>
+    </tr>
+    <tr>
+        <td>Inverter earth fault monitoring</td>
+        <td>Enable inverter internal insulation monitoring on DC side</td>
+    </tr>
+    <tr>
+        <td>PV frame earthing</td>
+        <td>All PV frames and mounting rails bonded to main earth bar via 6mm&sup2; (min) green/yellow conductor</td>
+    </tr>
+</table>
+
+<!-- 6. SURGE PROTECTION -->
+<h2>6. Surge Protection</h2>
+
+<table>
+    <tr><th>Location</th><th>Type</th><th>Specification</th></tr>
+    <tr><td>PV DC side (each inverter input)</td><td>Type 1+2 (combined)</td><td>Vdc &ge; 1.2 &times; Voc(STC); Isc &ge; 12.5 kA</td></tr>
+    <tr><td>Inverter AC output</td><td>Type 2 (external)</td><td>Uc &ge; 275V (L-N), In &ge; 20 kA. Note: inverter has built-in AC Type III only — external Type 2 SPD still required</td></tr>
+    <tr><td>Main distribution board</td><td>Type 1+2</td><td>Per existing installation (verify presence)</td></tr>
+</table>
+
+<!-- 7. CABLE SIZING -->
+<h2>7. Cable Sizing Reference</h2>
+
+<div class="section-box info-box">
+    <h3>Design Standards</h3>
+    <p>All cabling per <strong>IEC 60364 / BS 7671</strong>. Voltage drop from PV array to inverter &le; 2%. Voltage drop from inverter to DB &le; 1%. All DC cables to be rated for PV use (EN 50618 / H1Z2Z2-K).</p>
+</div>
+
+<table>
+    <tr><th>Circuit</th><th>Current (approx)</th><th>Min Cable Size</th><th>Notes</th></tr>
+    <tr><td>PV string DC (to inverter)</td><td>~8.9A per string (Isc)</td><td>4mm&sup2; solar cable</td><td>H1Z2Z2-K, UV resistant</td></tr>
+    <tr><td>Inverter AC output (20kW)</td><td>~29A per phase</td><td>6mm&sup2; (verify with derating)</td><td>3P+N+E</td></tr>
+    <tr><td>Inverter AC output (15kW)</td><td>~22A per phase</td><td>4mm&sup2; (verify with derating)</td><td>3P+N+E</td></tr>
+    <tr><td>Combined AC to DB</td><td>~80A total</td><td>16mm&sup2; (verify with derating)</td><td>3P+N+E, via AC contactor</td></tr>
+    <tr><td>RS485 communication</td><td>Signal</td><td>Shielded twisted pair (0.5mm&sup2;)</td><td>Separate from power cables</td></tr>
+    <tr><td>Control signals (DI/DO)</td><td>Signal</td><td>1.0mm&sup2; multi-core control cable</td><td>For relay, ATS, E-stop</td></tr>
+</table>
+
+<!-- 8. SLD REQUIREMENTS -->
+<h2>8. Single Line Diagram — Required Elements</h2>
+
+<p>The SLD must explicitly show all of the following. This documentation supports future regularization if needed.</p>
+
+<table>
+    <tr><th class="col-num">#</th><th>Element</th><th>Detail Required</th></tr>
+    <tr><td class="col-num">1</td><td>EAC meter location</td><td>Revenue meter position clearly marked</td></tr>
+    <tr><td class="col-num">2</td><td>PCC identification</td><td>Point of Common Coupling marked with CT location</td></tr>
+    <tr><td class="col-num">3</td><td>Zero-export CT set</td><td>3-phase CTs at PCC, polarity arrows shown</td></tr>
+    <tr><td class="col-num">4</td><td>Smart Meter / CT meter</td><td>Model, RS485 connection to master inverter</td></tr>
+    <tr><td class="col-num">5</td><td>All 3 inverters</td><td>Model, kW rating, master/slave designation</td></tr>
+    <tr><td class="col-num">6</td><td>PV array configuration</td><td>String count, panels per string, Voc/Isc per string</td></tr>
+    <tr><td class="col-num">7</td><td>AC contactor (shunt-trip)</td><td>Between inverters and DB, rated current</td></tr>
+    <tr><td class="col-num">8</td><td>External protection relay</td><td>Settings table on SLD</td></tr>
+    <tr><td class="col-num">9</td><td>Reverse power relay</td><td>Trip threshold and delay</td></tr>
+    <tr><td class="col-num">10</td><td>DC isolators</td><td>Per string, per inverter</td></tr>
+    <tr><td class="col-num">11</td><td>AC isolators</td><td>Per inverter + main PV isolator at DB</td></tr>
+    <tr><td class="col-num">12</td><td>Surge protection</td><td>DC (Type 1+2) and AC (Type 2) locations</td></tr>
+    <tr><td class="col-num">13</td><td>ATS / changeover</td><td>Position, pole count, auxiliary contacts</td></tr>
+    <tr><td class="col-num">14</td><td>Diesel generator</td><td>kVA rating, connection point</td></tr>
+    <tr><td class="col-num">15</td><td>Generator interlock signals</td><td>ATS contact → inverter DI, RPP → contactor</td></tr>
+    <tr><td class="col-num">16</td><td>Emergency stop</td><td>Location(s), wiring to contactor shunt-trip</td></tr>
+    <tr><td class="col-num">17</td><td>Earthing</td><td>Main earth bar, PV frame bonding, N-E bond locations</td></tr>
+    <tr><td class="col-num">18</td><td>Note on SLD</td><td>"Export limit = 0 kW. Fail-safe trip on export or loss of measurement."</td></tr>
+</table>
+
+<!-- 9. LABELING -->
+<h2>9. Labeling Requirements</h2>
+
+<p>Per EN 60204-1 and IEC 60364. All labels to be engraved or UV-stable printed, permanently fixed.</p>
+
+<table>
+    <tr><th>Location</th><th>Label Text</th></tr>
+    <tr><td>Main distribution board</td><td><strong>WARNING — DUAL SUPPLY<br>This installation is supplied by PV generation and mains supply.<br>ISOLATE PV SYSTEM BEFORE WORK.</strong></td></tr>
+    <tr><td>Each inverter</td><td><strong>PV INVERTER — [20kW / 15kW]<br>DC DANGER — Isolate all DC sources before opening.</strong></td></tr>
+    <tr><td>AC contactor</td><td><strong>PV SYSTEM AC CONTACTOR<br>Emergency trip via E-Stop / Reverse Power Relay</strong></td></tr>
+    <tr><td>DC isolators</td><td><strong>DC ISOLATOR — PV STRING [X]<br>DANGER: DC voltage present when PV panels are exposed to light.</strong></td></tr>
+    <tr><td>AC isolators</td><td><strong>AC ISOLATOR — PV INVERTER [X]</strong></td></tr>
+    <tr><td>Emergency stop button(s)</td><td><strong>EMERGENCY STOP — PV SYSTEM</strong></td></tr>
+    <tr><td>CT location at PCC</td><td><strong>ZERO EXPORT CTs — DO NOT REMOVE OR MODIFY</strong></td></tr>
+    <tr><td>ATS / changeover</td><td><strong>AUTOMATIC TRANSFER SWITCH<br>Grid / Generator</strong></td></tr>
+</table>
+
+<!-- 10. COMMISSIONING CHECKLIST -->
+<h2>10. Commissioning Checklist</h2>
+
+<div class="section-box checklist-box">
+    <h3>Pre-Energization Checks</h3>
+    <table>
+        <tr><th class="col-num">#</th><th>Test / Check</th><th>Result</th><th>Pass</th></tr>
+        <tr><td class="col-num">1</td><td>Insulation resistance — all DC strings (&ge;1M&Omega; at 500V)</td><td>_______ M&Omega;</td><td>☐</td></tr>
+        <tr><td class="col-num">2</td><td>Insulation resistance — AC circuits (&ge;1M&Omega; at 500V)</td><td>_______ M&Omega;</td><td>☐</td></tr>
+        <tr><td class="col-num">3</td><td>Earth continuity — PV frames to main earth bar (&lt;0.5&Omega;)</td><td>_______ &Omega;</td><td>☐</td></tr>
+        <tr><td class="col-num">4</td><td>String Voc measured (all strings, both polarities correct)</td><td>_______ V</td><td>☐</td></tr>
+        <tr><td class="col-num">5</td><td>String Isc measured (all strings, within ±5% of expected)</td><td>_______ A</td><td>☐</td></tr>
+        <tr><td class="col-num">6</td><td>CT polarity verified — all 3 phases correct at PCC</td><td>Tested</td><td>☐</td></tr>
+        <tr><td class="col-num">7</td><td>RS485 communication — meter to master — master to slaves</td><td>Online</td><td>☐</td></tr>
+        <tr><td class="col-num">8</td><td>Inverter protection settings programmed per Section 2.1</td><td>Verified</td><td>☐</td></tr>
+        <tr><td class="col-num">9</td><td>External grid protection relay settings per Section 2.2</td><td>Verified</td><td>☐</td></tr>
+        <tr><td class="col-num">10</td><td>Export limit set to 0 kW on master inverter</td><td>Set</td><td>☐</td></tr>
+        <tr><td class="col-num">11</td><td>Reverse power relay commissioned — threshold &amp; delay correct</td><td>Tested</td><td>☐</td></tr>
+        <tr><td class="col-num">12</td><td>AC contactor shunt-trip tested (trips on relay, E-stop)</td><td>Trips OK</td><td>☐</td></tr>
+        <tr><td class="col-num">13</td><td>Emergency stop button tested — all inverters stop</td><td>Tested</td><td>☐</td></tr>
+        <tr><td class="col-num">14</td><td>ATS interlock tested — inverters switch mode correctly</td><td>Tested</td><td>☐</td></tr>
+        <tr><td class="col-num">15</td><td>Generator interlock tested — PV limits output on genset</td><td>Tested</td><td>☐</td></tr>
+        <tr><td class="col-num">16</td><td>Surge protection installed — DC Type 1+2, AC Type 2</td><td>Installed</td><td>☐</td></tr>
+        <tr><td class="col-num">17</td><td>All labeling installed per Section 9</td><td>Installed</td><td>☐</td></tr>
+    </table>
+</div>
+
+<div class="section-box checklist-box">
+    <h3>Energization &amp; Functional Tests</h3>
+    <table>
+        <tr><th class="col-num">#</th><th>Test</th><th>Result</th><th>Pass</th></tr>
+        <tr><td class="col-num">18</td><td>Energize inverters — all 3 connect and sync</td><td>Online</td><td>☐</td></tr>
+        <tr><td class="col-num">19</td><td><strong>Zero export test:</strong> reduce site load to minimum, verify inverters throttle to 0 kW export</td><td>Export: ___W</td><td>☐</td></tr>
+        <tr><td class="col-num">20</td><td><strong>Reverse power relay test:</strong> simulate export or inject test signal, verify contactor trips</td><td>Trips OK</td><td>☐</td></tr>
+        <tr><td class="col-num">21</td><td><strong>CT loss test:</strong> disconnect RS485 from meter, verify inverters shut down within 5s</td><td>Shuts down</td><td>☐</td></tr>
+        <tr><td class="col-num">22</td><td><strong>Anti-islanding test:</strong> open main incomer CB, verify inverters disconnect within 1s</td><td>Disconnects</td><td>☐</td></tr>
+        <tr><td class="col-num">23</td><td><strong>Generator transfer test:</strong> simulate grid loss, verify ATS transfers and inverters enter off-grid mode</td><td>Mode change OK</td><td>☐</td></tr>
+        <tr><td class="col-num">24</td><td><strong>Grid return test:</strong> restore grid, verify 180s wait then ramp at &le;10%/min</td><td>Wait: ___s</td><td>☐</td></tr>
+        <tr><td class="col-num">25</td><td>Record all inverter serial numbers and firmware versions</td><td>Recorded</td><td>☐</td></tr>
+        <tr><td class="col-num">26</td><td>Photograph all critical connections, labels, CT positions</td><td>Photos taken</td><td>☐</td></tr>
+    </table>
+</div>
+
+<!-- 11. DOCUMENTATION -->
+<h2>11. Documentation to Prepare</h2>
+
+<p>Even without a formal EAC submission, the following documents must be prepared and retained to enable future regularization:</p>
+
+<table>
+    <tr><th class="col-num">#</th><th>Document</th><th>Status</th></tr>
+    <tr><td class="col-num">1</td><td>Single Line Diagram (complete, per Section 8)</td><td>☐</td></tr>
+    <tr><td class="col-num">2</td><td>Protection settings record (inverter + external relay)</td><td>☐</td></tr>
+    <tr><td class="col-num">3</td><td>Zero export commissioning test report</td><td>☐</td></tr>
+    <tr><td class="col-num">4</td><td>CT polarity verification record</td><td>☐</td></tr>
+    <tr><td class="col-num">5</td><td>Inverter serial numbers and firmware versions</td><td>☐</td></tr>
+    <tr><td class="col-num">6</td><td>Generator interlock test record</td><td>☐</td></tr>
+    <tr><td class="col-num">7</td><td>Earthing continuity test results</td><td>☐</td></tr>
+    <tr><td class="col-num">8</td><td>Insulation resistance test results</td><td>☐</td></tr>
+    <tr><td class="col-num">9</td><td>String Voc / Isc measurements</td><td>☐</td></tr>
+    <tr><td class="col-num">10</td><td>Photographs of all critical connections</td><td>☐</td></tr>
+    <tr><td class="col-num">11</td><td>Inverter datasheets and EN 50549 / VDE certificates</td><td>☐</td></tr>
+    <tr><td class="col-num">12</td><td>As-built cable schedule</td><td>☐</td></tr>
+</table>
+
+<hr>
+
+<p style="text-align:center; font-size:11px; color:#999;">
+    Lighthief Cyprus Ltd &nbsp;|&nbsp; Ref: LCY-PV-AUR-001 / EE Guide &nbsp;|&nbsp; March 2026<br>
+    Internal technical document — not for client distribution.
+</p>
+
+<script>
+function exportPDF() {
+    const button = document.querySelector('.pdf-button');
+    button.style.display = 'none';
+    window.print();
+    setTimeout(() => { button.style.display = 'block'; }, 1000);
+}
+</script>
+
+</body>
+</html>

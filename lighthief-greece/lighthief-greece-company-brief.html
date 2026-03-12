@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthief Greece IKE — Company Brief</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #0ea5e9;
+            --accent-light: #e0f2fe;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --green: #16a34a;
+            --amber: #d97706;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+        .page { max-width: 900px; margin: 0 auto; padding: 40px; }
+
+        .header { background: linear-gradient(135deg, var(--primary) 0%, #0c4a6e 100%); color: white; padding: 48px 40px; margin: -40px -40px 40px; border-radius: 0 0 12px 12px; }
+        .header h1 { font-size: 28px; margin-bottom: 4px; }
+        .header .subtitle { font-size: 16px; opacity: 0.85; margin-bottom: 20px; }
+        .header .meta { display: flex; gap: 32px; flex-wrap: wrap; font-size: 13px; opacity: 0.8; }
+        .header .meta span { display: flex; align-items: center; gap: 6px; }
+
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge.proposed { background: var(--amber); }
+
+        h2 { font-size: 20px; color: var(--primary); margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+        h3 { font-size: 16px; color: var(--primary); margin: 24px 0 12px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 14px; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-alt); color: var(--primary); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        td:first-child { font-weight: 500; white-space: nowrap; }
+        tr:last-child td { border-bottom: none; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0 24px; }
+        .info-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+        .info-card h4 { color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .info-card .value { font-size: 24px; font-weight: 700; color: var(--accent); }
+        .info-card .label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+        .structure-box { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 16px 0; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.8; white-space: pre; overflow-x: auto; }
+
+        .section-note { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; }
+
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .service-item { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+        .service-item h4 { color: var(--primary); margin-bottom: 6px; font-size: 14px; }
+        .service-item p { font-size: 13px; color: var(--muted); }
+
+        .contact-box { background: var(--primary); color: white; border-radius: 8px; padding: 28px; margin-top: 32px; }
+        .contact-box h3 { color: white; margin: 0 0 12px; }
+        .contact-box p { opacity: 0.9; font-size: 14px; margin: 4px 0; }
+
+        .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+
+        .print-btn { position: fixed; top: 16px; right: 16px; background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; z-index: 1000; }
+        .print-btn:hover { background: #0284c7; }
+
+        @media print {
+            .print-btn { display: none; }
+            .page { padding: 20px; }
+            .header { margin: -20px -20px 30px; padding: 30px; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+            body { font-size: 12px; }
+        }
+        @media (max-width: 700px) {
+            .info-grid, .services-grid { grid-template-columns: 1fr; }
+            .header .meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / Export PDF</button>
+<div class="page">
+
+    <div class="header">
+        <h1>Lighthief Greece IKE</h1>
+        <div class="subtitle">Company Brief — For Professional Service Providers</div>
+        <div class="meta">
+            <span>Prepared: March 2026</span>
+            <span>Status: <span class="badge proposed">Pre-Incorporation</span></span>
+            <span>Sector: Energy Storage & Renewable Energy</span>
+        </div>
+    </div>
+
+    <!-- ═══════ SECTION 1: ENTITY OVERVIEW ═══════ -->
+
+    <h2>1. Entity Overview</h2>
+
+    <table>
+        <tr><td><strong>Proposed Name</strong></td><td>LIGHTHIEF GREECE IKE (or LIGHTHIEF HELLAS IKE)</td></tr>
+        <tr><td><strong>Entity Type</strong></td><td>IKE — Ιδιωτική Κεφαλαιουχική Εταιρεία (Private Capital Company)</td></tr>
+        <tr><td><strong>Share Capital</strong></td><td>€5,000 (cash contribution only)</td></tr>
+        <tr><td><strong>Sole Shareholder</strong></td><td>Lighthief Cyprus Ltd (HE 477423, Republic of Cyprus)</td></tr>
+        <tr><td><strong>Managing Director</strong></td><td>Alexander Papacosta (non-resident, unpaid — no EFKA obligation)</td></tr>
+        <tr><td><strong>Registered Seat</strong></td><td>Athens, Greece (virtual / serviced office — to be confirmed)</td></tr>
+        <tr><td><strong>Financial Year</strong></td><td>1 January – 31 December</td></tr>
+        <tr><td><strong>Sector</strong></td><td>Battery Energy Storage Systems (BESS) — EPC, O&amp;M, Consulting</td></tr>
+        <tr><td><strong>Expected First Hire</strong></td><td>TEE-licensed electrical engineer (within 6–8 weeks of incorporation)</td></tr>
+        <tr><td><strong>Year 1 Employees</strong></td><td>1–3</td></tr>
+        <tr><td><strong>Year 1 Revenue (est.)</strong></td><td>€200K – €500K (consulting, sub-EPC, equipment supply)</td></tr>
+    </table>
+
+    <!-- ═══════ SECTION 2: PARENT COMPANY ═══════ -->
+
+    <h2>2. Parent Company</h2>
+
+    <table>
+        <tr><td><strong>Legal Name</strong></td><td>LIGHTHIEF CYPRUS LTD</td></tr>
+        <tr><td><strong>Registration</strong></td><td>HE 477423 — Department of Registrar of Companies, Cyprus</td></tr>
+        <tr><td><strong>TIN</strong></td><td>60187188Q</td></tr>
+        <tr><td><strong>Director</strong></td><td>Alexander Papacosta</td></tr>
+        <tr><td><strong>Address</strong></td><td>28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</td></tr>
+        <tr><td><strong>Phone</strong></td><td>+357 77 77 00 50</td></tr>
+        <tr><td><strong>Email</strong></td><td>office@lighthief.com</td></tr>
+        <tr><td><strong>Website</strong></td><td>solarfarms.cy / lighthief.com</td></tr>
+        <tr><td><strong>Activity</strong></td><td>EPC Contractor &amp; O&amp;M Service Provider — Battery Energy Storage Systems</td></tr>
+        <tr><td><strong>Active Portfolio</strong></td><td>881 MWh / 249 MW / 51 BESS parks across 5 districts in Cyprus</td></tr>
+        <tr><td><strong>OEM Partners</strong></td><td>Linyang Energy (BESS), Kehua (PCS), Voltus (EMS/SCADA)</td></tr>
+        <tr><td><strong>Cyprus CIT</strong></td><td>15% (from 1 Jan 2026)</td></tr>
+    </table>
+
+    <!-- ═══════ SECTION 3: GROUP STRUCTURE ═══════ -->
+
+    <h2>3. Group Structure</h2>
+
+    <div class="structure-box">BRETWALT LTD  (Ultimate Holding Company)
+│  Beneficial Owner: Alexander Papacosta
+│
+├── LIGHTHIEF INTERNATIONAL LTD (Poland)
+│   EU operations, field engineering, OEM coordination
+│
+├── SOLARFUN RENEWABLE ENERGY POLAND sp. z o.o. (KRS 0001164462)
+│   Linyang European HQ — warehouse, R&amp;D, training
+│
+├── LIGHTHIEF CYPRUS LTD (HE 477423)  ← SOLE SHAREHOLDER
+│   BESS EPC &amp; O&amp;M — 881 MWh portfolio
+│
+├── 7SUN CYPRUS JV (50/50 JV with 7sun.eu)
+│   PV wholesale &amp; retail distribution
+│
+└── LIGHTHIEF GREECE IKE  ← THIS ENTITY
+    Greek BESS market entry</div>
+
+    <!-- ═══════ SECTION 4: GREEK MARKET CONTEXT ═══════ -->
+
+    <h2>4. Greek Market Opportunity</h2>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>Market Pipeline</h4>
+            <div class="value">4.7 GW</div>
+            <div class="label">Standalone BESS capacity allocated by Greek government</div>
+        </div>
+        <div class="info-card">
+            <h4>Market Value</h4>
+            <div class="value">€1.9B</div>
+            <div class="label">Estimated hardware &amp; installation (at €200/kWh for 2h systems)</div>
+        </div>
+        <div class="info-card">
+            <h4>Curtailment (2025)</h4>
+            <div class="value">1,867 GWh</div>
+            <div class="label">Renewable energy wasted — driving urgent storage demand</div>
+        </div>
+        <div class="info-card">
+            <h4>BESS Revenue</h4>
+            <div class="value">€157K/MW/yr</div>
+            <div class="label">Projected 2-hour BESS revenue in 2026 (arbitrage + ancillary)</div>
+        </div>
+    </div>
+
+    <!-- ═══════ SECTION 5: BUSINESS ACTIVITIES ═══════ -->
+
+    <h2>5. Business Activities (for Memorandum)</h2>
+
+    <table>
+        <tr><th style="width:30px">#</th><th>Activity</th></tr>
+        <tr><td>1</td><td>BESS — Design, engineering, procurement, construction (EPC), commissioning</td></tr>
+        <tr><td>2</td><td>Operation &amp; Maintenance — Preventive/corrective maintenance, SCADA, performance optimisation</td></tr>
+        <tr><td>3</td><td>Renewable Energy Consulting — Feasibility, grid connection analysis, regulatory compliance</td></tr>
+        <tr><td>4</td><td>Energy Trading &amp; Aggregation — Electricity markets, arbitrage, ancillary services</td></tr>
+        <tr><td>5</td><td>Engineering Services — MV/HV systems, protection, power electronics, control systems</td></tr>
+        <tr><td>6</td><td>Import/Export &amp; Distribution — Energy storage equipment, PV, inverters, transformers</td></tr>
+        <tr><td>7</td><td>Wholesale &amp; Retail Trade — Renewable energy equipment and components</td></tr>
+        <tr><td>8</td><td>Project Management &amp; Construction Supervision</td></tr>
+        <tr><td>9</td><td>Software &amp; IT — EMS, SCADA platforms, monitoring solutions</td></tr>
+        <tr><td>10</td><td>Representation &amp; Agency — Commercial agent for international manufacturers in Greece</td></tr>
+        <tr><td>11</td><td>Training &amp; Education — Energy storage, renewables, electrical safety</td></tr>
+        <tr><td>12</td><td>Real Estate — Leasing of commercial premises, warehouses, project sites</td></tr>
+    </table>
+
+    <!-- ═══════ SECTION 6: TAX PROFILE ═══════ -->
+
+    <h2>6. Tax &amp; Social Insurance Profile</h2>
+
+    <table>
+        <tr><th>Item</th><th>Rate / Detail</th></tr>
+        <tr><td>Corporate Income Tax (Greece)</td><td><strong>22%</strong></td></tr>
+        <tr><td>VAT (standard)</td><td><strong>24%</strong></td></tr>
+        <tr><td>Dividend WHT to Cyprus parent</td><td><strong>0%</strong> (EU Parent-Subsidiary Directive — ≥10% holding, ≥24 months)</td></tr>
+        <tr><td>Employer Social Insurance</td><td>~21.79% of gross salary</td></tr>
+        <tr><td>Employee Social Insurance</td><td>~13.37% of gross salary</td></tr>
+        <tr><td>Managing Director EFKA</td><td>Not applicable (unpaid director)</td></tr>
+        <tr><td>e-Invoicing (myDATA)</td><td>Mandatory for all B2B transactions from February 2026</td></tr>
+        <tr><td>Financial Statements</td><td>Annual filing with GEMI</td></tr>
+        <tr><td>Transfer Pricing</td><td>Required for intercompany transactions with Lighthief Cyprus</td></tr>
+    </table>
+
+    <div class="section-note">
+        <strong>Key Tax Advantage:</strong> Dividends from Lighthief Greece IKE to Lighthief Cyprus Ltd qualify for
+        <strong>0% withholding tax</strong> under the EU Parent-Subsidiary Directive, provided the Cyprus parent holds ≥10% for ≥24 months.
+        Cyprus CIT is 15% (from 1 Jan 2026). No stamp duty in either jurisdiction (abolished in Cyprus 1 Jan 2026; Greece: minimal).
+    </div>
+
+    <!-- ═══════ SECTION 7: SERVICES REQUIRED ═══════ -->
+
+    <h2>7. Professional Services Required</h2>
+
+    <p style="font-size:14px; color:var(--muted); margin-bottom:16px;">We are seeking quotations for the following services, either bundled or individually:</p>
+
+    <div class="services-grid">
+        <div class="service-item">
+            <h4>🏛️ IKE Formation</h4>
+            <p>Articles of Association drafting, GEMI registration, AFM/VAT registration, bank account coordination, POA preparation</p>
+        </div>
+        <div class="service-item">
+            <h4>📍 Registered Address</h4>
+            <p>Virtual / serviced office in Athens for legal registered seat, mail handling, forwarding. Budget: €100–250/month</p>
+        </div>
+        <div class="service-item">
+            <h4>📊 Accounting &amp; Tax</h4>
+            <p>Double-entry bookkeeping, VAT/CIT filings, financial statements, myDATA integration, monthly management reports. Budget: €400–750/month</p>
+        </div>
+        <div class="service-item">
+            <h4>💼 Payroll &amp; EFKA</h4>
+            <p>Employee registration, EFKA contributions, ERGANI declarations, monthly payroll processing. Starting with 1 employee</p>
+        </div>
+        <div class="service-item">
+            <h4>⚖️ Legal Retainer</h4>
+            <p>Corporate governance, energy sector regulatory (RAE/RAAEY), commercial contracts, employment law, intercompany agreements</p>
+        </div>
+        <div class="service-item">
+            <h4>🔄 Transfer Pricing</h4>
+            <p>Documentation for intercompany transactions with Lighthief Cyprus (management fees, equipment procurement margin, cost-plus services)</p>
+        </div>
+    </div>
+
+    <!-- ═══════ SECTION 8: EXPECTED ACTIVITY ═══════ -->
+
+    <h2>8. Expected Activity Profile</h2>
+
+    <h3>Year 1 (2026–2027)</h3>
+    <table>
+        <tr><th>Metric</th><th>Estimate</th></tr>
+        <tr><td>Employees</td><td>1–3</td></tr>
+        <tr><td>Monthly invoices issued</td><td>5–15</td></tr>
+        <tr><td>Monthly invoices received</td><td>10–25</td></tr>
+        <tr><td>Revenue</td><td>€200K – €500K</td></tr>
+        <tr><td>Intercompany transactions</td><td>Monthly management fee + project-specific equipment procurement</td></tr>
+        <tr><td>VAT regime</td><td>Standard 24%, with intra-EU acquisitions and reverse charge on imported services</td></tr>
+        <tr><td>Fixed assets</td><td>Minimal — laptops, measurement equipment, PPE. No real estate.</td></tr>
+        <tr><td>Bank transactions</td><td>~30–60/month (payroll, suppliers, intercompany)</td></tr>
+    </table>
+
+    <h3>Year 2–3 (Growth)</h3>
+    <table>
+        <tr><th>Metric</th><th>Estimate</th></tr>
+        <tr><td>Employees</td><td>3–6</td></tr>
+        <tr><td>Revenue</td><td>€1M – €5M (project-dependent)</td></tr>
+        <tr><td>Complexity</td><td>Project-based accounting, milestone billing, subcontractor management, potential audit threshold</td></tr>
+    </table>
+
+    <!-- ═══════ SECTION 9: CONTACT ═══════ -->
+
+    <div class="contact-box">
+        <h3>Contact</h3>
+        <p><strong>Alexander Papacosta</strong></p>
+        <p>Director — Lighthief Cyprus Ltd</p>
+        <p style="margin-top: 12px;">📧 office@lighthief.com</p>
+        <p>📱 +357 99 164 158</p>
+        <p>🏢 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+        <p>🌐 lighthief.com / solarfarms.cy</p>
+    </div>
+
+    <div class="footer">
+        <p><strong>CONFIDENTIAL</strong> — This document is intended solely for the recipient professional service provider.</p>
+        <p>Lighthief Cyprus Ltd — HE 477423 — March 2026</p>
+    </div>
+
+</div>
+</body>
+</html>

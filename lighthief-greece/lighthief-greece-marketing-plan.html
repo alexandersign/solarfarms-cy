@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthief Greece IKE — Marketing Plan</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #0ea5e9;
+            --accent-light: #e0f2fe;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --green: #16a34a;
+            --amber: #d97706;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0c4a6e 100%);
+            color: #fff;
+            padding: 48px 24px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        header .subtitle {
+            font-size: 1.15rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 6px;
+        }
+
+        header .date {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+            letter-spacing: 0.5px;
+        }
+
+        .print-btn:hover {
+            background: #0284c7;
+        }
+
+        h2 {
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin: 44px 0 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin: 28px 0 12px;
+        }
+
+        p {
+            margin-bottom: 14px;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        ul {
+            margin: 0 0 16px 20px;
+        }
+
+        ul li {
+            margin-bottom: 6px;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            background: var(--accent-light);
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--primary);
+            line-height: 1.7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+            font-size: 0.92rem;
+        }
+
+        th {
+            background: var(--bg-alt);
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .diff-table td:nth-child(2) {
+            background: var(--accent-light);
+            font-weight: 500;
+        }
+
+        .diff-table th:nth-child(2) {
+            background: var(--accent-light);
+        }
+
+        .segment-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 18px 0;
+        }
+
+        .segment-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .segment-card .segment-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .segment-card .message {
+            background: var(--bg);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            margin-top: 12px;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        .alt-rows tr:nth-child(even) td {
+            background: var(--bg-alt);
+        }
+
+        .info-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 18px 0;
+        }
+
+        .info-card h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .info-card ul {
+            margin-bottom: 0;
+        }
+
+        .pipeline-block {
+            background: var(--primary);
+            color: #e0f2fe;
+            padding: 24px;
+            border-radius: 8px;
+            margin: 18px 0;
+            overflow-x: auto;
+        }
+
+        .pipeline-block pre {
+            font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            white-space: pre;
+            margin: 0;
+        }
+
+        .milestones-table td:nth-child(3) {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .budget-total td {
+            background: var(--primary) !important;
+            color: #fff !important;
+            font-weight: 700;
+        }
+
+        .meta-line {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .intro-meta {
+            margin-bottom: 20px;
+        }
+
+        .intro-meta p {
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .value-prop {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-align: center;
+            padding: 16px;
+            margin: 16px 0;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            background: var(--accent-light);
+        }
+
+        .footer-meta {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .section-note {
+            font-size: 0.95rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .budget-note {
+            font-style: italic;
+            color: var(--muted);
+            margin-top: -8px;
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { font-size: 12px; }
+            header { padding: 24px; margin-bottom: 20px; }
+            header h1 { font-size: 1.5rem; }
+            .container { padding: 0 12px 20px; }
+            h2 { margin-top: 24px; }
+            table, .segment-card, .info-card, .pipeline-block {
+                page-break-inside: avoid;
+            }
+            @page { margin: 1.5cm; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">PRINT / EXPORT</button>
+
+<header>
+    <h1>Lighthief Greece IKE</h1>
+    <div class="subtitle">Marketing Plan — B2B Go-to-Market Strategy</div>
+    <div class="date">March 2026</div>
+</header>
+
+<div class="container">
+
+    <div class="intro-meta">
+        <p><strong>Market:</strong> Greece — Battery Energy Storage Systems (BESS)</p>
+        <p><strong>Annual Marketing Budget (Year 1):</strong> €5,000 – €10,000</p>
+    </div>
+
+    <!-- Section 1 -->
+    <h2>1. Market Positioning</h2>
+
+    <h3>1.1 Value Proposition</h3>
+
+    <div class="value-prop">"European BESS expertise, proven at scale — now in Greece."</div>
+
+    <p>Lighthief Greece is the only market entrant that combines:</p>
+    <ul>
+        <li><strong>881 MWh of delivered BESS portfolio</strong> (Cyprus — largest private BESS programme)</li>
+        <li><strong>Exclusive OEM access</strong> to Linyang Energy, Kehua PCS, and Voltus EMS</li>
+        <li><strong>Integrated EPC + O&amp;M</strong> capability with a 6-engineer field team</li>
+        <li><strong>European engineering standards</strong> (EN 50549-2, TÜV certified grid code compliance)</li>
+    </ul>
+
+    <h3>1.2 Target Positioning Statement</h3>
+
+    <blockquote>
+        For Greek energy developers and investors who need a technically credible BESS EPC and O&amp;M partner, Lighthief Greece offers proven execution capability backed by an 881 MWh portfolio and direct OEM relationships — unlike local competitors who lack utility-scale BESS track record.
+    </blockquote>
+
+    <h3>1.3 Competitive Differentiation</h3>
+
+    <table class="diff-table">
+        <thead>
+            <tr>
+                <th>Factor</th>
+                <th>Lighthief Greece</th>
+                <th>Local Greek Competitors</th>
+                <th>Large International EPC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>BESS track record</td>
+                <td>881 MWh (51 parks)</td>
+                <td>Limited / none</td>
+                <td>Strong but expensive</td>
+            </tr>
+            <tr>
+                <td>OEM pricing</td>
+                <td>Direct Linyang/Kehua</td>
+                <td>Third-party markup</td>
+                <td>Direct but different OEMs</td>
+            </tr>
+            <tr>
+                <td>O&amp;M capability</td>
+                <td>In-house (6 engineers)</td>
+                <td>Outsourced or none</td>
+                <td>In-house</td>
+            </tr>
+            <tr>
+                <td>Local presence</td>
+                <td>TEE-licensed engineer</td>
+                <td>Full local teams</td>
+                <td>Remote / fly-in</td>
+            </tr>
+            <tr>
+                <td>Cost structure</td>
+                <td>Lean, competitive</td>
+                <td>Variable</td>
+                <td>High overhead</td>
+            </tr>
+            <tr>
+                <td>Response time</td>
+                <td>Fast (dedicated team)</td>
+                <td>Variable</td>
+                <td>Slow (bureaucratic)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Section 2 -->
+    <h2>2. Target Segments</h2>
+
+    <div class="segment-card">
+        <div class="segment-label">Primary — 70% of effort</div>
+        <h3>Segment 1: BESS Project Developers</h3>
+        <p><strong>Who:</strong> Companies developing standalone BESS projects under the 4.7 GW programme or auction winners needing EPC partners.</p>
+        <p><strong>Key Targets:</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Profile</th>
+                    <th>Approach</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>METLEN (Mytilineos)</strong></td>
+                    <td>Market leader, 330 MW Thessaly project, 2.2 GWh pipeline</td>
+                    <td>Sub-EPC partner / equipment supply</td>
+                </tr>
+                <tr>
+                    <td><strong>PPC Group</strong></td>
+                    <td>State-backed, 860 MW planned (Western Macedonia)</td>
+                    <td>Technical consulting / sub-EPC</td>
+                </tr>
+                <tr>
+                    <td><strong>Terna Energy</strong></td>
+                    <td>Major renewables developer</td>
+                    <td>EPC / O&amp;M partnership</td>
+                </tr>
+                <tr>
+                    <td><strong>Motor Oil (MORE)</strong></td>
+                    <td>72 MW/144 MWh completed</td>
+                    <td>O&amp;M services / next projects</td>
+                </tr>
+                <tr>
+                    <td><strong>Karatzis Group</strong></td>
+                    <td>Investor, partnered with METLEN</td>
+                    <td>Technical advisory</td>
+                </tr>
+                <tr>
+                    <td><strong>Independent developers</strong></td>
+                    <td>Small-medium SPV developers</td>
+                    <td>Full EPC + O&amp;M offering</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="message">"We've built 881 MWh in Cyprus. Let us bring that expertise to your Greek BESS project — from engineering to commissioning to 15-year O&amp;M."</div>
+    </div>
+
+    <div class="segment-card">
+        <div class="segment-label">Secondary — 20% of effort</div>
+        <h3>Segment 2: Financial Investors &amp; Funds</h3>
+        <p><strong>Who:</strong> Infrastructure funds, PE firms, and family offices investing in Greek BESS projects who need technical due diligence or turnkey EPC partners.</p>
+        <div class="message">"Bankable BESS delivery. Tier 1 OEMs, TÜV-certified equipment, and a proven O&amp;M framework with 97% availability SLA."</div>
+    </div>
+
+    <div class="segment-card">
+        <div class="segment-label">Opportunistic — 10% of effort</div>
+        <h3>Segment 3: Industrial Off-takers</h3>
+        <p><strong>Who:</strong> Energy-intensive industries (aluminium, cement, steel) eligible for the 500 MW industrial coupling programme with 8-year offtake agreements.</p>
+        <div class="message">"Behind-the-meter BESS for energy cost optimisation — design, build, operate."</div>
+    </div>
+
+    <!-- Section 3 -->
+    <h2>3. Marketing Channels</h2>
+
+    <p class="section-note">This is a <strong>pure B2B, relationship-driven</strong> market. No consumer marketing. No paid social ads.</p>
+
+    <h3>3.1 Channel Strategy</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Channel</th>
+                <th>Purpose</th>
+                <th>Budget</th>
+                <th>Effort</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Direct outreach</strong></td>
+                <td>TEE engineer builds 1:1 relationships with developers</td>
+                <td>€0 (salary cost)</td>
+                <td>30% of Country Lead's time</td>
+            </tr>
+            <tr>
+                <td><strong>Industry events</strong></td>
+                <td>Visibility, networking, credibility</td>
+                <td>€3,000 – €5,000/year</td>
+                <td>3–4 events/year</td>
+            </tr>
+            <tr>
+                <td><strong>LinkedIn (organic)</strong></td>
+                <td>Thought leadership, project updates, market commentary</td>
+                <td>€0</td>
+                <td>2–3 posts/week</td>
+            </tr>
+            <tr>
+                <td><strong>Website (landing page)</strong></td>
+                <td>Digital credibility, portfolio showcase</td>
+                <td>€500 – €1,000 (one-off)</td>
+                <td>Set up once</td>
+            </tr>
+            <tr>
+                <td><strong>Technical publications</strong></td>
+                <td>Whitepapers, case studies, conference papers</td>
+                <td>€500 – €1,000</td>
+                <td>2–3 per year</td>
+            </tr>
+            <tr>
+                <td><strong>Referral network</strong></td>
+                <td>Introductions from OEMs, lawyers, accountants</td>
+                <td>€0</td>
+                <td>Ongoing</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.2 Industry Events Calendar (Greece)</h3>
+
+    <table class="alt-rows">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>When</th>
+                <th>Where</th>
+                <th>Relevance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Athens Energy Forum</strong></td>
+                <td>Annual (Q1)</td>
+                <td>Athens</td>
+                <td>Premier energy conference — decision makers attend</td>
+                <td>Attend + speak</td>
+            </tr>
+            <tr>
+                <td><strong>TIF-Helexpo Energy</strong></td>
+                <td>Sep</td>
+                <td>Thessaloniki</td>
+                <td>Major trade fair — Northern Greece focus</td>
+                <td>Exhibit / attend</td>
+            </tr>
+            <tr>
+                <td><strong>Greek Energy Forum (London)</strong></td>
+                <td>Annual</td>
+                <td>London</td>
+                <td>International investor audience</td>
+                <td>Attend</td>
+            </tr>
+            <tr>
+                <td><strong>RAAEY Public Consultations</strong></td>
+                <td>Ongoing</td>
+                <td>Athens</td>
+                <td>Regulatory input, visibility with regulators</td>
+                <td>Participate actively</td>
+            </tr>
+            <tr>
+                <td><strong>BESS Europe (Solarplaza)</strong></td>
+                <td>Various</td>
+                <td>EU cities</td>
+                <td>Pan-European BESS networking</td>
+                <td>Attend selectively</td>
+            </tr>
+            <tr>
+                <td><strong>Enlit Europe</strong></td>
+                <td>Annual</td>
+                <td>Varies</td>
+                <td>Utility-scale energy, grid, storage</td>
+                <td>Attend if budget allows</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3.3 LinkedIn Strategy</h3>
+
+    <div class="info-card">
+        <h4>Company Page: Lighthief Greece (linked to Lighthief group)</h4>
+
+        <p><strong>Content pillars:</strong></p>
+        <ul>
+            <li><strong>Market insight</strong> — Greek BESS regulatory updates, curtailment data, market analysis (establishes authority)</li>
+            <li><strong>Project showcases</strong> — Cyprus portfolio milestones, commissioning photos, O&amp;M performance data</li>
+            <li><strong>Technical thought leadership</strong> — BESS sizing, grid code, protection systems, RTE optimisation</li>
+            <li><strong>Team &amp; culture</strong> — Hire announcements, event attendance, behind-the-scenes</li>
+        </ul>
+
+        <p><strong>Posting cadence:</strong> 2–3 posts/week (Country Lead or Alex)</p>
+        <p><strong>Language:</strong> Greek for local audience, English for international reach (mix 60/40)</p>
+        <p><strong>Target connections:</strong> TEE engineers, RAE/RAAEY officials, developer BD teams, energy lawyers, infrastructure fund managers</p>
+    </div>
+
+    <h3>3.4 Website</h3>
+
+    <div class="info-card">
+        <h4>Single landing page on lighthief.com/greece (or lighthief.gr)</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Hero</strong></td>
+                    <td>"Lighthief Greece — BESS EPC &amp; O&amp;M for the Greek Energy Transition"</td>
+                </tr>
+                <tr>
+                    <td><strong>Portfolio</strong></td>
+                    <td>881 MWh / 51 parks / 249 MW — with photos and key metrics</td>
+                </tr>
+                <tr>
+                    <td><strong>Services</strong></td>
+                    <td>EPC, O&amp;M, Consulting, Equipment Supply</td>
+                </tr>
+                <tr>
+                    <td><strong>OEM Partners</strong></td>
+                    <td>Linyang, Kehua, Voltus logos and specs</td>
+                </tr>
+                <tr>
+                    <td><strong>Team</strong></td>
+                    <td>Country Lead profile + link to group team</td>
+                </tr>
+                <tr>
+                    <td><strong>Contact</strong></td>
+                    <td>Form + direct email/phone</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Domain:</strong> lighthief.gr (register) or lighthief.com/greece (subdirectory)</p>
+        <p><strong>Cost:</strong> €500–1,000 one-off build, hosting included on existing infrastructure</p>
+    </div>
+
+    <!-- Section 4 -->
+    <h2>4. Sales Process</h2>
+
+    <h3>4.1 Sales Pipeline Stages</h3>
+
+    <div class="pipeline-block">
+        <pre>PROSPECT → QUALIFY → PROPOSAL → NEGOTIATE → CONTRACT → DELIVERY
+   │          │          │           │           │          │
+   │          │          │           │           │          └─ EPC/O&amp;M execution
+   │          │          │           │           └─ Contract signing
+   │          │          │           └─ Commercial &amp; legal negotiation
+   │          │          └─ Technical + commercial proposal
+   │          └─ Project specs, budget, timeline, decision-maker
+   └─ Identified developer, project, or tender</pre>
+    </div>
+
+    <h3>4.2 Sales Cycle</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Stage</th>
+                <th>Duration</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Prospect</td>
+                <td>Ongoing</td>
+                <td>Event networking, LinkedIn, referrals, tender monitoring</td>
+            </tr>
+            <tr>
+                <td>Qualify</td>
+                <td>1–2 weeks</td>
+                <td>Initial meeting, project brief review, go/no-go</td>
+            </tr>
+            <tr>
+                <td>Proposal</td>
+                <td>2–4 weeks</td>
+                <td>Technical design, pricing, reference portfolio</td>
+            </tr>
+            <tr>
+                <td>Negotiate</td>
+                <td>2–6 weeks</td>
+                <td>Contract terms, scope, payment schedule</td>
+            </tr>
+            <tr>
+                <td>Contract</td>
+                <td>1–2 weeks</td>
+                <td>Legal review, signing</td>
+            </tr>
+            <tr>
+                <td><strong>Total cycle</strong></td>
+                <td><strong>2–4 months</strong></td>
+                <td>(shorter for consulting, longer for EPC)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>4.3 Key Sales Tools</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tool</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Cyprus portfolio deck</strong></td>
+                <td>881 MWh showcase with photos, specs, and performance data</td>
+            </tr>
+            <tr>
+                <td><strong>OEM capabilities brochure</strong></td>
+                <td>Linyang, Kehua, Voltus specs — bankability evidence</td>
+            </tr>
+            <tr>
+                <td><strong>Reference letters</strong></td>
+                <td>From Cyprus clients (ABIO, Esperia, etc.)</td>
+            </tr>
+            <tr>
+                <td><strong>Technical case studies</strong></td>
+                <td>Specific project examples (protection systems, commissioning, O&amp;M)</td>
+            </tr>
+            <tr>
+                <td><strong>Standardised proposal template</strong></td>
+                <td>Customisable per project — scope, price, timeline, warranty</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Section 5 -->
+    <h2>5. Year-1 Marketing Milestones</h2>
+
+    <table class="milestones-table">
+        <thead>
+            <tr>
+                <th>Quarter</th>
+                <th>Milestone</th>
+                <th>KPI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Q1 (Months 1–3)</strong></td>
+                <td>Company formation complete. LinkedIn page live. Country Lead hired. First 10 developer meetings.</td>
+                <td>10 qualified contacts</td>
+            </tr>
+            <tr>
+                <td><strong>Q2 (Months 4–6)</strong></td>
+                <td>Website live. First industry event attended. First tender submission.</td>
+                <td>1 tender submitted, pipeline ≥€2M</td>
+            </tr>
+            <tr>
+                <td><strong>Q3 (Months 7–9)</strong></td>
+                <td>3+ active negotiations. Portfolio deck refined. Second event.</td>
+                <td>Pipeline ≥€5M</td>
+            </tr>
+            <tr>
+                <td><strong>Q4 (Months 10–12)</strong></td>
+                <td>First contract signed (target). Case study published.</td>
+                <td>1 contract, ≥€500K value</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Section 6 -->
+    <h2>6. Budget Summary</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Annual Cost (EUR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Industry events (registration, travel, accommodation)</td>
+                <td>€3,000 – €5,000</td>
+            </tr>
+            <tr>
+                <td>Website (one-off build + domain)</td>
+                <td>€500 – €1,000</td>
+            </tr>
+            <tr>
+                <td>Printed materials (cards, brochures)</td>
+                <td>€300 – €500</td>
+            </tr>
+            <tr>
+                <td>Content creation (case studies, whitepapers)</td>
+                <td>€500 – €1,000</td>
+            </tr>
+            <tr>
+                <td>LinkedIn premium (Country Lead)</td>
+                <td>€600</td>
+            </tr>
+            <tr>
+                <td>Miscellaneous (networking dinners, association memberships)</td>
+                <td>€500 – €1,500</td>
+            </tr>
+            <tr class="budget-total">
+                <td>Total Year 1</td>
+                <td>€5,400 – €9,600</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="budget-note">No paid advertising. No consumer marketing. This is a pure relationship and credibility play.</p>
+
+    <!-- Section 7 -->
+    <h2>7. Metrics &amp; Reporting</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Target (Year 1)</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Qualified developer contacts</td>
+                <td>≥20</td>
+                <td>Monthly</td>
+            </tr>
+            <tr>
+                <td>Active pipeline value</td>
+                <td>≥€5M by Month 9</td>
+                <td>Monthly</td>
+            </tr>
+            <tr>
+                <td>Tender submissions</td>
+                <td>≥4</td>
+                <td>Quarterly</td>
+            </tr>
+            <tr>
+                <td>Contracts signed</td>
+                <td>≥1</td>
+                <td>Semi-annual</td>
+            </tr>
+            <tr>
+                <td>LinkedIn followers</td>
+                <td>≥500</td>
+                <td>Quarterly</td>
+            </tr>
+            <tr>
+                <td>Website unique visitors</td>
+                <td>≥100/month</td>
+                <td>Monthly</td>
+            </tr>
+            <tr>
+                <td>Industry events attended</td>
+                <td>≥3</td>
+                <td>Annual</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Country Lead reports marketing metrics monthly to Managing Director.</p>
+
+    <div class="footer-meta">
+        <p>Document prepared: March 2026</p>
+        <p>Author: Lighthief Strategy</p>
+        <p>Status: Draft for internal review</p>
+    </div>
+
+</div>
+
+</body>
+</html>

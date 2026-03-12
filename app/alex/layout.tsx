@@ -93,11 +93,19 @@ export default function AlexLayout({ children }: { children: ReactNode }) {
                     .split('; ')
                     .find(c => c.startsWith('alex_tasks_auth='))
                     ?.split('=')[1]
-                  if (secret) {
-                    await fetch('/api/cron/daily-digest', {
+                  if (!secret) return
+                  try {
+                    const res = await fetch('/api/cron/daily-digest', {
                       headers: { Authorization: `Bearer ${secret}` },
                     })
-                    alert('Digest email sent!')
+                    const data = await res.json().catch(() => ({}))
+                    if (res.ok && data.success) {
+                      alert(`Digest email sent to ${data.to || 'you'}!`)
+                    } else {
+                      alert(data.message || data.error || `Failed (${res.status}). Check RESEND_API_KEY and spam folder.`)
+                    }
+                  } catch (e) {
+                    alert('Request failed: ' + (e instanceof Error ? e.message : 'Unknown error'))
                   }
                 }}
                 className="text-xs px-3 py-1.5 bg-sky-50 text-sky-700 rounded-lg hover:bg-sky-100 transition-colors"

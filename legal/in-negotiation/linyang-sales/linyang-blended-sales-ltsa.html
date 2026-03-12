@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief — Blended Sales Agreement &amp; OEM Performance Framework</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #fff; color: #111;
+    line-height: 1.7; max-width: 900px;
+    margin: 0 auto; padding: 40px 24px; font-size: 13.5px;
+  }
+  @media print {
+    body { padding: 20px; font-size: 12px; }
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+    h2 { page-break-after: avoid; }
+    table, .highlight-box { break-inside: avoid; }
+  }
+
+  /* Header */
+  .doc-header { text-align: center; border-bottom: 3px double #1e3a5f; padding-bottom: 24px; margin-bottom: 32px; }
+  .doc-header h1 { font-size: 22px; margin: 0 0 4px; color: #1e3a5f; }
+  .doc-header .subtitle { font-size: 13px; color: #444; margin: 0 0 16px; font-style: italic; }
+  .doc-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; max-width: 420px; margin: 0 auto; font-size: 12px; color: #555; }
+  .doc-meta dt { font-weight: 700; text-align: right; }
+  .doc-meta dd { margin: 0; text-align: left; }
+
+  /* Part headers */
+  .part-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 100%);
+    color: #fff; padding: 18px 24px; margin: 48px -24px 28px;
+    border-radius: 0; font-size: 18px; font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .part-header .part-sub { font-size: 12px; font-weight: 400; opacity: 0.85; margin-top: 4px; display: block; font-style: italic; }
+
+  /* Section headers */
+  h2 { font-size: 15px; margin-top: 32px; margin-bottom: 12px; border-bottom: 2px solid #1e3a5f; padding-bottom: 6px; text-transform: uppercase; color: #1e3a5f; }
+  h3 { font-size: 13.5px; margin-top: 20px; margin-bottom: 8px; font-weight: 700; color: #0f172a; }
+
+  /* Paragraphs & lists */
+  p { margin: 8px 0; text-align: justify; }
+  .clause { margin: 6px 0; }
+  .clause-num { font-weight: 700; }
+  .indent { margin-left: 24px; }
+  .indent2 { margin-left: 48px; }
+  ul, ol { margin: 6px 0 6px 24px; }
+  li { margin: 3px 0; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: 12.5px; }
+  th { background: #f0f4f8; padding: 8px 10px; text-align: left; font-weight: 700; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.3px; color: #1e3a5f; border-bottom: 2px solid #1e3a5f; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: 2px solid #1e3a5f; }
+
+  /* Highlight boxes */
+  .highlight-box {
+    background: #f8fafc; border: 1px solid #cbd5e1; border-left: 4px solid #1e40af;
+    border-radius: 6px; padding: 14px 18px; margin: 16px 0; font-size: 12.5px;
+  }
+  .highlight-box.warn { border-left-color: #d97706; background: #fffbeb; }
+  .highlight-box.success { border-left-color: #16a34a; background: #f0fdf4; }
+  .highlight-box strong { color: #0f172a; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+  .tag-binding { background: #dbeafe; color: #1e40af; }
+  .tag-confirmed { background: #dcfce7; color: #166534; }
+  .tag-info { background: #f1f5f9; color: #475569; }
+
+  /* Signature block */
+  .sig-block { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+  .sig-party { border-top: 2px solid #1e3a5f; padding-top: 16px; }
+  .sig-party h4 { font-size: 12px; color: #1e3a5f; margin: 0 0 16px; }
+  .sig-line { border-bottom: 1px solid #999; height: 28px; margin: 8px 0; }
+  .sig-label { font-size: 11px; color: #666; }
+
+  /* Footer */
+  .doc-footer { text-align: center; margin-top: 48px; padding-top: 16px; border-top: 1px solid #ccc; font-size: 11px; color: #888; }
+
+  /* Bold emphasis for binding terms */
+  .binding { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     DOCUMENT HEADER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="doc-header">
+  <h1>BLENDED SALES AGREEMENT<br>AND OEM PERFORMANCE FRAMEWORK</h1>
+  <p class="subtitle">Battery Energy Storage Systems — Equipment Supply, Performance Commitments, and Back-to-Back Service Framework</p>
+  <dl class="doc-meta">
+    <dt>Reference:</dt><dd>LCY-BLENDED-001</dd>
+    <dt>Version:</dt><dd>1.0</dd>
+    <dt>Date:</dt><dd>February 22, 2026</dd>
+    <dt>Status:</dt><dd>For Review &amp; Execution</dd>
+  </dl>
+</div>
+
+<div class="highlight-box">
+  <strong>Document Structure:</strong> This Agreement comprises three Parts and two Exhibits:
+  <strong>Part A</strong> — Sales Agreement (equipment supply, warranty, payment, delivery);
+  <strong>Part B</strong> — OEM Performance Commitments (binding performance guarantees);
+  <strong>Part C</strong> — Back-to-Back Service Framework (downstream obligation chain);
+  <strong>Exhibit 1</strong> — Client LTSA Summary; <strong>Exhibit 2</strong> — Bankability Brief Extract.
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PART A — SALES AGREEMENT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="part-header">PART A — SALES AGREEMENT<span class="part-sub">Equipment Supply, Warranty, Payment, and Delivery</span></div>
+
+<h2>1. Parties</h2>
+<p>This Blended Sales Agreement and OEM Performance Framework ("<strong>Agreement</strong>") is made as of February 22nd, 2026 ("<strong>Effective Date</strong>")</p>
+<p><strong>BETWEEN:</strong></p>
+<p><strong>Jiangsu Linyang Energy Storage Technology Co., Ltd</strong>, a company incorporated under the laws of the People's Republic of China, with its registered office at F17, Building D1, No. 2 Mudanjiang Street, Jianye District, Nanjing, Jiangsu 210004, China ("<strong>Seller</strong>");</p>
+<p><strong>and</strong></p>
+<p><strong>Lighthief Cyprus Ltd</strong>, a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company Registration Number HE 477423, TIN 60187188Q ("<strong>Buyer</strong>").</p>
+
+<h2>2. Background and Contractual Context</h2>
+<p class="clause"><span class="clause-num">2.1</span> The Seller is engaged in the manufacture and supply of battery energy storage systems and related equipment.</p>
+<p class="clause"><span class="clause-num">2.2</span> The Buyer is engaged in the development, integration, and delivery of photovoltaic, hybrid, and battery energy storage projects in the Republic of Cyprus.</p>
+<p class="clause"><span class="clause-num">2.3</span> <strong>Subordination to Distribution Agreement:</strong> This Agreement is entered into pursuant to the Distribution Agreement between the Parties dated February 22, 2026 ("<strong>Distribution Agreement</strong>").</p>
+<p class="clause"><span class="clause-num">2.4</span> This Agreement governs: (a) the sale and supply of Products; (b) the Seller's <strong>binding performance commitments</strong> in respect of the Products (Part B); and (c) the <strong>back-to-back framework</strong> governing the Seller's obligations where the Buyer has entered into downstream agreements with end customers (Part C).</p>
+
+<h2>3. Definitions</h2>
+<p>Unless otherwise defined herein, capitalised terms shall have the meanings given to them in the Distribution Agreement. Key additional definitions:</p>
+<table>
+  <tr><th>Term</th><th>Definition</th></tr>
+  <tr><td><strong>Products</strong></td><td>Battery energy storage systems, containers, PCS, PCS skids, control panels, and related components supplied by the Seller</td></tr>
+  <tr><td><strong>Quotation</strong></td><td>Written commercial/technical quotation issued by the Seller for a specific project</td></tr>
+  <tr><td><strong>LTSA</strong></td><td>Long-Term Service Agreement between Buyer and end customer</td></tr>
+  <tr><td><strong>EPC Agreement</strong></td><td>Engineering, Procurement and Construction agreement between Buyer and end customer</td></tr>
+  <tr><td><strong>SOH</strong></td><td>State of Health — percentage of original rated battery capacity</td></tr>
+  <tr><td><strong>RTE</strong></td><td>Round-Trip Efficiency — AC-to-AC including all cabling losses</td></tr>
+  <tr><td><strong>PAC</strong></td><td>Provisional Acceptance Certificate</td></tr>
+  <tr><td><strong>Downstream Commitments</strong></td><td>Buyer's obligations to end customers under EPC Agreements and LTSAs (Exhibit 1)</td></tr>
+</table>
+
+<h2>4. Scope of Supply</h2>
+<p class="clause"><span class="clause-num">4.1</span> The Seller shall supply Products strictly in accordance with accepted Quotations.</p>
+<p class="clause"><span class="clause-num">4.2–4.4</span> Each accepted Quotation forms part of this Agreement. Supply basis: <strong>CIF Limassol, Cyprus (Incoterms® 2020)</strong>.</p>
+<p class="clause"><span class="clause-num">4.5</span> No minimum purchase volume or exclusivity-based purchasing obligation.</p>
+
+<h2>5. Energy Management System (EMS)</h2>
+<p>EMS is not supplied by the Seller unless expressly stated. The Seller's responsibility is limited to interface compatibility between the Products and the EMS.</p>
+
+<h2>6. Pricing</h2>
+<p>Quotation-based pricing. Prices valid for 60 days. Adjustments only for raw material changes &gt;10% or EUR/CNY fluctuation &gt;8%, with 60 days' notice.</p>
+
+<h2>7. Payment Terms</h2>
+<table>
+  <tr><th>Milestone</th><th>%</th><th>Trigger</th></tr>
+  <tr><td>Advance Payment</td><td class="num">25%</td><td>Contract effectiveness / PO signing (T/T within 7 days)</td></tr>
+  <tr><td>Ex-Works</td><td class="num">50%</td><td>Products ready for shipment from factory</td></tr>
+  <tr><td>DAP Arrival</td><td class="num">20%</td><td>Products arrive on site</td></tr>
+  <tr><td>Performance Holdback</td><td class="num">5%</td><td>SAT completion and Provisional Acceptance</td></tr>
+</table>
+<p><strong>End-Customer Dependency (§7.2):</strong> Delays in end-customer payment automatically extend Buyer's deadline without penalty.</p>
+
+<h2>8. Taxes, Duties, and VAT</h2>
+<p>All prices exclusive of VAT. Buyer responsible for import duties and customs in Cyprus.</p>
+
+<h2>9. Delivery and Installation</h2>
+<p class="clause"><span class="clause-num">9.1–9.3</span> CIF Limassol delivery. Inland transport is Buyer's responsibility.</p>
+
+<h3>9.4 Installation Responsibilities</h3>
+<table>
+  <tr><th>Seller (Linyang) Scope</th><th>Buyer (Lighthief) Scope</th></tr>
+  <tr><td>Equipment installation &amp; assembly by factory-trained technicians</td><td>Civil works, foundations, site preparation</td></tr>
+  <tr><td>OEM commissioning &amp; system configuration</td><td>AC/DC cabling to grid connection point</td></tr>
+  <tr><td>Battery module, PCS, BMS, cooling connections</td><td>Grounding and earthing systems</td></tr>
+  <tr><td>OEM testing protocols &amp; verification</td><td>Auxiliary electrical systems</td></tr>
+  <tr><td>Installation workmanship warranty (5 years from PAC)</td><td>Site access, security, authority coordination</td></tr>
+</table>
+<p><strong>No Cross-Liability:</strong> Seller not liable for Buyer's EPC works; Buyer not liable for Seller's installation.</p>
+
+<h2>10. Commissioning and Provisional Acceptance</h2>
+<p>PAC triggers: (a) completion confirmation; (b) 5% performance holdback payment; (c) base warranty commencement.</p>
+
+<h2>11. Risk Transfer, Title, and Final Acceptance</h2>
+<p class="clause"><span class="clause-num">11.1–11.3</span> Risk transfers at CIF Limassol. Title transfers upon full payment. Final acceptance upon punch list resolution.</p>
+<div class="highlight-box success">
+  <strong>11.4 Performance Commitments Cross-Reference:</strong> The Seller's binding performance commitments — including equipment performance guarantees, SOH guarantees, extended warranty obligations, and financial instrument requirements — are set out in <strong>Part B</strong> of this Agreement. The Seller's back-to-back obligations are set out in <strong>Part C</strong>.
+</div>
+
+<h2>12. Warranty</h2>
+<p class="clause"><span class="clause-num">12.1</span> <strong>Base Warranty:</strong> 5 years, free from defects in materials and workmanship.</p>
+<p class="clause"><span class="clause-num">12.2</span> <strong>Commencement:</strong> Earlier of PAC or 6 months after shipment.</p>
+<p class="clause"><span class="clause-num">12.3</span> <strong>Coverage:</strong> PCS, Battery Container, HVAC/Fire Suppression, Transformer/MVS, Enclosure, UPS — all 5 years.</p>
+<p class="clause"><span class="clause-num">12.4</span> <strong>Coastal Restrictions (Cyprus):</strong> C5-rated enclosures standard. &gt;500m from sea: full warranty. &lt;500m: reduced to 2 years for PCS/transformer/switchgear.</p>
+<p class="clause"><span class="clause-num">12.5–12.10</span> Warranty scope (repair/replace), exclusions, termination triggers, claim procedure (48hr response), payment requirement, EMS exclusion — per standard terms.</p>
+<p class="clause"><span class="clause-num">12.11</span> <strong>Liability Cap:</strong> 10% of defective product value, <em>except</em> Manufacturing Defect Carve-Out covers full repair/replacement cost including CIF shipping.</p>
+<div class="highlight-box success">
+  <strong>12.13 Extended Warranty and Performance Enhancements:</strong> The Seller's binding obligations in respect of extended warranty, SOH guarantees, performance guarantees, and related pricing commitments are set out in <strong>Part B</strong>. Part B obligations are contractual commitments of the Seller and are <strong>not contingent upon the execution of any downstream agreement</strong> between the Buyer and an end customer.
+</div>
+
+<h2>13–21. General Provisions</h2>
+<p><strong>§13 Limitation of Liability:</strong> Total aggregate liability cap: 100% of total price paid (including Parts A, B, C). Carve-outs for indemnities and Part C obligations.</p>
+<p><strong>§14 Indemnities:</strong> Seller indemnifies Buyer against third-party claims from manufacturing defects. Buyer indemnifies Seller for EPC works, site conditions, operational breaches.</p>
+<p><strong>§15 Force Majeure:</strong> Standard provisions. Buyer cure right after 60 days (25% deposit refund). No abuse clause.</p>
+<p><strong>§16 Insurance:</strong> Seller: €5M product liability (AXA) + €2M professional indemnity. Buyer: €1M commercial liability + €1M professional indemnity.</p>
+<p><strong>§17 Governing Law:</strong> Singapore law. SIAC arbitration (3 arbitrators). Cyprus carve-out for client protection/anti-circumvention. Cyprus interim relief available.</p>
+<p><strong>§18 Miscellaneous:</strong> Entire agreement (incl. Parts A, B, C and all Exhibits). Written amendments only. No assignment without consent.</p>
+<p><strong>§19 Pre-Shipment Inspection:</strong> Buyer inspection rights at factory. FAT witnessing. 10 Business Days' notice.</p>
+<p><strong>§20 Compliance:</strong> Anti-bribery, trade sanctions, product standards (IEC, CE, Cyprus grid codes).</p>
+<p><strong>§21 Data Protection:</strong> GDPR compliance. 72-hour breach notification.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PART B — OEM PERFORMANCE COMMITMENTS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="part-header page-break">PART B — OEM PERFORMANCE COMMITMENTS<span class="part-sub">Binding Performance Guarantees Derived from Seller's Confirmed Specifications and RFI V3 Responses</span></div>
+
+<div class="highlight-box">
+  <span class="tag tag-binding">BINDING</span> &nbsp;
+  <span class="tag tag-confirmed">RFI V3 CONFIRMED</span>
+  <br><br>
+  The following performance commitments are <strong>binding obligations</strong> of the Seller. By executing this Agreement, the Seller confirms and warrants that all values, pricing, and commitments in this Part B are accurate and binding.
+</div>
+
+<h2>B1. Equipment Performance Guarantees</h2>
+<table>
+  <tr><th>Parameter</th><th>Guaranteed Value</th><th>Conditions</th></tr>
+  <tr><td><strong>System RTE (AC-AC)</strong></td><td class="num"><strong>≥ 86.32%</strong></td><td>Full system incl. all cabling losses</td></tr>
+  <tr><td><strong>PCS Efficiency</strong></td><td class="num"><strong>≥ 98%</strong></td><td>At rated power output</td></tr>
+  <tr><td><strong>Cycle Life</strong></td><td class="num"><strong>7,000 cycles</strong></td><td>90% DOD, 70% EOL, 25±2°C</td></tr>
+</table>
+<p><strong>Remedy (§B1.5):</strong> Investigation within 30 days → corrective measures within 60 days → if not remedied in 90 days, Buyer may exercise Part C remedies.</p>
+
+<h2>B2. State of Health (SOH) Guarantee</h2>
+<table>
+  <tr><th>Year</th><th>Guaranteed Minimum SOH</th><th>Basis</th></tr>
+  <tr><td><strong>Year 5</strong></td><td class="num"><strong>≥ 85%</strong></td><td>1 cycle/day, reference conditions</td></tr>
+  <tr><td><strong>Year 10</strong></td><td class="num"><strong>≥ 79.58%</strong></td><td>1 cycle/day, reference conditions</td></tr>
+  <tr><td><strong>Year 15</strong></td><td class="num"><strong>≥ 70%</strong></td><td>1 cycle/day, reference conditions (maximum period)</td></tr>
+</table>
+
+<h3>SOH Remedy (§B2.4)</h3>
+<table>
+  <tr><th>Obligation</th><th>Responsibility</th></tr>
+  <tr><td>Replacement cells/modules supply</td><td><strong>Seller</strong> — at Seller's cost</td></tr>
+  <tr><td>Shipping (CIF Limassol)</td><td><strong>Seller</strong> — at Seller's cost</td></tr>
+  <tr><td>Delivery timeline</td><td><strong>90 days</strong> from verified shortfall</td></tr>
+  <tr><td>On-site labour, installation, commissioning</td><td><strong>Buyer</strong> — included in LTSA Tier C fees</td></tr>
+</table>
+
+<h2>B3. Extended Warranty Pricing Commitment</h2>
+<table>
+  <tr><th>Component</th><th>Period</th><th>Rate (EUR/MWh/Year)</th></tr>
+  <tr><td>BESS Performance &amp; Product Warranty</td><td>Years 6–10</td><td class="num">€913.92</td></tr>
+  <tr><td>BESS Performance &amp; Product Warranty</td><td>Years 11–15</td><td class="num">€1,157.62</td></tr>
+  <tr><td>PCS + MVS Product Warranty</td><td>Years 6–10</td><td class="num">€747.76</td></tr>
+  <tr><td>PCS + MVS Product Warranty</td><td>Years 11–15</td><td class="num">€926.10</td></tr>
+  <tr style="font-weight:700;border-top:2px solid #1e3a5f"><td>Combined (BESS + PCS/MVS)</td><td>Years 6–10</td><td class="num"><strong>€1,661.68</strong></td></tr>
+  <tr style="font-weight:700"><td>Combined (BESS + PCS/MVS)</td><td>Years 11–15</td><td class="num"><strong>€2,083.72</strong></td></tr>
+</table>
+<p><strong>Exercise:</strong> Written notice ≥6 months before base warranty expiry. Seller unconditionally obligated to honour. Payment annually in advance. Maximum period: 15 years from PAC.</p>
+<p><strong>Alternative:</strong> Upfront spares package at €1,000–1,250/MWh (separate agreement).</p>
+
+<h2>B4. LTSA Guarantee Requirements &amp; OEM Support</h2>
+
+<p class="clause"><span class="clause-num">B4.1</span> <strong>LTSA Requirement for Guarantees:</strong> The Seller requires that each end customer has a valid LTSA in place with either the Seller or an authorised local partner (the Buyer qualifies). The Buyer enters into LTSAs with end customers and performs all maintenance obligations thereunder.</p>
+
+<p class="clause"><span class="clause-num">B4.2</span> <strong>Maintenance Responsibility:</strong></p>
+<ul>
+  <li><strong>Buyer (Maintenance Provider):</strong> Performs all preventive &amp; corrective maintenance, monitoring, and on-site service using the Buyer's own service team and at the Buyer's own cost. Manages and pays for EMS operations and licensing via contracted provider (currently Voltus Energy). All maintenance and operational costs are funded from LTSA service fees paid by Park Owners to the Buyer.</li>
+  <li><strong>Seller (OEM Guarantee &amp; Support):</strong> Backs SOH guarantees (§B2), supplies warranty parts (§12 &amp; §B2.4), provides remote diagnostics, specialist technicians, and firmware updates.</li>
+  <li><strong>No hands-on maintenance by Seller:</strong> Routine maintenance is performed by the Buyer's qualified personnel per the OEM manual.</li>
+</ul>
+
+<p class="clause"><span class="clause-num">B4.3</span> <strong>No Separate Annual OEM Support Fee:</strong></p>
+<div class="highlight-box success">
+  <p>The Seller's OEM guarantee support obligations under this Agreement — including SOH guarantee backing (Section B2), warranty replacement parts supply (Sections 12 and B2.4), remote diagnostic support, specialist OEM technician availability, and firmware updates and patches — are <strong>included as part of the Seller's binding commitments under Part B</strong> and are covered by the Product purchase price. <strong>No separate annual OEM support fee is payable by the Buyer to the Seller.</strong></p>
+  <p>The Buyer bears its own costs for: (a) the service team performing preventive and corrective maintenance under downstream LTSAs; (b) EMS operations and licensing (currently contracted via Voltus Energy); and (c) all on-site labour, logistics, and spare parts installation. These costs are funded from the LTSA service fees paid by Park Owners to the Buyer and are <strong>retained entirely by the Buyer</strong>.</p>
+  <p>The Seller's only annual payment entitlement from the Buyer, beyond the Product purchase price, is the <strong>Extended Warranty fee under Section B3</strong> (if and when exercised by the Buyer).</p>
+</div>
+
+<p class="clause"><span class="clause-num">B4.4</span> <strong>Availability Responsibility Split:</strong></p>
+<table>
+  <tr><th>Responsibility</th><th>Party</th><th>Covers</th></tr>
+  <tr><td>Maintenance Availability</td><td><strong>Buyer (Lighthief)</strong></td><td>Failure to perform preventive maintenance, delayed response to faults, EMS/third-party failures, EPC works, non-warranty spare parts logistics</td></tr>
+  <tr><td>Product Performance Availability</td><td><strong>Seller (Linyang)</strong></td><td>Manufacturing defects, design defects, OEM firmware/software failures, equipment underperformance within warranty scope, delayed warranty parts supply</td></tr>
+</table>
+
+<h2>B5. Financial Instruments</h2>
+<table>
+  <tr><th>Instrument</th><th>Amount</th><th>Form</th><th>Validity</th></tr>
+  <tr><td><strong>Performance Bond</strong></td><td class="num">5% of contract price</td><td>Corporate-backed bank guarantee (international bank)</td><td>1 month before delivery → PAC + 30 days</td></tr>
+  <tr><td><strong>Advance Payment Guarantee</strong></td><td class="num">100% of advance</td><td>On-demand bank guarantee (international bank)</td><td>Until delivery + 30 days, or pro-rata</td></tr>
+  <tr><td><strong>Product Liability Insurance</strong></td><td class="num">€5,000,000/occurrence</td><td>AXA policy</td><td>Valid for Cyprus sales</td></tr>
+</table>
+
+<h2>B6. Delay Liquidated Damages</h2>
+<table>
+  <tr><th>Delay Period</th><th>Rate</th><th>Basis</th></tr>
+  <tr><td>Days 1–30</td><td class="num">0.10% per day</td><td>Value of delayed Products</td></tr>
+  <tr><td>Days 31–60</td><td class="num">0.15% per day</td><td>Value of delayed Products</td></tr>
+  <tr><td>Day 61+</td><td class="num">0.20% per day</td><td>Value of delayed Products</td></tr>
+  <tr style="font-weight:700;border-top:2px solid #1e3a5f"><td><strong>Maximum Cap</strong></td><td colspan="2"><strong>10% of the value of the delayed Products</strong></td></tr>
+</table>
+<p><strong>Critical Path (Full Order):</strong> LD basis = full Quotation value. <strong>Non-Critical Path (Partial):</strong> LD basis = value of delayed components only.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PART C — BACK-TO-BACK SERVICE FRAMEWORK
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="part-header page-break">PART C — BACK-TO-BACK SERVICE FRAMEWORK<span class="part-sub">Governing the Seller's Obligations in Respect of Buyer's Downstream Commitments</span></div>
+
+<div class="highlight-box warn">
+  <strong>Purpose:</strong> This Part ensures that where the Buyer incurs liability to end customers due to equipment issues within the Seller's responsibility, the Seller stands behind its Part B commitments through a clear indemnity and remedy chain.
+</div>
+
+<h2>C1. Transparency and Acknowledgement</h2>
+<p class="clause"><span class="clause-num">C1.1</span> The Seller <strong>acknowledges</strong> that the Buyer enters into EPC Agreements and LTSAs with end customers. Material downstream terms are in <strong>Exhibit 1</strong>.</p>
+<p class="clause"><span class="clause-num">C1.2</span> The Seller <strong>confirms</strong> it has reviewed Exhibit 1 and accepts that the Buyer's downstream commitments are derived from and consistent with the Seller's Part B commitments.</p>
+<p class="clause"><span class="clause-num">C1.3</span> No direct privity between Seller and end customers. Buyer remains the contracting party.</p>
+<p class="clause"><span class="clause-num">C1.4</span> Material changes to downstream terms beyond Exhibit 1 require Seller's written consent for Part C to apply.</p>
+
+<h2>C2. Equipment-Related LD Indemnity</h2>
+<div class="highlight-box">
+  Where Buyer pays client LDs and the root cause is within Seller's responsibility, <strong>Seller reimburses Buyer</strong>.
+</div>
+
+<h3>Indemnity Triggers (§C2.1)</h3>
+<ul>
+  <li>Manufacturing defect in the Products</li>
+  <li>Design defect in the Products</li>
+  <li>Equipment underperformance within Seller's warranty scope</li>
+  <li>Failure to meet Part B performance guarantees</li>
+  <li>Failure to deliver replacement components within Part B timeframes</li>
+</ul>
+
+<h3>Process (§C2.2)</h3>
+<ul>
+  <li>Buyer notifies Seller within 14 days of becoming aware</li>
+  <li>Joint investigation — root cause determination within 30 days</li>
+  <li>If disputed: independent third-party testing (loser pays)</li>
+</ul>
+
+<h3>Exclusions (§C2.4)</h3>
+<ul>
+  <li>Buyer's EPC works (civil, cabling, grounding)</li>
+  <li>End customer misuse or operational non-compliance</li>
+  <li>EMS or third-party system failures</li>
+  <li>Force Majeure, grid unavailability, curtailment</li>
+  <li>Buyer's failure to perform OEM-specified maintenance</li>
+  <li>Downstream terms exceeding Part B without Seller consent</li>
+</ul>
+
+<p><strong>Indemnity Cap (§C2.3):</strong> Total price paid by Buyer for that project's Products (consistent with §13.2).</p>
+
+<h2>C3. SOH Shortfall Remedy Chain</h2>
+<table>
+  <tr><th>Step</th><th>Action</th><th>Timeline</th></tr>
+  <tr><td>1. Notification</td><td>Buyer notifies Seller of SOH shortfall with test results</td><td>Within 14 days</td></tr>
+  <tr><td>2. Verification</td><td>Seller may request verification test (OEM protocol)</td><td>Within 30 days of notification</td></tr>
+  <tr><td>3. Remedy</td><td>Seller supplies replacement cells/modules CIF Limassol</td><td>Within 90 days of verified shortfall</td></tr>
+  <tr><td>4. Installation</td><td>Buyer installs on-site (included in LTSA fees)</td><td>Per Buyer's schedule</td></tr>
+</table>
+
+<div class="highlight-box warn">
+  <strong>Seller Default (§C3.4):</strong> If Seller fails to deliver within 90 days, Buyer may source alternatives. Seller reimburses up to 120% of equivalent component pricing <em>plus</em> any downstream LDs caused by the delay (subject to §C2.3 cap).
+</div>
+
+<h2>C4. Extended Warranty Exercise</h2>
+<p class="clause"><span class="clause-num">C4.1</span> Buyer exercises by written notice. Seller acknowledges within 14 days.</p>
+<p class="clause"><span class="clause-num">C4.2</span> <strong>Unconditional obligation:</strong> Seller must honour at Part B3 rates. Same scope as base warranty including Manufacturing Defect Carve-Out.</p>
+<p class="clause"><span class="clause-num">C4.3</span> <strong>Failure to honour:</strong> Buyer may source alternative coverage. Seller reimburses incremental cost above Part B3 rates (subject to §13.2 cap).</p>
+
+<h2>C5. Availability — Responsibility Allocation</h2>
+
+<p class="clause"><span class="clause-num">C5.1</span> <strong>Buyer's Availability Commitment:</strong> The Buyer offers a 97% annual availability guarantee to end customers under Tier C LTSAs. The Buyer is responsible for achieving this target through its own preventive maintenance programme, EMS management, and on-site service capabilities.</p>
+
+<p class="clause"><span class="clause-num">C5.2</span> <strong>Seller's Support Obligations:</strong></p>
+<ul>
+  <li>Maintaining spare parts supply capability</li>
+  <li>Remote OEM diagnostic support within 24 hours</li>
+  <li>Specialist OEM technicians when Buyer's team cannot resolve</li>
+  <li>Firmware updates and patches for known issues</li>
+  <li>Warranty replacement parts within 45 days of validated claim</li>
+</ul>
+
+<p class="clause"><span class="clause-num">C5.3</span> <strong>Fault Attribution:</strong></p>
+<ul>
+  <li><strong>Product defect → Seller's responsibility:</strong> Manufacturing/design defects, OEM firmware issues, equipment underperformance within warranty — excluded from Buyer's maintenance availability calculations.</li>
+  <li><strong>Maintenance failure → Buyer's responsibility:</strong> Failure to perform maintenance, delayed response, EMS failures, third-party issues.</li>
+  <li><strong>Disputes:</strong> Resolved by mutual BMS/EMS data log review; failing agreement, by independent expert under §14.</li>
+</ul>
+
+<p class="clause"><span class="clause-num">C5.4</span> <strong>Maintenance Allowance:</strong> 10 days/year (240 hours) scheduled downtime. Seller coordinates any OEM-required maintenance within this allowance.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EXHIBIT 1 — CLIENT LTSA SUMMARY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="part-header page-break" style="background:linear-gradient(135deg,#374151 0%,#4b5563 100%);">EXHIBIT 1 — CLIENT LTSA SUMMARY<span class="part-sub">Material Terms of Buyer's Downstream Long-Term Service Agreement with End Customers</span></div>
+
+<p><span class="tag tag-info">INFORMATIONAL</span> &nbsp; This Exhibit is provided for the Seller's review and transparency. It is referenced in Part C.</p>
+
+<h2>Service Tier Structure</h2>
+<table>
+  <tr><th>Tier</th><th>Scope</th><th>Key Features</th></tr>
+  <tr><td><strong>Tier A</strong></td><td>Basic Monitoring &amp; Maintenance</td><td>24/7 monitoring, bi-annual on-site visits, quarterly health checks, reporting</td></tr>
+  <tr><td><strong>Tier B</strong></td><td>Comprehensive O&amp;M (A plus)</td><td>Corrective maintenance, PCS/MVS maintenance, emergency response</td></tr>
+  <tr><td><strong>Tier C</strong></td><td>Full Service + Availability (B plus)</td><td>97% availability guarantee, local team, spare parts warehouse, availability LDs</td></tr>
+</table>
+
+<h2>Client LTSA Pricing — Paid by Park Owner to Lighthief</h2>
+<div class="highlight-box">
+  <strong>Cash Flow:</strong> LTSA maintenance fees are paid by the Park Owner (end customer) to Lighthief Cyprus Ltd and <strong>retained entirely by Lighthief</strong> to fund its own service team, EMS operations (Voltus Energy), and maintenance costs. No portion of these fees is payable to the Seller (Linyang). The only payment to the Seller is the Extended Warranty fee (Section B3), if and when exercised.
+</div>
+<table>
+  <tr><th>Service Component</th><th>Park Owner Pays Lighthief (EUR/MWh/yr)</th><th>Retained By</th></tr>
+  <tr><td>BESS Preventive + Corrective</td><td class="num">€1,157.62</td><td>Lighthief — service team &amp; operational costs</td></tr>
+  <tr><td>PCS + MVS Maintenance</td><td class="num">€1,311.97</td><td>Lighthief — service team &amp; operational costs</td></tr>
+  <tr><td>97% Availability (Tier C Add-On)</td><td class="num">€2,201.73</td><td>Lighthief — Buyer's own risk</td></tr>
+</table>
+
+<h2>Combined LTSA + Extended Warranty — Total Park Owner Rates (Paid to Lighthief)</h2>
+<table>
+  <tr><th>Period</th><th>Park Owner Pays Lighthief (EUR/MWh/yr)</th><th>Retained by Lighthief</th><th>Passed to Linyang</th></tr>
+  <tr><td>Years 1–5</td><td class="num">€2,469.59 (maintenance only; base warranty in EPC price)</td><td class="num">€2,469.59 (service team + EMS)</td><td class="num">€0</td></tr>
+  <tr><td>Years 6–10</td><td class="num">€4,131.27 (LTSA €2,469.59 + Warranty €1,661.68)</td><td class="num">€2,469.59</td><td class="num">€1,661.68 (Extended Warranty)</td></tr>
+  <tr><td>Years 11–15</td><td class="num">€4,553.31 (LTSA €2,469.59 + Warranty €2,083.72)</td><td class="num">€2,469.59</td><td class="num">€2,083.72 (Extended Warranty)</td></tr>
+</table>
+
+<h2>Availability Guarantee (Tier C) — Buyer's Responsibility</h2>
+<table>
+  <tr><th>Availability</th><th>Client Consequence</th></tr>
+  <tr><td>≥ 97%</td><td>No action</td></tr>
+  <tr><td>95% to &lt; 97%</td><td>5% reduction in annual Service Fee</td></tr>
+  <tr><td>93% to &lt; 95%</td><td>10% reduction in annual Service Fee</td></tr>
+  <tr><td>90% to &lt; 93%</td><td>15% reduction in annual Service Fee</td></tr>
+  <tr><td>Below 90%</td><td>20% reduction + Client may terminate</td></tr>
+</table>
+<p><strong>Direct LD Rate:</strong> €30 per MWh per day for capacity below 97%</p>
+
+<h2>SOH Guarantee (Downstream)</h2>
+<table>
+  <tr><th>Year</th><th>Guaranteed SOH</th><th>Source</th></tr>
+  <tr><td>5</td><td class="num">≥ 85%</td><td>Seller Part B2.1 — pass-through</td></tr>
+  <tr><td>10</td><td class="num">≥ 79.58%</td><td>Seller Part B2.1 — pass-through</td></tr>
+  <tr><td>15</td><td class="num">≥ 70%</td><td>Seller Part B2.1 — pass-through</td></tr>
+</table>
+<p><strong>SOH LD Rate:</strong> €30/Lost MWh/day (accrual from Day 91 after verified shortfall)</p>
+<p><strong>Caps:</strong> Annual: 20% of LTSA fee · Lifetime: 50% of total fees · Combined SOH+Availability: 30%/year</p>
+
+<h2>Response Times</h2>
+<table>
+  <tr><th>Alert Level</th><th>Remote Response</th><th>On-Site</th></tr>
+  <tr><td>Critical</td><td>2 hours</td><td>8 hours</td></tr>
+  <tr><td>Major</td><td>8 hours</td><td>48 hours</td></tr>
+  <tr><td>Minor</td><td>48 hours</td><td>5 business days</td></tr>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EXHIBIT 2 — BANKABILITY BRIEF EXTRACT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="part-header page-break" style="background:linear-gradient(135deg,#374151 0%,#4b5563 100%);">EXHIBIT 2 — BANKABILITY BRIEF EXTRACT<span class="part-sub">Key Extracts Provided to End Customers and Project Financiers</span></div>
+
+<p><span class="tag tag-info">INFORMATIONAL</span> &nbsp; This Exhibit shows what lenders and project financiers review during bankability assessments.</p>
+
+<h2>Guarantee Chain</h2>
+<table>
+  <tr><th>Protection</th><th>Origin</th><th>Mechanism</th><th>Client Receives</th></tr>
+  <tr><td>Equipment Warranty (5yr)</td><td>Linyang OEM</td><td>Direct OEM warranty + Lighthief pass-through</td><td>OEM Warranty Certificate</td></tr>
+  <tr><td>Extended Warranty (Yr 6–15)</td><td>Linyang OEM</td><td>Exercised by Lighthief under §B3; only LTSA payment flowing to Linyang</td><td>LTSA Schedule 2 pricing</td></tr>
+  <tr><td>Performance Bond (5%)</td><td>Linyang (Bank)</td><td>Corporate-backed bank guarantee</td><td>Bank guarantee instrument</td></tr>
+  <tr><td>Advance Payment Guarantee</td><td>Linyang (Bank)</td><td>100% of advance, bank guarantee</td><td>Bank guarantee instrument</td></tr>
+  <tr><td>Product Liability (€5M)</td><td>Linyang / AXA</td><td>AXA insurance policy</td><td>Certificate of Insurance</td></tr>
+  <tr><td>CAR/EAR Insurance</td><td>Lighthief (Marsh)</td><td>Full contract value, LEG3/06</td><td>Client as additional insured</td></tr>
+  <tr><td>SOH Guarantee</td><td>Linyang (via Part B2)</td><td>Annual testing + bankable LDs</td><td>Annual SOH Certificate</td></tr>
+  <tr><td>Availability Guarantee</td><td>Lighthief (Buyer)</td><td>97% target + LDs — maintenance: Buyer; product performance: Seller (§B4.4)</td><td>Monthly availability reports</td></tr>
+</table>
+
+<h2>LD Summary</h2>
+<table>
+  <tr><th>LD Type</th><th>Rate</th><th>Cap</th><th>Contract Ref</th></tr>
+  <tr><td>Delay LDs</td><td>0.1–0.2%/day of delayed goods</td><td>10% of delayed goods</td><td>EPC §8.4</td></tr>
+  <tr><td>Availability Direct LD</td><td>€30/day/MWh below 97%</td><td>20% of annual LTSA fee</td><td>LTSA §9.4A</td></tr>
+  <tr><td>SOH Shortfall LD</td><td>€30/day per Lost MWh</td><td>Annual: 20% · Lifetime: 50%</td><td>LTSA §10.5</td></tr>
+  <tr><td>Combined SOH + Availability</td><td>—</td><td>30% of annual LTSA fee</td><td>LTSA §10.5(c)</td></tr>
+  <tr><td>EPC Total Liability</td><td>—</td><td>100% of Contract Price</td><td>EPC §13.2</td></tr>
+</table>
+
+<h2>Insurance Programme</h2>
+<table>
+  <tr><th>Coverage</th><th>Limit</th><th>Provider</th></tr>
+  <tr><td>Product Liability</td><td class="num">€5M/occurrence</td><td>Linyang / AXA</td></tr>
+  <tr><td>CAR/EAR Insurance</td><td>Full contract value</td><td>Lighthief via Marsh</td></tr>
+  <tr><td>Public Liability</td><td class="num">€10M aggregate</td><td>Lighthief via Marsh</td></tr>
+  <tr><td>Professional Indemnity</td><td class="num">€5M aggregate</td><td>Lighthief via Marsh</td></tr>
+  <tr><td>Delay in Start-Up (DSU)</td><td>12-month indemnity</td><td>Lighthief via Marsh</td></tr>
+  <tr><td>Inland Transit</td><td class="num">€2M/shipment, €10M agg.</td><td>Lighthief via Marsh</td></tr>
+  <tr><td>Advance Payment Guarantee</td><td class="num">€15M aggregate facility</td><td>Surety Bond</td></tr>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SIGNATURES
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 style="text-align:center;border:none;margin-top:40px;">SIGNATURES</h2>
+<p style="text-align:center;color:#555;font-size:12px;margin-bottom:32px;">IN WITNESS WHEREOF, the Parties have caused this Agreement (including Parts A, B, C and all Exhibits) to be executed by their duly authorised representatives as of the Effective Date.</p>
+
+<div class="sig-block">
+  <div class="sig-party">
+    <h4>For Jiangsu Linyang Energy Storage Technology Co., Ltd</h4>
+    <p class="sig-label">Name:</p><div class="sig-line"></div>
+    <p class="sig-label">Title:</p><div class="sig-line"></div>
+    <p class="sig-label">Signature:</p><div class="sig-line"></div>
+    <p class="sig-label">Date:</p><div class="sig-line"></div>
+  </div>
+  <div class="sig-party">
+    <h4>For Lighthief Cyprus Ltd</h4>
+    <p class="sig-label">Name:</p><div class="sig-line"></div>
+    <p class="sig-label">Title:</p><div class="sig-line"></div>
+    <p class="sig-label">Signature:</p><div class="sig-line"></div>
+    <p class="sig-label">Date:</p><div class="sig-line"></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  LCY-BLENDED-001 · Version 1.0 · February 2026 · Lighthief Cyprus Ltd<br>
+  Blended Sales Agreement and OEM Performance Framework
+</div>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Cyprus — Import VAT Inquiry — Cyprus Tax Department</title>
+<style>
+  :root {
+    --bg: #ffffff; --surface: #f8f9fa; --surface2: #eef0f4; --border: #dee2e6;
+    --text: #1a1d27; --text-dim: #5a6170; --accent: #2563eb; --green: #16a34a;
+    --red: #dc2626; --amber: #d97706; --cyan: #0891b2; --purple: #7c3aed;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 60%, #312e81 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 40px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18); color: #fff;
+    font-size: .7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+    letter-spacing: .8px; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .header h1 { font-size: 1.9rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .header .subtitle { color: rgba(255,255,255,0.7); font-size: .9rem; margin-bottom: 24px; }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .kpi { background: rgba(0,0,0,.02); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 16px 18px; }
+  .kpi .label { font-size: .7rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+  .kpi .value { font-size: 1.35rem; font-weight: 700; color: #fff; }
+  .kpi .value.neg { color: #f87171; }
+  .kpi .value.warn { color: #fbbf24; }
+  .kpi .note { font-size: .7rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 40px 60px; }
+  @media (max-width: 700px) { .container { padding: 24px 16px 40px; } }
+
+  .meta-bar {
+    display: flex; flex-wrap: wrap; gap: 8px 24px;
+    font-size: .82rem; color: var(--text-dim);
+    margin-bottom: 32px; padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .meta-bar strong { color: var(--text); }
+
+  h2 {
+    font-size: 1.15rem; font-weight: 700; margin: 36px 0 12px;
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text);
+  }
+  h2 .num {
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 700;
+    width: 24px; height: 24px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  h3 { font-size: 1rem; font-weight: 600; margin: 24px 0 8px; color: var(--accent); }
+
+  p { font-size: .9rem; color: var(--text); margin-bottom: 12px; }
+  p.dim { color: var(--text-dim); }
+
+  .question-box {
+    background: linear-gradient(135deg, rgba(37,99,235,.05) 0%, rgba(124,58,237,.04) 100%);
+    border: 1px solid rgba(37,99,235,.2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 14px 0 24px;
+  }
+  .question-box p { margin-bottom: 0; font-size: .88rem; }
+  .question-box strong { color: var(--accent); }
+  .question-box ul { margin: 8px 0 0 20px; font-size: .88rem; }
+  .question-box ul li { margin-bottom: 4px; }
+
+  .alert {
+    border-radius: 10px; padding: 20px 24px; margin: 20px 0;
+    font-size: .88rem;
+  }
+  .alert.critical {
+    background: rgba(220,38,38,.06);
+    border: 1px solid rgba(220,38,38,.2);
+    border-left: 3px solid var(--red);
+  }
+  .alert.info {
+    background: rgba(37,99,235,.05);
+    border: 1px solid rgba(37,99,235,.15);
+    border-left: 3px solid var(--accent);
+  }
+  .alert.success {
+    background: rgba(22,163,74,.05);
+    border: 1px solid rgba(22,163,74,.2);
+    border-left: 3px solid var(--green);
+  }
+  .alert h4 { font-size: .9rem; margin-bottom: 6px; }
+  .alert p { margin-bottom: 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .84rem; margin: 12px 0 20px; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--surface2); color: var(--text-dim); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .3px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'Fira Code', monospace; }
+  td.neg { color: var(--red); font-weight: 600; }
+  td.pos { color: var(--green); font-weight: 600; }
+  td.warn { color: var(--amber); font-weight: 600; }
+  tr:hover td { background: rgba(0,0,0,.02); }
+
+  ul.project-list { margin: 8px 0 16px 20px; font-size: .9rem; }
+  ul.project-list li { margin-bottom: 6px; }
+  ul.project-list li strong { color: var(--text); }
+
+  .signature {
+    margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .signature .name { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
+  .signature .title { font-size: .88rem; color: var(--text-dim); }
+  .signature .details { font-size: .82rem; color: var(--text-dim); margin-top: 10px; line-height: 1.8; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: .7rem; font-weight: 600; text-transform: uppercase; }
+  .tag.critical { background: rgba(220,38,38,.12); color: var(--red); }
+  .tag.warn { background: rgba(245,158,11,.12); color: var(--amber); }
+  .tag.ok { background: rgba(22,163,74,.12); color: var(--green); }
+  .tag.info { background: rgba(37,99,235,.12); color: var(--accent); }
+
+  .print-note {
+    font-size: .75rem; color: var(--text-dim); text-align: center;
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+
+  @media print {
+    .header { padding: 24px 20px; }
+    .container { padding: 20px; }
+    .question-box { break-inside: avoid; }
+    table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="badge">Draft — Internal Review Required Before Sending</div>
+  <h1>Import VAT Inquiry</h1>
+  <p class="subtitle">Formal inquiry to the Cyprus Tax Department regarding import VAT treatment for large-scale BESS equipment</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="label">CIF Value (Portfolio)</div><div class="value neg">€86.0M</div><div class="note">51 parks, 887 MWh</div></div>
+    <div class="kpi"><div class="label">Import VAT Exposure</div><div class="value neg">€16.8M</div><div class="note">19% on CIF + duty</div></div>
+    <div class="kpi"><div class="label">Batch 1 Import VAT</div><div class="value warn">€2.58M</div><div class="note">41 containers, Aug 2026</div></div>
+    <div class="kpi"><div class="label">Postponed Accounting</div><div class="value neg">Not Available</div><div class="note">Art. 211(b) not implemented</div></div>
+    <div class="kpi"><div class="label">Recovery Timeline</div><div class="value warn">8+ months</div><div class="note">VAT Law §20 carry-forward</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- EMAIL META -->
+  <div class="meta-bar">
+    <span><strong>From:</strong> office@lighthief.com</span>
+    <span><strong>To:</strong> hq@tax.mof.gov.cy</span>
+    <span><strong>Date:</strong> 10 March 2026</span>
+    <span><strong>TIN:</strong> 60187188Q</span>
+    <span><strong>Reg:</strong> HE 477423</span>
+  </div>
+
+  <!-- SUBJECT LINE -->
+  <div class="alert info">
+    <h4>Subject</h4>
+    <p>Inquiry Regarding Import VAT Treatment for Large-Scale Renewable Energy Equipment — Lighthief Cyprus Ltd (TIN: 60187188Q)</p>
+  </div>
+
+  <!-- SALUTATION + INTRO -->
+  <p>Dear Commissioner of Taxation,</p>
+
+  <p>I am writing on behalf of <strong>Lighthief Cyprus Ltd</strong> (Registration No. HE 477423, TIN: 60187188Q), an EPC contractor specialising in Battery Energy Storage Systems (BESS) for utility-scale solar parks in Cyprus.</p>
+
+  <p>Our company is preparing to import a significant volume of energy storage equipment from China (delivered CIF Limassol) for installation across multiple licensed renewable energy projects throughout Cyprus. The imports will commence in Q3 2026 and continue into 2027.</p>
+
+  <p>The purpose of this letter is to seek clarification and guidance from your office regarding the VAT treatment of these imports, and to inquire about any available mechanisms to manage the import VAT cash flow impact.</p>
+
+  <!-- SECTION 1: PROJECT OVERVIEW -->
+  <h2><span class="num">1</span> Project Overview</h2>
+
+  <table>
+    <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Importer</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+      <tr><td><strong>TIN</strong></td><td>60187188Q</td></tr>
+      <tr><td><strong>Equipment</strong></td><td>Battery Energy Storage Systems (LFP battery containers, power conversion systems, MV transformers)</td></tr>
+      <tr><td><strong>Origin</strong></td><td>People's Republic of China</td></tr>
+      <tr><td><strong>Incoterms</strong></td><td>CIF Limassol</td></tr>
+      <tr><td><strong>First Shipment</strong></td><td>August 2026 — 41 containers, CIF value approx. EUR 13,200,000</td></tr>
+      <tr><td><strong>Total Project Value</strong></td><td>Approx. EUR 86,000,000 CIF over 18 months</td></tr>
+      <tr><td><strong>End Use</strong></td><td>Grid-connected energy storage at licensed RES parks across all five districts of Cyprus</td></tr>
+      <tr><td><strong>HS Codes</strong></td><td>8507 60 00 90 (batteries), 8504 40 (PCS), 8504 22 (transformers), 8537 20 (switchgear)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 2: IMPORT VAT CONCERN -->
+  <h2><span class="num">2</span> Import VAT Concern</h2>
+
+  <p>Under current Cyprus VAT legislation, import VAT at 19% is payable in full at the point of customs clearance. For the first shipment alone, this represents approximately <strong>EUR 2,577,000</strong> in import VAT, payable in cash before the goods can be released from the port.</p>
+
+  <p>While we understand that this import VAT is fully recoverable as input VAT, the timing mismatch between payment at customs and recovery through the VAT return cycle creates a significant working capital burden. We estimate that the full portfolio will generate approximately <strong>EUR 16,800,000</strong> in import VAT over the project lifecycle.</p>
+
+  <div class="alert critical">
+    <h4>Cash Flow Impact</h4>
+    <p>The 19% import VAT must be paid in full at customs clearance, but recovery through the VAT return cycle takes several months. Under standard quarterly filing, import VAT paid in August 2026 does not appear on a return until November 2026. Under the Section 20 carry-forward rule, the resulting credit may not be refunded until mid-2027 — creating a cash lock of up to EUR 16.8M for the full portfolio.</p>
+  </div>
+
+  <!-- SECTION 3: QUESTIONS -->
+  <h2><span class="num">3</span> Specific Questions</h2>
+
+  <p class="dim">We respectfully request your guidance on the following matters:</p>
+
+  <!-- Q3.1 -->
+  <h3>3.1 Postponed Accounting (EU VAT Directive Article 211(b))</h3>
+
+  <p>We are aware that several EU Member States (including the Netherlands, Belgium, and Ireland) have implemented postponed accounting for import VAT, whereby the import VAT is declared and simultaneously recovered on the same VAT return, resulting in a net zero cash impact.</p>
+
+  <div class="question-box">
+    <p><strong>Question:</strong> Has Cyprus implemented, or does it plan to implement, any form of postponed accounting for import VAT under Article 211(b) of EU VAT Directive 2006/112/EC? If not, is there any alternative mechanism that achieves a similar cash-neutral outcome for VAT-registered importers?</p>
+  </div>
+
+  <!-- Q3.2 -->
+  <h3>3.2 Import VAT Deferment</h3>
+
+  <p>Some EU Member States offer deferment schemes whereby import VAT is not payable at the point of customs clearance but is instead declared on the periodic VAT return.</p>
+
+  <div class="question-box">
+    <p><strong>Question:</strong> Does Cyprus operate any import VAT deferment scheme, whether general or sector-specific (e.g., for renewable energy or capital equipment)? If so, what are the eligibility criteria and application procedure?</p>
+  </div>
+
+  <!-- Q3.3 -->
+  <h3>3.3 Monthly VAT Return Filing (Repayment Trader Status)</h3>
+
+  <p>We understand that under Section 11 of VAT Law 95(I)/2000, the Commissioner may authorise a taxable person to file VAT returns on a monthly basis where the business regularly generates excess input VAT.</p>
+
+  <div class="question-box">
+    <p><strong>Question:</strong> We wish to apply for monthly VAT return filing effective from 1 July 2026. Could you please confirm the application procedure, required documentation, and expected processing time? Is there a specific form or application template?</p>
+  </div>
+
+  <!-- Q3.4 -->
+  <h3>3.4 Carry-Forward and Refund of Excess Input VAT</h3>
+
+  <p>Under Section 20 of the VAT Law, excess input VAT is carried forward and may be refunded after a specified period.</p>
+
+  <div class="question-box">
+    <p><strong>Question:</strong> Could you please confirm the current rules governing the refund of excess input VAT credits? Specifically:</p>
+    <ul>
+      <li>After how many consecutive months/quarters of credit does a taxpayer become eligible for a direct refund?</li>
+      <li>Is there an expedited refund process for large-value imports related to capital investment projects?</li>
+      <li>Is there any provision for pre-approval or accelerated processing of refund claims exceeding EUR 500,000?</li>
+    </ul>
+  </div>
+
+  <!-- Q3.5 -->
+  <h3>3.5 Sector-Specific Relief for Renewable Energy</h3>
+
+  <p>Given the Republic of Cyprus's obligations under the EU Clean Energy Package, the National Energy and Climate Plan (NECP), and the urgent need for energy storage infrastructure to support the Cyprus electricity grid, we wish to inquire whether any VAT incentives or relief measures exist — or are being considered — specifically for renewable energy and energy storage projects.</p>
+
+  <div class="question-box">
+    <p><strong>Question:</strong> Are there any existing or planned VAT exemptions, reduced rates, or administrative facilitations for the import of energy storage equipment intended for grid-connected renewable energy installations in Cyprus?</p>
+  </div>
+
+  <!-- SECTION 4: ABOUT THE PROJECT -->
+  <h2><span class="num">4</span> About the Project</h2>
+
+  <p>This project involves the deployment of <strong>887 MWh of battery energy storage capacity</strong> across <strong>51 licensed solar parks</strong> in all five districts of Cyprus. The project directly supports:</p>
+
+  <ul class="project-list">
+    <li><strong>Grid stability:</strong> Providing frequency regulation and curtailment recovery services to the Cyprus TSO/DSO</li>
+    <li><strong>RES integration:</strong> Enabling higher penetration of solar generation without grid instability</li>
+    <li><strong>Energy independence:</strong> Reducing Cyprus's reliance on imported fossil fuels for peak generation</li>
+    <li><strong>EU compliance:</strong> Contributing to Cyprus's 2030 renewable energy targets under the NECP</li>
+  </ul>
+
+  <div class="alert success">
+    <h4>Project Scale</h4>
+    <p>The total project investment (equipment, civil works, installation, and commissioning) exceeds <strong>EUR 100,000,000</strong>, representing one of the largest private-sector energy infrastructure investments in Cyprus.</p>
+  </div>
+
+  <!-- SECTION 5: REQUEST -->
+  <h2><span class="num">5</span> Request</h2>
+
+  <p>We would appreciate the opportunity to arrange a meeting at your offices to discuss the above matters in detail. We are also happy to provide any additional documentation, contracts, or financial projections that would assist your review.</p>
+
+  <p>We are available at your convenience and can be reached at the contact details below.</p>
+
+  <p style="margin-top: 28px;">Yours faithfully,</p>
+
+  <!-- SIGNATURE -->
+  <div class="signature">
+    <div class="name">Alexander Papacosta</div>
+    <div class="title">Director</div>
+    <div class="details">
+      Lighthief Cyprus Ltd<br>
+      28 October Avenue 249, Lophitis Business Center 1, Office 201<br>
+      3035 Limassol, Cyprus<br><br>
+      Tel: +357 99 164 158<br>
+      Email: office@lighthief.com<br>
+      TIN: 60187188Q &nbsp;|&nbsp; Reg. No.: HE 477423
+    </div>
+  </div>
+
+  <!-- INTERNAL NOTES (not part of the email) -->
+  <div class="print-note">
+    DRAFT — For internal review only. Remove header KPI dashboard and this footer before sending.<br>
+    Document: email-cyprus-tax-dept-import-vat-inquiry-mar2026.html &nbsp;|&nbsp; Lighthief Cyprus Ltd &nbsp;|&nbsp; 10 March 2026
+  </div>
+
+</div>
+
+</body>
+</html>

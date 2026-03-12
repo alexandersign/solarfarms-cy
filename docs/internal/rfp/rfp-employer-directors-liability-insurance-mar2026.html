@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — Employer &amp; Directors Liability Insurance — Lighthief Cyprus Ltd</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); text-transform: uppercase; letter-spacing: 1px; }
+
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--primary); }
+
+        .doc-title {
+            text-align: center; margin: 25px 0;
+            padding: 18px; background: var(--gray-50);
+            border-left: 4px solid var(--accent);
+        }
+        .doc-title h1 { font-size: 18pt; color: var(--primary); margin-bottom: 4px; }
+        .doc-title .subtitle { font-size: 11pt; color: var(--gray-600); }
+
+        h2 {
+            font-size: 14pt; color: var(--primary);
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 6px; margin: 28px 0 14px;
+        }
+
+        h3 { font-size: 12pt; color: var(--primary-light); margin: 18px 0 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 10pt; }
+        th { background: var(--primary); color: white; padding: 8px 10px; text-align: left; font-weight: 600; }
+        td { padding: 7px 10px; border-bottom: 1px solid var(--gray-200); }
+        tr:nth-child(even) { background: var(--gray-50); }
+        tr:hover { background: var(--gray-100); }
+
+        .highlight-box {
+            background: var(--gray-50); border-left: 4px solid var(--accent);
+            padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0;
+        }
+
+        .section-note {
+            background: #fffbeb; border-left: 4px solid var(--warning);
+            padding: 10px 14px; margin: 10px 0; font-size: 10pt; border-radius: 0 4px 4px 0;
+        }
+
+        .exclusion-note {
+            background: #fff5f5; border-left: 4px solid var(--danger);
+            padding: 10px 14px; margin: 10px 0; font-size: 10pt; border-radius: 0 4px 4px 0;
+        }
+
+        ul { margin: 8px 0 8px 22px; }
+        li { margin-bottom: 4px; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .footer {
+            margin-top: 40px; padding-top: 16px;
+            border-top: 2px solid var(--primary);
+            font-size: 9pt; color: var(--gray-600);
+            display: flex; justify-content: space-between;
+        }
+
+        @media print {
+            body { font-size: 10pt; }
+            .container { padding: 10px 20px; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="company-name">LIGHTHIEF</div>
+                <div class="company-tagline">Battery Energy Storage Systems — Cyprus</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <strong>REQUEST FOR PROPOSAL</strong><br>
+            Ref: LCY-RFP-EL-DO-MAR2026<br>
+            Date: 6 March 2026<br>
+            Classification: CONFIDENTIAL
+        </div>
+    </div>
+
+    <!-- Title -->
+    <div class="doc-title">
+        <h1>Employer Liability, Directors &amp; Officers, and General Corporate Insurance</h1>
+        <div class="subtitle">Lighthief Cyprus Ltd — Corporate Insurance Programme (excl. CAR / DSU / Marine Cargo)</div>
+    </div>
+
+    <!-- ================================================================ -->
+    <h2>1. Introduction &amp; Background</h2>
+
+    <p>Lighthief Cyprus Ltd invites proposals from licensed Cyprus insurance providers for its corporate insurance programme covering employer liability, directors &amp; officers liability, professional indemnity, and ancillary covers. This RFP is for <strong>general corporate insurances only</strong> and explicitly excludes project-specific covers.</p>
+
+    <div class="exclusion-note">
+        <strong>Out of Scope:</strong> Contractor's All Risks (CAR/EAR), Delay in Start-Up (DSU), Marine Cargo, and project-specific Third Party Liability are procured separately under the BESS project insurance programme and are <strong>not</strong> part of this RFP.
+    </div>
+
+    <h3>1.1 Company Profile</h3>
+
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Legal Name</td><td>LIGHTHIEF CYPRUS LTD</td></tr>
+        <tr><td style="font-weight:600;">Registration Number</td><td>HE 477423</td></tr>
+        <tr><td style="font-weight:600;">Tax Identification (TIN)</td><td>60187188Q</td></tr>
+        <tr><td style="font-weight:600;">Registered Address</td><td>28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</td></tr>
+        <tr><td style="font-weight:600;">Director</td><td>Alexander Papacosta</td></tr>
+        <tr><td style="font-weight:600;">Contact</td><td>+357 99 164 158 / office@lighthief.com</td></tr>
+        <tr><td style="font-weight:600;">Website</td><td>https://solarfarms.cy</td></tr>
+        <tr><td style="font-weight:600;">Industry</td><td>Battery Energy Storage Systems (BESS) — EPC contracting, installation, O&amp;M services</td></tr>
+        <tr><td style="font-weight:600;">Annual Turnover (projected 2026)</td><td>&euro;15–20 million (first full year of project delivery)</td></tr>
+        <tr><td style="font-weight:600;">Headcount</td><td>6 persons (5 employees + 1 subcontractor)</td></tr>
+    </table>
+
+    <h3>1.2 Nature of Operations</h3>
+    <ul>
+        <li>EPC (Engineering, Procurement, Construction) of utility-scale BESS parks across Cyprus</li>
+        <li>Sales, technical consultancy, and client advisory for BESS and PV systems</li>
+        <li>O&amp;M (Operations &amp; Maintenance) of BESS and PV installations — field service, preventive and corrective maintenance</li>
+        <li>Supervision of civil works, electrical installation, and commissioning on solar/BESS sites</li>
+        <li>Coordination with OEM (Linyang Energy) for equipment supply, extended warranty, and technical support</li>
+    </ul>
+
+    <!-- ================================================================ -->
+    <h2>2. Current Team &amp; Payroll Schedule</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Role</th>
+                <th>Type</th>
+                <th>Monthly (&euro;)</th>
+                <th>Annual (&euro;)</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Employee 1</td>
+                <td>Director</td>
+                <td>Director</td>
+                <td>&euro;2,450 gross</td>
+                <td>&euro;29,400</td>
+                <td>Working director (~&euro;2,000 net)</td>
+            </tr>
+            <tr>
+                <td>Employee 2</td>
+                <td>BESS Division Lead — ETEK Licensed Engineer</td>
+                <td>Employee</td>
+                <td>&euro;3,000 gross</td>
+                <td>&euro;36,000</td>
+                <td>Sales &amp; technical</td>
+            </tr>
+            <tr>
+                <td>Employee 3</td>
+                <td>Business Development &amp; Technical Sales</td>
+                <td>Employee</td>
+                <td>&euro;2,500 gross</td>
+                <td>&euro;30,000</td>
+                <td>Sales &amp; technical</td>
+            </tr>
+            <tr>
+                <td>Employee 4</td>
+                <td>Sales Executive &amp; Lead Intake Coordinator</td>
+                <td>Employee</td>
+                <td>&euro;1,400 gross</td>
+                <td>&euro;16,800</td>
+                <td>Office-based</td>
+            </tr>
+            <tr>
+                <td>Employee 5</td>
+                <td>Back Office &amp; Operations Coordinator</td>
+                <td>Subcontractor</td>
+                <td>&euro;2,000 net</td>
+                <td>&euro;24,000</td>
+                <td>Office-based, invoices monthly</td>
+            </tr>
+            <tr>
+                <td>Employee 6</td>
+                <td>Field Engineer — Civil Works &amp; O&amp;M</td>
+                <td>Employee</td>
+                <td>&euro;1,400 gross</td>
+                <td>&euro;16,800</td>
+                <td>Field / site work</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="highlight-box">
+        <strong>Total Annual Gross Payroll (5 employees incl. director):</strong> &euro;129,000<br>
+        <strong>Subcontractor Fees:</strong> &euro;24,000 per annum (net, invoiced)<br>
+        <strong>Total Annual Compensation (all 6 persons):</strong> ~&euro;153,000<br>
+        <strong>Expected Growth:</strong> Headcount may increase to 10–12 persons by end of 2026 as O&amp;M ramp-up begins (6 field engineers planned for LTSA programme).
+    </div>
+
+    <h3>2.1 Workplace Locations &amp; Risk Exposure</h3>
+    <table>
+        <thead>
+            <tr><th>Location</th><th>Activities</th><th>Risk Level</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Office — Limassol (Lophitis Business Center)</td>
+                <td>Administration, sales, back office, CRM, documentation</td>
+                <td>Low</td>
+            </tr>
+            <tr>
+                <td>BESS / PV sites across Cyprus (all districts)</td>
+                <td>Site supervision, civil works oversight, O&amp;M field service, inspections</td>
+                <td>Medium-High</td>
+            </tr>
+            <tr>
+                <td>Client sites</td>
+                <td>Client meetings, site surveys, technical assessments</td>
+                <td>Low</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ================================================================ -->
+    <h2>3. Insurance Covers Required</h2>
+
+    <p>We request quotations for the following lines of cover, either as a combined package or individually priced:</p>
+
+    <!-- 3.1 -->
+    <h3>3.1 Employer's Liability Insurance (EL)</h3>
+    <div class="section-note">
+        <strong>Mandatory</strong> under the Employer's Liability (Compulsory Insurance) Law, Cap. 174 of Cyprus.
+    </div>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Insured</td><td>Lighthief Cyprus Ltd as Employer</td></tr>
+        <tr><td style="font-weight:600;">Employees Covered</td><td>All 5 employees (incl. director if acting in operational capacity) + future hires</td></tr>
+        <tr><td style="font-weight:600;">Limit of Indemnity</td><td>Minimum &euro;500,000 per occurrence / &euro;1,000,000 aggregate (or insurer's standard)</td></tr>
+        <tr><td style="font-weight:600;">Occupations</td><td>Office staff, sales consultants, ETEK licensed engineer, field engineer (site work, O&amp;M)</td></tr>
+        <tr><td style="font-weight:600;">Territorial Scope</td><td>Republic of Cyprus (all districts)</td></tr>
+        <tr><td style="font-weight:600;">Key Exposure</td><td>Field engineer performing on-site BESS/PV maintenance, working at height (container tops), electrical proximity, driving between sites</td></tr>
+        <tr><td style="font-weight:600;">Annual Gross Payroll</td><td>~&euro;129,000 (5 employees incl. director, current); expected to grow to ~&euro;400,000 by end 2026</td></tr>
+    </table>
+
+    <!-- 3.2 -->
+    <h3>3.2 Directors &amp; Officers Liability Insurance (D&amp;O)</h3>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Insured Persons</td><td>All past, present, and future directors and officers of Lighthief Cyprus Ltd</td></tr>
+        <tr><td style="font-weight:600;">Current Director</td><td>Alexander Papacosta (sole director)</td></tr>
+        <tr><td style="font-weight:600;">Limit of Indemnity</td><td>&euro;500,000 (any one claim and aggregate) — please also quote &euro;1,000,000</td></tr>
+        <tr><td style="font-weight:600;">Cover Required</td><td>
+            <ul>
+                <li>Defence costs and legal expenses for claims against directors/officers</li>
+                <li>Wrongful acts: errors, omissions, misstatements, breach of duty, neglect</li>
+                <li>Employment practices liability (EPL) — wrongful dismissal, discrimination claims</li>
+                <li>Regulatory investigation defence costs (CERA, EAC, Tax Dept, GDPR)</li>
+                <li>Entity coverage for securities claims (if applicable)</li>
+            </ul>
+        </td></tr>
+        <tr><td style="font-weight:600;">Territorial Scope</td><td>Worldwide excl. USA/Canada</td></tr>
+        <tr><td style="font-weight:600;">Retroactive Date</td><td>Date of company incorporation</td></tr>
+    </table>
+
+    <!-- 3.3 -->
+    <h3>3.3 Professional Indemnity Insurance (PI)</h3>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Insured</td><td>Lighthief Cyprus Ltd</td></tr>
+        <tr><td style="font-weight:600;">Limit of Indemnity</td><td>&euro;1,000,000 per claim / &euro;2,000,000 aggregate — please also quote &euro;2,000,000 / &euro;4,000,000</td></tr>
+        <tr><td style="font-weight:600;">Professional Services</td><td>
+            <ul>
+                <li>BESS and PV system design consultancy and technical advisory</li>
+                <li>EPC project management and supervision</li>
+                <li>O&amp;M service contracts (LTSA) for BESS parks</li>
+                <li>Energy yield analysis and financial modelling for clients</li>
+                <li>Preparation of EAC/CERA regulatory submissions on behalf of clients</li>
+                <li>ETEK-certified electrical inspections and sign-off</li>
+            </ul>
+        </td></tr>
+        <tr><td style="font-weight:600;">Territorial Scope</td><td>Republic of Cyprus (primary); EU secondarily</td></tr>
+        <tr><td style="font-weight:600;">Retroactive Date</td><td>Date of company incorporation</td></tr>
+    </table>
+
+    <!-- 3.4 -->
+    <h3>3.4 Public / General Liability Insurance (GL)</h3>
+    <div class="section-note">
+        This covers <strong>non-project general operations liability</strong> (e.g. office visitors, client meetings, non-construction activities). Project-specific TPL is covered under the CAR programme and is excluded from this RFP.
+    </div>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Insured</td><td>Lighthief Cyprus Ltd</td></tr>
+        <tr><td style="font-weight:600;">Limit of Indemnity</td><td>&euro;1,000,000 per occurrence / &euro;2,000,000 aggregate</td></tr>
+        <tr><td style="font-weight:600;">Cover</td><td>Bodily injury and property damage to third parties arising from general business operations (office, travel, client visits, non-construction site activities)</td></tr>
+        <tr><td style="font-weight:600;">Products Liability</td><td>Include if available — Lighthief sells/distributes BESS equipment (Linyang brand)</td></tr>
+        <tr><td style="font-weight:600;">Territorial Scope</td><td>Republic of Cyprus</td></tr>
+    </table>
+
+    <!-- 3.5 -->
+    <h3>3.5 Commercial Motor Vehicle Insurance</h3>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Vehicles</td><td>Currently 1–2 company vehicles (please confirm fleet size at binding). Expected to grow to 3–4 vehicles by end 2026.</td></tr>
+        <tr><td style="font-weight:600;">Usage</td><td>Business use — inter-site travel, equipment transport, client meetings, field service across all Cyprus districts</td></tr>
+        <tr><td style="font-weight:600;">Cover Required</td><td>Comprehensive (own damage + TPL) or Third Party Fire &amp; Theft + TPL — please quote both options</td></tr>
+        <tr><td style="font-weight:600;">Drivers</td><td>Named employees or any employee with valid driving licence (please quote both)</td></tr>
+    </table>
+
+    <!-- 3.6 -->
+    <h3>3.6 Office Contents &amp; Business Equipment</h3>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Location</td><td>Lophitis Business Center 1, Office 201, Limassol</td></tr>
+        <tr><td style="font-weight:600;">Sum Insured</td><td>~&euro;15,000 (laptops, monitors, office furniture, networking equipment)</td></tr>
+        <tr><td style="font-weight:600;">Portable Equipment</td><td>~&euro;5,000 (field laptops, tablets, test equipment carried to sites)</td></tr>
+        <tr><td style="font-weight:600;">Perils</td><td>Fire, theft, accidental damage, water damage, electrical surge</td></tr>
+        <tr><td style="font-weight:600;">Business Interruption</td><td>Optional — please quote if available as add-on</td></tr>
+    </table>
+
+    <!-- 3.7 -->
+    <h3>3.7 Cyber Liability Insurance (Optional)</h3>
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Limit</td><td>&euro;250,000 (please also quote &euro;500,000)</td></tr>
+        <tr><td style="font-weight:600;">Cover</td><td>
+            <ul>
+                <li>Data breach response costs (GDPR notification, forensics, legal)</li>
+                <li>Business interruption from cyber event</li>
+                <li>Ransomware / extortion</li>
+                <li>Third-party claims arising from data breach</li>
+            </ul>
+        </td></tr>
+        <tr><td style="font-weight:600;">Context</td><td>Company handles client financial data, SCADA/EMS credentials, and is subject to NIS2 directive as energy infrastructure operator</td></tr>
+    </table>
+
+    <!-- ================================================================ -->
+    <h2>4. Summary of Covers Requested</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Line of Cover</th>
+                <th>Priority</th>
+                <th>Requested Limit (&euro;)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Employer's Liability</td><td><strong>Mandatory</strong></td><td>500K / 1M agg</td></tr>
+            <tr><td>2</td><td>Directors &amp; Officers Liability</td><td><strong>Essential</strong></td><td>500K or 1M</td></tr>
+            <tr><td>3</td><td>Professional Indemnity</td><td><strong>Essential</strong></td><td>1M / 2M agg</td></tr>
+            <tr><td>4</td><td>Public / General Liability</td><td><strong>Essential</strong></td><td>1M / 2M agg</td></tr>
+            <tr><td>5</td><td>Commercial Motor</td><td>Required</td><td>Per vehicle</td></tr>
+            <tr><td>6</td><td>Office Contents &amp; Equipment</td><td>Recommended</td><td>20K</td></tr>
+            <tr><td>7</td><td>Cyber Liability</td><td>Optional</td><td>250K–500K</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ================================================================ -->
+    <h2>5. Proposal Requirements</h2>
+
+    <p>Insurers are requested to provide:</p>
+
+    <div class="two-col">
+        <div>
+            <h3>5.1 For Each Line of Cover</h3>
+            <ul>
+                <li>Annual premium (net of IPT)</li>
+                <li>Insurance Premium Tax (IPT) amount</li>
+                <li>Deductible / excess per claim</li>
+                <li>Key exclusions and conditions</li>
+                <li>Policy wording (specimen or standard)</li>
+                <li>Claims procedure summary</li>
+            </ul>
+        </div>
+        <div>
+            <h3>5.2 Commercial Terms</h3>
+            <ul>
+                <li>Payment terms (annual / quarterly / monthly)</li>
+                <li>Package discount (if multiple covers bound together)</li>
+                <li>Scalability — ability to add employees mid-term at pro-rata</li>
+                <li>Run-off / tail cover options for PI and D&amp;O</li>
+                <li>Claims experience requirements</li>
+                <li>Insurer financial strength rating</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <h2>6. Timeline</h2>
+
+    <table>
+        <thead><tr><th>Milestone</th><th>Date</th></tr></thead>
+        <tbody>
+            <tr><td>RFP issued</td><td>6 March 2026</td></tr>
+            <tr><td>Deadline for clarification questions</td><td>14 March 2026</td></tr>
+            <tr><td>Proposals due</td><td>21 March 2026</td></tr>
+            <tr><td>Evaluation &amp; selection</td><td>21–28 March 2026</td></tr>
+            <tr><td>Target inception date</td><td>1 April 2026</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ================================================================ -->
+    <h2>7. Submission Details</h2>
+
+    <table>
+        <tr><td style="width:35%; font-weight:600;">Submit to</td><td>Alexander Papacosta, Director</td></tr>
+        <tr><td style="font-weight:600;">Email</td><td>office@lighthief.com</td></tr>
+        <tr><td style="font-weight:600;">Phone</td><td>+357 99 164 158</td></tr>
+        <tr><td style="font-weight:600;">Format</td><td>PDF preferred; Excel pricing schedule welcome alongside</td></tr>
+        <tr><td style="font-weight:600;">Reference</td><td>Please reference <strong>LCY-RFP-EL-DO-MAR2026</strong> in your submission</td></tr>
+    </table>
+
+    <div class="highlight-box">
+        <strong>Note to Insurers:</strong> Lighthief Cyprus Ltd is in a rapid growth phase. The company is the exclusive Cyprus distributor for Linyang Energy BESS equipment and has a confirmed order pipeline of &euro;100M+ in BESS projects for 2026–2027. We value insurers who can scale coverage as our team and operations grow, and who understand the renewable energy / battery storage sector.
+    </div>
+
+    <!-- ================================================================ -->
+    <h2>8. Appendix — Key Exclusions from This RFP</h2>
+
+    <p>The following covers are <strong>procured separately</strong> under Lighthief's BESS project insurance programme and should <strong>not</strong> be quoted in response to this RFP:</p>
+
+    <table>
+        <thead><tr><th>Cover</th><th>Status</th><th>Handled By</th></tr></thead>
+        <tbody>
+            <tr><td>Contractor's All Risks (CAR / EAR)</td><td>Separate RFP in progress</td><td>International brokers (Marsh / Holland NBI)</td></tr>
+            <tr><td>Delay in Start-Up (DSU / ALOP)</td><td>Separate RFP in progress</td><td>International brokers</td></tr>
+            <tr><td>Marine Cargo (equipment shipping)</td><td>Not required — Linyang delivers CIF Limassol</td><td>OEM (Linyang Energy)</td></tr>
+            <tr><td>Project-specific Third Party Liability</td><td>Included under CAR programme</td><td>International brokers</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div>
+            <strong>Lighthief Cyprus Ltd</strong> | HE 477423 | TIN 60187188Q<br>
+            28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol
+        </div>
+        <div style="text-align: right;">
+            Ref: LCY-RFP-EL-DO-MAR2026<br>
+            6 March 2026 | Page 1 of 1<br>
+            CONFIDENTIAL
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

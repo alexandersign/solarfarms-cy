@@ -251,7 +251,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                       <h4 className="font-semibold mb-2">17:00 – 21:00</h4>
                       <p className="text-sm text-gray-700">
                         Discharge at <strong>€183/MWh</strong> evening peak. After 86.32% round-trip
-                        efficiency, net revenue is <strong>~€161/MWh</strong>.
+                        efficiency, net revenue is <strong>~€158/MWh</strong>.
                       </p>
                     </div>
                   </div>
@@ -290,7 +290,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Effective revenue/MWh:</span>
-                      <span className="font-semibold text-green-600">~€161/MWh</span>
+                      <span className="font-semibold text-green-600">~€158/MWh</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -303,7 +303,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm"><strong>Proven technology:</strong> LFP batteries with 15+ year warranty, 6,000+ cycle life</span>
+                        <span className="text-sm"><strong>Proven technology:</strong> LFP batteries with 15-year extended warranty, 7,000-cycle life at 70% SOH EOL</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -501,8 +501,9 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                   Cyprus Tax Advantage
                 </p>
                 <p className="text-gray-700">
-                  Cyprus offers <strong>8% corporate tax</strong> for IP companies — one of the lowest rates in the EU.
-                  Computational workloads generating intellectual property (AI model training, data processing) can
+                  Cyprus offers an <strong>IP box regime with ~3% effective tax</strong> on qualifying intellectual property income
+                  (80% deduction at 15% CIT) &mdash; one of the lowest effective rates in the EU.
+                  Computational workloads generating intellectual property (AI model training, data processing) may
                   qualify for this preferential rate, significantly improving the post-tax return on curtailed
                   energy monetisation.
                 </p>
@@ -581,7 +582,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                         </div>
                         <p className="text-sm text-gray-700 mb-2">
                           Captures ~2,350 MWh of curtailed energy, dispatches ~2,029 MWh at evening peak.
-                          Highest €/MWh value at ~€161/MWh net.
+                          Highest €/MWh value at ~€158/MWh net.
                         </p>
                         <div className="w-full bg-gray-200 rounded-full h-3">
                           <div className="bg-green-500 h-3 rounded-full" style={{ width: '50%' }} />

@@ -90,7 +90,7 @@ export default function CyprusBESSRegulationsArticle() {
               </h2>
               <p className="text-lg text-gray-700 mb-4">
                 Cyprus&apos;s energy storage regulatory framework is still very much a work in progress. While the island has
-                made significant strides in deploying solar generation — now accounting for over 20% of total electricity
+                made significant strides in deploying solar generation — now accounting for a growing share of total electricity
                 production — the rules governing battery storage remain narrow in scope and lag behind the frameworks
                 established by peer EU member states.
               </p>
@@ -626,7 +626,7 @@ export default function CyprusBESSRegulationsArticle() {
                       <td className="p-4 font-semibold text-gray-900">Germany</td>
                       <td className="p-4 text-gray-700">Full standalone BESS permitted. Technology-neutral market access since 2017.</td>
                       <td className="p-4 text-gray-700">Merchant arbitrage, FCR/aFRR frequency response, intraday trading</td>
-                      <td className="p-4 text-gray-700">~5 GW (utility-scale)</td>
+                      <td className="p-4 text-gray-700">12+ GW deployed</td>
                       <td className="p-4 text-gray-700">Technology-neutral market access unlocks maximum revenue stacking</td>
                     </tr>
                     <tr className="bg-gray-50">

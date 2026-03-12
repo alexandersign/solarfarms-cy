@@ -537,7 +537,7 @@ export default function BESSBankabilityArticle() {
                   </div>
                   <div className="text-center bg-blue-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600 mb-1">Year 10</div>
-                    <div className="text-3xl font-bold text-blue-600">≥ 79.6%</div>
+                    <div className="text-3xl font-bold text-blue-600">≥ 79.58%</div>
                     <div className="text-xs text-gray-500">SOH Guarantee</div>
                   </div>
                   <div className="text-center bg-purple-50 rounded-lg p-4">

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7SUN Cyprus — Business Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  
+  :root {
+    --primary: #F59E0B;
+    --primary-dark: #D97706;
+    --dark: #1F2937;
+    --darker: #111827;
+    --light: #F9FAFB;
+    --gray: #6B7280;
+    --green: #10B981;
+    --red: #EF4444;
+    --blue: #3B82F6;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  
+  .no-print { }
+  
+  @media print {
+    .no-print { display: none !important; }
+    body { background: white; font-size: 11px; }
+    .container { max-width: 100%; padding: 0; }
+    section { break-inside: avoid; page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+    table { font-size: 10px; }
+    .hero { padding: 30px 0 !important; min-height: auto !important; }
+    .hero h1 { font-size: 28px !important; }
+    .toc { columns: 2; }
+  }
+  
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  
+  /* PDF Export Button */
+  .pdf-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--darker); padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .pdf-bar span { color: white; font-weight: 600; font-size: 14px; }
+  .pdf-btn {
+    background: var(--primary); color: var(--darker); border: none;
+    padding: 10px 24px; border-radius: 8px; font-weight: 700;
+    font-size: 14px; cursor: pointer; transition: all 0.2s;
+  }
+  .pdf-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--darker) 0%, #374151 100%);
+    color: white; padding: 80px 0 60px; min-height: 50vh;
+    display: flex; align-items: center;
+    margin-top: 52px;
+  }
+  .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 8px; }
+  .hero h1 span { color: var(--primary); }
+  .hero .subtitle { font-size: 20px; color: #9CA3AF; font-weight: 300; margin-bottom: 24px; }
+  .hero .meta { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 24px; }
+  .hero .meta-item { }
+  .hero .meta-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #9CA3AF; }
+  .hero .meta-item .value { font-size: 16px; font-weight: 600; color: var(--primary); }
+  
+  /* KPI Cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: -40px 0 40px; position: relative; z-index: 10; }
+  .kpi-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+  .kpi-card .kpi-value { font-size: 24px; font-weight: 800; color: var(--primary-dark); }
+  .kpi-card .kpi-label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  
+  /* Sections */
+  section { padding: 48px 0; }
+  section:nth-child(even) { background: white; }
+  
+  h2 { font-size: 28px; font-weight: 800; color: var(--darker); margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  h2 .num { background: var(--primary); color: var(--darker); width: 40px; height: 40px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin: 28px 0 12px; }
+  h4 { font-size: 15px; font-weight: 600; color: var(--gray); margin: 20px 0 8px; }
+  .section-desc { color: var(--gray); font-size: 15px; margin-bottom: 24px; max-width: 700px; }
+  
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  table { width: 100%; border-collapse: collapse; background: white; }
+  th { background: var(--darker); color: white; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding: 12px 14px; text-align: left; white-space: nowrap; }
+  td { padding: 10px 14px; border-bottom: 1px solid #F3F4F6; font-size: 13px; }
+  tr:hover td { background: #FFFBEB; }
+  .price { font-weight: 700; font-family: 'Inter', monospace; }
+  .price-good { color: var(--green); }
+  .price-bad { color: var(--red); }
+  .price-neutral { color: var(--gray); }
+  .star { color: var(--primary); }
+  
+  /* Badges */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-green { background: #D1FAE5; color: #065F46; }
+  .badge-red { background: #FEE2E2; color: #991B1B; }
+  .badge-yellow { background: #FEF3C7; color: #92400E; }
+  .badge-blue { background: #DBEAFE; color: #1E40AF; }
+  
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 8px 0; padding-left: 28px; position: relative; border-bottom: 1px solid #F3F4F6; }
+  .checklist li::before { content: '☐'; position: absolute; left: 0; color: var(--primary); font-size: 16px; }
+  
+  /* Insights */
+  .insight { background: #FFFBEB; border-left: 4px solid var(--primary); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .insight strong { color: var(--primary-dark); }
+  
+  /* Risk Grid */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .risk-card { background: white; border-radius: 12px; padding: 16px; border: 1px solid #E5E7EB; }
+  .risk-card .risk-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .risk-card .risk-meta { display: flex; gap: 8px; margin-bottom: 8px; }
+  .risk-card p { font-size: 13px; color: var(--gray); }
+  
+  /* TOC */
+  .toc { list-style: none; padding: 0; }
+  .toc li { padding: 8px 0; border-bottom: 1px solid #E5E7EB; }
+  .toc li a { text-decoration: none; color: var(--dark); font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .toc li a:hover { color: var(--primary-dark); }
+  .toc li a .toc-num { color: var(--primary); font-weight: 700; min-width: 24px; }
+  
+  /* Footer */
+  footer { background: var(--darker); color: #9CA3AF; padding: 32px 0; font-size: 12px; text-align: center; }
+  
+  /* Stock summary cards */
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+  .stock-card { background: white; border: 2px solid #E5E7EB; border-radius: 10px; padding: 16px; text-align: center; }
+  .stock-card.total { border-color: var(--primary); background: #FFFBEB; }
+  .stock-card .stock-cat { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); }
+  .stock-card .stock-val { font-size: 22px; font-weight: 800; color: var(--darker); margin: 4px 0; }
+  .stock-card .stock-units { font-size: 12px; color: var(--primary-dark); }
+
+  /* Flow diagram */
+  .flow { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 24px 0; }
+  .flow-box { background: white; border: 2px solid var(--primary); border-radius: 12px; padding: 16px 24px; text-align: center; font-weight: 600; }
+  .flow-arrow { font-size: 24px; color: var(--primary); }
+  
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .risk-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- PDF Export Bar -->
+<div class="pdf-bar no-print">
+  <span>7SUN Cyprus — Business Plan</span>
+  <button class="pdf-btn" onclick="exportPDF()">Export as PDF</button>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="container">
+    <h1><span>7SUN</span> Cyprus</h1>
+    <div class="subtitle">Local Distribution Partnership — Business Plan 2026</div>
+    <p style="color:#D1D5DB; max-width:650px;">Wholesale & retail solar equipment distribution in Cyprus, leveraging 7sun.eu's European supply chain and Lighthief.cy's local market presence from a 700 sqm warehouse in Ypsonas, Limassol.</p>
+    <div class="meta">
+      <div class="meta-item"><div class="label">Prepared</div><div class="value">February 2026</div></div>
+      <div class="meta-item"><div class="label">Location</div><div class="value">Ypsonas, Limassol</div></div>
+      <div class="meta-item"><div class="label">Partners</div><div class="value">7sun.eu + Lighthief.cy</div></div>
+      <div class="meta-item"><div class="label">Warehouse</div><div class="value">700 sqm</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- KPI Cards -->
+<div class="container">
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-value">30–50%</div><div class="kpi-label">Below Competitor Retail</div></div>
+    <div class="kpi-card"><div class="kpi-value">€1,056K</div><div class="kpi-label">Year 1 Revenue Target</div></div>
+    <div class="kpi-card"><div class="kpi-value">€0</div><div class="kpi-label">Stock Investment (by 7sun.eu)</div></div>
+    <div class="kpi-card"><div class="kpi-value">~€82–85K</div><div class="kpi-label">Startup Capital (shared 50/50)</div></div>
+    <div class="kpi-card"><div class="kpi-value">37.3%</div><div class="kpi-label">Gross Margin (External)</div></div>
+    <div class="kpi-card"><div class="kpi-value">3–4 mo</div><div class="kpi-label">Break-even Timeline</div></div>
+    <div class="kpi-card"><div class="kpi-value">15+</div><div class="kpi-label">Major Brands Available</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<section>
+<div class="container">
+  <h2><span class="num">#</span> Contents</h2>
+  <ol class="toc">
+    <li><a href="#s1"><span class="toc-num">01</span> Executive Summary</a></li>
+    <li><a href="#s2"><span class="toc-num">02</span> Market Analysis — Cyprus Solar Sector</a></li>
+    <li><a href="#s3"><span class="toc-num">03</span> Competitive Landscape</a></li>
+    <li><a href="#s4"><span class="toc-num">04</span> Price Comparison: 7sun vs Trikkis vs Market</a></li>
+    <li><a href="#s5"><span class="toc-num">05</span> Business Model & Strategy</a></li>
+    <li><a href="#s6"><span class="toc-num">06</span> Marketing Plan</a></li>
+    <li><a href="#s7"><span class="toc-num">07</span> Launch Plan & Timeline</a></li>
+    <li><a href="#s8"><span class="toc-num">08</span> Recommended First Stock List</a></li>
+    <li><a href="#s9"><span class="toc-num">09</span> Financial Projections</a></li>
+    <li><a href="#s10"><span class="toc-num">10</span> Risk Analysis & Mitigation</a></li>
+  </ol>
+</div>
+</section>
+
+<!-- Section 1: Executive Summary -->
+<section id="s1">
+<div class="container">
+  <h2><span class="num">1</span> Executive Summary</h2>
+  <p class="section-desc">7SUN Cyprus will be a photovoltaic wholesale and retail distribution operation leveraging 7sun.eu's European supply chain and Lighthief.cy's established local presence.</p>
+  
+  <div class="insight">
+    <strong>Core Value Proposition:</strong> 30–50% lower wholesale prices than the dominant local competitor (Trikkis Energy), with 15+ major brands vs their 4–5. Zero stock investment — 7sun.eu provides all stock as JV contribution. 50/50 Joint Venture: 7sun.eu (stock + EU supply chain) + Lighthief International Ltd (local operations + market access).
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Warehouse</td><td>700 sqm (Ypsonas, Limassol), expandable to €10,000/mo for second section</td></tr>
+    <tr><td>Stock Investment</td><td class="price">€0 — stock provided by 7sun.eu as JV contribution</td></tr>
+    <tr><td>Startup Capital (shared 50/50)</td><td class="price">~€63,000–85,000 total (~€31,500–42,500 per shareholder)</td></tr>
+    <tr><td>Target Year 1 Revenue</td><td class="price">€800,000 – €1,200,000 (margin-generating external sales)</td></tr>
+    <tr><td>Gross Margin Target</td><td>30–45% (wholesale) / 50–100%+ (retail/exclusive)</td></tr>
+    <tr><td>Break-even Timeline</td><td>Month 3–4</td></tr>
+    <tr><td>Cyprus PV Market</td><td>~957 MW installed (end 2025), ~120 MW/year growth</td></tr>
+    <tr><td>Sales Channels</td><td>Wholesale B2B (50%) + Retail B2C (20%) + Projects (15%) + Developer/Apartment Kits (15%)</td></tr>
+  </table>
+  </div>
+</div>
+</section>
+
+<!-- Section 2: Market Analysis -->
+<section id="s2">
+<div class="container">
+  <h2><span class="num">2</span> Market Analysis — Cyprus Solar Sector</h2>
+  <p class="section-desc">Cyprus is one of Europe's most attractive solar markets with exceptional irradiance, high electricity costs, and strong government incentives.</p>
+  
+  <h3>2.1 Capacity Growth</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Year</th><th>Cumulative PV (MW)</th><th>Annual Additions (MW)</th><th>Key Event</th></tr>
+    <tr><td>2023</td><td>~638</td><td>~120</td><td>Self-consumption surge</td></tr>
+    <tr><td>2024</td><td>797</td><td>159</td><td>Record year</td></tr>
+    <tr><td>2025</td><td>957</td><td>~122</td><td>47% curtailment; 12K net-metering rush</td></tr>
+    <tr><td>2026 (proj.)</td><td>~1,080</td><td>~120–130</td><td>New self-consumption model</td></tr>
+    <tr><td>2030 target</td><td>~1,250</td><td>—</td><td>€4.5–5B investment needed</td></tr>
+  </table>
+  </div>
+  
+  <h3>2.1a TAM / TSM / SOM — Equipment Distribution Market Sizing</h3>
+  <div class="insight">
+  <strong>Source:</strong> Trikkis Energy claims 100 MW of residential & commercial PV installed in Cyprus in 2024, of which Trikkis distributed ~60%.
+  </div>
+
+  <h4>Average Wholesale Equipment Value per MW</h4>
+  <div class="table-wrap">
+  <table>
+  <tr><th>Component</th><th>Est. Value/MW</th></tr>
+  <tr><td>Panels</td><td>€100–120K</td></tr>
+  <tr><td>Inverters (string + hybrid mix)</td><td>€60–80K</td></tr>
+  <tr><td>Battery storage (~40% penetration)</td><td>€30–50K</td></tr>
+  <tr><td>BOS (mounting, cables, connectors)</td><td>€20–30K</td></tr>
+  <tr style="background:#D1FAE5;font-weight:bold"><td>Total</td><td>€210–280K (midpoint ~€250K)</td></tr>
+  </table>
+  </div>
+
+  <h4>Market Sizing</h4>
+  <div class="table-wrap">
+  <table>
+  <tr><th>Metric</th><th>MW</th><th>Revenue (~€250K/MW)</th></tr>
+  <tr><td><strong>TAM</strong> (Total Addressable Market)</td><td>100 MW</td><td class="price"><strong>~€25–28M/year</strong></td></tr>
+  <tr><td>Trikkis share (claimed 60%)</td><td>60 MW</td><td class="price">~€15–17M/year</td></tr>
+  <tr><td>Other distributors + direct imports (40%)</td><td>40 MW</td><td class="price">~€10–11M/year</td></tr>
+  <tr style="background:#DBEAFE;"><td><strong>TSM</strong> (Total Serviceable Market)</td><td>~56–72 MW</td><td class="price"><strong>~€14–18M/year</strong></td></tr>
+  <tr><td><strong>SOM</strong> Year 1 target</td><td>~3.5 MW</td><td class="price"><strong>~€888K/year</strong></td></tr>
+  <tr><td><strong>SOM</strong> Year 2–3 target (7–12%)</td><td>7–12 MW</td><td class="price"><strong>€2–3M/year</strong></td></tr>
+  </table>
+  </div>
+
+  <div class="insight">
+  <strong>TSM rationale:</strong> Non-Trikkis 40MW (~€10M) + exclusive brands we carry (FoxESS, Sofar, Deye, Jolywood, Longi, Aiko) addressable from Trikkis customers adds ~€2–4M + annual growth 5–10% adds ~€1.5–3M. Battery storage penetration rising fast (47% grid curtailment). TSM grows to ~€18–22M by 2028.<br><br>
+  <strong>Implication:</strong> Even capturing just 3–5% of the distribution TAM in Year 1 represents a conservative entry into a market where a single dominant player holds 60%. Our price advantage and zero-stock-investment JV model make rapid share gains achievable.
+  </div>
+  
+  <h3>2.2 Key Market Drivers</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Driver</th><th>Detail</th><th>Impact</th></tr>
+    <tr><td>Solar Resource</td><td>~340 sunny days, 1,750–1,900 kWh/m²/yr</td><td><span class="badge badge-green">Very High</span></td></tr>
+    <tr><td>Electricity Prices</td><td>Among highest in EU — strong payback (3–5 years)</td><td><span class="badge badge-green">Very High</span></td></tr>
+    <tr><td>Self-Consumption</td><td>~80% of installations; new market model from Jan 2026</td><td><span class="badge badge-green">Very High</span></td></tr>
+    <tr><td>Battery Demand</td><td>47% curtailment in 2025 → storage becoming essential</td><td><span class="badge badge-yellow">Growing</span></td></tr>
+    <tr><td>EU Subsidies</td><td>The RES Fund Grant Scheme 2024–2025 (€375/kW, max €1,500 for first 4kW) has <strong>closed</strong> — applications ended 31 Dec 2025. No 2026 scheme announced yet. Historically renewed in new rounds; future grants should not be relied upon in pricing or business case</td><td><span class="badge badge-yellow">Low</span></td></tr>
+    <tr><td>EV Adoption</td><td>Growing EV market → solar+EV charger bundles</td><td><span class="badge badge-yellow">Emerging</span></td></tr>
+  </table>
+  </div>
+
+  <h3>2.3 Market Segmentation</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Segment</th><th>Market Share</th><th>Avg System</th><th>Key Products</th></tr>
+    <tr><td>Residential</td><td>~60%</td><td>5–10 kWp</td><td>Panels, hybrid inverters, batteries</td></tr>
+    <tr><td>Commercial/Industrial</td><td>~25%</td><td>10–100+ kWp</td><td>Panels, string inverters, monitoring</td></tr>
+    <tr><td>Solar Farms / PPA</td><td>~15%</td><td>500+ kWp</td><td>Panels, large inverters, mounting</td></tr>
+  </table>
+  </div>
+
+  <h3>2.4 Regulatory & Tax</h3>
+  <div class="insight">
+    <strong>Zero customs duty</strong> on intra-EU shipments from 7sun.eu (Poland). Standard <strong>19% VAT</strong> applies (reduced 5% may apply to qualifying solar equipment — verify with Cyprus Customs). EU internal market rules mean fast, duty-free replenishment from 7sun.eu's Polish warehouses.
+  </div>
+</div>
+</section>
+
+<!-- Section 3: Competitive Landscape -->
+<section id="s3">
+<div class="container">
+  <h2><span class="num">3</span> Competitive Landscape</h2>
+  <p class="section-desc">The Cyprus solar distribution market is dominated by Trikkis Energy with limited competition — a prime opportunity for disruption.</p>
+  
+  <div class="table-wrap">
+  <table>
+    <tr><th>Competitor</th><th>Type</th><th>Location</th><th>Brands</th><th>Price Position</th></tr>
+    <tr><td><strong>Trikkis Energy</strong></td><td>Wholesale/Retail</td><td>Monagroulli, Limassol</td><td>Huawei, Jinko, REC, Helios</td><td><strong>Dominant — claims 60% share</strong> of 100 MW res+comm market (2024), est. revenue ~€15–17M/yr</td></tr>
+    <tr><td><strong>Solar Wholesale CY</strong></td><td>B2B Online</td><td>Limassol</td><td>JA Solar, Jinko, Nuuko, Solax</td><td>Competitive (new)</td></tr>
+    <tr><td><strong>Various EPCs</strong></td><td>Project sales</td><td>Island-wide</td><td>Mixed</td><td>Retail +40–60%</td></tr>
+    <tr><td><strong>7SUN Cyprus (us)</strong></td><td>Wholesale + Retail</td><td>Ypsonas, Limassol</td><td>15+ brands</td><td><span class="badge badge-green">Price leader</span></td></tr>
+  </table>
+  </div>
+
+  <h3>Trikkis 3-Tier Pricing Model</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Tier</th><th>Discount</th><th>Who</th><th>Example: Jinko 430W</th></tr>
+    <tr><td>Retail</td><td>0%</td><td>Walk-in / online</td><td class="price">€92.14</td></tr>
+    <tr><td>Wholesale</td><td>30%</td><td>Registered installers</td><td class="price">€64.50</td></tr>
+    <tr><td>Pallet Pickup</td><td>~37%</td><td>Full pallet from warehouse</td><td class="price">€58.05</td></tr>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--gray);">Additional: 3+ pallets: -0.5c/W; 6+ pallets: -1.0c/W; Full container: call for special terms</p>
+</div>
+</section>
+
+<!-- Section 4: Price Comparison -->
+<section id="s4">
+<div class="container">
+  <h2><span class="num">4</span> Price Comparison: 7sun vs Trikkis vs Market</h2>
+  <p class="section-desc">Detailed head-to-head pricing analysis showing 7sun's significant cost advantage across product categories.</p>
+  
+  <div class="insight">
+    <strong>Note:</strong> H1–H5 prices shown below are 7sun.eu's published B2B wholesale <em>selling</em> tiers. Our actual internal costs have been verified from the 7sun.eu price list. Margins calculated in this plan use verified internal cost, not H1.
+  </div>
+
+  <h3>4.1 Solar Panels</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Product</th><th>7sun (H1)</th><th>7sun (H5)</th><th>Trikkis Retail</th><th>Trikkis WS</th><th>Trikkis Pallet</th><th>7sun Advantage</th></tr>
+    <tr>
+      <td><strong>Jinko 440W</strong> FB N-Type</td>
+      <td class="price price-good">€59.32</td><td class="price price-good">€54.58</td>
+      <td class="price">€92.14</td><td class="price">€64.50</td><td class="price">€58.05</td>
+      <td><span class="badge badge-green">-8% to -16% vs WS</span></td>
+    </tr>
+    <tr>
+      <td><strong>Jinko 455W</strong> N-Type</td>
+      <td class="price price-good">€55.76</td><td class="price price-good">€51.02</td>
+      <td class="price">~€112.00</td><td class="price">~€78.40</td><td class="price">~€71.05</td>
+      <td><span class="badge badge-green">-29% to -35% vs WS</span></td>
+    </tr>
+    <tr>
+      <td><strong>Jinko 500W</strong> Bifacial</td>
+      <td class="price price-good">€61.70</td><td class="price price-good">€56.95</td>
+      <td colspan="3" style="text-align:center;color:var(--gray);">Not available at Trikkis</td>
+      <td><span class="badge badge-green">New product advantage</span></td>
+    </tr>
+    <tr>
+      <td><strong>JA Solar 450W</strong> FB Bifacial</td>
+      <td class="price price-good">€55.76</td><td class="price price-good">€51.02</td>
+      <td colspan="3" style="text-align:center;color:var(--gray);">Not available at Trikkis</td>
+      <td><span class="badge badge-green">-37% vs SWS CY €89</span></td>
+    </tr>
+    <tr>
+      <td><strong>Jolywood 580W</strong> Bifacial</td>
+      <td class="price price-good">€71.19</td><td class="price price-good">€71.19</td>
+      <td colspan="3" style="text-align:center;color:var(--gray);">Not available at Trikkis</td>
+      <td><span class="badge badge-green">Price leader</span></td>
+    </tr>
+    <tr>
+      <td><strong>Longi 460W</strong></td>
+      <td class="price price-good">€52.20</td><td class="price price-good">€51.26</td>
+      <td colspan="3" style="text-align:center;color:var(--gray);">Not available at Trikkis</td>
+      <td><span class="badge badge-green">Exceptional value</span></td>
+    </tr>
+    <tr>
+      <td><strong>Aiko 465W</strong></td>
+      <td class="price price-good">€55.76</td><td class="price price-good">€55.76</td>
+      <td colspan="3" style="text-align:center;color:var(--gray);">Not available at Trikkis</td>
+      <td><span class="badge badge-green">Premium at budget price</span></td>
+    </tr>
+    <tr>
+      <td><strong>Canadian 450W</strong> FB</td>
+      <td class="price price-good">€57.71</td><td class="price price-good">€57.71</td>
+      <td colspan="3" style="text-align:center;color:var(--gray);">Not available at Trikkis</td>
+      <td><span class="badge badge-green">Tier 1 at low cost</span></td>
+    </tr>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--gray);">*JA Solar 435W listed at €89 at Solar Wholesale CY</p>
+  
+  <h3>4.2 Huawei Inverters</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Product</th><th>7sun (H1)</th><th>7sun (H5)</th><th>Trikkis Retail</th><th>Trikkis WS</th><th>Trikkis Pallet</th><th>7sun vs Trikkis WS</th></tr>
+    <tr>
+      <td>SUN2000-3KTL-L1 (1ph)</td>
+      <td class="price price-good">€406</td><td class="price">€398</td>
+      <td class="price">€596</td><td class="price">€417</td><td class="price">€398</td>
+      <td><span class="badge badge-green">-3% to -5%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-5KTL-L1 (1ph)</td>
+      <td class="price price-neutral">€629</td><td class="price">€605</td>
+      <td class="price">€880</td><td class="price">€616</td><td class="price">€588</td>
+      <td><span class="badge badge-yellow">+2% (at par)</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-5KTL-M1 (3ph)</td>
+      <td class="price price-good">€613</td><td class="price">€613</td>
+      <td class="price">€1,011</td><td class="price">€707</td><td class="price">€676</td>
+      <td><span class="badge badge-green">-13% to -9%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-8KTL-M1 (3ph)</td>
+      <td class="price price-bad">€884</td><td class="price">€823</td>
+      <td class="price">€1,135</td><td class="price">€795</td><td class="price">€759</td>
+      <td><span class="badge badge-red">+11% to +8%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-10KTL-M1 (3ph)</td>
+      <td class="price price-neutral">€959</td><td class="price">€941</td>
+      <td class="price">€1,338</td><td class="price">€936</td><td class="price">€894</td>
+      <td><span class="badge badge-yellow">+2% to +5%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-5K-MAPO (Hybrid)</td>
+      <td class="price price-bad">€1,013</td><td class="price">€943</td>
+      <td class="price">€1,313</td><td class="price">€919</td><td class="price">€878</td>
+      <td><span class="badge badge-red">+10% to +7%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-8K-MAPO (Hybrid)</td>
+      <td class="price price-bad">€1,342</td><td class="price">€1,249</td>
+      <td class="price">€1,741</td><td class="price">€1,219</td><td class="price">€1,164</td>
+      <td><span class="badge badge-red">+10% to +7%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-10K-MAPO (Hybrid)</td>
+      <td class="price price-bad">€1,457</td><td class="price">€1,405</td>
+      <td class="price">€1,956</td><td class="price">€1,369</td><td class="price">€1,307</td>
+      <td><span class="badge badge-red">+6% to +7%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-40KTL-M3 (Comm.)</td>
+      <td class="price price-good">€2,009</td><td class="price">€1,873</td>
+      <td class="price">€3,396</td><td class="price">€2,377</td><td class="price">€2,306</td>
+      <td><span class="badge badge-green">-15% to -19%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-50KTL-M3 (Comm.)</td>
+      <td class="price price-good">€2,123</td><td class="price">€1,993</td>
+      <td class="price">€3,405</td><td class="price">€2,384</td><td class="price">€2,312</td>
+      <td><span class="badge badge-green">-11% to -14%</span></td>
+    </tr>
+    <tr>
+      <td>SUN2000-100KTL-M2</td>
+      <td class="price price-bad">€4,314</td><td class="price">€4,026</td>
+      <td class="price">€5,380</td><td class="price">€3,766</td><td class="price">€3,653</td>
+      <td><span class="badge badge-red">+15% to +10%</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>4.3 Battery Storage</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Product</th><th>7sun (H1)</th><th>Trikkis Retail</th><th>Trikkis WS</th><th>7sun vs Trikkis WS</th></tr>
+    <tr>
+      <td><strong>LUNA2000-5-C0</strong> (Controller)</td>
+      <td class="price price-bad">€675</td><td class="price">—</td><td class="price">~€544</td>
+      <td><span class="badge badge-red">+24%</span></td>
+    </tr>
+    <tr>
+      <td><strong>LUNA2000-5-E0</strong> (5kWh)</td>
+      <td class="price price-good">€1,655</td><td class="price">€2,464</td><td class="price">€1,725</td>
+      <td><span class="badge badge-green">-4%</span></td>
+    </tr>
+    <tr>
+      <td><strong>LUNA2000-7-E1</strong> (7kWh)</td>
+      <td class="price price-good">€2,359</td><td class="price">€3,499</td><td class="price">€2,449</td>
+      <td><span class="badge badge-green">-4%</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>4.4 Alternative Brands — Blue Ocean (SolarEdge Channel Status Pending Verification)</h3>
+  <div class="insight">
+    <strong>Key Strategy:</strong> Lead with brands Trikkis DOES NOT carry — SolarEdge, FoxESS, Sofar, Longi, Aiko, Canadian, Hyundai, Jolywood — where there is no direct price comparison and margins are protected. <em>(Note: BIGSOLAR (Epiphaniou Group) may already represent SolarEdge in Cyprus — channel status pending verification. FoxESS is growing rapidly in Europe and may not yet have a Cyprus representative — potential exclusive distribution opportunity. FoxESS and Sofar remain unrepresented in CY.)</em>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Brand/Product</th><th>7sun Price</th><th>Comparable at Trikkis</th><th>Trikkis WS Price</th><th>Savings</th></tr>
+    <tr>
+      <td><strong>SolarEdge SE5K</strong> (5kW grid)</td>
+      <td class="price price-good">€80 (verified cost)</td><td>Huawei 5K-M1</td><td class="price">€707</td>
+      <td><span class="badge badge-green">-89%</span></td>
+    </tr>
+    <tr>
+      <td><strong>SolarEdge SE10K</strong> (10kW grid)</td>
+      <td class="price price-good">€409 (verified cost)</td><td>Huawei 10K-M1</td><td class="price">€936</td>
+      <td><span class="badge badge-green">-56%</span></td>
+    </tr>
+    <tr>
+      <td><strong>FoxESS H3-8.0-E</strong> (8kW hybrid)</td>
+      <td class="price price-good">€1,085 (verified)</td><td>Huawei 8K-MAPO</td><td class="price">€1,219</td>
+      <td><span class="badge badge-green">-11% (cheaper)</span></td>
+    </tr>
+    <tr>
+      <td><strong>Sofar HYD 10KTL</strong> (10kW hybrid)</td>
+      <td class="price price-good">€1,292 (verified)</td><td>Huawei 10K-MAPO</td><td class="price">€1,369</td>
+      <td><span class="badge badge-green">-6% (cheaper)</span></td>
+    </tr>
+    <tr>
+      <td><strong>Aiko 465W</strong> panel</td>
+      <td class="price price-good">€56</td><td>Jinko 430W</td><td class="price">€64.50</td>
+      <td><span class="badge badge-green">-13%, +35W</span></td>
+    </tr>
+    <tr>
+      <td><strong>Longi 460W</strong> panel</td>
+      <td class="price price-good">€50 (cost), margin only 3.4%</td><td>Jinko 430W</td><td class="price">€64.50</td>
+      <td><span class="badge badge-green">-22%, +30W</span></td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>4.5 Key Pricing Insights</h3>
+  <div class="insight">
+    <strong>1. Panels: Massive advantage.</strong> 7sun's panel prices are 8–37% below Trikkis wholesale. At retail, savings reach 35–60%.<br><br>
+    <strong>2. Huawei Inverters: Mixed.</strong> Competitive on 1-phase domestic and large commercial, but Trikkis has slightly better pricing on some 3-phase domestic models. <strong>Strategy:</strong> Focus on alternative inverter brands (SolarEdge, FoxESS, Sofar) where 7sun has supply and significant price advantages. <em>(Note: SolarEdge CY exclusivity pending verification — BIGSOLAR/Epiphaniou Group may already represent.)</em><br><br>
+    <strong>3. Wider brand portfolio = key differentiator.</strong> 7sun offers SolarEdge, FoxESS, Sofar, Fronius, Canadian Solar, Longi, Aiko, Hyundai, Jolywood — NONE of which Trikkis carries. <em>(Note: SolarEdge may already have a Cyprus channel via BIGSOLAR/Epiphaniou Group — exclusivity pending verification.)</em><br><br>
+    <strong>4. Battery storage: At par to slightly better.</strong> The growing storage market is a key opportunity.
+  </div>
+</div>
+</section>
+
+<!-- Section 5: Business Model -->
+<section id="s5">
+<div class="container">
+  <h2><span class="num">5</span> Business Model & Strategy</h2>
+  
+  <h3>5.1 Business Flow</h3>
+  <div class="flow">
+    <div class="flow-box">7sun.eu<br><small>EU B2B Supply</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:var(--primary-dark);background:#FFFBEB;"><strong>7SUN CYPRUS</strong><br><small>Ypsonas Warehouse</small></div>
+    <div class="flow-arrow">→</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="flow-box" style="font-size:13px;">Wholesale B2B (50%)</div>
+      <div class="flow-box" style="font-size:13px;">Retail B2C (20%)</div>
+      <div class="flow-box" style="font-size:13px;">Projects via LH (15%)</div>
+      <div class="flow-box" style="font-size:13px;">Developer / Apt Kits (15%)</div>
+    </div>
+  </div>
+
+  <h3>5.2 Revenue Channels</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Channel</th><th>Target Customer</th><th>Gross Margin</th><th>Revenue Share</th></tr>
+    <tr><td><strong>Wholesale B2B</strong></td><td>External installers, EPC companies, electricians</td><td>30–45%</td><td>55%</td></tr>
+    <tr><td><strong>Retail B2C</strong></td><td>Homeowners, DIY, small businesses</td><td>50–100%+</td><td>20%</td></tr>
+    <tr><td><strong>Lighthief Project Supply</strong></td><td>Lighthief.cy internal projects (at purchase cost)</td><td>0% (at cost)</td><td>10%</td></tr>
+    <tr><td><strong>Developer / Apartment Kits</strong></td><td>Real estate developers, building managers</td><td>140–220%</td><td>15%</td></tr>
+  </table>
+  </div>
+  <div class="insight">
+    <strong>JV Structure:</strong> Lighthief.cy purchases from 7SUN Cyprus at the purchase price (cost). This means Lighthief installations generate zero margin for the JV entity. All profit comes from external sales (wholesale, retail, developer kits). 7sun.eu provides all stock as their JV contribution — no upfront stock purchase required.
+  </div>
+
+  <h3>5.3 Pricing Strategy</h3>
+  <div class="insight">
+    <strong>Wholesale (B2B):</strong> Price panels at 10–20% below Trikkis wholesale while maintaining 30–45% gross margins. Price inverters at market level (matching Trikkis WS), leveraging brand diversity. Volume discount tiers matching Trikkis structure.<br><br>
+    <strong>Retail (B2C):</strong> Price at 10–15% below Trikkis retail. Maintain 50–100%+ gross margin thanks to JV internal transfer pricing.
+  </div>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Example Product</th><th>Internal Cost (~80% H1)</th><th>Our WS Price</th><th>Our Retail</th><th>Trikkis WS</th><th>Trikkis Retail</th></tr>
+    <tr><td>Jinko 440W</td><td class="price">~€47</td><td class="price price-good">€72 (+53%)</td><td class="price price-good">€85 (+81%)</td><td class="price">€64.50</td><td class="price">€92.14</td></tr>
+    <tr><td>JA Solar 450W</td><td class="price">~€45</td><td class="price price-good">€68 (+51%)</td><td class="price price-good">€82 (+82%)</td><td colspan="2" style="color:var(--gray);text-align:center;">Not available</td></tr>
+    <tr><td>Longi 460W</td><td class="price">€50.49</td><td class="price price-good">€65 (+29%)</td><td class="price price-good">€78 (+55%)</td><td colspan="2" style="color:var(--gray);text-align:center;">Not available</td></tr>
+    <tr><td>Huawei 5K-M1</td><td class="price">from Trikkis €570</td><td class="price price-good">€680 (+19%)</td><td class="price price-good">€890 (+56%)</td><td class="price">€707</td><td class="price">€1,011</td></tr>
+    <tr><td>SolarEdge SE10K</td><td class="price">€409</td><td class="price price-good">€680 (+66%)</td><td class="price price-good">€890 (+118%)</td><td colspan="2" style="color:var(--gray);text-align:center;">Not available</td></tr>
+  </table>
+  </div>
+
+  <h3>5.4 Competitive Advantages</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>#</th><th>Advantage</th><th>Detail</th></tr>
+    <tr><td>1</td><td><strong>Price Leadership</strong></td><td>Europe's largest B2B PV supply chain — panels 8–37% below local wholesale</td></tr>
+    <tr><td>2</td><td><strong>Brand Diversity</strong></td><td>15+ major brands vs Trikkis's 4–5 — SolarEdge (CY exclusivity pending verification), FoxESS, Sofar, Longi, Aiko — distribution advantage</td></tr>
+    <tr><td>3</td><td><strong>Dedicated Warehouse</strong></td><td>700 sqm in Ypsonas (€7,000/mo), expandable to second section (€10,000/mo)</td></tr>
+    <tr><td>4</td><td><strong>Zero Stock Investment</strong></td><td>7sun.eu provides all stock as JV contribution; capital deployed only for operations</td></tr>
+    <tr><td>5</td><td><strong>EU Logistics</strong></td><td>Intra-EU trade: zero duty, fast replenishment, EUR pricing throughout</td></tr>
+    <tr><td>6</td><td><strong>Digital-First</strong></td><td>Online B2B portal, XML product feed, real-time stock visibility</td></tr>
+    <tr><td>7</td><td><strong>Technical Expertise</strong></td><td>Pan-European technical support from 7sun.eu network</td></tr>
+    <tr><td>8</td><td><strong>JV Structure</strong></td><td>50/50 joint venture: 7sun.eu provides stock + EU supply chain, Lighthief International Ltd provides local operations + market access. Operating expenses shared 50/50. Lighthief.cy buys at purchase price (no markup). Profits from external sales split 50/50.</td></tr>
+    <tr><td>9</td><td><strong>Apartment Micro Inverter Kits</strong></td><td>Untapped segment: pre-packaged 2–4 panel systems per apartment using micro inverters (Envertech, Solax) at 140–220% margin. Each apartment registers independently for net-metering — no Virtual Net Metering needed. Developers love "solar included" as a sales feature. <em>Note: Micro inverter EAC compliance in Cyprus is unverified — this segment is provisional pending regulatory confirmation. Additionally, Solax is represented in Cyprus by EV Energy CY — channel conflict possible.</em></td></tr>
+    <tr><td>10</td><td><strong>Huawei Inverters Sourced Locally</strong></td><td>Huawei inverters sourced from Trikkis at unbeatable wholesale pricing, ensuring immediate availability and competitive cost on the #1 requested brand in Cyprus</td></tr>
+    <tr><td>11</td><td><strong>Most Affordable Net Billing Package</strong></td><td>Deye SUN-5K-SG03LP1-EU hybrid inverter + SE-G5.1 PRO-B stackable battery: the most affordable single-phase hybrid + storage kit in Cyprus. Huawei's L-series single-phase hybrid (SUN2000L-5KTL/L1) is available at Trikkis (€616 wholesale), but paired with LUNA batteries (€1,725) + controller (€698) the complete Huawei kit totals €3,039 — our Deye kit at €1,750–1,950 is <strong>36–42% cheaper</strong>. <em>Note: Deye SE-G5.1 PRO-B batteries are IP20 (not waterproof) — indoor/covered installation only.</em></td></tr>
+    <tr><td>12</td><td><strong>Panels Matched to CY Limit</strong></td><td>All panel selections optimised for the Cyprus 4.16 kWp single-phase net billing limit, ensuring installers get maximum system capacity within regulatory constraints</td></tr>
+  </table>
+  </div>
+</div>
+</section>
+
+<!-- Section 6: Marketing Plan -->
+<section id="s6">
+<div class="container">
+  <h2><span class="num">6</span> Marketing Plan</h2>
+  
+  <h3>Phase 1: Pre-Launch (Month 1–2) — €8,000</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Activity</th><th>Details</th><th>Budget</th></tr>
+    <tr><td>Brand Identity</td><td>Logo, business cards, letterheads</td><td class="price">€1,500</td></tr>
+    <tr><td>Website (7sun.cy)</td><td>B2B/B2C e-commerce with AI + live pricing (internal build + web consultant + ~€981/mo platform/AI tokens/management)</td><td class="price">€2,500–5,500</td></tr>
+    <tr><td>Installer Database</td><td>Build 200+ installer contacts across CY</td><td class="price">€0</td></tr>
+    <tr><td>Pre-launch Mailer</td><td>Teaser pricing email to installers</td><td class="price">€500</td></tr>
+    <tr><td>Social Media Setup</td><td>Facebook, Instagram, LinkedIn</td><td class="price">€500</td></tr>
+    <tr><td>Google Business</td><td>Register Ypsonas warehouse location</td><td class="price">€0</td></tr>
+  </table>
+  </div>
+
+  <h3>Phase 2: Launch (Month 3–4) — €12,000</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Activity</th><th>Details</th><th>Budget</th></tr>
+    <tr><td>Grand Opening Event</td><td>Warehouse open day with demos</td><td class="price">€3,000</td></tr>
+    <tr><td>Installer Roadshow</td><td>3 info sessions: Limassol, Nicosia, Paphos</td><td class="price">€2,000</td></tr>
+    <tr><td>Launch Pricing</td><td>"First 50 customers" — extra 5% off</td><td class="price">€2,000</td></tr>
+    <tr><td>Google Ads</td><td>"Solar panels Cyprus" / "φωτοβολταϊκά Κύπρος"</td><td class="price">€2,000/mo</td></tr>
+    <tr><td>Facebook/Instagram</td><td>Targeted B2B and B2C in CY</td><td class="price">€1,500/mo</td></tr>
+    <tr><td>Price Match Guarantee</td><td>Beat any Trikkis quote by 5%</td><td class="price">—</td></tr>
+  </table>
+  </div>
+
+  <h3>Phase 3: Growth (Month 5–12) — €32,000</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Activity</th><th>Details</th><th>Budget</th></tr>
+    <tr><td>Trade Shows</td><td>Cyprus energy exhibitions</td><td class="price">€3,000</td></tr>
+    <tr><td>Referral Program</td><td>2% commission for installer referrals</td><td class="price">Variable</td></tr>
+    <tr><td>Content Marketing</td><td>"Solar in Cyprus" guides (Greek + English)</td><td class="price">€1,000/mo</td></tr>
+    <tr><td>Technical Training</td><td>Monthly product workshops for installers</td><td class="price">€500/mo</td></tr>
+    <tr><td>B2B Credit Terms</td><td>30-day credit to qualified installers</td><td class="price">Working capital</td></tr>
+    <tr><td>Bank Partnerships</td><td>Co-marketing with green loan providers</td><td class="price">€0</td></tr>
+  </table>
+  </div>
+
+  <div class="insight">
+    <strong>Total Year 1 Marketing Budget: €52,000</strong> — ~5.3% of projected revenue. Industry benchmark for B2B distribution launch is 5–8%.
+  </div>
+</div>
+</section>
+
+<!-- Section 7: Launch Plan -->
+<section id="s7">
+<div class="container">
+  <h2><span class="num">7</span> Launch Plan & Timeline</h2>
+  
+  <h3>Phase 0: Foundation (Weeks 1–4)</h3>
+  <ul class="checklist">
+    <li>Register Cyprus company (Ltd) or branch of EU entity</li>
+    <li>Sign warehouse lease agreement (shared with Lighthief.cy)</li>
+    <li>Open Cyprus business bank account</li>
+    <li>Register for Cyprus VAT (VIES for intra-EU B2B)</li>
+    <li>Engage accountant/tax advisor for CY compliance</li>
+    <li>Set up warehouse infrastructure (racking, forklift, security)</li>
+  </ul>
+  
+  <h3>Phase 1: Pre-Launch (Weeks 5–8)</h3>
+  <ul class="checklist">
+    <li>Place initial stock order from 7sun.eu (see Section 8)</li>
+    <li>Build website (7sun.cy or 7suncyprus.com)</li>
+    <li>Build installer contact database (200+ contacts)</li>
+    <li>Create bilingual marketing materials (Greek + English)</li>
+    <li>Set up Google Business Profile and social media</li>
+    <li>Arrange transport logistics (Poland → Cyprus, truck or container)</li>
+    <li>Hire 1 warehouse operative + 1 sales rep (bilingual)</li>
+  </ul>
+  
+  <h3>Phase 2: Soft Launch (Weeks 9–10)</h3>
+  <ul class="checklist">
+    <li>Receive and warehouse initial stock</li>
+    <li>Soft launch: Lighthief.cy as first wholesale client</li>
+    <li>Invite 10–15 key installers for private preview</li>
+    <li>Test order/delivery/invoicing workflow</li>
+    <li>Collect feedback and adjust pricing if needed</li>
+  </ul>
+  
+  <h3>Phase 3: Official Launch (Weeks 11–12)</h3>
+  <ul class="checklist">
+    <li>Grand opening event at Ypsonas warehouse</li>
+    <li>Activate Google Ads and Social Media campaigns</li>
+    <li>Send launch mailer to full installer database</li>
+    <li>Begin retail walk-in sales</li>
+    <li>Activate "Price Match Guarantee" campaign</li>
+  </ul>
+  
+  <h3>Phase 4: Growth (Month 4–12)</h3>
+  <ul class="checklist">
+    <li>Monthly stock replenishment (based on sell-through)</li>
+    <li>Expand product range (batteries, EV chargers, mounting)</li>
+    <li>Build installer loyalty/credit program</li>
+    <li>Target commercial/industrial projects</li>
+    <li>Evaluate satellite pickup point in Nicosia</li>
+  </ul>
+</div>
+</section>
+
+<!-- Section 8: Stock List -->
+<section id="s8">
+<div class="container">
+  <h2><span class="num">8</span> Recommended First Stock List</h2>
+  <p class="section-desc">Initial stock selection optimized for the Cyprus residential and small commercial market, balancing brand diversity with demand certainty.</p>
+  
+  <div class="stock-grid">
+    <div class="stock-card"><div class="stock-cat">Solar Panels</div><div class="stock-val">€21,528</div><div class="stock-units">468 panels (est. internal cost)</div></div>
+    <div class="stock-card"><div class="stock-cat">Deye Hybrid Inverters</div><div class="stock-val">€8,412</div><div class="stock-units">15 units</div></div>
+    <div class="stock-card"><div class="stock-cat">Deye Batteries</div><div class="stock-val">€13,289</div><div class="stock-units">25 modules</div></div>
+    <div class="stock-card"><div class="stock-cat">SolarEdge Inverters</div><div class="stock-val">€5,639</div><div class="stock-units">20 units</div></div>
+    <div class="stock-card"><div class="stock-cat">Optimizers (SE + Tigo)</div><div class="stock-val">€7,380</div><div class="stock-units">250 units</div></div>
+    <div class="stock-card"><div class="stock-cat">Micro Inv. & Acc.</div><div class="stock-val">€5,059</div><div class="stock-units">65+ units</div></div>
+    <div class="stock-card"><div class="stock-cat">Huawei Accessories</div><div class="stock-val">€721</div><div class="stock-units">10 units</div></div>
+    <div class="stock-card total"><div class="stock-cat">7sun Order Total</div><div class="stock-val">€62,028</div><div class="stock-units">853+ units (21+ SKUs)</div></div>
+  </div>
+
+  <div class="insight">
+    <strong>Total Stock Value: ~€84,000–86,000</strong> — All 7sun stock (~€84K value) provided by 7sun.eu as their JV contribution — no upfront purchase required. Huawei inverters (~€16,000) sourced locally from Trikkis, funded from operating revenue as orders come in.
+  </div>
+
+  <h3>Panels</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Priority</th><th>Product</th><th>Brand</th><th>W</th><th>Qty</th><th>Unit</th><th>Total</th><th>Why</th></tr>
+    <tr><td class="star">★★★</td><td>JKM440N-54HL4R-B FB</td><td>Jinko</td><td>440</td><td>144</td><td class="price">€59</td><td class="price">€8,542</td><td>Top CY residential</td></tr>
+    <tr><td class="star">★★★</td><td>JAM54D41-450/LB FB Bif.</td><td>JA Solar</td><td>450</td><td>108</td><td class="price">€56</td><td class="price">€6,022</td><td>Tier-1, lower cost</td></tr>
+    <tr><td class="star">★★★</td><td>LR7-54HTH-460M</td><td>Longi</td><td>460</td><td>72</td><td class="price">€50</td><td class="price">€3,600</td><td>Best value Tier-1</td></tr>
+    <tr><td class="star">★★</td><td>JKM500N-54HL4M-BDV Bif.</td><td>Jinko</td><td>500</td><td>72</td><td class="price">€62</td><td class="price">€4,442</td><td>Higher watt demand</td></tr>
+    <tr><td class="star">★★</td><td>A465-MAH54Dw</td><td>Aiko</td><td>465</td><td>72</td><td class="price">€56</td><td class="price">€4,015</td><td>Premium alt. <span class="badge badge-yellow">⚠ Brand risk — verify CY acceptance</span></td></tr>
+    <tr><td class="star">★</td><td>JW-HD144N-580W Bif.</td><td>Jolywood</td><td>580</td><td>36</td><td class="price">€71</td><td class="price">€2,563</td><td>Commercial roofs</td></tr>
+    <tr style="background:#FFFBEB;"><td colspan="4"><strong>Subtotal</strong></td><td><strong>504</strong></td><td></td><td class="price"><strong>€29,184</strong></td><td></td></tr>
+  </table>
+  </div>
+
+  <h3>Inverters</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Priority</th><th>Product</th><th>Brand</th><th>Type</th><th>Qty</th><th>Unit</th><th>Total</th></tr>
+    <tr><td class="star">★★★</td><td>SUN2000-5KTL-M1-HC</td><td>Huawei</td><td>3ph Grid</td><td>6</td><td class="price">€613</td><td class="price">€3,681</td></tr>
+    <tr><td class="star">★★★</td><td>SUN2000-8KTL-M1-HC</td><td>Huawei</td><td>3ph Grid</td><td>6</td><td class="price">€884</td><td class="price">€5,301</td></tr>
+    <tr><td class="star">★★★</td><td>SUN2000-10KTL-M1-HC</td><td>Huawei</td><td>3ph Grid</td><td>4</td><td class="price">€959</td><td class="price">€3,835</td></tr>
+    <tr><td class="star">★★★</td><td>SE5K-RW0TEBEN4</td><td>SolarEdge</td><td>3ph Grid</td><td>8</td><td class="price">€214</td><td class="price">€1,708</td></tr>
+    <tr><td class="star">★★★</td><td>SE8K-RW0TEBEN4</td><td>SolarEdge</td><td>3ph Grid</td><td>6</td><td class="price">€320</td><td class="price">€1,922</td></tr>
+    <tr><td class="star">★★★</td><td>SE10.0K-RW0TEBEN4</td><td>SolarEdge</td><td>3ph Grid</td><td>6</td><td class="price">€570</td><td class="price">€3,417</td></tr>
+    <tr><td class="star">★★</td><td>SUN2000-5K-MAP0</td><td>Huawei</td><td>3ph Hybrid</td><td>4</td><td class="price">€1,013</td><td class="price">€4,053</td></tr>
+    <tr><td class="star">★★</td><td>SUN2000-10K-MAP0</td><td>Huawei</td><td>3ph Hybrid</td><td>3</td><td class="price">€1,457</td><td class="price">€4,372</td></tr>
+    <tr><td class="star">★★</td><td>P3-10.0-SH</td><td>FoxESS</td><td>3ph Hybrid</td><td>4</td><td class="price">€1,312</td><td class="price">€5,249</td></tr>
+    <tr><td class="star">★</td><td>HYD 10KTL</td><td>Sofar</td><td>3ph Hybrid</td><td>3</td><td class="price">€1,397</td><td class="price">€4,191</td></tr>
+    <tr><td class="star">★</td><td>SUN2000-15KTL-M5</td><td>Huawei</td><td>3ph Comm.</td><td>2</td><td class="price">€774</td><td class="price">€1,547</td></tr>
+    <tr style="background:#FFFBEB;"><td colspan="4"><strong>Subtotal</strong></td><td><strong>52</strong></td><td></td><td class="price"><strong>€39,276</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>Battery Storage</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Priority</th><th>Product</th><th>Brand</th><th>Capacity</th><th>Qty</th><th>Unit</th><th>Total</th></tr>
+    <tr><td class="star">★★★</td><td>LUNA2000-5-E0</td><td>Huawei</td><td>5 kWh</td><td>4</td><td class="price">€1,655</td><td class="price">€6,620</td></tr>
+    <tr><td class="star">★★★</td><td>LUNA2000-5-C0</td><td>Huawei</td><td>Controller</td><td>4</td><td class="price">€675</td><td class="price">€2,699</td></tr>
+    <tr><td class="star">★★</td><td>LUNA2000-7-E1</td><td>Huawei</td><td>7 kWh</td><td>2</td><td class="price">€2,359</td><td class="price">€4,718</td></tr>
+    <tr><td class="star">★★</td><td>TP-LD53</td><td>Solax</td><td>5.3 kWh LV</td><td>6</td><td class="price">€790</td><td class="price">€4,741</td></tr>
+    <tr style="background:#FFFBEB;"><td colspan="4"><strong>Subtotal</strong></td><td><strong>16</strong></td><td></td><td class="price"><strong>€18,778</strong></td></tr>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--gray);">Note: Solax is represented in Cyprus by EV Energy CY — channel conflict possible.</p>
+
+  <h3>8.6 First Stock Summary</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Category</th><th>SKUs</th><th>Units</th><th>Investment</th></tr>
+    <tr><td>Solar Panels</td><td>6</td><td>468 panels</td><td class="price">€21,528 (est. internal cost)</td></tr>
+    <tr><td>Deye 5kW Hybrid Inverter (SUN-5K-SG03LP1-EU)</td><td>1</td><td>15 units</td><td class="price">€8,412</td></tr>
+    <tr><td>Deye Stackable Batteries (SE-G5.1 PRO-B) — <em>IP20, indoor/covered installation only</em></td><td>1</td><td>25 modules</td><td class="price">€13,289</td></tr>
+    <tr><td>SolarEdge Inverters</td><td>3</td><td>20 units</td><td class="price">€5,639</td></tr>
+    <tr><td>SolarEdge + Tigo Optimizers</td><td>4</td><td>250 units</td><td class="price">€7,380</td></tr>
+    <tr><td>Micro Inverters & Accessories</td><td>5+</td><td>65+ units</td><td class="price">€5,059</td></tr>
+    <tr><td>Huawei Accessories</td><td>1</td><td>10 units</td><td class="price">€721</td></tr>
+    <tr style="background:#FFFBEB;"><td><strong>TOTAL (7sun order)</strong></td><td><strong>21+</strong></td><td><strong>853+ units</strong></td><td class="price"><strong>€62,028</strong></td></tr>
+    <tr><td>Shipping/Logistics (est.)</td><td></td><td></td><td class="price">€6,000–8,000</td></tr>
+    <tr><td>Trikkis local (Huawei inverters)</td><td></td><td></td><td class="price">~€16,000</td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>TOTAL STOCK VALUE</strong></td><td></td><td></td><td class="price"><strong>~€84,000–86,000</strong><br><span style="font-size:10px;color:var(--green)">(provided by 7sun.eu as JV contribution)</span></td></tr>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--gray);">Note: Initial 7sun order (~€62,028 at internal cost) ships from Poland; Huawei inverters (~€16,000) sourced locally from Trikkis at unbeatable wholesale pricing. Stock can be ramped up with additional mounting systems, electrical accessories, and DC cables as demand warrants. Micro inverter stock covers ~30–40 apartments initially; developer orders scale rapidly with 7-day reorder from 7sun.eu.</p>
+</div>
+</section>
+
+<!-- Section 9: Financial Projections -->
+<section id="s9">
+<div class="container">
+  <h2><span class="num">9</span> Financial Projections</h2>
+  
+  <h3>9.1 Year 1 Pro-Forma P&L</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Line Item</th><th>Monthly (Avg)</th><th>Year 1</th></tr>
+    <tr><td colspan="3" style="background:#F3F4F6;font-weight:700;">Margin-Generating Revenue (external sales)</td></tr>
+    <tr><td>Wholesale B2B (external installers)</td><td class="price">€46,000</td><td class="price">€552,000</td></tr>
+    <tr><td>Retail B2C (homeowners)</td><td class="price">€16,000</td><td class="price">€192,000</td></tr>
+    <tr><td>Developer / Apartment Kits</td><td class="price">€12,000</td><td class="price">€144,000</td></tr>
+    <tr style="background:#FFFBEB;"><td><strong>Subtotal External Revenue</strong></td><td class="price"><strong>€74,000</strong></td><td class="price"><strong>€888,000</strong></td></tr>
+    <tr><td colspan="3" style="background:#F3F4F6;font-weight:700;">Pass-Through Revenue (at cost)</td></tr>
+    <tr><td>Lighthief Project Supply (at purchase price)</td><td class="price">€9,800</td><td class="price">€117,600</td></tr>
+    <tr style="background:#FFFBEB;"><td><strong>Total Throughput</strong></td><td class="price"><strong>€83,800</strong></td><td class="price"><strong>€1,005,600</strong></td></tr>
+    <tr><td colspan="3" style="background:#F3F4F6;font-weight:700;">Cost of Goods Sold</td></tr>
+    <tr><td>Product Cost — external sales (panels/inverters/storage)</td><td class="price">€37,000</td><td class="price">€444,000</td></tr>
+    <tr><td>Product Cost — micro inverter kits</td><td class="price">€5,500</td><td class="price">€66,000</td></tr>
+    <tr><td>Product Cost — Lighthief (at cost, 0% margin)</td><td class="price">€9,800</td><td class="price">€117,600</td></tr>
+    <tr><td>Shipping/Logistics</td><td class="price">€2,200</td><td class="price">€26,400</td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>Gross Profit (from external sales only)</strong></td><td class="price"><strong>€29,300</strong></td><td class="price"><strong>€351,600</strong></td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>Gross Margin (on external revenue)</strong></td><td class="price" colspan="2"><strong>37.3%</strong></td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>Blended Margin (on total throughput)</strong></td><td class="price" colspan="2"><strong>35.0%</strong></td></tr>
+    <tr><td colspan="3" style="background:#F3F4F6;font-weight:700;">Operating Expenses</td></tr>
+    <tr><td>Warehouse Rent</td><td class="price">€7,000</td><td class="price">€84,000</td></tr>
+    <tr><td>Warehouse Employee</td><td class="price">€2,000</td><td class="price">€24,000</td></tr>
+    <tr><td>KAM (Key Account Manager, from March)</td><td class="price">€2,500 + commission</td><td class="price">€25,000 + commission</td></tr>
+    <tr><td>Marketing</td><td class="price">€4,300</td><td class="price">€52,000</td></tr>
+    <tr><td>Insurance & Legal</td><td class="price">€500</td><td class="price">€6,000</td></tr>
+    <tr><td>Utilities & Office</td><td class="price">€800</td><td class="price">€9,600</td></tr>
+    <tr><td>Accounting/Admin</td><td class="price">€600</td><td class="price">€7,200</td></tr>
+    <tr><td>Website Management & AI Oversight</td><td class="price">€500</td><td class="price">€6,000</td></tr>
+    <tr><td>Website Platform & AI Tokens</td><td class="price">€481</td><td class="price">€5,772</td></tr>
+    <tr style="background:#F3F4F6;"><td><strong>Total OPEX</strong></td><td class="price"><strong>€18,764</strong></td><td class="price"><strong>€225,168</strong></td></tr>
+  </table>
+  </div>
+  <div class="insight">
+    <strong>Warehouse:</strong> Current rent €7,000/mo for 700 sqm section in Ypsonas. Expandable to €10,000/mo when opening second section for additional capacity.
+  </div>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Line Item</th><th>Monthly (Avg)</th><th>Year 1</th></tr>
+    <tr style="background:#D1FAE5;"><td><strong>EBITDA</strong></td><td class="price"><strong>€8,800</strong></td><td class="price"><strong>€103,392</strong></td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>Net Margin (on external revenue)</strong></td><td class="price" colspan="2"><strong>14.2%</strong></td></tr>
+  </table>
+  </div>
+  <div class="insight">
+    <strong>JV Model:</strong> Stock provided by 7sun.eu at no cost to the JV. Lighthief.cy purchases at the purchase price (zero margin). OPEX shared 50/50 by shareholders. Profit comes from external sales margin only.
+  </div>
+
+  <h3>9.2 Break-even Analysis</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Fixed Costs (Monthly)</td><td class="price">€18,764</td></tr>
+    <tr><td>Average Gross Margin (external sales)</td><td>37.3%</td></tr>
+    <tr><td><strong>Break-even External Revenue</strong></td><td class="price"><strong>~€47,400/month</strong></td></tr>
+    <tr><td>Expected break-even</td><td><strong>Month 3–4</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>9.3 Cash Flow Requirements</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Initial Stock</td><td class="price">€0 (provided by 7sun.eu as JV contribution)</td></tr>
+    <tr><td>Warehouse Setup (deposit, racking, equipment)</td><td class="price">€15,000</td></tr>
+    <tr><td>Website Development</td><td class="price">€2,500–5,500</td></tr>
+    <tr><td>Pre-Launch Marketing</td><td class="price">€8,000</td></tr>
+    <tr><td>Working Capital (3 months OPEX)</td><td class="price">€56,300</td></tr>
+    <tr style="background:#FFFBEB;"><td><strong>Total Startup Capital Required</strong></td><td class="price"><strong>~€82,000–85,000</strong></td></tr>
+    <tr style="background:#FFFBEB;"><td><strong>Per Shareholder (50/50)</strong></td><td class="price"><strong>~€41,000–42,500</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>9.4 Profit Distribution</h3>
+  <p style="color:var(--gray);margin-bottom:12px;"><strong>7SUN Cyprus</strong> is a 50/50 joint venture:</p>
+  <ul style="color:var(--gray);margin-bottom:16px;padding-left:20px;font-size:13px;">
+    <li><strong>7sun.eu (50%):</strong> Provides all stock, EU supply chain, product sourcing, XML feed</li>
+    <li><strong>Lighthief International Ltd (50%):</strong> Local operations, warehouse management, sales, marketing</li>
+    <li><strong>Operating expenses:</strong> Shared 50/50</li>
+    <li><strong>Lighthief.cy (installation company):</strong> Purchases from 7SUN Cyprus at cost price — no margin</li>
+  </ul>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Item</th><th>Conservative</th><th>Optimistic</th></tr>
+    <tr><td>External Revenue (margin-generating)</td><td class="price">€888,000</td><td class="price">€1,056,000</td></tr>
+    <tr><td>Lighthief Pass-Through (at cost)</td><td class="price">€117,600</td><td class="price">€140,000</td></tr>
+    <tr><td>Total Throughput</td><td class="price">€1,005,600</td><td class="price">€1,196,000</td></tr>
+    <tr><td>Gross Profit (external sales, ~40%)</td><td class="price">€351,600</td><td class="price">€422,000</td></tr>
+    <tr><td>Less: Operating Expenses (shared 50/50)</td><td class="price">–€225,168</td><td class="price">–€225,168</td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>Net Profit</strong></td><td class="price"><strong>€103,392</strong></td><td class="price"><strong>€218,352</strong></td></tr>
+    <tr style="background:#FFFBEB;"><td><strong>Per shareholder (50/50)</strong></td><td class="price"><strong>€51,696</strong></td><td class="price"><strong>€109,176</strong></td></tr>
+    <tr><td colspan="3" style="background:#F3F4F6;font-weight:700;">Return on Capital Invested</td></tr>
+    <tr><td>Capital per shareholder</td><td class="price">~€41,000</td><td class="price">~€41,000</td></tr>
+    <tr style="background:#D1FAE5;"><td><strong>ROI (Year 1)</strong></td><td class="price"><strong>126%</strong></td><td class="price"><strong>266%</strong></td></tr>
+  </table>
+  </div>
+  <div class="insight">
+    <strong>Key advantage:</strong> Zero stock investment means shareholders deploy only ~€41K each for a projected €52K–109K annual return. As external sales volume grows and Lighthief's share of total throughput decreases proportionally, margins improve further.
+  </div>
+</div>
+</section>
+
+<!-- Section 10: Risk Analysis -->
+<section id="s10">
+<div class="container">
+  <h2><span class="num">10</span> Risk Analysis & Mitigation</h2>
+  
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-title">Grid Curtailment Worsens</div>
+      <div class="risk-meta"><span class="badge badge-yellow">Medium Prob.</span><span class="badge badge-red">High Impact</span></div>
+      <p>Mitigation: Focus on battery storage products; promote self-consumption solutions over grid export.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Trikkis Retaliatory Pricing</div>
+      <div class="risk-meta"><span class="badge badge-red">High Prob.</span><span class="badge badge-yellow">Medium Impact</span></div>
+      <p>Mitigation: Lead with brands Trikkis doesn't carry (SolarEdge [CY channel status pending verification], FoxESS, Sofar). Lead with FoxESS and Sofar as confirmed unrepresented brands. Panels margin is protected by 7sun supply chain.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Huawei Regional Pricing</div>
+      <div class="risk-meta"><span class="badge badge-yellow">Medium Prob.</span><span class="badge badge-yellow">Medium Impact</span></div>
+      <p>Mitigation: Position Huawei as "also available" but lead marketing with differentiated brands (SolarEdge channel pending verification; FoxESS and Sofar unrepresented) where margins are better.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Slow Customer Acquisition</div>
+      <div class="risk-meta"><span class="badge badge-yellow">Medium Prob.</span><span class="badge badge-yellow">Medium Impact</span></div>
+      <p>Mitigation: Lighthief.cy provides base throughput volume (at cost); KAM hired from March to drive external sales with commission incentive.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Working Capital Strain</div>
+      <div class="risk-meta"><span class="badge badge-blue">Low Prob.</span><span class="badge badge-blue">Low Impact</span></div>
+      <p>Mitigation: Stock provided by 7sun.eu — no capital tied up in inventory; OPEX shared 50/50.</p>
+    </div>
+    <div class="risk-card">
+      <div class="risk-title">Regulatory Changes — Grant Scheme Ended</div>
+      <div class="risk-meta"><span class="badge badge-blue">Low Prob.</span><span class="badge badge-blue">Low Impact</span></div>
+      <p>Mitigation: Grant (€375/kW, max €1,500) closed Dec 2025. Already pricing for post-subsidy market; solar ROI still strong without grant.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p><strong>7SUN Cyprus — Business Plan</strong> | February 2026 | Confidential</p>
+    <p style="margin-top:8px;">All prices ex-VAT. 7sun H1–H5 are wholesale selling tiers (not our cost). Internal costs verified from 7sun.eu price list (March 2026).<br>Trikkis pricing based on official CY pricelist Sept 2025. Market data: PV Magazine, IndexBox, CERA, lighthief.cy, solarwholesale.com.cy.</p>
+  </div>
+</footer>
+
+<script>
+function exportPDF() {
+  // Set print-friendly styles
+  document.querySelector('.pdf-bar').style.display = 'none';
+  
+  // Trigger browser print dialog (Save as PDF option)
+  window.print();
+  
+  // Restore
+  setTimeout(() => {
+    document.querySelector('.pdf-bar').style.display = 'flex';
+  }, 1000);
+}
+
+// Smooth scroll for TOC links
+document.querySelectorAll('.toc a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
