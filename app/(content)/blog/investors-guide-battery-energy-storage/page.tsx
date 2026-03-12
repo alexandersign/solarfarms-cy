@@ -127,7 +127,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       production is being ordered off the grid and wasted. With BESS, curtailed energy
                       is <strong>captured and stored</strong> rather than lost. Instead of watching
                       &euro;178,600 per MW per year evaporate, you convert that wasted energy into
-                      evening revenue at &euro;161/MWh net.
+                      evening revenue at &euro;158/MWh net.
                     </p>
                   </CardContent>
                 </Card>
@@ -189,7 +189,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                   Revenue Impact by Park Size
                 </h3>
                 <p className="text-center text-gray-600 mb-6">
-                  Based on 47% curtailment, 50% BESS recovery rate, &euro;161/MWh net discharge revenue
+                  Based on 47% curtailment, 50% BESS recovery rate, &euro;158/MWh net discharge revenue (86.32% RTE)
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6">
@@ -215,9 +215,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       </div>
                       <div className="flex justify-between font-bold border-t pt-2 text-green-700">
                         <span>Annual Revenue Recovered:</span>
-                        <span>~&euro;75,670</span>
-                      </div>
-                      <div className="text-xs text-gray-500 text-right">at &euro;161/MWh net</div>
+                        <span>~&euro;74,260</span>
+                    </div>
+                      <div className="text-xs text-gray-500 text-right">at &euro;158/MWh net</div>
                     </CardContent>
                   </Card>
 
@@ -243,9 +243,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       </div>
                       <div className="flex justify-between font-bold border-t pt-2 text-green-700">
                         <span>Annual Revenue Recovered:</span>
-                        <span>~&euro;378,350</span>
+                        <span>~&euro;371,300</span>
                       </div>
-                      <div className="text-xs text-gray-500 text-right">at &euro;161/MWh net</div>
+                      <div className="text-xs text-gray-500 text-right">at &euro;158/MWh net</div>
                     </CardContent>
                   </Card>
 
@@ -271,9 +271,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       </div>
                       <div className="flex justify-between font-bold border-t pt-2 text-green-700">
                         <span>Annual Revenue Recovered:</span>
-                        <span>~&euro;756,700</span>
+                        <span>~&euro;742,600</span>
                       </div>
-                      <div className="text-xs text-gray-500 text-right">at &euro;161/MWh net</div>
+                      <div className="text-xs text-gray-500 text-right">at &euro;158/MWh net</div>
                     </CardContent>
                   </Card>
                 </div>
@@ -602,14 +602,14 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                           profile and your view on future revenue streams. Larger batteries capture
                           significantly more curtailed energy (87% for 4-hour vs 57% for 2-hour),
                           but because CAPEX scales proportionally, all three achieve similar payback
-                          periods of 4.5&ndash;5.0 years.
+                          periods of 4&ndash;5 years.
                         </p>
                         <div className="bg-amber-50 rounded-lg p-3">
                           <p className="text-sm text-gray-700">
                             <strong>Key trade-off:</strong> A 2-hour system (10 MWh for 5 MW) offers
                             the fastest payback (~4.0 years) but captures only 57% of curtailment.
                             A 4-hour system (20 MWh) captures 87% of curtailment, generates 53% more
-                            revenue, and pays back in 5.0 years &mdash; with the lowest &euro;/MWh
+                            revenue, and pays back in ~4.3 years &mdash; with the lowest &euro;/MWh
                             installed cost and best future upside from DAM arbitrage.
                           </p>
                         </div>

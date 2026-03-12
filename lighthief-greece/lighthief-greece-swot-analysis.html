@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Greece IKE — SWOT Analysis</title>
+<style>
+:root {
+  --primary: #1e3a5f;
+  --accent: #0ea5e9;
+  --accent-light: #e0f2fe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --blue-light: #dbeafe;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg-alt);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+header {
+  background: linear-gradient(135deg, #0f2440, var(--primary), #1a4a7a);
+  color: #fff;
+  padding: 48px 24px 40px;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+header .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+header .date {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.print-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.print-btn:hover { background: #142d4a; }
+
+/* SWOT Matrix */
+.swot-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.swot-quadrant {
+  padding: 20px 22px;
+}
+
+.swot-quadrant h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swot-quadrant h3 .icon { font-size: 1.1rem; }
+
+.swot-quadrant ul {
+  list-style: none;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.swot-quadrant ul li::before {
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.q-strengths { background: var(--green-light); }
+.q-strengths h3 { color: #15803d; }
+.q-weaknesses { background: var(--amber-light); }
+.q-weaknesses h3 { color: #b45309; }
+.q-opportunities { background: var(--blue-light); }
+.q-opportunities h3 { color: #1d4ed8; }
+.q-threats { background: var(--red-light); }
+.q-threats h3 { color: #b91c1c; }
+
+/* Section titles */
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 40px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* SWOT cards */
+.swot-card {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--border);
+}
+
+.swot-card.strength { border-left-color: var(--green); }
+.swot-card.weakness { border-left-color: var(--amber); }
+.swot-card.opportunity { border-left-color: var(--accent); }
+.swot-card.threat { border-left-color: var(--red); }
+
+.swot-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.swot-card ul {
+  margin: 0 0 10px 18px;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.swot-card ul li { margin-bottom: 4px; }
+
+.implication, .mitigation {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  margin-top: 8px;
+}
+
+.implication strong, .mitigation strong {
+  color: var(--primary);
+}
+
+/* Strategic implications */
+.strategy-card {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--border);
+}
+
+.strategy-card.strat-strengths { border-left-color: var(--green); }
+.strategy-card.strat-weaknesses { border-left-color: var(--amber); }
+.strategy-card.strat-opportunities { border-left-color: var(--accent); }
+.strategy-card.strat-threats { border-left-color: var(--red); }
+
+.strategy-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.strategy-card ul {
+  margin: 0 0 0 18px;
+  font-size: 0.92rem;
+}
+
+.strategy-card ul li { margin-bottom: 6px; }
+
+/* Scorecard */
+.scorecard {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 10px;
+  font-size: 0.92rem;
+  background: var(--bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.scorecard thead th {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.scorecard tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.scorecard tbody tr:last-child td { border-bottom: none; }
+
+.scorecard .stars {
+  color: #f59e0b;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.scorecard .verdict {
+  background: var(--green-light);
+  color: var(--green);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 0.9rem;
+}
+
+.scorecard tbody tr:nth-child(even) { background: var(--bg-alt); }
+
+/* Meta & footer */
+.meta-info {
+  margin-top: 30px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+/* Print */
+@media print {
+  .print-btn { display: none !important; }
+  body { background: #fff; font-size: 11px; }
+  .container { max-width: 100%; padding: 0; }
+  header { padding: 24px 16px 20px; margin-bottom: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .swot-matrix { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .swot-card, .strategy-card { break-inside: avoid; page-break-inside: avoid; margin-bottom: 10px; }
+  .section-title { margin-top: 20px; }
+  .implication, .mitigation { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scorecard { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scorecard thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scorecard .verdict { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .q-strengths, .q-weaknesses, .q-opportunities, .q-threats { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scorecard tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 15mm; }
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">PRINT / EXPORT</button>
+
+<header>
+  <h1>Lighthief Greece IKE</h1>
+  <div class="subtitle">SWOT Analysis — Greek BESS Market Entry</div>
+  <div class="date">March 2026</div>
+</header>
+
+<div class="container">
+
+  <!-- SWOT Matrix -->
+  <div class="swot-matrix">
+    <div class="swot-quadrant q-strengths">
+      <h3><span class="icon">✦</span> STRENGTHS</h3>
+      <ul>
+        <li><strong>S1.</strong> Proven BESS Portfolio at Scale</li>
+        <li><strong>S2.</strong> Exclusive OEM Relationships</li>
+        <li><strong>S3.</strong> Trained Engineering Team</li>
+        <li><strong>S4.</strong> Integrated EPC + O&amp;M Model</li>
+        <li><strong>S5.</strong> Financial Efficiency</li>
+        <li><strong>S6.</strong> EU Group Structure</li>
+      </ul>
+    </div>
+    <div class="swot-quadrant q-weaknesses">
+      <h3><span class="icon">⚠</span> WEAKNESSES</h3>
+      <ul>
+        <li><strong>W1.</strong> No Greek Market Presence</li>
+        <li><strong>W2.</strong> Single-Person Dependency (Year 1)</li>
+        <li><strong>W3.</strong> No Greek Construction Track Record</li>
+        <li><strong>W4.</strong> Remote Management</li>
+        <li><strong>W5.</strong> Limited Financial Resources</li>
+        <li><strong>W6.</strong> No Energy Trading Capability (Yet)</li>
+      </ul>
+    </div>
+    <div class="swot-quadrant q-opportunities">
+      <h3><span class="icon">◆</span> OPPORTUNITIES</h3>
+      <ul>
+        <li><strong>O1.</strong> Massive Market Pipeline — 4.7 GW</li>
+        <li><strong>O2.</strong> Curtailment Crisis Creates Urgency</li>
+        <li><strong>O3.</strong> Grid Connection Bottleneck = Consulting</li>
+        <li><strong>O4.</strong> Strong BESS Revenue Economics</li>
+        <li><strong>O5.</strong> Coal Phase-Out Zones — Incentives</li>
+        <li><strong>O6.</strong> Limited BESS-Specialist Competition</li>
+        <li><strong>O7.</strong> EU Regulatory Tailwinds</li>
+        <li><strong>O8.</strong> Linyang Greek Distribution Potential</li>
+      </ul>
+    </div>
+    <div class="swot-quadrant q-threats">
+      <h3><span class="icon">▲</span> THREATS</h3>
+      <ul>
+        <li><strong>T1.</strong> Grid Connection Delays</li>
+        <li><strong>T2.</strong> Regulatory Uncertainty</li>
+        <li><strong>T3.</strong> Revenue Cannibalisation</li>
+        <li><strong>T4.</strong> Large Incumbents Entering</li>
+        <li><strong>T5.</strong> Greek Business Environment</li>
+        <li><strong>T6.</strong> Talent Scarcity</li>
+        <li><strong>T7.</strong> Technology Risk</li>
+        <li><strong>T8.</strong> Geopolitical / Supply Chain</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STRENGTHS -->
+  <h2 class="section-title" style="color: var(--green);">Strengths (Internal — Positive)</h2>
+
+  <div class="swot-card strength">
+    <h4>S1. Proven BESS Portfolio at Scale</h4>
+    <ul>
+      <li>881 MWh delivered portfolio across 51 parks, 249 MW, 251 containers in Cyprus</li>
+      <li>Largest private BESS programme in Cyprus — concrete, verifiable track record</li>
+      <li>End-to-end delivery: engineering, procurement, logistics, commissioning, O&amp;M</li>
+      <li>Performance data and reference clients available (ABIO Power, Esperia Energy, Karis, etc.)</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> No other new Greek market entrant can demonstrate this scale of delivered BESS projects</div>
+  </div>
+
+  <div class="swot-card strength">
+    <h4>S2. Exclusive OEM Relationships</h4>
+    <ul>
+      <li><strong>Linyang Energy</strong> (BESS containers, EVE LFP cells) — exclusive Cyprus distributor, strong relationship</li>
+      <li><strong>Kehua</strong> (PCS inverters — BCS1000K/BCS1250K) — proven integration with Linyang</li>
+      <li><strong>Voltus</strong> (EMS/SCADA) — full energy management and trading platform</li>
+      <li>Direct OEM pricing without intermediary markup</li>
+      <li>Factory-trained commissioning capability</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Competitive equipment pricing and guaranteed supply — critical when Greek developers face procurement bottlenecks</div>
+  </div>
+
+  <div class="swot-card strength">
+    <h4>S3. Trained Engineering Team</h4>
+    <ul>
+      <li>6 senior electrical engineers (3 years+ at Lighthief International, Poland)</li>
+      <li>Specialisms: BESS commissioning, protection systems, BMS/EMS integration, MV systems, SCADA</li>
+      <li>Can be seconded to Greek projects under EU Posting of Workers Directive</li>
+      <li>Reduces dependency on local Greek engineering talent (short supply)</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Immediate technical delivery capability without waiting to build a full Greek team</div>
+  </div>
+
+  <div class="swot-card strength">
+    <h4>S4. Integrated EPC + O&amp;M Model</h4>
+    <ul>
+      <li>Full lifecycle offering: design → procure → build → commission → maintain (15-year LTSA)</li>
+      <li>Proven O&amp;M framework: 97% availability SLA, 4h critical response, SCADA monitoring</li>
+      <li>Standardised processes: work orders, CMMS, shift models, spare parts logistics</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Developers get a single partner for the full asset lifecycle — reduces interface risk</div>
+  </div>
+
+  <div class="swot-card strength">
+    <h4>S5. Financial Efficiency</h4>
+    <ul>
+      <li>Lean cost structure: IKE formation (€3K), virtual office (€150/mo), 1 employee initially</li>
+      <li>No heavy overhead — scale costs with revenue</li>
+      <li>Intercompany procurement eliminates working capital risk on equipment</li>
+      <li>Cyprus parent provides financial backing without external debt</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Can undercut larger international EPCs on price while maintaining quality</div>
+  </div>
+
+  <div class="swot-card strength">
+    <h4>S6. EU Group Structure</h4>
+    <ul>
+      <li>All-EU corporate structure (Cyprus + Poland + Greece) — no cross-border complications</li>
+      <li>0% dividend WHT from Greece to Cyprus under EU PSD</li>
+      <li>EUR-denominated throughout — zero currency risk</li>
+      <li>Intra-EU equipment movement with no customs duties</li>
+      <li>Shared back-office, IT, and administrative infrastructure</li>
+    </ul>
+  </div>
+
+  <!-- WEAKNESSES -->
+  <h2 class="section-title" style="color: var(--amber);">Weaknesses (Internal — Negative)</h2>
+
+  <div class="swot-card weakness">
+    <h4>W1. No Greek Market Presence</h4>
+    <ul>
+      <li>Zero existing relationships with Greek developers, regulators, or grid operators</li>
+      <li>No brand recognition in Greece — "who is Lighthief?" problem</li>
+      <li>No TEE-registered engineer yet (cannot bid on tenders until hired)</li>
+    </ul>
+    <div class="mitigation"><strong>Mitigation:</strong> Hire experienced local Country Lead with existing network; leverage Cyprus portfolio as proof</div>
+  </div>
+
+  <div class="swot-card weakness">
+    <h4>W2. Single-Person Dependency (Year 1)</h4>
+    <ul>
+      <li>Entire Greek operation depends on one TEE-licensed engineer hire</li>
+      <li>If this hire fails, delays, or underperforms, market entry stalls</li>
+      <li>No backup technical authority in Greece</li>
+    </ul>
+    <div class="mitigation"><strong>Mitigation:</strong> Start recruiting immediately; maintain parallel relationship with TEE-licensed subcontractors as fallback</div>
+  </div>
+
+  <div class="swot-card weakness">
+    <h4>W3. No Greek Construction Track Record</h4>
+    <ul>
+      <li>Cyprus portfolio proves capability, but Greek regulators and developers may want local references</li>
+      <li>Different grid code, different permitting process, different subcontractor landscape</li>
+      <li>"You've never built in Greece" objection from risk-averse developers</li>
+    </ul>
+    <div class="mitigation"><strong>Mitigation:</strong> Start with consulting / sub-EPC (lower risk for clients); partner with established Greek EPC firms</div>
+  </div>
+
+  <div class="swot-card weakness">
+    <h4>W4. Remote Management</h4>
+    <ul>
+      <li>Managing Director (Alexander Papacosta) is Cyprus-based — not on the ground in Athens daily</li>
+      <li>Time zone is the same (EET), but physical presence matters in relationship-driven Greek business culture</li>
+    </ul>
+    <div class="mitigation"><strong>Mitigation:</strong> Country Lead must be empowered as the face of the company; Alex visits monthly</div>
+  </div>
+
+  <div class="swot-card weakness">
+    <h4>W5. Limited Financial Resources</h4>
+    <ul>
+      <li>Year 1 budget ~€97K–€183K — constrains hiring and marketing speed</li>
+      <li>Cannot self-fund large project guarantees or performance bonds without bank support</li>
+    </ul>
+    <div class="mitigation"><strong>Mitigation:</strong> Start with consulting (low CAPEX); use intercompany loans; pursue bank relationships early</div>
+  </div>
+
+  <div class="swot-card weakness">
+    <h4>W6. No Energy Trading Capability (Yet)</h4>
+    <ul>
+      <li>BESS revenue in Greece increasingly depends on optimised energy trading (arbitrage, ancillary services)</li>
+      <li>Lighthief has no in-house trading desk or algorithmic trading platform</li>
+    </ul>
+    <div class="mitigation"><strong>Mitigation:</strong> Partner with Voltus or specialist traders (e.g., enspired, Flexpower) for optimisation services</div>
+  </div>
+
+  <!-- OPPORTUNITIES -->
+  <h2 class="section-title" style="color: #1d4ed8;">Opportunities (External — Positive)</h2>
+
+  <div class="swot-card opportunity">
+    <h4>O1. Massive Market Pipeline — 4.7 GW</h4>
+    <ul>
+      <li>€1.9 billion hardware + installation market with regulatory framework now in place</li>
+      <li>900 MW already awarded across 3 auctions; 4.7 GW merchant programme launching</li>
+      <li>Regional allocations favour specific geographies (W. Macedonia 425 MW, C. Macedonia 400 MW)</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Market large enough for many players — Lighthief doesn't need market share, just a few projects</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O2. Curtailment Crisis Creates Urgency</h4>
+    <ul>
+      <li>1,867 GWh curtailed in 2025 (7% rate, rising)</li>
+      <li>Solar revenue hit by 25% — developers desperate for storage solutions</li>
+      <li>Government under pressure to accelerate BESS deployment</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Urgency shortens sales cycles and increases willingness to engage new partners</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O3. Grid Connection Bottleneck = Consulting Opportunity</h4>
+    <ul>
+      <li>~300 MW installed but waiting for grid connection — developers need technical support to navigate ADMIE</li>
+      <li>Complex grid code compliance and protection system requirements</li>
+      <li>Many developers have renewable energy experience but not BESS-specific expertise</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Lighthief can sell consulting and technical advisory immediately — before any EPC project</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O4. Strong BESS Revenue Economics</h4>
+    <ul>
+      <li>€157K/MW/year for 2-hour systems — among the best in Europe</li>
+      <li>Wide price spreads (near-zero midday → high evening peaks) ideal for arbitrage</li>
+      <li>Untapped ancillary services market with limited competition</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Attractive investor returns make project financing easier; more projects = more demand for EPC/O&amp;M</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O5. Coal Phase-Out Zones — Government Incentives</h4>
+    <ul>
+      <li>Western Macedonia (425 MW) and coal transition zones offer priority grid access</li>
+      <li>Regional development incentives and political support for clean energy investment</li>
+      <li>PPC's 860 MW BESS plan for the region creates a concentration of activity</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Geographic focus area with aligned government priorities — easier permitting</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O6. Limited BESS-Specialist Competition</h4>
+    <ul>
+      <li>Most Greek energy companies are generalists (renewables, gas, trading)</li>
+      <li>Few have dedicated BESS engineering teams or OEM relationships at Lighthief's level</li>
+      <li>GreenValue and Active Energy are smaller competitors</li>
+      <li>Large international EPCs (Fluence, Tesla, BYD) are expensive and slow</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Market gap for a mid-sized, specialised BESS EPC with competitive pricing</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O7. EU Regulatory Tailwinds</h4>
+    <ul>
+      <li>EU Battery Regulation and Clean Energy Package support storage deployment</li>
+      <li>EU-funded programmes (Recovery and Resilience Fund) include energy storage allocations for Greece</li>
+      <li>Carbon border adjustment mechanism (CBAM) increases value of grid flexibility</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Structural, long-term demand — not a cyclical opportunity</div>
+  </div>
+
+  <div class="swot-card opportunity">
+    <h4>O8. Linyang Greek Distribution Potential</h4>
+    <ul>
+      <li>Linyang does not have a Greek distributor — Lighthief could replicate the Cyprus exclusive distribution model</li>
+      <li>Combined Cyprus + Greece volume strengthens negotiating position with Linyang on pricing</li>
+    </ul>
+    <div class="implication"><strong>Implication:</strong> Long-term strategic asset — exclusive OEM distribution rights in a €1.9B market</div>
+  </div>
+
+  <!-- THREATS -->
+  <h2 class="section-title" style="color: var(--red);">Threats (External — Negative)</h2>
+
+  <div class="swot-card threat">
+    <h4>T1. Grid Connection Delays</h4>
+    <ul>
+      <li>~300 MW installed but not connected; ADMIE processing capacity is the bottleneck</li>
+      <li>Projects from the first two auctions missed their 2025 operational deadline</li>
+      <li>If connection delays persist, developers may pause new BESS investment</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Revenue deferrals for EPC projects; consulting revenue less affected</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Focus on consulting/advisory initially; help developers navigate the connection process</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T2. Regulatory Uncertainty</h4>
+    <ul>
+      <li>The 4.7 GW merchant programme is new — market design could change</li>
+      <li>RAAEY operational support methodology (Decision E-65/2025) may be revised</li>
+      <li>Anti-concentration rules could limit project sizes or ownership</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Investor uncertainty slows project Final Investment Decisions (FIDs)</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Maintain close engagement with RAAEY; diversify across consulting + EPC + O&amp;M</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T3. Revenue Cannibalisation</h4>
+    <ul>
+      <li>As BESS capacity scales, arbitrage spreads will narrow ("cannibalisation effect")</li>
+      <li>Revenue per MW will decline from €157K towards €80–100K as competition increases</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Developers may demand lower EPC prices; O&amp;M margins stable</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Position O&amp;M contracts as recurring revenue; help clients with revenue stacking strategies</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T4. Large Incumbents Entering</h4>
+    <ul>
+      <li>METLEN already has 2.2 GWh pipeline and in-house EPC capability</li>
+      <li>PPC has state backing and 860 MW pipeline — may vertically integrate</li>
+      <li>International players (Fluence, Wärtsilä, BYD) could enter aggressively</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Squeezed out of larger projects; pushed towards smaller/niche work</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Target sub-EPC and specialist roles; compete on agility and OEM pricing</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T5. Greek Business Environment</h4>
+    <ul>
+      <li>Bureaucratic processes — permitting, bank account opening, VAT refunds can be slow</li>
+      <li>Payment culture — longer payment terms common; developer cashflow issues</li>
+      <li>Managing director personal liability to the Greek state</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Cash flow pressure; administrative friction</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Strong accountant and lawyer; strict credit control; advance payment terms</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T6. Talent Scarcity</h4>
+    <ul>
+      <li>Limited pool of BESS-experienced engineers with TEE registration in Greece</li>
+      <li>Competition from METLEN, PPC, and international firms for the same talent</li>
+      <li>Salary expectations rising as market heats up</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Difficulty hiring or retaining the Country Lead; cost escalation</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Offer equity/bonus incentives; highlight unique Lighthief exposure (international group, cutting-edge BESS)</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T7. Technology Risk</h4>
+    <ul>
+      <li>Lithium-ion BESS technology is maturing but fire safety concerns persist</li>
+      <li>Regulatory requirements for safety, fire suppression, and environmental compliance evolving</li>
+      <li>New storage technologies (sodium-ion, flow batteries) could disrupt market</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Increased compliance costs; potential technology obsolescence</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Linyang's EVE LFP cells are proven (7,000 cycle life); stay technology-agnostic for consulting</div>
+  </div>
+
+  <div class="swot-card threat">
+    <h4>T8. Geopolitical / Supply Chain</h4>
+    <ul>
+      <li>EU–China trade tensions could affect equipment imports (anti-subsidy investigations)</li>
+      <li>Shipping disruptions (Suez, Red Sea) could delay container deliveries</li>
+    </ul>
+    <div class="mitigation"><strong>Impact:</strong> Equipment cost increases or delivery delays</div>
+    <div class="mitigation" style="margin-top: 6px;"><strong>Mitigation:</strong> Linyang CIF terms transfer shipping risk; Poland warehouse holds safety stock</div>
+  </div>
+
+  <!-- STRATEGIC IMPLICATIONS -->
+  <h2 class="section-title">Strategic Implications</h2>
+
+  <div class="strategy-card strat-strengths">
+    <h4>Play to Strengths</h4>
+    <ul>
+      <li>Lead with the <strong>881 MWh Cyprus portfolio</strong> in every pitch — it's the single strongest differentiator</li>
+      <li>Position OEM access (Linyang, Kehua, Voltus) as a <strong>bankability advantage</strong> — Tier 1 equipment at competitive prices</li>
+      <li>Use the <strong>seconded engineer model</strong> from Poland to provide immediate technical capability</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card strat-weaknesses">
+    <h4>Address Weaknesses</h4>
+    <ul>
+      <li><strong>TEE engineer hire is the critical path</strong> — start recruiting before incorporation is complete</li>
+      <li>Build local credibility through <strong>consulting mandates first</strong> (lower client risk, builds reputation)</li>
+      <li>Plan for <strong>monthly Athens visits</strong> by the Managing Director to maintain relationships</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card strat-opportunities">
+    <h4>Capture Opportunities</h4>
+    <ul>
+      <li><strong>Grid connection consulting</strong> is the fastest revenue opportunity — developers are stuck and need help</li>
+      <li><strong>Western Macedonia</strong> as the priority geographic focus (425 MW + government support)</li>
+      <li>Negotiate <strong>Linyang Greek distribution</strong> once first project is secured — replicate Cyprus model</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card strat-threats">
+    <h4>Defend Against Threats</h4>
+    <ul>
+      <li><strong>Diversify revenue</strong> across consulting, sub-EPC, equipment supply, and O&amp;M — don't depend on any single stream</li>
+      <li><strong>Keep costs lean</strong> — variable cost model means low risk if market slows</li>
+      <li><strong>Build RAAEY relationships</strong> — regulatory engagement provides early warning of policy changes</li>
+    </ul>
+  </div>
+
+  <!-- SUMMARY SCORECARD -->
+  <h2 class="section-title">Summary Scorecard</h2>
+
+  <table class="scorecard">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Rating</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Strengths</strong></td>
+        <td class="stars">★★★★★</td>
+        <td>Unmatched BESS portfolio + OEM access + engineering team</td>
+      </tr>
+      <tr>
+        <td><strong>Weaknesses</strong></td>
+        <td class="stars">★★★☆☆</td>
+        <td>Solvable with right hire; typical for market entry</td>
+      </tr>
+      <tr>
+        <td><strong>Opportunities</strong></td>
+        <td class="stars">★★★★★</td>
+        <td>€1.9B market with structural urgency — timing is ideal</td>
+      </tr>
+      <tr>
+        <td><strong>Threats</strong></td>
+        <td class="stars">★★★☆☆</td>
+        <td>Manageable — grid delays are biggest risk, but consulting hedges this</td>
+      </tr>
+      <tr>
+        <td><strong>Overall</strong></td>
+        <td><span class="verdict">Strong GO</span></td>
+        <td>Market timing, competitive position, and cost structure all favour entry</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="meta-info">
+    Document prepared: March 2026<br>
+    Author: Lighthief Strategy<br>
+    Status: Draft for internal review
+  </div>
+
+</div>
+
+</body>
+</html>

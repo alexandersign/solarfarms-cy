@@ -288,9 +288,9 @@ export default function CyprusVsEUSolarMarketsArticle() {
                   <ul className="space-y-2 text-sm text-red-800">
                     <li>• Market saturation (like Germany)</li>
                     <li>• Declining incentives (like mature markets)</li>
-                    <li>• Grid constraints (like Spain/Italy)</li>
+                    <li>• Low irradiation (unlike Northern EU)</li>
                     <li>• Regulatory uncertainty (like some markets)</li>
-                    <li>• Low irradiation (like Northern EU)</li>
+                    <li>• Transmission bottlenecks (like some mainland grids)</li>
                     <li>• Intense competition driving down returns</li>
                   </ul>
                 </div>

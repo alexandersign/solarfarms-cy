@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'AI GPU Mining with Renewable Energy in Cyprus',
-    description: 'Off-grid solar data centers for AI workloads with 8% tax advantage',
+    description: 'Off-grid solar data centers for AI workloads with Cyprus tax advantages',
     type: 'article',
     publishedTime: '2025-01-08',
   },
@@ -224,10 +224,10 @@ export default function AIGPUMiningPage() {
               <div className="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
                 <BarChart3 className="w-6 h-6 text-purple-600 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-purple-800">8% Tax Rate</h4>
+                  <h4 className="font-semibold text-purple-800">15% Corporate Tax / ~3% IP Box</h4>
                   <p className="text-purple-700 text-sm">
-                    Non-domiciled residents pay just 8% on profits. Compare: UK 45%, Germany 42%, 
-                    USA 37%. Significant advantage for compute providers.
+                    Cyprus corporate tax is 15%, with an IP box effective rate of ~3% on qualifying income.
+                    Non-domiciled residents are exempt from SDC. Significant advantage for compute providers.
                   </p>
                 </div>
               </div>
@@ -392,7 +392,7 @@ export default function AIGPUMiningPage() {
               {[
                 'AI power demand is creating massive opportunities for renewable compute providers',
                 'Off-grid solar parks can generate immediate revenue instead of waiting for grid connection',
-                'Cyprus offers unique advantages: EU jurisdiction, 8% tax, 3,300+ sun hours',
+                'Cyprus offers unique advantages: EU jurisdiction, 15% CIT with ~3% IP box, 3,300+ sun hours',
                 'Container data centers enable rapid deployment at solar sites',
                 'Enterprise customers pay premium for certified green compute',
                 'Multiple revenue streams: AI training, rendering, decentralized networks'

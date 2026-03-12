@@ -467,9 +467,9 @@ export default function LFPvsNMCArticle() {
                   <li className="flex items-start space-x-2">
                     <Flame className="w-4 h-4 text-red-500 flex-shrink-0 mt-1" />
                     <span>
-                      <strong>South Korea (2017&ndash;2022):</strong> Over 30 BESS fire incidents, the
-                      majority involving NMC chemistry. This led to a nationwide moratorium and revised
-                      safety standards that added significant cost to NMC deployments.
+                      <strong>South Korea (2017&ndash;2019):</strong> 23 BESS fire incidents, the
+                      vast majority involving NMC chemistry. This triggered a nationwide safety review,
+                      temporary moratorium, and revised safety standards that added significant cost to NMC deployments.
                     </span>
                   </li>
                   <li className="flex items-start space-x-2">

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classone Solar (Lampros Andreadis) &mdash; BESS Turnkey Proposal | Lighthief</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669}
+        body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+        .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+        .logo{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}.logo span{color:var(--accent)}
+        .tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+        .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+        h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+        h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+        h2::after{content:'';display:block}
+        h3{font-size:9.5pt;color:var(--primary);margin:10px 0 5px}
+        table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+        th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600;white-space:normal}
+        td{padding:5px 7px;border-bottom:1px solid var(--border);word-wrap:break-word}
+        tr:nth-child(even){background:#fafbfc}
+        .r{text-align:right}.c{text-align:center}
+        .price{font-weight:700;color:var(--accent)}
+        .total-row{background:var(--primary)!important;color:#fff;font-weight:700}
+        .total-row td{border:none}
+        .sub-total{background:#edf2f7!important;font-weight:600}
+        .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 20px}
+        .metric-box{background:var(--bg);border-radius:8px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
+        .metric-box .val{font-size:18pt;font-weight:800;color:var(--primary)}
+        .metric-box .lbl{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+        .box{border:1px solid var(--border);border-radius:6px;padding:12px}
+        .box h3{margin-top:0}
+        .box ul{margin-left:16px}.box li{margin-bottom:3px}
+        .highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .savings{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .warn{background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+        .team-card{border:1px solid var(--border);border-radius:6px;padding:10px;font-size:8pt}
+        .team-card strong{color:var(--primary);font-size:9pt}.team-card .role{color:var(--accent);font-size:7.5pt;font-weight:600}
+        .phase{background:var(--bg);padding:6px 12px;border-left:3px solid var(--accent);margin:14px 0 6px;font-weight:600;color:var(--primary);font-size:9pt}
+        .footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+        .note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+        .print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .print-btn:hover{background:var(--accent)}
+        ul{margin-left:18px}li{margin-bottom:3px}
+        .incl{color:var(--ok)}.excl{color:#dc2626}
+        .logo-img{height:32px;vertical-align:middle}
+        .partner-strip{display:flex;align-items:center;justify-content:center;gap:28px;padding:16px 0;margin:18px 0 8px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
+        .partner-strip img{height:36px;object-fit:contain}
+        .partner-strip .voltus-logo{filter:invert(1);height:28px}
+        .partner-strip .partner-label{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-right:8px}
+        @media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}.page-break{page-break-before:always}}
+
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">&#128424; Print / PDF</button>
+
+<!-- PAGE 1: Cover -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>CONFIDENTIAL</strong><br>Ref: LCY-GRP3-2026-MAR<br>Date: March 2026<br>Valid: 30 days</div>
+    </div>
+
+    <h1>Battery Energy Storage System &mdash; Turnkey EPC Proposal</h1>
+    <p style="font-size:12pt;color:var(--accent);font-weight:600;margin-bottom:20px;">Prepared exclusively for Mr. Lampros Andreadis &mdash; Classone Solar</p>
+
+    <div class="metric-grid">
+        <div class="metric-box"><div class="val">2</div><div class="lbl">BESS Parks</div></div>
+        <div class="metric-box"><div class="val">15 MWh</div><div class="lbl">Total Energy</div></div>
+        <div class="metric-box"><div class="val">~&euro;2,117,420</div><div class="lbl">Total Investment</div></div>
+        <div class="metric-box"><div class="val">4.8 MW</div><div class="lbl">Total Power</div></div>
+    </div>
+
+    <div class="two-col">
+        <div class="box">
+            <h3>Your EPC Partner</h3>
+            <ul>
+                <li>Lighthief Cyprus Ltd &mdash; exclusive EPC partner for Linyang Energy in Cyprus</li>
+                <li>Part of Lighthief European Group &mdash; 150+ engineers across Poland &amp; Cyprus</li>
+                <li>Complete turnkey service: procurement, installation, commissioning &amp; ongoing maintenance</li>
+                <li>Currently delivering {{PORTFOLIO.mwh}} MWh of BESS across {{PORTFOLIO.parks}} projects in Cyprus</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Equipment &amp; Technology</h3>
+            <ul>
+                <li><strong>Battery:</strong> Linyang Energy &mdash; EVE LFP cells (CATL-grade)</li>
+                <li><strong>Inverter:</strong> Kehua Tech &mdash; Tier 1, 3rd largest global manufacturer</li>
+                <li><strong>Energy Management:</strong> Voltus Energy &mdash; Cyprus-based, DSO compliant</li>
+                <li><strong>Warranty:</strong> 5-year standard + optional extension up to 15 years</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <strong>Group Order Advantage:</strong> Your projects are part of a {{PORTFOLIO.mwh}} MWh island-wide BESS deployment. This gives you access to volume-negotiated pricing on equipment, logistics, and installation &mdash; significantly below standalone rates.
+    </div>
+
+    <div class="partner-strip">
+        <span class="partner-label">Technology Partners</span>
+        <img src="{{LOGO_LINYANG}}" alt="Linyang Energy" title="Linyang Energy &mdash; Battery OEM">
+        <img src="{{LOGO_KEHUA}}" alt="Kehua Tech" title="Kehua Tech &mdash; Power Conversion">
+        <img src="{{LOGO_VOLTUS}}" alt="Voltus Energy" title="Voltus Energy &mdash; EMS/SCADA" class="voltus-logo">
+    </div>
+</div>
+
+<!-- PAGE 2: Pricing -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Project Pricing &mdash; Lampros Andreadis</div>
+    </div>
+
+    <h2>Your Investment</h2>
+    <p class="note">All prices are fully delivered turnkey and exclude VAT (19%).</p>
+
+    <div class="phase">CLASSONE SOLAR &mdash; 2 Projects | 4.8 MW | 15 MWh</div>
+    <table>
+        <thead><tr><th>Project</th><th class="c">District</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <tbody>
+            <tr><td>Classone Solar Breeze</td><td class="c">Limassol</td><td class="c">1.5</td><td class="c">5</td><td class="c">1&times; 5MWh</td><td class="c">1.5 MW</td><td class="r">&euro;159.09</td><td class="r price">&euro;795,443</td></tr>
+            <tr><td>Classone Solar Garden</td><td class="c">Limassol</td><td class="c">3.3</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">3.3 MW</td><td class="r">&euro;132.20</td><td class="r price">&euro;1,321,976</td></tr>
+            <tr class="sub-total"><td colspan="6">CLASSONE SOLAR Subtotal</td><td class="r">&euro;141.16</td><td class="r">&euro;2,117,420</td></tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr class="total-row"><td colspan="6" style="border:none"><strong>GRAND TOTAL &mdash; 2 Projects | 4.8 MW | 15 MWh</strong></td><td class="r" style="border:none">&euro;141.16</td><td class="r" style="border:none">&euro;2,117,420</td></tr>
+    </table>
+    <p class="note">All prices are fully delivered turnkey and exclude VAT (19%). See the following page for alternative sizing options that may reduce your investment.</p>
+
+</div>
+
+<!-- PAGE 2b: Alternative Sizing Options -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Alternative Sizing Options &mdash; Lampros Andreadis</div>
+    </div>
+
+    <h2>Alternative BESS Sizing Options</h2>
+    <p class="note">We are pleased to offer the following alternative BESS configurations for your consideration. You may select the optimal size for each park independently based on your grid connection capacity and investment preference. All prices exclude VAT (19%).</p>
+
+    <table>
+        <thead><tr><th>Configuration</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="c">Duration</th><th class="r">&euro;/kWh</th><th class="r">Turnkey Price</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Option A</strong></td><td class="c">1.25</td><td class="c">5</td><td class="c">1&times; 5MWh</td><td class="c">1.25 MW</td><td class="c">4.0 hr</td><td class="r">&euro;154.08</td><td class="r price">&euro;770,397</td></tr>
+            <tr><td><strong>Option B</strong></td><td class="c">2.5</td><td class="c">10</td><td class="c">2&times; 5MWh</td><td class="c">2.5 MW</td><td class="c">4.0 hr</td><td class="r">&euro;120.63</td><td class="r price">&euro;1,206,300</td></tr>
+            <tr style="background:#fffbeb;"><td><strong>Option C</strong> <span style="font-size:6.5pt;color:var(--muted);">(indicative)</span></td><td class="c">5.0</td><td class="c">20</td><td class="c">4&times; 5MWh</td><td class="c">5.0 MW</td><td class="c">4.0 hr</td><td class="r">&euro;112.95</td><td class="r price">&euro;2,258,900</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>Economies of Scale:</strong> Larger BESS systems deliver significantly lower cost per kWh, as civil works, energy management, and electrical infrastructure are shared across more storage capacity. A 5MW/20MWh system achieves approximately 27% lower unit cost compared to a 1.25MW/5MWh system.
+    </div>
+
+    <h3>How These Options Compare</h3>
+    <table>
+        <thead><tr><th>Park</th><th>Original Sizing</th><th class="r">Original Price</th><th>Recommended Alternative</th><th class="r">New Price</th><th class="r">Your Saving</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Solar Breeze</strong></td><td>1.5 MW / 5 MWh</td><td class="r">&euro;795,443</td><td>1.25 MW / 5 MWh</td><td class="r">&euro;770,397</td><td class="r" style="color:var(--ok);font-weight:600;">&minus;&euro;25,046</td></tr>
+            <tr><td><strong>Solar Garden</strong></td><td>3.3 MW / 10 MWh</td><td class="r">&euro;1,321,976</td><td>2.5 MW / 10 MWh</td><td class="r">&euro;1,206,300</td><td class="r" style="color:var(--ok);font-weight:600;">&minus;&euro;115,676</td></tr>
+            <tr class="sub-total"><td colspan="2">Subtotal (sizing)</td><td class="r">&euro;2,117,420</td><td></td><td class="r">&euro;1,976,697</td><td class="r" style="color:var(--ok);font-weight:600;">&minus;&euro;140,723</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Adjacent Site Discount</h3>
+    <p class="note">Because both Classone Solar parks are located on neighbouring plots in Limassol, we can pass on cost savings from shared infrastructure.</p>
+    <table>
+        <thead><tr><th>Benefit</th><th>Details</th><th class="r">Discount</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Shared Energy Management System</strong></td><td>A single monitoring and control system serves both parks, eliminating the need for duplicate installations</td><td class="r" style="color:var(--ok);font-weight:600;">&minus;&euro;15,000</td></tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead><tr><th colspan="4">Combined Offer &mdash; Options A + B with Adjacent Site Discount</th></tr></thead>
+        <tbody>
+            <tr><td>Options A + B subtotal</td><td class="r">&euro;1,976,697</td><td>Adjacent site discount</td><td class="r" style="color:var(--ok);font-weight:600;">&minus;&euro;15,000</td></tr>
+            <tr class="total-row"><td colspan="2" style="border:none"><strong>Net Total (1.25MW/5MWh + 2.5MW/10MWh)</strong></td><td class="r" style="border:none"><strong>&euro;130.78/kWh</strong></td><td class="r" style="border:none"><strong>&euro;1,961,697</strong></td></tr>
+        </tbody>
+    </table>
+
+    <div class="savings">
+        <strong>Your Total Saving:</strong> By choosing Options A + B with the adjacent site discount, you would save <strong>&euro;155,723 (&minus;7.4%)</strong> on your total investment &mdash; from &euro;2,117,420 down to <strong>&euro;1,961,697</strong> &mdash; while retaining the same 15 MWh total energy storage capacity across both parks.
+    </div>
+
+    <div class="warn">
+        <strong>Option C &mdash; Indicative Pricing:</strong> The 5MW/20MWh system is included for reference should you wish to explore a larger single-site deployment. Final pricing for this configuration would be confirmed following a site-specific assessment and grid connection review.
+    </div>
+
+    <p class="note" style="margin-top:12px;">All options include the same comprehensive turnkey scope: battery containers, power conversion, energy management, civil works, cabling, protection systems, full commissioning, and construction insurance. Volume pricing applies to all configurations.</p>
+</div>
+
+<!-- PAGE 3: EPC Scope -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">EPC Scope &mdash; Lampros Andreadis</div>
+    </div>
+
+    <h2>What&rsquo;s Included</h2>
+
+    <div class="two-col">
+        <div class="box">
+            <h3 class="incl">&#10003; Included in Your Price</h3>
+            <ul>
+                <li>Battery storage containers (LFP chemistry with integrated cooling &amp; fire suppression)</li>
+                <li>Power conversion system (inverter, transformer &amp; MV switchgear)</li>
+                <li>Energy management &amp; monitoring system (Voltus &mdash; DSO compliant)</li>
+                <li>Shipping to Limassol, import duties &amp; customs clearance</li>
+                <li>Crane offloading &amp; transport to your site</li>
+                <li>Civil works: concrete platforms, cable trenches &amp; drainage</li>
+                <li>All electrical cabling, terminations &amp; protection engineering</li>
+                <li>Surge protection &amp; earthing system</li>
+                <li>SCADA communications infrastructure</li>
+                <li>Backup power supply (UPS)</li>
+                <li>Full construction insurance coverage</li>
+                <li>Regulatory documentation &amp; compliance (EAC/CERA)</li>
+                <li>Complete commissioning &amp; DSO witness testing</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3 class="excl">&#10007; Not Included</h3>
+            <ul>
+                <li>Land or site lease arrangements</li>
+                <li>Grid connection agreement &amp; any substation extension (if required)</li>
+                <li>External lightning protection (quoted separately per site)</li>
+                <li>DSO inspection &amp; protection testing fees</li>
+                <li>VAT (19%)</li>
+                <li>CERA licence application fees</li>
+                <li>Electrical engineering drawings (typically &euro;5,000&ndash;&euro;15,000 per site)</li>
+                <li>Any works beyond the battery compound boundary</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>System Specifications</h2>
+    <table>
+        <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Battery Chemistry</strong></td><td>LFP (Lithium Iron Phosphate) &mdash; EVE cells</td></tr>
+            <tr><td><strong>Container Model</strong></td><td>Linyang 5.015 MWh / 4.179 MWh (20ft high-cube)</td></tr>
+            <tr><td><strong>Cycle Life</strong></td><td>7,000 full cycles over 15 years (guaranteed &ge; 70% capacity at end of life)</td></tr>
+            <tr><td><strong>Round Trip Efficiency</strong></td><td>&ge; 86.3% (full system, AC-to-AC including all losses)</td></tr>
+            <tr><td><strong>Inverter</strong></td><td>Kehua Tech &mdash; bi-directional, 4-quadrant capable</td></tr>
+            <tr><td><strong>Energy Management</strong></td><td>Voltus Energy &mdash; fully DSO compliant, real-time monitoring</td></tr>
+            <tr><td><strong>Fire Suppression</strong></td><td>Integrated aerosol system per container</td></tr>
+            <tr><td><strong>Operating Temp</strong></td><td>-20&deg;C to +55&deg;C (liquid cooled)</td></tr>
+            <tr><td><strong>Design Life</strong></td><td>25 years (with augmentation strategy)</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PAGE 4: Warranties & Payment -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Warranties &amp; Terms &mdash; Lampros Andreadis</div>
+    </div>
+
+    <h2>Your Warranty &amp; Performance Guarantees</h2>
+    <table>
+        <thead><tr><th>Coverage</th><th>Period</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Standard Warranty</strong></td><td>5 Years</td><td>Full coverage of battery system, inverters &amp; controls &mdash; included in your price</td></tr>
+            <tr><td><strong>Capacity Guarantee</strong></td><td>15 Years</td><td>Guaranteed minimum 70% battery capacity at Year 15</td></tr>
+            <tr><td><strong>Availability Guarantee</strong></td><td>Per O&amp;M contract</td><td>&ge; 97% system availability, backed by financial penalties if not met</td></tr>
+            <tr><td><strong>Performance Bond</strong></td><td>Until commissioning + 30 days</td><td>5% bank guarantee securing equipment delivery &amp; performance</td></tr>
+            <tr><td><strong>Defects Liability Period</strong></td><td>24 months</td><td>5% retention held as your protection, released after defects period</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Ongoing Maintenance &amp; Extended Warranty (Optional)</h2>
+    <table>
+        <thead><tr><th>Service</th><th class="r">&euro;/MWh/Year</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Full Maintenance Package</strong></td><td class="r price">&euro;{{LTSA.tierC.ratePerMWh}}</td><td>Preventive &amp; corrective maintenance, 24/7 remote monitoring, spare parts included, 97% availability guarantee</td></tr>
+            <tr><td><strong>Extended Battery Warranty (Yr 6&ndash;10)</strong></td><td class="r">&euro;{{WARRANTY.extendedYr6to10.bessPerMWh}}</td><td>Manufacturer-backed battery warranty extension</td></tr>
+            <tr><td><strong>Extended Inverter Warranty (Yr 6&ndash;10)</strong></td><td class="r">&euro;{{WARRANTY.extendedYr6to10.pcsPerMWh}}</td><td>Manufacturer-backed inverter &amp; transformer warranty extension</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Energy Management System &mdash; Annual Subscription</h2>
+    <table>
+        <thead><tr><th>Service</th><th class="r">&euro;/MWh/Year</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>EMS &amp; Monitoring Platform</strong></td><td class="r price">&euro;616</td><td>Software updates, cloud hosting, real-time data feeds, cybersecurity &amp; system integrations</td></tr>
+        </tbody>
+    </table>
+    <h2>Payment Terms</h2>
+    <table>
+        <thead><tr><th>Milestone</th><th class="c">%</th><th>Trigger</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Advance Payment</strong></td><td class="c">30%</td><td>Within 7 days of contract signing</td></tr>
+            <tr><td><strong>Pre-Shipment</strong></td><td class="c">55%</td><td>Equipment ready for shipment (factory inspection)</td></tr>
+            <tr><td><strong>Provisional Acceptance (PAC)</strong></td><td class="c">10%</td><td>System commissioned and grid-connected</td></tr>
+            <tr><td><strong>Retention</strong></td><td class="c">5%</td><td>Released after 24-month defects liability period</td></tr>
+            <tr class="total-row"><td colspan="2" style="border:none"><strong>Total</strong></td><td style="border:none"><strong>100%</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Insurance Coverage</h2>
+    <table>
+        <thead><tr><th>Policy</th><th>What It Covers</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Construction All Risks</strong></td><td>All works during construction until handover</td><td>Full contract value</td><td style="color:var(--ok);font-weight:700;">&#10003; Included in your price</td></tr>
+            <tr><td><strong>Third-Party Liability</strong></td><td>Any third-party damage during installation</td><td>Full contract value</td><td style="color:var(--ok);font-weight:700;">&#10003; Included in your price</td></tr>
+            <tr><td><strong>Product Liability</strong></td><td>Manufacturing defects</td><td>&euro;5,000,000 (AXA)</td><td style="color:var(--ok);font-weight:700;">&#10003; Covered by manufacturer</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>Next Steps:</strong> To proceed, please confirm your preferred BESS sizing for each park. We will then prepare the formal contract documentation and timeline for your review. Our team is available to discuss any questions at your convenience.
+    </div>
+
+    <div class="footer">
+        <strong>Lighthief Cyprus Ltd</strong> | Energy Storage EPC &amp; O&amp;M<br>
+        28 October Avenue 249, Lophitis Business Center I, Office 201, 3035 Limassol, Cyprus<br>
+        Tel: +357 77 77 00 50 | office@lighthief.com<br><br>
+        Confidential &mdash; Prepared exclusively for Mr. Lampros Andreadis | March 2026<br>
+        Pricing valid for 30 days from date of issue. All prices exclude VAT (19%).
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7SUN Cyprus — E-Commerce Platform Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{--sun:#F59E0B;--sun-dk:#D97706;--sun-lt:#FEF3C7;--dark:#1F2937;--darker:#111827;--light:#F9FAFB;--gray:#6B7280;--gray-lt:#9CA3AF;--green:#10B981;--green-bg:#D1FAE5;--red:#EF4444;--red-bg:#FEE2E2;--blue:#3B82F6;--blue-bg:#DBEAFE;--purple:#8B5CF6;--purple-bg:#EDE9FE;--cyan:#06B6D4;--indigo:#6366F1;--border:#E5E7EB;--shadow:0 4px 16px rgba(0,0,0,.06);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',-apple-system,sans-serif;background:#fff;color:var(--dark);line-height:1.7;font-size:14px;}
+  @media print{
+    .no-print{display:none!important;}
+    body{font-size:10.5px;line-height:1.5;}
+    section{break-inside:avoid;page-break-inside:avoid;}
+    .hero{padding:32px 0!important;margin-top:0!important;}
+    .hero h1{font-size:26px!important;}
+    .container{max-width:100%;padding:0 16px;}
+    table{font-size:9px;}
+    .card,.mockup-frame{break-inside:avoid;page-break-inside:avoid;}
+    .mockup-frame{transform:scale(.85);transform-origin:top center;}
+    pre{font-size:7.5px;padding:10px;}
+    .grid-2,.grid-3{gap:8px;}
+    .page-break{page-break-before:always;}
+  }
+  .container{max-width:900px;margin:0 auto;padding:0 32px;}
+  .pdf-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--darker);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.4);}
+  .pdf-bar span{color:#fff;font-weight:600;font-size:14px;}.pdf-bar .sub{color:var(--gray-lt);font-size:12px;margin-left:8px;}
+  .pdf-btn{background:var(--sun);color:var(--darker);border:none;padding:9px 24px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;}.pdf-btn:hover{background:var(--sun-dk);transform:translateY(-1px);}
+
+  /* HERO / COVER */
+  .hero{background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#312E81 100%);color:#fff;padding:80px 0 60px;margin-top:48px;}
+  .hero .logo{font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:6px;}
+  .hero .logo span{color:var(--sun);}
+  .hero .to{font-size:13px;color:var(--gray-lt);margin-bottom:24px;}
+  .hero h1{font-size:42px;font-weight:900;line-height:1.1;margin-bottom:12px;}
+  .hero h1 em{font-style:normal;color:var(--sun);}
+  .hero .sub{font-size:17px;color:#94A3B8;font-weight:300;line-height:1.5;max-width:600px;}
+  .hero .meta{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;}
+  .hero .meta-item{font-size:12px;color:#94A3B8;}.hero .meta-item strong{color:#fff;font-size:14px;display:block;}
+  .hero .tag{display:inline-block;background:rgba(245,158,11,.15);color:var(--sun);padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;margin-right:6px;margin-top:16px;}
+
+  /* SECTIONS */
+  section{padding:48px 0;border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  h2{font-size:22px;font-weight:800;color:var(--darker);margin-bottom:6px;}
+  h2 .num{color:var(--sun);font-size:14px;font-weight:700;margin-right:6px;}
+  .section-sub{color:var(--gray);font-size:13.5px;margin-bottom:20px;max-width:650px;}
+  h3{font-size:15px;font-weight:700;margin:22px 0 8px;color:var(--dark);}
+  h4{font-size:13px;font-weight:600;margin:10px 0 4px;color:var(--dark);}
+
+  /* TABLES */
+  .tw{overflow-x:auto;margin:12px 0 20px;border-radius:10px;border:1px solid var(--border);}
+  table{width:100%;border-collapse:collapse;background:#fff;}
+  th{background:var(--darker);color:#fff;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:left;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid #F3F4F6;font-size:12.5px;}
+  tr:hover td{background:#FEFCE8;}
+  .p{font-weight:700;}.pg{color:var(--green);}.pr{color:var(--red);}.pb{color:var(--blue);}.pp{color:var(--purple);}
+  td.win{background:var(--green-bg);color:#065F46;font-weight:700;}
+  td.lose{background:var(--red-bg);color:#991B1B;}
+
+  /* BADGES */
+  .badge{display:inline-block;padding:3px 10px;border-radius:5px;font-size:10px;font-weight:600;}
+  .bg{background:var(--green-bg);color:#065F46;}.br{background:var(--red-bg);color:#991B1B;}.by{background:var(--sun-lt);color:#92400E;}.bb{background:var(--blue-bg);color:#1E40AF;}.bp{background:var(--purple-bg);color:#5B21B6;}.bk{background:#F3F4F6;color:#374151;}
+
+  /* CARDS */
+  .card{border:1px solid var(--border);border-radius:12px;padding:20px;margin:10px 0;background:#fff;box-shadow:var(--shadow);transition:.15s;}
+  .card:hover{box-shadow:0 6px 20px rgba(0,0,0,.1);}
+  .card.highlight{border:2px solid var(--sun);background:linear-gradient(to right,#FFFBEB,#fff);}
+  .card.green{border:2px solid var(--green);background:linear-gradient(to right,#ECFDF5,#fff);}
+  .card.purple{border:2px solid var(--purple);background:linear-gradient(to right,#F5F3FF,#fff);}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:14px 0;}
+  @media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+  /* CALLOUTS */
+  .insight{background:var(--sun-lt);border-left:4px solid var(--sun);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;line-height:1.6;}
+  .insight strong{color:var(--sun-dk);}
+  .info{background:var(--blue-bg);border-left:4px solid var(--blue);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;}
+  .success{background:var(--green-bg);border-left:4px solid var(--green);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;}
+
+  /* COST BOX */
+  .cost-box{background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border-radius:14px;padding:28px;margin:20px 0;text-align:center;}
+  .cost-box .big{font-size:40px;font-weight:900;color:var(--sun);}
+  .cost-box .label{font-size:13px;color:#94A3B8;margin-top:4px;}
+  .cost-box .vs{margin-top:16px;font-size:14px;color:#94A3B8;}
+  .cost-box .vs strong{color:var(--red);text-decoration:line-through;}
+
+  /* VS COMPARISON */
+  .vs-row{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:stretch;margin:14px 0;}
+  .vs-col{padding:16px;border-radius:10px;font-size:12.5px;}
+  .vs-col.old{background:#FEF2F2;border:1px solid #FECACA;}
+  .vs-col.new{background:#ECFDF5;border:1px solid #A7F3D0;}
+  .vs-mid{display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--gray);}
+  .vs-col h4{margin:0 0 8px;font-size:14px;}
+  .vs-col ul{margin:0;padding-left:16px;}
+  .vs-col li{margin-bottom:3px;font-size:11.5px;}
+
+  /* MOCKUPS */
+  .mockup-container{margin:20px 0;}
+  .mockup-frame{background:#fff;border:2px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1);}
+  .mockup-bar{background:#F1F5F9;padding:8px 12px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border);}
+  .mockup-dot{width:10px;height:10px;border-radius:50%;background:#E2E8F0;}
+  .mockup-dot.r{background:#FCA5A5;}.mockup-dot.y{background:#FDE68A;}.mockup-dot.g{background:#86EFAC;}
+  .mockup-url{flex:1;background:#fff;border-radius:4px;padding:4px 10px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace;margin-left:8px;}
+  .mockup-body{padding:0;}
+
+  /* Mockup internals */
+  .m-hero{background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;padding:28px 24px;text-align:center;}
+  .m-hero h3{color:#fff;font-size:18px;font-weight:800;margin:0 0 6px;}.m-hero h3 span{color:var(--sun);}
+  .m-hero p{font-size:11px;color:#94A3B8;margin:0 0 12px;}
+  .m-hero .m-cta{display:inline-block;background:var(--sun);color:var(--darker);padding:6px 16px;border-radius:6px;font-size:11px;font-weight:700;margin:0 4px;}
+  .m-hero .m-cta.outline{background:transparent;border:1px solid #475569;color:#94A3B8;}
+  .m-nav{background:var(--darker);padding:8px 24px;display:flex;justify-content:space-between;align-items:center;}
+  .m-nav .m-logo{color:#fff;font-weight:800;font-size:14px;}.m-nav .m-logo span{color:var(--sun);}
+  .m-nav-links{display:flex;gap:12px;}.m-nav-links span{font-size:10px;color:#94A3B8;}
+  .m-trust{background:#fff;padding:12px 24px;display:flex;justify-content:center;gap:18px;border-bottom:1px solid var(--border);}
+  .m-brand{background:#F1F5F9;border-radius:4px;padding:4px 10px;font-size:9px;color:var(--gray);font-weight:600;}
+  .m-cats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:16px 24px;background:#fff;}
+  .m-cat{background:var(--light);border:1px solid var(--border);border-radius:8px;padding:14px 8px;text-align:center;font-size:9px;font-weight:600;color:var(--dark);}
+  .m-cat .icon{font-size:20px;display:block;margin-bottom:4px;}
+  .m-section{padding:14px 24px;background:#fff;border-top:1px solid var(--border);}
+  .m-section h4{font-size:11px;font-weight:700;margin-bottom:8px;color:var(--dark);}
+  .m-products{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .m-product{border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center;font-size:8px;background:#fff;}
+  .m-product .m-img{background:#F1F5F9;height:48px;border-radius:4px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .m-product .m-name{font-weight:600;font-size:8px;color:var(--dark);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .m-product .m-price{color:var(--sun-dk);font-weight:800;font-size:10px;}
+  .m-product .m-stock{font-size:7px;color:var(--green);}
+  .m-chat{position:absolute;bottom:12px;right:12px;width:44px;height:44px;background:var(--sun);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px rgba(245,158,11,.4);}
+  .m-cta-strip{background:linear-gradient(to right,#FFFBEB,#F5F3FF);padding:12px 24px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .m-cta-card{border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:#fff;font-size:9px;}
+  .m-cta-card strong{display:block;font-size:10px;color:var(--dark);margin-bottom:2px;}
+  .m-footer{background:var(--darker);padding:10px 24px;text-align:center;font-size:8px;color:#475569;}
+
+  /* Wholesale portal mockup */
+  .m-ws-hero{background:linear-gradient(135deg,#1E293B,#312E81);padding:16px 24px;color:#fff;}
+  .m-ws-hero h3{font-size:14px;color:#fff;margin:0 0 4px;}.m-ws-hero h3 span{color:var(--sun);}
+  .m-ws-hero p{font-size:10px;color:#94A3B8;margin:0;}
+  .m-tier-bar{display:flex;gap:6px;padding:10px 24px;background:#F8FAFC;border-bottom:1px solid var(--border);}
+  .m-tier{padding:4px 10px;border-radius:4px;font-size:8px;font-weight:600;background:#fff;border:1px solid var(--border);color:var(--gray);}
+  .m-tier.active{background:var(--sun);color:var(--darker);border-color:var(--sun);}
+  .m-ws-table{padding:12px 24px;}
+  .m-ws-table table{width:100%;font-size:9px;border-collapse:collapse;}
+  .m-ws-table th{background:var(--darker);color:#fff;padding:6px 8px;font-size:8px;}
+  .m-ws-table td{padding:5px 8px;border-bottom:1px solid #F3F4F6;font-size:9px;}
+  .m-quick{padding:12px 24px;background:#FFFBEB;border-top:1px solid var(--sun-lt);}
+  .m-quick h4{font-size:10px;margin-bottom:6px;}
+  .m-quick .m-upload{background:#fff;border:2px dashed var(--border);border-radius:6px;padding:10px;text-align:center;font-size:9px;color:var(--gray);}
+
+  pre{background:var(--darker);color:#E2E8F0;padding:16px;border-radius:10px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.5;margin:10px 0 16px;}
+  code{font-family:'JetBrains Mono',monospace;background:#F3F4F6;padding:2px 6px;border-radius:4px;font-size:12px;}
+  ul{margin:6px 0 12px 20px;}li{margin-bottom:4px;font-size:13px;}
+  .check::before{content:'✓ ';color:var(--green);font-weight:700;}
+  .cross::before{content:'✗ ';color:var(--red);font-weight:700;}
+  footer{background:var(--darker);color:var(--gray-lt);padding:32px 0;font-size:12px;text-align:center;}
+  footer a{color:var(--sun);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<!-- PDF Export Bar -->
+<div class="pdf-bar no-print">
+  <span>7SUN Cyprus — Website Proposal <span class="sub">for 7sun.eu</span></span>
+  <button class="pdf-btn" onclick="window.print()">Export as PDF</button>
+</div>
+
+<!-- COVER / HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="logo">7SUN<span>.cy</span></div>
+    <div class="to">Proposal prepared for <strong style="color:#fff">7sun.eu</strong> — B2B Photovoltaic Wholesale</div>
+    <h1>AI-Powered E-Commerce<br>Platform for <em>Cyprus</em></h1>
+    <p class="sub">A fully automated online ordering system with AI chatbot, voice agent, live XML product sync, wholesale portal, and zero-friction checkout — built to scale 7sun's presence in the Cyprus solar market.</p>
+    <div class="meta">
+      <div class="meta-item"><strong>€481/mo</strong>Platform Cost</div>
+      <div class="meta-item"><strong>~12 Weeks</strong>Build Time</div>
+      <div class="meta-item"><strong>400–600</strong>Products (auto-synced)</div>
+      <div class="meta-item"><strong>80%+</strong>AI-Handled Interactions</div>
+      <div class="meta-item"><strong>4 Hours</strong>Sync Interval</div>
+    </div>
+    <div>
+      <span class="tag">AI Chatbot (GPT-4o)</span>
+      <span class="tag">Voice Agent (ElevenLabs)</span>
+      <span class="tag">XML Auto-Sync</span>
+      <span class="tag">B2B + B2C</span>
+      <span class="tag">Bilingual GR/EN</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<section>
+  <div class="container">
+    <h2><span class="num">01</span> Executive Summary</h2>
+    <p class="section-sub">What we're building, why it matters, and what it means for 7sun's Cyprus expansion.</p>
+
+    <div class="card highlight">
+      <h4>The Opportunity</h4>
+      <p style="font-size:13px;margin:6px 0">Cyprus's solar market is booming (~120 MW/year growth) with limited online distribution. 7SUN.cy will be the first AI-powered solar e-commerce platform in Cyprus, leveraging 7sun.eu's 5,000+ product catalog, competitive pricing, and EU supply chain to capture both B2B wholesale and B2C retail markets.</p>
+    </div>
+
+    <h3>What We're Proposing</h3>
+    <div class="grid-3">
+      <div class="card"><h4 style="margin-top:0">🛒 E-Commerce</h4><p style="font-size:11.5px;color:var(--gray)">Full online store with B2C retail, B2B wholesale portal, developer kits. Products auto-synced from 7sun.eu XML feed including images, specs, pricing, stock levels.</p></div>
+      <div class="card"><h4 style="margin-top:0">🤖 AI Automation</h4><p style="font-size:11.5px;color:var(--gray)">AI chatbot (GPT-4o) handles 80%+ of customer queries. AI voice agent (ElevenLabs) handles phone calls 24/7 in Greek + English. AI generates newsletters automatically.</p></div>
+      <div class="card"><h4 style="margin-top:0">⚡ Zero Friction</h4><p style="font-size:11.5px;color:var(--gray)">3-click checkout. RES Fund installers auto-verified for wholesale pricing. CSV bulk upload. One-click reorder. Net-30/60 credit terms via Stripe.</p></div>
+    </div>
+
+    <h3>Why NOT WooCommerce?</h3>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px">7sun.eu runs on WordPress/WooCommerce — a proven platform. However, for a <strong>new market-specific B2B/B2C operation with heavy AI integration and XML automation</strong>, WooCommerce's limitations become significant. We propose a modern headless stack that is faster, cheaper to operate, and purpose-built for this use case.</p>
+    <p style="font-size:13px;color:var(--gray)">Full comparison in Section 3 →</p>
+  </div>
+</section>
+
+<!-- SECTION 2: PREVIEW -->
+<section class="page-break">
+  <div class="container">
+    <h2><span class="num">02</span> Platform Preview</h2>
+    <p class="section-sub">Visual preview of the 7sun.cy storefront, wholesale portal, and key features.</p>
+
+    <!-- Homepage Mockup -->
+    <h3>Homepage — B2C Storefront</h3>
+    <div class="mockup-container">
+      <div class="mockup-frame">
+        <div class="mockup-bar">
+          <div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div>
+          <div class="mockup-url">https://7sun.cy</div>
+        </div>
+        <div class="mockup-body">
+          <!-- Nav -->
+          <div class="m-nav">
+            <div class="m-logo">7SUN<span>.cy</span></div>
+            <div class="m-nav-links">
+              <span>Shop</span><span>Wholesale</span><span>Brands</span><span>Apartment Solar</span><span>Contact</span>
+              <span style="color:var(--sun);font-weight:600">Login</span>
+              <span style="color:var(--sun)">🛒</span>
+            </div>
+          </div>
+          <!-- Hero -->
+          <div class="m-hero">
+            <h3>Cyprus's Lowest <span>Solar Prices</span>. Guaranteed.</h3>
+            <p>Panels from €52 · Inverters from €289 · 15+ brands · Free delivery over €500</p>
+            <div style="margin-top:10px">
+              <span class="m-cta">Shop Now</span>
+              <span class="m-cta outline">Get Wholesale Access</span>
+            </div>
+          </div>
+          <!-- Trust -->
+          <div class="m-trust">
+            <span class="m-brand">JINKO</span>
+            <span class="m-brand">HUAWEI</span>
+            <span class="m-brand">SOLAREDGE</span>
+            <span class="m-brand">JA SOLAR</span>
+            <span class="m-brand">LONGI</span>
+            <span class="m-brand">FOXESS</span>
+            <span class="m-brand">SOFAR</span>
+            <span class="m-brand">SOLAX</span>
+            <span class="m-brand">AIKO</span>
+          </div>
+          <!-- Categories -->
+          <div class="m-cats">
+            <div class="m-cat"><span class="icon">☀️</span>Solar Panels</div>
+            <div class="m-cat"><span class="icon">⚡</span>Inverters</div>
+            <div class="m-cat"><span class="icon">🔋</span>Batteries</div>
+            <div class="m-cat"><span class="icon">🏢</span>Apartment Kits</div>
+            <div class="m-cat"><span class="icon">🔌</span>EV Chargers</div>
+          </div>
+          <!-- Products -->
+          <div class="m-section">
+            <h4>⚡ Best Sellers — Lowest Prices in Cyprus</h4>
+            <div class="m-products">
+              <div class="m-product"><div class="m-img">☀️</div><div class="m-name">Jinko 440W FB</div><div class="m-price">€82</div><div class="m-stock">● In Stock</div></div>
+              <div class="m-product"><div class="m-img">☀️</div><div class="m-name">JA Solar 450W</div><div class="m-price">€78</div><div class="m-stock">● In Stock</div></div>
+              <div class="m-product"><div class="m-img">⚡</div><div class="m-name">Huawei 5kW</div><div class="m-price">€890</div><div class="m-stock">● In Stock</div></div>
+              <div class="m-product"><div class="m-img">🔋</div><div class="m-name">LUNA 5kWh</div><div class="m-price">€1,280</div><div class="m-stock">● 6 left</div></div>
+            </div>
+          </div>
+          <!-- CTAs -->
+          <div class="m-cta-strip">
+            <div class="m-cta-card"><strong>🏗️ For Installers</strong>Wholesale prices 30% below market.<br>Apply in 60 seconds → auto-verified.</div>
+            <div class="m-cta-card"><strong>🏢 For Developers</strong>Solar for every apartment from €400/unit.<br>25-year warranty. No shared systems.</div>
+          </div>
+          <!-- Footer -->
+          <div class="m-footer" style="position:relative">
+            <div>7SUN Cyprus · Ypsonas, Limassol · +357 XX XXX XXX · info@7sun.cy</div>
+            <div class="m-chat" style="position:absolute;bottom:8px;right:16px;width:32px;height:32px;font-size:14px">💬</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight"><strong>Key Features Visible:</strong> Navigation with wholesale login · Brand trust bar (9+ brands from XML) · 5 product categories · Real-time pricing + stock from XML feed · Installer CTA with auto-verification · Developer apartment kits · AI chat widget (bottom right) · Bilingual ready</div>
+
+    <!-- Wholesale Portal Mockup -->
+    <h3 style="margin-top:32px">Wholesale Portal — B2B (Login Required)</h3>
+    <div class="mockup-container">
+      <div class="mockup-frame">
+        <div class="mockup-bar">
+          <div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div>
+          <div class="mockup-url">https://7sun.cy/wholesale</div>
+        </div>
+        <div class="mockup-body">
+          <div class="m-nav">
+            <div class="m-logo">7SUN<span>.cy</span> <span style="font-size:9px;color:var(--sun);background:rgba(245,158,11,.2);padding:2px 6px;border-radius:3px;margin-left:4px">WHOLESALE</span></div>
+            <div class="m-nav-links">
+              <span>Catalog</span><span>Quotes</span><span>Orders</span><span>Invoices</span><span>Credit</span>
+              <span style="font-size:10px;color:#94A3B8">Welcome, <strong style="color:#fff">Lighthief CY</strong></span>
+            </div>
+          </div>
+          <div class="m-ws-hero">
+            <h3>Wholesale Catalog — <span>H3 Tier Pricing</span></h3>
+            <p>Showing prices for your tier (6% off base). Next tier H4 at €5,000 cumulative (you're at €3,412).</p>
+          </div>
+          <div class="m-tier-bar">
+            <div class="m-tier">H1 Base</div>
+            <div class="m-tier">H2 (3% off)</div>
+            <div class="m-tier active">H3 (6% off) ← You</div>
+            <div class="m-tier">H4 (10% off)</div>
+            <div class="m-tier">H5 (15% off)</div>
+          </div>
+          <div class="m-ws-table">
+            <table>
+              <tr><th></th><th>Product</th><th>Brand</th><th>Your Price</th><th>Retail</th><th>Stock</th><th>Qty</th><th></th></tr>
+              <tr><td>☀️</td><td style="font-weight:600">Jinko JKM440N-54HL4R-B Full Black 440W</td><td>Jinko</td><td style="color:var(--sun-dk);font-weight:700">€55.76</td><td style="color:#9CA3AF;text-decoration:line-through">€82.60</td><td style="color:var(--green)">● 72</td><td><input type="text" value="36" style="width:40px;border:1px solid #ddd;border-radius:3px;padding:2px 4px;font-size:9px"></td><td><span style="background:var(--sun);color:var(--darker);padding:2px 8px;border-radius:3px;font-size:8px;font-weight:700;cursor:pointer">ADD</span></td></tr>
+              <tr><td>☀️</td><td style="font-weight:600">JA Solar JAM54D40-450/MB 450W</td><td>JA Solar</td><td style="color:var(--sun-dk);font-weight:700">€52.42</td><td style="color:#9CA3AF;text-decoration:line-through">€78.12</td><td style="color:var(--green)">● 108</td><td><input type="text" value="" style="width:40px;border:1px solid #ddd;border-radius:3px;padding:2px 4px;font-size:9px" placeholder="0"></td><td><span style="background:var(--sun);color:var(--darker);padding:2px 8px;border-radius:3px;font-size:8px;font-weight:700;cursor:pointer">ADD</span></td></tr>
+              <tr><td>⚡</td><td style="font-weight:600">Huawei SUN2000-5KTL-M1 5kW</td><td>Huawei</td><td style="color:var(--sun-dk);font-weight:700">€576.22</td><td style="color:#9CA3AF;text-decoration:line-through">€890.00</td><td style="color:var(--green)">● 8</td><td><input type="text" value="" style="width:40px;border:1px solid #ddd;border-radius:3px;padding:2px 4px;font-size:9px" placeholder="0"></td><td><span style="background:var(--sun);color:var(--darker);padding:2px 8px;border-radius:3px;font-size:8px;font-weight:700;cursor:pointer">ADD</span></td></tr>
+              <tr><td>🔋</td><td style="font-weight:600">Huawei LUNA2000-5-E0 5kWh</td><td>Huawei</td><td style="color:var(--sun-dk);font-weight:700">€694.98</td><td style="color:#9CA3AF;text-decoration:line-through">€1,280.00</td><td style="color:var(--sun-dk)">● 4</td><td><input type="text" value="" style="width:40px;border:1px solid #ddd;border-radius:3px;padding:2px 4px;font-size:9px" placeholder="0"></td><td><span style="background:var(--sun);color:var(--darker);padding:2px 8px;border-radius:3px;font-size:8px;font-weight:700;cursor:pointer">ADD</span></td></tr>
+            </table>
+          </div>
+          <div class="m-quick">
+            <h4>⚡ Quick Order — Bulk Upload</h4>
+            <div class="m-upload">📄 Drop CSV file here or click to upload<br><span style="font-size:8px;color:#9CA3AF">Format: SKU, Quantity (one per line)</span></div>
+          </div>
+          <div class="m-footer"><div>Net-30 credit available · Free delivery on orders over €1,000 · Download invoice portal</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight"><strong>B2B Features Visible:</strong> Tiered pricing with tier progress indicator · Live stock levels · Quick quantity entry · Bulk CSV upload · Net-30 credit · Invoice portal · Company-specific pricing · One-click wholesale add-to-cart</div>
+
+    <!-- AI Chat Preview -->
+    <h3 style="margin-top:32px">AI Chatbot — Product-Aware Assistant</h3>
+    <div class="mockup-container">
+      <div class="mockup-frame" style="max-width:380px;">
+        <div class="mockup-bar">
+          <div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div>
+          <div class="mockup-url">7sun.cy — AI Chat</div>
+        </div>
+        <div style="background:linear-gradient(to bottom,#F8FAFC,#fff);padding:16px;">
+          <div style="text-align:center;margin-bottom:12px">
+            <div style="font-size:20px">🤖</div>
+            <div style="font-weight:700;font-size:13px">7SUN Assistant</div>
+            <div style="font-size:10px;color:var(--gray)">Powered by AI · English & Ελληνικά</div>
+          </div>
+          <!-- Chat bubbles -->
+          <div style="margin:10px 0">
+            <div style="background:var(--blue-bg);border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:11px;max-width:85%;margin-bottom:8px;color:var(--dark)">
+              <strong style="font-size:9px;color:var(--blue)">You</strong><br>
+              I need panels for a 20-apartment building, 2 panels per unit. What do you recommend?
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px 12px 2px 12px;padding:10px 14px;font-size:11px;margin-left:auto;max-width:90%;margin-bottom:8px;color:var(--dark);box-shadow:0 1px 4px rgba(0,0,0,.05)">
+              <strong style="font-size:9px;color:var(--sun-dk)">7SUN AI</strong><br>
+              Great question! For a 20-apartment building with 2 panels each, I recommend our <strong>Budget Apartment Kit</strong>:<br><br>
+              <div style="background:var(--sun-lt);border-radius:6px;padding:8px;margin:6px 0;font-size:10px">
+                <strong>Per apartment:</strong><br>
+                • 2× Longi 460W panels<br>
+                • 1× Envertech EVT800B micro inverter<br>
+                • Kit price: <strong style="color:var(--sun-dk)">€400–500/apartment</strong><br>
+                • 25-year warranty · Independent net-metering
+              </div>
+              <strong>20 apartments = €8,000–10,000 total</strong><br>
+              <span style="font-size:10px;color:var(--green)">✓ All 40 panels + 20 micro inverters in stock</span><br><br>
+              <span style="background:var(--sun);color:var(--darker);padding:3px 10px;border-radius:4px;font-size:9px;font-weight:700">Get Developer Quote →</span>
+            </div>
+            <div style="background:var(--blue-bg);border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:11px;max-width:85%;margin-bottom:8px;color:var(--dark)">
+              <strong style="font-size:9px;color:var(--blue)">You</strong><br>
+              That's great. What about the grant?
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:12px 12px 2px 12px;padding:10px 14px;font-size:11px;margin-left:auto;max-width:90%;color:var(--dark);box-shadow:0 1px 4px rgba(0,0,0,.05)">
+              <strong style="font-size:9px;color:var(--sun-dk)">7SUN AI</strong><br>
+              The RES Fund grant (€375/kW, max €1,500) closed in Dec 2025. No new scheme announced yet. But here's the key: with micro inverters, <strong>each apartment qualifies individually</strong> if a new grant opens — that's 20× €1,500 = €30,000 potential vs €1,500 for a shared system. 💡
+            </div>
+          </div>
+          <div style="display:flex;gap:4px;margin-top:8px">
+            <span style="background:var(--light);border:1px solid var(--border);border-radius:12px;padding:4px 10px;font-size:9px;color:var(--gray)">🎤 Voice</span>
+            <span style="background:var(--light);border:1px solid var(--border);border-radius:12px;padding:4px 10px;font-size:9px;color:var(--gray)">🇬🇷 Ελληνικά</span>
+            <span style="background:var(--light);border:1px solid var(--border);border-radius:12px;padding:4px 10px;font-size:9px;color:var(--gray)">📞 Call me</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight"><strong>AI Capabilities:</strong> Product-aware conversations · Real-time stock + pricing · Quote generation · Solar calculator · Order tracking · Regulatory knowledge (Cyprus net-metering, grants) · Bilingual (Greek/English) · Voice + text · Human escalation</div>
+
+  </div>
+</section>
+
+<!-- SECTION 3: VS WOOCOMMERCE -->
+<section class="page-break">
+  <div class="container">
+    <h2><span class="num">03</span> Why Not WooCommerce? — Full Comparison</h2>
+    <p class="section-sub">7sun.eu runs on WooCommerce. Why build 7sun.cy on a different stack? Here's the honest, detailed comparison.</p>
+
+    <h3>Head-to-Head Comparison</h3>
+    <div class="tw">
+      <table>
+        <tr><th style="width:28%">Feature</th><th style="width:36%">WooCommerce (Traditional)</th><th style="width:36%">7SUN.cy Stack (Medusa + Next.js)</th></tr>
+        <tr>
+          <td class="p">Platform License</td>
+          <td>Free (WordPress + WooCommerce)</td>
+          <td class="win">Free (Medusa.js — open source)</td>
+        </tr>
+        <tr>
+          <td class="p">B2B Plugin Cost</td>
+          <td class="lose">$149–299/yr (Wholesale Suite, Tiered Pricing, B2B Suite — 3+ plugins needed)</td>
+          <td class="win">€0 — Native B2B: tiered pricing, quotes, customer groups, spending limits</td>
+        </tr>
+        <tr>
+          <td class="p">Total Plugin Cost/Year</td>
+          <td class="lose">€800–1,500/yr (B2B + multilingual + security + caching + SEO + forms + email)</td>
+          <td class="win">€0 — All features built-in or open-source</td>
+        </tr>
+        <tr>
+          <td class="p">Hosting Cost</td>
+          <td class="lose">€50–200/mo managed WP (Cloudways/Kinsta/WP Engine for production)</td>
+          <td class="win">€40/mo (Vercel €20 + Railway €20) — edge-deployed, auto-scaling</td>
+        </tr>
+        <tr>
+          <td class="p">Page Load Speed</td>
+          <td class="lose">1.5–4s (WordPress PHP, database queries on every request, plugin overhead)</td>
+          <td class="win">0.2–0.8s (static pages served from CDN, React hydration, edge computing)</td>
+        </tr>
+        <tr>
+          <td class="p">Performance Under Load</td>
+          <td class="lose">Degrades significantly — checkout can hit 10–20s during peaks (documented)</td>
+          <td class="win">Edge CDN + serverless = consistent speed regardless of traffic</td>
+        </tr>
+        <tr>
+          <td class="p">Mobile Score (Lighthouse)</td>
+          <td class="lose">40–65 typical (WordPress bloat, render-blocking plugins)</td>
+          <td class="win">90–100 (Next.js optimized, no plugin bloat, image optimization)</td>
+        </tr>
+        <tr>
+          <td class="p">XML Feed Auto-Sync</td>
+          <td class="lose">Requires custom plugin or WP-All Import Pro ($99/yr) — limited transformation, fragile with large feeds</td>
+          <td class="win">Custom Node.js worker — full control over field mapping, image processing, price calculation, AI translation</td>
+        </tr>
+        <tr>
+          <td class="p">AI Chatbot Integration</td>
+          <td class="lose">Third-party plugins ($50–300/mo) — limited, can't call product API, no function calling</td>
+          <td class="win">Native OpenAI integration — product search, stock check, quote generation, order tracking via function calling</td>
+        </tr>
+        <tr>
+          <td class="p">AI Voice Agent</td>
+          <td class="lose">Not possible natively — requires external system with no WooCommerce integration</td>
+          <td class="win">ElevenLabs integrated — same knowledge base as chatbot, reads products/stock/orders</td>
+        </tr>
+        <tr>
+          <td class="p">Auto-Verify Installers</td>
+          <td class="lose">Not possible — no mechanism to check against external database on registration</td>
+          <td class="win">Custom middleware matches registration against 390+ RES Fund installers → auto-assigns wholesale tier</td>
+        </tr>
+        <tr>
+          <td class="p">Greek Translations</td>
+          <td class="lose">WPML ($99/yr) — manual translation of every product, page, and string</td>
+          <td class="win">Auto-translated via GPT-4o-mini on XML sync — zero manual translation effort</td>
+        </tr>
+        <tr>
+          <td class="p">Security Maintenance</td>
+          <td class="lose">WordPress is #1 hacking target — requires constant updates, Wordfence ($119/yr), monitoring</td>
+          <td class="win">API-only backend (no admin panel exposed), Cloudflare WAF, auto-deployed immutable builds</td>
+        </tr>
+        <tr>
+          <td class="p">Update Maintenance</td>
+          <td class="lose">WordPress core + 15-20 plugins need regular updates — each update risks breaking another plugin</td>
+          <td class="win">Single codebase in Git — tested, CI/CD deployed, no plugin conflicts</td>
+        </tr>
+        <tr>
+          <td class="p">SEO Performance</td>
+          <td>Decent with Yoast ($99/yr) but limited by page speed</td>
+          <td class="win">Superior — server-rendered, fast Core Web Vitals, structured data, auto-sitemap</td>
+        </tr>
+        <tr>
+          <td class="p">Checkout Experience</td>
+          <td>Standard WooCommerce checkout (functional but dated)</td>
+          <td class="win">Custom 3-click checkout with Stripe embedded, Apple/Google Pay, SEPA for B2B</td>
+        </tr>
+        <tr>
+          <td class="p">API for Partners</td>
+          <td>WooCommerce REST API (functional but slow)</td>
+          <td class="win">Modern REST + GraphQL APIs — Lighthief.cy can integrate directly</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>The Speed Difference (Real-World Impact)</h3>
+    <div class="vs-row">
+      <div class="vs-col old">
+        <h4 style="color:var(--red)">🐢 WooCommerce (Typical)</h4>
+        <ul>
+          <li>Homepage: 2.5–4 seconds</li>
+          <li>Product page: 1.8–3 seconds</li>
+          <li>Checkout: 2–3s (normal), 10–20s (peak)</li>
+          <li>Mobile Lighthouse: 40–65</li>
+          <li>Every page = PHP → MySQL → render</li>
+        </ul>
+      </div>
+      <div class="vs-mid">VS</div>
+      <div class="vs-col new">
+        <h4 style="color:var(--green)">🚀 Next.js (Our Stack)</h4>
+        <ul>
+          <li>Homepage: 0.2–0.5 seconds</li>
+          <li>Product page: 0.3–0.8 seconds</li>
+          <li>Checkout: 0.5–1s (consistent)</li>
+          <li>Mobile Lighthouse: 90–100</li>
+          <li>Pre-built pages served from CDN edge</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="success"><strong>Speed = Revenue.</strong> Research shows every 100ms of faster load time increases conversion by 1%. A 2-second improvement from WooCommerce (3s) to Next.js (1s) could mean 20%+ higher conversion rates. For a €1M/year store, that's €200K+ additional revenue.</div>
+
+    <h3>Total Cost of Ownership — 3-Year Comparison</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Cost Category</th><th>WooCommerce (3 Years)</th><th>7SUN.cy Stack (3 Years)</th><th>Savings</th></tr>
+        <tr>
+          <td class="p">Hosting</td>
+          <td>€150/mo × 36 = <strong>€5,400</strong></td>
+          <td>€40/mo × 36 = <strong>€1,440</strong></td>
+          <td class="p pg">€3,960</td>
+        </tr>
+        <tr>
+          <td class="p">Plugins/Extensions</td>
+          <td>€1,200/yr × 3 = <strong>€3,600</strong><br><span style="font-size:10px;color:var(--gray)">B2B Suite, WPML, Yoast, Wordfence, caching, backup, forms, chat</span></td>
+          <td><strong>€0</strong></td>
+          <td class="p pg">€3,600</td>
+        </tr>
+        <tr>
+          <td class="p">AI Chat Plugin</td>
+          <td>€150/mo × 36 = <strong>€5,400</strong><br><span style="font-size:10px;color:var(--gray)">Tidio/LiveChat Pro with basic AI</span></td>
+          <td>€120/mo × 36 = <strong>€4,320</strong><br><span style="font-size:10px;color:var(--gray)">OpenAI direct — full function calling</span></td>
+          <td class="p pg">€1,080</td>
+        </tr>
+        <tr>
+          <td class="p">AI Voice Agent</td>
+          <td><strong>Not available</strong> for WooCommerce</td>
+          <td>€134/mo × 36 = <strong>€4,824</strong></td>
+          <td>N/A (new capability)</td>
+        </tr>
+        <tr>
+          <td class="p">CDN / WAF / Security</td>
+          <td>Cloudflare Pro + Wordfence = €30/mo × 36 = <strong>€1,080</strong></td>
+          <td>Cloudflare Pro = €20/mo × 36 = <strong>€720</strong></td>
+          <td class="p pg">€360</td>
+        </tr>
+        <tr>
+          <td class="p">Search Engine</td>
+          <td>Built-in WooCommerce (slow, basic)</td>
+          <td>Meilisearch €30/mo × 36 = <strong>€1,080</strong><br><span style="font-size:10px;color:var(--gray)">Instant, typo-tolerant, faceted</span></td>
+          <td style="color:var(--red)">-€1,080</td>
+        </tr>
+        <tr>
+          <td class="p">Email (Klaviyo)</td>
+          <td>€80/mo × 36 = <strong>€2,880</strong></td>
+          <td>€80/mo × 36 = <strong>€2,880</strong></td>
+          <td>€0</td>
+        </tr>
+        <tr>
+          <td class="p">Database</td>
+          <td>Included in hosting</td>
+          <td>Supabase €25/mo × 36 = <strong>€900</strong></td>
+          <td style="color:var(--red)">-€900</td>
+        </tr>
+        <tr>
+          <td class="p">Developer Maintenance</td>
+          <td>€2,500/mo × 36 = <strong>€90,000</strong><br><span style="font-size:10px;color:var(--gray)">WP updates, plugin conflicts, security patches, customization</span></td>
+          <td><strong>€0</strong> (internal)<br><span style="font-size:10px;color:var(--gray)">Maintained by founding team — no external dev cost</span></td>
+          <td class="p pg">€90,000</td>
+        </tr>
+        <tr style="background:var(--sun-lt)">
+          <td class="p" style="color:var(--sun-dk)"><strong>3-YEAR TOTAL (excl. build)</strong></td>
+          <td class="p" style="color:var(--red)"><strong>€108,360</strong></td>
+          <td class="p" style="color:var(--green)"><strong>€16,164</strong></td>
+          <td class="p pg"><strong>€92,196 saved</strong></td>
+        </tr>
+        <tr>
+          <td class="p">Initial Development</td>
+          <td>€25,000–40,000<br><span style="font-size:10px;color:var(--gray)">WP/WooCommerce custom theme + B2B plugins + XML import + chat</span></td>
+          <td class="win">€2,500–5,500<br><span style="font-size:10px;color:var(--gray)">Internal build + external web consultant for UI/UX & QA</span></td>
+          <td class="p pg">€22,500–37,500 saved</td>
+        </tr>
+        <tr style="background:var(--green-bg)">
+          <td class="p" style="color:#065F46"><strong>3-YEAR TOTAL (incl. build)</strong></td>
+          <td class="p" style="color:var(--red)"><strong>€133,360–148,360</strong></td>
+          <td class="p" style="color:#065F46"><strong>€18,664–21,664</strong></td>
+          <td class="p" style="color:#065F46"><strong>€114,696–129,696 saved</strong><br><span style="font-size:10px">+ AI Voice + Auto-Verify + 5× speed</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="cost-box">
+      <div class="label">3-Year Total Cost of Ownership</div>
+      <div class="big">~€19K–22K</div>
+      <div class="label">Our Stack (internal build + AI voice + auto-verify + 5× speed)</div>
+      <div class="vs">vs. WooCommerce: <strong>€133K–148K</strong> (without voice agent, without auto-verify, 5× slower)</div>
+    </div>
+
+    <h3>What WooCommerce Simply Cannot Do</h3>
+    <div class="grid-2">
+      <div class="card" style="border-color:var(--red)">
+        <h4 style="color:var(--red);margin-top:0">✗ Not Possible in WooCommerce</h4>
+        <ul style="font-size:12px">
+          <li class="cross">AI voice agent handling phone calls 24/7</li>
+          <li class="cross">Auto-verify installers against RES Fund database</li>
+          <li class="cross">AI chatbot with product API function calling</li>
+          <li class="cross">Auto-translate products to Greek via AI on sync</li>
+          <li class="cross">0.2–0.5s page loads with 500+ products</li>
+          <li class="cross">Edge-deployed globally with auto-scaling</li>
+          <li class="cross">Immutable deployments (zero downtime updates)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--green)">
+        <h4 style="color:var(--green);margin-top:0">✓ All Built-In to Our Stack</h4>
+        <ul style="font-size:12px">
+          <li class="check">AI voice agent (ElevenLabs) — Greek + English, 24/7</li>
+          <li class="check">RES Fund fuzzy-match auto-verification on signup</li>
+          <li class="check">GPT-4o chatbot with real-time product/stock/quote APIs</li>
+          <li class="check">GPT-4o-mini auto-translates every product on XML sync</li>
+          <li class="check">0.2–0.5s via ISR/SSG + Vercel Edge CDN</li>
+          <li class="check">Vercel Edge + Cloudflare — Cyprus PoP, auto-scale</li>
+          <li class="check">Git-based CI/CD — every deploy is atomic, rollback in 1 click</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: XML FEED -->
+<section class="page-break">
+  <div class="container">
+    <h2><span class="num">04</span> XML Feed Integration — Zero Manual Work</h2>
+    <p class="section-sub">7sun.eu's DataFeedWatch XML feed powers the entire product catalog. No manual product entry ever.</p>
+
+    <div class="card highlight">
+      <h4 style="margin-top:0">How It Works</h4>
+      <p style="font-size:12.5px;margin:6px 0">Every 4 hours, our sync worker fetches the XML feed from DataFeedWatch, compares it to the current catalog, downloads new images, translates descriptions to Greek via AI, calculates 6 price tiers, and updates the live store. <strong>Zero human intervention required.</strong></p>
+    </div>
+
+    <h3>What Gets Synced Automatically</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Data</th><th>Source</th><th>Processing</th></tr>
+        <tr><td class="p">Product name & description</td><td>XML <code>&lt;title&gt;</code> + <code>&lt;description&gt;</code></td><td>Clean + AI translate to Greek</td></tr>
+        <tr><td class="p">All product images</td><td>XML <code>&lt;image_link&gt;</code> + additional images</td><td>Download → optimize (WebP/AVIF) → CDN</td></tr>
+        <tr><td class="p">B2B pricing (6 tiers)</td><td>XML <code>&lt;price&gt;</code></td><td>Calculate H1–H5 + retail markup</td></tr>
+        <tr><td class="p">Stock levels</td><td>XML <code>&lt;availability&gt;</code> + <code>&lt;quantity&gt;</code></td><td>Real-time stock display on product page</td></tr>
+        <tr><td class="p">Specifications</td><td>XML custom labels + attributes</td><td>Parse wattage, weight, dimensions</td></tr>
+        <tr><td class="p">Brand & category</td><td>XML <code>&lt;brand&gt;</code> + <code>&lt;product_type&gt;</code></td><td>Map to store categories</td></tr>
+        <tr><td class="p">Product datasheets</td><td>XML <code>&lt;link&gt;</code> (7sun.eu product page)</td><td>Link to 7sun.eu PDF or mirror locally</td></tr>
+        <tr><td class="p">EAN / GTIN codes</td><td>XML <code>&lt;gtin&gt;</code></td><td>Direct map for barcode/inventory</td></tr>
+      </table>
+    </div>
+
+    <h3>Catalog Filtering</h3>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:10px">7sun.eu has 5,000+ products. We filter to ~400–600 Cyprus-relevant products:</p>
+    <ul style="font-size:12.5px">
+      <li><strong>Brands:</strong> Jinko, JA Solar, Longi, Aiko, Jolywood, Canadian Solar, Huawei, SolarEdge, FoxESS, Sofar, Fronius, Solax, Envertech, Tigo</li>
+      <li><strong>Panels:</strong> ≥400W only (smaller not relevant for Cyprus market)</li>
+      <li><strong>Inverters:</strong> All string + micro + hybrid</li>
+      <li><strong>Exclude:</strong> Mounting hardware, DC cables (source locally — too heavy to ship)</li>
+    </ul>
+
+    <div class="info"><strong>For 7sun.eu:</strong> No changes needed on your side. We consume the existing DataFeedWatch XML feed as-is. If product data, images, or pricing change on 7sun.eu, they appear on 7sun.cy within 4 hours automatically.</div>
+  </div>
+</section>
+
+<!-- SECTION 5: COSTS -->
+<section>
+  <div class="container">
+    <h2><span class="num">05</span> Cost Report — Detailed Breakdown</h2>
+    <p class="section-sub">Complete transparency on development costs, monthly operating costs, and ROI projections.</p>
+
+    <h3>Development Investment (One-Time)</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Phase</th><th>Scope</th><th>Weeks</th><th>Cost</th></tr>
+        <tr><td class="p">1. Foundation</td><td>Backend setup, DB, XML sync worker, Stripe, hosting</td><td>2</td><td>Internal</td></tr>
+        <tr><td class="p">2. B2C Storefront</td><td>Homepage, catalog, product pages, cart, checkout, bilingual</td><td>3</td><td>Internal</td></tr>
+        <tr><td class="p">3. B2B Wholesale</td><td>Portal, tiered pricing, RES Fund verify, quotes, CSV</td><td>2</td><td>Internal</td></tr>
+        <tr><td class="p">4. AI Integration</td><td>Chatbot (GPT-4o), voice agent (ElevenLabs), knowledge base</td><td>2</td><td>Internal</td></tr>
+        <tr><td class="p">5. Automation</td><td>Klaviyo, email flows, newsletter auto-gen</td><td>1</td><td>Internal</td></tr>
+        <tr><td class="p">6. Developer Portal</td><td>Apartment solar page, calculator, kit builder</td><td>1</td><td>Internal</td></tr>
+        <tr><td class="p">7. Launch</td><td>Performance, security audit, testing, go-live</td><td>1</td><td>Internal</td></tr>
+        <tr><td class="p">8. Web Consultant</td><td>UI/UX review, responsive design guidance, QA audit</td><td>Ongoing</td><td>€2,500–5,500</td></tr>
+        <tr style="background:var(--sun-lt)"><td class="p" style="color:var(--sun-dk)"><strong>TOTAL</strong></td><td><em>Platform coded internally by founding team</em></td><td><strong>~12</strong></td><td class="p" style="color:var(--sun-dk)"><strong>€2,500–5,500</strong></td></tr>
+      </table>
+    </div>
+
+    <h3>Monthly Operating Costs</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Category</th><th>Service</th><th>Monthly</th><th>Annual</th></tr>
+        <tr><td rowspan="5" class="p" style="vertical-align:top">Infrastructure</td><td>Vercel Pro (frontend)</td><td>€20</td><td>€240</td></tr>
+        <tr><td>Railway Pro (backend)</td><td>€20</td><td>€240</td></tr>
+        <tr><td>Supabase Pro (database)</td><td>€25</td><td>€300</td></tr>
+        <tr><td>Cloudflare Pro (CDN/WAF)</td><td>€20</td><td>€240</td></tr>
+        <tr><td>Search + Storage + Domain</td><td>€42</td><td>€504</td></tr>
+
+        <tr><td rowspan="3" class="p" style="vertical-align:top">AI Services</td><td>OpenAI (chatbot + translations)</td><td>€135</td><td>€1,620</td></tr>
+        <tr><td>ElevenLabs (voice agent)</td><td>€99</td><td>€1,188</td></tr>
+        <tr><td>Twilio (phone)</td><td>€35</td><td>€420</td></tr>
+
+        <tr><td class="p">Email</td><td>Klaviyo</td><td>€65</td><td>€780</td></tr>
+
+        <tr style="background:var(--sun-lt)"><td colspan="2" class="p" style="color:var(--sun-dk)"><strong>TOTAL MONTHLY</strong></td><td class="p" style="color:var(--sun-dk)"><strong>€481</strong></td><td class="p" style="color:var(--sun-dk)"><strong>€5,533</strong></td></tr>
+      </table>
+    </div>
+
+    <h3>Revenue Impact Projection</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Metric</th><th>Without Website</th><th>With 7sun.cy</th><th>Impact</th></tr>
+        <tr><td class="p">Year 1 Revenue Target</td><td>€800,000</td><td class="win">€1,056,000</td><td class="p pg">+€256,000 (+32%)</td></tr>
+        <tr><td class="p">Gross Margin</td><td>22% (wholesale only)</td><td class="win">25.3% (mixed channels + apartment kits)</td><td class="p pg">+3.3 points</td></tr>
+        <tr><td class="p">B2B Customer Acquisition</td><td>Manual outreach only</td><td class="win">Auto-verified + AI-qualified leads 24/7</td><td class="p pg">3× faster</td></tr>
+        <tr><td class="p">Order Processing</td><td>Phone/email, manual</td><td class="win">Self-service, 80%+ automated</td><td class="p pg">~20h/week saved</td></tr>
+        <tr><td class="p">Customer Support</td><td>Manual (full-time person needed)</td><td class="win">AI handles 80%+, human for complex only</td><td class="p pg">€24,000/yr saved</td></tr>
+        <tr><td class="p">Apartment Kits (new channel)</td><td>€0 (not possible offline)</td><td class="win">€144,000/yr at 100%+ margins</td><td class="p pg">Pure new revenue</td></tr>
+      </table>
+    </div>
+
+    <div class="cost-box">
+      <div class="label">Year 1 Return on Website Investment</div>
+      <div class="big" style="font-size:32px">Website: ~€8K–11K → Revenue Uplift: €256K+</div>
+      <div class="label" style="margin-top:10px;font-size:14px">ROI: <strong style="color:var(--green);font-size:20px">~23–32× return</strong> in Year 1</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: WHAT WE NEED FROM 7SUN -->
+<section>
+  <div class="container">
+    <h2><span class="num">06</span> What We Need from 7sun.eu</h2>
+    <p class="section-sub">Minimal requirements from 7sun to get started — the XML feed does most of the heavy lifting.</p>
+
+    <div class="tw">
+      <table>
+        <tr><th>#</th><th>Requirement</th><th>Details</th><th>Status</th></tr>
+        <tr><td>1</td><td class="p">XML Product Feed Access</td><td>DataFeedWatch feed URL (already provided)</td><td><span class="badge bg">✓ Have it</span></td></tr>
+        <tr><td>2</td><td class="p">B2B Pricing Confirmation</td><td>Confirm H1–H5 tier multipliers and Lighthief.cy custom rate</td><td><span class="badge by">Needs confirmation</span></td></tr>
+        <tr><td>3</td><td class="p">Brand Assets</td><td>7sun logo (vector/SVG), brand guidelines if available</td><td><span class="badge by">Needs from 7sun</span></td></tr>
+        <tr><td>4</td><td class="p">Product Datasheets</td><td>PDFs per product — or URL mapping from XML to 7sun.eu PDFs</td><td><span class="badge by">Needs mapping</span></td></tr>
+        <tr><td>5</td><td class="p">Wholesale Terms Agreement</td><td>Terms for Cyprus B2B reselling — credit, returns, warranty support</td><td><span class="badge by">Needs agreement</span></td></tr>
+        <tr><td>6</td><td class="p">API Access (Optional)</td><td>If available, direct API to 7sun.eu for real-time stock beyond XML</td><td><span class="badge bk">Nice to have</span></td></tr>
+      </table>
+    </div>
+
+    <div class="success"><strong>Key Point:</strong> The XML feed already provides 90% of what we need. Product names, descriptions, images, prices, stock levels, EAN codes, and brand data all come from the existing feed. The development team handles everything else.</div>
+  </div>
+</section>
+
+<!-- SECTION 7: TIMELINE -->
+<section>
+  <div class="container">
+    <h2><span class="num">07</span> Timeline & Next Steps</h2>
+
+    <h3>~12-Week Development Roadmap (Internal Build)</h3>
+    <pre style="font-size:10px">
+Phase    Weeks     Deliverable
+──────── ──────── ───────────────────────────────────────────
+Found.   1–2      Backend + DB + XML sync + Stripe + hosting
+Store    3–5      B2C storefront live (products, cart, checkout)
+B2B      6–7      Wholesale portal + auto-verify + quotes
+AI       8–9      Chatbot + voice agent (Greek + English)
+Email    10       Klaviyo automations + newsletter AI
+Dev Kit  11       Developer portal + apartment calculator
+Launch   12       Testing, security, optimization → GO LIVE 🚀
+    </pre>
+
+    <h3>Immediate Next Steps</h3>
+    <div style="background:#fff;border:2px solid var(--sun);border-radius:12px;padding:24px;">
+      <ol style="margin-left:20px;font-size:14px;line-height:2.4;">
+        <li><strong>Approve proposal</strong> — Confirm scope, budget, and timeline</li>
+        <li><strong>Confirm B2B pricing tiers</strong> — H1–H5 multipliers for Cyprus</li>
+        <li><strong>Provide brand assets</strong> — 7sun logo (SVG) and guidelines</li>
+        <li><strong>Sign wholesale terms</strong> — Cyprus reselling agreement</li>
+        <li><strong>Register domain</strong> — 7sun.cy</li>
+        <li><strong>Kick off development</strong> — Phase 1 Foundation sprint</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px">7SUN<span style="color:var(--sun)">.cy</span></p>
+    <p>E-Commerce Platform Proposal — Prepared February 2026</p>
+    <p style="margin-top:12px;font-size:11px">For: <a href="https://7sun.eu">7sun.eu</a> — B2B Photovoltaic Wholesale<br>
+    From: 7SUN Cyprus / <a href="https://lighthief.cy">Lighthief.cy</a> Partnership</p>
+    <p style="margin-top:12px;font-size:10px;color:#475569">Platform costs based on published rates as of February 2026. Development estimates based on EU freelance/agency market rates. All figures in EUR. Revenue projections based on Cyprus market analysis (see 7SUN Business Plan).</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Cyprus — Sales Growth Plan 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #1f2937; background: #fff;
+  font-size: 10.5pt; line-height: 1.6;
+  max-width: 210mm; margin: 0 auto; padding: 0;
+}
+@media print {
+  body { padding: 0; max-width: 100%; }
+  .no-print { display: none !important; }
+  .page-break { page-break-before: always; }
+  .sec { padding: 12px 0; }
+}
+@page { size: A4; margin: 14mm 16mm; }
+
+.no-print {
+  position: fixed; top: 16px; right: 16px; z-index: 999;
+  display: flex; gap: 8px;
+}
+.no-print button {
+  background: #111827; color: #fff; border: none; padding: 10px 22px;
+  border-radius: 6px; font: 600 13px Poppins, sans-serif; cursor: pointer;
+}
+.no-print button:hover { background: #f59e0b; color: #111827; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  background: linear-gradient(160deg, #111827 0%, #1e293b 100%);
+  color: #fff;
+  padding: 50px 40px;
+  page-break-after: always;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+@media print {
+  .cover { margin: -14mm -16mm; padding: 40px 24mm; width: calc(100% + 32mm); min-height: calc(100vh + 28mm); }
+}
+.cover .logo-svg { width: 180px; margin-bottom: 24px; }
+.cover .division { font-size: 12px; font-weight: 700; letter-spacing: 5px; color: #fbbf24; margin-bottom: 10px; text-transform: uppercase; }
+.cover h1 { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
+.cover .sub { font-size: 14px; font-weight: 300; opacity: .85; max-width: 560px; margin-bottom: 36px; }
+.cover-stats { display: flex; gap: 32px; margin: 20px 0; flex-wrap: wrap; justify-content: center; }
+.cover-stats .stat { text-align: center; }
+.cover-stats .val { font-size: 26px; font-weight: 800; color: #fbbf24; }
+.cover-stats .lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; opacity: .7; }
+.cover .meta { margin-top: 48px; font-size: 10px; opacity: .45; }
+
+/* SECTIONS */
+.sec { padding: 18px 24px; }
+.sec-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; background: #f59e0b; color: #111827;
+  font-size: 14px; font-weight: 800; border-radius: 50%; margin-bottom: 10px;
+}
+h2 {
+  font-size: 19px; font-weight: 700; color: #111827; margin-bottom: 4px;
+}
+h2::after {
+  content: ''; display: block; width: 40px; height: 3px;
+  background: #f59e0b; margin: 8px 0 12px;
+}
+h3 { font-size: 13px; font-weight: 700; color: #111827; margin: 14px 0 6px; }
+p { margin-bottom: 8px; line-height: 1.65; }
+.lead { font-size: 12px; color: #6b7280; margin-bottom: 14px; }
+
+/* DARK BOX */
+.dark-box {
+  background: #111827; color: #fff; border-radius: 10px;
+  padding: 22px 24px; margin: 8px 0 18px;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+.dark-box h2, .dark-box h3 { color: #fff; }
+.dark-box h3 { color: #fbbf24; }
+.dark-box h2::after { background: #fbbf24; }
+.dark-box p, .dark-box li { color: rgba(255,255,255,.9); }
+.dark-box .lead { color: rgba(255,255,255,.65); }
+
+/* ACCENT BOX */
+.accent-box {
+  background: #fffbeb; border-left: 4px solid #f59e0b;
+  padding: 18px 22px; border-radius: 0 10px 10px 0; margin: 12px 0;
+}
+
+/* RED ACCENT */
+.red-box {
+  background: #fef2f2; border-left: 4px solid #ef4444;
+  padding: 18px 22px; border-radius: 0 10px 10px 0; margin: 12px 0;
+}
+
+/* GRIDS */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+@media (max-width: 600px) {
+  .grid2, .grid3, .grid4, .grid5 { grid-template-columns: 1fr; }
+}
+
+/* TABLES */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 10px; }
+th { background: #f3f4f6; font-weight: 700; text-align: left; padding: 8px 10px; border-bottom: 2px solid #e5e7eb; }
+td { padding: 7px 10px; border-bottom: 1px solid #f3f4f6; }
+tr:hover td { background: #fefce8; }
+.dark-box table th { background: #1e293b; color: #fff; border-bottom-color: #334155; }
+.dark-box table td { border-bottom-color: #1e293b; }
+.dark-box table tr:hover td { background: rgba(251,191,36,.1); }
+
+/* CARDS */
+.card {
+  background: #f9fafb; border-radius: 10px; padding: 18px 20px;
+  border: 1px solid #e5e7eb;
+}
+.card h3 { margin-top: 0; color: #111827; }
+.card .icon { font-size: 28px; margin-bottom: 8px; }
+.card-amber { background: #fffbeb; border-color: #fbbf24; }
+.card-dark { background: #111827; border-color: #334155; color: #fff; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+.card-dark h3 { color: #fbbf24; }
+.card-dark p, .card-dark li { color: rgba(255,255,255,.9); }
+.card-red { background: #fef2f2; border-color: #fca5a5; }
+.card-green { background: #f0fdf4; border-color: #86efac; }
+
+/* LISTS */
+.fl { list-style: none; padding: 0; }
+.fl li { position: relative; padding: 4px 0 4px 18px; font-size: 10.5px; }
+.fl li::before { content: '▸'; position: absolute; left: 0; color: #f59e0b; font-weight: 700; }
+.dark-box .fl li::before { color: #fbbf24; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 28px; margin: 14px 0; }
+.timeline::before {
+  content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+  width: 2px; background: #e5e7eb;
+}
+.timeline .step { position: relative; margin-bottom: 16px; }
+.timeline .step::before {
+  content: ''; position: absolute; left: -22px; top: 4px;
+  width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;
+  border: 2px solid #fff;
+}
+.timeline .step-title { font-weight: 700; font-size: 11px; color: #111827; }
+.timeline .step-desc { font-size: 10px; color: #6b7280; }
+
+/* PILLS */
+.pill {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+}
+.pill-amber { background: #fbbf24; color: #111827; }
+.pill-green { background: #10b981; color: #fff; }
+.pill-blue  { background: #3b82f6; color: #fff; }
+.pill-red   { background: #ef4444; color: #fff; }
+.pill-dark  { background: #111827; color: #fff; }
+
+/* SIGNATURE */
+.sig { margin-top: 20px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
+.sig .name { font-size: 14px; font-weight: 700; }
+.sig .role { font-size: 10px; color: #6b7280; }
+
+/* CTA */
+.cta-block {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #111827; border-radius: 10px; padding: 24px 28px; margin: 16px 0;
+  text-align: center;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+.cta-block h2 { color: #111827; }
+.cta-block h2::after { background: #111827; }
+.cta-block p { color: #111827; }
+
+.highlight { color: #f59e0b; font-weight: 700; }
+.amber { color: #f59e0b; }
+strong { font-weight: 700; }
+.text-right { text-align: right; }
+</style>
+</head>
+<body>
+
+<!-- PRINT / PDF -->
+<div class="no-print">
+  <button onclick="window.print()">Export PDF</button>
+</div>
+
+<!-- ═══════════════════ COVER PAGE ═══════════════════ -->
+<div class="cover">
+  <svg class="logo-svg" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" rx="48" fill="#0B0B0B"/>
+    <g clip-path="url(#c0)">
+      <path d="M431.519 304.966L417.597 280.733L350.26 321.759L425.051 226.504L436.358 219.867L433.56 215.662L438.697 209.096L415.097 189.445L404.295 203.215L186.253 330.829L266.869 233.849L417.024 151.513L402.758 123.926L320.972 168.755L361.246 120.336L338.174 100L247.535 209.026L157.515 258.413L226.435 167.267L269.621 144.782L255.906 116.888L130.085 182.407L164.396 136.987L140.429 117.785L68 213.678L69.1238 214.576L82.6554 242.139L162.951 200.31L89.7653 297.077L101.76 306.69L108.893 320.484L193.431 274.12L100.338 386.121L123.411 406.457L128.044 400.883L352.623 269.018L278.061 364.014L279.277 365.029L279.162 365.1L294.62 392.002L393.791 331.561L355.604 393.207L381.199 410L442 311.863L431.519 304.966Z" fill="white"/>
+    </g>
+    <defs><clipPath id="c0"><rect width="374" height="310" fill="white" transform="translate(68 100)"/></clipPath></defs>
+  </svg>
+
+  <div class="division">Lighthief Cyprus — Internal</div>
+  <h1>Sales Growth Plan 2026</h1>
+  <p class="sub">Actionable strategy for BDM and Sales to capture BESS, PV, and distribution revenue across Cyprus's highest-value client segments.</p>
+
+  <div class="cover-stats">
+    <div class="stat"><div class="val">€109M</div><div class="lbl">BESS Contracted</div></div>
+    <div class="stat"><div class="val">882 MWh</div><div class="lbl">Storage Pipeline</div></div>
+    <div class="stat"><div class="val">47%</div><div class="lbl">Curtailment Crisis</div></div>
+    <div class="stat"><div class="val">390+</div><div class="lbl">Installer Prospects</div></div>
+  </div>
+
+  <p class="meta">Confidential — Lighthief Cyprus Ltd | March 2026</p>
+</div>
+
+<!-- ═══════════════════ EXECUTIVE SUMMARY ═══════════════════ -->
+<div class="sec">
+  <h2>Executive Summary</h2>
+  <p class="lead">Lighthief Cyprus is positioned to capture significant market share across three revenue streams in a market with severe pain points.</p>
+
+  <div class="grid3" style="margin-top: 14px;">
+    <div class="card card-dark">
+      <h3>BESS EPC</h3>
+      <p style="font-size: 22px; font-weight: 800; color: #fbbf24;">€109.2M</p>
+      <p style="font-size: 10px;">249 MW / 882 MWh across 51 parks. Contracted with 6 client groups. 10.7% gross margin.</p>
+    </div>
+    <div class="card card-amber">
+      <h3>PV Installations</h3>
+      <p style="font-size: 22px; font-weight: 800; color: #d97706;">€1.2–2.0M</p>
+      <p style="font-size: 10px;">Residential, commercial, and developer projects. Year 1 target. 15–25% margins.</p>
+    </div>
+    <div class="card">
+      <h3>7SUN Distribution</h3>
+      <p style="font-size: 22px; font-weight: 800; color: #111827;">€0.8–1.2M</p>
+      <p style="font-size: 10px;">Equipment wholesale to 390+ installers. 30–45% gross margin. 15+ brands.</p>
+    </div>
+  </div>
+
+  <div class="accent-box" style="margin-top: 16px;">
+    <h3>Why Now?</h3>
+    <div class="grid2">
+      <ul class="fl">
+        <li><strong>47% solar curtailment</strong> — PV owners losing ~€58M+/year system-wide</li>
+        <li><strong>Net billing transition</strong> (Jan 2026) — every system now needs battery storage</li>
+        <li><strong>Highest EU electricity prices</strong> — 3–5 year solar payback</li>
+      </ul>
+      <ul class="fl">
+        <li><strong>No BESS supply chain</strong> — only 3.3 MWh deployed vs our 882 MWh pipeline</li>
+        <li><strong>DSO/SCADA burden</strong> — 100kWp+ operators need compliance support</li>
+        <li><strong>Equipment monopoly broken</strong> — 7SUN offers 30–50% lower prices than Trikkis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 1: MARKET PAIN POINTS ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">1</div>
+  <h2>Market Pain Points — Ranked by Severity</h2>
+  <p class="lead">Every sales conversation should start with the client's pain. These are the five biggest problems in the Cyprus energy market.</p>
+
+  <div class="dark-box">
+    <h3>Pain Point #1: Curtailment Crisis — 47% and Growing</h3>
+    <div class="grid2" style="margin-top: 10px;">
+      <div>
+        <table>
+          <thead><tr><th>Year</th><th>Curtailment</th><th>Energy Lost</th></tr></thead>
+          <tbody>
+            <tr><td>2021</td><td>~0%</td><td>~0 GWh</td></tr>
+            <tr><td>2022</td><td>3.5%</td><td>~23 GWh</td></tr>
+            <tr><td>2023</td><td>13.4%</td><td>~89 GWh</td></tr>
+            <tr><td>2024</td><td>29%</td><td>167 GWh</td></tr>
+            <tr><td><strong>2025</strong></td><td><strong>47%</strong></td><td><strong>~306 GWh</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p style="font-size: 10.5px;">For a <strong>5 MW PV park</strong>, 47% curtailment means:</p>
+        <ul class="fl">
+          <li><strong>€873K–€1M/year</strong> in lost revenue</li>
+          <li><strong>€21–22M</strong> over a 25-year project life</li>
+          <li>System-wide: <strong>~€58M+/year</strong> lost at €190/MWh</li>
+        </ul>
+        <p style="font-size: 10.5px; margin-top: 10px;"><strong>Sales angle:</strong> BESS captures curtailed energy at €0, discharges at peak prices (~€183/MWh). Net revenue after 86.3% RTE: <strong class="amber">~€161/MWh</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top: 12px;">
+    <div class="card card-red">
+      <h3>Pain Point #2: DSO/SCADA Compliance</h3>
+      <ul class="fl">
+        <li>100kWp+ = DSO Category C licensing required</li>
+        <li>EN 50549-2 grid code compliance mandatory</li>
+        <li>IEC 60870-5-104 SCADA communication</li>
+        <li>TSOC requires real-time telemetry, SOC/SOH reporting</li>
+        <li>Most operators lack in-house capability</li>
+      </ul>
+      <p style="font-size: 10px; margin-top: 8px;"><strong>Sales angle:</strong> Turnkey SCADA/EMS via our Voltus partnership. We remove all compliance complexity.</p>
+    </div>
+    <div class="card card-red">
+      <h3>Pain Point #3: Net Billing Transition</h3>
+      <ul class="fl">
+        <li>Jan 2026: net metering replaced by market-based self-consumption</li>
+        <li>Exported solar earns wholesale rates (near €0 at midday)</li>
+        <li>Without battery: buy expensive evening power at €183/MWh</li>
+        <li>With battery: use own solar 24/7</li>
+        <li>12,000 net-metering applications filed Dec 2025</li>
+      </ul>
+      <p style="font-size: 10px; margin-top: 8px;"><strong>Sales angle:</strong> Deye kits are 36–42% cheaper than Huawei. Every PV owner needs a battery now.</p>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top: 12px;">
+    <div class="card">
+      <h3>Pain Point #4: High Electricity Costs</h3>
+      <ul class="fl">
+        <li>Among the highest electricity prices in the EU</li>
+        <li>Residential PV payback: 3–5 years</li>
+        <li>Commercial self-consumption saves €0.20+/kWh</li>
+        <li>~340 sunny days/year in Cyprus</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Pain Point #5: No Local BESS Supply</h3>
+      <ul class="fl">
+        <li>Only Apollon PV (Sungrow) deployed: 3.3 MWh</li>
+        <li>33 CERA licensees — 1,000+ MW — almost none deployed</li>
+        <li>Our 882 MWh pipeline = 267x the only operational system</li>
+        <li>Exclusive Linyang distribution in Cyprus</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 2: TARGET CLIENTS ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">2</div>
+  <h2>Target Client Segments</h2>
+  <p class="lead">Three tiers based on deal value, pain severity, and sales cycle. BDM allocates 50% of time to Tier 1, 30% to Tier 2, 20% to Tier 3.</p>
+
+  <div class="dark-box">
+    <h3><span class="pill pill-red">Tier 1</span> &nbsp; Highest Value — Biggest Pain Points</h3>
+    <table style="margin-top: 10px;">
+      <thead>
+        <tr><th>Segment</th><th>Prospects</th><th>Avg Deal Size</th><th>Pain Point</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>PV park operators with CERA BESS licences</strong></td><td>33 licensees (1,000+ MW)</td><td>€1M–€10M+</td><td>47% curtailment = lost revenue</td></tr>
+        <tr><td><strong>Commercial/industrial &gt;100 kWp</strong></td><td>200–500</td><td>€50K–€500K</td><td>DSO compliance + high bills</td></tr>
+        <tr><td><strong>Existing solar farms wanting BESS retrofit</strong></td><td>50–100 parks</td><td>€500K–€5M</td><td>Curtailment recovery</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 10px;">Priority: 33 CERA licensees and 7 with DSO connection terms (151 MW / 410 MWh) are the highest-value outreach targets.</p>
+  </div>
+
+  <div class="grid2" style="margin-top: 12px;">
+    <div class="card card-amber">
+      <h3><span class="pill pill-amber">Tier 2</span> &nbsp; High Volume — Growing Demand</h3>
+      <table>
+        <thead><tr><th>Segment</th><th>Prospects</th><th>Deal Size</th></tr></thead>
+        <tbody>
+          <tr><td>Real estate developers</td><td>500–1,500</td><td>€10K–€100K</td></tr>
+          <tr><td>Hotels &amp; tourism</td><td>~200</td><td>€20K–€200K</td></tr>
+          <tr><td>Agricultural cold storage</td><td>100–200</td><td>€30K–€150K</td></tr>
+          <tr><td>Factories &amp; industrial</td><td>300–500</td><td>€50K–€500K</td></tr>
+          <tr><td>Net billing residential</td><td>80K–150K households</td><td>€3K–€7K</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3><span class="pill pill-blue">Tier 3</span> &nbsp; Channel Distribution (7SUN)</h3>
+      <table>
+        <thead><tr><th>Segment</th><th>Prospects</th><th>Revenue Model</th></tr></thead>
+        <tbody>
+          <tr><td>Registered PV installers</td><td>390+</td><td>30–45% wholesale margin</td></tr>
+          <tr><td>Electrical contractors</td><td>100–200</td><td>30–45% wholesale margin</td></tr>
+          <tr><td>Developer kit buyers</td><td>500–1,500</td><td>140–220% margin</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 3: BDM PLAYBOOK ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">3</div>
+  <h2>BDM &amp; Sales Team Playbook</h2>
+  <p class="lead">Specific activities, frequencies, and KPIs for each revenue stream.</p>
+
+  <div class="dark-box">
+    <h3>3.1 BESS Sales — High-Value, Long-Cycle (3–12 months)</h3>
+    <p style="font-size: 10px; margin-bottom: 10px;">Target: CERA licensees, PV park owners, energy investors. Deal size: €500K–€10M+</p>
+    <table>
+      <thead><tr><th>Activity</th><th>Frequency</th><th>Owner</th><th>KPI</th></tr></thead>
+      <tbody>
+        <tr><td>Map all 33 CERA BESS licensees — build contact database</td><td>Once (Week 1–2)</td><td>BDM</td><td>Database complete</td></tr>
+        <tr><td>Cold outreach to CERA licensees with curtailment pitch</td><td>5/week</td><td>BDM</td><td>Meetings booked</td></tr>
+        <tr><td>Host "Curtailment Recovery" seminar</td><td>Monthly</td><td>BDM + Director</td><td>20+ attendees</td></tr>
+        <tr><td>Build curtailment recovery ROI calculator</td><td>Once (Week 1–4)</td><td>BDM + Technical</td><td>Tool ready</td></tr>
+        <tr><td>Develop 3 anonymised case studies from 51-park portfolio</td><td>Once (Week 2–6)</td><td>BDM</td><td>Published</td></tr>
+        <tr><td>Partner with 2–3 banks for BESS financing referrals</td><td>Quarter 1</td><td>BDM</td><td>MOUs signed</td></tr>
+        <tr><td>Attend TSOC/CERA public consultations</td><td>As scheduled</td><td>BDM + Director</td><td>Visibility</td></tr>
+        <tr><td>Submit tenders for public BESS RFPs</td><td>As published</td><td>BDM + Director</td><td>Tenders submitted</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accent-box" style="margin-top: 12px;">
+    <h3>BESS Pitch Framework</h3>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-title">1. Open with Their Pain</div>
+        <div class="step-desc">"Your 5 MW PV park is losing €873K+ per year to curtailment."</div>
+      </div>
+      <div class="step">
+        <div class="step-title">2. Quantify the Solution</div>
+        <div class="step-desc">"BESS recovers curtailed energy and sells it at peak prices — €161/MWh net."</div>
+      </div>
+      <div class="step">
+        <div class="step-title">3. Prove Capability</div>
+        <div class="step-desc">"We have 51 parks / 882 MWh under contract — the largest BESS pipeline in Cyprus."</div>
+      </div>
+      <div class="step">
+        <div class="step-title">4. Remove Complexity</div>
+        <div class="step-desc">"Turnkey EPC from civil works to SCADA commissioning. We handle DSO compliance."</div>
+      </div>
+      <div class="step">
+        <div class="step-title">5. Close with Urgency</div>
+        <div class="step-desc">"The EuroAsia interconnector (2029) will change dynamics — install now for maximum curtailment recovery."</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 16px;">3.2 Commercial PV+BESS — Medium-Value (1–3 months)</h3>
+  <p class="lead">Target: Hotels, factories, cold storage. Deal size: €20K–€500K</p>
+  <table>
+    <thead><tr><th>Activity</th><th>Frequency</th><th>Owner</th><th>KPI</th></tr></thead>
+    <tbody>
+      <tr><td>Identify top 50 electricity consumers per district</td><td>Once (Month 1)</td><td>Sales Exec</td><td>250 prospect list</td></tr>
+      <tr><td>Cold call/visit with savings analysis</td><td>10 visits/week</td><td>BDM + Sales Exec</td><td>Proposals sent</td></tr>
+      <tr><td>Partner with 5 energy auditors and MEP consultants</td><td>Month 1–2</td><td>BDM</td><td>Referral agreements</td></tr>
+      <tr><td>Create commercial self-consumption ROI template</td><td>Once (Week 1–2)</td><td>Sales Exec</td><td>Template ready</td></tr>
+      <tr><td>Target hotel chains for peak shaving proposals</td><td>5/month</td><td>BDM</td><td>Conversion rate</td></tr>
+      <tr><td>Offer free energy audit for prospects &gt;50 kWp</td><td>Ongoing</td><td>Sales Exec</td><td>Audits completed</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 16px;">3.3 Residential &amp; Developer — Volume (1–4 weeks)</h3>
+  <p class="lead">Target: Homeowners, developers. Deal size: €3K–€100K</p>
+  <table>
+    <thead><tr><th>Activity</th><th>Frequency</th><th>Owner</th><th>KPI</th></tr></thead>
+    <tbody>
+      <tr><td>Launch Deye net billing kit digital campaign</td><td>Week 2</td><td>Lead Coordinator</td><td>50 enquiries/month</td></tr>
+      <tr><td>Developer outreach — apartment kit pricing</td><td>5 developers/week</td><td>Sales Exec</td><td>Proposals sent</td></tr>
+      <tr><td>Installer onboarding — call RES Fund database</td><td>20 calls/week</td><td>Lead Coordinator</td><td>50 accounts Year 1</td></tr>
+      <tr><td>Process inbound leads within 2 hours</td><td>Ongoing</td><td>Lead Coordinator</td><td>Response time</td></tr>
+      <tr><td>Follow up on all quotes within 48 hours</td><td>Ongoing</td><td>Sales Exec</td><td>Follow-up rate</td></tr>
+      <tr><td>"Solar for Your Home" webinar</td><td>Monthly</td><td>Sales Exec</td><td>30+ registrations</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════ SECTION 4: HERO PRODUCT ═══════════════════ -->
+<div class="sec">
+  <div class="sec-num">4</div>
+  <h2>Hero Product — Deye Net Billing Kit</h2>
+  <p class="lead">The most affordable complete solar + storage system in Cyprus. Lead with this in every residential and developer conversation.</p>
+
+  <div class="dark-box">
+    <div class="grid2">
+      <div>
+        <h3>Complete System Pricing</h3>
+        <table>
+          <thead><tr><th>Package</th><th>Solar</th><th>Storage</th><th>Price</th><th>vs Huawei</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pill pill-dark">Starter</span></td><td>4.1 kWp</td><td>5.1 kWh</td><td><strong>€2,999</strong></td><td class="amber">-42%</td></tr>
+            <tr><td><span class="pill pill-amber">Standard</span></td><td>4.1 kWp</td><td>10.3 kWh</td><td><strong>€4,200</strong></td><td class="amber">-40%</td></tr>
+            <tr><td><span class="pill pill-blue">Premium</span></td><td>4.1 kWp</td><td>15.4 kWh</td><td><strong>€5,400</strong></td><td class="amber">-38%</td></tr>
+            <tr><td><span class="pill pill-green">Maximum</span></td><td>4.1 kWp</td><td>20.6 kWh</td><td><strong>€6,600</strong></td><td class="amber">-36%</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size: 9px; color: rgba(255,255,255,.5);">Wholesale equipment pricing, ex-VAT. Installation additional.</p>
+      </div>
+      <div>
+        <h3>Why Deye Wins</h3>
+        <ul class="fl">
+          <li><strong>36–42% cheaper</strong> than Huawei L1 + LUNA equivalent</li>
+          <li>Built-in BMS — no separate controller needed</li>
+          <li>Stackable 5.1 kWh modules — expand anytime</li>
+          <li>LiFePO4: 6,000+ cycles (16+ years)</li>
+          <li>Emergency backup during grid outages</li>
+          <li>Single-phase 5 kW: net billing compliant</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 5: COMPETITIVE POSITIONING ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">5</div>
+  <h2>Competitive Positioning</h2>
+  <p class="lead">Know how we compare in every sales conversation.</p>
+
+  <h3>5.1 vs Trikkis Energy (Equipment Distribution)</h3>
+  <table>
+    <thead><tr><th>Factor</th><th>Lighthief / 7SUN</th><th>Trikkis Energy</th></tr></thead>
+    <tbody>
+      <tr><td>Panel brands</td><td><strong>15+ brands</strong></td><td>4–5 brands</td></tr>
+      <tr><td>Panel pricing</td><td><strong>8–37% below market</strong></td><td>Market reference</td></tr>
+      <tr><td>Net billing kits</td><td><strong>Deye: 36–42% cheaper</strong></td><td>Huawei L1 + LUNA</td></tr>
+      <tr><td>Supply chain</td><td>Local stock + 7–10 day EU</td><td>Local stock</td></tr>
+      <tr><td>Market share</td><td>New entrant</td><td>~60% (~€15–17M/yr)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Pricing Comparison</h3>
+  <div class="dark-box">
+    <table>
+      <thead><tr><th>Product</th><th>Lighthief / 7SUN</th><th>Market Rate</th><th>Saving</th></tr></thead>
+      <tbody>
+        <tr><td>Jinko 455W N-Type</td><td><strong>€56</strong></td><td>€78</td><td class="amber">-29%</td></tr>
+        <tr><td>JA Solar 450W Bifacial</td><td><strong>€56</strong></td><td>€89</td><td class="amber">-37%</td></tr>
+        <tr><td>Longi 460W Hi-MO 7</td><td><strong>€52</strong></td><td>N/A locally</td><td class="amber">Exclusive</td></tr>
+        <tr><td>Deye 5kW Hybrid Kit (inv + 5 kWh)</td><td><strong>€1,700</strong></td><td>€3,039 (Huawei)</td><td class="amber">-44%</td></tr>
+        <tr><td>SolarEdge SE10K 3-Phase</td><td><strong>€570</strong></td><td>€936 (Huawei)</td><td class="amber">-39%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 9px; color: rgba(255,255,255,.5);">Market rate: Trikkis Energy wholesale / Solar Wholesale CY pricing (Sept 2025). All prices ex-VAT.</p>
+  </div>
+
+  <h3>5.3 vs Other BESS EPCs</h3>
+  <table>
+    <thead><tr><th>Factor</th><th>Lighthief</th><th>Competitors</th></tr></thead>
+    <tbody>
+      <tr><td>Pipeline</td><td><strong>249 MW / 882 MWh (51 parks)</strong></td><td>TSOC state: 120 MW/400 MWh (EU-funded)</td></tr>
+      <tr><td>OEM</td><td><strong>Linyang (exclusive Cyprus)</strong></td><td>No established supply chain</td></tr>
+      <tr><td>Track record</td><td><strong>6 client groups contracted</strong></td><td>Apollon PV: 3.3 MWh only</td></tr>
+      <tr><td>EMS/SCADA</td><td><strong>Voltus partnership</strong></td><td>No integrated offering</td></tr>
+      <tr><td>O&amp;M</td><td><strong>15-year LTSA with SLA</strong></td><td>Ad hoc or none</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════ SECTION 6: SALES KPIS ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">6</div>
+  <h2>Sales Team KPIs &amp; Targets</h2>
+  <p class="lead">Formula-driven targets with weekly activity metrics and monthly pipeline KPIs.</p>
+
+  <h3>6.1 Individual Sales Targets (20x / 9x salary model)</h3>
+  <table>
+    <thead><tr><th>Team Member</th><th>Role</th><th>Monthly Gross</th><th>Annual Target (20x)</th><th>6-Month Min (9x/2)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Costas Hadjikyriacou</strong></td><td>BDM / Senior Sales</td><td>€3,000</td><td><strong>€720,000</strong></td><td>€162,000</td></tr>
+      <tr><td><strong>Andreas Christoforou</strong></td><td>Business Development</td><td>€2,500</td><td><strong>€600,000</strong></td><td>€135,000</td></tr>
+      <tr><td><strong>Zinovia Efesopoulou</strong></td><td>Sales Exec / Lead Coord</td><td>€1,400</td><td><strong>€336,000</strong></td><td>€75,600</td></tr>
+      <tr><td colspan="3" style="font-weight: 700;">Team Total</td><td><strong>€1,656,000</strong></td><td><strong>€372,600</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.2 Weekly Activity KPIs</h3>
+  <div class="dark-box">
+    <table>
+      <thead><tr><th>Activity</th><th>BDM</th><th>Sales Exec</th><th>Lead Coordinator</th></tr></thead>
+      <tbody>
+        <tr><td>Cold calls / outreach</td><td>25</td><td>15</td><td>40</td></tr>
+        <tr><td>Face-to-face meetings</td><td>5</td><td>3</td><td>1</td></tr>
+        <tr><td>Proposals sent</td><td>3</td><td>5</td><td>—</td></tr>
+        <tr><td>Follow-up calls on quotes</td><td>10</td><td>15</td><td>20</td></tr>
+        <tr><td>New CRM entries</td><td>10</td><td>8</td><td>15</td></tr>
+        <tr><td>Installer onboarding calls</td><td>—</td><td>—</td><td>20</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>6.3 Monthly Pipeline KPIs</h3>
+  <table>
+    <thead><tr><th>Metric</th><th>Monthly Target</th></tr></thead>
+    <tbody>
+      <tr><td>New qualified leads (all sources)</td><td><strong>80</strong></td></tr>
+      <tr><td>Proposals issued</td><td><strong>30</strong></td></tr>
+      <tr><td>Deals closed</td><td><strong>8–12</strong></td></tr>
+      <tr><td>Revenue booked (PV + Distribution)</td><td><strong>€130K–€180K</strong></td></tr>
+      <tr><td>BESS pipeline value added</td><td><strong>€500K+</strong></td></tr>
+      <tr><td>Installer wholesale accounts opened</td><td><strong>4–5</strong></td></tr>
+      <tr><td>Developer accounts opened</td><td><strong>2</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.4 Commission Structure</h3>
+  <div class="accent-box">
+    <div class="grid2">
+      <div>
+        <table>
+          <thead><tr><th>Net Margin Band</th><th>Rate</th></tr></thead>
+          <tbody>
+            <tr><td>€0–€10,000</td><td>0%</td></tr>
+            <tr><td>€10,001–€20,000</td><td>5%</td></tr>
+            <tr><td>€20,001–€35,000</td><td>7.5%</td></tr>
+            <tr><td>€35,001–€50,000</td><td>10%</td></tr>
+            <tr><td>€50,001–€75,000</td><td>12.5%</td></tr>
+            <tr><td>€75,001+</td><td>15%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p style="font-size: 10.5px;"><strong>Payment milestones:</strong></p>
+        <ul class="fl">
+          <li><strong>40%</strong> — at contract signing payment</li>
+          <li><strong>50%</strong> — at installation payment</li>
+          <li><strong>10%</strong> — at commissioning payment</li>
+        </ul>
+        <p style="font-size: 10px; margin-top: 8px;">Rates are marginal. Commission paid only on collected funds. Refer to LCY-COM-001 for full policy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 7: MARKETING ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">7</div>
+  <h2>Marketing Channels &amp; Campaigns</h2>
+  <p class="lead">€52K annual digital marketing budget driving 90+ qualified leads per month.</p>
+
+  <h3>7.1 Digital Marketing Budget</h3>
+  <div class="dark-box">
+    <table>
+      <thead><tr><th>Channel</th><th>Monthly</th><th>Annual</th><th>Target Audience</th><th>KPI</th></tr></thead>
+      <tbody>
+        <tr><td>Meta (Facebook/Instagram)</td><td>€2,050</td><td>€24,600</td><td>Homeowners + developers</td><td>50 leads/mo</td></tr>
+        <tr><td>Google Search (EN + GR)</td><td>€1,650</td><td>€19,800</td><td>Active solar searchers</td><td>30 leads/mo</td></tr>
+        <tr><td>Google Display / YouTube</td><td>€300</td><td>€3,600</td><td>Retargeting</td><td>Brand awareness</td></tr>
+        <tr><td>LinkedIn</td><td>€170</td><td>€2,040</td><td>B2B installers + investors</td><td>10 leads/mo</td></tr>
+        <tr><td colspan="2"><strong>Total: €4,170/mo</strong></td><td><strong>€50,040</strong></td><td></td><td><strong>90+ leads/mo</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>7.2 Campaign Calendar</h3>
+  <table>
+    <thead><tr><th>Month</th><th>Campaign</th><th>Channel</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Month 1</td><td>"Stop Losing 47% of Your Solar Revenue"</td><td>Meta + Google</td><td>PV park owners</td></tr>
+      <tr><td>Month 1</td><td>"Cheapest Net Billing Kit in Cyprus"</td><td>Meta + Google</td><td>Homeowners</td></tr>
+      <tr><td>Month 2</td><td>"Better Prices, More Brands" — Installer Launch</td><td>LinkedIn + Direct</td><td>390+ installers</td></tr>
+      <tr><td>Month 2</td><td>"Solar Included Sells" — Developer Kits</td><td>Meta + Direct</td><td>Developers</td></tr>
+      <tr><td>Month 3</td><td>Curtailment Recovery Seminar</td><td>Event + LinkedIn</td><td>CERA licensees</td></tr>
+      <tr><td>Month 3</td><td>"Battery Savings Calculator" tool launch</td><td>Google + Meta</td><td>All segments</td></tr>
+      <tr><td>Ongoing</td><td>Blog: curtailment, BESS ROI, DSO compliance</td><td>Website + social</td><td>SEO + authority</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 14px;">7.3 Priority Content Topics</h3>
+  <div class="grid2">
+    <div class="card">
+      <ul class="fl">
+        <li>"How Much Revenue Is Your PV Park Losing to Curtailment?"</li>
+        <li>"Net Billing 2026: Why You Need a Battery Now"</li>
+        <li>"DSO Category C Compliance for 100kWp+ Operators"</li>
+        <li>"BESS Investment: ROI, IRR, and Payback Analysis"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <ul class="fl">
+        <li>"Deye vs Huawei: True Cost of Net Billing in Cyprus"</li>
+        <li>"How a BESS Park Gets Built: Construction to Commissioning"</li>
+        <li>"EMS and SCADA: Why Smart Systems Earn More"</li>
+        <li>"Apartment Solar: €400 Cost, €10K+ Property Value"</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 14px;">7.4 Referral Programme</h3>
+  <table>
+    <thead><tr><th>Referral Type</th><th>Commission</th><th>Target Referrer</th></tr></thead>
+    <tbody>
+      <tr><td>BESS project investor referral</td><td>Negotiated per deal</td><td>Banks, advisors, real estate</td></tr>
+      <tr><td>PV installation referral</td><td>2% of contract value</td><td>Installers, architects, MEPs</td></tr>
+      <tr><td>Equipment wholesale referral</td><td>2% of first-year purchases</td><td>Existing clients, partners</td></tr>
+      <tr><td>O&amp;M contract referral</td><td>Recurring annual %</td><td>Project owners, consultants</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════ SECTION 8: 90-DAY PLAN ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">8</div>
+  <h2>90-Day Action Plan</h2>
+  <p class="lead">Sprint execution across three phases. Weekly check-ins with Director.</p>
+
+  <div class="dark-box">
+    <h3>Weeks 1–4: Foundation &amp; Outreach Blitz</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Owner</th><th>Deliverable</th></tr></thead>
+      <tbody>
+        <tr><td>Complete CERA licensee database (33 entities + contacts)</td><td>BDM</td><td>CRM populated</td></tr>
+        <tr><td>Build curtailment recovery ROI calculator</td><td>BDM + Technical</td><td>Tool ready</td></tr>
+        <tr><td>Call first 100 installers from RES Fund database</td><td>Lead Coordinator</td><td>20 meetings booked</td></tr>
+        <tr><td>Launch Meta + Google campaigns</td><td>Lead Coordinator</td><td>Campaigns live</td></tr>
+        <tr><td>Create commercial ROI proposal template</td><td>Sales Exec</td><td>Template ready</td></tr>
+        <tr><td>Cold outreach to top 50 commercial (Limassol)</td><td>BDM</td><td>10 meetings booked</td></tr>
+        <tr><td>Contact 5 real estate developers — apartment kits</td><td>Sales Exec</td><td>2 proposals sent</td></tr>
+        <tr><td>Set up CRM pipeline stages and reporting</td><td>All</td><td>Dashboard live</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accent-box" style="margin-top: 12px;">
+    <h3>Weeks 5–8: Seminars, Partnerships &amp; Pipeline</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Owner</th><th>Deliverable</th></tr></thead>
+      <tbody>
+        <tr><td>Host first "Curtailment Recovery" seminar</td><td>BDM + Director</td><td>20+ attendees</td></tr>
+        <tr><td>Secure 2 bank referral partnerships</td><td>BDM</td><td>MOUs drafted</td></tr>
+        <tr><td>200 installer calls completed</td><td>Lead Coordinator</td><td>15+ accounts opened</td></tr>
+        <tr><td>Nicosia district commercial prospecting</td><td>BDM</td><td>10 meetings booked</td></tr>
+        <tr><td>Launch LinkedIn B2B campaign</td><td>Lead Coordinator</td><td>Campaign live</td></tr>
+        <tr><td>Publish first 2 blog posts</td><td>Marketing</td><td>Published</td></tr>
+        <tr><td>Developer kit pricing to 10+ developers</td><td>Sales Exec</td><td>4 proposals sent</td></tr>
+        <tr><td>First pipeline review meeting</td><td>All + Director</td><td>Pipeline reviewed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top: 12px;">
+    <h3>Weeks 9–12: Review, Case Studies &amp; Scale</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Owner</th><th>Deliverable</th></tr></thead>
+      <tbody>
+        <tr><td>Publish 3 anonymised BESS case studies</td><td>BDM</td><td>On website</td></tr>
+        <tr><td>Second curtailment recovery seminar</td><td>BDM + Director</td><td>30+ attendees</td></tr>
+        <tr><td>Optimise digital campaigns (CPA, conversion)</td><td>Lead Coordinator</td><td>Campaigns optimised</td></tr>
+        <tr><td>Expand to Paphos and Larnaca districts</td><td>BDM + Sales Exec</td><td>20 new prospects</td></tr>
+        <tr><td>90-day KPI assessment — actual vs target</td><td>All + Director</td><td>Report presented</td></tr>
+        <tr><td>50 installer accounts target check</td><td>Lead Coordinator</td><td>Progress report</td></tr>
+        <tr><td>Developer pipeline review</td><td>Sales Exec</td><td>Pipeline value</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 9: OPTIMAL CLIENT PROFILES ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <div class="sec-num">9</div>
+  <h2>Optimal Client Profiles</h2>
+  <p class="lead">The five client types with the biggest pain points and highest conversion potential.</p>
+
+  <div class="grid2" style="margin-top: 14px;">
+    <div class="card card-dark">
+      <h3>The PV Park Owner Losing Revenue</h3>
+      <ul class="fl">
+        <li><strong>Who:</strong> Owns 1–10 MW PV park (CERA licensed)</li>
+        <li><strong>Pain:</strong> 47% curtailment = €175K–€1M+/yr lost</li>
+        <li><strong>Solution:</strong> Co-located BESS for curtailment recovery</li>
+        <li><strong>Why us:</strong> Only turnkey BESS EPC with supply chain</li>
+        <li><strong>Entry point:</strong> Free curtailment revenue loss analysis</li>
+      </ul>
+    </div>
+    <div class="card card-dark">
+      <h3>The Commercial Operator</h3>
+      <ul class="fl">
+        <li><strong>Who:</strong> Hotel, factory, cold storage, data centre (&gt;100 kWp)</li>
+        <li><strong>Pain:</strong> €0.25+/kWh electricity, demand charges</li>
+        <li><strong>Solution:</strong> Rooftop PV + BESS for self-consumption</li>
+        <li><strong>Why us:</strong> Equipment 30–50% below market, turnkey EPC</li>
+        <li><strong>Entry point:</strong> Free energy audit with ROI projection</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid3" style="margin-top: 12px;">
+    <div class="card card-amber">
+      <h3>The Homeowner</h3>
+      <ul class="fl">
+        <li><strong>Who:</strong> Residential owner on net billing</li>
+        <li><strong>Pain:</strong> Exports at €0, buys at €183/MWh</li>
+        <li><strong>Solution:</strong> Deye hybrid + battery</li>
+        <li><strong>Why us:</strong> 36–42% cheaper than Huawei</li>
+        <li><strong>Entry:</strong> Online enquiry / installer</li>
+      </ul>
+    </div>
+    <div class="card card-amber">
+      <h3>The Real Estate Developer</h3>
+      <ul class="fl">
+        <li><strong>Who:</strong> Building apartments/villas</li>
+        <li><strong>Pain:</strong> Differentiation, EPC rating</li>
+        <li><strong>Solution:</strong> Per-apartment kits from €400</li>
+        <li><strong>Why us:</strong> Volume pricing, 25-yr warranty</li>
+        <li><strong>Entry:</strong> Developer programme</li>
+      </ul>
+    </div>
+    <div class="card card-amber">
+      <h3>The PV Installer</h3>
+      <ul class="fl">
+        <li><strong>Who:</strong> One of 390+ RES Fund registered</li>
+        <li><strong>Pain:</strong> Paying Trikkis (30–50% more)</li>
+        <li><strong>Solution:</strong> 7SUN wholesale, 15+ brands</li>
+        <li><strong>Why us:</strong> Beat Trikkis by 5%+</li>
+        <li><strong>Entry:</strong> Onboarding call</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 10: 12-MONTH TARGETS ═══════════════════ -->
+<div class="sec">
+  <div class="sec-num">10</div>
+  <h2>12-Month Success Metrics</h2>
+
+  <div class="dark-box">
+    <div class="grid2">
+      <div>
+        <h3>Revenue Targets</h3>
+        <table>
+          <thead><tr><th>Metric</th><th>Year 1 Target</th></tr></thead>
+          <tbody>
+            <tr><td>BESS pipeline (new, beyond 51 parks)</td><td><strong>€20M+</strong></td></tr>
+            <tr><td>PV installation revenue</td><td><strong>€1.2M–€2.0M</strong></td></tr>
+            <tr><td>7SUN equipment revenue</td><td><strong>€0.8M–€1.2M</strong></td></tr>
+            <tr><td>Total team sales target</td><td><strong>€1.66M</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Activity Targets</h3>
+        <table>
+          <thead><tr><th>Metric</th><th>Year 1 Target</th></tr></thead>
+          <tbody>
+            <tr><td>Qualified leads generated</td><td><strong>1,000+</strong></td></tr>
+            <tr><td>Proposals issued</td><td><strong>300+</strong></td></tr>
+            <tr><td>Conversion rate</td><td><strong>&gt;25%</strong></td></tr>
+            <tr><td>Wholesale installer accounts</td><td><strong>50</strong></td></tr>
+            <tr><td>Developer partnerships</td><td><strong>10</strong></td></tr>
+            <tr><td>Curtailment seminars hosted</td><td><strong>6</strong></td></tr>
+            <tr><td>Blog posts published</td><td><strong>12</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ APPENDIX: MARKET DATA ═══════════════════ -->
+<div class="page-break"></div>
+<div class="sec">
+  <h2>Appendix — Cyprus Market Data</h2>
+  <p class="lead">Reference data for proposals, presentations, and client conversations.</p>
+
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Installed PV capacity (2025)</td><td><strong>957 MW</strong></td><td>EAC / TSOC</td></tr>
+      <tr><td>Annual PV additions</td><td>~120 MW/year</td><td>CERA</td></tr>
+      <tr><td>Solar curtailment (2025)</td><td><strong>47% (~306 GWh)</strong></td><td>TSOC</td></tr>
+      <tr><td>System-wide curtailment loss</td><td>~€58M+/year</td><td>At €190/MWh avg</td></tr>
+      <tr><td>DAM peak evening (17–21h)</td><td><strong>€183/MWh</strong></td><td>TSOC DAM</td></tr>
+      <tr><td>DAM midday (10–14h)</td><td>€101/MWh</td><td>TSOC DAM</td></tr>
+      <tr><td>Peak–midday spread</td><td>€82/MWh</td><td>Calculated</td></tr>
+      <tr><td>BESS arbitrage net (after RTE)</td><td><strong>€161/MWh</strong></td><td>At 86.3% RTE</td></tr>
+      <tr><td>CERA BESS licensees</td><td>33 entities (1,000+ MW)</td><td>CERA registry</td></tr>
+      <tr><td>DSO connection terms issued</td><td>7 (151 MW / 410 MWh)</td><td>DSO / EAC</td></tr>
+      <tr><td>PV installers registered</td><td><strong>390+</strong></td><td>resecfund.org.cy</td></tr>
+      <tr><td>Equipment distribution TAM</td><td>€25–28M/year</td><td>Estimated</td></tr>
+      <tr><td>Trikkis market share</td><td>~60% (~€15–17M/yr)</td><td>Market intelligence</td></tr>
+      <tr><td>EuroAsia interconnector</td><td>2029–2030</td><td>EU Projects</td></tr>
+      <tr><td>Lighthief BESS pipeline</td><td><strong>249 MW / 882 MWh</strong></td><td>Portfolio SSOT</td></tr>
+      <tr><td>Lighthief contracted revenue</td><td><strong>€109.2M</strong></td><td>Portfolio SSOT</td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid4" style="margin-top: 16px;">
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 22px; font-weight: 800; color: #f59e0b;">~340</div>
+      <div style="font-size: 9px; color: #6b7280; text-transform: uppercase;">Sunny Days/Year</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 22px; font-weight: 800; color: #f59e0b;">957 MW</div>
+      <div style="font-size: 9px; color: #6b7280; text-transform: uppercase;">Installed PV (2025)</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 22px; font-weight: 800; color: #f59e0b;">3–5 yr</div>
+      <div style="font-size: 9px; color: #6b7280; text-transform: uppercase;">Solar Payback</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 22px; font-weight: 800; color: #ef4444;">47%</div>
+      <div style="font-size: 9px; color: #6b7280; text-transform: uppercase;">Curtailment (2025)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="sec" style="padding: 20px 24px 40px;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <div class="sig">
+      <div class="name">Alexander Papacosta</div>
+      <div class="role">Director — Lighthief Cyprus Ltd</div>
+      <div class="role">+357 99 164 158 &nbsp;|&nbsp; office@lighthief.com</div>
+    </div>
+    <div style="text-align: right;">
+      <div style="font-size: 9px; color: #9ca3af; margin-bottom: 4px;">
+        Lighthief Cyprus Ltd &nbsp;|&nbsp; HE 477423<br>
+        28 October Ave 249, Lophitis Business Center 1<br>
+        Office 201, 3035 Limassol, Cyprus
+      </div>
+      <svg width="60" height="60" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: .2;">
+        <g clip-path="url(#c1)">
+          <path d="M431.519 304.966L417.597 280.733L350.26 321.759L425.051 226.504L436.358 219.867L433.56 215.662L438.697 209.096L415.097 189.445L404.295 203.215L186.253 330.829L266.869 233.849L417.024 151.513L402.758 123.926L320.972 168.755L361.246 120.336L338.174 100L247.535 209.026L157.515 258.413L226.435 167.267L269.621 144.782L255.906 116.888L130.085 182.407L164.396 136.987L140.429 117.785L68 213.678L69.1238 214.576L82.6554 242.139L162.951 200.31L89.7653 297.077L101.76 306.69L108.893 320.484L193.431 274.12L100.338 386.121L123.411 406.457L128.044 400.883L352.623 269.018L278.061 364.014L279.277 365.029L279.162 365.1L294.62 392.002L393.791 331.561L355.604 393.207L381.199 410L442 311.863L431.519 304.966Z" fill="#111827"/>
+        </g>
+        <defs><clipPath id="c1"><rect width="374" height="310" fill="white" transform="translate(68 100)"/></clipPath></defs>
+      </svg>
+    </div>
+  </div>
+  <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 8px; color: #d1d5db; text-align: center;">
+    This document is confidential and intended for internal use only. All pricing is indicative and subject to final quotation. Prices ex-VAT. March 2026.
+  </div>
+</div>
+
+</body>
+</html>

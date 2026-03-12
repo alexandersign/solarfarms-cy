@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP - SmartgridOne EMS/SCADA - Cyprus BESS Portfolio - March 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1f2937; padding: 40px; max-width: 1100px; margin: 0 auto; }
+
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; border-bottom: 4px solid #38a169; }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        .header h1 { font-size: 22pt; margin-bottom: 8px; text-align: center; }
+        .header .subtitle { font-size: 13pt; opacity: 0.9; text-align: center; }
+
+        .section { margin-bottom: 30px; page-break-inside: avoid; }
+        h2 { color: #1e3a5f; border-bottom: 2px solid #1e3a5f; padding-bottom: 8px; margin-bottom: 15px; font-size: 14pt; }
+        h3 { color: #2d5a87; margin: 20px 0 10px 0; font-size: 12pt; }
+        h4 { color: #374151; margin: 15px 0 8px 0; font-size: 11pt; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #f3f4f6; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .highlight-box { background: #dbeafe; border: 1px solid #3b82f6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .warning-box { background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .success-box { background: #dcfce7; border: 1px solid #22c55e; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .response-cell { background: #fff7ed; min-height: 30px; }
+
+        .total-row { background: #dbeafe !important; font-weight: bold; }
+        .group-header { background: #e0e7ff !important; font-weight: 600; }
+        .standalone-row { background: #fef3c7 !important; }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-orange { background: #ffedd5; color: #c2410c; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-required { background: #fee2e2; color: #991b1b; }
+        .badge-preferred { background: #fef3c7; color: #92400e; }
+
+        .architecture-box { background: #f0f4f8; border: 2px solid #2d5a87; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: 'Courier New', monospace; font-size: 10pt; white-space: pre-line; line-height: 1.8; }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        ol { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 4px; }
+        p { margin-bottom: 10px; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .info-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e2e8f0; }
+        .info-label { color: #4a5568; font-weight: 500; }
+        .info-value { color: #1a365d; font-weight: 600; }
+
+        .scope-list { list-style: none; padding: 0; }
+        .scope-list li { padding: 8px 0 8px 25px; position: relative; border-bottom: 1px solid #e2e8f0; }
+        .scope-list li::before { content: '\2713'; position: absolute; left: 0; color: #38a169; font-weight: bold; }
+        .scope-list li.excluded::before { content: '\2717'; color: #e53e3e; }
+
+        .toc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .toc h3 { margin-top: 0; }
+        .toc ol { margin-left: 25px; }
+        .toc li { margin-bottom: 6px; }
+        .toc a { color: #2d5a87; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        @media print {
+            body { padding: 20px; font-size: 10pt; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+            .section { page-break-inside: avoid; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: auto; }
+            tr { page-break-inside: avoid; }
+        }
+
+        .print-btn { position: fixed; top: 20px; right: 20px; background: #1e3a5f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 12pt; z-index: 100; }
+        .print-btn:hover { background: #2d5a87; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-RFP-EMS-SGO-2026-001</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 5 March 2026</div>
+                <div><strong>Classification:</strong> CONFIDENTIAL</div>
+            </div>
+        </div>
+        <h1>REQUEST FOR PROPOSAL</h1>
+        <div class="subtitle">EMS / SCADA Integration Services &mdash; SmartgridOne (Eniris)</div>
+        <div style="text-align: center; margin-top: 8px; font-size: 11pt; opacity: 0.9;">Cyprus BESS Portfolio &mdash; 51 Parks / ~882 MWh / 249 MW</div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc no-print">
+        <h3>Table of Contents</h3>
+        <ol>
+            <li><a href="#s1">Introduction &amp; Background</a></li>
+            <li><a href="#s2">Portfolio Overview (Redacted)</a></li>
+            <li><a href="#s3">System Architecture &amp; Equipment</a></li>
+            <li><a href="#s4">Scope of Supply</a></li>
+            <li><a href="#s5">Technical Requirements &mdash; DSO Compliance</a></li>
+            <li><a href="#s6">PPC &amp; Grid Code Compliance</a></li>
+            <li><a href="#s7">Communication Protocols</a></li>
+            <li><a href="#s8">EMS Functional Requirements</a></li>
+            <li><a href="#s9">Battery Monitoring &amp; Degradation Analytics</a></li>
+            <li><a href="#s10">Thermal &amp; Safety Monitoring</a></li>
+            <li><a href="#s11">Fault Detection &amp; Diagnostics</a></li>
+            <li><a href="#s12">EMS Optimization Capability</a></li>
+            <li><a href="#s13">Market Integration</a></li>
+            <li><a href="#s14">Forecast Integration</a></li>
+            <li><a href="#s15">Data Infrastructure &amp; KPIs</a></li>
+            <li><a href="#s16">Remote Dispatch &amp; Redundancy</a></li>
+            <li><a href="#s17">Cybersecurity Compliance</a></li>
+            <li><a href="#s18">Hardware Bill of Materials</a></li>
+            <li><a href="#s19">OEM Equipment Interface</a></li>
+            <li><a href="#s20">Master Portfolio Management</a></li>
+            <li><a href="#s21">Commercial Pricing</a></li>
+            <li><a href="#s22">Support, Warranty &amp; Scalability</a></li>
+            <li><a href="#s23">Company Information</a></li>
+            <li><a href="#s24">Response Instructions</a></li>
+        </ol>
+    </div>
+
+    <!-- SECTION 1: INTRODUCTION -->
+    <div class="section" id="s1">
+        <h2>1. INTRODUCTION &amp; BACKGROUND</h2>
+
+        <p>Dear SmartgridOne / Eniris Team,</p>
+
+        <p>Lighthief Cyprus Ltd is the EPC contractor and exclusive Linyang Energy distributor in Cyprus, developing a portfolio of 51 Battery Energy Storage System (BESS) installations across all districts of Cyprus. We are seeking a comprehensive proposal from SmartgridOne (Eniris) for the supply, integration, and ongoing support of EMS, PPC (Power Plant Controller), RTU, and SCADA systems across the entire portfolio.</p>
+
+        <p>This RFP consolidates all technical, commercial, and operational requirements into a single document. Your response should address each section and fill in the response fields provided.</p>
+
+        <div class="highlight-box">
+            <strong>Portfolio Summary:</strong>
+            <div class="two-col" style="margin-top: 10px;">
+                <div>
+                    <div class="info-item"><span class="info-label">Total Parks</span><span class="info-value">51</span></div>
+                    <div class="info-item"><span class="info-label">Total Power Rating</span><span class="info-value">249 MW</span></div>
+                    <div class="info-item"><span class="info-label">Total Energy Capacity</span><span class="info-value">~882 MWh</span></div>
+                    <div class="info-item"><span class="info-label">Total Containers</span><span class="info-value">~252</span></div>
+                </div>
+                <div>
+                    <div class="info-item"><span class="info-label">Location</span><span class="info-value">Cyprus (5 Districts)</span></div>
+                    <div class="info-item"><span class="info-label">Grid Operator</span><span class="info-value">EAC (Electricity Authority of Cyprus)</span></div>
+                    <div class="info-item"><span class="info-label">Deployment Timeline</span><span class="info-value">Q3 2026 &ndash; Q4 2027</span></div>
+                    <div class="info-item"><span class="info-label">Client Groups</span><span class="info-value">6 Groups + Standalone</span></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>1.1 Stakeholder Roles</h3>
+        <table>
+            <tr><th style="width:25%;">Entity</th><th style="width:25%;">Role</th><th style="width:50%;">Responsibilities</th></tr>
+            <tr>
+                <td><strong>Lighthief Cyprus Ltd</strong></td>
+                <td>EPC Contractor, Installer, O&amp;M Provider</td>
+                <td>
+                    <ul style="margin-left:15px;">
+                        <li>Turnkey BESS EPC delivery (incl. EMS/SCADA)</li>
+                        <li>Exclusive distributor for Linyang in Cyprus</li>
+                        <li>Master EMS &amp; SCADA management across portfolio</li>
+                        <li>Long-term O&amp;M and BESS service partner</li>
+                        <li>Procures and installs all EMS/SCADA hardware &amp; software</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>SmartgridOne (Eniris)</strong></td>
+                <td>EMS/SCADA Provider (Proposed)</td>
+                <td>
+                    <ul style="margin-left:15px;">
+                        <li>EMS software, controller hardware, SCADA platform</li>
+                        <li>PPC + RTU functionality</li>
+                        <li>Remote configuration, commissioning support, training</li>
+                        <li>Cloud or local EMS deployment</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Linyang / Kehua</strong></td>
+                <td>OEM Equipment Supplier</td>
+                <td>
+                    <ul style="margin-left:15px;">
+                        <li>Battery containers (5 MWh LFP), PCS (Kehua BCS-C-HUD), MV Skids</li>
+                        <li>BMS (3-level: BMU/BCMU/BAMS), RTU (included in scope)</li>
+                        <li>Installation &amp; OEM commissioning</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 2: PORTFOLIO OVERVIEW (REDACTED) -->
+    <div class="section" id="s2">
+        <h2>2. PORTFOLIO OVERVIEW (REDACTED)</h2>
+
+        <div class="warning-box">
+            <strong>Note:</strong> Park names have been redacted for confidentiality. Parks are identified by Group Number (G1&ndash;G6) and Park Number (P1, P2, etc.). Full park identities will be disclosed upon contract execution.
+        </div>
+
+        <h4>Group 1 &mdash; 25 Parks</h4>
+        <table>
+            <tr><th>Park ID</th><th>MW</th><th>MWh</th><th>Containers</th><th>MV Skids</th><th>District</th></tr>
+            <tr><td>G1-P01</td><td>0.75</td><td>3</td><td>2</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P02</td><td>1.25</td><td>5</td><td>2</td><td>1</td><td>Larnaca</td></tr>
+            <tr><td>G1-P03</td><td>1.0</td><td>5</td><td>2</td><td>1</td><td>Larnaca</td></tr>
+            <tr><td>G1-P04</td><td>1.8</td><td>8</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P05</td><td>6.0</td><td>25</td><td>6</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P06</td><td>2.5</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P07</td><td>2.5</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P08</td><td>8.0</td><td>35</td><td>9</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P09</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P10</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P11</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P12</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P13</td><td>12.0</td><td>40</td><td>10</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P14</td><td>5.0</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P15</td><td>4.5</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P16</td><td>5.0</td><td>10</td><td>5</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P17</td><td>1.8</td><td>8</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P18</td><td>1.25</td><td>10</td><td>4</td><td>1</td><td>Paphos</td></tr>
+            <tr><td>G1-P19</td><td>1.25</td><td>10</td><td>4</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P20</td><td>4.5</td><td>20</td><td>8</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G1-P21</td><td>5.0</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P22</td><td>2.4</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P23</td><td>5.0</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P24</td><td>2.5</td><td>10</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G1-P25</td><td>3.0</td><td>11.28</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr class="total-row"><td><strong>G1 TOTAL</strong></td><td><strong>125.0</strong></td><td><strong>430.3</strong></td><td><strong>125</strong></td><td><strong>33</strong></td><td></td></tr>
+        </table>
+
+        <h4>Group 2 &mdash; 11 Parks (6 active + 5 future phase 2028)</h4>
+        <table>
+            <tr><th>Park ID</th><th>MW</th><th>MWh</th><th>Containers</th><th>MV Skids</th><th>District</th></tr>
+            <tr><td>G2-P01</td><td>6.5</td><td>20</td><td>5</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G2-P02</td><td>5.0</td><td>20</td><td>5</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G2-P03</td><td>25.0</td><td>100</td><td>23</td><td>3</td><td>Famagusta</td></tr>
+            <tr><td>G2-P04</td><td>8.0</td><td>60</td><td>14</td><td>2</td><td>Limassol</td></tr>
+            <tr><td>G2-P05</td><td>5.0</td><td>15</td><td>5</td><td>2</td><td>Limassol</td></tr>
+            <tr><td>G2-P06</td><td>2.5</td><td>8</td><td>3</td><td>1</td><td>Limassol</td></tr>
+            <tr><td>G2-P07</td><td>7.0</td><td>20</td><td>5</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G2-P08</td><td>2.5</td><td>7.5</td><td>3</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G2-P09</td><td>7.5</td><td>25</td><td>7</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G2-P10</td><td>6.0</td><td>20</td><td>5</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G2-P11</td><td>4.5</td><td>15</td><td>4</td><td>1</td><td>Nicosia</td></tr>
+            <tr class="total-row"><td><strong>G2 TOTAL</strong></td><td><strong>79.5</strong></td><td><strong>310.5</strong></td><td><strong>79</strong></td><td><strong>16</strong></td><td></td></tr>
+        </table>
+
+        <h4>Group 3 &mdash; 9 Parks</h4>
+        <table>
+            <tr><th>Park ID</th><th>MW</th><th>MWh</th><th>Containers</th><th>MV Skids</th><th>District</th></tr>
+            <tr><td>G3-P01</td><td>1.0</td><td>4</td><td>2</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G3-P02</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G3-P03</td><td>5.0</td><td>15</td><td>4</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G3-P04</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G3-P05</td><td>1.0</td><td>4</td><td>2</td><td>1</td><td>Famagusta</td></tr>
+            <tr><td>G3-P06</td><td>8.0</td><td>24</td><td>7</td><td>2</td><td>Nicosia</td></tr>
+            <tr><td>G3-P07</td><td>5.0</td><td>15</td><td>4</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G3-P08</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>Nicosia</td></tr>
+            <tr><td>G3-P09</td><td>1.0</td><td>4</td><td>2</td><td>1</td><td>Nicosia</td></tr>
+            <tr class="total-row"><td><strong>G3 TOTAL</strong></td><td><strong>25.5</strong></td><td><strong>81.0</strong></td><td><strong>27</strong></td><td><strong>10</strong></td><td></td></tr>
+        </table>
+
+        <h4>Group 4 &mdash; 3 Parks</h4>
+        <table>
+            <tr><th>Park ID</th><th>MW</th><th>MWh</th><th>Containers</th><th>MV Skids</th><th>District</th></tr>
+            <tr><td>G4-P01</td><td>2.5</td><td>7.5</td><td>3</td><td>1</td><td>Paphos</td></tr>
+            <tr><td>G4-P02</td><td>2.5</td><td>7.5</td><td>3</td><td>1</td><td>Paphos</td></tr>
+            <tr><td>G4-P03</td><td>1.5</td><td>5</td><td>2</td><td>1</td><td>Paphos</td></tr>
+            <tr class="total-row"><td><strong>G4 TOTAL</strong></td><td><strong>6.5</strong></td><td><strong>20.0</strong></td><td><strong>8</strong></td><td><strong>3</strong></td><td></td></tr>
+        </table>
+
+        <h4>Group 5 &mdash; 1 Park</h4>
+        <table>
+            <tr><th>Park ID</th><th>MW</th><th>MWh</th><th>Containers</th><th>MV Skids</th><th>District</th></tr>
+            <tr><td>G5-P01</td><td>7.7</td><td>25</td><td>7</td><td>2</td><td>Limassol</td></tr>
+            <tr class="total-row"><td><strong>G5 TOTAL</strong></td><td><strong>7.7</strong></td><td><strong>25.0</strong></td><td><strong>7</strong></td><td><strong>2</strong></td><td></td></tr>
+        </table>
+
+        <h4>Group 6 &mdash; 2 Parks</h4>
+        <table>
+            <tr><th>Park ID</th><th>MW</th><th>MWh</th><th>Containers</th><th>MV Skids</th><th>District</th></tr>
+            <tr><td>G6-P01</td><td>1.51</td><td>5</td><td>2</td><td>1</td><td>Limassol</td></tr>
+            <tr><td>G6-P02</td><td>3.29</td><td>10</td><td>3</td><td>1</td><td>Limassol</td></tr>
+            <tr class="total-row"><td><strong>G6 TOTAL</strong></td><td><strong>4.8</strong></td><td><strong>15.0</strong></td><td><strong>5</strong></td><td><strong>2</strong></td><td></td></tr>
+        </table>
+
+        <h3>2.1 Portfolio Summary</h3>
+        <table>
+            <tr><th>Group</th><th>Parks</th><th>MW</th><th>MWh</th><th>Containers</th><th>Districts</th></tr>
+            <tr><td>Group 1</td><td>25</td><td>125.0</td><td>430.3</td><td>125</td><td>Nicosia, Larnaca, Paphos</td></tr>
+            <tr><td>Group 2</td><td>11</td><td>79.5</td><td>310.5</td><td>79</td><td>Famagusta, Limassol, Nicosia</td></tr>
+            <tr><td>Group 3</td><td>9</td><td>25.5</td><td>81.0</td><td>27</td><td>Famagusta, Nicosia</td></tr>
+            <tr><td>Group 4</td><td>3</td><td>6.5</td><td>20.0</td><td>8</td><td>Paphos</td></tr>
+            <tr><td>Group 5</td><td>1</td><td>7.7</td><td>25.0</td><td>7</td><td>Limassol</td></tr>
+            <tr><td>Group 6</td><td>2</td><td>4.8</td><td>15.0</td><td>5</td><td>Limassol</td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>51</strong></td><td><strong>249.0</strong></td><td><strong>881.8</strong></td><td><strong>251</strong></td><td><strong>5 Districts</strong></td></tr>
+        </table>
+
+        <h3>2.2 Site Size Distribution</h3>
+        <table>
+            <tr><th>Category</th><th>MW Range</th><th>Number of Parks</th><th>Typical Containers</th></tr>
+            <tr><td>Small</td><td>0.75 &ndash; 3 MW</td><td>24</td><td>2&ndash;3</td></tr>
+            <tr><td>Medium</td><td>4 &ndash; 8 MW</td><td>15</td><td>3&ndash;9</td></tr>
+            <tr><td>Large</td><td>10 &ndash; 15 MW</td><td>7</td><td>10&ndash;14</td></tr>
+            <tr><td>XL</td><td>20 &ndash; 30 MW</td><td>5</td><td>20&ndash;23</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 3: SYSTEM ARCHITECTURE -->
+    <div class="section" id="s3">
+        <h2>3. SYSTEM ARCHITECTURE &amp; EQUIPMENT</h2>
+
+        <h3>3.1 OEM Equipment (Supplied by Linyang / Kehua)</h3>
+        <table>
+            <tr><th>Component</th><th>Manufacturer</th><th>Model / Details</th><th>Communication</th></tr>
+            <tr><td>Battery Container</td><td>Linyang Energy</td><td>20HC, 5.015 MWh LFP, EVE 314Ah cells, Liquid cooling</td><td>Modbus TCP, CAN</td></tr>
+            <tr><td>PCS (Inverter)</td><td>Kehua</td><td>BCS-C-HUD series (1000K, 1250K, 2500K), EN 50549-2</td><td>Modbus TCP, IEC 61850 (optional)</td></tr>
+            <tr><td>BMS</td><td>Linyang</td><td>3-level: BMU (cell) / BCMU (cluster) / BAMS (system)</td><td>CAN, Modbus RTU/TCP</td></tr>
+            <tr><td>MV Switchgear</td><td>ABB / Schneider (via Linyang)</td><td>Ring Main Unit, MV Transformer</td><td>IEC 61850, Modbus</td></tr>
+            <tr><td>RTU</td><td>Linyang (OEM)</td><td>Included in MV Skid scope</td><td>IEC 60870-5-104</td></tr>
+        </table>
+
+        <h3>3.2 Required Per-Site Architecture</h3>
+        <div class="architecture-box">
+<strong>Per-Site Architecture:</strong>
+
+    Cyprus DSO (EAC)
+         |
+         | IEC 60870-5-104
+         |
+    [SmartgridOne Controller] &mdash; PPC + RTU + IEC-104 gateway
+         |
+         |--- Modbus TCP ---> Kehua PCS (BCS-C-HUD) &mdash; accepts external setpoints
+         |--- Modbus TCP ---> Linyang BMS (BAMS) &mdash; battery monitoring
+         |--- SmartgridOne EMS Software &mdash; dispatch, optimization, grid services
+         |
+    SmartgridOne Local Portal ---> SmartgridOne Cloud / SmartgridX Portfolio
+        </div>
+
+        <div class="highlight-box">
+            <strong>Key requirement:</strong> The Kehua PCS accepts direct P/Q setpoint commands via Modbus TCP. No separate PPC hardware should be required if the SmartgridOne controller can integrate PPC + RTU + IEC-104 gateway functions.
+        </div>
+    </div>
+
+    <!-- SECTION 4: SCOPE OF SUPPLY -->
+    <div class="section" id="s4">
+        <h2>4. SCOPE OF SUPPLY</h2>
+
+        <h3>4.1 Hardware</h3>
+        <table>
+            <tr><th style="width:25%;">Component</th><th style="width:40%;">Requirements</th><th style="width:35%;">SmartgridOne Response</th></tr>
+            <tr><td><strong>EMS Controller / PPC</strong></td><td>Central control for each BESS site, PPC + RTU + IEC-104 gateway integrated</td><td class="response-cell"></td></tr>
+            <tr><td><strong>I/O Modules</strong></td><td>Digital/analog I/O for field device integration</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Energy Meters</strong></td><td>Grid-side and BESS-side power metering</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Network Switch (managed)</strong></td><td>Industrial managed Ethernet switch</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Industrial Router / VPN Firewall</strong></td><td>Secure remote access, OT/IT separation</td><td class="response-cell"></td></tr>
+            <tr><td><strong>4G/LTE SIM Router</strong></td><td>Remote connectivity for cloud EMS</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Control Cabinet / Enclosure</strong></td><td>DIN-rail housing for controller + network equipment</td><td class="response-cell"></td></tr>
+            <tr><td><strong>UPS for Controls</strong></td><td>Backup power for EMS/PPC/RTU</td><td class="response-cell"></td></tr>
+            <tr><td><strong>HMI / Local Display</strong></td><td>Optional &mdash; local monitoring interface</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>4.2 Software &amp; Licensing</h3>
+        <table>
+            <tr><th style="width:25%;">Component</th><th style="width:40%;">Requirements</th><th style="width:35%;">SmartgridOne Response</th></tr>
+            <tr><td><strong>EMS Software License</strong></td><td>Per site or portfolio license? Cloud vs local?</td><td class="response-cell"></td></tr>
+            <tr><td><strong>SCADA Software</strong></td><td>Visualization, alarms, trending, dashboards</td><td class="response-cell"></td></tr>
+            <tr><td><strong>SmartgridX Portal</strong></td><td>Cloud-based fleet monitoring / VPP aggregation</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Mobile App</strong></td><td>Whitelabel app for end customer / asset owner</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Annual License Fees</strong></td><td>Ongoing costs after Year 1</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>4.3 Integration &amp; Commissioning</h3>
+        <table>
+            <tr><th style="width:25%;">Service</th><th style="width:40%;">Description</th><th style="width:35%;">SmartgridOne Response</th></tr>
+            <tr><td><strong>PCS Integration</strong></td><td>Kehua BCS-C-HUD Modbus TCP mapping, setpoint control</td><td class="response-cell"></td></tr>
+            <tr><td><strong>BMS Integration</strong></td><td>Linyang BMS (BAMS) signal mapping via Modbus TCP</td><td class="response-cell"></td></tr>
+            <tr><td><strong>DSO SCADA Integration</strong></td><td>IEC 60870-5-104 point list, Cyprus EAC connection</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Remote Configuration</strong></td><td>Pre-commissioning remote setup per park</td><td class="response-cell"></td></tr>
+            <tr><td><strong>On-site Commissioning</strong></td><td>Per-site configuration, testing, handover</td><td class="response-cell"></td></tr>
+            <tr><td><strong>FAT/SAT Support</strong></td><td>Factory and Site Acceptance Tests</td><td class="response-cell"></td></tr>
+            <tr><td><strong>Training</strong></td><td>Operator and maintenance staff training</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>4.4 Scope Summary</h3>
+        <div class="two-col">
+            <div>
+                <h4>Expected in SmartgridOne Proposal</h4>
+                <ul class="scope-list">
+                    <li>EMS controller / gateway hardware per site</li>
+                    <li>EMS software license (local or cloud)</li>
+                    <li>IEC 60870-5-104 gateway programming</li>
+                    <li>Signal mapping and point list creation</li>
+                    <li>HMI/Dashboard development</li>
+                    <li>DSO integration and testing</li>
+                    <li>Portfolio management platform (SmartgridX)</li>
+                    <li>Commissioning support per site</li>
+                    <li>Documentation and as-built drawings</li>
+                    <li>Operator training</li>
+                    <li>12-month warranty minimum</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Excluded / Lighthief Responsibility</h4>
+                <ul class="scope-list">
+                    <li class="excluded">SIM cards for 4G/LTE connectivity</li>
+                    <li class="excluded">Ethernet/fibre cabling (site internal)</li>
+                    <li class="excluded">GPS antenna (for time sync)</li>
+                    <li class="excluded">Revenue meter (if separate from EMS metering)</li>
+                    <li class="excluded">CT/VT transducers</li>
+                    <li class="excluded">DSO application and fees</li>
+                    <li class="excluded">Civil works and site preparation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: DSO COMPLIANCE -->
+    <div class="section" id="s5">
+        <h2>5. TECHNICAL REQUIREMENTS &mdash; DSO COMPLIANCE</h2>
+
+        <h3>5.1 DSO Communication Protocol (MANDATORY)</h3>
+        <table>
+            <tr><td>Primary Protocol</td><td><strong>IEC 60870-5-104</strong> <span class="badge badge-required">MANDATORY</span></td></tr>
+            <tr><td>Transport Layer</td><td>TCP/IP, Port 2404</td></tr>
+            <tr><td>Communication Link</td><td>M2M (4G/LTE) or Fiber Optic</td></tr>
+            <tr><td>Response Time</td><td>&le; 3 seconds for command acknowledgment (target &lt;500 ms)</td></tr>
+            <tr><td>Setpoint Adjustment</td><td>&le; 60 seconds to reach new power setpoint (target &lt;10 s)</td></tr>
+            <tr><td>Control Accuracy</td><td>&plusmn;2% of setpoint (target &plusmn;5%)</td></tr>
+            <tr><td>IEC-104 Timing</td><td>t0=30s, t1=15s, t2=10s, t3=20s (per DSO requirements)</td></tr>
+        </table>
+
+        <h3>5.2 Discrete Power Commands</h3>
+        <table>
+            <tr><th>Command Level</th><th>Power Output</th><th>Use Case</th></tr>
+            <tr><td>Level 1</td><td>100%</td><td>Normal operation</td></tr>
+            <tr><td>Level 2</td><td>60%</td><td>Partial curtailment</td></tr>
+            <tr><td>Level 3</td><td>30%</td><td>Significant curtailment</td></tr>
+            <tr><td>Level 4</td><td>0%</td><td>Zero export mode</td></tr>
+        </table>
+
+        <h3>5.3 Required SCADA Points (Per DSO)</h3>
+        <div class="two-col">
+            <div>
+                <h4>Active Power Control</h4>
+                <table>
+                    <tr><th>Signal</th><th>Address</th><th>Type</th></tr>
+                    <tr><td>P Setpoint</td><td>30</td><td>Analog Output</td></tr>
+                    <tr><td>P Feedback</td><td>503</td><td>Analog Input</td></tr>
+                    <tr><td>Command Status</td><td>103</td><td>Digital</td></tr>
+                </table>
+            </div>
+            <div>
+                <h4>Reactive Power Control</h4>
+                <table>
+                    <tr><th>Signal</th><th>Address</th><th>Type</th></tr>
+                    <tr><td>Q Setpoint</td><td>31</td><td>Analog Output</td></tr>
+                    <tr><td>Q Feedback</td><td>504</td><td>Analog Input</td></tr>
+                    <tr><td>Command Status</td><td>104</td><td>Digital</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>5.4 Required Measurements</h3>
+        <table>
+            <tr><th>Category</th><th>Parameters</th><th>Priority</th></tr>
+            <tr><td>Electrical</td><td>P, Q, S, V (per phase), I (per phase), f, PF, cos &phi;</td><td><span class="badge badge-required">REQUIRED</span></td></tr>
+            <tr><td>BESS Status</td><td>SOC, SOH, Temperature, Charge/Discharge mode</td><td><span class="badge badge-required">REQUIRED</span></td></tr>
+            <tr><td>Protection</td><td>Relay status, Trip indications, Fault codes</td><td><span class="badge badge-required">REQUIRED</span></td></tr>
+            <tr><td>Environmental</td><td>Ambient temperature, Container temperature</td><td><span class="badge badge-preferred">PREFERRED</span></td></tr>
+            <tr><td>Energy</td><td>kWh imported, kWh exported, kVArh</td><td><span class="badge badge-required">REQUIRED</span></td></tr>
+            <tr><td>Availability</td><td>PV Plant Availability (Address 505)</td><td><span class="badge badge-required">REQUIRED</span></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 6: PPC & GRID CODE -->
+    <div class="section" id="s6">
+        <h2>6. PPC &amp; GRID CODE COMPLIANCE</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:45%;">Question</th><th style="width:50%;">SmartgridOne Response</th></tr>
+            <tr><td>6.1</td><td>Is PPC hardware-based or software running on the SmartgridOne controller?</td><td class="response-cell"></td></tr>
+            <tr><td>6.2</td><td>Can the controller provide grid-forming / Virtual Synchronous Generator (VSG) control?</td><td class="response-cell"></td></tr>
+            <tr><td>6.3</td><td>Black-start capability supported?</td><td class="response-cell"></td></tr>
+            <tr><td>6.4</td><td>Droop control (P-f and Q-V) configurable? What ranges?</td><td class="response-cell"></td></tr>
+            <tr><td>6.5</td><td>Ramp rate limiting configurable?</td><td class="response-cell"></td></tr>
+            <tr><td>6.6</td><td>Multiple PCS coordination supported? Max PCS count per controller?</td><td class="response-cell"></td></tr>
+            <tr><td>6.7</td><td>Volt-Var curve configuration per EN 50549-2?</td><td class="response-cell"></td></tr>
+            <tr><td>6.8</td><td>Freq-Watt curve configuration? LFSM-O support?</td><td class="response-cell"></td></tr>
+            <tr><td>6.9</td><td>Volt-Watt curve configuration?</td><td class="response-cell"></td></tr>
+            <tr><td>6.10</td><td>Power factor control (leading/lagging)?</td><td class="response-cell"></td></tr>
+            <tr><td>6.11</td><td>Export limiting / curtailment response time?</td><td class="response-cell"></td></tr>
+            <tr><td>6.12</td><td>Remote dispatch command execution time?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 7: COMMUNICATION PROTOCOLS -->
+    <div class="section" id="s7">
+        <h2>7. COMMUNICATION PROTOCOLS</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:45%;">Question</th><th style="width:50%;">SmartgridOne Response</th></tr>
+            <tr><td>7.1</td><td><strong>IEC 60870-5-104</strong> &mdash; Native support or via gateway? Can you provide a sample IEC-104 point list?</td><td class="response-cell"></td></tr>
+            <tr><td>7.2</td><td><strong>Modbus TCP/RTU</strong> &mdash; Supported for PCS and BMS integration?</td><td class="response-cell"></td></tr>
+            <tr><td>7.3</td><td><strong>DNP3</strong> &mdash; Supported?</td><td class="response-cell"></td></tr>
+            <tr><td>7.4</td><td><strong>IEC 61850</strong> &mdash; Supported for future-proofing?</td><td class="response-cell"></td></tr>
+            <tr><td>7.5</td><td><strong>MQTT</strong> &mdash; Supported for cloud integration?</td><td class="response-cell"></td></tr>
+            <tr><td>7.6</td><td><strong>REST API</strong> &mdash; Available for third-party integration?</td><td class="response-cell"></td></tr>
+            <tr><td>7.7</td><td>Does SmartgridOne have existing integration with <strong>Kehua PCS</strong> (BCS-C-HUD series)?</td><td class="response-cell"></td></tr>
+            <tr><td>7.8</td><td>Does SmartgridOne have existing integration with <strong>Linyang BMS</strong> (BAMS)?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 8: EMS FUNCTIONAL REQUIREMENTS -->
+    <div class="section" id="s8">
+        <h2>8. EMS FUNCTIONAL REQUIREMENTS</h2>
+        <div class="success-box">
+            <strong>Required EMS Capabilities &mdash; please confirm support for each:</strong>
+        </div>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Capability</th><th style="width:10%;">Support?</th><th style="width:50%;">Details / Comments</th></tr>
+            <tr><td>8.1</td><td>Peak shaving / Load shifting optimization</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.2</td><td>Arbitrage optimization (time-of-use pricing)</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.3</td><td>Grid services participation (FCR, aFRR)</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.4</td><td>Power Plant Controller (PPC) functionality</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.5</td><td>Multi-site fleet management dashboard</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.6</td><td>Automated dispatch and scheduling</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.7</td><td>Historical data logging (min 2 years)</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.8</td><td>Alarm management and escalation</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.9</td><td>Remote firmware update capability</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.10</td><td>API integration for third-party systems</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.11</td><td>PV curtailment / Zero feed-in</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.12</td><td>Virtual Power Plant (VPP) aggregation via SmartgridX</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.13</td><td>Front-of-meter optimizations</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.14</td><td>Energy flow diagram visualization</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>8.15</td><td>Battery life monitoring &amp; warranty tracking</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 9: BATTERY MONITORING & DEGRADATION -->
+    <div class="section" id="s9">
+        <h2>9. BATTERY MONITORING &amp; DEGRADATION ANALYTICS</h2>
+
+        <h3>9.1 Cell-Level Monitoring</h3>
+        <p>The Linyang BMS provides the following data per container: 4,992 cell voltage points (10 Hz), 1,152 temperature points (5 Hz), SOC, insulation resistance. This data is available via Modbus TCP from the BAMS controller.</p>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>9.1</td><td>Can SmartgridOne read cell-level voltage and temperature data from the Linyang BAMS via Modbus TCP?</td><td class="response-cell"></td></tr>
+            <tr><td>9.2</td><td>Does the EMS provide cell-level or module-level <strong>internal resistance tracking</strong> as a derived metric? If so, at what resolution and frequency? Is this logged historically for degradation trending?</td><td class="response-cell"></td></tr>
+            <tr><td>9.3</td><td>Can the EMS detect <strong>cell imbalance</strong> from BMS data and alert on abnormal delta-voltage conditions?</td><td class="response-cell"></td></tr>
+            <tr><td>9.4</td><td>Does the EMS apply any enhanced <strong>SOC estimation algorithms</strong> (e.g., Kalman filtering, coulomb counting with drift correction, OCV correlation) beyond the BMS-reported SOC? What SOC accuracy can be guaranteed?</td><td class="response-cell"></td></tr>
+            <tr><td>9.5</td><td>Does the EMS include a real-time <strong>SOH estimation model</strong> that tracks actual degradation vs. OEM warranty curve? Is this physics-based or empirical? Is it configurable for LFP chemistry?</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>9.2 Advanced Degradation Analytics</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>9.6</td><td>Does the EMS implement a <strong>rainflow cycle counting algorithm</strong> (or equivalent) for accurate partial cycle counting? Per-container or per-cluster? Aligned with IEC 62660-1?</td><td class="response-cell"></td></tr>
+            <tr><td>9.7</td><td>Does the EMS track <strong>cumulative energy throughput</strong> (MWh in + MWh out) per container and correlate with capacity degradation?</td><td class="response-cell"></td></tr>
+            <tr><td>9.8</td><td>Does the EMS include a <strong>calendar aging model</strong> accounting for time-at-temperature and SOC-at-rest effects? Separable from cycle aging?</td><td class="response-cell"></td></tr>
+            <tr><td>9.9</td><td>Does the EMS dynamically model the impact of <strong>varying DoD on battery degradation</strong>? Can it adjust dispatch strategies to optimize between revenue and battery lifetime?</td><td class="response-cell"></td></tr>
+            <tr><td>9.10</td><td>Does the EMS provide <strong>predictive End-of-Life forecasting</strong> based on actual usage data? Can it project when SOH will reach the warranty threshold (70%)?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 10: THERMAL & SAFETY -->
+    <div class="section" id="s10">
+        <h2>10. THERMAL &amp; SAFETY MONITORING</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>10.1</td><td>Does the EMS provide a <strong>thermal map / hotspot visualization</strong> leveraging the 1,152 temperature data points per container? Can it identify localized thermal anomalies?</td><td class="response-cell"></td></tr>
+            <tr><td>10.2</td><td>Does the EMS monitor <strong>HVAC/cooling system performance</strong> metrics (COP, coolant flow, delta-T, compressor run-time, energy consumption)? Degradation trend alerts?</td><td class="response-cell"></td></tr>
+            <tr><td>10.3</td><td>Can the EMS integrate <strong>fire system status signals</strong> from the BMS/BAMS Modbus interface (gas detection, smoke, heat, suppression status)?</td><td class="response-cell"></td></tr>
+            <tr><td>10.4</td><td>Does the EMS support <strong>thermal runaway early detection</strong> correlation across multiple sensor types (temperature + gas + smoke)?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 11: FAULT DETECTION -->
+    <div class="section" id="s11">
+        <h2>11. FAULT DETECTION &amp; DIAGNOSTICS</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>11.1</td><td>Does the EMS provide <strong>fault classification</strong> beyond BMS-level alarms? Auto-categorization by type/severity/location? Root fault vs. cascading effect correlation?</td><td class="response-cell"></td></tr>
+            <tr><td>11.2</td><td>Does the EMS include <strong>predictive maintenance analytics</strong>? Anomaly detection using statistical/ML models? Remaining useful life estimation?</td><td class="response-cell"></td></tr>
+            <tr><td>11.3</td><td>Does the EMS provide automated or assisted <strong>root cause analysis (RCA)</strong>? Can it correlate time-stamped data across BMS, PCS, thermal, and grid signals?</td><td class="response-cell"></td></tr>
+            <tr><td>11.4</td><td>Does the EMS provide configurable <strong>alarm prioritization</strong>? Severity-based filtering, alarm suppression, alarm shelving during maintenance, escalation rules (SMS/email)?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 12: EMS OPTIMIZATION -->
+    <div class="section" id="s12">
+        <h2>12. EMS OPTIMIZATION CAPABILITY</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>12.1</td><td>Describe the <strong>optimization engine architecture</strong>: (a) Multi-objective optimizer? (b) Algorithm type (LP, MILP, dynamic programming, heuristic)? (c) Optimization horizon (rolling 24h, 48h, week-ahead)? (d) Dispatch resolution (1 min, 5 min, 15 min)?</td><td class="response-cell"></td></tr>
+            <tr><td>12.2</td><td>Can the EMS simultaneously optimize across <strong>multiple revenue streams</strong> (arbitrage + FCR + aFRR + curtailment avoidance)? How does it handle conflicting obligations? Can priorities be configured?</td><td class="response-cell"></td></tr>
+            <tr><td>12.3</td><td>Beyond protection and DSO constraints, does the optimizer account for: <strong>SOC limits</strong>, ramp rate limits, C-rate limits, temperature-dependent derating, grid connection capacity limits, contractual availability requirements?</td><td class="response-cell"></td></tr>
+            <tr><td>12.4</td><td>Does the optimization engine incorporate a <strong>degradation cost function</strong>? (a) $/MWh degradation cost per cycle? (b) Can it reduce cycling when marginal revenue &lt; degradation cost? (c) Calibrated to LFP cycle life? (d) Dynamic DoD adjustment based on price signals?</td><td class="response-cell"></td></tr>
+            <tr><td>12.5</td><td>Does the optimizer use <strong>stochastic methods</strong> for price/generation uncertainty? Scenario-based (Monte Carlo) or robust optimization? Computation time per run?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 13: MARKET INTEGRATION -->
+    <div class="section" id="s13">
+        <h2>13. MARKET INTEGRATION</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>13.1</td><td>Does the EMS provide a direct interface to <strong>day-ahead electricity markets</strong>? What platforms are supported? Can it generate and submit bid schedules automatically?</td><td class="response-cell"></td></tr>
+            <tr><td>13.2</td><td>Does the EMS support <strong>intraday continuous trading</strong>? Can it revise dispatch in near-real-time? Minimum lead time for schedule revision?</td><td class="response-cell"></td></tr>
+            <tr><td>13.3</td><td><strong>Ancillary services bidding:</strong> (a) FCR activation &lt;30s (target &lt;1s)? (b) aFRR activation &lt;5 min (target &lt;30s)? (c) Can it calculate available capacity for bidding? (d) API for TSO/market operator submission?</td><td class="response-cell"></td></tr>
+            <tr><td>13.4</td><td>Can the EMS <strong>automatically submit bids</strong> without manual intervention? What platforms are currently integrated? Available for Cyprus market (CERA/TSO)?</td><td class="response-cell"></td></tr>
+            <tr><td>13.5</td><td>Does the EMS incorporate <strong>degradation costs into market bidding</strong>? Can it set a minimum bid price covering degradation? Can it refuse low-value markets?</td><td class="response-cell"></td></tr>
+            <tr><td>13.6</td><td>How does the EMS handle <strong>latency risk for ancillary services</strong>? Real-time latency monitoring? Pre-positioning / anticipatory dispatch? What communication path is recommended for Cyprus?</td><td class="response-cell"></td></tr>
+            <tr><td>13.7</td><td>How does the EMS interface with <strong>third-party aggregators</strong>? (Our portfolio uses external aggregators per group)</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 14: FORECAST INTEGRATION -->
+    <div class="section" id="s14">
+        <h2>14. FORECAST INTEGRATION</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>14.1</td><td>Does the EMS include a built-in <strong>electricity price forecasting module</strong>? Data sources? Forecast horizons? Accuracy (MAPE)? Pre-trained for Cyprus or requires calibration?</td><td class="response-cell"></td></tr>
+            <tr><td>14.2</td><td>Does the EMS model <strong>price volatility</strong> for dispatch optimization? Seasonal and intraday patterns? Dynamic high-value arbitrage window identification?</td><td class="response-cell"></td></tr>
+            <tr><td>14.3</td><td>Can the EMS ingest external <strong>load and RES (solar/wind) generation forecasts</strong>? Input formats (API, CSV, MQTT)? Built-in solar forecast based on irradiance?</td><td class="response-cell"></td></tr>
+            <tr><td>14.4</td><td>Does the EMS support <strong>scenario-based planning</strong>? Can operators compare dispatch strategies (aggressive vs. conservative)? "What-if" simulations?</td><td class="response-cell"></td></tr>
+            <tr><td>14.5</td><td>Does the EMS use <strong>machine learning</strong> for any forecasting function? Techniques (LSTM, gradient boosting, ensemble)? Auto-retrained? Minimum data history required?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 15: DATA INFRASTRUCTURE & KPIs -->
+    <div class="section" id="s15">
+        <h2>15. DATA INFRASTRUCTURE &amp; KPIs</h2>
+
+        <h3>15.1 Data Logging</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>15.1</td><td><strong>High-resolution data logging</strong> &mdash; What is the minimum logging resolution (1s, sub-second)? Configurable per signal group?</td><td class="response-cell"></td></tr>
+            <tr><td>15.2</td><td><strong>Event-triggered recording</strong> &mdash; Can the EMS increase logging frequency during faults/transients (disturbance recorder / oscillography)? What triggers are configurable?</td><td class="response-cell"></td></tr>
+            <tr><td>15.3</td><td><strong>Time synchronization</strong> &mdash; NTP and/or GPS-based? Time accuracy? Configurable source (NTP primary, GPS fallback)? Time sync status monitoring?</td><td class="response-cell"></td></tr>
+            <tr><td>15.4</td><td><strong>API export capability</strong> &mdash; REST API? Export formats (CSV, JSON, IEC 61968 CIM)?</td><td class="response-cell"></td></tr>
+            <tr><td>15.5</td><td><strong>Data retention policy</strong> &mdash; What is the retention period for: raw measurements, event logs, performance data, alarm history?</td><td class="response-cell"></td></tr>
+            <tr><td>15.6</td><td><strong>Market bid archive</strong> &mdash; Are all bid submissions and outcomes archived with timestamp, volume, price, acceptance status? Retention period? Exportable for audit?</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>15.2 KPI Monitoring</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:20%;">KPI</th><th style="width:75%;">SmartgridOne Response</th></tr>
+            <tr><td>15.7</td><td><strong>Availability (%)</strong></td><td class="response-cell">Tracked? Warranty requires &ge;97%. Real-time reporting?</td></tr>
+            <tr><td>15.8</td><td><strong>Round-trip efficiency (%)</strong></td><td class="response-cell">System-level RTE &ge;86%. How is it calculated?</td></tr>
+            <tr><td>15.9</td><td><strong>Revenue per MW</strong></td><td class="response-cell">Calculated and displayed as KPI? Breakdown by source (arbitrage, FCR, aFRR)?</td></tr>
+            <tr><td>15.10</td><td><strong>Degradation cost per MWh</strong></td><td class="response-cell">Calculated? Cost model used? Factored into dispatch?</td></tr>
+            <tr><td>15.11</td><td><strong>Response time compliance</strong></td><td class="response-cell">Tracked per curtailment event? Measured against DSO requirements?</td></tr>
+            <tr><td>15.12</td><td><strong>SOC accuracy drift</strong></td><td class="response-cell">Periodic recalibration? Drift alarming? Tracked as KPI?</td></tr>
+            <tr><td>15.13</td><td><strong>Auxiliary consumption ratio</strong></td><td class="response-cell">Tracked real-time? Breakdown by subsystem (cooling, controls, fire)? Alerting?</td></tr>
+            <tr><td>15.14</td><td><strong>Degradation tracking dashboard</strong></td><td class="response-cell">Actual SOH vs. warranty curve? Cycle count, throughput, calendar aging breakdown? Container, park, portfolio level?</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 16: REMOTE DISPATCH & REDUNDANCY -->
+    <div class="section" id="s16">
+        <h2>16. REMOTE DISPATCH &amp; REDUNDANCY</h2>
+
+        <h3>16.1 Remote Dispatch</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>16.1</td><td>Confirm <strong>priority hierarchy</strong>: Protection (non-overridable) > DSO SCADA curtailment > DSO CB control > Market dispatch. Is this enforced?</td><td class="response-cell"></td></tr>
+            <tr><td>16.2</td><td><strong>Fail-safe fallback logic:</strong> What happens on EMS communication loss? (a) Pre-programmed safe mode? (b) Detection timeout? (c) Pre-loaded fallback schedule? (d) "Last known good" state? (e) Auto re-sync on restoration?</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>16.2 Redundancy Architecture</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>16.3</td><td><strong>EMS server redundancy:</strong> (a) Dual-server (active/standby)? (b) Failover time? (c) Data synchronization? (d) Controller-level redundancy?</td><td class="response-cell"></td></tr>
+            <tr><td>16.4</td><td><strong>Communication redundancy:</strong> Automatic failover between paths (fiber primary, 4G backup)? Failover detection time? Seamless or IEC-104 re-establishment?</td><td class="response-cell"></td></tr>
+            <tr><td>16.5</td><td><strong>UPS requirements:</strong> What are the power requirements for the SmartgridOne controller? Minimum UPS runtime? Recommended specification?</td><td class="response-cell"></td></tr>
+            <tr><td>16.6</td><td><strong>Hot-standby failover:</strong> Supported at any level? Controller, local SCADA, global SCADA? RTO (recovery time objective) per level?</td><td class="response-cell"></td></tr>
+            <tr><td>16.7</td><td><strong>Edge controller autonomous operation:</strong> Can the controller execute a pre-loaded dispatch schedule if cloud connection is lost? How long? Logging during autonomous mode?</td><td class="response-cell"></td></tr>
+            <tr><td>16.8</td><td><strong>Communication failure scenarios:</strong> (a) Cloud-to-site loss? (b) Site-to-DSO loss (IEC-104 reconnection)? (c) BMS-to-EMS loss? (d) Multi-path simultaneous failure? (e) Configurable timeouts?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 17: CYBERSECURITY -->
+    <div class="section" id="s17">
+        <h2>17. CYBERSECURITY COMPLIANCE</h2>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:35%;">Requirement</th><th style="width:60%;">SmartgridOne Response</th></tr>
+            <tr><td>17.1</td><td><strong>NIS2 Directive</strong> compliance &mdash; mandatory for Cyprus grid connection. Please confirm.</td><td class="response-cell"></td></tr>
+            <tr><td>17.2</td><td><strong>IEC 62443</strong> compliance &mdash; SL certification level? Hardware certified?</td><td class="response-cell"></td></tr>
+            <tr><td>17.3</td><td><strong>Role-based access control (RBAC)</strong> with multi-factor authentication (MFA)?</td><td class="response-cell"></td></tr>
+            <tr><td>17.4</td><td><strong>Network segmentation</strong> &mdash; OT/IT separation, VLAN support, DMZ architecture?</td><td class="response-cell"></td></tr>
+            <tr><td>17.5</td><td><strong>Encrypted communication</strong> &mdash; TLS 1.3 for external, TLS 1.2+ for SCADA, encrypted Modbus TCP tunnel?</td><td class="response-cell"></td></tr>
+            <tr><td>17.6</td><td><strong>Intrusion detection/prevention (IDS/IPS)</strong> &mdash; Network-based or host-based? OT-specific threat monitoring? Integrated with SCADA alarms?</td><td class="response-cell"></td></tr>
+            <tr><td>17.7</td><td><strong>Secure firmware update</strong> &mdash; Cryptographically signed? Rollback supported? Staged deployment? Update frequency? Security patch SLA?</td><td class="response-cell"></td></tr>
+            <tr><td>17.8</td><td><strong>Audit trail logging</strong> &mdash; All commands logged? Retention period (min 12 months)?</td><td class="response-cell"></td></tr>
+            <tr><td>17.9</td><td><strong>Penetration testing</strong> &mdash; Has SmartgridOne undergone independent pen testing? By whom? When? Can results be shared? Periodic testing included in maintenance?</td><td class="response-cell"></td></tr>
+            <tr><td>17.10</td><td><strong>IEC 62351</strong> security compliance for IEC-104 communication?</td><td class="response-cell"></td></tr>
+            <tr><td>17.11</td><td><strong>VPN for remote access</strong> &mdash; Supported? IPSec or OpenVPN?</td><td class="response-cell"></td></tr>
+            <tr><td>17.12</td><td><strong>Data location</strong> &mdash; EU-based servers? Where is cloud data stored?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 18: HARDWARE BoM -->
+    <div class="section" id="s18">
+        <h2>18. HARDWARE BILL OF MATERIALS</h2>
+
+        <div class="highlight-box">
+            <strong>Please provide a detailed Bill of Materials for each site size category.</strong> For each item, indicate: part number, description, quantity, and whether it is included in SmartgridOne pricing or to be procured by Lighthief separately.
+        </div>
+
+        <h3>18.1 Per Site Size Category</h3>
+        <table>
+            <tr><th>Category</th><th>MW Range</th><th>PCS Units</th><th>MV Skids</th><th>BoM (attach separately)</th></tr>
+            <tr><td>Small</td><td>1&ndash;3 MW</td><td>1&ndash;2</td><td>1</td><td class="response-cell"></td></tr>
+            <tr><td>Medium</td><td>4&ndash;8 MW</td><td>3&ndash;6</td><td>1&ndash;2</td><td class="response-cell"></td></tr>
+            <tr><td>Large</td><td>10&ndash;15 MW</td><td>8&ndash;10</td><td>2</td><td class="response-cell"></td></tr>
+            <tr><td>XL</td><td>20&ndash;30 MW</td><td>15&ndash;20</td><td>2&ndash;3</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>18.2 Procurement Responsibility</h3>
+        <table>
+            <tr><th style="width:40%;">Item</th><th style="width:30%;">Included by SmartgridOne?</th><th style="width:30%;">Lighthief to Procure?</th></tr>
+            <tr><td>SmartgridOne Controller</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>I/O Modules</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Energy Meters</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Network Switch (managed)</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Industrial Router / VPN Firewall</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>4G/LTE SIM Router</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Control Cabinet / Enclosure</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>UPS for Controls</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>SIM cards</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Ethernet/fibre cabling (site internal)</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>GPS antenna (time sync)</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>CT/VT transducers</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>EMS Software License</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>SCADA Software</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 19: OEM INTERFACE -->
+    <div class="section" id="s19">
+        <h2>19. OEM EQUIPMENT INTERFACE</h2>
+        <p>The following OEM equipment is supplied by Linyang/Kehua. Please confirm compatibility and integration approach.</p>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:25%;">OEM Component</th><th style="width:20%;">Interface</th><th style="width:50%;">SmartgridOne Response</th></tr>
+            <tr><td>19.1</td><td><strong>Linyang RTU</strong> (included in MV Skid)</td><td>IEC 60870-5-104</td><td class="response-cell">Does SmartgridOne replace this, or do they work in parallel?</td></tr>
+            <tr><td>19.2</td><td><strong>Linyang BMS (BAMS)</strong> &mdash; 3-level system</td><td>Modbus TCP</td><td class="response-cell">Confirm SmartgridOne reads from BAMS via Modbus TCP</td></tr>
+            <tr><td>19.3</td><td><strong>Kehua PCS</strong> (BCS-C-HUD)</td><td>Modbus TCP</td><td class="response-cell">Confirm SmartgridOne sends P/Q setpoints via Modbus TCP</td></tr>
+            <tr><td>19.4</td><td><strong>Auxiliary / Comms Cabinet</strong></td><td>TBC</td><td class="response-cell">Any EMS-relevant hardware in this cabinet?</td></tr>
+            <tr><td>19.5</td><td>Does SmartgridOne require any specific <strong>firmware version</strong> on Kehua PCS for Modbus TCP integration?</td><td></td><td class="response-cell"></td></tr>
+            <tr><td>19.6</td><td>Does SmartgridOne need the <strong>Linyang BMS Modbus register map</strong>? (We can provide document ref: WRDF-0I002-103)</td><td></td><td class="response-cell"></td></tr>
+            <tr><td>19.7</td><td>Does SmartgridOne need the <strong>Kehua IEC-104 point list</strong>? (We can provide document ref: WRWF-0I002-06)</td><td></td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 20: MASTER MANAGEMENT -->
+    <div class="section" id="s20">
+        <h2>20. MASTER PORTFOLIO MANAGEMENT</h2>
+        <p>As the portfolio-wide EPC and O&amp;M provider, Lighthief requires master-level access and management capability across all 51 parks, regardless of which client group owns them.</p>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:45%;">Requirement</th><th style="width:50%;">SmartgridOne Response</th></tr>
+            <tr><td>20.1</td><td>Can Lighthief have a <strong>master dashboard</strong> across all 6 groups (51 parks) via SmartgridX?</td><td class="response-cell"></td></tr>
+            <tr><td>20.2</td><td>Can Lighthief access all parks regardless of which group/aggregator they belong to?</td><td class="response-cell"></td></tr>
+            <tr><td>20.3</td><td>Is there a separate license/cost for a Lighthief master portal?</td><td class="response-cell"></td></tr>
+            <tr><td>20.4</td><td>Can Lighthief receive <strong>consolidated alarm/fault notifications</strong> for all 51 parks?</td><td class="response-cell"></td></tr>
+            <tr><td>20.5</td><td>Can Lighthief generate <strong>portfolio-wide performance reports</strong>?</td><td class="response-cell"></td></tr>
+            <tr><td>20.6</td><td>Can aggregators / asset owners have <strong>read-only access</strong> to their respective group's SCADA?</td><td class="response-cell"></td></tr>
+            <tr><td>20.7</td><td>Can the <strong>Lighthief branding (whitelabel)</strong> be applied to the app and portal? (SmartgridOne offers whitelabeling)</td><td class="response-cell"></td></tr>
+            <tr><td>20.8</td><td>Can each client group have their <strong>own branded app</strong> showing only their parks?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 21: COMMERCIAL PRICING -->
+    <div class="section" id="s21">
+        <h2>21. COMMERCIAL PRICING</h2>
+
+        <h3>21.1 Per-Site Pricing (by size category)</h3>
+        <table>
+            <tr><th>Site Size</th><th>Hardware</th><th>Software</th><th>Integration</th><th>Commissioning</th><th>Total</th></tr>
+            <tr><td><strong>Small (1&ndash;3 MW)</strong></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td><strong>Medium (4&ndash;8 MW)</strong></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td><strong>Large (10&ndash;15 MW)</strong></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td><strong>XL (20&ndash;30 MW)</strong></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>21.2 Portfolio-Level Costs</h3>
+        <table>
+            <tr><th>Item</th><th>Unit</th><th>Qty</th><th>Unit Price (&euro;)</th><th>Total (&euro;)</th></tr>
+            <tr><td>SmartgridOne Controller + Software per site</td><td>Site</td><td>51</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>IEC-104 Gateway Programming per site</td><td>Site</td><td>51</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Signal Mapping (estimated data points)</td><td>Point</td><td>Est. 15,000+</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>SmartgridX Portfolio Platform (per group or portfolio)</td><td>Annual</td><td>6 groups</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Remote Configuration &amp; Preparation per site</td><td>Site</td><td>51</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>On-site Commissioning + Testing per site</td><td>Site</td><td>51</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>DSO Integration Testing per site</td><td>Site</td><td>51</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Whitelabel App Setup (if applicable)</td><td>Lump Sum</td><td>1</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Training (days)</td><td>Days</td><td></td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr><td>Documentation</td><td>Lump Sum</td><td>1</td><td class="response-cell"></td><td class="response-cell"></td></tr>
+            <tr class="total-row"><td colspan="4"><strong>TOTAL (Capital, excl. ongoing support)</strong></td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>21.3 Annual / Recurring Costs</h3>
+        <table>
+            <tr><th style="width:50%;">Item</th><th style="width:50%;">Annual Cost (&euro;)</th></tr>
+            <tr><td>EMS Software license renewal (per site or portfolio)</td><td class="response-cell"></td></tr>
+            <tr><td>SmartgridX Cloud monitoring platform (per site or portfolio)</td><td class="response-cell"></td></tr>
+            <tr><td>Maintenance per site per year</td><td class="response-cell"></td></tr>
+            <tr><td>Remote support / helpdesk</td><td class="response-cell"></td></tr>
+            <tr><td>Software updates included?</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>21.4 Volume Discount</h3>
+        <table>
+            <tr><th style="width:60%;">Question</th><th style="width:40%;">Response</th></tr>
+            <tr><td>Is there a volume discount for the full 51-park portfolio ordered together?</td><td class="response-cell"></td></tr>
+            <tr><td>Discount for multi-year maintenance commitment (e.g. 5-year)?</td><td class="response-cell"></td></tr>
+            <tr><td>Shared engineering / template discount for identical site configurations?</td><td class="response-cell"></td></tr>
+            <tr><td>Are the prices valid if ordered in batches (3 batches over 12&ndash;18 months)?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 22: SUPPORT & WARRANTY -->
+    <div class="section" id="s22">
+        <h2>22. SUPPORT, WARRANTY &amp; SCALABILITY</h2>
+
+        <h3>22.1 Support &amp; Warranty</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:45%;">Question</th><th style="width:50%;">SmartgridOne Response</th></tr>
+            <tr><td>22.1</td><td>Hardware warranty period?</td><td class="response-cell"></td></tr>
+            <tr><td>22.2</td><td>Software warranty / bug fix period?</td><td class="response-cell"></td></tr>
+            <tr><td>22.3</td><td>Remote support availability (hours / timezone)?</td><td class="response-cell"></td></tr>
+            <tr><td>22.4</td><td>Response time SLA (critical / major / minor)?</td><td class="response-cell"></td></tr>
+            <tr><td>22.5</td><td>On-site support available in Cyprus? Nearest office/partner?</td><td class="response-cell"></td></tr>
+            <tr><td>22.6</td><td>Training included? How many sessions? On-site or remote?</td><td class="response-cell"></td></tr>
+            <tr><td>22.7</td><td>Documentation provided (user manual, integration guide, API docs)?</td><td class="response-cell"></td></tr>
+        </table>
+
+        <h3>22.2 Scalability &amp; Ownership</h3>
+        <table>
+            <tr><th style="width:5%;">#</th><th style="width:45%;">Question</th><th style="width:50%;">SmartgridOne Response</th></tr>
+            <tr><td>22.8</td><td>Can additional containers be added to an existing site <strong>without full re-commissioning</strong>?</td><td class="response-cell"></td></tr>
+            <tr><td>22.9</td><td>What is the <strong>maximum number of PCS/containers</strong> a single SmartgridOne controller can manage?</td><td class="response-cell"></td></tr>
+            <tr><td>22.10</td><td>Does the license need to be upgraded for capacity additions?</td><td class="response-cell"></td></tr>
+            <tr><td>22.11</td><td>What is the process and cost for <strong>scaling an existing EMS installation</strong>?</td><td class="response-cell"></td></tr>
+            <tr><td>22.12</td><td>Who <strong>owns the operational data</strong> generated by the EMS?</td><td class="response-cell"></td></tr>
+            <tr><td>22.13</td><td>Is the EMS software <strong>licensed or purchased</strong>?</td><td class="response-cell"></td></tr>
+            <tr><td>22.14</td><td>What happens to EMS functionality if the SmartgridOne service contract is <strong>not renewed</strong>?</td><td class="response-cell"></td></tr>
+            <tr><td>22.15</td><td>Can the client/asset owner access all <strong>historical data in perpetuity</strong>?</td><td class="response-cell"></td></tr>
+            <tr><td>22.16</td><td>Is there an <strong>escrow arrangement</strong> for the EMS source code?</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 23: COMPANY INFORMATION -->
+    <div class="section" id="s23">
+        <h2>23. COMPANY INFORMATION</h2>
+        <table>
+            <tr><th style="width:40%;">Information</th><th style="width:60%;">Response</th></tr>
+            <tr><td>Company Name</td><td class="response-cell"></td></tr>
+            <tr><td>Country / HQ Location</td><td class="response-cell"></td></tr>
+            <tr><td>Years in BESS EMS business</td><td class="response-cell"></td></tr>
+            <tr><td>Total EMS devices deployed</td><td class="response-cell"></td></tr>
+            <tr><td>Total BESS projects delivered (MW / MWh)</td><td class="response-cell"></td></tr>
+            <tr><td>EU/Cyprus references (if any)</td><td class="response-cell"></td></tr>
+            <tr><td>Kehua PCS integration experience?</td><td class="response-cell"></td></tr>
+            <tr><td>Linyang BMS integration experience?</td><td class="response-cell"></td></tr>
+            <tr><td>IEC 60870-5-104 integration experience?</td><td class="response-cell"></td></tr>
+            <tr><td>Front-of-meter BESS portfolio experience (&gt;100 MWh)?</td><td class="response-cell"></td></tr>
+            <tr><td>ISO 27001 or IEC 62443 certification?</td><td class="response-cell"></td></tr>
+            <tr><td>Key personnel proposed for this project</td><td class="response-cell"></td></tr>
+            <tr><td>Reference contacts (min. 2 BESS projects &gt;10 MWh)</td><td class="response-cell"></td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 24: RESPONSE INSTRUCTIONS -->
+    <div class="section" id="s24">
+        <h2>24. RESPONSE INSTRUCTIONS</h2>
+
+        <div class="highlight-box">
+            <strong>Please submit your response to:</strong><br><br>
+            <strong>Email:</strong> office@lighthief.com<br>
+            <strong>Subject:</strong> RFP Response &mdash; SmartgridOne EMS/SCADA &mdash; Cyprus BESS Portfolio (LCY-RFP-EMS-SGO-2026-001)<br>
+            <strong>Deadline:</strong> 21 March 2026<br><br>
+            <strong>Deliverables requested:</strong>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Technical Proposal</strong> &mdash; System architecture, approach, methodology, and completed responses to all sections of this RFP</li>
+                <li><strong>Commercial Proposal</strong> &mdash; Itemized pricing per Section 21 (per site and portfolio)</li>
+                <li><strong>Bill of Materials</strong> &mdash; Detailed per-site BoM per Section 18 (part numbers, quantities)</li>
+                <li><strong>Experience</strong> &mdash; References for similar BESS projects (&gt;10 MWh), especially front-of-meter</li>
+                <li><strong>Team</strong> &mdash; Key personnel and qualifications for this project</li>
+                <li><strong>Timeline</strong> &mdash; Proposed delivery schedule for 3-batch deployment</li>
+                <li><strong>Support &amp; SLA</strong> &mdash; Post-commissioning support options with SLA tiers</li>
+                <li><strong>Compliance</strong> &mdash; NIS2/IEC 62443 cybersecurity compliance statement</li>
+                <li><strong>Whitelabel</strong> &mdash; Branding options for Lighthief app and portal</li>
+                <li><strong>Demo</strong> &mdash; Availability for a live platform demo (remote or in-person)</li>
+            </ol>
+        </div>
+
+        <div class="warning-box">
+            <strong>Important Notes:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>All proposals must be submitted in PDF format by the deadline</li>
+                <li>Park names are redacted &mdash; full identities will be disclosed upon contract execution</li>
+                <li>Lighthief is evaluating multiple EMS providers; this RFP does not constitute a commitment to purchase</li>
+                <li>All information in this RFP is confidential and for SmartgridOne (Eniris) use only</li>
+                <li>Questions or clarifications should be directed to office@lighthief.com with subject line referencing the RFP number</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; font-size: 9pt; color: #6b7280;">
+        <table style="border: none; font-size: 9pt;">
+            <tr style="background: none;">
+                <td style="border: none; width: 50%; vertical-align: top;">
+                    <strong>Prepared by:</strong> Lighthief Cyprus Ltd<br>
+                    28 October Avenue 249, Lophitis Business Center 1, Office 201<br>
+                    3035 Limassol, Cyprus<br><br>
+                    Email: office@lighthief.com | Tel: +357 99 164 158
+                </td>
+                <td style="border: none; width: 50%; vertical-align: top; text-align: right;">
+                    <strong>Classification:</strong> CONFIDENTIAL<br>
+                    <strong>For:</strong> SmartgridOne / Eniris use only<br><br>
+                    Document Reference: LCY-RFP-EMS-SGO-2026-001<br>
+                    Version 1.0 | 5 March 2026
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -33,7 +33,7 @@
 
 | Client | District | Projects | BESS Capacity | Timeline | Status |
 |--------|----------|----------|---------------|----------|--------|
-| [**🔴 Abio Power (HTML)**](./abio-power-proposal-feb2026.html) | Multiple | 19 | 64 MW / 225 MWh | 2026-2030 | 🔴 **€27.5M PORTFOLIO** |
+| [**🔴 ABIO Power**](./Group1_ABIO_Power/group-proposal.html) | Multiple | 25 | 125 MW / 430.28 MWh | 2026-2027 | 🔴 **€52.6M PORTFOLIO** |
 | [ELESTORE](./elestore.md) | Nicosia | 5 | 60 MW / 200 MWh | Q2 2026 | 🔄 Active |
 | [Esperia Energy Group](./esperia-energy.md) | Multiple | 7 | 59.5 MW / 262.5 MWh | Q2-Q4 2026 | 🔄 Active |
 | [Dianary Group](./dianary.md) | Nicosia | 3 | 14 MW / 55 MWh | Q3 2026 | 🔄 Active |

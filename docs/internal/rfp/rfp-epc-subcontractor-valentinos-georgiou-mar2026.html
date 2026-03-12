@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — EPC Subcontractor Services | Valentinos Georgiou</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--gray-800); background: #fff; font-size: 11pt; }
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px 30px; }
+
+        .header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding-bottom: 20px; border-bottom: 3px solid var(--primary); margin-bottom: 25px;
+        }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--gray-800); }
+
+        .doc-title { text-align: center; margin-bottom: 25px; }
+        .doc-title h1 { font-size: 22px; color: var(--primary); margin-bottom: 5px; }
+        .doc-title .subtitle { font-size: 14px; color: var(--gray-600); }
+        .value-highlight {
+            display: inline-block; background: linear-gradient(135deg, var(--accent), #dd6b20);
+            color: white; padding: 6px 18px; border-radius: 4px; font-size: 16px; font-weight: 700; margin-top: 8px;
+        }
+        .recipient-badge {
+            display: inline-block; background: var(--primary); color: white;
+            padding: 6px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; margin-top: 8px;
+        }
+
+        .info-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 15px 20px; margin-bottom: 25px; }
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .info-item { display: flex; gap: 10px; }
+        .info-item .label { font-weight: 600; color: var(--gray-600); min-width: 130px; }
+        .info-item .value { color: var(--gray-800); }
+
+        .section { margin-bottom: 25px; page-break-inside: avoid; }
+        .section h2 { font-size: 16px; color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-bottom: 15px; }
+        .section h3 { font-size: 13px; color: var(--primary-light); margin: 15px 0 10px 0; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10pt; }
+        th, td { border: 1px solid var(--gray-200); padding: 8px 10px; text-align: left; }
+        th { background: var(--primary); color: white; font-weight: 600; font-size: 9pt; }
+        tr:nth-child(even) { background: var(--gray-50); }
+        .table-compact th, .table-compact td { padding: 6px 8px; font-size: 9pt; }
+
+        .callout { padding: 12px 15px; border-radius: 6px; margin: 10px 0; font-size: 10pt; }
+        .callout-info { background: #ebf8ff; border-left: 4px solid #3182ce; }
+        .callout-warning { background: #fffaf0; border-left: 4px solid var(--accent); }
+        .callout-success { background: #f0fff4; border-left: 4px solid var(--success); }
+        .callout-danger { background: #fff5f5; border-left: 4px solid var(--danger); }
+
+        ul, ol { margin: 10px 0 10px 20px; }
+        li { margin-bottom: 5px; }
+
+        .summary-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white; padding: 20px; border-radius: 8px; margin: 20px 0;
+        }
+        .summary-box h3 { color: white; margin-bottom: 15px; font-size: 14px; }
+        .summary-box p { color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 80px; }
+        .price-header th { background: var(--accent); }
+
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 9px; font-weight: 600; color: white; }
+        .badge-scope { background: var(--accent); }
+        .badge-batch { background: var(--primary-light); }
+        .badge-optional { background: var(--gray-600); }
+
+        .batch-card {
+            border: 2px solid var(--gray-200); border-radius: 8px; padding: 15px; margin-bottom: 15px;
+        }
+        .batch-card h4 { color: var(--primary); margin-bottom: 8px; font-size: 13px; }
+        .batch-card .batch-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0;
+        }
+        .batch-stat { text-align: center; background: var(--gray-50); border-radius: 6px; padding: 8px; }
+        .batch-stat .val { font-size: 18px; font-weight: 700; color: var(--primary); }
+        .batch-stat .lbl { font-size: 8pt; color: var(--gray-600); }
+
+        .contact-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
+        .contact-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 15px; }
+        .contact-card h4 { color: var(--primary); margin-bottom: 10px; }
+
+        .footer {
+            margin-top: 30px; padding-top: 15px; border-top: 2px solid var(--gray-200);
+            text-align: center; font-size: 9pt; color: var(--gray-600);
+        }
+
+        .print-btn {
+            position: fixed; top: 20px; right: 20px; background: var(--primary); color: white;
+            border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer;
+            font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000;
+        }
+        .print-btn:hover { background: var(--primary-light); }
+        @media print {
+            .print-btn { display: none; }
+            body { font-size: 10pt; }
+            .container { max-width: 100%; padding: 0; }
+            .section { page-break-inside: avoid; }
+            @page { margin: 15mm; size: A4; }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">&#128196; Export PDF</button>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Reference:</strong> RFP-LCY-EPC-SUB-2026-001</div>
+                <div><strong>Version:</strong> 1.0</div>
+                <div><strong>Date:</strong> 3 March 2026</div>
+                <div><strong>Classification:</strong> Commercial &mdash; Confidential</div>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <div class="doc-title">
+            <h1>REQUEST FOR PROPOSAL</h1>
+            <div class="subtitle">EPC Subcontractor Services &mdash; Cyprus BESS Portfolio</div>
+            <div><span class="recipient-badge">For: Valentinos Georgiou</span></div>
+            <div><span class="value-highlight">46 Parks | 798 MWh | 252 Containers | 3 Batches</span></div>
+        </div>
+
+        <!-- Document Info -->
+        <div class="info-box">
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">From:</span>
+                    <span class="value">Lighthief Cyprus Ltd (HE 477423)</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">To:</span>
+                    <span class="value">Valentinos Georgiou</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Subject:</span>
+                    <span class="value">EPC Subcontractor &mdash; Civil, Lightning, DSO Compliance &amp; Logistics</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Contact:</span>
+                    <span class="value">Alexander Papacosta, Director</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Phone:</span>
+                    <span class="value">+357 99 164 158</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Email:</span>
+                    <span class="value">office@lighthief.com</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <div class="summary-box">
+                <h3>EXECUTIVE SUMMARY</h3>
+                <p>Lighthief Cyprus Ltd is the exclusive BESS distributor, EPC contractor, and O&amp;M service provider for Linyang Energy in Cyprus. We are delivering <strong>46 utility-scale Battery Energy Storage System (BESS) parks</strong> across five districts, totalling <strong>798 MWh / 249 MW</strong>, in three phased batches between July 2026 and February 2027.</p>
+                <p>We are seeking a qualified <strong>EPC subcontractor</strong> to provide on-site services across four scope areas: <strong>civil works, lightning protection, DSO compliance, and logistics</strong>. This RFP requests pricing per park, per container, and per MW/MWh to enable direct comparison and batch-level budgeting.</p>
+                <p>A further 5 parks (87.5 MWh) are planned for 2028 and may be awarded as a follow-on engagement.</p>
+            </div>
+        </div>
+
+        <!-- Section 1: Project Overview -->
+        <div class="section">
+            <h2>1. Project Overview</h2>
+
+            <h3>1.1 Portfolio Summary</h3>
+            <table>
+                <tr><th style="width:200px;">Parameter</th><th>Value</th></tr>
+                <tr><td><strong>Total Active Parks</strong></td><td>46 (across 5 districts)</td></tr>
+                <tr><td><strong>Total Capacity</strong></td><td>798 MWh / 249 MW</td></tr>
+                <tr><td><strong>BESS Containers</strong></td><td>~176 units (20-foot High Cube, ~41.5 tonnes each)</td></tr>
+                <tr><td><strong>MV SKID Containers</strong></td><td>~76 units (40-foot High Cube, &le;38 tonnes each)</td></tr>
+                <tr><td><strong>Total Containers</strong></td><td>252</td></tr>
+                <tr><td><strong>Equipment Manufacturer</strong></td><td>Linyang Energy (battery containers, BMS, cooling) + Kehua Tech PCS</td></tr>
+                <tr><td><strong>MV SKIDs</strong></td><td>Integrated transformer + RMU + switchgear (Linyang-supplied)</td></tr>
+                <tr><td><strong>Grid Connection</strong></td><td>11 kV or 22 kV MV, via existing PV park Point of Connection</td></tr>
+                <tr><td><strong>DSO</strong></td><td>EAC (Electricity Authority of Cyprus)</td></tr>
+                <tr><td><strong>Delivery Format</strong></td><td>CIF Limassol &mdash; containers shipped from China</td></tr>
+                <tr><td><strong>EPC Contractor</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+            </table>
+
+            <h3>1.2 District Distribution</h3>
+            <table class="table-compact">
+                <tr><th>District</th><th>Parks</th><th>BESS Containers</th><th>MV SKIDs</th><th>Est. Foundation Area</th></tr>
+                <tr><td>Nicosia</td><td>31</td><td>108</td><td>50</td><td>~3,120 m&sup2;</td></tr>
+                <tr><td>Famagusta</td><td>8</td><td>36</td><td>10</td><td>~840 m&sup2;</td></tr>
+                <tr><td>Limassol</td><td>6</td><td>24</td><td>9</td><td>~630 m&sup2;</td></tr>
+                <tr><td>Larnaca</td><td>3</td><td>3</td><td>3</td><td>~135 m&sup2;</td></tr>
+                <tr><td>Paphos</td><td>3</td><td>5</td><td>3</td><td>~165 m&sup2;</td></tr>
+                <tr style="background: var(--gray-100) !important; font-weight: 700;">
+                    <td><strong>TOTAL</strong></td><td><strong>51*</strong></td><td><strong>176</strong></td><td><strong>75</strong></td><td><strong>~4,890 m&sup2;</strong></td>
+                </tr>
+            </table>
+            <p style="font-size:9pt; color: var(--gray-600);">*51 total parks; 46 active in Batches 1&ndash;3, 5 Esperia Tseri deferred to 2028.</p>
+
+            <h3>1.3 Equipment Specifications (for foundation &amp; LPS design)</h3>
+            <table class="table-compact">
+                <tr><th>Equipment</th><th>Type</th><th>Dimensions (L &times; W &times; H)</th><th>Weight</th><th>Foundation Footprint</th></tr>
+                <tr><td><strong>BESS Container</strong></td><td>20-foot High Cube (20HC)</td><td>6,058 &times; 2,438 &times; 2,896 mm</td><td>~41.5 tonnes</td><td>~15 m&sup2;</td></tr>
+                <tr><td><strong>MV SKID</strong></td><td>40-foot High Cube (40HC)</td><td>12,192 &times; 2,438 &times; 2,896 mm</td><td>&le;38 tonnes</td><td>~30 m&sup2;</td></tr>
+            </table>
+        </div>
+
+        <!-- Section 2: Batch Schedule -->
+        <div class="section">
+            <h2>2. Batch Schedule</h2>
+            <p>The portfolio is delivered in three batches. All subcontractor services must be completed per batch before container arrival at site. Please provide pricing <strong>per batch</strong>.</p>
+
+            <div class="batch-card">
+                <h4><span class="badge badge-batch">BATCH 1</span> &mdash; ABIO Phase 1</h4>
+                <div class="batch-stats">
+                    <div class="batch-stat"><div class="val">15</div><div class="lbl">Parks</div></div>
+                    <div class="batch-stat"><div class="val">280</div><div class="lbl">MWh</div></div>
+                    <div class="batch-stat"><div class="val">80</div><div class="lbl">Containers</div></div>
+                    <div class="batch-stat"><div class="val">Jul 2026</div><div class="lbl">CIF Arrival</div></div>
+                </div>
+                <table class="table-compact">
+                    <tr><th>Milestone</th><th>Date</th></tr>
+                    <tr><td>Production Start (Linyang)</td><td>8 March 2026</td></tr>
+                    <tr><td>Factory Acceptance Test (FAT)</td><td>5 June 2026</td></tr>
+                    <tr><td>Ship Date</td><td>5 June 2026</td></tr>
+                    <tr><td><strong>CIF Limassol Arrival</strong></td><td><strong>5 July 2026</strong></td></tr>
+                    <tr><td>Civil works complete (target)</td><td><strong>Before 5 July 2026</strong></td></tr>
+                    <tr><td>Provisional Acceptance (PAC)</td><td>31 October 2026</td></tr>
+                </table>
+            </div>
+
+            <div class="batch-card">
+                <h4><span class="badge badge-batch">BATCH 2</span> &mdash; ABIO Phase 2 + Timotheos</h4>
+                <div class="batch-stats">
+                    <div class="batch-stat"><div class="val">19</div><div class="lbl">Parks</div></div>
+                    <div class="batch-stat"><div class="val">230</div><div class="lbl">MWh</div></div>
+                    <div class="batch-stat"><div class="val">90</div><div class="lbl">Containers</div></div>
+                    <div class="batch-stat"><div class="val">Aug 2026</div><div class="lbl">CIF Arrival</div></div>
+                </div>
+                <table class="table-compact">
+                    <tr><th>Milestone</th><th>Date</th></tr>
+                    <tr><td>Production Start (Linyang)</td><td>15 April 2026</td></tr>
+                    <tr><td>Ship Date</td><td>20 July 2026</td></tr>
+                    <tr><td><strong>CIF Limassol Arrival</strong></td><td><strong>20 August 2026</strong></td></tr>
+                    <tr><td>Civil works complete (target)</td><td><strong>Before 20 August 2026</strong></td></tr>
+                    <tr><td>Provisional Acceptance (PAC)</td><td>15 January 2027</td></tr>
+                </table>
+            </div>
+
+            <div class="batch-card">
+                <h4><span class="badge badge-batch">BATCH 3</span> &mdash; Esperia Phase 1 + Standalone</h4>
+                <div class="batch-stats">
+                    <div class="batch-stat"><div class="val">12</div><div class="lbl">Parks</div></div>
+                    <div class="batch-stat"><div class="val">288</div><div class="lbl">MWh</div></div>
+                    <div class="batch-stat"><div class="val">82</div><div class="lbl">Containers</div></div>
+                    <div class="batch-stat"><div class="val">Sep 2026</div><div class="lbl">CIF Arrival</div></div>
+                </div>
+                <table class="table-compact">
+                    <tr><th>Milestone</th><th>Date</th></tr>
+                    <tr><td>Production Start (Linyang)</td><td>15 May 2026</td></tr>
+                    <tr><td>Ship Date</td><td>20 August 2026</td></tr>
+                    <tr><td><strong>CIF Limassol Arrival</strong></td><td><strong>20 September 2026</strong></td></tr>
+                    <tr><td>Civil works complete (target)</td><td><strong>Before 20 September 2026</strong></td></tr>
+                    <tr><td>Provisional Acceptance (PAC)</td><td>28 February 2027</td></tr>
+                </table>
+            </div>
+
+            <div class="batch-card" style="border-style: dashed; opacity: 0.85;">
+                <h4><span class="badge badge-optional">OPTIONAL</span> &mdash; Esperia Tseri (2028)</h4>
+                <div class="batch-stats">
+                    <div class="batch-stat"><div class="val">5</div><div class="lbl">Parks</div></div>
+                    <div class="batch-stat"><div class="val">87.5</div><div class="lbl">MWh</div></div>
+                    <div class="batch-stat"><div class="val">TBC</div><div class="lbl">Containers</div></div>
+                    <div class="batch-stat"><div class="val">2028</div><div class="lbl">Target</div></div>
+                </div>
+                <p style="font-size:9pt; color: var(--gray-600);">Separate future order. Pricing for this batch is optional but welcomed for planning purposes.</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Scope of Work -->
+        <div class="section">
+            <h2>3. Scope of Work</h2>
+            <p>We are inviting proposals across <strong>four EPC scope areas</strong>. You may quote for any or all scopes. Each scope should be priced independently to allow flexible award.</p>
+
+            <!-- Scope A: Civil Works -->
+            <h3>3.1 Scope A &mdash; Civil Works <span class="badge badge-scope">CIVIL</span></h3>
+            <p>Design and construction of reinforced concrete foundations for all BESS and MV SKID containers.</p>
+
+            <table class="table-compact">
+                <tr><th>#</th><th>Work Item</th><th>Description</th><th>Standard / Requirement</th></tr>
+                <tr><td>A1</td><td><strong>Structural Design</strong></td><td>Foundation design per park, ETEK-stamped structural drawings</td><td>EN 1992-1-1, Eurocode 8 (seismic)</td></tr>
+                <tr><td>A2</td><td><strong>Site Survey &amp; Setting Out</strong></td><td>Topographic survey, soil investigation, layout marking</td><td>ETEK certified</td></tr>
+                <tr><td>A3</td><td><strong>Excavation &amp; Sub-base</strong></td><td>Excavation to formation (min 300mm), compacted aggregate base</td><td>&ge;130 kN/m&sup2; bearing capacity</td></tr>
+                <tr><td>A4</td><td><strong>Reinforced Concrete Slab</strong></td><td>C30/37 slab (200&ndash;300mm), reinforcement mesh (A393 or T12@200), DPM membrane</td><td>C30/37 min, 50mm cover (75mm coastal)</td></tr>
+                <tr><td>A5</td><td><strong>Container Placement Preparation</strong></td><td>Level bearing surface for container placement; container securing method TBC per OEM installation manual</td><td>Per Linyang specs</td></tr>
+                <tr><td>A6</td><td><strong>Cable Trenches</strong></td><td>Trenches for MV, LV, and control cables between containers and to POC</td><td>600 &times; 600mm typical</td></tr>
+                <tr><td>A7</td><td><strong>Drainage</strong></td><td>Surface water drainage, falls from slab</td><td>&Kappa;.&Delta;.&Pi;. 15/2026 &sect;18.4</td></tr>
+                <tr><td>A8</td><td><strong>Earthing Grid (in slab)</strong></td><td>Foundation earthing conductors, bonding to containers</td><td>&lt;1&Omega; impedance target</td></tr>
+                <tr><td>A9</td><td><strong>As-Built &amp; Test Certs</strong></td><td>As-built drawings, concrete cube tests, compaction tests</td><td>ETEK structural sign-off</td></tr>
+            </table>
+
+            <div class="callout callout-warning">
+                <strong>Regulatory:</strong> Per &Kappa;.&Delta;.&Pi;. 15/2026 &sect;24, reinforced concrete foundations are <strong>mandatory</strong> for all BESS installations within licensed RES stations. Seismic design required (ZPA: 3.55 m/s&sup2; horizontal, 1.78 m/s&sup2; vertical). Minimum 6m setback from boundaries; 6m fire access perimeter.
+            </div>
+
+            <!-- Scope B: Lightning Protection -->
+            <h3>3.2 Scope B &mdash; Lightning Protection, SPD &amp; Earthing <span class="badge badge-scope">LPS</span></h3>
+            <p>Complete lightning protection system (LPS), surge protection devices (SPD), and earthing system for all BESS sites.</p>
+
+            <table class="table-compact">
+                <tr><th>#</th><th>Work Item</th><th>Description</th></tr>
+                <tr><td>B1</td><td><strong>Lightning Risk Assessment</strong></td><td>Per IEC 62305-2 for each park &mdash; determine LPS class required</td></tr>
+                <tr><td>B2</td><td><strong>External LPS Design &amp; Supply</strong></td><td>Air termination network, down conductors, earth termination system. Material supply and installation.</td></tr>
+                <tr><td>B3</td><td><strong>SPD Supply &amp; Installation</strong></td><td>Surge protection devices for MV, LV AC, LV DC, and communication circuits</td></tr>
+                <tr><td>B4</td><td><strong>Earthing System</strong></td><td>Earth electrode installation, bonding network, earth resistance testing (&lt;1&Omega;)</td></tr>
+                <tr><td>B5</td><td><strong>Installation Labour</strong></td><td>Full installation of LPS, SPD, and earthing across all sites</td></tr>
+                <tr><td>B6</td><td><strong>Testing &amp; Certification</strong></td><td>Earth resistance tests, continuity tests, LPS certification per IEC 62305</td></tr>
+            </table>
+
+            <div class="callout callout-info">
+                <strong>Note:</strong> If you prefer to supply specific LPS/SPD brands (e.g. DEHN, OBO Bettermann, Citel), please specify. Alternatively, we can supply the material (DEHN) and engage you for installation labour only. Please quote both options if possible.
+            </div>
+
+            <!-- Scope C: DSO Compliance -->
+            <h3>3.3 Scope C &mdash; DSO Compliance &amp; Documentation <span class="badge badge-scope">DSO</span></h3>
+            <p>Preparation and submission of all regulatory documentation required for DSO (EAC) grid connection approval and building/planning permits.</p>
+
+            <table class="table-compact">
+                <tr><th>#</th><th>Work Item</th><th>Description</th></tr>
+                <tr><td>C1</td><td><strong>Grid Connection Application</strong></td><td>Preparation and submission of EAC grid connection application per park (Appendix I of EAC Technical Guide for Storage 2025.1)</td></tr>
+                <tr><td>C2</td><td><strong>Electrical Design Drawings</strong></td><td>Single-line diagrams, protection schemes, CT/VT schemes, cable schedules &mdash; per park type (4 types) + per-park customisation for DSO submission</td></tr>
+                <tr><td>C3</td><td><strong>CT/VT Specification</strong></td><td>Current Transformer class, ratio, burden calculation, and DSO coordination for CT specification agreement</td></tr>
+                <tr><td>C4</td><td><strong>Protection Relay Settings</strong></td><td>Relay settings per DSO requirements (U&lt; 0.9Un/0.2s, U&gt; 1.1Un/0.2s, f&lt; 47Hz/0.2s, f&gt; 52Hz/0.2s, LoM/ROCOF)</td></tr>
+                <tr><td>C5</td><td><strong>Building / Planning Permits</strong></td><td>ETEK-stamped drawings for building permit application, coordination with local authorities</td></tr>
+                <tr><td>C6</td><td><strong>DSO Witness Testing Support</strong></td><td>On-site presence during EAC witness testing and commissioning inspections</td></tr>
+                <tr><td>C7</td><td><strong>As-Built Documentation</strong></td><td>Final as-built documentation package for DSO and client handover</td></tr>
+            </table>
+
+            <!-- Scope D: Logistics -->
+            <h3>3.4 Scope D &mdash; Logistics (Port to Site) <span class="badge badge-optional">OPTIONAL</span></h3>
+            <p>Transport of containers from Limassol port to final site locations across all districts. This scope is optional &mdash; we have existing quotes but welcome a competitive alternative.</p>
+
+            <table class="table-compact">
+                <tr><th>#</th><th>Work Item</th><th>Description</th></tr>
+                <tr><td>D1</td><td><strong>Container Transport</strong></td><td>Crane offloading at port + flatbed transport to site for BESS containers (20HC, ~42t) and MV SKIDs (40HC, ~38t)</td></tr>
+                <tr><td>D2</td><td><strong>Site Offloading</strong></td><td>Crane/forklift offloading and placement on prepared foundation at site</td></tr>
+                <tr><td>D3</td><td><strong>Heavy Lift Equipment</strong></td><td>Mobile crane hire for container placement (&ge;50t capacity)</td></tr>
+                <tr><td>D4</td><td><strong>Permits &amp; Escorts</strong></td><td>Abnormal load permits, police escorts for oversized/overweight loads if required</td></tr>
+            </table>
+
+            <div class="callout callout-info">
+                <strong>Transport Requirements:</strong> BESS containers are 20HC (~42 tonnes loaded) and MV SKIDs are 40HC (~38 tonnes loaded). All containers arrive CIF Limassol port. Sites are across all 5 districts. Transport fleet must handle 43+ tonne gross loads.
+            </div>
+        </div>
+
+        <!-- Section 4: Pricing Template -->
+        <div class="section">
+            <h2>4. Pricing Template</h2>
+            <p>Please provide pricing in <strong>all three units</strong> (per park, per container, per MWh) where applicable. This allows direct comparison with our existing cost stack. All prices in EUR, excluding VAT.</p>
+
+            <div class="callout callout-warning">
+                <strong>Instructions:</strong> Complete the pricing tables below for each batch separately. If your pricing is the same across all batches, you may state &ldquo;same as Batch 1&rdquo; for Batches 2 and 3. Volume discounts across batches are welcomed.
+            </div>
+
+            <!-- Batch 1 Pricing -->
+            <h3>4.1 Batch 1 &mdash; ABIO Phase 1 (15 Parks, 280 MWh, 80 Containers)</h3>
+
+            <table>
+                <tr class="price-header"><th>Scope</th><th>Per Park (&euro;)</th><th>Per Container (&euro;)</th><th>Per MWh (&euro;)</th><th>Batch Total (&euro;)</th></tr>
+                <tr><td><strong>A. Civil Works</strong> (all-in: design, excavation, concrete, placement prep, trenches, drainage, earthing, as-builts)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>B. Lightning Protection</strong> (LPS + SPD + earthing, supply &amp; install)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td>&emsp;B (alt). Installation labour only (Lighthief supplies DEHN material)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>C. DSO Compliance</strong> (drawings, CT spec, grid app, permits, witness testing, as-builts)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>D. Logistics</strong> (port to site transport + offloading + placement)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr style="background: var(--gray-100) !important; font-weight: 700;">
+                    <td><strong>BATCH 1 TOTAL (A+B+C+D)</strong></td><td></td><td></td><td></td><td class="price-input"></td>
+                </tr>
+            </table>
+
+            <!-- Batch 2 Pricing -->
+            <h3>4.2 Batch 2 &mdash; ABIO Phase 2 + Timotheos (19 Parks, 230 MWh, 90 Containers)</h3>
+
+            <table>
+                <tr class="price-header"><th>Scope</th><th>Per Park (&euro;)</th><th>Per Container (&euro;)</th><th>Per MWh (&euro;)</th><th>Batch Total (&euro;)</th></tr>
+                <tr><td><strong>A. Civil Works</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>B. Lightning Protection</strong> (supply &amp; install)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td>&emsp;B (alt). Installation labour only</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>C. DSO Compliance</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>D. Logistics</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr style="background: var(--gray-100) !important; font-weight: 700;">
+                    <td><strong>BATCH 2 TOTAL (A+B+C+D)</strong></td><td></td><td></td><td></td><td class="price-input"></td>
+                </tr>
+            </table>
+
+            <!-- Batch 3 Pricing -->
+            <h3>4.3 Batch 3 &mdash; Esperia Phase 1 + Standalone (12 Parks, 288 MWh, 82 Containers)</h3>
+
+            <table>
+                <tr class="price-header"><th>Scope</th><th>Per Park (&euro;)</th><th>Per Container (&euro;)</th><th>Per MWh (&euro;)</th><th>Batch Total (&euro;)</th></tr>
+                <tr><td><strong>A. Civil Works</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>B. Lightning Protection</strong> (supply &amp; install)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td>&emsp;B (alt). Installation labour only</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>C. DSO Compliance</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>D. Logistics</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr style="background: var(--gray-100) !important; font-weight: 700;">
+                    <td><strong>BATCH 3 TOTAL (A+B+C+D)</strong></td><td></td><td></td><td></td><td class="price-input"></td>
+                </tr>
+            </table>
+
+            <!-- Portfolio Total -->
+            <h3>4.4 Portfolio Total &amp; Volume Discount</h3>
+            <table>
+                <tr class="price-header"><th>Item</th><th>Value</th></tr>
+                <tr><td>Batch 1 + 2 + 3 Sum</td><td class="price-input"></td></tr>
+                <tr><td>Volume Discount (%)</td><td class="price-input"></td></tr>
+                <tr><td><strong>Portfolio Total (after discount)</strong></td><td class="price-input" style="font-weight:700;"></td></tr>
+            </table>
+
+            <!-- Optional Batch 4 -->
+            <h3>4.5 Optional &mdash; Esperia Tseri 2028 (5 Parks, 87.5 MWh)</h3>
+            <table>
+                <tr class="price-header"><th>Scope</th><th>Per Park (&euro;)</th><th>Per Container (&euro;)</th><th>Per MWh (&euro;)</th><th>Batch Total (&euro;)</th></tr>
+                <tr><td><strong>A. Civil Works</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>B. Lightning Protection</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>C. DSO Compliance</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+                <tr><td><strong>D. Logistics</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            </table>
+        </div>
+
+        <!-- Section 5: Detailed Pricing Breakdown -->
+        <div class="section">
+            <h2>5. Detailed Pricing Breakdown (Optional but Preferred)</h2>
+            <p>To enable accurate comparison, we welcome a detailed breakdown of the per-park or per-container pricing. This is optional but will strengthen your proposal.</p>
+
+            <h3>5.1 Civil Works Breakdown (per park)</h3>
+            <table class="table-compact">
+                <tr><th>Item</th><th>Unit</th><th>Rate (&euro;)</th></tr>
+                <tr><td>Structural design (ETEK stamped)</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>Site survey &amp; setting out</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>Excavation to formation</td><td>per m&sup3;</td><td class="price-input"></td></tr>
+                <tr><td>Compacted sub-base</td><td>per m&sup3;</td><td class="price-input"></td></tr>
+                <tr><td>DPM membrane</td><td>per m&sup2;</td><td class="price-input"></td></tr>
+                <tr><td>Reinforcement mesh (supply &amp; fix)</td><td>per m&sup2;</td><td class="price-input"></td></tr>
+                <tr><td>Concrete C30/37 slab (pour &amp; finish)</td><td>per m&sup2;</td><td class="price-input"></td></tr>
+                <tr><td>Container placement preparation</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Cable trench (inc. backfill)</td><td>per lin. m</td><td class="price-input"></td></tr>
+                <tr><td>Drainage</td><td>per lin. m</td><td class="price-input"></td></tr>
+                <tr><td>Earthing conductor (in slab)</td><td>per lin. m</td><td class="price-input"></td></tr>
+                <tr><td>Site mobilisation / demobilisation</td><td>per park</td><td class="price-input"></td></tr>
+            </table>
+
+            <h3>5.2 Lightning Protection Breakdown (per park)</h3>
+            <table class="table-compact">
+                <tr><th>Item</th><th>Unit</th><th>Rate (&euro;)</th></tr>
+                <tr><td>Lightning risk assessment (IEC 62305-2)</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>External LPS material (air termination, down conductors, earth termination)</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>SPD material (MV + LV AC + LV DC + comms)</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Earthing electrodes &amp; bonding</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>Installation labour (LPS + SPD + earthing)</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>Testing &amp; certification</td><td>per park</td><td class="price-input"></td></tr>
+            </table>
+
+            <h3>5.3 DSO Compliance Breakdown (per park)</h3>
+            <table class="table-compact">
+                <tr><th>Item</th><th>Unit</th><th>Rate (&euro;)</th></tr>
+                <tr><td>Grid connection application preparation &amp; submission</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>Electrical design drawings (SLD, protection, CT/VT, cable) &mdash; per type</td><td>per type (4 total)</td><td class="price-input"></td></tr>
+                <tr><td>Per-park DSO application drawing package</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>CT/VT specification &amp; DSO coordination</td><td>lump sum</td><td class="price-input"></td></tr>
+                <tr><td>Protection relay settings</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>Building / planning permit drawings</td><td>per park</td><td class="price-input"></td></tr>
+                <tr><td>DSO witness testing (on-site presence)</td><td>per day</td><td class="price-input"></td></tr>
+                <tr><td>As-built documentation package</td><td>per park</td><td class="price-input"></td></tr>
+            </table>
+
+            <h3>5.4 Logistics Breakdown (per container)</h3>
+            <table class="table-compact">
+                <tr><th>Item</th><th>Unit</th><th>Rate (&euro;)</th></tr>
+                <tr><td>Port crane offloading</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Flatbed transport (Limassol &rarr; Nicosia district)</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Flatbed transport (Limassol &rarr; Famagusta district)</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Flatbed transport (Limassol &rarr; Limassol district)</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Flatbed transport (Limassol &rarr; Larnaca district)</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Flatbed transport (Limassol &rarr; Paphos district)</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Site crane offloading &amp; placement on foundation</td><td>per container</td><td class="price-input"></td></tr>
+                <tr><td>Abnormal load permits &amp; escorts (if required)</td><td>per trip</td><td class="price-input"></td></tr>
+            </table>
+        </div>
+
+        <!-- Section 6: Park Size Categories -->
+        <div class="section">
+            <h2>6. Park Size Categories (for pricing reference)</h2>
+            <p>Parks vary significantly in size. If your civil works or LPS pricing differs by park size, please quote per category:</p>
+
+            <table>
+                <tr><th>Category</th><th>BESS Containers</th><th>MV SKIDs</th><th>Typical MWh</th><th>Typical Foundation Area</th><th>Approx. Parks</th></tr>
+                <tr><td><strong>Small</strong></td><td>1</td><td>1</td><td>3&ndash;5 MWh</td><td>~45 m&sup2;</td><td>~14</td></tr>
+                <tr><td><strong>Medium</strong></td><td>2&ndash;4</td><td>1&ndash;2</td><td>7.5&ndash;20 MWh</td><td>~60&ndash;120 m&sup2;</td><td>~18</td></tr>
+                <tr><td><strong>Large</strong></td><td>5&ndash;8</td><td>2</td><td>24&ndash;40 MWh</td><td>~135&ndash;180 m&sup2;</td><td>~11</td></tr>
+                <tr><td><strong>Extra Large</strong></td><td>12&ndash;20</td><td>2</td><td>60&ndash;100 MWh</td><td>~240&ndash;360 m&sup2;</td><td>~3</td></tr>
+            </table>
+        </div>
+
+        <!-- Section 7: Qualifications -->
+        <div class="section">
+            <h2>7. Proposal Requirements</h2>
+            <p>Your proposal should include:</p>
+            <ol>
+                <li><strong>Company Profile</strong> &mdash; ETEK registration, relevant experience, team size</li>
+                <li><strong>Completed Pricing Tables</strong> &mdash; Sections 4 and 5 (mandatory: Section 4; optional: Section 5)</li>
+                <li><strong>Scope Confirmation</strong> &mdash; Which scopes (A/B/C/D) you are quoting for</li>
+                <li><strong>Capacity Statement</strong> &mdash; How many sites you can work on in parallel, team available</li>
+                <li><strong>Programme</strong> &mdash; Indicative timeline per batch (can you meet the deadlines in Section 2?)</li>
+                <li><strong>Reference Projects</strong> &mdash; Similar-scale projects completed in Cyprus</li>
+                <li><strong>Insurance</strong> &mdash; Current coverage details (minimum &euro;2M recommended)</li>
+                <li><strong>Payment Terms</strong> &mdash; Your preferred payment structure</li>
+                <li><strong>Subcontracting</strong> &mdash; If any portion will be subcontracted, please disclose</li>
+            </ol>
+        </div>
+
+        <!-- Section 8: Information Provided -->
+        <div class="section">
+            <h2>8. Information to Be Provided by Lighthief</h2>
+            <p>Upon request or engagement, we will provide:</p>
+            <ul>
+                <li>Linyang BESS container datasheets (dimensions, weight, BMS specs)</li>
+                <li>Kehua PCS datasheet and electrical parameters</li>
+                <li>MV SKID configuration drawings (transformer, RMU, switchgear per skid type)</li>
+                <li>DQG layout files (container and platform positions per park)</li>
+                <li>EAC Technical Guide for Storage 2025.1</li>
+                <li>EAC Technical Guide for RES 2023.2</li>
+                <li>Site cadastral plans and existing PV park grid connection details</li>
+                <li>DEHN earthing/LPS/SPD scope documentation (if Scope B labour-only option)</li>
+                <li>Voltus EMS/SCADA architecture and IEC 104 point list</li>
+                <li>Park-by-park list with MW, MWh, container count, district, and grid voltage</li>
+            </ul>
+        </div>
+
+        <!-- Section 9: Timeline -->
+        <div class="section">
+            <h2>9. RFP Timeline</h2>
+            <table>
+                <tr><th style="width:200px;">Milestone</th><th>Date</th></tr>
+                <tr><td>RFP Issued</td><td>3 March 2026</td></tr>
+                <tr><td>Clarification Questions</td><td>By 10 March 2026</td></tr>
+                <tr><td><strong>Proposal Due</strong></td><td><strong>17 March 2026</strong></td></tr>
+                <tr><td>Evaluation &amp; Comparison</td><td>17&ndash;21 March 2026</td></tr>
+                <tr><td>Award / Engagement Decision</td><td>By 24 March 2026</td></tr>
+                <tr><td>Batch 1 civil works start (if awarded)</td><td>April 2026</td></tr>
+            </table>
+        </div>
+
+        <!-- Section 10: Terms -->
+        <div class="section">
+            <h2>10. General Terms</h2>
+            <ul>
+                <li>All pricing in EUR, excluding 19% VAT</li>
+                <li>Prices to remain valid for <strong>90 days</strong> from proposal submission</li>
+                <li>Lighthief reserves the right to award any combination of scopes (A/B/C/D) independently</li>
+                <li>Lighthief reserves the right to award by batch or for the full portfolio</li>
+                <li>The subcontractor will work under Lighthief&rsquo;s EPC framework &mdash; Lighthief is the principal contractor to the end client</li>
+                <li>A formal subcontractor agreement will be executed upon award</li>
+                <li>10-year structural warranty required for civil works (Scope A)</li>
+                <li>Professional indemnity coverage required for design work (Scopes A, B, C)</li>
+                <li>Confidentiality: all project information shared under this RFP is confidential</li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2>11. Contact</h2>
+            <div class="contact-box">
+                <div class="contact-card">
+                    <h4>Lighthief Cyprus Ltd</h4>
+                    <p><strong>Alexander Papacosta</strong><br>Director &amp; BESS Project Lead</p>
+                    <p>28 October Avenue 249, Lophitis Business Center 1<br>Office 201, 3035 Limassol, Cyprus</p>
+                    <p>T: +357 99 164 158<br>E: office@lighthief.com<br>W: solarfarms.cy</p>
+                    <p style="margin-top:8px; font-size:9pt;">Ref: <strong>RFP-LCY-EPC-SUB-2026-001</strong></p>
+                </div>
+                <div class="contact-card">
+                    <h4>Addressed To</h4>
+                    <p><strong>Valentinos Georgiou</strong></p>
+                    <p style="margin-top:10px; font-size:10pt; color: var(--gray-600);">Please submit your proposal electronically to the email above with subject line:<br><em>&ldquo;RFP-LCY-EPC-SUB-2026-001 &mdash; Valentinos Georgiou Proposal&rdquo;</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Lighthief Cyprus Ltd</strong> | HE 477423 | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+            <p>This document is confidential and intended solely for the named recipient. &copy; 2026 Lighthief Cyprus Ltd. All rights reserved.</p>
+            <p style="margin-top: 5px; font-size: 8pt; color: #a0aec0;">Ref: RFP-LCY-EPC-SUB-2026-001 v1.0 | Issued 3 March 2026</p>
+        </div>
+
+    </div>
+</body>
+</html>

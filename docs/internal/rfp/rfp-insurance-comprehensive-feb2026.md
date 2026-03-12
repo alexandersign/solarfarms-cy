@@ -64,7 +64,7 @@
 |---|----------------|---------|----------|
 | 12 | **Product Liability** | Defective product claims (Lighthief scope) | ⚠️ MEDIUM |
 | 13 | **Cyber Liability Insurance** | Data breach, cyber attacks, SCADA/EMS | ⚠️ MEDIUM |
-| 14 | **Environmental / Pollution Liability** | Electrolyte spill, soil contamination | ⚠️ MEDIUM |
+| 14 | **Environmental / Pollution Liability** | Electrolyte spill, thermal runaway gas, soil contamination — **Linyang AXA has Absolute Pollution Exclusion** | 🔴 HIGH |
 | 15 | **Sabotage & Terrorism** | Physical damage + business interruption | ⚠️ MEDIUM |
 | 16 | **Legal Expenses Insurance** | Legal defense costs | ⚠️ MEDIUM |
 | 17 | **Property Insurance** | Office contents, equipment | ⚠️ MEDIUM |
@@ -284,21 +284,24 @@
 
 ---
 
-### 3.9 ENVIRONMENTAL / POLLUTION LIABILITY
+### 3.9 ENVIRONMENTAL / POLLUTION LIABILITY 🔴 UPGRADED TO HIGH
 
-> **Purpose:** Covers third-party claims and cleanup costs arising from pollution events during construction or operations.
+> **Purpose:** Covers third-party claims and cleanup costs arising from pollution events during construction or operations. **CRITICAL UPDATE (9 March 2026):** Linyang's AXA product liability policy contains an **Absolute Pollution Exclusion** — this means AXA will NOT cover any pollution-related claims from BESS equipment, including thermal runaway gas release, electrolyte leakage, or battery off-gassing. Lighthief's own Environmental/Pollution Liability must fill this gap for all 51 parks.
 
 | Item | Requirement |
 |------|-------------|
 | **Limit** | €1,000,000 per occurrence |
 | **Annual Aggregate** | €2,000,000 |
 | **Coverage** | Pollution cleanup, third-party environmental damage, regulatory defense |
+| **BESS-Specific** | Must explicitly cover: thermal runaway gas release (HF, CO, electrolyte vapour), electrolyte spill/leak, fire suppression chemical discharge, coolant leak. Confirm these are NOT excluded under standard pollution wording. |
 
 **Scenarios:**
 - Battery electrolyte leak during installation or transport
+- Thermal runaway event releasing hydrogen fluoride (HF) or other toxic gases — **NOT covered by Linyang AXA**
 - Coolant system spill from BESS container
 - Soil contamination at project site requiring remediation
-- Runoff from fire suppression water into local watercourse
+- Runoff from fire suppression water (aerosol agent + water) into local watercourse
+- Battery off-gassing in enclosed container requiring hazmat response
 
 ---
 
@@ -458,7 +461,7 @@ Lighthief Cyprus Ltd has maintained a **clean claims record** since incorporatio
 | 8 | APG / Surety Bond Facility | €15M aggregate | 🔴 HIGH | €50,000-150,000 |
 | 9 | Product Liability | €5M | ⚠️ MEDIUM | €5,000-10,000 |
 | 10 | Cyber Liability | €500K | ⚠️ MEDIUM | €2,000-5,000 |
-| 11 | Environmental / Pollution | €2M aggregate | ⚠️ MEDIUM | €3,000-8,000 |
+| 11 | Environmental / Pollution | €2M aggregate | 🔴 HIGH (AXA gap) | €3,000-8,000 |
 | 12 | Sabotage & Terrorism | Per CAR/EAR limits | ⚠️ MEDIUM | €5,000-15,000 |
 | 13 | Legal Expenses | €250K | ⚠️ MEDIUM | €2,000-4,000 |
 | - | **TOTAL ESTIMATE** | - | - | **€253,000-584,000** |
@@ -529,12 +532,28 @@ Please provide quotations for each line:
 
 | Coverage | Limit | Insurer | Covers |
 |----------|-------|---------|--------|
-| Product Liability | €5,000,000 | AXA | Manufacturing defects in OEM equipment |
+| Product Liability | €5,000,000 | AXA Tianping (安盛天平) | Manufacturing defects in OEM equipment |
 | Professional Indemnity | €2,000,000 | — | Design/engineering errors |
 | Manufacturing Defect Indemnity | Full indemnification | Contractual | All claims arising from manufacturing defects |
 | Warranty Reserve | ~1.9% of system value/year | On Linyang books | Long-term warranty claims |
 
 > Lighthief is contractually indemnified by Linyang for all claims arising from OEM manufacturing defects. Lighthief's insurance does **not** need to cover product defects in OEM equipment.
+
+### 8.4 Linyang AXA Policy — Confirmed Exclusions (Received 9 March 2026)
+
+> **IMPORTANT FOR UNDERWRITERS:** Linyang's AXA Tianping product liability policy (CGL form CG 00 01 12 04) was received on 9 March 2026. The policy terms document (36 pages) has been reviewed. The **declarations page showing limits, named insured, territory, and product schedule has NOT been received** — this is on order from Linyang. The following exclusions in the AXA policy create gaps that Lighthief's own insurance program must fill:
+
+| AXA Exclusion | Gap Created | Lighthief Coverage Needed |
+|---|---|---|
+| **Absolute Pollution Exclusion** | Thermal runaway gas release, electrolyte leakage, battery off-gassing — AXA will NOT cover pollution claims from BESS incidents | Lighthief Environmental/Pollution Liability (Section 3.9) must explicitly cover BESS-specific pollution events including thermal runaway gas release and electrolyte spill. **Priority upgraded to HIGH.** |
+| **Pure Financial Loss Exclusion** | If BESS fails causing only economic loss (lost revenue, curtailment, no physical damage) — AXA will NOT cover | Lighthief's Product Liability (Section 3.12) and CAR/EAR DSU (Section 3.6) should cover consequential economic loss for EPC-scope defects. End-customer claims for OEM-caused financial loss are contractually excluded per EPC Section 13.3. |
+| **Pure Indirect Financial Loss of Third-Party Exclusion** | Third-party claims for lost profits or lost use of property — AXA will NOT cover | Addressed via EPC contract limitation of liability (Section 13.1 — no consequential damages) and LTSA sole remedy clauses. No additional insurance needed if contracts are properly executed. |
+| **Cyber/Network Risk Exclusion** | SCADA/EMS cyber incidents — AXA will NOT cover | Lighthief Cyber Liability (Section 3.14) must cover SCADA/EMS-related incidents. |
+| **Insured Products Clause** | AXA coverage limited to products listed in the policy schedule — BESS equipment must be listed | Awaiting product schedule from Linyang. If BESS containers/PCS are not listed, the policy provides zero coverage. |
+| **Mandatory Safety Standards Clause** | AXA will not pay if products don't comply with destination country mandatory safety standards | Reinforces need for IEC 62619, IEC 63056, UL9540A, CE marking — all confirmed by Linyang in RFI. |
+| **Sanctions Exclusion** | No coverage if claim would violate PRC, EU, UK, or US sanctions | Low risk for Cyprus BESS installations. No action required. |
+
+> **Action Items for Insurers/Brokers:** (1) Environmental/Pollution Liability must explicitly cover lithium battery thermal runaway gas release and electrolyte spill — confirm this is NOT excluded under the standard pollution wording. (2) Confirm CAR/EAR policy covers BESS-specific fire/thermal events. (3) Confirm Product Liability covers consequential economic loss from EPC-scope defects (not just bodily injury/property damage).
 
 ---
 

@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BESS Insurance — Supplementary Information Pack — Lighthief → Marsh</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px 30px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; text-transform: uppercase; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--primary); }
+
+        .doc-title {
+            text-align: center; margin: 30px 0 20px;
+            font-size: 20px; font-weight: 700; color: var(--primary);
+            padding: 15px; background: var(--gray-50); border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .doc-subtitle {
+            text-align: center; margin: -10px 0 25px;
+            font-size: 13px; color: var(--gray-600);
+        }
+
+        h2 {
+            color: var(--primary); font-size: 16px;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 8px; margin: 30px 0 15px;
+        }
+
+        h3 { color: var(--primary-light); font-size: 13px; margin: 20px 0 10px; }
+
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 10px 0 20px; font-size: 10pt;
+        }
+
+        th, td { padding: 8px 10px; border: 1px solid var(--gray-200); text-align: left; }
+
+        th {
+            background: var(--primary); color: white;
+            font-weight: 600; font-size: 9pt; text-transform: uppercase;
+        }
+
+        tr:nth-child(even) { background: var(--gray-50); }
+        tr:hover { background: #edf2f7; }
+
+        .totals-row { font-weight: 700; background: var(--gray-100) !important; }
+
+        .badge {
+            display: inline-block; padding: 2px 8px;
+            border-radius: 4px; font-size: 9pt; font-weight: 600;
+        }
+        .badge-pass { background: #c6f6d5; color: #22543d; }
+        .badge-comply { background: #bee3f8; color: #2a4365; }
+        .badge-low { background: #c6f6d5; color: #22543d; }
+        .badge-medium { background: #fefcbf; color: #744210; }
+
+        .info-box {
+            background: var(--gray-50); border-left: 4px solid var(--primary-light);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .warning-box {
+            background: #fffff0; border-left: 4px solid var(--warning);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .layout-diagram {
+            font-family: 'Courier New', monospace;
+            font-size: 9pt; line-height: 1.4;
+            background: var(--gray-50); padding: 16px;
+            border: 1px solid var(--gray-200); border-radius: 6px;
+            margin: 12px 0; white-space: pre; overflow-x: auto;
+        }
+
+        .section-intro { font-size: 10.5pt; color: var(--gray-700); margin-bottom: 15px; }
+
+        .toc { margin: 20px 0 30px; }
+        .toc ol { padding-left: 20px; }
+        .toc li { padding: 4px 0; font-size: 10.5pt; }
+        .toc a { color: var(--primary-light); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        .timeline-bar {
+            display: flex; margin: 4px 0; height: 20px; border-radius: 3px; overflow: hidden;
+        }
+        .timeline-segment {
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 8pt; font-weight: 600;
+            min-width: 20px;
+        }
+
+        .footer {
+            margin-top: 40px; padding-top: 15px;
+            border-top: 2px solid var(--gray-200);
+            font-size: 9pt; color: var(--gray-600);
+            text-align: center;
+        }
+
+        @media print {
+            body { font-size: 10pt; }
+            .container { padding: 10px 20px; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="company-name">LIGHTHIEF</div>
+                <div class="company-tagline">Energy Storage Solutions — Cyprus</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <strong>SUPPLEMENTARY INFORMATION PACK</strong><br>
+            Ref: LCY-RFP-MARSH-BESS-2026-S1<br>
+            Date: 25 February 2026<br>
+            Classification: COMMERCIAL — CONFIDENTIAL
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="doc-title">BESS Insurance — Supplementary Underwriting Information</div>
+    <div class="doc-subtitle">
+        In response to Marsh Specialty follow-up queries on LCY-RFP-MARSH-BESS-2026<br>
+        Portfolio: {{PORTFOLIO.parks}} parks · {{PORTFOLIO.mwh}} MWh · {{PORTFOLIO.mw}} MW · {{PORTFOLIO.containers}} containers
+    </div>
+
+    <!-- REFERENCE TABLE -->
+    <table>
+        <tr><th colspan="2">Document Reference</th></tr>
+        <tr><td><strong>Parent RFP</strong></td><td>LCY-RFP-MARSH-BESS-2026 (20 February 2026)</td></tr>
+        <tr><td><strong>This Document</strong></td><td>LCY-RFP-MARSH-BESS-2026-S1 — Supplementary Information Pack</td></tr>
+        <tr><td><strong>From</strong></td><td>{{COMPANY.name}} ({{COMPANY.bessProjectContact}}, {{COMPANY.bessProjectPhone}})</td></tr>
+        <tr><td><strong>To</strong></td><td>Marsh Specialty — Renewable Energy Team</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Detailed fire safety, site layouts, batch/district breakdown, DSO compliance, EPC contract extracts, SPD/LPD specifications, and anonymised park schedule requested by Marsh for underwriting</td></tr>
+    </table>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+            <li><a href="#s1">Fire Safety Engineering — Expanded Detail</a></li>
+            <li><a href="#s2">Example Site Layouts</a></li>
+            <li><a href="#s3">Batch × District × Timeline Matrix</a></li>
+            <li><a href="#s4">DSO Safety Requirements &amp; Compliance</a></li>
+            <li><a href="#s5">EPC Contract — Insurance-Relevant Clauses</a></li>
+            <li><a href="#s6">Lightning Protection (LPD) &amp; Surge Protection (SPD)</a></li>
+            <li><a href="#s7">Timeline Per District Per Batch</a></li>
+            <li><a href="#s8">Anonymised Park Breakdown by Client Group</a></li>
+            <li><a href="#s9">Additional Safety Practices</a></li>
+        </ol>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: FIRE SAFETY ENGINEERING                      -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s1">1. Fire Safety Engineering — Expanded Detail</h2>
+
+    <p class="section-intro">
+        All {{PORTFOLIO.containers}} battery containers deploy a multi-layer fire protection architecture designed to detect, suppress, contain, and prevent propagation. The system uses LFP (Lithium Iron Phosphate) chemistry, which is inherently thermally stable — the most fire-safe lithium chemistry commercially available.
+    </p>
+
+    <h3>1.1 Detection &amp; Suppression — Per Container</h3>
+    <table>
+        <tr><th>Component</th><th>Qty / Container</th><th>Function</th></tr>
+        <tr><td>Container-Level Aerosol (FK-5-1-12 / Novec 1230)</td><td>6</td><td>Full-container fire suppression — automatic activation</td></tr>
+        <tr><td>Pack-Level Aerosol Units</td><td>96</td><td>Individual battery pack suppression — targeted response</td></tr>
+        <tr><td>Water Firefighting System</td><td>1</td><td>Secondary water-based backup suppression</td></tr>
+        <tr><td>Fire Control Panel</td><td>1</td><td>Central fire alarm and suppression controller</td></tr>
+        <tr><td>Smoke Detectors (photoelectric)</td><td>2</td><td>Early smoke detection — spot-type</td></tr>
+        <tr><td>Heat Detectors (spot-type)</td><td>2</td><td>Thermal anomaly detection</td></tr>
+        <tr><td>H₂ Gas Detectors</td><td>2</td><td>Combustible hydrogen gas concentration monitoring</td></tr>
+        <tr><td>CO Sensors</td><td>2</td><td>Carbon monoxide detection — early off-gas indicator</td></tr>
+        <tr><td>Pack Integrated Nozzles (CO + temp)</td><td>48</td><td>Per-pack temperature + CO monitoring with spray nozzle</td></tr>
+        <tr><td>Explosion-Proof Exhaust Fan</td><td>1</td><td>Forced gas evacuation to prevent explosive accumulation</td></tr>
+        <tr><td>Explosion Vent Panel</td><td>1</td><td>Pressure relief in overpressure event</td></tr>
+        <tr><td>Air Intake Fan</td><td>1</td><td>Controlled ventilation airflow</td></tr>
+        <tr><td>Audible/Visual Alarms</td><td>2+</td><td>Indoor and outdoor alarm indicators</td></tr>
+        <tr><td>Emergency Start/Stop</td><td>1</td><td>Manual override for suppression system</td></tr>
+    </table>
+
+    <h3>1.2 Fire Alarm Escalation Process</h3>
+    <table>
+        <tr><th>Alarm Level</th><th>Trigger</th><th>Automatic Action</th></tr>
+        <tr><td><strong>Level 1 — Primary</strong></td><td>Any single detector triggered</td><td>Audible/visual alarm activated; BMS alert raised</td></tr>
+        <tr><td><strong>Level 2 — Secondary</strong></td><td>Smoke + heat detector simultaneously</td><td>Outdoor alarm activated; aerosol system armed</td></tr>
+        <tr><td><strong>Level 3 — Gas Threshold</strong></td><td>Combustible gas concentration detected</td><td>Explosion-proof exhaust fans activated; emergency ventilation</td></tr>
+        <tr><td><strong>Level 4 — Pack Alarm</strong></td><td>Pack-integrated device alarm (CO + temperature)</td><td>30-second countdown → aerosol spray discharged</td></tr>
+    </table>
+
+    <h3>1.3 Fire Suppression Sequence</h3>
+    <div class="info-box">
+        <strong>Automatic sequence (no human intervention required):</strong><br>
+        1. Detector triggered → Primary alarm → Audible/visual alarm<br>
+        2. Smoke + heat → Secondary alarm → Outdoor alarm activated<br>
+        3. Gas fire suppression system armed<br>
+        4. <strong>30-second countdown</strong> begins (allows evacuation)<br>
+        5. Aerosol extinguishing agent discharged (FK-5-1-12 / Novec 1230)<br>
+        6. Gas release indicator activated<br>
+        7. Fans auto-shutdown when gas concentration drops below threshold
+    </div>
+
+    <h3>1.4 BMS Shutdown Logic</h3>
+    <table>
+        <tr><th>Monitored Parameter</th><th>Cell-Level Threshold</th><th>Action</th></tr>
+        <tr><td>Cell Voltage — High</td><td>≥ 3.65V per cell</td><td>Charge current reduced → system shutdown if persists</td></tr>
+        <tr><td>Cell Voltage — Low</td><td>≤ 2.8V per cell</td><td>Discharge stopped → system shutdown</td></tr>
+        <tr><td>Cell Temperature — High</td><td>≥ 55°C</td><td>Power reduction → shutdown at 60°C</td></tr>
+        <tr><td>Cell Temperature Differential</td><td>≥ 10°C between cells</td><td>Alarm raised → investigation triggered</td></tr>
+        <tr><td>Module Insulation</td><td>Below threshold</td><td>Isolation fault → automatic disconnect</td></tr>
+        <tr><td>SOC Limits</td><td>0% or 100%</td><td>Charge/discharge halted</td></tr>
+    </table>
+
+    <h3>1.5 UL9540A Test Results — Thermal Propagation</h3>
+    <table>
+        <tr><th>Test Level</th><th>Certificate</th><th>Result</th><th>Key Finding</th></tr>
+        <tr>
+            <td>Cell Level (EVE MB31 314Ah LFP)</td>
+            <td>UL 9540A #4791099276</td>
+            <td><span class="badge badge-pass">PASSED</span></td>
+            <td>Venting at 154°C; thermal runaway at 225°C. LFL: 7.75% ambient</td>
+        </tr>
+        <tr>
+            <td>Module Level (LBR Series)</td>
+            <td>UL 9540A #80239433</td>
+            <td><span class="badge badge-pass">PASSED</span></td>
+            <td>No propagation between modules</td>
+        </tr>
+        <tr>
+            <td>Unit Level (Container)</td>
+            <td>UL 9540A #80239432</td>
+            <td><span class="badge badge-pass">PASSED</span></td>
+            <td>No flaming outside initiating BESS; no explosion hazard; target BESS max temp 34.8°C (well below 154°C cell limit)</td>
+        </tr>
+    </table>
+
+    <h3>1.6 Container Construction — Passive Fire Safety</h3>
+    <table>
+        <tr><th>Feature</th><th>Standard</th><th>Detail</th></tr>
+        <tr><td>Enclosure Rating</td><td>IP55</td><td>Dust-tight, protected against water jets from all directions</td></tr>
+        <tr><td>Corrosion Protection</td><td>C5 (ISO 12944)</td><td>Coastal/industrial standard — all Cyprus sites</td></tr>
+        <tr><td>Fire Retardant Materials</td><td>UL 94 V-0</td><td>Self-extinguishing within 10 seconds; no dripping</td></tr>
+        <tr><td>Container Spacing</td><td>FM 5-33 / NFPA 855</td><td>Minimum 6m between containers (exceeds 4.5m insurer minimum)</td></tr>
+        <tr><td>Containment Strategy</td><td>FM 5-33 aligned</td><td>"Let it burn" viable — individual container will NOT propagate to adjacent units at 6m spacing</td></tr>
+    </table>
+
+    <div class="warning-box">
+        <strong>PML Reduction:</strong> The 6m container spacing significantly reduces Probable Maximum Loss compared to industry-standard 3m spacing. At 6m, an underwriter can model single-container PML rather than cluster propagation. Largest single container value: ~€400,000.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: EXAMPLE SITE LAYOUTS                         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s2">2. Example Site Layouts</h2>
+
+    <p class="section-intro">
+        Three representative park sizes illustrate the standard layout approach. All layouts comply with DSO setback requirements (6m from boundaries), fire access requirements (6m perimeter), and exceed FM 5-33 / NFPA 855 minimum container separation distances.
+    </p>
+
+    <h3>2.1 Small Park — 5 MW / 20 MWh (5 Battery Containers + 1 MV SKID)</h3>
+    <div class="layout-diagram">
+    ┌──────────────────────────────────────────────────────────────────────────────┐
+    │         ◄── 6m setback from boundary ──►                                    │
+    │                                                                              │
+    │    ╔═══════════╗   6m    ╔═══════════╗   6m    ╔═══════════╗                │
+    │    ║  BESS #1  ║ ◄────► ║  BESS #2  ║ ◄────► ║  BESS #3  ║                │
+    │    ║  20HC     ║        ║  20HC     ║        ║  20HC     ║                │
+    │    ║  5.015MWh ║        ║  5.015MWh ║        ║  5.015MWh ║                │
+    │    ╚═══════════╝        ╚═══════════╝        ╚═══════════╝                │
+    │         │                                                                    │
+    │         │ 6m                                                                 │
+    │         ▼                                                                    │
+    │    ╔═══════════╗   6m    ╔═══════════╗   6m    ╔════════════════════╗       │
+    │    ║  BESS #4  ║ ◄────► ║  BESS #5  ║ ◄────► ║    MV SKID        ║──► Grid│
+    │    ║  20HC     ║        ║  20HC     ║        ║    40HC (5MW)     ║   POC  │
+    │    ║  5.015MWh ║        ║  5.015MWh ║        ║  PCS+Transformer  ║       │
+    │    ╚═══════════╝        ╚═══════════╝        ╚════════════════════╝       │
+    │                                                                              │
+    │    ◄──────────────── ~50m ────────────────►  ◄── 6m fire access ──►         │
+    │                                                                              │
+    │         ══════════════════════════════════ ← Fire access road (6m width)     │
+    │                                                                              │
+    └──────────────────────────────────────────────────────────────────────────────┘
+    </div>
+
+    <table>
+        <tr><th>Dimension</th><th>Value</th><th>Standard</th></tr>
+        <tr><td>Battery Container (20HC)</td><td>6,058 × 2,438 × 2,896 mm</td><td>ISO 668</td></tr>
+        <tr><td>MV SKID (40HC)</td><td>12,192 × 2,438 × 2,896 mm</td><td>ISO 668</td></tr>
+        <tr><td>Container Spacing</td><td>6,000 mm minimum</td><td>Exceeds FM 5-33 (4.5m)</td></tr>
+        <tr><td>Boundary Setback</td><td>6,000 mm minimum</td><td>DSO KDP 17/2026</td></tr>
+        <tr><td>Fire Access Road Width</td><td>6,000 mm minimum</td><td>Cyprus Fire Service</td></tr>
+        <tr><td>Container Weight</td><td>~43 tonnes (5MWh) / ~30 tonnes (4MWh)</td><td>Crane-placed</td></tr>
+        <tr><td>Container Height</td><td>2,896 mm (below DSO 3m max)</td><td>DSO KDP 17/2026</td></tr>
+        <tr><td>Typical Site Footprint (5MW)</td><td>~50 × 30m (1,500 m²)</td><td>—</td></tr>
+    </table>
+
+    <h3>2.2 Medium Park — 2.5 MW / 10 MWh (3 Containers + 1 MV SKID)</h3>
+    <div class="layout-diagram">
+    ┌───────────────────────────────────────────────────────────┐
+    │                                                           │
+    │    ╔══════════╗  6m  ╔══════════╗  6m  ╔══════════╗     │
+    │    ║  BESS #1 ║◄───►║  BESS #2 ║◄───►║  BESS #3 ║     │
+    │    ║ 4.18 MWh ║     ║ 4.18 MWh ║     ║ 4.18 MWh ║     │
+    │    ╚══════════╝     ╚══════════╝     ╚══════════╝     │
+    │         │                                  │             │
+    │         │ 6m                               │ 6m          │
+    │         ▼                                  ▼             │
+    │    ╔════════════════════════╗                             │
+    │    ║     MV SKID (20HC)    ║─────────────────────► Grid  │
+    │    ║     2.5MW PCS         ║                       POC   │
+    │    ╚════════════════════════╝                             │
+    │                                                           │
+    │    ◄──────── ~35m ────────►                              │
+    └───────────────────────────────────────────────────────────┘
+    </div>
+
+    <h3>2.3 Large Park — 12 MW / 40+ MWh (10+ Containers + MV SKIDs)</h3>
+    <div class="layout-diagram">
+    ┌──────────────────────────────────────────────────────────────────────────────────┐
+    │                                                                                  │
+    │   ╔══════╗ 6m ╔══════╗ 6m ╔══════╗ 6m ╔══════╗ 6m ╔══════╗ 6m ╔══════╗       │
+    │   ║BESS 1║◄──►║BESS 2║◄──►║BESS 3║◄──►║BESS 4║◄──►║BESS 5║◄──►║BESS 6║       │
+    │   ╚══════╝    ╚══════╝    ╚══════╝    ╚══════╝    ╚══════╝    ╚══════╝       │
+    │                                                                                  │
+    │   ╔══════╗ 6m ╔══════╗ 6m ╔══════╗ 6m ╔══════╗                                 │
+    │   ║BESS 7║◄──►║BESS 8║◄──►║BESS 9║◄──►║BSS 10║                                │
+    │   ╚══════╝    ╚══════╝    ╚══════╝    ╚══════╝                                 │
+    │                                                                                  │
+    │   ╔════════════════════╗  6m  ╔════════════════════╗                             │
+    │   ║   MV SKID 1 (40HC)║◄────►║   MV SKID 2 (40HC)║──────────────────────► Grid │
+    │   ║   6MW PCS+XFMR    ║      ║   6MW PCS+XFMR    ║                        POC  │
+    │   ╚════════════════════╝      ╚════════════════════╝                             │
+    │                                                                                  │
+    │   ◄────────────────────── ~70-80m ──────────────────────►                       │
+    └──────────────────────────────────────────────────────────────────────────────────┘
+    </div>
+
+    <div class="info-box">
+        <strong>Key underwriting point:</strong> Even in the largest park (14 containers, 60 MWh, Esperia Frenaros), every container maintains 6m minimum separation. The "let it burn" containment strategy applies regardless of park size — underwriters can model single-container PML (max ~€400K) rather than multi-container propagation scenarios.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: BATCH × DISTRICT × TIMELINE MATRIX           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s3">3. Batch × District × Timeline Matrix</h2>
+
+    <p class="section-intro">
+        The following cross-tabulation shows how the portfolio of {{PORTFOLIO.parks}} parks (46 in 2026 delivery, 5 deferred to 2028) is distributed across delivery batches and Cyprus districts. This is critical for assessing geographic concentration of risk and peak exposure per region.
+    </p>
+
+    <h3>3.1 Batch 1 — ABIO Phase 1 (CIF: {{BATCH1.cifDate}}, Target PAC: {{BATCH1.pacDate}})</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MW</th><th>MWh</th><th>Containers</th><th>Notes</th></tr>
+        <tr><td><strong>Nicosia</strong></td><td>15</td><td>72.5</td><td>290</td><td>73</td><td>Entire batch in single district — efficient crane routing, high geographic concentration</td></tr>
+        <tr class="totals-row"><td><strong>Batch 1 Total</strong></td><td><strong>15</strong></td><td><strong>72.5</strong></td><td><strong>290</strong></td><td><strong>73</strong></td><td></td></tr>
+    </table>
+
+    <h3>3.2 Batch 2 — ABIO Phase 2 + Timotheos (CIF: {{BATCH2.cifDate}}, Target PAC: {{BATCH2.pacDate}})</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MW</th><th>MWh</th><th>Containers</th><th>Notes</th></tr>
+        <tr><td><strong>Nicosia</strong></td><td>14</td><td>39.5</td><td>140</td><td>41</td><td>ABIO Ph.2 (5 parks) + Timotheos (9 parks)</td></tr>
+        <tr><td><strong>Larnaca</strong></td><td>4</td><td>10.0</td><td>38.4</td><td>11</td><td>ABIO Greendorado cluster</td></tr>
+        <tr><td><strong>Paphos</strong></td><td>1</td><td>5.0</td><td>20.0</td><td>5</td><td>Single ABIO park (Polemi)</td></tr>
+        <tr class="totals-row"><td><strong>Batch 2 Total</strong></td><td><strong>19</strong></td><td><strong>54.5</strong></td><td><strong>198.4</strong></td><td><strong>57</strong></td><td></td></tr>
+    </table>
+
+    <h3>3.3 Batch 3 — Esperia Phase 1 + Standalone Groups (CIF: {{BATCH3.cifDate}}, Target PAC: {{BATCH3.pacDate}})</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MW</th><th>MWh</th><th>Containers</th><th>Notes</th></tr>
+        <tr><td><strong>Famagusta</strong></td><td>5</td><td>42.0</td><td>180</td><td>44</td><td>Esperia cluster (3 parks) + Galascope (2 parks) — largest district concentration</td></tr>
+        <tr><td><strong>Limassol</strong></td><td>3</td><td>12.3</td><td>40</td><td>12</td><td>Esperia (1) + Andreadis (2)</td></tr>
+        <tr><td><strong>Paphos</strong></td><td>3</td><td>6.5</td><td>20</td><td>6</td><td>Kerasi group (3 parks)</td></tr>
+        <tr><td><strong>Nicosia</strong></td><td>1</td><td>7.7</td><td>25</td><td>7</td><td>Karis standalone (single large park)</td></tr>
+        <tr class="totals-row"><td><strong>Batch 3 Total</strong></td><td><strong>12</strong></td><td><strong>68.5</strong></td><td><strong>265</strong></td><td><strong>69</strong></td><td></td></tr>
+    </table>
+
+    <h3>3.4 District Totals Across All Batches (46 parks, 2026 delivery)</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MW</th><th>MWh</th><th>Containers</th><th>% of MWh</th><th>Batches Present</th></tr>
+        <tr><td><strong>Nicosia</strong></td><td>30</td><td>119.7</td><td>455</td><td>121</td><td>60.4%</td><td>1, 2, 3</td></tr>
+        <tr><td><strong>Famagusta</strong></td><td>5</td><td>42.0</td><td>180</td><td>44</td><td>23.9%</td><td>3</td></tr>
+        <tr><td><strong>Larnaca</strong></td><td>4</td><td>10.0</td><td>38.4</td><td>11</td><td>5.1%</td><td>2</td></tr>
+        <tr><td><strong>Limassol</strong></td><td>3</td><td>12.3</td><td>40</td><td>12</td><td>5.3%</td><td>3</td></tr>
+        <tr><td><strong>Paphos</strong></td><td>4</td><td>11.5</td><td>40</td><td>11</td><td>5.3%</td><td>2, 3</td></tr>
+        <tr class="totals-row"><td><strong>TOTAL (2026)</strong></td><td><strong>46</strong></td><td><strong>195.5</strong></td><td><strong>753.4</strong></td><td><strong>199</strong></td><td><strong>100%</strong></td><td></td></tr>
+    </table>
+
+    <div class="warning-box">
+        <strong>Risk Concentration Note:</strong> 60% of 2026 MWh capacity is in Nicosia district. However, parks within Nicosia are distributed across multiple villages (Potamia, Agios Sozomenos, Tseri, Dali, etc.) with typical 5–20 km separation between parks. No two parks share a site boundary. A single natural catastrophe event would be unlikely to affect more than 2–3 adjacent parks.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: DSO SAFETY REQUIREMENTS                      -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s4">4. DSO Safety Requirements &amp; Compliance</h2>
+
+    <p class="section-intro">
+        All {{PORTFOLIO.parks}} BESS parks must comply with Cyprus DSO (EAC) safety requirements, including the updated regulatory decree KDP 17/2026 (Official Gazette 5992, 16 January 2026). The following tables summarise the mandatory conditions and our compliance status.
+    </p>
+
+    <h3>4.1 Fire Service Conditions (KDP 17/2026, Appendix I)</h3>
+    <table>
+        <tr><th>#</th><th>Requirement</th><th>Standard</th><th>Compliance</th></tr>
+        <tr><td>18</td><td>6m fire access perimeter for fire brigade vehicles</td><td>Cyprus Fire Service</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>19</td><td>Construction, position, distances, fire suppression per international standards</td><td>UL 9540A, IEC 62933-5-2, FM 5-33, NFPA 855</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>20</td><td>Dry vegetation clearance inside installation</td><td>Cyprus Fire Service</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>21</td><td>Planting limited to 1m height/width from fence</td><td>Cyprus Fire Service</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+    </table>
+
+    <h3>4.2 Environmental Safety Conditions (KDP 17/2026)</h3>
+    <table>
+        <tr><th>#</th><th>Requirement</th><th>Our Implementation</th><th>Compliance</th></tr>
+        <tr><td>24</td><td>Reinforced concrete foundation required</td><td>Concrete base for all containers (~45 m² small / ~120 m² medium parks)</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>25</td><td>HVAC system required; F-gas compliance</td><td>45kW liquid cooling system per container (closed-loop)</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>26</td><td>Regular inspection/maintenance program</td><td>LTSA includes weekly/monthly preventive maintenance schedule</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>27</td><td>Battery recycling in licensed facilities</td><td>Lighthief EOL recycling program (Cyprus or EU licensed facility)</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>29</td><td>Site restoration after decommissioning</td><td>EPC contract includes decommissioning obligation</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+    </table>
+
+    <h3>4.3 Electrical Protection Settings (DSO Compliance)</h3>
+    <table>
+        <tr><th>Protection</th><th>DSO Requirement</th><th>Linyang/Kehua Setting</th><th>Status</th></tr>
+        <tr><td>Undervoltage</td><td>0.9 Un / 0.2s</td><td>0.9 Un / 0.2s</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>Overvoltage</td><td>1.1 Un / 0.2s</td><td>1.1 Un / 0.2s</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>Underfrequency</td><td>47 Hz / 0.2s</td><td>47 Hz / 0.2s</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>Overfrequency</td><td>52 Hz / 0.2s</td><td>52 Hz / 0.2s</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>Anti-Islanding</td><td>Active LoM (ROCOF / vector shift)</td><td>Active LoM supported</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>THDi (Current Distortion)</td><td>&lt; 5%</td><td>&lt; 3%</td><td><span class="badge badge-comply">EXCEEDS</span></td></tr>
+        <tr><td>Power Factor</td><td>≥ 0.9</td><td>&gt; 0.99</td><td><span class="badge badge-comply">EXCEEDS</span></td></tr>
+        <tr><td>Grid Code PCS Certification</td><td>EN 50549-2</td><td>{{OEM.gridCodeCert}}</td><td><span class="badge badge-comply">CERTIFIED</span></td></tr>
+    </table>
+
+    <h3>4.4 Labour &amp; Safety Conditions (KDP 17/2026)</h3>
+    <table>
+        <tr><th>#</th><th>Requirement</th><th>Our Implementation</th><th>Compliance</th></tr>
+        <tr><td>32</td><td>Written Risk Assessment including battery-related risks</td><td>Site-specific risk assessment per project, prepared by certified engineer (ΕΞΥΠΠ/ΕΣΥΠΠ)</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>33</td><td>Risk assessment based on manufacturer specifications</td><td>Based on Linyang User Manual V2.0 and OEM safety datasheets</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+    </table>
+
+    <h3>4.5 General Siting Conditions (KDP 17/2026)</h3>
+    <table>
+        <tr><th>Condition</th><th>Requirement</th><th>Compliance</th></tr>
+        <tr><td>Maximum Height</td><td>3.0 m above natural ground</td><td><span class="badge badge-comply">2.896 m — COMPLIANT</span></td></tr>
+        <tr><td>Boundary Setback</td><td>Minimum 6m from all plot boundaries</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>Visual Impact</td><td>No alteration of area character or visual disturbance</td><td><span class="badge badge-comply">Neutral colours per design</span></td></tr>
+        <tr><td>Topography</td><td>No alteration of natural ground levels</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+        <tr><td>Water Infrastructure</td><td>No impact on water systems</td><td><span class="badge badge-comply">COMPLIANT</span></td></tr>
+    </table>
+
+    <h3>4.6 DSO Compliance Timeline</h3>
+    <table>
+        <tr><th>Phase</th><th>DSO Requirement</th><th>When</th></tr>
+        <tr><td>Pre-Construction</td><td>Responsible Engineer Declaration (Υπεύθυνη Δήλωση Μελετητή) submitted to competent authority</td><td>Before works commence</td></tr>
+        <tr><td>Pre-Construction</td><td>CT class confirmation from DSO for metering</td><td>Critical path — before production order</td></tr>
+        <tr><td>Pre-Commissioning</td><td>Grid connection application and approved protection settings</td><td>60–90 days before PAC</td></tr>
+        <tr><td>Commissioning</td><td>DSO witness testing (grid sync, protection trip tests)</td><td>At PAC</td></tr>
+        <tr><td>Operational</td><td>Annual regulatory testing and DSO reporting</td><td>Ongoing from PAC</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: EPC CONTRACT — INSURANCE-RELEVANT CLAUSES    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s5">5. EPC Contract — Insurance-Relevant Clauses</h2>
+
+    <p class="section-intro">
+        Extracts from the EPC Agreement (LCY-EPC-001, Version 3.0, February 2026) relevant to insurance underwriting. Full contract available on request.
+    </p>
+
+    <h3>5.1 Liability Cap &amp; Limitation (Section 13)</h3>
+    <table>
+        <tr><th>Provision</th><th>Detail</th></tr>
+        <tr><td><strong>Contractor's Total Liability</strong></td><td>Capped at <strong>100% of the Contract Price</strong> per project</td></tr>
+        <tr><td><strong>Consequential Damages</strong></td><td>Excluded — neither party liable for indirect or consequential damages</td></tr>
+        <tr><td><strong>OEM Product Exclusion</strong></td><td>Contractor's liability cap does NOT include claims from OEM manufacturing/design defects</td></tr>
+        <tr><td><strong>Carve-Outs</strong></td><td>Fraud, wilful misconduct, death/personal injury from negligence — not subject to cap</td></tr>
+    </table>
+
+    <h3>5.2 Delay Liquidated Damages (Section 8.4)</h3>
+    <table>
+        <tr><th>Period</th><th>Rate</th><th>LD Value Basis</th></tr>
+        <tr><td>Days 1–30</td><td>0.1% per calendar day</td><td rowspan="3">Full Park Delay: 100% of Contract Price<br>Partial Delay: Contract Price × Affected Capacity %</td></tr>
+        <tr><td>Days 31–60</td><td>0.15% per calendar day</td></tr>
+        <tr><td>Day 61+</td><td>0.2% per calendar day</td></tr>
+        <tr><td colspan="2"><strong>Maximum LD Cap</strong></td><td><strong>10% of Contract Price per park</strong></td></tr>
+        <tr><td colspan="2"><strong>Sole Remedy</strong></td><td>Delay LDs are client's sole and exclusive remedy for delay</td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>LD Exclusions:</strong> Delay LDs do not apply for Force Majeure, client-caused delays, DSO/grid authority delays, client change orders, or customs/port delays beyond Contractor's reasonable control (if timely shipment demonstrated).
+    </div>
+
+    <h3>5.3 Payment Milestones (Section 7)</h3>
+    <table>
+        <tr><th>Milestone</th><th>% of Contract Price</th><th>Trigger</th></tr>
+        <tr><td>Advance Payment</td><td>{{PAYMENT.client.advance}}%</td><td>Within 7 days of Agreement signing</td></tr>
+        <tr><td>Pre-Shipment</td><td>{{PAYMENT.client.preShipment}}%</td><td>Prior to shipment of BESS equipment</td></tr>
+        <tr><td>PAC Payment</td><td>{{PAYMENT.client.pac}}%</td><td>Successful installation, commissioning, and PAC issuance</td></tr>
+        <tr><td>Retention Release</td><td>{{PAYMENT.client.retention}}%</td><td>Released within 30 days of FAC issuance</td></tr>
+    </table>
+
+    <h3>5.4 Risk &amp; Title Transfer (Section 7.5)</h3>
+    <table>
+        <tr><th>Event</th><th>Timing</th></tr>
+        <tr><td><strong>Risk of Loss/Damage</strong></td><td>Passes to Client upon delivery to site and unloading</td></tr>
+        <tr><td><strong>Title (Ownership)</strong></td><td>Does NOT pass until full payment received (including retention release)</td></tr>
+        <tr><td><strong>Client Obligation (pre-title)</strong></td><td>Client holds equipment as bailee; must insure and maintain</td></tr>
+    </table>
+
+    <h3>5.5 Warranty Responsibility Split (Section 10.7)</h3>
+    <table>
+        <tr><th>Scope</th><th>Warranted By</th><th>Period</th></tr>
+        <tr><td>Battery containers, modules, cells, PCS, BMS, cooling, fire suppression</td><td><strong>Linyang (OEM)</strong></td><td>{{WARRANTY.baseYears}} years from PAC (extendable to {{WARRANTY.maxExtendedYears}})</td></tr>
+        <tr><td>SOH Guarantee ({{WARRANTY.sohGuarantees.year5}}% Y5, {{WARRANTY.sohGuarantees.year10}}% Y10, {{WARRANTY.sohGuarantees.year15}}% Y15)</td><td><strong>Linyang (OEM)</strong></td><td>Up to {{WARRANTY.maxExtendedYears}} years</td></tr>
+        <tr><td>OEM installation and commissioning workmanship</td><td><strong>Linyang (OEM)</strong></td><td>{{WARRANTY.baseYears}} years from PAC</td></tr>
+        <tr><td>Civil works, foundations, site preparation</td><td><strong>Lighthief (EPC)</strong></td><td>2 years from PAC</td></tr>
+        <tr><td>AC/DC cabling, grounding (Lighthief-installed)</td><td><strong>Lighthief (EPC)</strong></td><td>2 years from PAC</td></tr>
+        <tr><td>Fencing, access roads, site infrastructure</td><td><strong>Lighthief (EPC)</strong></td><td>2 years from PAC</td></tr>
+    </table>
+
+    <h3>5.6 Indemnification (Section 13A)</h3>
+    <table>
+        <tr><th>Direction</th><th>Coverage</th></tr>
+        <tr><td><strong>Client → Contractor</strong></td><td>Client indemnifies Contractor for: client breach, negligence, third-party claims from client operation, unauthorised modifications, failure to insure, failure to comply with safety/regulatory requirements</td></tr>
+        <tr><td><strong>Contractor → Client</strong></td><td>Contractor indemnifies Client for: negligent acts during installation, breach of installation workmanship warranty, personal injury/property damage caused by Contractor personnel on-site</td></tr>
+        <tr><td><strong>OEM Claims (Flow-Through)</strong></td><td>Contractor facilitates OEM claims on client's behalf; OEM indemnification flows through for manufacturing defects. Contractor NOT liable for OEM refusal of warranty claims</td></tr>
+    </table>
+
+    <h3>5.7 Force Majeure (Section 12)</h3>
+    <table>
+        <tr><th>Element</th><th>Detail</th></tr>
+        <tr><td><strong>Definition</strong></td><td>War, terrorism, natural disasters, pandemics, governmental actions, regulatory changes, grid delays, port congestion, transportation disruptions, environmental/archaeological findings</td></tr>
+        <tr><td><strong>Effect</strong></td><td>Obligations suspended without penalty for duration of event</td></tr>
+        <tr><td><strong>Extended FM (&gt; 6 months)</strong></td><td>Either party may terminate on 30 days' notice; Client pays for completed works and delivered materials</td></tr>
+    </table>
+
+    <h3>5.8 Insurance Obligations (Section 14)</h3>
+    <table>
+        <tr><th>Party</th><th>Required Insurance</th></tr>
+        <tr><td><strong>Contractor (Lighthief)</strong></td><td>General Commercial Liability (min €1M), Professional Indemnity (min €1M), Contractor's All Risks (full Contract Price during construction)</td></tr>
+        <tr><td><strong>OEM (Linyang, flow-through)</strong></td><td>Product Liability (€5M via AXA), Professional Indemnity (€2M)</td></tr>
+        <tr><td><strong>Client</strong></td><td>Site/property insurance from delivery, operational liability from commissioning, business interruption (recommended)</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: LPD & SPD                                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s6">6. Lightning Protection (LPD) &amp; Surge Protection (SPD)</h2>
+
+    <p class="section-intro">
+        All parks will be equipped with external lightning protection (LPS) and internal surge protection devices (SPD), designed per IEC 62305 and supplied by DEHN / StrikeRA. Total portfolio lightning protection budget: €528,000.
+    </p>
+
+    <h3>6.1 Lightning Protection System (LPS) — External</h3>
+    <table>
+        <tr><th>Component</th><th>Standard</th><th>Installation</th></tr>
+        <tr><td>Air Terminals (Lightning Rods)</td><td>IEC 62305-3</td><td>On each battery container (20HC) and MV SKID (40HC)</td></tr>
+        <tr><td>Down Conductors</td><td>IEC 62305-3</td><td>Minimum 2 per structure, connected to earth termination</td></tr>
+        <tr><td>Earth Electrodes</td><td>IEC 62305-3</td><td>Integrated with grounding system; target ≤ 1Ω per container</td></tr>
+        <tr><td>Bonding Connections</td><td>IEC 62305-3</td><td>All metallic structures interconnected — equipotential bonding</td></tr>
+        <tr><td>Protection Level</td><td>IEC 62305-1</td><td>Class II or III (determined by per-site risk assessment)</td></tr>
+    </table>
+
+    <h3>6.2 Surge Protection Devices (SPD) — Internal</h3>
+    <table>
+        <tr><th>Location</th><th>SPD Type</th><th>Voltage</th><th>Protection Target</th></tr>
+        <tr><td>MV Grid Incoming</td><td>Type 1</td><td>11 kV or 22 kV</td><td>Grid point of connection — direct lightning current</td></tr>
+        <tr><td>LV Main Panel (MV SKID)</td><td>Type 1+2</td><td>400/480 V</td><td>PCS and transformer LV side — combined protection</td></tr>
+        <tr><td>DC Main (Battery → PCS)</td><td>Type 2</td><td>1,500 V DC</td><td>Battery containers DC output — indirect surge</td></tr>
+        <tr><td>Aux Power (per container)</td><td>Type 2</td><td>400 V</td><td>Container auxiliary power — cooling, BMS, fire systems</td></tr>
+        <tr><td>Control &amp; Communications</td><td>Type 3</td><td>24 V / Ethernet</td><td>BMS, SCADA (IEC 60870-5-104), RTU, EMS — signal protection</td></tr>
+    </table>
+
+    <h3>6.3 Grounding Specifications</h3>
+    <table>
+        <tr><th>Parameter</th><th>Specification</th><th>Standard</th></tr>
+        <tr><td>Grounding Cross-Section</td><td>≥ 250 mm² effective</td><td>Linyang installation manual</td></tr>
+        <tr><td>Connection Impedance</td><td>≤ 0.1Ω</td><td>Linyang installation manual</td></tr>
+        <tr><td>Grounding Cable</td><td>120–150 mm² Cu (yellow-green) or flat steel</td><td>IEC 62305</td></tr>
+        <tr><td>Earth Resistance — Per Container</td><td>≤ 1Ω</td><td>Exceeds typical 10Ω requirement</td></tr>
+        <tr><td>Earth Resistance — System Overall</td><td>≤ 0.5Ω</td><td>Target for interconnected earthing network</td></tr>
+    </table>
+
+    <h3>6.4 Risk Assessment Parameters (Cyprus)</h3>
+    <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td>Lightning Flash Density (Ng)</td><td>~2–4 flashes/km²/year (Mediterranean climate)</td></tr>
+        <tr><td>Structure Height</td><td>2.896 m (low profile — reduces collection area)</td></tr>
+        <tr><td>Sensitive Electronics at Risk</td><td>BMS, PCS inverters, SCADA RTU, fire control panel</td></tr>
+        <tr><td>Criticality</td><td>High — grid-connected, revenue-generating assets</td></tr>
+        <tr><td>Supplier</td><td>DEHN (design + materials) + StrikeRA (installation, €1,600/park)</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: TIMELINE PER DISTRICT PER BATCH              -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s7">7. Timeline Per District Per Batch</h2>
+
+    <p class="section-intro">
+        The following timeline shows the construction programme broken down by batch and district, enabling Marsh to assess geographic proximity of active construction sites and overlapping risk windows.
+    </p>
+
+    <h3>7.1 Batch 1 — Nicosia Cluster (Jul–Oct 2026)</h3>
+    <table>
+        <tr><th>Phase</th><th>Start</th><th>End</th><th>District</th><th>Detail</th></tr>
+        <tr><td>Port Clearance</td><td>5 Jul 2026</td><td>12 Jul 2026</td><td>Limassol (port)</td><td>73 containers cleared through Limassol port</td></tr>
+        <tr><td>Transport to Sites</td><td>12 Jul 2026</td><td>5 Aug 2026</td><td>Limassol → Nicosia</td><td>All 15 parks in Nicosia district; ~65 km transport route</td></tr>
+        <tr><td>Crane Placement</td><td>12 Jul 2026</td><td>30 Jul 2026</td><td>Nicosia</td><td>15 parks, efficient routing within single district</td></tr>
+        <tr><td>Mechanical Installation</td><td>15 Jul 2026</td><td>15 Aug 2026</td><td>Nicosia</td><td>Linyang OEM team (12 persons)</td></tr>
+        <tr><td>Electrical Installation</td><td>1 Aug 2026</td><td>1 Sep 2026</td><td>Nicosia</td><td>Cabling, grounding, MV connections</td></tr>
+        <tr><td>EMS/SCADA</td><td>15 Aug 2026</td><td>15 Sep 2026</td><td>Nicosia</td><td>Voltus EMS installation and configuration</td></tr>
+        <tr><td>OEM Commissioning</td><td>1 Sep 2026</td><td>30 Sep 2026</td><td>Nicosia</td><td>Linyang commissioning team (4 persons)</td></tr>
+        <tr><td>Grid Testing &amp; PAC</td><td>1 Oct 2026</td><td>31 Oct 2026</td><td>Nicosia</td><td>DSO witness testing, protection trip tests</td></tr>
+    </table>
+
+    <h3>7.2 Batch 2 — Multi-District (Aug 2026 – Jan 2027)</h3>
+    <table>
+        <tr><th>Phase</th><th>Start</th><th>End</th><th>Districts</th><th>Detail</th></tr>
+        <tr><td>Port Clearance</td><td>20 Aug 2026</td><td>27 Aug 2026</td><td>Limassol (port)</td><td>57 containers cleared</td></tr>
+        <tr><td>Transport to Sites</td><td>27 Aug 2026</td><td>15 Sep 2026</td><td>Nicosia, Larnaca, Paphos</td><td>3 separate routes required: Limassol→Nicosia (~65km), Limassol→Larnaca (~70km), Limassol→Paphos (~65km)</td></tr>
+        <tr><td>Crane Placement</td><td>27 Aug 2026</td><td>18 Sep 2026</td><td>Nicosia → Larnaca → Paphos</td><td>19 parks across 3 districts — crane travel time between districts</td></tr>
+        <tr><td>Mechanical Installation</td><td>1 Sep 2026</td><td>1 Oct 2026</td><td>All 3 districts</td><td>Concurrent with Batch 1 commissioning</td></tr>
+        <tr><td>Electrical Installation</td><td>1 Oct 2026</td><td>1 Nov 2026</td><td>All 3 districts</td><td>Cabling and grounding per district cluster</td></tr>
+        <tr><td>OEM Commissioning</td><td>1 Nov 2026</td><td>15 Dec 2026</td><td>All 3 districts</td><td>Sequential per district</td></tr>
+        <tr><td>Grid Testing &amp; PAC</td><td>1 Dec 2026</td><td>15 Jan 2027</td><td>All 3 districts</td><td>DSO testing per park</td></tr>
+    </table>
+
+    <h3>7.3 Batch 3 — Wide Spread (Sep 2026 – Feb 2027)</h3>
+    <table>
+        <tr><th>Phase</th><th>Start</th><th>End</th><th>Districts</th><th>Detail</th></tr>
+        <tr><td>Port Clearance</td><td>20 Sep 2026</td><td>27 Sep 2026</td><td>Limassol (port)</td><td>69 containers cleared (includes largest park: 14 containers)</td></tr>
+        <tr><td>Transport to Sites</td><td>27 Sep 2026</td><td>18 Oct 2026</td><td>Famagusta, Limassol, Paphos, Nicosia</td><td>4 routes: Famagusta (~120km), Limassol (local), Paphos (~65km), Nicosia (~65km)</td></tr>
+        <tr><td>Crane Placement</td><td>27 Sep 2026</td><td>12 Oct 2026</td><td>Famagusta → Limassol → Paphos → Nicosia</td><td>12 parks, widest geographic spread; Esperia Frenaros (14 containers) = longest crane day</td></tr>
+        <tr><td>Mechanical Installation</td><td>1 Oct 2026</td><td>1 Nov 2026</td><td>All 4 districts</td><td>Concurrent with Batch 1 PAC and Batch 2 electrical</td></tr>
+        <tr><td>Electrical Installation</td><td>1 Nov 2026</td><td>1 Dec 2026</td><td>All 4 districts</td><td>Multi-district crew deployment</td></tr>
+        <tr><td>OEM Commissioning</td><td>15 Dec 2026</td><td>1 Feb 2027</td><td>All 4 districts</td><td>Sequential per district cluster</td></tr>
+        <tr><td>Grid Testing &amp; PAC</td><td>15 Jan 2027</td><td>28 Feb 2027</td><td>All 4 districts</td><td>DSO testing per park</td></tr>
+    </table>
+
+    <h3>7.4 Overlap &amp; Peak Activity Windows</h3>
+    <table>
+        <tr><th>Period</th><th>Active Batches</th><th>Districts with Active Construction</th><th>Peak Exposure</th></tr>
+        <tr><td>Jul 2026</td><td>Batch 1 (arrival + placement)</td><td>Nicosia</td><td>~€20M</td></tr>
+        <tr><td>Aug 2026</td><td>Batch 1 (installation) + Batch 2 (arrival)</td><td>Nicosia, Larnaca, Paphos</td><td>~€45M</td></tr>
+        <tr><td><strong>Sep 2026</strong></td><td><strong>Batch 1 (commissioning) + Batch 2 (installation) + Batch 3 (arrival)</strong></td><td><strong>All 5 districts</strong></td><td><strong>~€63M</strong></td></tr>
+        <tr><td><strong>Oct–Nov 2026</strong></td><td><strong>All 3 batches in active construction/commissioning</strong></td><td><strong>All 5 districts</strong></td><td><strong>~€98M (PEAK)</strong></td></tr>
+        <tr><td>Dec 2026</td><td>Batch 2 (commissioning) + Batch 3 (installation)</td><td>Nicosia, Larnaca, Paphos, Famagusta, Limassol</td><td>~€70M</td></tr>
+        <tr><td>Jan 2027</td><td>Batch 2 (PAC) + Batch 3 (commissioning)</td><td>Multiple</td><td>~€55M</td></tr>
+        <tr><td>Feb 2027</td><td>Batch 3 (PAC)</td><td>Multiple</td><td>~€20M</td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Geographic proximity assessment:</strong> During peak exposure (Oct–Nov 2026), construction is active across all 5 Cyprus districts. However, within any single district, parks are typically 5–20 km apart. The only concentrated cluster is Famagusta (5 parks of Esperia/Galascope group, potentially within 5–10 km of each other). All other districts have parks spread across multiple villages.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: ANONYMISED PARK BREAKDOWN BY GROUP           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s8">8. Anonymised Park Breakdown by Client Group</h2>
+
+    <p class="section-intro">
+        Per-park breakdown by client group showing MW, MWh, container count, district, and batch assignment. Park names are omitted for client confidentiality. Sorted by group, then batch, then district.
+    </p>
+
+    <h3>8.1 Group 1 — 25 Parks, 125.0 MW, 430.28 MWh</h3>
+    <table>
+        <tr><th>#</th><th>District</th><th>Batch</th><th>MW</th><th>MWh</th><th>Containers</th></tr>
+        <tr><td>G1-01</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-02</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-03</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-04</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-05</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-06</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-07</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-08</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-09</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-10</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-11</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-12</td><td>Nicosia</td><td>1</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G1-13</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-14</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-15</td><td>Nicosia</td><td>1</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-16</td><td>Nicosia</td><td>2</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-17</td><td>Nicosia</td><td>2</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-18</td><td>Nicosia</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G1-19</td><td>Nicosia</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G1-20</td><td>Nicosia</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G1-21</td><td>Larnaca</td><td>2</td><td>2.5</td><td>8.36</td><td>2</td></tr>
+        <tr><td>G1-22</td><td>Larnaca</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G1-23</td><td>Paphos</td><td>2</td><td>5.0</td><td>20.0</td><td>5</td></tr>
+        <tr><td>G1-24</td><td>Larnaca</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G1-25</td><td>Larnaca</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr class="totals-row"><td colspan="3"><strong>Group 1 Total</strong></td><td><strong>105.0</strong></td><td><strong>418.4</strong></td><td><strong>114</strong></td></tr>
+    </table>
+
+    <h3>8.2 Group 2 — 6 Parks (2026 delivery), 49.5 MW, 205 MWh</h3>
+    <table>
+        <tr><th>#</th><th>District</th><th>Batch</th><th>MW</th><th>MWh</th><th>Containers</th></tr>
+        <tr><td>G2-01</td><td>Famagusta</td><td>3</td><td>12.0</td><td>40</td><td>10</td></tr>
+        <tr><td>G2-02</td><td>Famagusta</td><td>3</td><td>12.0</td><td>40</td><td>10</td></tr>
+        <tr><td>G2-03</td><td>Famagusta</td><td>3</td><td>8.0</td><td>60</td><td>14</td></tr>
+        <tr><td>G2-04</td><td>Limassol</td><td>3</td><td>7.5</td><td>25</td><td>7</td></tr>
+        <tr><td>G2-05</td><td>Famagusta</td><td>3</td><td>5.0</td><td>20</td><td>5</td></tr>
+        <tr><td>G2-06</td><td>Famagusta</td><td>3</td><td>5.0</td><td>20</td><td>5</td></tr>
+        <tr class="totals-row"><td colspan="3"><strong>Group 2 Total (2026)</strong></td><td><strong>49.5</strong></td><td><strong>205</strong></td><td><strong>51</strong></td></tr>
+    </table>
+    <div class="info-box">
+        <strong>Note:</strong> Group 2 has an additional 5 parks (87.5 MWh) deferred to 2028 delivery — not included in the 2026 construction insurance scope.
+    </div>
+
+    <h3>8.3 Group 3 — 9 Parks, 22.5 MW, 70 MWh</h3>
+    <table>
+        <tr><th>#</th><th>District</th><th>Batch</th><th>MW</th><th>MWh</th><th>Containers</th></tr>
+        <tr><td>G3-01</td><td>Nicosia</td><td>2</td><td>2.5</td><td>7.5</td><td>2</td></tr>
+        <tr><td>G3-02</td><td>Nicosia</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G3-03</td><td>Nicosia</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G3-04</td><td>Nicosia</td><td>2</td><td>2.5</td><td>7.5</td><td>2</td></tr>
+        <tr><td>G3-05</td><td>Nicosia</td><td>2</td><td>2.5</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G3-06</td><td>Nicosia</td><td>2</td><td>5.0</td><td>10.0</td><td>3</td></tr>
+        <tr><td>G3-07</td><td>Nicosia</td><td>2</td><td>1.5</td><td>5.0</td><td>2</td></tr>
+        <tr><td>G3-08</td><td>Nicosia</td><td>2</td><td>1.5</td><td>5.0</td><td>2</td></tr>
+        <tr><td>G3-09</td><td>Nicosia</td><td>2</td><td>1.5</td><td>5.0</td><td>2</td></tr>
+        <tr class="totals-row"><td colspan="3"><strong>Group 3 Total</strong></td><td><strong>22.5</strong></td><td><strong>70.0</strong></td><td><strong>22</strong></td></tr>
+    </table>
+
+    <h3>8.4 Group 4 — 3 Parks, 6.5 MW, 20 MWh</h3>
+    <table>
+        <tr><th>#</th><th>District</th><th>Batch</th><th>MW</th><th>MWh</th><th>Containers</th></tr>
+        <tr><td>G4-01</td><td>Paphos</td><td>3</td><td>2.5</td><td>7.5</td><td>2</td></tr>
+        <tr><td>G4-02</td><td>Paphos</td><td>3</td><td>2.5</td><td>7.5</td><td>2</td></tr>
+        <tr><td>G4-03</td><td>Paphos</td><td>3</td><td>1.5</td><td>5.0</td><td>2</td></tr>
+        <tr class="totals-row"><td colspan="3"><strong>Group 4 Total</strong></td><td><strong>6.5</strong></td><td><strong>20.0</strong></td><td><strong>6</strong></td></tr>
+    </table>
+
+    <h3>8.5 Group 5 — 2 Parks, 4.8 MW, 15 MWh</h3>
+    <table>
+        <tr><th>#</th><th>District</th><th>Batch</th><th>MW</th><th>MWh</th><th>Containers</th></tr>
+        <tr><td>G5-01</td><td>Limassol</td><td>3</td><td>1.5</td><td>5.0</td><td>2</td></tr>
+        <tr><td>G5-02</td><td>Limassol</td><td>3</td><td>3.3</td><td>10.0</td><td>3</td></tr>
+        <tr class="totals-row"><td colspan="3"><strong>Group 5 Total</strong></td><td><strong>4.8</strong></td><td><strong>15.0</strong></td><td><strong>5</strong></td></tr>
+    </table>
+
+    <h3>8.6 Group 6 — 1 Park, 7.7 MW, 25 MWh</h3>
+    <table>
+        <tr><th>#</th><th>District</th><th>Batch</th><th>MW</th><th>MWh</th><th>Containers</th></tr>
+        <tr><td>G6-01</td><td>Nicosia</td><td>3</td><td>7.7</td><td>25.0</td><td>7</td></tr>
+        <tr class="totals-row"><td colspan="3"><strong>Group 6 Total</strong></td><td><strong>7.7</strong></td><td><strong>25.0</strong></td><td><strong>7</strong></td></tr>
+    </table>
+
+    <h3>8.7 Portfolio Summary by Group (2026 Delivery Only)</h3>
+    <table>
+        <tr><th>Group</th><th>Parks</th><th>MW</th><th>MWh</th><th>Containers</th><th>Districts</th><th>Batches</th></tr>
+        <tr><td>Group 1</td><td>25</td><td>105.0</td><td>418.4</td><td>114</td><td>Nicosia, Larnaca, Paphos</td><td>1, 2</td></tr>
+        <tr><td>Group 2</td><td>6</td><td>49.5</td><td>205</td><td>51</td><td>Famagusta, Limassol</td><td>3</td></tr>
+        <tr><td>Group 3</td><td>9</td><td>22.5</td><td>70</td><td>22</td><td>Nicosia</td><td>2</td></tr>
+        <tr><td>Group 4</td><td>3</td><td>6.5</td><td>20</td><td>6</td><td>Paphos</td><td>3</td></tr>
+        <tr><td>Group 5</td><td>2</td><td>4.8</td><td>15</td><td>5</td><td>Limassol</td><td>3</td></tr>
+        <tr><td>Group 6</td><td>1</td><td>7.7</td><td>25</td><td>7</td><td>Nicosia</td><td>3</td></tr>
+        <tr class="totals-row"><td><strong>TOTAL (2026)</strong></td><td><strong>46</strong></td><td><strong>195.5</strong></td><td><strong>753.4</strong></td><td><strong>199</strong></td><td><strong>5 districts</strong></td><td><strong>3 batches</strong></td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 9: ADDITIONAL SAFETY PRACTICES                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s9">9. Additional Safety Practices</h2>
+
+    <h3>9.1 24/7 Monitoring &amp; Alert Escalation</h3>
+    <table>
+        <tr><th>System</th><th>Provider</th><th>Coverage</th><th>Detail</th></tr>
+        <tr><td>SCADA/EMS</td><td>Voltus Energy</td><td>All {{PORTFOLIO.parks}} parks, 24/7</td><td>Real-time monitoring of all battery, PCS, and site systems. Critical alerts escalated within 1 hour</td></tr>
+        <tr><td>BMS (per container)</td><td>Linyang (OEM)</td><td>Cell-level, 24/7</td><td>Voltage, temperature, current monitoring per cell. Automatic shutdown on anomaly</td></tr>
+        <tr><td>Lighthief NOC</td><td>Lighthief Cyprus</td><td>All sites, 24/7</td><td>Network Operations Centre monitoring all site alerts. First-line triage and dispatch</td></tr>
+    </table>
+
+    <h3>9.2 Emergency Response</h3>
+    <table>
+        <tr><th>Measure</th><th>Detail</th></tr>
+        <tr><td><strong>Response SLA</strong></td><td>4-hour response time; maximum 90 minutes travel to any site in Cyprus</td></tr>
+        <tr><td><strong>Field Engineers</strong></td><td>5 dedicated BESS engineers (3 Lighthief + 2 Linyang-trained), day/night/float rotation</td></tr>
+        <tr><td><strong>Service Vehicles</strong></td><td>3 vans pre-positioned for rapid deployment</td></tr>
+        <tr><td><strong>Emergency Plans</strong></td><td>Site-specific emergency response plans for all {{PORTFOLIO.parks}} parks</td></tr>
+        <tr><td><strong>Fire Brigade</strong></td><td>Pre-incident plans shared with local fire services; LFP-specific response protocols (water cooling for thermal containment, NOT conventional fire suppression)</td></tr>
+    </table>
+
+    <h3>9.3 Preventive Maintenance Programme</h3>
+    <table>
+        <tr><th>Frequency</th><th>Activity</th></tr>
+        <tr><td>Daily (remote)</td><td>SCADA alarm review, performance deviation detection, SOC/SOH tracking</td></tr>
+        <tr><td>Weekly</td><td>Visual site inspection, security check, vegetation clearance verification</td></tr>
+        <tr><td>Monthly</td><td>Thermal imaging (connections), BMS calibration check, fire system test</td></tr>
+        <tr><td>Quarterly</td><td>Full electrical inspection, protection relay testing, grounding resistance measurement</td></tr>
+        <tr><td>Annually</td><td>DSO regulatory testing, protection settings verification, comprehensive system audit</td></tr>
+    </table>
+
+    <h3>9.4 Explosive Gas Prevention</h3>
+    <table>
+        <tr><th>Measure</th><th>Detail</th></tr>
+        <tr><td><strong>H₂ Gas Detection</strong></td><td>2× combustible gas detectors per container — continuous monitoring</td></tr>
+        <tr><td><strong>CO Detection</strong></td><td>2× CO sensors per container — early off-gassing indicator</td></tr>
+        <tr><td><strong>Forced Ventilation</strong></td><td>Explosion-proof exhaust fan activated at gas threshold; air intake fan for dilution</td></tr>
+        <tr><td><strong>Explosion Vent Panel</strong></td><td>Pressure relief in overpressure event — prevents container rupture</td></tr>
+        <tr><td><strong>Fan Auto-Shutdown</strong></td><td>Ventilation continues until gas concentration drops below safe threshold</td></tr>
+    </table>
+
+    <h3>9.5 Construction Phase Safety</h3>
+    <table>
+        <tr><th>Measure</th><th>Detail</th></tr>
+        <tr><td><strong>OEM Installation Team</strong></td><td>Linyang factory-trained technicians (12 persons) perform all equipment installation and commissioning — NOT third-party electrical contractors</td></tr>
+        <tr><td><strong>Hot Work Protocols</strong></td><td>No hot work (welding, grinding) permitted within 6m of energised battery containers</td></tr>
+        <tr><td><strong>Construction Site Security</strong></td><td>Temporary fencing, CCTV, controlled access during construction phase</td></tr>
+        <tr><td><strong>Risk Assessment</strong></td><td>Written risk assessment per KDP 17/2026 (Section 32–33), prepared by certified ΕΞΥΠΠ/ΕΣΥΠΠ engineer based on Linyang manufacturer specifications</td></tr>
+        <tr><td><strong>Subcontractor Insurance</strong></td><td>All subcontractors required to carry: Employers' Liability (statutory), Public Liability (€2M min), and name Lighthief as additional insured</td></tr>
+    </table>
+
+    <h3>9.6 Equipment Certification Summary</h3>
+    <table>
+        <tr><th>Standard</th><th>Scope</th><th>Status</th><th>Certificate / Reference</th></tr>
+        <tr><td>UL 9540A</td><td>Thermal runaway &amp; fire propagation — cell, module, unit</td><td><span class="badge badge-pass">PASSED</span></td><td>#4791099276 (cell), #80239433 (module), #80239432 (unit)</td></tr>
+        <tr><td>IEC 62619:2022</td><td>Secondary lithium cells safety</td><td><span class="badge badge-pass">CB CERTIFIED</span></td><td>BE-51213 (SGS Belgium / CEBEC)</td></tr>
+        <tr><td>IEC 63056:2020</td><td>ESS safety requirements</td><td><span class="badge badge-pass">CB CERTIFIED</span></td><td>SG SGS-00632 (SGS Singapore)</td></tr>
+        <tr><td>UL 1973</td><td>Battery cell safety</td><td><span class="badge badge-pass">CERTIFIED</span></td><td>MH63503 (UL LLC)</td></tr>
+        <tr><td>UN 38.3</td><td>Transport safety</td><td><span class="badge badge-pass">PASSED</span></td><td>01112300005127-1(E) (Guangzhou Customs)</td></tr>
+        <tr><td>UL 94 V-0</td><td>Fire retardant materials</td><td><span class="badge badge-pass">CERTIFIED</span></td><td>Self-extinguishing within 10s</td></tr>
+        <tr><td>EN 50549-2</td><td>PCS grid connection</td><td><span class="badge badge-pass">CERTIFIED</span></td><td>{{OEM.gridCodeCert}}</td></tr>
+        <tr><td>EN IEC 61000-6-2/6-4</td><td>EMC (immunity &amp; emissions)</td><td><span class="badge badge-pass">VERIFIED</span></td><td>KSEM250100002701BAC (SGS Kunshan)</td></tr>
+        <tr><td>FM 5-33</td><td>LI-ion ESS loss prevention</td><td><span class="badge badge-comply">COMPLIANCE ASSESSED</span></td><td>Design aligned — 6m spacing exceeds minimum</td></tr>
+        <tr><td>NFPA 855</td><td>ESS installation safety</td><td><span class="badge badge-comply">DESIGN ALIGNED</span></td><td>Layout and spacing per standard</td></tr>
+        <tr><td>IEC 62933-5-2</td><td>Grid ESS safety</td><td><span class="badge badge-medium">IN PROGRESS</span></td><td>Expected within 2–3 weeks</td></tr>
+    </table>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>
+            <strong>{{COMPANY.name}}</strong> · {{COMPANY.address}}<br>
+            {{COMPANY.bessProjectContact}} · {{COMPANY.bessProjectPhone}} · {{COMPANY.email}}<br><br>
+            Document: LCY-RFP-MARSH-BESS-2026-S1 · Classification: COMMERCIAL — CONFIDENTIAL<br>
+            Supplement to LCY-RFP-MARSH-BESS-2026 (20 February 2026)<br>
+            Date: 25 February 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

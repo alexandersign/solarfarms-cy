@@ -238,7 +238,7 @@ export default function EMSSCADABESSRevenueArticle() {
                         <div className="grid md:grid-cols-3 gap-4 text-sm">
                           <div className="bg-white rounded-lg p-3 text-center">
                             <div className="font-bold text-gray-700 mb-1">Depth of Discharge</div>
-                            <div className="text-gray-600">Limits DoD to 90% to reduce cell stress</div>
+                            <div className="text-gray-600">Manages DoD within warranty parameters to maximise cycle life</div>
                           </div>
                           <div className="bg-white rounded-lg p-3 text-center">
                             <div className="font-bold text-gray-700 mb-1">Cycling Rate</div>

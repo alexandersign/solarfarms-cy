@@ -13,12 +13,32 @@ import * as path from 'path';
 import { getTemplateVars } from '../lib/portfolio-data';
 
 const ROOT = path.resolve(__dirname, '..');
+
+const LOGO_FILES: Record<string, { path: string; mime: string }> = {
+  'LOGO_LIGHTHIEF': { path: 'public/images/lighthief-commercial-pv_files/lighthief-logo.png', mime: 'image/png' },
+  'LOGO_LINYANG':   { path: 'public/logo/linyang_logo.jpg', mime: 'image/jpeg' },
+  'LOGO_KEHUA':     { path: 'public/logo/kehua_logo.jpg', mime: 'image/jpeg' },
+  'LOGO_VOLTUS':    { path: 'public/logo/VE-logo-white.png.webp', mime: 'image/webp' },
+};
+
+function loadLogoVars(): Record<string, string> {
+  const vars: Record<string, string> = {};
+  for (const [key, { path: relPath, mime }] of Object.entries(LOGO_FILES)) {
+    const fullPath = path.join(ROOT, relPath);
+    if (fs.existsSync(fullPath)) {
+      const b64 = fs.readFileSync(fullPath).toString('base64');
+      vars[key] = `data:${mime};base64,${b64}`;
+    } else {
+      console.warn(`  ⚠ Logo not found: ${relPath}`);
+      vars[key] = '';
+    }
+  }
+  return vars;
+}
 const TEMPLATE_DIRS = [
   'docs/clients',
   'docs/internal',
   'docs/internal/proposals',
-  'docs/internal/proposals/group-order/clients',
-  'docs/internal/proposals/individual/clients',
   'docs/quotations/internal-analysis',
   'business-plan',
 ];
@@ -66,8 +86,8 @@ function main() {
   console.log('╚══════════════════════════════════════════════════╝');
   console.log();
 
-  const vars = getTemplateVars();
-  console.log(`Loaded ${Object.keys(vars).length} template variables from lib/portfolio-data.ts`);
+  const vars = { ...getTemplateVars(), ...loadLogoVars() };
+  console.log(`Loaded ${Object.keys(vars).length} template variables (incl. ${Object.keys(LOGO_FILES).length} embedded logos)`);
   console.log();
 
   let allTemplates: string[] = [];

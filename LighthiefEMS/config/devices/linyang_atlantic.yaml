@@ -1,0 +1,123 @@
+# Linyang Power Atlantic BESS Configuration
+#
+# Modbus TCP register map and battery specifications
+# Based on Linyang Power Atlantic datasheet
+
+device:
+  manufacturer: "Jiangsu Linyang Energy Storage"
+  model: "Power Atlantic ME 5.015 MWh"
+  driver: "linyang_atlantic"
+  protocol: "modbus_tcp"
+
+connection:
+  default_port: 502
+  default_unit_id: 1
+  timeout_ms: 3000
+  poll_interval_ms: 1000
+  max_retries: 3
+
+ratings:
+  dc_capacity_kwh: 5015
+  configuration: "12P416S"
+  dc_voltage_range_v: [1164.8, 1497.6]
+  nominal_voltage_v: 1331.2
+  rated_power_1c_kw: 2500
+  rated_power_05c_kw: 1250
+  container_type: "20HC"
+  ip_rating: "IP55"
+  thermal_management: "liquid_cooling_60kw"
+
+cell:
+  type: "LFP"
+  manufacturer: "EVE Energy"
+  model: "LF314"
+  capacity_ah: 314
+  nominal_voltage_v: 3.2
+  voltage_range_v: [2.5, 3.65]
+  rated_energy_wh: 1004.8
+  standard_crate: 0.5
+  max_crate: 1.0
+  cycle_life_standard: 6000  # @0.5C, 25°C, 100%DOD, 80%SOH
+  cycle_life_extended: 8000  # @0.5C, 25°C, 90%DOD, 70%SOH
+  rte_cell: 0.94
+
+warranty:
+  critical_cell_voltage_v: 2.5      # Immediate alarm - warranty void
+  sustained_low_voltage_v: 2.8      # Warning if sustained 120h
+  sustained_low_voltage_hours: 120
+  soc_zero_max_hours: 120           # Charge to ≥15%
+  operational_soc_zero_hours: 2     # Charge to ≥5%
+
+modbus_registers:
+  input:
+    system_soc:
+      address: 0       # 30001
+      type: uint16
+      scale: 0.1
+      unit: "%"
+    system_soh:
+      address: 1       # 30002
+      type: uint16
+      scale: 0.1
+      unit: "%"
+    system_voltage:
+      address: 2       # 30003-30004
+      type: float32
+      unit: V
+    system_current:
+      address: 4       # 30005-30006
+      type: float32
+      unit: A
+    system_power:
+      address: 6       # 30007-30008
+      type: float32
+      unit: kW
+    max_cell_voltage:
+      address: 8       # 30009
+      type: uint16
+      unit: mV
+    min_cell_voltage:
+      address: 9       # 30010
+      type: uint16
+      unit: mV
+    max_cell_temp:
+      address: 10      # 30011
+      type: int16
+      scale: 0.1
+      unit: "°C"
+    min_cell_temp:
+      address: 11      # 30012
+      type: int16
+      scale: 0.1
+      unit: "°C"
+    online_clusters:
+      address: 12      # 30013
+      type: uint16
+    alarm_word_1:
+      address: 13      # 30014
+      type: uint16
+    alarm_word_2:
+      address: 14      # 30015
+      type: uint16
+    bms_status:
+      address: 15      # 30016
+      type: uint16
+
+bms_hierarchy:
+  l1_bmu:
+    count_per_container: 96
+    voltage_samples: 52
+    temp_samples: 12
+    voltage_accuracy_mv: 5
+    temp_accuracy_c: 1
+    comm_protocol: "CAN 2.0"
+  l2_bcmu:
+    count_per_container: 12
+    voltage_range_v: [0, 1500]
+    current_range_a: [-400, 400]
+    soc_accuracy_percent: 5
+    comm_protocol: "CAN / RS485 / Modbus"
+  l3_bams:
+    count_per_container: 2
+    redundancy: "hot_standby"
+    comm_protocol: "CAN / RS485 / Modbus TCP / Ethernet"

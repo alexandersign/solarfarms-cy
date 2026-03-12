@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI: Batch Order Confirmation &mdash; Lampros Andreadis (Classone Solar) | Lighthief</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669;--warn:#d97706}
+        body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+        .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+        .logo{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}.logo span{color:var(--accent)}
+        .tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+        .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+        h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+        h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+        h3{font-size:9.5pt;color:var(--primary);margin:10px 0 5px}
+        table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+        th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600;white-space:normal}
+        td{padding:5px 7px;border-bottom:1px solid var(--border);word-wrap:break-word}
+        tr:nth-child(even){background:#fafbfc}
+        .r{text-align:right}.c{text-align:center}
+        .total-row{background:var(--primary)!important;color:#fff;font-weight:700}
+        .total-row td{border:none}
+        .sub-total{background:#edf2f7!important;font-weight:600}
+        .highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .warn{background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .action{background:#fef2f2;border:1px solid #fca5a5;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:9pt;font-weight:600;color:#991b1b}
+        .phase{background:var(--bg);padding:6px 12px;border-left:3px solid var(--accent);margin:14px 0 6px;font-weight:600;color:var(--primary);font-size:9pt}
+        .footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+        .note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+        .print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .print-btn:hover{background:var(--accent)}
+        ul{margin-left:18px}li{margin-bottom:3px}
+        .cb{width:16px;height:16px;accent-color:var(--accent);vertical-align:middle;cursor:pointer}
+        .sig-line{border-bottom:1px solid var(--text);width:250px;display:inline-block;margin:0 8px}
+        .sig-block{margin:30px 0 10px;line-height:2.5}
+        .quarter-grid td{text-align:center;padding:4px 3px}
+        .quarter-grid th{padding:4px 6px;font-size:7.5pt}
+        .batch-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:7pt;font-weight:700;color:#fff;margin-left:4px}
+        .b1{background:var(--accent)}.b2{background:var(--ok)}.b3{background:var(--warn)}
+        .pipeline{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        @media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}.page-break{page-break-before:always}}
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">&#128424; Print / PDF</button>
+
+<!-- PAGE 1: Cover & Instructions -->
+<div class="page">
+    <div class="header">
+        <div><div class="logo">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>REQUEST FOR INFORMATION</strong><br>Ref: LCY-RFI-BATCH-GRP3<br>Date: 27 February 2026<br>Response Due: 7 March 2026</div>
+    </div>
+
+    <h1>Batch Order Confirmation &mdash; Lampros Andreadis (Classone Solar)</h1>
+    <p style="font-size:10pt;color:var(--accent);font-weight:600;margin-bottom:16px;">Attention: Lampros Andreadis</p>
+
+    <div class="highlight">
+        <strong>Purpose:</strong> Lighthief Cyprus Ltd requests confirmation of which BESS parks Lampros Andreadis (Classone Solar) intends to include in the <strong>first production batch</strong> (Batch 3), and the intended ordering schedule for any parks deferred to a later batch. This information is required to finalise production scheduling with Linyang Energy and coordinate logistics planning.
+    </div>
+
+    <h2>Current Portfolio Summary</h2>
+    <table>
+        <tr><td><strong>Total Parks</strong></td><td>2</td></tr>
+        <tr><td><strong>Total Power</strong></td><td>4.8 MW</td></tr>
+        <tr><td><strong>Total Energy</strong></td><td>15 MWh</td></tr>
+        <tr><td><strong>Portfolio Value</strong></td><td>&euro;2,117,420</td></tr>
+    </table>
+
+    <h2>Production Batch Overview</h2>
+    <p class="note">Based on current planning, Classone Solar parks are expected in Batch 3 alongside Esperia Phase 1 and other standalone group orders:</p>
+    <table>
+        <thead><tr><th>Batch</th><th>Description</th><th class="c">Parks</th><th class="c">MWh</th><th>Production Start</th><th>CIF Limassol</th><th>Commissioning (PAC)</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Batch 3</strong> <span class="batch-tag b3">2026</span></td><td>Esperia Phase 1 + Standalone</td><td class="c">12</td><td class="c">283</td><td>15 May 2026</td><td>20 Sep 2026</td><td>28 Feb 2027</td></tr>
+        </tbody>
+    </table>
+
+    <div class="action">
+        ACTION REQUIRED: Please complete Sections A and B below, sign and return by <strong>7 March 2026</strong>.
+    </div>
+</div>
+
+<!-- PAGE 2: Section A - First Batch -->
+<div class="page">
+    <div class="header">
+        <div><div class="logo">Light<span>hief</span></div></div>
+        <div class="doc-info">Section A: First Batch Confirmation &mdash; Lampros Andreadis (Classone Solar)</div>
+    </div>
+
+    <h2>Section A: Confirm Parks for First Order (Batch 3)</h2>
+    <p>Please tick the checkbox next to each park you wish to include in your <strong>first production order</strong>. Based on current planning, both Classone Solar parks are expected in Batch 3.</p>
+    <p class="note">Production order date: May 2026 | CIF arrival: September 2026 | Target commissioning: February 2027</p>
+
+    <div class="phase">CLASSONE SOLAR &mdash; 2 Projects | 4.8 MW | 15 MWh</div>
+    <table>
+        <thead><tr><th style="width:30px" class="c">B3</th><th>Project</th><th class="c">District</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="r">EPC Price</th></tr></thead>
+        <tbody>
+            <tr><td class="c"><input type="checkbox" class="cb" checked></td><td>Classone Solar Breeze</td><td class="c">Limassol</td><td class="c">1.5</td><td class="c">5</td><td class="c">1</td><td class="r">&euro;795,443</td></tr>
+            <tr><td class="c"><input type="checkbox" class="cb" checked></td><td>Classone Solar Garden</td><td class="c">Limassol</td><td class="c">3.3</td><td class="c">10</td><td class="c">2</td><td class="r">&euro;1,321,976</td></tr>
+        </tbody>
+    </table>
+
+    <div class="warn">
+        <strong>Note:</strong> Both parks are pre-ticked for Batch 3. Please untick any park you wish to defer to a later batch.
+    </div>
+
+    <h2>Section B: Future Ordering Schedule</h2>
+    <p>If any parks above are not included in your first batch, please indicate your intended order quarter below:</p>
+
+    <table class="quarter-grid">
+        <thead>
+            <tr>
+                <th style="text-align:left">Project</th>
+                <th class="c">MW</th>
+                <th class="c">MWh</th>
+                <th colspan="4" class="c" style="background:var(--ok)">2026</th>
+                <th colspan="4" class="c" style="background:var(--warn)">2027</th>
+                <th colspan="4" class="c" style="background:#94a3b8">2028</th>
+            </tr>
+            <tr>
+                <th></th><th></th><th></th>
+                <th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th>
+                <th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th>
+                <th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="text-align:left">Classone Solar Breeze</td><td>1.5</td><td>5</td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td></tr>
+            <tr><td style="text-align:left">Classone Solar Garden</td><td>3.3</td><td>10</td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td><td><input type="checkbox" class="cb"></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Additional Notes / Comments</h2>
+    <div style="border:1px solid var(--border);border-radius:6px;padding:40px 14px;min-height:100px;margin:8px 0">
+        <p class="note" style="color:var(--border)">Please add any comments regarding ordering priorities, site readiness, DSO approvals, or financing timelines:</p>
+    </div>
+
+    <h2>Confirmation</h2>
+    <div class="sig-block">
+        <p>Name: <span class="sig-line"></span> Position: <span class="sig-line"></span></p>
+        <p>Signature: <span class="sig-line"></span> Date: <span class="sig-line"></span></p>
+        <p>Company: <span class="sig-line" style="width:400px"></span></p>
+    </div>
+
+    <div class="footer">
+        <strong>Lighthief Cyprus Ltd</strong> | HE 477423 | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+        Contact: Alexander Papacosta | +357 99 164 158 | office@lighthief.com<br>
+        Please return completed form to: <strong>office@lighthief.com</strong>
+    </div>
+</div>
+
+</body>
+</html>

@@ -51,19 +51,19 @@ const incentivePrograms = [
     impact: "Significant reduction in project costs"
   },
   {
-    title: "Renewable Energy Tax Credits",
+    title: "Corporate Tax & IP Box Regime",
     type: "Tax Incentive",
-    value: "20% Tax Credit",
-    description: "Corporate tax credits for renewable energy investments",
+    value: "15% CIT / ~3% IP Box",
+    description: "Competitive corporate tax with IP box for qualifying income",
     benefits: [
-      "20% investment tax credit",
-      "Accelerated depreciation (5 years)",
-      "Reduced corporate tax rate (10%)",
-      "Property tax exemptions"
+      "15% corporate tax rate (from Jan 2026)",
+      "IP box effective rate ~3% on qualifying IP income",
+      "7-year loss carry-forward (extended from 5)",
+      "No deemed dividend distribution (abolished 2026)"
     ],
     eligibility: "Cyprus-registered companies",
-    deadline: "Ongoing through 2030",
-    impact: "Improved after-tax returns"
+    deadline: "Ongoing",
+    impact: "Competitive EU tax environment"
   },
   {
     title: "Grid Connection Incentives",
@@ -99,10 +99,10 @@ const policyUpdates = [
     title: "EU State Aid Approval for Solar Support",
     description: "European Commission approved Cyprus solar support scheme",
     keyPoints: [
-      "€300M approved for renewable energy support",
-      "Feed-in tariff guarantees for 15 years",
-      "Priority dispatch for renewable energy",
-      "Grid stability support mechanisms"
+      "EU Recovery and Resilience Facility funding allocated",
+      "Priority dispatch for renewable energy sources",
+      "Grid stability support mechanisms introduced",
+      "BESS Category B licensing framework established"
     ]
   },
   {
@@ -122,28 +122,28 @@ const financialBenefits = [
   {
     category: "Direct Financial Support",
     incentives: [
-      "Up to 30% EU grant funding",
-      "20% investment tax credit",
-      "Subsidized loan programs (2-3% interest)",
-      "Grid connection cost sharing"
+      "EU Recovery and Resilience Facility grants",
+      "EIB and EBRD financing programmes",
+      "Grid connection co-investment schemes",
+      "Simplified licensing for projects 5 MW+"
     ]
   },
   {
     category: "Tax Benefits",
     incentives: [
-      "Accelerated depreciation (5 years)",
-      "Reduced corporate tax rate (10%)",
-      "Property tax exemptions",
-      "VAT exemptions on equipment"
+      "15% corporate tax rate (competitive in EU)",
+      "IP box ~3% effective rate on qualifying income",
+      "7-year loss carry-forward",
+      "Stamp duty abolished (Jan 2026)"
     ]
   },
   {
     category: "Revenue Enhancements",
     incentives: [
-      "Premium feed-in tariff rates",
-      "15-year rate guarantees",
-      "Priority grid dispatch",
-      "Green certificate trading"
+      "Day-Ahead Market participation",
+      "Curtailment recovery via BESS",
+      "Priority grid dispatch for RES",
+      "Future ancillary services market access"
     ]
   }
 ]

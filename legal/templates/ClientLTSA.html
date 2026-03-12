@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long-Term Service Agreement - BESS Operations and Maintenance</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        h1 + p.subtitle {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 16px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+        h3 {
+            font-size: 14px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        h4 {
+            font-size: 13px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        p, li {
+            margin-bottom: 10px;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .parties-box {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .tier-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #333;
+            border-radius: 0 5px 5px 0;
+        }
+        .tier-box h4 {
+            margin-top: 0;
+            color: #333;
+        }
+        .tier-a { border-left-color: #6c757d; }
+        .tier-b { border-left-color: #007bff; }
+        .tier-c { border-left-color: #28a745; }
+        .tier-d { border-left-color: #ffc107; }
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning-box strong {
+            color: #856404;
+        }
+        .critical-box {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .critical-box strong {
+            color: #721c24;
+        }
+        .info-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checklist li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+        }
+        .schedule-header {
+            background-color: #333;
+            color: #fff;
+            padding: 12px 15px;
+            margin: 30px 0 15px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .schedule-subheader {
+            background-color: #f0f0f0;
+            padding: 8px 15px;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+            border-left: 4px solid #333;
+        }
+        .signature-block {
+            margin-top: 50px;
+            page-break-inside: avoid;
+        }
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 300px;
+            margin: 30px 0 5px 0;
+        }
+        .signature-label {
+            font-size: 12px;
+            color: #666;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+        .divider {
+            border-top: 2px solid #000;
+            margin: 40px 0;
+        }
+        .formula {
+            background-color: #f5f5f5;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .degradation-chart {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            background-color: #f5f5f5;
+            padding: 15px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+            .signature-block {
+                page-break-inside: avoid;
+            }
+            h2 {
+                page-break-after: avoid;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>LONG-TERM SERVICE AGREEMENT</h1>
+<p class="subtitle">(Comprehensive Operations and Maintenance)</p>
+<p class="subtitle">Battery Energy Storage System (BESS)</p>
+
+<div class="header-info">
+    <strong>Document Reference:</strong> LCY-LTSA-001 &nbsp;|&nbsp; 
+    <strong>Version:</strong> 3.0 &nbsp;|&nbsp; 
+    <strong>Template Date:</strong> February 22, 2026
+</div>
+
+<div class="divider"></div>
+
+<h2>1. PARTIES</h2>
+
+<p>This Long-Term Service Agreement ("Agreement") is made as of [●] 2026 ("Effective Date")</p>
+
+<p><strong>BETWEEN:</strong></p>
+
+<div class="parties-box">
+<p><strong>Lighthief Cyprus Ltd</strong><br>
+A company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company No. HE 477423, TIN 60187188Q<br>
+<strong>("Service Provider")</strong></p>
+
+<p><strong>AND</strong></p>
+
+<p><strong>[End Customer Legal Name]</strong><br>
+A company incorporated under the laws of [●], with registered office at [●]<br>
+<strong>("Client")</strong></p>
+</div>
+
+<p>Service Provider and Client are referred to individually as a "Party" and collectively as the "Parties."</p>
+
+<h2>2. BACKGROUND</h2>
+
+<p>2.1 The Client has procured a battery energy storage system ("BESS") pursuant to an Engineering, Procurement and Construction Agreement ("EPC Agreement") with the Service Provider.</p>
+
+<p>2.2 The Parties wish to establish a long-term arrangement for the monitoring and preventive maintenance of the BESS to ensure optimal performance, reliability, and longevity.</p>
+
+<p>2.3 This Agreement sets out the terms under which the Service Provider shall provide monitoring and maintenance services for the BESS.</p>
+
+<h2>3. DEFINITIONS AND INTERPRETATION</h2>
+
+<p>Unless otherwise defined herein, capitalised terms shall have the meanings given to them in the EPC Agreement.</p>
+
+<p>For the purposes of this Agreement:</p>
+
+<table>
+<tr><td width="25%"><strong>"BESS"</strong></td><td>means the battery energy storage system installed at the Site, as described in Schedule 1.</td></tr>
+<tr><td><strong>"Business Day"</strong></td><td>means a day other than a Saturday, Sunday, or public holiday in the Republic of Cyprus.</td></tr>
+<tr><td><strong>"Commissioning Date"</strong></td><td>means the date of issuance of the Provisional Acceptance Certificate (PAC) under the EPC Agreement.</td></tr>
+<tr><td><strong>"Critical Alert"</strong></td><td>means any alert indicating a condition that requires immediate attention to prevent system failure, safety hazard, or significant performance degradation.</td></tr>
+<tr><td><strong>"EMS"</strong></td><td>means Energy Management System, which is a third-party system unless expressly supplied by the Service Provider.</td></tr>
+<tr><td><strong>"Maintenance Visit"</strong></td><td>means a scheduled on-site visit by the Service Provider's qualified personnel to perform preventive maintenance activities.</td></tr>
+<tr><td><strong>"Monitoring Platform"</strong></td><td>means the remote monitoring software and infrastructure used by the Service Provider to collect, analyse, and display BESS performance data.</td></tr>
+<tr><td><strong>"Performance Data"</strong></td><td>means data collected from the BESS including but not limited to power output, energy throughput, state of charge (SOC), state of health (SOH), temperature, voltage, current, and alarm logs.</td></tr>
+<tr><td><strong>"Preventive Maintenance"</strong></td><td>means scheduled maintenance activities designed to prevent equipment failure and ensure optimal performance.</td></tr>
+<tr><td><strong>"Response Time"</strong></td><td>means the time between the Service Provider receiving notification of an issue and the commencement of diagnostic or remedial action.</td></tr>
+<tr><td><strong>"Service Fee"</strong></td><td>means the annual fee payable by the Client for the services under this Agreement, as set out in Schedule 2.</td></tr>
+<tr><td><strong>"Site"</strong></td><td>means the location where the BESS is installed, as specified in Schedule 1.</td></tr>
+<tr><td><strong>"SOC"</strong></td><td>means State of Charge, expressed as a percentage of remaining battery capacity.</td></tr>
+<tr><td><strong>"SOH"</strong></td><td>means State of Health, expressed as a percentage of the battery's original rated capacity.</td></tr>
+<tr><td><strong>"Availability"</strong></td><td>means the percentage of time during which the BESS is capable of operating at its rated capacity, calculated as set out in Schedule 4.</td></tr>
+<tr><td><strong>"Availability Guarantee"</strong></td><td>means the minimum annual Availability level guaranteed by the Service Provider, as set out in Schedule 4.</td></tr>
+<tr><td><strong>"Corrective Maintenance"</strong></td><td>means unscheduled maintenance activities required to restore the BESS to operational condition following a fault or failure.</td></tr>
+<tr><td><strong>"Degradation Curve"</strong></td><td>means the expected reduction in battery capacity over time under normal operating conditions, as set out in Schedule 5.</td></tr>
+<tr><td><strong>"Guaranteed SOH"</strong></td><td>means the minimum State of Health guaranteed by the Service Provider at any given point during the Term, as defined in Schedule 5.</td></tr>
+<tr><td><strong>"Liquidated Damages"</strong></td><td>means the predetermined damages payable by the Service Provider in the event of failure to meet guaranteed performance levels.</td></tr>
+<tr><td><strong>"Scheduled Downtime"</strong></td><td>means planned maintenance periods agreed in advance, which shall not exceed two (2) days per calendar year.</td></tr>
+<tr><td><strong>"System Capacity"</strong></td><td>means the total installed capacity of the BESS in MWh, as specified in Schedule 1.</td></tr>
+</table>
+
+<h2>4. SERVICE SCOPE AND SERVICE TIERS</h2>
+
+<h3>4.1 Service Tier Overview</h3>
+<p>The Service Provider offers the following service tiers, as selected by the Client in Schedule 2:</p>
+
+<div class="tier-box tier-a">
+<h4>TIER A – BASIC MONITORING AND MAINTENANCE</h4>
+<ul>
+<li>(a) 24/7 remote monitoring of the BESS;</li>
+<li>(b) Bi-annual preventive maintenance visits (every six months);</li>
+<li>(c) Technical support and response services;</li>
+<li>(d) Monthly and quarterly reporting.</li>
+</ul>
+</div>
+
+<div class="tier-box tier-b">
+<h4>TIER B – COMPREHENSIVE O&M (Includes Tier A plus)</h4>
+<ul>
+<li>(a) Corrective maintenance and fault rectification;</li>
+<li>(b) PCS and Medium Voltage Switchgear (MVS) maintenance;</li>
+<li>(c) Emergency response services.</li>
+</ul>
+</div>
+
+<div class="tier-box tier-c">
+<h4>TIER C – FULL SERVICE WITH AVAILABILITY GUARANTEE (Includes Tier B plus)</h4>
+<ul>
+<li>(a) 97% annual Availability Guarantee;</li>
+<li>(b) Local service team and response capability;</li>
+<li>(c) Local spare parts warehouse maintenance;</li>
+<li>(d) Availability Liquidated Damages as set out in Schedule 4.</li>
+</ul>
+</div>
+
+<div class="tier-box tier-d" style="opacity:0.5;">
+<h4>TIER D — NOT CURRENTLY OFFERED</h4>
+<p><em>Tier C is the highest service tier available. SOH Guarantee and augmentation provisions are included in Tier C.</em></p>
+</div>
+
+<h3>4.2 Core Services (All Tiers)</h3>
+<p>The Service Provider shall provide the following core services:</p>
+<ul>
+<li>(a) Remote monitoring of the BESS (Section 5);</li>
+<li>(b) Preventive maintenance (Section 6);</li>
+<li>(c) Technical support and response services (Section 8);</li>
+<li>(d) Reporting and documentation (Section 5.6).</li>
+</ul>
+
+<h3>4.3 Corrective Maintenance (Tiers B, C, D)</h3>
+<p>Where the Client has selected Tier B, C, or D:</p>
+<ul>
+<li>(a) The Service Provider shall perform Corrective Maintenance to restore the BESS to operational condition following any fault or failure;</li>
+<li>(b) Corrective Maintenance includes diagnosis, repair, and testing of faulty components;</li>
+<li>(c) The cost of replacement parts is included, subject to Section 9.</li>
+</ul>
+
+<h3>4.4 Exclusions (All Tiers)</h3>
+<p>Unless otherwise agreed in writing, the following are excluded from this Agreement:</p>
+<ul>
+<li>(a) EMS software licences, upgrades, or customisation;</li>
+<li>(b) Third-party equipment not supplied under the EPC Agreement;</li>
+<li>(c) Damage caused by Force Majeure, Client misuse, or unauthorised modifications;</li>
+<li>(d) Grid-related issues beyond the point of interconnection;</li>
+<li>(e) Civil works, structural repairs, or site infrastructure;</li>
+<li>(f) Damage caused by third-party actions or vandalism;</li>
+<li>(g) Battery degradation beyond the Guaranteed SOH (if SOH guarantee is selected).</li>
+</ul>
+
+<h2>5. REMOTE MONITORING SERVICES</h2>
+
+<h3>5.1 Monitoring Coverage</h3>
+<p>The Service Provider shall provide remote monitoring of the BESS on a 24/7 basis, 365 days per year, via the Monitoring Platform.</p>
+
+<h3>5.2 Monitored Parameters</h3>
+<p>The Monitoring Platform shall collect and analyse the following Performance Data:</p>
+<ul>
+<li>(a) System power output (kW) and energy throughput (kWh);</li>
+<li>(b) Battery state of charge (SOC) and state of health (SOH);</li>
+<li>(c) Cell-level and module-level voltage and temperature;</li>
+<li>(d) Power Conversion System (PCS) performance and efficiency;</li>
+<li>(e) Ambient temperature and environmental conditions;</li>
+<li>(f) Alarm and fault logs;</li>
+<li>(g) Communication status and connectivity;</li>
+<li>(h) Inverter and transformer status.</li>
+</ul>
+
+<h3>5.3 Alert Classification</h3>
+<p>Alerts shall be classified as follows:</p>
+<table>
+<tr><th>Alert Type</th><th>Description</th><th>Response Time</th></tr>
+<tr><td><strong>Critical Alert</strong></td><td>Immediate risk to safety, equipment, or system availability</td><td>Within 4 hours</td></tr>
+<tr><td><strong>Major Alert</strong></td><td>Significant degradation in performance or reliability</td><td>Within 24 hours</td></tr>
+<tr><td><strong>Minor Alert</strong></td><td>Non-urgent issues requiring attention during next scheduled maintenance</td><td>Within 72 hours</td></tr>
+<tr><td><strong>Informational</strong></td><td>Data logging and trend analysis</td><td>No immediate response required</td></tr>
+</table>
+
+<h3>5.4 Alert Notification</h3>
+<ul>
+<li>(a) Critical Alerts shall be notified to the Client by telephone and email within thirty (30) minutes of detection.</li>
+<li>(b) Major Alerts shall be notified to the Client by email within two (2) hours of detection.</li>
+<li>(c) Minor and Informational Alerts shall be included in the next scheduled report.</li>
+</ul>
+
+<h3>5.5 Client Portal Access</h3>
+<p>The Service Provider shall provide the Client with secure access to the Monitoring Platform, enabling the Client to view real-time and historical Performance Data.</p>
+
+<h3>5.6 Reporting</h3>
+<p>The Service Provider shall provide the following reports:</p>
+<table>
+<tr><th>Report</th><th>Content</th><th>Delivery</th></tr>
+<tr><td><strong>Monthly Performance Report</strong></td><td>Summary of energy throughput, availability, SOC/SOH trends, alerts, and key performance indicators</td><td>Within 10 Business Days of month end</td></tr>
+<tr><td><strong>Quarterly Health Report</strong></td><td>Detailed analysis of battery health, degradation trends, thermal performance, and recommendations</td><td>Within 15 Business Days of quarter end</td></tr>
+<tr><td><strong>Annual Review Report</strong></td><td>Comprehensive annual assessment including performance benchmarking, maintenance summary, and forward recommendations</td><td>Within 30 days of anniversary of Commissioning Date</td></tr>
+</table>
+
+<h3>5.7 Data Retention</h3>
+<p>The Service Provider shall retain Performance Data for a minimum of five (5) years from the date of collection.</p>
+
+<h3>5.8 Data Ownership</h3>
+<p>All Performance Data collected from the BESS shall be owned by the Client. The Service Provider shall have a licence to use such data for the purposes of providing services under this Agreement and for anonymised benchmarking and product improvement.</p>
+
+<h2>6. PREVENTIVE MAINTENANCE</h2>
+
+<h3>6.1 OEM Compliance</h3>
+<p>All maintenance activities shall be performed in accordance with the OEM Maintenance Manual (Linyang Power Atlantic Battery Container Maintenance Manual) and applicable OEM guidelines. The Service Provider shall not perform any maintenance operations beyond those specified in the OEM manual without prior OEM authorisation.</p>
+
+<h3>6.2 Maintenance Schedule</h3>
+<p>The Service Provider shall perform preventive maintenance in accordance with the following schedule:</p>
+<ul>
+<li>(a) <strong>Monthly Remote Checks:</strong> Container status monitoring, BMS data backup, parameter review, and software update assessment as required by OEM.</li>
+<li>(b) <strong>Bi-Annual On-Site Maintenance Visits:</strong> Comprehensive on-site inspection and maintenance by qualified personnel, conducted every six (6) months (two visits per year).</li>
+<li>(c) <strong>Quarterly Remote Health Check:</strong> Remote diagnostic review of all monitored parameters, SOH assessment, and system optimisation recommendations.</li>
+<li>(d) <strong>Annual Grounding Test:</strong> Verification of ground connection with resistance measurement (must not exceed 4Ω per OEM specification).</li>
+<li>(e) Additional visits as required based on monitoring alerts, OEM recommendations, or Corrective Maintenance needs.</li>
+</ul>
+
+<h3>6.3 OEM-Mandated Maintenance Items</h3>
+<p>The following items are mandatory per OEM specification:</p>
+<table>
+<tr><th>Frequency</th><th>Items</th></tr>
+<tr><td><strong>Monthly</strong></td><td>Container condition check, BMS data download and backup, run data/parameter/log saving, software update review</td></tr>
+<tr><td><strong>Every 6 Months</strong></td><td>Cable shielding inspection, surge protection device (SPD) verification, fuse inspection, copper bus bar check</td></tr>
+<tr><td><strong>Annually</strong></td><td>Cable layout inspection, ground resistance test (≤4Ω), equipotential bonding verification, cable torque verification per OEM specification</td></tr>
+</table>
+
+<h3>6.4 Weather Restrictions</h3>
+<p>Per OEM requirements, the Service Provider shall not open container doors for maintenance during rainy, humid, snowy, foggy, or excessively windy conditions. Maintenance visits shall be rescheduled if weather conditions are unsuitable.</p>
+
+<h3>6.5 Bi-Annual Maintenance Visit Scope</h3>
+<p>Each Maintenance Visit shall include, at a minimum:</p>
+<ul>
+<li>(a) Visual inspection of all BESS components, enclosures, and connections;</li>
+<li>(b) Thermal imaging of electrical connections and switchgear;</li>
+<li>(c) Verification of battery module balancing and calibration;</li>
+<li>(d) Inspection and cleaning of cooling systems (fans, filters, HVAC);</li>
+<li>(e) Verification of fire suppression system status;</li>
+<li>(f) Inspection of cable terminations and torque verification;</li>
+<li>(g) Review and update of firmware and software as recommended by OEM;</li>
+<li>(h) Functional testing of protection relays and safety systems;</li>
+<li>(i) Calibration of sensors and metering equipment;</li>
+<li>(j) Review of alarm and event logs;</li>
+<li>(k) Documentation and reporting of findings.</li>
+</ul>
+
+<div class="info-box">
+<strong>CYPRUS COASTAL PROTECTION (C5 Enclosure Maintenance):</strong>
+<ul>
+<li>(l) Inspection of C5-rated coating integrity on enclosures, PCS, and switchgear;</li>
+<li>(m) Salt-deposit removal from HVAC intakes, ventilation grilles, and cooling air paths;</li>
+<li>(n) Inspection of door seals and gaskets for salt intrusion;</li>
+<li>(o) Verification of drainage channels and moisture egress paths;</li>
+<li>(p) Cleaning of external surfaces and removal of salt crystallisation;</li>
+<li>(q) Application of protective lubricant to door hinges, latches, and exposed fasteners;</li>
+<li>(r) Photographic documentation of coating condition for warranty records.</li>
+</ul>
+</div>
+
+<h3>6.6 Maintenance Scheduling</h3>
+<ul>
+<li>(a) Bi-Annual Maintenance Visits shall be scheduled at least thirty (30) days in advance, at mutually agreed dates approximately six (6) months apart.</li>
+<li>(b) The Service Provider shall endeavour to schedule maintenance at times when the BESS is not actively dispatching, to minimise impact on Client operations.</li>
+<li>(c) Each Scheduled Downtime period shall not exceed one (1) full day per visit (two days total per year).</li>
+<li>(d) The Client shall ensure site access and availability of relevant personnel during scheduled visits.</li>
+<li>(e) If the Client cancels or postpones a scheduled visit with less than fourteen (14) days' notice, reasonable rebooking costs may apply.</li>
+</ul>
+
+<h3>6.7 Maintenance Records</h3>
+<p>The Service Provider shall maintain detailed records of all maintenance activities, findings, and recommendations, and shall provide copies to the Client upon request.</p>
+
+<h3>6.8 OEM Coordination</h3>
+<p>Where maintenance activities require OEM involvement or specialised OEM parts, the Service Provider shall coordinate with the OEM on behalf of the Client.</p>
+
+<h2>7. SERVICE FEES AND PAYMENT</h2>
+
+<h3>7.1 Annual Service Fee</h3>
+<p>The Client shall pay the Service Provider an annual Service Fee as set out in Schedule 2.</p>
+
+<h3>7.2 Payment Terms</h3>
+<ul>
+<li>(a) The Service Fee shall be invoiced annually in advance, commencing on the Commissioning Date.</li>
+<li>(b) Payment shall be due within thirty (30) days of invoice date.</li>
+<li>(c) All amounts are exclusive of VAT, which shall be charged in accordance with Cyprus law.</li>
+</ul>
+
+<h3>7.3 Fee Adjustment</h3>
+<ul>
+<li>(a) The Service Fee may be adjusted annually on each anniversary of the Effective Date, by an amount not exceeding the Cyprus Consumer Price Index (CPI) increase for the preceding twelve (12) months, plus two percent (2%).</li>
+<li>(b) Any fee adjustment shall be notified in writing at least sixty (60) days prior to the anniversary date.</li>
+</ul>
+
+<h3>7.4 Additional Services</h3>
+<p>Any services outside the scope of this Agreement shall be quoted separately and charged at the Service Provider's then-current rates.</p>
+
+<h3>7.5 Late Payment</h3>
+<p>Late payments shall bear interest at the rate of two percent (2%) per month, compounded monthly, until paid in full.</p>
+
+<h2>8. RESPONSE TIMES AND SERVICE LEVELS</h2>
+
+<h3>8.1 24/7 Monitoring Capability</h3>
+<p>The Service Provider shall maintain the following monitoring infrastructure:</p>
+<ul>
+<li>(a) <strong>Automated Alert System:</strong> The Monitoring Platform shall automatically generate alerts based on predefined thresholds without requiring manual intervention;</li>
+<li>(b) <strong>Multi-Channel Notification:</strong> Critical Alerts shall trigger immediate notifications via:
+    <ul>
+        <li>(i) SMS to duty technician's mobile phone;</li>
+        <li>(ii) Email to duty technician and operations manager;</li>
+        <li>(iii) Push notification via monitoring app (where available).</li>
+    </ul>
+</li>
+<li>(c) <strong>Duty Roster:</strong> The Service Provider shall maintain a 24/7 duty roster with at least one qualified technician on-call at all times;</li>
+<li>(d) <strong>Escalation Protocol:</strong> If the primary duty technician does not acknowledge a Critical Alert within thirty (30) minutes, the system shall automatically escalate to the backup technician and operations manager.</li>
+</ul>
+
+<h3>8.2 Response Time Commitments</h3>
+<p>The Service Provider commits to the following Response Times:</p>
+<table>
+<tr><th>Alert Type</th><th>Initial Remote Response</th><th>On-Site Attendance (if required)</th></tr>
+<tr><td><strong>Critical Alerts</strong></td><td>Within 2 hours</td><td>Within 8 hours</td></tr>
+<tr><td><strong>Major Alerts</strong></td><td>Within 8 hours</td><td>Within 48 hours</td></tr>
+<tr><td><strong>Minor Alerts</strong></td><td>Within 48 hours</td><td>Next scheduled maintenance visit or within 5 business days, whichever is sooner</td></tr>
+</table>
+
+<p><strong>Response Time Measurement:</strong> Response Time is measured from the timestamp of alert generation in the Monitoring Platform, not from Client notification.</p>
+<p><strong>Clarification — Response vs Resolution:</strong> The Response Times set out above apply to initial response and on-site attendance only. Resolution time depends on fault severity, spare parts availability, and OEM support requirements, and is not subject to the Response Time commitments in this Section.</p>
+
+<h3>8.3 Response Scope</h3>
+<p>Initial response shall include:</p>
+<ul>
+<li>(a) Acknowledgement of the issue;</li>
+<li>(b) Remote diagnosis where possible;</li>
+<li>(c) Preliminary assessment and recommended actions;</li>
+<li>(d) Escalation to OEM if required.</li>
+</ul>
+
+<h3>8.4 On-Site Attendance</h3>
+<p>Where on-site attendance is required:</p>
+<ul>
+<li>(a) The Service Provider shall dispatch qualified personnel to the Site;</li>
+<li>(b) Travel time shall not count toward Response Time;</li>
+<li>(c) The Client shall ensure site access and cooperation.</li>
+</ul>
+
+<h3>8.5 Exclusions from SLA</h3>
+<p>Response Time commitments shall not apply to:</p>
+<ul>
+<li>(a) Issues caused by Client actions or third parties;</li>
+<li>(b) Force Majeure events;</li>
+<li>(c) Issues related to grid or external infrastructure;</li>
+<li>(d) Scheduled downtime or maintenance windows.</li>
+</ul>
+
+<h3>8.6 Service Level Credits</h3>
+<ul>
+<li>(a) <strong>Critical Alert Breach:</strong> Where the Service Provider fails to achieve on-site attendance within the eight (8) hour commitment for a Critical Alert, the Client shall be entitled to a service credit of one hundred euros (€100) for each full hour of delay beyond the eight (8) hour commitment, up to a maximum of one thousand euros (€1,000) per incident.</li>
+<li>(b) <strong>Major Alert Breach:</strong> Where the Service Provider fails to achieve on-site attendance within the forty-eight (48) hour commitment for a Major Alert, the Client shall be entitled to a service credit of fifty euros (€50) for each full hour of delay beyond the forty-eight (48) hour commitment, up to a maximum of five hundred euros (€500) per incident.</li>
+<li>(c) <strong>Quarterly Cap:</strong> The total Service Level Credits payable under this Section 8.6 in any calendar quarter shall not exceed ten percent (10%) of the quarterly Service Fee for that quarter.</li>
+<li>(d) <strong>Remediation Plan:</strong> Where three (3) or more Service Level breaches occur in any calendar quarter, the Client may request a written remediation plan from the Service Provider. The Service Provider shall deliver such plan within fourteen (14) days of the request, detailing root cause analysis and corrective actions.</li>
+<li>(e) <strong>Sole Remedy:</strong> The Service Level Credits set out in this Section 8.6 shall be the Client's sole and exclusive remedy for failure to meet the Response Time commitments, and the Client shall not be entitled to claim additional damages for Response Time breaches beyond the Service Level Credits.</li>
+</ul>
+
+<h3>8.7 Escalation Protocol</h3>
+<p>The Service Provider shall maintain the following escalation procedure for Critical Alerts:</p>
+<ul>
+<li>(a) <strong>Acknowledgement:</strong> All Critical Alerts shall be acknowledged by the duty technician within thirty (30) minutes of alert generation.</li>
+<li>(b) <strong>Auto-Escalation:</strong> If the primary duty technician does not acknowledge a Critical Alert within thirty (30) minutes, the Monitoring Platform shall automatically escalate the alert to the backup technician and the operations manager simultaneously.</li>
+<li>(c) <strong>Management Escalation:</strong> If on-site attendance has not been dispatched within four (4) hours of a Critical Alert, the operations manager shall escalate to the Service Provider's senior management and notify the Client's designated contact.</li>
+<li>(d) <strong>Client Notification:</strong> The Client shall receive status updates at intervals of no more than two (2) hours from the time of a Critical Alert until the issue is resolved or the situation is stabilised.</li>
+</ul>
+
+<h3>8.8 Coverage Hours</h3>
+<ul>
+<li>(a) The Response Time commitments set out in Section 8.2 for Critical Alerts and Major Alerts apply on a <strong>twenty-four hours a day, seven days a week, three hundred and sixty-five days a year (24/7/365)</strong> basis, including weekends, public holidays, and night hours.</li>
+<li>(b) The Response Time commitment for Minor Alerts applies during <strong>business hours</strong> (Monday to Friday, 08:00–17:00 local time), excluding public holidays. Where a Minor Alert is raised outside business hours, the Response Time shall commence at the start of the next business day.</li>
+<li>(c) The Service Provider shall maintain a staffed duty roster at all times sufficient to meet the 24/7/365 commitment for Critical and Major Alerts, with a minimum of one (1) qualified technician on-call and a designated backup at all times.</li>
+</ul>
+
+<h2>9. AVAILABILITY GUARANTEE (TIER C)</h2>
+
+<h3>9.1 Availability Commitment</h3>
+<p>Where the Client has selected Tier C services, the Service Provider guarantees that the BESS shall achieve a minimum annual Availability of <strong>ninety-seven percent (97%)</strong>, calculated in accordance with Schedule 4.</p>
+
+<h3>9.2 Calculation of Availability</h3>
+<div class="formula">
+<strong>Availability (%) = [(Total Hours in Year - Unavailable Hours) / Total Hours in Year] x 100</strong>
+</div>
+<p>Where:</p>
+<ul>
+<li>(a) Total Hours in Year = 8,760 hours (or 8,784 in a leap year);</li>
+<li>(b) Unavailable Hours = hours during which the BESS is unable to operate at its rated capacity due to equipment fault, failure, or Service Provider-caused downtime.</li>
+</ul>
+
+<h3>9.3 Exclusions from Unavailable Hours</h3>
+<p>The following shall not count as Unavailable Hours:</p>
+<ul>
+<li>(a) Scheduled Downtime for preventive maintenance (maximum 10 days per year);</li>
+<li>(b) Downtime caused by grid unavailability, curtailment, or grid operator instruction;</li>
+<li>(c) Downtime caused by Force Majeure events;</li>
+<li>(d) Downtime caused by Client actions, third parties, or unauthorised modifications;</li>
+<li>(e) Downtime caused by EMS or third-party system failures;</li>
+<li>(f) Periods during which the BESS is not dispatched by the Client or market operator.</li>
+</ul>
+
+<h3>9.4 Availability Liquidated Damages</h3>
+<p>If the annual Availability falls below 97%, the Service Provider shall pay Liquidated Damages to the Client as follows:</p>
+<table>
+<tr><th>Achieved Availability</th><th>Service Fee Reduction</th></tr>
+<tr><td>95% to < 97%</td><td>5% of annual Service Fee</td></tr>
+<tr><td>93% to < 95%</td><td>10% of annual Service Fee</td></tr>
+<tr><td>90% to < 93%</td><td>15% of annual Service Fee</td></tr>
+<tr><td>Below 90%</td><td>20% of annual Service Fee</td></tr>
+</table>
+
+<h3>9.4A Direct Availability Liquidated Damages</h3>
+<p>In addition to the fee reductions in Section 9.4, direct Availability Liquidated Damages shall apply:</p>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Availability Target</td><td>97% annual</td></tr>
+<tr><td>LD Rate for shortfall below 97%</td><td><strong>€30 per day per MWh</strong></td></tr>
+<tr><td>Scheduled Maintenance Allowance</td><td>10 days per year (not counted as downtime)</td></tr>
+</table>
+<div class="info-box">
+<strong>Example (20 MWh System):</strong> If availability = 95% (shortfall of 2% = 7.26 days excess downtime beyond allowance), LD = 7.26 days × €30/day × 20 MWh = <strong>€4,356</strong>.
+</div>
+
+<h3>9.5 Cap on Availability Liquidated Damages</h3>
+<p>The maximum Availability Liquidated Damages payable in any year shall not exceed <strong>twenty percent (20%)</strong> of the annual Service Fee.</p>
+
+<h3>9.6 Sole Remedy</h3>
+<p>The Availability Liquidated Damages set out in this Section shall be the Client's sole and exclusive remedy for failure to achieve the Availability Guarantee, and the Client shall not be entitled to claim additional damages for unavailability beyond the Liquidated Damages.</p>
+
+<h2>10. STATE OF HEALTH (SOH) AND PERFORMANCE WARRANTY (TIER C)</h2>
+
+<h3>10.1 SOH Guarantee — OEM Pass-Through</h3>
+<ul>
+<li>(a) Where the Client has selected Tier C services, the Service Provider guarantees that the BESS shall maintain a minimum State of Health in accordance with the Degradation Curve set out in Schedule 5.</li>
+<li>(b) <strong>OEM-Backed Guarantee:</strong> The SOH Guarantee is a pass-through guarantee provided by the OEM (Linyang) and is backed by the OEM's warranty reserve. The Service Provider's obligation under this Section is to facilitate the OEM's warranty and ensure proper maintenance is performed.</li>
+<li>(c) <strong>Manufacturing Defect Determination:</strong> Where SOH underperformance is attributable to a manufacturing defect or design flaw in the OEM equipment, the OEM's determination of the defect shall govern.</li>
+<li>(d) <strong>No Double Liability:</strong> The Service Provider shall not be liable under both this Section 10 and Section 14.5 for the same underlying issue.</li>
+</ul>
+
+<h3>10.2 Guaranteed SOH Levels</h3>
+<p>The Guaranteed SOH at the end of each contract year shall be as follows (subject to adjustment based on actual cycling and operating conditions):</p>
+<table>
+<tr><th>End of Year</th><th>Guaranteed Minimum SOH</th></tr>
+<tr><td>1</td><td>≥ 95% of original rated capacity</td></tr>
+<tr><td>2</td><td>≥ 92%</td></tr>
+<tr><td>3</td><td>≥ 89%</td></tr>
+<tr><td>5</td><td>≥ 85% (V3 RFI confirmed)</td></tr>
+<tr><td>10</td><td>≥ 79.58% (V3 RFI confirmed)</td></tr>
+<tr><td>15</td><td>≥ 70% (V3 RFI confirmed, maximum warranty period)</td></tr>
+</table>
+
+<h3>10.3 SOH Measurement</h3>
+<ul>
+<li>(a) SOH shall be measured at least annually using OEM-approved testing protocols.</li>
+<li>(b) The Service Provider shall provide the Client with a written SOH certificate following each annual measurement.</li>
+<li>(c) The Client may request additional SOH measurements at the Client's cost.</li>
+</ul>
+
+<h3>10.4 Remedies for SOH Underperformance</h3>
+<p>If the measured SOH falls below the Guaranteed SOH, the Service Provider shall provide the following tiered remedies:</p>
+
+<h4>(a) ISOLATED MODULE FAILURES (affecting less than 5% of total capacity):</h4>
+<ul>
+<li>(i) The Service Provider shall replace or repair the affected modules at no cost to the Client;</li>
+<li>(ii) Replacement shall occur within sixty (60) days of identification;</li>
+<li>(iii) Replacement modules shall be new or equivalent to new in performance;</li>
+<li>(iv) <strong>OEM Warranty:</strong> Module replacements are sourced through the OEM warranty reserve at no cost to the Service Provider where the failure is attributable to manufacturing factors.</li>
+</ul>
+
+<h4>(b) SYSTEMIC UNDERPERFORMANCE (affecting 5% or more of total capacity):</h4>
+<ul>
+<li>(i) The Service Provider shall, at its option, either:
+    <ul>
+        <li>Augment the BESS with additional cells to restore capacity to the Guaranteed SOH; or</li>
+        <li>Pay Liquidated Damages calculated as the cost to restore the system to Guaranteed SOH.</li>
+    </ul>
+</li>
+<li>(ii) If augmentation is chosen, it shall be completed within one hundred twenty (120) days;</li>
+<li>(iii) <strong>OEM-Backed Augmentation:</strong> The Service Provider's augmentation obligation is backed by a contractual commitment from the OEM to supply replacement cells under the OEM warranty reserve;</li>
+<li>(iv) Where augmentation cells are provided by the OEM under warranty, the Service Provider shall coordinate installation and commissioning;</li>
+<li>(v) Where SOH underperformance is caused by Client misuse or factors excluded under Section 10.7, the augmentation obligation does not apply.</li>
+</ul>
+
+<h4>(c) OEM INSOLVENCY OR DEFAULT:</h4>
+<p>If the OEM fails to honour its warranty obligations (including due to insolvency, refusal, or cessation of business):</p>
+<ul>
+<li>(i) The Service Provider shall use commercially reasonable efforts to source equivalent replacement cells from alternative suppliers;</li>
+<li>(ii) The Service Provider's liability shall be limited to the caps set out in Section 10.5;</li>
+<li>(iii) The Service Provider may, at its option, terminate the SOH Guarantee element of the Tier C service and refund a pro-rata portion of SOH premiums paid.</li>
+</ul>
+
+<h3>10.5 SOH Capacity Shortfall Liquidated Damages</h3>
+
+<p>Where the measured SOH falls below the Guaranteed SOH by more than one percent (1%), the following bankable LD mechanism shall apply:</p>
+
+<h4>(a) SOH LD Formula</h4>
+<div class="formula">
+<strong>Daily SOH LD = Lost Capacity (MWh) × €30 per MWh per day</strong>
+<br><br>
+Where: Lost Capacity = (Guaranteed SOH% − Actual SOH%) × Rated System Capacity (MWh)
+</div>
+
+<h4>(b) SOH LD Trigger and Timing</h4>
+<table>
+<tr><th>Element</th><th>Value</th></tr>
+<tr><td><strong>Trigger</strong></td><td>Annual SOH measurement shows Actual SOH &lt; Guaranteed SOH by ≥ 1%</td></tr>
+<tr><td><strong>Measurement Method</strong></td><td>OEM-approved capacity test protocol; independently verifiable</td></tr>
+<tr><td><strong>Materiality Threshold</strong></td><td>≥ 1% shortfall (within BMS measurement tolerance: no claim)</td></tr>
+<tr><td><strong>Remedy Grace Period</strong></td><td>90 days from date of verified shortfall for Service Provider to remedy (augmentation or module replacement)</td></tr>
+<tr><td><strong>LD Accrual Start</strong></td><td>Day 91 after verified shortfall, if not remedied</td></tr>
+<tr><td><strong>LD Accrual Stop</strong></td><td>Date SOH is restored to Guaranteed SOH level (verified by re-test)</td></tr>
+<tr><td><strong>LD Rate</strong></td><td><strong>€30 per Lost MWh per day</strong> (consistent with Availability LD rate)</td></tr>
+</table>
+
+<h4>(c) SOH LD Caps</h4>
+<ul>
+<li>(i) <strong>Annual Cap:</strong> The maximum SOH Liquidated Damages payable in any twelve-month period shall not exceed <strong>twenty percent (20%)</strong> of the annual Service Fee.</li>
+<li>(ii) <strong>Lifetime Cap:</strong> The maximum aggregate SOH Liquidated Damages payable over the entire Term shall not exceed <strong>fifty percent (50%)</strong> of the total Service Fees paid.</li>
+<li>(iii) <strong>Interaction with Availability LDs:</strong> SOH LDs and Availability LDs are separate and cumulative, but the combined total in any year shall not exceed <strong>thirty percent (30%)</strong> of the annual Service Fee.</li>
+</ul>
+
+<h4>(d) Bankable SOH LD — Worked Examples</h4>
+<div class="info-box">
+<strong>Example 1 — Minor Shortfall (20 MWh system, Year 5):</strong><br>
+Guaranteed SOH: 85% · Actual SOH: 83% (2% shortfall)<br>
+Lost Capacity = 2% × 20 MWh = <strong>0.4 MWh</strong><br>
+Daily LD = 0.4 × €30 = <strong>€12/day</strong><br>
+Grace period: 90 days (no LDs accrue)<br>
+If unremedied for 120 days past grace: €12 × 120 = <strong>€1,440</strong><br>
+If unremedied for full year past grace: €12 × 275 = <strong>€3,300</strong>
+<br><br>
+<strong>Example 2 — Significant Shortfall (100 MWh system, Year 10):</strong><br>
+Guaranteed SOH: 79.58% · Actual SOH: 75% (4.58% shortfall)<br>
+Lost Capacity = 4.58% × 100 MWh = <strong>4.58 MWh</strong><br>
+Daily LD = 4.58 × €30 = <strong>€137.40/day</strong><br>
+If unremedied for 180 days past grace: €137.40 × 180 = <strong>€24,732</strong><br>
+(Subject to annual cap of 20% of Service Fee)
+</div>
+
+<h4>(e) Sole Remedy</h4>
+<p>The SOH Liquidated Damages set out in this Section, together with the augmentation and replacement remedies in Section 10.4, shall be the Client's sole and exclusive remedy for SOH underperformance. The Client shall not be entitled to claim additional damages beyond these remedies.</p>
+
+<h3>10.6 OEM Warranty Reserve</h3>
+<p>The SOH Guarantee is backed by the OEM's warranty reserve. The Service Provider shall ensure that adequate warranty provisions are maintained with the OEM to fulfil the obligations under this Section.</p>
+
+<h3>10.7 Exclusions from SOH Guarantee</h3>
+<p>The SOH Guarantee shall not apply to capacity loss caused by:</p>
+<ul>
+<li>(a) Operation outside OEM-specified parameters;</li>
+<li>(b) Excessive cycling beyond design specifications;</li>
+<li>(c) Extreme temperature exposure beyond design limits;</li>
+<li>(d) Physical damage, vandalism, or Force Majeure;</li>
+<li>(e) Client modifications or third-party interventions not approved by the Service Provider.</li>
+</ul>
+
+<h2>11. SPARE PARTS AND CONSUMABLES</h2>
+
+<h3>11.1 Consumables</h3>
+<p>The Service Fee includes standard consumables required for preventive maintenance, including filters, cleaning materials, and minor fasteners.</p>
+
+<h3>11.2 Spare Parts – Tier A and B</h3>
+<p>For Tier A and B services:</p>
+<ul>
+<li>(a) Replacement of spare parts beyond consumables is not included in the Service Fee;</li>
+<li>(b) The Service Provider shall maintain a recommended spare parts list and advise the Client on optimal inventory levels;</li>
+<li>(c) Spare parts may be supplied by the Service Provider at then-current prices, or sourced by the Client from approved suppliers.</li>
+</ul>
+
+<h3>11.3 Spare Parts – Tier C and D (Local Warehouse)</h3>
+<p>For Tier C and D services:</p>
+<ul>
+<li>(a) The Service Provider shall establish and maintain a local spare parts warehouse in Cyprus;</li>
+<li>(b) The local warehouse shall stock critical spare parts sufficient to address common failures within twenty-four (24) hours;</li>
+<li>(c) The cost of maintaining the local warehouse is included in the Service Fee for Tier C and D;</li>
+<li>(d) Critical spare parts include, at minimum:
+    <ul>
+        <li>(i) BMS controllers and communication modules;</li>
+        <li>(ii) Cooling system components (fans, filters, sensors);</li>
+        <li>(iii) Fuses, contactors, and protection devices;</li>
+        <li>(iv) PCS control boards and power modules;</li>
+        <li>(v) Battery module balancing equipment.</li>
+    </ul>
+</li>
+</ul>
+
+<h3>11.4 Warranty Parts</h3>
+<p>Parts replaced under the OEM warranty during the warranty period shall be provided at no additional cost, subject to OEM warranty terms.</p>
+
+<h2>12. CLIENT OBLIGATIONS</h2>
+
+<h3>12.1 Site Access</h3>
+<p>The Client shall provide safe and timely access to the Site for the Service Provider's personnel.</p>
+
+<h3>12.2 Cooperation</h3>
+<p>The Client shall:</p>
+<ul>
+<li>(a) Designate a primary contact person for communication;</li>
+<li>(b) Provide relevant site information, drawings, and documentation;</li>
+<li>(c) Notify the Service Provider promptly of any issues, alarms, or incidents;</li>
+<li>(d) Ensure the BESS is operated in accordance with OEM guidelines.</li>
+</ul>
+
+<h3>12.3 Internet Connectivity</h3>
+<p>The Client shall maintain reliable internet connectivity at the Site sufficient for remote monitoring data transmission.</p>
+
+<h3>12.4 Insurance</h3>
+<ul>
+<li>(a) The Client shall maintain appropriate insurance coverage for the BESS and Site, including:
+    <ul>
+        <li>(i) Property/asset insurance covering the full replacement value of the BESS;</li>
+        <li>(ii) Operational liability insurance;</li>
+        <li>(iii) Business interruption insurance (recommended).</li>
+    </ul>
+</li>
+<li>(b) The Service Provider maintains General Commercial Liability and Professional Indemnity Insurance of minimum EUR 1,000,000 each.</li>
+<li>(c) Each Party shall provide evidence of insurance upon reasonable request.</li>
+</ul>
+
+<h4>12.4A Insurance Compliance Tracking</h4>
+<ul>
+<li>(a) Both Parties shall maintain an insurance compliance register documenting all required policies, their coverage limits, expiry dates, and renewal status.</li>
+<li>(b) Each Party shall provide updated certificates of insurance within fourteen (14) days of each policy renewal.</li>
+<li>(c) The Service Provider shall notify the Client immediately if any required insurance lapses or is materially amended.</li>
+<li>(d) Failure to maintain required insurance shall entitle the non-defaulting Party to suspend its obligations (including guarantees) until insurance is reinstated.</li>
+<li>(e) Annual insurance compliance shall be documented in the Annual Review Report (Section 5.6).</li>
+</ul>
+
+<h3>12.5 Operational Compliance</h3>
+<p>The Client shall:</p>
+<ul>
+<li>(a) Operate the BESS within OEM-specified parameters;</li>
+<li>(b) Not modify, alter, or repair the BESS without the Service Provider's written approval;</li>
+<li>(c) Maintain monitoring alert thresholds as specified in Section 10.5 of the EPC Agreement;</li>
+<li>(d) Ensure the BESS is not left in low voltage or low SOC conditions that would void the warranty;</li>
+<li>(e) Maintain site security and environmental controls.</li>
+</ul>
+
+<h3>12.6 Payment Obligations</h3>
+<p>The Client shall pay all Service Fees when due. Time is of the essence regarding payment.</p>
+
+<h3>12.7 Consequences of Client Breach</h3>
+
+<div class="warning-box">
+<strong>(a) Non-Payment:</strong> If the Client fails to pay any Service Fee when due:
+<ul>
+<li>(i) Interest shall accrue at 2% per month on overdue amounts;</li>
+<li>(ii) The Service Provider may suspend monitoring and maintenance services upon fourteen (14) days' written notice;</li>
+<li>(iii) All guarantees under this Agreement (Availability, SOH) shall be suspended during the period of non-payment;</li>
+<li>(iv) If payment remains overdue for more than sixty (60) days, the Service Provider may terminate this Agreement immediately.</li>
+</ul>
+</div>
+
+<p><strong>(b) Access Denial:</strong> If the Client fails to provide site access for a scheduled Maintenance Visit:</p>
+<ul>
+<li>(i) The Service Provider shall not be liable for any issues that would have been detected or prevented by the missed visit;</li>
+<li>(ii) The Availability and SOH Guarantees shall be suspended until the next completed Maintenance Visit;</li>
+<li>(iii) The Client shall reimburse the Service Provider for wasted travel and personnel costs.</li>
+</ul>
+
+<p><strong>(c) Operational Non-Compliance:</strong> If the Client breaches Section 12.5:</p>
+<ul>
+<li>(i) The Service Provider shall have no liability for any resulting equipment damage or performance degradation;</li>
+<li>(ii) Such damage shall be excluded from Availability and SOH calculations;</li>
+<li>(iii) The Client shall indemnify the Service Provider against any claims arising therefrom.</li>
+</ul>
+
+<p><strong>(d) Internet Connectivity Failure:</strong> If the Client fails to maintain internet connectivity:</p>
+<ul>
+<li>(i) The Service Provider shall have no liability for delayed response to alerts or issues;</li>
+<li>(ii) Periods without connectivity shall be excluded from Availability calculations;</li>
+<li>(iii) The monitoring SLA shall be suspended.</li>
+</ul>
+
+<h2>13. TERM AND TERMINATION</h2>
+
+<h3>13.1 Initial Term</h3>
+<p>This Agreement shall commence on the Commissioning Date and continue for an initial term of <strong>five (5) years</strong> ("Initial Term").</p>
+
+<h3>13.2 Renewal</h3>
+<p>Upon expiry of the Initial Term, this Agreement shall automatically renew for successive periods of one (1) year each, unless either Party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current term.</p>
+
+<h3>13.3 Termination for Cause</h3>
+<p>Either Party may terminate this Agreement immediately upon written notice if the other Party:</p>
+<ul>
+<li>(a) Commits a material breach and fails to cure such breach within thirty (30) days of written notice; or</li>
+<li>(b) Becomes insolvent, enters liquidation, or ceases to carry on business.</li>
+</ul>
+
+<h3>13.4 Termination for Convenience</h3>
+<p>Either Party may terminate this Agreement for convenience by providing one hundred eighty (180) days' written notice.</p>
+
+<h3>13.5 Effect of Termination</h3>
+<p>Upon termination:</p>
+<ul>
+<li>(a) All outstanding Service Fees shall become immediately due and payable;</li>
+<li>(b) The Service Provider shall provide the Client with all Performance Data and maintenance records;</li>
+<li>(c) The Service Provider shall cooperate in the transition to any successor service provider;</li>
+<li>(d) Provisions relating to data ownership, confidentiality, and limitation of liability shall survive termination.</li>
+</ul>
+
+<h2>14. LIMITATION OF LIABILITY</h2>
+
+<h3>14.1 Exclusion of Consequential Damages</h3>
+<p>To the maximum extent permitted by law, neither Party shall be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profit, loss of revenue, loss of use, or business interruption.</p>
+
+<h3>14.2 Liability Cap</h3>
+<p>The Service Provider's total aggregate liability under this Agreement shall not exceed the total Service Fees paid by the Client in the twelve (12) months preceding the claim.</p>
+
+<h3>14.3 Carve-Outs</h3>
+<p>The limitations in this Section shall not apply to:</p>
+<ul>
+<li>(a) Liability arising from wilful misconduct or gross negligence;</li>
+<li>(b) Breach of confidentiality obligations;</li>
+<li>(c) Indemnification obligations.</li>
+</ul>
+
+<h3>14.4 No Liability for Third-Party Systems</h3>
+<p>The Service Provider shall have no liability for issues arising from:</p>
+<ul>
+<li>(a) EMS or other third-party software;</li>
+<li>(b) Grid or utility infrastructure;</li>
+<li>(c) Equipment not supplied by the Service Provider.</li>
+</ul>
+
+<h3>14.5 OEM Equipment – Service Provider Protection</h3>
+<ul>
+<li>(a) <strong>Service Provider Role:</strong> The Service Provider is an operations and maintenance contractor, NOT the manufacturer of the BESS equipment.</li>
+<li>(b) <strong>No Manufacturing Liability:</strong> The Service Provider shall NOT be liable for:
+    <ul>
+        <li>(i) Manufacturing defects in OEM-supplied equipment;</li>
+        <li>(ii) Design defects in OEM equipment or software;</li>
+        <li>(iii) OEM firmware or software failures;</li>
+        <li>(iv) Battery degradation exceeding the OEM's specified degradation curve;</li>
+        <li>(v) Equipment performance below OEM specifications where caused by manufacturing factors.</li>
+    </ul>
+</li>
+<li>(c) <strong>OEM Warranty Facilitation:</strong> The Service Provider shall use reasonable efforts to facilitate warranty claims with the OEM, but the ultimate warranty obligation lies with the OEM.</li>
+<li>(d) <strong>Availability Guarantee Exclusions:</strong> For the purposes of calculating Availability under Schedule 4, the following shall be excluded:
+    <ul>
+        <li>(i) Downtime caused by OEM manufacturing defects pending OEM repair;</li>
+        <li>(ii) Downtime caused by OEM firmware/software bugs pending OEM patch;</li>
+        <li>(iii) Downtime caused by Force Majeure events;</li>
+        <li>(iv) Downtime caused by Client-caused issues under Section 14.6.</li>
+    </ul>
+</li>
+</ul>
+
+<h3>14.6 Client-Caused Issues – No Service Provider Liability</h3>
+<p>The Service Provider shall have NO liability for issues arising from:</p>
+<ul>
+<li>(a) Client operation of the BESS contrary to OEM guidelines or Service Provider instructions;</li>
+<li>(b) Client modifications, repairs, or maintenance not performed by authorised personnel;</li>
+<li>(c) Client failure to provide remote access or site access as required;</li>
+<li>(d) Client failure to maintain site security, environmental controls, or insurance;</li>
+<li>(e) Client interference with Service Provider monitoring or maintenance activities;</li>
+<li>(f) Third-party EMS, grid infrastructure, or utility issues;</li>
+<li>(g) Client's breach of any obligation under this Agreement or the EPC Agreement.</li>
+</ul>
+
+<h3>14.7 Indemnification</h3>
+<ul>
+<li>(a) <strong>Client Indemnity to Service Provider:</strong> The Client shall indemnify and hold harmless the Service Provider against all claims, losses, damages, costs, and expenses arising from:
+    <ul>
+        <li>(i) Client's breach of this Agreement;</li>
+        <li>(ii) Client's negligent or wilful acts or omissions;</li>
+        <li>(iii) Third-party claims arising from Client's operation of the BESS;</li>
+        <li>(iv) Client modifications without Service Provider approval.</li>
+    </ul>
+</li>
+<li>(b) <strong>Service Provider Indemnity to Client:</strong> The Service Provider shall indemnify the Client against claims arising from:
+    <ul>
+        <li>(i) Service Provider's negligent acts during maintenance visits;</li>
+        <li>(ii) Personal injury or property damage directly caused by Service Provider's personnel;</li>
+        <li>(iii) Service Provider's breach of its maintenance obligations under this Agreement.</li>
+    </ul>
+</li>
+<li>(c) <strong>OEM Defects:</strong> For claims relating to OEM equipment defects, the Service Provider shall facilitate the claim with the OEM but shall NOT be liable for OEM failures.</li>
+</ul>
+
+<h2>15. CONFIDENTIALITY</h2>
+
+<h3>15.1 Confidential Information</h3>
+<p>Each Party shall keep confidential all non-public information disclosed by the other Party, including technical data, commercial terms, and Performance Data.</p>
+
+<h3>15.2 Permitted Disclosure</h3>
+<p>Confidential information may be disclosed:</p>
+<ul>
+<li>(a) To employees, contractors, and advisors on a need-to-know basis;</li>
+<li>(b) As required by law or regulatory authority;</li>
+<li>(c) With the prior written consent of the disclosing Party.</li>
+</ul>
+
+<h3>15.3 Duration</h3>
+<p>Confidentiality obligations shall survive termination of this Agreement for a period of five (5) years.</p>
+
+<h2>16. FORCE MAJEURE</h2>
+
+<h3>16.1 Definition</h3>
+<p>Neither Party shall be liable for delay or failure to perform due to events beyond its reasonable control, including acts of God, war, terrorism, natural disasters, pandemics, governmental actions, grid failures, or transportation disruptions.</p>
+
+<h3>16.2 Notification</h3>
+<p>The affected Party shall notify the other Party promptly and use reasonable efforts to mitigate the effects of the Force Majeure event.</p>
+
+<h3>16.3 Suspension</h3>
+<p>Affected obligations shall be suspended for the duration of the Force Majeure event.</p>
+
+<h2>17. COMPLIANCE AND ANTI-BRIBERY</h2>
+
+<h3>17.1 Compliance with Laws</h3>
+<p>Each Party shall comply with all applicable laws and regulations, including anti-corruption, anti-bribery, anti-money laundering, and trade sanctions laws.</p>
+
+<h3>17.2 Anti-Bribery</h3>
+<p>Neither Party shall, directly or indirectly, offer, promise, give, or authorise the giving of any bribe, kickback, or other improper payment to any person in connection with this Agreement.</p>
+
+<h3>17.3 Audit Rights</h3>
+<p>Each Party shall maintain accurate books and records and shall permit the other Party to audit compliance with this Section upon reasonable notice.</p>
+
+<h2>18. DATA PROTECTION</h2>
+
+<h3>18.1 GDPR Compliance</h3>
+<p>Where personal data is processed in connection with this Agreement, the Parties shall comply with the General Data Protection Regulation (EU) 2016/679 ("GDPR") and applicable Cyprus data protection laws.</p>
+
+<h3>18.2 Data Processing</h3>
+<p>The Service Provider shall process personal data only as necessary for the performance of this Agreement and in accordance with the Client's instructions.</p>
+
+<h3>18.3 Data Security</h3>
+<p>The Service Provider shall implement appropriate technical and organisational measures to protect personal data against unauthorised access, loss, or destruction.</p>
+
+<h2>19. REGULATORY COMPLIANCE</h2>
+
+<h3>19.1 Applicable Regulations</h3>
+<p>The ongoing operation of the BESS is subject to:</p>
+<ul>
+<li>(a) Ν.180(I)/2025 and Ν.181(I)/2025 (Road and Building Regulations);</li>
+<li>(b) EAC Technical Guide for Storage - Edition 2025;</li>
+<li>(c) EAC Universal Technical Guide for RES - Edition 2025;</li>
+<li>(d) Cyprus Fire Safety Regulations;</li>
+<li>(e) Cyprus Environmental Regulations.</li>
+</ul>
+
+<h3>19.2 Ongoing Regulatory Compliance</h3>
+<p>The Service Provider shall:</p>
+<ul>
+<li>(a) Maintain the Equipment in compliance with all applicable Cyprus DSO regulations;</li>
+<li>(b) Ensure protection settings remain as approved by the DSO;</li>
+<li>(c) Notify the Client of any regulatory changes affecting the BESS;</li>
+<li>(d) Coordinate with DSO on any required regulatory inspections or audits;</li>
+<li>(e) Maintain fire safety systems in operational condition;</li>
+<li>(f) Ensure SCADA and remote control systems remain fully functional.</li>
+</ul>
+
+<h3>19.3 Periodic Testing Requirements</h3>
+<p>The Service Provider shall perform the following regulatory compliance tests:</p>
+<table>
+<tr><th>Test</th><th>Frequency</th><th>Requirement</th></tr>
+<tr><td>Protection relay testing</td><td>Annual</td><td>All protection functions</td></tr>
+<tr><td>Ground resistance testing</td><td>Annual</td><td>Must not exceed 4Ω</td></tr>
+<tr><td>Insulation resistance testing</td><td>Annual</td><td>> 1MΩ</td></tr>
+<tr><td>SCADA signal verification</td><td>Annual</td><td>All signals</td></tr>
+<tr><td>Fire detection system testing</td><td>Per Cyprus regulations</td><td>Functional verification</td></tr>
+<tr><td>Fire suppression system inspection</td><td>Per Cyprus regulations</td><td>Pressure and readiness</td></tr>
+<tr><td>Emergency stop function testing</td><td>Each maintenance visit</td><td>Functional verification</td></tr>
+</table>
+
+<h3>19.4 DSO Reporting</h3>
+<p>The Service Provider shall:</p>
+<ul>
+<li>(a) Report faults to DSO as required (within 24-48 hours);</li>
+<li>(b) Submit generation/consumption data as required by DSO schedule;</li>
+<li>(c) Notify DSO of planned outages (minimum 7 days advance);</li>
+<li>(d) Report emergency outages immediately (phone + email);</li>
+<li>(e) Cooperate with DSO on system performance monitoring;</li>
+<li>(f) Report protection trips with documentation.</li>
+</ul>
+
+<h3>19.5 SCADA Compliance</h3>
+<p>The Service Provider shall ensure:</p>
+<ul>
+<li>(a) All mandatory telemetry signals remain operational (P, Q, V, I, f, SOC, SOH);</li>
+<li>(b) All remote commands respond correctly (P-set, Q-set, start/stop, zero-export);</li>
+<li>(c) IEC 60870-5-104 communication link to EAC SCADA maintained;</li>
+<li>(d) Power Quality Analyzer generating PQDIF & COMTRADE data;</li>
+<li>(e) Monthly verification of remote control functionality.</li>
+</ul>
+
+<h3>19.6 Fire Safety Compliance</h3>
+<p>The Service Provider shall:</p>
+<ul>
+<li>(a) Maintain fire detection systems in operational condition;</li>
+<li>(b) Verify fire suppression system pressure and readiness;</li>
+<li>(c) Test emergency stop functions during each maintenance visit;</li>
+<li>(d) Ensure fire extinguishers are present and within date;</li>
+<li>(e) Maintain fire access roads clear (minimum 6m width);</li>
+<li>(f) Cooperate with Fire Authority inspections.</li>
+</ul>
+
+<h3>19.7 Environmental Compliance</h3>
+<p>The Service Provider shall:</p>
+<ul>
+<li>(a) Ensure no uncontrolled pollution or discharge;</li>
+<li>(b) Maintain cooling systems per F-gas regulations;</li>
+<li>(c) Coordinate end-of-life battery recycling per environmental requirements;</li>
+<li>(d) Maintain vegetation clearance around installation.</li>
+</ul>
+
+<h3>19.8 Documentation</h3>
+<p>The Service Provider shall maintain the following records for regulatory compliance:</p>
+<ul>
+<li>(a) Protection relay test certificates (annual);</li>
+<li>(b) Ground resistance test reports (annual);</li>
+<li>(c) Insulation resistance test reports (annual);</li>
+<li>(d) SCADA signal verification reports (annual);</li>
+<li>(e) Fire system test reports;</li>
+<li>(f) Maintenance logs;</li>
+<li>(g) Fault incident reports;</li>
+<li>(h) DSO notification records;</li>
+<li>(i) Spare parts replacement records.</li>
+</ul>
+
+<h3>19.9 Personnel Qualifications</h3>
+<p>All maintenance personnel shall:</p>
+<ul>
+<li>(a) Hold valid electrical competency certifications as required by Cyprus law;</li>
+<li>(b) Be trained on OEM (Linyang) procedures and equipment;</li>
+<li>(c) Be familiar with EAC Technical Guide requirements;</li>
+<li>(d) Be trained in fire safety and emergency response procedures;</li>
+<li>(e) Be trained in SCADA/remote control system operation.</li>
+</ul>
+
+<h2>20. GOVERNING LAW AND DISPUTE RESOLUTION</h2>
+
+<h3>20.1 Governing Law</h3>
+<p>This Agreement shall be governed by and construed in accordance with the <strong>laws of the Republic of Cyprus</strong>.</p>
+
+<h3>20.2 Jurisdiction</h3>
+<p>Any dispute arising out of or in connection with this Agreement shall be submitted to the <strong>exclusive jurisdiction of the courts of the Republic of Cyprus</strong>.</p>
+
+<h3>20.3 Amicable Resolution</h3>
+<p>Prior to commencing legal proceedings, the Parties shall attempt to resolve any dispute through good faith negotiation for a period of thirty (30) days.</p>
+
+<h3>20.4 Official Language</h3>
+<ul>
+<li>(a) The official and legally binding language of this Agreement is English.</li>
+<li>(b) Any translation into Greek or any other language is for convenience only and has no legal effect.</li>
+<li>(c) In the event of conflict, the English version shall prevail.</li>
+</ul>
+
+<h2>21. MISCELLANEOUS</h2>
+
+<h3>21.1 Entire Agreement</h3>
+<p>This Agreement, together with its Schedules, constitutes the entire agreement between the Parties in relation to its subject matter.</p>
+
+<h3>21.2 Amendments</h3>
+<p>Any amendment to this Agreement shall be valid only if made in writing and signed by authorised representatives of both Parties.</p>
+
+<h3>21.3 Assignment</h3>
+<p>Neither Party may assign this Agreement without the prior written consent of the other Party, except to an Affiliate as part of a corporate reorganisation.</p>
+
+<h3>21.4 Notices</h3>
+<p>All notices shall be in writing and delivered to the addresses specified above or as otherwise notified by a Party.</p>
+
+<h3>21.5 Severability</h3>
+<p>If any provision of this Agreement is found to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.</p>
+
+<h3>21.6 Waiver</h3>
+<p>No waiver of any provision shall be effective unless in writing. Failure to enforce any provision shall not constitute a waiver.</p>
+
+<h3>21.7 Counterparts</h3>
+<p>This Agreement may be executed in counterparts and by electronic signature.</p>
+
+<!-- SCHEDULES -->
+
+<div class="schedule-header">SCHEDULE 1 – SITE AND EQUIPMENT DETAILS</div>
+
+<div class="schedule-subheader">SITE INFORMATION</div>
+
+<table>
+<tr><td width="30%"><strong>Site Name:</strong></td><td>[●]</td></tr>
+<tr><td><strong>Site Address:</strong></td><td>[●]</td></tr>
+<tr><td><strong>GPS Coordinates:</strong></td><td>Lat [●] &nbsp; Long [●]</td></tr>
+<tr><td><strong>Distance from Sea:</strong></td><td>[●] km (affects warranty – see EPC Agreement)</td></tr>
+</table>
+
+<div class="schedule-subheader">EQUIPMENT SUMMARY</div>
+
+<table>
+<tr><th>Item</th><th>Description</th><th>Quantity</th><th>Serial Number</th></tr>
+<tr><td>Battery Container</td><td>Linyang Power Atlantic 5MWh</td><td>[●]</td><td>[●]</td></tr>
+<tr><td>Power Conversion System</td><td>[●] MW PCS</td><td>[●]</td><td>[●]</td></tr>
+<tr><td>Transformer</td><td>[●] MVA Transformer</td><td>[●]</td><td>[●]</td></tr>
+<tr><td>EMS</td><td>[Third Party – specify]</td><td>[●]</td><td>[●]</td></tr>
+</table>
+
+<div class="schedule-subheader">LINYANG POWER ATLANTIC 5MWH TECHNICAL SPECIFICATIONS</div>
+
+<h4>SYSTEM PARAMETERS:</h4>
+<table>
+<tr><th>Parameter</th><th>Specification</th></tr>
+<tr><td>Battery Chemistry</td><td>Lithium Iron Phosphate (LFP)</td></tr>
+<tr><td>Configuration</td><td>12P416S</td></tr>
+<tr><td>Rated Energy</td><td>5,015 kWh</td></tr>
+<tr><td>Voltage Range</td><td>1,164.8V – 1,497.6V</td></tr>
+<tr><td>Duration</td><td>≥2 hours</td></tr>
+<tr><td>Thermal Management</td><td>Liquid Cooling (45kW)</td></tr>
+<tr><td>IP Rating</td><td>IP54 (Container)</td></tr>
+<tr><td>Dimensions</td><td>6,058 x 2,438 x 2,896 mm</td></tr>
+<tr><td>Weight</td><td>~43 tonnes</td></tr>
+</table>
+
+<h4>OPERATING LIMITS (For Monitoring Alerts):</h4>
+<table>
+<tr><th>Parameter</th><th>Minimum</th><th>Maximum</th><th>Alert Threshold</th></tr>
+<tr><td>Charging Temperature</td><td>0°C</td><td>+55°C</td><td>±5°C from limits</td></tr>
+<tr><td>Discharging Temperature</td><td>-20°C</td><td>+55°C</td><td>±5°C from limits</td></tr>
+<tr><td>Humidity</td><td>-</td><td>95% RH</td><td>>90% RH</td></tr>
+<tr><td>Cell Voltage</td><td>2.5V</td><td>3.65V</td><td>±0.1V from limits</td></tr>
+<tr><td>System Voltage</td><td>1,164.8V</td><td>1,497.6V</td><td>±50V from limits</td></tr>
+</table>
+
+<h4>CELL SPECIFICATIONS:</h4>
+<table>
+<tr><th>Parameter</th><th>Specification</th></tr>
+<tr><td>Cell Capacity</td><td>314 Ah</td></tr>
+<tr><td>Nominal Voltage</td><td>3.2V</td></tr>
+<tr><td>Standard C-Rate</td><td>0.5C</td></tr>
+<tr><td>Maximum C-Rate</td><td>1C</td></tr>
+<tr><td>Cycle Life</td><td>15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25±2°C (whichever comes first)</td></tr>
+<tr><td>Energy Density</td><td>183 Wh/kg</td></tr>
+</table>
+
+<h4>BMS ACCURACY:</h4>
+<table>
+<tr><th>Parameter</th><th>Accuracy</th></tr>
+<tr><td>Cell Voltage</td><td>±5 mV</td></tr>
+<tr><td>Cell Temperature</td><td>±1°C</td></tr>
+<tr><td>Current</td><td>±0.5% FSR</td></tr>
+<tr><td>SOC</td><td>≤5%</td></tr>
+<tr><td>Energy</td><td>≤±2%</td></tr>
+</table>
+
+<div class="schedule-subheader">KEY DATES</div>
+
+<table>
+<tr><th>Milestone</th><th>Date</th></tr>
+<tr><td>Equipment Delivered</td><td>[●]</td></tr>
+<tr><td>Commissioning Date (PAC)</td><td>[●]</td></tr>
+<tr><td>Warranty Start</td><td>[●]</td></tr>
+<tr><td>Base Warranty Expiry (5 years)</td><td>[●]</td></tr>
+<tr><td>LTSA Start</td><td>[●]</td></tr>
+<tr><td>LTSA Initial Term End</td><td>[●]</td></tr>
+</table>
+
+<div class="critical-box">
+<strong>⚠️ WARRANTY-VOIDING BATTERY CONDITIONS (Per OEM User Manual):</strong>
+<table>
+<tr><th>Condition</th><th>Threshold</th><th>Duration</th></tr>
+<tr><td>Low Cell Voltage</td><td>< 2.8V</td><td>120 consecutive hours</td></tr>
+<tr><td>Zero SOC</td><td>0%</td><td>120 consecutive hours</td></tr>
+<tr><td>Under-Voltage</td><td>≤ 2.5V</td><td>Any occurrence</td></tr>
+</table>
+<p><strong>Prevention Requirements:</strong></p>
+<ul>
+<li>Client must not leave BESS in low voltage or low SOC condition for extended periods</li>
+<li>Monitoring must alert at cell voltage < 2.9V</li>
+<li>SOC must be maintained above 5% during non-operating periods</li>
+<li>If system will be offline for extended period, charge to 30-50% SOC</li>
+</ul>
+</div>
+
+<!-- SCHEDULE 2 -->
+
+<div class="schedule-header">SCHEDULE 2 – SERVICE FEES AND PRICING</div>
+
+<p><strong>SYSTEM CAPACITY:</strong> [●] MWh</p>
+
+<p><strong>SELECTED SERVICE TIER:</strong> ☐ Tier A &nbsp;&nbsp; ☐ Tier B &nbsp;&nbsp; ☐ Tier C</p>
+
+<div class="schedule-subheader">BASE SERVICE PRICING (Per MWh per Year)</div>
+
+<table>
+<tr><th>Service Component</th><th>EUR/MWh/Year</th><th>Annual Total</th></tr>
+<tr><td colspan="3"><strong>TIER A – Basic Monitoring & Maintenance</strong></td></tr>
+<tr><td>Preventive Maintenance – BESS<br><em>(Includes remote monitoring + bi-annual servicing)</em></td><td>€1,157.62</td><td>€[●]</td></tr>
+<tr><td colspan="3"><strong>TIER B – Add Comprehensive O&M</strong></td></tr>
+<tr><td>Preventive & Corrective Maintenance – PCS + MVS<br><em>(Includes remote monitoring + bi-annual servicing)</em></td><td>€1,311.97</td><td>€[●]</td></tr>
+<tr><td colspan="3"><strong>TIER C – Add Availability Guarantee</strong></td></tr>
+<tr><td>97% Availability Guarantee (Years 1-20)<br><em>(Includes local service team + spare parts warehouse)</em></td><td>€2,201.73</td><td>€[●]</td></tr>
+<tr><td colspan="3"><strong>TIER D – Not Currently Offered</strong></td></tr>
+<tr><td colspan="3"><em>Tier C is the highest service tier available. SOH Guarantee and augmentation provisions are included in Tier C.</em></td></tr>
+</table>
+
+<div class="schedule-subheader">OPTIONAL WARRANTY EXTENSIONS (Per MWh per Year)</div>
+
+<table>
+<tr><th>Warranty Extension</th><th>Years</th><th>EUR/MWh/Year</th><th>Selected</th></tr>
+<tr><td>BESS Performance & Product Warranty</td><td>6-10</td><td>€913.92</td><td>☐</td></tr>
+<tr><td>BESS Performance & Product Warranty</td><td>11-15</td><td>€1,157.62</td><td>☐</td></tr>
+<tr><td colspan="4"><em>Years 16–20 extended warranty: pricing not yet confirmed — subject to future negotiation</em></td></tr>
+<tr><td>PCS + MVS Product Warranty</td><td>6-10</td><td>€747.76</td><td>☐</td></tr>
+<tr><td>PCS Product Warranty</td><td>11-15</td><td>€926.10</td><td>☐</td></tr>
+</table>
+
+<div class="schedule-subheader">EMS/SCADA ANNUAL SUBSCRIPTION (Per MWh per Year)</div>
+
+<table>
+<tr><th>Component</th><th>EUR/MWh/Year</th><th>Annual Total</th></tr>
+<tr><td>EMS/SCADA Software Subscription<br><em>(20% of installed EMS/SCADA cost per year)</em></td><td>€[●]</td><td>€[●]</td></tr>
+</table>
+
+<p><strong>Calculation basis:</strong> Annual subscription = 20% of total installed EMS/SCADA cost (EMS hardware + SCADA Local + SCADA Global), divided by system capacity in MWh. Rate varies by park size and group allocation — portfolio range: €661 – €3,181/MWh/Year.</p>
+
+<p><strong>Subscription includes:</strong></p>
+<ul>
+<li>Software updates and patches</li>
+<li>Cloud hosting and data storage</li>
+<li>External data feeds (market prices, grid signals, weather)</li>
+<li>Cybersecurity maintenance and NIS2 compliance updates</li>
+<li>System integrations and API access</li>
+<li>10 read-only SCADA dashboard accounts per client group</li>
+<li>1 hour/month technical support per park (additional hours at €80/hr)</li>
+</ul>
+
+<p><strong>Post-Subscription:</strong> If the subscription lapses, the system degrades to local-only EMS operation — no cloud access, SCADA Global, or external data feeds.</p>
+
+<p><strong>EMS/SCADA Subscription for this System:</strong></p>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>System Capacity</td><td>[●] MWh</td></tr>
+<tr><td>Installed EMS/SCADA Cost</td><td>€[●]</td></tr>
+<tr><td>Annual Subscription (20%)</td><td>€[●]</td></tr>
+<tr><td>EUR/MWh/Year</td><td>€[●]</td></tr>
+</table>
+
+<div class="schedule-subheader">ANNUAL FEE SUMMARY</div>
+
+<table>
+<tr><th>Component</th><th>Annual Fee (EUR)</th></tr>
+<tr><td>Base Service Fee (Selected Tier)</td><td>€[●]</td></tr>
+<tr><td>Warranty Extension (if selected)</td><td>€[●]</td></tr>
+<tr><td>EMS/SCADA Annual Subscription</td><td>€[●]</td></tr>
+<tr><td><strong>TOTAL ANNUAL FEE</strong></td><td><strong>€[●]</strong></td></tr>
+<tr><td>VAT (19%)</td><td>€[●]</td></tr>
+<tr><td><strong>TOTAL INCLUDING VAT</strong></td><td><strong>€[●]</strong></td></tr>
+</table>
+
+<div class="schedule-subheader">FEE INCLUSIONS BY TIER</div>
+
+<div class="two-column">
+<div>
+<h4>TIER A includes:</h4>
+<ul>
+<li>24/7 remote monitoring</li>
+<li>Bi-annual on-site maintenance visits (2 per year)</li>
+<li>Quarterly remote health checks</li>
+<li>Monthly and quarterly reporting</li>
+<li>Annual review report</li>
+<li>Standard consumables for preventive maintenance</li>
+<li>Technical support during Business Hours</li>
+</ul>
+</div>
+<div>
+<h4>TIER B adds:</h4>
+<ul>
+<li>Corrective maintenance and fault rectification</li>
+<li>PCS and MVS maintenance and servicing</li>
+<li>Emergency response services</li>
+</ul>
+</div>
+</div>
+
+<div class="two-column">
+<div>
+<h4>TIER C adds:</h4>
+<ul>
+<li>97% annual Availability Guarantee</li>
+<li>Local service team presence in Cyprus</li>
+<li>Local spare parts warehouse</li>
+<li>Availability Liquidated Damages protection</li>
+<li>Priority response times</li>
+</ul>
+</div>
+<div>
+<h4>TIER D adds:</h4>
+<ul>
+<li>SOH Guarantee against Degradation Curve</li>
+<li>Performance Warranty with tiered remedies</li>
+<li>Cell augmentation provisions</li>
+<li>Module replacement coverage</li>
+</ul>
+</div>
+</div>
+
+<div class="schedule-subheader">FEE EXCLUSIONS (ALL TIERS)</div>
+<ul>
+<li>Major component replacement beyond warranty scope</li>
+<li>EMS/SCADA annual subscription (charged separately — see EMS/SCADA section above)</li>
+<li>EMS software customisation beyond standard configuration</li>
+<li>Grid-related issues beyond point of interconnection</li>
+<li>Damage caused by Client, third parties, or Force Majeure</li>
+<li>Civil works or site infrastructure</li>
+<li>Third-party equipment not supplied under EPC Agreement</li>
+</ul>
+
+<div class="schedule-subheader">PAYMENT SCHEDULE</div>
+<ul>
+<li>Invoice issued annually in advance on anniversary of Commissioning Date</li>
+<li>Payment due within 30 days of invoice</li>
+<li>All amounts exclusive of VAT unless otherwise stated</li>
+<li>Warranty extension fees payable in advance for the extension period</li>
+</ul>
+
+<!-- SCHEDULE 3 -->
+
+<div class="schedule-header">SCHEDULE 3 – MAINTENANCE CHECKLIST</div>
+<p><em>(Per Linyang OEM Maintenance Manual)</em></p>
+
+<div class="schedule-subheader">PRE-MAINTENANCE SAFETY CHECK (OEM REQUIRED)</div>
+<ul class="checklist">
+<li>Weather conditions acceptable (no rain, snow, fog, high humidity, excessive wind)</li>
+<li>Container door opening is safe</li>
+<li>All MSDs disconnected before rack maintenance</li>
+<li>Pack plug locking structures unlocked before any unplugging</li>
+</ul>
+
+<div class="schedule-subheader">BI-ANNUAL ON-SITE MAINTENANCE CHECKLIST</div>
+
+<h4>CONTAINER INSPECTION (OEM Monthly Items)</h4>
+<ul class="checklist">
+<li>No damage, paint flaking, or oxidization</li>
+<li>No deformation of container or devices</li>
+<li>No flammable objects on top of container</li>
+<li>Foundation welding firm, no corrosion</li>
+<li>Door lock unlocks flexibly</li>
+<li>Sealing strip fixed properly</li>
+<li>Door seals do not curl when closing</li>
+<li>No foreign objects, dust, dirt, or condensed water inside</li>
+<li>Humidity within normal range</li>
+</ul>
+
+<h4>AIR FLOW (OEM Monthly Items)</h4>
+<ul class="checklist">
+<li>Air inlet not blocked</li>
+<li>Air outlet not blocked</li>
+<li>Internal ventilation paths clear</li>
+</ul>
+
+<h4>ELECTRICAL SYSTEMS (OEM 6-Month + Annual Items)</h4>
+<ul class="checklist">
+<li>All cables checked for breakage</li>
+<li>Cable layout normal, no short circuit risk</li>
+<li>All cable entries well sealed</li>
+<li>Power cables not loose</li>
+<li>Torque verification completed per OEM specification</li>
+<li>Power/control cables not damaged</li>
+<li>Insulation tapes on terminals intact</li>
+<li>Cable shielding in good contact with insulation sleeve</li>
+<li>Copper bus bar firmly fixed</li>
+<li>SPD properly fastened</li>
+<li>Fuses properly fastened</li>
+<li>Busbar connections secure</li>
+<li>Switchgear operation verified</li>
+<li>Protection relay settings verified</li>
+<li>Thermal imaging completed</li>
+</ul>
+
+<h4>GROUNDING (OEM Annual Item)</h4>
+<ul class="checklist">
+<li>Ground connection correct</li>
+<li>Grounding resistance measured: ________ Ω (MUST BE ≤4Ω)</li>
+<li>Equipotential connection inside system correct</li>
+</ul>
+
+<h4>BATTERY SYSTEMS</h4>
+<ul class="checklist">
+<li>All MSDs properly disconnected before work</li>
+<li>Module visual inspection</li>
+<li>Cell voltage readings recorded</li>
+<li>Cell temperature readings recorded</li>
+<li>Module balancing status verified</li>
+<li>BMS communication check passed</li>
+<li>SOH verification completed</li>
+</ul>
+
+<h4>THERMAL MANAGEMENT</h4>
+<ul class="checklist">
+<li>HVAC system operating normally</li>
+<li>Temperature not excessively high</li>
+<li>Fan operation verified</li>
+<li>No abnormal noise during operation</li>
+<li>Filters inspected/cleaned/replaced</li>
+<li>Temperature sensor calibration verified</li>
+<li>Thermal imaging completed</li>
+</ul>
+
+<h4>SAFETY SYSTEMS</h4>
+<ul class="checklist">
+<li>Fire suppression system armed, pressure OK</li>
+<li>Smoke/heat detector test passed</li>
+<li>Emergency stop function tested</li>
+<li>Door interlock operation verified</li>
+<li>Ventilation system operational</li>
+<li>Safety signage and labels intact</li>
+<li>Serial numbers visible and unaltered</li>
+</ul>
+
+<h4>SOFTWARE AND DATA (OEM Monthly Items)</h4>
+<ul class="checklist">
+<li>BMS data downloaded and saved</li>
+<li>Run data saved to file</li>
+<li>Parameters saved to file</li>
+<li>Logs saved to file</li>
+<li>Parameter settings reviewed</li>
+<li>Firmware version verified</li>
+<li>Software updates applied (if available)</li>
+<li>Communication link verified</li>
+<li>Remote monitoring confirmed</li>
+<li>Alarm log reviewed</li>
+</ul>
+
+<h4>POST-MAINTENANCE</h4>
+<ul class="checklist">
+<li>All MSDs reconnected</li>
+<li>System returned to operational state</li>
+<li>Door seals checked before closing</li>
+<li>Door locked properly</li>
+</ul>
+
+<h4>DOCUMENTATION</h4>
+<ul class="checklist">
+<li>Maintenance log updated</li>
+<li>Key components photographed</li>
+<li>All measurements recorded</li>
+<li>Recommendations noted</li>
+<li>Maintenance report completed</li>
+</ul>
+
+<!-- SCHEDULE 4 -->
+
+<div class="schedule-header">SCHEDULE 4 – AVAILABILITY CALCULATION AND GUARANTEES</div>
+<p><em>(Applicable to Tier C only)</em></p>
+
+<div class="schedule-subheader">AVAILABILITY FORMULA</div>
+
+<div class="formula">
+<strong>Availability (%) = [(Total Hours - Unavailable Hours) / Total Hours] x 100</strong>
+<br><br>
+Where:
+<br>• Total Hours = 8,760 hours per year (8,784 in leap year)
+<br>• Unavailable Hours = hours when BESS cannot operate at rated capacity due to:
+<br>&nbsp;&nbsp;- Equipment fault or failure
+<br>&nbsp;&nbsp;- Service Provider-caused downtime
+<br>&nbsp;&nbsp;- Waiting for parts or repairs
+</div>
+
+<div class="schedule-subheader">GUARANTEED AVAILABILITY LEVEL</div>
+
+<table>
+<tr><th>Service Tier</th><th>Guaranteed Availability</th></tr>
+<tr><td>Tier C</td><td>97% annual</td></tr>
+<!-- Tier D removed - not offered -->
+</table>
+
+<div class="schedule-subheader">EXCLUDED HOURS (Do not count as Unavailable)</div>
+
+<p>The following shall NOT count as Unavailable Hours:</p>
+<ol>
+<li>Scheduled Downtime (max 10 days/year — 240 hours — for maintenance)</li>
+<li>Grid unavailability or curtailment by grid operator</li>
+<li>Force Majeure events</li>
+<li>Client-caused issues or unauthorised modifications</li>
+<li>EMS or third-party system failures</li>
+<li>Periods when BESS is not dispatched</li>
+<li>Downtime during warranty claim investigations</li>
+</ol>
+
+<div class="schedule-subheader">AVAILABILITY LIQUIDATED DAMAGES</div>
+
+<table>
+<tr><th>Achieved Availability</th><th>Service Fee Reduction</th></tr>
+<tr><td>95% to < 97%</td><td>5% of annual Service Fee</td></tr>
+<tr><td>93% to < 95%</td><td>10% of annual Service Fee</td></tr>
+<tr><td>90% to < 93%</td><td>15% of annual Service Fee</td></tr>
+<tr><td>Below 90%</td><td>20% of annual Service Fee</td></tr>
+</table>
+
+<p><strong>Maximum annual Liquidated Damages:</strong> 20% of annual Service Fee</p>
+
+<div class="schedule-subheader">AVAILABILITY MEASUREMENT AND REPORTING</div>
+
+<ol>
+<li>Availability shall be measured continuously via the Monitoring Platform</li>
+<li>Monthly availability reports shall be provided to the Client</li>
+<li>Annual availability calculation shall be completed within 15 Business Days of year end</li>
+<li>Client may dispute calculations within 30 days of receipt</li>
+<li>Liquidated Damages (if applicable) shall be credited against next invoice</li>
+</ol>
+
+<!-- SCHEDULE 5 -->
+
+<div class="schedule-header">SCHEDULE 5 – DEGRADATION CURVE AND SOH GUARANTEE</div>
+<p><em>(Not currently offered - Tier C is the highest tier)</em></p>
+
+<p><strong>Reference:</strong> Linyang Power Atlantic 5MWh BESS Degradation Curve Document</p>
+
+<div class="schedule-subheader">INITIAL SOH AT COMMISSIONING</div>
+<p><strong>SOH at Commercial Operation Date (COD): 98.5%</strong></p>
+
+<div class="schedule-subheader">OEM DEGRADATION CURVES (Per Linyang Documentation)</div>
+
+<h4>Operating Condition: 0.25P, 2 Cycles per Day</h4>
+<table>
+<tr><th>Year</th><th>SOH</th><th>Cumulative Cycles</th></tr>
+<tr><td>0</td><td>98.50%</td><td>0</td></tr>
+<tr><td>1</td><td>93.91%</td><td>730</td></tr>
+<tr><td>2</td><td>90.66%</td><td>1,460</td></tr>
+<tr><td>3</td><td>87.97%</td><td>2,190</td></tr>
+<tr><td>4</td><td>85.76%</td><td>2,920</td></tr>
+<tr><td>5</td><td>83.72%</td><td>3,650</td></tr>
+<tr><td>6</td><td>81.78%</td><td>4,380</td></tr>
+<tr><td>7</td><td>80.08%</td><td>5,110</td></tr>
+<tr><td>8</td><td>78.09%</td><td>5,840</td></tr>
+<tr><td>9</td><td>76.12%</td><td>6,570</td></tr>
+<tr><td>10</td><td>74.13%</td><td>7,300</td></tr>
+<tr><td>11</td><td>72.11%</td><td>8,030</td></tr>
+<tr><td>12</td><td>70.10%</td><td>8,760</td></tr>
+</table>
+
+<h4>Operating Condition: 0.5P, 2 Cycles per Day</h4>
+<table>
+<tr><th>Year</th><th>SOH</th><th>Cumulative Cycles</th></tr>
+<tr><td>0</td><td>98.50%</td><td>0</td></tr>
+<tr><td>1</td><td>93.78%</td><td>730</td></tr>
+<tr><td>2</td><td>90.17%</td><td>1,460</td></tr>
+<tr><td>3</td><td>87.53%</td><td>2,190</td></tr>
+<tr><td>4</td><td>84.93%</td><td>2,920</td></tr>
+<tr><td>5</td><td>82.95%</td><td>3,650</td></tr>
+<tr><td>6</td><td>80.50%</td><td>4,380</td></tr>
+<tr><td>7</td><td>78.47%</td><td>5,110</td></tr>
+<tr><td>8</td><td>75.94%</td><td>5,840</td></tr>
+<tr><td>9</td><td>73.83%</td><td>6,570</td></tr>
+<tr><td>10</td><td>71.34%</td><td>7,300</td></tr>
+</table>
+
+<div class="schedule-subheader">GUARANTEED STATE OF HEALTH (SOH)</div>
+
+<p>Based on OEM degradation data, the following minimum SOH levels are guaranteed:</p>
+
+<div class="two-column">
+<div>
+<h4>For 1 Cycle per Day Operation:</h4>
+<table>
+<tr><th>End of Year</th><th>Guaranteed Minimum SOH</th></tr>
+<tr><td>1</td><td>95%</td></tr>
+<tr><td>2</td><td>92%</td></tr>
+<tr><td>3</td><td>89%</td></tr>
+<tr><td>4</td><td>87%</td></tr>
+<tr><td>5</td><td>85%</td></tr>
+<tr><td>6</td><td>83%</td></tr>
+<tr><td>7</td><td>81%</td></tr>
+<tr><td>8</td><td>79%</td></tr>
+<tr><td>9</td><td>77%</td></tr>
+<tr><td>10</td><td>75%</td></tr>
+<tr><td>15</td><td>70%</td></tr>
+<tr><td>20</td><td>60%</td></tr>
+</table>
+</div>
+<div>
+<h4>For 2 Cycles per Day Operation:</h4>
+<table>
+<tr><th>End of Year</th><th>Guaranteed Minimum SOH</th></tr>
+<tr><td>1</td><td>93%</td></tr>
+<tr><td>2</td><td>89%</td></tr>
+<tr><td>3</td><td>86%</td></tr>
+<tr><td>4</td><td>84%</td></tr>
+<tr><td>5</td><td>82%</td></tr>
+<tr><td>6</td><td>80%</td></tr>
+<tr><td>7</td><td>78%</td></tr>
+<tr><td>8</td><td>75%</td></tr>
+<tr><td>9</td><td>73%</td></tr>
+<tr><td>10</td><td>71%</td></tr>
+</table>
+</div>
+</div>
+
+<div class="schedule-subheader">OPERATING CONDITION ASSUMPTIONS</div>
+
+<p>Guaranteed SOH is based on:</p>
+<ul>
+<li>Operating temperature within OEM range (0-55°C charging, -20-55°C discharging)</li>
+<li>Charge/discharge rate as specified (0.25P or 0.5P)</li>
+<li>Cycles per day as agreed</li>
+<li>Operation in accordance with OEM User Manual</li>
+<li>No warranty-voiding events (see below)</li>
+</ul>
+
+<div class="schedule-subheader">DEGRADATION CURVE (Visual Reference)</div>
+
+<div class="degradation-chart">
+100% |●
+     |  ●
+ 90% |    ●----●----●
+     |              ●
+ 80% |                ●----●----●----●----●
+     |                                    ●
+ 70% |                                      ●----●----●----●----●
+     |                                                          ●
+ 60% |                                                            ●----●----●----●----●
+     |
+ 50% |────────────────────────────────────────────────────────────────────────────────────
+     0    2    4    6    8   10   12   14   16   18   20  Years
+</div>
+
+<div class="schedule-subheader">SOH MEASUREMENT PROTOCOL</div>
+
+<ol>
+<li>SOH shall be measured annually using OEM-approved capacity test protocol</li>
+<li>Test shall be conducted under controlled conditions:
+    <ul>
+        <li>Ambient temperature: 20-25°C</li>
+        <li>Full charge/discharge cycle at C/3 rate</li>
+        <li>Rest period of 2 hours between charge and discharge</li>
+    </ul>
+</li>
+<li>Results shall be documented in SOH Certificate</li>
+<li>Client may request additional tests at Client's cost</li>
+</ol>
+
+<div class="schedule-subheader">REMEDIES FOR SOH UNDERPERFORMANCE</div>
+
+<h4>CATEGORY A: ISOLATED MODULE FAILURES</h4>
+<p><em>(Affecting < 5% of total system capacity)</em></p>
+<ul>
+<li><strong>Remedy:</strong> Module replacement at Service Provider's cost</li>
+<li><strong>Timeline:</strong> Within 60 days of identification</li>
+<li><strong>Standard:</strong> Replacement modules shall be new or equivalent to new</li>
+</ul>
+
+<h4>CATEGORY B: SYSTEMIC UNDERPERFORMANCE</h4>
+<p><em>(Affecting ≥ 5% of total system capacity)</em></p>
+<p><strong>Remedy Options (at Service Provider's election):</strong></p>
+<ol>
+<li><strong>Cell Augmentation:</strong> Add cells to restore capacity to Guaranteed SOH
+    <ul>
+        <li>Timeline: Within 120 days</li>
+        <li>All costs borne by Service Provider</li>
+    </ul>
+</li>
+<li><strong>Liquidated Damages:</strong> Payment calculated as:
+    <div class="formula">
+    LD = (Guaranteed SOH - Actual SOH) x System Capacity x Market Rate per kWh
+    </div>
+    <ul>
+        <li>Market Rate = prevailing cost of equivalent battery modules</li>
+    </ul>
+</li>
+</ol>
+
+<p><strong>Maximum SOH Liquidated Damages:</strong> 50% of total Service Fees paid over Term</p>
+
+<div class="schedule-subheader">EXCLUSIONS FROM SOH GUARANTEE</div>
+
+<p>The SOH Guarantee does not cover degradation caused by:</p>
+<ol>
+<li>Operation outside OEM-specified parameters</li>
+<li>Excessive cycling (> 1.5 equivalent full cycles per day average)</li>
+<li>Extreme temperature exposure beyond design limits</li>
+<li>Physical damage, vandalism, or Force Majeure</li>
+<li>Unauthorised modifications or third-party interventions</li>
+<li>Improper storage before installation</li>
+<li>Grid voltage or frequency excursions beyond design limits</li>
+</ol>
+
+<div class="schedule-subheader">OEM WARRANTY RESERVE</div>
+
+<p>The SOH Guarantee is backed by the OEM (Linyang) warranty reserve.</p>
+<p><strong>Current OEM warranty reserve:</strong> Approximately 1.9% of system value per year</p>
+<p>Service Provider shall maintain adequate warranty provisions with OEM.</p>
+
+<!-- SIGNATURES -->
+
+<div class="schedule-header">SIGNATURES</div>
+
+<p>IN WITNESS WHEREOF, the Parties have caused this Agreement to be executed by their duly authorised representatives as of the Effective Date.</p>
+
+<div class="signature-block">
+<p><strong>For Lighthief Cyprus Ltd:</strong></p>
+<div class="signature-line"></div>
+<p class="signature-label">Name:</p>
+<div class="signature-line"></div>
+<p class="signature-label">Title:</p>
+<div class="signature-line"></div>
+<p class="signature-label">Date:</p>
+</div>
+
+<div class="signature-block">
+<p><strong>For [End Customer]:</strong></p>
+<div class="signature-line"></div>
+<p class="signature-label">Name:</p>
+<div class="signature-line"></div>
+<p class="signature-label">Title:</p>
+<div class="signature-line"></div>
+<p class="signature-label">Date:</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7SUN Cyprus — Website & AI Infrastructure Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  :root{--sun:#F59E0B;--sun-dk:#D97706;--dark:#1F2937;--darker:#111827;--light:#F9FAFB;--gray:#6B7280;--green:#10B981;--red:#EF4444;--blue:#3B82F6;--purple:#8B5CF6;--cyan:#06B6D4;--indigo:#6366F1;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--light);color:var(--dark);line-height:1.65;font-size:14px;}
+  @media print{.no-print{display:none!important;}body{font-size:10px;background:#fff;}section{break-inside:avoid;}.hero{padding:24px 0!important;}.hero h1{font-size:24px!important;}.container{max-width:100%;padding:0 10px;}table{font-size:9px;}.card{break-inside:avoid;page-break-inside:avoid;}pre{font-size:7px;}}
+  .container{max-width:1100px;margin:0 auto;padding:0 28px;}
+  .pdf-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--darker);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.3);}
+  .pdf-bar span{color:#fff;font-weight:600;font-size:14px;}.pdf-bar .sub{color:#9CA3AF;font-size:12px;margin-left:8px;}
+  .pdf-btn{background:var(--sun);color:var(--darker);border:none;padding:9px 22px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;}
+  .pdf-btn:hover{background:var(--sun-dk);transform:translateY(-1px);}
+  .hero{background:linear-gradient(135deg,#0F172A 0%,#1E293B 40%,#312E81 100%);color:#fff;padding:64px 0 48px;margin-top:48px;}
+  .hero h1{font-size:40px;font-weight:900;line-height:1.1;}.hero h1 span{color:var(--sun);}
+  .hero .sub{font-size:18px;color:#94A3B8;font-weight:300;margin:8px 0 20px;}
+  .hero .tag{display:inline-block;background:rgba(245,158,11,.15);color:var(--sun);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:600;margin-right:6px;margin-bottom:6px;}
+  .kpi-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:-30px 0 36px;position:relative;z-index:10;}
+  .kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08);border:1px solid #E5E7EB;transition:.2s;}
+  .kpi:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.12);}
+  .kpi .v{font-size:22px;font-weight:800;}.kpi .l{font-size:9.5px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+  .kpi.sun .v{color:var(--sun-dk);}.kpi.green .v{color:var(--green);}.kpi.blue .v{color:var(--blue);}.kpi.purple .v{color:var(--purple);}.kpi.cyan .v{color:var(--cyan);}.kpi.indigo .v{color:var(--indigo);}
+  section{padding:40px 0;}section:nth-child(even){background:#fff;}
+  h2{font-size:24px;font-weight:800;color:var(--darker);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  h2 .n{width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:#fff;font-weight:800;}
+  h2 .n.sun{background:var(--sun);} h2 .n.blue{background:var(--blue);} h2 .n.green{background:var(--green);} h2 .n.purple{background:var(--purple);} h2 .n.cyan{background:var(--cyan);} h2 .n.indigo{background:var(--indigo);} h2 .n.red{background:var(--red);}
+  h3{font-size:16px;font-weight:700;margin:20px 0 8px;color:var(--dark);}
+  h4{font-size:14px;font-weight:600;margin:14px 0 6px;}
+  .desc{color:var(--gray);font-size:13.5px;margin-bottom:18px;max-width:750px;line-height:1.7;}
+  .tw{overflow-x:auto;margin:12px 0 20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  table{width:100%;border-collapse:collapse;background:#fff;}
+  th{background:var(--darker);color:#fff;font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:left;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid #F3F4F6;font-size:12.5px;}
+  tr:hover td{background:#FFFBEB;}
+  .p{font-weight:700;}.pg{color:var(--green);}.pr{color:var(--red);}.pb{color:var(--blue);}.pp{color:var(--purple);}.pc{color:var(--cyan);}
+  .badge{display:inline-block;padding:3px 10px;border-radius:5px;font-size:10px;font-weight:600;}
+  .bg{background:#D1FAE5;color:#065F46;}.br{background:#FEE2E2;color:#991B1B;}.by{background:#FEF3C7;color:#92400E;}.bb{background:#DBEAFE;color:#1E40AF;}.bp{background:#EDE9FE;color:#5B21B6;}.bc{background:#CFFAFE;color:#155E75;}.bk{background:#F3F4F6;color:#374151;}
+  .insight{background:#FFFBEB;border-left:4px solid var(--sun);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;line-height:1.6;}.insight strong{color:var(--sun-dk);}
+  .warn{background:#FEF2F2;border-left:4px solid var(--red);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;}
+  .info{background:#EFF6FF;border-left:4px solid var(--blue);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;}
+  .card{border:1px solid #E5E7EB;border-radius:12px;padding:20px;margin:14px 0;background:#fff;transition:.15s;}
+  .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
+  .card.featured{border:2px solid var(--sun);background:linear-gradient(to right,#FFFBEB,#FFF);}
+  .card.ai{border:2px solid var(--purple);background:linear-gradient(to right,#F5F3FF,#FFF);}
+  .card.infra{border:2px solid var(--cyan);background:linear-gradient(to right,#ECFEFF,#FFF);}
+  .card h4{margin-top:0;}
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:14px 0;}
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0;}
+  pre{background:var(--darker);color:#E2E8F0;padding:18px;border-radius:10px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.5;margin:12px 0 18px;}
+  code{font-family:'JetBrains Mono',monospace;background:#F3F4F6;padding:2px 6px;border-radius:4px;font-size:12px;color:var(--darker);}
+  .timeline{position:relative;padding-left:30px;margin:20px 0;}
+  .timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--sun),var(--purple),var(--cyan));}
+  .tl-item{position:relative;margin-bottom:18px;padding-left:20px;}
+  .tl-item::before{content:'';position:absolute;left:-23px;top:4px;width:14px;height:14px;border-radius:50%;border:3px solid var(--sun);background:#fff;}
+  .tl-item.active::before{background:var(--sun);}
+  .tl-item .tl-title{font-weight:700;font-size:14px;}.tl-item .tl-time{font-size:11px;color:var(--gray);}.tl-item .tl-desc{font-size:12.5px;color:#4B5563;margin-top:3px;}
+  .cost-total{background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border-radius:12px;padding:24px;margin:16px 0;text-align:center;}
+  .cost-total .big{font-size:36px;font-weight:900;color:var(--sun);}.cost-total .label{font-size:13px;color:#94A3B8;margin-top:4px;}
+  ul{margin:8px 0 12px 20px;}ul li{margin-bottom:4px;font-size:13px;}
+  .check{color:var(--green);font-weight:700;margin-right:4px;}.cross{color:var(--red);font-weight:700;margin-right:4px;}
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0;}.flow .step{background:#fff;border:2px solid #E5E7EB;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;}.flow .arrow{font-size:18px;color:var(--gray);}
+  footer{background:var(--darker);color:#9CA3AF;padding:28px 0;font-size:12px;text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+
+<!-- PDF Export Bar -->
+<div class="pdf-bar no-print">
+  <span>7SUN Cyprus — Website & AI Infrastructure Plan <span class="sub">February 2026</span></span>
+  <button class="pdf-btn" onclick="window.print()">Export as PDF</button>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <div style="display:flex;gap:6px;margin-bottom:14px;">
+      <span class="tag">AI-First</span>
+      <span class="tag">Headless Commerce</span>
+      <span class="tag">Full Automation</span>
+      <span class="tag">B2B + B2C</span>
+      <span class="tag">Bilingual</span>
+    </div>
+    <h1>7SUN<span>.cy</span> — Website &<br>AI Infrastructure Plan</h1>
+    <p class="sub">Complete e-commerce platform with AI chatbot, voice agent, XML product sync,<br>automated newsletters, and zero-friction wholesale ordering</p>
+  </div>
+</div>
+
+<!-- KPI Strip -->
+<div class="container">
+  <div class="kpi-strip">
+    <div class="kpi sun"><div class="v">€481/mo</div><div class="l">Platform Cost</div></div>
+    <div class="kpi green"><div class="v">20 Weeks</div><div class="l">Build Timeline</div></div>
+    <div class="kpi blue"><div class="v">€34–54K</div><div class="l">Development</div></div>
+    <div class="kpi purple"><div class="v">80%+ AI</div><div class="l">Auto Interactions</div></div>
+    <div class="kpi cyan"><div class="v">400–600</div><div class="l">Products (XML)</div></div>
+    <div class="kpi indigo"><div class="v">4-Hour</div><div class="l">Auto Sync</div></div>
+  </div>
+</div>
+
+<!-- Section 1: Architecture -->
+<section>
+  <div class="container">
+    <h2><span class="n sun">1</span> Architecture Overview</h2>
+    <p class="desc">AI-first, headless commerce architecture built for maximum automation and minimum human interaction. Every customer touchpoint starts with AI — chat, voice, email.</p>
+
+    <pre>
+┌─────────────────────────────────────────────────────────────────────┐
+│                        7SUN.CY PLATFORM                             │
+│                                                                     │
+│  ┌──────────────┐   ┌──────────────┐   ┌──────────────┐           │
+│  │  B2C STORE   │   │  B2B PORTAL  │   │ DEVELOPER    │           │
+│  │  Retail      │   │  Wholesale   │   │ PORTAL       │           │
+│  └──────┬───────┘   └──────┬───────┘   └──────┬───────┘           │
+│         └──────────────────┼───────────────────┘                    │
+│                   ┌────────▼────────┐                               │
+│                   │  NEXT.JS 15     │ ← Vercel Edge CDN            │
+│                   │  STOREFRONT     │                               │
+│                   └────────┬────────┘                               │
+│    ┌───────────┬───────────┼───────────┬────────────┐              │
+│    ▼           ▼           ▼           ▼            ▼              │
+│ ┌──────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ ┌──────────┐        │
+│ │MEDUSA│ │AI CHATBOT│ │STRIPE  │ │VOICE AI │ │KLAVIYO   │        │
+│ │.js   │ │GPT-4o    │ │Payment │ │ElevenLab│ │Newsletter│        │
+│ └──┬───┘ └──────────┘ └────────┘ └─────────┘ └──────────┘        │
+│    └──────────────────────┼──────────────────────────┘             │
+│                  ┌────────▼────────┐                               │
+│                  │   SUPABASE      │                               │
+│                  │   PostgreSQL    │                               │
+│                  │   Auth/Storage  │                               │
+│                  └────────┬────────┘                               │
+│              ┌────────────┼────────────┐                           │
+│              ▼            ▼            ▼                            │
+│         XML FEED    RES FUND      ANALYTICS                        │
+│         SYNC        AUTO-VERIFY   GA4+PostHog                      │
+└─────────────────────────────────────────────────────────────────────┘</pre>
+
+    <h3>Design Principles</h3>
+    <div class="grid-3">
+      <div class="card"><h4>🤖 AI-First</h4><p style="font-size:12px;color:var(--gray)">Every interaction starts with AI — chat, voice, email. Human escalation only when needed.</p></div>
+      <div class="card"><h4>⚡ Zero-Friction</h4><p style="font-size:12px;color:var(--gray)">3-click checkout. Wholesale accounts auto-approved. CSV bulk upload.</p></div>
+      <div class="card"><h4>🔄 Auto-Sync</h4><p style="font-size:12px;color:var(--gray)">Products, prices, images, stock from 7sun.eu XML every 4 hours. Zero manual entry.</p></div>
+      <div class="card"><h4>🌐 Bilingual</h4><p style="font-size:12px;color:var(--gray)">Full Greek + English. AI translates product descriptions automatically.</p></div>
+      <div class="card"><h4>📱 Mobile-First</h4><p style="font-size:12px;color:var(--gray)">73% of Cyprus internet is mobile. PWA-ready responsive design.</p></div>
+      <div class="card"><h4>💰 Cost-Efficient</h4><p style="font-size:12px;color:var(--gray)">Open-source stack. 80% cheaper than Shopify Plus equivalent.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Tech Stack -->
+<section>
+  <div class="container">
+    <h2><span class="n blue">2</span> Tech Stack</h2>
+    <p class="desc">Modern headless architecture with open-source commerce engine, edge-deployed frontend, and AI-native integrations.</p>
+
+    <div class="tw">
+      <table>
+        <tr><th>Layer</th><th>Technology</th><th>Why</th><th>Cost</th></tr>
+        <tr><td class="p">Frontend</td><td><span class="badge bb">Next.js 15</span></td><td>SSR/ISR for SEO, React Server Components, Vercel-native</td><td>—</td></tr>
+        <tr><td class="p">Commerce Engine</td><td><span class="badge by">Medusa.js v2</span></td><td>Open-source, B2B-native (tiered pricing, quotes, customer groups)</td><td>Free</td></tr>
+        <tr><td class="p">Database</td><td><span class="badge bg">Supabase</span></td><td>PostgreSQL + Auth + Realtime + pgvector for AI</td><td>€25/mo</td></tr>
+        <tr><td class="p">Hosting</td><td><span class="badge bk">Vercel + Railway</span></td><td>Edge CDN, serverless, auto-scaling</td><td>€40/mo</td></tr>
+        <tr><td class="p">Payments</td><td><span class="badge bp">Stripe (Cyprus)</span></td><td>EUR native, B2B invoicing, VAT automation, Net-30 terms</td><td>1.5%+€0.25</td></tr>
+        <tr><td class="p">AI Chat</td><td><span class="badge bp">OpenAI GPT-4o</span></td><td>Knowledge base, function calling, product search, bilingual</td><td>~€120/mo</td></tr>
+        <tr><td class="p">AI Voice</td><td><span class="badge bc">ElevenLabs</span></td><td>Sub-100ms latency, Greek + English, phone integration</td><td>~€134/mo</td></tr>
+        <tr><td class="p">Email</td><td><span class="badge br">Klaviyo</span></td><td>E-commerce native, 60+ automations, product feed sync</td><td>€65/mo</td></tr>
+        <tr><td class="p">Search</td><td><span class="badge bb">Meilisearch</span></td><td>Instant, typo-tolerant, faceted, Greek support</td><td>€30/mo</td></tr>
+        <tr><td class="p">CDN / WAF</td><td><span class="badge bk">Cloudflare</span></td><td>DDoS protection, image optimization, Cyprus PoP</td><td>€20/mo</td></tr>
+        <tr><td class="p">Analytics</td><td><span class="badge bg">PostHog + GA4</span></td><td>Product analytics, session replay, A/B testing</td><td>Free</td></tr>
+      </table>
+    </div>
+
+    <h3>Why NOT Shopify Plus?</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Factor</th><th>Shopify Plus</th><th>Our Stack</th></tr>
+        <tr><td>Monthly Platform Fee</td><td class="p pr">$2,300+/mo</td><td class="p pg">$0 (open-source)</td></tr>
+        <tr><td>Transaction Fees</td><td>0.15–0.5% on top of Stripe</td><td class="p pg">Stripe fees only</td></tr>
+        <tr><td>B2B Tiered Pricing</td><td>Limited (needs apps)</td><td class="p pg">Native in Medusa</td></tr>
+        <tr><td>XML Feed Custom Sync</td><td>Very limited</td><td class="p pg">Full custom control</td></tr>
+        <tr><td>AI Chatbot Integration</td><td>Apps ($50–300/mo)</td><td class="p pg">Built-in, custom KB</td></tr>
+        <tr><td>Auto-Verify Installers</td><td class="pr">Not possible</td><td class="p pg">Custom middleware</td></tr>
+        <tr><td>Year 1 Platform Cost</td><td class="p pr">~$30,000+</td><td class="p pg">~$5,000</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Medusa.js -->
+<section>
+  <div class="container">
+    <h2><span class="n sun">3</span> E-Commerce Engine — Medusa.js v2</h2>
+
+    <div class="card featured">
+      <h4>Why Medusa.js</h4>
+      <ul>
+        <li><strong>Open-source</strong> — No license fees, full source code control</li>
+        <li><strong>B2B Starter Kit</strong> — Pre-built Next.js storefront with company accounts, spending limits, quote flows</li>
+        <li><strong>Multi-Channel</strong> — Separate B2C retail and B2B wholesale with different pricing</li>
+        <li><strong>Customer Groups</strong> — Auto-assign pricing tiers (Retail, H1–H5, Developer, Partner)</li>
+        <li><strong>Quote System</strong> — RFQ → negotiate → approve → order</li>
+        <li><strong>API-First</strong> — Every feature accessible via REST/GraphQL</li>
+        <li><strong>Plugin System</strong> — Extensible with custom modules (AI, XML, RES Fund)</li>
+      </ul>
+    </div>
+
+    <h3>Sales Channel Configuration</h3>
+    <pre>
+Sales Channels
+├── B2C Retail (7sun.cy/shop)
+│   └── Standard retail pricing (B2B × 1.35–1.50)
+├── B2B Wholesale (7sun.cy/wholesale)
+│   ├── H1 Tier — Standard wholesale
+│   ├── H2 Tier — €500+ orders (3% off H1)
+│   ├── H3 Tier — €1,000+ orders (6% off)
+│   ├── H4 Tier — €2,500+ orders (10% off)
+│   └── H5 Tier — €5,000+ orders (15% off)
+└── Developer Portal (7sun.cy/developer)
+    └── Apartment kit bundle pricing</pre>
+
+    <h3>Customer Groups</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Group</th><th>Access</th><th>Pricing</th><th>Credit</th><th>Auto-Assign</th></tr>
+        <tr><td class="p">Retail</td><td>B2C store</td><td>Retail (highest)</td><td>Prepay only</td><td>Default</td></tr>
+        <tr><td class="p pb">Installer H1</td><td>Wholesale portal</td><td>Wholesale base</td><td>Net-30 (apply)</td><td>RES Fund match</td></tr>
+        <tr><td class="p pb">Installer H2–H5</td><td>Wholesale portal</td><td>Volume discounts</td><td>Net-30/60</td><td>Order volume</td></tr>
+        <tr><td class="p pp">Developer</td><td>Developer portal</td><td>Kit pricing</td><td>Project-based</td><td>Manual</td></tr>
+        <tr><td class="p" style="color:var(--sun-dk)">Lighthief (Partner)</td><td>All + API</td><td>Custom (below H5)</td><td>Net-60, €50K</td><td>Manual</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: Frontend -->
+<section>
+  <div class="container">
+    <h2><span class="n blue">4</span> Frontend — Next.js 15 Storefront</h2>
+
+    <h3>Site Map</h3>
+    <pre>
+7sun.cy/
+├── /                    → Hero + categories + price comparison + calculator
+├── /shop                → B2C product catalog (filterable)
+│   ├── /shop/panels     → Solar panels
+│   ├── /shop/inverters  → All inverters
+│   ├── /shop/batteries  → Battery storage
+│   └── /shop/[slug]     → Product detail page
+├── /wholesale           → B2B portal (login-gated)
+│   ├── /wholesale/catalog  → Tiered pricing
+│   ├── /wholesale/quote    → RFQ form
+│   └── /wholesale/orders   → Order history
+├── /apartment-solar     → Developer landing page + calculator
+├── /brands/[brand]      → Brand-specific catalog
+├── /resources           → Guides, datasheets, news
+├── /checkout            → 3-step checkout
+└── /account             → Customer account management</pre>
+
+    <h3>Homepage Sections</h3>
+    <div class="grid-2">
+      <div class="card"><h4>1. Hero</h4><p style="font-size:12px">"Cyprus's Lowest Solar Prices. Guaranteed." — Shop Now / Get Wholesale Access</p></div>
+      <div class="card"><h4>2. Trust Bar</h4><p style="font-size:12px">Brand logos: Jinko, Huawei, SolarEdge, JA Solar, Longi, FoxESS, Solax...</p></div>
+      <div class="card"><h4>3. Categories</h4><p style="font-size:12px">Visual cards: Panels, Inverters, Batteries, Apartment Kits, EV Chargers</p></div>
+      <div class="card"><h4>4. Price Comparison</h4><p style="font-size:12px">Live widget: "Our Price vs Market" for top 5 products</p></div>
+      <div class="card"><h4>5. Solar Calculator</h4><p style="font-size:12px">Interactive: "How much can you save?" based on house size, location</p></div>
+      <div class="card"><h4>6. For Installers</h4><p style="font-size:12px">"Wholesale prices 30% below market. Apply in 60 seconds."</p></div>
+      <div class="card"><h4>7. For Developers</h4><p style="font-size:12px">"Solar for every apartment. From €400/unit. 25-year warranty."</p></div>
+      <div class="card"><h4>8. Newsletter</h4><p style="font-size:12px">"Get weekly deals + stock alerts" — email capture</p></div>
+    </div>
+
+    <h3>Product Page Features</h3>
+    <ul>
+      <li><strong>Image Gallery</strong> — Auto-pulled from XML feed, zoom, multiple angles</li>
+      <li><strong>Datasheet PDF</strong> — Auto-linked from 7sun.eu product page</li>
+      <li><strong>Smart Pricing</strong> — B2C sees retail + "Compare at €XX" (Trikkis); B2B sees tier price</li>
+      <li><strong>Stock Indicator</strong> — Real-time from XML: "In Stock (XX units)" / "Ships 7-10 days"</li>
+      <li><strong>AI Chat Context</strong> — Chatbot knows which product you're viewing</li>
+      <li><strong>Related Products</strong> — AI-recommended based on category + buying patterns</li>
+      <li><strong>Specifications</strong> — Auto-parsed from XML attributes</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Section 5: XML Feed -->
+<section>
+  <div class="container">
+    <h2><span class="n green">5</span> XML Feed Integration — Auto Product Sync</h2>
+    <p class="desc">Zero manual product entry. The entire catalog syncs automatically from 7sun.eu's DataFeedWatch XML feed every 4 hours.</p>
+
+    <div class="card infra">
+      <h4>Feed Source</h4>
+      <p style="font-size:12px;margin:4px 0"><strong>URL:</strong> <code>feeds.datafeedwatch.com/.../7b7df...xml</code></p>
+      <p style="font-size:12px;margin:4px 0"><strong>Format:</strong> Google Shopping XML (RSS 2.0)</p>
+      <p style="font-size:12px;margin:4px 0"><strong>Content:</strong> ~5,000+ products with prices, images, descriptions, stock</p>
+      <p style="font-size:12px;margin:4px 0"><strong>Active for Cyprus:</strong> ~400–600 filtered products</p>
+    </div>
+
+    <h3>Sync Process (Every 4 Hours)</h3>
+    <div class="flow">
+      <div class="step">1. Fetch XML</div><span class="arrow">→</span>
+      <div class="step">2. Diff Compare</div><span class="arrow">→</span>
+      <div class="step">3. Download Images</div><span class="arrow">→</span>
+      <div class="step">4. AI Translate (GR)</div><span class="arrow">→</span>
+      <div class="step">5. Calculate Prices</div><span class="arrow">→</span>
+      <div class="step">6. Upsert to DB</div><span class="arrow">→</span>
+      <div class="step">7. Update Search</div><span class="arrow">→</span>
+      <div class="step">8. Sync Klaviyo</div>
+    </div>
+
+    <h3>Price Calculation Pipeline</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Tier</th><th>Formula</th><th>Example (€59 panel)</th></tr>
+        <tr><td class="p">B2B H1 (base)</td><td>XML price × 1.0</td><td>€59.00</td></tr>
+        <tr><td class="p">B2B H2</td><td>XML price × 0.97</td><td>€57.23</td></tr>
+        <tr><td class="p">B2B H3</td><td>XML price × 0.94</td><td>€55.46</td></tr>
+        <tr><td class="p">B2B H4</td><td>XML price × 0.90</td><td>€53.10</td></tr>
+        <tr><td class="p">B2B H5</td><td>XML price × 0.85</td><td>€50.15</td></tr>
+        <tr><td class="p" style="color:var(--sun-dk)">Retail</td><td>XML price × 1.40</td><td>€82.60</td></tr>
+      </table>
+    </div>
+
+    <h3>Image Processing</h3>
+    <div class="flow">
+      <div class="step">XML Image URL</div><span class="arrow">→</span>
+      <div class="step">Download</div><span class="arrow">→</span>
+      <div class="step">Sharp.js Optimize</div><span class="arrow">→</span>
+      <div class="step">WebP 1200px (main)</div>
+    </div>
+    <div class="flow">
+      <span style="width:260px"></span><span class="arrow">→</span>
+      <div class="step">AVIF 800px (thumb)</div>
+    </div>
+    <div class="flow">
+      <span style="width:260px"></span><span class="arrow">→</span>
+      <div class="step">Original (zoom)</div><span class="arrow">→</span>
+      <div class="step">Cloudflare R2</div>
+    </div>
+
+    <h3>Catalog Filter (Cyprus-Relevant)</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Filter</th><th>Rule</th></tr>
+        <tr><td>Brands</td><td>Jinko, JA Solar, Longi, Aiko, Jolywood, Canadian Solar, Huawei, SolarEdge, FoxESS, Sofar, Fronius, Solax, Envertech, Tigo</td></tr>
+        <tr><td>Panels</td><td>≥400W only</td></tr>
+        <tr><td>Inverters</td><td>All string + micro + hybrid</td></tr>
+        <tr><td>Exclude</td><td>Mounting hardware, DC cables, ground mount (source locally)</td></tr>
+        <tr><td>Min Price</td><td>≥€10 (skip low-value accessories)</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6: AI Chatbot -->
+<section>
+  <div class="container">
+    <h2><span class="n purple">6</span> AI Chatbot — Knowledge-Based Assistant</h2>
+
+    <div class="card ai">
+      <h4>OpenAI Assistants API (GPT-4o)</h4>
+      <p style="font-size:12px;margin:6px 0">Custom knowledge base + function calling for real-time product search, pricing, stock checks, quote generation. Bilingual Greek + English. Context-aware (knows which page/product user is viewing).</p>
+      <p style="font-size:12px;color:var(--gray)">Estimated: 10,000 messages/month → ~€120/mo</p>
+    </div>
+
+    <h3>Capabilities</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Capability</th><th>Example</th><th>How</th></tr>
+        <tr><td class="p">Product Search</td><td>"Show me 440W black panels under €70"</td><td>Function: search_products()</td></tr>
+        <tr><td class="p">Price Inquiry</td><td>"Wholesale price for Jinko 440W?"</td><td>Function: get_price(tier)</td></tr>
+        <tr><td class="p">Stock Check</td><td>"Is SolarEdge 10kW in stock?"</td><td>Function: check_stock()</td></tr>
+        <tr><td class="p">Comparison</td><td>"Compare Jinko 440W vs JA Solar 450W"</td><td>Knowledge base + function</td></tr>
+        <tr><td class="p">Quote Gen</td><td>"Quote for 100 panels + 10 inverters"</td><td>Function: create_quote()</td></tr>
+        <tr><td class="p">Solar Calculator</td><td>"Panels for 200sqm house in Paphos?"</td><td>Knowledge base + calculation</td></tr>
+        <tr><td class="p">Order Tracking</td><td>"Where is order #7S-2458?"</td><td>Function: track_order()</td></tr>
+        <tr><td class="p">Regulatory Info</td><td>"How does net-metering work?"</td><td>Knowledge base (CY regulations)</td></tr>
+        <tr><td class="p">Greek Support</td><td>"Πόσο κοστίζουν τα φωτοβολταϊκά;"</td><td>Native multilingual GPT-4o</td></tr>
+        <tr><td class="p">Escalation</td><td>"I need to speak to a person"</td><td>Notification → human handoff</td></tr>
+      </table>
+    </div>
+
+    <h3>Knowledge Base Sources</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Source</th><th>Content</th><th>Update</th></tr>
+        <tr><td>Product Catalog</td><td>All products, specs, prices, stock</td><td>Auto (4h via XML)</td></tr>
+        <tr><td>Company Policies</td><td>Returns, warranty, shipping, payment</td><td>Quarterly</td></tr>
+        <tr><td>Solar Knowledge</td><td>Panel types, inverter sizing, compatibility</td><td>One-time + updates</td></tr>
+        <tr><td>Cyprus Regulations</td><td>Net-metering, EAC, building permits, grants</td><td>As changes occur</td></tr>
+        <tr><td>FAQ Database</td><td>Top 100 customer Q&A</td><td>Auto (from chat analysis)</td></tr>
+        <tr><td>Competitor Pricing</td><td>Trikkis price list, market benchmarks</td><td>Monthly</td></tr>
+      </table>
+    </div>
+
+    <h3>Chat Widget UX</h3>
+    <ul>
+      <li>Floating widget (bottom-right, solar-yellow accent)</li>
+      <li>Quick actions: "Browse Products", "Get a Quote", "Track Order", "Talk to Human"</li>
+      <li>Context-aware: knows which product page you're on</li>
+      <li>Rich messages: product cards, image carousels, price tables, CTA buttons</li>
+      <li>Bilingual toggle (EN/GR) in chat header</li>
+      <li>Streaming responses for natural feel</li>
+      <li>Mobile: full-screen chat, swipe to dismiss</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Section 7: Voice Agent -->
+<section>
+  <div class="container">
+    <h2><span class="n cyan">7</span> AI Voice Agent — ElevenLabs</h2>
+
+    <div class="card ai">
+      <h4>ElevenLabs Conversational AI + Twilio</h4>
+      <p style="font-size:12px;margin:6px 0">Sub-100ms latency voice agent. Handles inbound sales calls, outbound follow-ups, quote reminders, and re-engagement. Greek + English auto-detect. Same knowledge base as chatbot.</p>
+      <p style="font-size:12px;color:var(--gray)">~€134/mo (ElevenLabs Pro €99 + Twilio €35)</p>
+    </div>
+
+    <h3>Use Cases</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Use Case</th><th>Trigger</th><th>Language</th></tr>
+        <tr><td class="p">Inbound Sales</td><td>Customer calls +357 number</td><td>Auto-detect GR/EN</td></tr>
+        <tr><td class="p">Lead Follow-Up</td><td>New B2B lead → auto-call in 5 min</td><td>GR/EN</td></tr>
+        <tr><td class="p">Quote Reminder</td><td>Quote not responded in 48h</td><td>GR/EN</td></tr>
+        <tr><td class="p">Order Confirmation</td><td>Large orders → voice confirm</td><td>GR/EN</td></tr>
+        <tr><td class="p">Re-engagement</td><td>Inactive 30 days → "New stock!"</td><td>GR/EN</td></tr>
+        <tr><td class="p">Appointment</td><td>Scheduled call/visit reminder</td><td>GR/EN</td></tr>
+      </table>
+    </div>
+
+    <h3>Agent Personality</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h4>🇬🇷 "Μαρία" (Greek)</h4>
+        <p style="font-size:12px;color:var(--gray)">"Γεια σας, 7SUN Κύπρος, είμαι η Μαρία. Πώς μπορώ να σας βοηθήσω;"</p>
+        <p style="font-size:11px;margin-top:4px">Friendly, professional, knowledgeable about solar</p>
+      </div>
+      <div class="card">
+        <h4>🇬🇧 "Alex" (English)</h4>
+        <p style="font-size:12px;color:var(--gray)">"Hello, 7SUN Cyprus, this is Alex. How can I help you today?"</p>
+        <p style="font-size:11px;margin-top:4px">Same personality, English variant</p>
+      </div>
+    </div>
+
+    <div class="insight"><strong>24/7 Coverage:</strong> AI answers calls around the clock. Human transfer available during business hours only. All calls recorded for quality (with consent).</div>
+  </div>
+</section>
+
+<!-- Section 8: Auto Wholesale -->
+<section>
+  <div class="container">
+    <h2><span class="n green">8</span> Auto-Matched Wholesale Accounts</h2>
+    <p class="desc">Installers registered with the RES Fund (390+ companies) get instant wholesale access. No manual approval needed.</p>
+
+    <h3>Registration Flow</h3>
+    <pre>
+User registers → "Are you a solar installer?" → [Yes]
+    │
+    ├── Check company/phone/email against RES Fund DB (390+ entries)
+    │   └── Fuzzy match (Levenshtein distance < 3)
+    │
+    ├── MATCH FOUND:
+    │   ├── Auto-assign "Verified Installer" (H1 tier)
+    │   ├── Unlock wholesale pricing immediately
+    │   ├── Enable Net-30 credit application
+    │   ├── Welcome email: "Your wholesale account is ready"
+    │   └── Slack notification → sales team follow-up
+    │
+    └── NO MATCH:
+        ├── Flag for manual review (24h)
+        ├── Email: "We're verifying your status"
+        └── Manual verification by sales team</pre>
+
+    <h3>Tier Upgrade Path</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Tier</th><th>Requirement</th><th>Discount off H1</th><th>Credit Terms</th></tr>
+        <tr><td class="p">H1</td><td>Auto (verified installer)</td><td>Base price</td><td>Prepay / Net-30 apply</td></tr>
+        <tr><td class="p">H2</td><td>€500 cumulative orders</td><td>3%</td><td>Net-30</td></tr>
+        <tr><td class="p">H3</td><td>€2,000 cumulative</td><td>6%</td><td>Net-30</td></tr>
+        <tr><td class="p">H4</td><td>€5,000 cumulative</td><td>10%</td><td>Net-30/60</td></tr>
+        <tr><td class="p pb">H5</td><td>€15,000 cumulative OR approval</td><td>15%</td><td>Net-60</td></tr>
+        <tr style="background:#FFFBEB"><td class="p" style="color:var(--sun-dk)">Lighthief</td><td>Anchor partner</td><td>Custom (below H5)</td><td>Net-60, €50K limit</td></tr>
+      </table>
+    </div>
+
+    <h3>Installer Database Maintenance</h3>
+    <div class="info">Quarterly cron job scrapes <code>resecfund.org.cy/en/katalogos_a1</code> (all pages), parses installer data, diffs against DB, adds new entries, flags removals. Currently 390+ registered installers.</div>
+  </div>
+</section>
+
+<!-- Section 9: Newsletter -->
+<section>
+  <div class="container">
+    <h2><span class="n red">9</span> Newsletter & Email Automation</h2>
+
+    <div class="card featured">
+      <h4>Platform: Klaviyo</h4>
+      <p style="font-size:12px">60+ e-commerce automations, native product feed sync, advanced segmentation by purchase behavior, A/B testing. Auto-content generation via GPT-4o-mini.</p>
+    </div>
+
+    <h3>Automated Email Flows (10 Flows)</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Flow</th><th>Trigger</th><th>Emails</th><th>Timing</th></tr>
+        <tr><td class="p">Welcome Series</td><td>New registration</td><td>3 emails</td><td>Days 0, 2, 5</td></tr>
+        <tr><td class="p">Installer Welcome</td><td>Verified installer signup</td><td>1 email</td><td>Immediate</td></tr>
+        <tr><td class="p">Abandoned Cart</td><td>Cart not completed 1h</td><td>3 emails</td><td>1h, 24h, 72h</td></tr>
+        <tr><td class="p">Abandoned Browse</td><td>Viewed product, no cart</td><td>1 email</td><td>4 hours</td></tr>
+        <tr><td class="p">Post-Purchase</td><td>Order completed</td><td>3 emails</td><td>Days 0, 7, 30</td></tr>
+        <tr><td class="p">Reorder Reminder</td><td>60 days inactive</td><td>1 email</td><td>Day 60</td></tr>
+        <tr><td class="p">Price Drop Alert</td><td>Wishlist item drops</td><td>1 email</td><td>Real-time</td></tr>
+        <tr><td class="p">Back in Stock</td><td>OOS product returns</td><td>1 email</td><td>Real-time</td></tr>
+        <tr><td class="p">Quote Follow-Up</td><td>Quote not ordered 48h</td><td>2 emails</td><td>48h, 7 days</td></tr>
+        <tr><td class="p">Win-Back</td><td>90 days no activity</td><td>2 emails</td><td>Day 90, 120</td></tr>
+      </table>
+    </div>
+
+    <h3>Newsletter Campaigns (Scheduled)</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Campaign</th><th>Frequency</th><th>Content</th></tr>
+        <tr><td class="p">Weekly Deals</td><td>Every Monday</td><td>Top 5 deals, price comparisons</td></tr>
+        <tr><td class="p">New Arrivals</td><td>Bi-weekly</td><td>New products from XML feed</td></tr>
+        <tr><td class="p">Stock Alert</td><td>On delivery</td><td>"New delivery arrived!" + products</td></tr>
+        <tr><td class="p">Market Update</td><td>Monthly</td><td>Cyprus solar news, regulation changes</td></tr>
+        <tr><td class="p">Developer Edition</td><td>Monthly</td><td>Apartment solar case studies, kits</td></tr>
+      </table>
+    </div>
+
+    <div class="insight"><strong>Auto-Generated Content:</strong> When ≥5 new products sync from XML or significant price changes occur, GPT-4o-mini generates newsletter copy (EN + GR). Klaviyo template auto-populates. Draft saved for optional human review → auto-sends in 4 hours if not reviewed.</div>
+  </div>
+</section>
+
+<!-- Section 10: Payment -->
+<section>
+  <div class="container">
+    <h2><span class="n indigo">10</span> Payment & Checkout</h2>
+
+    <h3>Stripe (Cyprus)</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Feature</th><th>Config</th></tr>
+        <tr><td>Currency</td><td>EUR (primary)</td></tr>
+        <tr><td>Card Payments</td><td>Visa, Mastercard, Amex</td></tr>
+        <tr><td>Bank Transfers</td><td>SEPA Direct Debit (B2B)</td></tr>
+        <tr><td>Mobile Pay</td><td>Apple Pay + Google Pay</td></tr>
+        <tr><td>B2B Invoicing</td><td>Stripe Invoicing (auto-VAT)</td></tr>
+        <tr><td>Net Terms</td><td>Net-30 for verified installers</td></tr>
+        <tr><td>VAT</td><td>Stripe Tax (19% standard / 5% reduced)</td></tr>
+        <tr><td>Fees</td><td>1.5% + €0.25 per EU card transaction</td></tr>
+      </table>
+    </div>
+
+    <h3>Checkout Flows</h3>
+    <div class="grid-3">
+      <div class="card">
+        <h4>B2C — 3 Steps</h4>
+        <div class="flow" style="flex-direction:column;align-items:flex-start">
+          <div class="step" style="width:100%">1. Cart Review</div>
+          <div class="step" style="width:100%">2. Address + Delivery</div>
+          <div class="step" style="width:100%">3. Pay (Card/Apple/Google)</div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>B2B — Fast Reorder</h4>
+        <div class="flow" style="flex-direction:column;align-items:flex-start">
+          <div class="step" style="width:100%">1. Cart / CSV Upload</div>
+          <div class="step" style="width:100%">2. Confirm + Pay/Credit</div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>Developer — Bulk</h4>
+        <div class="flow" style="flex-direction:column;align-items:flex-start">
+          <div class="step" style="width:100%">1. Configure Kit + Qty</div>
+          <div class="step" style="width:100%">2. AI Quote Review</div>
+          <div class="step" style="width:100%">3. PO / Pay</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 11: Hosting -->
+<section>
+  <div class="container">
+    <h2><span class="n cyan">11</span> Hosting & Infrastructure</h2>
+
+    <div class="tw">
+      <table>
+        <tr><th>Component</th><th>Host</th><th>Plan</th><th>Monthly</th></tr>
+        <tr><td class="p">Frontend</td><td>Vercel</td><td>Pro</td><td>€20</td></tr>
+        <tr><td class="p">Backend (Medusa)</td><td>Railway</td><td>Pro</td><td>€20</td></tr>
+        <tr><td class="p">Database</td><td>Supabase</td><td>Pro</td><td>€25</td></tr>
+        <tr><td class="p">CDN / WAF</td><td>Cloudflare</td><td>Pro</td><td>€20</td></tr>
+        <tr><td class="p">Image Storage</td><td>Cloudflare R2</td><td>Pay-as-you-go</td><td>€10</td></tr>
+        <tr><td class="p">Search</td><td>Meilisearch Cloud</td><td>Build</td><td>€30</td></tr>
+        <tr><td class="p">Monitoring</td><td>Sentry</td><td>Developer</td><td>€0</td></tr>
+        <tr><td class="p">Analytics</td><td>PostHog + GA4</td><td>Free</td><td>€0</td></tr>
+        <tr><td class="p">Domain</td><td>7sun.cy</td><td>Annual</td><td>~€2</td></tr>
+        <tr><td class="p">Uptime</td><td>Uptime Robot</td><td>Pro</td><td>€7</td></tr>
+        <tr style="background:#FFFBEB"><td class="p" style="color:var(--sun-dk)"><strong>Total</strong></td><td></td><td></td><td class="p" style="color:var(--sun-dk)"><strong>~€147/mo</strong></td></tr>
+      </table>
+    </div>
+
+    <h3>Security & Compliance</h3>
+    <div class="grid-2">
+      <div class="card"><h4>GDPR</h4><p style="font-size:12px">Cookie consent (Cookiebot), data deletion API, privacy policy, EU data residency (Frankfurt)</p></div>
+      <div class="card"><h4>PCI DSS</h4><p style="font-size:12px">Stripe handles all card data (Level 1). Zero card data on our servers.</p></div>
+      <div class="card"><h4>SSL / TLS</h4><p style="font-size:12px">Cloudflare Universal SSL + HSTS. TLS 1.3 everywhere.</p></div>
+      <div class="card"><h4>DDoS / WAF</h4><p style="font-size:12px">Cloudflare WAF + rate limiting + bot protection.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 12: Timeline -->
+<section>
+  <div class="container">
+    <h2><span class="n sun">12</span> Development Roadmap — 20 Weeks</h2>
+
+    <div class="timeline">
+      <div class="tl-item active">
+        <div class="tl-time">Weeks 1–4</div>
+        <div class="tl-title">Phase 1: Foundation</div>
+        <div class="tl-desc">GitHub mono-repo, Medusa.js backend, Supabase DB, Cloudflare setup, XML feed sync worker (v1), initial product import (400–600 products), Stripe Cyprus account, Next.js scaffold</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Weeks 5–8</div>
+        <div class="tl-title">Phase 2: Storefront (B2C)</div>
+        <div class="tl-desc">Homepage, product catalog (filters, search), product detail pages, cart + checkout, customer accounts, bilingual (EN/GR), mobile responsive, SEO</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Weeks 9–11</div>
+        <div class="tl-title">Phase 3: B2B & Wholesale Portal</div>
+        <div class="tl-desc">Login-gated wholesale portal, tiered pricing (H1–H5), RES Fund auto-verification, quote system (RFQ), CSV bulk upload, invoicing, credit terms</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Weeks 12–14</div>
+        <div class="tl-title">Phase 4: AI Integration</div>
+        <div class="tl-desc">AI chatbot (OpenAI Assistants), knowledge base, function calling (search/quote/stock), chat widget, ElevenLabs voice agent, Twilio phone, Greek + English testing</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Weeks 15–16</div>
+        <div class="tl-title">Phase 5: Email Automation</div>
+        <div class="tl-desc">Klaviyo integration, product feed sync, 10 email templates, 10 automated flows, AI newsletter generation, subscriber segmentation</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Weeks 17–18</div>
+        <div class="tl-title">Phase 6: Developer Portal & Kits</div>
+        <div class="tl-desc">Apartment solar landing page, per-apartment ROI calculator, kit builder, developer bulk quote flow, developer email flows</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Weeks 19–20</div>
+        <div class="tl-title">Phase 7: Polish & Launch</div>
+        <div class="tl-desc">Performance optimization (Core Web Vitals), load testing, security audit, GDPR review, UAT with Lighthief.cy, bug fixes, go-live</div>
+      </div>
+    </div>
+
+    <div style="background:#F8FAFC;border-radius:10px;padding:16px;margin-top:12px">
+      <pre style="margin:0;background:transparent;color:var(--dark);padding:0;font-size:10px">
+Week:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+       ████████ ████████████████ ██████████ ██████████ ████████ ████████
+       Found.   Storefront      B2B/WS     AI Chat+   Email    Launch
+                                            Voice      Auto     🚀</pre>
+    </div>
+  </div>
+</section>
+
+<!-- Section 13: Costs -->
+<section>
+  <div class="container">
+    <h2><span class="n green">13</span> Monthly Operating Costs</h2>
+
+    <div class="grid-2">
+      <div>
+        <h3>Infrastructure — €147/mo</h3>
+        <div class="tw">
+          <table>
+            <tr><th>Service</th><th>Monthly</th><th>Annual</th></tr>
+            <tr><td>Vercel Pro</td><td>€20</td><td>€240</td></tr>
+            <tr><td>Railway Pro</td><td>€20</td><td>€240</td></tr>
+            <tr><td>Supabase Pro</td><td>€25</td><td>€300</td></tr>
+            <tr><td>Cloudflare Pro</td><td>€20</td><td>€240</td></tr>
+            <tr><td>Cloudflare R2</td><td>€10</td><td>€120</td></tr>
+            <tr><td>Meilisearch</td><td>€30</td><td>€360</td></tr>
+            <tr><td>Domain + Uptime</td><td>€9</td><td>€108</td></tr>
+            <tr style="background:#D1FAE5"><td class="p"><strong>Subtotal</strong></td><td class="p pg"><strong>€147</strong></td><td class="p pg"><strong>€1,525</strong></td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3>AI Services — €269/mo</h3>
+        <div class="tw">
+          <table>
+            <tr><th>Service</th><th>Monthly</th><th>Annual</th></tr>
+            <tr><td>OpenAI GPT-4o (chatbot)</td><td>€120</td><td>€1,440</td></tr>
+            <tr><td>GPT-4o-mini (translations)</td><td>€15</td><td>€180</td></tr>
+            <tr><td>ElevenLabs Pro (voice)</td><td>€99</td><td>€1,188</td></tr>
+            <tr><td>Twilio (phone + voice)</td><td>€35</td><td>€420</td></tr>
+            <tr style="background:#EDE9FE"><td class="p"><strong>Subtotal</strong></td><td class="p pp"><strong>€269</strong></td><td class="p pp"><strong>€3,228</strong></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3>Email Marketing — €65/mo</h3>
+    <div class="tw" style="max-width:400px">
+      <table>
+        <tr><th>Service</th><th>Monthly</th><th>Annual</th></tr>
+        <tr><td>Klaviyo (up to 2,500 contacts)</td><td>€65</td><td>€780</td></tr>
+      </table>
+    </div>
+
+    <div class="cost-total">
+      <div class="label">Total Monthly Platform Cost (excl. Stripe fees)</div>
+      <div class="big">€481/mo</div>
+      <div class="label" style="margin-top:8px">€5,533 per year — <strong style="color:#10B981">80% cheaper than Shopify Plus</strong></div>
+    </div>
+
+    <h3>Development Investment (~12 Weeks — Internal Build)</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Role</th><th>Type</th><th>Cost</th></tr>
+        <tr><td>Full-Stack Development (Next.js + Medusa + AI)</td><td>Internal (founders)</td><td>€0 (own time)</td></tr>
+        <tr><td>External Web Consultant (UI/UX review, design guidance, QA audit)</td><td>Freelance consultant</td><td>€2,500–5,500</td></tr>
+        <tr style="background:#FEF3C7"><td class="p" style="color:var(--sun-dk)"><strong>Total Development</strong></td><td><em>Platform coded internally</em></td><td class="p" style="color:var(--sun-dk)"><strong>€2,500–5,500</strong></td></tr>
+      </table>
+    </div>
+    <div class="insight"><strong>Cost model:</strong> Platform coded internally by the founding team. The €2,500–5,500 covers an external web consultant for UI/UX design review, responsive design guidance, and pre-launch quality audit. All AI service costs (OpenAI, ElevenLabs, Twilio) are monthly operating expenses listed above.</div>
+
+    <h3>Total Year 1 Investment</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Category</th><th>Cost</th></tr>
+        <tr><td>Development (one-time — web consultant)</td><td>€2,500–5,500</td></tr>
+        <tr><td>Platform Costs (12 months — infra + AI tokens + email)</td><td>€5,533</td></tr>
+        <tr><td>Ongoing Team (12 months)</td><td>€0 (internal)</td></tr>
+        <tr style="background:#FEF3C7"><td class="p" style="color:var(--sun-dk)"><strong>Total Year 1</strong></td><td class="p" style="color:var(--sun-dk)"><strong>~€8,033–11,033</strong></td></tr>
+        <tr><td style="color:var(--gray)"><em>Year 1 Revenue (projected)</em></td><td style="color:var(--gray)"><em>€1,056,000</em></td></tr>
+        <tr><td style="color:var(--gray)"><em>Website as % of Revenue</em></td><td style="color:var(--gray)"><em><strong>0.76%</strong></em></td></tr>
+      </table>
+    </div>
+    <div class="insight"><strong>Monthly cost breakdown (€481/mo):</strong> Infrastructure €147/mo (Vercel, Railway, Supabase, Cloudflare, Meilisearch) + AI tokens €269/mo (OpenAI GPT-4o chatbot, GPT-4o-mini translations, ElevenLabs voice agent, Twilio phone) + Email €65/mo (Klaviyo). These are the "AI token add-ons" on top of the €2,500–5,500 build cost.</div>
+  </div>
+</section>
+
+<!-- Section 14: Decisions -->
+<section>
+  <div class="container">
+    <h2><span class="n indigo">14</span> Key Decision Points</h2>
+
+    <h3>Decision 1: Build vs. Buy</h3>
+    <div class="insight"><strong>Recommendation: Build (Medusa.js + Next.js).</strong> The B2B requirements (tiered pricing, auto-installer verification, XML feed sync, AI integration) are too specific for off-the-shelf platforms without expensive customization.</div>
+
+    <h3>Decision 2: AI Chat Provider</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Option</th><th>Pro</th><th>Con</th><th>Cost</th><th>Pick</th></tr>
+        <tr style="background:#FFFBEB"><td class="p">OpenAI Assistants</td><td>Best function calling, knowledge base, Greek</td><td>Vendor lock-in</td><td>€120/mo</td><td><span class="badge bg">RECOMMENDED</span></td></tr>
+        <tr><td>Anthropic Claude</td><td>Better structured data, less hallucination</td><td>Less e-commerce tooling</td><td>€100/mo</td><td></td></tr>
+        <tr><td>Open-source LLM</td><td>No vendor lock-in</td><td>Needs GPU hosting, lower quality</td><td>€200+/mo</td><td></td></tr>
+      </table>
+    </div>
+
+    <h3>Decision 3: Voice Agent Provider</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Option</th><th>Pro</th><th>Con</th><th>Cost</th><th>Pick</th></tr>
+        <tr style="background:#FFFBEB"><td class="p">ElevenLabs</td><td>Best voice quality, sub-100ms, Greek</td><td>Newer platform</td><td>€134/mo</td><td><span class="badge bg">RECOMMENDED</span></td></tr>
+        <tr><td>Vapi</td><td>More telephony features</td><td>More dev work needed</td><td>€100–200/mo</td><td></td></tr>
+        <tr><td>Bland.ai</td><td>Purpose-built for phone</td><td>Less voice quality</td><td>€80–150/mo</td><td></td></tr>
+      </table>
+    </div>
+
+    <h3>Decision 4: Newsletter Platform</h3>
+    <div class="tw">
+      <table>
+        <tr><th>Option</th><th>Pro</th><th>Con</th><th>Cost</th><th>Pick</th></tr>
+        <tr style="background:#FFFBEB"><td class="p">Klaviyo</td><td>Best e-commerce automation</td><td>More expensive at scale</td><td>€65–175/mo</td><td><span class="badge bg">RECOMMENDED</span></td></tr>
+        <tr><td>Brevo</td><td>Cheaper, includes SMS</td><td>Fewer automations</td><td>€25–65/mo</td><td></td></tr>
+        <tr><td>Resend + React Email</td><td>Cheapest, full control</td><td>Must build everything</td><td>€20/mo</td><td></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Section 15: Next Steps -->
+<section>
+  <div class="container">
+    <h2><span class="n sun">15</span> Next Steps</h2>
+    <div style="background:#fff;border:2px solid var(--sun);border-radius:12px;padding:24px;">
+      <ol style="margin-left:20px;font-size:14px;line-height:2.2;">
+        <li><strong>Register domain:</strong> 7sun.cy (check availability)</li>
+        <li><strong>Register Stripe:</strong> Cyprus business account (EUR)</li>
+        <li><strong>Set up GitHub repository:</strong> Mono-repo structure</li>
+        <li><strong>Brief web consultant:</strong> UI/UX review scope and brand design</li>
+        <li><strong>Design phase:</strong> Wireframes + brand design for 7sun.cy</li>
+        <li><strong>Begin Phase 1:</strong> Foundation sprint (Weeks 1–2)</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>7SUN Cyprus — Website & AI Infrastructure Plan — February 2026</p>
+    <p style="margin-top:4px;font-size:11px">Platform costs, API pricing, and feature availability based on published rates as of February 2026. Development built internally; €2,500–5,500 covers external web consultant. AI token costs are monthly operating expenses.</p>
+  </div>
+</footer>
+
+</body>
+</html>

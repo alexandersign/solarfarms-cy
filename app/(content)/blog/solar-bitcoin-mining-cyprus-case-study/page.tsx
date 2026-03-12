@@ -22,18 +22,18 @@ import {
 
 export const metadata: Metadata = {
   title: 'Solar Bitcoin Mining in Cyprus: 5MW Case Study with BESS Analysis | SolarFarms.cy',
-  description: 'Real-world case study: How a 5MW Cyprus solar farm can generate additional revenue through Bitcoin mining. Analysis with and without BESS, off-grid solutions, and 8% tax advantage.',
+  description: 'Real-world case study: How a 5MW Cyprus solar farm can generate additional revenue through Bitcoin mining. Analysis with and without BESS, off-grid solutions, and Cyprus tax advantages.',
   keywords: [
     'solar bitcoin mining Cyprus',
     'BTC mining case study',
     'renewable energy mining',
     'curtailment mining',
-    'Cyprus crypto tax 8%',
+    'Cyprus crypto tax advantage',
     'off-grid bitcoin mining',
   ],
   openGraph: {
     title: 'Solar Bitcoin Mining in Cyprus: 5MW Case Study',
-    description: 'How to turn curtailed solar energy into Bitcoin with 8% tax advantage',
+    description: 'How to turn curtailed solar energy into Bitcoin with Cyprus tax advantages',
     type: 'article',
     publishedTime: '2025-01-08',
   },
@@ -49,7 +49,7 @@ export default function SolarBitcoinMiningCaseStudyPage() {
         "author": { "@type": "Person", "name": "Alexander Papacosta" },
         "publisher": { "@type": "Organization", "name": "Lighthief Cyprus Ltd", "url": "https://solarfarms.cy" },
         "datePublished": "2025-01-08",
-        "description": "Real-world case study: How a 5MW Cyprus solar farm can generate additional revenue through Bitcoin mining. Analysis with and without BESS, off-grid solutions, and 8% tax advantage.",
+        "description": "Real-world case study: How a 5MW Cyprus solar farm can generate additional revenue through Bitcoin mining. Analysis with and without BESS, off-grid solutions, and Cyprus tax advantages.",
         "mainEntityOfPage": "https://solarfarms.cy/blog/solar-bitcoin-mining-cyprus-case-study"
       }} />
       {/* Hero Section */}
@@ -125,7 +125,7 @@ export default function SolarBitcoinMiningCaseStudyPage() {
                 The Cyprus Curtailment Crisis
               </h3>
               <p className="text-orange-700 mb-4">
-                Cyprus grid curtailment reached <strong>45.8% in 2025</strong>, meaning solar parks 
+                Cyprus grid curtailment reached <strong>47% in 2025</strong>, meaning solar parks 
                 are losing nearly half their potential revenue. This "wasted" energy presents 
                 a unique opportunity for Bitcoin mining.
               </p>
@@ -134,12 +134,12 @@ export default function SolarBitcoinMiningCaseStudyPage() {
                   { year: '2021', rate: '0%' },
                   { year: '2022', rate: '1.6%' },
                   { year: '2023', rate: '13.7%' },
-                  { year: '2024', rate: '26.7%' },
-                  { year: '2025', rate: '45.8%' }
+                  { year: '2024', rate: '29%' },
+                  { year: '2025', rate: '47%' }
                 ].map((item) => (
                   <div key={item.year} className="bg-white rounded-lg p-2 text-center shadow-sm">
                     <div className="text-xs text-gray-600">{item.year}</div>
-                    <div className={`text-lg font-bold ${item.rate === '45.8%' ? 'text-red-600' : 'text-gray-800'}`}>
+                    <div className={`text-lg font-bold ${item.rate === '47%' ? 'text-red-600' : 'text-gray-800'}`}>
                       {item.rate}
                     </div>
                   </div>
@@ -159,10 +159,10 @@ export default function SolarBitcoinMiningCaseStudyPage() {
             <div className="grid md:grid-cols-2 gap-4 not-prose my-6">
               <Card className="border-green-200 bg-green-50">
                 <CardContent className="pt-6">
-                  <h4 className="font-semibold text-green-800 mb-2">🇨🇾 8% Flat Tax Rate</h4>
+                  <h4 className="font-semibold text-green-800 mb-2">🇨🇾 15% Corporate Tax</h4>
                   <p className="text-green-700 text-sm">
-                    Non-domiciled residents pay just 8% on crypto trading profits - one of the lowest 
-                    rates in Europe. Compare: UK 45%, Germany 42%, USA 37%.
+                    Cyprus corporate tax is 15% with an IP box effective rate of ~3% on qualifying income.
+                    Non-domiciled residents are exempt from SDC on dividends and interest.
                   </p>
                 </CardContent>
               </Card>
@@ -188,7 +188,7 @@ export default function SolarBitcoinMiningCaseStudyPage() {
                 <CardContent className="pt-6">
                   <h4 className="font-semibold text-purple-800 mb-2">⚡ Free Curtailed Energy</h4>
                   <p className="text-purple-700 text-sm">
-                    With 45.8% curtailment, nearly half of solar production is currently wasted. 
+                    With 47% curtailment, nearly half of solar production is currently wasted. 
                     Mining converts this to Bitcoin at €0/kWh marginal cost.
                   </p>
                 </CardContent>
@@ -460,7 +460,7 @@ export default function SolarBitcoinMiningCaseStudyPage() {
                 'Curtailment mining offers the highest ROI on investment due to zero energy costs',
                 'Off-grid mining is ideal for parks waiting for grid connection (2-5 year wait in Cyprus)',
                 'BESS-enabled mining provides consistent operation but at lower ROI due to added capex',
-                'Cyprus 8% tax rate makes all scenarios more profitable vs other jurisdictions',
+                'Cyprus 15% corporate tax (with ~3% IP box) makes all scenarios more profitable vs other jurisdictions',
                 'Equipment financing available through Lighthief network partnerships'
               ].map((point) => (
                 <div key={point} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">

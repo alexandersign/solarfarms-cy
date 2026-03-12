@@ -602,7 +602,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     </div>
                     <div className="flex justify-between border-t pt-2 font-bold text-green-700">
                       <span>Net revenue per MWh:</span>
-                      <span>~€161/MWh</span>
+                      <span>~€158/MWh</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
                       This is pure profit recovery — you&apos;re monetising energy that would otherwise
@@ -655,7 +655,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                 Reference: 5 MW PV park with tracker (9,488 MWh/yr gross production).
               </p>
               <p className="text-center text-xs text-gray-500 mb-8">
-                Model parameters: 87.8% RTE | 90% DoD | Linyang SOH degradation curve | &euro;175/MWh blended discharge | 365-day curtailment analysis
+                Model parameters: 86.32% RTE (full-system AC-AC) | 90% DoD | Linyang SOH degradation curve | &euro;175/MWh blended discharge | 365-day curtailment analysis
               </p>
 
               {/* CAPEX comparison */}
@@ -861,7 +861,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
               <div className="mb-8">
                 <h3 className="text-xl font-bold mb-2 text-center">15-Year Lifetime Returns</h3>
                 <p className="text-center text-sm text-gray-500 mb-4">
-                  Accounts for SOH degradation (94.6% &rarr; 73.6%), escalating warranty costs, and ~3,500&ndash;4,400 total cycles
+                  Accounts for SOH degradation (85% at Year 5 &rarr; 70% at Year 15), escalating warranty costs, and ~3,500&ndash;4,400 total cycles
                 </p>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm border-collapse">

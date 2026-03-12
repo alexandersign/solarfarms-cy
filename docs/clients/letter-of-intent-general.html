@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Letter of Intent — Solar Farm Investment — Lighthief Cyprus</title>
+    <style>
+        @page { margin: 2cm 2.5cm; }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Times New Roman', 'Georgia', serif;
+            line-height: 1.65;
+            color: #111;
+            font-size: 11pt;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 40px 50px;
+            background: #f8f9fa;
+        }
+
+        .page {
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 1px 8px rgba(0,0,0,.08);
+            margin-bottom: 30px;
+        }
+
+        /* ── Header ── */
+        .header {
+            text-align: center;
+            border-bottom: 2.5px solid #0ea5e9;
+            padding-bottom: 18px;
+            margin-bottom: 28px;
+        }
+        .header h1 {
+            color: #0ea5e9;
+            font-size: 22pt;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 12pt;
+            color: #555;
+        }
+
+        .company-info {
+            text-align: center;
+            margin-bottom: 28px;
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* ── Editable fields ── */
+        .editable {
+            border: none;
+            border-bottom: 1px dashed #0ea5e9;
+            background: #f0f9ff;
+            padding: 2px 6px;
+            font-family: inherit;
+            font-size: inherit;
+            color: #111;
+            outline: none;
+            min-width: 180px;
+        }
+        .editable:focus {
+            background: #e0f2fe;
+            border-bottom-color: #0284c7;
+        }
+        .editable-wide { min-width: 320px; width: 100%; }
+        .editable-num  { min-width: 120px; text-align: right; }
+
+        /* ── Sections ── */
+        h2 {
+            color: #1e293b;
+            font-size: 13pt;
+            margin: 24px 0 10px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 4px;
+        }
+        .section { margin-bottom: 18px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+        td {
+            padding: 7px 8px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        td:first-child {
+            font-weight: bold;
+            width: 38%;
+            color: #334155;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 14px 18px;
+            border-left: 4px solid #f59e0b;
+            margin: 22px 0;
+            font-size: 10.5pt;
+        }
+        .highlight p { margin: 0; }
+        .highlight p + p { margin-top: 8px; }
+
+        ol, ul { padding-left: 22px; }
+        li { margin-bottom: 8px; }
+
+        /* ── Signature ── */
+        .signature-block {
+            margin-top: 50px;
+            page-break-inside: avoid;
+        }
+        .sig-row {
+            display: flex;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        .sig-col { flex: 1; }
+        .sig-line {
+            border-top: 1px solid #111;
+            width: 100%;
+            margin-top: 60px;
+        }
+        .sig-col p { margin: 4px 0; font-size: 10.5pt; }
+
+        /* ── Footer ── */
+        .footer {
+            margin-top: 40px;
+            padding-top: 16px;
+            border-top: 2.5px solid #0ea5e9;
+            font-size: 9pt;
+            color: #888;
+            text-align: center;
+        }
+
+        /* ── Toolbar (screen only) ── */
+        .toolbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: #0f172a;
+            color: #fff;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 100;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.25);
+        }
+        .toolbar span { opacity: .7; }
+        .toolbar button {
+            background: #0ea5e9;
+            color: #fff;
+            border: none;
+            padding: 7px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .toolbar button:hover { background: #0284c7; }
+        .toolbar button.secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.3);
+        }
+        .toolbar button.secondary:hover {
+            background: rgba(255,255,255,.1);
+        }
+        .toolbar-spacer { flex: 1; }
+
+        @media print {
+            body { background: none; padding: 0; margin: 0; }
+            .page { box-shadow: none; padding: 0; margin: 0; }
+            .toolbar { display: none !important; }
+            .editable {
+                border-bottom: none;
+                background: none;
+                padding: 0;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Toolbar ── -->
+<div class="toolbar">
+    <strong>Lighthief Cyprus — Letter of Intent</strong>
+    <span>|</span>
+    <span>Fill in the blue fields, then print or save as PDF</span>
+    <div class="toolbar-spacer"></div>
+    <button class="secondary" onclick="clearAll()">Clear All</button>
+    <button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="page">
+
+    <!-- ── Header ── -->
+    <div class="header">
+        <h1>LETTER OF INTENT</h1>
+        <p>Solar Farm Investment — Cyprus</p>
+    </div>
+
+    <div class="company-info">
+        <strong>LIGHTHIEF CYPRUS LTD</strong><br>
+        28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+        3035 Limassol, Cyprus<br>
+        Company Registration: HE 477423 &nbsp;|&nbsp; TIN: 60187188Q<br>
+        Email: office@lighthief.com &nbsp;|&nbsp; Phone: +357 77 77 00 50
+    </div>
+
+    <p style="text-align: right; margin-bottom: 28px;">
+        <strong>Date:</strong> <input class="editable" id="loi-date" style="min-width: 160px;">
+    </p>
+
+    <!-- ── 1. Parties ── -->
+    <div class="section">
+        <h2>1. PARTIES</h2>
+
+        <p><strong>Investor (The "Investor"):</strong></p>
+        <table>
+            <tr><td>Name:</td><td><input class="editable editable-wide" placeholder="Investor full name"></td></tr>
+            <tr><td>Company:</td><td><input class="editable editable-wide" placeholder="Company name (if applicable)"></td></tr>
+            <tr><td>Address:</td><td><input class="editable editable-wide" placeholder="Full address"></td></tr>
+            <tr><td>Email:</td><td><input class="editable" type="email" placeholder="investor@example.com"></td></tr>
+            <tr><td>Phone:</td><td><input class="editable" type="tel" placeholder="+357 ..."></td></tr>
+        </table>
+
+        <p><strong>Project Advisor (The "Advisor"):</strong></p>
+        <p>
+            Lighthief Cyprus Ltd, a company incorporated in the Republic of Cyprus with
+            registered office at 28 October Ave 249, Lophitis Business Center 1, Office 201,
+            3035 Limassol, Cyprus (HE 477423).
+        </p>
+    </div>
+
+    <!-- ── 2. Project Details ── -->
+    <div class="section">
+        <h2>2. PROJECT DETAILS</h2>
+        <table>
+            <tr><td>Project Name:</td><td><input class="editable editable-wide" placeholder="e.g. Solar Park Alpha"></td></tr>
+            <tr><td>Project Reference:</td><td><input class="editable" placeholder="e.g. PARK-RTB-2026"></td></tr>
+            <tr><td>Capacity:</td><td><input class="editable editable-num" placeholder="0.00"> MW (DC)</td></tr>
+            <tr><td>Estimated Total Investment:</td><td>€ <input class="editable editable-num" placeholder="0"></td></tr>
+            <tr><td>Location:</td><td><input class="editable editable-wide" placeholder="District / municipality, Cyprus"></td></tr>
+            <tr><td>BESS Included:</td>
+                <td>
+                    <select class="editable" style="min-width: 200px;">
+                        <option value="">— Select —</option>
+                        <option value="yes">Yes — Battery Energy Storage System</option>
+                        <option value="no">No — Solar PV only</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ── 3. Investment Terms ── -->
+    <div class="section">
+        <h2>3. INVESTMENT TERMS</h2>
+        <table>
+            <tr><td>Proposed Investment Amount:</td><td>€ <input class="editable editable-num" placeholder="0"></td></tr>
+            <tr><td>Investment Structure:</td>
+                <td>
+                    <select class="editable" style="min-width: 200px;">
+                        <option value="">— Select —</option>
+                        <option value="equity">Equity Investment</option>
+                        <option value="debt">Debt Financing</option>
+                        <option value="hybrid">Hybrid (Equity + Debt)</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><td>Proposed Timeline:</td><td><input class="editable" placeholder="e.g. 6–12 months"></td></tr>
+            <tr><td>Financing Assistance:</td>
+                <td>
+                    <select class="editable" style="min-width: 200px;">
+                        <option value="">— Select —</option>
+                        <option value="yes">Yes — Introduction to banking partners</option>
+                        <option value="no">No — Self-financed</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ── Non-Binding Statement ── -->
+    <div class="highlight">
+        <p><strong>NON-BINDING STATEMENT:</strong></p>
+        <p>
+            This Letter of Intent represents the Investor's preliminary interest and is <strong>NON-BINDING</strong>.
+            It does not constitute a commitment to invest and does not create any legal obligations
+            unless and until definitive agreements are executed by all parties.
+        </p>
+    </div>
+
+    <!-- ── 4. Intent & Next Steps ── -->
+    <div class="section">
+        <h2>4. INTENT AND NEXT STEPS</h2>
+        <p>The Investor hereby expresses non-binding intent to:</p>
+        <ol>
+            <li>Pursue discussions regarding investment in the above-referenced solar energy project;</li>
+            <li>Engage in due diligence activities including review of financial projections,
+                technical documentation, and legal/regulatory compliance;</li>
+            <li>Work toward execution of definitive investment agreements subject to satisfactory
+                completion of due diligence and final approval;</li>
+            <li>Maintain confidentiality of all information disclosed during the investment process.</li>
+        </ol>
+
+        <p><strong>Proposed Next Steps:</strong></p>
+        <ol>
+            <li><strong>Mutual NDA Execution:</strong> Within 5 business days</li>
+            <li><strong>Due Diligence Package Delivery:</strong> Within 10 business days of NDA</li>
+            <li><strong>Site Visit (if applicable):</strong> To be scheduled within due diligence period</li>
+            <li><strong>Preliminary Terms Discussion:</strong> Within 30 days</li>
+            <li><strong>Definitive Agreement Target:</strong> Within 60–90 days subject to due diligence</li>
+        </ol>
+    </div>
+
+    <!-- ── 5. Special Conditions ── -->
+    <div class="section">
+        <h2>5. SPECIAL CONDITIONS</h2>
+        <p style="font-size: 10pt; color: #666; margin-bottom: 4px;">Add any special conditions or notes below (optional):</p>
+        <textarea class="editable" rows="4" style="width: 100%; min-width: 100%; resize: vertical; font-family: inherit; font-size: inherit; line-height: 1.5; padding: 8px;" placeholder="e.g. Subject to board approval..."></textarea>
+    </div>
+
+    <!-- ── 6. Exclusivity ── -->
+    <div class="section">
+        <h2>6. EXCLUSIVITY AND CONFIDENTIALITY</h2>
+        <p>
+            The Investor requests a period of exclusivity for due diligence and negotiation.
+            Both parties agree to maintain strict confidentiality regarding this Letter of Intent
+            and any information exchanged during the investment process.
+        </p>
+    </div>
+
+    <!-- ── 7. Governing Law ── -->
+    <div class="section">
+        <h2>7. GOVERNING LAW</h2>
+        <p>
+            This Letter of Intent shall be governed by and construed in accordance with the laws of
+            the Republic of Cyprus. Any disputes shall be subject to the exclusive jurisdiction of
+            the Cyprus courts.
+        </p>
+    </div>
+
+    <!-- ── 8. Validity ── -->
+    <div class="section">
+        <h2>8. VALIDITY PERIOD</h2>
+        <p>
+            This Letter of Intent shall remain valid for a period of <input class="editable" value="90" style="min-width: 40px; width: 50px; text-align: center;"> days from the date hereof,
+            unless extended by mutual written agreement of the parties.
+        </p>
+    </div>
+
+    <!-- ── Signatures ── -->
+    <div class="signature-block">
+        <p><strong>ACKNOWLEDGED AND ACCEPTED:</strong></p>
+
+        <div class="sig-row">
+            <div class="sig-col">
+                <p style="margin-bottom: 5px;"><strong>For the Investor:</strong></p>
+                <div class="sig-line"></div>
+                <p>Name: ____________________________</p>
+                <p>Title: _____________________________</p>
+                <p>Date: _____________________________</p>
+            </div>
+            <div class="sig-col">
+                <p style="margin-bottom: 5px;"><strong>For Lighthief Cyprus Ltd:</strong></p>
+                <div class="sig-line"></div>
+                <p>Name: Alexander Papacosta</p>
+                <p>Title: Cyprus Director</p>
+                <p>Date: _____________________________</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <div class="footer">
+        <p>
+            This Letter of Intent is prepared by Lighthief Cyprus Ltd for discussion purposes only.
+            It does not constitute legal advice and should be reviewed by qualified legal counsel
+            before execution.
+        </p>
+        <p style="margin-top: 8px;">
+            <strong>LIGHTHIEF CYPRUS LTD</strong> &nbsp;|&nbsp; HE 477423 &nbsp;|&nbsp; www.solarfarms.cy
+        </p>
+    </div>
+
+</div><!-- .page -->
+
+<script>
+    // Auto-populate today's date
+    const d = new Date();
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('loi-date').value =
+        d.getDate().toString().padStart(2,'0') + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+    function clearAll() {
+        if (!confirm('Clear all filled fields?')) return;
+        document.querySelectorAll('.editable').forEach(el => {
+            if (el.tagName === 'SELECT') el.selectedIndex = 0;
+            else if (el.id === 'loi-date') return;
+            else el.value = '';
+        });
+    }
+</script>
+
+</body>
+</html>

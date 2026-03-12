@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Greece IKE — Expansion Plan</title>
+<style>
+:root {
+  --primary: #1e3a5f;
+  --accent: #0ea5e9;
+  --accent-light: #e0f2fe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --green: #16a34a;
+  --amber: #d97706;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg-alt);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, #0c4a6e 100%);
+  color: #fff;
+  padding: 48px 48px 40px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+header .subtitle {
+  font-size: 17px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+header .date {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 8px;
+}
+
+.print-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background 0.2s;
+}
+
+.print-btn:hover { background: #0284c7; }
+
+.content { padding: 40px 48px 56px; }
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 40px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--accent);
+}
+
+h2:first-child { margin-top: 0; }
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+p { margin-bottom: 14px; }
+
+strong { font-weight: 600; }
+
+ul, ol { margin-bottom: 14px; padding-left: 24px; }
+li { margin-bottom: 6px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+th {
+  background: var(--bg-alt);
+  color: var(--primary);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tbody tr:hover { background: var(--bg-alt); }
+
+.total-row td {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  border-bottom: none;
+}
+
+.total-row td:first-child { border-radius: 0 0 0 4px; }
+.total-row td:last-child { border-radius: 0 0 4px 0; }
+
+.note-box {
+  background: var(--accent-light);
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+}
+
+.warning-box {
+  background: #fffbeb;
+  border-left: 4px solid var(--amber);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+}
+
+.warning-box strong { color: var(--amber); }
+
+.card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+
+.card h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.card ul { margin-bottom: 0; }
+
+.highlight-item {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 12px 0;
+}
+
+.budget-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 16px 0;
+}
+
+.budget-grid .budget-table { min-width: 0; }
+
+.budget-grid h3 { margin-top: 0; }
+
+.checklist { list-style: none; padding-left: 0; }
+
+.checklist li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 8px;
+}
+
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg);
+}
+
+.checklist-section { margin-bottom: 20px; }
+
+.rec-list { counter-reset: rec; list-style: none; padding-left: 0; }
+
+.rec-list > li {
+  counter-increment: rec;
+  padding-left: 36px;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.rec-list > li::before {
+  content: counter(rec);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rec-list > li:first-child {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px 20px 16px 48px;
+}
+
+.rec-list > li:first-child::before {
+  left: 12px;
+  top: 16px;
+  background: var(--accent);
+}
+
+.timeline-bold td { font-weight: 700; }
+
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 24px 48px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+footer p { margin-bottom: 4px; }
+
+@media (max-width: 700px) {
+  header, .content, footer { padding-left: 24px; padding-right: 24px; }
+  .budget-grid { grid-template-columns: 1fr; }
+  table { font-size: 13px; }
+  th, td { padding: 8px 10px; }
+}
+
+@media print {
+  .print-btn { display: none; }
+  body { background: #fff; font-size: 12px; }
+  .container { box-shadow: none; }
+  header { padding: 32px 36px 28px; }
+  .content { padding: 28px 36px; }
+  h2 { margin-top: 28px; }
+  table, .card, .note-box, .warning-box, .checklist-section, .highlight-item { page-break-inside: avoid; }
+  section { page-break-inside: avoid; }
+  footer { padding: 16px 36px; }
+  .budget-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">PRINT / EXPORT</button>
+
+<div class="container">
+
+<header>
+  <h1>Lighthief Greece IKE</h1>
+  <div class="subtitle">Expansion Plan — Company Formation &amp; Market Entry</div>
+  <div class="date">March 2026</div>
+</header>
+
+<div class="content">
+
+<!-- 1. Executive Summary -->
+<section>
+<h2>1. Executive Summary</h2>
+<p>Lighthief plans to establish a Greek subsidiary — <strong>Lighthief Greece IKE</strong> (Ιδιωτική Κεφαλαιουχική Εταιρεία) — to capture the rapidly expanding Greek BESS and energy storage market. Greece has opened a <strong>4.7 GW battery storage pipeline</strong> valued at approximately <strong>€1.9 billion</strong> in hardware and installation, with regulatory support now firmly in place for projects commencing operation from 2026 onwards.</p>
+<p>The Greek IKE (Private Capital Company) structure offers the lowest formation cost, full foreign ownership, limited liability, and digital incorporation — making it the ideal vehicle for market entry.</p>
+</section>
+
+<!-- 2. Why Greece, Why Now -->
+<section>
+<h2>2. Why Greece, Why Now</h2>
+
+<h3>Market Opportunity</h3>
+<ul>
+  <li><strong>4.7 GW</strong> total BESS capacity allocated nationally (3,800 MW transmission + 900 MW distribution)</li>
+  <li><strong>€1.9 billion</strong> estimated market volume for hardware and installation</li>
+  <li>Priority grid connection framework established (Ministerial Decision, March 2025)</li>
+  <li>RAAEY Decision E-65/2025 defines operational support methodology for storage stations from 1 January 2026</li>
+  <li>Diverse business models enabled: industrial coupling, RE aggregator integration, coal phase-out zones, decentralised distribution storage</li>
+</ul>
+
+<h3>Regional Capacity Allocations (Top Regions)</h3>
+<table>
+  <thead>
+    <tr><th>Region</th><th>Allocated MW</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Western Macedonia</td><td>425 MW</td></tr>
+    <tr><td>Central Macedonia</td><td>400 MW</td></tr>
+    <tr><td>Peloponnese</td><td>400 MW</td></tr>
+    <tr><td>Regional grid services (total)</td><td>2,550 MW</td></tr>
+    <tr><td>Decentralised storage</td><td>650 MW</td></tr>
+    <tr><td>Energy-intensive industry</td><td>500 MW</td></tr>
+    <tr><td>Grid Aggregators</td><td>300 MW</td></tr>
+    <tr><td>Coal phase-out zones</td><td>250 MW</td></tr>
+  </tbody>
+</table>
+
+<h3>Synergies with Lighthief Cyprus</h3>
+<ul>
+  <li>Leverage existing OEM relationships (Linyang, Kehua, Voltus EMS)</li>
+  <li>Shared procurement on BESS containers and components</li>
+  <li>Cross-border EPC capability and engineering know-how</li>
+  <li>Portfolio-level insurance and warranty structures</li>
+</ul>
+</section>
+
+<!-- 3. Recommended Company Structure -->
+<section>
+<h2>3. Recommended Company Structure</h2>
+
+<h3>Entity Type: IKE (Private Capital Company)</h3>
+<p>The IKE is the most popular structure for foreign investors in Greece due to:</p>
+<ul>
+  <li><strong>Minimum capital:</strong> €1 (flexible contributions in cash, kind, or services)</li>
+  <li><strong>Limited liability</strong> for all shareholders</li>
+  <li><strong>No mandatory local shareholder</strong> — 100% foreign ownership permitted</li>
+  <li><strong>Digital incorporation</strong> via e-One Stop Service (e-OSS) in 1–3 business days</li>
+  <li><strong>No notary required</strong> when using model articles with no in-kind contributions</li>
+</ul>
+
+<h3>Alternative Structures (Not Recommended for Initial Entry)</h3>
+<table>
+  <thead>
+    <tr><th>Structure</th><th>Min Capital</th><th>Use Case</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>IKE</strong></td><td>€1</td><td>Startups, market entry — <strong>recommended</strong></td></tr>
+    <tr><td><strong>EPE</strong> (Ltd / LLC)</td><td>€4,500</td><td>Established service businesses</td></tr>
+    <tr><td><strong>AE</strong> (Public Ltd / SA)</td><td>€25,000</td><td>Large-scale operations, public tenders</td></tr>
+  </tbody>
+</table>
+
+<h3>Ownership Structure (Proposed)</h3>
+<ul>
+  <li><strong>Lighthief Ltd (Cyprus)</strong> — 100% shareholder of Lighthief Greece IKE</li>
+  <li>Single managing director appointed (can be non-resident)</li>
+  <li>Power of Attorney allows remote setup without physical presence</li>
+</ul>
+</section>
+
+<!-- 4. Formation Costs -->
+<section>
+<h2>4. Formation Costs (One-Off)</h2>
+
+<table>
+  <thead>
+    <tr><th>Cost Item</th><th>Amount (EUR)</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>State / registry / chamber fees</td><td>€30 – €200</td><td>GEMI registration, chamber of commerce</td></tr>
+    <tr><td>Notary fees</td><td>€0</td><td>Not required for IKE with model articles</td></tr>
+    <tr><td>Legal / advisory services</td><td>€1,500 – €3,000</td><td>Lawyer to review articles, POA, compliance</td></tr>
+    <tr><td>Tax number (AFM) application</td><td>Included</td><td>Via e-OSS or tax office</td></tr>
+    <tr><td>Bank account opening</td><td>€0 – €100</td><td>Typically free or minimal fee</td></tr>
+    <tr><td>Company seal (optional)</td><td>€30 – €50</td><td>Not legally required but useful</td></tr>
+    <tr class="total-row"><td><strong>Total Formation Cost</strong></td><td><strong>€1,560 – €3,350</strong></td><td></td></tr>
+  </tbody>
+</table>
+
+<h3>Timeline</h3>
+<ul>
+  <li><strong>Digital registration via e-OSS:</strong> 1–3 business days</li>
+  <li><strong>Full operational readiness</strong> (bank account, AFM, EFKA): ~2–3 weeks</li>
+  <li><strong>Total with legal preparation:</strong> 3–4 weeks</li>
+</ul>
+</section>
+
+<!-- 5. Annual Operating Costs -->
+<section>
+<h2>5. Annual Operating Costs</h2>
+
+<h3>5.1 Tax &amp; Social Security</h3>
+<table>
+  <thead>
+    <tr><th>Tax / Contribution</th><th>Rate</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Corporate income tax</td><td><strong>22%</strong></td></tr>
+    <tr><td>VAT (standard rate)</td><td><strong>24%</strong></td></tr>
+    <tr><td>Dividend withholding tax</td><td><strong>5%</strong> (0% to EU parent under PSD)</td></tr>
+    <tr><td>Employer social security</td><td><strong>~21.79%</strong> of gross salary</td></tr>
+    <tr><td>Employee social security</td><td><strong>~13.37%</strong> of gross salary</td></tr>
+    <tr><td>Stamp duty (on borrowing)</td><td>2.4%</td></tr>
+    <tr><td>Property tax (ENFIA)</td><td>0.55% of land rights</td></tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>Key advantage:</strong> Dividends to Lighthief Cyprus (EU parent) can qualify for <strong>0% withholding</strong> under the EU Parent-Subsidiary Directive, provided Lighthief Cyprus holds ≥10% for ≥24 months.
+</div>
+
+<h3>5.2 Accounting &amp; Compliance</h3>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Annual Cost (EUR)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Monthly bookkeeping &amp; tax filings</td><td>€4,800 – €8,900</td></tr>
+    <tr><td>Annual financial statement preparation</td><td>Included in monthly</td></tr>
+    <tr><td>GEMI annual filings</td><td>€100 – €300</td></tr>
+    <tr><td>myDATA / e-invoicing compliance</td><td>Included in bookkeeping</td></tr>
+    <tr><td>External audit (if thresholds exceeded)</td><td>€3,000+</td></tr>
+    <tr class="total-row"><td><strong>Total Compliance</strong></td><td><strong>€5,000 – €9,200</strong></td></tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> From February 2026, e-invoicing is mandatory for all B2B transactions in Greece — the accounting software must integrate with myDATA.</p>
+
+<h3>5.3 Office &amp; Facilities</h3>
+<table>
+  <thead>
+    <tr><th>Option</th><th>Monthly Cost (EUR)</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Virtual office / registered address</td><td>€100 – €250</td><td>Minimum for registration</td></tr>
+    <tr><td>Small office (25–45 m²) Athens</td><td>€400 – €600</td><td>City centre or suburbs</td></tr>
+    <tr><td>Small office (25–45 m²) Thessaloniki</td><td>€350 – €450</td><td>Lower cost base</td></tr>
+    <tr><td>Medium office (60–100 m²)</td><td>€700 – €1,500</td><td>For team of 3–5</td></tr>
+    <tr><td>Co-working desk</td><td>€150 – €300</td><td>Flexible, no commitment</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Recommendation:</strong> Start with a virtual office / registered address (€100–250/mo) for the first 6–12 months. Move to a small physical office when the team exceeds 2 people.</p>
+
+<h3>5.4 Staffing</h3>
+
+<div class="note-box">
+  <strong>Critical first hire: TEE-registered engineer</strong> — Without a licensed engineer registered with TEE (Τεχνικό Επιμελητήριο Ελλάδος / Technical Chamber of Greece), Lighthief Greece cannot sign off on engineering designs, submit technical studies to RAE/RAAEY, or participate in BESS tenders. This is the Greek equivalent of ETEK in Cyprus. The first hire must be a senior electrical or mechanical engineer with active TEE membership and experience in the energy/BESS sector.
+</div>
+
+<table>
+  <thead>
+    <tr><th>Role</th><th>Gross Annual Salary (EUR)</th><th>Total Cost incl. Employer SI (~22%)</th><th>Priority</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>TEE-Licensed Engineer / Country Lead</strong></td><td>€40,000 – €56,000</td><td>€48,800 – €68,300</td><td><strong>FIRST HIRE — mandatory</strong></td></tr>
+    <tr><td>Energy Engineer / Project Manager</td><td>€26,000 – €38,000</td><td>€31,700 – €46,300</td><td>Second hire</td></tr>
+    <tr><td>Administrative / Office Manager</td><td>€18,000 – €24,000</td><td>€21,900 – €29,300</td><td>When volume justifies</td></tr>
+    <tr><td>Junior Engineer / Technician</td><td>€16,000 – €22,000</td><td>€19,500 – €26,800</td><td>Project-based</td></tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <h4>TEE-Licensed Engineer — Ideal Profile</h4>
+  <ul>
+    <li>Graduate of Greek polytechnic (ΕΜΠ, ΑΠΘ, Πολυτεχνείο Κρήτης) or equivalent EU-recognised degree</li>
+    <li>Active TEE membership with practice licence (Άδεια Ασκήσεως Επαγγέλματος)</li>
+    <li>5–10+ years experience in energy sector (BESS, RES, grid connection, MV/HV)</li>
+    <li>Familiarity with RAE/RAAEY permitting, ADMIE grid code, HEDNO processes</li>
+    <li>Ability to sign technical studies, engineering designs, and tender submissions</li>
+    <li>Business development capability — this person is effectively the Country Manager</li>
+    <li>English fluency (for internal Lighthief communication)</li>
+    <li>Based in Athens (proximity to RAE, RAAEY, ADMIE, major developers)</li>
+  </ul>
+</div>
+
+<p><strong>Greece minimum wage (2025):</strong> €830/month gross (€9,960/year). Expected increase in 2026.</p>
+</section>
+
+<!-- 6. Year-1 Budget Estimate -->
+<section>
+<h2>6. Year-1 Budget Estimate</h2>
+
+<div class="budget-grid">
+  <div class="budget-table">
+    <h3>Scenario A: Lean Entry</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Remote + 1 TEE-Licensed Engineer</p>
+    <table>
+      <thead>
+        <tr><th>Item</th><th>Annual Cost (EUR)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Company formation</td><td>€2,500</td></tr>
+        <tr><td>Virtual office / registered address</td><td>€2,400</td></tr>
+        <tr><td>Accounting &amp; compliance</td><td>€6,000</td></tr>
+        <tr><td>1× TEE-Licensed Engineer / Country Lead</td><td>€58,000</td></tr>
+        <tr><td>TEE membership &amp; professional fees</td><td>€500</td></tr>
+        <tr><td>Travel &amp; expenses</td><td>€8,000</td></tr>
+        <tr><td>Insurance &amp; licences</td><td>€2,000</td></tr>
+        <tr><td>Marketing &amp; business development</td><td>€5,000</td></tr>
+        <tr><td>Legal retainer</td><td>€3,000</td></tr>
+        <tr><td>Contingency (10%)</td><td>€8,800</td></tr>
+        <tr class="total-row"><td><strong>Total Year 1</strong></td><td><strong>~€97,000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="budget-table">
+    <h3>Scenario B: Established Presence</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Office + 3 Staff</p>
+    <table>
+      <thead>
+        <tr><th>Item</th><th>Annual Cost (EUR)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Company formation</td><td>€3,000</td></tr>
+        <tr><td>Small office (Athens, 50 m²)</td><td>€7,200</td></tr>
+        <tr><td>Accounting &amp; compliance</td><td>€8,000</td></tr>
+        <tr><td>1× Country Manager</td><td>€50,000</td></tr>
+        <tr><td>1× Energy Engineer</td><td>€38,000</td></tr>
+        <tr><td>1× Admin / Office Support</td><td>€25,000</td></tr>
+        <tr><td>Travel &amp; expenses</td><td>€12,000</td></tr>
+        <tr><td>Insurance &amp; licences</td><td>€4,000</td></tr>
+        <tr><td>Marketing &amp; business development</td><td>€10,000</td></tr>
+        <tr><td>Legal retainer</td><td>€5,000</td></tr>
+        <tr><td>IT / software / telecoms</td><td>€4,000</td></tr>
+        <tr><td>Contingency (10%)</td><td>€16,600</td></tr>
+        <tr class="total-row"><td><strong>Total Year 1</strong></td><td><strong>~€183,000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- 7. Incorporation Checklist -->
+<section>
+<h2>7. Incorporation Checklist</h2>
+
+<div class="checklist-section">
+  <h3>Pre-Incorporation</h3>
+  <ul class="checklist">
+    <li>Confirm company name availability (GEMI search)</li>
+    <li>Decide on share capital amount (€1 minimum, suggest €1,000–€5,000 for credibility)</li>
+    <li>Appoint managing director(s) — can be the Cyprus parent's representative</li>
+    <li>Obtain Power of Attorney for remote incorporation (notarised &amp; apostilled in Cyprus)</li>
+    <li>Engage Greek lawyer for articles of association review</li>
+  </ul>
+</div>
+
+<div class="checklist-section">
+  <h3>Incorporation Steps</h3>
+  <ul class="checklist">
+    <li>Register via e-One Stop Service (e-OSS) or physical One Stop Shop</li>
+    <li>Submit Articles of Association (model statute or custom)</li>
+    <li>Obtain GEMI registration number</li>
+    <li>Obtain Tax Identification Number (AFM) from local tax office (DOY)</li>
+    <li>Register with EFKA (social insurance fund)</li>
+    <li>Open corporate bank account (Alpha Bank, Eurobank, Piraeus, NBG)</li>
+    <li>Register for VAT (if annual turnover expected to exceed €10,000)</li>
+    <li>Set up myDATA / e-invoicing integration</li>
+  </ul>
+</div>
+
+<div class="checklist-section">
+  <h3>Post-Incorporation</h3>
+  <ul class="checklist">
+    <li>Appoint local accountant / bookkeeper</li>
+    <li>Obtain any sector-specific licences (energy sector permits, if applicable)</li>
+    <li>Register with local Chamber of Commerce</li>
+    <li>Set up payroll for local employees</li>
+    <li>Establish intercompany agreement with Lighthief Cyprus (transfer pricing)</li>
+  </ul>
+</div>
+</section>
+
+<!-- 8. Key Regulatory Considerations -->
+<section>
+<h2>8. Key Regulatory Considerations</h2>
+
+<h3>TEE Registration (Mandatory for Tender Participation)</h3>
+<div class="warning-box">
+  <strong>⚠ CRITICAL — TEE Registration is mandatory.</strong> Without a TEE-licensed engineer, the company cannot participate in BESS tenders, submit engineering designs to RAE/RAAEY, or sign off on grid connection applications.
+</div>
+<ul>
+  <li><strong>TEE (Technical Chamber of Greece)</strong> membership is mandatory to sign off on engineering designs, technical studies, and tender submissions — equivalent of ETEK in Cyprus</li>
+  <li>The company must employ at least one TEE-registered engineer with an active practice licence (Άδεια Ασκήσεως Επαγγέλματος)</li>
+  <li>TEE registration requires: Greek polytechnic degree (or equivalent EU-recognised engineering degree) + TEE examinations (held 3–4 times per year)</li>
+  <li>Foreign engineers with EU qualifications can apply for TEE recognition under EU Directive 2005/36/EC (mutual recognition of professional qualifications)</li>
+</ul>
+
+<h3>BESS Project Requirements</h3>
+<p>For bidding on Greek storage projects:</p>
+<ul>
+  <li>TEE-licensed engineer on staff (see above)</li>
+  <li>Minimum 2-hour discharge capacity</li>
+  <li>Minimum 0.5 MW power output</li>
+  <li>≥80% system efficiency</li>
+  <li>Valid storage permit from RAE/RAAEY</li>
+  <li>Financial solidity: priority bonds and pre-approved bank loans covering total CAPEX (reference cost €200/kWh)</li>
+  <li>Technical compliance with Greek grid code</li>
+</ul>
+
+<h3>Transfer Pricing</h3>
+<ul>
+  <li>Intercompany transactions between Lighthief Cyprus and Lighthief Greece must be at arm's length</li>
+  <li>Prepare transfer pricing documentation to support any management fees, IP licensing, or procurement margin</li>
+</ul>
+
+<h3>EU Parent-Subsidiary Directive</h3>
+<p>0% withholding tax on dividends from Greece to Cyprus if:</p>
+<ul>
+  <li>Lighthief Cyprus holds ≥10% of Lighthief Greece IKE</li>
+  <li>Holding period ≥24 months</li>
+  <li>Both entities are EU tax residents</li>
+</ul>
+</section>
+
+<!-- 9. Strategic Recommendations -->
+<section>
+<h2>9. Strategic Recommendations</h2>
+
+<ol class="rec-list">
+  <li><strong>Hire a TEE-licensed engineer first</strong> — This is the single most critical hire. Without TEE registration, Lighthief Greece cannot participate in tenders, sign engineering designs, or submit studies to RAE/RAAEY. This person should combine technical credentials with business development capability — effectively serving as Country Lead. Target profile: senior electrical engineer, 5–10 years energy/BESS experience, based in Athens, active TEE membership.</li>
+  <li><strong>Start lean (Scenario A)</strong> — Use the first 12 months for market development, relationship building, and securing initial project mandates before scaling headcount.</li>
+  <li><strong>Base in Athens</strong> — Proximity to RAE/RAAEY, ADMIE (grid operator), and major energy companies (METLEN, PPC, Terna Energy). Thessaloniki is a viable alternative if targeting Northern Greece / Macedonia projects (Western Macedonia has 425 MW BESS allocation).</li>
+  <li><strong>Leverage the Cyprus portfolio</strong> — Position Lighthief Greece as the natural extension of the 881 MWh Cyprus BESS portfolio, demonstrating track record and OEM relationships.</li>
+  <li><strong>Target coal phase-out zones</strong> — Western Macedonia (425 MW allocation) offers priority access and regional development incentives.</li>
+  <li><strong>Partner with local EPC firms</strong> initially rather than building a full Greek construction team — reduces fixed cost and risk.</li>
+  <li><strong>Engage a Greek energy lawyer</strong> early to navigate RAE permitting, grid connection applications, and PPA/offtake structures.</li>
+</ol>
+</section>
+
+<!-- 10. Next Steps -->
+<section>
+<h2>10. Next Steps</h2>
+
+<table>
+  <thead>
+    <tr><th>Action</th><th>Timeline</th><th>Owner</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Engage Greek corporate lawyer</td><td>Week 1–2</td><td>Alex</td></tr>
+    <tr class="timeline-bold"><td>Begin recruiting TEE-licensed engineer</td><td>Week 1–2</td><td>Alex</td></tr>
+    <tr><td>Reserve company name (GEMI)</td><td>Week 2</td><td>Lawyer</td></tr>
+    <tr><td>Prepare POA in Cyprus</td><td>Week 2–3</td><td>Alex / CY lawyer</td></tr>
+    <tr><td>Submit IKE incorporation via e-OSS</td><td>Week 3–4</td><td>Greek lawyer</td></tr>
+    <tr><td>Open bank account</td><td>Week 4–5</td><td>Managing Director</td></tr>
+    <tr><td>Appoint accountant</td><td>Week 5</td><td>Greek lawyer referral</td></tr>
+    <tr class="timeline-bold"><td>TEE engineer onboarded</td><td>Week 6–8</td><td>Alex</td></tr>
+    <tr><td>Begin market development &amp; tender pipeline</td><td>Week 8+</td><td>TEE Engineer / Country Lead</td></tr>
+  </tbody>
+</table>
+</section>
+
+</div>
+
+<footer>
+  <p><strong>CONFIDENTIAL</strong> — Lighthief Ltd. Internal use only.</p>
+  <p>Document prepared: March 2026 · Author: Lighthief Strategy · Status: Draft for internal review</p>
+</footer>
+
+</div>
+
+</body>
+</html>

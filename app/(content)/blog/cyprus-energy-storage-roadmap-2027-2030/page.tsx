@@ -388,7 +388,7 @@ export default function CyprusEnergyStorageRoadmapArticle() {
 
               <p className="text-lg text-gray-700 leading-relaxed">
                 The EuroAsia Interconnector &mdash; a 2,000&nbsp;MW subsea cable connecting Cyprus
-                to Crete and mainland Greece &mdash; is expected to become operational during this
+                to Crete (Greece) and Israel &mdash; is expected to become operational during this
                 period. This fundamentally changes the energy landscape, but it doesn&apos;t
                 diminish the BESS case. It transforms it.
               </p>
@@ -845,7 +845,7 @@ export default function CyprusEnergyStorageRoadmapArticle() {
                   <CardContent>
                     <p className="text-sm text-gray-700 mb-3">
                       Solid-state batteries may reach commercial scale by 2030, offering higher
-                      density and longer life. But today&apos;s LFP systems with 6,000+ cycle
+                      density and longer life. But today&apos;s LFP systems with 7,000-cycle
                       warranties and 15&ndash;20 year lifespans will still be generating revenue
                       well into the 2040s.
                     </p>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BESS Insurance — CAR &amp; DSU Exposure Schedule — Lighthief → Holland NBI</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px 30px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; text-transform: uppercase; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--primary); }
+
+        .doc-title {
+            text-align: center; margin: 30px 0 20px;
+            font-size: 20px; font-weight: 700; color: var(--primary);
+            padding: 15px; background: var(--gray-50); border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .doc-subtitle {
+            text-align: center; margin: -10px 0 25px;
+            font-size: 13px; color: var(--gray-600);
+        }
+
+        h2 {
+            color: var(--primary); font-size: 16px;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 8px; margin: 30px 0 15px;
+        }
+
+        h3 { color: var(--primary-light); font-size: 13px; margin: 20px 0 10px; }
+
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 10px 0 20px; font-size: 10pt;
+        }
+
+        th, td { padding: 8px 10px; border: 1px solid var(--gray-200); text-align: left; }
+
+        th {
+            background: var(--primary); color: white;
+            font-weight: 600; font-size: 9pt; text-transform: uppercase;
+        }
+
+        tr:nth-child(even) { background: var(--gray-50); }
+        tr:hover { background: #edf2f7; }
+
+        .totals-row { font-weight: 700; background: var(--gray-100) !important; }
+        .max-row { background: #fff5f5 !important; }
+
+        td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+        .info-box {
+            background: var(--gray-50); border-left: 4px solid var(--primary-light);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .section-intro { font-size: 10.5pt; color: var(--gray-700); margin-bottom: 15px; }
+
+        .highlight { background: #fffff0; border-left: 4px solid var(--accent); padding: 12px 16px; margin: 12px 0; border-radius: 4px; font-size: 10pt; }
+
+        .footer {
+            margin-top: 40px; padding-top: 15px;
+            border-top: 2px solid var(--gray-200);
+            font-size: 9pt; color: var(--gray-600);
+            text-align: center;
+        }
+
+        @media print {
+            body { font-size: 10pt; }
+            .container { padding: 10px 20px; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="company-name">LIGHTHIEF</div>
+                <div class="company-tagline">Energy Storage Solutions — Cyprus</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <strong>CAR &amp; DSU EXPOSURE SCHEDULE</strong><br>
+            Ref: LCY-INS-HOLLAND-2026-S1<br>
+            Date: 25 February 2026<br>
+            Classification: COMMERCIAL — CONFIDENTIAL
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="doc-title">BESS Portfolio — Per-Project CAR &amp; DSU Exposure Schedule</div>
+    <div class="doc-subtitle">
+        For: Henk Beekman — Holland Verzekeringsmakelaars (hjbeekman@hollandverzekeringsmakelaars.nl)<br>
+        Portfolio: 51 parks · 886.78 MWh · 249 MW · 252 containers
+    </div>
+
+    <!-- REFERENCE TABLE -->
+    <table>
+        <tr><th colspan="2">Document Reference</th></tr>
+        <tr><td><strong>From</strong></td><td>Lighthief Cyprus Ltd (Alexander Papacosta, +357 99 164 158)</td></tr>
+        <tr><td><strong>To</strong></td><td>Henk Beekman — Holland Verzekeringsmakelaars</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Per-project CAR value exposure and DSU daily rates to support underwriting of the BESS construction insurance programme</td></tr>
+        <tr><td><strong>DSU Rate Used</strong></td><td><strong>€30 per MWh per day</strong> (curtailment avoidance revenue basis)</td></tr>
+        <tr><td><strong>Delay LD Cap</strong></td><td><strong>10% of EPC Contract Price</strong> per park (EPC Agreement Section 8.4)</td></tr>
+        <tr><td><strong>Delivery</strong></td><td>CIF Limassol (Incoterms® 2020) — marine cargo is seller's (Linyang) responsibility</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: SUMMARY BY PROJECT SIZE                      -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2>1. Summary by Project Size Category</h2>
+
+    <p class="section-intro">
+        The portfolio comprises 46 parks for 2026 delivery (plus 5 deferred to 2028) across 11 distinct size configurations. The table below shows the CAR exposure and DSU daily rate for each project size category.
+    </p>
+
+    <table>
+        <tr>
+            <th>Size (MW/MWh)</th>
+            <th>Count</th>
+            <th>Containers</th>
+            <th>EPC Value / Park (€)</th>
+            <th>DSU / Day / Park (€)</th>
+            <th>LD Cap / Park (€)</th>
+            <th>Total CAR (€)</th>
+        </tr>
+        <tr>
+            <td>1.5 / 5</td><td class="num">5</td><td class="num">2</td>
+            <td class="num">~730,000</td><td class="num">150</td><td class="num">~73,000</td>
+            <td class="num">~3,650,000</td>
+        </tr>
+        <tr>
+            <td>2.5 / 7.5</td><td class="num">4</td><td class="num">2</td>
+            <td class="num">~1,100,000</td><td class="num">225</td><td class="num">~110,000</td>
+            <td class="num">~4,400,000</td>
+        </tr>
+        <tr>
+            <td>2.5 / 8.36</td><td class="num">1</td><td class="num">2</td>
+            <td class="num">~1,020,000</td><td class="num">251</td><td class="num">~102,000</td>
+            <td class="num">~1,020,000</td>
+        </tr>
+        <tr>
+            <td>2.5 / 10</td><td class="num">10</td><td class="num">3</td>
+            <td class="num">~1,220,000</td><td class="num">300</td><td class="num">~122,000</td>
+            <td class="num">~12,200,000</td>
+        </tr>
+        <tr>
+            <td>3.3 / 10</td><td class="num">1</td><td class="num">3</td>
+            <td class="num">~1,410,000</td><td class="num">300</td><td class="num">~141,000</td>
+            <td class="num">~1,410,000</td>
+        </tr>
+        <tr>
+            <td>5 / 10</td><td class="num">1</td><td class="num">3</td>
+            <td class="num">~1,460,000</td><td class="num">300</td><td class="num">~146,000</td>
+            <td class="num">~1,460,000</td>
+        </tr>
+        <tr>
+            <td>5 / 20</td><td class="num">19</td><td class="num">5</td>
+            <td class="num">~2,260,000</td><td class="num">600</td><td class="num">~226,000</td>
+            <td class="num">~42,940,000</td>
+        </tr>
+        <tr>
+            <td>7.5 / 25</td><td class="num">1</td><td class="num">7</td>
+            <td class="num">~2,930,000</td><td class="num">750</td><td class="num">~293,000</td>
+            <td class="num">~2,930,000</td>
+        </tr>
+        <tr>
+            <td>7.7 / 25</td><td class="num">1</td><td class="num">7</td>
+            <td class="num">~3,220,000</td><td class="num">750</td><td class="num">~322,000</td>
+            <td class="num">~3,220,000</td>
+        </tr>
+        <tr>
+            <td>8 / 60</td><td class="num">1</td><td class="num">14</td>
+            <td class="num">~7,040,000</td><td class="num">1,800</td><td class="num">~704,000</td>
+            <td class="num">~7,040,000</td>
+        </tr>
+        <tr>
+            <td>12 / 40</td><td class="num">2</td><td class="num">10</td>
+            <td class="num">~4,690,000</td><td class="num">1,200</td><td class="num">~469,000</td>
+            <td class="num">~9,380,000</td>
+        </tr>
+        <tr class="totals-row">
+            <td><strong>TOTAL (2026)</strong></td>
+            <td class="num"><strong>46</strong></td>
+            <td class="num"><strong>199</strong></td>
+            <td></td>
+            <td class="num"><strong>22,601</strong></td>
+            <td></td>
+            <td class="num"><strong>~€92,530,000</strong></td>
+        </tr>
+    </table>
+
+    <div class="highlight">
+        <strong>Maximum single-project exposure:</strong><br>
+        CAR: <strong>~€7,040,000</strong> (8 MW / 60 MWh park — 14 containers, Batch 3, Famagusta district)<br>
+        DSU per day: <strong>€1,800</strong> (same park)<br>
+        LD cap (10%): <strong>~€704,000</strong><br>
+        DSU 12-month indemnity: <strong>€657,000</strong> (€1,800 × 365)
+    </div>
+
+    <div class="info-box">
+        <strong>Minimum single-project exposure:</strong> ~€730,000 (1.5 MW / 5 MWh park — 2 containers). DSU per day: €150. LD cap: ~€73,000.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: FULL PER-PARK SCHEDULE                       -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2>2. Full Per-Park Schedule — Anonymised (46 Parks, 2026 Delivery)</h2>
+
+    <p class="section-intro">
+        Each row represents one independent EPC project (one client SPV, one site, one EPC contract). Park names omitted for client confidentiality. EPC values are indicative based on group-level pricing; actual per-project contract values will be declared under the CAR policy. DSU rate: €30/MWh/day.
+    </p>
+
+    <h3>2.1 Batch 1 — 15 Parks (CIF: 2026-08-20, PAC: 2026-12-31)</h3>
+    <table>
+        <tr>
+            <th>#</th><th>Group</th><th>District</th>
+            <th>MW</th><th>MWh</th><th>Ct.</th>
+            <th>EPC Value (€)</th><th>DSU/Day (€)</th><th>LD Cap 10% (€)</th>
+        </tr>
+        <tr><td>P01</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P02</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P03</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P04</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P05</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P06</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P07</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P08</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P09</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P10</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P11</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P12</td><td>G1</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P13</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P14</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P15</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr class="totals-row">
+            <td colspan="3"><strong>Batch 1 Total</strong></td>
+            <td class="num"><strong>72.5</strong></td><td class="num"><strong>290</strong></td><td class="num"><strong>73</strong></td>
+            <td class="num"><strong>32,831,900</strong></td><td class="num"><strong>8,700</strong></td><td class="num"><strong>3,283,190</strong></td>
+        </tr>
+    </table>
+
+    <h3>2.2 Batch 2 — 19 Parks (CIF: TBC, PAC: TBC)</h3>
+    <table>
+        <tr>
+            <th>#</th><th>Group</th><th>District</th>
+            <th>MW</th><th>MWh</th><th>Ct.</th>
+            <th>EPC Value (€)</th><th>DSU/Day (€)</th><th>LD Cap 10% (€)</th>
+        </tr>
+        <tr><td>P16</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P17</td><td>G1</td><td>Nicosia</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P18</td><td>G1</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P19</td><td>G1</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P20</td><td>G1</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P21</td><td>G1</td><td>Larnaca</td><td class="num">2.5</td><td class="num">8.36</td><td class="num">2</td><td class="num">1,008,467</td><td class="num">251</td><td class="num">100,847</td></tr>
+        <tr><td>P22</td><td>G1</td><td>Larnaca</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P23</td><td>G1</td><td>Paphos</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,258,900</td><td class="num">600</td><td class="num">225,890</td></tr>
+        <tr><td>P24</td><td>G1</td><td>Larnaca</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P25</td><td>G1</td><td>Larnaca</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,206,300</td><td class="num">300</td><td class="num">120,630</td></tr>
+        <tr><td>P26</td><td>G3</td><td>Nicosia</td><td class="num">2.5</td><td class="num">7.5</td><td class="num">2</td><td class="num">1,094,348</td><td class="num">225</td><td class="num">109,435</td></tr>
+        <tr><td>P27</td><td>G3</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,459,130</td><td class="num">300</td><td class="num">145,913</td></tr>
+        <tr><td>P28</td><td>G3</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,459,130</td><td class="num">300</td><td class="num">145,913</td></tr>
+        <tr><td>P29</td><td>G3</td><td>Nicosia</td><td class="num">2.5</td><td class="num">7.5</td><td class="num">2</td><td class="num">1,094,348</td><td class="num">225</td><td class="num">109,435</td></tr>
+        <tr><td>P30</td><td>G3</td><td>Nicosia</td><td class="num">2.5</td><td class="num">10</td><td class="num">3</td><td class="num">1,459,130</td><td class="num">300</td><td class="num">145,913</td></tr>
+        <tr><td>P31</td><td>G3</td><td>Nicosia</td><td class="num">5.0</td><td class="num">10</td><td class="num">3</td><td class="num">1,459,130</td><td class="num">300</td><td class="num">145,913</td></tr>
+        <tr><td>P32</td><td>G3</td><td>Nicosia</td><td class="num">1.5</td><td class="num">5</td><td class="num">2</td><td class="num">729,565</td><td class="num">150</td><td class="num">72,957</td></tr>
+        <tr><td>P33</td><td>G3</td><td>Nicosia</td><td class="num">1.5</td><td class="num">5</td><td class="num">2</td><td class="num">729,565</td><td class="num">150</td><td class="num">72,957</td></tr>
+        <tr><td>P34</td><td>G3</td><td>Nicosia</td><td class="num">1.5</td><td class="num">5</td><td class="num">2</td><td class="num">729,565</td><td class="num">150</td><td class="num">72,957</td></tr>
+        <tr class="totals-row">
+            <td colspan="3"><strong>Batch 2 Total</strong></td>
+            <td class="num"><strong>54.5</strong></td><td class="num"><strong>198.4</strong></td><td class="num"><strong>57</strong></td>
+            <td class="num"><strong>27,442,878</strong></td><td class="num"><strong>5,951</strong></td><td class="num"><strong>2,744,288</strong></td>
+        </tr>
+    </table>
+
+    <h3>2.3 Batch 3 — 12 Parks (CIF: TBC, PAC: TBC)</h3>
+    <table>
+        <tr>
+            <th>#</th><th>Group</th><th>District</th>
+            <th>MW</th><th>MWh</th><th>Ct.</th>
+            <th>EPC Value (€)</th><th>DSU/Day (€)</th><th>LD Cap 10% (€)</th>
+        </tr>
+        <tr class="max-row"><td>P35</td><td>G2</td><td>Famagusta</td><td class="num">12.0</td><td class="num">40</td><td class="num">10</td><td class="num">4,599,600</td><td class="num">1,200</td><td class="num">459,960</td></tr>
+        <tr class="max-row"><td>P36</td><td>G2</td><td>Famagusta</td><td class="num">12.0</td><td class="num">40</td><td class="num">10</td><td class="num">4,599,600</td><td class="num">1,200</td><td class="num">459,960</td></tr>
+        <tr class="max-row"><td>P37</td><td>G2</td><td>Famagusta</td><td class="num">8.0</td><td class="num">60</td><td class="num">14</td><td class="num">7,036,200</td><td class="num">1,800</td><td class="num">703,620</td></tr>
+        <tr><td>P38</td><td>G2</td><td>Limassol</td><td class="num">7.5</td><td class="num">25</td><td class="num">7</td><td class="num">2,931,750</td><td class="num">750</td><td class="num">293,175</td></tr>
+        <tr><td>P39</td><td>G2</td><td>Famagusta</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,345,400</td><td class="num">600</td><td class="num">234,540</td></tr>
+        <tr><td>P40</td><td>G2</td><td>Famagusta</td><td class="num">5.0</td><td class="num">20</td><td class="num">5</td><td class="num">2,345,400</td><td class="num">600</td><td class="num">234,540</td></tr>
+        <tr><td>P41</td><td>G5</td><td>Limassol</td><td class="num">1.5</td><td class="num">5</td><td class="num">2</td><td class="num">705,805</td><td class="num">150</td><td class="num">70,581</td></tr>
+        <tr><td>P42</td><td>G5</td><td>Limassol</td><td class="num">3.3</td><td class="num">10</td><td class="num">3</td><td class="num">1,411,610</td><td class="num">300</td><td class="num">141,161</td></tr>
+        <tr><td>P43</td><td>G4</td><td>Paphos</td><td class="num">2.5</td><td class="num">7.5</td><td class="num">2</td><td class="num">1,148,018</td><td class="num">225</td><td class="num">114,802</td></tr>
+        <tr><td>P44</td><td>G4</td><td>Paphos</td><td class="num">2.5</td><td class="num">7.5</td><td class="num">2</td><td class="num">1,148,018</td><td class="num">225</td><td class="num">114,802</td></tr>
+        <tr><td>P45</td><td>G4</td><td>Paphos</td><td class="num">1.5</td><td class="num">5</td><td class="num">2</td><td class="num">765,345</td><td class="num">150</td><td class="num">76,535</td></tr>
+        <tr><td>P46</td><td>G6</td><td>Nicosia</td><td class="num">7.7</td><td class="num">25</td><td class="num">7</td><td class="num">3,220,675</td><td class="num">750</td><td class="num">322,068</td></tr>
+        <tr class="totals-row">
+            <td colspan="3"><strong>Batch 3 Total</strong></td>
+            <td class="num"><strong>68.5</strong></td><td class="num"><strong>265</strong></td><td class="num"><strong>69</strong></td>
+            <td class="num"><strong>32,257,421</strong></td><td class="num"><strong>7,950</strong></td><td class="num"><strong>3,225,744</strong></td>
+        </tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: PORTFOLIO SUMMARY                            -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2>3. Portfolio Summary — Key Underwriting Figures</h2>
+
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Total Parks (2026 delivery)</td><td class="num"><strong>46</strong></td></tr>
+        <tr><td>Total MWh (2026 delivery)</td><td class="num"><strong>753.4 MWh</strong></td></tr>
+        <tr><td>Total MW (2026 delivery)</td><td class="num"><strong>195.5 MW</strong></td></tr>
+        <tr><td>Total Containers (2026 delivery)</td><td class="num"><strong>199</strong></td></tr>
+        <tr><td>Total EPC Contract Value (2026)</td><td class="num"><strong>~€92,530,000</strong></td></tr>
+        <tr><td>Total CIF Equipment Value</td><td class="num"><strong>€85,963,925</strong></td></tr>
+        <tr><td>Largest Single Project (CAR)</td><td class="num"><strong>~€7,040,000</strong> (8 MW / 60 MWh)</td></tr>
+        <tr><td>Smallest Single Project (CAR)</td><td class="num"><strong>~€706,000</strong> (1.5 MW / 5 MWh)</td></tr>
+        <tr><td>Average Project Value</td><td class="num"><strong>~€2,010,000</strong></td></tr>
+        <tr><td>Median Project Value</td><td class="num"><strong>~€2,260,000</strong> (5 MW / 20 MWh — most common size)</td></tr>
+    </table>
+
+    <h3>3.1 DSU Exposure Summary</h3>
+    <table>
+        <tr><th>Metric</th><th>Per Day (€)</th><th>Per Month (€)</th><th>12-Month Indemnity (€)</th></tr>
+        <tr><td>Total Portfolio DSU (all 46 parks)</td><td class="num">22,602</td><td class="num">687,310</td><td class="num">8,249,730</td></tr>
+        <tr><td>Max single-project DSU</td><td class="num">1,800</td><td class="num">54,750</td><td class="num">657,000</td></tr>
+        <tr><td>Min single-project DSU</td><td class="num">150</td><td class="num">4,563</td><td class="num">54,750</td></tr>
+        <tr><td>Batch 1 DSU (15 parks)</td><td class="num">8,700</td><td class="num">264,625</td><td class="num">3,175,500</td></tr>
+        <tr><td>Batch 2 DSU (19 parks)</td><td class="num">5,952</td><td class="num">181,020</td><td class="num">2,172,480</td></tr>
+        <tr><td>Batch 3 DSU (12 parks)</td><td class="num">7,950</td><td class="num">241,781</td><td class="num">2,901,750</td></tr>
+    </table>
+
+    <h3>3.2 Delay LD Exposure Summary</h3>
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>LD Rate — Days 1–30</td><td>0.1% of Contract Price per calendar day</td></tr>
+        <tr><td>LD Rate — Days 31–60</td><td>0.15% of Contract Price per calendar day</td></tr>
+        <tr><td>LD Rate — Day 61+</td><td>0.2% of Contract Price per calendar day</td></tr>
+        <tr><td><strong>LD Cap per Project</strong></td><td><strong>10% of Contract Price</strong></td></tr>
+        <tr><td>Total Portfolio LD Cap (all 46 parks)</td><td class="num"><strong>~€9,253,000</strong></td></tr>
+        <tr><td>Max single-project LD cap</td><td class="num"><strong>~€704,000</strong> (8 MW / 60 MWh)</td></tr>
+        <tr><td>Min single-project LD cap</td><td class="num"><strong>~€71,000</strong> (1.5 MW / 5 MWh)</td></tr>
+        <tr><td>LD Sole Remedy</td><td>Yes — LDs are client's sole and exclusive remedy for delay (EPC Section 8.4.5)</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: GROUP SUMMARY                                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2>4. Summary by Client Group</h2>
+
+    <table>
+        <tr>
+            <th>Group</th><th>Parks</th><th>MW</th><th>MWh</th>
+            <th>Total EPC (€)</th><th>DSU/Day (€)</th><th>Total LD Cap (€)</th>
+            <th>Batch(es)</th><th>Districts</th>
+        </tr>
+        <tr>
+            <td>G1</td><td class="num">25</td><td class="num">105.0</td><td class="num">418.4</td>
+            <td class="num">52,610,000</td><td class="num">12,551</td><td class="num">5,261,000</td>
+            <td>1, 2</td><td>Nicosia, Larnaca, Paphos</td>
+        </tr>
+        <tr>
+            <td>G2</td><td class="num">6</td><td class="num">49.5</td><td class="num">205</td>
+            <td class="num">23,858,000</td><td class="num">6,150</td><td class="num">2,386,000</td>
+            <td>3</td><td>Famagusta, Limassol</td>
+        </tr>
+        <tr>
+            <td>G3</td><td class="num">9</td><td class="num">22.5</td><td class="num">70</td>
+            <td class="num">10,213,000</td><td class="num">2,100</td><td class="num">1,021,000</td>
+            <td>2</td><td>Nicosia</td>
+        </tr>
+        <tr>
+            <td>G4</td><td class="num">3</td><td class="num">6.5</td><td class="num">20</td>
+            <td class="num">3,061,000</td><td class="num">600</td><td class="num">306,000</td>
+            <td>3</td><td>Paphos</td>
+        </tr>
+        <tr>
+            <td>G5</td><td class="num">2</td><td class="num">4.8</td><td class="num">15</td>
+            <td class="num">2,117,000</td><td class="num">450</td><td class="num">212,000</td>
+            <td>3</td><td>Limassol</td>
+        </tr>
+        <tr>
+            <td>G6</td><td class="num">1</td><td class="num">7.7</td><td class="num">25</td>
+            <td class="num">3,221,000</td><td class="num">750</td><td class="num">322,000</td>
+            <td>3</td><td>Nicosia</td>
+        </tr>
+        <tr class="totals-row">
+            <td><strong>TOTAL</strong></td>
+            <td class="num"><strong>46</strong></td><td class="num"><strong>195.5</strong></td><td class="num"><strong>753.4</strong></td>
+            <td class="num"><strong>~95,080,000</strong></td><td class="num"><strong>22,601</strong></td><td class="num"><strong>~9,508,000</strong></td>
+            <td></td><td><strong>5 districts</strong></td>
+        </tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Note on 2028 batch:</strong> Group 2 has an additional 5 parks (87.5 MWh, ~€10.8M EPC value) deferred to 2028. These are not included in the 2026 construction programme and will be declared separately when production is confirmed.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: CONSTRUCTION TIMELINE                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2>5. Construction Timeline &amp; Peak Exposure</h2>
+
+    <table>
+        <tr><th>Quarter</th><th>Batches Active</th><th>Parks Under Construction</th><th>Peak CAR Exposure (€)</th><th>Peak DSU/Day (€)</th></tr>
+        <tr><td>Q2 2026</td><td>Pre-arrival civil works</td><td>0 (site prep only)</td><td class="num">~5,000,000</td><td class="num">0</td></tr>
+        <tr><td>Q3 2026</td><td>Batch 1 (install) + Batch 2 (arrival)</td><td>~34</td><td class="num">~63,000,000</td><td class="num">~14,650</td></tr>
+        <tr class="max-row"><td><strong>Q4 2026</strong></td><td><strong>All 3 batches active</strong></td><td><strong>46</strong></td><td class="num"><strong>~92,530,000</strong></td><td class="num"><strong>22,602</strong></td></tr>
+        <tr><td>Q1 2027</td><td>Batch 2 + 3 commissioning</td><td>~31</td><td class="num">~55,000,000</td><td class="num">~13,900</td></tr>
+        <tr><td>Q2 2027</td><td>Batch 3 final commissioning</td><td>~12</td><td class="num">~20,000,000</td><td class="num">~7,950</td></tr>
+    </table>
+
+    <div class="highlight">
+        <strong>Peak exposure: Q4 2026</strong> — All 3 batches overlap in active construction. Maximum portfolio-wide CAR exposure ~€92.5M. Maximum daily DSU exposure ~€22,600. This is the period requiring the highest aggregate limit.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: KEY ASSUMPTIONS                              -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2>6. Key Assumptions &amp; Notes</h2>
+
+    <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td>EPC Contract Values</td><td>Indicative values based on confirmed group-level pricing. Actual per-project contract values will be declared under the CAR policy as each contract is signed. Values include equipment (CIF), installation, civil works, cabling, commissioning, and all EPC adders.</td></tr>
+        <tr><td>DSU Rate</td><td>€30/MWh/day is the curtailment avoidance revenue basis for DSU coverage. This represents the daily revenue opportunity cost of a delayed BESS park.</td></tr>
+        <tr><td>LD Cap</td><td>10% of EPC Contract Price per park. This is the maximum delay LD exposure per project per the EPC Agreement (LCY-EPC-001 V3.0, Section 8.4.4).</td></tr>
+        <tr><td>Marine Cargo</td><td>NOT required — all equipment is purchased CIF Limassol (Incoterms® 2020). Sea voyage insurance is the seller's (Linyang) responsibility.</td></tr>
+        <tr><td>Battery Chemistry</td><td>100% LFP (Lithium Iron Phosphate) — lowest fire risk lithium chemistry. UL9540A certified — no thermal propagation. Container spacing 6m (exceeds FM 5-33 minimum).</td></tr>
+        <tr><td>Policy Structure</td><td>Single annual CAR/EAR policy with declaration basis recommended. New projects declared monthly as contracts are signed.</td></tr>
+        <tr><td>Insured Parties</td><td>Lighthief Cyprus Ltd named as insured. Individual client SPVs as additional insured per declared project.</td></tr>
+    </table>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>
+            <strong>Lighthief Cyprus Ltd</strong> · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+            Alexander Papacosta · +357 99 164 158 · office@lighthief.com<br><br>
+            Document: LCY-INS-HOLLAND-2026-S1 · Classification: COMMERCIAL — CONFIDENTIAL<br>
+            For: Henk Beekman — Holland Verzekeringsmakelaars (hjbeekman@hollandverzekeringsmakelaars.nl)<br>
+            Date: 25 February 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

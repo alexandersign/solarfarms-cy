@@ -10,48 +10,59 @@
 
 ## EXECUTIVE SUMMARY
 
-This document outlines the Operational Expenditure (OPEX) plan for Lighthief Cyprus Ltd's BESS O&M operations for the calendar year 2026. The plan covers staffing, vehicles, equipment, warehouse, and all recurring costs associated with delivering preventive and corrective maintenance across the 51-park, 881.8 MWh portfolio.
+This document outlines the Operational Expenditure (OPEX) plan for Lighthief Cyprus Ltd's BESS O&M operations for the calendar year 2026. The plan covers staffing, vehicles, equipment, warehouse, and all recurring costs associated with delivering preventive and corrective maintenance.
+
+> **REVISED 6 March 2026:** Updated to reflect confirmed Batch 1 only (12 parks / 131.28 MWh). The previous plan assumed 51 parks commissioning progressively through 2026. The confirmed batch arrives CIF August 2026 with commissioning in Q4 2026. Subsequent batches are pipeline/unplaced — O&M scales up as they confirm.
 
 | Metric | Value |
 |--------|-------|
-| **Total Parks** | 51 |
-| **Total Portfolio Capacity** | 881.8 MWh |
-| **Districts Covered** | 5 (Famagusta, Larnaca, Limassol, Nicosia, Paphos) |
+| **Confirmed Parks (Batch 1)** | 12 |
+| **Confirmed Capacity** | 131.28 MWh |
+| **Full Portfolio (pipeline)** | 51 parks / 886.78 MWh |
+| **Districts (Batch 1)** | 3 (Famagusta, Limassol, Nicosia) |
 | **O&M Contract Rate (Group)** | €1,740/MWh/year |
-| **Full-Year O&M Revenue (at capacity)** | €1,534,332/year |
-| **Planned Maintenance Days (full year)** | 510 (51 parks × 10 days) |
-| **2026 Maintenance Days (pro-rated)** | ~206 |
-| **Field Engineers** | 5 (from Q1 — 3 original + 2 Linyang Poland) |
-| **2026 Total OPEX Budget** | **€511,510** |
+| **Batch 1 Annual O&M Revenue** | €228,427/year (131.28 MWh × €1,740) |
+| **Batch 1 Maintenance Days/year** | 120 (12 parks × 10 days) |
+| **2026 Maintenance Days (pro-rated)** | ~30 (Q4 only) |
+| **Field Engineers (2026)** | 3 (from Q1) + 2 (deferred to Batch 2 confirmation) |
+| **2026 Total OPEX Budget** | **€350,000** (revised down from €511,510) |
 
 ---
 
-## 1. PORTFOLIO RAMP-UP SCHEDULE (2026)
+## 1. PORTFOLIO RAMP-UP SCHEDULE (2026) — REVISED
 
-The portfolio commissioning is phased throughout 2026. OPEX obligations begin before full revenue is realized.
+Based on confirmed Batch 1 only. CIF arrival August 2026, site delivery September, commissioning October–December 2026.
 
-| Quarter | Estimated Parks Online | Cumulative MWh Online | % of Portfolio | O&M Revenue (Quarter) |
+| Quarter | Confirmed Parks Online | Cumulative MWh Online | % of Batch 1 | O&M Revenue (Quarter) |
 |---------|----------------------:|----------------------:|---------------:|----------------------:|
 | Q1 2026 | 0 | 0 | 0% | €0 |
-| Q2 2026 | 8–12 | ~180 | ~20% | €78,300 |
-| Q3 2026 | 20–30 | ~450 | ~51% | €195,750 |
-| Q4 2026 | 40–51 | ~750 | ~85% | €326,250 |
-| **2026 Total** | | | | **~€600,300** |
+| Q2 2026 | 0 | 0 | 0% | €0 |
+| Q3 2026 | 0 (installation) | 0 | 0% | €0 |
+| Q4 2026 | 12 | 131.28 | 100% | €57,107 |
+| **2026 Total** | | | | **~€57,107** |
 
-> **Gap:** OPEX costs begin from Q1 (pre-operational preparation), while O&M revenue only begins at commissioning. The estimated 2026 revenue shortfall vs. OPEX is offset by commissioning/installation revenue and will normalize in 2027 when the full portfolio is operational.
+> **Revenue gap is larger than originally planned.** With no parks online until Q4, the 2026 O&M revenue shortfall vs OPEX (~€293K gap) must be funded from EPC margin on Batch 1 (€1.8M margin provides ample cover). The O&M team scales to steady-state only when Batch 2+ parks are confirmed.
+
+| Scaling Trigger | Parks | MWh | Annual O&M Revenue | Engineers Needed |
+|----------------|------:|----:|-------------------:|-----------------:|
+| **Batch 1 (confirmed)** | 12 | 131 | €228K | 3 |
+| Batch 1 + pipeline (~20 parks) | ~20 | ~300 | ~€522K | 4 |
+| Half portfolio (~25 parks) | ~25 | ~450 | ~€783K | 5 |
+| Full portfolio (51 parks) | 51 | 887 | €1,534K | 5–6 |
 
 ---
 
 ## 2. PERSONNEL
 
-### 2.1 Staffing Plan
+### 2.1 Staffing Plan — REVISED (Phased to Batch Confirmation)
 
 | Role | Headcount | Start | Notes |
 |------|:---------:|-------|-------|
-| **Field Engineers** | **5** | Q1 2026 | 3 Lighthief Poland + 2 Linyang Poland team |
+| **Field Engineers (Phase 1)** | **3** | Q1 2026 | 3 Lighthief Poland — covers Batch 1 prep, install support, commissioning |
+| **Field Engineers (Phase 2)** | **+2** | When Batch 2 confirmed | 2 Linyang Poland team — deferred until pipeline firms up |
 | **ETEK Project Manager** | 1 | Q1 2026 | Costas Hadjikyriacou (separate contract) |
 | **Energy Consultant** | 1 | Q1 2026 | Andreas Christoforou (separate contract) |
-| **Total Field Engineers** | **5** | | Full team from day one |
+| **Total Field Engineers (2026)** | **3** | | Scales to 5 when Batch 2 triggers |
 
 **Field Engineer Roster:**
 
@@ -76,22 +87,23 @@ The portfolio commissioning is phased throughout 2026. OPEX obligations begin be
 | Holiday Fund (8.0%) | 240 | 2,880 | Cyprus statutory |
 | **Total Per Engineer** | **€4,500** | **€54,000** | Fully loaded cost |
 
-### 2.3 Total Personnel Cost (2026)
+### 2.3 Total Personnel Cost (2026) — REVISED
 
 | Period | Engineers | Monthly Cost | Months | Subtotal |
 |--------|----------:|-------------:|-------:|---------:|
-| Full Year (Jan–Dec) | 5 | €22,500 | 12 | €270,000 |
-| **2026 Total Personnel** | | | | **€270,000** |
+| Q1–Q4 (3 Lighthief Poland) | 3 | €13,500 | 12 | €162,000 |
+| Phase 2 (if Batch 2 confirmed Q3) | +2 | €9,000 | ~4 | €36,000 |
+| **2026 Total Personnel (base)** | | | | **€162,000** |
+| **2026 Total Personnel (if Phase 2 triggers)** | | | | **€198,000** |
 
-### 2.4 Shift Rotation Model (5-Person — From Q1)
+### 2.4 Shift Rotation Model (3-Person — Batch 1)
 
 | Shift | Engineers | Hours | Scope |
 |-------|----------:|-------|-------|
-| Night Crew | 2 | 00:00–06:00 | Planned preventive maintenance |
-| Day Crew | 2 | 06:00–22:00 | Reactive fault response, on-call |
-| Float | 1 | Flexible | Backup, leave cover, training, commissioning support |
+| Primary Crew | 2 | 06:00–22:00 | Planned maintenance, reactive response |
+| Float / Night | 1 | Flexible | Backup, night maintenance, leave cover |
 
-Rotation reverses every 4 weeks. No engineer works nights and days on the same day.
+Scales to 5-person model (2 night / 2 day / 1 float) when Batch 2 parks come online.
 
 ---
 
@@ -107,43 +119,42 @@ Rotation reverses every 4 weeks. No engineer works nights and days on the same d
 | Quarterly visits per park | 4 | |
 | Days per quarterly visit | 2.5 | 10 ÷ 4 |
 
-### 3.2 Maintenance Day Schedule (2026 — Pro-Rated to Ramp-Up)
+### 3.2 Maintenance Day Schedule (2026 — Batch 1 Only)
 
-| Quarter | Parks Online | Quarterly Visits | Days/Visit | Maintenance Days | Cumulative |
-|---------|------------:|:----------------:|-----------:|-----------------:|-----------:|
-| Q1 2026 | 0 | — | — | 0 | 0 |
-| Q2 2026 | ~10 | 1st visit (commissioning check) | 2.5 | 25 | 25 |
-| Q3 2026 | ~25 | Quarterly visit | 2.5 | 63 | 88 |
-| Q4 2026 | ~45 | Quarterly visit | 2.5 | 113 | 201 |
-| Late Q4 | ~6 (remaining) | 1st visit | 1.0 | 6 | **~206** |
+| Quarter | Parks Online | Activity | Maintenance Days | Cumulative |
+|---------|------------:|----------|:----------------:|-----------:|
+| Q1 2026 | 0 | Pre-commissioning: site surveys, training | 0 | 0 |
+| Q2 2026 | 0 | Civil works oversight, equipment prep | 0 | 0 |
+| Q3 2026 | 0 | Container delivery, installation support | 0 | 0 |
+| Q4 2026 | 12 | Commissioning + 1st maintenance visit | 30 | **30** |
 
-**2026 Total: ~206 planned maintenance days**
+**2026 Total: ~30 planned maintenance days** (down from 206 in previous plan)
 
-### 3.3 Engineer Capacity Analysis
+### 3.3 Engineer Capacity Analysis (3-Person Team)
 
 | Metric | Value | Notes |
 |--------|------:|-------|
-| Field engineers | 5 | |
+| Field engineers | 3 | Lighthief Poland team |
 | Working days per engineer/year | 220 | After leave, public holidays, training |
-| **Total engineer-days available** | **1,100** | |
+| **Total engineer-days available** | **660** | |
 | Engineers per maintenance visit (HV safety) | 2 | Minimum for high-voltage environments |
 | | | |
-| **2026 planned maintenance visits** | ~103 | 206 days ÷ 2 engineers |
-| **Engineer-days consumed (planned)** | ~206 | 103 visits × 2 engineers |
-| **Remaining for reactive/admin/travel** | ~894 | Ample capacity in ramp-up year |
+| **Q4 2026 maintenance visits** | 15 | 30 days ÷ 2 engineers |
+| **Engineer-days consumed (Q4 planned)** | 30 | |
+| **Available for install support / commissioning** | 630 | Q1–Q3 used for installation activities |
 
-### Steady State (2027) Capacity
+### Steady State — Batch 1 Only (2027+, if no further batches)
 
 | Metric | Value | Notes |
 |--------|------:|-------|
-| Planned maintenance days | 510 | 51 parks × 10 days |
-| Two-person visits required | 255 | |
-| Engineer-days consumed (planned) | 510 | |
-| Remaining for reactive/commissioning | 590 | ~54% of capacity |
-| Estimated reactive calls/year | 100–200 | Based on portfolio size |
-| **Utilization rate** | ~65% | Planned + reactive |
+| Planned maintenance days | 120 | 12 parks × 10 days |
+| Two-person visits required | 60 | |
+| Engineer-days consumed (planned) | 120 | |
+| Remaining for reactive/admin | 540 | 82% of capacity — significantly underutilised |
+| Estimated reactive calls/year | 20–40 | Based on 12-park portfolio |
+| **Utilization rate** | ~25% | 3 engineers for 12 parks is over-resourced |
 
-> 5 engineers provide sufficient capacity for the full 51-park portfolio at 10 days/park. The night crew (2 engineers, ~440 available nights) handles ~255 visits; the float engineer covers the ~15-visit shortfall, leave, and simultaneous events.
+> With only 12 parks, 3 engineers have ample spare capacity. This buffer is intentional: the team supports commissioning activities and is ready to scale when Batch 2 parks confirm. If pipeline does not firm up by Q3 2026, consider redeploying 1 engineer to reduce OPEX.
 
 ---
 
@@ -153,11 +164,11 @@ Rotation reverses every 4 weeks. No engineer works nights and days on the same d
 
 | Vehicle | Type | Purpose | Timing |
 |---------|------|---------|--------|
-| Vehicle 1 | Commercial van (e.g. VW Transporter / Toyota Hilux) | Day shift — reactive dispatch | Q1 2026 |
-| Vehicle 2 | Commercial van | Night shift — planned maintenance | Q1 2026 |
-| Vehicle 3 | Commercial van | Float / backup / secondary dispatch | Q1 2026 |
+| Vehicle 1 | Commercial van (e.g. VW Transporter / Toyota Hilux) | Primary crew — maintenance + reactive | Q1 2026 |
+| Vehicle 2 | Commercial van | Float / secondary dispatch + logistics | Q2 2026 |
+| Vehicle 3 | Commercial van | Deferred until Batch 2 confirmed | TBC |
 
-All 3 vehicles required from Q1 to match the 5-engineer team deployed from day one.
+2 vehicles for 3-person team covering 12 parks across 3 districts. 3rd vehicle added when Batch 2 triggers Phase 2 staffing.
 
 ### 4.2 Vehicle Cost Per Unit
 

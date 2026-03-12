@@ -99,10 +99,8 @@ Protects confidential information disclosed during negotiations, specifically th
 
 ## Agreement B — Commercial Lease Agreement
 
-> **Standalone Agreement** — Pure commercial lease. No reference to any sale, purchase option, or other arrangement.
-
 ### Parties
-- **Landlord:** Matero Ltd
+- **Landlord:** Matero Ltd, represented by **Christodoulos Aristocleous** (Χριστόδουλος Αριστοκλέους), Director & UBO
 - **Tenant:** Lighthief Cyprus Ltd
 
 ### Leased Premises
@@ -124,13 +122,18 @@ Protects confidential information disclosed during negotiations, specifically th
 - Building permit required — Landlord cooperates
 - Becomes permanent fixture of the Property
 
+#### Annual Rent Adjustment (from Year 2)
+- **Year 1:** Fixed at €10,000/month — no adjustment
+- **From Year 2 (Renewal Period):** Annual adjustment on each anniversary:
+  - Increase by the **greater of**: annual CPI change (CYSTAT) **or** 2% minimum
+  - **Capped at 6% per annum** (in line with Cyprus regulatory guidance)
+  - Landlord must give 30 days' written notice with CPI calculation
+  - If Landlord fails to notify, Tenant continues at existing rent; no retroactive adjustment
+  - CYSTAT published CPI figure is conclusive in case of dispute
+
 #### Lease Term
 - **Initial Period:** 12 months
-- **Automatic Renewal:** 5 years at same €10,000/month (unless 90 days' notice given before expiry)
-
-#### Independence
-- This Agreement is **independent** of any other agreement between the parties
-- Validity and enforceability not conditional on any other arrangement
+- **Automatic Renewal:** 5 years at adjusted rent per annual adjustment clause (unless 90 days' notice given before expiry)
 
 #### Governing Law
 - Republic of Cyprus
@@ -145,6 +148,7 @@ Protects confidential information disclosed during negotiations, specifically th
 
 ### Parties
 - **Seller / Grantor of Option:** Matero Ltd
+- **UBO / Personal Guarantor:** **Christodoulos Aristocleous** (Χριστόδουλος Αριστοκλέους), signing in personal capacity as Ultimate Beneficial Owner
 - **Buyer / Option Holder:** Lighthief Cyprus Ltd
 
 ### Property
@@ -176,6 +180,15 @@ Protects confidential information disclosed during negotiations, specifically th
 - No change in shareholding can affect this Agreement
 - Any successor bound by same terms
 - Matero warrants: no pre-emption or first-refusal rights on the Property
+
+#### UBO Personal Guarantee
+- Christodoulos Aristocleous personally and irrevocably guarantees Matero Ltd's obligations:
+  - Obligation to sell at Locked Purchase Price upon exercise
+  - Irrevocability of the price
+  - Delivery free of encumbrances
+  - Execution of all DLS transfer documents
+- Guarantee is **unconditional** — not affected by changes in Matero's shareholding, directorship, dissolution, or insolvency
+- Buyer may enforce directly against Christodoulos Aristocleous personally without first exhausting remedies against Matero Ltd
 
 #### Completion
 - Within 90 days of Exercise Notice

@@ -299,10 +299,10 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="text-white font-bold text-sm">3</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Net revenue after RTE losses: ~&euro;161/MWh per cycle</p>
+                        <p className="font-semibold text-gray-900">Net revenue after RTE losses: ~&euro;158/MWh per cycle</p>
                         <p className="text-sm text-gray-600">
-                          After accounting for 87.8% round-trip efficiency (RTE) losses, each
-                          MWh discharged nets approximately &euro;161 &mdash; pure margin since
+                          After accounting for 86.32% round-trip efficiency (RTE) losses, each
+                          MWh discharged nets approximately &euro;158/MWh &mdash; pure margin since
                           your input cost was zero.
                         </p>
                       </div>
@@ -360,7 +360,7 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="font-semibold">~2,520 MWh</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">After 87.8% RTE:</span>
+                        <span className="text-gray-600">After 86.32% RTE:</span>
                         <span className="font-semibold">~2,213 MWh discharged</span>
                       </div>
                       <div className="flex justify-between text-sm">
@@ -369,11 +369,11 @@ export default function PeakShavingVsArbitrageArticle() {
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Net revenue per MWh:</span>
-                        <span className="font-semibold">&euro;161/MWh</span>
+                        <span className="font-semibold">&euro;158/MWh</span>
                       </div>
                       <div className="flex justify-between text-sm border-t pt-2 mt-2">
                         <span className="text-gray-600">Annual revenue:</span>
-                        <span className="font-bold text-lg text-green-600">~&euro;405,860</span>
+                        <span className="font-bold text-lg text-green-600">~&euro;398,400</span>
                       </div>
                     </div>
                     <div className="bg-green-100 rounded-lg p-3 mt-4">
@@ -445,7 +445,7 @@ export default function PeakShavingVsArbitrageArticle() {
                         <p className="font-semibold text-gray-900">Gross spread: ~&euro;82/MWh average</p>
                         <p className="text-sm text-gray-600">
                           The difference between average buy (&euro;101/MWh) and sell (&euro;183/MWh)
-                          creates a gross spread of &euro;82/MWh. After 87.8% RTE and the charging
+                          creates a gross spread of &euro;82/MWh. After 86.32% RTE and the charging
                           cost, net revenue is approximately &euro;60/MWh per cycle.
                         </p>
                       </div>
@@ -465,7 +465,7 @@ export default function PeakShavingVsArbitrageArticle() {
                     <div className="text-xs text-gray-400">per MWh per cycle</div>
                   </div>
                   <div className="bg-white rounded-xl p-5 shadow-sm text-center">
-                    <div className="text-sm text-gray-500 mb-1">After 87.8% RTE + Charge Cost</div>
+                    <div className="text-sm text-gray-500 mb-1">After 86.32% RTE + Charge Cost</div>
                     <div className="text-3xl font-bold text-blue-600">~&euro;60</div>
                     <div className="text-xs text-gray-400">net per MWh per cycle</div>
                   </div>
@@ -846,7 +846,7 @@ export default function PeakShavingVsArbitrageArticle() {
                   Lighthief operational data &mdash; Curtailment rates from 5.01&nbsp;MW reference park (47% average, 2025)
                 </li>
                 <li>
-                  Linyang Energy &mdash; Battery specifications: 87.8% round-trip efficiency (full system AC-AC), LFP chemistry, 6,000+ cycle warranty
+                  Linyang Energy &mdash; Battery specifications: 86.32% round-trip efficiency (full system AC-AC incl. cabling losses), LFP chemistry (EVE cells), 7,000-cycle warranty at 70% EOL
                 </li>
                 <li>
                   Lighthief EPC Confirmed Adders v4 &mdash; Installed cost of ~&euro;113K/MWh (portfolio average), updated February 2026

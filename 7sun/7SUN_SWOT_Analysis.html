@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7SUN Cyprus — SWOT Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  :root{--sun:#F59E0B;--sun-dk:#D97706;--dark:#1F2937;--darker:#111827;--light:#F9FAFB;--gray:#6B7280;--green:#10B981;--red:#EF4444;--blue:#3B82F6;--purple:#8B5CF6;--s-bg:#D1FAE5;--s-bdr:#10B981;--w-bg:#FEE2E2;--w-bdr:#EF4444;--o-bg:#DBEAFE;--o-bdr:#3B82F6;--t-bg:#FEF3C7;--t-bdr:#F59E0B;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--light);color:var(--dark);line-height:1.65;font-size:13.5px;}
+  @media print{.no-print{display:none!important;}body{font-size:10.5px;background:#fff;}section{break-inside:avoid;}.hero{padding:24px 0!important;min-height:auto!important;}.hero h1{font-size:24px!important;}.container{max-width:100%;padding:0 10px;}table{font-size:10px;}.swot-grid{grid-template-columns:1fr 1fr!important;gap:10px!important;}.sw-card{padding:14px!important;}}
+  .container{max-width:1060px;margin:0 auto;padding:0 24px;}
+  .pdf-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--darker);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.3);}
+  .pdf-bar span{color:#fff;font-weight:600;font-size:14px;}
+  .pdf-btn{background:var(--sun);color:var(--darker);border:none;padding:9px 22px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;}
+  .pdf-btn:hover{background:var(--sun-dk);transform:translateY(-1px);}
+  .hero{background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#334155 100%);color:#fff;padding:64px 0 48px;margin-top:48px;}
+  .hero h1{font-size:38px;font-weight:900;}.hero h1 span{color:var(--sun);}
+  .hero .sub{font-size:17px;color:#94A3B8;font-weight:300;margin:6px 0 16px;}
+  section{padding:36px 0;}section:nth-child(even){background:#fff;}
+  h2{font-size:24px;font-weight:800;color:var(--darker);margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+  h2 .n{width:36px;height:36px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:#fff;font-weight:800;}
+  h3{font-size:15px;font-weight:700;margin:20px 0 8px;color:var(--dark);}
+  .desc{color:var(--gray);font-size:14px;margin-bottom:18px;max-width:680px;}
+
+  /* SWOT Matrix Grid */
+  .swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;}
+  .sw-card{border-radius:14px;padding:20px;position:relative;}
+  .sw-card h3{margin:0 0 12px;font-size:17px;display:flex;align-items:center;gap:8px;}
+  .sw-card h3 .icon{font-size:22px;}
+  .sw-card ul{list-style:none;padding:0;}
+  .sw-card ul li{padding:7px 0 7px 20px;position:relative;font-size:13px;border-bottom:1px solid rgba(0,0,0,.06);}
+  .sw-card ul li::before{content:'→';position:absolute;left:0;font-weight:700;}
+  .sw-card ul li strong{font-weight:700;}
+
+  .sw-s{background:var(--s-bg);border:2px solid var(--s-bdr);}
+  .sw-s h3{color:#065F46;}.sw-s ul li::before{color:var(--green);}
+  .sw-w{background:var(--w-bg);border:2px solid var(--w-bdr);}
+  .sw-w h3{color:#991B1B;}.sw-w ul li::before{color:var(--red);}
+  .sw-o{background:var(--o-bg);border:2px solid var(--o-bdr);}
+  .sw-o h3{color:#1E40AF;}.sw-o ul li::before{color:var(--blue);}
+  .sw-t{background:var(--t-bg);border:2px solid var(--t-bdr);}
+  .sw-t h3{color:#92400E;}.sw-t ul li::before{color:var(--sun-dk);}
+
+  /* Detail cards */
+  .detail{border:1px solid #E5E7EB;border-radius:10px;padding:14px 18px;margin:10px 0;background:#fff;}
+  .detail h4{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .detail p{font-size:12.5px;color:var(--gray);}
+  .detail .mit{background:#F0FDF4;border-left:3px solid var(--green);padding:8px 12px;margin-top:8px;border-radius:0 6px 6px 0;font-size:12px;}
+  .detail .mit strong{color:#065F46;}
+
+  /* Tables */
+  .tw{overflow-x:auto;margin:12px 0 20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  table{width:100%;border-collapse:collapse;background:#fff;}
+  th{background:var(--darker);color:#fff;font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:left;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid #F3F4F6;font-size:12.5px;}
+  tr:hover td{background:#FFFBEB;}
+  .p{font-weight:700;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;}
+  .bg{background:#D1FAE5;color:#065F46;}.br{background:#FEE2E2;color:#991B1B;}.by{background:#FEF3C7;color:#92400E;}.bb{background:#DBEAFE;color:#1E40AF;}.bp{background:#EDE9FE;color:#5B21B6;}
+
+  .insight{background:#FFFBEB;border-left:4px solid var(--sun);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;}
+  .insight strong{color:var(--sun-dk);}
+
+  /* Priority */
+  .pri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin:12px 0;}
+  .pri-card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;}
+  .pri-card .pri-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+  .pri-card .pri-text{font-size:13px;font-weight:600;}
+  .pri-card .pri-meta{font-size:11px;color:var(--gray);}
+
+  /* Quadrant header */
+  .quad-header{display:grid;grid-template-columns:1fr 1fr;margin:0 0 -8px;gap:16px;}
+  .quad-header div{text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:8px;}
+  .side-header{writing-mode:vertical-lr;transform:rotate(180deg);text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);padding:8px;}
+
+  footer{background:var(--darker);color:#9CA3AF;padding:24px 0;font-size:11px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="pdf-bar no-print"><span>7SUN Cyprus — SWOT Analysis</span><button class="pdf-btn" onclick="window.print()">Export as PDF</button></div>
+
+<div class="hero">
+<div class="container">
+  <h1><span>7SUN</span> Cyprus — SWOT Analysis</h1>
+  <div class="sub">Strategic Assessment for Cyprus Market Entry | February 2026</div>
+  <p style="color:#94A3B8;max-width:620px;font-size:14px;">Comprehensive strengths, weaknesses, opportunities, and threats analysis for 7SUN's PV wholesale & retail distribution launch in partnership with Lighthief.cy.</p>
+</div>
+</div>
+
+<!-- SWOT Matrix Overview -->
+<section>
+<div class="container">
+<h2>SWOT Matrix</h2>
+<p class="desc">Internal capabilities mapped against external environment factors.</p>
+
+<div class="quad-header">
+  <div style="color:var(--green);">Helpful to Objectives</div>
+  <div style="color:var(--red);">Harmful to Objectives</div>
+</div>
+
+<div class="swot-grid">
+  <!-- Strengths -->
+  <div class="sw-card sw-s">
+    <h3><span class="icon">S</span> Strengths (Internal)</h3>
+    <ul>
+      <li><strong>S1. Unmatched Pricing:</strong> Panels 8–37% below Trikkis; internal cost €0.095–0.108/Wp depending on brand vs €0.15/W; margins 26–57% wholesale / 52–461%+ retail</li>
+      <li><strong>S2. 15+ Brand Portfolio:</strong> SolarEdge (channel exclusivity pending verification — BIGSOLAR/Epiphaniou may be existing CY rep), FoxESS, Sofar, Longi, Aiko — FoxESS, Sofar, Longi, Aiko unrepresented in CY; SolarEdge at 108–461% retail margins (verified, if channel exclusivity confirmed). FoxESS is growing rapidly in Europe — strongest exclusive distribution opportunity.</li>
+      <li><strong>S3. Lighthief.cy Partnership:</strong> Lighthief International Ltd is 50% shareholder; Lighthief.cy provides base volume throughput (purchases at cost price); operating expenses shared 50/50</li>
+      <li><strong>S4. EU Supply Chain:</strong> Zero customs duty, EUR-EUR, 7–10 day replenishment from Poland</li>
+      <li><strong>S5. Dual-Channel Model:</strong> Wholesale B2B + Retail B2C + Project supply = 3 revenue streams</li>
+      <li><strong>S6. Digital-First:</strong> XML product feed, e-commerce ready, dynamic pricing capability</li>
+      <li><strong>S7. JV Ownership Model:</strong> 7sun.eu provides ALL stock as JV contribution — zero stock investment; Lighthief.cy buys at cost (0% margin); profit from external sales only; startup capital ~€41K per shareholder (vs ~€80K+ if buying stock)</li>
+    </ul>
+  </div>
+
+  <!-- Weaknesses -->
+  <div class="sw-card sw-w">
+    <h3><span class="icon">W</span> Weaknesses (Internal)</h3>
+    <ul>
+      <li><strong>W1. No Brand Recognition:</strong> Unknown in Cyprus; installers have Trikkis loyalty</li>
+      <li><strong>W2. Limited Local Expertise:</strong> No team yet; Greek language gap; regulatory learning curve</li>
+      <li><strong>W3. Logistics Lead Time:</strong> 7–10 days from Poland; stock provided by 7sun.eu as JV contribution; €8–12K shipping</li>
+      <li><strong>W4. Huawei Price Gap:</strong> 7–15% more expensive than Trikkis on some 3-phase domestic models</li>
+      <li><strong>W5. Working Capital:</strong> Zero stock investment (7sun.eu provides all inventory); 30–45% margins accelerate payback; break-even month 3–4</li>
+      <li><strong>W6. Dedicated Warehouse Cost:</strong> €7,000/mo dedicated warehouse; limited showroom; expansion constrained</li>
+      <li><strong>W7. SolarEdge Channel Uncertainty:</strong> BIGSOLAR (Epiphaniou Group) may already represent SolarEdge in CY — could block distribution or compress margins. Verification required before committing stock.</li>
+    </ul>
+  </div>
+
+  <!-- Opportunities -->
+  <div class="sw-card sw-o">
+    <h3><span class="icon">O</span> Opportunities (External)</h3>
+    <ul>
+      <li><strong>O1. Booming Market:</strong> 957 MW installed, ~120 MW/yr growth, 2030 target 1,250 MW</li>
+      <li><strong>O2. Battery Storage Surge:</strong> 47% curtailment → batteries essential; virtually no dedicated CY distributor</li>
+      <li><strong>O3. Limited Competition:</strong> Equipment distribution TAM: ~€25–28M/year (100 MW res+comm market, source: Trikkis). Trikkis holds 60% (€15–17M). Non-Trikkis segment + brand-unique share = TSM ~€14–18M/year. Even 5% TAM capture in Year 1 = €1.3M revenue. Zero stock investment = ultra-low barrier to entry; ~€41K per shareholder to enter €120M+ market; Trikkis dominant but alone; oligopolistic market ripe for disruption</li>
+      <li><strong>O4. High Electricity Costs:</strong> Among highest in EU; 3–5 year solar payback; 12–18% IRR</li>
+      <li><strong>O5. EU Green Finance & Potential Future Grants:</strong> RES Fund grant (€375/kW) closed Dec 2025; EU Recovery Fund; bank green loans (grant-independent)</li>
+      <li><strong>O6. EV Charging Synergy:</strong> Growing EV market → solar+storage+EV charger bundles</li>
+      <li><strong>O7. Exclusive Brand Gap:</strong> SolarEdge (pending verification — BIGSOLAR may already represent), FoxESS, Sofar, Longi — FoxESS, Sofar, Longi confirmed no CY distributor. FoxESS strongest exclusive opportunity.</li>
+      <li><strong>O8. C&I Segment:</strong> Hotels, factories, agriculture — large systems, higher margins via Lighthief EPC</li>
+      <li><strong>O9. Apartment Building Solar:</strong> Untapped micro inverter kit market; 130–220% margins; no competition; each apartment qualifies for net-metering independently</li>
+    </ul>
+  </div>
+
+  <!-- Threats -->
+  <div class="sw-card sw-t">
+    <h3><span class="icon">T</span> Threats (External)</h3>
+    <ul>
+      <li><strong>T1. Trikkis Retaliation:</strong> Trikkis claims 60% market share (~€15–17M/yr revenue). As dominant player they have scale to absorb price wars. Aggressive price cuts, extended credit, rebates to retain installers</li>
+      <li><strong>T2. Grid Curtailment & Policy Risk:</strong> 47% in 2025; grant scheme ended Dec 2025; market must stand on pure ROI</li>
+      <li><strong>T3. Panel Price Collapse:</strong> Chinese overcapacity; prices dropped 40% in 2024; margin/inventory risk</li>
+      <li><strong>T4. New Entrants:</strong> Solar Wholesale CY, EU distributors, Chinese direct offices, online platforms</li>
+      <li><strong>T5. Logistics Disruption:</strong> Mediterranean shipping, Balkans delays, port congestion</li>
+      <li><strong>T6. Regulatory Risk:</strong> EAC standards, inverter certifications, VAT changes</li>
+      <li><strong>T7. Credit Risk:</strong> B2B defaults, slow payment culture, inventory holding costs</li>
+      <li><strong>T8. Micro Inverter Regulatory Risk:</strong> EAC grid programming may not support micro inverters — apartment segment (O9) provisional pending regulatory confirmation</li>
+      <li><strong>T9. Existing Local Brand Representation:</strong> Solax represented by EV Energy CY; SolarEdge may be represented by BIGSOLAR — channel conflicts could restrict distribution</li>
+    </ul>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Detailed Strengths -->
+<section>
+<div class="container">
+<h2><span class="n" style="background:var(--green);">S</span> Strengths — Detail</h2>
+
+<div class="detail">
+  <h4>S1. Unmatched Pricing Power</h4>
+  <p>7sun.eu is one of Europe's largest B2B PV wholesalers with 500+ products. Panel prices are 8–37% below Trikkis at wholesale level. Cost-per-watt: 7SUN Cyprus internal transfer cost €0.095–0.108/Wp depending on brand vs Trikkis wholesale €0.15/W. Supply chain: manufacturer → 7sun.eu → 7SUN Cyprus → customer. JV transfer pricing enables wholesale margins of 26–57% on panels (varies by brand) and retail margins of 52–461%+ (SolarEdge verified as highest margin).</p>
+</div>
+<div class="detail">
+  <h4>S2. Massive Brand Portfolio — 15+ Major Brands</h4>
+  <p>Panels: Jinko, JA Solar, Longi, Aiko, Jolywood, Canadian, Hyundai, Meyer Burger. Inverters: SolarEdge, Huawei, FoxESS, Sofar, Fronius, Solax. Trikkis carries only 4–5 (Huawei, Jinko, REC, Helios). SolarEdge inverters at 30–37% below comparable Huawei at Trikkis — with 108–461% margins at retail (verified, if channel exclusivity is confirmed).</p>
+</div>
+<div class="detail">
+  <h4>S3. Strategic Lighthief.cy Partnership</h4>
+  <p>Lighthief International Ltd is 50% shareholder in 7SUN Cyprus JV. Lighthief.cy provides base volume throughput (purchases at cost price). Operating expenses shared 50/50 between shareholders. Local EPC credibility + installer network access. Combined brand: trusted local operator + EU wholesale powerhouse.</p>
+</div>
+<div class="detail">
+  <h4>S4. EU Supply Chain Advantages</h4>
+  <p>Intra-EU: zero customs duties. EUR-to-EUR: no FX risk. Fast replenishment: 7–10 days truck from Poland. Deep stock at 7sun.eu (thousands of units). Real-time XML feed for stock/price sync.</p>
+</div>
+<div class="detail">
+  <h4>S7. JV Ownership Model with Internal Transfer Pricing</h4>
+  <p>7sun.eu provides ALL stock as JV contribution — zero stock investment. Transfer pricing used for margin calculations. Lighthief.cy buys at cost price (0% margin). Profit comes from external sales only. Startup capital per shareholder: ~€41,000 (vs ~€80K+ if buying stock).</p>
+</div>
+</div>
+</section>
+
+<!-- Detailed Weaknesses -->
+<section>
+<div class="container">
+<h2><span class="n" style="background:var(--red);">W</span> Weaknesses — Detail</h2>
+
+<div class="detail">
+  <h4>W1. No Brand Recognition in Cyprus</h4>
+  <p>7SUN is unknown. Installers have years of Trikkis relationships. Solar equipment is a high-value, trust-dependent purchase.</p>
+  <div class="mit"><strong>Mitigation:</strong> Lighthief.cy partnership provides instant credibility. Aggressive below-market pricing draws trial purchases. Price match guarantee lowers switching risk.</div>
+</div>
+<div class="detail">
+  <h4>W4. Huawei Pricing Disadvantage on Select Models</h4>
+  <p>Trikkis appears to have direct regional Huawei deals. On SUN2000-8KTL-M1 and MAP0 hybrids, 7sun is 7–15% more expensive at wholesale. Huawei is the #1 inverter brand in Cyprus.</p>
+  <div class="mit"><strong>Mitigation:</strong> Lead with SolarEdge/FoxESS/Sofar where pricing advantage is overwhelming. Position Huawei as "available" not "flagship." Win on panels (where advantage is clear) and use inverter brand diversity as differentiator.</div>
+</div>
+<div class="detail">
+  <h4>W5. Working Capital Constraints</h4>
+  <p>Zero stock investment (7sun.eu provides all inventory as JV contribution). B2B customers expect 30-day credit. Cash conversion cycle: 30–60 days; high margins accelerate payback.</p>
+  <div class="mit"><strong>Mitigation:</strong> Start lean; strong margins enable break-even by month 3–4. Lighthief.cy provides base volume throughput. Launch COD-first, add credit for proven accounts.</div>
+</div>
+<div class="detail">
+  <h4>W7. SolarEdge Channel Uncertainty</h4>
+  <p>BIGSOLAR (Epiphaniou Group) may already represent SolarEdge in Cyprus, potentially blocking our distribution or compressing margins. If BIGSOLAR holds an active distribution agreement, 7SUN may not be able to offer SolarEdge at the anticipated exclusive pricing and margins. Verification required before committing stock or marketing SolarEdge as an exclusive brand.</p>
+  <div class="mit"><strong>Mitigation:</strong> Verify SolarEdge CY channel status with SolarEdge directly and through 7sun.eu contacts before placing initial SolarEdge stock order. Prepare FoxESS as primary inverter alternative if SolarEdge channel is blocked.</div>
+</div>
+</div>
+</section>
+
+<!-- Detailed Opportunities -->
+<section>
+<div class="container">
+<h2><span class="n" style="background:var(--blue);">O</span> Opportunities — Detail</h2>
+
+<div class="detail">
+  <h4>O1. Booming Cyprus Solar Market</h4>
+  <p>957 MW by end 2025, growing ~120–130 MW/year. Government 2030 target: 1,250 MW (€4.5–5B investment). Self-consumption = 80% of demand. 12,000 net-metering applications in Dec 2025 alone. New market-based model from Jan 2026 creating fresh demand.</p>
+</div>
+<div class="detail">
+  <h4>O2. Battery Storage — First Mover Opportunity</h4>
+  <p>47% solar curtailment in 2025 makes batteries essential. No dedicated battery distributor in Cyprus. 7sun offers Huawei LUNA, Solax, SolarEdge, FoxESS storage. Storage attach rate expected to grow from ~10% to 30–50% by 2028. High margins + recurring demand.</p>
+</div>
+<div class="detail">
+  <h4>O3. Limited Competition — Oligopolistic Market</h4>
+  <p>Equipment distribution TAM: ~€25–28M/year (100 MW res+comm market, source: Trikkis). Trikkis holds 60% (€15–17M). Non-Trikkis segment + brand-unique share = TSM ~€14–18M/year. Even 5% TAM capture in Year 1 = €1.3M revenue. Zero stock investment means ultra-low barrier to entry. Each shareholder deploys only ~€41K to enter a €120M+ annual market. Trikkis is dominant with minimal serious competition. Solar Wholesale CY still in startup phase. No pan-European distributor has Cyprus presence. Small market size deters large players but is highly profitable for focused operation. Winner-take-most dynamics favor the first quality disruptor.</p>
+</div>
+<div class="detail">
+  <h4>O5. EU Green Finance & Potential Future Grants</h4>
+  <p>The RES Fund Grant Scheme 2024–2025 (€375/kW, max €1,500 for first 4kW) has <strong>closed</strong> (ended 31 Dec 2025). No 2026 residential scheme announced yet — but historically renewed in new rounds. If/when a new grant round opens, it will drive a <strong>demand spike</strong> — position 7SUN with ready stock to capture orders during the rush. EU Recovery & Resilience Fund continues to channel investment into renewable energy infrastructure. Banks offering green mortgage add-ons and solar-specific loans (grant-independent).</p>
+</div>
+<div class="detail">
+  <h4>O7. Exclusive Brand Introduction</h4>
+  <p>SolarEdge — world's leading smart inverter brand — channel exclusivity pending verification (BIGSOLAR/Epiphaniou Group may already represent SolarEdge in CY). FoxESS, Sofar, Fronius, Longi, Aiko have no dedicated Cyprus distributor. FoxESS is growing rapidly in Europe and may not yet have a Cyprus representative — strongest exclusive distribution opportunity. Introducing these brands creates instant differentiation, installer curiosity, and pricing power where no local benchmark exists.</p>
+</div>
+<div class="detail">
+  <h4>O9. Apartment Building Solar — Micro Inverter Kits</h4>
+  <p>Untapped market: Tens of thousands of apartment buildings in Cyprus — virtually zero solar penetration today. Regulatory advantage: Each apartment registers independently for EAC net-metering — no Virtual Net Metering. Developer appeal: 'Solar included' as marketing feature for new-build apartments. Highest margin segment: 130–220% on per-apartment kits (~€157–306 internal cost → €400–900 retail). No competition: No one offers turnkey per-apartment solar kits in Cyprus. Grant multiplier: Each apartment qualifies individually for future grants (€1,500 per unit). Scalable: One 20-unit building = €8,000–16,000 order. Low entry cost: ~€5,060 initial micro inverter investment covers 30–40 apartments.</p>
+</div>
+</div>
+</section>
+
+<!-- Detailed Threats -->
+<section>
+<div class="container">
+<h2><span class="n" style="background:var(--sun);">T</span> Threats — Detail</h2>
+
+<div class="detail">
+  <h4>T1. Trikkis Retaliatory Pricing</h4>
+  <p>Trikkis claims 60% market share (~€15–17M/yr revenue). As dominant player they have scale to absorb price wars. Trikkis will likely respond aggressively: price cuts on Huawei, extended credit, rebates, bundled deals. Established relationships create switching inertia.</p>
+  <div class="mit"><strong>Mitigation:</strong> Lead with brands Trikkis CANNOT match (SolarEdge, FoxESS, Sofar). Compete on portfolio breadth, not just price. Build value beyond cost: better service, credit terms, technical training, brand exclusivity.</div>
+</div>
+<div class="detail">
+  <h4>T3. Global Panel Oversupply & Price Collapse</h4>
+  <p>Massive Chinese overcapacity. Prices dropped ~40% in 2024. Further drops possible. Could compress inventory value and margins. Creates "wait and see" buyer mentality.</p>
+  <div class="mit"><strong>Mitigation:</strong> Lean inventory (2–3 month cover). Fast stock turn. Focus on inverters/batteries where margins are more stable. Flexible pricing from 7sun.eu adapts to market shifts.</div>
+</div>
+<div class="detail">
+  <h4>T2. Grid Curtailment & Policy Risk</h4>
+  <p>47% curtailment in 2025. New self-consumption model (2026) untested. Grid upgrade delays could cap connections. Government grant scheme already ended (Dec 2025) — market must stand on pure ROI; any future scheme changes add uncertainty.</p>
+  <div class="mit"><strong>Mitigation:</strong> Promote battery storage as solution to curtailment. Diversify to hybrid and off-grid systems. Storage-first positioning turns this threat into an opportunity.</div>
+</div>
+<div class="detail">
+  <h4>T8. Micro Inverter Regulatory Risk</h4>
+  <p>EAC grid programming requirements may not support micro inverters. The apartment building segment (micro inverters for 2–4 panels per apartment) is provisional pending regulatory confirmation. If EAC does not approve micro inverter grid connection, the O9 apartment opportunity and associated 130–220% margins are at risk.</p>
+  <div class="mit"><strong>Mitigation:</strong> Confirm EAC micro inverter compatibility before committing stock. Engage with EAC/CERA for technical pre-approval. Maintain fallback to string inverter solutions for apartment buildings.</div>
+</div>
+<div class="detail">
+  <h4>T9. Existing Local Representation for Key Brands</h4>
+  <p>Solax is represented by EV Energy CY, and SolarEdge may be represented by BIGSOLAR (Epiphaniou Group). Potential channel conflicts could restrict our ability to distribute these brands or force margin compression. Established local representatives may have contractual exclusivity that blocks new entrants.</p>
+  <div class="mit"><strong>Mitigation:</strong> Verify brand representation status before committing to stock orders. Focus marketing and stock investment on confirmed-unrepresented brands (FoxESS, Sofar, Longi, Aiko). Negotiate directly with manufacturers via 7sun.eu relationships.</div>
+</div>
+</div>
+</section>
+
+<!-- Cross-Analysis -->
+<section>
+<div class="container">
+<h2>Strategic Cross-Analysis</h2>
+<p class="desc">Combining internal and external factors to derive actionable strategies.</p>
+
+<h3>SO Strategies (Strengths x Opportunities) — Offensive</h3>
+<div class="tw"><table>
+  <tr><th>Strategy</th><th>Strengths</th><th>Opportunities</th><th>Impact</th></tr>
+  <tr><td><strong>Price Disruption Launch</strong> — Use 30–50% advantage to rapidly capture installer accounts</td><td>S1, S2</td><td>O1, O3</td><td><span class="badge bg">Very High</span></td></tr>
+  <tr><td><strong>Battery Storage First Mover</strong> — Dominate emerging storage distribution</td><td>S2, S4</td><td>O2</td><td><span class="badge bg">High</span></td></tr>
+  <tr><td><strong>Exclusive Brand Lock-in</strong> — SolarEdge (pending channel verification), FoxESS, Sofar as CY distribution — FoxESS strongest exclusive opportunity</td><td>S2, S6</td><td>O7, O3</td><td><span class="badge bg">Very High</span></td></tr>
+  <tr><td><strong>EV + Solar Bundle</strong> — Package solar + battery + EV charger</td><td>S2, S5</td><td>O6</td><td><span class="badge bb">Medium</span></td></tr>
+  <tr><td><strong>C&I via Lighthief</strong> — Large projects through EPC partner</td><td>S3, S1</td><td>O8</td><td><span class="badge bg">High</span></td></tr>
+</table></div>
+
+<h3>WO Strategies (Weaknesses x Opportunities) — Defensive + Growth</h3>
+<div class="tw"><table>
+  <tr><th>Strategy</th><th>Weaknesses</th><th>Opportunities</th></tr>
+  <tr><td><strong>Lighthief Credibility Shield</strong> — Partnership overcomes brand recognition gap</td><td>W1</td><td>O3</td></tr>
+  <tr><td><strong>Local Hiring Blitz</strong> — Greek-speaking solar veterans bridge expertise gap</td><td>W2</td><td>O1</td></tr>
+  <tr><td><strong>Battery-Led Entry</strong> — Enter via storage (less competition) not panels (crowded)</td><td>W4</td><td>O2</td></tr>
+  <tr><td><strong>Green Finance Partnership</strong> — Bank solar loans reduce payment friction</td><td>W5</td><td>O5</td></tr>
+</table></div>
+
+<h3>ST Strategies (Strengths x Threats) — Counter</h3>
+<div class="tw"><table>
+  <tr><th>Strategy</th><th>Strengths</th><th>Threats</th></tr>
+  <tr><td><strong>Brand Diversification Defense</strong> — Lead with brands Trikkis can't price-match</td><td>S2</td><td>T1</td></tr>
+  <tr><td><strong>Lean Inventory + Fast Turn</strong> — Frequent small orders avoid price collapse exposure</td><td>S4</td><td>T3</td></tr>
+  <tr><td><strong>Digital Moat</strong> — Online B2B portal harder for offline competitors to replicate</td><td>S6</td><td>T4</td></tr>
+  <tr><td><strong>Volume Throughput Guarantee</strong> — Lighthief.cy provides base volume at cost; profit from external sales</td><td>S3</td><td>T2, T4</td></tr>
+</table></div>
+
+<h3>WT Strategies (Weaknesses x Threats) — Survival</h3>
+<div class="tw"><table>
+  <tr><th>Strategy</th><th>Weaknesses</th><th>Threats</th></tr>
+  <tr><td><strong>Conservative Launch</strong> — Proven products only; expand on confirmed demand</td><td>W3, W5</td><td>T3, T7</td></tr>
+  <tr><td><strong>Cash-First Policy</strong> — COD/advance; credit only after 3+ successful orders</td><td>W5</td><td>T7</td></tr>
+  <tr><td><strong>Compliance-First</strong> — Verify certifications before ordering</td><td>W2</td><td>T6</td></tr>
+  <tr><td><strong>Dual-Language Everything</strong> — Greek + English from day one</td><td>W2</td><td>T1, T4</td></tr>
+</table></div>
+</div>
+</section>
+
+<!-- Priority Matrix -->
+<section>
+<div class="container">
+<h2>Strategic Priority Matrix</h2>
+<div class="tw"><table>
+  <tr><th>#</th><th>Strategy</th><th>Impact</th><th>Effort</th><th>Timeline</th></tr>
+  <tr><td class="p" style="color:var(--sun);">1</td><td><strong>Price Disruption Launch (panels)</strong></td><td><span class="badge bg">Very High</span></td><td><span class="badge bg">Low</span></td><td>Month 1</td></tr>
+  <tr><td class="p" style="color:var(--sun);">2</td><td><strong>Exclusive Brand Lock-in (SolarEdge — pending channel verification, FoxESS)</strong></td><td><span class="badge bg">Very High</span></td><td><span class="badge bb">Medium</span></td><td>Month 1–3</td></tr>
+  <tr><td class="p" style="color:var(--sun);">3</td><td><strong>Battery Storage First Mover</strong></td><td><span class="badge bg">High</span></td><td><span class="badge bb">Medium</span></td><td>Month 2–4</td></tr>
+  <tr><td class="p">4</td><td><strong>B2B Digital Portal + DPA</strong></td><td><span class="badge bg">High</span></td><td><span class="badge bb">Medium</span></td><td>Month 2–3</td></tr>
+  <tr><td class="p">5</td><td><strong>Installer Loyalty Program</strong></td><td><span class="badge bg">High</span></td><td><span class="badge bg">Low</span></td><td>Month 3–6</td></tr>
+  <tr><td class="p" style="color:var(--sun);">6</td><td><strong>Apartment Micro Inverter Kits — Developer Sales</strong></td><td><span class="badge bg">Very High</span></td><td><span class="badge bg">Low</span></td><td>Month 2–4</td></tr>
+  <tr><td class="p">7</td><td>C&I Project Supply (via Lighthief)</td><td><span class="badge bb">Medium</span></td><td><span class="badge bg">Low</span></td><td>Month 4+</td></tr>
+  <tr><td class="p">8</td><td>EV Charger Bundles</td><td><span class="badge bb">Medium</span></td><td><span class="badge bg">Low</span></td><td>Month 6+</td></tr>
+  <tr><td class="p">9</td><td>Green Finance Partnerships</td><td><span class="badge bb">Medium</span></td><td><span class="badge bb">Medium</span></td><td>Month 6+</td></tr>
+  <tr><td class="p">10</td><td>Nicosia Satellite Location</td><td><span class="badge bb">Medium</span></td><td><span class="badge br">High</span></td><td>Month 9–12</td></tr>
+  <tr><td class="p">11</td><td>New Channel Testing (TikTok etc.)</td><td><span class="badge by">Low</span></td><td><span class="badge bg">Low</span></td><td>Month 10+</td></tr>
+</table></div>
+</div>
+</section>
+
+<!-- Key Takeaway -->
+<section>
+<div class="container">
+<h2>Key Takeaway</h2>
+<div class="insight" style="font-size:14px;line-height:1.7;">
+  <strong>7SUN Cyprus's strongest strategic position</strong> is the combination of JV ownership with zero stock investment (S7) — 7sun.eu provides all stock as JV contribution — with European-scale pricing power (S1), exclusive brand access (S2 — SolarEdge channel exclusivity pending verification; FoxESS, Sofar, Longi, Aiko confirmed unrepresented), and entry into a market with limited competition (O3) and booming demand (O1). In a ~€27M/year distribution TAM where one player (Trikkis) holds 60%, 7SUN enters with zero stock investment and 30–50% lower panel pricing. Lighthief provides volume throughput at cost; profit from external sales only. Wholesale margins of 26–57%, retail margins of 52–461%+, SolarEdge margins of 108–461% (verified, if channel exclusivity confirmed), and apartment kit margins of 130–220% drive an annual gross profit potential of ~€261K–526K gross, ~€141K–406K net after OPEX, with break-even projected at month 3–4.<br><br>
+  The <strong>apartment building segment (O9)</strong> represents a high-margin opportunity with no current competition — micro inverter kits at 130–220% margins, with each apartment registering independently for net-metering. <em>Note: EAC grid programming requirements may not support micro inverters — this segment is provisional pending regulatory confirmation (T8).</em><br><br>
+  <strong>Initial investment</strong> of ~€41K per shareholder (operations only, zero stock investment) keeps capital requirements manageable.<br><br>
+  The <strong>primary risk</strong> is Trikkis's retaliatory pricing on Huawei products (T1), countered by leading with brands Trikkis cannot carry (ST Strategy). The <strong>government grant scheme</strong> (€375/kW, max €1,500) has closed (Dec 2025) — all pricing must stand on pure ROI without reliance on subsidies.<br><br>
+  <strong>Working capital</strong> (W5) is mitigated by zero stock investment and the Lighthief.cy base volume throughput (S3).
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <p><strong>7SUN Cyprus — SWOT Analysis</strong> | February 2026 | Confidential</p>
+  <p style="margin-top:6px;">Based on Trikkis CY Pricelist Sept 2025, 7sun.eu product feed, PV Magazine, IndexBox, CERA, DataReportal.</p>
+</div>
+</footer>
+
+<script>document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();document.querySelector(this.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});});</script>
+</body>
+</html>

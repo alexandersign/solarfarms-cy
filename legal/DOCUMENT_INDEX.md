@@ -3,6 +3,81 @@
 
 ---
 
+## Folder Structure
+
+```
+legal/
+├── active/                              ← Signed / finalised contracts
+│   ├── distribution.md                     Distribution Agreement (signed Feb 2026)
+│   ├── NDA Linyang PL.docx                 NDA (signed)
+│   └── nda-linyang-reply.md                NDA response notes
+│
+├── in-negotiation/                      ← Contracts under development
+│   ├── linyang-sales/                      Sales Contract + Guarantee Framework
+│   │   ├── rev260306-...V1 (1).docx           Current version (Linyang V1, 6 Mar 2026)
+│   │   ├── linyang-sales-contract-6mar-review-comments.html
+│   │   │                                      ↑ LATEST — Lighthief comments sent 6 Mar 2026
+│   │   ├── Linyang sales contract...26.02..docx   Previous version (26 Feb 2026)
+│   │   ├── linyang-contract-26feb-review-comments.html
+│   │   ├── sales_agrement.md                  Lighthief's amended draft
+│   │   ├── linyang-sales-comments.html        Original negotiation comments
+│   │   ├── linyang-blended-sales-ltsa.md/html Blended sales+LTSA framework
+│   │   ├── RFI - Legal Guarantees...V3.pdf    Linyang RFI guarantee confirmations
+│   │   └── RFI_Linyang_compliance.md          Linyang compliance RFI
+│   │
+│   └── linyang-distribution/               Distribution Agreement comments
+│       ├── linyang-distribution-original-template
+│       ├── linyang distribution - COMMENTS.md
+│       └── linyang-distribution-comments.html
+│
+├── templates/                           ← Client-facing contract templates
+│   ├── client_sales.md / .html             EPC Agreement template
+│   ├── ClientLTSA.md / .html               LTSA template
+│   └── client_compliance_memo.md           Compliance memo template
+│
+├── reference/                           ← Compliance, regulatory, operations
+│   ├── requirements.md                     General requirements
+│   ├── insurance_requirements.md           Insurance requirements
+│   ├── regulatory_compliance_checklist.md  Gazette 5992/2026 checklist
+│   ├── DSO_compliance.md                   Cyprus DSO compliance
+│   ├── service_management.md               Service management procedures
+│   ├── employee_service_manual.md          Employee manual
+│   └── dino-legal-upadate-flexible-connection.docx
+│
+├── voltus-contracts/                    ← EMS/SCADA provider contracts
+├── linyang_hardware_specs_docs/         ← OEM datasheets & SLDs
+└── DOCUMENT_INDEX.md                    ← This file
+```
+
+---
+
+## Negotiation Timeline — Linyang Sales Contract
+
+| Date | Event | Document | Status |
+|------|-------|----------|--------|
+| Jan 2026 | Lighthief drafted amended sales agreement | `sales_agrement.md` | Internal draft |
+| Feb 2026 | Linyang RFI V1–V3 responses received | `RFI - Legal Guarantees...V3.pdf` | Key terms confirmed |
+| 22 Feb 2026 | Lighthief prepared full markup comments | `linyang-sales-comments.html` | Internal (NOT sent to Linyang) |
+| 26 Feb 2026 | Linyang sent revised contract V1 | `Linyang sales contract...26.02..docx` | Superseded |
+| 26 Feb 2026 | Lighthief reviewed 26 Feb version | `linyang-contract-26feb-review-comments.html` | Internal (NOT sent to Linyang) |
+| 6 Mar 2026 | Linyang sent revised contract V1 (6 Mar) | `rev260306-...V1 (1).docx` | **Current Linyang version** |
+| 6 Mar 2026 | Lighthief prepared review comments | `linyang-sales-contract-6mar-review-comments.html` | **SENT to Linyang** |
+| **6 Mar 2026** | **Email sent to Linyang** | See email log below | **Awaiting response** |
+
+### Email Log — 6 March 2026
+
+**Subject:** Sales Contract – Comments from Lighthief on March 6 rev260306
+
+**From:** Alexander Papacosta (alexander.papacosta@lighthief.com)
+
+**To:** Kamil, humphery.wen@linyang.com, Arkadius Sybaris, Tomasz Wieckowski, conoryang@linyang.com.cn
+
+**Attachment:** Lighthief Review Comments (linyang-sales-contract-6mar-review-comments.html, exported as PDF, 228 KB)
+
+**Summary:** Sent review comments on the rev260306 sales contract. Comments based on call discussion — covers payment terms (30/50/10/10 proposed), EU late payment framework, anti-circumvention (replacing affiliate binding), financial guarantees (APG, performance bond, AXA insurance), performance warranties (SOH/RTE/cycle life), delay LDs, liability cap, commissioning/PAC definitions, and credit check response. Requested finalisation ASAP as the EPC contract must go to insurer and clients for review. Noted most items were already RFI-confirmed.
+
+---
+
 ## Document Structure Overview
 
 ```
@@ -12,24 +87,26 @@
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │  DISTRIBUTION AGREEMENT (distribution.md)                            │   │
+│   │  DISTRIBUTION AGREEMENT — active/distribution.md                     │   │
 │   │  ─────────────────────────────────────────                           │   │
 │   │  • Exclusivity for Cyprus territory                                  │   │
 │   │  • Anti-circumvention protections                                    │   │
 │   │  • Client introduction registry                                      │   │
 │   │  • Penalty fee structure                                             │   │
 │   │  • Governing Law: Singapore (SIAC) + Cyprus for Sec 7-9              │   │
+│   │  • STATUS: ✅ SIGNED (Feb 2026)                                      │   │
 │   └─────────────────────────────────────────────────────────────────────┘   │
 │                              │                                               │
 │                              ▼                                               │
 │   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │  SALES AGREEMENT (sales_agrement.md)                                 │   │
+│   │  SALES AGREEMENT — in-negotiation/linyang-sales/                     │   │
 │   │  ─────────────────────────────────────                               │   │
 │   │  • Project-by-project quotations                                     │   │
-│   │  • Product supply terms                                              │   │
+│   │  • Product supply terms + guarantee framework                        │   │
 │   │  • Warranty provisions (5 years)                                     │   │
 │   │  • Pre-shipment inspection rights                                    │   │
 │   │  • Governing Law: Singapore (SIAC) + Cyprus interim relief           │   │
+│   │  • STATUS: ⚠️ IN NEGOTIATION — comments sent 6 Mar 2026             │   │
 │   └─────────────────────────────────────────────────────────────────────┘   │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -267,19 +344,21 @@ All documents include consistent Force Majeure provisions covering:
 
 ## Version Control
 
-| Document | Version | Last Updated | Status |
-|----------|---------|--------------|--------|
-| distribution.md | 2.1 | Feb 2026 | **Active - Signed Feb 2026** |
-| sales_agrement.md | 2.0 | Jan 2026 | Active |
-| client_sales.md | 2.5 | Feb 2026 | Template - Updated to Linyang RFI |
-| ClientLTSA.md | 2.4 | Feb 2026 | Template - Updated to Linyang RFI |
-| service_management.md | 1.1 | Jan 2025 | Active |
-| employee_service_manual.md | 2.0 | Jan 2026 | Active |
-| DSO_compliance.md | 3.0 | Jan 2026 | Active |
-| regulatory_compliance_checklist.md | 3.1 | Jan 2026 | Active |
-| RFI_Linyang_compliance.md | 1.0 | Jan 2026 | Active |
-| client_compliance_memo.md | 1.0 | Jan 2026 | Template |
-| DOCUMENT_INDEX.md | 5.0 | Feb 2026 | Active - Updated to Linyang RFI |
+| Document | Location | Version | Last Updated | Status |
+|----------|----------|---------|--------------|--------|
+| distribution.md | `active/` | 2.1 | Feb 2026 | **Signed Feb 2026** |
+| NDA Linyang PL.docx | `active/` | 1.0 | 2025 | **Signed** |
+| Linyang Sales Contract V1 | `in-negotiation/linyang-sales/` | V1 | 6 Mar 2026 | **In Negotiation — comments sent 6 Mar** |
+| sales_agrement.md (Lighthief draft) | `in-negotiation/linyang-sales/` | 2.0 | Jan 2026 | Internal draft (not sent) |
+| client_sales.md | `templates/` | 2.5 | Feb 2026 | Template — Updated to Linyang RFI |
+| ClientLTSA.md | `templates/` | 2.4 | Feb 2026 | Template — Updated to Linyang RFI |
+| service_management.md | `reference/` | 1.1 | Jan 2025 | Active |
+| employee_service_manual.md | `reference/` | 2.0 | Jan 2026 | Active |
+| DSO_compliance.md | `reference/` | 3.0 | Jan 2026 | Active |
+| regulatory_compliance_checklist.md | `reference/` | 3.1 | Jan 2026 | Active |
+| RFI_Linyang_compliance.md | `in-negotiation/linyang-sales/` | 1.0 | Jan 2026 | Active |
+| client_compliance_memo.md | `templates/` | 1.0 | Jan 2026 | Template |
+| DOCUMENT_INDEX.md | `legal/` | 6.0 | **6 Mar 2026** | **Updated — folder restructure + email log** |
 
 ---
 
@@ -608,8 +687,8 @@ See: `employee_service_manual.md` for detailed procedures on:
 
 ---
 
-*Document Index Version: 3.0*
-*Updated: January 2026*
+*Document Index Version: 6.0*
+*Updated: 6 March 2026*
 *Legal Basis: Gazette No. 5992 (16/01/2026)*
 *Lighthief Cyprus Ltd - Legal Framework*
 

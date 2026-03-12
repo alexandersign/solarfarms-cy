@@ -247,7 +247,7 @@ export default function LithiumPriceCrashArticle() {
                 <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 text-center">
                   <CardContent className="pt-6">
                     <div className="text-4xl font-bold text-amber-700 mb-2">7,000</div>
-                    <div className="text-sm text-gray-600">Cycle life at 90% DOD (LFP)</div>
+                    <div className="text-sm text-gray-600">Cycle life at 70% SOH EOL (LFP)</div>
                     <div className="text-xs text-gray-400 mt-2">15+ year operational lifespan</div>
                   </CardContent>
                 </Card>

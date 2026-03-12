@@ -271,7 +271,7 @@ export default function CostOfNotAddingBESSArticle() {
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Round-trip efficiency</span>
-                        <span className="font-semibold">87.8%</span>
+                        <span className="font-semibold">86.32%</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Degradation</span>

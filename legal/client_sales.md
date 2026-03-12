@@ -599,7 +599,7 @@ BATTERY CELL SPECIFICATIONS
 | Standard Charge/Discharge Rate | 0.5C |
 | Maximum Charge/Discharge Rate | 1C |
 | Energy Density | 183 Wh/kg |
-| Cycle Life | 7,000 cycles (at 25°C, 90% DOD, 0.5C/0.5C, to 70% EOL) |
+| Cycle Life | 15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25±2°C (whichever comes first) |
 
 ───────────────────────────────────────────────────────────────
 BATTERY MANAGEMENT SYSTEM (BMS)

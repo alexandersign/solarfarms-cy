@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BESS Internal Training Guide — Lighthief Cyprus Ltd</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e67e22;
+    --green: #16a34a;
+    --red: #dc2626;
+    --blue: #2563eb;
+    --bg: #ffffff;
+    --card-bg: #f8fafc;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --section-gap: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .cover {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), #f39c12, var(--accent));
+  }
+  .cover h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .cover .subtitle { font-size: 18px; color: #94a3b8; margin-bottom: 24px; }
+  .cover .meta { font-size: 13px; color: #64748b; }
+  .cover .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .container { max-width: 1060px; margin: 0 auto; padding: 40px 32px; }
+
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: var(--section-gap);
+  }
+  .toc h2 { font-size: 18px; margin-bottom: 16px; color: var(--primary); }
+  .toc ol { padding-left: 24px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--blue); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary);
+    margin: var(--section-gap) 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--accent);
+  }
+  h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 32px 0 12px 0;
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 24px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  p { margin-bottom: 12px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px 0;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+  }
+  tr:nth-child(even) { background: #fafbfc; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 16px 0;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+
+  .highlight-box {
+    background: #fef3c7;
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .info-box {
+    background: #eff6ff;
+    border-left: 4px solid var(--blue);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .success-box {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .warning-box {
+    background: #fef2f2;
+    border-left: 4px solid var(--red);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .number { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .stat-card .label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .flow-box {
+    background: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 120px;
+  }
+  .flow-box.green { background: var(--green); }
+  .flow-box.blue { background: var(--blue); }
+  .flow-box.orange { background: var(--accent); }
+  .flow-arrow { font-size: 24px; color: var(--muted); }
+
+  ul { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; }
+
+  .glossary-term {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .glossary-term:last-child { border-bottom: none; }
+  .glossary-term dt { font-weight: 700; color: var(--primary); }
+  .glossary-term dd { color: var(--text); }
+
+  .pricing-highlight {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .tag-green { background: #dcfce7; color: #166534; }
+  .tag-orange { background: #fed7aa; color: #9a3412; }
+  .tag-blue { background: #dbeafe; color: #1e40af; }
+  .tag-red { background: #fecaca; color: #991b1b; }
+
+  .diagram-container {
+    max-width: 100%;
+    margin: 24px auto;
+    text-align: center;
+  }
+  .diagram-container svg { max-width: 100%; height: auto; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 60px;
+  }
+
+  @media print {
+    .cover { padding: 40px 20px; }
+    .container { padding: 20px; }
+    h2 { page-break-before: always; }
+    h2:first-of-type { page-break-before: avoid; }
+    table { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="cover">
+  <div class="badge">Internal Training</div>
+  <h1>Battery Energy Storage Systems (BESS)</h1>
+  <div class="subtitle">Sales &amp; Engineering Training Guide for Lighthief Employees</div>
+  <div class="meta">
+    Lighthief Cyprus Ltd &bull; Version 1.0 &bull; March 2026<br>
+    Confidential — Internal Use Only
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════ TOC ═══════════════════ -->
+<div class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1">What is BESS? — The Fundamentals</a></li>
+    <li><a href="#s2">How a BESS Works — Energy Flow &amp; Operating Modes</a></li>
+    <li><a href="#s3">Typical BESS Site Layout &amp; Architecture</a></li>
+    <li><a href="#s4">EPC Scope — What We Deliver as Turnkey</a></li>
+    <li><a href="#s5">Our Product: Linyang Power Atlantic BESS System</a></li>
+    <li><a href="#s6">Kehua PCS &amp; MV Skid</a></li>
+    <li><a href="#s7">Battery Management &amp; Safety Systems</a></li>
+    <li><a href="#s8">EMS &amp; SCADA — The Brain of the System</a></li>
+    <li><a href="#s9">Grid Services — Why BESS is Valuable</a></li>
+    <li><a href="#s10">Warranty, Degradation &amp; Lifecycle</a></li>
+    <li><a href="#s11">Typical Turnkey Pricing</a></li>
+    <li><a href="#s12">Lighthief Portfolio Overview</a></li>
+    <li><a href="#s13">Glossary of BESS &amp; PV Market Terms</a></li>
+  </ol>
+</div>
+
+
+<!-- ═══════════════════ SECTION 1 ═══════════════════ -->
+<h2 id="s1">1. What is BESS? — The Fundamentals</h2>
+
+<p>A <strong>Battery Energy Storage System (BESS)</strong> is an integrated system that stores electrical energy in batteries and releases it when needed. Think of it as a giant rechargeable battery that connects to the electrical grid or a solar farm.</p>
+
+<h3>Why Does BESS Exist?</h3>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">The Problem</div>
+    <p>Solar panels only generate power when the sun shines. The grid needs power 24/7. When solar production exceeds demand, energy is wasted (<strong>curtailment</strong>). When demand exceeds supply, expensive fossil fuel plants must run.</p>
+  </div>
+  <div class="card">
+    <div class="card-title">The Solution</div>
+    <p>BESS stores excess solar energy during the day and discharges it during peak demand (evenings). It also provides critical grid stability services that keep the lights on — services that today require fossil fuel plants to run continuously.</p>
+  </div>
+</div>
+
+<h3>Why Does BESS Matter for Cyprus?</h3>
+<ul>
+  <li><strong>Island grid</strong> — Cyprus is not connected to any other country's electricity grid, making stability critical</li>
+  <li><strong>Curtailment crisis</strong> — Solar farms are being told to switch off (curtailed) because the grid can't absorb all the solar energy</li>
+  <li><strong>Single point of failure</strong> — Vasilikos power station generates the majority of Cyprus's electricity. If it goes down, the whole island is at risk</li>
+  <li><strong>EU mandates</strong> — The EU requires Cyprus to adopt ancillary services markets (FCR, aFRR) that BESS can provide</li>
+  <li><strong>Revenue opportunity</strong> — BESS owners can earn money by providing grid services, not just by storing solar energy</li>
+</ul>
+
+<div class="highlight-box">
+  <strong>Key Selling Point:</strong> BESS transforms a solar farm from a "use it or lose it" asset into a 24/7 dispatchable power plant with multiple revenue streams.
+</div>
+
+
+<!-- ═══════════════════ SECTION 2 ═══════════════════ -->
+<h2 id="s2">2. How a BESS Works — Energy Flow &amp; Operating Modes</h2>
+
+<h3>2.1 The Energy Path</h3>
+
+<p>Energy flows through several components between the grid and the batteries:</p>
+
+<div class="flow-diagram">
+  <div class="flow-box">Grid<br><small>22 kV AC</small></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box blue">HV Transformer<br><small>22 kV &rarr; 690 V</small></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box green">PCS (Inverter)<br><small>AC &harr; DC</small></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box orange">Battery Container<br><small>DC Storage</small></div>
+</div>
+
+<p>During <strong>charging</strong>, energy flows left-to-right: grid AC power is stepped down, converted to DC, and stored in batteries. During <strong>discharging</strong>, it reverses: battery DC is converted to AC and fed back to the grid.</p>
+
+<h3>2.2 Key Electrical Concepts</h3>
+
+<table>
+  <tr><th>Concept</th><th>Explanation</th><th>Analogy</th></tr>
+  <tr><td><strong>AC (Alternating Current)</strong></td><td>The type of electricity used by the grid. Current changes direction 50 times per second (50 Hz in Cyprus).</td><td>Like water flowing back and forth in a pipe</td></tr>
+  <tr><td><strong>DC (Direct Current)</strong></td><td>The type of electricity batteries store. Current flows in one direction only.</td><td>Like water flowing one way through a hose</td></tr>
+  <tr><td><strong>PCS / Inverter</strong></td><td>The Power Conversion System converts between AC and DC. This is the "translator" between batteries and grid.</td><td>Like a currency exchange booth between two countries</td></tr>
+  <tr><td><strong>Transformer</strong></td><td>Steps voltage up or down. The grid runs at 22 kV (high voltage), the PCS operates at 690 V.</td><td>Like a gear box — changes speed/torque ratio</td></tr>
+  <tr><td><strong>MV (Medium Voltage)</strong></td><td>Voltage range of 1 kV to 36 kV. Cyprus grid is 22 kV MV.</td><td>The "highway" voltage level</td></tr>
+  <tr><td><strong>kW vs kWh</strong></td><td><strong>kW = power</strong> (rate of energy flow). <strong>kWh = energy</strong> (total stored). A 5 MW / 20 MWh system can discharge 5 MW for 4 hours.</td><td>kW = how wide the tap is. kWh = how big the tank is.</td></tr>
+</table>
+
+<h3>2.3 Operating Modes</h3>
+
+<table>
+  <tr><th>Mode</th><th>What Happens</th><th>Revenue Source</th></tr>
+  <tr><td><strong>Energy Arbitrage</strong></td><td>Charge when electricity is cheap, discharge when expensive</td><td>Price difference margin</td></tr>
+  <tr><td><strong>Peak Shaving</strong></td><td>Discharge during peak demand to reduce grid strain</td><td>Avoided peak charges</td></tr>
+  <tr><td><strong>Solar Curtailment Recovery</strong></td><td>Store energy that would otherwise be curtailed (wasted)</td><td>Recovered revenue from curtailed energy</td></tr>
+  <tr><td><strong>FCR (Frequency Containment)</strong></td><td>React within seconds to stabilise grid frequency</td><td>Ancillary services market payment</td></tr>
+  <tr><td><strong>aFRR (Automatic Frequency Restoration)</strong></td><td>Follow TSO signals to restore frequency over minutes</td><td>Ancillary services market payment</td></tr>
+  <tr><td><strong>Grid-Forming / Black Start</strong></td><td>Create a voltage reference to restart the grid after a blackout</td><td>TSO contract / grid resilience payment</td></tr>
+</table>
+
+
+<!-- ═══════════════════ SECTION 3 ═══════════════════ -->
+<h2 id="s3">3. Typical BESS Site Layout &amp; Architecture</h2>
+
+<h3>3.1 What You See on Site</h3>
+
+<p>A typical Lighthief BESS installation co-located with an existing solar farm consists of:</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+  </defs>
+
+  <rect width="900" height="420" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text x="450" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">Typical BESS Site Layout (5 MW / 20 MWh Example)</text>
+
+  <!-- Grid connection point -->
+  <rect x="20" y="60" width="140" height="70" rx="8" fill="#1e40af" filter="url(#sh)"/>
+  <text x="90" y="88" text-anchor="middle" fill="white" font-size="11" font-weight="700">GRID CONNECTION</text>
+  <text x="90" y="104" text-anchor="middle" fill="#93c5fd" font-size="10">22 kV MV Point</text>
+  <text x="90" y="118" text-anchor="middle" fill="#93c5fd" font-size="9">MV Switchgear + Metering</text>
+
+  <!-- MV Cables -->
+  <line x1="160" y1="95" x2="220" y2="95" stroke="#1e40af" stroke-width="3"/>
+  <text x="190" y="85" text-anchor="middle" fill="#1e40af" font-size="9" font-weight="600">MV Cable</text>
+
+  <!-- MV Skid / PCS -->
+  <rect x="220" y="50" width="180" height="90" rx="8" fill="#16a34a" filter="url(#sh)"/>
+  <text x="310" y="75" text-anchor="middle" fill="white" font-size="11" font-weight="700">MV SKID + PCS</text>
+  <text x="310" y="92" text-anchor="middle" fill="#bbf7d0" font-size="9">Kehua BCS1250K-C-HUD</text>
+  <text x="310" y="105" text-anchor="middle" fill="#bbf7d0" font-size="9">4× PCS + MV Transformer</text>
+  <text x="310" y="118" text-anchor="middle" fill="#bbf7d0" font-size="9">40ft container (T4 skid)</text>
+  <text x="310" y="131" text-anchor="middle" fill="#bbf7d0" font-size="9">690 V AC &harr; 22 kV AC</text>
+
+  <!-- DC Cables -->
+  <line x1="400" y1="95" x2="460" y2="95" stroke="#ea580c" stroke-width="3"/>
+  <text x="430" y="85" text-anchor="middle" fill="#ea580c" font-size="9" font-weight="600">DC Cable</text>
+
+  <!-- Battery Containers -->
+  <rect x="460" y="40" width="420" height="150" rx="8" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="670" y="57" text-anchor="middle" fill="#64748b" font-size="10" font-weight="600">BATTERY CONTAINER AREA</text>
+
+  <rect x="475" y="68" width="90" height="55" rx="6" fill="#ea580c" filter="url(#sh)"/>
+  <text x="520" y="90" text-anchor="middle" fill="white" font-size="10" font-weight="700">Container 1</text>
+  <text x="520" y="103" text-anchor="middle" fill="#fed7aa" font-size="8">5.015 MWh</text>
+  <text x="520" y="114" text-anchor="middle" fill="#fed7aa" font-size="8">20ft HC</text>
+
+  <rect x="575" y="68" width="90" height="55" rx="6" fill="#ea580c" filter="url(#sh)"/>
+  <text x="620" y="90" text-anchor="middle" fill="white" font-size="10" font-weight="700">Container 2</text>
+  <text x="620" y="103" text-anchor="middle" fill="#fed7aa" font-size="8">5.015 MWh</text>
+  <text x="620" y="114" text-anchor="middle" fill="#fed7aa" font-size="8">20ft HC</text>
+
+  <rect x="675" y="68" width="90" height="55" rx="6" fill="#ea580c" filter="url(#sh)"/>
+  <text x="720" y="90" text-anchor="middle" fill="white" font-size="10" font-weight="700">Container 3</text>
+  <text x="720" y="103" text-anchor="middle" fill="#fed7aa" font-size="8">5.015 MWh</text>
+  <text x="720" y="114" text-anchor="middle" fill="#fed7aa" font-size="8">20ft HC</text>
+
+  <rect x="775" y="68" width="90" height="55" rx="6" fill="#ea580c" filter="url(#sh)"/>
+  <text x="820" y="90" text-anchor="middle" fill="white" font-size="10" font-weight="700">Container 4</text>
+  <text x="820" y="103" text-anchor="middle" fill="#fed7aa" font-size="8">5.015 MWh</text>
+  <text x="820" y="114" text-anchor="middle" fill="#fed7aa" font-size="8">20ft HC</text>
+
+  <text x="670" y="148" text-anchor="middle" fill="#64748b" font-size="10">Total: 4 containers × 5.015 MWh = <tspan font-weight="700">20.06 MWh</tspan></text>
+  <text x="670" y="162" text-anchor="middle" fill="#64748b" font-size="9">Each: 20ft × 8ft × 9.5ft — ~41.5 tonnes — Liquid cooled — IP55</text>
+  <text x="670" y="175" text-anchor="middle" fill="#64748b" font-size="9">EVE LFP 314Ah cells — 8,000 cycle life — 3-level BMS</text>
+
+  <!-- Support systems row -->
+  <rect x="20" y="215" width="160" height="65" rx="8" fill="#7c3aed" filter="url(#sh)"/>
+  <text x="100" y="240" text-anchor="middle" fill="white" font-size="11" font-weight="700">EMS / SCADA</text>
+  <text x="100" y="255" text-anchor="middle" fill="#c4b5fd" font-size="9">Voltus or AXOS</text>
+  <text x="100" y="268" text-anchor="middle" fill="#c4b5fd" font-size="9">Remote monitoring + control</text>
+
+  <rect x="200" y="215" width="160" height="65" rx="8" fill="#0891b2" filter="url(#sh)"/>
+  <text x="280" y="240" text-anchor="middle" fill="white" font-size="11" font-weight="700">FIRE SAFETY</text>
+  <text x="280" y="255" text-anchor="middle" fill="#a5f3fc" font-size="9">Aerosol + gas detection</text>
+  <text x="280" y="268" text-anchor="middle" fill="#a5f3fc" font-size="9">Smoke / H2 / CO sensors</text>
+
+  <rect x="380" y="215" width="160" height="65" rx="8" fill="#b45309" filter="url(#sh)"/>
+  <text x="460" y="240" text-anchor="middle" fill="white" font-size="11" font-weight="700">LIGHTNING / SPD</text>
+  <text x="460" y="255" text-anchor="middle" fill="#fde68a" font-size="9">DEHN lightning protection</text>
+  <text x="460" y="268" text-anchor="middle" fill="#fde68a" font-size="9">Earthing + surge protection</text>
+
+  <rect x="560" y="215" width="160" height="65" rx="8" fill="#475569" filter="url(#sh)"/>
+  <text x="640" y="240" text-anchor="middle" fill="white" font-size="11" font-weight="700">CIVIL WORKS</text>
+  <text x="640" y="255" text-anchor="middle" fill="#cbd5e1" font-size="9">Concrete foundations</text>
+  <text x="640" y="268" text-anchor="middle" fill="#cbd5e1" font-size="9">Cable trenches &amp; fencing</text>
+
+  <rect x="740" y="215" width="140" height="65" rx="8" fill="#059669" filter="url(#sh)"/>
+  <text x="810" y="240" text-anchor="middle" fill="white" font-size="11" font-weight="700">AUX POWER</text>
+  <text x="810" y="255" text-anchor="middle" fill="#a7f3d0" font-size="9">UPS + HVAC power</text>
+  <text x="810" y="268" text-anchor="middle" fill="#a7f3d0" font-size="9">400V 3-phase supply</text>
+
+  <!-- Existing solar farm -->
+  <rect x="20" y="320" width="860" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="450" y="347" text-anchor="middle" fill="#92400e" font-size="13" font-weight="700">EXISTING SOLAR FARM (PV Array)</text>
+  <text x="450" y="365" text-anchor="middle" fill="#92400e" font-size="10">Co-located — shares grid connection point — charges BESS with excess solar energy</text>
+
+  <!-- Connection arrows -->
+  <line x1="90" y1="130" x2="90" y2="215" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="280" y1="175" x2="280" y2="215" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="460" y1="175" x2="460" y2="215" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="640" y1="190" x2="640" y2="215" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Solar to BESS link -->
+  <line x1="450" y1="320" x2="450" y2="295" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="480" y="308" fill="#92400e" font-size="9">DC-coupled or AC-coupled</text>
+
+  <!-- Legend -->
+  <text x="30" y="408" fill="#64748b" font-size="10">
+    <tspan font-weight="700">Physical footprint:</tspan> ~200–400 m² for a 5 MW / 20 MWh system (containers + PCS + clearances)
+  </text>
+</svg>
+</div>
+
+<h3>3.2 System Sizing in Our Portfolio</h3>
+
+<table>
+  <tr><th>Park Size</th><th>Battery Containers</th><th>Total MWh</th><th>PCS/Skid</th><th>Duration</th></tr>
+  <tr><td>2.5 MW / 10 MWh</td><td>2 × 5.015 MWh</td><td>10.03</td><td>T2 skid (2.5 MW)</td><td>4 hours</td></tr>
+  <tr><td>5 MW / 15 MWh</td><td>3 × 5.015 MWh</td><td>15.05</td><td>T4 skid (5 MW)</td><td>3 hours</td></tr>
+  <tr><td>5 MW / 20 MWh</td><td>4 × 5.015 MWh</td><td>20.06</td><td>T4 skid (5 MW)</td><td>4 hours</td></tr>
+  <tr><td>7.7 MW / 25 MWh</td><td>5 × 5.015 MWh</td><td>25.08</td><td>T4 + T1 skids</td><td>3.2 hours</td></tr>
+  <tr><td>8 MW / 60 MWh</td><td>12 × 5.015 MWh</td><td>60.18</td><td>T8 + T4 skids</td><td>7.5 hours</td></tr>
+  <tr><td>12 MW / 40 MWh</td><td>8 × 5.015 MWh</td><td>40.12</td><td>2 × T4 skids</td><td>3.3 hours</td></tr>
+  <tr><td>25 MW / 100 MWh</td><td>20 × 5.015 MWh</td><td>100.30</td><td>T8 + T4 skids</td><td>4 hours</td></tr>
+</table>
+
+
+<!-- ═══════════════════ SECTION 4 ═══════════════════ -->
+<h2 id="s4">4. EPC Scope — What We Deliver as Turnkey</h2>
+
+<p><strong>EPC</strong> stands for <strong>Engineering, Procurement &amp; Construction</strong>. When Lighthief delivers a "turnkey" BESS, the client gets a fully operational, grid-connected system. Here's every layer of what that includes:</p>
+
+<h3>4.1 Equipment (Procurement)</h3>
+
+<table>
+  <tr><th>Component</th><th>Supplier</th><th>Description</th></tr>
+  <tr><td><strong>Battery Containers</strong></td><td>Linyang Energy</td><td>20ft HC containers, 5.015 MWh each, LFP cells, liquid cooling, BMS, fire suppression</td></tr>
+  <tr><td><strong>PCS + MV Skid</strong></td><td>Kehua (via Linyang)</td><td>Power conversion, MV transformer, MV switchgear — all in a containerised skid</td></tr>
+  <tr><td><strong>EMS / SCADA</strong></td><td>Voltus</td><td>Energy Management System + local/global SCADA for monitoring and dispatch</td></tr>
+  <tr><td><strong>Lightning Protection</strong></td><td>DEHN + StrikeRA</td><td>External LPS, surge protection devices (SPD), earthing systems</td></tr>
+</table>
+
+<h3>4.2 EPC Adders (What Goes On Top of CIF Equipment Price)</h3>
+
+<table>
+  <tr><th>Item</th><th>Description</th><th>Typical Cost</th></tr>
+  <tr><td><strong>Import Duty</strong></td><td>2.66% of CIF value (weighted HS codes)</td><td>Per container</td></tr>
+  <tr><td><strong>Port &amp; Landing</strong></td><td>Container unloading at Limassol port (ECTL)</td><td>~€600 per 40ft container</td></tr>
+  <tr><td><strong>Customs Clearance</strong></td><td>Declaration handling (Interfreight)</td><td>~€85 per declaration</td></tr>
+  <tr><td><strong>Crane &amp; Transport</strong></td><td>Heavy transport from port to site (A. Soulis, 43T trucks)</td><td>~€2,360 per container</td></tr>
+  <tr><td><strong>Civil Works</strong></td><td>Concrete foundations, cable trenches, fencing</td><td>~€2,000 per MWh</td></tr>
+  <tr><td><strong>LV Cabling</strong></td><td>Low voltage power &amp; control cables within site</td><td>Per site</td></tr>
+  <tr><td><strong>MV Cabling</strong></td><td>Medium voltage cables from PCS to grid connection</td><td>~€3,500 per MV feeder</td></tr>
+  <tr><td><strong>MV Terminations</strong></td><td>Cable terminations &amp; joints</td><td>~€2,200 per MV feeder</td></tr>
+  <tr><td><strong>Protection Engineering</strong></td><td>Relay settings, coordination studies</td><td>€5K–€6K per park</td></tr>
+  <tr><td><strong>UPS &amp; Auxiliary Power</strong></td><td>Uninterruptible power supply for BMS/SCADA</td><td>~€2,000 per park</td></tr>
+  <tr><td><strong>Compliance &amp; Docs</strong></td><td>DSO applications, as-built drawings, certificates</td><td>~€7,000 per park</td></tr>
+  <tr><td><strong>Insurance</strong></td><td>Construction All Risk (CAR), TPL, PI</td><td>~0.75% of CIF</td></tr>
+</table>
+
+<h3>4.3 Services (Engineering &amp; Construction)</h3>
+
+<table>
+  <tr><th>Service</th><th>Provider</th><th>Scope</th></tr>
+  <tr><td><strong>Project Management</strong></td><td>Lighthief</td><td>Timeline, coordination, client interface, DSO liaison</td></tr>
+  <tr><td><strong>Electrical Design</strong></td><td>Licensed engineer (client-paid)</td><td>SLDs, protection coordination, EAC submissions</td></tr>
+  <tr><td><strong>Installation</strong></td><td>Linyang crew (12 persons)</td><td>Container placement, DC cabling, BMS commissioning</td></tr>
+  <tr><td><strong>Commissioning</strong></td><td>Linyang + Kehua (4 persons)</td><td>PCS energisation, grid synchronisation, SAT</td></tr>
+  <tr><td><strong>Civil Works</strong></td><td>Lighthief subcontractors</td><td>Foundations, trenches, fencing, cable laying</td></tr>
+  <tr><td><strong>DSO Interface</strong></td><td>Lighthief</td><td>EAC grid connection application, CT class confirmation, protection settings</td></tr>
+</table>
+
+<div class="info-box">
+  <strong>Linyang delivers CIF Limassol.</strong> This means the equipment arrives at Limassol port, fully insured during shipping. Everything after the port — transport, installation, civil works, grid connection — is Lighthief's EPC scope.
+</div>
+
+
+<!-- ═══════════════════ SECTION 5 ═══════════════════ -->
+<h2 id="s5">5. Our Product: Linyang Power Atlantic BESS System</h2>
+
+<h3>5.1 System Overview</h3>
+
+<div class="grid-3">
+  <div class="stat-card">
+    <div class="number">5.015</div>
+    <div class="label">MWh per container</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">LFP</div>
+    <div class="label">Cell chemistry (EVE 314Ah)</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">8,000</div>
+    <div class="label">Cycle life (90% DoD, 70% EOL)</div>
+  </div>
+</div>
+
+<h3>5.2 Battery Container Specifications</h3>
+
+<table>
+  <tr><th>Parameter</th><th>Value</th><th>Notes</th></tr>
+  <tr><td>Model</td><td><strong>Power Atlantic 5 MWh</strong></td><td>Linyang standard container</td></tr>
+  <tr><td>Container Type</td><td>20-foot High Cube (20HC)</td><td>Standard shipping container size</td></tr>
+  <tr><td>Rated Capacity</td><td><strong>5,015 kWh</strong> (5.015 MWh)</td><td>DC side</td></tr>
+  <tr><td>Configuration</td><td>12P416S (12 clusters × 416 cells in series)</td><td>48 packs total</td></tr>
+  <tr><td>DC Voltage Range</td><td>1,164.8 – 1,497.6 V</td><td>Cell range: 2.5 – 3.65 V</td></tr>
+  <tr><td>Rated Power (1C)</td><td>2,500 kW</td><td>Full power discharge</td></tr>
+  <tr><td>Rated Power (0.5C)</td><td>1,250 kW</td><td>Standard operating point</td></tr>
+  <tr><td>Dimensions</td><td>6,058 × 2,438 × 2,896 mm</td><td>L × W × H</td></tr>
+  <tr><td>Weight</td><td>~41.5 tonnes</td><td>Fully loaded</td></tr>
+  <tr><td>IP Rating</td><td>IP55</td><td>Dust &amp; water jet protected</td></tr>
+  <tr><td>Cooling</td><td>Liquid cooling (ethylene glycol + water)</td><td>45 kW cooling capacity</td></tr>
+  <tr><td>Internal Temperature</td><td>25 ± 5°C</td><td>Maintained by liquid cooling</td></tr>
+  <tr><td>Operating Range</td><td>-30°C to +50°C</td><td>External ambient</td></tr>
+  <tr><td>Communication</td><td>Modbus TCP / IEC 104 / IEC 61850</td><td>Ethernet interfaces</td></tr>
+  <tr><td>Fire Suppression</td><td>Aerosol + gas detection + ventilation</td><td>Multi-layer safety system</td></tr>
+</table>
+
+<h3>5.3 Cell Hierarchy — From Cell to Container</h3>
+
+<div class="card">
+  <table>
+    <tr><th>Level</th><th>Configuration</th><th>Capacity</th><th>Voltage</th><th>Weight</th></tr>
+    <tr><td><strong>Cell</strong></td><td>EVE LF314 LFP (single cell)</td><td>1,004.8 Wh</td><td>3.2 V nominal</td><td>5.6 kg</td></tr>
+    <tr><td><strong>Pack (Module)</strong></td><td>1P104S (104 cells in series)</td><td>104.5 kWh</td><td>332.8 V</td><td>~690 kg</td></tr>
+    <tr><td><strong>Cluster (HV Box)</strong></td><td>1P416S (4 packs in series)</td><td>418.0 kWh</td><td>1,331.2 V</td><td>~2.7 tonnes</td></tr>
+    <tr><td><strong>Container</strong></td><td>12 clusters</td><td><strong>5,015 kWh</strong></td><td>1,164.8 – 1,497.6 V</td><td>~41.5 tonnes</td></tr>
+  </table>
+</div>
+
+<h3>5.4 Why LFP Chemistry?</h3>
+
+<table>
+  <tr><th>Feature</th><th>LFP (Our Choice)</th><th>NMC (Alternative)</th></tr>
+  <tr><td>Safety</td><td><span class="tag tag-green">Superior</span> — No thermal runaway propagation risk</td><td><span class="tag tag-red">Higher risk</span> — Can propagate thermal events</td></tr>
+  <tr><td>Cycle Life</td><td><span class="tag tag-green">8,000+</span> cycles</td><td>3,000–5,000 cycles</td></tr>
+  <tr><td>Cost per kWh</td><td><span class="tag tag-green">Lower</span></td><td>Higher (cobalt/nickel costs)</td></tr>
+  <tr><td>Energy Density</td><td>175–183 Wh/kg</td><td><span class="tag tag-blue">Higher</span> — 200–250 Wh/kg</td></tr>
+  <tr><td>Temperature Tolerance</td><td>Good — 0 to 55°C charging</td><td>Similar</td></tr>
+  <tr><td>Bankability</td><td><span class="tag tag-green">Preferred</span> by lenders for utility-scale</td><td>Accepted but higher insurance premiums</td></tr>
+</table>
+
+<h3>5.5 Container Models Available</h3>
+
+<table>
+  <tr><th>Model</th><th>Capacity</th><th>Modules</th><th>Clusters</th><th>Weight</th><th>Use Case</th></tr>
+  <tr><td>ME 3.343 MWh</td><td>3,344 kWh</td><td>8</td><td>8</td><td>~31 t</td><td>Smallest parks</td></tr>
+  <tr><td>ME 4.179 MWh</td><td>4,179 kWh</td><td>10</td><td>10</td><td>~38.5 t</td><td>Mid-range</td></tr>
+  <tr><td><strong>ME 5.015 MWh</strong></td><td><strong>5,015 kWh</strong></td><td><strong>12</strong></td><td><strong>12</strong></td><td><strong>~41.5 t</strong></td><td><strong>Standard (most of our fleet)</strong></td></tr>
+</table>
+
+<h3>5.6 Round-Trip Efficiency (RTE)</h3>
+
+<p>RTE measures how much energy you get back out compared to what you put in. Our system's efficiency chain:</p>
+
+<table>
+  <tr><th>Component</th><th>Charging Eff.</th><th>Discharging Eff.</th><th>Round-Trip Loss</th></tr>
+  <tr><td>HV Transformer</td><td>99.95%</td><td>99.50%</td><td>0.55%</td></tr>
+  <tr><td>MV Cable</td><td>99.95%</td><td>99.50%</td><td>0.55%</td></tr>
+  <tr><td>MV Transformer</td><td>99.00%</td><td>99.00%</td><td>1.99%</td></tr>
+  <tr><td>LV Cable</td><td>99.95%</td><td>99.95%</td><td>0.10%</td></tr>
+  <tr><td><strong>PCS (Kehua)</strong></td><td><strong>98.20%</strong></td><td><strong>98.50%</strong></td><td><strong>3.28%</strong></td></tr>
+  <tr><td>DC Cable</td><td>99.80%</td><td>99.80%</td><td>0.40%</td></tr>
+  <tr><td><strong>Battery (Linyang)</strong></td><td><strong>96.50%</strong></td><td><strong>97.50%</strong></td><td><strong>5.91%</strong></td></tr>
+  <tr style="background: #fef3c7; font-weight: 700;"><td>Full System AC-AC</td><td colspan="2" style="text-align:center">86.32%</td><td>13.68%</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>In plain English:</strong> For every 100 kWh of energy you put into the battery, you get ~86 kWh back out. The biggest losses are in the battery itself (chemical conversion) and the PCS (power electronics conversion).
+</div>
+
+
+<!-- ═══════════════════ SECTION 6 ═══════════════════ -->
+<h2 id="s6">6. Kehua PCS &amp; MV Skid</h2>
+
+<h3>6.1 What is a PCS?</h3>
+
+<p>The <strong>Power Conversion System (PCS)</strong> is the bidirectional inverter that converts between AC (grid) and DC (battery). Manufactured by <strong>Xiamen Kehua Digital Energy Tech</strong>, it's the most technically sophisticated component in the system.</p>
+
+<h3>6.2 Single PCS Unit: BCS1250K-C-HUD</h3>
+
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Rated AC Output Power</td><td><strong>1,250 kW (1.25 MW)</strong></td></tr>
+  <tr><td>Max AC Power</td><td>1,375 kVA</td></tr>
+  <tr><td>DC Voltage Range</td><td>1,060 – 1,500 Vdc</td></tr>
+  <tr><td>AC Output Voltage</td><td>690 Vac (3-phase)</td></tr>
+  <tr><td>Maximum Efficiency</td><td><strong>&ge;99%</strong></td></tr>
+  <tr><td>Power Factor</td><td>&gt; 0.99 at rated power</td></tr>
+  <tr><td>THDi (Current Harmonics)</td><td>&lt; 3% at rated power</td></tr>
+  <tr><td>Reactive Power</td><td>&pm;100% (full 4-quadrant operation)</td></tr>
+  <tr><td>IP Rating</td><td><strong>IP65</strong> (fully sealed against dust &amp; water jets)</td></tr>
+  <tr><td>Corrosion Protection</td><td>C5 (coastal/industrial environments)</td></tr>
+  <tr><td>Operating Temperature</td><td>-35°C to +60°C</td></tr>
+  <tr><td>Weight</td><td>~950 kg per unit</td></tr>
+  <tr><td>Dimensions</td><td>735 × 2,135 × 1,300 mm (W × H × D)</td></tr>
+  <tr><td>Grid Code Compliance</td><td><strong>EN 50549-2</strong> (TÜV certified)</td></tr>
+</table>
+
+<h3>6.3 What is an MV Skid?</h3>
+
+<p>The <strong>MV Skid</strong> is a pre-assembled, containerised unit that combines multiple PCS units with a Medium Voltage transformer. It converts the 690 V output of the PCS units to the 22 kV grid voltage. The entire assembly ships as one container.</p>
+
+<h3>6.4 MV Skid Models (Tier System)</h3>
+
+<table>
+  <tr><th>Skid Model</th><th>Container</th><th>PCS Units</th><th>Total Power</th><th>Transformer</th><th>Weight</th></tr>
+  <tr><td><strong>T1</strong> (BCS1250K-C-HUD)</td><td>20ft</td><td>1 × 1.25 MW</td><td>1.25 MW</td><td>~1.4 MVA</td><td>&lt;14 t</td></tr>
+  <tr><td><strong>T2</strong> (BCS2000K~2500K)</td><td>20ft</td><td>2 × 1.25 MW</td><td>2.0–2.5 MW</td><td>~2.75 MVA</td><td>&lt;14 t</td></tr>
+  <tr><td><strong>T4</strong> (BCS4000K~5000K)</td><td>40ft</td><td>4 × 1.25 MW</td><td>4.0–5.0 MW</td><td>~5.5 MVA</td><td>&lt;25 t</td></tr>
+  <tr><td><strong>T8</strong> (BCS8000K~10000K)</td><td>40ft</td><td>8 × 1.25 MW</td><td>8.0–10.0 MW</td><td>10 MVA</td><td>&lt;38 t</td></tr>
+</table>
+
+<div class="info-box">
+  <strong>How park sizes work:</strong> All park MW sizes are combinations of skids + PCS units. For example, a 5 MW park uses a T4 skid with 4× 1.25 MW PCS units. A 7.7 MW park uses a T4 + T1 combination.
+</div>
+
+<h3>6.5 Grid-Forming Capabilities</h3>
+
+<p>The Kehua PCS supports advanced grid services that are critical for Cyprus's island grid:</p>
+
+<table>
+  <tr><th>Feature</th><th>Description</th><th>Why It Matters</th></tr>
+  <tr><td><strong>VSG (Virtual Synchronous Generator)</strong></td><td>Mimics the inertia of a traditional spinning generator</td><td>Stabilises frequency without fossil fuel plants</td></tr>
+  <tr><td><strong>Black Start</strong></td><td>Can restart the grid from a dead state</td><td>Critical for island grids — no interconnections to bootstrap from</td></tr>
+  <tr><td><strong>Grid-Forming Mode</strong></td><td>Creates its own voltage/frequency reference</td><td>Can operate independently of the grid</td></tr>
+  <tr><td><strong>Millisecond Response</strong></td><td>Reacts to EMS commands in &lt;1 second</td><td>Fast enough for FCR (must respond in &lt;30 seconds)</td></tr>
+  <tr><td><strong>Full 4-Quadrant</strong></td><td>Absorbs or injects both active and reactive power</td><td>Complete voltage and frequency support</td></tr>
+</table>
+
+<h3>6.6 Key Certifications</h3>
+
+<table>
+  <tr><th>Standard</th><th>Description</th><th>Status</th></tr>
+  <tr><td><strong>EN 50549-2</strong></td><td>Grid connection standard (Cyprus DSO requirement)</td><td><span class="tag tag-green">TÜV Certified</span></td></tr>
+  <tr><td>IEC 62477-1</td><td>Power electronics safety</td><td><span class="tag tag-green">Certified</span></td></tr>
+  <tr><td>IEC 62116</td><td>Anti-islanding (loss of mains detection)</td><td><span class="tag tag-green">Certified</span></td></tr>
+  <tr><td>IEC 61727</td><td>Grid-connected PV inverters</td><td><span class="tag tag-green">Certified</span></td></tr>
+  <tr><td>CE (LVD + EMC)</td><td>EU market access</td><td><span class="tag tag-green">Certified</span></td></tr>
+</table>
+
+
+<!-- ═══════════════════ SECTION 7 ═══════════════════ -->
+<h2 id="s7">7. Battery Management &amp; Safety Systems</h2>
+
+<h3>7.1 Three-Level BMS Architecture</h3>
+
+<div class="card">
+  <table>
+    <tr><th>Level</th><th>Component</th><th>Function</th><th>Quantity</th></tr>
+    <tr><td><strong>Level 1</strong></td><td>BMU (Battery Management Unit)</td><td>Monitors individual cells — voltage, temperature, balancing</td><td>2 per pack (96 per container)</td></tr>
+    <tr><td><strong>Level 2</strong></td><td>BCMU (Battery Cluster Management Unit)</td><td>Manages each cluster — contactor control, SOC calculation</td><td>1 per cluster (12 per container)</td></tr>
+    <tr><td><strong>Level 3</strong></td><td>BAMS (Battery Stack Management System)</td><td>Master controller — aggregates all data, communicates with EMS</td><td>2 per container (redundant)</td></tr>
+  </table>
+</div>
+
+<h3>7.2 Fire Safety System</h3>
+
+<table>
+  <tr><th>Component</th><th>Quantity</th><th>Function</th></tr>
+  <tr><td>Container-Level Aerosol</td><td>6</td><td>Whole-container fire suppression</td></tr>
+  <tr><td>Pack-Level Aerosol</td><td>96</td><td>Individual pack fire suppression</td></tr>
+  <tr><td>Smoke Detectors</td><td>2</td><td>Photoelectric spot-type detection</td></tr>
+  <tr><td>Heat Detectors</td><td>2</td><td>Temperature-based detection</td></tr>
+  <tr><td>H&#8322; Gas Detectors</td><td>2</td><td>Combustible gas (hydrogen) detection</td></tr>
+  <tr><td>CO Sensors</td><td>2</td><td>Carbon monoxide early warning</td></tr>
+  <tr><td>Explosion Vent Panel</td><td>1</td><td>Pressure relief in gas buildup</td></tr>
+  <tr><td>Explosion-Proof Exhaust Fan</td><td>1</td><td>Gas evacuation</td></tr>
+</table>
+
+<div class="success-box">
+  <strong>Safety certifications:</strong> UL 9540A testing passed at Cell, Module, and Unit level. No fire propagation beyond initiating cell. Target BESS max temperature during thermal event: 34.8°C (well below 154°C cell venting threshold).
+</div>
+
+
+<!-- ═══════════════════ SECTION 8 ═══════════════════ -->
+<h2 id="s8">8. EMS &amp; SCADA — The Brain of the System</h2>
+
+<h3>8.1 What Do EMS and SCADA Do?</h3>
+
+<table>
+  <tr><th>System</th><th>Full Name</th><th>Function</th></tr>
+  <tr><td><strong>EMS</strong></td><td>Energy Management System</td><td>The "brain" — decides when to charge/discharge, optimises revenue, dispatches grid services. Runs algorithms for arbitrage, FCR, aFRR.</td></tr>
+  <tr><td><strong>SCADA</strong></td><td>Supervisory Control and Data Acquisition</td><td>The "nervous system" — collects real-time data from all equipment, provides dashboards, sends commands. Communicates via IEC 104 with the DSO/TSO.</td></tr>
+</table>
+
+<h3>8.2 Our EMS Partners</h3>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Voltus (Primary — Current Portfolio)</div>
+    <p><strong>Scope:</strong> EMS + local SCADA + global SCADA for 51-park portfolio.</p>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>AI-optimised dispatching</li>
+      <li>Grid services monetisation</li>
+      <li>Real-time dispatch via API</li>
+      <li>IEC 104 integration for Cyprus DSO</li>
+    </ul>
+    <p><strong>Cost:</strong> ~€2.3M EMS + ~€1.3M local SCADA + €420K global SCADA</p>
+  </div>
+  <div class="card">
+    <div class="card-title">AXOS by AXSOL (Alternative / Future)</div>
+    <p><strong>Scope:</strong> Advanced EMS with EU regulatory compliance.</p>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+      <li>150ms – 1s response time</li>
+      <li>Native IEC 60870-5-104 support</li>
+      <li>NIS2 &amp; KRITIS cybersecurity certified</li>
+      <li>FCR, aFRR, black start capable</li>
+      <li>AI forecasting (ADONYS platform)</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ SECTION 9 ═══════════════════ -->
+<h2 id="s9">9. Grid Services — Why BESS is Valuable</h2>
+
+<h3>9.1 The Revenue Stack</h3>
+
+<p>BESS owners can earn money from multiple sources simultaneously — this is called "revenue stacking":</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="400" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">BESS Revenue Stack — Multiple Income Streams</text>
+
+  <!-- Stacked bars -->
+  <rect x="60" y="50" width="120" height="240" rx="4" fill="#16a34a" opacity="0.9"/>
+  <text x="120" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="700">Energy</text>
+  <text x="120" y="110" text-anchor="middle" fill="white" font-size="11" font-weight="700">Arbitrage</text>
+  <text x="120" y="140" text-anchor="middle" fill="#bbf7d0" font-size="9">Buy low</text>
+  <text x="120" y="153" text-anchor="middle" fill="#bbf7d0" font-size="9">Sell high</text>
+  <text x="120" y="180" text-anchor="middle" fill="#bbf7d0" font-size="9">Charge during</text>
+  <text x="120" y="193" text-anchor="middle" fill="#bbf7d0" font-size="9">low-demand hours</text>
+  <text x="120" y="220" text-anchor="middle" fill="#bbf7d0" font-size="9">Discharge at</text>
+  <text x="120" y="233" text-anchor="middle" fill="#bbf7d0" font-size="9">peak pricing</text>
+  <text x="120" y="275" text-anchor="middle" fill="white" font-size="10" font-weight="700">30-50%</text>
+
+  <rect x="200" y="50" width="120" height="240" rx="4" fill="#2563eb" opacity="0.9"/>
+  <text x="260" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="700">Curtailment</text>
+  <text x="260" y="110" text-anchor="middle" fill="white" font-size="11" font-weight="700">Recovery</text>
+  <text x="260" y="140" text-anchor="middle" fill="#bfdbfe" font-size="9">Store solar that</text>
+  <text x="260" y="153" text-anchor="middle" fill="#bfdbfe" font-size="9">would be wasted</text>
+  <text x="260" y="180" text-anchor="middle" fill="#bfdbfe" font-size="9">Particularly high</text>
+  <text x="260" y="193" text-anchor="middle" fill="#bfdbfe" font-size="9">in Cyprus (30-50%</text>
+  <text x="260" y="206" text-anchor="middle" fill="#bfdbfe" font-size="9">curtailment on</text>
+  <text x="260" y="219" text-anchor="middle" fill="#bfdbfe" font-size="9">some parks)</text>
+  <text x="260" y="275" text-anchor="middle" fill="white" font-size="10" font-weight="700">20-30%</text>
+
+  <rect x="340" y="50" width="120" height="240" rx="4" fill="#dc2626" opacity="0.9"/>
+  <text x="400" y="85" text-anchor="middle" fill="white" font-size="11" font-weight="700">FCR</text>
+  <text x="400" y="115" text-anchor="middle" fill="#fecaca" font-size="9">Frequency</text>
+  <text x="400" y="128" text-anchor="middle" fill="#fecaca" font-size="9">Containment</text>
+  <text x="400" y="141" text-anchor="middle" fill="#fecaca" font-size="9">Reserve</text>
+  <text x="400" y="170" text-anchor="middle" fill="#fecaca" font-size="9">React in &lt;30s</text>
+  <text x="400" y="183" text-anchor="middle" fill="#fecaca" font-size="9">to stabilise</text>
+  <text x="400" y="196" text-anchor="middle" fill="#fecaca" font-size="9">grid frequency</text>
+  <text x="400" y="225" text-anchor="middle" fill="#fecaca" font-size="9">Highest value</text>
+  <text x="400" y="238" text-anchor="middle" fill="#fecaca" font-size="9">per MWh</text>
+  <text x="400" y="275" text-anchor="middle" fill="white" font-size="10" font-weight="700">15-25%</text>
+
+  <rect x="480" y="50" width="120" height="240" rx="4" fill="#7c3aed" opacity="0.9"/>
+  <text x="540" y="85" text-anchor="middle" fill="white" font-size="11" font-weight="700">aFRR</text>
+  <text x="540" y="115" text-anchor="middle" fill="#c4b5fd" font-size="9">Automatic</text>
+  <text x="540" y="128" text-anchor="middle" fill="#c4b5fd" font-size="9">Frequency</text>
+  <text x="540" y="141" text-anchor="middle" fill="#c4b5fd" font-size="9">Restoration</text>
+  <text x="540" y="170" text-anchor="middle" fill="#c4b5fd" font-size="9">Follow TSO</text>
+  <text x="540" y="183" text-anchor="middle" fill="#c4b5fd" font-size="9">signals over</text>
+  <text x="540" y="196" text-anchor="middle" fill="#c4b5fd" font-size="9">5-15 minutes</text>
+  <text x="540" y="225" text-anchor="middle" fill="#c4b5fd" font-size="9">Steady</text>
+  <text x="540" y="238" text-anchor="middle" fill="#c4b5fd" font-size="9">recurring income</text>
+  <text x="540" y="275" text-anchor="middle" fill="white" font-size="10" font-weight="700">10-15%</text>
+
+  <rect x="620" y="50" width="120" height="240" rx="4" fill="#0891b2" opacity="0.9"/>
+  <text x="680" y="85" text-anchor="middle" fill="white" font-size="11" font-weight="700">Peak</text>
+  <text x="680" y="100" text-anchor="middle" fill="white" font-size="11" font-weight="700">Shaving</text>
+  <text x="680" y="130" text-anchor="middle" fill="#a5f3fc" font-size="9">Reduce demand</text>
+  <text x="680" y="143" text-anchor="middle" fill="#a5f3fc" font-size="9">charges for</text>
+  <text x="680" y="156" text-anchor="middle" fill="#a5f3fc" font-size="9">commercial</text>
+  <text x="680" y="169" text-anchor="middle" fill="#a5f3fc" font-size="9">customers</text>
+  <text x="680" y="200" text-anchor="middle" fill="#a5f3fc" font-size="9">Or provide</text>
+  <text x="680" y="213" text-anchor="middle" fill="#a5f3fc" font-size="9">capacity during</text>
+  <text x="680" y="226" text-anchor="middle" fill="#a5f3fc" font-size="9">grid stress</text>
+  <text x="680" y="275" text-anchor="middle" fill="white" font-size="10" font-weight="700">5-10%</text>
+
+  <text x="400" y="310" text-anchor="middle" fill="#64748b" font-size="11">Percentages represent estimated contribution to total revenue (illustrative — market-dependent)</text>
+</svg>
+</div>
+
+<h3>9.2 Grid Service Definitions</h3>
+
+<table>
+  <tr><th>Service</th><th>Response Time</th><th>Duration</th><th>What Triggers It</th><th>Cyprus Status</th></tr>
+  <tr><td><strong>FCR</strong> (Frequency Containment Reserve)</td><td><strong>&lt;30 seconds</strong></td><td>Minutes</td><td>Grid frequency deviates from 50 Hz</td><td><span class="tag tag-orange">Coming 2027</span></td></tr>
+  <tr><td><strong>aFRR</strong> (Automatic Frequency Restoration Reserve)</td><td><strong>5–15 minutes</strong></td><td>15 min – hours</td><td>TSO sends automated setpoint signals</td><td><span class="tag tag-orange">Coming 2027</span></td></tr>
+  <tr><td><strong>mFRR</strong> (Manual Frequency Restoration Reserve)</td><td>15+ minutes</td><td>Hours</td><td>TSO manual dispatch</td><td><span class="tag tag-orange">Coming 2027</span></td></tr>
+  <tr><td><strong>Synthetic Inertia</strong></td><td><strong>Milliseconds</strong></td><td>Seconds</td><td>Rapid frequency change (RoCoF)</td><td><span class="tag tag-blue">Under development</span></td></tr>
+  <tr><td><strong>Black Start</strong></td><td>Minutes</td><td>Until grid restored</td><td>Complete grid failure</td><td><span class="tag tag-blue">Future service</span></td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>Why this matters for sales:</strong> When the Cyprus ancillary services market opens (expected 2027), BESS owners will be able to earn revenue for keeping capacity available — even when not actively charging or discharging. This is "capacity payment" income on top of energy trading income.
+</div>
+
+<h3>9.3 Cyprus Grid Context</h3>
+
+<div class="grid-2">
+  <div class="card" style="border-left: 4px solid #dc2626;">
+    <div class="card-title" style="color:#dc2626;">Today: Vulnerable &amp; Centralised</div>
+    <ul>
+      <li>Vasilikos power station = single point of failure</li>
+      <li>No FCR, aFRR, or inertia market exists</li>
+      <li>210–250 MW of thermal must run 24/7 for stability</li>
+      <li>30–50% solar curtailment on many parks</li>
+      <li>100% dependent on imported fuel</li>
+    </ul>
+  </div>
+  <div class="card" style="border-left: 4px solid #16a34a;">
+    <div class="card-title" style="color:#16a34a;">With BESS: Resilient &amp; Distributed</div>
+    <ul>
+      <li>51+ BESS nodes across all 5 districts</li>
+      <li>FCR in &lt;30 seconds, aFRR in 5–15 minutes</li>
+      <li>Grid-forming capability (synthetic inertia)</li>
+      <li>Curtailed energy recovered and monetised</li>
+      <li>No single point of failure</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ SECTION 10 ═══════════════════ -->
+<h2 id="s10">10. Warranty, Degradation &amp; Lifecycle</h2>
+
+<h3>10.1 Warranty Structure</h3>
+
+<table>
+  <tr><th>Period</th><th>Coverage</th><th>Paid By</th><th>Cost (per MWh/year)</th></tr>
+  <tr><td><strong>Years 1–5</strong></td><td>Full product warranty (all components)</td><td>Included in CIF price</td><td>Included</td></tr>
+  <tr><td>Years 6–10</td><td>Extended warranty (BESS + PCS)</td><td>Client pays Linyang directly</td><td>€1,661.68</td></tr>
+  <tr><td>Years 11–15</td><td>Extended warranty (BESS + PCS)</td><td>Client pays Linyang directly</td><td>€2,083.72</td></tr>
+  <tr><td>Years 16–20</td><td>Extended warranty (BESS + PCS)</td><td>Client pays Linyang directly</td><td>€6,174.00</td></tr>
+</table>
+
+<h3>10.2 SOH (State of Health) Guarantees</h3>
+
+<table>
+  <tr><th>Year</th><th>Guaranteed Minimum SOH</th></tr>
+  <tr><td>Year 5</td><td><strong>85%</strong></td></tr>
+  <tr><td>Year 10</td><td><strong>79.58%</strong></td></tr>
+  <tr><td>Year 15</td><td><strong>70%</strong></td></tr>
+</table>
+
+<h3>10.3 Battery Degradation — What to Expect</h3>
+
+<table>
+  <tr><th>Operating Condition</th><th>Year 1 Drop</th><th>Annual After Year 1</th><th>Years to 70% SOH (EOL)</th><th>Total Cycles</th></tr>
+  <tr><td>Conservative (0.25P, 1 cycle/day)</td><td>3.88%</td><td>~1.52%</td><td><strong>18 years</strong></td><td>6,570</td></tr>
+  <tr><td>Moderate (0.25P, 2 cycles/day)</td><td>4.59%</td><td>~2.37%</td><td>12 years</td><td>8,760</td></tr>
+  <tr><td><strong>Standard (0.5P, 1 cycle/day)</strong></td><td><strong>4.04%</strong></td><td><strong>~1.59%</strong></td><td><strong>17 years</strong></td><td><strong>6,205</strong></td></tr>
+  <tr><td>Aggressive (0.5P, 2 cycles/day)</td><td>4.72%</td><td>~2.72%</td><td>10 years</td><td>7,300</td></tr>
+</table>
+
+<div class="info-box">
+  <strong>Key insight:</strong> First-year degradation is significantly higher (~4–5%) across all conditions. After Year 1, degradation stabilises to ~1.5–2.7% per year depending on usage intensity. This is normal LFP behaviour and is accounted for in the financial model.
+</div>
+
+<h3>10.4 Lighthief LTSA (Long-Term Service Agreement)</h3>
+
+<p>The LTSA is <strong>Lighthief's own O&M service agreement</strong> — this is our recurring revenue. Separate from the extended warranty (which goes directly to Linyang).</p>
+
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Rate</td><td><strong>€1,740 per MWh per year</strong></td></tr>
+  <tr><td>Availability Target</td><td><strong>97%</strong></td></tr>
+  <tr><td>Field Engineers</td><td>6 (Lighthief employees across 5 districts)</td></tr>
+  <tr><td>Planned Maintenance</td><td>10 days per park per year</td></tr>
+  <tr><td>SLA — Critical</td><td>Remote: 4h, On-site: 8h, Resolution: 48h (24/7/365)</td></tr>
+  <tr><td>SLA — Major</td><td>Remote: 8h, On-site: 48h, Resolution: 120h (24/7/365)</td></tr>
+  <tr><td>SLA — Minor</td><td>Next scheduled visit or 5 business days</td></tr>
+</table>
+
+
+<!-- ═══════════════════ SECTION 11 ═══════════════════ -->
+<h2 id="s11">11. Typical Turnkey Pricing</h2>
+
+<h3>11.1 Client Pricing (All-In Turnkey, per MWh)</h3>
+
+<table>
+  <tr><th>System Size</th><th>Turnkey Price per MWh</th><th>Total System Cost (approx.)</th></tr>
+  <tr><td>2.5 MW / 10 MWh</td><td><strong>€120,630</strong></td><td>~€1.2M</td></tr>
+  <tr><td>5 MW / 10 MWh</td><td><strong>€136,106</strong></td><td>~€1.4M</td></tr>
+  <tr><td>5 MW / 15 MWh</td><td><strong>€130,792</strong></td><td>~€2.0M</td></tr>
+  <tr><td>5 MW / 20 MWh</td><td><strong>€112,945</strong></td><td>~€2.3M</td></tr>
+  <tr><td>8 MW / 60 MWh</td><td><strong>€100,052</strong></td><td>~€6.0M</td></tr>
+  <tr><td>12 MW / 40 MWh</td><td><strong>€114,990</strong></td><td>~€4.6M</td></tr>
+  <tr><td>25 MW / 100 MWh</td><td><strong>€106,279</strong></td><td>~€10.6M</td></tr>
+</table>
+
+<div class="highlight-box">
+  <strong>Economies of scale:</strong> Larger systems cost less per MWh. The 8 MW / 60 MWh system at €100K/MWh is 26% cheaper per MWh than the 5 MW / 10 MWh at €136K/MWh.
+</div>
+
+<h3>11.2 What's Included in Turnkey Price</h3>
+
+<div class="grid-2">
+  <div class="card" style="border-left: 4px solid #16a34a;">
+    <div class="card-title" style="color:#16a34a;">Included in Price</div>
+    <ul>
+      <li>Battery containers (CIF Limassol)</li>
+      <li>PCS + MV Skid + Transformer</li>
+      <li>EMS / SCADA system</li>
+      <li>Lightning protection &amp; earthing</li>
+      <li>Import duty, port, customs, transport</li>
+      <li>Civil works &amp; foundations</li>
+      <li>All cabling (LV, MV, DC)</li>
+      <li>Protection engineering</li>
+      <li>UPS &amp; auxiliary power</li>
+      <li>Installation by Linyang crew</li>
+      <li>Commissioning &amp; SAT</li>
+      <li>5-year base warranty</li>
+      <li>EPC insurance</li>
+      <li>Compliance documentation</li>
+    </ul>
+  </div>
+  <div class="card" style="border-left: 4px solid #dc2626;">
+    <div class="card-title" style="color:#dc2626;">Client-Paid / Excluded</div>
+    <ul>
+      <li>VAT (19%)</li>
+      <li>DSO protection testing (~€1,250/container)</li>
+      <li>Licensed electrical drawings (€5K–€15K/site)</li>
+      <li>External lightning protection system</li>
+      <li>Extended warranty (Years 6+ — paid to Linyang)</li>
+      <li>LTSA O&amp;M service (paid to Lighthief)</li>
+      <li>Land / site lease costs</li>
+      <li>Grid connection fees (DSO)</li>
+    </ul>
+  </div>
+</div>
+
+<h3>11.3 Cost Breakdown Waterfall</h3>
+
+<table>
+  <tr><th>Cost Layer</th><th>Portfolio Average (per MWh)</th><th>% of Installed</th></tr>
+  <tr><td><strong>CIF Equipment (Linyang)</strong></td><td>€97,490</td><td>88.1%</td></tr>
+  <tr><td>Import Duty (2.66%)</td><td>~€2,590</td><td>2.3%</td></tr>
+  <tr><td>Physical Adders (civil, transport, cables, etc.)</td><td>~€8,630</td><td>7.8%</td></tr>
+  <tr><td>EMS / SCADA</td><td>~€4,500</td><td>4.1%</td></tr>
+  <tr style="font-weight:700; background:#f0fdf4;"><td>Installed Cost</td><td>€110,700</td><td>100%</td></tr>
+  <tr style="font-weight:700; background:#fef3c7;"><td>Client Revenue (sell price)</td><td>€123,900</td><td>111.9%</td></tr>
+  <tr style="font-weight:700; background:#f0fdf4;"><td>Lighthief Margin</td><td>~€13,200</td><td>~10.7%</td></tr>
+</table>
+
+<h3>11.4 Payment Terms</h3>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Client &rarr; Lighthief</div>
+    <table>
+      <tr><td><strong>30%</strong></td><td>Advance — within 7 days of contract signing</td></tr>
+      <tr><td><strong>55%</strong></td><td>Pre-shipment — equipment ready, factory inspection passed</td></tr>
+      <tr><td><strong>10%</strong></td><td>PAC — system commissioned &amp; grid-connected</td></tr>
+      <tr><td><strong>5%</strong></td><td>Retention — released after 24-month DLP</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title">Lighthief &rarr; Linyang</div>
+    <table>
+      <tr><td><strong>25%</strong></td><td>Advance — order date</td></tr>
+      <tr><td><strong>50%</strong></td><td>Pre-shipment — ready to ship</td></tr>
+      <tr><td><strong>20%</strong></td><td>DAP — delivery at place (site arrival)</td></tr>
+      <tr><td><strong>5%</strong></td><td>SAT — site acceptance test completion</td></tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ SECTION 12 ═══════════════════ -->
+<h2 id="s12">12. Lighthief Portfolio Overview</h2>
+
+<div class="grid-3">
+  <div class="stat-card">
+    <div class="number">51</div>
+    <div class="label">Solar parks with BESS</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">249 MW</div>
+    <div class="label">Total BESS power capacity</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">887 MWh</div>
+    <div class="label">Total energy storage</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">252</div>
+    <div class="label">Battery containers</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">5</div>
+    <div class="label">Districts across Cyprus</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">€109M</div>
+    <div class="label">Total client revenue</div>
+  </div>
+</div>
+
+<h3>12.1 Client Groups</h3>
+
+<table>
+  <tr><th>Group</th><th>Parks</th><th>MW</th><th>MWh</th><th>Revenue</th></tr>
+  <tr><td>ABIO Power</td><td>25</td><td>125.0</td><td>430.28</td><td>€52.6M</td></tr>
+  <tr><td>Esperia Energy</td><td>11</td><td>79.5</td><td>315.50</td><td>€36.4M</td></tr>
+  <tr><td>Timotheos Timotheou</td><td>9</td><td>25.5</td><td>81.00</td><td>€11.8M</td></tr>
+  <tr><td>A. Kerasi</td><td>3</td><td>6.5</td><td>20.00</td><td>€3.1M</td></tr>
+  <tr><td>Lampros Andreadis</td><td>2</td><td>4.8</td><td>15.00</td><td>€2.1M</td></tr>
+  <tr><td>Ioannis Karis</td><td>1</td><td>7.7</td><td>25.00</td><td>€3.2M</td></tr>
+</table>
+
+<h3>12.2 Delivery Timeline</h3>
+
+<table>
+  <tr><th>Batch</th><th>Parks</th><th>MWh</th><th>Containers</th><th>CIF Arrival</th><th>Commissioned By</th></tr>
+  <tr><td><strong>Batch 1:</strong> ABIO Phase 1</td><td>15</td><td>280</td><td>80</td><td>Jul 2026</td><td>Oct 2026</td></tr>
+  <tr><td><strong>Batch 2:</strong> ABIO Ph.2 + TIM</td><td>19</td><td>230</td><td>90</td><td>Aug 2026</td><td>Jan 2027</td></tr>
+  <tr><td><strong>Batch 3:</strong> ESP + Standalone</td><td>12</td><td>288</td><td>82</td><td>Sep 2026</td><td>Feb 2027</td></tr>
+</table>
+
+
+<!-- ═══════════════════ SECTION 13 ═══════════════════ -->
+<h2 id="s13">13. Glossary of BESS &amp; PV Market Terms</h2>
+
+<div class="card">
+
+<dl>
+  <div class="glossary-term"><dt>AC</dt><dd><strong>Alternating Current</strong> — Electricity where current periodically reverses direction. The grid runs on AC at 50 Hz in Europe.</dd></div>
+  <div class="glossary-term"><dt>aFRR</dt><dd><strong>Automatic Frequency Restoration Reserve</strong> — A grid balancing service where the TSO sends automated signals to generators/batteries to restore system frequency over 5–15 minutes. Higher duration than FCR.</dd></div>
+  <div class="glossary-term"><dt>Ancillary Services</dt><dd>Services beyond basic energy supply that maintain grid reliability: frequency regulation, voltage support, reserves. BESS can provide these and earn revenue.</dd></div>
+  <div class="glossary-term"><dt>Arbitrage</dt><dd>Buying electricity when cheap (low demand) and selling when expensive (peak demand). The core revenue model for BESS.</dd></div>
+  <div class="glossary-term"><dt>Availability</dt><dd>The percentage of time a BESS system is operational and ready to dispatch. Our LTSA guarantees 97%.</dd></div>
+  <div class="glossary-term"><dt>BAMS</dt><dd><strong>Battery Stack Management System</strong> — The top-level (Level 3) BMS controller that aggregates data from all battery clusters and communicates with the EMS.</dd></div>
+  <div class="glossary-term"><dt>BCMU</dt><dd><strong>Battery Cluster Management Unit</strong> — Level 2 BMS that manages a cluster of battery packs, controls contactors, and calculates SOC.</dd></div>
+  <div class="glossary-term"><dt>BESS</dt><dd><strong>Battery Energy Storage System</strong> — An integrated system of batteries, inverters, transformers, and controls that stores and releases electrical energy.</dd></div>
+  <div class="glossary-term"><dt>Black Start</dt><dd>The ability to restart a power grid after a total shutdown without relying on external power. Grid-forming BESS can provide this.</dd></div>
+  <div class="glossary-term"><dt>BMS</dt><dd><strong>Battery Management System</strong> — Electronics that monitor cell voltage, temperature, and state of charge, and protect against overcharge/overdischarge.</dd></div>
+  <div class="glossary-term"><dt>BMU</dt><dd><strong>Battery Management Unit</strong> — Level 1 BMS at the module level. Monitors individual cell voltages and temperatures.</dd></div>
+  <div class="glossary-term"><dt>BOL / EOL</dt><dd><strong>Beginning of Life / End of Life</strong> — BOL is when the battery is new (98.5% SOH). EOL is defined as 70% SOH (the battery still works, but has degraded).</dd></div>
+  <div class="glossary-term"><dt>C-Rate</dt><dd>The rate at which a battery charges or discharges relative to its capacity. 1C means full charge/discharge in 1 hour. 0.5C = 2 hours. Our standard operation is 0.5C.</dd></div>
+  <div class="glossary-term"><dt>CAR</dt><dd><strong>Construction All Risk</strong> — Insurance policy covering damage during construction phase of the EPC project.</dd></div>
+  <div class="glossary-term"><dt>CERA</dt><dd><strong>Cyprus Energy Regulatory Authority</strong> — The regulator that issues licenses for energy storage and generation in Cyprus.</dd></div>
+  <div class="glossary-term"><dt>CIF</dt><dd><strong>Cost, Insurance &amp; Freight</strong> — Incoterm meaning the seller (Linyang) covers cost, insurance, and freight to the destination port (Limassol). The buyer (Lighthief) takes responsibility once goods are at port.</dd></div>
+  <div class="glossary-term"><dt>COD</dt><dd><strong>Commercial Operation Date</strong> — The date when the BESS is fully commissioned and starts earning revenue.</dd></div>
+  <div class="glossary-term"><dt>CPD</dt><dd><strong>Cycles Per Day</strong> — How many full charge/discharge cycles the battery performs daily. 1 CPD = once per day. 2 CPD = twice per day.</dd></div>
+  <div class="glossary-term"><dt>CT Class</dt><dd><strong>Current Transformer accuracy class</strong> — Determines metering accuracy for billing. Class 0.2S required for BESS in Cyprus (DSO requirement).</dd></div>
+  <div class="glossary-term"><dt>Curtailment</dt><dd>When a solar farm or BESS is instructed by the grid operator to reduce output because the grid cannot absorb more power. A major problem in Cyprus.</dd></div>
+  <div class="glossary-term"><dt>DAP</dt><dd><strong>Delivery at Place</strong> — Incoterm where the seller delivers goods to the buyer's nominated location. Used in our Linyang payment terms.</dd></div>
+  <div class="glossary-term"><dt>DC</dt><dd><strong>Direct Current</strong> — Electricity flowing in one direction. Batteries store and release DC power.</dd></div>
+  <div class="glossary-term"><dt>DLP</dt><dd><strong>Defects Liability Period</strong> — Period after commissioning during which the contractor must fix any defects at their cost. Our contracts have a 24-month DLP.</dd></div>
+  <div class="glossary-term"><dt>DoD</dt><dd><strong>Depth of Discharge</strong> — How much of the battery's capacity is used. 90% DoD means discharging to 10% SOC. Higher DoD = more usable energy but faster degradation.</dd></div>
+  <div class="glossary-term"><dt>DSO</dt><dd><strong>Distribution System Operator</strong> — The company operating the local electricity distribution network. In Cyprus, this is EAC (Electricity Authority of Cyprus).</dd></div>
+  <div class="glossary-term"><dt>EAC</dt><dd><strong>Electricity Authority of Cyprus</strong> — Cyprus's electricity company, acting as both DSO and the main power generator.</dd></div>
+  <div class="glossary-term"><dt>EMS</dt><dd><strong>Energy Management System</strong> — Software that optimises BESS operation: when to charge, discharge, and which grid service to provide. The "brain" of the system.</dd></div>
+  <div class="glossary-term"><dt>EN 50549-2</dt><dd>European grid connection standard for generating plants connected to MV distribution networks. The mandatory compliance standard for BESS in Cyprus.</dd></div>
+  <div class="glossary-term"><dt>EOL</dt><dd><strong>End of Life</strong> — When battery SOH reaches the defined threshold (typically 70%). The battery still works but has reduced capacity.</dd></div>
+  <div class="glossary-term"><dt>EPC</dt><dd><strong>Engineering, Procurement &amp; Construction</strong> — A turnkey contract where the contractor (Lighthief) handles everything from design to handover.</dd></div>
+  <div class="glossary-term"><dt>FAC</dt><dd><strong>Final Acceptance Certificate</strong> — Issued when all project obligations are complete, including DLP.</dd></div>
+  <div class="glossary-term"><dt>FAT</dt><dd><strong>Factory Acceptance Test</strong> — Testing performed at the manufacturer's factory before shipping to verify equipment meets specifications.</dd></div>
+  <div class="glossary-term"><dt>FCR</dt><dd><strong>Frequency Containment Reserve</strong> — The fastest grid balancing service. BESS must respond within 30 seconds to stabilise frequency. Highest-value ancillary service. BESS is ideal for this due to millisecond response time.</dd></div>
+  <div class="glossary-term"><dt>Grid-Forming</dt><dd>A mode where the inverter creates its own voltage and frequency reference (like a generator), rather than following the grid. Essential for island grids and black start.</dd></div>
+  <div class="glossary-term"><dt>Grid-Following</dt><dd>Standard inverter mode where the inverter synchronises to the existing grid voltage and frequency. Cannot operate without a grid reference.</dd></div>
+  <div class="glossary-term"><dt>HVRT / LVRT</dt><dd><strong>High/Low Voltage Ride-Through</strong> — The ability to remain connected during grid voltage disturbances. Required by EN 50549-2.</dd></div>
+  <div class="glossary-term"><dt>IEC 104</dt><dd><strong>IEC 60870-5-104</strong> — Communication protocol used by grid operators (DSO/TSO) to monitor and control equipment. The standard SCADA protocol in Cyprus.</dd></div>
+  <div class="glossary-term"><dt>Inertia</dt><dd>The resistance to frequency changes provided by spinning generators. BESS can provide "synthetic inertia" electronically, reducing the need for fossil fuel plants to be running.</dd></div>
+  <div class="glossary-term"><dt>IP Rating</dt><dd><strong>Ingress Protection</strong> — How well equipment is sealed against dust and water. IP55 = dust-protected + water jet protected. IP65 = dust-tight + water jet protected. IP67 = dust-tight + immersion-proof.</dd></div>
+  <div class="glossary-term"><dt>LFP</dt><dd><strong>Lithium Iron Phosphate</strong> (LiFePO4) — Battery chemistry used in our Linyang containers. Safer, longer-lasting, and cheaper than NMC. Preferred for utility-scale storage.</dd></div>
+  <div class="glossary-term"><dt>LTSA</dt><dd><strong>Long-Term Service Agreement</strong> — Lighthief's ongoing O&amp;M contract with clients. €1,740/MWh/year. Includes preventive maintenance, remote monitoring, SLA guarantees, and 97% availability target.</dd></div>
+  <div class="glossary-term"><dt>mFRR</dt><dd><strong>Manual Frequency Restoration Reserve</strong> — Grid balancing service activated manually by the TSO. Slower than aFRR (15+ minutes).</dd></div>
+  <div class="glossary-term"><dt>MV</dt><dd><strong>Medium Voltage</strong> — Voltage range of 1 kV to 36 kV. The Cyprus distribution grid operates at 22 kV. Our MV skid converts PCS output (690 V) to grid voltage (22 kV).</dd></div>
+  <div class="glossary-term"><dt>MV Skid</dt><dd>A pre-assembled container housing PCS inverter units plus an MV transformer. Converts battery DC to grid-level AC. Ships as a single unit.</dd></div>
+  <div class="glossary-term"><dt>NMC</dt><dd><strong>Nickel Manganese Cobalt</strong> — Alternative battery chemistry with higher energy density but shorter life and higher fire risk. We don't use it.</dd></div>
+  <div class="glossary-term"><dt>O&amp;M</dt><dd><strong>Operations &amp; Maintenance</strong> — Ongoing service to keep the BESS running: inspections, preventive maintenance, alarm response, performance optimisation.</dd></div>
+  <div class="glossary-term"><dt>PAC</dt><dd><strong>Provisional Acceptance Certificate</strong> — Issued when the BESS is commissioned and grid-connected. Triggers the 10% PAC payment and starts the DLP.</dd></div>
+  <div class="glossary-term"><dt>PCS</dt><dd><strong>Power Conversion System</strong> — The bidirectional inverter that converts between AC (grid) and DC (battery). Our PCS is the Kehua BCS1250K-C-HUD (1.25 MW per unit).</dd></div>
+  <div class="glossary-term"><dt>Peak Shaving</dt><dd>Using BESS to reduce power demand during peak hours, lowering electricity costs or grid charges.</dd></div>
+  <div class="glossary-term"><dt>PV</dt><dd><strong>Photovoltaic</strong> — Solar panel technology that converts sunlight directly into electricity. Our BESS systems are co-located with existing PV parks.</dd></div>
+  <div class="glossary-term"><dt>RES</dt><dd><strong>Renewable Energy Sources</strong> — Solar, wind, and other non-fossil energy. Cyprus has a high RES penetration target under EU directives.</dd></div>
+  <div class="glossary-term"><dt>Revenue Stacking</dt><dd>Earning from multiple services simultaneously: arbitrage + FCR + aFRR + curtailment recovery. BESS uniquely enables this.</dd></div>
+  <div class="glossary-term"><dt>RoCoF</dt><dd><strong>Rate of Change of Frequency</strong> — How quickly grid frequency is changing. High RoCoF indicates instability and is a trigger for synthetic inertia response.</dd></div>
+  <div class="glossary-term"><dt>RTE</dt><dd><strong>Round-Trip Efficiency</strong> — The ratio of energy out to energy in. Our full system AC-AC RTE is 86.32%. For every 100 kWh in, you get ~86 kWh out.</dd></div>
+  <div class="glossary-term"><dt>SAT</dt><dd><strong>Site Acceptance Test</strong> — Testing performed on-site after installation to verify the system meets contractual performance specifications.</dd></div>
+  <div class="glossary-term"><dt>SCADA</dt><dd><strong>Supervisory Control and Data Acquisition</strong> — System for monitoring and controlling the BESS remotely. Provides dashboards, alarms, and data logging.</dd></div>
+  <div class="glossary-term"><dt>SLD</dt><dd><strong>Single Line Diagram</strong> — Simplified electrical drawing showing the main power flow path. Required for DSO grid connection applications.</dd></div>
+  <div class="glossary-term"><dt>SOC</dt><dd><strong>State of Charge</strong> — How full the battery is, as a percentage. 100% = fully charged, 0% = empty. Managed by the BMS.</dd></div>
+  <div class="glossary-term"><dt>SOH</dt><dd><strong>State of Health</strong> — The current capacity of a battery relative to its original capacity. A new battery starts at 98.5% SOH. At 70% SOH it reaches EOL.</dd></div>
+  <div class="glossary-term"><dt>SPD</dt><dd><strong>Surge Protection Device</strong> — Equipment that protects against voltage spikes from lightning or grid switching. Part of our DEHN protection scope.</dd></div>
+  <div class="glossary-term"><dt>Synthetic Inertia</dt><dd>The electronic emulation of rotational inertia by a grid-forming inverter. Provides the same frequency stabilisation as a spinning generator, but without the generator.</dd></div>
+  <div class="glossary-term"><dt>THDi / THDu</dt><dd><strong>Total Harmonic Distortion</strong> — Measure of power quality. THDi = current harmonics (&lt;3% for our PCS). THDu = voltage harmonics (&lt;3%). Low THD = clean power.</dd></div>
+  <div class="glossary-term"><dt>TSO</dt><dd><strong>Transmission System Operator</strong> — Operator of the high-voltage transmission grid. In Cyprus, this is TSOC. The TSO dispatches ancillary services.</dd></div>
+  <div class="glossary-term"><dt>TSOC</dt><dd><strong>Transmission System Operator Cyprus</strong> — The entity responsible for operating Cyprus's high-voltage transmission network and managing grid stability.</dd></div>
+  <div class="glossary-term"><dt>UPS</dt><dd><strong>Uninterruptible Power Supply</strong> — Backup power for critical systems (BMS, SCADA, fire suppression) that keeps them running during grid outages.</dd></div>
+  <div class="glossary-term"><dt>VPP</dt><dd><strong>Virtual Power Plant</strong> — A network of distributed energy resources (like our 51 BESS sites) aggregated and controlled as a single entity.</dd></div>
+  <div class="glossary-term"><dt>VSG</dt><dd><strong>Virtual Synchronous Generator</strong> — A PCS operating mode that mimics the behaviour of a traditional synchronous generator, providing inertia and frequency support.</dd></div>
+</dl>
+
+</div>
+
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <p><strong>Lighthief Cyprus Ltd</strong> &bull; 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+  <p>office@lighthief.com &bull; +357 77 77 00 50 &bull; solarfarms.cy</p>
+  <p style="margin-top: 12px;">This document is confidential and for internal training purposes only.<br>
+  Data sourced from portfolio-data.ts (SSOT) &bull; Version 1.0 &bull; March 2026</p>
+</footer>
+
+</div>
+</body>
+</html>

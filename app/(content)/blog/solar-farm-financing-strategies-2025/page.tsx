@@ -42,7 +42,7 @@ const financingOptions = [
   {
     type: "70% Bank Financing",
     downPayment: "30%",
-    leverage: "2.33x",
+    leverage: "3.33x",
     typicalROI: "35-45%",
     riskLevel: "Medium",
     advantages: [

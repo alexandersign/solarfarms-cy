@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Advisory — Aurolia Ltd / Greenland Family Park</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+
+        /* Letterhead */
+        .letterhead {
+            text-align: center;
+            border-bottom: 3px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .letterhead h1 {
+            font-size: 22px;
+            margin: 0 0 4px 0;
+            letter-spacing: 2px;
+        }
+        .letterhead .company-details {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Metadata block */
+        .letter-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+        .meta-left, .meta-right {
+            padding: 15px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        .meta-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* Subject line */
+        .subject-line {
+            background-color: #f0f0f0;
+            padding: 12px 18px;
+            margin-bottom: 25px;
+            border-left: 4px solid #333;
+            font-size: 13px;
+        }
+        .subject-line strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        /* Headings */
+        h2 {
+            font-size: 16px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        /* Body */
+        p, li {
+            margin-bottom: 10px;
+        }
+        ol, ul {
+            padding-left: 25px;
+        }
+        ol li {
+            margin-bottom: 12px;
+        }
+
+        /* Blockquote */
+        blockquote {
+            background-color: #f8f8f8;
+            border-left: 4px solid #999;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #333;
+        }
+        blockquote .source {
+            display: block;
+            font-style: normal;
+            font-size: 12px;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        /* Risk table colors */
+        .risk-low { color: #198754; font-weight: bold; }
+        .risk-low-med { color: #6c8c3c; font-weight: bold; }
+        .risk-med { color: #b8860b; font-weight: bold; }
+        .risk-very-low { color: #198754; font-weight: bold; }
+        .risk-negligible { color: #6c757d; font-weight: bold; }
+
+        .severity-low { color: #198754; }
+        .severity-med { color: #b8860b; }
+        .severity-high { color: #dc3545; font-weight: bold; }
+        .severity-unknown { color: #6c757d; font-style: italic; }
+
+        /* Assessment box */
+        .assessment-box {
+            background-color: #f0faf4;
+            border: 1px solid #198754;
+            border-left: 5px solid #198754;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .assessment-box strong {
+            color: #0a5c36;
+        }
+
+        /* Generator section highlight */
+        .generator-section {
+            background-color: #f8f4ff;
+            border: 1px solid #d4c5f0;
+            border-left: 4px solid #7c5cbf;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .generator-section h3 {
+            margin-top: 0;
+            color: #4a2d8a;
+            font-size: 14px;
+        }
+
+        /* Smart meter section */
+        .smartmeter-section {
+            background-color: #fff8f0;
+            border: 1px solid #f0d8b5;
+            border-left: 4px solid #d4880f;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .smartmeter-section h3 {
+            margin-top: 0;
+            color: #8a5a0d;
+            font-size: 14px;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            background-color: #f0f4ff;
+            border: 1px solid #b8cce8;
+            border-left: 4px solid #0d6efd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .recommendations h3 {
+            margin-top: 0;
+            color: #084298;
+            font-size: 14px;
+        }
+
+        /* Signature */
+        .signature-block {
+            margin-top: 50px;
+            page-break-inside: avoid;
+        }
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 280px;
+            margin: 40px 0 5px 0;
+        }
+        .signature-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 40px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+
+        /* PDF button */
+        .pdf-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Georgia', serif;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+        }
+        .pdf-button:hover {
+            background-color: #555;
+        }
+
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 15px;
+                font-size: 12px;
+            }
+            .pdf-button {
+                display: none !important;
+            }
+            .signature-block {
+                page-break-inside: avoid;
+            }
+            .assessment-box, .generator-section, .smartmeter-section, .recommendations {
+                page-break-inside: avoid;
+            }
+            h2 {
+                page-break-after: avoid;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+            .letterhead {
+                border-bottom-color: #000;
+            }
+        }
+        @page {
+            margin: 2cm;
+            size: A4;
+        }
+    </style>
+</head>
+<body>
+
+<button class="pdf-button" onclick="exportPDF()">Export PDF</button>
+
+<!-- LETTERHEAD -->
+<div class="letterhead">
+    <h1>LIGHTHIEF CYPRUS LTD</h1>
+    <div class="company-details">
+        28 October Ave 249, Lophitis Business Center 1, Office 201, Limassol 3035, Cyprus<br>
+        Tel: +357 794342577 &nbsp;|&nbsp; Email: lighthiefcyprus@gmail.com &nbsp;|&nbsp; Web: www.lighthief.cy
+    </div>
+</div>
+
+<!-- LETTER METADATA -->
+<div class="letter-meta">
+    <div class="meta-left">
+        <div class="meta-label">To</div>
+        <strong>Mr Damir Radzhibaev</strong><br>
+        AUROLIA LTD<br>
+        4506 Eftagonia, Limassol, Cyprus
+    </div>
+    <div class="meta-right">
+        <div class="meta-label">Reference</div>
+        <strong>LCY-PV-AUR-001</strong> / Risk Advisory<br>
+        Contract: Estimate No. 1022<br>
+        <strong>Date:</strong> March 2026
+    </div>
+</div>
+
+<!-- SUBJECT -->
+<div class="subject-line">
+    <strong>Re: Regulatory Risk Profile</strong>
+    60 kWp Zero-Export PV Installation — Greenland Family Park
+</div>
+
+<!-- SALUTATION -->
+<p>Dear Mr Radzhibaev,</p>
+
+<p>Further to our signed installation contract dated 09/02/2026, this letter provides you with a transparent assessment of the regulatory risk profile associated with operating the photovoltaic system at Greenland Family Park without a formal EAC/DSO application.</p>
+
+<p>This advisory is provided in good faith to ensure you have a complete and realistic picture of the risks, based on publicly available information, industry experience, and our understanding of the current regulatory environment in Cyprus.</p>
+
+<!-- 1. ENFORCEMENT ENVIRONMENT -->
+<h2>1. Current Enforcement Environment</h2>
+
+<p>The Electricity Authority of Cyprus (EAC) publicly acknowledged in March 2024 that unauthorized PV installations are a widespread issue across both commercial and residential sectors in Cyprus. EAC spokeswoman Christina Papadopoulou confirmed that enforcement is currently <strong>reactive and based on tip-offs</strong>:</p>
+
+<blockquote>
+    "There are a lot of rooftops and it is difficult to inspect each one. Now we act mainly on tip-offs."
+    <span class="source">— Christina Papadopoulou, EAC Spokeswoman, Cyprus Mail, 26 March 2024</span>
+</blockquote>
+
+<p>There is no active EAC inspection program targeting unauthorized PV installations. The authority does not conduct routine audits or site visits to identify non-compliant systems.</p>
+
+<!-- 2. INDUSTRY PRECEDENT -->
+<h2>2. Industry Precedent</h2>
+
+<p>Leading commercial PV installers operating in Cyprus — including firms with decades of market presence — report that they have multiple installations operating in a self-consumption / zero-export configuration without formal EAC applications.</p>
+
+<p>The consistent industry experience is that when such installations are discovered, the typical outcome is:</p>
+
+<ul>
+    <li>A <strong>warning letter</strong> from EAC</li>
+    <li>A requirement to <strong>regularize</strong> the installation (submit a proper application)</li>
+    <li><strong>No criminal prosecution</strong> or significant financial penalties</li>
+</ul>
+
+<p>There are no published court cases, prosecution records, or specific fine amounts for unauthorized PV installations in Cyprus.</p>
+
+<!-- 3. EAC MEASURES -->
+<h2>3. EAC's Stated Enforcement Measures</h2>
+
+<p>EAC has publicly stated that its enforcement measures for unauthorized installations consist of:</p>
+
+<table>
+    <tr>
+        <th style="width:30%;">Measure</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><strong>System disconnection</strong></td>
+        <td>The illegal system is disconnected from the grid</td>
+    </tr>
+    <tr>
+        <td><strong>Certificate cancellation</strong></td>
+        <td>The approval certificate is revoked</td>
+    </tr>
+    <tr>
+        <td><strong>Fines</strong></td>
+        <td>Fines may be imposed (no specific amounts have been published)</td>
+    </tr>
+</table>
+
+<p>Under the Electricity Regulations (Cap. 82), connecting an installation without prior inspection is classified as an offence, but no penalty schedule has been published for this category of violation.</p>
+
+<!-- 4. SMART METERS -->
+<h2>4. Smart Meter Developments</h2>
+
+<div class="smartmeter-section">
+    <h3>EAC Smart Meter Rollout Status</h3>
+
+    <table>
+        <tr>
+            <th style="width:45%;">Parameter</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Meters installed (as of January 2026)</td>
+            <td><strong>~220,000</strong> of 400,000</td>
+        </tr>
+        <tr>
+            <td>Schedule</td>
+            <td>Ahead of target; full rollout expected within 2026</td>
+        </tr>
+        <tr>
+            <td>Limassol status</td>
+            <td>Installations actively underway</td>
+        </tr>
+        <tr>
+            <td>Detection capability</td>
+            <td>Automated load profile analysis</td>
+        </tr>
+        <tr>
+            <td>Remote action</td>
+            <td>Remote disconnection without site visit</td>
+        </tr>
+    </table>
+
+    <p>Once a smart meter is installed at your premises, EAC would theoretically be able to observe changes in your daytime grid consumption pattern. A significant reduction in daytime grid import could indicate the presence of on-site generation.</p>
+</div>
+
+<!-- 5. GENERATOR FACTOR -->
+<h2>5. Generator Factor — Your Specific Situation</h2>
+
+<div class="generator-section">
+    <h3>How the Existing Diesel Generator Affects Detection Risk</h3>
+
+    <p>Your premises at Greenland Family Park already operate a <strong>diesel generator</strong> connected to the facility's electrical system. This is a significant factor in the risk profile:</p>
+
+    <ol>
+        <li><strong>Existing irregular load profile.</strong> The generator already creates periods of reduced or zero grid import when running. EAC's meter — whether smart or conventional — already records an irregular consumption pattern for your site. This is normal baseline behavior.</li>
+
+        <li><strong>PV generation blends with existing variability.</strong> When the PV system reduces your daytime grid import, this reduction is difficult to distinguish from periods when the generator is running and offsetting grid consumption. The smart meter sees reduced grid import — but cannot determine whether this is caused by PV generation, generator operation, or simply lower facility demand.</li>
+
+        <li><strong>Conservative PV sizing.</strong> The 60 kWp system is modestly sized relative to the total electrical demand of a family park operation. The load profile shift is not dramatic — it represents a partial reduction in daytime import, not a complete elimination.</li>
+
+        <li><strong>Combined effect.</strong> The combination of an existing generator, variable facility loads (seasonal, event-driven), and a conservatively sized PV system means that the consumption pattern at the smart meter does not produce a clear "PV generation signature" in the way that a residential installation with no other generation would.</li>
+    </ol>
+</div>
+
+<!-- 6. RISK TABLE -->
+<h2>6. Practical Risk Assessment</h2>
+
+<p>Based on all available evidence, the risk profile for this installation is summarized as follows:</p>
+
+<table>
+    <tr>
+        <th>Risk</th>
+        <th>Likelihood</th>
+        <th>Severity</th>
+        <th>Notes</th>
+    </tr>
+    <tr>
+        <td>Detection (before smart meter)</td>
+        <td class="risk-low">Low</td>
+        <td>—</td>
+        <td>Tip-off based only; no active inspections</td>
+    </tr>
+    <tr>
+        <td>Detection (after smart meter)</td>
+        <td class="risk-low-med">Low–Medium</td>
+        <td>—</td>
+        <td>Generator load variability masks PV signature</td>
+    </tr>
+    <tr>
+        <td>Warning letter from EAC</td>
+        <td class="risk-med">Medium</td>
+        <td class="severity-low">Low</td>
+        <td>Standard first response based on industry experience</td>
+    </tr>
+    <tr>
+        <td>Forced disconnection</td>
+        <td class="risk-low-med">Low–Medium</td>
+        <td class="severity-med">Medium</td>
+        <td>Only following formal investigation</td>
+    </tr>
+    <tr>
+        <td>Significant financial fine</td>
+        <td class="risk-very-low">Very Low</td>
+        <td class="severity-unknown">Unknown</td>
+        <td>No published precedent or fine schedule</td>
+    </tr>
+    <tr>
+        <td>Criminal prosecution</td>
+        <td class="risk-negligible">Negligible</td>
+        <td class="severity-high">High</td>
+        <td>No known cases for PV installations in Cyprus</td>
+    </tr>
+    <tr>
+        <td>ETEK action against electrician</td>
+        <td class="risk-very-low">Very Low</td>
+        <td class="severity-med">Medium</td>
+        <td>No published disciplinary cases for PV</td>
+    </tr>
+    <tr>
+        <td>Insurance complication</td>
+        <td class="risk-low">Low</td>
+        <td class="severity-high">High</td>
+        <td>Only triggered by a separate incident or claim</td>
+    </tr>
+</table>
+
+<div class="assessment-box">
+    <strong>Overall Assessment:</strong> The practical risk is <strong>low to moderate</strong>, with the most likely adverse outcome being a warning letter and requirement to regularize — a process that Lighthief can manage on your behalf.
+</div>
+
+<!-- 7. RECOMMENDATIONS -->
+<h2>7. Our Recommendations</h2>
+
+<div class="recommendations">
+    <h3>Recommended Actions</h3>
+
+    <ol>
+        <li><strong>Maintain all installation documentation.</strong> We have prepared a complete documentation package (single line diagram, protection settings, commissioning records, test certificates) that would enable a rapid regularization if ever required.</li>
+
+        <li><strong>Do not modify the system configuration.</strong> The zero-export settings, safety interlocks, and generator interlock must remain as commissioned. Any modification could change the risk profile.</li>
+
+        <li><strong>Inform us immediately if contacted by EAC.</strong> If you receive any correspondence or visit from EAC or any regulatory authority, contact us before responding. We can manage the regularization process professionally and efficiently.</li>
+
+        <li><strong>Future regularization is available.</strong> Should you decide at any point to submit a formal EAC application, we can prepare and submit a Net Billing application on your behalf. This is a separate service quoted independently, with a typical timeline of 2–6 months.</li>
+    </ol>
+</div>
+
+<hr>
+
+<!-- DISCLAIMER -->
+<p class="disclaimer">This letter is provided for your information and does not constitute legal advice. For formal legal counsel on regulatory matters, we recommend consulting a qualified Cyprus attorney specializing in energy regulation.</p>
+
+<p>We remain at your disposal for any questions.</p>
+
+<p>Yours sincerely,</p>
+
+<!-- SIGNATURE -->
+<div class="signature-block">
+    <div class="signature-line"></div>
+    <p style="margin-bottom:2px;"><strong>Alexander Papacosta</strong></p>
+    <p class="signature-label">Director<br>Lighthief Cyprus Ltd</p>
+</div>
+
+<hr>
+
+<p class="footer">
+    Lighthief Cyprus Ltd &nbsp;|&nbsp; Ref: LCY-PV-AUR-001 &nbsp;|&nbsp; March 2026<br>
+    This document is confidential and intended solely for the addressee.
+</p>
+
+<script>
+function exportPDF() {
+    const button = document.querySelector('.pdf-button');
+    button.style.display = 'none';
+    window.print();
+    setTimeout(() => { button.style.display = 'block'; }, 1000);
+}
+</script>
+
+</body>
+</html>

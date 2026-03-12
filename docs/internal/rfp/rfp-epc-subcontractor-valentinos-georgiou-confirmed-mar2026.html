@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — EPC Subcontractor Pricing | Valentinos Georgiou</title>
+    <style>
+        :root { --primary: #1a365d; --accent: #ed8936; --gray-50: #f7fafc; --gray-200: #e2e8f0; --gray-600: #718096; --gray-800: #2d3748; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: var(--gray-800); font-size: 11pt; }
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px 30px; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 15px; border-bottom: 3px solid var(--primary); margin-bottom: 20px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        h1 { font-size: 20px; color: var(--primary); margin-bottom: 5px; text-align: center; }
+        h2 { font-size: 14px; color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 4px; margin: 20px 0 10px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10pt; }
+        th, td { border: 1px solid var(--gray-200); padding: 7px 9px; text-align: left; }
+        th { background: var(--primary); color: white; font-weight: 600; font-size: 9pt; }
+        tr:nth-child(even) { background: var(--gray-50); }
+        .r { text-align: right; }
+        .price-input { background: #fffde7; border: 1px dashed #f39c12; padding: 5px; min-width: 70px; }
+        .price-header th { background: var(--accent); }
+        .total-row { background: var(--primary) !important; color: white; font-weight: 700; }
+        .total-row td { border-color: var(--primary); }
+        .note { font-size: 9pt; color: var(--gray-600); margin: 8px 0; }
+        .callout { padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 10pt; background: #ebf8ff; border-left: 4px solid #3182ce; }
+        .footer { margin-top: 25px; padding-top: 12px; border-top: 2px solid var(--gray-200); text-align: center; font-size: 8pt; color: var(--gray-600); }
+        .print-btn { position: fixed; top: 15px; right: 15px; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; z-index: 1000; }
+        @media print { .print-btn { display: none; } .container { padding: 0; } @page { margin: 12mm; size: A4; } }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">&#128196; PDF</button>
+    <div class="container">
+
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div><div class="company-name">LIGHTHIEF</div></div>
+            </div>
+            <div class="doc-meta">
+                <strong>RFP-LCY-EPC-SUB-2026-002</strong><br>
+                6 March 2026<br>
+                Confidential
+            </div>
+        </div>
+
+        <h1>EPC Subcontractor &mdash; Pricing Request</h1>
+        <p style="text-align:center; color:var(--gray-600); margin-bottom:15px;">Valentinos Georgiou | INTESO GROUP | 10 Parks | ~116 MWh | 3 Districts</p>
+
+        <!-- Parks -->
+        <h2>1. Parks</h2>
+        <table>
+            <tr><th>#</th><th>Group</th><th>Park</th><th>District</th><th class="r">MW</th><th class="r">MWh</th><th class="r">BESS (20HC)</th><th class="r">MV SKID (40HC)</th></tr>
+            <tr><td>1</td><td>ABIO Power</td><td>ABIO Park 1</td><td>Nicosia</td><td class="r">5.0</td><td class="r">10</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>2</td><td>ABIO Power</td><td>ABIO Park 2</td><td>Nicosia</td><td class="r">4.5</td><td class="r">10</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>3</td><td>ABIO Power</td><td>ABIO Park 3</td><td>Nicosia</td><td class="r">2.5</td><td class="r">10</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>4</td><td>ABIO Power</td><td>ABIO Park 4</td><td>Nicosia</td><td class="r">3.0</td><td class="r">11.28</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>5</td><td>ABIO Power</td><td>ABIO Park 5</td><td>Nicosia</td><td class="r">2.5</td><td class="r">10</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>6</td><td>Galascope</td><td>Galascope Park 1</td><td>Famagusta</td><td class="r">5.0</td><td class="r">20</td><td class="r">4</td><td class="r">2</td></tr>
+            <tr><td>7</td><td>Galascope</td><td>Galascope Park 2</td><td>Famagusta</td><td class="r">2.5</td><td class="r">10</td><td class="r">2</td><td class="r">1</td></tr>
+            <tr><td>8</td><td>Timotheou</td><td>Timotheou Park 1</td><td>Nicosia</td><td class="r">5.0</td><td class="r">15</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>9</td><td>Timotheou</td><td>Timotheou Park 2</td><td>Limassol</td><td class="r">5.0</td><td class="r">15</td><td class="r">3</td><td class="r">1</td></tr>
+            <tr><td>10</td><td>Timotheou</td><td>Timotheou Park 3</td><td>TBC</td><td class="r">~1.5</td><td class="r">5</td><td class="r">1</td><td class="r">1</td></tr>
+            <tr class="total-row"><td colspan="4">TOTAL</td><td class="r">~36.5</td><td class="r">116.28</td><td class="r">28</td><td class="r">11</td></tr>
+        </table>
+        <p class="note">All parks are co-located with existing PV (Category B). BESS containers: 20HC (~41.5t, 6.1&times;2.4&times;2.9m). MV SKIDs: 40HC (&le;38t, 12.2&times;2.4&times;2.9m). Equipment: Linyang + Kehua PCS. CIF Limassol.</p>
+
+        <!-- Scopes -->
+        <h2>2. Scopes &mdash; Quote Any or All</h2>
+        <table>
+            <tr><th>Scope</th><th>Includes</th></tr>
+            <tr><td><strong>A. Civil Works</strong></td><td>Structural design (ETEK), excavation, sub-base, reinforced concrete slab (C30/37), cable trenches, drainage, earthing grid in slab, as-built drawings &amp; test certificates</td></tr>
+            <tr><td><strong>B. Lightning Protection</strong></td><td>Risk assessment (IEC 62305), external LPS, SPD (MV/LV/DC/comms), earthing system, installation, testing &amp; certification</td></tr>
+            <tr><td><strong>C. DSO Compliance</strong></td><td>Grid connection application, electrical design drawings (SLD, protection, CT/VT), protection relay settings, building permits, DSO witness testing, as-built documentation</td></tr>
+            <tr><td><strong>D. Logistics</strong> (optional)</td><td>Port-to-site transport (Limassol port &rarr; site), crane offloading, site placement on foundation</td></tr>
+        </table>
+
+        <!-- Pricing -->
+        <h2>3. Pricing &mdash; Per Park</h2>
+        <table>
+            <tr class="price-header"><th>Park</th><th>District</th><th class="r">MWh</th><th class="r">Units</th><th>A. Civil (&euro;)</th><th>B. LPS (&euro;)</th><th>C. DSO (&euro;)</th><th>D. Logistics (&euro;)</th><th>Total (&euro;)</th></tr>
+            <tr><td>ABIO Park 1</td><td>Nicosia</td><td class="r">10</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>ABIO Park 2</td><td>Nicosia</td><td class="r">10</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>ABIO Park 3</td><td>Nicosia</td><td class="r">10</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>ABIO Park 4</td><td>Nicosia</td><td class="r">11.28</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>ABIO Park 5</td><td>Nicosia</td><td class="r">10</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Galascope Park 1</td><td>Famagusta</td><td class="r">20</td><td class="r">6</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Galascope Park 2</td><td>Famagusta</td><td class="r">10</td><td class="r">3</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Timotheou Park 1</td><td>Nicosia</td><td class="r">15</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Timotheou Park 2</td><td>Limassol</td><td class="r">15</td><td class="r">4</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Timotheou Park 3</td><td>TBC</td><td class="r">5</td><td class="r">2</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr class="total-row"><td colspan="4">TOTAL (10 parks)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+        <p class="note">Units = BESS containers + MV SKIDs. All prices EUR excl. VAT.</p>
+
+        <!-- LPS alternative -->
+        <h2>4. Lightning Protection &mdash; Alternative Option</h2>
+        <p>If Lighthief supplies DEHN material, please quote <strong>installation labour only</strong>:</p>
+        <table>
+            <tr class="price-header"><th>Item</th><th>Unit</th><th>Rate (&euro;)</th></tr>
+            <tr><td>LPS + SPD + earthing installation labour</td><td>per park</td><td class="price-input"></td></tr>
+            <tr><td>Testing &amp; certification</td><td>per park</td><td class="price-input"></td></tr>
+        </table>
+
+        <!-- Logistics by district -->
+        <h2>5. Logistics by District (if quoting Scope D)</h2>
+        <table>
+            <tr class="price-header"><th>Route</th><th class="r">Units</th><th>Per Unit (&euro;)</th></tr>
+            <tr><td>Limassol Port &rarr; Nicosia</td><td class="r">26</td><td class="price-input"></td></tr>
+            <tr><td>Limassol Port &rarr; Famagusta</td><td class="r">9</td><td class="price-input"></td></tr>
+            <tr><td>Limassol Port &rarr; Limassol</td><td class="r">4</td><td class="price-input"></td></tr>
+            <tr><td>Site crane + placement (all sites)</td><td class="r">39</td><td class="price-input"></td></tr>
+        </table>
+
+        <!-- Volume discount -->
+        <h2>6. Volume Discount (Optional)</h2>
+        <p class="note">30+ additional parks (~500+ MWh) expected in future batches under the same framework.</p>
+        <table>
+            <tr class="price-header"><th>Volume</th><th>Discount on above rates</th></tr>
+            <tr><td>Cumulative 20 parks</td><td class="price-input"></td></tr>
+            <tr><td>Cumulative 40+ parks</td><td class="price-input"></td></tr>
+        </table>
+
+        <!-- Timeline & terms -->
+        <h2>7. Timeline &amp; Terms</h2>
+        <table>
+            <tr><th style="width:180px;">Item</th><th>Detail</th></tr>
+            <tr><td><strong>Proposal due</strong></td><td><strong>19 March 2026</strong></td></tr>
+            <tr><td>Civil works start</td><td>April 2026</td></tr>
+            <tr><td>All sites ready before</td><td>August 2026 (container arrival)</td></tr>
+            <tr><td>Prices valid</td><td>90 days</td></tr>
+            <tr><td>Payment terms</td><td>Please state your preferred terms</td></tr>
+        </table>
+
+        <div class="callout">
+            <strong>We will provide:</strong> Linyang container datasheets, MV SKID drawings, site plans, EAC Technical Guide for Storage 2025.1, and DEHN LPS scope documentation (if labour-only option).
+        </div>
+
+        <!-- Contact -->
+        <h2>8. Contact</h2>
+        <p><strong>Alexander Papacosta</strong> | Lighthief Cyprus Ltd<br>
+        T: +357 99 164 158 | E: office@lighthief.com</p>
+        <p style="margin-top:8px;"><strong>Submit to:</strong> office@lighthief.com<br>
+        <strong>CC:</strong> valentinos@intesocy.com<br>
+        <strong>Subject:</strong> RFP-LCY-EPC-SUB-2026-002 &mdash; INTESO Proposal</p>
+
+        <div class="footer">
+            <strong>Lighthief Cyprus Ltd</strong> | HE 477423 | Confidential<br>
+            RFP-LCY-EPC-SUB-2026-002 v3.0 | 6 March 2026
+        </div>
+
+    </div>
+</body>
+</html>

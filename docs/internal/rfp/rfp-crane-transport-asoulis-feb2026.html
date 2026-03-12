@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — Crane & Heavy Transport Services | A. Soulis | February 2026</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container { max-width: 210mm; margin: 0 auto; padding: 25px 35px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; text-transform: uppercase; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--primary); }
+
+        .doc-title {
+            text-align: center; margin: 25px 0 15px;
+            font-size: 20px; font-weight: 700; color: var(--primary);
+            padding: 15px; background: var(--gray-50); border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .doc-subtitle {
+            text-align: center; margin: -5px 0 25px;
+            font-size: 13px; color: var(--gray-600);
+        }
+
+        h2 {
+            color: var(--primary); font-size: 16px;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 8px; margin: 30px 0 15px;
+        }
+
+        h3 { color: var(--primary-light); font-size: 13px; margin: 20px 0 10px; }
+
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 10px 0 20px; font-size: 10pt;
+        }
+
+        th, td { padding: 8px 10px; border: 1px solid var(--gray-200); text-align: left; }
+
+        th {
+            background: var(--primary); color: white;
+            font-weight: 600; font-size: 9pt; text-transform: uppercase;
+        }
+
+        tr:nth-child(even) { background: var(--gray-50); }
+
+        .totals-row { font-weight: 700; background: var(--gray-100) !important; }
+        .total-row { background: var(--primary) !important; color: white; font-weight: bold; }
+        .total-row td { border-color: var(--primary); color: white; }
+        .subtotal-row { background: var(--primary-light) !important; color: white; font-weight: 600; }
+        .subtotal-row td { border-color: var(--primary-light); color: white; }
+        .batch-header { background: var(--accent) !important; color: white; font-weight: bold; }
+        .batch-header td { border-color: var(--accent); font-size: 11pt; color: white; }
+        .district-header { background: #2d3748 !important; color: white; font-weight: bold; }
+        .district-header td { border-color: #2d3748; color: white; }
+
+        .info-box {
+            background: var(--gray-50); border-left: 4px solid var(--primary-light);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .warning-box {
+            background: #fffff0; border-left: 4px solid var(--warning);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .highlight-box {
+            background: #f0fff4; border-left: 4px solid var(--success);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .vendor-box {
+            background: var(--primary); color: white;
+            padding: 18px 22px; margin: 20px 0; border-radius: 6px;
+        }
+        .vendor-box h3 { color: var(--accent); margin-bottom: 10px; }
+        .vendor-box p { margin: 4px 0; }
+
+        .contact-box {
+            background: var(--primary); color: white;
+            padding: 18px 22px; margin: 20px 0; border-radius: 6px;
+        }
+        .contact-box h3 { color: var(--accent); margin-bottom: 10px; }
+        .contact-box p { margin: 4px 0; }
+
+        .container-spec {
+            display: inline-block; background: #e8f4fd; padding: 14px 18px;
+            border-radius: 6px; margin: 6px; border-left: 4px solid #3498db;
+            vertical-align: top; width: calc(50% - 20px);
+        }
+        .container-spec strong { display: block; margin-bottom: 4px; }
+
+        .weight-warning { color: var(--danger); font-weight: bold; }
+
+        .price-input { background: #fffde7; border: 1px dashed var(--accent); padding: 5px; min-width: 80px; }
+
+        .section-intro { font-size: 10.5pt; color: var(--gray-700); margin-bottom: 15px; }
+
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+
+        .toc { margin: 20px 0 30px; }
+        .toc ol { padding-left: 20px; }
+        .toc li { padding: 4px 0; font-size: 10.5pt; }
+        .toc a { color: var(--primary-light); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        .footer {
+            margin-top: 40px; padding-top: 15px;
+            border-top: 2px solid var(--gray-200);
+            font-size: 9pt; color: var(--gray-600);
+            text-align: center;
+        }
+
+        @media print {
+            body { font-size: 10pt; }
+            .container { padding: 10px 20px; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="company-name">LIGHTHIEF</div>
+                <div class="company-tagline">Energy Storage Solutions — Cyprus</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <strong>REQUEST FOR PROPOSAL</strong><br>
+            Ref: LCY-RFP-CRANE-2026-001<br>
+            Date: 26 February 2026<br>
+            Classification: COMMERCIAL — CONFIDENTIAL
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="doc-title">Crane &amp; Heavy Transport Services — BESS Container Delivery</div>
+    <div class="doc-subtitle">
+        All 2026 Batches — 46 Parks · 251 Containers · 5 Districts · Limassol Port to Site<br>
+        Equipment: Linyang Energy LFP Battery Energy Storage Systems
+    </div>
+
+    <!-- VENDOR -->
+    <div class="vendor-box">
+        <h3>TO: A. SOULIS — Special Lifting &amp; Heavy Haulage</h3>
+        <p><strong>Attention:</strong> Stephanos Soulis, General Manager</p>
+        <p><strong>Tel:</strong> +357 24642430 &nbsp;|&nbsp; <strong>Mobile:</strong> +357 99522736</p>
+        <p><strong>Email:</strong> stephanos@souliscranes.com &nbsp;|&nbsp; asoulis@spidernet.com.cy</p>
+        <p><strong>Web:</strong> www.soulis-cranes.com.cy</p>
+    </div>
+
+    <!-- REFERENCE TABLE -->
+    <table>
+        <tr><th colspan="2">Document Reference</th></tr>
+        <tr><td><strong>From</strong></td><td>Costas — Lighthief Cyprus Ltd (<a href="mailto:costas@lighthief.com">costas@lighthief.com</a>)</td></tr>
+        <tr><td><strong>Company</strong></td><td>Lighthief Cyprus Ltd, 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol</td></tr>
+        <tr><td><strong>Previous RFQ</strong></td><td>RFQ-LCY-TRANS-2026-001 (27 January 2026) — fleet confirmation received 22 Feb 2026</td></tr>
+        <tr><td><strong>This Document</strong></td><td>LCY-RFP-CRANE-2026-001 — Updated RFP with confirmed batch schedule, container quantities, and delivery timeline</td></tr>
+        <tr><td><strong>Proposal Deadline</strong></td><td><strong>12 March 2026</strong></td></tr>
+        <tr><td><strong>Project Start</strong></td><td>First delivery: 12 July 2026 (Batch 1 port clearance)</td></tr>
+        <tr><td><strong>Project End</strong></td><td>Last delivery: ~18 October 2026 (Batch 3 final site delivery)</td></tr>
+    </table>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+            <li><a href="#s1">Project Overview</a></li>
+            <li><a href="#s2">Container Specifications — Types, Sizes &amp; Weights</a></li>
+            <li><a href="#s3">2026 Batch Schedule &amp; Port ETA</a></li>
+            <li><a href="#s4">Delivery Matrix — By Batch, District &amp; Destination</a></li>
+            <li><a href="#s5">Scope of Work</a></li>
+            <li><a href="#s6">Pricing Template</a></li>
+            <li><a href="#s7">Fleet &amp; Capacity Requirements</a></li>
+            <li><a href="#s8">Terms &amp; Conditions</a></li>
+            <li><a href="#s9">Required Information from Vendor</a></li>
+        </ol>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: PROJECT OVERVIEW                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s1">1. Project Overview</h2>
+
+    <p class="section-intro">
+        Lighthief Cyprus Ltd is the exclusive distributor and EPC contractor for a portfolio of 46 Battery Energy Storage System (BESS) parks being delivered across Cyprus in 2026. All equipment ships CIF Limassol from Linyang Energy (Shanghai, China) and requires crane unloading and heavy haulage transport from Limassol Port to solar park sites across 5 Cyprus districts.
+    </p>
+
+    <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td><strong>Total Parks (2026 delivery)</strong></td><td>46</td></tr>
+        <tr><td><strong>Total Installed Capacity</strong></td><td>221.5 MW / 793 MWh</td></tr>
+        <tr><td><strong>Total Containers</strong></td><td><strong>251</strong></td></tr>
+        <tr><td><strong>Delivery Batches</strong></td><td>3 (July – October 2026)</td></tr>
+        <tr><td><strong>Port of Arrival</strong></td><td>Limassol Port (ECTL terminal)</td></tr>
+        <tr><td><strong>Incoterms</strong></td><td>CIF Limassol</td></tr>
+        <tr><td><strong>Delivery Districts</strong></td><td>Nicosia, Famagusta, Larnaca, Limassol, Paphos</td></tr>
+        <tr><td><strong>Equipment Manufacturer</strong></td><td>Linyang Energy (LFP battery containers &amp; PCS/MV skids)</td></tr>
+        <tr><td><strong>Estimated Total Weight</strong></td><td>~10,200 tonnes (all containers)</td></tr>
+    </table>
+
+    <div class="highlight-box">
+        <strong>Previous Engagement:</strong> A. Soulis provided a reference quotation (November 2025) for Limassol Port → Ayios Kendeas: 6× 20HC (43t) + 4× 20' Standard (15t), transport + crane unload = €23,600 (~€2,360/container). Fleet confirmation received 22 February 2026: 6× 20ft trucks (43T capacity) confirmed. Current transport budget: €604,160 (251 containers × €2,360). This RFP seeks formal pricing for the full 2026 programme across all routes and batches.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: CONTAINER SPECIFICATIONS                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s2">2. Container Specifications — Types, Sizes &amp; Weights</h2>
+
+    <p class="section-intro">
+        There are two container types across the portfolio. Both require crane placement on prepared reinforced concrete foundations at each site.
+    </p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 15px 0;">
+        <div class="container-spec">
+            <strong style="font-size: 12pt; color: var(--primary);">TYPE A — Battery Container (BESS)</strong>
+            <strong>ISO Type:</strong> 20' High Cube (20HC)<br>
+            <strong>External Dimensions:</strong> 6,058 mm × 2,438 mm × 2,896 mm<br>
+            <strong>Height:</strong> 2,896 mm (9 ft 6 in)<br>
+            <strong>Weight (loaded):</strong> <span class="weight-warning">~41.5 – 43 tonnes</span><br>
+            <strong>Contents:</strong> LFP Battery Cells (EVE 314Ah) + BMS + HVAC Cooling + Fire Suppression<br>
+            <strong>Capacity:</strong> 5.015 MWh per container<br>
+            <strong>Crane Requirement:</strong> Minimum 50-tonne mobile crane<br>
+            <strong>IMO Class:</strong> Class 9 (Lithium batteries)
+        </div>
+        <div class="container-spec">
+            <strong style="font-size: 12pt; color: var(--primary);">TYPE B — MV SKID / PCS Container</strong>
+            <strong>ISO Type:</strong> 40' High Cube (40HC) or 20' High Cube (20HC)*<br>
+            <strong>External Dimensions (40HC):</strong> 12,192 mm × 2,438 mm × 2,896 mm<br>
+            <strong>External Dimensions (20HC):</strong> 6,058 mm × 2,438 mm × 2,896 mm<br>
+            <strong>Weight (loaded):</strong> <span class="weight-warning">~35 – 38 tonnes (40HC) / ~28 – 32 tonnes (20HC)</span><br>
+            <strong>Contents:</strong> PCS Inverter (Kehua) + MV Transformer + MV Switchgear<br>
+            <strong>Crane Requirement:</strong> Min 50T (20HC) / Min 80T (40HC)<br>
+            <strong>Note:</strong> *Smaller parks (≤2.5 MW) use 20HC skids; larger parks use 40HC
+        </div>
+    </div>
+
+    <h3>2.1 Weight Summary by Container Type</h3>
+    <table>
+        <tr><th>Container Type</th><th>ISO Size</th><th>Dimensions (L × W × H)</th><th>Unit Weight (loaded)</th><th>Min. Crane Capacity</th></tr>
+        <tr><td>BESS Battery Container</td><td>20' High Cube</td><td>6,058 × 2,438 × 2,896 mm</td><td>41.5 – 43 tonnes</td><td>50 tonnes</td></tr>
+        <tr><td>MV SKID (large parks ≥5 MW)</td><td>40' High Cube</td><td>12,192 × 2,438 × 2,896 mm</td><td>35 – 38 tonnes</td><td>80 tonnes</td></tr>
+        <tr><td>MV SKID (small parks ≤2.5 MW)</td><td>20' High Cube</td><td>6,058 × 2,438 × 2,896 mm</td><td>28 – 32 tonnes</td><td>50 tonnes</td></tr>
+    </table>
+
+    <div class="warning-box">
+        <strong>Heavy Load Warning:</strong> All BESS containers weigh approximately 43 tonnes — exceeding standard road freight limits. Heavy load permits, police escorts, and appropriate low-loader trailers are mandatory. All containers contain lithium batteries (IMO Class 9) — no special ADR requirements for road transport within Cyprus, but driver awareness of contents is required.
+    </div>
+
+    <h3>2.2 Lifting Requirements</h3>
+    <table>
+        <tr><th>Requirement</th><th>Specification</th></tr>
+        <tr><td>Lifting Points</td><td>ISO corner castings (top + bottom); certified for crane lift</td></tr>
+        <tr><td>Spreader Bar</td><td>Required for 40HC containers to prevent bowing</td></tr>
+        <tr><td>Placement Tolerance</td><td>±50 mm of marked foundation positions</td></tr>
+        <tr><td>Levelling</td><td>Containers must be level on foundation (shimming may be required)</td></tr>
+        <tr><td>Foundation Type</td><td>Reinforced concrete pad (prepared in advance by Lighthief subcontractors)</td></tr>
+        <tr><td>Container Spacing</td><td>6 m minimum between containers (FM 5-33 / NFPA 855 compliant)</td></tr>
+        <tr><td>Site Access</td><td>6 m wide access road at each site; crane must operate from hardstanding</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: 2026 BATCH SCHEDULE & PORT ETA               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s3">3. 2026 Batch Schedule &amp; Port ETA</h2>
+
+    <p class="section-intro">
+        All containers arrive at <strong>Limassol Port (ECTL terminal)</strong> in three batches. Port clearance typically takes 5–7 working days. Transport from port to sites should commence immediately after clearance to minimise port storage charges (4 days free storage, then €8/container/day escalating).
+    </p>
+
+    <table>
+        <tr>
+            <th>Batch</th>
+            <th>Description</th>
+            <th>Parks</th>
+            <th>Containers</th>
+            <th>ETA Limassol Port</th>
+            <th>Port Clearance Complete</th>
+            <th>Transport Window</th>
+            <th>Destination Districts</th>
+        </tr>
+        <tr style="background: #fff3e0;">
+            <td><strong>Batch 1</strong></td>
+            <td>ABIO Phase 1</td>
+            <td>15</td>
+            <td><strong>80</strong></td>
+            <td><strong>5 July 2026</strong></td>
+            <td>~12 July 2026</td>
+            <td>12 Jul – 5 Aug 2026</td>
+            <td>Nicosia only</td>
+        </tr>
+        <tr style="background: #e3f2fd;">
+            <td><strong>Batch 2</strong></td>
+            <td>ABIO Phase 2 + Timotheos</td>
+            <td>19</td>
+            <td><strong>90</strong></td>
+            <td><strong>20 August 2026</strong></td>
+            <td>~27 August 2026</td>
+            <td>27 Aug – 15 Sep 2026</td>
+            <td>Nicosia, Larnaca, Paphos</td>
+        </tr>
+        <tr style="background: #e8f5e9;">
+            <td><strong>Batch 3</strong></td>
+            <td>Esperia Phase 1 + Standalone</td>
+            <td>12</td>
+            <td><strong>81</strong></td>
+            <td><strong>20 September 2026</strong></td>
+            <td>~27 September 2026</td>
+            <td>27 Sep – 18 Oct 2026</td>
+            <td>Famagusta, Limassol, Paphos, Nicosia</td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="2"><strong>TOTAL — ALL 2026 BATCHES</strong></td>
+            <td><strong>46</strong></td>
+            <td><strong>251</strong></td>
+            <td colspan="2">July – September 2026</td>
+            <td>Jul – Oct 2026</td>
+            <td>5 districts</td>
+        </tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Scheduling Note:</strong> Batch ETAs are based on 50-day shipping from Shanghai. Actual arrival may vary ±7 days. Lighthief will provide 14 days advance notice of confirmed vessel arrival for each batch. Crane and transport must be available within 48 hours of port clearance completion.
+    </div>
+
+    <h3>3.1 Estimated Total Weight by Batch</h3>
+    <table>
+        <tr><th>Batch</th><th>Containers</th><th>MWh</th><th>Estimated BESS (20HC, ~43t)</th><th>Estimated MV SKID (mixed, ~35t)</th><th>Est. Total Weight</th></tr>
+        <tr><td>Batch 1</td><td>80</td><td>280</td><td>~56 containers × 43t</td><td>~24 containers × 35t</td><td>~3,248 tonnes</td></tr>
+        <tr><td>Batch 2</td><td>90</td><td>230</td><td>~46 containers × 43t</td><td>~44 containers × 35t</td><td>~3,518 tonnes</td></tr>
+        <tr><td>Batch 3</td><td>81</td><td>283</td><td>~57 containers × 43t</td><td>~24 containers × 35t</td><td>~3,291 tonnes</td></tr>
+        <tr class="totals-row"><td><strong>TOTAL</strong></td><td><strong>251</strong></td><td><strong>793</strong></td><td><strong>~159 containers</strong></td><td><strong>~92 containers</strong></td><td><strong>~10,057 tonnes</strong></td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: DELIVERY MATRIX                              -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s4">4. Delivery Matrix — By Batch, District &amp; Destination</h2>
+
+    <p class="section-intro">
+        All deliveries originate from <strong>Limassol Port (ECTL terminal)</strong>. Containers are transported to solar park sites across 5 Cyprus districts. The following tables detail the number of containers per batch, per district, with estimated transport distances.
+    </p>
+
+    <h3>4.1 Batch 1 — ABIO Phase 1 (ETA Port: 5 July 2026 | Transport: 12 Jul – 5 Aug 2026)</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MWh</th><th>Containers</th><th>Est. Distance from Port</th><th>Notes</th></tr>
+        <tr class="district-header"><td colspan="6">NICOSIA DISTRICT</td></tr>
+        <tr><td>Nicosia region</td><td>15</td><td>280</td><td><strong>80</strong></td><td>~85–95 km</td><td>Entire batch in single district — efficient crane routing. Villages include Potamia, Agios Sozomenos, Tseri, Dali area</td></tr>
+        <tr class="subtotal-row"><td colspan="3"><strong>Batch 1 Total</strong></td><td><strong>80</strong></td><td colspan="2">Single route: Limassol → Nicosia (~90 km)</td></tr>
+    </table>
+
+    <h3>4.2 Batch 2 — ABIO Phase 2 + Timotheos (ETA Port: 20 Aug 2026 | Transport: 27 Aug – 15 Sep 2026)</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MWh</th><th>Containers</th><th>Est. Distance from Port</th><th>Notes</th></tr>
+        <tr class="district-header"><td colspan="6">NICOSIA DISTRICT</td></tr>
+        <tr><td>Nicosia region</td><td>14</td><td>160</td><td><strong>65</strong></td><td>~85–95 km</td><td>ABIO Ph.2 (5 parks) + Timotheos (9 parks)</td></tr>
+        <tr class="district-header"><td colspan="6">LARNACA DISTRICT</td></tr>
+        <tr><td>Larnaca region</td><td>4</td><td>48</td><td><strong>17</strong></td><td>~65–75 km</td><td>ABIO cluster — Greendorado area</td></tr>
+        <tr class="district-header"><td colspan="6">PAPHOS DISTRICT</td></tr>
+        <tr><td>Polemi / Paphos</td><td>1</td><td>22</td><td><strong>8</strong></td><td>~60–70 km</td><td>Single ABIO park (Polemi)</td></tr>
+        <tr class="subtotal-row"><td colspan="3"><strong>Batch 2 Total</strong></td><td><strong>90</strong></td><td colspan="2">3 routes: Nicosia, Larnaca, Paphos</td></tr>
+    </table>
+
+    <h3>4.3 Batch 3 — Esperia Phase 1 + Standalone Groups (ETA Port: 20 Sep 2026 | Transport: 27 Sep – 18 Oct 2026)</h3>
+    <table>
+        <tr><th>District</th><th>Parks</th><th>MWh</th><th>Containers</th><th>Est. Distance from Port</th><th>Notes</th></tr>
+        <tr class="district-header"><td colspan="6">FAMAGUSTA DISTRICT</td></tr>
+        <tr><td>Famagusta / Frenaros area</td><td>5</td><td>180</td><td><strong>52</strong></td><td>~120–135 km</td><td>Esperia cluster (3 parks) + Galascope (2 parks) — largest district concentration. Includes 1 park with 14+ containers (largest single site)</td></tr>
+        <tr class="district-header"><td colspan="6">LIMASSOL DISTRICT</td></tr>
+        <tr><td>Limassol / Ayios Kendeas</td><td>3</td><td>40</td><td><strong>14</strong></td><td>~30–50 km</td><td>Esperia (1 park) + Andreadis (2 parks). Shortest transport route</td></tr>
+        <tr class="district-header"><td colspan="6">PAPHOS DISTRICT</td></tr>
+        <tr><td>Paphos region</td><td>3</td><td>20</td><td><strong>7</strong></td><td>~60–70 km</td><td>Kerasi group (3 parks)</td></tr>
+        <tr class="district-header"><td colspan="6">NICOSIA DISTRICT</td></tr>
+        <tr><td>Nicosia region</td><td>1</td><td>25</td><td><strong>8</strong></td><td>~85–95 km</td><td>Karis standalone (single large park)</td></tr>
+        <tr class="subtotal-row"><td colspan="3"><strong>Batch 3 Total</strong></td><td><strong>81</strong></td><td colspan="2">4 routes: Famagusta, Limassol, Paphos, Nicosia</td></tr>
+    </table>
+
+    <h3>4.4 District Summary — All Batches Combined</h3>
+    <table>
+        <tr><th>District</th><th>Total Parks</th><th>Total Containers</th><th>Batches Present</th><th>Distance from Limassol Port</th><th>% of Containers</th></tr>
+        <tr><td><strong>Nicosia</strong></td><td>30</td><td><strong>153</strong></td><td>Batch 1, 2, 3</td><td>~85–95 km</td><td>61.0%</td></tr>
+        <tr><td><strong>Famagusta</strong></td><td>5</td><td><strong>52</strong></td><td>Batch 3</td><td>~120–135 km</td><td>20.7%</td></tr>
+        <tr><td><strong>Larnaca</strong></td><td>4</td><td><strong>17</strong></td><td>Batch 2</td><td>~65–75 km</td><td>6.8%</td></tr>
+        <tr><td><strong>Limassol</strong></td><td>3</td><td><strong>14</strong></td><td>Batch 3</td><td>~30–50 km</td><td>5.6%</td></tr>
+        <tr><td><strong>Paphos</strong></td><td>4</td><td><strong>15</strong></td><td>Batch 2, 3</td><td>~60–70 km</td><td>6.0%</td></tr>
+        <tr class="total-row">
+            <td><strong>TOTAL</strong></td>
+            <td><strong>46</strong></td>
+            <td><strong>251</strong></td>
+            <td><strong>3 batches</strong></td>
+            <td>30–135 km range</td>
+            <td><strong>100%</strong></td>
+        </tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Key Routing Insight:</strong> 61% of all containers (153 of 251) go to Nicosia district. Optimising the Limassol → Nicosia route is critical to overall cost and throughput. The Famagusta route is longest (~130 km) but carries the second-largest volume (52 containers). Limassol local deliveries (14 containers, ~30–50 km) are the shortest and most efficient.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: SCOPE OF WORK                                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s5">5. Scope of Work</h2>
+
+    <h3>5.1 Services Required</h3>
+    <table>
+        <tr><th>Service</th><th>Description</th><th>Responsibility</th></tr>
+        <tr><td><strong>Port Collection</strong></td><td>Collect containers from Limassol Port (ECTL) container yard after customs clearance</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Heavy Haulage Transport</strong></td><td>Transport containers on low-loader trailers from Limassol Port to destination park sites across all 5 Cyprus districts</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Heavy Load Permits</strong></td><td>Arrange all necessary heavy load transport permits from Cyprus authorities</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Police Escorts</strong></td><td>Arrange police escorts where required by law for oversized/overweight loads</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Mobile Crane Provision</strong></td><td>Supply mobile crane(s) at each destination site for container unloading</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Crane Unloading</strong></td><td>Lift containers from trailer and place onto prepared reinforced concrete foundations</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Precision Positioning</strong></td><td>Final alignment of containers per site layout drawings (±50 mm tolerance)</td><td>A. Soulis</td></tr>
+        <tr><td><strong>Levelling</strong></td><td>Ensure containers are level on foundation; shimming if required</td><td>A. Soulis</td></tr>
+    </table>
+
+    <h3>5.2 Lighthief Responsibilities (Not in Scope for A. Soulis)</h3>
+    <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td>Customs clearance &amp; port landing charges</td><td>Handled by Interfreight (separate contract)</td></tr>
+        <tr><td>Concrete foundation preparation</td><td>Completed before container arrival by Lighthief subcontractors</td></tr>
+        <tr><td>Site layout drawings &amp; marking</td><td>Provided by Lighthief prior to delivery day</td></tr>
+        <tr><td>Site access &amp; hardstanding for crane</td><td>Confirmed suitable by Lighthief before scheduling delivery</td></tr>
+        <tr><td>On-site coordination / supervision</td><td>Lighthief site supervisor present during all crane operations</td></tr>
+    </table>
+
+    <h3>5.3 Crane Specifications Required</h3>
+    <table>
+        <tr><th>Requirement</th><th>20HC Containers (BESS + small MV)</th><th>40HC Containers (large MV SKID)</th></tr>
+        <tr><td>Minimum Crane Capacity</td><td>50 tonnes</td><td>80 tonnes</td></tr>
+        <tr><td>Maximum Lift Weight</td><td>43 tonnes</td><td>38 tonnes</td></tr>
+        <tr><td>Lift Height</td><td>~4 m (onto foundation + clearance)</td><td>~4 m (onto foundation + clearance)</td></tr>
+        <tr><td>Working Radius</td><td>~8–12 m typical</td><td>~10–15 m typical</td></tr>
+        <tr><td>Spreader Bar</td><td>Optional (ISO corner castings)</td><td>Required (to prevent bowing)</td></tr>
+        <tr><td>Ground Bearing Pressure</td><td>Outrigger mats required on unprepared ground</td><td>Outrigger mats required on unprepared ground</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: PRICING TEMPLATE                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s6">6. Pricing Template</h2>
+
+    <p class="section-intro">
+        Please complete the pricing tables below. Pricing should be all-inclusive (transport + crane unloading + positioning + permits + escorts). Alternatively, provide separate rates for transport and crane if preferred.
+    </p>
+
+    <h3>6.1 Unit Rates — By Route &amp; Container Type</h3>
+    <table>
+        <tr><th>Route (Limassol Port →)</th><th>Distance</th><th>20HC BESS (~43t)<br>€ per container</th><th>40HC MV SKID (~38t)<br>€ per container</th><th>20HC MV SKID (~30t)<br>€ per container</th></tr>
+        <tr><td>Limassol district sites</td><td>30–50 km</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Paphos district sites</td><td>60–70 km</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Larnaca district sites</td><td>65–75 km</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Nicosia district sites</td><td>85–95 km</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Famagusta district sites</td><td>120–135 km</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>6.2 Batch Totals — Estimated Cost</h3>
+    <table>
+        <tr><th>Batch</th><th>Containers</th><th>Primary District(s)</th><th>Estimated Total Cost (€)</th></tr>
+        <tr><td>Batch 1 (Jul 2026)</td><td>80</td><td>Nicosia (100%)</td><td class="price-input"></td></tr>
+        <tr><td>Batch 2 (Aug 2026)</td><td>90</td><td>Nicosia (72%) / Larnaca (19%) / Paphos (9%)</td><td class="price-input"></td></tr>
+        <tr><td>Batch 3 (Sep 2026)</td><td>81</td><td>Famagusta (64%) / Limassol (17%) / Paphos (9%) / Nicosia (10%)</td><td class="price-input"></td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>251</strong></td><td>All 5 districts</td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>6.3 District Totals</h3>
+    <table>
+        <tr><th>District</th><th>Total Containers</th><th>Cost per Container (€)</th><th>District Total (€)</th></tr>
+        <tr><td>Nicosia</td><td>153</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Famagusta</td><td>52</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Limassol</td><td>14</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Larnaca</td><td>17</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr><td>Paphos</td><td>15</td><td class="price-input"></td><td class="price-input"></td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>251</strong></td><td></td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>6.4 Volume Discount &amp; Framework Agreement</h3>
+    <table>
+        <tr><th>Tier</th><th>Description</th><th>Discount Offered (%)</th></tr>
+        <tr><td>Full 2026 Programme</td><td>251 containers over 4 months (Jul–Oct 2026)</td><td class="price-input"></td></tr>
+        <tr><td>Framework Agreement</td><td>12-month standing rate for all deliveries</td><td class="price-input"></td></tr>
+        <tr><td>Batch Commitment</td><td>Per-batch confirmed booking (min 80 containers)</td><td class="price-input"></td></tr>
+    </table>
+
+    <h3>6.5 Additional Charges (if applicable)</h3>
+    <table>
+        <tr><th>Item</th><th>Rate (€)</th><th>Notes</th></tr>
+        <tr><td>Weekend / public holiday delivery</td><td class="price-input"></td><td>Premium rate if applicable</td></tr>
+        <tr><td>Night transport (22:00–06:00)</td><td class="price-input"></td><td>If permitted / required for heavy loads</td></tr>
+        <tr><td>Waiting time (beyond 2 hours at site)</td><td class="price-input"></td><td>Per hour</td></tr>
+        <tr><td>Additional crane mobilisation/demobilisation</td><td class="price-input"></td><td>If crane must travel to remote site separately</td></tr>
+        <tr><td>Fuel surcharge mechanism</td><td class="price-input"></td><td>If applicable — base fuel price reference</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: FLEET & CAPACITY REQUIREMENTS                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s7">7. Fleet &amp; Capacity Requirements</h2>
+
+    <h3>7.1 Throughput Targets</h3>
+    <table>
+        <tr><th>Batch</th><th>Containers</th><th>Transport Window</th><th>Working Days</th><th>Required Throughput</th></tr>
+        <tr><td>Batch 1</td><td>80</td><td>12 Jul – 5 Aug 2026</td><td>~18</td><td>~5 containers/day</td></tr>
+        <tr><td>Batch 2</td><td>90</td><td>27 Aug – 15 Sep 2026</td><td>~14</td><td>~7 containers/day</td></tr>
+        <tr><td>Batch 3</td><td>81</td><td>27 Sep – 18 Oct 2026</td><td>~15</td><td>~6 containers/day</td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Based on your confirmed fleet (22 Feb 2026):</strong> 6× 20ft trucks at 43T capacity can deliver ~12 containers/day (assuming 2 round trips per truck for Nicosia route). Batch 2 requires the highest daily throughput (~7/day across 3 districts). 40HC truck availability needs confirmation for MV SKID containers.
+    </div>
+
+    <h3>7.2 Fleet Confirmation Required</h3>
+    <table>
+        <tr><th>Item</th><th>Confirmed (22 Feb)</th><th>Required for Full Programme</th><th>Status</th></tr>
+        <tr><td>20ft low-loader trucks (43T capacity)</td><td>6 trucks</td><td>6 trucks minimum</td><td style="color: var(--success); font-weight: bold;">CONFIRMED</td></tr>
+        <tr><td>40ft low-loader trucks (38T capacity)</td><td>TBC</td><td>2–3 trucks</td><td style="color: var(--warning); font-weight: bold;">REQUIRED</td></tr>
+        <tr><td>Mobile crane — 50T class</td><td>TBC</td><td>1 minimum (2 preferred for parallel operations)</td><td style="color: var(--warning); font-weight: bold;">REQUIRED</td></tr>
+        <tr><td>Mobile crane — 80T class</td><td>TBC</td><td>1 minimum (for 40HC containers)</td><td style="color: var(--warning); font-weight: bold;">REQUIRED</td></tr>
+        <tr><td>Crane operators (certified)</td><td>TBC</td><td>2 minimum</td><td style="color: var(--warning); font-weight: bold;">REQUIRED</td></tr>
+        <tr><td>Transport drivers (heavy licence)</td><td>TBC</td><td>6 minimum</td><td style="color: var(--warning); font-weight: bold;">REQUIRED</td></tr>
+    </table>
+
+    <h3>7.3 Peak Demand Periods</h3>
+    <table>
+        <tr><th>Period</th><th>Active Batches</th><th>Containers in Transit</th><th>Crane Days Required</th></tr>
+        <tr><td>12–31 July 2026</td><td>Batch 1</td><td>80</td><td>~14 days</td></tr>
+        <tr><td>27 Aug – 15 Sep 2026</td><td>Batch 2</td><td>90</td><td>~14 days</td></tr>
+        <tr><td>27 Sep – 18 Oct 2026</td><td>Batch 3 (widest geographic spread)</td><td>81</td><td>~15 days (incl. crane travel between districts)</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: TERMS & CONDITIONS                           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s8">8. Terms &amp; Conditions</h2>
+
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Price Validity</strong></td><td>Pricing to remain valid for 12 months from contract signature</td></tr>
+        <tr><td><strong>Call-Off Orders</strong></td><td>5 working days notice for individual deliveries within each batch</td></tr>
+        <tr><td><strong>Advance Batch Notice</strong></td><td>Lighthief provides 14 days notice of batch arrival at port</td></tr>
+        <tr><td><strong>Insurance — Goods in Transit</strong></td><td>Full goods-in-transit coverage required (min €500,000 per load)</td></tr>
+        <tr><td><strong>Insurance — Public Liability</strong></td><td>Min €2,000,000 public liability coverage</td></tr>
+        <tr><td><strong>Insurance — Crane Operations</strong></td><td>Crane and rigging liability coverage for full lift value</td></tr>
+        <tr><td><strong>Waiting Time</strong></td><td>First 2 hours on-site included; thereafter hourly rate applies</td></tr>
+        <tr><td><strong>Payment Terms</strong></td><td>30 days from delivery confirmation (per batch invoice)</td></tr>
+        <tr><td><strong>Cancellation</strong></td><td>Batch cancellation with 14 days notice at no charge; &lt;14 days: mobilisation costs only</td></tr>
+        <tr><td><strong>Force Majeure</strong></td><td>Standard force majeure clause — neither party liable for delays beyond reasonable control</td></tr>
+        <tr><td><strong>Health &amp; Safety</strong></td><td>Full compliance with Cyprus H&amp;S regulations; risk assessment required for each site</td></tr>
+        <tr><td><strong>Heavy Load Permits</strong></td><td>All permits to be arranged and paid for by contractor (included in quoted rates)</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 9: REQUIRED INFORMATION                         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s9">9. Required Information from Vendor</h2>
+
+    <p class="section-intro">
+        Please provide the following with your proposal by <strong>12 March 2026</strong>:
+    </p>
+
+    <table>
+        <tr><th>#</th><th>Item</th><th>Detail</th></tr>
+        <tr><td>1</td><td><strong>Completed pricing tables</strong></td><td>Sections 6.1 through 6.5</td></tr>
+        <tr><td>2</td><td><strong>Fleet confirmation</strong></td><td>Number and type of trucks (20ft and 40ft low-loaders), crane models and capacities</td></tr>
+        <tr><td>3</td><td><strong>Lead time per delivery</strong></td><td>Estimated hours from port collection to site placement, per route</td></tr>
+        <tr><td>4</td><td><strong>Daily throughput capacity</strong></td><td>Maximum containers per day per route (with current fleet)</td></tr>
+        <tr><td>5</td><td><strong>Crane availability schedule</strong></td><td>Confirm crane availability for Jul–Oct 2026 window; any prior commitments</td></tr>
+        <tr><td>6</td><td><strong>Insurance certificates</strong></td><td>Goods-in-transit (min €500K/load), public liability (min €2M), crane operations coverage</td></tr>
+        <tr><td>7</td><td><strong>Heavy haulage licence</strong></td><td>Current heavy haulage licence confirmation (Cyprus)</td></tr>
+        <tr><td>8</td><td><strong>Reference projects</strong></td><td>3+ reference projects involving heavy container/equipment transport (similar weights: 35–43 tonnes)</td></tr>
+        <tr><td>9</td><td><strong>Safety record</strong></td><td>H&amp;S record for past 3 years; any incidents involving crane operations or heavy haulage</td></tr>
+        <tr><td>10</td><td><strong>Subcontracting</strong></td><td>Confirm if any element will be subcontracted; if so, identify subcontractor(s)</td></tr>
+    </table>
+
+    <!-- CONTACT -->
+    <div class="contact-box">
+        <h3>Lighthief Contact for This RFP</h3>
+        <p><strong>Costas</strong></p>
+        <p>Email: <a href="mailto:costas@lighthief.com" style="color: var(--accent);">costas@lighthief.com</a></p>
+        <p>Company: Lighthief Cyprus Ltd</p>
+        <p>Address: 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+        <p>Tel: +357 77 77 00 50</p>
+        <p style="margin-top: 10px;"><strong>Reference:</strong> LCY-RFP-CRANE-2026-001</p>
+        <p><strong>Proposal Deadline:</strong> 12 March 2026</p>
+    </div>
+
+    <div class="warning-box">
+        <strong>Confidentiality:</strong> This RFP and all information contained herein is confidential and intended solely for A. Soulis Special Lifting &amp; Heavy Haulage. It may not be shared with third parties without written consent from Lighthief Cyprus Ltd.
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>
+            <strong>Lighthief Cyprus Ltd</strong> · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+            Costas · costas@lighthief.com · +357 77 77 00 50<br><br>
+            Document: LCY-RFP-CRANE-2026-001 · Classification: COMMERCIAL — CONFIDENTIAL<br>
+            Supersedes: RFQ-LCY-TRANS-2026-001 (27 January 2026)<br>
+            Date: 26 February 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

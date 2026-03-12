@@ -152,7 +152,7 @@ export default function BESSFireSafetyArticle() {
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
-                      <span className="text-gray-700">Releases phosphate gas when overheated &mdash; <strong>non-flammable</strong></span>
+                      <span className="text-gray-700">No oxygen release during thermal runaway &mdash; <strong>far lower fire propagation risk than NMC</strong></span>
                     </div>
                     <div className="flex items-start space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />

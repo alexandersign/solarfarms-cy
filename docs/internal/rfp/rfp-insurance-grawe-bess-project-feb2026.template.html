@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BESS Insurance RFP — Construction &amp; Operational — Lighthief → Grawe</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --danger: #e53e3e;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #fff;
+            font-size: 11pt;
+        }
+
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px 30px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; font-weight: bold;
+        }
+
+        .company-name { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; color: var(--gray-600); letter-spacing: 1px; text-transform: uppercase; }
+        .doc-meta { text-align: right; font-size: 9pt; color: var(--gray-600); }
+        .doc-meta strong { color: var(--primary); }
+
+        .doc-title {
+            text-align: center; margin: 30px 0 20px;
+            font-size: 20px; font-weight: 700; color: var(--primary);
+            padding: 15px; background: var(--gray-50); border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .doc-subtitle {
+            text-align: center; margin: -10px 0 25px;
+            font-size: 13px; color: var(--gray-600);
+        }
+
+        h2 {
+            color: var(--primary); font-size: 16px;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 8px; margin: 30px 0 15px;
+        }
+
+        h3 { color: var(--primary-light); font-size: 13px; margin: 20px 0 10px; }
+
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 10px 0 20px; font-size: 10pt;
+        }
+
+        th, td { padding: 8px 10px; border: 1px solid var(--gray-200); text-align: left; }
+
+        th {
+            background: var(--primary); color: white;
+            font-weight: 600; font-size: 9pt; text-transform: uppercase;
+        }
+
+        tr:nth-child(even) { background: var(--gray-50); }
+        tr:hover { background: #edf2f7; }
+
+        .totals-row { font-weight: 700; background: var(--gray-100) !important; }
+
+        td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+        .badge {
+            display: inline-block; padding: 2px 8px;
+            border-radius: 4px; font-size: 9pt; font-weight: 600;
+        }
+        .badge-pass { background: #c6f6d5; color: #22543d; }
+        .badge-comply { background: #bee3f8; color: #2a4365; }
+        .badge-exceed { background: #c6f6d5; color: #22543d; }
+
+        .info-box {
+            background: var(--gray-50); border-left: 4px solid var(--primary-light);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .highlight {
+            background: #fffff0; border-left: 4px solid var(--accent);
+            padding: 12px 16px; margin: 12px 0; border-radius: 4px;
+            font-size: 10pt;
+        }
+
+        .section-intro { font-size: 10.5pt; color: var(--gray-700); margin-bottom: 15px; }
+
+        .phase-label {
+            display: inline-block; padding: 4px 12px; border-radius: 4px;
+            font-size: 10pt; font-weight: 700; margin-bottom: 10px;
+        }
+        .phase-a { background: #bee3f8; color: #2a4365; }
+        .phase-b { background: #c6f6d5; color: #22543d; }
+
+        .toc { margin: 20px 0 30px; }
+        .toc ol { padding-left: 20px; }
+        .toc li { padding: 4px 0; font-size: 10.5pt; }
+        .toc a { color: var(--primary-light); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+
+        .footer {
+            margin-top: 40px; padding-top: 15px;
+            border-top: 2px solid var(--gray-200);
+            font-size: 9pt; color: var(--gray-600);
+            text-align: center;
+        }
+
+        @media print {
+            body { font-size: 10pt; }
+            .container { padding: 10px 20px; }
+            h2 { page-break-after: avoid; }
+            table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">L</div>
+            <div>
+                <div class="company-name">LIGHTHIEF</div>
+                <div class="company-tagline">Energy Storage Solutions — Cyprus</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <strong>REQUEST FOR PROPOSAL — INSURANCE</strong><br>
+            Ref: LCY-RFP-GRAWE-BESS-2026<br>
+            Date: 27 February 2026<br>
+            Classification: COMMERCIAL — CONFIDENTIAL
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="doc-title">BESS Insurance — Construction &amp; Operational Phase</div>
+    <div class="doc-subtitle">
+        Lighthief Cyprus Ltd → Grawe Insurance Company (Cyprus) Ltd<br>
+        Portfolio: {{PORTFOLIO.parks}} parks · {{PORTFOLIO.mwh}} MWh · {{PORTFOLIO.mw}} MW · {{PORTFOLIO.containers}} containers
+    </div>
+
+    <!-- REFERENCE TABLE -->
+    <table>
+        <tr><th colspan="2">Document Reference</th></tr>
+        <tr><td><strong>Document</strong></td><td>LCY-RFP-GRAWE-BESS-2026 — Request for Proposal</td></tr>
+        <tr><td><strong>From</strong></td><td>{{COMPANY.name}}<br>Costas Hadjikyriacou, Electrical Engineer MEng/MSc · costas@lighthief.com · +357 96 09 50 90</td></tr>
+        <tr><td><strong>To</strong></td><td>Grawe Insurance Company (Cyprus) Ltd<br>George Kyprianou — George.Kyprianou@grawe.cy<br>Zoe Stavrou, Non Motor Underwriting Supervisor — zoe.stavrou@grawe.cy</td></tr>
+        <tr><td><strong>Coverage Required</strong></td><td><strong>Part A:</strong> Construction Phase (CAR/EAR, TPL, Inland Transit)<br><strong>Part B:</strong> Operational Phase (O&amp;M Manager Liability, PI, TPL)</td></tr>
+        <tr><td><strong>Response Due</strong></td><td>14 March 2026</td></tr>
+    </table>
+
+    <!-- TOC -->
+    <div class="toc">
+        <h3>Contents</h3>
+        <ol>
+            <li><a href="#s1">Company &amp; Project Overview</a></li>
+            <li><a href="#s2">Portfolio — Technical Specifications &amp; Project Sizes</a></li>
+            <li><a href="#s3">Part A — Construction Phase Insurance</a></li>
+            <li><a href="#s4">Part B — Operational Phase Insurance (O&amp;M Manager)</a></li>
+            <li><a href="#s5">Compliance with Grawe PV Park Prerequisites</a></li>
+            <li><a href="#s6">Site Conditions &amp; Risk Profile</a></li>
+            <li><a href="#s7">Pricing Template</a></li>
+            <li><a href="#s8">Documents Available</a></li>
+        </ol>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: COMPANY & PROJECT OVERVIEW                   -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s1">1. Company &amp; Project Overview</h2>
+
+    <table>
+        <tr><th colspan="2">Company Information</th></tr>
+        <tr><td><strong>Company</strong></td><td>{{COMPANY.legalName}}</td></tr>
+        <tr><td><strong>Registration</strong></td><td>HE 477423 (Cyprus)</td></tr>
+        <tr><td><strong>TIN</strong></td><td>60187188Q</td></tr>
+        <tr><td><strong>Address</strong></td><td>{{COMPANY.address}}</td></tr>
+        <tr><td><strong>Business Activity</strong></td><td>EPC Contractor &amp; O&amp;M Service Provider — Battery Energy Storage Systems (BESS)</td></tr>
+        <tr><td><strong>Role</strong></td><td><strong>EPC Contractor</strong> during construction · <strong>O&amp;M Manager</strong> during operations (NOT asset owner)</td></tr>
+        <tr><td><strong>OEM Partner</strong></td><td>{{OEM.manufacturer}} — exclusive distributor for Cyprus</td></tr>
+        <tr><td><strong>PCS Manufacturer</strong></td><td>Kehua Technology ({{OEM.gridCodeCert}})</td></tr>
+        <tr><td><strong>Employees</strong></td><td>6 current (projected 25 within 12 months)</td></tr>
+        <tr><td><strong>Claims History</strong></td><td>NIL — no claims filed since incorporation</td></tr>
+    </table>
+
+    <h3>1.1 Project Description</h3>
+    <p class="section-intro">
+        Lighthief Cyprus Ltd is installing <strong>{{PORTFOLIO.parks}} utility-scale Battery Energy Storage Systems (BESS)</strong> within existing licensed photovoltaic (PV) parks across all five districts of Cyprus. Each BESS system is installed on a separate plot within the PV park boundary, connected to the existing grid connection point. The BESS systems are containerised (20ft and 40ft shipping containers) placed on reinforced concrete foundations.
+    </p>
+
+    <div class="info-box">
+        <strong>Important distinction:</strong> Lighthief is the <strong>EPC contractor and O&amp;M manager</strong>, not the asset owner. The BESS systems are owned by independent client SPVs (solar park project companies). We require insurance for our contractual liabilities and professional responsibilities in both phases.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: PORTFOLIO TECHNICAL SPECS                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s2">2. Portfolio — Technical Specifications &amp; Project Sizes</h2>
+
+    <h3>2.1 Portfolio Summary</h3>
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Total Parks</td><td class="num"><strong>{{PORTFOLIO.parks}}</strong> (46 for 2026 delivery + 5 deferred to 2028)</td></tr>
+        <tr><td>Total Capacity</td><td class="num"><strong>{{PORTFOLIO.mwh}} MWh ({{PORTFOLIO.mw}} MW)</strong></td></tr>
+        <tr><td>Total Containers</td><td class="num"><strong>{{PORTFOLIO.containers}}</strong> battery containers</td></tr>
+        <tr><td>Total EPC Contract Value</td><td class="num"><strong>~€109,000,000</strong></td></tr>
+        <tr><td>Battery Chemistry</td><td>LFP (Lithium Iron Phosphate) — 100% of portfolio</td></tr>
+        <tr><td>Container Type</td><td>20HC (6.06 × 2.44 × 2.90 m) — steel, IP55, C5 corrosion rated</td></tr>
+        <tr><td>Container Capacity</td><td>{{OEM.containerCapacity}} MWh per container</td></tr>
+        <tr><td>Districts</td><td>Famagusta, Larnaca, Limassol, Nicosia, Paphos</td></tr>
+        <tr><td>Client Groups</td><td>6 independent groups (G1–G6), multiple SPVs</td></tr>
+    </table>
+
+    <h3>2.2 Project Sizes in Portfolio</h3>
+    <table>
+        <tr><th>Size (MW / MWh)</th><th>Parks</th><th>Containers / Park</th><th>EPC Value / Park (€)</th><th>District(s)</th></tr>
+        <tr><td>1.5 / 5</td><td class="num">5</td><td class="num">2</td><td class="num">~730,000</td><td>Nicosia, Limassol, Paphos</td></tr>
+        <tr><td>2.5 / 7.5</td><td class="num">4</td><td class="num">2</td><td class="num">~1,100,000</td><td>Nicosia, Paphos</td></tr>
+        <tr><td>2.5 / 8.36</td><td class="num">1</td><td class="num">2</td><td class="num">~1,010,000</td><td>Larnaca</td></tr>
+        <tr><td>2.5 / 10</td><td class="num">10</td><td class="num">3</td><td class="num">~1,220,000</td><td>Nicosia, Larnaca</td></tr>
+        <tr><td>3.3 / 10</td><td class="num">1</td><td class="num">3</td><td class="num">~1,410,000</td><td>Limassol</td></tr>
+        <tr><td>5 / 10</td><td class="num">1</td><td class="num">3</td><td class="num">~1,460,000</td><td>Nicosia</td></tr>
+        <tr><td>5 / 20</td><td class="num">19</td><td class="num">5</td><td class="num">~2,260,000</td><td>Nicosia, Larnaca, Paphos, Famagusta</td></tr>
+        <tr><td>7.5 / 25</td><td class="num">1</td><td class="num">7</td><td class="num">~2,930,000</td><td>Limassol</td></tr>
+        <tr><td>7.7 / 25</td><td class="num">1</td><td class="num">7</td><td class="num">~3,220,000</td><td>Nicosia</td></tr>
+        <tr><td>8 / 60</td><td class="num">1</td><td class="num">14</td><td class="num">~7,040,000</td><td>Famagusta</td></tr>
+        <tr><td>12 / 40</td><td class="num">2</td><td class="num">10</td><td class="num">~4,600,000</td><td>Famagusta</td></tr>
+        <tr class="totals-row"><td><strong>TOTAL (2026)</strong></td><td class="num"><strong>46</strong></td><td class="num"><strong>199</strong></td><td></td><td><strong>5 districts</strong></td></tr>
+    </table>
+
+    <h3>2.3 Equipment per Project (Typical 5 MW / 20 MWh Park)</h3>
+    <table>
+        <tr><th>Equipment</th><th>Qty</th><th>Description</th><th>Approx. Value (€)</th></tr>
+        <tr><td>Battery Container (20HC, 5.015 MWh)</td><td class="num">5</td><td>LFP battery packs, BMS, cooling, fire suppression</td><td class="num">~400,000 each</td></tr>
+        <tr><td>MV SKID (40HC)</td><td class="num">1</td><td>PCS inverters (Kehua) + MV transformer + switchgear</td><td class="num">~300,000</td></tr>
+        <tr><td>AC/DC Cabling</td><td class="num">—</td><td>LV and MV cables, terminations</td><td class="num">~30,000</td></tr>
+        <tr><td>Civil Works</td><td class="num">—</td><td>Reinforced concrete foundations, fencing, access</td><td class="num">~40,000</td></tr>
+        <tr><td>Lightning Protection &amp; SPD</td><td class="num">—</td><td>LPS (DEHN) + SPD (Type 1/2/3) + earthing</td><td class="num">~10,000</td></tr>
+        <tr><td>EMS / SCADA</td><td class="num">—</td><td>Voltus Energy Management System + SCADA RTU</td><td class="num">~30,000</td></tr>
+    </table>
+
+    <h3>2.4 Construction Timeline</h3>
+    <table>
+        <tr><th>Batch</th><th>Parks</th><th>MWh</th><th>CIF Arrival</th><th>Target PAC</th><th>Est. EPC Value (€)</th></tr>
+        <tr><td>Batch 1 (G1 Phase 1)</td><td class="num">15</td><td class="num">290</td><td>Jul 2026</td><td>Oct 2026</td><td class="num">~33,000,000</td></tr>
+        <tr><td>Batch 2 (G1 Ph.2 + G3)</td><td class="num">19</td><td class="num">198</td><td>Aug 2026</td><td>Jan 2027</td><td class="num">~27,400,000</td></tr>
+        <tr><td>Batch 3 (G2 + G4/G5/G6)</td><td class="num">12</td><td class="num">265</td><td>Sep 2026</td><td>Feb 2027</td><td class="num">~32,300,000</td></tr>
+        <tr class="totals-row"><td><strong>TOTAL 2026</strong></td><td class="num"><strong>46</strong></td><td class="num"><strong>753</strong></td><td></td><td><strong>FAC: {{FAC_DATE}}</strong></td><td class="num"><strong>~€92,700,000</strong></td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: PART A — CONSTRUCTION PHASE                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s3">3. Part A — Construction Phase Insurance</h2>
+    <div class="phase-label phase-a">CONSTRUCTION PHASE — EPC CONTRACTOR</div>
+
+    <p class="section-intro">
+        During the construction phase, Lighthief acts as EPC contractor responsible for civil works, cabling, grounding, project management, and coordination. OEM equipment installation and commissioning is performed by Linyang (OEM) factory-trained technicians. Coverage required from site preparation through PAC issuance.
+    </p>
+
+    <h3>3.1 Contractors All Risks (CAR) / Erection All Risks (EAR)</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Structure</strong></td><td>Single annual policy with declaration basis — new projects declared monthly</td></tr>
+        <tr><td><strong>Sum Insured (per project)</strong></td><td>Up to <strong>€7,100,000</strong> (largest single project: 8 MW / 60 MWh)</td></tr>
+        <tr><td><strong>Aggregate Limit</strong></td><td><strong>€109,000,000</strong> (full portfolio value)</td></tr>
+        <tr><td><strong>Period</strong></td><td>1 April 2026 – 31 March 2028 (covering 3 batches + FAC + 24-month maintenance)</td></tr>
+        <tr><td><strong>Premium Basis</strong></td><td>Deposit + adjustable based on declarations</td></tr>
+        <tr><td><strong>Defects Clause</strong></td><td>LEG3/06 preferred (broadest cover for BESS — see note below)</td></tr>
+        <tr><td><strong>Maintenance Period</strong></td><td>24 months post-PAC per project</td></tr>
+        <tr><td><strong>Peak Exposure</strong></td><td>~€93M (Q4 2026 — all 3 batches in active construction)</td></tr>
+    </table>
+
+    <p class="section-intro"><strong>Material damage coverage must include:</strong></p>
+    <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td>Battery Containers</td><td>LFP containerised BESS (20HC, ~43 tonnes each, ~€400K per unit) — <strong>no lithium/battery exclusion</strong></td></tr>
+        <tr><td>PCS Units</td><td>Kehua power conversion systems (1.0–1.25 MW per unit, inside MV SKID)</td></tr>
+        <tr><td>MV Equipment</td><td>Medium-voltage switchgear (ABB, 11 kV / 22 kV), ring main units</td></tr>
+        <tr><td>Transformers</td><td>MV transformers (1.1–10 MVA, oil or dry type) inside MV SKID containers</td></tr>
+        <tr><td>Cabling Works</td><td>AC/DC cabling, MV feeders, grounding, auxiliary electrical</td></tr>
+        <tr><td>Civil Works</td><td>Reinforced concrete foundations, fencing, access roads, site preparation</td></tr>
+        <tr><td>Testing &amp; Commissioning</td><td>Hot testing, grid synchronisation, DSO witness tests</td></tr>
+        <tr><td>Existing Property (PV)</td><td>Existing PV installations at site — €1,000,000 per occurrence</td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Why LEG3/06 for BESS:</strong> A defective battery module could damage adjacent modules within the same container. LEG3 covers the cost of making good the defective part AND all resultant damage — critical for high-value containerised BESS where component interdependence is high. LEG1 (resultant damage only) would be inadequate.
+    </div>
+
+    <h3>3.2 Third Party Liability (Construction Phase)</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Bodily Injury</strong></td><td>€5,000,000 per occurrence</td></tr>
+        <tr><td><strong>Property Damage</strong></td><td>€5,000,000 per occurrence</td></tr>
+        <tr><td><strong>Aggregate</strong></td><td>€10,000,000 annual</td></tr>
+        <tr><td><strong>Scope</strong></td><td>All construction activities, site visits, crane operations, equipment delivery, completed operations</td></tr>
+        <tr><td><strong>Context</strong></td><td>BESS installed within existing PV parks — risk of damage to third-party PV equipment during construction</td></tr>
+    </table>
+
+    <h3>3.3 Inland Transit / Goods in Transit</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Sum Insured</strong></td><td>€2,000,000 per shipment / €10,000,000 annual aggregate</td></tr>
+        <tr><td><strong>Route</strong></td><td>Port of Limassol → {{PORTFOLIO.parks}} project sites across 5 districts</td></tr>
+        <tr><td><strong>Cargo</strong></td><td>BESS containers (~43 tonnes, 20HC) and MV SKID containers (~38 tonnes, 40HC)</td></tr>
+        <tr><td><strong>Coverage</strong></td><td>Loading/unloading at port, temporary port-side storage, heavy haulage to site, crane placement</td></tr>
+        <tr><td><strong>Frequency</strong></td><td>~200 containers + MV skids over 6 months (Jul–Dec 2026)</td></tr>
+        <tr><td><strong>Transport</strong></td><td>A. Soulis haulage — 6 confirmed trucks for 20ft 43T containers</td></tr>
+    </table>
+
+    <div class="info-box">
+        <strong>Marine cargo NOT required:</strong> All equipment purchased CIF Limassol (Incoterms® 2020). Sea voyage insurance is the seller's (Linyang) responsibility. Coverage needed only from port of Limassol onwards.
+    </div>
+
+    <h3>3.4 Delay in Start-Up (DSU)</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Indemnity Period</strong></td><td>12 months</td></tr>
+        <tr><td><strong>Daily Exposure</strong></td><td>€30 per MWh per day (curtailment avoidance revenue)</td></tr>
+        <tr><td><strong>Trigger</strong></td><td>Material damage covered under CAR/EAR causing delay to commissioning (COD)</td></tr>
+        <tr><td><strong>Waiting Period</strong></td><td>30 days</td></tr>
+        <tr><td><strong>Max Single-Project DSU</strong></td><td>€1,800/day (60 MWh park) · €657,000 annual</td></tr>
+        <tr><td><strong>Portfolio DSU</strong></td><td>€22,600/day · ~€8.2M annual (all 46 parks)</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: PART B — OPERATIONAL PHASE                   -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s4">4. Part B — Operational Phase Insurance (O&amp;M Manager)</h2>
+    <div class="phase-label phase-b">OPERATIONAL PHASE — O&amp;M MANAGER (NOT ASSET OWNER)</div>
+
+    <p class="section-intro">
+        After commissioning (PAC), Lighthief transitions from EPC contractor to <strong>O&amp;M manager</strong> under Long-Term Service Agreements (LTSA) with each client SPV. Lighthief does <strong>not</strong> own the BESS assets — we provide monitoring, preventive maintenance, fault response, and performance management. Coverage is required for our contractual liabilities as service provider.
+    </p>
+
+    <h3>4.1 O&amp;M Contractual Scope (LTSA)</h3>
+    <table>
+        <tr><th>Parameter</th><th>Detail</th></tr>
+        <tr><td><strong>LTSA Duration</strong></td><td>15 years per park</td></tr>
+        <tr><td><strong>Availability Target</strong></td><td>97%</td></tr>
+        <tr><td><strong>Monitoring</strong></td><td>24/7 SCADA/EMS via Voltus Energy — all {{PORTFOLIO.parks}} parks</td></tr>
+        <tr><td><strong>Field Engineers</strong></td><td>5 dedicated BESS engineers (3 Lighthief + 2 Linyang-trained)</td></tr>
+        <tr><td><strong>Response SLA — Critical</strong></td><td>Remote: 4 hours · On-site: 8 hours · Resolution: 48 hours</td></tr>
+        <tr><td><strong>Response SLA — Major</strong></td><td>Remote: 8 hours · On-site: 48 hours · Resolution: 120 hours</td></tr>
+        <tr><td><strong>Preventive Maintenance</strong></td><td>Scheduled quarterly inspections + annual comprehensive audit</td></tr>
+        <tr><td><strong>Maintenance Allowance</strong></td><td>10 days / 240 hours per year for planned maintenance</td></tr>
+    </table>
+
+    <h3>4.2 Availability Liquidated Damages Exposure</h3>
+
+    <div class="highlight">
+        <strong>Key exposure for O&amp;M phase:</strong> Under the LTSA, Lighthief guarantees 97% availability. If availability falls below target due to Lighthief's fault (maintenance failure, slow response), liquidated damages of <strong>€30 per MWh per day</strong> are payable. This is our primary contractual liability as O&amp;M manager.
+    </div>
+
+    <table>
+        <tr><th>Metric</th><th>Per Day (€)</th><th>Per Month (€)</th><th>Per Year (€)</th></tr>
+        <tr><td>Max LD exposure — single park (60 MWh)</td><td class="num">1,800</td><td class="num">54,750</td><td class="num">657,000</td></tr>
+        <tr><td>Max LD exposure — typical park (20 MWh)</td><td class="num">600</td><td class="num">18,250</td><td class="num">219,000</td></tr>
+        <tr><td>Max LD exposure — smallest park (5 MWh)</td><td class="num">150</td><td class="num">4,563</td><td class="num">54,750</td></tr>
+        <tr><td>Max LD exposure — full portfolio</td><td class="num">22,601</td><td class="num">687,280</td><td class="num">8,249,730</td></tr>
+    </table>
+
+    <table>
+        <tr><th>LD Mitigation</th><th>Detail</th></tr>
+        <tr><td>SLA Credit Cap — Critical</td><td>€100/hour, max €1,000 per incident</td></tr>
+        <tr><td>SLA Credit Cap — Major</td><td>€50/hour, max €500 per incident</td></tr>
+        <tr><td>Quarterly LD Cap</td><td>10% of quarterly Service Fee</td></tr>
+        <tr><td>LD Exclusions</td><td>Force majeure, grid outages, client-caused downtime, planned maintenance within allowance, OEM equipment defects</td></tr>
+    </table>
+
+    <h3>4.3 Professional Indemnity</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Limit per Claim</strong></td><td>€2,000,000</td></tr>
+        <tr><td><strong>Annual Aggregate</strong></td><td>€5,000,000</td></tr>
+        <tr><td><strong>Run-Off</strong></td><td>6 years</td></tr>
+        <tr><td><strong>Services Covered</strong></td><td>EPC design and system integration, O&amp;M management and monitoring, grid connection consulting and DSO liaison, energy management and optimisation advice, feasibility studies and technical reporting</td></tr>
+    </table>
+
+    <h3>4.4 Third Party Liability (Operational Phase)</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Bodily Injury</strong></td><td>€2,000,000 per occurrence</td></tr>
+        <tr><td><strong>Property Damage</strong></td><td>€2,000,000 per occurrence</td></tr>
+        <tr><td><strong>Aggregate</strong></td><td>€5,000,000 annual</td></tr>
+        <tr><td><strong>Scope</strong></td><td>Routine maintenance visits, emergency callouts, annual inspections, access to client PV park sites</td></tr>
+        <tr><td><strong>Risk</strong></td><td>Damage to client PV equipment, third-party property, or persons during maintenance activities at {{PORTFOLIO.parks}} sites</td></tr>
+    </table>
+
+    <h3>4.5 Product Liability (Lighthief Scope Only)</h3>
+    <table>
+        <tr><th>Item</th><th>Requirement</th></tr>
+        <tr><td><strong>Limit</strong></td><td>€2,000,000</td></tr>
+        <tr><td><strong>Scope</strong></td><td>Lighthief-installed components only: cabling, grounding, civil works, auxiliary electrical systems</td></tr>
+        <tr><td><strong>Exclusion</strong></td><td>OEM equipment defects are warranted by Linyang (backed by AXA €5M product liability). Lighthief is contractually indemnified by Linyang for manufacturing defects</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: GRAWE PREREQUISITES COMPLIANCE               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s5">5. Compliance with Grawe PV Park Insurance Prerequisites</h2>
+
+    <p class="section-intro">
+        The following table maps each of Grawe's standard PV park prerequisites (per Zoe Stavrou's email of 27 February 2026) to our BESS implementation. All requirements are met or exceeded.
+    </p>
+
+    <table>
+        <tr><th>#</th><th>Grawe Requirement (from email)</th><th>BESS Implementation</th><th>Status</th></tr>
+        <tr>
+            <td>1</td>
+            <td>Alarm system with infrared motion sensors connected to a Call Reception Centre<br><em>(Σύστημα συναγερμού με αισθητήρες κίνησης υπερύθρων)</em></td>
+            <td>24/7 SCADA/EMS monitoring (Voltus) with critical alert escalation to Lighthief NOC. BMS cell-level monitoring per container. Infrared intrusion detection can be specified per site. All alerts escalated within 1 hour</td>
+            <td><span class="badge badge-exceed">EXCEEDS</span></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Complete lightning protection system<br><em>(Ολοκληρωμένο σύστημα αντικεραυνικής προστασίας)</em></td>
+            <td>Full IEC 62305 LPS designed by DEHN: air terminals on every container and MV SKID, down conductors, earth electrodes (≤1Ω per container). SPD protection at all voltage levels (MV, LV, DC, control). Budget: €528,000 for portfolio</td>
+            <td><span class="badge badge-comply">COMPLIANT</span></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Equipment (other than PV panels) stored in covered/enclosed space<br><em>(Φύλαξη εξοπλισμού σε στεγασμένο χώρο)</em></td>
+            <td>All BESS equipment is fully enclosed in steel shipping containers (IP55 rated, C5 corrosion protection). PCS inverters, transformers, and switchgear are enclosed within the MV SKID container (IP54/IP65). No external equipment is exposed</td>
+            <td><span class="badge badge-exceed">EXCEEDS</span></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Fencing at least 2 metres high with security locks<br><em>(Περίφραξη ≥2m με κλειδαριές ασφαλείας)</em></td>
+            <td>All BESS installations include perimeter fencing ≥2m height with locked access gates. Sites are within the existing fenced PV park boundary, providing double fencing. Controlled access with security locks</td>
+            <td><span class="badge badge-comply">COMPLIANT</span></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Vegetation clearing inside park area at least twice yearly (spring + summer)<br><em>(Καθαρισμός βλάστησης ≥2 φορές/χρόνο)</em></td>
+            <td>LTSA includes vegetation management as part of preventive maintenance. DSO (KDP 17/2026) requires dry vegetation clearance. Weekly visual inspections include vegetation checks. Minimum 2× annual clearing confirmed</td>
+            <td><span class="badge badge-comply">COMPLIANT</span></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Equipment installed at least 6 metres from fencing<br><em>(Εγκατάσταση σε απόσταση ≥6m από περίφραξη)</em></td>
+            <td>DSO decree KDP 17/2026 mandates minimum 6m setback from all plot boundaries. Our design provides 6m fire access perimeter around all containers, plus 6m between containers. Container spacing exceeds FM 5-33 insurer minimums</td>
+            <td><span class="badge badge-exceed">EXCEEDS</span></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Annual inspection and maintenance of electromechanical systems per manufacturer specs, with signed certification<br><em>(Έλεγχος/συντήρηση ανά 12 μήνες)</em></td>
+            <td>LTSA includes quarterly preventive inspections (not just annual) plus annual comprehensive system audit. All maintenance per Linyang OEM manual V2.0. Signed maintenance reports by qualified Lighthief engineers. Annual DSO regulatory testing included</td>
+            <td><span class="badge badge-exceed">EXCEEDS</span></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Bases anchored with concrete<br><em>(Βάσεις πιασμένες με μπετόν)</em></td>
+            <td>All battery containers and MV SKID containers placed on reinforced concrete foundations. DSO (KDP 17/2026, Condition 24) explicitly requires reinforced concrete base for BESS. Foundation design: ~45 m² (small parks) to ~120 m² (medium parks)</td>
+            <td><span class="badge badge-comply">COMPLIANT</span></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Equipment bolted/secured to bases<br><em>(Βιδωμένα στις βάσεις)</em></td>
+            <td>Containers are crane-placed on reinforced concrete foundations. Securing method per Linyang installation manual (TBC). Container weight (~43 tonnes) provides inherent stability</td>
+            <td><span class="badge badge-comply">COMPLIANT</span></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>No floods, tornadoes, strong winds, or extreme weather in last 5 years<br><em>(Χωρίς πλημμύρες/ανεμοστρόβιλους τελευταία 5 χρόνια)</em></td>
+            <td>Cyprus has low flood risk (elevated inland sites), no tornado history, and moderate seismicity (Zone 2). Site-specific weather history will be confirmed per project at declaration. Mediterranean climate with predictable weather patterns</td>
+            <td><span class="badge badge-comply">PER SITE</span></td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Photographic material required<br><em>(Φωτογραφικό υλικό)</em></td>
+            <td>Site photographs will be provided per project at declaration. Pre-construction photos of existing PV park and proposed BESS location available. Post-installation photographic documentation included in PAC handover package</td>
+            <td><span class="badge badge-comply">AVAILABLE</span></td>
+        </tr>
+    </table>
+
+    <div class="info-box">
+        <strong>BESS-specific safety measures beyond PV park prerequisites:</strong> In addition to meeting all PV park requirements above, the BESS installations include per-container fire suppression (aerosol + water backup), H₂/CO gas detection, BMS cell-level thermal monitoring, explosion vent panels, forced ventilation, and UL9540A-certified no-propagation battery chemistry (LFP). These measures are standard in all {{PORTFOLIO.containers}} containers and are not typically present in PV-only installations.
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: SITE CONDITIONS & RISK PROFILE               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s6">6. Site Conditions &amp; Risk Profile</h2>
+
+    <h3>6.1 Battery Technology</h3>
+    <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td>Chemistry</td><td>LFP (Lithium Iron Phosphate) — inherently thermally stable, lowest fire risk lithium chemistry</td></tr>
+        <tr><td>Cell Manufacturer</td><td>EVE Energy (314Ah LFP cells) — Linyang is a shareholder in EVE</td></tr>
+        <tr><td>UL9540A</td><td><span class="badge badge-pass">PASSED</span> — no thermal propagation between modules. Unit-level max temp 34.8°C</td></tr>
+        <tr><td>IEC 62619</td><td><span class="badge badge-pass">CB CERTIFIED</span> — secondary lithium cells safety</td></tr>
+        <tr><td>IEC 63056</td><td><span class="badge badge-pass">CB CERTIFIED</span> — ESS safety requirements</td></tr>
+        <tr><td>UL 94 V-0</td><td><span class="badge badge-pass">CERTIFIED</span> — fire retardant materials (self-extinguishing ≤10s)</td></tr>
+        <tr><td>UN 38.3</td><td><span class="badge badge-pass">PASSED</span> — transport safety</td></tr>
+    </table>
+
+    <h3>6.2 Fire Protection (Per Container)</h3>
+    <table>
+        <tr><th>System</th><th>Detail</th></tr>
+        <tr><td>Fire Suppression</td><td>6× container-level aerosol (FK-5-1-12 / Novec 1230) + 96× pack-level aerosol + water backup</td></tr>
+        <tr><td>Gas Detection</td><td>2× H₂ sensors + 2× CO sensors — continuous monitoring with automatic ventilation</td></tr>
+        <tr><td>Smoke &amp; Heat</td><td>2× smoke detectors + 2× heat detectors — multi-zone</td></tr>
+        <tr><td>Pack-Level Monitoring</td><td>48× integrated nozzles with CO + temperature per pack</td></tr>
+        <tr><td>BMS</td><td>Cell-level voltage, temperature, current monitoring. Automatic shutdown on anomaly</td></tr>
+        <tr><td>Containment</td><td>6m container spacing — "let it burn" containment viable. Single-container PML (~€400K max)</td></tr>
+    </table>
+
+    <h3>6.3 Risk Assessment Summary</h3>
+    <table>
+        <tr><th>Risk Factor</th><th>Assessment</th><th>Rationale</th></tr>
+        <tr><td>Fire / Thermal Runaway</td><td><span class="badge badge-pass">LOW</span></td><td>LFP chemistry, UL9540A no-propagation, 6m spacing, gas detection, aerosol suppression</td></tr>
+        <tr><td>Installation Risk</td><td><span class="badge badge-pass">LOW</span></td><td>OEM (Linyang) factory-trained technicians perform all equipment installation</td></tr>
+        <tr><td>Natural Catastrophe</td><td><span class="badge badge-pass">LOW</span></td><td>Seismic Zone 2 (moderate), low flood risk, no wildfire/tornado history</td></tr>
+        <tr><td>Transit Risk</td><td><span class="badge badge-comply">MEDIUM</span></td><td>~43T containers on Cyprus roads. A. Soulis haulage (confirmed 6 trucks)</td></tr>
+        <tr><td>Professional Risk</td><td><span class="badge badge-comply">MEDIUM</span></td><td>EPC design, O&amp;M management, grid connection consulting</td></tr>
+        <tr><td>Third Party</td><td><span class="badge badge-comply">MEDIUM</span></td><td>Works within existing PV parks — risk of damage to third-party PV equipment</td></tr>
+    </table>
+
+    <h3>6.4 Upstream Insurance (Linyang OEM)</h3>
+    <table>
+        <tr><th>Coverage</th><th>Limit</th><th>Insurer</th></tr>
+        <tr><td>Product Liability</td><td>€5,000,000</td><td>AXA</td></tr>
+        <tr><td>Professional Indemnity</td><td>€2,000,000</td><td>—</td></tr>
+        <tr><td>Manufacturing Defect Indemnity</td><td>Full indemnification</td><td>Contractual</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: PRICING TEMPLATE                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s7">7. Pricing Template</h2>
+
+    <h3>7.1 Part A — Construction Phase</h3>
+    <table>
+        <tr><th>Coverage</th><th>Limit / Structure</th><th>Premium (€)</th><th>Deductible (€)</th></tr>
+        <tr><td>CAR/EAR (declaration basis)</td><td>Up to €7.1M per project / €109M agg.</td><td></td><td></td></tr>
+        <tr><td>Delay in Start-Up (DSU)</td><td>12-month indemnity, €30/MWh/day</td><td></td><td></td></tr>
+        <tr><td>Third Party Liability (construction)</td><td>€5M per occ. / €10M agg.</td><td></td><td></td></tr>
+        <tr><td>Inland Transit</td><td>€2M per shipment / €10M agg.</td><td></td><td></td></tr>
+        <tr><td><strong>Part A Subtotal</strong></td><td></td><td><strong>€</strong></td><td></td></tr>
+    </table>
+
+    <h3>7.2 Part B — Operational Phase (O&amp;M Manager)</h3>
+    <table>
+        <tr><th>Coverage</th><th>Limit / Structure</th><th>Premium (€)</th><th>Deductible (€)</th></tr>
+        <tr><td>Professional Indemnity</td><td>€2M per claim / €5M agg.</td><td></td><td></td></tr>
+        <tr><td>Third Party Liability (operational)</td><td>€2M per occ. / €5M agg.</td><td></td><td></td></tr>
+        <tr><td>Product Liability (Lighthief scope)</td><td>€2M</td><td></td><td></td></tr>
+        <tr><td>Contractual Liability / LD Exposure</td><td>As per LTSA terms</td><td></td><td></td></tr>
+        <tr><td><strong>Part B Subtotal</strong></td><td></td><td><strong>€</strong></td><td></td></tr>
+    </table>
+
+    <h3>7.3 Combined Programme</h3>
+    <table>
+        <tr><th></th><th></th><th>Premium (€)</th><th></th></tr>
+        <tr><td><strong>TOTAL (Part A + Part B)</strong></td><td></td><td><strong>€</strong></td><td></td></tr>
+        <tr><td>Combined Programme Discount</td><td>☐ Yes — ___% &nbsp; ☐ No</td><td></td><td></td></tr>
+        <tr><td>Multi-Year Discount</td><td>☐ Yes — ___% &nbsp; ☐ No</td><td></td><td></td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: DOCUMENTS AVAILABLE                          -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <h2 id="s8">8. Documents Available for Underwriting</h2>
+
+    <table>
+        <tr><th>Document</th><th>Status</th></tr>
+        <tr><td>EPC Agreement template (LDs, warranty, payment, liability cap)</td><td>Available</td></tr>
+        <tr><td>LTSA template (availability SLA, SOH guarantee, LD terms)</td><td>Available</td></tr>
+        <tr><td>Linyang product certifications (UL9540A, IEC 62619, IEC 63056, UN 38.3)</td><td>Available</td></tr>
+        <tr><td>Project portfolio with delivery timeline and per-project values</td><td>Available</td></tr>
+        <tr><td>Typical site layout drawing (container spacing, fire access)</td><td>Available</td></tr>
+        <tr><td>Site photographs (per project, at declaration)</td><td>Per site</td></tr>
+        <tr><td>Company registration documents (HE 477423)</td><td>Available</td></tr>
+        <tr><td>Lightning protection design (DEHN RFQ + quotation)</td><td>Available</td></tr>
+        <tr><td>O&amp;M Workflow Plan (team structure, SOPs, shift model)</td><td>Available</td></tr>
+        <tr><td>Service Team Profile (engineer qualifications, training records)</td><td>Available</td></tr>
+        <tr><td>Emergency Response Plan (template)</td><td>Available</td></tr>
+        <tr><td>Linyang OEM insurance certificates (AXA product liability)</td><td>Available</td></tr>
+    </table>
+
+    <h3>8.1 Response Requirements</h3>
+    <p class="section-intro">Please provide:</p>
+    <table>
+        <tr><th>#</th><th>Item</th></tr>
+        <tr><td>1</td><td>Premium quotation for each coverage line (Part A and Part B separately)</td></tr>
+        <tr><td>2</td><td>Combined programme pricing (if discount available)</td></tr>
+        <tr><td>3</td><td>Full exclusions list — specifically any BESS / lithium battery exclusions</td></tr>
+        <tr><td>4</td><td>Confirmation that LFP lithium batteries are NOT excluded from CAR coverage</td></tr>
+        <tr><td>5</td><td>Deductible options (minimum and standard)</td></tr>
+        <tr><td>6</td><td>Payment terms (annual / quarterly)</td></tr>
+        <tr><td>7</td><td>Claims handling process and typical response times</td></tr>
+        <tr><td>8</td><td>Any additional underwriting information required</td></tr>
+    </table>
+
+    <h3>8.2 Timeline</h3>
+    <table>
+        <tr><th>Milestone</th><th>Date</th></tr>
+        <tr><td>RFP Issued</td><td>27 February 2026</td></tr>
+        <tr><td>Questions / Clarifications</td><td>7 March 2026</td></tr>
+        <tr><td><strong>Proposal Due</strong></td><td><strong>14 March 2026</strong></td></tr>
+        <tr><td>Policy Inception (target)</td><td>1 April 2026</td></tr>
+        <tr><td>First Equipment CIF Arrival</td><td>July 2026 (Batch 1 — 15 parks)</td></tr>
+    </table>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>
+            <strong>{{COMPANY.name}}</strong> · {{COMPANY.address}}<br>
+            Costas Hadjikyriacou, Electrical Engineer MEng/MSc · costas@lighthief.com · +357 96 09 50 90<br>
+            {{COMPANY.bessProjectContact}} · {{COMPANY.bessProjectPhone}} · {{COMPANY.email}}<br><br>
+            Document: LCY-RFP-GRAWE-BESS-2026 · Classification: COMMERCIAL — CONFIDENTIAL<br>
+            For: George Kyprianou — Grawe Insurance Company (Cyprus) Ltd<br>
+            Date: 27 February 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
