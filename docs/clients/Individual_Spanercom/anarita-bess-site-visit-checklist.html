@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Visit Checklist — Anarita 2 × 5 MW BESS | Lighthief Cyprus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @page { size: A4; margin: 12mm; }
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #1a1a2e;
+            background: #f0f2f5;
+            padding: 15px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            color: white;
+            padding: 30px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 22px; font-weight: 700; }
+        .header .subtitle { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+        .header .meta { text-align: right; font-size: 12px; opacity: 0.8; }
+        .content { padding: 30px 35px; }
+        h2 {
+            font-size: 16px;
+            color: #16213e;
+            border-bottom: 2px solid #4ade80;
+            padding-bottom: 6px;
+            margin: 28px 0 14px 0;
+        }
+        h2:first-child { margin-top: 0; }
+        h3 {
+            font-size: 14px;
+            color: #1e3a5f;
+            margin: 18px 0 8px 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 25px;
+            margin-bottom: 15px;
+        }
+        .info-item { display: flex; gap: 8px; font-size: 12px; }
+        .info-label { font-weight: 600; color: #374151; min-width: 120px; }
+        .info-value { color: #1e3a5f; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li {
+            padding: 7px 0 7px 32px;
+            position: relative;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 12.5px;
+        }
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 9px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #9ca3af;
+            border-radius: 3px;
+            background: white;
+        }
+        .checklist li.section-header {
+            padding-left: 0;
+            font-weight: 700;
+            color: #16213e;
+            font-size: 13px;
+            border-bottom: 1px solid #e5e7eb;
+            margin-top: 10px;
+        }
+        .checklist li.section-header::before { display: none; }
+        .checklist .note {
+            color: #6b7280;
+            font-size: 11px;
+            font-style: italic;
+        }
+        .checklist .critical {
+            background: #fef2f2;
+            border-left: 3px solid #dc2626;
+            padding-left: 35px;
+        }
+        .checklist .critical::before { border-color: #dc2626; }
+        .checklist .photo {
+            background: #eff6ff;
+            border-left: 3px solid #3b82f6;
+            padding-left: 35px;
+        }
+        .checklist .photo::before { border-color: #3b82f6; }
+        .checklist .measure {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding-left: 35px;
+        }
+        .checklist .measure::before { border-color: #22c55e; }
+        .notes-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 80px;
+            margin: 10px 0;
+            background: #fafafa;
+        }
+        .notes-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+            font-size: 11px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legend-swatch {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            text-align: left;
+            padding: 6px 10px;
+            border: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: #374151;
+        }
+        td {
+            padding: 6px 10px;
+            border: 1px solid #e5e7eb;
+        }
+        .result-cell {
+            min-width: 120px;
+            background: #fafafa;
+        }
+        .map-placeholder {
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 12px;
+            margin: 10px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .alert {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 12px;
+            margin: 12px 0;
+        }
+        .alert strong { color: #92400e; }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .footer {
+            background: #f8fafc;
+            padding: 20px 35px;
+            font-size: 11px;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div>
+            <h1>BESS Site Assessment Checklist</h1>
+            <div class="subtitle">Anarita 10 MW PV Park (2 × 5 MW BESS) — Spanercom Ltd / Muminjon</div>
+        </div>
+        <div class="meta">
+            Lighthief Cyprus Ltd<br>
+            Date: _____ / _____ / 2026<br>
+            Assessor: _________________
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- PROJECT SUMMARY -->
+        <h2>1. Project Summary</h2>
+        <div class="info-grid">
+            <div class="info-item"><span class="info-label">Project:</span><span class="info-value">Anarita BESS (co-located with PV)</span></div>
+            <div class="info-item"><span class="info-label">Client:</span><span class="info-value">Muminjon / Spanercom Ltd</span></div>
+            <div class="info-item"><span class="info-label">PV Capacity:</span><span class="info-value">10.02 MWp (East 5.01 + West 5.01)</span></div>
+            <div class="info-item"><span class="info-label">BESS Proposed:</span><span class="info-value">2 × 5 MW / 15 MWh (one per park, 30 MWh total)</span></div>
+            <div class="info-item"><span class="info-label">Containers:</span><span class="info-value">3 × 5 MWh battery + 1 × T4 MV SKID per park (8 containers total)</span></div>
+            <div class="info-item"><span class="info-label">Container Weight:</span><span class="info-value">~43 tonnes each</span></div>
+            <div class="info-item"><span class="info-label">Grid Connection:</span><span class="info-value">22 kV EAC distribution</span></div>
+            <div class="info-item"><span class="info-label">Location:</span><span class="info-value">Anarita, Paphos District (34.45°N, 32.31°E)</span></div>
+            <div class="info-item"><span class="info-label">Land Ownership:</span><span class="info-value">Client-owned</span></div>
+            <div class="info-item"><span class="info-label">Current O&M:</span><span class="info-value">Phoenix Hellas / ERGO Energy</span></div>
+            <div class="info-item"><span class="info-label">SCADA:</span><span class="info-value">Zenon Energy (IESA Cyprus)</span></div>
+            <div class="info-item"><span class="info-label">PV Inverters:</span><span class="info-value">32× Sungrow (14× SG350HX + 2× SG125HX per park)</span></div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-swatch" style="background:#fef2f2;border:2px solid #dc2626;"></div> Critical / Safety</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#eff6ff;border:2px solid #3b82f6;"></div> Photograph Required</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#f0fdf4;border:2px solid #22c55e;"></div> Measurement Required</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:white;border:2px solid #9ca3af;"></div> Standard Check</div>
+        </div>
+
+        <!-- SECTION 2: BESS LOCATION ASSESSMENT -->
+        <h2>2. BESS Placement Assessment</h2>
+
+        <h3>2.1 Candidate Location A — Near EAC Building / Meter Room (Preferred)</h3>
+        <ul class="checklist">
+            <li class="measure">Measure available flat ground area (L × W) within 50m of EAC building<br><span class="note">Need min. 50m × 40m = 2,000 m². Preferred: 60m × 50m = 3,000 m²</span></li>
+            <li class="measure">Distance from EAC cubicles to nearest clear ground for containers: _____ m</li>
+            <li class="photo">Photograph EAC building from all 4 sides, showing surrounding ground</li>
+            <li>Ground surface type: &nbsp; ☐ Compacted earth &nbsp; ☐ Gravel &nbsp; ☐ Rocky &nbsp; ☐ Soft soil &nbsp; ☐ Concrete</li>
+            <li>Ground slope: &nbsp; ☐ Flat (<2%) &nbsp; ☐ Gentle (2-5%) &nbsp; ☐ Steep (>5%) — needs levelling</li>
+            <li>Any obstacles? &nbsp; ☐ None &nbsp; ☐ Pylons &nbsp; ☐ Drainage channels &nbsp; ☐ Roads &nbsp; ☐ Fencing &nbsp; ☐ Trees</li>
+            <li class="photo">Photograph any obstacles with scale reference (person standing next to them)</li>
+            <li>Existing access road width: _____ m <span class="note">(Need min. 4m for container truck, 6m preferred)</span></li>
+            <li>Can a 100-tonne mobile crane set up here? &nbsp; ☐ Yes &nbsp; ☐ No &nbsp; ☐ With modifications</li>
+            <li>Any overhead power lines that would obstruct crane operation? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+        </ul>
+
+        <div class="notes-box">
+            <div class="notes-label">Location A Notes / Sketch</div>
+        </div>
+
+        <h3>2.2 Candidate Location B — Adjacent to East Park Substation</h3>
+        <ul class="checklist">
+            <li class="measure">Measure clear ground near East substation (TR1/TR2): _____ m × _____ m</li>
+            <li class="measure">Distance from substation MV panel to clear ground: _____ m</li>
+            <li>Space between last PV row and substation: _____ m <span class="note">(Need min. 15m for containers + fire gap)</span></li>
+            <li class="photo">Photograph East substation showing available ground on all sides</li>
+            <li>Ground conditions: &nbsp; ☐ Flat &nbsp; ☐ Sloped &nbsp; ☐ Rocky &nbsp; ☐ Soft</li>
+            <li>Crane access possible from this direction? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+        </ul>
+
+        <div class="notes-box">
+            <div class="notes-label">Location B Notes / Sketch</div>
+        </div>
+
+        <h3>2.3 Candidate Location C — Adjacent to West Park Substation</h3>
+        <ul class="checklist">
+            <li class="measure">Measure clear ground near West substation: _____ m × _____ m</li>
+            <li class="measure">Distance from substation MV panel to clear ground: _____ m</li>
+            <li>Space between last PV row and substation: _____ m</li>
+            <li class="photo">Photograph West substation showing available ground on all sides</li>
+            <li>Ground conditions: &nbsp; ☐ Flat &nbsp; ☐ Sloped &nbsp; ☐ Rocky &nbsp; ☐ Soft</li>
+        </ul>
+
+        <div class="notes-box">
+            <div class="notes-label">Location C Notes / Sketch</div>
+        </div>
+
+        <h3>2.4 Candidate Location D — Undeveloped Land (Plot 172 or other)</h3>
+        <ul class="checklist">
+            <li class="measure">Walk undeveloped land areas — measure available flat zones</li>
+            <li class="measure">Distance to nearest 22 kV connection point: _____ m (paced)</li>
+            <li>Ground conditions: &nbsp; ☐ Flat &nbsp; ☐ Sloped &nbsp; ☐ Cleared &nbsp; ☐ Vegetation &nbsp; ☐ Rocky</li>
+            <li>Access road exists? &nbsp; ☐ Yes (width: _____ m) &nbsp; ☐ No — new road needed</li>
+            <li class="photo">Panoramic photographs of undeveloped areas</li>
+        </ul>
+
+        <div class="notes-box">
+            <div class="notes-label">Location D Notes / Sketch</div>
+        </div>
+
+        <h3>2.5 Preferred Location Decision</h3>
+        <table>
+            <tr><th>Factor</th><th>Location A (EAC)</th><th>Location B (East Sub)</th><th>Location C (West Sub)</th><th>Location D (Other)</th></tr>
+            <tr><td>Sufficient space?</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>Flat ground?</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>MV cable distance</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>Crane access?</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>Fire separation OK?</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td><strong>SELECTED?</strong></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+        </table>
+
+        <!-- SECTION 3: ELECTRICAL -->
+        <h2 class="page-break">3. Electrical Infrastructure</h2>
+
+        <h3>3.1 MV Switchgear / Grid Connection</h3>
+        <ul class="checklist">
+            <li class="photo">Photograph the EAC metering cubicles (exterior + open doors)</li>
+            <li class="photo">Photograph the producer's MV cubicles (Unisec 24kV panels) — open all accessible doors</li>
+            <li class="critical">Count available spare MV bays/feeders: _____ spare bays</li>
+            <li>Busbar configuration: &nbsp; ☐ Single busbar &nbsp; ☐ Double busbar &nbsp; ☐ Ring</li>
+            <li class="photo">Photograph MV cable entry points — is there space for a new cable gland?</li>
+            <li>Protection relays visible (ABB REF601 / REF615): &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li class="photo">Photograph relay front panels (for model numbers and current settings)</li>
+            <li>PQR meter (Sicam P855) location and accessibility: &nbsp; ☐ Accessible &nbsp; ☐ Locked</li>
+            <li>Is there a standalone BESS MV SKID connection point possible? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li class="note">Each park gets a 5 MW MV SKID (T4) with its own transformer and switchgear. Can each connect to the existing 22 kV bus?</li>
+        </ul>
+
+        <div class="notes-box">
+            <div class="notes-label">MV Switchgear Notes (spare bays, cable routing, busbar condition)</div>
+        </div>
+
+        <h3>3.2 Existing Transformers</h3>
+        <ul class="checklist">
+            <li class="photo">Photograph each transformer nameplate (4 total: 2 East + 2 West)</li>
+            <li>Transformer type confirmed as Matelec 2,600 kVA? &nbsp; ☐ Yes &nbsp; ☐ Different: _________</li>
+            <li>Cooling type: &nbsp; ☐ ONAN (oil) &nbsp; ☐ ONAF &nbsp; ☐ Dry type</li>
+            <li>Any visible oil leaks? &nbsp; ☐ None &nbsp; ☐ Minor &nbsp; ☐ Significant</li>
+            <li class="measure">Distance from nearest transformer to proposed BESS location: _____ m<br><span class="note">Fire separation: min. 6m from oil-filled transformer to BESS containers</span></li>
+        </ul>
+
+        <h3>3.3 Cabling & Earthing</h3>
+        <ul class="checklist">
+            <li>MV cable route between substations and EAC building: &nbsp; ☐ Underground &nbsp; ☐ Overhead</li>
+            <li class="photo">Photograph cable trench routes (if visible)</li>
+            <li>Earthing grid visible? &nbsp; ☐ Yes — extent marked &nbsp; ☐ No — underground only</li>
+            <li class="measure">Distance from existing earthing to proposed BESS area: _____ m</li>
+            <li>Earth resistance test available from TDD? &nbsp; ☐ Yes (value: _____ Ω) &nbsp; ☐ No</li>
+        </ul>
+
+        <h3>3.4 SCADA & Communications</h3>
+        <ul class="checklist">
+            <li class="photo">Photograph the SCADA cabinet / communications rack</li>
+            <li>SCADA system confirmed as Zenon (IESA)? &nbsp; ☐ Yes &nbsp; ☐ Different: _________</li>
+            <li>Communication link type: &nbsp; ☐ 4G modem &nbsp; ☐ Fibre &nbsp; ☐ Radio &nbsp; ☐ Other</li>
+            <li class="critical">4G signal strength at East park: _____ bars / _____ dBm<br><span class="note">TDD flagged single 4G link as single point of failure — check if second link viable</span></li>
+            <li>4G signal strength at proposed BESS location: _____ bars</li>
+            <li>Dish antenna between East and West visible? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Spare Ethernet / Modbus ports in SCADA cabinet? &nbsp; ☐ Yes (count: _____) &nbsp; ☐ No</li>
+            <li>Internet router / switch accessible for BESS integration? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+        </ul>
+
+        <div class="notes-box">
+            <div class="notes-label">SCADA / Comms Notes</div>
+        </div>
+
+        <!-- SECTION 4: CIVIL & ACCESS -->
+        <h2 class="page-break">4. Civil & Access</h2>
+
+        <h3>4.1 Site Access</h3>
+        <ul class="checklist">
+            <li class="measure">Main entrance gate width: _____ m <span class="note">(Container truck needs min. 4m clear)</span></li>
+            <li class="measure">Internal road width (narrowest point): _____ m</li>
+            <li>Road surface: &nbsp; ☐ Paved &nbsp; ☐ Compacted gravel &nbsp; ☐ Dirt track &nbsp; ☐ Concrete</li>
+            <li>Any tight turns that would prevent a 16m truck from passing? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Weight limit signs on approach roads? &nbsp; ☐ Yes (limit: _____ t) &nbsp; ☐ No</li>
+            <li>Any low bridges or overhead lines on approach? &nbsp; ☐ Yes (height: _____ m) &nbsp; ☐ No</li>
+            <li class="photo">Photograph the entrance gate and narrowest road section</li>
+        </ul>
+
+        <h3>4.2 Ground Conditions</h3>
+        <ul class="checklist">
+            <li>Soil type at proposed BESS area: &nbsp; ☐ Rock &nbsp; ☐ Gravel &nbsp; ☐ Clay &nbsp; ☐ Sand &nbsp; ☐ Mixed</li>
+            <li>Evidence of water pooling / drainage issues? &nbsp; ☐ None &nbsp; ☐ Minor &nbsp; ☐ Significant</li>
+            <li>Existing drainage channels near BESS area? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Vegetation clearance needed? &nbsp; ☐ None &nbsp; ☐ Light &nbsp; ☐ Heavy</li>
+            <li class="note">Geotechnical survey may be needed — 43-tonne containers require solid foundations (compacted base or concrete pads)</li>
+        </ul>
+
+        <h3>4.3 Container Layout Space</h3>
+        <div class="alert">
+            <strong>Container Dimensions:</strong> Each container is 12.2m × 2.4m × 2.9m (~43 tonnes).
+            Minimum spacing: 3m between containers, 6m fire gap from oil transformers, 3m from fencing.
+            Typical layout: single row of 4 containers per park = ~55m × 8m, or L-shaped layout.
+        </div>
+        <ul class="checklist">
+            <li class="measure">Can 4 containers per park fit in a single row (~55m × 8m)? &nbsp; ☐ Yes &nbsp; ☐ No — use double row</li>
+            <li class="measure">If double row: space available _____ m × _____ m</li>
+            <li>Orientation preference: &nbsp; ☐ N-S (containers face east/west) &nbsp; ☐ E-W &nbsp; ☐ Constrained by site</li>
+            <li>Maintenance access on both long sides of each container? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+        </ul>
+
+        <div class="map-placeholder">
+            SKETCH: Draw proposed container layout on site<br>
+            Mark: container positions, MV SKID, cable route to 22kV bus, access road, fire gaps
+        </div>
+
+        <!-- SECTION 5: SAFETY -->
+        <h2>5. Safety & Environment</h2>
+
+        <h3>5.1 Fire Safety</h3>
+        <ul class="checklist">
+            <li class="critical">Nearest water source / fire hydrant: _____ m from proposed BESS area</li>
+            <li class="critical">Fire extinguishers on site? &nbsp; ☐ Yes (type: _____) &nbsp; ☐ No</li>
+            <li>Fire assembly point marked? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Access for fire truck to proposed BESS area? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Distance to nearest building / residence: _____ m</li>
+            <li class="note">BESS containers include integrated aerosol fire suppression + gas detection. External firewater may still be required by local fire department.</li>
+        </ul>
+
+        <h3>5.2 Lightning Protection</h3>
+        <ul class="checklist">
+            <li>Existing lightning protection system on site? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li class="photo">Photograph any existing lightning rods / down conductors</li>
+            <li>Earthing grid extent — does it cover the proposed BESS area? &nbsp; ☐ Yes &nbsp; ☐ No — needs extension</li>
+        </ul>
+
+        <h3>5.3 Security</h3>
+        <ul class="checklist">
+            <li>Perimeter fencing type: &nbsp; ☐ Chain-link &nbsp; ☐ Welded mesh &nbsp; ☐ Wall &nbsp; ☐ None</li>
+            <li>Fence height: _____ m</li>
+            <li>CCTV on site? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Security guard / patrol? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>BESS area within existing fence? &nbsp; ☐ Yes &nbsp; ☐ No — new fencing needed (_____ m)</li>
+        </ul>
+
+        <h3>5.4 Environmental</h3>
+        <ul class="checklist">
+            <li>Flood risk visible (low-lying areas, water marks)? &nbsp; ☐ None &nbsp; ☐ Some risk</li>
+            <li>Proximity to watercourses / rivers: _____ m</li>
+            <li>Protected habitat / Natura 2000 area nearby? &nbsp; ☐ No &nbsp; ☐ Yes — distance: _____ m</li>
+            <li>Noise-sensitive receptors (houses, schools) within 200m? &nbsp; ☐ No &nbsp; ☐ Yes — distance: _____ m</li>
+            <li class="note">BESS cooling fans generate ~65 dB at 1m. Check if noise study needed.</li>
+        </ul>
+
+        <!-- SECTION 6: EXISTING SYSTEM CONDITION -->
+        <h2 class="page-break">6. Existing PV System Condition</h2>
+
+        <h3>6.1 General Condition</h3>
+        <ul class="checklist">
+            <li>Overall impression: &nbsp; ☐ Excellent &nbsp; ☐ Good &nbsp; ☐ Fair &nbsp; ☐ Poor</li>
+            <li>PV modules visually clean? &nbsp; ☐ Yes &nbsp; ☐ Dusty &nbsp; ☐ Soiled &nbsp; ☐ Damaged visible</li>
+            <li>Any visible module damage (cracks, hotspots, discolouration)? &nbsp; ☐ None &nbsp; ☐ Yes — count: _____</li>
+            <li>Mounting structure condition: &nbsp; ☐ Good &nbsp; ☐ Corrosion visible &nbsp; ☐ Structural concerns</li>
+            <li>Cable management: &nbsp; ☐ Neat / secured &nbsp; ☐ Some loose cables &nbsp; ☐ Poor</li>
+            <li>Inverter status lights: &nbsp; ☐ All green &nbsp; ☐ Some faults &nbsp; ☐ Not checked</li>
+            <li class="photo">Photograph any issues found (module damage, corrosion, loose cables)</li>
+        </ul>
+
+        <h3>6.2 Substation Condition</h3>
+        <ul class="checklist">
+            <li>East substation condition: &nbsp; ☐ Good &nbsp; ☐ Fair &nbsp; ☐ Concerns: _________</li>
+            <li>West substation condition: &nbsp; ☐ Good &nbsp; ☐ Fair &nbsp; ☐ Concerns: _________</li>
+            <li>Transformer oil level indicators: &nbsp; ☐ Normal &nbsp; ☐ Low &nbsp; ☐ Not visible</li>
+            <li>Any unusual noises from transformers? &nbsp; ☐ None &nbsp; ☐ Humming &nbsp; ☐ Crackling</li>
+        </ul>
+
+        <!-- SECTION 7: CLIENT DISCUSSION POINTS -->
+        <h2>7. Client Discussion Points</h2>
+        <ul class="checklist">
+            <li>Confirm preferred BESS location from the options assessed</li>
+            <li>DSO grid connection — has a BESS connection application been filed? &nbsp; ☐ Yes &nbsp; ☐ No &nbsp; ☐ In progress</li>
+            <li>CERA hybrid storage license — status? &nbsp; ☐ Applied &nbsp; ☐ Not yet &nbsp; ☐ In progress</li>
+            <li>Planning permit for BESS — required? &nbsp; ☐ Yes &nbsp; ☐ No &nbsp; ☐ TBC</li>
+            <li>PPA with Petrolina — any restrictions on BESS dispatch? &nbsp; ☐ No &nbsp; ☐ Yes: _________</li>
+            <li>O&M handover — will ERGO/Phoenix continue PV O&M alongside BESS LTSA? &nbsp; ☐ Yes &nbsp; ☐ No</li>
+            <li>Timeline expectations for BESS installation: _________</li>
+            <li>Refinancing progress with bank — status: _________</li>
+        </ul>
+
+        <div class="notes-box" style="min-height: 120px;">
+            <div class="notes-label">Client Discussion Notes</div>
+        </div>
+
+        <!-- SECTION 8: SUMMARY & ACTIONS -->
+        <h2>8. Summary & Next Steps</h2>
+
+        <h3>Site Assessment Result</h3>
+        <table>
+            <tr><td style="width:50%"><strong>Selected BESS Location:</strong></td><td class="result-cell"></td></tr>
+            <tr><td><strong>Estimated MV Cable Run:</strong></td><td class="result-cell">_____ m</td></tr>
+            <tr><td><strong>Ground Works Required:</strong></td><td class="result-cell"></td></tr>
+            <tr><td><strong>New Fencing Required:</strong></td><td class="result-cell">_____ m</td></tr>
+            <tr><td><strong>Crane Access Confirmed:</strong></td><td class="result-cell"></td></tr>
+            <tr><td><strong>MV Connection Method:</strong></td><td class="result-cell"></td></tr>
+            <tr><td><strong>Blocking Issues Found:</strong></td><td class="result-cell"></td></tr>
+        </table>
+
+        <h3>Action Items</h3>
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:50%">Action</th><th style="width:25%">Owner</th><th style="width:20%">Due Date</th></tr>
+            <tr><td>1</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>2</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>3</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>4</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>5</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>6</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>7</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+            <tr><td>8</td><td class="result-cell"></td><td class="result-cell"></td><td class="result-cell"></td></tr>
+        </table>
+
+        <div class="notes-box" style="min-height: 100px;">
+            <div class="notes-label">General Notes / Observations</div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <span>Lighthief Cyprus Ltd — Confidential</span>
+        <span>Anarita BESS Site Assessment</span>
+    </div>
+
+</div>
+</body>
+</html>
