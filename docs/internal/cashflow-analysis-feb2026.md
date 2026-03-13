@@ -1,8 +1,24 @@
 # Lighthief Cyprus Ltd — Project Cashflow Analysis
 
 **Date:** 20 February 2026  
-**Portfolio:** 51 parks | 881.78 MWh | 6 client groups (v4 Final)
-**Note:** Includes Esperia 2028 Tseri parks (5 parks, 87.5 MWh) in full portfolio figures
+**Portfolio:** 51 parks | 886.78 MWh | 6 client groups (v4 Final)
+**Note:** Includes Esperia 2028 Tseri parks (5 parks, 87.5 MWh) in full portfolio figures. **Batch 1 (confirmed):** 12 parks, 131.28 MWh, CIF €13.21M, revenue €17.0M — first payment **1 April 2026** (VAT quarter Q2 2026 = clean Q1).
+
+---
+
+## 0. Batch 1 Cashflow — April 1 Start & Payment to Request from Linyang (SSOT)
+
+**First payment date:** 1 April 2026 (no invoice/payment before April 1 — clean Q1 VAT).  
+**Cyprus VAT quarters:** Q1 Jan–Mar, Q2 Apr–Jun, Q3 Jul–Sep, Q4 Oct–Dec.
+
+| Item | Amount | Note |
+|------|--------|------|
+| Client 30% advance (Batch 1) | **€5,086,500** | Received 1 April |
+| **Linyang 25% advance to request** | **€3,302,500** | **Due on or after 1 Apr 2026** (within 7 days of contract effectiveness) to align with client receipt and VAT quarter |
+| **Civil works — concrete platforms & trenches (B1)** | **€262,560** | **By June 2026** (€2,000/MWh × 131.28 MWh). Must be paid by June so sites are ready for container placement Jul–Aug. |
+| Buffer (client 30% − Linyang 25%) | ~€1.78M | Funds subcon, platforms, ops |
+
+To manage cashflow without bridging finance: agree with Linyang that the 25% advance for Batch 1 is due **on or after 1 April 2026**, so it can be paid from the same April client receipt. **Civil works (concrete platforms and trenches) for Batch 1 must be paid by June.** See the [HTML cashflow analysis](cashflow-analysis-feb2026.html) for the full Batch 1 table and scenario comparison.
 
 ---
 

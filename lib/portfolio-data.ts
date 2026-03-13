@@ -197,6 +197,18 @@ export const ESP_2028 = {
 export const FAC_DATE = '2027-03-31';
 
 // ─────────────────────────────────────────────
+// VAT REFUND PROCEDURE (Q3 return — urgent)
+// Confirmed with VAT reporting office Limassol (Sofia). Refund assumed ~40 days after claim.
+// ─────────────────────────────────────────────
+
+export const VAT_REFUND_PROCEDURE = {
+  claimDate: '2026-10-02',
+  action: 'Upload Q3 VAT return (Jul–Sep) with supporting documents, requesting urgent refund',
+  notes: 'VAT office Limassol confirmed rush processing from 1 Oct; assume refund ~40 days after claim (mid-Nov).',
+  _meta: { source: 'Sofia, VAT reporting office Limassol', date: '2026-03' } as MetaInfo,
+} as const;
+
+// ─────────────────────────────────────────────
 // PAYMENT TERMS
 // ─────────────────────────────────────────────
 
@@ -212,6 +224,13 @@ export const PAYMENT_TERMS = {
     preShipment: { pct: 50, trigger: 'Ready to ship' },
     dap:         { pct: 20, trigger: 'Delivery at Place (site arrival)' },
     sat:         { pct: 5,  trigger: 'Site Acceptance Test completion' },
+  },
+  // Alternative: final 10% on fixed date (e.g. 30 Nov) instead of at DAP — improves Aug/Sep cashflow
+  linyang20502010: {
+    advance:     { pct: 20, trigger: 'On or after 1 April (align with client)' },
+    preShipment: { pct: 50, trigger: 'Ready to ship' },
+    dap:         { pct: 20, trigger: 'Delivery at Place (port arrival)' },
+    final10:     { pct: 10, trigger: '30 November 2026 (fixed date, not at DAP)' },
   },
   voltus: {
     advance:     { pct: 50, trigger: 'Order date' },
@@ -644,6 +663,8 @@ export function getTemplateVars(): Record<string, string> {
     'PAYMENT.linyang.preShipment':String(PAYMENT_TERMS.linyang.preShipment.pct),
     'PAYMENT.linyang.dap':        String(PAYMENT_TERMS.linyang.dap.pct),
     'PAYMENT.linyang.sat':        String(PAYMENT_TERMS.linyang.sat.pct),
+    'PAYMENT.linyang20502010.final10Trigger': PAYMENT_TERMS.linyang20502010.final10.trigger,
+    'BATCH1.linyangFinal10K':    String(Math.round(0.1 * BATCHES[0].cif / 1000)),
 
     'OEM.manufacturer':        OEM.manufacturer,
     'OEM.pcs':                 OEM.pcs,
@@ -682,6 +703,7 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH1.status': BATCHES[0].status,
     'BATCH1.revenue': BATCHES[0].revenue.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.revenueM': `€${(BATCHES[0].revenue / 1e6).toFixed(1)}M`,
+    'BATCH1.revenueK': String(Math.round(BATCHES[0].revenue / 1000)),
     'BATCH1.cif':    BATCHES[0].cif.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.cifM':   `€${(BATCHES[0].cif / 1e6).toFixed(1)}M`,
     'BATCH1.margin': BATCHES[0].margin.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
@@ -690,6 +712,25 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH1.cifDateFmt': fmtDate(BATCHES[0].cifDate),
     'BATCH1.pacDate': BATCHES[0].pacDate,
     'BATCH1.pacDateFmt': fmtDate(BATCHES[0].pacDate),
+    // Batch 1 cashflow: first payment 1 April, VAT-aligned (Q2 2026)
+    'BATCH1.firstPaymentDate': PORTFOLIO.firstClientInvoiceDate,
+    'BATCH1.firstPaymentDateFmt': fmtDate(PORTFOLIO.firstClientInvoiceDate),
+    'BATCH1.vatQuarterFirst': PORTFOLIO.vatStartQuarter,
+    'BATCH1.clientAdvance30': Math.round(0.3 * BATCHES[0].revenue).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.clientAdvance30K': String(Math.round(0.3 * BATCHES[0].revenue / 1000)),
+    'BATCH1.linyangAdvance25': Math.round(0.25 * BATCHES[0].cif).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.linyangAdvance25K': String(Math.round(0.25 * BATCHES[0].cif / 1000)),
+    'BATCH1.linyangRequestNote': `25% advance €${(0.25 * BATCHES[0].cif / 1e6).toFixed(2)}M due on or after ${fmtDate(PORTFOLIO.firstClientInvoiceDate)} (within 7 days of contract effectiveness) to align with client 30% receipt and VAT quarter.`,
+    // Batch 1 civil works (concrete platforms + trenches): €2,000/MWh (ADDERS.civilWorks), due by June. All costs ex-VAT; subcons charge VAT — input VAT offsets output VAT (e.g. advance) in same quarter.
+    'BATCH1.civilWorks': Math.round(BATCHES[0].mwh * 2000).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.civilWorksDue': 'By June 2026',
+    'BATCH1.civilWorksVatK': String(Math.round((BATCHES[0].mwh * 2000 * (FINANCIALS.vatRate / 100)) / 1000)),
+    'BATCH1.civilWorksVat': Math.round(BATCHES[0].mwh * 2000 * (FINANCIALS.vatRate / 100)).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    // VAT refund urgent procedure (confirmed with VAT office Limassol — Sofia): upload return + supporting docs, request urgent refund
+    'VAT_REFUND.claimDate': VAT_REFUND_PROCEDURE.claimDate,
+    'VAT_REFUND.claimDateFmt': fmtDate(VAT_REFUND_PROCEDURE.claimDate),
+    'VAT_REFUND.action': VAT_REFUND_PROCEDURE.action,
+    'VAT_REFUND.notes': VAT_REFUND_PROCEDURE.notes,
     'BATCH2.parks': String(BATCHES[1].parks),
     'BATCH2.mwh':   String(BATCHES[1].mwh),
     'BATCH2.status': BATCHES[1].status,

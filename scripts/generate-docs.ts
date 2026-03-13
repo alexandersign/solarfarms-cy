@@ -75,6 +75,9 @@ function generateFromTemplate(templatePath: string, vars: Record<string, string>
   });
 
   const outputPath = templatePath.replace('.template.html', '.html').replace('.template.md', '.md');
+  if (path.basename(outputPath).startsWith('._')) {
+    return { outputPath, replacements: 0 };
+  }
   fs.writeFileSync(outputPath, output, 'utf-8');
 
   return { outputPath, replacements };
@@ -109,6 +112,10 @@ function main() {
   let totalFiles = 0;
 
   for (const tpl of allTemplates) {
+    if (path.basename(tpl).startsWith('._')) {
+      console.log(`  ⊘ skip ${path.relative(ROOT, tpl)} (resource fork)`);
+      continue;
+    }
     const rel = path.relative(ROOT, tpl);
     const { outputPath, replacements } = generateFromTemplate(tpl, vars);
     const outRel = path.relative(ROOT, outputPath);
