@@ -4,9 +4,10 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 10 March 2026
+// Last updated: 12 March 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx
-// Confirmed: v4 Excel = total SSOT (51 parks incl. 5 Esperia 2028)
+// ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
+// Spanercom (Anarita 2×5/15) added to Batch 1.
 // ===================================================================
 
 export type DataStatus = 'confirmed' | 'quoted' | 'estimated' | 'pending' | 'client-paid' | 'superseded';
@@ -23,10 +24,10 @@ interface MetaInfo {
 // ─────────────────────────────────────────────
 
 export const PORTFOLIO = {
-  parks: 51,
-  mw: 249,
-  mwh: 886.78,
-  containers: 252,
+  parks: 28,
+  mw: 134,
+  mwh: 486.50,
+  containers: 140,
   districts: 5,
   orderDate: '2026-04-01',
   firstClientInvoiceDate: '2026-04-01',
@@ -40,21 +41,21 @@ export const PORTFOLIO = {
 // ─────────────────────────────────────────────
 
 export const FINANCIALS = {
-  cifTotal: 85_963_925.47,
-  cifAvgPerMWh: 97_490.09,
+  cifTotal: 47_382_285,
+  cifAvgPerMWh: 97_400,
 
-  physicalAdders: 7_642_204.48,
-  emsScadaTotal: 3_993_617.00,
+  physicalAdders: 4_200_000,
+  emsScadaTotal: 2_200_000,
 
-  installedCost: 97_599_746.95,
-  installedCostAvgPerMWh: 110_700,
+  installedCost: 53_625_000,
+  installedCostAvgPerMWh: 110_200,
 
-  clientRevenue: 109_241_186.79,
-  clientRevenueAvgPerMWh: 123_900,
+  clientRevenue: 60_554_955,
+  clientRevenueAvgPerMWh: 124_500,
 
-  netMargin: 11_641_439.85,
-  netMarginPct: 10.66,
-  netMarginRounded: 10.7,
+  netMargin: 6_929_811,
+  netMarginPct: 11.45,
+  netMarginRounded: 11.5,
 
   importDutyRate: 2.66,
   importDutyTotal: 2_286_640.47,
@@ -121,13 +122,14 @@ interface GroupData {
   marginPct: number;
 }
 
+// ABIO Power REMOVED Mar 2026 — chose another supplier (CATL at €124K/MWh flat)
 export const GROUPS: GroupData[] = [
-  { name: 'ABIO Power', key: 'abio', parks: 25, mw: 125.0, mwh: 430.28, cif: 41_765_837.86, installedCost: 47_388_800.60, revenue: 52_609_991.53, margin: 5_221_190.94, marginPct: 9.92 },
   { name: 'Esperia Energy', key: 'esperia', parks: 11, mw: 79.5, mwh: 315.50, cif: 28_802_957.61, installedCost: 32_218_768.88, revenue: 36_412_811.96, margin: 4_194_043.09, marginPct: 11.52 },
   { name: 'Timotheos Timotheou', key: 'timotheos', parks: 9, mw: 25.5, mwh: 81.00, cif: 8_994_033.00, installedCost: 10_408_394.01, revenue: 11_818_919.17, margin: 1_410_525.16, marginPct: 11.93 },
   { name: 'A. Kerasi', key: 'kerasi', parks: 3, mw: 6.5, mwh: 20.00, cif: 2_283_660.00, installedCost: 2_841_296.88, revenue: 3_061_369.92, margin: 220_073.03, marginPct: 7.19 },
   { name: 'Lampros Andreadis', key: 'lampros', parks: 2, mw: 4.8, mwh: 15.00, cif: 1_593_785.00, installedCost: 1_923_085.24, revenue: 2_117_419.61, margin: 194_334.36, marginPct: 9.18 },
   { name: 'Ioannis Karis', key: 'karis', parks: 1, mw: 7.7, mwh: 25.00, cif: 2_523_652.00, installedCost: 2_819_401.34, revenue: 3_220_674.61, margin: 401_273.27, marginPct: 12.46 },
+  { name: 'Spanercom (Anarita)', key: 'spanercom', parks: 2, mw: 10.0, mwh: 30.00, cif: 3_184_198.00, installedCost: 3_414_198.00, revenue: 3_923_760.00, margin: 509_562.00, marginPct: 12.98 },
 ];
 
 // ─────────────────────────────────────────────
@@ -143,18 +145,18 @@ export const BATCHES = [
   {
     id: 1, name: 'Batch 1: Confirmed',
     status: 'confirmed' as BatchStatus,
-    groups: ['ABIO (5 parks)', 'Galascope (2 parks)', 'Timotheos (3 parks)', 'Lampros (2 parks)'],
-    parks: 12, mw: 41.3, mwh: 131.28, containers: 41,
-    cif: 13_210_000, installed: 15_139_000, revenue: 16_955_000, margin: 1_816_000, marginPct: 10.71,
+    groups: ['Galascope (2 parks)', 'Timotheos (3 parks)', 'Lampros (2 parks)', 'Spanercom (2 parks)'],
+    parks: 9, mw: 33.8, mwh: 110.0, containers: 36,
+    cif: 11_116_000, installed: 12_730_000, revenue: 14_231_000, margin: 1_501_000, marginPct: 10.55,
     productionStart: '2026-04-01', productionEnd: '2026-06-30',
     fatDate: '2026-06-30', shipDate: '2026-07-01',
     cifDate: '2026-08-20', pacDate: '2026-12-31',
-    _meta: { source: 'ABIO SLD drawings (Nov-Dec 2025), Dino/Timotheos verbal, Lampros confirmed', date: '2026-03-06' } as MetaInfo,
+    _meta: { source: 'Dino/Timotheos verbal, Lampros confirmed, Spanercom Anarita 2×5/15. ABIO removed Mar 2026.', date: '2026-03-12' } as MetaInfo,
   },
   {
     id: 2, name: 'Batch 2: Pipeline',
     status: 'pipeline' as BatchStatus,
-    groups: ['Soteria (committed to sign)', 'Esperia core (TBC)', 'ABIO Phase 2 (TBC)'],
+    groups: ['Soteria (committed to sign)', 'Esperia core (TBC)'],
     parks: 0, mwh: 0, containers: 0,
     productionStart: '', productionEnd: '',
     shipDate: '',
@@ -164,7 +166,7 @@ export const BATCHES = [
   {
     id: 3, name: 'Batch 3: Unplaced',
     status: 'unplaced' as BatchStatus,
-    groups: ['ELESTORE (5/200MWh)', 'Esperia remaining', 'A. Kerasi (3/20MWh)', 'Ioannis Karis (1/25MWh)', 'Timotheos remaining (6/46MWh)', 'ABIO remaining (20/379MWh)'],
+    groups: ['ELESTORE (5/200MWh)', 'Esperia remaining', 'A. Kerasi (3/20MWh)', 'Ioannis Karis (1/25MWh)', 'Timotheos remaining (6/46MWh)'],
     parks: 0, mwh: 0, containers: 0,
     productionStart: '', productionEnd: '',
     shipDate: '',
@@ -174,11 +176,6 @@ export const BATCHES = [
 ] as const;
 
 export const BATCH1_PARKS = [
-  { name: 'Easy Power 1',     group: 'ABIO',      mw: 5.0,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_361_050 },
-  { name: 'Easy Power 2',     group: 'ABIO',      mw: 4.5,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_401_540 },
-  { name: 'Dianary 1',        group: 'ABIO',      mw: 2.5,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_206_300 },
-  { name: 'Waneron',          group: 'ABIO',      mw: 3.0,  mwh: 11.28, containers: 3,  district: 'Nicosia',   revenue: 1_472_981 },
-  { name: 'Solartech 3 Ext',  group: 'ABIO',      mw: 2.5,  mwh: 10,    containers: 3,  district: 'Nicosia',   revenue: 1_206_300 },
   { name: 'Galascope 1',      group: 'Galascope',  mw: 5.0,  mwh: 20,    containers: 6,  district: 'Famagusta', revenue: 2_258_900 },
   { name: 'Galascope 2',      group: 'Galascope',  mw: 2.5,  mwh: 10,    containers: 3,  district: 'Famagusta', revenue: 1_206_300 },
   { name: 'AGM Sunfield 1',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Nicosia',   revenue: 1_961_880 },
@@ -186,12 +183,43 @@ export const BATCH1_PARKS = [
   { name: 'TBC (5 MWh park)', group: 'Timotheos',  mw: 1.5,  mwh: 5,     containers: 2,  district: 'TBC',       revenue: 800_000 },
   { name: 'Solar Breeze',     group: 'Lampros',    mw: 1.51, mwh: 5,     containers: 2,  district: 'Limassol',  revenue: 795_443 },
   { name: 'Solar Garden',     group: 'Lampros',    mw: 3.29, mwh: 10,    containers: 3,  district: 'Limassol',  revenue: 1_321_976 },
+  { name: 'Anarita 1',        group: 'Spanercom',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Paphos',    revenue: 1_961_880 },
+  { name: 'Anarita 2',        group: 'Spanercom',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Paphos',    revenue: 1_961_880 },
 ] as const;
 
 export const ESP_2028 = {
   name: 'Esperia Tseri (2028)',
   parks: 5, mw: 27.5, mwh: 87.5,
   note: 'Separate future order — not in current timeline',
+} as const;
+
+// ─────────────────────────────────────────────
+// GROUP ORDER REMAINING (post-ABIO removal)
+// Total order value with Lighthief after ABIO chose CATL supplier
+// ─────────────────────────────────────────────
+
+export const GROUP_ORDER_REMAINING = {
+  clientRevenue: 60_554_955,
+  cifTotal: 47_382_285,
+  installedCost: 53_625_000,
+  netMargin: 6_929_811,
+  netMarginPct: 11.45,
+  parks: 28,
+  mwh: 486.50,
+  _meta: { source: 'portfolio-data.ts', date: '2026-03-12', note: 'ABIO removed Mar 2026' } as MetaInfo,
+} as const;
+
+// ─────────────────────────────────────────────
+// EXPECTED COMMISSION (30% of net margin model)
+// Commission = 30% × net margin. Batch 1 commission paid pro-rata with client payments.
+// ─────────────────────────────────────────────
+
+export const EXPECTED_COMMISSION = {
+  totalPortfolio: 2_078_943,   // 30% of net margin (€6.93M)
+  batch1: 450_300,             // 30% of Batch 1 margin (€1.50M)
+  ratePct: 30,
+  basis: '30% of net margin per milestone',
+  _meta: { source: 'commission-cashflow-model-feb2026', date: '2026-03-12' } as MetaInfo,
 } as const;
 
 export const FAC_DATE = '2027-03-31';
@@ -721,6 +749,18 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH1.linyangAdvance25': Math.round(0.25 * BATCHES[0].cif).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.linyangAdvance25K': String(Math.round(0.25 * BATCHES[0].cif / 1000)),
     'BATCH1.linyangRequestNote': `25% advance €${(0.25 * BATCHES[0].cif / 1e6).toFixed(2)}M due on or after ${fmtDate(PORTFOLIO.firstClientInvoiceDate)} (within 7 days of contract effectiveness) to align with client 30% receipt and VAT quarter.`,
+    'GROUP_ORDER.clientRevenue': GROUP_ORDER_REMAINING.clientRevenue.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'GROUP_ORDER.clientRevenueM': `€${(GROUP_ORDER_REMAINING.clientRevenue / 1e6).toFixed(1)}M`,
+    'GROUP_ORDER.cifTotal': GROUP_ORDER_REMAINING.cifTotal.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'GROUP_ORDER.cifM': `${(GROUP_ORDER_REMAINING.cifTotal / 1e6).toFixed(1)}M`,
+    'GROUP_ORDER.netMargin': GROUP_ORDER_REMAINING.netMargin.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'GROUP_ORDER.netMarginM': `€${(GROUP_ORDER_REMAINING.netMargin / 1e6).toFixed(2)}M`,
+    'GROUP_ORDER.parks': String(GROUP_ORDER_REMAINING.parks),
+    'GROUP_ORDER.mwh': String(GROUP_ORDER_REMAINING.mwh),
+    'COMMISSION.totalPortfolio': EXPECTED_COMMISSION.totalPortfolio.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'COMMISSION.totalPortfolioK': String(Math.round(EXPECTED_COMMISSION.totalPortfolio / 1000)),
+    'COMMISSION.batch1': EXPECTED_COMMISSION.batch1.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'COMMISSION.batch1K': String(Math.round(EXPECTED_COMMISSION.batch1 / 1000)),
     // Batch 1 civil works (concrete platforms + trenches): €2,000/MWh (ADDERS.civilWorks), due by June. All costs ex-VAT; subcons charge VAT — input VAT offsets output VAT (e.g. advance) in same quarter.
     'BATCH1.civilWorks': Math.round(BATCHES[0].mwh * 2000).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.civilWorksDue': 'By June 2026',

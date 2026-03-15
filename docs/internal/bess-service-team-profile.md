@@ -11,7 +11,7 @@
 
 Lighthief is the exclusive Linyang BESS distribution partner for Cyprus, operating under a strategic Distribution Agreement with Jiangsu Linyang Energy Storage Technology Co., Ltd (China) and Solarfun Renewable Energy Poland sp. z o.o. This partnership extends across multiple EU territories, establishing Lighthief as a key European channel partner for Linyang's Power Atlantic BESS solutions.
 
-Our Cyprus operation is deploying an 886.78 MWh BESS portfolio across 51 parks, supported by a dedicated engineering team trained at our Poland headquarters and backed by Linyang's global technical support infrastructure.
+Our Cyprus operation is deploying an 486.5 MWh BESS portfolio across 28 parks, supported by a dedicated engineering team trained at our Poland headquarters and backed by Linyang's global technical support infrastructure.
 
 ---
 
@@ -24,7 +24,7 @@ LIGHTHIEF GROUP
 │
 ├── Lighthief Cyprus Ltd (HE 477423)
 │   └── Cyprus Director: Alexander Papacosta
-│       • 886.78 MWh BESS Portfolio (51 parks)
+│       • 486.5 MWh BESS Portfolio (28 parks)
 │       • Exclusive Linyang Distributor — Cyprus
 │
 ├── Solarfun Renewable Energy Poland sp. z o.o. (KRS 0001164462)
@@ -432,7 +432,7 @@ All Engineers complete an intensive 3-week BESS-specific training program at Lig
 | **BESS Specialists** | 3 engineers on rotation (Dawid, Szymon, Kacper) |
 | **Planned Maintenance** | Quarterly site visits per park |
 | **Annual Cost** | €1,740/MWh/year (O&M contract) |
-| **Portfolio Coverage** | 51 parks, 886.78 MWh, 5 districts |
+| **Portfolio Coverage** | 28 parks, 486.5 MWh, 5 districts |
 
 ### 8.3 District Assignments (Planned)
 
@@ -583,7 +583,7 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
 | Territory | Status | Entity |
 |-----------|--------|--------|
-| **Cyprus** | Active — 886.78 MWh portfolio | Lighthief Cyprus Ltd |
+| **Cyprus** | Active — 486.5 MWh portfolio | Lighthief Cyprus Ltd |
 | **Poland** | Active — EU Headquarters | Solarfun Poland |
 | **Greece** | 7Sun JV partnership | Lighthief/7Sun |
 | **EU (General)** | Via Poland coordination | Solarfun Poland |
@@ -594,7 +594,7 @@ The Lighthief-Linyang partnership extends beyond Cyprus through Solarfun Poland:
 
 | Metric | Value |
 |--------|-------|
-| **Total Portfolio** | 886.78 MWh |
+| **Total Portfolio** | 486.5 MWh |
 | **Total Parks** | 51 |
 | **Districts Covered** | Famagusta, Larnaca, Limassol, Nicosia, Paphos |
 | **Annual O&M Value** | €1,740/MWh/year |
@@ -615,7 +615,7 @@ The 97% availability guarantee permits only **2 days (48 hours) of operational d
 
 | Parameter | Value |
 |-----------|-------|
-| **Total Night Maintenance Visits** | 408/year (51 parks × 8) |
+| **Total Night Maintenance Visits** | 408/year (28 parks × 8) |
 | **Night Shifts Required** | ~320/year (batching nearby parks) |
 | **Estimated Reactive Calls** | 100–200/year (daytime) |
 | **Max Unplanned Events/Park** | ~8–9 before breach |
