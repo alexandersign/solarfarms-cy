@@ -248,10 +248,10 @@ export const PAYMENT_TERMS = {
     retention:   { pct: 5,  trigger: 'Released after 24-month DLP' },
   },
   linyang: {
-    advance:     { pct: 25, trigger: 'Order date (may precede client billing start)' },
+    advance:     { pct: 30, trigger: 'On or after 1 April (accepted — align with client)' },
     preShipment: { pct: 50, trigger: 'Ready to ship' },
-    dap:         { pct: 20, trigger: 'Delivery at Place (site arrival)' },
-    sat:         { pct: 5,  trigger: 'Site Acceptance Test completion' },
+    dap:         { pct: 10, trigger: 'Delivery at Place (port arrival)' },
+    sat:         { pct: 10, trigger: 'Site Acceptance Test completion' },
   },
   // Alternative: final 10% on fixed date (e.g. 30 Nov) instead of at DAP — improves Aug/Sep cashflow
   linyang20502010: {
@@ -746,9 +746,9 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH1.vatQuarterFirst': PORTFOLIO.vatStartQuarter,
     'BATCH1.clientAdvance30': Math.round(0.3 * BATCHES[0].revenue).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.clientAdvance30K': String(Math.round(0.3 * BATCHES[0].revenue / 1000)),
-    'BATCH1.linyangAdvance25': Math.round(0.25 * BATCHES[0].cif).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
-    'BATCH1.linyangAdvance25K': String(Math.round(0.25 * BATCHES[0].cif / 1000)),
-    'BATCH1.linyangRequestNote': `25% advance €${(0.25 * BATCHES[0].cif / 1e6).toFixed(2)}M due on or after ${fmtDate(PORTFOLIO.firstClientInvoiceDate)} (within 7 days of contract effectiveness) to align with client 30% receipt and VAT quarter.`,
+    'BATCH1.linyangAdvance30': Math.round(0.3 * BATCHES[0].cif).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.linyangAdvance30K': String(Math.round(0.3 * BATCHES[0].cif / 1000)),
+    'BATCH1.linyangRequestNote': `30% advance €${(0.3 * BATCHES[0].cif / 1e6).toFixed(2)}M due on or after ${fmtDate(PORTFOLIO.firstClientInvoiceDate)} (Linyang accepted 30/50/10/10) to align with client 30% receipt and VAT quarter.`,
     'GROUP_ORDER.clientRevenue': GROUP_ORDER_REMAINING.clientRevenue.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'GROUP_ORDER.clientRevenueM': `€${(GROUP_ORDER_REMAINING.clientRevenue / 1e6).toFixed(1)}M`,
     'GROUP_ORDER.cifTotal': GROUP_ORDER_REMAINING.cifTotal.toLocaleString('en-IE', { maximumFractionDigits: 0 }),

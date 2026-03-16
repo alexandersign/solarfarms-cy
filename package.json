@@ -16,6 +16,8 @@
     "docs:validate": "tsx scripts/validate-docs.ts",
     "docs:update": "tsx scripts/generate-docs.ts && tsx scripts/validate-docs.ts",
     "contracts:generate": "tsx scripts/generate-contracts.ts",
+    "solhash:roi": "npx tsx solhash/scripts/run-roi-comparison.ts",
+    "solhash:presentation": "npx tsx solhash/scripts/generate-presentation.ts",
     "sanity": "sanity dev",
     "sanity:build": "sanity build",
     "sanity:deploy": "sanity deploy"
