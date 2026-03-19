@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineer Guide — DSO Regulations for BESS Positioning | Lighthief Cyprus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 30px;
+            margin: -40px -50px 30px -50px;
+            border-bottom: 4px solid #e67e22;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .company-tagline {
+            font-size: 10px;
+            opacity: 0.85;
+        }
+        .doc-meta {
+            text-align: right;
+            font-size: 9pt;
+            opacity: 0.9;
+        }
+        h1 {
+            color: white;
+            font-size: 22px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.85);
+            text-align: center;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        h2 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin: 30px 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e67e22;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 15px;
+            margin: 18px 0 8px 0;
+        }
+        .audience-box {
+            background: #fff3e0;
+            border: 2px solid #e67e22;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .audience-box strong { color: #e65100; }
+        .critical-box {
+            background: #fce4ec;
+            border-left: 5px solid #c62828;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+        .critical-box strong { color: #c62828; }
+        .info-box {
+            background: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+        .note-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1565c0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 9px 12px;
+            text-align: left;
+        }
+        th {
+            background: #1e3a5f;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) { background: #f9f9f9; }
+        tr:hover { background: #f0f0f0; }
+        .highlight { background: #fff8e1 !important; font-weight: 600; }
+        .section-num {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 24px;
+            margin-right: 6px;
+        }
+        .diagram {
+            background: #fafafa;
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            white-space: pre;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        .diagram-title {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #1e3a5f;
+            margin-bottom: 8px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+        .badge-law { background: #c62828; color: white; }
+        .badge-tso { background: #6a1b9a; color: white; }
+        .badge-fire { background: #e65100; color: white; }
+        .badge-env { background: #2e7d32; color: white; }
+        ul, ol { margin: 8px 0 8px 22px; font-size: 13px; }
+        li { margin: 4px 0; }
+        .footer {
+            margin-top: 35px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #999;
+            font-size: 11px;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media print {
+            .page { box-shadow: none; padding: 20px; }
+            body { background: white; }
+        }
+        @media (max-width: 700px) {
+            .two-col { grid-template-columns: 1fr; }
+            .page { padding: 20px; }
+            .header { margin: -20px -20px 20px -20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">L</div>
+                <div>
+                    <div class="company-name">LIGHTHIEF</div>
+                    <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Ref:</strong> LCY-CIVIL-DSO-GUIDE-001</div>
+                <div><strong>Date:</strong> 17 March 2026</div>
+                <div><strong>Classification:</strong> Internal</div>
+            </div>
+        </div>
+        <h1>DSO Regulations for BESS Positioning</h1>
+        <p class="subtitle">Civil Engineer Reference Guide &mdash; Spacing, Setbacks, Foundations &amp; Site Layout</p>
+    </div>
+
+    <div class="audience-box">
+        <strong>Audience:</strong> Civil Engineer / Site Layout Designer<br>
+        <strong>Purpose:</strong> Single reference for all physical positioning and spacing rules that affect foundation design, site layout, and container placement for Battery Energy Storage Systems (BESS) in Cyprus.<br>
+        <strong>Regulatory Sources:</strong> Κ.Δ.Π. 15/2026 (Building Permit Exemption), Κ.Δ.Π. 17/2026 (Fire Conditions), DSO Technical Guide for Storage 2025.1, TSO BESS Specification (ANNEX-II-Appendix-2)
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">1</span> Minimum Distances &amp; Setbacks</h2>
+
+    <p>These are the mandatory minimum distances that govern where BESS containers and equipment can be placed on a solar park site.</p>
+
+    <table>
+        <tr>
+            <th>Requirement</th>
+            <th>Minimum Distance</th>
+            <th>Source</th>
+            <th>Notes</th>
+        </tr>
+        <tr class="highlight">
+            <td><strong>Plot boundary setback</strong></td>
+            <td><strong>6 m</strong> from all plot boundaries</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;12</span></td>
+            <td>Applies to all equipment (BESS containers, MV skids, any structure)</td>
+        </tr>
+        <tr class="highlight">
+            <td><strong>Fire vehicle access perimeter</strong></td>
+            <td><strong>6 m</strong> clear access around installation</td>
+            <td><span class="badge badge-fire">Κ.Δ.Π. 15/2026 &sect;18</span></td>
+            <td>Unobstructed path for fire trucks around the entire BESS installation</td>
+        </tr>
+        <tr class="highlight">
+            <td><strong>Container-to-container spacing (sides)</strong></td>
+            <td><strong>&ge; 1 m</strong></td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+            <td>Between side walls of adjacent containers</td>
+        </tr>
+        <tr class="highlight">
+            <td><strong>Container-to-container spacing (at doors)</strong></td>
+            <td><strong>&ge; 3 m</strong></td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+            <td>In front of access doors for maintenance and emergency access</td>
+        </tr>
+        <tr>
+            <td><strong>Distance to occupied buildings</strong></td>
+            <td><strong>&ge; 30 m</strong></td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+            <td>From any BESS container to any occupied building/dwelling</td>
+        </tr>
+        <tr>
+            <td><strong>Distance to control room / switchgear building</strong></td>
+            <td><strong>&ge; 6 m</strong></td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+            <td>From BESS container to on-site control/electrical rooms</td>
+        </tr>
+        <tr>
+            <td><strong>Fire access road width</strong></td>
+            <td><strong>&ge; 5 m</strong></td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+            <td>Dedicated emergency vehicle access road serving the site</td>
+        </tr>
+        <tr>
+            <td><strong>Augmentation space</strong></td>
+            <td><strong>&ge; 20%</strong> additional capacity area</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.2</span></td>
+            <td>Reserve area on site for future battery augmentation</td>
+        </tr>
+    </table>
+
+    <div class="critical-box">
+        <strong>CRITICAL:</strong> The 6 m boundary setback and 6 m fire access perimeter are the two constraints that most limit usable site area. On smaller plots, verify there is sufficient space for equipment placement <em>after</em> applying both setbacks before proceeding with design.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">2</span> Height &amp; Visual Constraints</h2>
+
+    <table>
+        <tr>
+            <th>Requirement</th>
+            <th>Limit</th>
+            <th>Source</th>
+            <th>Notes</th>
+        </tr>
+        <tr class="highlight">
+            <td><strong>Maximum overall height</strong></td>
+            <td><strong>3.0 m</strong></td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;6</span></td>
+            <td>Includes container, supports, roof-mounted HVAC, any ancillaries</td>
+        </tr>
+        <tr>
+            <td><strong>Container height (Linyang 20HC)</strong></td>
+            <td>2.896 m</td>
+            <td>OEM datasheet</td>
+            <td>104 mm clearance to 3 m limit &mdash; foundation level must not push total above 3 m</td>
+        </tr>
+        <tr>
+            <td><strong>Color / finish</strong></td>
+            <td>Neutral / earth-tone colors only</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;7</span></td>
+            <td>No bright colors, no reflective materials</td>
+        </tr>
+        <tr>
+            <td><strong>Visual impact</strong></td>
+            <td>Must not alter area character or cause visual disturbance</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;11</span></td>
+            <td>May affect fencing, screening, landscaping choices</td>
+        </tr>
+    </table>
+
+    <div class="critical-box">
+        <strong>FOUNDATION HEIGHT WARNING:</strong> The Linyang container is 2,896 mm tall. With only 104 mm of vertical clearance to the 3 m legal limit, the concrete slab surface must be at or very near existing ground level. Any raised platform or plinth that pushes total height above 3,000 mm will violate the permit exemption.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">3</span> Foundation Requirements</h2>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Requirement</th>
+            <th>Source</th>
+        </tr>
+        <tr class="highlight">
+            <td><strong>Foundation type</strong></td>
+            <td><strong>Reinforced concrete</strong> (Βάση οπλισμένου σκυροδέματος) &mdash; MANDATORY</td>
+            <td><span class="badge badge-env">Κ.Δ.Π. 15/2026 &sect;24</span></td>
+        </tr>
+        <tr>
+            <td>Concrete grade</td>
+            <td>C30/37 minimum (higher for coastal sites)</td>
+            <td>EN 1992-1-1</td>
+        </tr>
+        <tr>
+            <td>Slab thickness</td>
+            <td>200&ndash;300 mm (per structural design &amp; soil conditions)</td>
+            <td>Structural design</td>
+        </tr>
+        <tr>
+            <td>Reinforcement</td>
+            <td>A393 mesh or T12@200 both ways, top and bottom mats</td>
+            <td>Structural design</td>
+        </tr>
+        <tr>
+            <td>Cover</td>
+            <td>50 mm minimum (75 mm for coastal exposure)</td>
+            <td>EN 1992-1-1</td>
+        </tr>
+        <tr>
+            <td>Bearing capacity</td>
+            <td>&ge; 150 kN/m&sup2; (after sub-base preparation)</td>
+            <td>Structural design</td>
+        </tr>
+        <tr>
+            <td>Sub-base</td>
+            <td>Compacted aggregate, 130 kN/m&sup2; minimum bearing</td>
+            <td>Structural design</td>
+        </tr>
+        <tr>
+            <td>Membrane</td>
+            <td>DPM / Geotextile, 300 gsm minimum</td>
+            <td>Structural design</td>
+        </tr>
+        <tr>
+            <td>Surface finish</td>
+            <td>Power floated, non-slip, with falls to drainage</td>
+            <td>Best practice</td>
+        </tr>
+        <tr>
+            <td>Minimal concrete paving</td>
+            <td>Limit paved area to equipment footprints only</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;8</span></td>
+        </tr>
+        <tr>
+            <td>Seismic design</td>
+            <td>ZPA: 3.55 m/s&sup2; horizontal, 1.78 m/s&sup2; vertical</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+        </tr>
+        <tr>
+            <td>Corrosion protection</td>
+            <td>C3 (medium), durability H per ISO 12944</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+        </tr>
+    </table>
+
+    <div class="note-box">
+        <strong>Topography:</strong> No alteration of existing ground levels is permitted (Κ.Δ.Π. 15/2026 &sect;10). Foundation design should work with existing terrain &mdash; cut-and-fill must be minimized. Slab should be partially below grade (10&ndash;20 cm below with crusher run + 20 cm above) to stay within height limits.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">4</span> Container Dimensions &amp; Weights</h2>
+
+    <div class="two-col">
+        <div>
+            <h3>Battery Container (20HC)</h3>
+            <table>
+                <tr><td><strong>Length</strong></td><td>6,058 mm</td></tr>
+                <tr><td><strong>Width</strong></td><td>2,438 mm</td></tr>
+                <tr><td><strong>Height</strong></td><td>2,896 mm</td></tr>
+                <tr><td><strong>Loaded weight</strong></td><td>~41.5 tonnes</td></tr>
+                <tr><td><strong>Foundation footprint</strong></td><td>~15 m&sup2; (6.1 &times; 2.5 m min)</td></tr>
+                <tr><td><strong>Ground pressure</strong></td><td>~28 kN/m&sup2;</td></tr>
+            </table>
+        </div>
+        <div>
+            <h3>MV Skid Container (40HC)</h3>
+            <table>
+                <tr><td><strong>Length</strong></td><td>12,192 mm</td></tr>
+                <tr><td><strong>Width</strong></td><td>2,438 mm</td></tr>
+                <tr><td><strong>Height</strong></td><td>2,896 mm</td></tr>
+                <tr><td><strong>Loaded weight</strong></td><td>&le; 38 tonnes</td></tr>
+                <tr><td><strong>Foundation footprint</strong></td><td>~30 m&sup2; (12.2 &times; 2.5 m min)</td></tr>
+                <tr><td><strong>Ground pressure</strong></td><td>~13 kN/m&sup2;</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">5</span> Fire Safety &amp; Separation Requirements</h2>
+
+    <table>
+        <tr>
+            <th>Requirement</th>
+            <th>Specification</th>
+            <th>Source</th>
+        </tr>
+        <tr>
+            <td><strong>Container wall fire resistance</strong></td>
+            <td><strong>1-hour fire rating</strong> OR <strong>6 m spacing</strong> between containers</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.3</span></td>
+        </tr>
+        <tr>
+            <td><strong>Pressure relief vents</strong></td>
+            <td>Required &mdash; must NOT face walkways or access paths</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.4</span></td>
+        </tr>
+        <tr>
+            <td><strong>External beacon</strong></td>
+            <td>Required on each battery container (visual alarm)</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.4</span></td>
+        </tr>
+        <tr>
+            <td><strong>Dry vegetation clearance</strong></td>
+            <td>All dry vegetation must be cleared within the installation perimeter</td>
+            <td><span class="badge badge-fire">Κ.Δ.Π. 15/2026 &sect;20</span></td>
+        </tr>
+        <tr>
+            <td><strong>Planting near fence</strong></td>
+            <td>Limited to 1 m height and 1 m width from perimeter fence</td>
+            <td><span class="badge badge-fire">Κ.Δ.Π. 15/2026 &sect;21</span></td>
+        </tr>
+        <tr>
+            <td><strong>Fire-break zone</strong></td>
+            <td>Width proportional to surrounding vegetation height</td>
+            <td><span class="badge badge-fire">Κ.Δ.Π. 17/2026 Appendix I</span></td>
+        </tr>
+        <tr>
+            <td><strong>Water supply</strong></td>
+            <td>Permanent supply OR &ge; 20 m&sup3; on-site water tank</td>
+            <td><span class="badge badge-tso">TSO ANNEX-II &sect;13.4</span></td>
+        </tr>
+        <tr>
+            <td><strong>Fire hydrants</strong></td>
+            <td>Required if water network is available at site</td>
+            <td><span class="badge badge-fire">Κ.Δ.Π. 17/2026</span></td>
+        </tr>
+        <tr>
+            <td><strong>Portable fire extinguishers</strong></td>
+            <td>Quantity and type per Fire Service requirements</td>
+            <td><span class="badge badge-fire">Κ.Δ.Π. 17/2026</span></td>
+        </tr>
+    </table>
+
+    <div class="note-box">
+        <strong>Vent orientation matters for layout:</strong> Battery containers have pressure relief vents that must not discharge toward walkways. This affects which direction containers face and where access paths are located.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">6</span> Site Layout Rules Summary</h2>
+
+    <div class="diagram">
+<div class="diagram-title">SITE LAYOUT &mdash; MANDATORY CLEARANCE ZONES</div>
+&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;                         PLOT BOUNDARY                              &#9474;
+&#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;  &#9474;
+&#9474;  &#9474;  &lt;&#9472;&#9472;&#9472; 6 m BOUNDARY SETBACK (all sides) &#9472;&#9472;&#9472;&gt;              &#9474;  &#9474;
+&#9474;  &#9474;                                                              &#9474;  &#9474;
+&#9474;  &#9474;    6 m FIRE ACCESS PERIMETER (clear for fire vehicles)     &#9474;  &#9474;
+&#9474;  &#9474;    &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;                                                    &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488; &lt;1m&gt; &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488; &lt;1m&gt; &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9474; BESS  &#9474;       &#9474; BESS  &#9474;       &#9474; BESS  &#9474;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9474; 20HC  &#9474;       &#9474; 20HC  &#9474;       &#9474; 20HC  &#9474;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;       &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;       &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;       &lt;&#9472;&#9472; 3 m at doors &#9472;&#9472;&gt;                      &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;   &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9474;   MV SKID 40HC   &#9474;   &#9474;   MV SKID 40HC   &#9474;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;   &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;  &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9474;                                                    &#9474;  &#9474;  &#9474;
+&#9474;  &#9474;    &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;  &#9474;  &#9474;
+&#9474;  &#9474;                                                              &#9474;  &#9474;
+&#9474;  &#9474;  &ge;30 m to any occupied building                            &#9474;  &#9474;
+&#9474;  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;  &#9474;
+&#9474;                                                                    &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">7</span> Environmental &amp; Ground Conditions</h2>
+
+    <table>
+        <tr>
+            <th>Requirement</th>
+            <th>Detail</th>
+            <th>Source</th>
+        </tr>
+        <tr>
+            <td><strong>No topography alteration</strong></td>
+            <td>Maintain existing ground levels; cut-and-fill must be minimized</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;10</span></td>
+        </tr>
+        <tr>
+            <td><strong>No impact on water infrastructure</strong></td>
+            <td>No interference with existing drainage, irrigation, or water supply networks</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;14</span></td>
+        </tr>
+        <tr>
+            <td><strong>No impact on road planning</strong></td>
+            <td>Installation must not affect existing or planned road widening</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;9</span></td>
+        </tr>
+        <tr>
+            <td><strong>No-go zones</strong></td>
+            <td>Not permitted within: protected monuments, controlled areas, archaeological zones, protected tree areas, airport/heliport zones, military zones, geological zones 00/00A</td>
+            <td><span class="badge badge-law">Κ.Δ.Π. 15/2026 &sect;2</span></td>
+        </tr>
+        <tr>
+            <td><strong>Drainage</strong></td>
+            <td>Surface water drainage system required; no polluting substance discharge</td>
+            <td><span class="badge badge-env">Κ.Δ.Π. 15/2026 &sect;23</span></td>
+        </tr>
+        <tr>
+            <td><strong>Site restoration obligation</strong></td>
+            <td>Full site restoration required after decommissioning</td>
+            <td><span class="badge badge-env">Κ.Δ.Π. 15/2026 &sect;29</span></td>
+        </tr>
+    </table>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">8</span> Quick-Reference Checklist</h2>
+
+    <p>Use this checklist when designing each site layout:</p>
+
+    <table>
+        <tr>
+            <th style="width: 30px;">#</th>
+            <th>Check Item</th>
+            <th>Requirement</th>
+            <th style="width: 40px;">&#9744;</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>All equipment &ge; 6 m from every plot boundary</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;12</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>6 m clear fire access perimeter around installation</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;18</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Container side-to-side spacing &ge; 1 m</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Container door-side spacing &ge; 3 m</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Total height (container + foundation) &le; 3.0 m</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;6</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>&ge; 30 m from any occupied building</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>&ge; 6 m from on-site control room / switchgear</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Fire access road &ge; 5 m wide</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Pressure relief vents not facing walkways</td>
+            <td>TSO &sect;13.4</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Container walls: 1-hour fire rated OR 6 m spacing</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Reinforced concrete foundation specified</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;24</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Minimal concrete paving &mdash; footprints only</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;8</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>No ground level alteration beyond necessity</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;10</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>Neutral / earth-tone colors for all structures</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;7</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>Vegetation cleared; planting &le; 1 m from fence</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;&sect;20-21</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>No water infrastructure impact</td>
+            <td>Κ.Δ.Π. 15/2026 &sect;14</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>20% augmentation space reserved on site</td>
+            <td>TSO &sect;13.2</td>
+            <td>&#9744;</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>Seismic design: 3.55 m/s&sup2; horiz. / 1.78 m/s&sup2; vert.</td>
+            <td>TSO &sect;13.3</td>
+            <td>&#9744;</td>
+        </tr>
+    </table>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">9</span> Required Submissions to Authorities</h2>
+
+    <p>Before commencing civil works, the responsible ETEK-registered engineer must submit the following:</p>
+
+    <ol>
+        <li><strong>Site Layout Plan</strong> &mdash; showing existing RES installation, proposed BESS location, and distances from all boundaries</li>
+        <li><strong>Foundation Design</strong> &mdash; structural calculations stamped by ETEK engineer</li>
+        <li><strong>Informal Cadastral Plan</strong> &mdash; showing BESS location on the land parcel</li>
+        <li><strong>Photographs</strong> &mdash; of site with existing RES and proposed BESS location</li>
+        <li><strong>Responsible Engineer Declaration</strong> (Υπεύθυνη Δήλωση Μελετητή) &mdash; confirming compliance with all Κ.Δ.Π. 15/2026 conditions, submitted to the competent authority</li>
+        <li><strong>ETEK Professional Liability Insurance</strong> certificate for the responsible engineer</li>
+    </ol>
+
+    <div class="info-box">
+        <strong>Permit Exemption:</strong> BESS installations within licensed RES stations are exempt from building and planning permits, provided all Κ.Δ.Π. 15/2026 conditions are met. The permit is <em>deemed issued</em> automatically. If any condition is violated, the exemption ceases and enforcement action may follow.
+    </div>
+
+    <!-- ============================================================ -->
+    <h2><span class="section-num">10</span> Regulatory Sources</h2>
+
+    <table>
+        <tr>
+            <th>Document</th>
+            <th>Full Title</th>
+            <th>Date</th>
+        </tr>
+        <tr>
+            <td><strong>Κ.Δ.Π. 15/2026</strong></td>
+            <td>Building &amp; Planning Permit Exemption for BESS in RES Stations (Official Gazette 5992)</td>
+            <td>16 Jan 2026</td>
+        </tr>
+        <tr>
+            <td><strong>Κ.Δ.Π. 17/2026</strong></td>
+            <td>Fire Safety Conditions for BESS (Appendix I)</td>
+            <td>16 Jan 2026</td>
+        </tr>
+        <tr>
+            <td><strong>DSO Tech Guide 2025.1</strong></td>
+            <td>DSO Technical Guide for Storage &mdash; Edition 2025.1 (EAC/AHK)</td>
+            <td>Jul 2025 (draft)</td>
+        </tr>
+        <tr>
+            <td><strong>TSO ANNEX-II-App-2</strong></td>
+            <td>TSO BESS Technical Specification</td>
+            <td>&mdash;</td>
+        </tr>
+        <tr>
+            <td><strong>N. 180(I)/2025</strong></td>
+            <td>Road and Building Regulations</td>
+            <td>2025</td>
+        </tr>
+        <tr>
+            <td><strong>N. 181(I)/2025</strong></td>
+            <td>Road and Building Regulations (companion)</td>
+            <td>2025</td>
+        </tr>
+        <tr>
+            <td><strong>EN 1992-1-1</strong></td>
+            <td>Eurocode 2: Design of concrete structures</td>
+            <td>&mdash;</td>
+        </tr>
+        <tr>
+            <td><strong>ISO 12944</strong></td>
+            <td>Corrosion protection of steel structures</td>
+            <td>&mdash;</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p><strong>INTERNAL USE ONLY</strong></p>
+        <p>LCY-CIVIL-DSO-GUIDE-001 | DSO Regulations for BESS Positioning | Civil Engineer Reference</p>
+        <p>Lighthief Cyprus Ltd | March 2026</p>
+        <p style="margin-top: 6px;">Compiled from Κ.Δ.Π. 15/2026, Κ.Δ.Π. 17/2026, DSO Technical Guide 2025.1, TSO ANNEX-II-Appendix-2</p>
+    </div>
+
+</div>
+</body>
+</html>

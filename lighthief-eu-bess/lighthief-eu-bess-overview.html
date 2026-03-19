@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief — European BESS Services</title>
+<style>
+  :root {
+    --primary: #0f1e36;
+    --accent: #2563eb;
+    --accent-light: #60a5fa;
+    --accent-glow: #dbeafe;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --warm: #ea580c;
+    --warm-bg: #fff7ed;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e3a5f 50%, var(--accent) 100%);
+    color: white; padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 60px; background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%); }
+  .hero .brand { font-size: 1.1rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; margin-bottom: 1rem; }
+  .hero h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.6rem; }
+  .hero h1 span { color: var(--accent-light); }
+  .hero .tagline { font-size: 1.2rem; opacity: 0.85; max-width: 700px; margin: 0 auto 2rem; }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 2.2rem; font-weight: 800; }
+  .hero-stat .label { font-size: 0.8rem; opacity: 0.65; text-transform: uppercase; letter-spacing: 1px; }
+
+  .container { max-width: 1060px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 3rem 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h2 { font-size: 1.7rem; font-weight: 700; color: var(--primary); margin-bottom: 0.4rem; }
+  .section-lead { color: var(--text-muted); margin-bottom: 1.8rem; font-size: 1.02rem; }
+  h3 { font-size: 1.1rem; color: var(--accent); margin: 1.5rem 0 0.6rem; }
+
+  /* ── Cards ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 860px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+  .svc-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; transition: box-shadow 0.2s; }
+  .svc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .svc-card .icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .svc-card h3 { margin-top: 0; color: var(--primary); font-size: 1.05rem; }
+  .svc-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0.4rem 0 0.8rem; }
+  .svc-card ul { margin: 0 0 0 1.2rem; font-size: 0.88rem; }
+  .svc-card li { margin-bottom: 0.25rem; }
+  .svc-card.accent { border-color: var(--accent); background: var(--accent-glow); }
+  .svc-card.green { border-color: var(--success); background: var(--success-bg); }
+  .svc-card.warm { border-color: var(--warm); background: var(--warm-bg); }
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0 1.2rem; font-size: 0.9rem; }
+  th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) { background: var(--bg-alt); }
+
+  .highlight-row td { background: var(--accent-glow); font-weight: 600; }
+
+  /* ── Presence Map ── */
+  .presence-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.8rem; margin: 1.5rem 0; }
+  .country-tag { text-align: center; padding: 1rem 0.5rem; border-radius: 10px; background: var(--bg-alt); border: 1px solid var(--border); }
+  .country-tag .flag { font-size: 1.8rem; }
+  .country-tag .name { font-size: 0.75rem; font-weight: 600; color: var(--primary); margin-top: 0.3rem; }
+  .country-tag .person { font-size: 0.7rem; color: var(--text-muted); }
+  @media (max-width: 700px) { .presence-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ── Disperon brand ── */
+  .disperon { color: var(--accent); font-weight: 700; letter-spacing: 0.3px; }
+
+  /* ── Callout ── */
+  .callout { background: var(--accent-glow); border-left: 4px solid var(--accent); padding: 1.2rem 1.5rem; border-radius: 0 10px 10px 0; margin: 1.5rem 0; }
+  .callout strong { color: var(--primary); }
+  .callout p { margin: 0; font-size: 0.92rem; }
+
+  /* ── Footer ── */
+  .footer { background: var(--primary); color: rgba(255,255,255,0.75); text-align: center; padding: 2.5rem 1.5rem; margin-top: 3rem; }
+  .footer strong { color: white; font-size: 1rem; }
+  .footer a { color: var(--accent-light); text-decoration: none; }
+  .footer .legal { font-size: 0.72rem; margin-top: 1rem; opacity: 0.5; }
+
+  .print-btn { position: fixed; top: 14px; right: 14px; background: var(--accent); color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; z-index: 100; }
+  .print-btn:hover { background: #1d4ed8; }
+  @media print { .print-btn { display: none; } section { page-break-inside: avoid; } .hero { padding: 2rem; } .hero::after { display: none; } }
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / PDF</button>
+
+<!-- ════════════════════════════════════════════ HERO ════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="brand">Lighthief</div>
+  <h1>European <span>BESS Services</span></h1>
+  <p class="tagline">Turnkey battery energy storage — from EPC and installation to <span class="disperon">Disperon</span> EMS and long-term O&M — delivered by local teams across Europe.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">150+</div><div class="label">Engineers</div></div>
+    <div class="hero-stat"><div class="num">11</div><div class="label">Offices</div></div>
+    <div class="hero-stat"><div class="num">7</div><div class="label">Countries</div></div>
+    <div class="hero-stat"><div class="num">486 MWh</div><div class="label">Deployed (Cyprus)</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════ 1. SERVICES ═══════════════════════ -->
+<section>
+  <h2>What We Do</h2>
+  <p class="section-lead">Four integrated service lines — one partner for the full BESS lifecycle.</p>
+
+  <div class="grid-4">
+    <div class="svc-card accent">
+      <div class="icon">⚡</div>
+      <h3><span class="disperon">Disperon</span> EMS</h3>
+      <p>Intelligent energy management, SCADA, and real-time optimization for every park.</p>
+      <ul>
+        <li>Energy arbitrage & peak shaving</li>
+        <li>VPP aggregation</li>
+        <li>AI-driven price & weather forecasting</li>
+        <li>Cloud dashboard + local control</li>
+        <li>Full IEC 60870-5-104 / Modbus</li>
+      </ul>
+    </div>
+    <div class="svc-card green">
+      <div class="icon">🏗️</div>
+      <h3>EPC & Installation</h3>
+      <p>Turnkey delivery from civil works to grid connection and commissioning.</p>
+      <ul>
+        <li>Container placement & logistics</li>
+        <li>LV / MV cabling & switchgear</li>
+        <li>PCS & transformer integration</li>
+        <li>Lightning protection (DEHN)</li>
+        <li>DSO compliance & FAT/SAT</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="icon">🛠️</div>
+      <h3>O&M</h3>
+      <p>Long-term service agreements with guaranteed 97% availability.</p>
+      <ul>
+        <li>24/7/365 SCADA monitoring</li>
+        <li>Preventive & reactive maintenance</li>
+        <li>Spare parts from EU warehouse</li>
+        <li>BMS / PCS diagnostics</li>
+        <li>Quarterly performance reports</li>
+      </ul>
+    </div>
+    <div class="svc-card warm">
+      <div class="icon">📊</div>
+      <h3>Consulting</h3>
+      <p>Pre-investment advisory, grid studies, and regulatory support.</p>
+      <ul>
+        <li>Feasibility & ROI analysis</li>
+        <li>Grid connection applications</li>
+        <li>Protection engineering</li>
+        <li>Market participation strategy</li>
+        <li>Insurance & warranty design</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 2. EUROPEAN PRESENCE ═══════════════════════ -->
+<section>
+  <h2>European Presence</h2>
+  <p class="section-lead">Local directors and engineering teams in every market — your single point of contact, on the ground.</p>
+
+  <div class="presence-grid">
+    <div class="country-tag"><div class="flag">🇵🇱</div><div class="name">Poland</div><div class="person">Dr. Arkadius Sybaris<br>Founder & CEO</div></div>
+    <div class="country-tag"><div class="flag">🇨🇾</div><div class="name">Cyprus</div><div class="person">Alexander Papacosta<br>Director</div></div>
+    <div class="country-tag"><div class="flag">🇮🇹</div><div class="name">Italy</div><div class="person">Maurizio Ganis<br>Director</div></div>
+    <div class="country-tag"><div class="flag">🇳🇱🇩🇪</div><div class="name">Netherlands & Germany</div><div class="person">Leon Volkerink<br>Director & CCO</div></div>
+    <div class="country-tag"><div class="flag">🇪🇸</div><div class="name">Spain</div><div class="person">Marko Hernaiz<br>Director</div></div>
+    <div class="country-tag"><div class="flag">🇬🇷</div><div class="name">Greece</div><div class="person">Expanding 2026<br>4.7 GW pipeline</div></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>EU Headquarters — Poland</strong> · 23-hectare campus with 3,500 m² warehouse, dedicated OEM spare-parts stock, training facility with operational BESS test systems, and a 150+ person engineering team ready to deploy across Europe.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 3. DISPERON EMS ═══════════════════════ -->
+<section>
+  <h2><span class="disperon">Disperon</span> EMS</h2>
+  <p class="section-lead">Our proprietary energy management platform — real-time dispatch, SCADA, and AI optimization for utility-scale BESS.</p>
+
+  <h3>System Architecture</h3>
+  <table>
+    <tr><th>Layer</th><th>What It Does</th></tr>
+    <tr><td><strong>Edge Controller</strong></td><td>Industrial WAGO PFC200 PLC at each site — executes real-time charge/discharge, protection interlocks, and local optimization even when offline.</td></tr>
+    <tr><td><strong>Local SCADA</strong></td><td>Per-park monitoring, alarms, and historian. Five capacity tiers ensure you only pay for what you need.</td></tr>
+    <tr><td><strong>Global SCADA</strong></td><td>Fleet-wide aggregation dashboard — monitor every park in your portfolio from a single screen.</td></tr>
+    <tr><td><strong>Cloud Platform</strong></td><td>AI-powered optimization: energy arbitrage, weather/price forecasting, VPP coordination, and remote fleet management.</td></tr>
+    <tr><td><strong>Grid Protocols</strong></td><td>IEC 60870-5-104, IEC 60870-5-101, IEC 61850, Modbus TCP, DNP3 — compliant with every European DSO/TSO.</td></tr>
+  </table>
+
+  <h3>Operating Modes</h3>
+  <div class="grid-2">
+    <div class="svc-card">
+      <h3>Standard — Always Active</h3>
+      <ul>
+        <li>Manual charge / discharge</li>
+        <li>Time-of-Use scheduling</li>
+        <li>Power limiting</li>
+        <li>Frequency response</li>
+        <li>Voltage / reactive power support</li>
+      </ul>
+    </div>
+    <div class="svc-card accent">
+      <h3>Advanced — with Subscription</h3>
+      <ul>
+        <li>Energy arbitrage (buy low / sell high)</li>
+        <li>Peak shaving & demand charge reduction</li>
+        <li>Zero Import / Zero Export</li>
+        <li>VPP aggregation</li>
+        <li>AI weather & price forecasting</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>SCADA Tiers — Right-Sized for Every Park</h3>
+  <table>
+    <tr><th>Tier</th><th>Capacity</th><th>One-Time</th><th>Annual Service</th></tr>
+    <tr><td>Mini</td><td>≤ 4 MWh</td><td>€15,000</td><td>€3,000</td></tr>
+    <tr><td>Basic</td><td>5 MWh</td><td>€19,000</td><td>€3,800</td></tr>
+    <tr><td>Standard</td><td>7.5 – 8 MWh</td><td>€25,000</td><td>€5,000</td></tr>
+    <tr><td>Advanced</td><td>≥ 10 MWh</td><td>€37,500</td><td>€7,500</td></tr>
+    <tr><td>Mega</td><td>≥ 60 MWh</td><td>€100,000</td><td>€20,000</td></tr>
+  </table>
+
+  <h3>Subscription</h3>
+  <table>
+    <tr><th>Detail</th><th>Terms</th></tr>
+    <tr><td>Rate</td><td>~12% of EMS hardware cost per year</td></tr>
+    <tr><td>Terms available</td><td>1, 3, 5, or 10 years — monthly, annual, or lump-sum billing</td></tr>
+    <tr><td>Includes</td><td>Software updates, cybersecurity, advanced modes, weather & price feeds, cloud analytics</td></tr>
+    <tr><td>Support</td><td>1 hour/month included · additional at €100/hr or €1,250/day</td></tr>
+  </table>
+
+  <h3>Delivery Timeline</h3>
+  <table>
+    <tr><th>Milestone</th><th>Duration</th></tr>
+    <tr><td>Project kick-off → system ready</td><td>6 – 8 weeks</td></tr>
+    <tr><td>Delivery to site</td><td>28 days from site readiness</td></tr>
+    <tr><td>Commissioning & acceptance</td><td>14 days</td></tr>
+  </table>
+</section>
+
+<!-- ═══════════════════════ 4. PRICING ═══════════════════════ -->
+<section>
+  <h2>Indicative Pricing</h2>
+  <p class="section-lead">All prices exclude VAT. Final pricing is project-specific — these ranges reflect standard EU market rates for utility-scale BESS.</p>
+
+  <h3>EPC — Turnkey Installation (€ per MWh, all-in)</h3>
+  <table>
+    <tr><th>System Size</th><th>Price Range (€/MWh)</th></tr>
+    <tr><td>2.5 MW / 10 MWh</td><td>€120,000 – €140,000</td></tr>
+    <tr><td>5 MW / 15 MWh</td><td>€125,000 – €135,000</td></tr>
+    <tr><td>5 MW / 20 MWh</td><td>€110,000 – €120,000</td></tr>
+    <tr><td>8 MW / 60 MWh</td><td>€95,000 – €105,000</td></tr>
+    <tr><td>25 MW / 100 MWh</td><td>€100,000 – €110,000</td></tr>
+  </table>
+  <p style="font-size:0.85rem;color:var(--text-muted);">Includes: BESS containers, PCS, MV SKID/transformer, civil works, LV/MV cabling, lightning protection, Disperon EMS & SCADA, protection engineering, compliance documentation, commissioning, and grid connection.</p>
+
+  <h3>O&M — Long-Term Service Agreement</h3>
+  <table>
+    <tr><th>Item</th><th>Rate</th></tr>
+    <tr class="highlight-row"><td>Comprehensive O&M (incl. HV/MV station)</td><td>€2,400 – €2,800 /MWh/year</td></tr>
+    <tr><td>Benchmark</td><td>~2% of BESS asset value per year</td></tr>
+    <tr><td>Availability guarantee</td><td>97%</td></tr>
+    <tr><td>Availability credit (LD)</td><td>€30 /day /MWh shortfall</td></tr>
+    <tr><td>Contract term</td><td>5 – 15 years</td></tr>
+    <tr><td>Staffing ratio</td><td>1 field engineer per 80–100 MWh</td></tr>
+  </table>
+
+  <h3>SLA Response Times</h3>
+  <table>
+    <tr><th>Severity</th><th>Remote</th><th>On-Site</th><th>Resolution</th><th>Coverage</th></tr>
+    <tr><td><strong>Critical</strong></td><td>4 hrs</td><td>8 hrs</td><td>48 hrs</td><td>24/7/365</td></tr>
+    <tr><td><strong>Major</strong></td><td>8 hrs</td><td>48 hrs</td><td>120 hrs</td><td>24/7/365</td></tr>
+    <tr><td><strong>Minor</strong></td><td>48 hrs</td><td>Next visit</td><td>5 days</td><td>Business hours</td></tr>
+  </table>
+
+  <h3>EPC Payment Terms</h3>
+  <table>
+    <tr><th>Milestone</th><th>%</th><th>Trigger</th></tr>
+    <tr><td>Advance</td><td>30%</td><td>Contract signing</td></tr>
+    <tr><td>Pre-shipment</td><td>55%</td><td>Equipment ready, factory inspection passed</td></tr>
+    <tr><td>Provisional Acceptance</td><td>10%</td><td>System commissioned & grid-connected</td></tr>
+    <tr><td>Retention</td><td>5%</td><td>Released after 24-month defects liability period</td></tr>
+  </table>
+
+  <h3>Warranty</h3>
+  <table>
+    <tr><th>Period</th><th>BESS (€/MWh/yr)</th><th>PCS (€/MWh/yr)</th><th>Total</th></tr>
+    <tr><td>Years 1–5</td><td colspan="3" style="text-align:center;">Included in EPC price</td></tr>
+    <tr><td>Years 6–10</td><td>€914</td><td>€748</td><td>€1,662</td></tr>
+    <tr><td>Years 11–15</td><td>€1,158</td><td>€926</td><td>€2,084</td></tr>
+    <tr><td>Years 16–20</td><td>€3,859</td><td>€2,315</td><td>€6,174</td></tr>
+  </table>
+</section>
+
+<!-- ═══════════════════════ 5. EQUIPMENT ═══════════════════════ -->
+<section>
+  <h2>Equipment & Technology</h2>
+  <p class="section-lead">Tier-1 components, factory-tested and delivered CIF to any European port.</p>
+
+  <div class="grid-2">
+    <div class="svc-card">
+      <h3>BESS Hardware</h3>
+      <table>
+        <tr><td>Battery cells</td><td>EVE Energy — LFP (Lithium Iron Phosphate)</td></tr>
+        <tr><td>Container capacity</td><td>5.015 MWh per 40ft unit</td></tr>
+        <tr><td>PCS / Inverter</td><td>Kehua BCS1000K-C / BCS1250K-C-HUD</td></tr>
+        <tr><td>Round-trip efficiency</td><td>86.3% (full AC-AC system)</td></tr>
+        <tr><td>Cycle life</td><td>7,000 cycles @ 70% EOL DoD</td></tr>
+        <tr><td>Grid code</td><td>EN 50549-2 (TÜV certified)</td></tr>
+        <tr><td>Battery safety</td><td>IEC 62619 certified</td></tr>
+        <tr><td>Fire safety</td><td>UL 9540A — passed, no propagation</td></tr>
+      </table>
+    </div>
+    <div class="svc-card">
+      <h3>Performance Guarantees</h3>
+      <table>
+        <tr><td>State of Health — Year 5</td><td>≥ 85%</td></tr>
+        <tr><td>State of Health — Year 10</td><td>≥ 79.6%</td></tr>
+        <tr><td>State of Health — Year 15</td><td>≥ 70%</td></tr>
+        <tr><td>O&M availability</td><td>97% guaranteed</td></tr>
+        <tr><td>Base warranty</td><td>5 years included</td></tr>
+        <tr><td>Extended warranty</td><td>Up to 20 years available</td></tr>
+        <tr><td>Delivery</td><td>CIF to any EU port</td></tr>
+        <tr><td>Lead time</td><td>90 days production + ~50 days shipping</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 6. WHY LIGHTHIEF ═══════════════════════ -->
+<section>
+  <h2>Why Lighthief</h2>
+  <p class="section-lead">One partner for the entire BESS value chain — from equipment procurement to decades of operational service.</p>
+
+  <div class="grid-3">
+    <div class="svc-card">
+      <h3>Vertically Integrated</h3>
+      <p>Equipment, EMS, installation, and O&M from a single provider. No gaps, no finger-pointing between vendors.</p>
+    </div>
+    <div class="svc-card">
+      <h3>Local Teams, EU Scale</h3>
+      <p>Directors and engineers in 7 countries. Your contact speaks your language, understands your grid code, and is in your time zone.</p>
+    </div>
+    <div class="svc-card">
+      <h3>Proven Track Record</h3>
+      <p>486 MWh deployed across 28 parks in Cyprus — the largest independent BESS portfolio on the island.</p>
+    </div>
+    <div class="svc-card">
+      <h3>EU Spare Parts & Training</h3>
+      <p>3,500 m² warehouse with dedicated OEM stock in Poland. 23-hectare training campus with operational BESS test systems.</p>
+    </div>
+    <div class="svc-card">
+      <h3>Grid-Code Ready</h3>
+      <p>EN 50549-2 (TÜV certified), IEC 60870-5-104, IEC 61850 — compliant out of the box for every European DSO and TSO.</p>
+    </div>
+    <div class="svc-card">
+      <h3>Flexible Commercial Terms</h3>
+      <p>CIF delivery to any port. Group volume pricing. 5 to 20-year warranty and O&M options. Performance bonds on every project.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<div class="footer">
+  <strong>Lighthief — European BESS Services</strong><br><br>
+  <a href="mailto:office@lighthief.com">office@lighthief.com</a> · +357 77 77 00 50 · <a href="https://lighthief.com">lighthief.com</a><br><br>
+  Poland · Cyprus · Italy · Netherlands · Germany · Spain · Greece<br>
+  <div class="legal">© 2026 Lighthief. Disperon is a Lighthief brand. All specifications subject to change.</div>
+</div>
+
+</body>
+</html>

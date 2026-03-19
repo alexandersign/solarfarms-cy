@@ -56,12 +56,12 @@ const SEED_TASKS: SeedTask[] = [
   },
   {
     title: 'Pre-book heavy-duty crane (Jul-Oct)',
-    description: 'Only 1 unit on island. Need exclusive commitment for 51 parks (~51 crane-days). Contact crane operator immediately',
+    description: 'Soulis proposes 160T crane (10m footprint). Need exclusive commitment for Batch 1 (36 containers, ~8 crane-days). Post-signing: arrange joint site visits for crane positioning and route assessment',
     project: 'bess_cyprus',
     priority: 'critical',
     deadline: '2026-03-07',
     delegated_to: 'Costas',
-    notes: 'OVERDUE. No backup crane available — single point of failure',
+    notes: 'UPDATED Mar 2026: Soulis proposes 160T crane. Permits take 15 days, valid 30 days. Must arrange site visits after signing. Confirm Linyang container ISO lifting attachment points before finalising rigging plan',
   },
 
   // ===== HIGH =====
@@ -106,11 +106,29 @@ const SEED_TASKS: SeedTask[] = [
   },
   {
     title: 'RFP: crane and transport (A. Soulis / Interfreight)',
-    description: 'How many low-loaders available Jul-Oct 2026? Can they commit exclusivity? Fleet size confirmation needed',
+    description: 'Soulis meeting Mar 2026: confirms inland transport permits + route planning + police escorts all arranged by Soulis. Permits take 15 days, valid 30 days. Port storage: 10 days. Soulis proposes 160T crane (10m footprint). Post-signing: joint site visits required. Proposal deadline: 31 Mar 2026',
     project: 'bess_cyprus',
     priority: 'high',
-    deadline: '2026-03-12',
+    deadline: '2026-03-31',
     delegated_to: 'Costas',
+    notes: 'UPDATED Mar 2026 with Soulis meeting notes. Fleet confirmed: 6x 20ft trucks (43T). 160T crane proposed. ACTION: confirm Linyang ISO lifting attachment points',
+  },
+  {
+    title: 'Confirm Linyang container ISO lifting attachment points',
+    description: 'Soulis needs confirmation that Linyang BESS containers (20HC) and MV SKID containers have standard ISO top corner casting lifting points for crane rigging. Ask Kamil/Linyang for written confirmation',
+    project: 'bess_cyprus',
+    priority: 'high',
+    deadline: '2026-03-24',
+    delegated_to: 'Costas',
+    notes: 'Required before Soulis can finalise rigging plan for 160T crane. Raised in Soulis meeting Mar 2026',
+  },
+  {
+    title: 'Port clearance payment — 10 working days before vessel arrival',
+    description: 'Port clearance fees (via Interfreight) must be paid at least 10 working days before vessel arrives. Late payment delays container release, causing truck idle charges and port parking fees. Finance must coordinate with Interfreight as soon as vessel ETA confirmed',
+    project: 'bess_cyprus',
+    priority: 'high',
+    deadline: '2026-08-05',
+    notes: 'Batch 1 ETA: 20 Aug 2026. Payment deadline: ~5 Aug 2026 (10 working days prior). Set calendar reminder when ETA confirmed',
   },
   {
     title: 'Legal review quotation (Georgiades)',

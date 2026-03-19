@@ -67,7 +67,7 @@
 
 ---
 
-## Chris — Back Office & Operations (Subcontractor)
+## Christos Nicolaou — Back Office & Operations (Subcontractor) — *Terminated*
 
 | Field | Detail |
 |-------|--------|

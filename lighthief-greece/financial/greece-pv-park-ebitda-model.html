@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greece PV Park — EBITDA &amp; Cost Model</title>
+<style>
+:root {
+  --primary: #1e3a5f;
+  --accent: #0ea5e9;
+  --accent-light: #e0f2fe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --amber: #d97706;
+  --red: #dc2626;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg-alt);
+  line-height: 1.6;
+  font-size: 14px;
+}
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--bg);
+}
+header {
+  background: linear-gradient(135deg, #0f2439, var(--primary), #1a4975);
+  color: #fff;
+  padding: 48px 40px;
+}
+header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+header .subtitle {
+  font-size: 16px;
+  opacity: 0.88;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+header .org {
+  font-size: 13px;
+  opacity: 0.65;
+  font-weight: 400;
+}
+.content { padding: 40px; }
+section { margin-bottom: 40px; }
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 20px 0 10px;
+}
+p, li { font-size: 14px; color: var(--text); margin-bottom: 8px; }
+.meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.meta span { display: inline-flex; gap: 4px; }
+.meta strong { color: var(--text); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+th, td {
+  padding: 9px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+tr:nth-child(even) { background: var(--bg-alt); }
+tr:hover { background: #f1f5f9; }
+tr.total-row {
+  background: var(--primary) !important;
+  color: #fff;
+  font-weight: 700;
+}
+tr.total-row td { color: #fff; border-bottom-color: var(--primary); }
+.note {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 12px 0 20px;
+  padding: 10px 14px;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+.note strong { color: var(--text); }
+.pct-bar {
+  display: inline-block;
+  height: 20px;
+  background: var(--accent-light);
+  border-radius: 3px;
+  min-width: 4px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.pct-cell { white-space: nowrap; }
+
+/* Financial statement */
+.fin-table td:nth-child(2),
+.fin-table th:nth-child(2) { text-align: right; }
+.fin-row-revenue { background: var(--green-light) !important; font-weight: 600; }
+.fin-row-revenue td { color: var(--green); }
+.fin-row-cost td:first-child { padding-left: 28px; color: var(--muted); }
+.fin-row-subtotal { font-weight: 600; border-top: 2px solid var(--border); }
+.fin-row-ebitda {
+  background: var(--accent-light) !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+.fin-row-ebitda td { color: var(--primary); padding: 14px 12px; }
+.fin-row-net {
+  background: var(--green-light) !important;
+  font-weight: 700;
+}
+.fin-row-net td { color: var(--green); }
+.fin-row-section td { padding-top: 18px; font-weight: 700; color: var(--primary); }
+.fin-row-blank td { border-bottom: none; padding: 4px 0; }
+
+/* Stat cards */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.stat-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background: var(--bg);
+}
+.stat-card .label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.stat-card .value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-card .sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Sensitivity color coding */
+.cell-green { background: var(--green-light); color: var(--green); font-weight: 600; }
+.cell-amber { background: #fef3c7; color: var(--amber); font-weight: 600; }
+.cell-red { background: #fee2e2; color: var(--red); font-weight: 600; }
+tr.row-base {
+  background: #fef3c7 !important;
+  font-weight: 700;
+}
+tr.row-good { background: var(--green-light) !important; }
+tr.row-poor { background: #fff7ed !important; }
+
+/* Comparison table */
+.cmp-table th:nth-child(2) { background: var(--accent); }
+.cmp-table th:nth-child(3) { background: var(--primary); }
+.cmp-table td:nth-child(2) { border-left: 3px solid var(--accent); }
+.cmp-table td:nth-child(3) { border-left: 3px solid var(--primary); }
+
+/* Opportunity cards */
+.opp-table td:nth-child(3) {
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* FCFE column */
+.cashflow-table td:last-child {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Highlight column */
+.highlight-col {
+  background: var(--accent-light) !important;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Print button */
+.print-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+}
+.print-btn:hover { background: var(--accent); }
+
+/* Sources */
+.sources {
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: 32px;
+}
+.sources h2 { font-size: 16px; border-bottom-width: 2px; }
+.sources ul { padding-left: 18px; }
+.sources li { margin-bottom: 4px; }
+.footer-meta {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+ul.example-list { padding-left: 20px; margin: 10px 0 16px; }
+ul.example-list li { margin-bottom: 4px; font-size: 13px; }
+
+.strategic-insight {
+  background: linear-gradient(135deg, var(--accent-light), #f0f9ff);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+.strategic-insight strong { color: var(--primary); }
+
+@media print {
+  .print-btn { display: none !important; }
+  body { font-size: 11px; background: #fff; }
+  .page { max-width: 100%; box-shadow: none; }
+  header { padding: 24px 20px; }
+  .content { padding: 20px; }
+  section { page-break-inside: avoid; margin-bottom: 20px; }
+  table { page-break-inside: avoid; font-size: 10px; }
+  th, td { padding: 5px 8px; }
+  h2 { font-size: 16px; margin-bottom: 10px; }
+  .info-grid { gap: 8px; }
+  .stat-card { padding: 12px; }
+  .stat-card .value { font-size: 20px; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">PRINT / EXPORT</button>
+<div class="page">
+<header>
+  <h1>Greece PV Park</h1>
+  <div class="subtitle">EBITDA &amp; Cost Model — 10 MWp Utility-Scale Solar</div>
+  <div class="org">Lighthief Greece IKE | March 2026</div>
+</header>
+<div class="content">
+
+<div class="meta">
+  <span><strong>Prepared:</strong> March 2026</span>
+  <span><strong>Source Data:</strong> GEK TERNA H1 2025 Interim Financial Report, Greek market data, TERNA EPC contract analysis</span>
+</div>
+<p style="color:var(--muted);font-size:13px;margin-bottom:32px;"><strong>Purpose:</strong> Reference model for Lighthief Greece market entry — PV park development, EPC, and O&amp;M pricing</p>
+
+<!-- ───────── SECTION 1 ───────── -->
+<section>
+<h2>1. Market Context</h2>
+<p style="font-size:12px;color:var(--muted);margin-bottom:16px;">From GEK TERNA H1 2025 Report</p>
+
+<h3>Greek Economy</h3>
+<table>
+  <thead><tr><th>Indicator</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>GDP growth (H1 2025)</td><td>2.0%</td></tr>
+    <tr><td>GDP growth forecast (2025)</td><td>2.2%</td></tr>
+    <tr><td>GDP growth forecast (2026)</td><td>1.9%</td></tr>
+    <tr><td>Inflation (HICP, H1 2025)</td><td>3.1%</td></tr>
+    <tr><td>Services inflation</td><td>5.3%</td></tr>
+    <tr><td>Credit rating (Moody's, Mar 2025)</td><td>Baa3 (investment grade)</td></tr>
+    <tr><td>Corporate tax rate</td><td>22%</td></tr>
+  </tbody>
+</table>
+
+<h3>GEK TERNA Group Performance (H1 2025)</h3>
+<table>
+  <thead><tr><th>Segment</th><th>Revenue (€M)</th><th>Adj. EBITDA (€M)</th><th>EBITDA Margin</th></tr></thead>
+  <tbody>
+    <tr><td>Construction</td><td>813.5</td><td>89.6</td><td>11.0%</td></tr>
+    <tr><td>Concessions</td><td>258.9</td><td>166.8</td><td>64.4%</td></tr>
+    <tr><td>Electricity (thermal)</td><td>899.6</td><td>71.2</td><td>7.9%</td></tr>
+    <tr style="font-weight:700;border-top:2px solid var(--border);"><td>Total Group</td><td>1,957.3</td><td>317.5</td><td>16.2%</td></tr>
+    <tr><td>Construction backlog</td><td colspan="3"><strong>€6.3 billion</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>TERNA PV EPC Contracts (H1 2025) — Cost Benchmarks</h3>
+<table>
+  <thead><tr><th>Project</th><th>MWp</th><th>Contract Value (€M)</th><th class="highlight-col">€/kWp</th><th>Scope</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Megalopoli Mine Section C</td><td>125</td><td>54.4</td><td class="highlight-col">435</td><td>BoS + EPC (excl. panels)</td><td>PPC Renewables</td></tr>
+    <tr><td>Kotyli Solar PV Plant</td><td>199</td><td>57.6</td><td class="highlight-col">289</td><td>Full EPC</td><td>IDEA FOS</td></tr>
+    <tr><td>Farsala-Larissa PV</td><td>400</td><td>47.0 (50% JV share)</td><td class="highlight-col">235</td><td>EPC (TERNA 50% of €94M)</td><td>TERNA-INTRAKAT JV</td></tr>
+    <tr><td>Kozani 400 MWp</td><td>400</td><td>214.3</td><td class="highlight-col">536</td><td>Full EPC (5 stations)</td><td>TERNA-AKTOR JV, NORTH SOLAR</td></tr>
+    <tr><td>Enipeas (Lightsource bp)</td><td>560</td><td>~395</td><td class="highlight-col">706</td><td>Full CAPEX incl. land &amp; grid</td><td>Benchmark (non-TERNA)</td></tr>
+  </tbody>
+</table>
+<div class="note"><strong>Implied EPC cost range:</strong> €290–540/kWp for large-scale Greek PV (full EPC), €435/kWp for BoS-only (excl. panels).</div>
+</section>
+
+<!-- ───────── SECTION 2 ───────── -->
+<section>
+<h2>2. Model Assumptions — 10 MWp PV Park</h2>
+
+<h3>2.1 Technical Parameters</h3>
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>Installed capacity</td><td>10 MWp (DC)</td><td>Model assumption</td></tr>
+    <tr><td>AC capacity (inverter-limited)</td><td>8.5 MW</td><td>1.18:1 DC/AC ratio</td></tr>
+    <tr><td>Location</td><td>Central Greece (Thessaly / Peloponnese)</td><td>Target region</td></tr>
+    <tr><td>Global horizontal irradiation (GHI)</td><td>1,750 kWh/m²/year</td><td>Greek average</td></tr>
+    <tr><td>Specific yield (Year 1)</td><td>1,600 kWh/kWp</td><td>After losses</td></tr>
+    <tr><td>Annual degradation</td><td>0.45%</td><td>Industry standard</td></tr>
+    <tr><td>Performance ratio (PR)</td><td>83%</td><td>Conservative</td></tr>
+    <tr><td>Availability</td><td>98.5%</td><td>Contractual target</td></tr>
+    <tr><td>Land requirement</td><td>15 hectares</td><td>~1.5 ha/MWp</td></tr>
+    <tr><td>Project life</td><td>30 years</td><td>Standard for new PV</td></tr>
+    <tr><td>Panel technology</td><td>N-type TOPCon, bifacial</td><td>Current market standard</td></tr>
+    <tr><td>Panel wattage</td><td>600–700 Wp</td><td>Current generation</td></tr>
+  </tbody>
+</table>
+
+<h3>2.2 Revenue Assumptions</h3>
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>Year 1 production</td><td>16,000 MWh</td><td>10 MWp × 1,600 kWh/kWp</td></tr>
+    <tr><td>PPA price (fixed, 10-year)</td><td>€52.50/MWh</td><td>Greek solar PPA Q4 2025</td></tr>
+    <tr><td>Merchant price (post-PPA)</td><td>€45.00/MWh</td><td>Conservative forecast (price cannibalisation)</td></tr>
+    <tr><td>Curtailment assumption</td><td>7% of production</td><td>2025 Greek average</td></tr>
+    <tr><td>Net sellable production (Year 1)</td><td>14,880 MWh</td><td>After 7% curtailment</td></tr>
+    <tr><td>Annual escalation (PPA)</td><td>1.5%</td><td>CPI-linked</td></tr>
+  </tbody>
+</table>
+
+<h3>2.3 CAPEX Breakdown</h3>
+<table>
+  <thead><tr><th>Item</th><th>€/kWp</th><th>Total (€)</th><th>% of CAPEX</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>PV Modules (TOPCon 600W+)</td><td>120</td><td>1,200,000</td><td class="pct-cell"><span class="pct-bar" style="width:21.4%"></span>21.4%</td><td>Market price ~€0.18–0.20/Wp</td></tr>
+    <tr><td>Inverters (string, Huawei/Sungrow)</td><td>30</td><td>300,000</td><td class="pct-cell"><span class="pct-bar" style="width:5.4%"></span>5.4%</td><td>Market</td></tr>
+    <tr><td>Mounting structure (fixed tilt)</td><td>45</td><td>450,000</td><td class="pct-cell"><span class="pct-bar" style="width:8%"></span>8.0%</td><td>Market</td></tr>
+    <tr><td>Electrical BoS (DC/AC cabling, combiner boxes)</td><td>35</td><td>350,000</td><td class="pct-cell"><span class="pct-bar" style="width:6.3%"></span>6.3%</td><td>Market</td></tr>
+    <tr><td>MV substation &amp; grid connection</td><td>60</td><td>600,000</td><td class="pct-cell"><span class="pct-bar" style="width:10.7%"></span>10.7%</td><td>ADMIE/HEDNO fees + equipment</td></tr>
+    <tr><td>Civil works (foundations, roads, fencing)</td><td>55</td><td>550,000</td><td class="pct-cell"><span class="pct-bar" style="width:9.8%"></span>9.8%</td><td>TERNA benchmark</td></tr>
+    <tr><td>EPC labour &amp; project management</td><td>65</td><td>650,000</td><td class="pct-cell"><span class="pct-bar" style="width:11.6%"></span>11.6%</td><td>TERNA benchmark</td></tr>
+    <tr><td>Development costs (permits, design, legal)</td><td>40</td><td>400,000</td><td class="pct-cell"><span class="pct-bar" style="width:7.1%"></span>7.1%</td><td>Greek permitting complexity</td></tr>
+    <tr><td>Land acquisition / lease capitalised</td><td>20</td><td>200,000</td><td class="pct-cell"><span class="pct-bar" style="width:3.6%"></span>3.6%</td><td>Lease capitalised or option</td></tr>
+    <tr><td>Grid connection deposit &amp; fees</td><td>30</td><td>300,000</td><td class="pct-cell"><span class="pct-bar" style="width:5.4%"></span>5.4%</td><td>ADMIE</td></tr>
+    <tr><td>Contingency (10%)</td><td>50</td><td>500,000</td><td class="pct-cell"><span class="pct-bar" style="width:8.9%"></span>8.9%</td><td>Standard</td></tr>
+    <tr><td>Financing costs (IDC during construction)</td><td>10</td><td>100,000</td><td class="pct-cell"><span class="pct-bar" style="width:1.8%"></span>1.8%</td><td>12–18 month build</td></tr>
+    <tr class="total-row"><td><strong>Total CAPEX</strong></td><td><strong>560</strong></td><td><strong>5,600,000</strong></td><td><strong>100%</strong></td><td></td></tr>
+  </tbody>
+</table>
+<div class="note"><strong>CAPEX per MWp: €560,000</strong> — consistent with TERNA contract data (€290–540/kWp for EPC, plus development, land, grid connection, and contingency).</div>
+<div class="note"><strong>LCOE estimate:</strong> €33–35/MWh (consistent with Greece's position as among the lowest LCOE in Europe).</div>
+</section>
+
+<!-- ───────── SECTION 3 ───────── -->
+<section>
+<h2>3. Annual Operating Costs (OPEX)</h2>
+
+<h3>3.1 Year 1 OPEX</h3>
+<table>
+  <thead><tr><th>Category</th><th>€/kWp/year</th><th>Annual Cost (€)</th><th>% of OPEX</th></tr></thead>
+  <tbody>
+    <tr><td><strong>O&amp;M Contract</strong> (preventive + corrective maintenance)</td><td>5.50</td><td>55,000</td><td class="pct-cell"><span class="pct-bar" style="width:29.7%"></span>29.7%</td></tr>
+    <tr><td><strong>Insurance</strong> (property, liability, BI)</td><td>1.20</td><td>12,000</td><td class="pct-cell"><span class="pct-bar" style="width:6.5%"></span>6.5%</td></tr>
+    <tr><td><strong>Land lease</strong></td><td>2.00</td><td>20,000</td><td class="pct-cell"><span class="pct-bar" style="width:10.8%"></span>10.8%</td></tr>
+    <tr><td><strong>Grid access fees &amp; metering</strong></td><td>1.50</td><td>15,000</td><td class="pct-cell"><span class="pct-bar" style="width:8.1%"></span>8.1%</td></tr>
+    <tr><td><strong>Panel cleaning</strong> (2–3 times/year)</td><td>1.00</td><td>10,000</td><td class="pct-cell"><span class="pct-bar" style="width:5.4%"></span>5.4%</td></tr>
+    <tr><td><strong>Inverter service / spare parts</strong></td><td>1.50</td><td>15,000</td><td class="pct-cell"><span class="pct-bar" style="width:8.1%"></span>8.1%</td></tr>
+    <tr><td><strong>Monitoring &amp; SCADA</strong></td><td>0.80</td><td>8,000</td><td class="pct-cell"><span class="pct-bar" style="width:4.3%"></span>4.3%</td></tr>
+    <tr><td><strong>Security &amp; surveillance</strong></td><td>1.00</td><td>10,000</td><td class="pct-cell"><span class="pct-bar" style="width:5.4%"></span>5.4%</td></tr>
+    <tr><td><strong>Vegetation management</strong></td><td>0.50</td><td>5,000</td><td class="pct-cell"><span class="pct-bar" style="width:2.7%"></span>2.7%</td></tr>
+    <tr><td><strong>Technical management / asset management</strong></td><td>1.50</td><td>15,000</td><td class="pct-cell"><span class="pct-bar" style="width:8.1%"></span>8.1%</td></tr>
+    <tr><td><strong>Accounting, legal, admin</strong></td><td>1.00</td><td>10,000</td><td class="pct-cell"><span class="pct-bar" style="width:5.4%"></span>5.4%</td></tr>
+    <tr><td><strong>Property tax (ENFIA)</strong></td><td>0.50</td><td>5,000</td><td class="pct-cell"><span class="pct-bar" style="width:2.7%"></span>2.7%</td></tr>
+    <tr><td><strong>Contingency / reserve</strong></td><td>0.50</td><td>5,000</td><td class="pct-cell"><span class="pct-bar" style="width:2.7%"></span>2.7%</td></tr>
+    <tr class="total-row"><td><strong>Total OPEX</strong></td><td><strong>18.50</strong></td><td><strong>185,000</strong></td><td><strong>100%</strong></td></tr>
+  </tbody>
+</table>
+<div class="note"><strong>OPEX as % of CAPEX:</strong> 3.3% (within the 1.5–3.5% benchmark range for European PV).</div>
+</section>
+
+<!-- ───────── SECTION 4 ───────── -->
+<section>
+<h2>4. Year 1 EBITDA Model</h2>
+<table class="fin-table">
+  <thead><tr><th>Line Item</th><th>Amount (€)</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr class="fin-row-revenue"><td>Gross Production</td><td>16,000 MWh</td><td>10 MWp × 1,600 kWh/kWp</td></tr>
+    <tr class="fin-row-cost"><td>Less: Curtailment (7%)</td><td>(1,120 MWh)</td><td>Greek average 2025</td></tr>
+    <tr style="font-weight:600;"><td><strong>Net Production</strong></td><td style="text-align:right;"><strong>14,880 MWh</strong></td><td></td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-revenue"><td><strong>Revenue</strong></td><td><strong>€781,200</strong></td><td>14,880 MWh × €52.50/MWh</td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-cost"><td>O&amp;M costs</td><td>(55,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Insurance</td><td>(12,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Land lease</td><td>(20,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Grid fees &amp; metering</td><td>(15,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Panel cleaning</td><td>(10,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Inverter / spares</td><td>(15,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Monitoring / SCADA</td><td>(8,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Security</td><td>(10,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Vegetation</td><td>(5,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Asset management</td><td>(15,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Accounting / legal / admin</td><td>(10,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Property tax (ENFIA)</td><td>(5,000)</td><td></td></tr>
+    <tr class="fin-row-cost"><td>Contingency</td><td>(5,000)</td><td></td></tr>
+    <tr class="fin-row-subtotal"><td><strong>Total OPEX</strong></td><td style="text-align:right;"><strong>(185,000)</strong></td><td></td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-ebitda"><td>EBITDA</td><td style="text-align:right;">€596,200</td><td></td></tr>
+    <tr style="font-weight:600;"><td>EBITDA Margin</td><td style="text-align:right;font-weight:700;color:var(--accent);">76.3%</td><td></td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-cost"><td>Depreciation (30-year straight-line)</td><td>(186,667)</td><td>€5.6M / 30 years</td></tr>
+    <tr style="font-weight:600;"><td><strong>EBIT</strong></td><td style="text-align:right;"><strong>€409,533</strong></td><td></td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-cost"><td>Interest expense (project finance)</td><td>(140,000)</td><td>See §5 below</td></tr>
+    <tr style="font-weight:600;"><td><strong>EBT</strong></td><td style="text-align:right;"><strong>€269,533</strong></td><td></td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-cost"><td>Corporate tax (22%)</td><td>(59,297)</td><td></td></tr>
+    <tr class="fin-row-net"><td>Net Income</td><td style="text-align:right;">€210,236</td><td></td></tr>
+    <tr class="fin-row-blank"><td colspan="3"></td></tr>
+    <tr class="fin-row-section"><td colspan="3">Free Cash Flow to Equity</td></tr>
+    <tr><td style="padding-left:28px;">Net Income</td><td style="text-align:right;">210,236</td><td></td></tr>
+    <tr><td style="padding-left:28px;">Add back: Depreciation</td><td style="text-align:right;">186,667</td><td></td></tr>
+    <tr><td style="padding-left:28px;">Less: Debt principal repayment</td><td style="text-align:right;">(186,667)</td><td>Sculpted to match</td></tr>
+    <tr class="fin-row-net"><td><strong>FCFE</strong></td><td style="text-align:right;"><strong>~€210,236</strong></td><td></td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ───────── SECTION 5 ───────── -->
+<section>
+<h2>5. Financing Structure</h2>
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Total CAPEX</td><td>€5,600,000</td></tr>
+    <tr><td>Equity contribution</td><td>25% = €1,400,000</td></tr>
+    <tr><td>Senior debt</td><td>75% = €4,200,000</td></tr>
+    <tr><td>Interest rate</td><td>3.5% (all-in, fixed via swap)</td></tr>
+    <tr><td>Tenor</td><td>18 years</td></tr>
+    <tr><td>Annual debt service (P+I)</td><td>~€326,000</td></tr>
+    <tr style="background:var(--accent-light) !important;font-weight:700;"><td>DSCR (Year 1)</td><td style="color:var(--accent);">1.83x <span style="font-weight:400;color:var(--muted);font-size:12px;">(€596K EBITDA / €326K debt service)</span></td></tr>
+    <tr><td>Minimum DSCR target</td><td>1.30x</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ───────── SECTION 6 ───────── -->
+<section>
+<h2>6. Key Returns</h2>
+<div class="info-grid">
+  <div class="stat-card">
+    <div class="label">EBITDA Yield</div>
+    <div class="value">10.6%</div>
+    <div class="sub">EBITDA / CAPEX</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Unlevered IRR (Project)</div>
+    <div class="value">9.5–11%</div>
+    <div class="sub">Project-level return</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Levered IRR (Equity)</div>
+    <div class="value">13–16%</div>
+    <div class="sub">Equity return</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Payback Period</div>
+    <div class="value">~9.4 yrs</div>
+    <div class="sub">Simple payback</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">LCOE</div>
+    <div class="value">€33–35</div>
+    <div class="sub">Per MWh</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">NPV (7% WACC, 30yr)</div>
+    <div class="value">€1.5–2.0M</div>
+    <div class="sub">Net present value</div>
+  </div>
+</div>
+</section>
+
+<!-- ───────── SECTION 7 ───────── -->
+<section>
+<h2>7. Sensitivity Analysis</h2>
+
+<h3>Revenue Sensitivity</h3>
+<table>
+  <thead><tr><th>PPA Price (€/MWh)</th><th>Revenue (€)</th><th>EBITDA (€)</th><th>EBITDA Margin</th><th>Equity IRR</th></tr></thead>
+  <tbody>
+    <tr class="row-poor"><td class="cell-red">40.00</td><td>595,200</td><td>410,200</td><td>68.9%</td><td>8–10%</td></tr>
+    <tr class="row-good"><td>45.00</td><td>669,600</td><td>484,600</td><td>72.4%</td><td>10–12%</td></tr>
+    <tr class="row-base"><td class="cell-amber"><strong>52.50</strong></td><td><strong>781,200</strong></td><td><strong>596,200</strong></td><td><strong>76.3%</strong></td><td><strong>13–16%</strong></td></tr>
+    <tr class="row-good"><td class="cell-green">55.00</td><td>818,400</td><td>633,400</td><td>77.4%</td><td>15–18%</td></tr>
+    <tr class="row-good"><td class="cell-green">60.00</td><td>892,800</td><td>707,800</td><td>79.3%</td><td>17–20%</td></tr>
+  </tbody>
+</table>
+
+<h3>Curtailment Sensitivity</h3>
+<table>
+  <thead><tr><th>Curtailment Rate</th><th>Net Production (MWh)</th><th>Revenue (€)</th><th>EBITDA (€)</th><th>EBITDA Margin</th></tr></thead>
+  <tbody>
+    <tr class="row-good"><td class="cell-green">0%</td><td>16,000</td><td>840,000</td><td>655,000</td><td>78.0%</td></tr>
+    <tr class="row-good"><td class="cell-green">5%</td><td>15,200</td><td>798,000</td><td>613,000</td><td>76.8%</td></tr>
+    <tr class="row-base"><td class="cell-amber"><strong>7%</strong></td><td><strong>14,880</strong></td><td><strong>781,200</strong></td><td><strong>596,200</strong></td><td><strong>76.3%</strong></td></tr>
+    <tr class="row-poor"><td>10%</td><td>14,400</td><td>756,000</td><td>571,000</td><td>75.5%</td></tr>
+    <tr class="row-poor"><td class="cell-red">15%</td><td>13,600</td><td>714,000</td><td>529,000</td><td>74.1%</td></tr>
+  </tbody>
+</table>
+
+<h3>CAPEX Sensitivity</h3>
+<table>
+  <thead><tr><th>CAPEX (€/kWp)</th><th>Total CAPEX (€M)</th><th>EBITDA Yield</th><th>Equity IRR</th></tr></thead>
+  <tbody>
+    <tr class="row-good"><td class="cell-green">450</td><td>4.50</td><td>13.2%</td><td>18–22%</td></tr>
+    <tr class="row-good"><td class="cell-green">500</td><td>5.00</td><td>11.9%</td><td>15–18%</td></tr>
+    <tr class="row-base"><td class="cell-amber"><strong>560</strong></td><td><strong>5.60</strong></td><td><strong>10.6%</strong></td><td><strong>13–16%</strong></td></tr>
+    <tr class="row-poor"><td>600</td><td>6.00</td><td>9.9%</td><td>11–14%</td></tr>
+    <tr class="row-poor"><td class="cell-red">700</td><td>7.00</td><td>8.5%</td><td>8–11%</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- ───────── SECTION 8 ───────── -->
+<section>
+<h2>8. 10-Year Cash Flow Summary</h2>
+<table class="cashflow-table">
+  <thead><tr><th>Year</th><th>Production (MWh)</th><th>Revenue (€)</th><th>OPEX (€)</th><th>EBITDA (€)</th><th>Debt Service (€)</th><th>FCFE (€)</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>14,880</td><td>781,200</td><td>185,000</td><td>596,200</td><td>326,000</td><td>270,200</td></tr>
+    <tr><td>2</td><td>14,813</td><td>798,950</td><td>189,700</td><td>609,250</td><td>326,000</td><td>283,250</td></tr>
+    <tr><td>3</td><td>14,747</td><td>817,108</td><td>194,500</td><td>622,608</td><td>326,000</td><td>296,608</td></tr>
+    <tr><td>4</td><td>14,680</td><td>835,678</td><td>199,400</td><td>636,278</td><td>326,000</td><td>310,278</td></tr>
+    <tr><td>5</td><td>14,614</td><td>854,663</td><td>204,400</td><td>650,263</td><td>326,000</td><td>324,263</td></tr>
+    <tr><td>6</td><td>14,549</td><td>874,071</td><td>214,600</td><td>659,471</td><td>326,000</td><td>333,471</td></tr>
+    <tr><td>7</td><td>14,483</td><td>893,906</td><td>219,900</td><td>674,006</td><td>326,000</td><td>348,006</td></tr>
+    <tr><td>8</td><td>14,418</td><td>914,175</td><td>225,300</td><td>688,875</td><td>326,000</td><td>362,875</td></tr>
+    <tr><td>9</td><td>14,353</td><td>934,884</td><td>230,800</td><td>704,084</td><td>326,000</td><td>378,084</td></tr>
+    <tr><td>10</td><td>14,289</td><td>956,039</td><td>236,500</td><td>719,539</td><td>326,000</td><td>393,539</td></tr>
+  </tbody>
+</table>
+<div class="note"><strong>Assumptions:</strong> 0.45% annual degradation, 1.5% PPA escalation, 2.5% OPEX inflation, flat debt service (annuity).</div>
+</section>
+
+<!-- ───────── SECTION 9 ───────── -->
+<section>
+<h2>9. Lighthief Greece — PV Revenue Opportunities</h2>
+<table class="opp-table">
+  <thead><tr><th>Service</th><th>Revenue per Project</th><th>Margin</th><th>Lighthief Role</th></tr></thead>
+  <tbody>
+    <tr><td><strong>EPC subcontract</strong> (BoS + installation)</td><td>€300–450K/MWp</td><td>12–18%</td><td>Sub-EPC to developer</td></tr>
+    <tr><td><strong>O&amp;M contract</strong> (LTSA)</td><td>€5–8K/MWp/year</td><td>35–45%</td><td>O&amp;M provider</td></tr>
+    <tr><td><strong>Equipment supply</strong> (panels + inverters)</td><td>€150–180K/MWp</td><td>8–12%</td><td>Distribution (via 7SUN/Lighthief)</td></tr>
+    <tr><td><strong>Technical consulting</strong> (design, grid, permits)</td><td>€40–80K per project</td><td>50–70%</td><td>TEE engineer-led</td></tr>
+    <tr><td><strong>Asset management</strong></td><td>€1–2K/MWp/year</td><td>60–70%</td><td>Remote + periodic site visits</td></tr>
+  </tbody>
+</table>
+
+<h3>Example: Single 10 MWp PV Park — Lighthief Greece Revenue</h3>
+<ul class="example-list">
+  <li><strong>EPC sub-contract:</strong> €3–4.5M revenue (€360–810K gross profit)</li>
+  <li><strong>O&amp;M contract (15 years):</strong> €50–80K/year (€750K–1.2M lifetime)</li>
+  <li><strong>Consulting:</strong> €40–80K one-off</li>
+  <li><strong>Equipment supply:</strong> €1.5–1.8M (€120–216K margin)</li>
+</ul>
+</section>
+
+<!-- ───────── SECTION 10 ───────── -->
+<section>
+<h2>10. Comparison: Greece PV vs. Cyprus BESS</h2>
+<table class="cmp-table">
+  <thead><tr><th>Metric</th><th>Greece 10 MWp PV Park</th><th>Cyprus 10 MWh BESS Park</th></tr></thead>
+  <tbody>
+    <tr><td>CAPEX</td><td>€5.6M (€560/kWp)</td><td>~€1.1M (€110K/MWh)</td></tr>
+    <tr><td>Annual revenue</td><td>€781K</td><td>~€400K (DAM arbitrage)</td></tr>
+    <tr><td>EBITDA</td><td>€596K (76%)</td><td>~€300K (75%)</td></tr>
+    <tr><td>EBITDA yield</td><td>10.6%</td><td>~27%</td></tr>
+    <tr><td>Equity IRR</td><td>13–16%</td><td>15–25%</td></tr>
+    <tr><td>LCOE / cost of energy</td><td>€33–35/MWh</td><td>N/A (storage)</td></tr>
+    <tr><td>Revenue certainty</td><td style="color:var(--green);font-weight:600;">High (PPA)</td><td style="color:var(--amber);font-weight:600;">Medium (merchant)</td></tr>
+    <tr><td>Curtailment risk</td><td style="color:var(--red);font-weight:600;">High (7%+, rising)</td><td style="color:var(--green);font-weight:600;">Low (storage absorbs curtailment)</td></tr>
+    <tr><td>Grid connection</td><td>Bottlenecked</td><td>Bottlenecked</td></tr>
+    <tr><td>O&amp;M complexity</td><td style="color:var(--green);font-weight:600;">Low</td><td style="color:var(--amber);font-weight:600;">Medium-High</td></tr>
+  </tbody>
+</table>
+
+<div class="strategic-insight">
+  <strong>Strategic insight:</strong> Greek PV parks offer stable, PPA-backed returns but face rising curtailment risk. BESS projects have higher returns but merchant risk. The ideal Lighthief Greece play is <strong>PV + BESS co-location</strong> — PV provides baseload revenue while BESS captures curtailed energy and arbitrage spread.
+</div>
+</section>
+
+<!-- ───────── SOURCES ───────── -->
+<div class="sources">
+<h2>Sources</h2>
+<ul>
+  <li>GEK TERNA H1 2025 Interim Financial Report (30 June 2025)</li>
+  <li>TERNA S.A. EPC contract announcements (Megalopoli, Kotyli, Farsala, Kozani)</li>
+  <li>Greek solar PPA pricing: PV Magazine Q4 2025 data (€52.50/MWh)</li>
+  <li>Curtailment data: Ricardo / RAAEY 2025 analysis (7% market-level)</li>
+  <li>CAPEX benchmarks: Lightsource bp Enipeas project, IRENA cost reports</li>
+  <li>OPEX benchmarks: PV-Maps European O&amp;M analysis, lighthief.energy</li>
+  <li>Financing: European project finance market rates (H2 2025)</li>
+</ul>
+
+<div class="footer-meta">
+  <p>Document prepared: March 2026</p>
+  <p>Author: Lighthief Strategy</p>
+  <p>Status: Sample model for internal reference — not a financial forecast</p>
+</div>
+</div>
+
+</div><!-- .content -->
+</div><!-- .page -->
+</body>
+</html>

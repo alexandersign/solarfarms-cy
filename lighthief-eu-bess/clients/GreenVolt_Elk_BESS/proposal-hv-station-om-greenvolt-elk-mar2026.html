@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief — O&M Proposal — HV Station MEE Ełk 220/110/33 kV</title>
+<style>
+  :root { --primary: #0f1e36; --accent: #2563eb; --accent-light: #60a5fa; --accent-bg: #dbeafe; --success: #16a34a; --success-bg: #dcfce7; --bg: #fff; --bg-alt: #f8fafc; --text: #1e293b; --muted: #64748b; --border: #e2e8f0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height:1.65; }
+
+  .hero { background: linear-gradient(135deg, var(--primary) 0%, #1e3a5f 50%, var(--accent) 100%); color:white; padding:4rem 2rem 3rem; text-align:center; position:relative; }
+  .hero::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:50px; background:var(--bg); clip-path:ellipse(55% 100% at 50% 100%); }
+  .hero .brand { font-size:0.95rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; opacity:0.6; margin-bottom:0.8rem; }
+  .hero h1 { font-size:2rem; font-weight:800; margin-bottom:0.4rem; }
+  .hero .sub { font-size:1.05rem; opacity:0.8; max-width:700px; margin:0 auto; }
+  .hero .to { margin-top:1.5rem; font-size:0.85rem; opacity:0.6; }
+
+  .container { max-width:920px; margin:0 auto; padding:0 1.5rem; }
+  section { padding:2.5rem 0; }
+  section + section { border-top:1px solid var(--border); }
+  h2 { font-size:1.4rem; font-weight:700; color:var(--primary); margin-bottom:0.6rem; }
+  .section-lead { color:var(--muted); margin-bottom:1.4rem; font-size:0.95rem; }
+  h3 { font-size:1rem; color:var(--accent); margin:1.2rem 0 0.5rem; }
+
+  table { width:100%; border-collapse:collapse; margin:0.6rem 0 1.2rem; font-size:0.88rem; }
+  th { background:var(--primary); color:white; padding:10px 14px; text-align:left; font-weight:600; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.4px; }
+  td { padding:10px 14px; border-bottom:1px solid var(--border); }
+  tr:nth-child(even) { background:var(--bg-alt); }
+  td:first-child { font-weight:500; }
+  .highlight td { background:var(--accent-bg); font-weight:600; }
+  .total td { background:var(--success-bg); font-weight:700; font-size:0.95rem; }
+
+  .card { background:var(--bg-alt); border:1px solid var(--border); border-radius:10px; padding:1.4rem; margin-bottom:1rem; }
+  .card.accent { border-color:var(--accent); background:var(--accent-bg); }
+  .card.green { border-color:var(--success); background:var(--success-bg); }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  @media (max-width:700px) { .grid-2 { grid-template-columns:1fr; } }
+
+  ul { margin:0.3rem 0 0.8rem 1.4rem; font-size:0.9rem; }
+  li { margin-bottom:0.25rem; }
+  .sn { display:inline-block; width:28px; height:28px; line-height:28px; text-align:center; background:var(--accent); color:white; border-radius:50%; font-size:0.78rem; font-weight:700; margin-right:8px; vertical-align:middle; }
+
+  .footer { background:var(--primary); color:rgba(255,255,255,0.7); text-align:center; padding:2rem; margin-top:2rem; font-size:0.8rem; }
+  .footer strong { color:white; }
+  .footer a { color:var(--accent-light); text-decoration:none; }
+
+  .print-btn { position:fixed; top:12px; right:12px; background:var(--accent); color:white; border:none; padding:8px 18px; border-radius:8px; cursor:pointer; font-size:0.82rem; font-weight:600; }
+  @media print { .print-btn{display:none;} .hero{padding:2rem;} .hero::after{display:none;} section{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / PDF</button>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <div class="brand">Lighthief</div>
+  <h1>O&M Services Proposal</h1>
+  <div class="sub">HV Substation MEE Ełk 220/110/33 kV & 220 kV Cable Line<br>for Magazyn Energii Elektrycznej Ełk — 200 MW / 800 MWh BESS</div>
+  <div class="to">Prepared for: Greenvolt Power Group sp. z o.o. / Magazyn EE Ełk sp. z o.o.<br>Ref: LTH-GV-ELK-OM-MAR2026 · March 2026 · Validity: 90 days</div>
+</div>
+
+<div class="container">
+
+<!-- ═══════ 1. EXECUTIVE SUMMARY ═══════ -->
+<section>
+  <h2>1. Executive Summary</h2>
+  <div class="card accent">
+    <p style="font-size:0.92rem;">Lighthief proposes a comprehensive Operation & Maintenance programme for the HV electrical infrastructure supporting the Ełk 200 MW / 800 MWh battery energy storage installation. Our scope covers the MEE Ełk 220/110/33 kV substation, the 220 kV cable line to the PSE grid connection point, and all associated auxiliary systems — delivered by a dedicated on-site team with 24/7/365 coverage.</p>
+    <p style="font-size:0.92rem; margin-top:0.6rem;">Lighthief operates 11 offices and a 150+ engineer team across 7 European countries, with our EU headquarters and 3,500 m² spare-parts warehouse in Poland. We bring deep BESS and HV infrastructure experience from our 486 MWh deployed portfolio in Cyprus and growing operations across the EU.</p>
+  </div>
+</section>
+
+<!-- ═══════ 2. SCOPE ═══════ -->
+<section>
+  <h2>2. Scope of Services</h2>
+  <p class="section-lead">Full-scope O&M for the HV station and cable connection, aligned with PSE S.A. (TSO) requirements and Polish energy regulations.</p>
+
+  <h3><span class="sn">1</span> HV/MV Substation Maintenance (220/110/33 kV)</h3>
+  <ul>
+    <li>Scheduled inspections and preventive maintenance of HV switchgear (220 kV, 110 kV bays)</li>
+    <li>Power transformer servicing — oil analysis, Buchholz relay testing, cooling system maintenance, DGA monitoring</li>
+    <li>MV switchgear maintenance (33 kV panels connecting to BESS arrays)</li>
+    <li>Protection relay testing, calibration, and firmware management (IEC 61850 / IEC 60870-5-104)</li>
+    <li>Switching apparatus maintenance — circuit breakers, disconnectors, earthing switches</li>
+    <li>Power quality monitoring and measurement</li>
+    <li>Auxiliary systems — DC supply, UPS, station lighting, HVAC, security</li>
+  </ul>
+
+  <h3><span class="sn">2</span> 220 kV Cable Line Maintenance</h3>
+  <ul>
+    <li>Cable condition monitoring (thermal imaging, partial discharge testing)</li>
+    <li>Cable termination inspections and maintenance</li>
+    <li>Route inspections (vegetation management, access road maintenance)</li>
+    <li>Joint bay inspections and thermal monitoring</li>
+    <li>Fault location and repair readiness</li>
+  </ul>
+
+  <h3><span class="sn">3</span> 24/7 Monitoring & Emergency Response</h3>
+  <ul>
+    <li>Round-the-clock substation supervision via SCADA and local control room</li>
+    <li>Alarm handling, event logging, and incident classification</li>
+    <li>Emergency fault response — 30-minute on-site mobilization</li>
+    <li>Switching operations under PSE coordination (IRiESP compliance)</li>
+    <li>Liaison with PSE S.A. dispatch center</li>
+  </ul>
+
+  <h3><span class="sn">4</span> Planned Maintenance Programme</h3>
+  <ul>
+    <li>Annual maintenance calendar aligned with PSE outage windows</li>
+    <li>Transformer oil testing (quarterly DGA, annual full analysis)</li>
+    <li>Protection relay testing programme (annual secondary injection, functional testing)</li>
+    <li>HV equipment thermographic surveys (quarterly)</li>
+    <li>Earth resistance measurements (annual)</li>
+    <li>Battery bank maintenance (station DC supply)</li>
+  </ul>
+
+  <h3><span class="sn">5</span> Compliance, Reporting & Documentation</h3>
+  <ul>
+    <li>Monthly operational reports and KPI dashboards</li>
+    <li>Annual technical reports for PSE S.A. (IRiESP compliance)</li>
+    <li>Equipment condition reports and remaining-life assessments</li>
+    <li>Regulatory compliance monitoring (URE, PSE, grid code)</li>
+    <li>Technical documentation maintenance and as-built updates</li>
+    <li>H&S compliance — drills, training, incident reporting</li>
+  </ul>
+
+  <h3><span class="sn">6</span> Spare Parts & Logistics</h3>
+  <ul>
+    <li>Critical spare parts inventory maintained on-site</li>
+    <li>Backed by Lighthief's 3,500 m² EU warehouse in Poland</li>
+    <li>OEM-certified replacement components sourced directly</li>
+    <li>Target: critical spares available within 4 hours, major spares within 48 hours</li>
+  </ul>
+</section>
+
+<!-- ═══════ 3. TEAM ═══════ -->
+<section>
+  <h2>3. Proposed Team Structure</h2>
+  <p class="section-lead">Dedicated on-site team with Polish electrical qualifications (SEP Group 1 D+E) and HV switching authority.</p>
+
+  <h3>Option A — HV Station & Cable O&M (10 FTE)</h3>
+  <table>
+    <tr><th>Role</th><th>FTE</th><th>Key Qualifications</th></tr>
+    <tr><td>Station Manager / Operations Manager</td><td>1</td><td>SEP Group 1 D+E (≥220 kV), 10+ yrs substation experience, PSE coordination, work permit authority</td></tr>
+    <tr><td>HV Switching / Monitoring Engineers (shift)</td><td>5</td><td>SEP Group 1 D+E, 220 kV switching authority, 24/7 shift coverage, alarm handling</td></tr>
+    <tr><td>Technical Supervisor</td><td>1</td><td>Senior HV engineer, protection relay specialist, IEC 61850 / IEC 60870-5-104</td></tr>
+    <tr><td>Equipment Maintenance Technicians</td><td>2</td><td>SEP Group 1 D+E (MV/HV), transformer servicing, switchgear, cable testing</td></tr>
+    <tr><td>Safety & Compliance Officer</td><td>1</td><td>H&S regulations, emergency drills, compliance, incident reporting</td></tr>
+    <tr class="total"><td><strong>Total — Option A</strong></td><td><strong>10</strong></td><td>4-shift 24/7 rotation (min. 2 per shift) + day engineering team</td></tr>
+  </table>
+
+  <h3>Option B — Full Scope: HV Station + BESS O&M + EMS (32 FTE)</h3>
+  <p style="font-size:0.88rem; color:var(--muted); margin-bottom:0.8rem;">Optimized from a 43-FTE reference model to 32 FTE through Disperon EMS automation, which reduces real-time monitoring headcount and integrates alarm handling with automated dispatch.</p>
+  <table>
+    <tr><th>Role</th><th>FTE</th><th>Key Qualifications</th></tr>
+    <tr><td>Operations Managers</td><td>2</td><td>Overall strategy, work permits, safety, KPI supervision, owner/PSE liaison</td></tr>
+    <tr><td>Technical Supervisors</td><td>3</td><td>Technical standards, complex problem resolution, O&M plan design</td></tr>
+    <tr><td>Monitoring Engineers (24/7 shifts)</td><td>12</td><td>Real-time SCADA monitoring, alarm handling, charge/discharge oversight, daily inspections</td></tr>
+    <tr><td>Equipment Maintenance Technicians (HV + BESS)</td><td>6</td><td>HV switchgear, transformers, PCS, BMS, cooling systems, fire suppression, UPS</td></tr>
+    <tr><td>Data Analysis / Performance Engineers</td><td>3</td><td>SoC/SoH analysis, dispatch optimization, performance reporting</td></tr>
+    <tr><td>Inspection & Emergency Engineers</td><td>3</td><td>Daily inspections, operational support, 24/7 emergency repair</td></tr>
+    <tr><td>Safety & Compliance Officers</td><td>2</td><td>Safety regulations, emergency drills, fire/environmental compliance, incident reporting</td></tr>
+    <tr><td>Logistics / Spare Parts Coordinator</td><td>1</td><td>Spare parts & tools management, procurement, third-party service coordination</td></tr>
+    <tr class="total"><td><strong>Total — Option B</strong></td><td><strong>32</strong></td><td>24/7/365 coverage with 4-shift rotation + day engineering & management team</td></tr>
+  </table>
+</section>
+
+<!-- ═══════ 4. SLA ═══════ -->
+<section>
+  <h2>4. Service Level Agreement</h2>
+
+  <table>
+    <tr><th>Severity</th><th>Response</th><th>On-Site</th><th>Resolution Target</th><th>Coverage</th></tr>
+    <tr><td><strong>Critical</strong> — system trip, safety event, PSE demand</td><td>Immediate</td><td>30 min</td><td>4 hours</td><td>24/7/365</td></tr>
+    <tr><td><strong>Major</strong> — protection operation, degraded capacity</td><td>30 min</td><td>1 hour</td><td>24 hours</td><td>24/7/365</td></tr>
+    <tr><td><strong>Minor</strong> — alarm, scheduled item, advisory</td><td>4 hours</td><td>Next shift</td><td>5 business days</td><td>Business hours</td></tr>
+  </table>
+
+  <table>
+    <tr><th>KPI</th><th>Target</th></tr>
+    <tr><td>Substation availability</td><td>≥ 99.0%</td></tr>
+    <tr><td>Cable line availability</td><td>≥ 99.5%</td></tr>
+    <tr><td>Planned maintenance completion rate</td><td>≥ 95% per quarter</td></tr>
+    <tr><td>Reporting deadline</td><td>Monthly report within 5 business days of month-end</td></tr>
+    <tr><td>LD credit for downtime exceeding SLA</td><td>€500/hour beyond target (capped at 10% of quarterly fee)</td></tr>
+  </table>
+</section>
+
+<!-- ═══════ 5. COMMERCIAL ═══════ -->
+<section>
+  <h2>5. Commercial Proposal</h2>
+  <p class="section-lead">All prices in EUR, excluding VAT. Valid for 90 days from date of issue.</p>
+
+  <h3>Option A — HV Station & Cable O&M (10 FTE)</h3>
+  <table>
+    <tr><th>Service</th><th>Annual Fee</th></tr>
+    <tr><td>On-site personnel — 10 FTE dedicated team</td><td>€711,000</td></tr>
+    <tr><td>Spare parts, consumables & test equipment</td><td>€128,000</td></tr>
+    <tr><td>Vehicles, logistics & third-party specialist services</td><td>€88,000</td></tr>
+    <tr><td>Insurance, compliance, IT & SCADA</td><td>€33,000</td></tr>
+    <tr class="highlight"><td>Subtotal (at cost + 5% contingency)</td><td>€1,008,000</td></tr>
+    <tr class="total"><td><strong>Annual O&M Fee — Option A</strong></td><td><strong>€1,260,000 /year</strong></td></tr>
+  </table>
+  <p style="font-size:0.82rem; color:var(--muted);">5-year annual commitment: €6,300,000 · 10-year: €12,600,000 · Per MW: €6,300/MW/year</p>
+
+  <h3>Option B — Full Scope: HV Station + BESS O&M + Disperon EMS (32 FTE)</h3>
+  <table>
+    <tr><th>Service</th><th>Annual Fee</th></tr>
+    <tr><td>On-site personnel — 32 FTE dedicated team</td><td>€2,251,000</td></tr>
+    <tr><td>Operational costs (spares, tools, vehicles, insurance, IT, third-party)</td><td>€558,000</td></tr>
+    <tr><td>Disperon EMS platform — annual subscription (MEGA tier)</td><td>€20,000</td></tr>
+    <tr class="highlight"><td>Subtotal (at cost + 5% contingency)</td><td>€2,971,000</td></tr>
+    <tr class="total"><td><strong>Annual O&M Fee — Option B</strong></td><td><strong>€3,714,000 /year</strong></td></tr>
+  </table>
+  <p style="font-size:0.82rem; color:var(--muted);">5-year commitment: €18,570,000 · 10-year: €37,140,000 · Per MW: €18,570/MW/year · Per MWh: €4,643/MWh/year</p>
+  <p style="font-size:0.82rem; color:var(--muted); margin-top:0.4rem;">Option B includes one-time Disperon EMS capex of €100,000 (MEGA tier SCADA + EMS hardware + commissioning), payable on contract signing. Full BESS scope: BMS monitoring, PCS servicing, thermal management, fire suppression, cell balancing, SoH tracking, module replacement, and energy market optimization via AI-driven dispatch.</p>
+
+  <h3>Contract Terms</h3>
+  <table>
+    <tr><td>Contract duration</td><td>5 years (renewable for successive 3-year terms)</td></tr>
+    <tr><td>Payment</td><td>Monthly in arrears (1/12 of annual fee)</td></tr>
+    <tr><td>Price escalation</td><td>Annual CPI adjustment (Eurostat HICP, capped at 4%)</td></tr>
+    <tr><td>Mobilization period</td><td>8 weeks from contract signing to full operational readiness</td></tr>
+    <tr><td>Spare parts</td><td>Included in fee (consumables). Major equipment replacements billed separately at cost + 15%.</td></tr>
+    <tr><td>Performance bond</td><td>Available on request (bank guarantee, 5% of annual fee)</td></tr>
+  </table>
+
+  <h3>Multi-Site Discount</h3>
+  <div class="card green">
+    <p><strong>Both sites (Ełk + Turośń Kościelna):</strong> If Lighthief is awarded O&M for both BESS parks, we offer a <strong>10% discount</strong> on the combined annual fee — reflecting shared management, rotating staff pool, and centralized spare parts logistics.</p>
+  </div>
+</section>
+
+<!-- ═══════ 6. WHY LIGHTHIEF ═══════ -->
+<section>
+  <h2>6. Why Lighthief</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Polish Presence</h3>
+      <p style="font-size:0.88rem;">EU headquarters in Poland. Poland Director (Maciej Krzyżanowski) and local engineering team. 3,500 m² warehouse with OEM spare parts stock. No cross-border mobilization delays.</p>
+    </div>
+    <div class="card">
+      <h3>BESS + HV Expertise</h3>
+      <p style="font-size:0.88rem;">486 MWh BESS deployed in Cyprus. Deep experience in HV/MV station O&M, protection engineering, and grid code compliance. Engineers trained at our Czestochowa campus on live BESS systems.</p>
+    </div>
+    <div class="card">
+      <h3>Disperon EMS</h3>
+      <p style="font-size:0.88rem;">Our proprietary energy management platform optimizes dispatch for energy arbitrage, balancing market, and system services — maximizing your revenue from day one.</p>
+    </div>
+    <div class="card">
+      <h3>150+ Engineers</h3>
+      <p style="font-size:0.88rem;">Europe-wide team with surge capacity for major maintenance outages. 24/7 NOC monitoring. Backed by OEM support agreements with response SLAs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 7. CONTACT ═══════ -->
+<section>
+  <h2>7. Contact</h2>
+  <table>
+    <tr><td>Poland Director</td><td>Maciej Krzyżanowski · m.krzyzanowski@lighthief.com</td></tr>
+    <tr><td>CEO</td><td>Dr. Arkadius Sybaris · a.sybaris@lighthief.com</td></tr>
+    <tr><td>Procurement enquiries</td><td>office@lighthief.com · +357 77 77 00 50</td></tr>
+    <tr><td>EU HQ</td><td>Lighthief International Ltd — Poland</td></tr>
+    <tr><td>Website</td><td>lighthief.com</td></tr>
+  </table>
+</section>
+
+</div>
+
+<div class="footer">
+  <strong>Lighthief — European BESS Services</strong><br>
+  Proposal Ref: LTH-GV-ELK-OM-MAR2026 · Prepared for Greenvolt Power Group sp. z o.o.<br>
+  <a href="mailto:office@lighthief.com">office@lighthief.com</a> · lighthief.com<br>
+  <span style="font-size:0.7rem; opacity:0.5;">This proposal is confidential and intended solely for the named recipient. Valid for 90 days from date of issue.</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+,,,,
+,Utility Project Information Collection — DMSH Geelvloer Facility (ESKOM FINAL — March 2026),,,
+,Item,,Information/Requirements,Remark  and examples for reference
+,"Project
+Information",Client Name,AE Alternative Energy GmbH (Contact: Natalia Iniotaki),
+,,Project Address,"Kenhardt area, Northern Cape, South Africa. Coordinates: -29.43°, +20.13°. Altitude: 916 m a.m.s.l. EPSG:32734",The more specific the better. Better to give the coordinates
+,,Client Role,"Developer. EPC implementation: Lighthief Ltd (full EPC turnkey — confirmed). Equipment supply: Linyang Energy. EMS: Lighthief Ltd. Grid operator: Eskom.","EPC, owner, investor, etc."
+,,Project Purpose,"Renewable energy distribution and storage. Utility-scale 75 MWp solar PV + 12 MW / 48 MWh BESS hybrid. Grid stability, operational flexibility, partial energy shifting. Private IPP project. PPA with Eskom. MEC: 65 MW.","Renewable energy distribution and storage, Diesel generator replacement, Grid voltage and frequency regulation, Demonstration projects, etc."
+,,Expected Delivery Time,"August 2026 (Q3) — CIF Cape Town",
+,,Expected Grid Connection Time,[RFI — AWAITING CLIENT INPUT] (COD target TBC. Eskom grid connection secured — Planning Report received March 2026),
+,"Project
+Site
+Information",Distance from Coast,≥10km (approx. 400 km from nearest coast),"≤5km, ≤10km, ≥10km"
+,,Installation Place,Outdoor,"Indoor, Outdoor"
+,,Ambient Temperature,"Max 45°C / Min -5°C (confirmed by client). Consider air density derating at 916 m altitude.","Default design according to the humidity of 10% ~ 90%, altitude ≤ 2000m, wind resistance is not required, seismic resistance is not required, and there are no other special environmental conditions."
+,,Ambient Humidity,"Semi-arid region, estimated 10-60%. Default 10-90% range is acceptable.",
+,,Altitude,"916 m a.m.s.l. (within ≤2000m default). Consider air density for cooling and equipment derating.",
+,,Seismic Acceleration,[RFI — AWAITING CLIENT INPUT] (South Africa generally low seismicity zone),
+,,Container Size Requirement,"Standard 40ft (12.0m × 2.44m × 2.59m per RatedPower reference). 12 MW system will use fewer containers than original 36.5 MW design.",
+,,Container Weight Requirement,[RFI — AWAITING CLIENT INPUT],
+,,Installation Site Size Restriction,"2.88 ha available (per RatedPower). 12 MW system will occupy smaller portion. Max terrain slope 9.2% N-S. Consider crane positioning and internal road planning.","Area, shape, etc."
+,,Installation Site Weight-bearing Restriction,[RFI — AWAITING CLIENT INPUT],Ton/m2
+,"Equipment
+Technical
+Requirements",Scope of supply,"Full EPC turnkey (confirmed). BESS containers (Linyang), PCS/inverters (Linyang), MV transformer (0.63/33 kV), HV transformer (33/132 kV — scope TBC), MV/HV switchgear (rated ≥4.55 kA), EMS (Lighthief/Voltus), SCADA gateway, cabling, civil works, commissioning. Heavy pollution environment — sealed/IP-rated equipment required.",
+,,,✓ Battery containers — 12 MW / 48 MWh (4-hour duration),
+,,,✓ PCS / storage inverters (derated for 45°C ambient and 916 m altitude),
+,,,✓ Step-up transformer — MV (0.63/33 kV) included; HV (33/132 kV) [RFI — CONFIRM SCOPE],
+,,,✓ MV/HV switchgear + protection — all rated ≥4.55 kA system fault level,
+,,,✓ EMS / SCADA / IEC 60870-5-101 gateway + IEC 61000-4-30 Class A PQ monitor,
+,,Application Scenarios,"On-grid, AC-coupled BESS (confirmed). Grid forming requirement: [RFI — AWAITING CLIENT INPUT]","On-grid, Off-grid, On- & off-grid, Micro-grid applications"
+,,Project Scale,"12 MW / 48 MWh (4-hour duration). ESKOM FINAL — March 2026. Supersedes all previous figures (36.5 MW RatedPower / 48 MW interim). MEC: 65 MW. PV: 75 MWp. System fault level: 4.55 kA.","MW/MWh,
+Any requirements for the usable energy at the begining of life or the end of life? "
+,,Point of Detection,"132 kV AC side (at Point of Connection with Eskom transmission system)","DC side, 33kV AC side, 220kV AC side, etc. (Demand capacity measurement point)"
+,,Number of cycles,"[RFI — AWAITING CLIENT INPUT] Typical for energy shifting: 1 cycle/day, 365 cycles/year. At 0.25C rate — gentle cycling, good for longevity.","Number of cycles per day, per year"
+,,"Point of Connection Voltage, Frequency","132 kV, 50 Hz (Eskom transmission system). System fault level: 4.55 kA.","(e.g. 35kV, 50Hz)"
+,,Charging/Discharging Rate Requirements,"    Charging:         [0.25] C (12 MW / 48 MWh)
+    Discharging:      [0.25] C (12 MW / 48 MWh)",
+,,Warranty/Performance Guarantee,5,[RFI — CONFIRM] How many years?
+,,PCS Skid auxiliary power supply,[RFI — AWAITING CLIENT INPUT],From station transformer or self-powered?
+,,Grid Forming,"[RFI — AWAITING CLIENT INPUT] SA Grid Code BESF v5.3 Category C compliance mandated by Eskom. LVRT 0 pu/150 ms, reactive current injection within 60 ms.","Only Grid Following (whcih means no need grid forming) , or 150% 10s Grid Forming, or 300% 10s Grid Forming"
+,,Black start,[RFI — AWAITING CLIENT INPUT],If needed?
+,,"Local regulations
+Grid Code","South Africa / Eskom: BESF Code v5.3 (Category C mandated by Eskom — BESS is 12 MW but Cat C required), SAGC Network Code v10, SAGC RPP Rev 3.1 (Category C — 75 MW solar ≥20 MVA). POC at 132 kV (transmission). System fault level: 4.55 kA. Key requirements: LVRT 0pu/150ms, HVRT 120%/2s, RoCoF ±2.5 Hz/s, Q ±0.33×Pn (PF 0.95), freq range 47-52 Hz, deadband 49.85-50.15 Hz, droop 4%/10%, IEC 60870-5-101 SCADA protocol (TS connection), anti-islanding <2s, fault clearance ≤100ms at 132kV, monthly NERSA reporting. Pollution level: Heavy.",
+,,Certification or standard required,"SA Grid Code Category C full compliance (BESF v5.3 + RPP Rev 3.1). IEC 61000-4-30 Class A PQ monitoring. IEC 60502-2 cabling. NRS048 power quality limits. IEC 60870-5-101 communication (TS connection). EMT + RMS simulation models (validated within 6 months of COD). All switchgear/protection rated ≥4.55 kA.",
+,"Other
+Requirements",,,"Full EPC turnkey. Delivery CIF Cape Town, August 2026 (Q3). Eskom grid connection secured (Planning Report March 2026). Environmental: 45°C max, -5°C min, heavy pollution, 916 m altitude, 9.2% max slope. Dust protection for sensitive components during transit and site storage. Compliance testing at commissioning. Monthly NERSA reporting. Combined BESS+Solar report at shared 132kV POC. MEC 65 MW — EMS must enforce combined export limit."

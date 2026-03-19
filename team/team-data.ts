@@ -4,7 +4,7 @@
 // When onboarding or updating staff, update HERE ONLY
 // then run: npm run contracts:generate
 //
-// Last updated: February 2026
+// Last updated: March 2026
 // ===================================================================
 
 export type EmployeeRole = 'sales' | 'backoffice' | 'field' | 'director';
@@ -127,7 +127,7 @@ export const TEAM: Employee[] = [
     contractDate: '[DATE]',
     monthlyGross: 2_500,
     salaryDisplay: 'EUR 2,500',
-    status: 'pending',
+    status: 'active',
     duties: [
       'Technical and commercial sales of BESS and PV systems.',
       'Preparation of proposals, quotations, ROI analyses, and client business cases.',
@@ -171,7 +171,7 @@ export const TEAM: Employee[] = [
   },
   {
     id: 'chris',
-    fullName: 'Chris [SURNAME]',
+    fullName: 'Christos Nicolaou',
     cyprusId: '[ID NUMBER]',
     socialInsurance: '[SI NUMBER]',
     title: 'Back Office & Operations Coordinator',
@@ -181,7 +181,7 @@ export const TEAM: Employee[] = [
     contractDate: '[DATE]',
     monthlyGross: 2_000,
     salaryDisplay: 'EUR 2,000',
-    status: 'active',
+    status: 'terminated',
     duties: [
       'Maintenance of complete project files including contracts, quotations, permits, and correspondence.',
       'Preparation of EAC submission packages and regulatory document support.',

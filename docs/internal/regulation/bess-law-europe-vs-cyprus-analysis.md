@@ -1239,3 +1239,331 @@ This is not a coincidence. It is a structural advantage built into the regulator
 | Slovakia | URSO | https://www.urso.gov.sk/ |
 | Slovenia | AGEN-RS | https://www.agen-rs.si/web/en/ |
 | Luxembourg | ILR | https://www.ilr.lu/ |
+
+---
+
+## CERA LEGISLATION FRAMEWORK: Complete Index of Cyprus Energy Laws (as of March 2026)
+
+### Legislative Hierarchy
+
+The Cyprus electricity sector is governed by a layered legal framework. Understanding the hierarchy is essential for identifying where DSO restrictions originate and whether they have proper legal authority.
+
+```
+EU DIRECTIVES & REGULATIONS (supranational, binding)
+  └── Directive 2019/944 (Internal Electricity Market)
+  └── Regulation 2019/943 (Electricity Market)
+  └── Directive 2018/2001 (Renewable Energy — RED II)
+  └── Regulation 1227/2011 (REMIT — Market Integrity)
+  └── Directive 2024/1711 (Cyprus isolation derogation)
+      │
+NATIONAL LAW (Parliament — Βουλή των Αντιπροσώπων)
+  └── N.130(I)/2021 — Electricity Market Regulation Act (Βασικός Νόμος)
+  │     Amended by: N.224(I)/2022, Ν.44(I)/2023, N.56(I)/2025
+  └── N.107(I)/2022 — Renewable Energy Promotion Act
+  └── N.180(I)/2025 & N.181(I)/2025 — Roads and Buildings (storage permit exemptions)
+  └── March 2026 Amendment — Flexible connection, license extensions, maturity criteria
+      │
+REGULATORY DECISIONS (CERA — Ρυθμιστικές Αποφάσεις)
+  └── ΚΔΠ 523/2021 (ΡΑ 02/2021) — General License Framework
+  └── ΚΔΠ 359/2021 (ΡΑ 01/2021) — Tariff Methodology
+  └── ΚΔΠ 224/2019 (ΡΑ 03/2019) — Storage in Wholesale Market (upstream of meter)
+  └── ΚΔΠ 260/2025 (ΡΑ 02/2025) — Flexible Connection Agreements (NEW)
+  └── ΚΔΠ 243/2025 (ΡΑ 01/2025) — Active Customers & RES Prosumers (Amendment)
+  └── ΚΔΠ 290/2025 (ΡΑ 03/2025) — General License Framework (Amendment)
+  └── ΚΔΠ 376/2024 (ΡΑ 04/2024) — Energy Communities
+  └── ΚΔΠ 375/2024 (ΡΑ 02/2024) — Active Customers & RES Prosumers
+  └── ΚΔΠ 399/2024 (ΡΑ 05/2024) — Intraday Electricity Market Operation
+      │
+SECONDARY REGULATIONS (Κανονισμοί — approved by CERA / Cabinet)
+  └── ΚΔΠ 538/2004 — License Issuance
+  └── ΚΔΠ 467/2004 — License Fees
+  └── Distribution Rules (Κανόνες Διανομής — ΚΜΔ)
+  └── Electricity Market Rules (ΚΑΗ)
+      │
+TECHNICAL GUIDES (authored by DSO/EAC — lowest legal authority)
+  └── DSO Technical Guide for Storage 2025.1 ← Contains 50% cap, Category B/C rules
+  └── Κ.Δ.Π. 15/2026, 17/2026 — Building permit exemption conditions
+```
+
+### Key CERA Laws Published on cera.org.cy
+
+#### Primary Electricity Law (Consolidated)
+
+| Law | Title | Status |
+|-----|-------|--------|
+| **N.130(I)/2021** | Ρύθμιση της Αγοράς Ηλεκτρισμού (Electricity Market Regulation Act) | **In force** (consolidated through 2025) |
+| N.224(I)/2022 | Τροποποιητικός (Amendment) | Merged into consolidated |
+| Ν.44(I)/2023 | Τροποποιητικός (Amendment) | Merged into consolidated |
+| N.56(I)/2025 | Τροποποιητικός (Amendment) | Merged into consolidated |
+
+This law transposes EU Directive 2019/944 and establishes CERA's licensing authority, market structure, and the legal basis for energy storage. It replaced the old N.122(I)/2003–2018 framework entirely.
+
+#### Renewable Energy Law
+
+| Law | Title | Status |
+|-----|-------|--------|
+| **N.107(I)/2022** | Προώθηση και Ενθάρρυνση Χρήσης ΑΠΕ (RES Promotion Act) | **In force** |
+
+Transposes EU Directive 2018/2001 (RED II). Replaced the older N.112(I)/2013–2018 framework.
+
+#### Key 2025–2026 Regulatory Decisions
+
+| ΚΔΠ | CERA Decision | Subject | Date | Relevance to BESS |
+|-----|---------------|---------|------|-------------------|
+| 260/2025 | ΡΑ 02/2025 | **Flexible Connection Agreements** in Transmission & Distribution | 2025 | **HIGH** — enables flexible grid access for BESS |
+| 243/2025 | ΡΑ 01/2025 | Active Customers & RES Prosumers (Amendment) | 2025 | Defines self-consumption + storage rules |
+| 290/2025 | ΡΑ 03/2025 | General License Framework (Amendment) | 2025 | License requirements for storage operators |
+| 2326/2025 | ΡΑ 04/2025 | Operational Unbundling of DEFA (Natural Gas) | 2025 | Structural precedent for EAC unbundling |
+| 15/2026 | — | BESS within RES stations — building permit exemption | Jan 2026 | Simplifies co-located BESS deployment |
+| 17/2026 | — | Fire and environmental conditions for exempt BESS | Jan 2026 | Safety requirements for exempt BESS |
+
+#### March 2026 Parliamentary Amendment (Flexible Connection & License Extensions)
+
+On **13 March 2026**, Parliament voted **21–13** in favor of amendments to the Electricity Market Act covering:
+
+1. **License Extensions:** CERA can now extend BESS/RES licenses for up to 1 year at a time (max 5 years total), provided the investor demonstrates technical/financial capacity and uses the "one-stop shop" service
+2. **Connection Priority:** Projects at advanced readiness stages and energy storage systems get grid connection priority. Maturity criteria to be developed by Ministry of Energy in consultation with CERA and system operators
+3. **Capacity Reservation Ban:** Grid capacity cannot be reserved for projects without all required permits — preventing "capacity hoarding" by dormant licenses
+4. **Transparency Mandate:** DSO and TSO must publish connection application priority information **separately for each substation node**, covering both RES and storage projects
+5. **Curtailment Rules:** Formalized rules for when the system operator limits RES generation for safety/stability reasons
+6. **10-Year Plan Consultation:** Changes to the transmission/distribution network development plan now require public consultation
+
+**Significance:** This is the first legislative act directly addressing the connection queue bottleneck. The transparency mandate (publishing per-substation priority) is a direct response to complaints from private BESS investors that the connection process was opaque and favored state projects.
+
+---
+
+## DSO NON-ADHERENCE TO LEGISLATION: Where EAC Exceeds Its Legal Authority
+
+### Methodology
+
+This section examines where EAC (as DSO) has implemented restrictions through its Technical Guide that either (a) go beyond what the primary legislation authorizes, (b) contradict CERA regulatory decisions, or (c) violate EU directives that Cyprus has transposed.
+
+### Finding 1: The 50% Discharge Cap Has No Legal Basis Above the Technical Guide
+
+| Level | Document | Contains 50% cap? |
+|-------|----------|:-----------------:|
+| EU Directive | 2019/944 | **NO** |
+| EU Regulation | 2019/943 | **NO** |
+| National Law | N.130(I)/2021 (consolidated) | **NO** |
+| CERA Decision | ΡΑ 03/2019 (ΚΔΠ 224/2019) — Storage in Wholesale Market | **NO** |
+| CERA Decision | ΡΑ 02/2025 (ΚΔΠ 260/2025) — Flexible Connection | **NO** |
+| Distribution Rules | Κανόνες Διανομής (ΚΜΔ) | **NOT EXPLICITLY** |
+| **DSO Technical Guide** | **Storage Edition 2025.1** | **YES — here only** |
+
+**Conclusion:** The 50% discharge cap is an EAC-authored restriction sitting at the lowest level of the legal hierarchy. It was never approved by Parliament, never explicitly mandated by CERA, and contradicts the EU principle of "no undue barriers" (Directive 2019/944, Recital 62). EAC imposed it through its own technical document.
+
+### Finding 2: Category B Grid-Charging Ban Contradicts CERA's Own Flexible Connection Framework
+
+CERA's ΚΔΠ 260/2025 (ΡΑ 02/2025) established a **Regulatory Framework for Flexible Connection Agreements** in both the Transmission and Distribution systems. This decision envisions facilities with flexible, non-firm connections that can adjust their grid usage dynamically.
+
+However, EAC's DSO Technical Guide 2025.1 simultaneously states for Category B:
+
+> «το ΣΑΗΕ πρέπει να φορτίζει από ενέργεια η οποία προέρχεται αποκλειστικά από το Σύστημα ΑΠΕ»
+> (The BESS must charge from energy originating exclusively from the RES System)
+
+This creates a contradiction:
+- **CERA says:** Flexible connection agreements should enable dynamic grid interaction
+- **EAC's Technical Guide says:** Category B BESS cannot interact with the grid for charging at all
+
+The Technical Guide effectively **nullifies CERA's flexible connection framework** for the majority of commercial BESS installations (which are Category B).
+
+### Finding 3: Connection Queue Opacity Violates March 2026 Law
+
+The March 2026 parliamentary amendment explicitly requires:
+
+> *"electricity distribution and transmission system operators will be required to publish information on the order of priority for connection applications… separately for each substation node"*
+
+**Current status:** As of March 2026, EAC has **not yet published** per-substation priority lists. The 33+ licensed private BESS operators and 7 with preliminary connection terms have no visibility into where they stand in the queue relative to other applicants at the same substation.
+
+This is not yet a violation (the law was just passed), but it creates a clear compliance obligation that EAC must now fulfill.
+
+### Finding 4: TSOC BESS Deployment vs Article 54 of Directive 2019/944
+
+EU Directive 2019/944, Article 54(1) states TSOs "shall not own, develop, manage or operate energy storage facilities." The derogation conditions in Article 54(2) require:
+
+| Condition | EU Requirement | Cyprus Implementation |
+|-----------|---------------|----------------------|
+| (a) | Open, transparent, non-discriminatory tendering AND private parties "have not been awarded" or "could not deliver" | **No competitive tender was held.** 33 licensed private operators existed. EMA filed complaint. |
+| (b) | Storage "not used to buy or sell electricity in the electricity markets" | **Unclear** — TSOC BESS expected to participate in dispatch |
+| (c) | Regulatory authority has assessed necessity and tendering | CERA approved but **ACER issued written warning** that the move would "hurt market fairness and reinforce state monopoly" |
+
+**Source:** Kathimerini KNEWS, July 18, 2025: *"This is a slap in the face," said a source close to the Electricity Market Association (ΣΑΗ). "We've followed the rules, waited our turn, and now the state is jumping the queue, with public money."*
+
+### Finding 5: EU Infringement Package — January 2026
+
+In **January 2026**, the European Commission issued an infringement package that flagged Cyprus for delays across multiple sectors **including energy rules**. While specific details of the energy-related infringement were not published in detail, this confirms that the Commission has active concerns about Cyprus's implementation of EU energy legislation.
+
+### Summary: DSO Legal Authority vs Actual Practice
+
+| Restriction | Legal Authority Claimed by EAC | Actual Legal Basis | Assessment |
+|-------------|-------------------------------|-------------------|------------|
+| 50% discharge cap | DSO Technical Guide 2025.1 | **None above technical guide** | **Exceeds authority** |
+| Category B no-grid-charging | DSO Technical Guide 2025.1 | **None in primary law** | **Exceeds authority** |
+| Software limiting prohibition | Κ.Δ.Π. 15/2026 + Technical Guide | Κ.Δ.Π. only covers building permits, not grid operation | **Misapplied** |
+| Connection queue opacity | Historical practice | **Now explicitly prohibited** by March 2026 law | **Must comply** |
+| TSOC BESS without tender | EC derogation under Directive 2024/1711 | Derogation obtained but ACER objected | **Legally contested** |
+| Combined output cap at RES capacity | DSO Technical Guide 2025.1 | EU RfG ties cap to connection capacity, not generation | **Non-standard implementation** |
+
+---
+
+## HOW TO MONITOR AND INDEX NEW CYPRUS ENERGY LEGISLATION
+
+### The Problem
+
+Cyprus publishes energy legislation across multiple sources — the Official Gazette, CERA decisions, parliamentary proceedings, and ministerial decrees. There is no single RSS feed or API that aggregates all energy-related legal changes. The March 2026 flexible connection vote, for example, was reported by news outlets before the Official Gazette publication.
+
+### Source 1: CyLaw — Official Gazette Index (Primary Legal Source)
+
+**URL:** http://www.cylaw.org/KDP/2026.html (regulatory acts) and http://www.cylaw.org/nomoi/2026_index.html (laws)
+
+**What it contains:**
+- Complete index of all Κανονιστικές Διοικητικές Πράξεις (ΚΔΠ) — Regulatory Administrative Acts published in the Official Gazette, by year
+- Full text of every law passed by Parliament, indexed by year
+- Searchable by act number, date, and subject
+
+**How to use for energy monitoring:**
+- Check the ΚΔΠ index page weekly for new entries mentioning: ηλεκτρισμός, ΑΠΕ, αποθήκευση, ενέργεια, ΡΑΕΚ, ΔΣΔ, ΔΣΜ
+- New laws appear within 1-2 weeks of Parliamentary vote
+- **Key search terms (Greek):** αποθήκευση ηλεκτρισμού (electricity storage), ευέλικτη σύνδεση (flexible connection), ανανεώσιμες πηγές ενέργειας (renewable energy sources), ρύθμιση αγοράς ηλεκτρισμού (electricity market regulation)
+
+**Automation potential:** The CyLaw ΚΔΠ index page is a simple HTML table that can be scraped with a basic script. Each entry links to a PDF of the full act.
+
+### Source 2: CERA Website — Regulatory Decisions & Announcements
+
+**Decisions:** https://www.cera.org.cy/en-gb/apofasis (English) / https://www.cera.org.cy/el-gr/apofasis (Greek)
+
+**Announcements:** https://www.cera.org.cy/en-gb/anakoinoseis?year=2026
+
+**Consultations:** https://www.cera.org.cy/en-gb/diavoulefseis (draft decisions open for comment)
+
+**What it contains:**
+- Every CERA licensing decision (BESS licenses, generation licenses, exemptions)
+- Regulatory decisions (ΡΑ) that become ΚΔΠ upon Official Gazette publication
+- Public consultations on upcoming regulatory changes (early warning of new rules)
+- Announcements about market changes, tender results, etc.
+
+**How to use:**
+- **Decisions page:** Filter by year; search for decisions mentioning "αποθήκευση" (storage), "ΣΑΗΕ" (BESS), "ηλεκτρισμός" (electricity)
+- **Consultations page:** This is the **earliest warning** of upcoming regulation. When CERA publishes a draft ΡΑ for consultation, it typically becomes law within 3-6 months
+- Example: Consultation 06/2024 on flexible connection agreements → became ΚΔΠ 260/2025 (ΡΑ 02/2025)
+
+**Monitoring frequency:** Weekly check of announcements; monthly check of consultations
+
+### Source 3: Cyprus Parliament (Βουλή των Αντιπροσώπων)
+
+**URL:** http://www.parliament.cy/
+
+**What it contains:**
+- Plenary session agendas and voting results
+- Committee session schedules and records
+- Bills under consideration (before they become law)
+
+**How to use:**
+- The Parliamentary Committee on Energy, Commerce, Industry and Tourism (Κοινοβουλευτική Επιτροπή Ενέργειας, Εμπορίου, Βιομηχανίας και Τουρισμού) handles all energy legislation
+- Bills are published before plenary vote — check the committee's agenda for upcoming energy items
+- Voting results are published after plenary sessions
+
+**The flexible connection vote (March 2026):** This was sponsored by DISY MPs Kyriakos Hadjiyiannis and Nikos Sykas, Famagusta MP Michalis Yakoumis, and Ecologists leader Stavros Papadouris. Passed 21-13 (AKEL voted against).
+
+### Source 4: Ministry of Energy Website
+
+**URL:** https://www.energy.gov.cy/
+
+**What it contains:**
+- Energy policy documents, national energy plans
+- Laws and regulations under the Ministry's purview
+- Public consultations on energy policy
+- Maturity criteria development (mandated by March 2026 law) will be published here
+
+### Source 5: News Monitoring (Fastest Source)
+
+News outlets typically report on parliamentary votes and CERA decisions **before** official gazette publication:
+
+| Source | URL | Language | Coverage |
+|--------|-----|----------|----------|
+| **Kathimerini KNEWS** | knews.kathimerini.com.cy/en | English | Best English-language coverage of energy policy |
+| **StockWatch** | stockwatch.com.cy | Greek/English | Financial/market focus; covers CERA decisions, EAC |
+| **Cyprus Mail** | cyprus-mail.com | English | General news; covers parliament votes |
+| **DOM LiVE** | dom.com.cy/en/live/digest | English | Good for translated summaries of legal changes |
+| **PolicyPress** | policypress.cy | English | Parliament vote coverage, budget analysis |
+| **PV Magazine** | pv-magazine.com | English | International; covers Cyprus curtailment data |
+| **CBN (Cyprus Business News)** | cbn.com.cy | English | Business focus; covers CERA and TSOC |
+
+### Source 6: EAC/DSO Technical Updates
+
+**URL:** https://www.eac.com.cy/
+
+**What it contains:**
+- DSO Technical Guide updates (the source of Category B/C rules)
+- Connection procedures and forms
+- National legislation page (mirrors CyLaw for electricity-related laws)
+
+**Critical for:** Monitoring changes to the 50% discharge cap, software limiting prohibition, and connection queue rules. EAC can update its Technical Guide without parliamentary approval.
+
+### Source 7: TSOC (Transmission System Operator)
+
+**URL:** https://tsoc.org.cy/
+
+**What it contains:**
+- DAM results (daily)
+- System adequacy reports
+- Connection terms and grid capacity information
+- 10-year network development plan (now requires public consultation per March 2026 law)
+
+### Recommended Monitoring Cadence
+
+| Source | Frequency | What to Look For |
+|--------|-----------|-----------------|
+| CyLaw ΚΔΠ index | Weekly | New ΚΔΠ mentioning ηλεκτρισμός, αποθήκευση, ΑΠΕ |
+| CERA Consultations | Bi-weekly | Draft ΡΑ on storage, connections, market rules |
+| CERA Decisions | Weekly | New BESS licenses, regulatory amendments |
+| Parliament Committee | When in session | Energy committee agenda items |
+| News (KNEWS, StockWatch) | Daily | Breaking coverage of votes, CERA decisions |
+| EAC Technical Guides | Monthly | Updates to storage categories, connection rules |
+| TSOC | Weekly | DAM data, grid capacity changes |
+
+### Automation Approach: Building a Law Index
+
+To systematically track and index new energy legislation, a monitoring script could:
+
+1. **Scrape CyLaw ΚΔΠ 2026 index** (HTML table) → extract new entries → filter for energy keywords
+2. **Check CERA decisions RSS/page** → extract decision numbers and subjects → flag storage-related
+3. **Monitor CERA consultations** → these are the earliest predictor of future regulation
+4. **Google News alerts** for: `"CERA" OR "ΡΑΕΚ" OR "energy storage" OR "αποθήκευση" site:cyprus-mail.com OR site:knews.kathimerini.com.cy OR site:stockwatch.com.cy`
+
+**Key Greek search terms for law monitoring:**
+
+| English | Greek | Context |
+|---------|-------|---------|
+| Energy storage | Αποθήκευση ηλεκτρισμού / ΣΑΗΕ | Storage facilities |
+| Flexible connection | Ευέλικτη σύνδεση | Grid connection agreements |
+| Renewable energy | Ανανεώσιμες πηγές ενέργειας (ΑΠΕ) | Solar/wind/RES |
+| Electricity market | Αγορά ηλεκτρισμού | Market regulation |
+| Distribution system | Σύστημα διανομής / ΔΣΔ | DSO/EAC grid |
+| Transmission system | Σύστημα μεταφοράς / ΔΣΜΚ | TSO/TSOC grid |
+| Regulatory decision | Ρυθμιστική απόφαση (ΡΑ) | CERA decisions |
+| Official Gazette | Επίσημη Εφημερίδα | Law publication |
+| Active customer | Ενεργός πελάτης | Prosumer/self-consumption |
+| Grid connection | Σύνδεση στο δίκτυο | Connection terms |
+| Day-ahead market | Αγορά επόμενης ημέρας (DAM) | Wholesale market |
+| Curtailment | Περικοπή / περιορισμός παραγωγής | RES curtailment |
+
+---
+
+## APPENDIX: Recent CERA BESS License Decisions (2026)
+
+| Decision | Date | Licensee | License # | Type |
+|----------|------|----------|-----------|------|
+| 006/2026 | 2026 | GDT Henergy Ltd | A1209 | Energy storage installation |
+| 007/2026 | 2026 | Eloads Energies Storage Ltd | A1200 | Commercial energy storage |
+| 008/2026 | 2026 | Eloads Energies Storage Ltd | A1202 | Commercial energy storage |
+| 039/2026 | 2026 | D.P. Elsim Ltd | A1205 | Combined generation + storage |
+| 040/2026 | 2026 | D.P. Elsim Ltd | A1206 | Combined generation + storage |
+| 054/2026 | 2026 | (pending publication) | — | — |
+
+These decisions confirm that CERA continues to issue BESS licenses to private operators — while simultaneously, those operators face the Category B restrictions documented above that limit the commercial viability of their licensed assets.
+
+---
+
+*Document last updated: March 2026*
+*Location: docs/internal/regulation/*

@@ -4,419 +4,929 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solhash — Pre-Connection Mining JV Presentation</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
     @page { size: A4; margin: 15mm; }
     * { box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      font-size: 10pt;
-      line-height: 1.4;
-      color: #222;
-      background: #fff;
-      max-width: 210mm;
-      margin: 0 auto;
-      padding: 12mm;
-    }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 10pt; line-height: 1.5; color: #222; background: #fff; max-width: 210mm; margin: 0 auto; padding: 12mm; }
     .page-break { page-break-before: always; }
-    .cover {
-      text-align: center;
-      padding: 40px 0 60px;
-      border-bottom: 2px solid #2d7d46;
-    }
+    .cover { text-align: center; padding: 48px 0 56px; border-bottom: 3px solid #2d7d46; }
     .cover img { max-height: 80px; margin-bottom: 24px; }
-    .cover h1 { font-size: 1.8rem; color: #1a5c2e; margin: 0 0 8px; }
-    .cover .subtitle { font-size: 1rem; color: #555; }
-    .cover .date { font-size: 0.9rem; color: #777; margin-top: 24px; }
-    h2 {
-      font-size: 1.1rem;
-      color: #1a5c2e;
-      margin: 24px 0 12px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #2d7d46;
-    }
-    h3 { font-size: 0.95rem; margin: 16px 0 8px; color: #333; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 16px;
-      font-size: 9pt;
-    }
+    .cover h1 { font-size: 1.9rem; color: #1a5c2e; margin: 0 0 8px; font-weight: 800; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 6px; }
+    .cover .date { font-size: 0.9rem; color: #777; margin-top: 20px; }
+    h2 { font-size: 1.15rem; color: #1a5c2e; margin: 28px 0 12px; padding-bottom: 4px; border-bottom: 2px solid #2d7d46; }
+    h3 { font-size: 0.95rem; margin: 18px 0 8px; color: #333; }
+    h4 { font-size: 0.88rem; margin: 12px 0 6px; color: #1a5c2e; }
+    p, li { margin-bottom: 4px; }
+    ul, ol { margin-left: 18px; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9pt; }
     th, td { padding: 6px 10px; text-align: left; border: 1px solid #ddd; }
-    th { background: #f0f7f2; font-weight: 600; color: #1a5c2e; }
-    td.r { text-align: right; }
+    th { background: #f0f7f2; font-weight: 600; color: #1a5c2e; font-size: 8.5pt; }
+    td.r { text-align: right; font-variant-numeric: tabular-nums; }
     tr:nth-child(even) { background: #fafafa; }
-    .role-card {
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 16px;
-      margin-bottom: 16px;
-      background: #fafafa;
-    }
+    .highlight { background: #e8f5e9 !important; }
+    .toc { background: #f8faf8; border: 1px solid #d5e8d5; border-radius: 8px; padding: 20px 24px; margin: 20px 0 28px; }
+    .toc h3 { margin-top: 0; color: #1a5c2e; }
+    .toc ol { padding-left: 20px; margin-bottom: 0; }
+    .toc li { margin: 3px 0; }
+    .toc a { color: #1a5c2e; text-decoration: none; font-size: 9.5pt; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .divider { border-top: 1px solid #d5e8d5; margin: 8px 0; }
+    .role-card { border: 1px solid #ddd; border-radius: 8px; padding: 18px; margin-bottom: 16px; background: #fafafa; }
     .role-card h3 { margin-top: 0; }
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .partner-header { padding: 16px 20px; border-radius: 8px; margin: 0 0 16px; color: #fff; }
+    .partner-header.park { background: linear-gradient(135deg, #2d7d46, #4caf50); }
+    .partner-header.mining { background: linear-gradient(135deg, #1a3a5c, #2563eb); }
+    .partner-header.solhash { background: linear-gradient(135deg, #5c3a1a, #d97706); }
+    .partner-header h2 { color: #fff; border-bottom-color: rgba(255,255,255,0.3); margin-top: 0; }
+    .partner-header p { color: rgba(255,255,255,0.85); margin: 0; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0 20px; }
+    .kpi { background: #f8faf8; border: 1px solid #d5e8d5; border-radius: 8px; padding: 14px 10px; text-align: center; }
+    .kpi .val { font-size: 1.4rem; font-weight: 800; color: #1a5c2e; }
+    .kpi .lbl { font-size: 7.5pt; color: #666; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 2px; }
+    .kpi.blue { background: #eff6ff; border-color: #93c5fd; }
+    .kpi.blue .val { color: #1e40af; }
+    .kpi.amber { background: #fffbeb; border-color: #fcd34d; }
+    .kpi.amber .val { color: #92400e; }
+    .callout { border-radius: 8px; padding: 14px 18px; margin: 12px 0 16px; font-size: 9.5pt; }
+    .callout.green { background: #e8f5e9; border-left: 4px solid #2d7d46; }
+    .callout.blue { background: #eff6ff; border-left: 4px solid #2563eb; }
+    .callout.amber { background: #fffbeb; border-left: 4px solid #d97706; }
+    .callout.red { background: #fef2f2; border-left: 4px solid #dc2626; }
+    .flow-row { display: flex; align-items: stretch; gap: 0; margin: 10px 0; }
+    .flow-box { flex: 1; padding: 10px 12px; text-align: center; font-size: 8.5pt; font-weight: 600; border: 1px solid #cbd5e1; }
+    .flow-box.park { background: #e8f5e9; border-color: #86efac; color: #166534; }
+    .flow-box.mining { background: #eff6ff; border-color: #93c5fd; color: #1e40af; }
+    .flow-box.solhash { background: #fffbeb; border-color: #fcd34d; color: #92400e; }
+    .flow-box.market { background: #f3e8ff; border-color: #c4b5fd; color: #5b21b6; }
+    .flow-box .sub { font-size: 7pt; font-weight: 400; color: #666; display: block; margin-top: 2px; }
+    .flow-arrow { width: 28px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #94a3b8; flex-shrink: 0; }
+    .split-bar { display: flex; height: 28px; border-radius: 6px; overflow: hidden; margin: 10px 0; font-size: 8.5pt; font-weight: 700; }
+    .split-bar .park-bar { background: #4caf50; color: #fff; display: flex; align-items: center; justify-content: center; }
+    .split-bar .mining-bar { background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; }
+    .note { font-size: 8pt; color: #666; margin-top: 8px; }
+    .footer { margin-top: 28px; padding-top: 12px; border-top: 2px solid #2d7d46; text-align: center; font-size: 7.5pt; color: #888; }
     @media print {
       body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .page-break { page-break-before: always; }
-      .cover { padding: 20px 0 40px; }
-      a { color: #1a5c2e; }
+      .partner-header, .kpi, .callout, .highlight, th, .split-bar .park-bar, .split-bar .mining-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      canvas { max-height: 240px !important; }
     }
-    .note { font-size: 8pt; color: #666; margin-top: 8px; }
-    .highlight { background: #e8f5e9; }
+    @media (max-width: 600px) { .three-col, .two-col { grid-template-columns: 1fr; } .kpi-row { grid-template-columns: 1fr 1fr; } .flow-row { flex-wrap: wrap; } }
   </style>
 </head>
 <body>
 
+<!-- COVER -->
 <div class="cover">
-  <img src="../image/solhash-logo.png" alt="Solhash">
-  <h1>Pre-Connection Mining Joint Venture</h1>
-  <p class="subtitle">Park Partner · Mining Partner · Solhash (Intermediary & EPC)</p>
-  <p class="date">Confidential — March 2026</p>
+  <img src="data:image/png;base64,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" alt="Solhash">
+  <h1>Pre-Connection Solar Mining</h1>
+  <p class="subtitle">Joint Venture Proposal</p>
+  <p class="subtitle" style="font-size:0.9rem;color:#777;">Park Partner &middot; Mining Partner &middot; Solhash (Intermediary &amp; EPC)</p>
+  <p class="date">Confidential &mdash; March 2026</p>
 </div>
 
-<h2>1. Executive Summary</h2>
-<p>Solhash structures a joint venture between <strong>Park Partner</strong> (solar park owner) and <strong>Mining Partner</strong> (equipment provider) to monetise stranded PV energy during the pre-grid-connection period (typically 3–5 years). Solhash acts as intermediary and EPC, delivering turnkey behind-the-meter mining installations.</p>
-<ul>
-  <li><strong>Park Partner</strong>: Provides park and panels (built anyway). Receives revenue share (0.45–0.45¢/kWh) with no capex. No PPA loss.</li>
-  <li><strong>Mining Partner</strong>: Invests in miners, containers, and EPC (platforms, civil, transport). Receives 95–95% of net. IRR 11.1%, payback 3.7 years (5 MW).</li>
-  <li><strong>Solhash</strong>: Structures JV, provides EPC (platforms, civil works, transport, LV tie-in).</li>
-</ul>
+<div class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#s1">The Opportunity</a></li>
+    <li><a href="#s2">JV Structure &amp; Revenue Split (30/70)</a></li>
+    <li><a href="#s3">Why 30/70 Is Fair</a></li>
+    <li><a href="#s4">Economics at BTC &euro;100K (Base Case)</a></li>
+    <li><a href="#s5">BTC Price Sensitivity</a></li>
+  </ol>
+  <div class="divider"></div>
+  <ol start="6">
+    <li><a href="#s6">For Park Partners</a></li>
+    <li><a href="#s7">For Mining Partners</a></li>
+    <li><a href="#s8">Solhash &mdash; EPC Scope</a></li>
+  </ol>
+  <div class="divider"></div>
+  <ol start="9">
+    <li><a href="#s9">Asset Depreciation &amp; Lifecycle</a></li>
+    <li><a href="#s10">Risk Analysis</a></li>
+    <li><a href="#s11">Timeline</a></li>
+    <li><a href="#s12">Key Assumptions</a></li>
+  </ol>
+  <div class="divider"></div>
+  <ol start="13">
+    <li><a href="#s13">Auxiliary Power &amp; Cooling</a></li>
+    <li><a href="#s14">Internet Connectivity</a></li>
+    <li><a href="#s15">Mining Pool Selection</a></li>
+    <li><a href="#s16">Taxation (Cyprus)</a></li>
+    <li><a href="#s17">FAQ</a></li>
+    <li><a href="#s18">Next Steps</a></li>
+  </ol>
+</div>
 
-<h2>2. Project Structure</h2>
+<!-- 1. THE OPPORTUNITY -->
+<h2 id="s1">1. The Opportunity</h2>
+<p>Solar parks in Cyprus face <strong>3&ndash;5 year delays</strong> before grid connection terms are issued. During this period, installed PV panels generate energy that <strong>cannot be exported</strong> and is entirely wasted. Park owners pay land lease and O&amp;M on an asset producing zero revenue.</p>
+
+<div class="callout green">
+  <strong>Solhash converts stranded solar into Bitcoin revenue.</strong> Containerised miners are deployed behind-the-meter, consuming on-site PV. Electricity cost is effectively <strong>&euro;0</strong> &mdash; no grid tariff, no PPA. Both parties earn while waiting for connection.
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="val">3&ndash;5 yr</div><div class="lbl">Stranded Period</div></div>
+  <div class="kpi"><div class="val">&euro;0/kWh</div><div class="lbl">Electricity Cost</div></div>
+  <div class="kpi"><div class="val">100%</div><div class="lbl">Renewable Energy</div></div>
+  <div class="kpi"><div class="val">Mobile</div><div class="lbl">Equipment Relocates</div></div>
+</div>
+
+<h3>Cash Flow Overview</h3>
+<div class="flow-row">
+  <div class="flow-box park">Solar Park<span class="sub">Generates kWh</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box mining">Mining Containers<span class="sub">Consume on-site</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box market">Bitcoin Network<span class="sub">Mining rewards</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box solhash">Revenue Split<span class="sub">30% Park / 70% Mining</span></div>
+</div>
+
+<!-- 2. JV STRUCTURE -->
+<h2 id="s2">2. JV Structure &amp; Revenue Split</h2>
+
+<div class="split-bar">
+  <div class="park-bar" style="width:30%;">Park 30%</div>
+  <div class="mining-bar" style="width:70%;">Mining 70%</div>
+</div>
+
 <div class="three-col">
-  <div class="role-card">
-    <h3>Park Partner</h3>
-    <p><strong>Role:</strong> Provides solar park and panels. Park built before connection terms (no PPA loss).</p>
-    <p><strong>Costs:</strong> Degradation (€10/MWh), O&M (€10/kW/yr).</p>
-    <p><strong>Revenue:</strong> Fair share of mining revenue (9–12% of net).</p>
-    <p><strong>Capex:</strong> None for JV (park built anyway).</p>
+  <div class="role-card" style="border-left:4px solid #2d7d46;">
+    <h3 style="color:#2d7d46;">Park Partner (30%)</h3>
+    <p><strong>Provides:</strong> Solar park, panels, inverters, land access.</p>
+    <p><strong>Capital deployed:</strong> PV capex (~&euro;750/kWp tracker + bifacial), tied up 3&ndash;5 years early.</p>
+    <p><strong>Ongoing costs:</strong> Land lease, panel/inverter degradation, tracker O&amp;M.</p>
+    <p><strong>Receives:</strong> 30% of net &rarr; <strong>~4.9&cent;/kWh at BTC &euro;100K</strong>.</p>
   </div>
-  <div class="role-card">
-    <h3>Mining Partner</h3>
-    <p><strong>Role:</strong> Provides Antminer S21+ miners and 20ft containers. Equipment moves to another park when connection comes.</p>
-    <p><strong>Costs:</strong> Equipment capex + EPC (platforms, civil, transport). Opex €12k/MW.</p>
-    <p><strong>Revenue:</strong> Fair share of mining revenue (~88–91% of net).</p>
-    <p><strong>Horizon:</strong> 5 years per park (pre-connection period).</p>
+  <div class="role-card" style="border-left:4px solid #2563eb;">
+    <h3 style="color:#1e40af;">Mining Partner (70%)</h3>
+    <p><strong>Provides:</strong> S21+ miners, 20ft containers.</p>
+    <p><strong>Invests:</strong> Equipment capex + EPC costs.</p>
+    <p><strong>Receives:</strong> 70% of net &rarr; <strong>~38.3% IRR at BTC &euro;100K</strong>.</p>
+    <p><strong>Exit:</strong> Equipment moves to next park when connection comes.</p>
   </div>
-  <div class="role-card">
-    <h3>Solhash</h3>
-    <p><strong>Role:</strong> Intermediary and EPC. Structures JV, negotiates terms, delivers turnkey installation.</p>
-    <p><strong>Scope:</strong> Platforms, civil works, transport, LV tie-in to PV. Project management.</p>
-    <p><strong>Model:</strong> EPC margin on civil/transport; JV structuring fee.</p>
+  <div class="role-card" style="border-left:4px solid #d97706;">
+    <h3 style="color:#92400e;">Solhash</h3>
+    <p><strong>Role:</strong> Intermediary, JV structurer, EPC contractor.</p>
+    <p><strong>Scope:</strong> Platforms, civil works, transport, LV tie-in, project management.</p>
+    <p><strong>Revenue:</strong> EPC margin + structuring fee.</p>
   </div>
 </div>
 
-<h2>3. Modular Sizing (1, 2.6, 5, 10 MW)</h2>
+<h3>Net Revenue Waterfall (5 MW, BTC &euro;100K)</h3>
 <table>
-  <thead>
-    <tr>
-      <th>Park size</th>
-      <th class="r">MWh/yr</th>
-      <th class="r">S21+</th>
-      <th class="r">Containers</th>
-      <th class="r">Equip. capex</th>
-      <th class="r">EPC (platforms, civil, transport)</th>
-      <th class="r">Total capex</th>
-    </tr>
-  </thead>
+  <thead><tr><th>Line</th><th>Description</th><th class="r">Annual</th></tr></thead>
   <tbody>
-    
-    <tr>
-      <td>1 MW</td>
-      <td class="r">1,800</td>
-      <td class="r">231</td>
-      <td class="r">2</td>
-      <td class="r">€514.2k</td>
-      <td class="r">€75.0k</td>
-      <td class="r">€589.2k</td>
-    </tr>
-    <tr>
-      <td>2.6 MW</td>
-      <td class="r">4,680</td>
-      <td class="r">601</td>
-      <td class="r">4</td>
-      <td class="r">€1312.0k</td>
-      <td class="r">€165.0k</td>
-      <td class="r">€1477.0k</td>
-    </tr>
-    <tr>
-      <td>5 MW</td>
-      <td class="r">9,000</td>
-      <td class="r">1155</td>
-      <td class="r">7</td>
-      <td class="r">€2506.7k</td>
-      <td class="r">€300.0k</td>
-      <td class="r">€2806.7k</td>
-    </tr>
-    <tr>
-      <td>10 MW</td>
-      <td class="r">18,000</td>
-      <td class="r">2309</td>
-      <td class="r">14</td>
-      <td class="r">€5011.4k</td>
-      <td class="r">€600.0k</td>
-      <td class="r">€5611.4k</td>
-    </tr>
+    <tr class="highlight"><td><strong>Gross mining revenue</strong></td><td>1,203 S21+ &times; hash price &times; daytime &times; BTC &euro;100K</td><td class="r"><strong>&euro;2,318.4k</strong></td></tr>
+    <tr><td>Less: Degradation compensation</td><td>&euro;10/MWh &times; 12,500 MWh</td><td class="r">(&euro;125.0k)</td></tr>
+    <tr><td>Less: Park O&amp;M</td><td>&euro;10/kW/yr &times; 5,000 kW + &euro;20K tracker</td><td class="r">(&euro;70.0k)</td></tr>
+    <tr><td>Less: Land lease</td><td>7.5 ha &times; &euro;2,500/ha/yr</td><td class="r">(&euro;18.8k)</td></tr>
+    <tr><td>Less: Equipment opex</td><td>&euro;12k/MW (cooling, maintenance, monitoring)</td><td class="r">(&euro;60.0k)</td></tr>
+    <tr><td>Less: Internet</td><td>Starlink + 4G backup</td><td class="r">(&euro;1.6k)</td></tr>
+    <tr class="highlight"><td><strong>Net distributable</strong></td><td>Total costs: &euro;275.3k</td><td class="r"><strong>&euro;2,043.1k</strong></td></tr>
+    <tr style="background:#e8f5e9;"><td>&rarr; <strong>Park Partner (30%)</strong></td><td>~4.90&cent;/kWh</td><td class="r"><strong>&euro;612.9k/yr</strong></td></tr>
+    <tr style="background:#dbeafe;"><td>&rarr; <strong>Mining Partner (70%)</strong></td><td></td><td class="r"><strong>&euro;1,430.2k/yr</strong></td></tr>
   </tbody>
 </table>
 
-<h2>4. EPC Cost Breakdown (Solhash)</h2>
-<p>Platforms (€15k/container), civil works (€25k/MW), transport (€10k/container).</p>
-<table>
-  <thead>
-    <tr>
-      <th>Park size</th>
-      <th class="r">Platforms</th>
-      <th class="r">Civil works</th>
-      <th class="r">Transport</th>
-      <th class="r">EPC total</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>1 MW</td>
-      <td class="r">€30.0k</td>
-      <td class="r">€25.0k</td>
-      <td class="r">€20.0k</td>
-      <td class="r">€75.0k</td>
-    </tr>
-    <tr>
-      <td>2.6 MW</td>
-      <td class="r">€60.0k</td>
-      <td class="r">€65.0k</td>
-      <td class="r">€40.0k</td>
-      <td class="r">€165.0k</td>
-    </tr>
-    <tr>
-      <td>5 MW</td>
-      <td class="r">€105.0k</td>
-      <td class="r">€125.0k</td>
-      <td class="r">€70.0k</td>
-      <td class="r">€300.0k</td>
-    </tr>
-    <tr>
-      <td>10 MW</td>
-      <td class="r">€210.0k</td>
-      <td class="r">€250.0k</td>
-      <td class="r">€140.0k</td>
-      <td class="r">€600.0k</td>
-    </tr>
-  </tbody>
-</table>
-
+<!-- 3. WHY 30/70 IS FAIR -->
 <div class="page-break"></div>
+<h2 id="s3">3. Why 30/70 Is Fair</h2>
 
-<h2>5. Park Partner Economics</h2>
-<p>Park Partner receives a fair share of net revenue (after opex, degradation, park O&M). No capex. Value expressed as €/kWh.</p>
+<p>A 30/70 split is not arbitrary. It reflects the <strong>real capital at risk, asset lifecycle, and opportunity cost</strong> each party bears.</p>
+
+<h3>Capital Deployed Comparison (5 MW)</h3>
+<table>
+  <thead><tr><th>Factor</th><th>Park Partner</th><th>Mining Partner</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Capital deployed</strong></td><td>&euro;3,750K (PV @ &euro;750/kWp)</td><td>&euro;2,997K (miners + EPC)</td></tr>
+    <tr><td><strong>Asset value after 5 years</strong></td><td>~&euro;3,563K (95% &mdash; panels last 25+ years)</td><td>~&euro;300K (10% &mdash; ASICs obsolete)</td></tr>
+    <tr><td><strong>Capital at risk (net)</strong></td><td>&euro;188K depreciation + 5yr opportunity cost</td><td>&euro;2,697K (90% of capex consumed)</td></tr>
+    <tr><td><strong>Opportunity cost</strong></td><td>~&euro;375K/yr (&euro;3.75M @ 10% WACC)</td><td>None (equipment earns or sits idle)</td></tr>
+    <tr><td><strong>5-year tied-up equity cost</strong></td><td>&euro;1,875K</td><td>&euro;0 (capex is the investment)</td></tr>
+    <tr><td><strong>Ongoing costs borne</strong></td><td>Land lease &euro;18.8K/yr, panel degradation, tracker O&amp;M</td><td>Opex &euro;60K/yr, rig obsolescence</td></tr>
+    <tr><td><strong>Asset after JV ends</strong></td><td>Retains park &rarr; grid PPA revenue</td><td>Miners move or sell at residual</td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <strong>Park Partner provides the scarce resource</strong> &mdash; a permitted, built solar site with panels, inverters, and single-axis trackers. This asset is worth &euro;3.75M, retains 95% of its value, and has a guaranteed future use (grid PPA). The park owner ties up this capital 3&ndash;5 years early, foregoing &euro;1.9M+ in opportunity cost. A 30% revenue share (~4.9&cent;/kWh at BTC &euro;100K) partially compensates for this while remaining well below the 10&cent; grid PPA rate.
+</div>
+
+<div class="callout blue">
+  <strong>Mining Partner takes the operational and market risk</strong> &mdash; BTC price, halving, network difficulty, and equipment obsolescence. Their ~&euro;3.0M in ASICs depreciates to ~10% value over 5 years. The 70% share compensates for this consumable-asset risk with a target IRR of ~38.3% at BTC &euro;100K.
+</div>
+
+<h3>Park Owner: Without JV vs With JV (5 MW, 5 years)</h3>
+<table>
+  <thead><tr><th></th><th class="r">Without JV</th><th class="r">With JV (30/70, BTC &euro;100K)</th></tr></thead>
+  <tbody>
+    <tr><td>PV capex deployed</td><td class="r">(&euro;3,750K)</td><td class="r">(&euro;3,750K)</td></tr>
+    <tr><td>Land lease + O&amp;M (5 years)</td><td class="r">(&euro;444K)</td><td class="r">Covered by JV</td></tr>
+    <tr><td>Revenue (5 years)</td><td class="r">&euro;0</td><td class="r">&euro;3,065K</td></tr>
+    <tr class="highlight"><td><strong>Net position (pre-connection)</strong></td><td class="r" style="color:#c00;"><strong>(&euro;4,194K)</strong></td><td class="r" style="color:#2d7d46;"><strong>(&euro;685K)</strong></td></tr>
+    <tr><td><strong>Capex recovery</strong></td><td class="r">0%</td><td class="r" style="color:#2d7d46;"><strong>84%</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">The JV recovers 84% of the park owner&rsquo;s total pre-connection outlay BEFORE grid connection even begins. The remaining 16% is recovered through normal grid PPA revenue post-connection.</p>
+
+<!-- 4. ECONOMICS AT BTC €100K -->
+<h2 id="s4">4. Economics at BTC &euro;100K (Base Case)</h2>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="val">~4.9&cent;</div><div class="lbl">Park &cent;/kWh</div></div>
+  <div class="kpi"><div class="val">38.3%</div><div class="lbl">Mining IRR</div></div>
+  <div class="kpi"><div class="val">2.1 yr</div><div class="lbl">Mining Payback</div></div>
+  <div class="kpi"><div class="val">84%</div><div class="lbl">Park Capex Recovery</div></div>
+</div>
+
+<h3>Modular Sizing</h3>
+<table>
+  <thead><tr><th>Park</th><th class="r">MWh/yr</th><th class="r">S21+</th><th class="r">Containers</th><th class="r">Equip Capex</th><th class="r">EPC</th><th class="r">Total Capex</th></tr></thead>
+  <tbody>
+    <tr><td>1 MW</td><td class="r">2,500</td><td class="r">241</td><td class="r">2</td><td class="r">&euro;534.6k</td><td class="r">&euro;109.5k</td><td class="r">&euro;644.1k</td></tr>
+    <tr><td>2.6 MW</td><td class="r">6,500</td><td class="r">626</td><td class="r">4</td><td class="r">&euro;1,363.0k</td><td class="r">&euro;206.9k</td><td class="r">&euro;1,569.9k</td></tr>
+    <tr class="highlight"><td><strong>5 MW</strong></td><td class="r"><strong>12,500</strong></td><td class="r"><strong>1,203</strong></td><td class="r"><strong>8</strong></td><td class="r"><strong>&euro;2,626.1k</strong></td><td class="r"><strong>&euro;370.5k</strong></td><td class="r"><strong>&euro;2,996.6k</strong></td></tr>
+    <tr><td>10 MW</td><td class="r">25,000</td><td class="r">2,405</td><td class="r">15</td><td class="r">&euro;5,228.7k</td><td class="r">&euro;688.0k</td><td class="r">&euro;5,916.7k</td></tr>
+  </tbody>
+</table>
+
+<h3>Both Parties by Park Size (BTC &euro;100K, 30/70)</h3>
 <table>
   <thead>
-    <tr>
-      <th>Park size</th>
-      <th class="r">Park share</th>
-      <th class="r">Park revenue/yr</th>
-      <th class="r">Park €/kWh</th>
-      <th class="r">Park NPV (5yr)</th>
-    </tr>
+    <tr><th>Park</th><th class="r">Net/yr</th><th class="r">Park (30%)</th><th class="r">Park &cent;/kWh</th><th class="r">Mining (70%)</th><th class="r">Mining Capex</th><th class="r">Mining IRR</th><th class="r">Payback</th></tr>
   </thead>
   <tbody>
-    
-    <tr>
-      <td>1 MW</td>
-      <td class="r">5.0%</td>
-      <td class="r">€8.0k</td>
-      <td class="r">0.45¢</td>
-      <td class="r">€30.4k</td>
-    </tr>
-    <tr>
-      <td>2.6 MW</td>
-      <td class="r">5.0%</td>
-      <td class="r">€20.9k</td>
-      <td class="r">0.45¢</td>
-      <td class="r">€79.1k</td>
-    </tr>
-    <tr>
-      <td>5 MW</td>
-      <td class="r">5.0%</td>
-      <td class="r">€40.1k</td>
-      <td class="r">0.45¢</td>
-      <td class="r">€151.9k</td>
-    </tr>
-    <tr>
-      <td>10 MW</td>
-      <td class="r">5.0%</td>
-      <td class="r">€80.1k</td>
-      <td class="r">0.45¢</td>
-      <td class="r">€303.7k</td>
-    </tr>
+    <tr><td>1 MW</td><td class="r">&euro;392.1k</td><td class="r">&euro;117.6k</td><td class="r">4.71&cent;</td><td class="r">&euro;274.5k</td><td class="r">&euro;644.1k</td><td class="r">32.0%</td><td class="r">2.35 yr</td></tr>
+    <tr><td>2.6 MW</td><td class="r">&euro;1,052.9k</td><td class="r">&euro;315.9k</td><td class="r">4.86&cent;</td><td class="r">&euro;737.0k</td><td class="r">&euro;1,569.9k</td><td class="r">37.3%</td><td class="r">2.13 yr</td></tr>
+    <tr class="highlight"><td><strong>5 MW</strong></td><td class="r"><strong>&euro;2,043.1k</strong></td><td class="r"><strong>&euro;612.9k</strong></td><td class="r"><strong>4.90&cent;</strong></td><td class="r"><strong>&euro;1,430.2k</strong></td><td class="r"><strong>&euro;2,996.6k</strong></td><td class="r"><strong>38.3%</strong></td><td class="r"><strong>2.10 yr</strong></td></tr>
+    <tr><td>10 MW</td><td class="r">&euro;4,105.9k</td><td class="r">&euro;1,231.8k</td><td class="r">4.93&cent;</td><td class="r">&euro;2,874.1k</td><td class="r">&euro;5,916.7k</td><td class="r">39.3%</td><td class="r">2.06 yr</td></tr>
   </tbody>
 </table>
-<p class="note">Park Partner has no capex; any positive revenue share yields positive NPV. Degradation and O&M are JV-level costs (deducted before split). With EPC costs included, Mining Partner economics favour 5 MW+ parks.</p>
 
-<h2>6. Mining Partner Economics</h2>
-<p>Mining Partner invests equipment + EPC. Receives majority share. Fair split ensures ~11.9% IRR, 3.6-year payback.</p>
+<h3>5-Year Cash Flow &mdash; Mining Partner (5 MW, BTC &euro;100K)</h3>
 <table>
-  <thead>
-    <tr>
-      <th>Park size</th>
-      <th class="r">Total capex</th>
-      <th class="r">Mining share</th>
-      <th class="r">Net/yr</th>
-      <th class="r">NPV</th>
-      <th class="r">IRR</th>
-      <th class="r">Payback</th>
-    </tr>
-  </thead>
+  <thead><tr><th>Period</th><th class="r">JV Net</th><th class="r">Your 70%</th><th class="r">Cumulative</th></tr></thead>
   <tbody>
-    
-    <tr>
-      <td>1 MW</td>
-      <td class="r">€589.2k</td>
-      <td class="r">95.0%</td>
-      <td class="r">€160.3k</td>
-      <td class="r">€-11.8k</td>
-      <td class="r">9.2%</td>
-      <td class="r">3.9 yr</td>
-    </tr>
-    <tr>
-      <td>2.6 MW</td>
-      <td class="r">€1477.0k</td>
-      <td class="r">95.0%</td>
-      <td class="r">€417.2k</td>
-      <td class="r">€25.4k</td>
-      <td class="r">10.7%</td>
-      <td class="r">3.7 yr</td>
-    </tr>
-    <tr>
-      <td>5 MW</td>
-      <td class="r">€2806.7k</td>
-      <td class="r">95.0%</td>
-      <td class="r">€801.7k</td>
-      <td class="r">€80.3k</td>
-      <td class="r">11.1%</td>
-      <td class="r">3.7 yr</td>
-    </tr>
-    <tr>
-      <td>10 MW</td>
-      <td class="r">€5611.4k</td>
-      <td class="r">95.0%</td>
-      <td class="r">€1602.5k</td>
-      <td class="r">€159.5k</td>
-      <td class="r">11.1%</td>
-      <td class="r">3.7 yr</td>
-    </tr>
+    <tr><td>Year 0 (capex)</td><td class="r">&mdash;</td><td class="r" style="color:#c00;">(&euro;2,996.6k)</td><td class="r" style="color:#c00;">(&euro;2,996.6k)</td></tr>
+    <tr><td>Year 1</td><td class="r">&euro;2,043.1k</td><td class="r">&euro;1,430.2k</td><td class="r" style="color:#c00;">(&euro;1,566.4k)</td></tr>
+    <tr><td>Year 2</td><td class="r">&euro;2,043.1k</td><td class="r">&euro;1,430.2k</td><td class="r" style="color:#c00;">(&euro;136.2k)</td></tr>
+    <tr class="highlight"><td><strong>Year 3</strong></td><td class="r">&euro;2,043.1k</td><td class="r">&euro;1,430.2k</td><td class="r" style="color:#2d7d46;"><strong>&euro;1,294.0k</strong></td></tr>
+    <tr><td>Year 4</td><td class="r">&euro;2,043.1k</td><td class="r">&euro;1,430.2k</td><td class="r" style="color:#2d7d46;">&euro;2,724.2k</td></tr>
+    <tr><td>Year 5</td><td class="r">&euro;2,043.1k</td><td class="r">&euro;1,430.2k</td><td class="r" style="color:#2d7d46;">&euro;4,154.4k</td></tr>
   </tbody>
 </table>
+<p class="note">Breakeven early in Year 3. Remaining 2+ years are pure profit. Equipment retains ~10% residual value (~&euro;300K) at Year 5. Total 5-year profit: &euro;4.15M on &euro;3.0M invested.</p>
 
-<h2>7. Mining Partner — Full Cost Breakdown (5 MW example)</h2>
-<table>
-  <thead><tr><th>Item</th><th class="r">Amount</th></tr></thead>
-  <tbody>
-    <tr><td>Antminer S21+ (1155 × €2,040)</td><td class="r">€2356.2k</td></tr>
-    <tr><td>20ft containers (7 × €21,500)</td><td class="r">€150.5k</td></tr>
-    <tr><td>Platforms (7 × €15,000)</td><td class="r">€105.0k</td></tr>
-    <tr><td>Civil works (5 MW × €25,000)</td><td class="r">€125.0k</td></tr>
-    <tr><td>Transport (7 × €10,000)</td><td class="r">€70.0k</td></tr>
-    <tr style="background:#e8f5e9"><td><strong>Total capex</strong></td><td class="r"><strong>€2806.7k</strong></td></tr>
-  </tbody>
-</table>
+<!-- 5. BTC SENSITIVITY -->
+<div class="page-break"></div>
+<h2 id="s5">5. BTC Price Sensitivity (5 MW, 30/70)</h2>
 
-<h2>8. BTC Price Scenarios — 5-Year Revenue Share (5 MW)</h2>
-<p>Revenue scales with BTC price. 2028 halving (block reward 3.125→1.5625 BTC) applied. Base case: €100K.</p>
-<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 320px;">
-    <canvas id="btcScenarioChart" width="400" height="280"></canvas>
+<div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+  <div style="flex: 1; min-width: 300px;">
+    <canvas id="btcScenarioChart" width="400" height="260"></canvas>
   </div>
-  <table style="flex: 0 0 260px;">
-    <thead>
-      <tr><th>Scenario</th><th class="r">Park Partner</th><th class="r">Mining Partner</th></tr>
-    </thead>
+  <div style="flex: 0 0 320px;">
+    <table>
+      <thead><tr><th>BTC</th><th class="r">Park &cent;/kWh</th><th class="r">Park 5yr</th><th class="r">Mining IRR</th><th class="r">Payback</th></tr></thead>
+      <tbody>
+        <tr><td>&euro;60K (Bear)</td><td class="r">2.68&cent;</td><td class="r">&euro;1,674K</td><td class="r">~14%</td><td class="r">3.8 yr</td></tr>
+        <tr class="highlight"><td><strong>&euro;100K (Base)</strong></td><td class="r"><strong>4.90&cent;</strong></td><td class="r"><strong>&euro;3,065K</strong></td><td class="r"><strong>38.3%</strong></td><td class="r"><strong>2.1 yr</strong></td></tr>
+        <tr><td>&euro;150K</td><td class="r">7.6&cent;</td><td class="r">&euro;4,830K</td><td class="r">60%+</td><td class="r">1.4 yr</td></tr>
+        <tr><td>&euro;200K (Bull)</td><td class="r">10.3&cent;</td><td class="r">&euro;6,595K</td><td class="r">80%+</td><td class="r">1.0 yr</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="callout amber">
+  <strong>Bear case (&euro;60K):</strong> Mining Partner achieves ~14% IRR (payback ~3.8 years). Park still earns 2.68&cent;/kWh from otherwise stranded energy. Both parties are better off than doing nothing.<br><br>
+  <strong>At &euro;200K:</strong> Park earns 10.3&cent;/kWh &mdash; exceeding their normal grid PPA rate. Mining Partner achieves 80%+ IRR.
+</div>
+
+<h3>What the Park Earns vs Their Normal PPA</h3>
+<table>
+  <thead><tr><th>BTC Price</th><th class="r">Park &cent;/kWh</th><th class="r">vs 10&cent; PPA</th><th>Assessment</th></tr></thead>
+  <tbody>
+    <tr><td>&euro;60K</td><td class="r">2.68&cent;</td><td class="r">27%</td><td>Meaningful &mdash; vs &euro;0 alternative</td></tr>
+    <tr class="highlight"><td><strong>&euro;100K</strong></td><td class="r"><strong>4.90&cent;</strong></td><td class="r"><strong>49%</strong></td><td><strong>Attractive &mdash; half of PPA</strong></td></tr>
+    <tr><td>&euro;150K</td><td class="r">~7.6&cent;</td><td class="r">76%</td><td>Excellent &mdash; approaching PPA</td></tr>
+    <tr><td>&euro;200K</td><td class="r">~10.3&cent;</td><td class="r">103%</td><td>Exceeds PPA</td></tr>
+  </tbody>
+</table>
+
+<!-- BTC HISTORICAL & OUTLOOK -->
+<div class="page-break"></div>
+<h3>BTC Price &mdash; Historical &amp; Outlook</h3>
+<p>The Solhash model uses &euro;100K BTC as the base case. This is consistent with current market prices and the post-halving trajectory.</p>
+
+<h4>5-Year Historical</h4>
+<table>
+  <thead><tr><th>Year</th><th class="r">Avg Price (USD)</th><th class="r">Avg Price (EUR)</th><th>Key Event</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td class="r">~$47,000</td><td class="r">~&euro;43,000</td><td>Bull run, peaked $69K Nov</td></tr>
+    <tr><td>2022</td><td class="r">~$28,000</td><td class="r">~&euro;26,000</td><td>Bear market, FTX collapse</td></tr>
+    <tr><td>2023</td><td class="r">~$28,000</td><td class="r">~&euro;26,000</td><td>Recovery, ETF anticipation</td></tr>
+    <tr><td>2024</td><td class="r">~$62,000</td><td class="r">~&euro;57,000</td><td>Halving (Apr), spot ETF approved</td></tr>
+    <tr><td>2025</td><td class="r">~$90,000</td><td class="r">~&euro;82,000</td><td>Institutional adoption, $100K breached</td></tr>
+    <tr class="highlight"><td><strong>5yr avg</strong></td><td class="r"><strong>~$51,000</strong></td><td class="r"><strong>~&euro;47,000</strong></td><td></td></tr>
+  </tbody>
+</table>
+
+<h4>5-Year Forward Projection (2026&ndash;2031)</h4>
+<table>
+  <thead><tr><th>Scenario</th><th class="r">2026</th><th class="r">2027</th><th class="r">2028</th><th class="r">2029</th><th class="r">2030&ndash;31</th><th>Basis</th></tr></thead>
+  <tbody>
+    <tr><td>Bear</td><td class="r">&euro;80K</td><td class="r">&euro;60K</td><td class="r">&euro;50K</td><td class="r">&euro;60K</td><td class="r">&euro;70K</td><td>Post-halving correction, similar to 2022 pattern</td></tr>
+    <tr class="highlight"><td><strong>Base</strong></td><td class="r">&euro;100K</td><td class="r">&euro;110K</td><td class="r">&euro;90K</td><td class="r">&euro;120K</td><td class="r">&euro;150K</td><td>Halving cycle, institutional accumulation</td></tr>
+    <tr><td>Bull</td><td class="r">&euro;120K</td><td class="r">&euro;150K</td><td class="r">&euro;130K</td><td class="r">&euro;200K</td><td class="r">&euro;300K+</td><td>Supply shock, sovereign/corporate adoption</td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <strong>Even in the bear case (&euro;60K average), the JV remains cash-flow positive for both parties.</strong> At &euro;60K BTC, the Park Partner earns 2.68&cent;/kWh and the Mining Partner achieves 3.8-year payback &mdash; tight but viable. The base and bull cases deliver exceptional returns.
+</div>
+
+<!-- 6. PARK PARTNER SECTION -->
+<div class="page-break"></div>
+<div class="partner-header park">
+  <h2 id="s6" style="border-bottom-color:rgba(255,255,255,0.4);">6. For Park Partners</h2>
+  <p>Earn ~4.9&cent;/kWh from your stranded solar park. Recover 84% of your pre-connection outlay before grid connection.</p>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="val">&euro;0</div><div class="lbl">Additional Capex</div></div>
+  <div class="kpi"><div class="val">~4.9&cent;</div><div class="lbl">Per kWh (@ &euro;100K BTC)</div></div>
+  <div class="kpi"><div class="val">&euro;613k/yr</div><div class="lbl">Annual Revenue (5 MW)</div></div>
+  <div class="kpi"><div class="val">84%</div><div class="lbl">Pre-Connection Recovery</div></div>
+</div>
+
+<div class="two-col">
+  <div>
+    <h4>What You Get</h4>
+    <ul>
+      <li><strong>~4.9&cent;/kWh</strong> at BTC &euro;100K (49% of your normal 10&cent; PPA) from energy that currently earns &euro;0.</li>
+      <li><strong>84% of pre-connection outlay recovered</strong> before you even connect to the grid (&euro;3.07M on a 5 MW park).</li>
+      <li><strong>Land lease and O&amp;M covered</strong> by the JV &mdash; no more out-of-pocket costs during the waiting period.</li>
+      <li><strong>No additional investment.</strong> Your park is built. Mining Partner pays all equipment and EPC.</li>
+      <li><strong>Your park remains yours.</strong> Equipment leaves when connection comes.</li>
+      <li><strong>BTC upside:</strong> At &euro;200K BTC, you earn ~10.3&cent;/kWh &mdash; more than your grid PPA.</li>
+    </ul>
+  </div>
+  <div>
+    <h4>What You Provide</h4>
+    <ul>
+      <li>Access to your solar park and LV connection from inverter.</li>
+      <li>Cooperation with Solhash for platform placement.</li>
+      <li>That&rsquo;s it.</li>
+    </ul>
+    <h4>Without This JV</h4>
+    <ul>
+      <li>Your park earns <strong>&euro;0 for 3&ndash;5 years</strong>.</li>
+      <li>You pay &euro;89K/year in land lease + O&amp;M + tracker maintenance on an idle asset.</li>
+      <li>Total pre-connection loss: <strong>&euro;4.19M</strong> (capex + carrying costs).</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Your Revenue by Park Size (BTC &euro;100K)</h3>
+<table>
+  <thead><tr><th>Park</th><th class="r">Annual</th><th class="r">&cent;/kWh</th><th class="r">5-Year Total</th><th class="r">PV Capex Recovery</th></tr></thead>
+  <tbody>
+    <tr><td>1 MW</td><td class="r">&euro;117.6k</td><td class="r">4.71&cent;</td><td class="r">&euro;588.2k</td><td class="r">78%</td></tr>
+    <tr><td>2.6 MW</td><td class="r">&euro;315.9k</td><td class="r">4.86&cent;</td><td class="r">&euro;1,579.3k</td><td class="r">81%</td></tr>
+    <tr class="highlight"><td><strong>5 MW</strong></td><td class="r"><strong>&euro;612.9k</strong></td><td class="r"><strong>4.90&cent;</strong></td><td class="r"><strong>&euro;3,064.7k</strong></td><td class="r"><strong>82%</strong></td></tr>
+    <tr><td>10 MW</td><td class="r">&euro;1,231.8k</td><td class="r">4.93&cent;</td><td class="r">&euro;6,158.8k</td><td class="r">82%</td></tr>
+  </tbody>
+</table>
+
+<!-- 7. MINING PARTNER SECTION -->
+<div class="page-break"></div>
+<div class="partner-header mining">
+  <h2 id="s7" style="border-bottom-color:rgba(255,255,255,0.4);">7. For Mining Partners</h2>
+  <p>Mine Bitcoin at &euro;0/kWh electricity cost. 38.3% IRR. Payback ~2.1 years. Equipment is mobile.</p>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi blue"><div class="val">&euro;0/kWh</div><div class="lbl">Electricity Cost</div></div>
+  <div class="kpi blue"><div class="val">38.3%</div><div class="lbl">IRR (@ &euro;100K BTC)</div></div>
+  <div class="kpi blue"><div class="val">2.1 yr</div><div class="lbl">Payback (5 MW)</div></div>
+  <div class="kpi blue"><div class="val">&euro;4.15M</div><div class="lbl">5yr Profit (5 MW)</div></div>
+</div>
+
+<div class="two-col">
+  <div>
+    <h4>Why This Beats Grid Mining</h4>
+    <ul>
+      <li><strong>Zero electricity cost.</strong> Grid miners pay &euro;0.05&ndash;0.08/kWh. At 5 MW / 12,500 MWh, that&rsquo;s &euro;625&ndash;1,000K/yr eliminated.</li>
+      <li><strong>Your only &ldquo;energy cost&rdquo;</strong> is the &euro;10/MWh degradation payment (&euro;125K/yr) &mdash; <strong>80&ndash;88% cheaper</strong> than grid.</li>
+      <li><strong>100% renewable.</strong> Premium for ESG-focused buyers.</li>
+      <li><strong>Turnkey site.</strong> Solhash handles all civil, platforms, cabling.</li>
+      <li><strong>Equipment stays yours.</strong> Moves to next park when connection comes.</li>
+    </ul>
+  </div>
+  <div>
+    <h4>5 MW Cost Stack</h4>
+    <table>
+      <tbody>
+        <tr><td>S21+ miners (1,203 &times; &euro;2,040)</td><td class="r">&euro;2,454.1k</td></tr>
+        <tr><td>20ft containers (8 &times; &euro;21,500)</td><td class="r">&euro;172.0k</td></tr>
+        <tr><td>Platforms (8 &times; &euro;15,000)</td><td class="r">&euro;120.0k</td></tr>
+        <tr><td>Civil works (5 MW &times; &euro;25,000)</td><td class="r">&euro;125.0k</td></tr>
+        <tr><td>Transport + crane (8 &times; &euro;2,500)</td><td class="r">&euro;20.0k</td></tr>
+        <tr><td>BESS microgrid</td><td class="r">&euro;105.0k</td></tr>
+        <tr class="highlight"><td><strong>Total</strong></td><td class="r"><strong>&euro;2,996.6k</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Your Returns by Park Size (BTC &euro;100K)</h3>
+<table>
+  <thead><tr><th>Park</th><th class="r">Capex</th><th class="r">Your 70%/yr</th><th class="r">5yr Profit</th><th class="r">IRR</th><th class="r">Payback</th></tr></thead>
+  <tbody>
+    <tr><td>1 MW</td><td class="r">&euro;644.1k</td><td class="r">&euro;274.5k</td><td class="r">&euro;728.4k</td><td class="r">32.0%</td><td class="r">2.35 yr</td></tr>
+    <tr><td>2.6 MW</td><td class="r">&euro;1,569.9k</td><td class="r">&euro;737.0k</td><td class="r">&euro;2,115.1k</td><td class="r">37.3%</td><td class="r">2.13 yr</td></tr>
+    <tr class="highlight"><td><strong>5 MW</strong></td><td class="r"><strong>&euro;2,996.6k</strong></td><td class="r"><strong>&euro;1,430.2k</strong></td><td class="r"><strong>&euro;4,154.4k</strong></td><td class="r"><strong>38.3%</strong></td><td class="r"><strong>2.10 yr</strong></td></tr>
+    <tr><td>10 MW</td><td class="r">&euro;5,916.7k</td><td class="r">&euro;2,874.1k</td><td class="r">&euro;8,453.8k</td><td class="r">39.3%</td><td class="r">2.06 yr</td></tr>
+  </tbody>
+</table>
+
+<!-- 8. SOLHASH -->
+<h2 id="s8">8. Solhash &mdash; EPC Scope</h2>
+<table>
+  <thead><tr><th>Service</th><th>Detail</th><th class="r">Rate</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Platforms</strong></td><td>Concrete pads, levelling, drainage, anchor bolts</td><td class="r">&euro;15,000/container</td></tr>
+    <tr><td><strong>Civil Works</strong></td><td>LV cabling, fencing, access roads, earthing</td><td class="r">&euro;25,000/MW</td></tr>
+    <tr><td><strong>Transport + Crane</strong></td><td>Container delivery, crane placement (A. Soulis confirmed)</td><td class="r">&euro;2,500/container</td></tr>
+    <tr><td><strong>Project Management</strong></td><td>JV structuring, permits, commissioning</td><td class="r">Included</td></tr>
+  </tbody>
+</table>
+
+<h3>EPC by Park Size</h3>
+<table>
+  <thead><tr><th>Park</th><th class="r">Containers</th><th class="r">Platforms</th><th class="r">Civil</th><th class="r">Transport</th><th class="r">EPC Total</th></tr></thead>
+  <tbody>
+    <tr><td>1 MW</td><td class="r">2</td><td class="r">&euro;30.0k</td><td class="r">&euro;25.0k</td><td class="r">&euro;5.0k</td><td class="r">&euro;109.5k</td></tr>
+    <tr><td>2.6 MW</td><td class="r">4</td><td class="r">&euro;60.0k</td><td class="r">&euro;65.0k</td><td class="r">&euro;10.0k</td><td class="r">&euro;206.9k</td></tr>
+    <tr class="highlight"><td><strong>5 MW</strong></td><td class="r">8</td><td class="r">&euro;120.0k</td><td class="r">&euro;125.0k</td><td class="r">&euro;20.0k</td><td class="r"><strong>&euro;370.5k</strong></td></tr>
+    <tr><td>10 MW</td><td class="r">15</td><td class="r">&euro;225.0k</td><td class="r">&euro;250.0k</td><td class="r">&euro;37.5k</td><td class="r">&euro;688.0k</td></tr>
+  </tbody>
+</table>
+<p class="note">EPC totals include BESS + microgrid (&euro;35K&ndash;&euro;185K depending on park size) and internet hardware (&euro;500).</p>
+
+<div class="callout green">
+  <strong>Transport + crane: &euro;2,500/container</strong> &mdash; confirmed rate from A. Soulis (V3, March 2026). Includes crane, flatbed, delivery to any Cyprus site. No import duty &mdash; equipment sourced within EU (Mineshop.eu).
+</div>
+
+<!-- 9. DEPRECIATION -->
+<div class="page-break"></div>
+<h2 id="s9">9. Asset Depreciation &amp; Lifecycle</h2>
+<p>Both parties deploy depreciating assets. Understanding each asset&rsquo;s lifecycle justifies the 30/70 split.</p>
+
+<table>
+  <thead><tr><th>Asset</th><th>Owner</th><th>Design Life</th><th>5yr Residual</th><th>Annual Degradation</th><th>Post-JV Value</th></tr></thead>
+  <tbody>
+    <tr><td><strong>PV Panels</strong></td><td>Park</td><td>25&ndash;30 years</td><td>~97.5%</td><td>~0.5%/year output loss</td><td>Full value &rarr; grid PPA</td></tr>
+    <tr><td><strong>Inverters</strong></td><td>Park</td><td>12&ndash;15 years</td><td>~67%</td><td>Wear from cycling</td><td>Continues for grid use</td></tr>
+    <tr><td><strong>ASIC Miners (S21+)</strong></td><td>Mining</td><td>3&ndash;5 years</td><td><strong>~10%</strong></td><td>Obsolescence + difficulty</td><td>Sell at residual or scrap</td></tr>
+    <tr><td><strong>20ft Containers</strong></td><td>Mining</td><td>15+ years</td><td>~80%</td><td>Minimal physical wear</td><td>Reuse at next park</td></tr>
+    <tr><td><strong>Platforms (concrete)</strong></td><td>Mining/Park</td><td>30+ years</td><td>~95%</td><td>None</td><td>Left on-site or removed</td></tr>
+  </tbody>
+</table>
+
+<div class="callout amber">
+  <strong>Key asymmetry:</strong> The park owner&rsquo;s assets (panels, inverters, land) retain most of their value and serve a purpose after the JV ends. The mining partner&rsquo;s primary asset (ASICs) depreciates to ~10% &mdash; they must earn their return within the JV period. This justifies the higher revenue share (70%) for the party whose assets are consumed.
+</div>
+
+<!-- 10. RISK -->
+<h2 id="s10">10. Risk Analysis</h2>
+<table>
+  <thead><tr><th>Risk</th><th>Probability</th><th>Mitigation</th><th>Who Bears</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BTC price decline</strong></td><td>Medium</td><td>Zero electricity cost = margin even at low BTC. Break-even ~&euro;30K.</td><td>Mining (70%)</td></tr>
+    <tr><td><strong>2028 halving</strong></td><td>Certain</td><td>Modelled (29% 5yr reduction). Historically offset by price rise.</td><td>Mining</td></tr>
+    <tr><td><strong>Network difficulty increase</strong></td><td>Medium</td><td>S21+ is latest-gen. Zero energy cost preserves advantage.</td><td>Mining</td></tr>
+    <tr><td><strong>Equipment failure</strong></td><td>Low</td><td>Insurance, monitoring, container security.</td><td>Mining</td></tr>
+    <tr><td><strong>Early grid connection</strong></td><td>Low</td><td>Equipment moves to next park. Park pipeline available.</td><td>Both (upside for Park)</td></tr>
+    <tr><td><strong>PV degradation</strong></td><td>Certain</td><td>~0.5%/yr, compensated at &euro;10/MWh. Minimal impact.</td><td>Compensated</td></tr>
+    <tr><td><strong>Regulatory change</strong></td><td>Low</td><td>Behind-the-meter self-consumption. No licence required.</td><td>Both</td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <strong>Park Partner risk: near zero.</strong> No capex, no operational burden. Equipment leaves on notice. Worst case = no mining revenue (back to status quo). Best case = &euro;6.16M+ over 5 years on a 10 MW park.
+</div>
+
+<!-- 11. TIMELINE -->
+<h2 id="s11">11. Timeline</h2>
+<table>
+  <thead><tr><th>Phase</th><th>Duration</th><th>Activities</th><th>Responsible</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1. Agreement</strong></td><td>2&ndash;4 weeks</td><td>JV terms, EPC contract, park access</td><td>All</td></tr>
+    <tr><td><strong>2. Procurement</strong></td><td>4&ndash;8 weeks</td><td>S21+ and containers ordered; materials procured</td><td>Mining + Solhash</td></tr>
+    <tr><td><strong>3. Installation</strong></td><td>2&ndash;4 weeks</td><td>Platforms, civil, LV tie-in, commissioning</td><td>Solhash</td></tr>
+    <tr class="highlight"><td><strong>4. Operations</strong></td><td>3&ndash;5 years</td><td>Mining. Revenue split monthly.</td><td>Mining</td></tr>
+    <tr><td><strong>5. Exit</strong></td><td>2&ndash;4 weeks</td><td>Containers removed. Site restored or platforms retained.</td><td>Mining + Solhash</td></tr>
+  </tbody>
+</table>
+<div class="callout green"><strong>First revenue: 8&ndash;16 weeks</strong> from signing.</div>
+
+<!-- 12. ASSUMPTIONS -->
+<h2 id="s12">12. Key Assumptions</h2>
+<div class="two-col">
+  <table>
+    <thead><tr><th colspan="2">Solar &amp; Site</th></tr></thead>
     <tbody>
-      
-      <tr class="">
-        <td>€60K (Low)</td>
-        <td class="r">€127.8k<br><span style="font-size:8pt;color:#666">2.130 BTC</span></td>
-        <td class="r">€2428.1k<br><span style="font-size:8pt;color:#666">40.468 BTC</span></td>
-      </tr>
-      <tr class="highlight">
-        <td>★ €100K (Base)</td>
-        <td class="r">€246.3k<br><span style="font-size:8pt;color:#666">2.463 BTC</span></td>
-        <td class="r">€4680.2k<br><span style="font-size:8pt;color:#666">46.802 BTC</span></td>
-      </tr>
-      <tr class="">
-        <td>€200K (High)</td>
-        <td class="r">€542.7k<br><span style="font-size:8pt;color:#666">2.713 BTC</span></td>
-        <td class="r">€10310.4k<br><span style="font-size:8pt;color:#666">51.552 BTC</span></td>
-      </tr>
+      <tr><td>PV yield (Cyprus)</td><td class="r">2,500 kWh/kWp/yr (tracker + bifacial + albedo)</td></tr>
+      <tr><td>Daytime equivalent</td><td class="r">8 hrs/day (tracker-extended)</td></tr>
+      <tr><td>Panel type</td><td class="r">Bifacial N-type + single-axis tracker</td></tr>
+      <tr><td>PV degradation</td><td class="r">~0.5%/yr</td></tr>
+      <tr><td>Degradation compensation</td><td class="r">&euro;10/MWh</td></tr>
+      <tr><td>Park O&amp;M</td><td class="r">&euro;10/kW/yr + &euro;20K tracker</td></tr>
+      <tr><td>Tracker O&amp;M</td><td class="r">&euro;20,000/yr per site</td></tr>
+      <tr><td>Land lease</td><td class="r">&euro;2,500/ha/yr (1.5 ha/MW)</td></tr>
+      <tr><td>PV capex (reference)</td><td class="r">~&euro;750/kWp (tracker + bifacial)</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th colspan="2">Mining &amp; Financial</th></tr></thead>
+    <tbody>
+      <tr><td>Miner</td><td class="r">S21+ (216 TH/s, 3.56 kW)</td></tr>
+      <tr><td>Miner price</td><td class="r">&euro;2,040 (Mineshop, &minus;15%)</td></tr>
+      <tr><td>Hash price</td><td class="r">&euro;44/PH/s/day (@ &euro;60K BTC)</td></tr>
+      <tr><td>Container</td><td class="r">&euro;21,500 (20ft, 168 slots)</td></tr>
+      <tr><td>Equipment opex</td><td class="r">&euro;12K/MW/yr</td></tr>
+      <tr><td>Horizon</td><td class="r">5 years</td></tr>
+      <tr><td>Discount rate</td><td class="r">10%</td></tr>
+      <tr><td>Halving (~Apr 2028)</td><td class="r">Block reward &divide; 2</td></tr>
+      <tr><td>ASIC residual (5yr)</td><td class="r">~10%</td></tr>
+      <tr><td>Import duty</td><td class="r">&euro;0 (EU-sourced equipment)</td></tr>
+      <tr><td>UPS (per container)</td><td class="r">&euro;3,000 (graceful shutdown)</td></tr>
+      <tr><td>Internet (per site/yr)</td><td class="r">&euro;1,560 (Starlink + 4G backup)</td></tr>
+      <tr><td>Mining pool</td><td class="r">Braiins Pool, 2% FPPS</td></tr>
+      <tr><td>Cyprus CIT (mining)</td><td class="r">15%</td></tr>
     </tbody>
   </table>
 </div>
-<p class="note">5-year total revenue share per party. Low €60K, Base €100K, High €200K. Halving reduces effective output ~29% over 5 years.</p>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- 13. AUXILIARY POWER -->
+<div class="page-break"></div>
+<h2 id="s13">13. Site Electrical Architecture, BESS &amp; Automation</h2>
+
+<div class="callout amber">
+  <strong>Off-grid parks cannot use standard grid-tied inverters.</strong> Without a grid connection, PV string inverters have no voltage/frequency reference and will not start. A <strong>grid-forming BESS + microgrid controller</strong> is required to create a &ldquo;virtual grid&rdquo; that string inverters sync to. This same BESS provides post-run cooling, overnight auxiliary power, and PV transient buffering.
+</div>
+
+<h3>Microgrid Architecture (5 MW Example)</h3>
+<div class="flow-row">
+  <div class="flow-box park">PV Panels<span class="sub">5 MWp DC</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box" style="background:#fef3c7;border-color:#fcd34d;color:#92400e;">String Inverters<span class="sub">Grid-following (slave)</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box" style="background:#e8f5e9;border-color:#86efac;color:#166534;">AC Bus 400V/50Hz<span class="sub">Microgrid</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box mining">Mining Containers<span class="sub">8 &times; 20ft (load)</span></div>
+</div>
+<div class="flow-row">
+  <div class="flow-box" style="background:#eff6ff;border-color:#93c5fd;color:#1e40af;flex:0 0 35%;">Grid-Forming BESS (250 kWh)<span class="sub">Creates voltage/frequency reference</span></div>
+  <div class="flow-arrow">&uarr;</div>
+  <div class="flow-box" style="background:#e8f5e9;border-color:#86efac;color:#166534;flex:0 0 35%;">AC Bus 400V/50Hz<span class="sub">BESS is the &ldquo;master&rdquo;</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box" style="background:#f3e8ff;border-color:#c4b5fd;color:#5b21b6;flex:0 0 20%;">Auxiliary<span class="sub">CCTV, Starlink, fire</span></div>
+</div>
+
+<h3>Electrical Infrastructure — Full Cost Stack (5 MW)</h3>
+<table>
+  <thead><tr><th>Component</th><th>Specification</th><th class="r">Cost</th><th>Paid By</th></tr></thead>
+  <tbody>
+    <tr><td colspan="4" style="font-weight:600;background:#f0f7f2;color:#1a5c2e;">PV Electrical (Park Owner&rsquo;s CAPEX)</td></tr>
+    <tr><td><strong>String inverters</strong></td><td>50 &times; 100 kW (Huawei SUN2000-100KTL or equiv.)</td><td class="r">&euro;185,000</td><td>Park Partner</td></tr>
+    <tr><td><strong>DC cabling + combiner boxes</strong></td><td>PV array to inverters</td><td class="r">&euro;60,000</td><td>Park Partner</td></tr>
+    <tr><td><strong>AC switchgear + distribution</strong></td><td>400V bus, protection, metering</td><td class="r">&euro;40,000</td><td>Park Partner</td></tr>
+    <tr style="background:#f0f7f2;"><td><strong>PV electrical subtotal</strong></td><td></td><td class="r"><strong>&euro;285,000</strong></td><td>Park Partner</td></tr>
+    <tr><td colspan="4" style="font-weight:600;background:#dbeafe;color:#1e40af;">Grid-Forming BESS &amp; Microgrid (JV CAPEX)</td></tr>
+    <tr><td><strong>Grid-forming battery inverter</strong></td><td>250 kW bi-directional PCS (Sungrow / SMA)</td><td class="r">&euro;35,000</td><td>JV (Mining)</td></tr>
+    <tr><td><strong>LiFePO4 battery rack</strong></td><td>250 kWh (e.g. Sungrow PowerStack, CATL EnerC)</td><td class="r">&euro;40,000</td><td>JV (Mining)</td></tr>
+    <tr><td><strong>Microgrid controller</strong></td><td>Frequency/voltage regulation, PV curtailment logic</td><td class="r">&euro;12,000</td><td>JV (Mining)</td></tr>
+    <tr><td><strong>BESS enclosure + installation</strong></td><td>Outdoor cabinet or 10ft container, cabling</td><td class="r">&euro;18,000</td><td>JV (Mining)</td></tr>
+    <tr style="background:#dbeafe;"><td><strong>BESS + microgrid subtotal</strong></td><td></td><td class="r"><strong>&euro;105,000</strong></td><td>JV (Mining)</td></tr>
+  </tbody>
+</table>
+
+<h3>Why 250 kWh? &mdash; BESS Sizing for 5 MW</h3>
+<table>
+  <thead><tr><th>Function</th><th>Power</th><th>Duration</th><th class="r">kWh Required</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Grid-forming reference</strong></td><td>250 kW (matches PCS rating)</td><td>Continuous during PV hours</td><td class="r">Buffer only (~5 kWh)</td></tr>
+    <tr><td><strong>PV transient buffering</strong></td><td>Absorbs cloud ramps (seconds)</td><td>30&ndash;60s per event</td><td class="r">~10 kWh reserve</td></tr>
+    <tr><td><strong>Post-run cooling (8 containers)</strong></td><td>8 &times; 1 kW = 8 kW</td><td>30 minutes</td><td class="r">4.0 kWh</td></tr>
+    <tr><td><strong>Starlink + network (24/7)</strong></td><td>50&ndash;80W</td><td>14&ndash;16 hrs overnight</td><td class="r">1.2 kWh</td></tr>
+    <tr><td><strong>Security cameras (CCTV)</strong></td><td>100&ndash;200W (4&ndash;8 cameras)</td><td>24/7</td><td class="r">2.8 kWh/night</td></tr>
+    <tr><td><strong>Perimeter lighting</strong></td><td>200&ndash;500W</td><td>10&ndash;12 hrs</td><td class="r">5.0 kWh</td></tr>
+    <tr><td><strong>Fire/safety systems</strong></td><td>50&ndash;100W</td><td>24/7</td><td class="r">1.4 kWh</td></tr>
+    <tr><td><strong>Container controllers + PLCs</strong></td><td>8 &times; 50W = 400W</td><td>24/7</td><td class="r">5.6 kWh/night</td></tr>
+    <tr><td><strong>Morning boot buffer</strong></td><td>Startup before PV ramp</td><td>30 min</td><td class="r">5.0 kWh</td></tr>
+    <tr class="highlight"><td><strong>Total overnight demand</strong></td><td></td><td></td><td class="r"><strong>~40 kWh</strong></td></tr>
+    <tr><td><strong>Safety margin (2&times;) + degradation reserve</strong></td><td></td><td></td><td class="r">~80 kWh</td></tr>
+    <tr><td><strong>Grid-forming PCS headroom</strong></td><td></td><td></td><td class="r">~170 kWh</td></tr>
+    <tr class="highlight"><td><strong>Recommended BESS capacity</strong></td><td></td><td></td><td class="r"><strong>250 kWh</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <strong>250 kWh is the sweet spot</strong> for a 5 MW mining site. It provides the grid-forming reference that string inverters need to operate off-grid, buffers PV transients during cloud events, sustains overnight security/monitoring/cooling loads, and has margin for 2&ndash;3 cloudy mornings. Cost: ~&euro;105K fully installed (included in Mining Partner&rsquo;s capex).
+</div>
+
+<h3>BESS Sizing by Park Size</h3>
+<table>
+  <thead><tr><th>Park</th><th class="r">Containers</th><th class="r">Recommended BESS</th><th class="r">PCS Rating</th><th class="r">BESS + Microgrid Cost</th></tr></thead>
+  <tbody>
+    <tr><td>1 MW</td><td class="r">2</td><td class="r">50 kWh</td><td class="r">50 kW</td><td class="r">&euro;35,000</td></tr>
+    <tr><td>2.6 MW</td><td class="r">4</td><td class="r">100 kWh</td><td class="r">100 kW</td><td class="r">&euro;55,000</td></tr>
+    <tr class="highlight"><td><strong>5 MW</strong></td><td class="r">8</td><td class="r"><strong>250 kWh</strong></td><td class="r">250 kW</td><td class="r"><strong>&euro;105,000</strong></td></tr>
+    <tr><td>10 MW</td><td class="r">15</td><td class="r">500 kWh</td><td class="r">500 kW</td><td class="r">&euro;185,000</td></tr>
+  </tbody>
+</table>
+<p class="note">BESS cost includes: grid-forming PCS, LiFePO4 battery rack, microgrid controller, enclosure, and installation. Market pricing: ~&euro;150&ndash;170/kWh at 250 kWh scale (Sungrow PowerStack, CATL EnerC, or equivalent). PCS: ~&euro;100&ndash;140/kW. PV inverters are part of the Park Owner&rsquo;s existing capex, not the mining JV.</p>
+
+<h3>Cooling in Cyprus Climate &amp; Summer Throttling</h3>
+<table>
+  <thead><tr><th>Season</th><th class="r">Daytime</th><th class="r">Night</th><th>S21+ Performance</th><th>Cooling Need</th></tr></thead>
+  <tbody>
+    <tr><td>Winter (Dec&ndash;Feb)</td><td class="r">12&ndash;18&deg;C</td><td class="r">5&ndash;10&deg;C</td><td>Full 216 TH/s</td><td>Minimal &mdash; ambient sufficient</td></tr>
+    <tr><td>Spring/Autumn</td><td class="r">20&ndash;28&deg;C</td><td class="r">12&ndash;20&deg;C</td><td>Full 216 TH/s</td><td>Standard fan ventilation</td></tr>
+    <tr><td>Summer (Jun&ndash;Aug)</td><td class="r">30&ndash;40&deg;C</td><td class="r">22&ndash;28&deg;C</td><td>~180 TH/s at 40&deg;C (auto-throttle)</td><td>Full cooling + evaporative pads</td></tr>
+    <tr><td>Peak summer midday</td><td class="r">40&ndash;45&deg;C</td><td class="r">&mdash;</td><td>Protection mode risk at &gt;45&deg;C</td><td>Evaporative cooling drops intake 10&ndash;15&deg;C</td></tr>
+  </tbody>
+</table>
+
+<div class="callout amber">
+  <strong>Summer mitigation:</strong> Evaporative cooling pads (&ldquo;swamp coolers&rdquo;) are highly effective in Cyprus&rsquo;s dry heat, dropping container intake air by 10&ndash;15&deg;C. This keeps S21+ at full performance even when ambient exceeds 40&deg;C. Cost: ~&euro;2,000&ndash;3,000 per container.
+</div>
+
+<h3>Post-Run Cooling Protocol (Critical)</h3>
+<p>When hashing stops at sunset, S21+ chips are at 75&ndash;80&deg;C internally. If power is cut instantly, heat &ldquo;soaks&rdquo; into control boards and solder joints, causing premature failure.</p>
+<ol>
+  <li>Braiins OS triggers <strong>Soft Shutdown</strong> &mdash; stops hashing, keeps fans running.</li>
+  <li>Container fans run at full speed for <strong>20&ndash;30 minutes</strong> (powered by battery).</li>
+  <li>Once chip temps drop to ambient, fans shut off.</li>
+  <li>Battery powers only Starlink + controller overnight (~2&ndash;4 kWh total).</li>
+</ol>
+
+<h3>Automated Daily Cycle (Solar Following)</h3>
+<table>
+  <thead><tr><th>Time</th><th>Event</th><th>System</th></tr></thead>
+  <tbody>
+    <tr><td>06:00&ndash;07:00</td><td>Solar voltage rises above threshold</td><td>Container controller (DEIF ASC-4 or Smart PDU)</td></tr>
+    <tr><td>~07:00</td><td>PDU energises S21+ units. Boot + pool sync (5&ndash;10 min)</td><td>S21+ auto-mines on power-up</td></tr>
+    <tr><td>07:10+</td><td>Hashing begins. DPS adjusts hashrate to match PV output</td><td>Braiins OS Dynamic Performance Scaling</td></tr>
+    <tr><td>Cloud event</td><td>PV dips &rarr; DPS reduces hashrate instantly. UPS bridges 30&ndash;60s</td><td>Braiins OS + UPS</td></tr>
+    <tr><td>12:00&ndash;15:00</td><td>Summer: if &gt;40&deg;C, auto-throttle to ~180 TH/s</td><td>S21+ thermal protection</td></tr>
+    <tr><td>17:00&ndash;18:00</td><td>Solar drops &rarr; Braiins OS triggers Soft Shutdown</td><td>Braiins OS Sleep Mode (~30W)</td></tr>
+    <tr><td>18:00&ndash;18:30</td><td>Post-run cooling. Fans at full speed (battery-powered)</td><td>Battery + container fans</td></tr>
+    <tr><td>18:30&ndash;06:00</td><td>Overnight: only Starlink + controller active</td><td>Battery (~2&ndash;4 kWh overnight)</td></tr>
+  </tbody>
+</table>
+<p class="note">Automation stack: Braiins OS (miner firmware with DPS, Soft Shutdown, Sleep Mode) + DEIF ASC-4 Solar controller or Smart PDU (interfaces with solar inverters) + Peplink router (Starlink/4G bonding). S21+ auto-starts mining on power-up — no manual intervention. Cyprus 5&deg;C winter minimum is safe for daily cold starts.</p>
+
+<!-- 14. INTERNET CONNECTIVITY -->
+<h2 id="s14">14. Internet Connectivity</h2>
+
+<div class="callout blue">
+  <strong>Starlink Mini is the recommended dish.</strong> Available in Cyprus since Q3 2023. At only 20&ndash;40W active power, it runs 24/7 on the site battery. Mining requires &lt;100ms latency and &lt;1 Mbps &mdash; Starlink delivers 25ms median and 100+ Mbps. One dish serves all containers.
+</div>
+
+<h3>Starlink Dish Selection</h3>
+<table>
+  <thead><tr><th>Model</th><th class="r">Power (active)</th><th class="r">Power (idle)</th><th class="r">Daily kWh</th><th>Recommendation</th></tr></thead>
+  <tbody>
+    <tr class="highlight"><td><strong>Starlink Mini</strong></td><td class="r">20&ndash;40W</td><td class="r">15W</td><td class="r">0.5&ndash;1.0</td><td>Best for off-grid solar mining. Lowest power draw.</td></tr>
+    <tr><td>Standard Gen 3</td><td class="r">75&ndash;110W</td><td class="r">~50W</td><td class="r">1.5&ndash;2.0</td><td>Standard. Higher power but unnecessary bandwidth.</td></tr>
+    <tr><td>High Performance</td><td class="r">110&ndash;150W</td><td class="r">~80W</td><td class="r">2.6&ndash;3.6</td><td>Overkill for mining. Not recommended.</td></tr>
+  </tbody>
+</table>
+
+<h3>Connectivity Stack</h3>
+<table>
+  <thead><tr><th>Component</th><th>Latency</th><th>Bandwidth</th><th>Reliability</th><th class="r">Cost</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr class="highlight"><td><strong>Starlink Mini</strong></td><td>25&ndash;50ms</td><td>100+ Mbps</td><td>&gt;99.9% uptime</td><td class="r">~&euro;100/mo</td><td>Primary</td></tr>
+    <tr><td><strong>4G/LTE SIM</strong></td><td>30&ndash;80ms</td><td>10&ndash;50 Mbps</td><td>~99%</td><td class="r">~&euro;30/mo</td><td>Failover</td></tr>
+    <tr><td><strong>Peplink SD-WAN</strong></td><td colspan="3">Bonds both links; automatic failover in milliseconds</td><td class="r">&euro;500 one-time</td><td>Bonding</td></tr>
+  </tbody>
+</table>
+
+<h3>Why Starlink Works for Mining</h3>
+<ul>
+  <li><strong>Latency:</strong> 25ms median (US peak-hour). Mining needs &lt;100ms to avoid stale shares. Stale rate at 25&ndash;50ms is ~0.1&ndash;0.3% &mdash; negligible.</li>
+  <li><strong>Bandwidth:</strong> Mining uses a few MB/day (&lt;1 Mbps). Starlink is ~100,000&times; overspec&rsquo;d. Same connection handles CCTV, remote management.</li>
+  <li><strong>Remote deployment:</strong> Solar parks lack fibre. Starlink operational within hours of dish install. Clear sky view at park is guaranteed.</li>
+  <li><strong>24/7 on battery:</strong> Starlink Mini draws only 15&ndash;40W &mdash; easily sustained by the 15 kWh site battery overnight, providing continuous remote monitoring.</li>
+  <li><strong>Pool sync:</strong> When S21+ units boot each morning, they sync with the mining pool in 5&ndash;10 minutes via Starlink. Brief daily handshake is normal and expected.</li>
+</ul>
+
+<h3>Cost per Site</h3>
+<table>
+  <thead><tr><th>Item</th><th class="r">One-Time</th><th class="r">Annual</th></tr></thead>
+  <tbody>
+    <tr><td>Starlink Mini dish + mount</td><td class="r">&euro;450</td><td class="r">&euro;1,200</td></tr>
+    <tr><td>4G backup SIM</td><td class="r">&mdash;</td><td class="r">&euro;360</td></tr>
+    <tr><td>Peplink router + network switch</td><td class="r">&euro;500</td><td class="r">&mdash;</td></tr>
+    <tr class="highlight"><td><strong>Total</strong></td><td class="r"><strong>&euro;950</strong></td><td class="r"><strong>&euro;1,560/yr</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">One dish per site (not per container). Hardware in EPC capex; annual in opex. Starlink Mini rated &minus;30&deg;C to +50&deg;C, IP67. Ensure dish has clear sky view (no trees/structures &mdash; easy at solar parks).</p>
+
+<!-- 15. MINING POOL SELECTION -->
+<h2 id="s15">15. Mining Pool Selection</h2>
+
+<div class="callout green">
+  <strong>Recommended: Braiins Pool (2% FPPS)</strong> &mdash; predictable daily income for JV accounting, Stratum V2 for lower stale shares on Starlink, and Lightning payouts to minimise on-chain fees.
+</div>
+
+<table>
+  <thead><tr><th>Pool</th><th>Fee</th><th>Payout Model</th><th>Hashrate Share</th><th>Best For</th></tr></thead>
+  <tbody>
+    <tr class="highlight"><td><strong>Braiins Pool</strong></td><td>0&ndash;2%</td><td>FPPS / PPLNS</td><td>~4%</td><td>Solar mining (variable hashrate), Stratum V2, Lightning</td></tr>
+    <tr><td><strong>Luxor</strong></td><td>0.7%</td><td>FPPS</td><td>~3%</td><td>Corporate/institutional, SOC 2 certified, US-based</td></tr>
+    <tr><td><strong>Foundry USA</strong></td><td>2.5%</td><td>FPPS</td><td>~30%</td><td>Largest pool, most stable payouts, higher fee</td></tr>
+    <tr><td><strong>OCEAN</strong></td><td>0%</td><td>TIDES</td><td>~1%</td><td>Non-custodial, KYC-free, decentralisation-focused</td></tr>
+    <tr><td><strong>AntPool</strong></td><td>0&ndash;4%</td><td>FPPS / PPLNS</td><td>~15%</td><td>Bitmain-operated, S21 native support</td></tr>
+  </tbody>
+</table>
+
+<h3>Why FPPS Matters for the JV</h3>
+<p><strong>FPPS (Full Pay Per Share)</strong> pays a fixed amount per valid share submitted, regardless of whether the pool actually finds a block. This provides <strong>predictable daily revenue</strong> &mdash; essential for the 30/70 monthly revenue split. PPLNS pays more on average but with high variance (lucky/unlucky streaks), making JV accounting unpredictable.</p>
+
+<h3>Stratum V2 Advantage</h3>
+<p>Braiins Pool supports <strong>Stratum V2</strong> &mdash; a modern mining protocol that reduces data transfer, lowers latency, and decreases stale share rates. On Starlink (25&ndash;50ms latency), Stratum V2 reduces stale shares from ~0.3% to ~0.1%, recovering ~0.2% of revenue vs legacy Stratum V1.</p>
+
+<!-- 16. TAXATION (CYPRUS) -->
+<div class="page-break"></div>
+<h2 id="s16">16. Taxation (Cyprus 2026)</h2>
+
+<div class="callout amber">
+  <strong>Mining profits are taxed at 15% CIT &mdash; NOT the 8% crypto rate.</strong> Cyprus introduced an 8% flat tax on crypto disposals from 1 Jan 2026, but mining is explicitly excluded as &ldquo;active business income.&rdquo; The 8% rate applies only when mined BTC is subsequently sold for EUR.
+</div>
+
+<table>
+  <thead><tr><th>Tax</th><th class="r">Rate</th><th>Applies To</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Corporate Income Tax (CIT)</strong></td><td class="r">15%</td><td>Mining operating profit</td><td>Mining = active business income. 2026 reform (was 12.5%).</td></tr>
+    <tr><td><strong>Crypto Disposal Tax</strong></td><td class="r">8%</td><td>BTC &rarr; EUR conversion gain</td><td>When JV sells mined BTC. Gain = sale price &minus; cost basis (mining cost).</td></tr>
+    <tr><td><strong>VAT</strong></td><td class="r">0%</td><td>Mining activity</td><td>EU CJEU: mining has no identifiable recipient &mdash; not a taxable supply. Input VAT on equipment recoverable.</td></tr>
+    <tr><td><strong>SDC (dividends)</strong></td><td class="r">5%</td><td>Dividends to CY-resident individuals</td><td>Reduced from 17% in 2026 reform. 0% WHT to EU/treaty recipients.</td></tr>
+    <tr><td><strong>Stamp Duty</strong></td><td class="r">0%</td><td>All contracts</td><td>Abolished 1 Jan 2026.</td></tr>
+    <tr><td><strong>Electricity excise</strong></td><td class="r">0%</td><td>Self-generated PV</td><td>Behind-the-meter: no supply occurs, no excise duty.</td></tr>
+  </tbody>
+</table>
+
+<h3>Tax Flow &mdash; From Mining to Distribution</h3>
+<div class="flow-row">
+  <div class="flow-box mining">Mine BTC<span class="sub">Active income</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box" style="background:#fffbeb;border-color:#fcd34d;color:#92400e;">Hold / Sell BTC<span class="sub">15% CIT on profit</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box" style="background:#f3e8ff;border-color:#c4b5fd;color:#5b21b6;">BTC &rarr; EUR<span class="sub">8% on disposal gain</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box park">Distribute<span class="sub">5% SDC (CY individuals)</span></div>
+</div>
+
+<h3>Structuring Considerations</h3>
+<table>
+  <thead><tr><th>Topic</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr><td><strong>JV entity</strong></td><td>Cyprus Ltd recommended. 15% CIT on mining profit. When BTC sold, disposal gain taxed at 8%.</td></tr>
+    <tr><td><strong>Cost basis</strong></td><td>Mining cost basis = electricity cost (degradation payment) + opex + depreciation. Higher cost basis = lower disposal gain.</td></tr>
+    <tr><td><strong>Loss carry-forward</strong></td><td>7 years (extended from 5 in 2026 reform). Useful if early years have startup losses.</td></tr>
+    <tr><td><strong>No deemed dividend (DDD)</strong></td><td>Abolished for 2026+ profits. Retained earnings not taxed until actual distribution.</td></tr>
+    <tr><td><strong>Self-consumption electricity</strong></td><td>No VAT on behind-the-meter consumption (no supply occurs). No grid tariff, no excise.</td></tr>
+    <tr><td><strong>EU Mining Partner</strong></td><td>0% WHT on dividends to EU/treaty recipients. No additional Cyprus tax on distribution.</td></tr>
+    <tr><td><strong>Non-EU Mining Partner</strong></td><td>Check treaty network. Cyprus has 65+ DTAs. Most provide 0&ndash;5% WHT on dividends.</td></tr>
+  </tbody>
+</table>
+
+<h3>Estimated Effective Tax (5 MW, BTC &euro;100K)</h3>
+<table>
+  <thead><tr><th>Component</th><th class="r">Amount</th><th class="r">Tax</th><th class="r">Tax Cost</th></tr></thead>
+  <tbody>
+    <tr><td>Mining operating profit</td><td class="r">&euro;2,043.1k/yr</td><td class="r">15% CIT</td><td class="r">&euro;306.5k</td></tr>
+    <tr><td>BTC appreciation above cost basis</td><td class="r">Variable</td><td class="r">8%</td><td class="r">Variable</td></tr>
+    <tr><td>Dividend to CY individual (Park 30%)</td><td class="r">&euro;612.9k</td><td class="r">5% SDC</td><td class="r">&euro;30.6k</td></tr>
+    <tr class="highlight"><td><strong>Net after-tax return (Park)</strong></td><td class="r">&euro;612.9k gross</td><td class="r"></td><td class="r"><strong>~&euro;490k net</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">Indicative only. Tax structuring should be confirmed with a Cyprus-licensed tax advisor. Source: Cyprus Tax Reform 2026 (enacted 22 Dec 2025), EU MiCA Regulation 2023/1114, CJEU C-264/14 (Hedqvist).</p>
+
+<div class="page-break"></div>
+<h2 id="s17">17. Frequently Asked Questions</h2>
+
+<h4>Park Partners</h4>
+<table>
+  <tbody>
+    <tr><td style="width:35%;font-weight:600;">Why only ~5&cent; when my PPA is 10&cent;?</td><td>Your PPA requires grid connection &mdash; which you don&rsquo;t have. The alternative is &euro;0 for 3&ndash;5 years. At ~4.9&cent;, you recover 84% of your pre-connection outlay before connection. Plus, at BTC &euro;200K, you&rsquo;d earn ~10.3&cent; &mdash; above your PPA.</td></tr>
+    <tr><td style="font-weight:600;">What if BTC crashes?</td><td>Your downside is &euro;0 (back to status quo). You bear no BTC price risk &mdash; no capex, no operations. Mining Partner bears all market risk.</td></tr>
+    <tr><td style="font-weight:600;">Does mining damage my panels?</td><td>No. Miners consume electricity via LV connection. PV degradation is natural (~0.5%/yr) and compensated at &euro;10/MWh.</td></tr>
+    <tr><td style="font-weight:600;">Do I need a licence?</td><td>No. Behind-the-meter self-consumption. No grid export, no trading, no licence.</td></tr>
+    <tr><td style="font-weight:600;">What happens when connection comes?</td><td>30-day exit clause. Equipment removed. Site restored. You transition to grid PPA immediately.</td></tr>
+    <tr><td style="font-weight:600;">Can I get more than 30%?</td><td>The 30/70 split reflects tied-up equity and opportunity cost. Alternative structures (PPA floor, dynamic BTC-linked split) are available.</td></tr>
+  </tbody>
+</table>
+
+<h4>Mining Partners</h4>
+<table>
+  <tbody>
+    <tr><td style="width:35%;font-weight:600;">Why give 30% to someone with no capex?</td><td>The park owner deploys &euro;3.75M in PV (&gt; your ~&euro;3.0M), ties it up 3&ndash;5 years early, and pays land lease + tracker O&amp;M. Their asset retains 95% value while yours depreciates to 10%. Their &ldquo;scarce resource&rdquo; (permitted solar site) enables your zero-cost electricity.</td></tr>
+    <tr><td style="font-weight:600;">38.3% IRR &mdash; is that good enough?</td><td>Grid miners achieve 0&ndash;15% IRR while paying &euro;0.05+/kWh. You get 38.3% with zero electricity cost and 2.1-year payback. At BTC &euro;200K, IRR exceeds 80%.</td></tr>
+    <tr><td style="font-weight:600;">What about the halving?</td><td>Modelled (29% 5yr reduction). Base case figures already include this effect. Historically, BTC price rises post-halving have more than compensated.</td></tr>
+    <tr><td style="font-weight:600;">What if the park gets connection early?</td><td>Equipment is mobile. Solhash has a pipeline of pre-connection parks. Minimal downtime between deployments.</td></tr>
+    <tr><td style="font-weight:600;">Can I use my own hardware?</td><td>Yes. S21+ is the reference model. Any ASIC that fits 20ft containers works. Solhash provides site infrastructure regardless.</td></tr>
+    <tr><td style="font-weight:600;">Minimum viable deployment?</td><td>1 MW (2 containers, 241 S21+, &euro;644K). Economics improve at 5 MW+ where opex scales better.</td></tr>
+  </tbody>
+</table>
+
+<h4>Operations &amp; Tax</h4>
+<table>
+  <tbody>
+    <tr><td style="width:35%;font-weight:600;">Do I need a battery for overnight?</td><td>No. Miners run daytime-only and shut down at sunset. Cyprus night temps (15&ndash;25&deg;C) are within S21+ idle tolerance. A small UPS (&euro;3K/container) handles graceful shutdown during cloud transients. No standalone BESS needed.</td></tr>
+    <tr><td style="font-weight:600;">How do containers connect to the internet?</td><td>Starlink (primary) + 4G SIM (failover), bonded via Peplink router. ~&euro;1,560/yr per site. Mining needs &lt;1 Mbps &mdash; Starlink delivers 100&ndash;400 Mbps with 20&ndash;50ms latency. Stale shares negligible (~0.1%).</td></tr>
+    <tr><td style="font-weight:600;">Which mining pool?</td><td>Braiins Pool (2% FPPS) recommended. Predictable daily income for 30/70 split accounting. Stratum V2 protocol reduces stale shares on Starlink. Lightning payouts minimise on-chain fees.</td></tr>
+    <tr><td style="font-weight:600;">How is mining taxed in Cyprus?</td><td>Mining = active business income at <strong>15% CIT</strong> (not the 8% crypto disposal rate). When BTC is sold for EUR, the disposal gain is taxed at 8%. VAT: 0% on mining (EU CJEU ruling). No stamp duty (abolished 2026). Dividends to CY individuals: 5% SDC.</td></tr>
+    <tr><td style="font-weight:600;">Is there VAT on the electricity?</td><td>No. Behind-the-meter self-consumption &mdash; no supply occurs, no VAT, no excise duty. Input VAT on equipment (EU-sourced) is recoverable.</td></tr>
+    <tr><td style="font-weight:600;">What about the 8% crypto tax?</td><td>The 8% flat rate applies only to <em>disposal</em> of crypto (sale/exchange). Mining income itself is taxed at 15% CIT. The 8% applies when you convert mined BTC to EUR &mdash; on the gain above your mining cost basis.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s18">18. Next Steps</h2>
+<div class="two-col">
+  <div class="role-card" style="border-left:4px solid #2d7d46;">
+    <h3 style="color:#2d7d46;">Park Partner</h3>
+    <ol>
+      <li><strong>Confirm interest</strong> &mdash; Non-binding LOI with Solhash.</li>
+      <li><strong>Site access</strong> &mdash; PV specs, site plans, access schedule.</li>
+      <li><strong>Sign JV agreement</strong> &mdash; Revenue split, exit clause, access terms.</li>
+      <li><strong>Revenue starts</strong> within 8&ndash;16 weeks.</li>
+    </ol>
+  </div>
+  <div class="role-card" style="border-left:4px solid #2563eb;">
+    <h3 style="color:#1e40af;">Mining Partner</h3>
+    <ol>
+      <li><strong>Select park size</strong> &mdash; 1 / 2.6 / 5 / 10 MW.</li>
+      <li><strong>Order equipment</strong> &mdash; S21+ and containers.</li>
+      <li><strong>Sign JV + EPC</strong> &mdash; Terms with Park Partner and Solhash.</li>
+      <li><strong>Fund capex</strong> &mdash; Per agreed schedule.</li>
+      <li><strong>Commission &amp; mine.</strong></li>
+    </ol>
+  </div>
+</div>
+
+<div class="callout green" style="text-align:center;font-size:10pt;">
+  <strong>Contact Solhash</strong><br>
+  Alexander Papacosta &mdash; alexander.papacosta@lighthief.com &mdash; +357 99 164 158<br>
+  SolHash &middot; Limassol, Cyprus
+</div>
+
+<div class="footer">
+  <strong>CONFIDENTIAL</strong> &mdash; Solhash Pre-Connection Mining JV &mdash; March 2026<br>
+  All figures EUR. BTC revenue projections are illustrative. Base case: BTC &euro;100K, hash price &euro;44/PH/s/day (calibrated @ &euro;60K). Past performance not indicative of future results.<br>
+  
+</div>
+
 <script>
 (function() {
-  const data = [{"key":"low","label":"€60K (Low)","btcEur":60000,"park5yr":127795.04050000009,"mining5yr":2428105.7694999995,"parkBtc":2.129917341666668,"miningBtc":40.468429491666654,"scaledNet":511180.1619999999},{"key":"base","label":"€100K (Base)","btcEur":100000,"park5yr":246325.06750000024,"mining5yr":4680176.2825,"parkBtc":2.4632506750000025,"miningBtc":46.801762825,"scaledNet":985300.27},{"key":"high","label":"€200K (High)","btcEur":200000,"park5yr":542650.1350000005,"mining5yr":10310352.565,"parkBtc":2.7132506750000025,"miningBtc":51.551762825,"scaledNet":2170600.54}];
-  const ctx = document.getElementById('btcScenarioChart');
+  var ctx = document.getElementById('btcScenarioChart');
   if (!ctx || !window.Chart) return;
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: data.map(d => d.label),
+      labels: ['€60K (Bear)', '€100K (Base)', '€150K', '€200K (Bull)'],
       datasets: [
-        { label: 'Park Partner', data: data.map(d => d.park5yr/1000), backgroundColor: '#6ab04c', borderRadius: 4 },
-        { label: 'Mining Partner', data: data.map(d => d.mining5yr/1000), backgroundColor: '#1a5c2e', borderRadius: 4 }
+        { label: 'Park Partner (30%)', data: [334.7, 612.9, 966.0, 1319.0], backgroundColor: '#4caf50', borderRadius: 4 },
+        { label: 'Mining Partner (70%)', data: [781.0, 1430.2, 2254.0, 3077.7], backgroundColor: '#2563eb', borderRadius: 4 }
       ]
     },
     options: {
-      indexAxis: 'y',
       responsive: true,
       plugins: {
-        legend: { position: 'top' },
-        tooltip: { callbacks: { label: (c) => c.dataset.label + ': €' + (c.raw*1000).toLocaleString(0) } }
+        legend: { position: 'top', labels: { font: { size: 10 } } },
+        tooltip: { callbacks: { label: function(c) { return c.dataset.label + ': €' + Math.round(c.raw) + 'k/yr'; } } }
       },
       scales: {
-        x: { stacked: true, beginAtZero: true, title: { display: true, text: '€k (5-year total)' } },
-        y: { stacked: true }
+        x: { stacked: true, title: { display: true, text: 'BTC Price Scenario', font: { size: 10 } } },
+        y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Annual Revenue (€k)', font: { size: 10 } } }
       }
     }
   });
 })();
 </script>
-
-<h2>9. Key Assumptions</h2>
-<table>
-  <tbody>
-    <tr><td>PV yield (Cyprus)</td><td class="r">1800 kWh/kWp/year</td></tr>
-    <tr><td>Daytime hours</td><td class="r">6 hrs/day</td></tr>
-    <tr><td>Miner</td><td class="r">Antminer S21+ (216 TH/s, 3.56 kW)</td></tr>
-    <tr><td>Hash price</td><td class="r">€44/PH/s/day</td></tr>
-    <tr><td>20ft container</td><td class="r">168 slots, €21,500 (Mineshop)</td></tr>
-    <tr><td>Degradation</td><td class="r">€10/MWh</td></tr>
-    <tr><td>Park O&M</td><td class="r">€10/kW/year</td></tr>
-    <tr><td>Equipment opex</td><td class="r">€12k/MW/year</td></tr>
-    <tr><td>Horizon</td><td class="r">5 years (pre-connection)</td></tr>
-    <tr><td>Discount rate</td><td class="r">10%</td></tr>
-  </tbody>
-</table>
-
-<h2>10. Timeline</h2>
-<ol>
-  <li><strong>JV agreement</strong> — Park Partner, Mining Partner, Solhash sign JV and EPC terms.</li>
-  <li><strong>EPC mobilisation</strong> — Solhash procures platforms, civil works, transport. Mining Partner orders miners and containers.</li>
-  <li><strong>Installation</strong> — Platforms, civil, LV tie-in. Container delivery and commissioning.</li>
-  <li><strong>Operations</strong> — 5-year pre-connection period. Revenue split monthly/quarterly.</li>
-  <li><strong>Exit</strong> — When park receives connection terms, Mining Partner moves equipment to next park. Park Partner transitions to grid PPA.</li>
-</ol>
-
-<h2>11. Solhash EPC Scope</h2>
-<ul>
-  <li><strong>Platforms:</strong> Concrete pads/foundations per container (€15k/unit). Levelling, drainage.</li>
-  <li><strong>Civil works:</strong> Cabling from PV to mining area, fencing, access roads, LV tie-in (€25k/MW).</li>
-  <li><strong>Transport:</strong> Container delivery from port/depot to site (€10k/container).</li>
-  <li><strong>Project management:</strong> Coordination, permits, commissioning.</li>
-</ul>
-
-<p class="note" style="margin-top: 24px;">Generated by Solhash. Re-run: <code>npm run solhash:presentation</code>. Data from solhash/model and solhash/data.</p>
 
 </body>
 </html>

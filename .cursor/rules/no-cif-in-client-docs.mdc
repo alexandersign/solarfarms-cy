@@ -1,0 +1,42 @@
+---
+description: Never expose CIF (Linyang buy price) or margin data in client-facing documents
+globs: docs/clients/**/*.{html,md,template.html}
+alwaysApply: false
+---
+
+# No CIF or Margin Data in Client-Facing Documents
+
+## Rule
+
+**NEVER include CIF prices, supplier buy prices, margin percentages, or installed cost breakdowns in any client-facing document.**
+
+CIF (Cost, Insurance, Freight) is Lighthief's purchase price from Linyang. Exposing it reveals the margin structure and undermines commercial positioning.
+
+## What to NEVER show clients
+
+- CIF values (e.g. "CIF: €1,848,712" or "CIF €92.14/kWh")
+- Installed cost breakdowns (CIF + adders = installed)
+- Margin amounts or percentages (e.g. "margin: 12.46%")
+- Adder line items with costs (import duty amounts, transport costs, etc.)
+- Any reference to `portfolio-data.ts` fields: `cif`, `installedCost`, `margin`, `marginPct`
+
+## What IS safe to show clients
+
+- Final EPC turnkey price (e.g. "€2,258,900")
+- Price per kWh/MWh (e.g. "€112,945/MWh")
+- Payment milestone amounts (30/55/10/5 of EPC price)
+- EMS/SCADA capex and annual fees (client-paid items)
+- Extended warranty rates (client pays Linyang directly)
+- LTSA O&M rates (€1,740/MWh/yr)
+- "CIF Limassol" as an incoterms/shipping term (not as a price)
+
+## Where CIF data belongs
+
+- `lib/portfolio-data.ts` (SSOT, internal only)
+- `docs/internal/` documents (internal analysis)
+- `scripts/adders_output.txt` (internal calculations)
+- `docs/quotations/` (supplier quotations, internal)
+
+## If you find CIF in a client doc
+
+Remove the CIF row/value immediately. Replace with the client-facing EPC price or €/kWh rate only.

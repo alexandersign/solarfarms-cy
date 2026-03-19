@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI — Anarita BESS Civil Engineering Data | Lighthief Cyprus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @page { size: A4; margin: 15mm; }
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .page-break { page-break-before: always; }
+        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; line-height: 1.6; color: #1a1a2e; background: #f0f2f5; padding: 15px; }
+        .container { max-width: 850px; margin: 0 auto; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #0f172a, #1e3a5f); color: white; padding: 30px 35px; }
+        .header h1 { font-size: 20px; font-weight: 700; }
+        .header .sub { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+        .header-meta { display: flex; justify-content: space-between; margin-top: 20px; font-size: 12px; opacity: 0.9; }
+        .content { padding: 30px 35px; }
+        h2 { font-size: 16px; color: #16213e; border-bottom: 2px solid #4ade80; padding-bottom: 5px; margin: 25px 0 12px; }
+        h2:first-child { margin-top: 0; }
+        h3 { font-size: 14px; color: #1e3a5f; margin: 16px 0 8px; }
+        p, li { font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
+        th { background: #f1f5f9; font-weight: 600; text-align: left; padding: 8px 10px; border: 1px solid #e2e8f0; color: #374151; }
+        td { padding: 8px 10px; border: 1px solid #e2e8f0; vertical-align: top; }
+        .known { background: #ecfdf5; }
+        .needed { background: #fef3c7; }
+        .critical { background: #fef2f2; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+        .tag-known { background: #dcfce7; color: #166534; }
+        .tag-needed { background: #fef3c7; color: #92400e; }
+        .tag-critical { background: #fee2e2; color: #991b1b; }
+        .response-box { border: 1px solid #d1d5db; background: #fafafa; min-height: 50px; padding: 8px; margin: 5px 0; border-radius: 4px; }
+        .info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; margin: 12px 0; font-size: 12px; }
+        .info-box strong { color: #1e40af; }
+        .green-box { background: #ecfdf5; border-left: 4px solid #22c55e; padding: 12px 16px; margin: 12px 0; font-size: 12px; }
+        .green-box strong { color: #166534; }
+        .amber-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; margin: 12px 0; font-size: 12px; }
+        .amber-box strong { color: #92400e; }
+        ul { margin: 5px 0 10px 20px; }
+        li { margin-bottom: 4px; }
+        .footer { background: #f8fafc; padding: 20px 35px; font-size: 11px; color: #6b7280; border-top: 1px solid #e5e7eb; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>Request for Information — Anarita BESS Installation</h1>
+        <div class="sub">Site Data Collection for Civil Engineering & Layout Design</div>
+        <div class="header-meta">
+            <div>
+                <strong>To:</strong> Muminjon / Spanercom Ltd<br>
+                <strong>From:</strong> Alexander Papacosta, Lighthief Cyprus Ltd<br>
+                <strong>Date:</strong> March 2026
+            </div>
+            <div style="text-align: right;">
+                <strong>Ref:</strong> LH-RFI-SPANERCOM-CIVIL-2026-03<br>
+                <strong>Project:</strong> Anarita 2 × 5 MW / 15 MWh BESS<br>
+                <strong>Priority:</strong> High — needed for civil works quotation
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <h2>1. Purpose</h2>
+
+        <p>Following the selection of the <strong>2 × 5 MW / 15 MWh BESS configuration</strong> (one system per park, East and West), we require specific site data to:</p>
+        <ul>
+            <li>Design the BESS container layout and foundation platforms for each park</li>
+            <li>Enable our civil engineering subcontractor to quote the earthworks, platforms, and foundations</li>
+            <li>Plan the MV cable routing from each BESS to the existing 22 kV switchgear</li>
+            <li>Confirm there are no underground obstructions or site constraints</li>
+        </ul>
+
+        <div class="amber-box">
+            <strong>Timing:</strong> We need these documents within <strong>10 working days</strong> to maintain the project timeline. Items marked <span class="tag tag-critical">CRITICAL</span> are required before any civil works can be quoted.
+        </div>
+
+        <!-- SECTION 2: WHAT WE ALREADY HAVE -->
+        <h2>2. Information Already Received (Confirmed)</h2>
+
+        <p>We have reviewed the following documents from Spanercom and confirm this data is available:</p>
+
+        <table>
+            <tr><th style="width:40%">Document / Data</th><th style="width:15%">Status</th><th>Key Data Extracted</th></tr>
+            <tr class="known">
+                <td>TDD PV 10MW Anarita (Lucerio, June 2025)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>Full technical due diligence — 155 pages. PV specs, transformer specs, protection, land plots, permits, production data.</td>
+            </tr>
+            <tr class="known">
+                <td>Anarita East Layout (v33b, ERGO Energy)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>East park layout — module positions, transformer locations, EAC building. PDF format.</td>
+            </tr>
+            <tr class="known">
+                <td>Anarita West Layout (v47c, ERGO Energy)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>West park layout — module positions, transformer locations, entrance gate. PDF format.</td>
+            </tr>
+            <tr class="known">
+                <td>SLD — Meters East + West</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>Single-line diagrams with metering, protection relays (ABB REF601/615), transformer specs.</td>
+            </tr>
+            <tr class="known">
+                <td>Anarita West SLD (v47c, LV)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>LV wiring — string configuration, inverter connections.</td>
+            </tr>
+            <tr class="known">
+                <td>MV Panel Drawing (R03)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>MV switchgear panel layout — 31 pages (scanned, image-based).</td>
+            </tr>
+            <tr class="known">
+                <td>CERA Licenses (E5099 + E5100, 2025)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>Operation licenses for both parks (scanned).</td>
+            </tr>
+            <tr class="known">
+                <td>Energy Production Data (May-24 to Oct-25)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>18 months of actual production + curtailment data. PVSyst benchmarks.</td>
+            </tr>
+            <tr class="known">
+                <td>PVSyst Design Inputs (GLVP_ANARITA_8_R02)</td>
+                <td><span class="tag tag-known">RECEIVED</span></td>
+                <td>Design input document (scanned, image-based — limited text extraction).</td>
+            </tr>
+        </table>
+
+        <h3>Confirmed Project Parameters (from TDD + site documents)</h3>
+
+        <div class="two-col">
+            <table>
+                <tr><th colspan="2">PV Park — East</th></tr>
+                <tr><td>DC Capacity</td><td>5,007 kWp (7,586 × ASTRO 660Wp)</td></tr>
+                <tr><td>AC Export</td><td>5,200 kVA</td></tr>
+                <tr><td>Inverters</td><td>14 × SG350HX + 2 × SG125HX</td></tr>
+                <tr><td>Transformers</td><td>2 × Matelec 2,600 kVA (22/0.8 kV, ONAN)</td></tr>
+                <tr><td>MV Switchgear</td><td>Unisec 24kV SF6, ABB REF601/615</td></tr>
+                <tr><td>Tilt / Azimuth</td><td>22° / -10.27°</td></tr>
+                <tr><td>Plot</td><td>117 (~90,090 m²)</td></tr>
+                <tr><td>Grid Connection</td><td>22 kV EAC (App 400430689)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">PV Park — West</th></tr>
+                <tr><td>DC Capacity</td><td>5,013 kWp (7,596 × ASTRO 660Wp)</td></tr>
+                <tr><td>AC Export</td><td>5,200 kVA</td></tr>
+                <tr><td>Inverters</td><td>14 × SG350HX + 2 × SG125HX</td></tr>
+                <tr><td>Transformers</td><td>2 × Matelec 2,600 kVA (22/0.8 kV, ONAN)</td></tr>
+                <tr><td>MV Switchgear</td><td>Unisec 24kV SF6, ABB REF601/615</td></tr>
+                <tr><td>Tilt / Azimuth</td><td>20° / -10.27° to -3.93°</td></tr>
+                <tr><td>Plots</td><td>113 + 206 (~71,000 m²)</td></tr>
+                <tr><td>Grid Connection</td><td>22 kV EAC (App 400430688)</td></tr>
+            </table>
+        </div>
+
+        <h3>BESS Configuration (Confirmed by Client)</h3>
+
+        <table>
+            <tr><th style="width:35%">Parameter</th><th>Per Park</th><th>Total</th></tr>
+            <tr><td>BESS Power</td><td>5 MW</td><td>10 MW</td></tr>
+            <tr><td>BESS Energy</td><td>15 MWh</td><td>30 MWh</td></tr>
+            <tr><td>Duration</td><td>3 hours</td><td>—</td></tr>
+            <tr><td>Battery Containers</td><td>3 × Linyang 5 MWh (40ft, ~43 tonnes each)</td><td>6</td></tr>
+            <tr><td>MV SKID</td><td>1 × T4 (5 MW, incl. PCS + transformer + switchgear)</td><td>2</td></tr>
+            <tr><td>Total Containers</td><td>4</td><td>8</td></tr>
+            <tr><td>Container Dimensions</td><td colspan="2">12.2m × 2.44m × 2.90m (each)</td></tr>
+            <tr><td>Container Weight</td><td colspan="2">~43 tonnes (battery), ~35 tonnes (MV SKID)</td></tr>
+            <tr><td>MV Connection</td><td colspan="2">Each BESS connects to its park's existing 22 kV switchgear</td></tr>
+            <tr><td>Grid Code</td><td colspan="2">EN 50549-2 (TÜV certified, Kehua BCS1250K-C-HUD)</td></tr>
+        </table>
+
+        <!-- SECTION 3: WHAT WE NEED -->
+        <h2 class="page-break">3. Information Required from Spanercom</h2>
+
+        <h3>A. AutoCAD / DWG Files <span class="tag tag-critical">CRITICAL</span></h3>
+
+        <div class="info-box">
+            <strong>Why:</strong> The civil engineering team needs editable CAD files (not PDFs) to overlay the BESS container positions, design cable routes, and plan earthworks. The PDF layouts we have cannot be used for engineering design.
+        </div>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Document Required</th><th style="width:15%">Priority</th><th style="width:25%">Notes</th></tr>
+            <tr class="critical">
+                <td>A1</td>
+                <td><strong>As-built layout — East Park</strong> (DWG/DXF format)<br>Module positions, substations, roads, fencing, EAC building, underground services</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td>We have the PDF (v33b) — need the original CAD file</td>
+            </tr>
+            <tr class="critical">
+                <td>A2</td>
+                <td><strong>As-built layout — West Park</strong> (DWG/DXF format)<br>Same scope as East</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td>We have the PDF (v47c) — need the original CAD file</td>
+            </tr>
+            <tr class="critical">
+                <td>A3</td>
+                <td><strong>MV single-line diagram</strong> (DWG/DXF or editable PDF)<br>Full MV network from substations to EAC point of connection</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td>We have the SLD PDFs — need editable versions showing all MV cable routes</td>
+            </tr>
+            <tr class="needed">
+                <td>A4</td>
+                <td><strong>Underground services plan</strong> (DWG/DXF)<br>All buried cables (MV, LV, comms), pipes, drainage channels, earthing grid</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td>Essential to avoid damage during BESS foundation excavation</td>
+            </tr>
+            <tr class="needed">
+                <td>A5</td>
+                <td><strong>Land boundary / cadastral survey</strong> (DWG/DXF)<br>Plot boundaries (117, 113, 206, 172), easements, rights of way</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td>To confirm BESS placement is within property lines</td>
+            </tr>
+        </table>
+
+        <div class="response-box" style="min-height: 40px;">
+            <em style="color: #9ca3af; font-size: 11px;">Client response — AutoCAD files:</em>
+        </div>
+
+        <h3>B. Geotechnical & Soil Studies <span class="tag tag-critical">CRITICAL</span></h3>
+
+        <div class="info-box">
+            <strong>Why:</strong> Each BESS container weighs ~43 tonnes. The civil subcontractor needs soil bearing capacity data to design foundations (compacted gravel pad, concrete pads, or piled foundations). Without this data, we cannot quote earthworks.
+        </div>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Document Required</th><th style="width:15%">Priority</th><th style="width:25%">Notes</th></tr>
+            <tr class="critical">
+                <td>B1</td>
+                <td><strong>Geotechnical investigation report</strong><br>Soil type, bearing capacity (kN/m² or ton/m²), groundwater level, rock depth. Ideally at or near the proposed BESS locations.</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td>Was one done for the original PV construction? If yes, please share. If not, one will need to be commissioned.</td>
+            </tr>
+            <tr class="critical">
+                <td>B2</td>
+                <td><strong>Soil bearing capacity</strong><br>Minimum required: <strong>50 kN/m²</strong> (for 43-tonne containers on a 12.2m × 2.44m footprint = ~14.4 kN/m² ground pressure). We need confirmation the soil can support this.</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td>If no geotech report exists, a simple plate bearing test at each proposed BESS location would suffice.</td>
+            </tr>
+            <tr class="needed">
+                <td>B3</td>
+                <td><strong>Groundwater / water table depth</strong><br>At the proposed BESS locations — affects foundation design and drainage.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td>If water table is shallow (<1m), special drainage required.</td>
+            </tr>
+            <tr class="needed">
+                <td>B4</td>
+                <td><strong>Soil contamination status</strong><br>Any known contamination at the site?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td>Affects excavated material disposal.</td>
+            </tr>
+        </table>
+
+        <div class="response-box" style="min-height: 40px;">
+            <em style="color: #9ca3af; font-size: 11px;">Client response — Geotechnical data:</em>
+        </div>
+
+        <h3>C. Topographic Survey & Slope Assessment <span class="tag tag-critical">CRITICAL — REGULATORY REQUIREMENT</span></h3>
+
+        <div class="info-box" style="border-left-color: #dc2626; background: #fef2f2;">
+            <strong>Regulatory Notice — Κ.Δ.Π. 15/2026 &amp; Κ.Δ.Π. 17/2026 (Official Gazette No. 5992, 16 January 2026)</strong><br><br>
+            The Cyprus planning decree for energy storage systems at licensed power stations includes the following conditions that directly affect civil works at Anarita:<br><br>
+            <strong>Condition (10):</strong> <em>"Η εγκατάσταση του συστήματος αποθήκευσης ενέργειας δεν αλλοιώνει την τοπογραφία ή/και τα υψόμετρα του φυσικού εδάφους και εντάσσεται στο περιβάλλον."</em><br>
+            <span style="color: #374151;">"The installation of the energy storage system does not alter the topography and/or the elevations of the natural ground and integrates into the environment."</span><br><br>
+            <strong>Condition (6):</strong> Maximum height of installations must not exceed 3 metres from <em>"the natural or the final formed ground level (whichever is lower)."</em> The use of "τελικό διαμορφωμένο επίπεδο" (final formed level) acknowledges that some ground formation may occur.<br><br>
+            <strong>Appendix II, Item 10 (Κ.Δ.Π. 17/2026):</strong> Requires submission of <em>"elevations of the existing / proposed ground"</em> (υφιστάμενου / προτεινόμενου εδάφους). Additionally:<br>
+            &bull; Plots with height differences <strong>≥ 2 metres</strong> require a <strong>mandatory topographic and elevation survey</strong><br>
+            &bull; Plots with slope <strong>&gt; 5%</strong> require <strong>additional A3 drawings</strong> with detailed elevations, cross-sections, and fencing plans<br><br>
+            <strong>Implication for Anarita:</strong> Localised foundation preparation (grading, compaction, concrete pads) under the BESS footprint is permitted, but large-scale earthworks that alter the site's overall topographic character are not. We must document existing vs proposed ground levels and demonstrate minimal alteration. <strong>If the proposed BESS area has slopes &gt; 5% or elevation changes ≥ 2m, additional engineering documentation must be submitted to the planning authority.</strong>
+        </div>
+
+        <div class="amber-box">
+            <strong>Action Required:</strong> We need accurate existing topography at both proposed BESS locations to (1) design platforms that comply with the decree, (2) minimise cut &amp; fill, and (3) prepare the mandatory planning submission if slope exceeds 5%. The TDD notes steep slopes in parts of the site — this must be confirmed with survey data.
+        </div>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Document Required</th><th style="width:15%">Priority</th><th style="width:25%">Notes</th></tr>
+            <tr class="critical">
+                <td>C1</td>
+                <td><strong>Topographic survey of proposed BESS areas</strong><br>Contour lines at 0.25m intervals, spot heights, existing structures, fences, roads. Survey in a recognised coordinate system (e.g. LTM, WGS84 UTM Zone 36N).<br><br><strong>Regulatory requirement:</strong> Per Κ.Δ.Π. 17/2026 Appendix II, if the site has elevation differences ≥ 2m or slope &gt; 5%, a mandatory topographic and elevation survey must be submitted to the planning authority with the BESS permit application.</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td>Minimum area: 100m × 100m around each proposed BESS location (both parks). Must show existing natural ground levels — these will be compared to proposed finished levels in the permit submission.</td>
+            </tr>
+            <tr class="needed">
+                <td>C2</td>
+                <td><strong>Existing ground levels at substations</strong><br>Finished floor level (FFL) of each transformer station, EAC building, and producer cubicles.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td>BESS platform level must be coordinated with existing infrastructure levels for drainage.</td>
+            </tr>
+            <tr class="needed">
+                <td>C3</td>
+                <td><strong>Drainage study / stormwater management plan</strong><br>Existing drainage channels, culverts, natural water flow paths.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td>BESS platforms must not block existing drainage. New drainage may be needed.</td>
+            </tr>
+        </table>
+
+        <div class="response-box" style="min-height: 40px;">
+            <em style="color: #9ca3af; font-size: 11px;">Client response — Topographic data:</em>
+        </div>
+
+        <h3 class="page-break">D. Access & Logistics</h3>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Question</th><th style="width:15%">Priority</th><th style="width:25%">Response</th></tr>
+            <tr class="needed">
+                <td>D1</td>
+                <td><strong>Access road specifications</strong><br>Road width, surface type, and weight capacity from public road to each proposed BESS location. Can a 43-tonne container on a 16m flatbed truck access both parks?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr class="needed">
+                <td>D2</td>
+                <td><strong>Internal road condition</strong><br>Width of internal roads between PV rows and around substations. Any tight turns or low overhead lines?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>D3</td>
+                <td><strong>Crane access</strong><br>Is there space for a 100-tonne mobile crane to set up near each proposed BESS location? Required outrigger spread: ~8m × 8m. Required boom height: ~15m.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>D4</td>
+                <td><strong>Temporary storage area</strong><br>Is there a laydown area (~500 m²) where containers can be temporarily stored during installation? Ideally within 200m of the final BESS location.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+        </table>
+
+        <h3>E. Electrical Connection Details</h3>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Question</th><th style="width:15%">Priority</th><th style="width:25%">Response</th></tr>
+            <tr class="needed">
+                <td>E1</td>
+                <td><strong>Spare MV switchgear bays</strong><br>How many spare / unused bays are available in the Unisec 24kV panels at each park? We need one spare bay per park for the BESS MV cable connection.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr class="needed">
+                <td>E2</td>
+                <td><strong>MV cable entry route</strong><br>Where can a new 22 kV cable enter the existing MV switchgear room at each park? Is there a spare cable gland plate or knockout?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>E3</td>
+                <td><strong>Earthing grid drawings</strong> (DWG/DXF)<br>The existing earthing grid layout — we need to extend it to cover the BESS area.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>E4</td>
+                <td><strong>Protection relay settings</strong><br>Current ABB REF601/REF615 protection settings for each park's MV protection. Needed for BESS protection coordination study.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>E5</td>
+                <td><strong>DSO / EAC grid connection</strong><br>Has a BESS grid connection application been submitted to EAC? If yes, please share the application and any response. If not, we will need to coordinate this.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+        </table>
+
+        <h3>F. Permits & Regulatory</h3>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Question</th><th style="width:15%">Priority</th><th style="width:25%">Response</th></tr>
+            <tr>
+                <td>F1</td>
+                <td><strong>CERA hybrid storage license</strong><br>Has an application for a BESS / hybrid storage license (Category B) been submitted to CERA? Status?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>F2</td>
+                <td><strong>Planning / building permit for BESS</strong><br>Is a separate planning permit required for the BESS containers and foundations? Has it been applied for?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>F3</td>
+                <td><strong>Environmental constraints</strong><br>Are there any environmental restrictions at the site (Natura 2000, archaeological zones, protected species, noise limits)?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr>
+                <td>F4</td>
+                <td><strong>Fire department requirements</strong><br>Has the local fire department been consulted regarding BESS installation? Any specific requirements (firewater tank, access road width for fire trucks, fire separation distances)?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+        </table>
+
+        <h3>G. Preferred BESS Location</h3>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:55%">Question</th><th style="width:15%">Priority</th><th style="width:25%">Response</th></tr>
+            <tr class="needed">
+                <td>G1</td>
+                <td><strong>East Park — preferred BESS location</strong><br>Where would you prefer the 4 containers (3 battery + 1 MV SKID) to be placed? Options: near substation TR1/TR2, near EAC building, on unused ground within the plot. Please mark on a plan or describe.</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box" style="min-height: 60px;"></td>
+            </tr>
+            <tr class="needed">
+                <td>G2</td>
+                <td><strong>West Park — preferred BESS location</strong><br>Same question for the West park. Where should the 4 containers go?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box" style="min-height: 60px;"></td>
+            </tr>
+            <tr>
+                <td>G3</td>
+                <td><strong>Any areas to avoid?</strong><br>Are there areas within the plots that must NOT be used (future expansion plans, drainage easements, access requirements, neighbour agreements)?</td>
+                <td><span class="tag tag-needed">NEEDED</span></td>
+                <td class="response-box"></td>
+            </tr>
+            <tr class="critical">
+                <td>G4</td>
+                <td><strong>Slope at proposed BESS locations</strong><br>Based on the TDD, parts of the site have steep slopes. Per the planning decree (Κ.Δ.Π. 15/2026), the BESS installation must not significantly alter the natural topography. <strong>Flat or gently sloping areas (&lt; 5%) are strongly preferred</strong> to minimise earthworks and avoid the additional documentation requirements triggered by slopes &gt; 5%.<br><br>If all candidate locations have significant slope, we will need to design stepped/terraced platforms and submit additional cross-section drawings to the planning authority.</td>
+                <td><span class="tag tag-critical">CRITICAL</span></td>
+                <td class="response-box" style="min-height: 60px;"></td>
+            </tr>
+        </table>
+
+        <!-- SECTION 4: WHAT THE CIVIL SUBCONTRACTOR WILL DO -->
+        <h2 class="page-break">4. What the Civil Subcontractor Needs to Quote</h2>
+
+        <p>Once we receive the above data, the civil engineering subcontractor will prepare a quotation for the following scope per park:</p>
+
+        <table>
+            <tr><th style="width:5%">#</th><th style="width:35%">Work Item</th><th>Description</th></tr>
+            <tr><td>1</td><td><strong>Site clearance</strong></td><td>Vegetation removal, topsoil stripping at BESS area (~60m × 15m per park)</td></tr>
+            <tr><td>2</td><td><strong>Earthworks — cut & fill</strong></td><td>Level the BESS platform to ≤1% slope. Volume depends on topographic survey.</td></tr>
+            <tr><td>3</td><td><strong>Foundation platforms</strong></td><td>Compacted gravel or concrete pads for 4 containers per park (12.2m × 2.44m each, 43 tonnes). Depends on geotechnical data.</td></tr>
+            <tr><td>4</td><td><strong>Drainage</strong></td><td>Perimeter drainage channel around BESS platform, connection to existing stormwater system.</td></tr>
+            <tr><td>5</td><td><strong>Cable trenches</strong></td><td>MV cable trench from BESS MV SKID to existing park switchgear. LV cable trenches between containers.</td></tr>
+            <tr><td>6</td><td><strong>Earthing extension</strong></td><td>Extend existing earthing grid to cover BESS area. Earth electrodes, copper tape, connections.</td></tr>
+            <tr><td>7</td><td><strong>Access road</strong></td><td>Upgrade or construct access road from park entrance to BESS area (if needed). Must support 43-tonne loads.</td></tr>
+            <tr><td>8</td><td><strong>Fencing</strong></td><td>Security fencing around BESS compound (if not within existing perimeter). Gate for maintenance access.</td></tr>
+            <tr><td>9</td><td><strong>Fire separation</strong></td><td>Ensure minimum 6m clearance from oil-filled transformers. Firebreak / firewall if closer than 6m.</td></tr>
+        </table>
+
+        <div class="green-box">
+            <strong>Container Specifications for Foundation Design:</strong><br>
+            Each Linyang battery container: 12,192mm (L) × 2,438mm (W) × 2,896mm (H), weight ~43,000 kg.<br>
+            MV SKID (T4): same external dimensions, weight ~35,000 kg.<br>
+            Containers rest on corner castings (ISO 1161) — can be placed on concrete plinths, steel beams, or compacted gravel with levelling shims.<br>
+            Minimum spacing between containers: 3m (for ventilation and maintenance access).<br>
+            Minimum clearance from oil-filled transformer: 6m (fire separation).
+        </div>
+
+        <!-- SECTION 5: SUMMARY -->
+        <h2>5. Summary of Required Documents</h2>
+
+        <table>
+            <tr>
+                <th style="width:5%">#</th>
+                <th style="width:50%">Document</th>
+                <th style="width:15%">Priority</th>
+                <th style="width:15%">Available?</th>
+                <th style="width:15%">Date</th>
+            </tr>
+            <tr class="critical"><td>A1</td><td>AutoCAD as-built — East Park (DWG)</td><td><span class="tag tag-critical">CRITICAL</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="critical"><td>A2</td><td>AutoCAD as-built — West Park (DWG)</td><td><span class="tag tag-critical">CRITICAL</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="critical"><td>A3</td><td>MV single-line diagram (editable)</td><td><span class="tag tag-critical">CRITICAL</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>A4</td><td>Underground services plan</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>A5</td><td>Land boundary / cadastral survey</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="critical"><td>B1</td><td>Geotechnical investigation report</td><td><span class="tag tag-critical">CRITICAL</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="critical"><td>B2</td><td>Soil bearing capacity confirmation</td><td><span class="tag tag-critical">CRITICAL</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>B3</td><td>Groundwater / water table depth</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="critical"><td>C1</td><td>Topographic survey (both BESS areas)</td><td><span class="tag tag-critical">CRITICAL</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>C2</td><td>Existing ground levels at substations</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>C3</td><td>Drainage / stormwater plan</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>E3</td><td>Earthing grid drawings (DWG)</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+            <tr class="needed"><td>E4</td><td>Protection relay settings (REF601/615)</td><td><span class="tag tag-needed">NEEDED</span></td><td class="response-box"></td><td class="response-box"></td></tr>
+        </table>
+
+        <div class="amber-box">
+            <strong>If geotechnical and topographic data do not exist:</strong> Lighthief can arrange for a licensed surveyor and geotechnical engineer to conduct both surveys at the site. Please confirm if you would like us to arrange this, or if Spanercom will commission it directly. Typical lead time: 2–3 weeks.
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 8px;">
+            <h4 style="margin-bottom: 10px; color: #16213e;">Contact</h4>
+            <p style="font-size: 12px;">
+                <strong>Alexander Papacosta</strong> — Cyprus Director, Lighthief Cyprus Ltd<br>
+                28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+                office@lighthief.com | +357 99 164 158 | www.solarfarms.cy
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Lighthief Cyprus Ltd — Confidential | Ref: LH-RFI-SPANERCOM-CIVIL-2026-03
+    </div>
+
+</div>
+</body>
+</html>

@@ -10,8 +10,8 @@
 
 | # | Task | Deadline | Status |
 |---|------|----------|--------|
-| 1 | **Send transport RFI** — Contact A. Soulis & Interfreight: how many low-loaders available Jul–Oct 2026? Can they commit exclusivity? Get written confirmation of fleet size. | 21 Feb | 🔴 Not started |
-| 2 | **Pre-book heavy-duty crane** — Contact crane operator, negotiate exclusivity for Jul 12 → Oct 12 window (51 parks, ~51 crane-days). Only 1 unit on island — no backup. | 24 Feb | 🔴 Not started |
+| 1 | **Send transport RFI** — Contact A. Soulis & Interfreight: how many low-loaders available Jul–Oct 2026? Can they commit exclusivity? Get written confirmation of fleet size. | 21 Feb | ✅ Done (fleet confirmed 22 Feb: 6× 20ft trucks 43T) |
+| 2 | **Pre-book heavy-duty crane** — Soulis proposes 160T crane (10m footprint). Covers all container types. Need exclusivity commitment for Batch 1 (Aug–Sep 2026, ~8 crane-days). **Post-signing: arrange joint site visits** for crane positioning & route assessment. | 24 Feb | 🟡 In progress (Soulis proposal received Mar 2026) |
 | 3 | **Grid connection applications** — Begin EAC submission process for Batch 1 (15 ABIO parks). EN 50549-2 TÜV cert now available. Long lead time — start immediately. | 28 Feb | 🔴 Not started |
 | 4 | **Warehouse lease shortlist** — Identify 2–3 candidate warehouses in Limassol industrial area. Min 5,000 sq ft (our 50% share of 10,000). Must have power, loading bay, vehicle access. | 28 Feb | 🔴 Not started |
 
@@ -46,11 +46,22 @@
 
 | # | Task | Deadline | Status |
 |---|------|----------|--------|
-| 16 | **Confirm crane booking** — Final confirmation of crane availability for Jul 12 start. | 1 Jun | 🔴 Not started |
-| 17 | **Confirm transport fleet** — Final truck commitment with A. Soulis / Interfreight for Batch 1 (73 containers). | 1 Jun | 🔴 Not started |
+| 16 | **Confirm crane booking** — Final confirmation of 160T crane availability for Aug 27 start (Batch 1). Soulis to submit transport permit applications 15 days before first delivery (permits valid 30 days). | 1 Jun | 🔴 Not started |
+| 17 | **Confirm transport fleet** — Final truck commitment with A. Soulis for Batch 1 (36 containers). Fleet confirmed: 6× 20ft trucks (43T). | 1 Jun | 🟡 Partially confirmed |
 | 18 | **Civil works — Batch 1** — Foundations, drainage, fencing at 15 sites must START before equipment arrives. | 1 Jun | 🔴 Not started |
-| 19 | **Interfreight port coordination** — Confirm customs clearance arrangements for Batch 1 CIF arrival ~5 Jul. | 15 Jun | 🔴 Not started |
+| 19 | **Interfreight port coordination** — Confirm customs clearance arrangements for Batch 1 CIF arrival ~20 Aug. **CRITICAL: port clearance fees must be paid 10 working days before vessel arrival** (late payment = container release delays, truck idle charges, port parking fees). Containers can stay in port 10 days. | 15 Jun | 🔴 Not started |
 | 20 | **O&M maintenance schedule** — Finalize quarterly visit calendar for parks coming online Q3. Assign engineers to districts. | 30 Jun | 🔴 Not started |
+
+---
+
+## NEW — FROM SOULIS MEETING (17 March 2026)
+
+| # | Task | Deadline | Status |
+|---|------|----------|--------|
+| 21 | **Confirm Linyang ISO lifting attachment points** — Ask Kamil/Linyang for written confirmation that BESS (20HC) and MV SKID containers have standard ISO top corner casting lifting points for crane rigging. Soulis needs this before finalising rigging plan for 160T crane. | 24 Mar | 🔴 Not started |
+| 22 | **Arrange post-signing site visits with Soulis** — After transport contract signed, coordinate joint site visits to all Batch 1 park locations (9 parks, 4 districts) for route assessment, crane positioning, and access verification. | After signing | 🔴 Not started |
+| 23 | **Set calendar reminder: port clearance payment** — When Batch 1 vessel ETA is confirmed, set reminder to pay Interfreight port clearance fees 10 working days before arrival. Estimated: ~5 Aug 2026 if ETA is 20 Aug 2026. | When ETA confirmed | 🔴 Not started |
+| 24 | **Set calendar reminder: transport permit application** — Soulis to submit permit applications 15 days before first delivery. Permits valid 30 days. Estimated: ~7 Aug 2026 if first delivery is ~27 Aug 2026. | When ETA confirmed | 🔴 Not started |
 
 ---
 

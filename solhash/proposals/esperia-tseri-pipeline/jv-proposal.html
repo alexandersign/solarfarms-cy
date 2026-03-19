@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solhash — Esperia Tseri Pipeline JV Mining Proposal</title>
+  <style>
+    @page { size: A4; margin: 15mm; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 10pt; line-height: 1.5; color: #222; background: #fff; max-width: 210mm; margin: 0 auto; padding: 12mm; }
+    .page-break { page-break-before: always; }
+    .cover { text-align: center; padding: 40px 0 48px; border-bottom: 3px solid #2d7d46; }
+    .cover img { max-height: 80px; margin-bottom: 20px; }
+    .cover h1 { font-size: 1.85rem; color: #1a5c2e; margin: 0 0 6px; font-weight: 800; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 4px; }
+    .cover .tagline { font-size: 0.85rem; color: #1a5c2e; font-weight: 600; margin: 18px 0 4px; letter-spacing: 0.3px; }
+    .cover .date { font-size: 0.9rem; color: #777; margin-top: 16px; }
+    h2 { font-size: 1.15rem; color: #1a5c2e; margin: 28px 0 12px; padding-bottom: 4px; border-bottom: 2px solid #2d7d46; }
+    h3 { font-size: 0.95rem; margin: 18px 0 8px; color: #333; }
+    h4 { font-size: 0.88rem; margin: 12px 0 6px; color: #1a5c2e; }
+    p, li { margin-bottom: 4px; }
+    ul, ol { margin-left: 18px; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9pt; }
+    th, td { padding: 6px 10px; text-align: left; border: 1px solid #ddd; }
+    th { background: #f0f7f2; font-weight: 600; color: #1a5c2e; font-size: 8.5pt; }
+    td.r { text-align: right; font-variant-numeric: tabular-nums; }
+    tr:nth-child(even) { background: #fafafa; }
+    .highlight { background: #e8f5e9 !important; }
+    .toc { background: #f8faf8; border: 1px solid #d5e8d5; border-radius: 8px; padding: 20px 24px; margin: 20px 0 28px; }
+    .toc h3 { margin-top: 0; color: #1a5c2e; }
+    .toc ol { padding-left: 20px; margin-bottom: 0; }
+    .toc li { margin: 3px 0; }
+    .toc a { color: #1a5c2e; text-decoration: none; font-size: 9.5pt; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .divider { border-top: 1px solid #d5e8d5; margin: 8px 0; }
+    .role-card { border: 1px solid #ddd; border-radius: 8px; padding: 18px; margin-bottom: 16px; background: #fafafa; }
+    .role-card h3 { margin-top: 0; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .partner-header { padding: 16px 20px; border-radius: 8px; margin: 0 0 16px; color: #fff; }
+    .partner-header.park { background: linear-gradient(135deg, #2d7d46, #4caf50); }
+    .partner-header.mining { background: linear-gradient(135deg, #1a3a5c, #2563eb); }
+    .partner-header.lighthief { background: linear-gradient(135deg, #5c3a1a, #d97706); }
+    .partner-header h2 { color: #fff; border-bottom-color: rgba(255,255,255,0.3); margin-top: 0; }
+    .partner-header p { color: rgba(255,255,255,0.85); margin: 0; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0 20px; }
+    .kpi { background: #f8faf8; border: 1px solid #d5e8d5; border-radius: 8px; padding: 14px 10px; text-align: center; }
+    .kpi .val { font-size: 1.4rem; font-weight: 800; color: #1a5c2e; }
+    .kpi .lbl { font-size: 7.5pt; color: #666; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 2px; }
+    .kpi.blue { background: #eff6ff; border-color: #93c5fd; }
+    .kpi.blue .val { color: #1e40af; }
+    .kpi.amber { background: #fffbeb; border-color: #fcd34d; }
+    .kpi.amber .val { color: #92400e; }
+    .callout { border-radius: 8px; padding: 14px 18px; margin: 12px 0 16px; font-size: 9.5pt; }
+    .callout.green { background: #e8f5e9; border-left: 4px solid #2d7d46; }
+    .callout.blue { background: #eff6ff; border-left: 4px solid #2563eb; }
+    .callout.amber { background: #fffbeb; border-left: 4px solid #d97706; }
+    .callout.red { background: #fef2f2; border-left: 4px solid #dc2626; }
+    .flow-row { display: flex; align-items: stretch; gap: 0; margin: 10px 0; }
+    .flow-box { flex: 1; padding: 10px 12px; text-align: center; font-size: 8.5pt; font-weight: 600; border: 1px solid #cbd5e1; }
+    .flow-box.park { background: #e8f5e9; border-color: #86efac; color: #166534; }
+    .flow-box.mining { background: #eff6ff; border-color: #93c5fd; color: #1e40af; }
+    .flow-box.lighthief { background: #fffbeb; border-color: #fcd34d; color: #92400e; }
+    .flow-box.market { background: #f3e8ff; border-color: #c4b5fd; color: #5b21b6; }
+    .flow-box .sub { font-size: 7pt; font-weight: 400; color: #666; display: block; margin-top: 2px; }
+    .flow-arrow { width: 28px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #94a3b8; flex-shrink: 0; }
+    .split-bar { display: flex; height: 28px; border-radius: 6px; overflow: hidden; margin: 10px 0; font-size: 8.5pt; font-weight: 700; }
+    .split-bar .park-bar { background: #4caf50; color: #fff; display: flex; align-items: center; justify-content: center; }
+    .split-bar .mining-bar { background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; }
+    .split-bar .lighthief-bar { background: #d97706; color: #fff; display: flex; align-items: center; justify-content: center; }
+    .note { font-size: 8pt; color: #666; margin-top: 8px; }
+    .footer { margin-top: 28px; padding-top: 12px; border-top: 2px solid #2d7d46; text-align: center; font-size: 7.5pt; color: #888; }
+    .structure-diagram { display: flex; align-items: center; justify-content: center; gap: 0; margin: 24px 0; flex-wrap: wrap; }
+    .structure-box { border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 160px; }
+    .structure-box h4 { margin: 0 0 4px; font-size: 0.9rem; }
+    .structure-box p { margin: 0; font-size: 8pt; }
+    .structure-arrow { font-size: 24px; color: #94a3b8; padding: 0 6px; }
+    @media print {
+      body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page-break { page-break-before: always; }
+      .partner-header, .kpi, .callout, .highlight, th, .split-bar .park-bar, .split-bar .mining-bar, .split-bar .lighthief-bar, .structure-box, .flow-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    @media (max-width: 600px) { .three-col, .two-col { grid-template-columns: 1fr; } .kpi-row { grid-template-columns: 1fr 1fr; } .flow-row, .structure-diagram { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <img src="data:image/png;base64,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" alt="Solhash">
+  <h1>Esperia Tseri Pipeline</h1>
+  <p class="subtitle">Pre-Connection Solar Mining &mdash; Joint Venture Proposal</p>
+  <p class="subtitle" style="font-size:0.9rem;color:#777;">Phase 3 &middot; 5 Parks &middot; 27.5 MW &middot; Nicosia District</p>
+  <p class="tagline">The largest solar mining deployment in Cyprus</p>
+  <p class="date">Confidential &mdash; March 2026</p>
+  <p style="font-size:0.85rem; color:#555; margin-top: 24px;">
+    Prepared for <strong>Dino Constantinou</strong> &mdash; Esperia Energy Group<br>
+    by <strong>Lighthief Ltd</strong> (Arranger &amp; JV Manager)
+  </p>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#s1">Executive Summary</a></li>
+    <li><a href="#s2">The Opportunity &mdash; 27.5 MW at Scale</a></li>
+    <li><a href="#s3">Three-Party JV Structure</a></li>
+    <li><a href="#s4">Per-Park Deployment</a></li>
+    <li><a href="#s5">Revenue Waterfall (BTC &euro;100K)</a></li>
+  </ol>
+  <div class="divider"></div>
+  <ol start="6">
+    <li><a href="#s6">BTC Price Scenarios (&euro;60K / &euro;100K / &euro;200K)</a></li>
+    <li><a href="#s7">Park Partner Economics &mdash; Dino (Esperia)</a></li>
+    <li><a href="#s8">Mining Partner Economics</a></li>
+    <li><a href="#s9">Lighthief Economics (Arranger)</a></li>
+  </ol>
+  <div class="divider"></div>
+  <ol start="10">
+    <li><a href="#s10">Equipment &amp; EPC Breakdown</a></li>
+    <li><a href="#s11">Key Assumptions</a></li>
+    <li><a href="#s12">Next Steps</a></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     1. EXECUTIVE SUMMARY
+     ═══════════════════════════════════════════════════════════════ -->
+<h2 id="s1">1. Executive Summary</h2>
+
+<div class="callout green">
+  <strong>27.5 MW of solar capacity across 5 parks in Nicosia — the largest pre-connection mining deployment in Cyprus.</strong> Dino Constantinou's Esperia Energy pipeline (29 MWp PV / 27.75 MW BESS) will sit idle for 3–5 years before grid connection. This proposal converts that stranded energy into Bitcoin mining revenue through a three-party Joint Venture.
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="val">27.5 MW</div><div class="lbl">Mining Capacity</div></div>
+  <div class="kpi"><div class="val">68,750</div><div class="lbl">MWh / Year</div></div>
+  <div class="kpi"><div class="val">6,614</div><div class="lbl">S21+ Miners</div></div>
+  <div class="kpi"><div class="val">40</div><div class="lbl">20ft Containers</div></div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="val">5</div><div class="lbl">Solar Parks</div></div>
+  <div class="kpi blue"><div class="val">&euro;16.2M</div><div class="lbl">Total Capex</div></div>
+  <div class="kpi"><div class="val">2.18 yr</div><div class="lbl">Mining Payback</div></div>
+  <div class="kpi amber"><div class="val">~35%</div><div class="lbl">Mining IRR</div></div>
+</div>
+
+<h3>Why This Deal Works</h3>
+<ul>
+  <li><strong>Dino (Esperia)</strong> monetises &euro;7.5M+ in PV assets that would otherwise generate zero revenue for 3–5 years. Earns ~4.63&cent;/kWh with no additional capex.</li>
+  <li><strong>Mining Partner</strong> accesses &euro;0/kWh solar electricity — the lowest energy cost in European mining — with a 2.18-year payback and ~35% IRR at BTC &euro;100K.</li>
+  <li><strong>Lighthief</strong> arranges the JV, introduces the Mining Partner, and manages operations for a 5% management fee — with zero capex.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     2. THE OPPORTUNITY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s2">2. The Opportunity &mdash; 27.5 MW at Scale</h2>
+
+<p>Cyprus solar parks face <strong>3–5 year delays</strong> before grid connection terms are issued by EAC/CERA. During this stranded period, installed PV panels generate energy that <strong>cannot be exported</strong>. Park owners pay land lease and O&amp;M on an asset producing zero revenue.</p>
+
+<div class="callout green">
+  <strong>Esperia Tseri is uniquely positioned.</strong> Five parks, all in the Nicosia district, are expected to connect around 2028. Together they represent 29 MWp of PV and 87.5 MWh of BESS capacity. The BESS MW rating (27.5 MW) sets the maximum behind-the-meter mining load.
+</div>
+
+<h3>Scale Advantages</h3>
+<table>
+  <thead><tr><th>Factor</th><th>Single Park (5 MW)</th><th>Esperia Pipeline (27.5 MW)</th><th>Advantage</th></tr></thead>
+  <tbody>
+    <tr><td>Equipment procurement</td><td>1,155 S21+</td><td>6,614 S21+</td><td>Volume pricing from OEM</td></tr>
+    <tr><td>Containers</td><td>7</td><td>40</td><td>Shared transport logistics</td></tr>
+    <tr><td>Civil works per MW</td><td>&euro;25K/MW</td><td>&euro;25K/MW</td><td>Shared crew, 5 sites in one district</td></tr>
+    <tr><td>Operational management</td><td>Dedicated team</td><td>Shared across 5 sites</td><td>Lower &euro;/MW opex</td></tr>
+    <tr><td>Internet (Starlink)</td><td>1 dish</td><td>5 dishes</td><td>One per site, covers all containers</td></tr>
+    <tr><td>Mining pool</td><td>Small hash contribution</td><td>~1.43 EH/s combined</td><td>Better pool tier / terms</td></tr>
+    <tr><td>Rotation flexibility</td><td>None</td><td>Move containers between parks</td><td>Connection stagger management</td></tr>
+  </tbody>
+</table>
+
+<div class="callout blue">
+  <strong>Multi-site rotation:</strong> If one park receives early connection terms, containers can be redeployed to the remaining parks — keeping equipment utilised and revenue flowing throughout the JV window.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     3. THREE-PARTY JV STRUCTURE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s3">3. Three-Party JV Structure</h2>
+
+<p>This is a <strong>three-party arrangement</strong>, not a traditional two-party split. Lighthief acts as Arranger and JV Manager — finding and introducing the Mining Partner, structuring the deal, and managing ongoing operations.</p>
+
+<!-- Structure diagram -->
+<div class="structure-diagram">
+  <div class="structure-box" style="background:#e8f5e9; border: 2px solid #2d7d46;">
+    <h4 style="color:#1a5c2e;">Dino (Esperia)</h4>
+    <p style="color:#333;">Park Partner</p>
+    <p style="color:#2d7d46; font-weight:700;">30% of net</p>
+  </div>
+  <div class="structure-arrow">&larr; manages &rarr;</div>
+  <div class="structure-box" style="background:#fffbeb; border: 2px solid #d97706;">
+    <h4 style="color:#92400e;">Lighthief</h4>
+    <p style="color:#333;">Arranger + JV Manager</p>
+    <p style="color:#d97706; font-weight:700;">5% mgmt fee</p>
+  </div>
+  <div class="structure-arrow">&larr; introduces &rarr;</div>
+  <div class="structure-box" style="background:#eff6ff; border: 2px solid #2563eb;">
+    <h4 style="color:#1e40af;">Mining Partner</h4>
+    <p style="color:#333;">Equipment + EPC Funder</p>
+    <p style="color:#2563eb; font-weight:700;">70% of net</p>
+  </div>
+</div>
+
+<h3>Revenue Flow</h3>
+<div class="flow-row">
+  <div class="flow-box park">5 Solar Parks<span class="sub">29 MWp &rarr; 68,750 MWh/yr</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box mining">40 Containers<span class="sub">6,614 S21+ miners</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box market">Bitcoin Network<span class="sub">Mining rewards</span></div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box lighthief">Revenue Split<span class="sub">5% Lighthief &rarr; 30/70</span></div>
+</div>
+
+<h3>Revenue Distribution Waterfall</h3>
+<div class="split-bar" style="height:36px;">
+  <div class="lighthief-bar" style="width:5%;" title="Lighthief 5%">5%</div>
+  <div class="park-bar" style="width:28.5%;" title="Park Partner 30% of remaining">Park 30%</div>
+  <div class="mining-bar" style="width:66.5%;" title="Mining Partner 70% of remaining">Mining 70%</div>
+</div>
+<p class="note">Gross revenue &rarr; deduct operating costs &rarr; Lighthief takes 5% management fee on gross &rarr; remaining net split 30% Park / 70% Mining.</p>
+
+<h3>Party Contributions</h3>
+<div class="three-col">
+  <div class="role-card" style="border-left:4px solid #2d7d46;">
+    <h3 style="color:#2d7d46;">Dino (Park Partner) &mdash; 30%</h3>
+    <p><strong>Provides:</strong> 29 MWp PV across 5 permitted sites, inverters, land access, electrical infrastructure.</p>
+    <p><strong>Asset value:</strong> ~&euro;7.5M+ in PV capex (already committed for grid connection).</p>
+    <p><strong>Ongoing costs borne by JV:</strong> Land lease, O&amp;M, panel degradation compensation.</p>
+    <p><strong>Receives:</strong> 30% of net after mgmt fee &rarr; <strong>~4.63&cent;/kWh at BTC &euro;100K</strong>.</p>
+    <p><strong>After JV:</strong> Retains all PV assets &rarr; grid PPA revenue at ~10&cent;/kWh.</p>
+  </div>
+  <div class="role-card" style="border-left:4px solid #2563eb;">
+    <h3 style="color:#1e40af;">Mining Partner &mdash; 70%</h3>
+    <p><strong>Provides:</strong> 6,614 Antminer S21+ miners, 40 containers, full EPC funding.</p>
+    <p><strong>Capex:</strong> &euro;16,204,560 (equipment &euro;14.35M + EPC &euro;1.85M).</p>
+    <p><strong>Receives:</strong> 70% of net after mgmt fee &rarr; <strong>~35% IRR, 2.18-yr payback</strong>.</p>
+    <p><strong>Exit:</strong> Equipment is mobile — relocates to next park or sells at residual.</p>
+  </div>
+  <div class="role-card" style="border-left:4px solid #d97706;">
+    <h3 style="color:#92400e;">Lighthief (Arranger) &mdash; 5% Mgmt Fee</h3>
+    <p><strong>Role:</strong> Finds and introduces Mining Partner. Structures JV. Manages operations.</p>
+    <p><strong>Capex:</strong> &euro;0 &mdash; Lighthief does not invest.</p>
+    <p><strong>Receives:</strong> 5% management fee on gross revenue &rarr; <strong>&euro;638K/yr at BTC &euro;100K</strong>.</p>
+    <p><strong>Scope:</strong> Deal origination, legal structuring, EPC oversight, ongoing pool management, reporting.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     4. PER-PARK DEPLOYMENT
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s4">4. Per-Park Deployment</h2>
+
+<p>All 5 parks are in the <strong>Nicosia district</strong>, enabling shared logistics, a single operations team, and container rotation flexibility.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Park</th>
+      <th class="r">PV (MWp)</th>
+      <th class="r">BESS MW</th>
+      <th class="r">BESS MWh</th>
+      <th class="r">MWh/yr</th>
+      <th class="r">S21+</th>
+      <th class="r">Containers</th>
+      <th class="r">Revenue/yr<br><small>(BTC &euro;100K)</small></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Esperia Tseri</td>
+      <td class="r">7.20</td>
+      <td class="r">7.0</td>
+      <td class="r">20</td>
+      <td class="r">18,000</td>
+      <td class="r">1,732</td>
+      <td class="r">11</td>
+      <td class="r">&euro;3,340K</td>
+    </tr>
+    <tr>
+      <td>Esperia Tseri 2A</td>
+      <td class="r">2.75</td>
+      <td class="r">2.5</td>
+      <td class="r">7.5</td>
+      <td class="r">6,875</td>
+      <td class="r">662</td>
+      <td class="r">4</td>
+      <td class="r">&euro;1,277K</td>
+    </tr>
+    <tr>
+      <td>Esperia Tseri 2B</td>
+      <td class="r">8.00</td>
+      <td class="r">7.5</td>
+      <td class="r">25</td>
+      <td class="r">20,000</td>
+      <td class="r">1,924</td>
+      <td class="r">12</td>
+      <td class="r">&euro;3,710K</td>
+    </tr>
+    <tr>
+      <td>Esperia Tseri 2C</td>
+      <td class="r">6.30</td>
+      <td class="r">6.0</td>
+      <td class="r">20</td>
+      <td class="r">15,750</td>
+      <td class="r">1,515</td>
+      <td class="r">10</td>
+      <td class="r">&euro;2,921K</td>
+    </tr>
+    <tr>
+      <td>Esperia Tseri 3</td>
+      <td class="r">4.75</td>
+      <td class="r">4.75</td>
+      <td class="r">15</td>
+      <td class="r">11,875</td>
+      <td class="r">1,143</td>
+      <td class="r">7</td>
+      <td class="r">&euro;2,204K</td>
+    </tr>
+    <tr class="highlight" style="font-weight:700;">
+      <td><strong>Total / Aggregate</strong></td>
+      <td class="r"><strong>29.00</strong></td>
+      <td class="r"><strong>27.75</strong></td>
+      <td class="r"><strong>87.5</strong></td>
+      <td class="r"><strong>72,500</strong></td>
+      <td class="r"><strong>6,976</strong></td>
+      <td class="r"><strong>44</strong></td>
+      <td class="r"><strong>&euro;13,452K</strong></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">The aggregate financial model uses 27.5 MW / 68,750 MWh/yr (matching BESS MW rating at 2,500 kWh/kWp). Per-park breakdown uses site-level PV MWp for illustration and sums higher than the aggregate.</p>
+
+<h3>Deployment Phasing</h3>
+<p>All 5 sites can be deployed simultaneously, but phased deployment is also viable:</p>
+<table>
+  <thead><tr><th>Phase</th><th>Parks</th><th class="r">MW</th><th class="r">Containers</th><th>Timeline</th></tr></thead>
+  <tbody>
+    <tr><td>Phase A</td><td>Tseri + Tseri 2B (largest sites)</td><td class="r">15.2</td><td class="r">21</td><td>Month 1–3</td></tr>
+    <tr><td>Phase B</td><td>Tseri 2C + Tseri 3</td><td class="r">11.05</td><td class="r">16</td><td>Month 3–5</td></tr>
+    <tr><td>Phase C</td><td>Tseri 2A</td><td class="r">2.75</td><td class="r">4</td><td>Month 5–6</td></tr>
+    <tr class="highlight"><td><strong>Full deployment</strong></td><td>All 5 parks operational</td><td class="r"><strong>29.0</strong></td><td class="r"><strong>41</strong></td><td><strong>Month 6</strong></td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     5. REVENUE WATERFALL (BTC €100K)
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s5">5. Revenue Waterfall &mdash; BTC &euro;100K Base Case</h2>
+
+<h3>Annual Revenue Waterfall (27.5 MW)</h3>
+<table>
+  <thead><tr><th>Line</th><th>Description</th><th class="r">Annual (&euro;)</th></tr></thead>
+  <tbody>
+    <tr class="highlight">
+      <td><strong>Gross mining revenue</strong></td>
+      <td>6,614 S21+ &times; hash price &times; 8 hrs/day &times; BTC &euro;100K multiplier</td>
+      <td class="r"><strong>&euro;12,752,340</strong></td>
+    </tr>
+    <tr><td>Less: Degradation compensation</td><td>&euro;10/MWh &times; 68,750 MWh</td><td class="r">(&euro;687,500)</td></tr>
+    <tr><td>Less: Park O&amp;M + Tracker O&amp;M</td><td>&euro;10/kW/yr &times; 27,500 kW + 5 sites &times; &euro;20K/yr</td><td class="r">(&euro;375,000)</td></tr>
+    <tr><td>Less: Land lease</td><td>41.25 ha &times; &euro;2,500/ha/yr</td><td class="r">(&euro;103,125)</td></tr>
+    <tr><td>Less: Equipment opex</td><td>&euro;12K/MW &times; 27.5 MW (cooling, maint, monitoring)</td><td class="r">(&euro;330,000)</td></tr>
+    <tr><td>Less: Internet (Starlink)</td><td>5 sites &times; &euro;1,560/yr</td><td class="r">(&euro;7,800)</td></tr>
+    <tr style="border-top: 2px solid #2d7d46;">
+      <td><strong>Net before management</strong></td><td></td>
+      <td class="r"><strong>&euro;11,248,915</strong></td>
+    </tr>
+    <tr style="background:#fffbeb;">
+      <td>&rarr; <strong>Lighthief mgmt fee (5% of gross)</strong></td>
+      <td>5% &times; &euro;12,752,340</td>
+      <td class="r"><strong>(&euro;637,617)</strong></td>
+    </tr>
+    <tr class="highlight" style="border-top: 2px solid #2d7d46;">
+      <td><strong>Net distributable</strong></td><td></td>
+      <td class="r"><strong>&euro;10,611,298</strong></td>
+    </tr>
+    <tr style="background:#e8f5e9;">
+      <td>&rarr; <strong>Dino / Park Partner (30%)</strong></td>
+      <td>~4.63&cent;/kWh</td>
+      <td class="r"><strong>&euro;3,183,389</strong></td>
+    </tr>
+    <tr style="background:#dbeafe;">
+      <td>&rarr; <strong>Mining Partner (70%)</strong></td>
+      <td></td>
+      <td class="r"><strong>&euro;7,427,909</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Visual Split</h3>
+<div class="split-bar" style="height: 40px; font-size: 9pt;">
+  <div class="lighthief-bar" style="width:5%;">5%</div>
+  <div class="park-bar" style="width:24.5%;">Dino 30%</div>
+  <div class="mining-bar" style="width:57.2%;">Mining 70%</div>
+  <div style="width:13.3%; background:#e5e7eb; color:#666; display:flex; align-items:center; justify-content:center;">Costs</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     6. BTC PRICE SCENARIOS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s6">6. BTC Price Scenarios</h2>
+
+<h3>All-Party Returns by BTC Price (27.5 MW, 5-Year Window)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>BTC Price</th>
+      <th class="r">Gross Rev/yr</th>
+      <th class="r">Net/yr</th>
+      <th class="r">Lighthief<br>5% Fee/yr</th>
+      <th class="r">Dino<br>30%/yr</th>
+      <th class="r">Dino<br>&cent;/kWh</th>
+      <th class="r">Mining<br>70%/yr</th>
+      <th class="r">Mining<br>Payback</th>
+      <th class="r">Mining<br>IRR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&euro;60K (Bear)</td>
+      <td class="r">&euro;7,650K</td>
+      <td class="r">&euro;5,764K</td>
+      <td class="r">&euro;382K</td>
+      <td class="r">&euro;1,729K</td>
+      <td class="r">2.52&cent;</td>
+      <td class="r">&euro;4,035K</td>
+      <td class="r">4.02 yr</td>
+      <td class="r">~10%</td>
+    </tr>
+    <tr class="highlight">
+      <td><strong>&euro;100K (Base)</strong></td>
+      <td class="r"><strong>&euro;12,752K</strong></td>
+      <td class="r"><strong>&euro;10,611K</strong></td>
+      <td class="r"><strong>&euro;638K</strong></td>
+      <td class="r"><strong>&euro;3,183K</strong></td>
+      <td class="r"><strong>4.63&cent;</strong></td>
+      <td class="r"><strong>&euro;7,428K</strong></td>
+      <td class="r"><strong>2.18 yr</strong></td>
+      <td class="r"><strong>~35%</strong></td>
+    </tr>
+    <tr>
+      <td>&euro;200K (Bull)</td>
+      <td class="r">&euro;25,505K</td>
+      <td class="r">&euro;21,726K</td>
+      <td class="r">&euro;1,275K</td>
+      <td class="r">&euro;6,518K</td>
+      <td class="r">9.48&cent;</td>
+      <td class="r">&euro;15,208K</td>
+      <td class="r">1.07 yr</td>
+      <td class="r">~88%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>5-Year Cumulative Returns by Party</h3>
+<table>
+  <thead>
+    <tr><th>Party</th><th class="r">Capex</th><th class="r">BTC &euro;60K<br>(5yr)</th><th class="r">BTC &euro;100K<br>(5yr)</th><th class="r">BTC &euro;200K<br>(5yr)</th></tr>
+  </thead>
+  <tbody>
+    <tr style="background:#e8f5e9;">
+      <td><strong>Dino (Park, 30%)</strong></td>
+      <td class="r">&euro;0</td>
+      <td class="r">&euro;8,646K</td>
+      <td class="r"><strong>&euro;15,917K</strong></td>
+      <td class="r">&euro;32,589K</td>
+    </tr>
+    <tr style="background:#dbeafe;">
+      <td><strong>Mining Partner (70%)</strong></td>
+      <td class="r" style="color:#c00;">(&euro;16,205K)</td>
+      <td class="r" style="color:#2d7d46;">&euro;3,969K</td>
+      <td class="r" style="color:#2d7d46;"><strong>&euro;20,935K</strong></td>
+      <td class="r" style="color:#2d7d46;">&euro;59,837K</td>
+    </tr>
+    <tr style="background:#fffbeb;">
+      <td><strong>Lighthief (5% Fee)</strong></td>
+      <td class="r">&euro;0</td>
+      <td class="r">&euro;1,912K</td>
+      <td class="r"><strong>&euro;3,188K</strong></td>
+      <td class="r">&euro;6,376K</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout amber">
+  <strong>Bear case (&euro;60K):</strong> Mining Partner recovers capex in ~4 years. Park Partner earns &euro;8.65M from otherwise stranded energy. Even in the bear case, both parties generate significant returns.
+</div>
+
+<div class="callout green">
+  <strong>Bull case (&euro;200K):</strong> Mining Partner achieves &euro;59.8M on &euro;16.2M invested (3.7&times; return). Dino earns 9.48&cent;/kWh — approaching his normal grid PPA rate — from an asset that has not yet connected.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     7. PARK PARTNER ECONOMICS — DINO
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<div class="partner-header park">
+  <h2 id="s7" style="border-bottom-color:rgba(255,255,255,0.4);">7. Park Partner Economics &mdash; Dino (Esperia Energy)</h2>
+  <p>Earn ~4.63&cent;/kWh from stranded solar parks. No additional investment required.</p>
+</div>
+
+<h3>Value Proposition</h3>
+<div class="callout green">
+  <strong>Dino provides the scarce, irreplaceable resource:</strong> 29 MWp of installed PV on 5 permitted sites with electrical infrastructure ready. These assets, worth &euro;7.5M+, would generate zero revenue for 3–5 years. The JV turns them into an income stream immediately.
+</div>
+
+<h3>Without JV vs With JV (5 Years, BTC &euro;100K)</h3>
+<table>
+  <thead><tr><th></th><th class="r">Without JV</th><th class="r">With JV (BTC &euro;100K)</th></tr></thead>
+  <tbody>
+    <tr><td>PV capex deployed</td><td class="r">(&euro;7,500K)</td><td class="r">(&euro;7,500K)</td></tr>
+    <tr><td>Land lease (5 years)</td><td class="r">(&euro;516K)</td><td class="r">Covered by JV</td></tr>
+    <tr><td>O&amp;M + Tracker O&amp;M (5 years)</td><td class="r">(&euro;1,875K)</td><td class="r">Covered by JV</td></tr>
+    <tr><td>Revenue (5 years)</td><td class="r" style="color:#c00;">&euro;0</td><td class="r" style="color:#2d7d46;">&euro;15,917K</td></tr>
+    <tr class="highlight">
+      <td><strong>Net position (pre-connection)</strong></td>
+      <td class="r" style="color:#c00;"><strong>(&euro;9,891K)</strong></td>
+      <td class="r" style="color:#2d7d46;"><strong>&euro;8,417K</strong></td>
+    </tr>
+    <tr><td><strong>PV capex recovery</strong></td><td class="r">0%</td><td class="r" style="color:#2d7d46;"><strong>&gt;100%</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">With the JV, Dino <strong>fully recovers PV capex</strong> and earns a net profit of &euro;8.4M before grid connection even begins. Without the JV, the same period represents a &euro;9.9M cash drain.</p>
+
+<h3>Dino's Earnings Per Park (BTC &euro;100K)</h3>
+<table>
+  <thead><tr><th>Park</th><th class="r">MWh/yr</th><th class="r">Dino's 30%/yr</th><th class="r">&cent;/kWh</th><th class="r">5-Year Total</th></tr></thead>
+  <tbody>
+    <tr><td>Esperia Tseri</td><td class="r">18,000</td><td class="r">&euro;833K</td><td class="r">4.63</td><td class="r">&euro;4,167K</td></tr>
+    <tr><td>Esperia Tseri 2A</td><td class="r">6,875</td><td class="r">&euro;318K</td><td class="r">4.63</td><td class="r">&euro;1,591K</td></tr>
+    <tr><td>Esperia Tseri 2B</td><td class="r">20,000</td><td class="r">&euro;926K</td><td class="r">4.63</td><td class="r">&euro;4,630K</td></tr>
+    <tr><td>Esperia Tseri 2C</td><td class="r">15,750</td><td class="r">&euro;729K</td><td class="r">4.63</td><td class="r">&euro;3,647K</td></tr>
+    <tr><td>Esperia Tseri 3</td><td class="r">11,875</td><td class="r">&euro;550K</td><td class="r">4.63</td><td class="r">&euro;2,748K</td></tr>
+    <tr class="highlight">
+      <td><strong>Total</strong></td>
+      <td class="r"><strong>72,500</strong></td>
+      <td class="r"><strong>&euro;3,357K</strong></td>
+      <td class="r"><strong>4.63</strong></td>
+      <td class="r"><strong>&euro;16,783K</strong></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">Aggregate model total is &euro;3,183K/yr on 68,750 MWh. Per-park indicative breakdown shown above uses site-level MWh (72,500 total) for illustration.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     8. MINING PARTNER ECONOMICS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<div class="partner-header mining">
+  <h2 id="s8" style="border-bottom-color:rgba(255,255,255,0.4);">8. Mining Partner Economics</h2>
+  <p>&euro;0/kWh solar electricity. 2.18-year payback. Mobile equipment.</p>
+</div>
+
+<h3>Investment Summary</h3>
+<div class="kpi-row">
+  <div class="kpi blue"><div class="val">&euro;16.20M</div><div class="lbl">Total Capex</div></div>
+  <div class="kpi blue"><div class="val">&euro;7.43M</div><div class="lbl">Annual Return (70%)</div></div>
+  <div class="kpi blue"><div class="val">2.18 yr</div><div class="lbl">Payback Period</div></div>
+  <div class="kpi blue"><div class="val">~35%</div><div class="lbl">IRR (BTC &euro;100K)</div></div>
+</div>
+
+<h3>5-Year Cash Flow (BTC &euro;100K)</h3>
+<table>
+  <thead><tr><th>Period</th><th class="r">JV Net</th><th class="r">Mining 70%</th><th class="r">Cumulative</th></tr></thead>
+  <tbody>
+    <tr><td>Year 0 (capex)</td><td class="r">&mdash;</td><td class="r" style="color:#c00;">(&euro;16,205K)</td><td class="r" style="color:#c00;">(&euro;16,205K)</td></tr>
+    <tr><td>Year 1</td><td class="r">&euro;10,611K</td><td class="r">&euro;7,428K</td><td class="r" style="color:#c00;">(&euro;8,777K)</td></tr>
+    <tr><td>Year 2</td><td class="r">&euro;10,611K</td><td class="r">&euro;7,428K</td><td class="r" style="color:#c00;">(&euro;1,349K)</td></tr>
+    <tr class="highlight"><td><strong>Year 3 (breakeven)</strong></td><td class="r">&euro;10,611K</td><td class="r">&euro;7,428K</td><td class="r" style="color:#2d7d46;"><strong>&euro;6,079K</strong></td></tr>
+    <tr><td>Year 4</td><td class="r">&euro;10,611K</td><td class="r">&euro;7,428K</td><td class="r" style="color:#2d7d46;">&euro;13,507K</td></tr>
+    <tr><td>Year 5</td><td class="r">&euro;10,611K</td><td class="r">&euro;7,428K</td><td class="r" style="color:#2d7d46;">&euro;20,935K</td></tr>
+  </tbody>
+</table>
+<p class="note">Breakeven during Year 3. Remaining years are pure profit. Equipment retains ~10% residual value (~&euro;1.4M) at Year 5. Total 5-year profit: &euro;20.9M on &euro;16.2M invested (129% return on capital).</p>
+
+<h3>Why &euro;0/kWh Matters</h3>
+<div class="callout blue">
+  <strong>Electricity is 60–80% of Bitcoin mining cost.</strong> By deploying behind-the-meter on pre-connection solar parks, the Mining Partner eliminates the largest operating expense. There is no grid tariff, no PPA, no energy bill. This is the lowest-cost mining location in Europe.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     9. LIGHTHIEF ECONOMICS (ARRANGER)
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<div class="partner-header lighthief">
+  <h2 id="s9" style="border-bottom-color:rgba(255,255,255,0.4);">9. Lighthief Economics (Arranger &amp; JV Manager)</h2>
+  <p>Zero capex. 5% management fee on gross revenue. Deal origination and ongoing operations.</p>
+</div>
+
+<h3>Lighthief's Role</h3>
+<table>
+  <thead><tr><th>Function</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Deal origination</strong></td><td>Identifies Park Partner (Dino / Esperia). Structures JV terms. Negotiates 30/70 split.</td></tr>
+    <tr><td><strong>Mining Partner introduction</strong></td><td>Sources, qualifies, and introduces the capital partner who funds &euro;16.20M in equipment + EPC.</td></tr>
+    <tr><td><strong>Legal structuring</strong></td><td>JV agreement drafting, entity setup, IP and equipment ownership structure.</td></tr>
+    <tr><td><strong>EPC oversight</strong></td><td>Manages civil works, container placement, LV tie-in, transport across all 5 sites.</td></tr>
+    <tr><td><strong>Operations management</strong></td><td>Mining pool selection, hashrate monitoring, equipment maintenance coordination, reporting.</td></tr>
+    <tr><td><strong>Financial reporting</strong></td><td>Monthly revenue reports, BTC conversion, distribution calculations, tax documentation.</td></tr>
+  </tbody>
+</table>
+
+<h3>Revenue (5% Management Fee on Gross)</h3>
+<table>
+  <thead><tr><th>BTC Scenario</th><th class="r">Gross Revenue/yr</th><th class="r">Lighthief Fee/yr</th><th class="r">5-Year Total</th></tr></thead>
+  <tbody>
+    <tr><td>&euro;60K (Bear)</td><td class="r">&euro;7,650K</td><td class="r">&euro;382K</td><td class="r">&euro;1,912K</td></tr>
+    <tr class="highlight"><td><strong>&euro;100K (Base)</strong></td><td class="r"><strong>&euro;12,752K</strong></td><td class="r"><strong>&euro;638K</strong></td><td class="r"><strong>&euro;3,188K</strong></td></tr>
+    <tr><td>&euro;200K (Bull)</td><td class="r">&euro;25,505K</td><td class="r">&euro;1,275K</td><td class="r">&euro;6,376K</td></tr>
+  </tbody>
+</table>
+
+<div class="callout amber">
+  <strong>Capital-light model:</strong> Lighthief invests zero capex. Revenue is purely fee-based. This aligns Lighthief's interests with deal execution and operational performance — the more efficiently the JV runs, the higher the gross revenue, and the higher Lighthief's fee.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     10. EQUIPMENT & EPC BREAKDOWN
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s10">10. Equipment &amp; EPC Breakdown</h2>
+
+<h3>Mining Equipment (Funded by Mining Partner)</h3>
+<table>
+  <thead><tr><th>Item</th><th class="r">Qty</th><th class="r">Unit Cost</th><th class="r">Total</th></tr></thead>
+  <tbody>
+    <tr><td>Antminer S21+ (216 TH/s, 3,560W)</td><td class="r">6,614</td><td class="r">&euro;2,040</td><td class="r">&euro;13,492,560</td></tr>
+    <tr><td>20ft Mining Container (168 slots)</td><td class="r">40</td><td class="r">&euro;21,500</td><td class="r">&euro;860,000</td></tr>
+    <tr class="highlight"><td><strong>Equipment subtotal</strong></td><td></td><td></td><td class="r"><strong>&euro;14,352,560</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>EPC Works (Funded by Mining Partner)</h3>
+<table>
+  <thead><tr><th>Item</th><th>Basis</th><th class="r">Total</th></tr></thead>
+  <tbody>
+    <tr><td>Platforms / foundations</td><td>40 containers &times; &euro;15,000</td><td class="r">&euro;600,000</td></tr>
+    <tr><td>Civil works (cabling, fencing, access, LV)</td><td>27.5 MW &times; &euro;25,000/MW</td><td class="r">&euro;687,500</td></tr>
+    <tr><td>Transport &amp; crane</td><td>40 containers &times; &euro;2,500</td><td class="r">&euro;100,000</td></tr>
+    <tr><td>BESS commissioning</td><td>5 sites &times; (&euro;35K + avg 5.5 MW &times; &euro;14K)</td><td class="r">&euro;462,000</td></tr>
+    <tr><td>Internet hardware (Starlink + 4G)</td><td>5 sites &times; &euro;500</td><td class="r">&euro;2,500</td></tr>
+    <tr class="highlight"><td><strong>EPC subtotal</strong></td><td></td><td class="r"><strong>&euro;1,852,000</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>Total Capex Summary</h3>
+<table>
+  <thead><tr><th>Category</th><th class="r">Amount</th><th class="r">% of Total</th></tr></thead>
+  <tbody>
+    <tr><td>Mining equipment (S21+ + containers)</td><td class="r">&euro;14,352,560</td><td class="r">88.6%</td></tr>
+    <tr><td>EPC works</td><td class="r">&euro;1,852,000</td><td class="r">11.4%</td></tr>
+    <tr class="highlight"><td><strong>Total capex (Mining Partner)</strong></td><td class="r"><strong>&euro;16,204,560</strong></td><td class="r"><strong>100%</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>Annual Operating Costs</h3>
+<table>
+  <thead><tr><th>Cost</th><th>Basis</th><th class="r">Annual (&euro;)</th></tr></thead>
+  <tbody>
+    <tr><td>Degradation compensation (to Park)</td><td>&euro;10/MWh &times; 68,750 MWh</td><td class="r">&euro;687,500</td></tr>
+    <tr><td>Park O&amp;M + Tracker O&amp;M</td><td>&euro;10/kW/yr &times; 27,500 kW + 5 sites &times; &euro;20K/yr</td><td class="r">&euro;375,000</td></tr>
+    <tr><td>Land lease</td><td>41.25 ha &times; &euro;2,500/ha/yr</td><td class="r">&euro;103,125</td></tr>
+    <tr><td>Equipment opex (cooling, maint, monitoring)</td><td>&euro;12K/MW &times; 27.5 MW</td><td class="r">&euro;330,000</td></tr>
+    <tr><td>Internet (Starlink + 4G)</td><td>5 sites &times; &euro;1,560/yr</td><td class="r">&euro;7,800</td></tr>
+    <tr class="highlight"><td><strong>Total annual costs</strong></td><td></td><td class="r"><strong>&euro;1,503,425</strong></td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     11. KEY ASSUMPTIONS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h2 id="s11">11. Key Assumptions</h2>
+
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th><th>Source / Note</th></tr></thead>
+  <tbody>
+    <tr><td>Miner model</td><td>Antminer S21+ (216 TH/s, 3,560W)</td><td>Mineshop.eu, 15% volume discount</td></tr>
+    <tr><td>Miner unit cost</td><td>&euro;2,040</td><td>Mineshop.eu sale price</td></tr>
+    <tr><td>Container (20ft, 168 slots)</td><td>&euro;21,500</td><td>Mineshop.eu</td></tr>
+    <tr><td>Hash price (base, BTC &euro;60K)</td><td>&euro;44/PH/s/day</td><td>Calibrated from market data</td></tr>
+    <tr><td>BTC price scenarios</td><td>&euro;60K / &euro;100K / &euro;200K</td><td>Bear / Base / Bull</td></tr>
+    <tr><td>PV yield (tracker + bifacial + albedo)</td><td>2,500 kWh/kWp/year</td><td>Tracker + bifacial + albedo, Nicosia</td></tr>
+    <tr><td>Daytime mining hours</td><td>8 hours/day (solar-only)</td><td>Tracker-extended irradiance window</td></tr>
+    <tr><td>Mining capacity</td><td>27.5 MW (matched to BESS MW)</td><td>PV is 29 MWp; BESS constrains load</td></tr>
+    <tr><td>MWh/year available</td><td>68,750 MWh</td><td>27.5 MW &times; 2,500 kWh/kWp</td></tr>
+    <tr><td>JV horizon</td><td>3–5 years (modelled at 5)</td><td>Connection expected ~2028</td></tr>
+    <tr><td>Degradation compensation</td><td>&euro;10/MWh</td><td>Compensates Park for panel wear</td></tr>
+    <tr><td>Land lease rate</td><td>&euro;2,500/ha/year</td><td>Typical Cyprus agricultural solar</td></tr>
+    <tr><td>Land per MW</td><td>1.5 ha/MW</td><td>Utility-scale PV standard</td></tr>
+    <tr><td>Equipment opex</td><td>&euro;12K/MW/yr</td><td>Cooling, maintenance, monitoring</td></tr>
+    <tr><td>Lighthief management fee</td><td>5% of gross revenue</td><td>Deducted before 30/70 split</td></tr>
+    <tr><td>Revenue split (after mgmt fee)</td><td>30% Park / 70% Mining</td><td>Net distributable</td></tr>
+    <tr><td>Halving</td><td>Not explicitly modelled in annuals</td><td>BTC scenarios capture range</td></tr>
+    <tr><td>Equipment residual (5yr)</td><td>~10%</td><td>ASICs depreciate rapidly</td></tr>
+  </tbody>
+</table>
+
+<div class="callout blue">
+  <strong>Conservative assumptions:</strong> Daytime-only mining (6 hrs/day) understates actual production. Battery-assisted evening mining, higher irradiance days, and BTC price appreciation above &euro;100K would all improve returns. The model deliberately excludes these to present a floor-case.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     12. NEXT STEPS
+     ═══════════════════════════════════════════════════════════════ -->
+<h2 id="s12">12. Next Steps</h2>
+
+<table>
+  <thead><tr><th>Step</th><th>Action</th><th>Owner</th><th>Timeline</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Review proposal &amp; confirm interest</td><td>Dino Constantinou</td><td>Week 1</td></tr>
+    <tr><td>2</td><td>Lighthief introduces qualified Mining Partner candidates</td><td>Lighthief</td><td>Week 2–4</td></tr>
+    <tr><td>3</td><td>Mining Partner due diligence (site visits, PV specs)</td><td>Mining Partner + Lighthief</td><td>Week 4–6</td></tr>
+    <tr><td>4</td><td>JV term sheet &amp; legal structuring</td><td>All parties</td><td>Week 6–8</td></tr>
+    <tr><td>5</td><td>Equipment procurement (S21+ bulk order + containers)</td><td>Mining Partner</td><td>Week 8–12</td></tr>
+    <tr><td>6</td><td>EPC: civil works, platforms, transport (Phase A sites)</td><td>Lighthief (EPC manager)</td><td>Week 10–16</td></tr>
+    <tr><td>7</td><td>Commissioning &amp; mining start (Phase A)</td><td>All parties</td><td>Week 16–18</td></tr>
+    <tr><td>8</td><td>Full deployment across all 5 parks</td><td>All parties</td><td>Month 6</td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <strong>First revenue within 4–5 months of agreement.</strong> Phased deployment means Phases A parks begin mining while remaining sites are under construction. Full 27.5 MW operational by Month 6.
+</div>
+
+<h3>Contact</h3>
+<table>
+  <tbody>
+    <tr><td><strong>Park Partner</strong></td><td>Dino Constantinou &mdash; Esperia Energy Group</td></tr>
+    <tr><td><strong>Arranger &amp; JV Manager</strong></td><td>SolHash &mdash; Alexander Papacosta &mdash; alexander.papacosta@lighthief.com &mdash; +357 99 164 158</td></tr>
+  </tbody>
+</table>
+
+<!-- FOOTER -->
+<div class="footer">
+  SolHash &mdash; Pre-Connection Solar Mining &bull; Esperia Tseri Pipeline JV Proposal &bull; Confidential &mdash; March 2026<br>
+  SolHash &middot; Alexander Papacosta &middot; alexander.papacosta@lighthief.com &middot; +357 99 164 158 &bull; Prepared for Dino Constantinou / Esperia Energy Group
+</div>
+
+</body>
+</html>

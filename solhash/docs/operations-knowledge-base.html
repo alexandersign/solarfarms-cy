@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolHash — Operations Knowledge Base</title>
+  <style>
+    @page { size: A4; margin: 15mm; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 10pt; line-height: 1.5; color: #222; background: #fff; max-width: 210mm; margin: 0 auto; padding: 12mm; }
+    .page-break { page-break-before: always; }
+    .cover { text-align: center; padding: 48px 0 56px; border-bottom: 3px solid #2d7d46; }
+    .cover img { max-height: 80px; margin-bottom: 24px; }
+    .cover h1 { font-size: 1.9rem; color: #1a5c2e; margin: 0 0 8px; font-weight: 800; }
+    .cover .subtitle { font-size: 1rem; color: #555; margin-bottom: 6px; }
+    .cover .date { font-size: 0.9rem; color: #777; margin-top: 20px; }
+    .cover .internal-label { display: inline-block; margin-top: 28px; padding: 6px 18px; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 4px; color: #991b1b; font-size: 8.5pt; font-weight: 700; letter-spacing: 0.5px; }
+    h2 { font-size: 1.15rem; color: #1a5c2e; margin: 28px 0 12px; padding-bottom: 4px; border-bottom: 2px solid #2d7d46; }
+    h3 { font-size: 0.95rem; margin: 18px 0 8px; color: #333; }
+    h4 { font-size: 0.88rem; margin: 12px 0 6px; color: #1a5c2e; }
+    p, li { margin-bottom: 4px; }
+    ul, ol { margin-left: 18px; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 9pt; }
+    th, td { padding: 6px 10px; text-align: left; border: 1px solid #ddd; }
+    th { background: #f0f7f2; font-weight: 600; color: #1a5c2e; font-size: 8.5pt; }
+    td.r { text-align: right; font-variant-numeric: tabular-nums; }
+    tr:nth-child(even) { background: #fafafa; }
+    .highlight { background: #e8f5e9 !important; }
+    .toc { background: #f8faf8; border: 1px solid #d5e8d5; border-radius: 8px; padding: 20px 24px; margin: 20px 0 28px; }
+    .toc h3 { margin-top: 0; color: #1a5c2e; }
+    .toc ol { padding-left: 20px; margin-bottom: 0; }
+    .toc li { margin: 3px 0; }
+    .toc a { color: #1a5c2e; text-decoration: none; font-size: 9.5pt; }
+    .toc a:hover { text-decoration: underline; }
+    .callout { border-radius: 8px; padding: 14px 18px; margin: 12px 0 16px; font-size: 9.5pt; }
+    .callout.green { background: #e8f5e9; border-left: 4px solid #2d7d46; }
+    .callout.blue { background: #eff6ff; border-left: 4px solid #2563eb; }
+    .callout.amber { background: #fffbeb; border-left: 4px solid #d97706; }
+    .callout.red { background: #fef2f2; border-left: 4px solid #dc2626; }
+    .flow-row { display: flex; align-items: stretch; gap: 0; margin: 10px 0; flex-wrap: wrap; }
+    .flow-box { flex: 1; padding: 10px 12px; text-align: center; font-size: 8.5pt; font-weight: 600; border: 1px solid #cbd5e1; min-width: 90px; }
+    .flow-box.pv { background: #fef9c3; border-color: #facc15; color: #713f12; }
+    .flow-box.inverter { background: #eff6ff; border-color: #93c5fd; color: #1e40af; }
+    .flow-box.bus { background: #f0f7f2; border-color: #86efac; color: #166534; }
+    .flow-box.bess { background: #e8f5e9; border-color: #22c55e; color: #14532d; }
+    .flow-box.load { background: #faf5ff; border-color: #c4b5fd; color: #5b21b6; }
+    .flow-box.aux { background: #fff7ed; border-color: #fdba74; color: #9a3412; }
+    .flow-box .sub { font-size: 7pt; font-weight: 400; color: #666; display: block; margin-top: 2px; }
+    .flow-arrow { width: 28px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #94a3b8; flex-shrink: 0; }
+
+    .timeline { display: flex; flex-wrap: wrap; gap: 2px; margin: 14px 0 16px; border-radius: 8px; overflow: hidden; }
+    .timeline-block { flex: 1; min-width: 80px; padding: 10px 8px; text-align: center; font-size: 8pt; font-weight: 600; color: #fff; }
+    .timeline-block .time { font-size: 7.5pt; font-weight: 400; opacity: 0.9; display: block; margin-bottom: 2px; }
+    .timeline-block.sunrise { background: #f59e0b; color: #78350f; }
+    .timeline-block.boot { background: #2563eb; }
+    .timeline-block.hashing { background: #16a34a; }
+    .timeline-block.throttle { background: #dc2626; }
+    .timeline-block.shutdown { background: #7c3aed; }
+    .timeline-block.cooling { background: #0891b2; }
+    .timeline-block.overnight { background: #334155; }
+
+    .step-flow { display: flex; gap: 0; margin: 14px 0 16px; flex-wrap: wrap; }
+    .step-box { flex: 1; min-width: 120px; padding: 12px 10px; text-align: center; font-size: 8.5pt; border: 2px solid #2d7d46; background: #f0f7f2; position: relative; }
+    .step-box .step-num { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 50%; background: #2d7d46; color: #fff; font-weight: 700; font-size: 9pt; margin-bottom: 4px; }
+    .step-box .step-label { display: block; font-weight: 600; color: #1a5c2e; }
+    .step-box .step-detail { display: block; font-size: 7.5pt; color: #555; margin-top: 2px; }
+    .step-arrow { width: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #2d7d46; flex-shrink: 0; }
+
+    .note { font-size: 8pt; color: #666; margin-top: 8px; }
+    .footer { margin-top: 28px; padding-top: 12px; border-top: 2px solid #2d7d46; text-align: center; font-size: 7.5pt; color: #888; }
+    .sources { font-size: 8pt; color: #888; font-style: italic; margin-top: 16px; }
+    strong { color: #1a5c2e; }
+    @media print {
+      body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page-break { page-break-before: always; }
+      .callout, .highlight, th, .flow-box, .timeline-block, .step-box, .cover .internal-label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    @media (max-width: 600px) { .flow-row, .timeline, .step-flow { flex-direction: column; } .flow-arrow, .step-arrow { transform: rotate(90deg); width: auto; height: 24px; } }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <img src="data:image/png;base64,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" alt="SolHash">
+  <h1>Operations Knowledge Base</h1>
+  <p class="subtitle">Internal Reference &mdash; Daytime Solar Mining in Cyprus</p>
+  <p class="date">March 2026</p>
+  <div class="internal-label">INTERNAL &mdash; NOT FOR DISTRIBUTION</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#s1">Antminer S21/S21+ Thermal Performance in Cyprus</a></li>
+    <li><a href="#s2">Battery and Overnight Power Strategy</a></li>
+    <li><a href="#s3">Starlink for Mining &mdash; Technical Details</a></li>
+    <li><a href="#s4">Automation &mdash; Startup, Shutdown, Solar Following</a></li>
+    <li><a href="#s5">Pool Mining Best Practices (Solar/Variable Hashrate)</a></li>
+    <li><a href="#s6">Key Specifications Reference</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<div class="page-break"></div>
+<h2 id="s1">1. Antminer S21/S21+ Thermal Performance in Cyprus</h2>
+
+<h3>Operating Ranges</h3>
+<table>
+  <tr><th>Parameter</th><th>Value</th><th>Source</th></tr>
+  <tr><td>Operating temperature</td><td>&minus;5&deg;C to +45&deg;C</td><td>Bitmain spec sheet</td></tr>
+  <tr><td>Internal chip temperature (hashing)</td><td>75&ndash;80&deg;C</td><td>Binance review, Bitmain support</td></tr>
+  <tr><td>Thermal throttle trigger</td><td>~40&deg;C ambient &rarr; drops to ~180 TH/s</td><td>Binance performance review</td></tr>
+  <tr><td>Protection mode</td><td>&gt;45&deg;C ambient &rarr; shutdown</td><td>Bitmain support</td></tr>
+  <tr><td>Low Power Mode</td><td>160 TH/s at 2,600W (16.25 J/TH)</td><td>Bitmain spec</td></tr>
+</table>
+
+<h3>Cyprus Seasonal Impact</h3>
+<table>
+  <tr><th>Season</th><th>Ambient</th><th>Impact on S21+</th><th>Mitigation</th></tr>
+  <tr><td>Winter (Dec&ndash;Feb)</td><td>5&ndash;18&deg;C</td><td>Full performance, no cooling issues</td><td>None needed</td></tr>
+  <tr><td>Spring / Autumn</td><td>12&ndash;28&deg;C</td><td>Full performance</td><td>Standard ventilation</td></tr>
+  <tr><td>Summer (Jun&ndash;Aug)</td><td>30&ndash;40&deg;C</td><td>Auto-throttle 12:00&ndash;15:00 (~180 TH/s at 40&deg;C)</td><td>Evaporative cooling pads</td></tr>
+  <tr><td>Peak summer</td><td>40&ndash;45&deg;C</td><td>Protection mode risk</td><td>Evaporative/swamp cooling drops intake 10&ndash;15&deg;C</td></tr>
+</table>
+
+<div class="callout amber">
+  <strong>Summer throttling:</strong> In July/August, S21+ will likely auto-throttle between 12:00 and 15:00 when container intake air reaches 40&deg;C+. Evaporative cooling pads (effective in Cyprus dry heat) can drop intake by 10&ndash;15&deg;C, maintaining full 200+ TH/s.
+</div>
+
+<h3>Thermal Cycling (Daily Power Cycles)</h3>
+<ul>
+  <li><strong>Risk:</strong> Frequent daily power cycles (off at sunset, on at sunrise) cause expansion/contraction of solder joints. Can lead to premature solder joint failures over several years vs 24/7 operation.</li>
+  <li><strong>Mitigation:</strong> Use Braiins OS &ldquo;Sleep Mode&rdquo; (~30W draw) instead of hard power cut. Alternatively, accept slightly shorter hardware life as a tradeoff for zero overnight power cost.</li>
+  <li><strong>Cold start:</strong> S21+ has low-temperature protection at &minus;10&deg;C/0&deg;C. Cyprus minimum (5&deg;C) is safe for cold starts. Boot + pool sync takes 5&ndash;10 minutes.</li>
+</ul>
+
+<h3>Dust and Humidity</h3>
+<ul>
+  <li>Cyprus dust + morning dew can create a conductive &ldquo;paste&rdquo; on hashboards if units sit cold and open to ambient air.</li>
+  <li><strong>Mitigation:</strong> Clean container air filters frequently. Seal container overnight. Use intake filters rated for dusty/coastal environments.</li>
+</ul>
+
+<!-- SECTION 2 -->
+<div class="page-break"></div>
+<h2 id="s2">2. Battery and Overnight Power Strategy</h2>
+
+<h3>Off-Grid Electrical Architecture</h3>
+
+<div class="callout red">
+  <strong>Critical:</strong> Off-grid parks cannot use standard grid-tied inverters. Without grid connection, PV string inverters have no voltage/frequency reference. A <strong>grid-forming BESS</strong> creates a &ldquo;virtual grid&rdquo; (stable 400V/50Hz AC bus) that string inverters sync to.
+</div>
+
+<h4>Microgrid / Virtual Grid Architecture</h4>
+<div class="flow-row">
+  <div class="flow-box pv">
+    PV Panels
+    <span class="sub">DC generation</span>
+  </div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box inverter">
+    String Inverters
+    <span class="sub">Slaves &mdash; grid-following</span>
+  </div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-box bus">
+    AC Bus
+    <span class="sub">400V / 50Hz</span>
+  </div>
+  <div class="flow-arrow">&larr;</div>
+  <div class="flow-box bess">
+    Grid-Forming BESS
+    <span class="sub">Master &mdash; creates V/f reference</span>
+  </div>
+</div>
+<div class="flow-row" style="justify-content: center; margin-top: -6px;">
+  <div style="width: 28px;"></div>
+  <div style="width: 28px;"></div>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 0;">
+    <div class="flow-arrow" style="width: auto; transform: rotate(90deg); margin: 2px 0;">&#8595;</div>
+    <div style="display: flex; gap: 0;">
+      <div class="flow-box load" style="min-width: 130px;">
+        Mining Containers
+        <span class="sub">Primary load</span>
+      </div>
+      <div style="width: 14px;"></div>
+      <div class="flow-box aux" style="min-width: 130px;">
+        Auxiliary Loads
+        <span class="sub">CCTV, Starlink, fire, lighting</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top: 10px;"><strong>Architecture summary:</strong></p>
+<ol>
+  <li><strong>Grid-forming BESS (master):</strong> Creates voltage/frequency reference. Battery-backed PCS.</li>
+  <li><strong>PV string inverters (slaves):</strong> Standard inverters operating in grid-following mode, syncing to BESS frequency.</li>
+  <li><strong>Mining containers:</strong> Connect to AC bus as loads.</li>
+  <li><strong>Auxiliary loads:</strong> CCTV, Starlink, fire systems, lighting &mdash; powered 24/7 from same bus (BESS overnight).</li>
+</ol>
+
+<h3>Inverter Requirements</h3>
+<table>
+  <tr><th>Component</th><th>Specification</th><th>Cost (5 MW)</th><th>Paid By</th></tr>
+  <tr><td>PV string inverters</td><td>50 &times; 100 kW (Huawei SUN2000 or equiv.)</td><td>&euro;185,000</td><td>Park Owner</td></tr>
+  <tr><td>DC cabling + combiner boxes</td><td>PV array to inverters</td><td>&euro;60,000</td><td>Park Owner</td></tr>
+  <tr><td>AC switchgear + distribution</td><td>400V bus, protection</td><td>&euro;40,000</td><td>Park Owner</td></tr>
+  <tr class="highlight"><td><strong>PV electrical total</strong></td><td></td><td><strong>&euro;285,000</strong></td><td><strong>Park Owner</strong></td></tr>
+</table>
+<p class="note">PV inverters are the park owner&rsquo;s capex &mdash; they would need these for grid connection anyway. The mining JV pays only for the grid-forming BESS and microgrid controller.</p>
+
+<h3>BESS Sizing (250 kWh for 5 MW)</h3>
+<p>The BESS serves <strong>four</strong> functions: grid-forming reference, PV transient buffering, overnight auxiliary, and post-run cooling.</p>
+<table>
+  <tr><th>Function</th><th>Power</th><th>Duration</th><th>kWh</th></tr>
+  <tr><td>Grid-forming reference</td><td>250 kW PCS</td><td>Continuous (buffer)</td><td>~5</td></tr>
+  <tr><td>PV transient buffering</td><td>Cloud ramps</td><td>30&ndash;60s per event</td><td>~10 reserve</td></tr>
+  <tr><td>Post-run cooling (7 containers)</td><td>7 &times; 1 kW</td><td>30 min</td><td>3.5</td></tr>
+  <tr><td>Starlink + network 24/7</td><td>50&ndash;80W</td><td>14&ndash;16 hrs</td><td>1.2</td></tr>
+  <tr><td>Security cameras (CCTV)</td><td>100&ndash;200W</td><td>24/7</td><td>2.8/night</td></tr>
+  <tr><td>Perimeter lighting</td><td>200&ndash;500W</td><td>10&ndash;12 hrs</td><td>5.0</td></tr>
+  <tr><td>Fire/safety systems</td><td>50&ndash;100W</td><td>24/7</td><td>1.4</td></tr>
+  <tr><td>Container controllers</td><td>7 &times; 50W</td><td>24/7</td><td>5.0/night</td></tr>
+  <tr><td>Morning boot buffer</td><td>Startup before PV</td><td>30 min</td><td>5.0</td></tr>
+  <tr class="highlight"><td><strong>Total overnight</strong></td><td></td><td></td><td><strong>~40 kWh</strong></td></tr>
+  <tr><td>Safety margin (2&times;) + degradation</td><td></td><td></td><td>~80 kWh</td></tr>
+  <tr><td>Grid-forming PCS headroom</td><td></td><td></td><td>~170 kWh</td></tr>
+  <tr class="highlight"><td><strong>Recommended</strong></td><td></td><td></td><td><strong>250 kWh</strong></td></tr>
+</table>
+
+<h3>BESS Cost Stack (5 MW)</h3>
+<table>
+  <tr><th>Component</th><th>Cost</th></tr>
+  <tr><td>Grid-forming PCS (250 kW)</td><td>&euro;35,000</td></tr>
+  <tr><td>LiFePO4 battery rack (250 kWh)</td><td>&euro;40,000</td></tr>
+  <tr><td>Microgrid controller</td><td>&euro;12,000</td></tr>
+  <tr><td>Enclosure + installation</td><td>&euro;18,000</td></tr>
+  <tr class="highlight"><td><strong>Total</strong></td><td><strong>&euro;105,000</strong></td></tr>
+</table>
+<p class="note">Market pricing: ~&euro;150&ndash;170/kWh at 250 kWh scale (Sungrow PowerStack, CATL EnerC). PCS: ~&euro;100&ndash;140/kW.</p>
+
+<h3>BESS by Park Size</h3>
+<table>
+  <tr><th>Park</th><th>Containers</th><th>BESS</th><th>PCS</th><th>Cost</th></tr>
+  <tr><td>1 MW</td><td>2</td><td>50 kWh</td><td>50 kW</td><td>&euro;35,000</td></tr>
+  <tr><td>2.6 MW</td><td>4</td><td>100 kWh</td><td>100 kW</td><td>&euro;55,000</td></tr>
+  <tr class="highlight"><td><strong>5 MW</strong></td><td><strong>7</strong></td><td><strong>250 kWh</strong></td><td><strong>250 kW</strong></td><td><strong>&euro;105,000</strong></td></tr>
+  <tr><td>10 MW</td><td>14</td><td>500 kWh</td><td>500 kW</td><td>&euro;185,000</td></tr>
+</table>
+
+<h3>Post-Run Cooling (Critical)</h3>
+<div class="callout red">
+  <strong>Warning:</strong> When hashing stops, S21+ heatsinks are still at 75&ndash;80&deg;C internally. If power is cut instantly, residual heat &ldquo;soaks&rdquo; into control boards and solder joints.
+</div>
+
+<h4>Post-Run Cooling Protocol</h4>
+<div class="step-flow">
+  <div class="step-box">
+    <span class="step-num">1</span>
+    <span class="step-label">Soft Shutdown</span>
+    <span class="step-detail">Braiins OS stops hashing</span>
+  </div>
+  <div class="step-arrow">&rarr;</div>
+  <div class="step-box">
+    <span class="step-num">2</span>
+    <span class="step-label">Fan Cool-Down</span>
+    <span class="step-detail">Fans at full speed for 20&ndash;30 min</span>
+  </div>
+  <div class="step-arrow">&rarr;</div>
+  <div class="step-box">
+    <span class="step-num">3</span>
+    <span class="step-label">Fans Off</span>
+    <span class="step-detail">Chip temps reach ambient (~30 min)</span>
+  </div>
+  <div class="step-arrow">&rarr;</div>
+  <div class="step-box">
+    <span class="step-num">4</span>
+    <span class="step-label">Overnight Idle</span>
+    <span class="step-detail">Battery powers Starlink + controller only</span>
+  </div>
+</div>
+<p class="note">Fan power during cool-down: ~500W&ndash;1.5 kW total (container exhaust fans + S21 internal fans).</p>
+
+<h3>Why NOT a Full BESS</h3>
+<div class="callout amber">
+  24/7 mining would require ~600 kWh battery per MW of mining load &mdash; at &euro;200/kWh that&rsquo;s &euro;120K/MW. This exceeds the miner capex itself and destroys the zero-electricity-cost advantage.
+</div>
+
+<!-- SECTION 3 -->
+<div class="page-break"></div>
+<h2 id="s3">3. Starlink for Mining &mdash; Technical Details</h2>
+
+<h3>Dish Options and Power Draw</h3>
+<table>
+  <tr><th>Model</th><th>Power Draw (active)</th><th>Power Draw (idle)</th><th>Daily kWh</th><th>Best For</th></tr>
+  <tr class="highlight"><td><strong>Starlink Mini</strong></td><td>20&ndash;40W</td><td>15W</td><td>0.5&ndash;1.0</td><td>Off-grid, battery-limited sites</td></tr>
+  <tr><td>Standard Gen 3</td><td>75&ndash;110W</td><td>~50W</td><td>1.5&ndash;2.0</td><td>Standard deployment</td></tr>
+  <tr><td>High Performance</td><td>110&ndash;150W</td><td>~80W</td><td>2.6&ndash;3.6</td><td>Not needed for mining</td></tr>
+</table>
+
+<div class="callout green">
+  <strong>Recommendation:</strong> Starlink Mini (20&ndash;40W) is the best choice for solar mining. Lowest power draw, sufficient bandwidth and latency for mining. Can run 24/7 on a small battery with plenty of margin.
+</div>
+
+<h3>Mining-Specific Performance</h3>
+<ul>
+  <li><strong>Latency:</strong> Median 25.7ms peak-hour (US), 20&ndash;50ms typical. Mining needs &lt;100ms for low stale shares.</li>
+  <li><strong>Stale share rate:</strong> At 25&ndash;50ms, stale shares ~0.1&ndash;0.3% &mdash; comparable to terrestrial 4G/LTE.</li>
+  <li><strong>Bandwidth:</strong> Mining uses a few MB per day. Starlink&rsquo;s 100&ndash;200+ Mbps is orders of magnitude more than needed.</li>
+  <li><strong>Uptime:</strong> &gt;99.9%. Physical obstructions (trees) can cause brief dropouts &mdash; ensure dish has clear sky view at solar park.</li>
+  <li><strong>Pool sync:</strong> On power-up, miners take 5&ndash;10 minutes to boot and sync with pool via Starlink. This daily handshake is normal.</li>
+</ul>
+
+<h3>Failover Strategy</h3>
+<ul>
+  <li><strong>Peplink SD-WAN router:</strong> Bonds Starlink + 4G SIM for automatic failover in milliseconds.</li>
+  <li><strong>Why failover matters:</strong> Any internet outage = 0 hashrate = 0 revenue. Even 1 hour downtime on a 5 MW site costs ~&euro;19 in lost revenue at base hash price.</li>
+  <li><strong>4G backup:</strong> Cyprus has good 4G coverage even in rural areas. ~&euro;30/month for data SIM.</li>
+</ul>
+
+<!-- SECTION 4 -->
+<div class="page-break"></div>
+<h2 id="s4">4. Automation &mdash; Startup, Shutdown, Solar Following</h2>
+
+<h3>Software Stack</h3>
+<table>
+  <tr><th>Component</th><th>Role</th><th>Details</th></tr>
+  <tr><td><strong>Braiins OS</strong></td><td>Miner firmware</td><td>Dynamic Performance Scaling (DPS), API control, Sleep Mode (~30W), Soft Shutdown</td></tr>
+  <tr><td><strong>DEIF ASC-4 Solar</strong></td><td>Container controller</td><td>Interfaces with solar inverters. Triggers PDU on/off based on PV production threshold</td></tr>
+  <tr><td><strong>Smart PDU</strong></td><td>Power distribution</td><td>Scheduled outlets, remote reboot. S21 auto-mines on power-up (no manual start needed)</td></tr>
+  <tr><td><strong>Home Assistant</strong> (optional)</td><td>Integration hub</td><td>Links solar inverter data to miner start/stop commands. Hobbyist-grade but functional</td></tr>
+</table>
+
+<h3>Automated Daily Cycle</h3>
+<div class="timeline">
+  <div class="timeline-block sunrise">
+    <span class="time">06:00&ndash;07:00</span>
+    Sunrise
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">PV voltage rises, controller detects &gt;3.5 kW/miner</span>
+  </div>
+  <div class="timeline-block boot">
+    <span class="time">07:00</span>
+    Boot
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">PDU energises S21+, pool sync via Starlink (5&ndash;10 min)</span>
+  </div>
+  <div class="timeline-block hashing" style="flex: 2;">
+    <span class="time">07:10&ndash;17:00</span>
+    Hashing
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">Braiins DPS adjusts hashrate to match PV</span>
+  </div>
+  <div class="timeline-block throttle">
+    <span class="time">12:00&ndash;15:00</span>
+    Throttle
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">Summer only: &gt;40&deg;C &rarr; ~180 TH/s</span>
+  </div>
+  <div class="timeline-block shutdown">
+    <span class="time">17:00&ndash;18:00</span>
+    Shutdown
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">PV drops, Braiins Soft Shutdown</span>
+  </div>
+  <div class="timeline-block cooling">
+    <span class="time">18:00&ndash;18:30</span>
+    Cooling
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">Fans at full speed (battery-powered)</span>
+  </div>
+  <div class="timeline-block overnight">
+    <span class="time">18:30&ndash;06:00</span>
+    Overnight
+    <span class="sub" style="display:block; font-size:7pt; font-weight:400; opacity:0.85; margin-top:2px;">Starlink + controller only</span>
+  </div>
+</div>
+
+<h4>Detailed Cycle Steps</h4>
+<ol>
+  <li><strong>06:00&ndash;07:00</strong> &mdash; Solar voltage rises. Container controller detects PV production above threshold (e.g., &gt;3.5 kW per miner).</li>
+  <li><strong>07:00</strong> &mdash; Smart PDU energises S21+ units. Miners boot, sync with Braiins Pool via Starlink (5&ndash;10 min).</li>
+  <li><strong>07:10</strong> &mdash; Hashing begins. Braiins OS DPS adjusts hashrate to match available solar power.</li>
+  <li><strong>12:00&ndash;15:00 (summer)</strong> &mdash; If ambient &gt;40&deg;C, S21+ auto-throttles to ~180 TH/s. Evaporative cooling mitigates.</li>
+  <li><strong>17:00&ndash;18:00</strong> &mdash; Solar voltage drops. Braiins OS triggers &ldquo;Soft Shutdown&rdquo; &mdash; stops hashing.</li>
+  <li><strong>18:00&ndash;18:30</strong> &mdash; Container fans run at full speed for post-run cooling (powered by battery).</li>
+  <li><strong>18:30</strong> &mdash; Fans off. Battery powers only Starlink + controller overnight.</li>
+  <li><strong>Next morning</strong> &mdash; Cycle repeats.</li>
+</ol>
+
+<h3>Power Targeting with Braiins OS</h3>
+<p>Braiins OS DPS can set specific wattage targets. For solar following:</p>
+<ul>
+  <li><strong>Ramp-up:</strong> As PV output increases in the morning, DPS ramps hashrate proportionally.</li>
+  <li><strong>Cloud transients:</strong> When a cloud passes, DPS reduces hashrate instantly. UPS provides bridge power for 30&ndash;60 seconds.</li>
+  <li><strong>Ramp-down:</strong> As PV drops at sunset, DPS reduces to Low Power Mode (2,600W) before triggering Soft Shutdown.</li>
+</ul>
+<p class="note">This prevents the miner from drawing more than available PV, avoiding grid import (which doesn&rsquo;t exist behind-the-meter).</p>
+
+<!-- SECTION 5 -->
+<div class="page-break"></div>
+<h2 id="s5">5. Pool Mining Best Practices (Solar/Variable Hashrate)</h2>
+
+<h3>Why Pool Mining (Not Solo)</h3>
+<ul>
+  <li>Pool mining provides consistent daily payouts. Solo mining = all-or-nothing (one block every ~years at small scale).</li>
+  <li>Starlink downtime during a solo block discovery = lost entire block reward (~3.125 BTC = &euro;312K at &euro;100K).</li>
+  <li>Pool mining &ldquo;accepted shares&rdquo; dashboard confirms connection is active &mdash; critical for remote monitoring.</li>
+</ul>
+
+<h3>FPPS for JV Revenue Accounting</h3>
+<ul>
+  <li><strong>FPPS (Full Pay Per Share):</strong> Fixed payout per share regardless of pool luck. Predictable daily revenue.</li>
+  <li><strong>PPLNS (Pay Per Last N Shares):</strong> Higher average payout but high variance. Lucky/unlucky streaks make monthly JV splits unpredictable.</li>
+  <li><strong>Recommendation:</strong> FPPS for the JV. Simplifies 30/70 split accounting. Both parties can verify daily earnings.</li>
+</ul>
+
+<h3>Braiins Pool + Stratum V2</h3>
+<ul>
+  <li>Stratum V2 reduces data transfer and latency &mdash; critical on Starlink.</li>
+  <li>Stale share reduction: ~0.3% (V1) &rarr; ~0.1% (V2) = ~0.2% revenue recovery.</li>
+  <li>Lightning payouts: Instant BTC distribution, lower on-chain fees, easier for frequent JV settlements.</li>
+</ul>
+
+<!-- SECTION 6 -->
+<div class="page-break"></div>
+<h2 id="s6">6. Key Specifications Reference</h2>
+
+<h3>Antminer S21+</h3>
+<table>
+  <tr><th>Spec</th><th>Value</th></tr>
+  <tr><td>Hashrate</td><td>216 TH/s</td></tr>
+  <tr><td>Power</td><td>3,560W</td></tr>
+  <tr><td>Efficiency</td><td>16.5 J/TH</td></tr>
+  <tr><td>Operating temp</td><td>&minus;5&deg;C to +45&deg;C</td></tr>
+  <tr><td>Low Power Mode</td><td>160 TH/s at 2,600W</td></tr>
+  <tr><td>Sleep Mode (Braiins OS)</td><td>~30W</td></tr>
+  <tr><td>Fan power (4 fans)</td><td>50&ndash;100W total</td></tr>
+  <tr><td>Boot + pool sync</td><td>5&ndash;10 minutes</td></tr>
+  <tr><td>Price (Mineshop, &minus;15% qty)</td><td>&euro;2,040</td></tr>
+</table>
+
+<h3>20ft Container (Mineshop, 168 slots)</h3>
+<table>
+  <tr><th>Spec</th><th>Value</th></tr>
+  <tr><td>Capacity</td><td>168 S21+ units</td></tr>
+  <tr><td>Max power</td><td>~600 kW (168 &times; 3.56 kW)</td></tr>
+  <tr><td>Cooling</td><td>Forced-air ventilation</td></tr>
+  <tr><td>Cooling power</td><td>~25 kW max (3&ndash;5% of load)</td></tr>
+  <tr><td>Price</td><td>&euro;21,500</td></tr>
+  <tr><td>Cooling enhancement</td><td>Evaporative pads (recommended for Cyprus summer)</td></tr>
+</table>
+
+<h3>Battery (recommended per site)</h3>
+<table>
+  <tr><th>Spec</th><th>Value</th></tr>
+  <tr><td>Chemistry</td><td>LiFePO4</td></tr>
+  <tr class="highlight"><td><strong>Capacity</strong></td><td><strong>250 kWh</strong></td></tr>
+  <tr><td>Purpose</td><td>Grid-forming reference + post-run cooling + Starlink 24/7 + auxiliary loads</td></tr>
+  <tr><td>Overnight draw</td><td>~40 kWh</td></tr>
+  <tr><td>Estimated cost</td><td>&euro;105,000 (incl. PCS, controller, enclosure)</td></tr>
+</table>
+
+<!-- SOURCES -->
+<div class="sources">
+  <strong>Sources:</strong> Bitmain specs, Binance S21 review, Braiins OS documentation, Starlink network updates, Reddit mining communities, DEIF controller specs.
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  INTERNAL &mdash; SolHash Operations Knowledge Base &mdash; March 2026
+</div>
+
+</body>
+</html>

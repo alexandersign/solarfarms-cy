@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BESS PCS-to-Container Configuration Reference | Lighthief Cyprus</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669;--warn:#d97706;--danger:#dc2626;--pcs:#16a34a;--bess:#ea580c;--grid:#1e40af}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+.page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+.logo-text{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}
+.logo-text span{color:var(--accent)}
+.tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+.doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+h2::after{content:'';display:block}
+h3{font-size:9.5pt;color:var(--primary);margin:10px 0 5px}
+table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600}
+td{padding:5px 7px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:#fafbfc}
+.r{text-align:right}.c{text-align:center}
+.price{font-weight:700;color:var(--accent)}
+.highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+.warn{background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+.rule{background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+.good{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+.note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+.tag{display:inline-block;font-size:7pt;font-weight:600;padding:2px 8px;border-radius:10px;margin-right:4px}
+.tag-ok{background:#dcfce7;color:#166534}
+.tag-warn{background:#fef3c7;color:#92400e}
+.tag-bad{background:#fef2f2;color:#991b1b}
+.tag-new{background:#fce7f3;color:#9d174d}
+.footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+.print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.print-btn:hover{background:var(--accent)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+.box{border:1px solid var(--border);border-radius:6px;padding:12px}
+.box h3{margin-top:0}
+.box ul{margin-left:16px}.box li{margin-bottom:3px}
+ul{margin-left:18px}li{margin-bottom:3px}
+@media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}.page-break{page-break-before:always}}
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">&#128424; Print / PDF</button>
+
+<!-- PAGE 1: Fundamentals -->
+<div class="page">
+    <div class="header">
+        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>INTERNAL REFERENCE</strong><br>PCS &amp; Container Configuration Guide<br>17 March 2026</div>
+    </div>
+    <h1>PCS-to-BESS Container Configuration Reference</h1>
+    <p style="margin-bottom:14px;">All valid PCS-to-container mappings for the Linyang / Kehua platform. Each BESS container is <strong>5.015 MWh</strong> (20ft HC, EVE LFP). PCS units are housed in MV skid containers with integrated transformers.</p>
+
+    <h2>Building Blocks</h2>
+    <div class="two-col">
+        <div class="box">
+            <h3>PCS Units (Power Conversion &mdash; Kehua C-Series)</h3>
+            <table>
+                <tr><th>Model</th><th class="c">Power</th><th class="c">Status</th></tr>
+                <tr><td><strong>BCS1000K-C-HUD</strong></td><td class="c">1.00 MW</td><td class="c"><span class="tag tag-ok">IN PRODUCTION</span></td></tr>
+                <tr><td><strong>BCS1250K-C-HUD</strong></td><td class="c">1.25 MW</td><td class="c"><span class="tag tag-ok">IN PRODUCTION</span></td></tr>
+                <tr><td><strong>BCS1500K-C-HUD</strong></td><td class="c">1.50 MW</td><td class="c"><span class="tag tag-new">LATE 2026</span></td></tr>
+            </table>
+        </div>
+        <div class="box">
+            <h3>MV Skid Models (PCS Housing)</h3>
+            <table>
+                <tr><th>Skid</th><th class="c">Size</th><th class="c">PCS Slots</th><th class="c">MW Range<br>(1.0 / 1.25 / 1.5)</th></tr>
+                <tr><td><strong>T1</strong></td><td class="c">20ft Std</td><td class="c">1</td><td class="c">1.0 / 1.25 / 1.5</td></tr>
+                <tr><td><strong>T2</strong></td><td class="c">20ft Std</td><td class="c">2</td><td class="c">2.0 / 2.5 / 3.0</td></tr>
+                <tr><td><strong>T4</strong></td><td class="c">40ft HC</td><td class="c">4</td><td class="c">4.0 / 5.0 / 6.0</td></tr>
+                <tr><td><strong>T8</strong></td><td class="c">40ft HC</td><td class="c">8</td><td class="c">8.0 / 10.0 / 12.0</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <h2>The Three Valid PCS:BESS Ratios</h2>
+    <div class="rule">
+        <strong>Fundamental Rule:</strong> Within any single BESS system, ALL PCS-to-container connections must use the <strong>same ratio</strong>. Mixing ratios within one system creates unbalanced C-rates across strings, which causes uneven degradation, thermal imbalance, and BMS coordination problems. <strong>Never mix 1:1 with 2:1 or 1:2 in the same system.</strong>
+    </div>
+
+    <table>
+        <thead>
+            <tr><th class="c">Ratio</th><th>Description</th><th class="c">C-Rate<br>(1.00 MW)</th><th class="c">C-Rate<br>(1.25 MW)</th><th class="c">C-Rate<br>(1.50 MW)</th><th class="c">Duration<br>(1.0 / 1.25 / 1.5)</th><th>Best For</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="c" style="font-size:12pt;font-weight:800;color:var(--accent)">1:1</td>
+                <td><strong>1 PCS per 1 Container</strong><br>Balanced &mdash; most common</td>
+                <td class="c">0.2C</td>
+                <td class="c">0.25C</td>
+                <td class="c">0.3C</td>
+                <td class="c">5.0h / 4.0h / 3.3h</td>
+                <td>Energy arbitrage, ancillary services, general purpose</td>
+            </tr>
+            <tr>
+                <td class="c" style="font-size:12pt;font-weight:800;color:var(--pcs)">2:1</td>
+                <td><strong>2 PCS per 1 Container</strong><br>Power-dense &mdash; short duration</td>
+                <td class="c">0.4C</td>
+                <td class="c">0.5C</td>
+                <td class="c">0.6C</td>
+                <td class="c">2.5h / 2.0h / 1.7h</td>
+                <td>Fast response, frequency regulation, peak shaving</td>
+            </tr>
+            <tr>
+                <td class="c" style="font-size:12pt;font-weight:800;color:var(--bess)">1:2</td>
+                <td><strong>1 PCS per 2 Containers</strong><br>Energy-dense &mdash; long duration</td>
+                <td class="c">0.1C</td>
+                <td class="c">0.125C</td>
+                <td class="c">0.15C</td>
+                <td class="c">10.0h / 8.0h / 6.7h</td>
+                <td>Long-duration storage, load shifting, capacity firming</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PAGE 2: Visual diagrams of the three ratios -->
+<div class="page page-break">
+    <div class="header">
+        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info">PCS:BESS Ratio Diagrams</div>
+    </div>
+    <h2>1:1 Ratio &mdash; One PCS per One Container</h2>
+    <p class="note">Most balanced configuration. Each PCS drives exactly one container. Uniform C-rate, uniform degradation, simplest BMS coordination.</p>
+    <svg viewBox="0 0 820 130" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="d1"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.06"/></filter></defs>
+      <rect width="820" height="130" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+      <text x="410" y="16" text-anchor="middle" fill="#166534" font-size="9" font-weight="700">1:1 RATIO &mdash; Example: 4 PCS &times; 4 BESS = 5.0 MW / 20 MWh (BCS1250K) &mdash; C-rate: 0.25C &mdash; Duration: 4.0h</text>
+      <!-- Pair 1 -->
+      <rect x="20" y="30" width="70" height="38" rx="4" fill="#16a34a" filter="url(#d1)"/>
+      <text x="55" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">PCS 1</text>
+      <text x="55" y="59" text-anchor="middle" fill="#bbf7d0" font-size="6.5">1.25 MW</text>
+      <line x1="90" y1="49" x2="115" y2="49" stroke="#ea580c" stroke-width="2"/>
+      <text x="103" y="43" text-anchor="middle" fill="#ea580c" font-size="6">DC</text>
+      <rect x="115" y="30" width="70" height="38" rx="4" fill="#ea580c" filter="url(#d1)"/>
+      <text x="150" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">BESS 1</text>
+      <text x="150" y="59" text-anchor="middle" fill="#fed7aa" font-size="6.5">5.015 MWh</text>
+      <!-- Pair 2 -->
+      <rect x="215" y="30" width="70" height="38" rx="4" fill="#16a34a" filter="url(#d1)"/>
+      <text x="250" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">PCS 2</text>
+      <text x="250" y="59" text-anchor="middle" fill="#bbf7d0" font-size="6.5">1.25 MW</text>
+      <line x1="285" y1="49" x2="310" y2="49" stroke="#ea580c" stroke-width="2"/>
+      <rect x="310" y="30" width="70" height="38" rx="4" fill="#ea580c" filter="url(#d1)"/>
+      <text x="345" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">BESS 2</text>
+      <text x="345" y="59" text-anchor="middle" fill="#fed7aa" font-size="6.5">5.015 MWh</text>
+      <!-- Pair 3 -->
+      <rect x="410" y="30" width="70" height="38" rx="4" fill="#16a34a" filter="url(#d1)"/>
+      <text x="445" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">PCS 3</text>
+      <text x="445" y="59" text-anchor="middle" fill="#bbf7d0" font-size="6.5">1.25 MW</text>
+      <line x1="480" y1="49" x2="505" y2="49" stroke="#ea580c" stroke-width="2"/>
+      <rect x="505" y="30" width="70" height="38" rx="4" fill="#ea580c" filter="url(#d1)"/>
+      <text x="540" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">BESS 3</text>
+      <text x="540" y="59" text-anchor="middle" fill="#fed7aa" font-size="6.5">5.015 MWh</text>
+      <!-- Pair 4 -->
+      <rect x="605" y="30" width="70" height="38" rx="4" fill="#16a34a" filter="url(#d1)"/>
+      <text x="640" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">PCS 4</text>
+      <text x="640" y="59" text-anchor="middle" fill="#bbf7d0" font-size="6.5">1.25 MW</text>
+      <line x1="675" y1="49" x2="700" y2="49" stroke="#ea580c" stroke-width="2"/>
+      <rect x="700" y="30" width="70" height="38" rx="4" fill="#ea580c" filter="url(#d1)"/>
+      <text x="735" y="47" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">BESS 4</text>
+      <text x="735" y="59" text-anchor="middle" fill="#fed7aa" font-size="6.5">5.015 MWh</text>
+      <!-- Labels -->
+      <text x="103" y="84" text-anchor="middle" fill="#64748b" font-size="7">String 1</text>
+      <text x="103" y="95" text-anchor="middle" fill="#64748b" font-size="7" font-weight="600">0.25C</text>
+      <text x="298" y="84" text-anchor="middle" fill="#64748b" font-size="7">String 2</text>
+      <text x="298" y="95" text-anchor="middle" fill="#64748b" font-size="7" font-weight="600">0.25C</text>
+      <text x="493" y="84" text-anchor="middle" fill="#64748b" font-size="7">String 3</text>
+      <text x="493" y="95" text-anchor="middle" fill="#64748b" font-size="7" font-weight="600">0.25C</text>
+      <text x="688" y="84" text-anchor="middle" fill="#64748b" font-size="7">String 4</text>
+      <text x="688" y="95" text-anchor="middle" fill="#64748b" font-size="7" font-weight="600">0.25C</text>
+      <text x="410" y="120" text-anchor="middle" fill="#166534" font-size="8" font-weight="600">All strings identical C-rate &rarr; balanced degradation &rarr; uniform thermal profile</text>
+    </svg>
+
+    <h2>2:1 Ratio &mdash; Two PCS per One Container</h2>
+    <p class="note">Power-dense. Higher C-rate means faster charge/discharge but shorter duration. Used when MW &gt;&gt; MWh is needed.</p>
+    <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+      <rect width="820" height="150" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+      <text x="410" y="16" text-anchor="middle" fill="#1e40af" font-size="9" font-weight="700">2:1 RATIO &mdash; Example: 8 PCS &times; 4 BESS = 10.0 MW / 20 MWh (BCS1250K) &mdash; C-rate: 0.5C &mdash; Duration: 2.0h</text>
+      <!-- Group 1 -->
+      <rect x="18" y="28" width="170" height="104" rx="5" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="103" y="40" text-anchor="middle" fill="#64748b" font-size="7">String 1 (0.5C)</text>
+      <rect x="28" y="48" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="58" y="62" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 1</text>
+      <text x="58" y="73" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <rect x="28" y="84" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="58" y="98" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 2</text>
+      <text x="58" y="109" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="88" y1="80" x2="108" y2="80" stroke="#ea580c" stroke-width="2"/>
+      <rect x="108" y="56" width="70" height="48" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="143" y="76" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 1</text>
+      <text x="143" y="89" text-anchor="middle" fill="#fed7aa" font-size="6">5.015 MWh</text>
+      <!-- Group 2 -->
+      <rect x="213" y="28" width="170" height="104" rx="5" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="298" y="40" text-anchor="middle" fill="#64748b" font-size="7">String 2 (0.5C)</text>
+      <rect x="223" y="48" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="253" y="62" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 3</text>
+      <text x="253" y="73" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <rect x="223" y="84" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="253" y="98" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 4</text>
+      <text x="253" y="109" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="283" y1="80" x2="303" y2="80" stroke="#ea580c" stroke-width="2"/>
+      <rect x="303" y="56" width="70" height="48" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="338" y="76" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 2</text>
+      <text x="338" y="89" text-anchor="middle" fill="#fed7aa" font-size="6">5.015 MWh</text>
+      <!-- Group 3 -->
+      <rect x="408" y="28" width="170" height="104" rx="5" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="493" y="40" text-anchor="middle" fill="#64748b" font-size="7">String 3 (0.5C)</text>
+      <rect x="418" y="48" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="448" y="62" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 5</text>
+      <text x="448" y="73" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <rect x="418" y="84" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="448" y="98" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 6</text>
+      <text x="448" y="109" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="478" y1="80" x2="498" y2="80" stroke="#ea580c" stroke-width="2"/>
+      <rect x="498" y="56" width="70" height="48" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="533" y="76" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 3</text>
+      <text x="533" y="89" text-anchor="middle" fill="#fed7aa" font-size="6">5.015 MWh</text>
+      <!-- Group 4 -->
+      <rect x="603" y="28" width="170" height="104" rx="5" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="688" y="40" text-anchor="middle" fill="#64748b" font-size="7">String 4 (0.5C)</text>
+      <rect x="613" y="48" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="643" y="62" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 7</text>
+      <text x="643" y="73" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <rect x="613" y="84" width="60" height="32" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="643" y="98" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 8</text>
+      <text x="643" y="109" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="673" y1="80" x2="693" y2="80" stroke="#ea580c" stroke-width="2"/>
+      <rect x="693" y="56" width="70" height="48" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="728" y="76" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 4</text>
+      <text x="728" y="89" text-anchor="middle" fill="#fed7aa" font-size="6">5.015 MWh</text>
+      <text x="410" y="145" text-anchor="middle" fill="#1e40af" font-size="8" font-weight="600">Each string: 2&times;1.25 MW = 2.5 MW driving 5.015 MWh &rarr; uniform 0.5C across all strings</text>
+    </svg>
+
+    <h2>1:2 Ratio &mdash; One PCS per Two Containers</h2>
+    <p class="note">Energy-dense. Lower C-rate = longer duration but slower response. For long-duration or capacity firming applications.</p>
+    <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+      <rect width="820" height="150" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+      <text x="410" y="16" text-anchor="middle" fill="#92400e" font-size="9" font-weight="700">1:2 RATIO &mdash; Example: 4 PCS &times; 8 BESS = 5.0 MW / 40 MWh (BCS1250K) &mdash; C-rate: 0.125C &mdash; Duration: 8.0h</text>
+      <!-- Group 1 -->
+      <rect x="18" y="28" width="170" height="104" rx="5" fill="none" stroke="#fcd34d" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="103" y="40" text-anchor="middle" fill="#92400e" font-size="7">String 1 (0.125C)</text>
+      <rect x="28" y="52" width="60" height="40" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="58" y="68" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 1</text>
+      <text x="58" y="82" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="88" y1="62" x2="108" y2="55" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="88" y1="78" x2="108" y2="90" stroke="#ea580c" stroke-width="1.5"/>
+      <rect x="108" y="44" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="143" y="58" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 1</text>
+      <text x="143" y="68" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <rect x="108" y="78" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="143" y="92" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 2</text>
+      <text x="143" y="102" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <!-- Group 2 -->
+      <rect x="213" y="28" width="170" height="104" rx="5" fill="none" stroke="#fcd34d" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="298" y="40" text-anchor="middle" fill="#92400e" font-size="7">String 2 (0.125C)</text>
+      <rect x="223" y="52" width="60" height="40" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="253" y="68" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 2</text>
+      <text x="253" y="82" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="283" y1="62" x2="303" y2="55" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="283" y1="78" x2="303" y2="90" stroke="#ea580c" stroke-width="1.5"/>
+      <rect x="303" y="44" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="338" y="58" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 3</text>
+      <text x="338" y="68" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <rect x="303" y="78" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="338" y="92" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 4</text>
+      <text x="338" y="102" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <!-- Group 3 -->
+      <rect x="408" y="28" width="170" height="104" rx="5" fill="none" stroke="#fcd34d" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="493" y="40" text-anchor="middle" fill="#92400e" font-size="7">String 3 (0.125C)</text>
+      <rect x="418" y="52" width="60" height="40" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="448" y="68" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 3</text>
+      <text x="448" y="82" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="478" y1="62" x2="498" y2="55" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="478" y1="78" x2="498" y2="90" stroke="#ea580c" stroke-width="1.5"/>
+      <rect x="498" y="44" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="533" y="58" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 5</text>
+      <text x="533" y="68" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <rect x="498" y="78" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="533" y="92" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 6</text>
+      <text x="533" y="102" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <!-- Group 4 -->
+      <rect x="603" y="28" width="170" height="104" rx="5" fill="none" stroke="#fcd34d" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="688" y="40" text-anchor="middle" fill="#92400e" font-size="7">String 4 (0.125C)</text>
+      <rect x="613" y="52" width="60" height="40" rx="3" fill="#16a34a" filter="url(#d1)"/>
+      <text x="643" y="68" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">PCS 4</text>
+      <text x="643" y="82" text-anchor="middle" fill="#bbf7d0" font-size="6">1.25 MW</text>
+      <line x1="673" y1="62" x2="693" y2="55" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="673" y1="78" x2="693" y2="90" stroke="#ea580c" stroke-width="1.5"/>
+      <rect x="693" y="44" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="728" y="58" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 7</text>
+      <text x="728" y="68" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <rect x="693" y="78" width="70" height="28" rx="3" fill="#ea580c" filter="url(#d1)"/>
+      <text x="728" y="92" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">BESS 8</text>
+      <text x="728" y="102" text-anchor="middle" fill="#fed7aa" font-size="5.5">5.015 MWh</text>
+      <text x="410" y="145" text-anchor="middle" fill="#92400e" font-size="8" font-weight="600">Each string: 1&times;1.25 MW driving 2&times;5.015 MWh = 10.03 MWh &rarr; uniform 0.125C across all strings</text>
+    </svg>
+</div>
+
+<!-- PAGE 3: All configurations with BCS1000K -->
+<div class="page page-break">
+    <div class="header">
+        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info">Complete Configuration Tables &mdash; BCS1000K (1.00 MW)</div>
+    </div>
+    <h2>All Configurations &mdash; BCS1000K (1.00 MW PCS)</h2>
+
+    <h3>1:1 Ratio (0.2C &mdash; 5.0h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">1</td><td class="c">1</td><td class="c">1.00</td><td class="c">5.02</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T1</td><td class="c">2</td></tr>
+            <tr><td class="c">2</td><td class="c">2</td><td class="c">2.00</td><td class="c">10.03</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T2</td><td class="c">3</td></tr>
+            <tr><td class="c">3</td><td class="c">3</td><td class="c">3.00</td><td class="c">15.05</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T2 + T1</td><td class="c">5</td></tr>
+            <tr><td class="c">4</td><td class="c">4</td><td class="c">4.00</td><td class="c">20.06</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T4</td><td class="c">5</td></tr>
+            <tr><td class="c">5</td><td class="c">5</td><td class="c">5.00</td><td class="c">25.08</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T4 + T1</td><td class="c">7</td></tr>
+            <tr><td class="c">6</td><td class="c">6</td><td class="c">6.00</td><td class="c">30.09</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T4 + T2</td><td class="c">8</td></tr>
+            <tr><td class="c">8</td><td class="c">8</td><td class="c">8.00</td><td class="c">40.12</td><td class="c">5.0h</td><td class="c">0.2C</td><td>T8 <em>or</em> 2&times;T4</td><td class="c">9&ndash;10</td></tr>
+        </tbody>
+    </table>
+
+    <h3>2:1 Ratio (0.4C &mdash; 2.5h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">2</td><td class="c">1</td><td class="c">2.00</td><td class="c">5.02</td><td class="c">2.5h</td><td class="c">0.4C</td><td>T2</td><td class="c">2</td></tr>
+            <tr><td class="c">4</td><td class="c">2</td><td class="c">4.00</td><td class="c">10.03</td><td class="c">2.5h</td><td class="c">0.4C</td><td>T4</td><td class="c">3</td></tr>
+            <tr><td class="c">6</td><td class="c">3</td><td class="c">6.00</td><td class="c">15.05</td><td class="c">2.5h</td><td class="c">0.4C</td><td>T4 + T2</td><td class="c">5</td></tr>
+            <tr><td class="c">8</td><td class="c">4</td><td class="c">8.00</td><td class="c">20.06</td><td class="c">2.5h</td><td class="c">0.4C</td><td>T8 <em>or</em> 2&times;T4</td><td class="c">5&ndash;6</td></tr>
+            <tr><td class="c">10</td><td class="c">5</td><td class="c">10.00</td><td class="c">25.08</td><td class="c">2.5h</td><td class="c">0.4C</td><td>T8 + T2</td><td class="c">7</td></tr>
+        </tbody>
+    </table>
+
+    <h3>1:2 Ratio (0.1C &mdash; 10.0h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">1</td><td class="c">2</td><td class="c">1.00</td><td class="c">10.03</td><td class="c">10.0h</td><td class="c">0.1C</td><td>T1</td><td class="c">3</td></tr>
+            <tr><td class="c">2</td><td class="c">4</td><td class="c">2.00</td><td class="c">20.06</td><td class="c">10.0h</td><td class="c">0.1C</td><td>T2</td><td class="c">5</td></tr>
+            <tr><td class="c">3</td><td class="c">6</td><td class="c">3.00</td><td class="c">30.09</td><td class="c">10.0h</td><td class="c">0.1C</td><td>T2 + T1</td><td class="c">8</td></tr>
+            <tr><td class="c">4</td><td class="c">8</td><td class="c">4.00</td><td class="c">40.12</td><td class="c">10.0h</td><td class="c">0.1C</td><td>T4</td><td class="c">9</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>BCS1000K Sweet Spot:</strong> The 1.00 MW PCS at 1:1 gives the longest duration of any single-ratio configuration (5 hours). At 1:2, it reaches 10 hours &mdash; true long-duration storage from the same container platform. Ideal for smaller parks (1&ndash;4 MW) or applications prioritising duration over power.
+    </div>
+</div>
+
+<!-- PAGE 4: All configurations with BCS1250K -->
+<div class="page page-break">
+    <div class="header">
+        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info">Complete Configuration Tables &mdash; BCS1250K (1.25 MW)</div>
+    </div>
+    <h2>All Configurations &mdash; BCS1250K (1.25 MW PCS)</h2>
+
+    <h3>1:1 Ratio (0.25C &mdash; 4.0h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">1</td><td class="c">1</td><td class="c">1.25</td><td class="c">5.02</td><td class="c">4.0h</td><td class="c">0.25C</td><td>T1</td><td class="c">2</td></tr>
+            <tr><td class="c">2</td><td class="c">2</td><td class="c">2.50</td><td class="c">10.03</td><td class="c">4.0h</td><td class="c">0.25C</td><td>T2</td><td class="c">3</td></tr>
+            <tr><td class="c">3</td><td class="c">3</td><td class="c">3.75</td><td class="c">15.05</td><td class="c">4.0h</td><td class="c">0.25C</td><td>T2 + T1</td><td class="c">5</td></tr>
+            <tr style="background:#eff6ff"><td class="c" style="font-weight:700">4</td><td class="c" style="font-weight:700">4</td><td class="c price">5.00</td><td class="c price">20.06</td><td class="c">4.0h</td><td class="c">0.25C</td><td><strong>T4</strong></td><td class="c">5</td></tr>
+            <tr><td class="c">5</td><td class="c">5</td><td class="c">6.25</td><td class="c">25.08</td><td class="c">4.0h</td><td class="c">0.25C</td><td>T4 + T1</td><td class="c">7</td></tr>
+            <tr><td class="c">6</td><td class="c">6</td><td class="c">7.50</td><td class="c">30.09</td><td class="c">4.0h</td><td class="c">0.25C</td><td>T4 + T2</td><td class="c">8</td></tr>
+            <tr><td class="c">8</td><td class="c">8</td><td class="c">10.00</td><td class="c">40.12</td><td class="c">4.0h</td><td class="c">0.25C</td><td>T8 <em>or</em> 2&times;T4</td><td class="c">9&ndash;10</td></tr>
+        </tbody>
+    </table>
+
+    <h3>2:1 Ratio (0.5C &mdash; 2.0h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">2</td><td class="c">1</td><td class="c">2.50</td><td class="c">5.02</td><td class="c">2.0h</td><td class="c">0.5C</td><td>T2</td><td class="c">2</td></tr>
+            <tr><td class="c">4</td><td class="c">2</td><td class="c">5.00</td><td class="c">10.03</td><td class="c">2.0h</td><td class="c">0.5C</td><td>T4</td><td class="c">3</td></tr>
+            <tr><td class="c">6</td><td class="c">3</td><td class="c">7.50</td><td class="c">15.05</td><td class="c">2.0h</td><td class="c">0.5C</td><td>T4 + T2</td><td class="c">5</td></tr>
+            <tr><td class="c">8</td><td class="c">4</td><td class="c">10.00</td><td class="c">20.06</td><td class="c">2.0h</td><td class="c">0.5C</td><td>T8 <em>or</em> 2&times;T4</td><td class="c">5&ndash;6</td></tr>
+            <tr><td class="c">10</td><td class="c">5</td><td class="c">12.50</td><td class="c">25.08</td><td class="c">2.0h</td><td class="c">0.5C</td><td>T8 + T2</td><td class="c">7</td></tr>
+        </tbody>
+    </table>
+
+    <h3>1:2 Ratio (0.125C &mdash; 8.0h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">1</td><td class="c">2</td><td class="c">1.25</td><td class="c">10.03</td><td class="c">8.0h</td><td class="c">0.125C</td><td>T1</td><td class="c">3</td></tr>
+            <tr><td class="c">2</td><td class="c">4</td><td class="c">2.50</td><td class="c">20.06</td><td class="c">8.0h</td><td class="c">0.125C</td><td>T2</td><td class="c">5</td></tr>
+            <tr><td class="c">3</td><td class="c">6</td><td class="c">3.75</td><td class="c">30.09</td><td class="c">8.0h</td><td class="c">0.125C</td><td>T2 + T1</td><td class="c">8</td></tr>
+            <tr><td class="c">4</td><td class="c">8</td><td class="c">5.00</td><td class="c">40.12</td><td class="c">8.0h</td><td class="c">0.125C</td><td>T4</td><td class="c">9</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PAGE 4: All configurations with BCS1500K -->
+<div class="page page-break">
+    <div class="header">
+        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info">Complete Configuration Tables &mdash; BCS1500K (1.50 MW)</div>
+    </div>
+    <h2>All Configurations &mdash; BCS1500K (1.50 MW PCS) <span class="tag tag-new">LATE 2026</span></h2>
+
+    <h3>1:1 Ratio (0.3C &mdash; 3.3h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">1</td><td class="c">1</td><td class="c">1.50</td><td class="c">5.02</td><td class="c">3.3h</td><td class="c">0.3C</td><td>T1</td><td class="c">2</td></tr>
+            <tr><td class="c">2</td><td class="c">2</td><td class="c">3.00</td><td class="c">10.03</td><td class="c">3.3h</td><td class="c">0.3C</td><td>T2</td><td class="c">3</td></tr>
+            <tr><td class="c">4</td><td class="c">4</td><td class="c">6.00</td><td class="c">20.06</td><td class="c">3.3h</td><td class="c">0.3C</td><td>T4</td><td class="c">5</td></tr>
+            <tr style="background:#fce7f3"><td class="c" style="font-weight:700">5</td><td class="c" style="font-weight:700">5</td><td class="c price">7.50</td><td class="c price">25.08</td><td class="c">3.3h</td><td class="c">0.3C</td><td><strong>T4 + T1</strong></td><td class="c">7</td></tr>
+            <tr><td class="c">6</td><td class="c">6</td><td class="c">9.00</td><td class="c">30.09</td><td class="c">3.3h</td><td class="c">0.3C</td><td>T4 + T2</td><td class="c">8</td></tr>
+            <tr><td class="c">8</td><td class="c">8</td><td class="c">12.00</td><td class="c">40.12</td><td class="c">3.3h</td><td class="c">0.3C</td><td>T8 <em>or</em> 2&times;T4</td><td class="c">9&ndash;10</td></tr>
+        </tbody>
+    </table>
+
+    <h3>2:1 Ratio (0.6C &mdash; 1.7h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">2</td><td class="c">1</td><td class="c">3.00</td><td class="c">5.02</td><td class="c">1.7h</td><td class="c">0.6C</td><td>T2</td><td class="c">2</td></tr>
+            <tr><td class="c">4</td><td class="c">2</td><td class="c">6.00</td><td class="c">10.03</td><td class="c">1.7h</td><td class="c">0.6C</td><td>T4</td><td class="c">3</td></tr>
+            <tr><td class="c">6</td><td class="c">3</td><td class="c">9.00</td><td class="c">15.05</td><td class="c">1.7h</td><td class="c">0.6C</td><td>T4 + T2</td><td class="c">5</td></tr>
+            <tr><td class="c">8</td><td class="c">4</td><td class="c">12.00</td><td class="c">20.06</td><td class="c">1.7h</td><td class="c">0.6C</td><td>T8 <em>or</em> 2&times;T4</td><td class="c">5&ndash;6</td></tr>
+        </tbody>
+    </table>
+
+    <h3>1:2 Ratio (0.15C &mdash; 6.7h duration)</h3>
+    <table>
+        <thead><tr><th class="c">PCS</th><th class="c">BESS</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Duration</th><th class="c">C-Rate</th><th>Skid Config</th><th class="c">Total Units</th></tr></thead>
+        <tbody>
+            <tr><td class="c">1</td><td class="c">2</td><td class="c">1.50</td><td class="c">10.03</td><td class="c">6.7h</td><td class="c">0.15C</td><td>T1</td><td class="c">3</td></tr>
+            <tr><td class="c">2</td><td class="c">4</td><td class="c">3.00</td><td class="c">20.06</td><td class="c">6.7h</td><td class="c">0.15C</td><td>T2</td><td class="c">5</td></tr>
+            <tr><td class="c">4</td><td class="c">8</td><td class="c">6.00</td><td class="c">40.12</td><td class="c">6.7h</td><td class="c">0.15C</td><td>T4</td><td class="c">9</td></tr>
+            <tr><td class="c">5</td><td class="c">10</td><td class="c">7.50</td><td class="c">50.15</td><td class="c">6.7h</td><td class="c">0.15C</td><td>T4 + T1</td><td class="c">12</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Expansion &amp; Mixed-PCS Considerations</h2>
+    <div class="rule">
+        <strong>C-Rate Mixing Rule:</strong> Mixing PCS sizes within a system creates non-uniform C-rates across strings. Examples at 1:1 ratio:<br>
+        &bull; BCS1000K + BCS1250K &rarr; 0.2C vs 0.25C (small mismatch &mdash; acceptable)<br>
+        &bull; BCS1250K + BCS1500K &rarr; 0.25C vs 0.3C (small mismatch &mdash; acceptable)<br>
+        &bull; BCS1000K + BCS1500K &rarr; 0.2C vs 0.3C (50% mismatch &mdash; <strong>avoid</strong>)<br>
+        Each string is independently managed by the EMS, but mismatched C-rates cause uneven degradation, thermal profiles, and SOH drift over time. Acceptable for phased expansion, <strong>not recommended for new-build</strong>.
+    </div>
+    <div class="good">
+        <strong>Cleanest Approach:</strong> Build the <strong>entire system with one PCS model</strong> for uniform C-rate across all strings. For phased expansion, keep the same ratio (e.g. 1:1 throughout) and accept the mild C-rate difference &mdash; the EMS dispatches each string proportionally. Avoid mixing more than 2 PCS sizes in one system.
+    </div>
+
+    <h2>Quick Reference &mdash; 1:1 C-Rate Comparison Across All Three PCS</h2>
+    <table>
+        <thead><tr><th class="c">PCS Model</th><th class="c">MW</th><th class="c">1:1 C-Rate</th><th class="c">1:1 Duration</th><th class="c">2:1 C-Rate</th><th class="c">2:1 Duration</th><th class="c">1:2 C-Rate</th><th class="c">1:2 Duration</th></tr></thead>
+        <tbody>
+            <tr><td class="c"><strong>BCS1000K</strong></td><td class="c">1.00</td><td class="c">0.2C</td><td class="c" style="font-weight:700">5.0h</td><td class="c">0.4C</td><td class="c">2.5h</td><td class="c">0.1C</td><td class="c" style="font-weight:700">10.0h</td></tr>
+            <tr style="background:#eff6ff"><td class="c"><strong>BCS1250K</strong></td><td class="c">1.25</td><td class="c">0.25C</td><td class="c" style="font-weight:700">4.0h</td><td class="c">0.5C</td><td class="c">2.0h</td><td class="c">0.125C</td><td class="c" style="font-weight:700">8.0h</td></tr>
+            <tr><td class="c"><strong>BCS1500K</strong></td><td class="c">1.50</td><td class="c">0.3C</td><td class="c" style="font-weight:700">3.3h</td><td class="c">0.6C</td><td class="c">1.7h</td><td class="c">0.15C</td><td class="c" style="font-weight:700">6.7h</td></tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <strong>Lighthief Cyprus Ltd</strong> | Internal Reference &mdash; PCS-to-Container Configuration Guide<br>
+        BESS container: Linyang Power Atlantic 5.015 MWh (20ft HC, EVE LFP 314Ah) | PCS: Kehua C-series (1.00 / 1.25 / 1.50 MW)<br>
+        17 March 2026 | Confidential &mdash; Internal Use Only
+    </div>
+</div>
+
+</body>
+</html>

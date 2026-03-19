@@ -77,7 +77,7 @@ Using Antminer S21+ (216 TH/s, 3.56 kW), 6 hrs/day equivalent:
 |-----------|----------|------------|-----------------|
 | **87 kWp (Alex Anarita)** | **~125** | **~17** | **1** |
 | 1 MW | 1,440 | 185 | 2 |
-| 5 MW | 7,200 | 926 | 6 |
+| 5 MW | 7,200 | 924 | 6 |
 | 10 MW | 14,400 | 1,847 | 11 |
 
 **Alex Anarita plot (700 m², ~87 kWp):** supports **1 container** (~17 S21+).
@@ -86,15 +86,15 @@ Using Antminer S21+ (216 TH/s, 3.56 kW), 6 hrs/day equivalent:
 
 ## 6. JV Economics (5-Year Horizon)
 
-*Fair split, EPC included. See solhash project presentation for methodology.*
+*Fair split, EPC included. See solhash project presentation for methodology. Values below use E-W yield (1,440 kWh/kWp). Run `npm run solhash:presentation` to regenerate with latest model.*
 
-| Park size | Park share | Park €/kWh | Mining NPV | Mining IRR | Payback |
-|-----------|------------|------------|------------|------------|---------|
-| 1 MW | ~5% | ~0.44¢ | — | — | — |
-| 5 MW | ~5% | ~0.44¢ | — | — | — |
-| 10 MW | ~5% | ~0.44¢ | — | — | — |
+| Park size | Park share | Park €/kWh | Note |
+|-----------|------------|------------|------|
+| 87 kWp (this plot) | ~5% | ~0.45¢ | 1 container, minimal scale |
+| 1 MW | ~11% | ~1.0¢ | Fair split model |
+| 5 MW | ~13% | ~1.2¢ | Fair split model |
 
-*Run `npm run solhash:presentation` with park-specific yield (1440 kWh/kWp) for exact figures.*
+*Park share increases at larger scale because equipment capex per MW decreases. At 87 kWp, the park is too small for the JV to produce meaningful returns — opex dominates. See behind-the-meter-financials.md for scaling analysis.*
 
 ---
 

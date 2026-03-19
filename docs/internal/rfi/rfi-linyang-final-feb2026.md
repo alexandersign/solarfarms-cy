@@ -41,7 +41,7 @@
 
 | Field | Value |
 |-------|-------|
-| **To** | Kamil Tyburski, Conor Yang (Linyang); Kehua Sales Team |
+| **To** | Kamil Talar, Conor Yang (Linyang); Kehua Sales Team |
 | **CC** | [Internal team] |
 | **Subject** | RFI - Cyprus 863.5 MWh BESS Portfolio - Outstanding Items (2 Feb 2026) - FINAL |
 | **Reference** | LCY-RFI-CONSOLIDATED-2026-001 |

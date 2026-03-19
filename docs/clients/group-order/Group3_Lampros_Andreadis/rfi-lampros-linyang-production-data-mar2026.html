@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFI: Linyang Production Data &mdash; Lampros Andreadis (Classone Solar) | Lighthief</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669;--warn:#d97706;--red:#dc2626}
+        body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+        .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+        .logo{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}.logo span{color:var(--accent)}
+        .tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+        .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+        h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+        h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+        table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+        th{background:var(--primary);color:#fff;padding:5px 7px;text-align:left;font-weight:600}
+        td{padding:5px 7px;border-bottom:1px solid var(--border)}
+        tr:nth-child(even){background:#fafbfc}
+        .r{text-align:right}.c{text-align:center}
+        .total-row{background:var(--primary)!important;color:#fff;font-weight:700}
+        .total-row td{border:none}
+        .highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .warn{background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .action{background:#fef2f2;border:1px solid #fca5a5;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:9pt;font-weight:600;color:#991b1b}
+        .phase{background:var(--bg);padding:6px 12px;border-left:3px solid var(--accent);margin:14px 0 6px;font-weight:600;color:var(--primary);font-size:9pt}
+        .footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+        .note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+        .print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .print-btn:hover{background:var(--accent)}
+        ul{margin-left:18px}li{margin-bottom:3px;font-size:8pt}
+        .input-field{border:1px solid var(--accent);background:#f0f7ff;min-width:100px;padding:3px 6px;display:inline-block;min-height:18px}
+        .input-wide{min-width:180px}
+        .input-row td{background:#f0f7ff!important}
+        .sig-line{border-bottom:1px solid var(--text);width:250px;display:inline-block;margin:0 8px}
+        .sig-block{margin:30px 0 10px;line-height:2.5}
+        .batch-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:7pt;font-weight:700;color:#fff;margin-left:4px}
+        .b1{background:var(--accent)}
+        .required{color:var(--red);font-weight:700}
+        .prefilled{color:var(--ok);font-size:7.5pt}
+        @media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}}
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">&#128424; Print / PDF</button>
+
+<div class="page">
+    <div class="header">
+        <div><div class="logo">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>REQUEST FOR INFORMATION</strong><br>Ref: LCY-RFI-PROD-GRP3<br>Date: 18 March 2026<br>Response Due: 28 March 2026<br>Supersedes: LCY-RFI-BATCH-GRP3 (27 Feb 2026)</div>
+    </div>
+
+    <h1>Linyang Production Data Collection &mdash; Lampros Andreadis (Classone Solar)</h1>
+    <p style="font-size:10pt;color:var(--accent);font-weight:600;margin-bottom:16px;">Attention: Lampros Andreadis</p>
+
+    <div class="highlight">
+        <strong>Purpose:</strong> Lighthief Cyprus Ltd requires the following information for each BESS park to finalise the <strong>Linyang Energy production order</strong>. Pre-filled data (green) is from our records. Please <strong>verify all pre-filled data</strong> and <strong>complete all blue fields</strong>. Fields marked <span class="required">*</span> are mandatory.
+    </div>
+
+    <h2>Group Portfolio Summary</h2>
+    <table>
+        <tr><td><strong>Group</strong></td><td>Lampros Andreadis (Classone Solar)</td></tr>
+        <tr><td><strong>Total Parks</strong></td><td>2</td></tr>
+        <tr><td><strong>Total BESS Power</strong></td><td>4.8 MW</td></tr>
+        <tr><td><strong>Total BESS Energy</strong></td><td>15 MWh</td></tr>
+        <tr><td><strong>Portfolio Value</strong></td><td>&euro;2,117,420</td></tr>
+        <tr><td><strong>Batch Assignment</strong></td><td>Batch 1 &mdash; Confirmed</td></tr>
+        <tr><td><strong>Equipment Manufacturer</strong></td><td>Linyang Energy</td></tr>
+        <tr><td><strong>Incoterms</strong></td><td>CIF Limassol</td></tr>
+    </table>
+
+    <div class="action">
+        ACTION REQUIRED: Please complete all blue fields below, sign and return by <strong>28 March 2026</strong>.
+    </div>
+
+    <div class="phase">CLASSONE SOLAR &mdash; 2 Parks | 4.8 MW | 15 MWh <span class="batch-tag b1">Batch 1 Confirmed</span></div>
+
+    <h2>Section A: Park Technical Data</h2>
+    <p class="note"><span class="prefilled">Green = pre-filled.</span> <span style="color:var(--accent)">Blue = please complete.</span> <span class="required">* = mandatory.</span></p>
+
+    <table>
+        <thead>
+            <tr><th>Field</th><th>Classone Solar Breeze Ltd</th><th>Classone Solar Garden Ltd</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Legal Entity Name</strong></td><td><span class="prefilled">Classone Solar Breeze Ltd</span></td><td><span class="prefilled">Classone Solar Garden Ltd</span></td></tr>
+            <tr><td><strong>BESS Power (MW)</strong></td><td><span class="prefilled">1.51 MW</span></td><td><span class="prefilled">3.29 MW</span></td></tr>
+            <tr><td><strong>BESS Energy (MWh)</strong></td><td><span class="prefilled">5 MWh</span></td><td><span class="prefilled">10 MWh</span></td></tr>
+            <tr class="input-row"><td><strong>Revised Sizing (if different)</strong></td><td>MW: <span class="input-field"></span> MWh: <span class="input-field"></span></td><td>MW: <span class="input-field"></span> MWh: <span class="input-field"></span></td></tr>
+            <tr><td><strong>Co-located PV (MW)</strong></td><td><span class="prefilled">1.50 MW</span></td><td><span class="prefilled">3.00 MW</span></td></tr>
+            <tr><td><strong>BESS Category</strong></td><td><span class="prefilled">B (Hybrid)</span></td><td><span class="prefilled">B (Hybrid)</span></td></tr>
+            <tr><td><strong>Battery Containers</strong></td><td><span class="prefilled">1&times; ME5.015 (20ft)</span></td><td><span class="prefilled">2&times; ME5.015 (20ft)</span></td></tr>
+            <tr><td><strong>PCS Units</strong></td><td><span class="prefilled">2&times; BCS1250K-C-HUD</span></td><td><span class="prefilled">3&times; BCS1250K-C-HUD</span></td></tr>
+            <tr><td><strong>MV Skid</strong></td><td><span class="prefilled">T1 (1.5MW)</span></td><td><span class="prefilled">T2 (3.3MW)</span></td></tr>
+            <tr><td><strong>Total Shipping Containers</strong></td><td><span class="prefilled">2 (1 batt + 1 MV)</span></td><td><span class="prefilled">3 (2 batt + 1 MV)</span></td></tr>
+            <tr><td><strong>MV Connection Voltage</strong></td><td><span class="prefilled">22 kV</span></td><td><span class="prefilled">22 kV</span></td></tr>
+            <tr><td><strong>District</strong></td><td><span class="prefilled">Limassol</span></td><td><span class="prefilled">Limassol</span></td></tr>
+            <tr class="input-row"><td><strong>GPS Coordinates</strong> <span class="required">*</span></td><td><span class="input-field input-wide"></span></td><td><span class="input-field input-wide"></span></td></tr>
+            <tr class="input-row"><td><strong>Site Address</strong> <span class="required">*</span></td><td><span class="input-field input-wide"></span></td><td><span class="input-field input-wide"></span></td></tr>
+            <tr class="input-row"><td><strong>DSO Approval No.</strong> <span class="required">*</span></td><td><span class="input-field"></span></td><td><span class="input-field"></span></td></tr>
+            <tr class="input-row"><td><strong>DSO Approval Date</strong></td><td><span class="input-field"></span></td><td><span class="input-field"></span></td></tr>
+            <tr class="input-row"><td><strong>Grid Connection Point</strong></td><td><span class="input-field input-wide"></span></td><td><span class="input-field input-wide"></span></td></tr>
+            <tr class="input-row"><td><strong>Building Permit Status</strong></td><td><span class="input-field"></span></td><td><span class="input-field"></span></td></tr>
+            <tr class="input-row"><td><strong>Environmental Permit</strong></td><td><span class="input-field"></span></td><td><span class="input-field"></span></td></tr>
+            <tr class="input-row"><td><strong>Land Ownership Confirmed</strong></td><td><span class="input-field">Yes / No</span></td><td><span class="input-field">Yes / No</span></td></tr>
+            <tr class="input-row"><td><strong>SLD Provided?</strong></td><td><span class="input-field">Yes / No</span></td><td><span class="input-field">Yes / No</span></td></tr>
+            <tr class="input-row"><td><strong>Access Road Width (m)</strong></td><td><span class="input-field"></span></td><td><span class="input-field"></span></td></tr>
+            <tr class="input-row"><td><strong>Site Constraints</strong></td><td><span class="input-field input-wide"></span></td><td><span class="input-field input-wide"></span></td></tr>
+            <tr class="input-row"><td><strong>Expected Order Date</strong> <span class="required">*</span></td><td><span class="input-field">April 2026</span></td><td><span class="input-field">April 2026</span></td></tr>
+            <tr class="input-row"><td><strong>Site Readiness Date</strong> <span class="required">*</span></td><td><span class="input-field"></span></td><td><span class="input-field"></span></td></tr>
+            <tr class="input-row"><td><strong>Target Commissioning (PAC)</strong> <span class="required">*</span></td><td><span class="input-field">Dec 2026</span></td><td><span class="input-field">Dec 2026</span></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Section B: Equipment Summary</h2>
+    <table>
+        <thead><tr><th>Park</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Batt. Cont.</th><th class="c">PCS</th><th>MV Skid</th><th class="c">Total Cont.</th><th>Batch</th></tr></thead>
+        <tbody>
+            <tr><td>Solar Breeze</td><td class="c">1.51</td><td class="c">5</td><td class="c">1</td><td class="c">2</td><td>T1</td><td class="c">2</td><td><span class="batch-tag b1">B1</span></td></tr>
+            <tr><td>Solar Garden</td><td class="c">3.29</td><td class="c">10</td><td class="c">2</td><td class="c">3</td><td>T2</td><td class="c">3</td><td><span class="batch-tag b1">B1</span></td></tr>
+            <tr class="total-row"><td><strong>TOTAL</strong></td><td class="c"><strong>4.80</strong></td><td class="c"><strong>15</strong></td><td class="c"><strong>3</strong></td><td class="c"><strong>5</strong></td><td></td><td class="c"><strong>5</strong></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Section C: Production Timeline</h2>
+    <table>
+        <tr><td><strong>Production Lead Time</strong></td><td>90 days from order</td></tr>
+        <tr><td><strong>Shipping Duration</strong></td><td>50 days (Shanghai &rarr; Limassol)</td></tr>
+        <tr><td><strong>Target CIF Arrival</strong></td><td>Aug 2026 (Batch 1)</td></tr>
+        <tr><td><strong>Target PAC</strong></td><td>Dec 2026 (Batch 1)</td></tr>
+        <tr><td><strong>Grid Code</strong></td><td>EN 50549-2 (T&Uuml;V cert D 115067 0077)</td></tr>
+        <tr><td><strong>MV Voltage</strong></td><td>22 kV</td></tr>
+        <tr><td><strong>PCS Model</strong></td><td>Kehua BCS1250K-C-HUD (1.25 MW)</td></tr>
+        <tr><td><strong>Battery Cell</strong></td><td>EVE LFP 314Ah</td></tr>
+    </table>
+
+    <h2>Confirmation</h2>
+    <div class="sig-block">
+        <p>Name: <span class="sig-line"></span> Position: <span class="sig-line"></span></p>
+        <p>Signature: <span class="sig-line"></span> Date: <span class="sig-line"></span></p>
+        <p>Company: <span class="sig-line" style="width:400px"></span></p>
+    </div>
+
+    <div class="footer">
+        <strong>Lighthief Cyprus Ltd</strong> | HE 477423 | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+        Contact: Alexander Papacosta | +357 99 164 158 | office@lighthief.com<br>
+        Please return completed form to: <strong>office@lighthief.com</strong>
+    </div>
+</div>
+
+</body>
+</html>

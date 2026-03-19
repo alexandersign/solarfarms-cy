@@ -4,7 +4,7 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 12 March 2026
+// Last updated: 17 March 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx
 // ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
 // Spanercom (Anarita 2×5/15) added to Batch 1.
@@ -73,7 +73,17 @@ export const ADDERS = {
   importDuty:         { total: 2_286_640.47, status: 'confirmed' as DataStatus, rate: '2.66% of CIF (weighted HS codes)' },
   portLanding:        { total: 161_895.00,   status: 'quoted' as DataStatus,    rate: '€600 per 40HC container', supplier: 'ECTL' },
   customsClearance:   { total: 4_335.00,     status: 'quoted' as DataStatus,    rate: '€85 per declaration', supplier: 'Interfreight' },
-  craneTransport:     { total: 604_160.00,   status: 'quoted' as DataStatus,    rate: '€2,360 per container', supplier: 'A. Soulis', fleet: { trucks20ft: 6, capacity20ft: '43 tonnes', trucks40ft: 'TBC' } },
+  craneTransport:     { total: 350_000.00,   status: 'confirmed' as DataStatus,  rate: '€2,500 per container (flat rate, all routes, all container types)', supplier: 'A. Soulis',
+                        fleet: { trucks20ft: 6, capacity20ft: '43 tonnes', trucks40ft: 'TBC', cranes: ['Liebherr LTM1095', 'Liebherr LTM1100', 'Demag AC100', 'Demag AC160', 'Liebherr LTM1200', 'Demag AC250'] },
+                        proposedCrane: '160T (Demag AC160)', craneFootprint: '10 m outrigger spread',
+                        portStorage: '10 days', permitLeadTime: '15 days', permitValidity: '30 days',
+                        portClearancePayment: '10 working days before vessel arrival',
+                        insurance: { goodsInTransit: 440_000, publicLiability: 5_000_000, dualCoverage: true, note: '€440K goods-in-transit per incident (A. Soulis policy) + €5M public liability (A. Soulis policy). Dual coverage: subcontractor (Soulis) carries own GIT + PL, Lighthief also covers under Marsh inland transit (€2M/shipment) + Lighthief PL (€10M aggregate). Max single container CIF ~€338K — €440K adequate. Upgrade to €500K available for €1,500 if required.' },
+                        additionalCharges: { weekendHoliday: '50% surcharge', waitingTime: '€500/hr (after 2 hrs)', craneMobilisation: '€3,000 per additional mobilisation' },
+                        volumeDiscount: 'N/A — no discount offered',
+                        openItems: ['Precision positioning (±50mm) — Soulis flagged as potential additional cost', 'Levelling/shimming — Soulis flagged as potential additional cost', 'Payment terms — to be discussed', 'Cancellation terms — to be discussed', 'Confirm Linyang ISO lifting attachment points'],
+                        references: ['COL Group: 20 transformers 10-20MVA (2024-25), 19 transformers 40MVA (2026-27) for EAC', 'APR Energy: 160 containerised generators at Moni station', 'Vestas Med Cyprus: 75 wind components at Kelia Wind Farm (up to 82m special transport)'],
+                      },
   dehnLpsSpdEarthing: { total: 446_384.61,   status: 'quoted' as DataStatus,    supplier: 'DEHN + StrikeRA' },
   dehnInstallLabour:  { total: 81_600.00,    status: 'confirmed' as DataStatus, rate: '€1,600 per park', supplier: 'StrikeRA' },
   civilWorks:         { total: 1_763_560.00, status: 'confirmed' as DataStatus, rate: '€2,000 per MWh', supplier: 'Lighthief subcontractors' },
@@ -248,17 +258,10 @@ export const PAYMENT_TERMS = {
     retention:   { pct: 5,  trigger: 'Released after 24-month DLP' },
   },
   linyang: {
-    advance:     { pct: 30, trigger: 'On or after 1 April (accepted — align with client)' },
-    preShipment: { pct: 50, trigger: 'Ready to ship' },
-    dap:         { pct: 10, trigger: 'Delivery at Place (port arrival)' },
-    sat:         { pct: 10, trigger: 'Site Acceptance Test completion' },
-  },
-  // Alternative: final 10% on fixed date (e.g. 30 Nov) instead of at DAP — improves Aug/Sep cashflow
-  linyang20502010: {
-    advance:     { pct: 20, trigger: 'On or after 1 April (align with client)' },
-    preShipment: { pct: 50, trigger: 'Ready to ship' },
-    dap:         { pct: 20, trigger: 'Delivery at Place (port arrival)' },
-    final10:     { pct: 10, trigger: '30 November 2026 (fixed date, not at DAP)' },
+    advance:     { pct: 20, trigger: 'On or after 1 April (final confirmed Mar 2026)' },
+    preShipment: { pct: 50, trigger: 'Ready to ship (Ex-Works, within 3 days of FAT + photo evidence)' },
+    dap:         { pct: 20, trigger: 'Delivery at Place (CIF Limassol port arrival)' },
+    sat:         { pct: 10, trigger: 'Site Acceptance Test / PAC completion' },
   },
   voltus: {
     advance:     { pct: 50, trigger: 'Order date' },
@@ -380,9 +383,9 @@ export const OM_OPEX = {
   fleetTotal: 71_040,
 
   premises: {
-    warehouse:           { annual: 66_600, note: '50% share of 10,000 sqft Limassol warehouse. €5,000/mo rent + €550/mo utilities/security' },
+    warehouse:           { annual: 48_000, note: 'Ypsonas warehouse €8,000/mo gross. 7Sun funds 50% (€4,000/mo). Lighthief net: €4,000/mo. Upfront: 2 deposits + 1 month = €24,000.' },
   },
-  premisesTotal: 66_600,
+  premisesTotal: 48_000,
 
   operations: {
     scadaGlobalMaint:    { annual: 34_000, note: '3 groups × Voltus annual maintenance' },
@@ -395,26 +398,33 @@ export const OM_OPEX = {
   },
   operationsTotal: 137_000,
 
-  subtotal: 676_040,
+  sevenSunFunded: {
+    warehouseContribution: { annual: 48_000, note: '7Sun pays 50% of €8,000/mo warehouse rent (€4,000/mo)' },
+    andreasChristoforou:   { annual: 30_000, note: 'Energy & BESS Consultant salary funded by 7Sun — not a Lighthief OPEX item' },
+  },
+
+  subtotal: 657_440,
   contingencyRate: 0.10,
-  contingency: 67_604,
-  total: 743_644,
-  totalRounded: 744_000,
+  contingency: 65_744,
+  total: 723_184,
+  totalRounded: 724_000,
 
   assumptions: [
     '6 field engineers (1 buffer over 5-minimum workload model)',
     '2 engineers per HV maintenance visit (safety requirement)',
     'Fully loaded engineer cost = €4,500/mo (incl. accommodation, social insurance)',
     '10 planned maintenance days per park per year',
-    '100–200 reactive calls per year across 51 parks',
-    'Warehouse at 50% share (€5,000/mo rent)',
+    '80–150 reactive calls per year across 28 parks',
+    'Warehouse: Ypsonas €8,000/mo gross, 7Sun funds 50% (€4,000/mo net to Lighthief)',
     '4 service vehicles (3 shift + 1 logistics/driver)',
     '10% contingency on all recurring OPEX',
     'Extended warranty is client-paid directly to Linyang (no P&L impact)',
     'Spare parts budget increases ~20% after Year 5 as fleet ages',
+    'Andreas Christoforou (Energy & BESS Consultant) salary funded by 7Sun — excluded from Lighthief OPEX',
+    'Warehouse upfront: 2 deposits (€16,000) + 1 month advance (€8,000) = €24,000 on signing',
   ],
 
-  _meta: { source: 'opex-plan-2026.md + real-world overestimates', date: '2026-03-03' } as MetaInfo,
+  _meta: { source: 'opex-plan-2026.md + warehouse-rental-proposal-8000-mar2026', date: '2026-03-16' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -475,7 +485,18 @@ export const CYPRUS_TAX = {
 export const OEM = {
   manufacturer: 'Linyang Energy',
   distributor: 'Lighthief Cyprus Ltd (exclusive)',
-  pcs: 'Kehua BCS1000K-C-HUD / BCS1250K-C-HUD',
+  pcsModels: [
+    { model: 'BCS1000K-C-HUD', mw: 1.00, status: 'confirmed' as DataStatus, note: 'C-series 1.0 MW — in production' },
+    { model: 'BCS1250K-C-HUD', mw: 1.25, status: 'confirmed' as DataStatus, note: 'C-series 1.25 MW — in production, most common in Cyprus portfolio' },
+    { model: 'BCS1500K-C-HUD', mw: 1.50, status: 'pending' as DataStatus, note: 'C-series 1.5 MW — upcoming, expected late 2026' },
+  ],
+  pcs: 'Kehua BCS1000K-C-HUD / BCS1250K-C-HUD / BCS1500K-C-HUD',
+  skidModels: [
+    { model: 'T1', container: '20ft Std', pcsSlots: 1, maxMw: 1.50 },
+    { model: 'T2', container: '20ft Std', pcsSlots: 2, maxMw: 3.00 },
+    { model: 'T4', container: '40ft HC',  pcsSlots: 4, maxMw: 6.00 },
+    { model: 'T8', container: '40ft HC',  pcsSlots: 8, maxMw: 12.00 },
+  ],
   cells: 'EVE (LFP)',
   containerCapacity: 5.015,
   rte: 86.32, // Full system AC-AC round trip incl. cabling. Linyang PCS-level calc = 87.8% (excludes cabling losses).
@@ -544,7 +565,7 @@ export const RFI_STATUS = {
   voltusEmsPricing:     { status: 'confirmed' as DataStatus, version: 'V2',  date: '2026-02-16', doc: 'rfi-voltus-ems-update-feb2026' },
   civilWorksPricing:    { status: 'confirmed' as DataStatus, version: 'V1',  date: '2026-02-13', doc: 'civil-works-estimate.md' },
   dehnPricing:          { status: 'quoted' as DataStatus,    version: 'V1',  date: '2026-01-28', doc: 'rfq-dehn-lightning-protection-jan2026' },
-  transportPricing:     { status: 'confirmed' as DataStatus,  version: 'V2',  date: '2026-02-22', doc: 'rfq-transport-asoulis-jan2026', note: '6× 20ft trucks confirmed (43T). 40ft TBC.' },
+  transportPricing:     { status: 'confirmed' as DataStatus,  version: 'V3',  date: '2026-03-17', doc: 'docs/quotations/asoulis/A Soulis Proposal .pdf', note: '€2,500/container flat rate (all routes, all types). 160T crane proposed (10m footprint). Fleet: 6 trucks + 6 cranes. Port: 10 days storage. Permits: 15 days lead, 30 days valid. Insurance: €440K GIT (adequate — max container CIF ~€338K), €5M PL. Open: positioning/levelling may be extra, payment & cancellation terms TBC.' },
   insurancePricing:     { status: 'pending' as DataStatus,   version: null,  date: null, doc: 'rfp-insurance-comprehensive-feb2026', note: 'Budget €644,729 (0.75% CIF). Holland NBI: €350K (excl. marine cargo). Marsh RFP due 14 Mar. Holland NBI has €10M/site CAR limit — inadequate vs €50M needed.' },
   performanceBond:      { status: 'confirmed' as DataStatus,  version: 'V1',  date: '2026-02-10', doc: 'linyang-blended-sales-ltsa', note: '5% bank guarantee (corporate), no parent company backing. Agreed per Linyang RFI.' },
   linyangAxaInsurance:  { status: 'confirmed' as DataStatus,  version: 'V1',  date: '2026-03-09', doc: 'legal/in-negotiation/linyang-sales/linyang-axa-product-liability-policy-mar2026.pdf', note: 'AXA Tianping CGL policy received 9 Mar 2026. 36 pages — policy terms + endorsements only. MISSING: declarations page (named insured, limits €5M, territory, period, product schedule). KEY EXCLUSIONS: Absolute Pollution, Pure Financial Loss, Pure Indirect Third-Party Financial Loss, Silicon, Professional, Cyber/Network, Terrorism, Sanctions (PRC/EU/UK/US), PFAS, Nuclear, Asbestos, Lead. Insured Products clause limits coverage to products listed in schedule (not provided). Mandatory Safety Standards clause requires product compliance with destination country standards. ACTION: Request declarations page + product schedule from Linyang.' },
@@ -691,7 +712,6 @@ export function getTemplateVars(): Record<string, string> {
     'PAYMENT.linyang.preShipment':String(PAYMENT_TERMS.linyang.preShipment.pct),
     'PAYMENT.linyang.dap':        String(PAYMENT_TERMS.linyang.dap.pct),
     'PAYMENT.linyang.sat':        String(PAYMENT_TERMS.linyang.sat.pct),
-    'PAYMENT.linyang20502010.final10Trigger': PAYMENT_TERMS.linyang20502010.final10.trigger,
     'BATCH1.linyangFinal10K':    String(Math.round(0.1 * BATCHES[0].cif / 1000)),
 
     'OEM.manufacturer':        OEM.manufacturer,
@@ -746,9 +766,9 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH1.vatQuarterFirst': PORTFOLIO.vatStartQuarter,
     'BATCH1.clientAdvance30': Math.round(0.3 * BATCHES[0].revenue).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.clientAdvance30K': String(Math.round(0.3 * BATCHES[0].revenue / 1000)),
-    'BATCH1.linyangAdvance30': Math.round(0.3 * BATCHES[0].cif).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
-    'BATCH1.linyangAdvance30K': String(Math.round(0.3 * BATCHES[0].cif / 1000)),
-    'BATCH1.linyangRequestNote': `30% advance €${(0.3 * BATCHES[0].cif / 1e6).toFixed(2)}M due on or after ${fmtDate(PORTFOLIO.firstClientInvoiceDate)} (Linyang accepted 30/50/10/10) to align with client 30% receipt and VAT quarter.`,
+    'BATCH1.linyangAdvance20': Math.round(0.2 * BATCHES[0].cif).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.linyangAdvance20K': String(Math.round(0.2 * BATCHES[0].cif / 1000)),
+    'BATCH1.linyangRequestNote': `20% advance €${(0.2 * BATCHES[0].cif / 1e6).toFixed(2)}M due on or after ${fmtDate(PORTFOLIO.firstClientInvoiceDate)} (Linyang final confirmed 20/50/20/10) to align with client receipt and VAT quarter.`,
     'GROUP_ORDER.clientRevenue': GROUP_ORDER_REMAINING.clientRevenue.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'GROUP_ORDER.clientRevenueM': `€${(GROUP_ORDER_REMAINING.clientRevenue / 1e6).toFixed(1)}M`,
     'GROUP_ORDER.cifTotal': GROUP_ORDER_REMAINING.cifTotal.toLocaleString('en-IE', { maximumFractionDigits: 0 }),

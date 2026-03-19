@@ -132,7 +132,7 @@ Alexander Papacosta — Cyprus Director & Project Lead
 │   └── Kacper Goral — Senior Electrical Engineer
 │
 └── INSTALLATION & COMMISSIONING TEAM
-    ├── Kamil Tyburski — Linyang, Installation & IT/SCADA
+    ├── Kamil Talar — Linyang, Installation & IT/SCADA
     ├── Michael — Linyang, Product Manager
     ├── Janusz — Lighthief, Installation Lead (details TBC)
     └── Linyang China HQ Team — Factory Commissioning Specialists
@@ -306,7 +306,7 @@ The installation and commissioning phase involves a joint team from Lighthief an
 
 On-site during all commissioning phases. Client liaison, DSO coordination, logistics management, and overall project delivery oversight.
 
-#### Kamil Tyburski — Installation & IT/SCADA Integration (Linyang)
+#### Kamil Talar — Installation & IT/SCADA Integration (Linyang)
 
 Linyang's European installation specialist. Leads on-site BESS container installation, IT infrastructure setup, SCADA integration, and system configuration. Coordinates between Lighthief field team and Linyang China engineering.
 
@@ -651,7 +651,7 @@ Rotation reverses every 4 weeks. No engineer works nights and days on the same d
 | **Dawid Lesnikowski** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |
 | **Szymon Drozdz** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |
 | **Kacper Goral** | Senior Electrical Engineer (O&M) | Lighthief | — | Training (PL) |
-| **Kamil Tyburski** | Installation & IT/SCADA | Linyang | — | EU |
+| **Kamil Talar** | Installation & IT/SCADA | Linyang | — | EU |
 | **Michael** | Product Manager | Linyang | — | EU |
 | **Janusz** | Installation Lead | Lighthief | — | PL |
 | **Linyang China HQ Team** | Factory Commissioning Specialists | Linyang | — | Nanjing, CN |

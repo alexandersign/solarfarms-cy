@@ -9,14 +9,18 @@
 legal/
 ├── active/                              ← Signed / finalised contracts
 │   ├── distribution.md                     Distribution Agreement (signed Feb 2026)
+│   ├── Linyang-sales-contract-17Mar-CLEAN-FOR-SIGNATURE.docx  Sales Contract (clean, 17 Mar 2026)
+│   ├── Linyang-sales-contract-17Mar-REDLINE-SUMMARY.docx      Redline summary (7 amendments)
 │   ├── NDA Linyang PL.docx                 NDA (signed)
 │   └── nda-linyang-reply.md                NDA response notes
 │
 ├── in-negotiation/                      ← Contracts under development
 │   ├── linyang-sales/                      Sales Contract + Guarantee Framework
-│   │   ├── rev260306-...V1 (1).docx           Current version (Linyang V1, 6 Mar 2026)
+│   │   ├── Linyang sales contract - Lighthief - 17.03.docx   Latest Linyang version (17 Mar 2026)
+│   │   ├── Linyang-sales-contract-17.03-Lighthief-REDLINE.docx
+│   │   │                                      ↑ LATEST — Lighthief redline (framework PO + FM fix + §5.7)
+│   │   ├── rev260306-...V1 (1).docx           Previous version (6 Mar 2026)
 │   │   ├── linyang-sales-contract-6mar-review-comments.html
-│   │   │                                      ↑ LATEST — Lighthief comments sent 6 Mar 2026
 │   │   ├── Linyang sales contract...26.02..docx   Previous version (26 Feb 2026)
 │   │   ├── linyang-contract-26feb-review-comments.html
 │   │   ├── sales_agrement.md                  Lighthief's amended draft
@@ -687,8 +691,8 @@ See: `employee_service_manual.md` for detailed procedures on:
 
 ---
 
-*Document Index Version: 6.0*
-*Updated: 6 March 2026*
+*Document Index Version: 7.0*
+*Updated: 17 March 2026*
 *Legal Basis: Gazette No. 5992 (16/01/2026)*
 *Lighthief Cyprus Ltd - Legal Framework*
 

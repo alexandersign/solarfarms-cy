@@ -39,8 +39,8 @@ export const CONTAINER_20FT = {
   date: '2025-03',
 } as const;
 
-/** Daytime-only: equivalent full-sun hours per day (Cyprus) */
-export const DAYTIME_HOURS_PER_DAY = 6;
+/** Daytime-only: equivalent full-sun hours per day (Cyprus, with trackers extending morning/evening) */
+export const DAYTIME_HOURS_PER_DAY = 8;
 
 /**
  * Derive BTC mining params from S21+ and 20ft containers.

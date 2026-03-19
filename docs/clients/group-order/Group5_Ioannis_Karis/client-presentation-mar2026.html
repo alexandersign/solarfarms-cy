@@ -10,9 +10,8 @@
 body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
 .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
 .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
-.logo-text{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}
-.logo-text span{color:var(--accent)}
-.tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+.logo-img{height:28px}
+.tagline{font-size:8pt;color:var(--muted);margin-top:4px}
 .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
 h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
 h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
@@ -76,16 +75,18 @@ ul{margin-left:18px}li{margin-bottom:3px}
 <!-- PAGE 1: Cover -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
-        <div class="doc-info"><strong>CONFIDENTIAL</strong><br>Ref: LCY-GRP5-2026-MAR<br>Date: March 2026<br>Valid: 30 days</div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>CONFIDENTIAL</strong><br>Ref: LCY-GRP5-2026-MAR<br>Date: 17 March 2026<br>Valid: 30 days</div>
     </div>
     <h1>Battery Energy Storage System &mdash; Comprehensive EPC Proposal</h1>
-    <p style="font-size:12pt;color:var(--accent);font-weight:600;margin-bottom:20px;">Prepared for: Ioannis Karis (My Sun Park)</p>
-    <div class="metric-grid">
-        <div class="metric-box"><div class="val">1</div><div class="lbl">BESS Parks</div></div>
-        <div class="metric-box"><div class="val">25 MWh</div><div class="lbl">Total Energy</div></div>
-        <div class="metric-box"><div class="val">&euro;3,220,675</div><div class="lbl">Total Investment</div></div>
-        <div class="metric-box"><div class="val">7.7 MW</div><div class="lbl">Total Power</div></div>
+    <p style="font-size:12pt;color:var(--accent);font-weight:600;margin-bottom:6px;">Prepared for: Ioannis Karis (My Sun Park)</p>
+    <p style="font-size:9pt;color:var(--muted);margin-bottom:16px;">Grid Connection: <strong>7.7 MW</strong> | PV Installed: <strong>7.70 MW</strong> | District: <strong>Limassol</strong> | Target COD: <strong>November 2026</strong></p>
+    <div class="metric-grid-5">
+        <div class="metric-box"><div class="val">3</div><div class="lbl">Configuration Options</div></div>
+        <div class="metric-box blue"><div class="val">20&ndash;25</div><div class="lbl">MWh Range</div></div>
+        <div class="metric-box green"><div class="val">5.0&ndash;7.5</div><div class="lbl">MW Range</div></div>
+        <div class="metric-box amber"><div class="val">1:1</div><div class="lbl">PCS:BESS Ratio</div></div>
+        <div class="metric-box purple"><div class="val">7.7 MW</div><div class="lbl">Grid Connection</div></div>
     </div>
     <div class="two-col">
         <div class="box">
@@ -94,15 +95,15 @@ ul{margin-left:18px}li{margin-bottom:3px}
                 <li>Exclusive EPC &amp; Distribution partner for Linyang Energy in Cyprus</li>
                 <li>Part of Lighthief European Group &mdash; Poland HQ with 150+ engineers</li>
                 <li>Full turnkey: procurement, installation, commissioning &amp; O&amp;M</li>
-                <li>886.78 MWh total BESS portfolio across 51 parks in Cyprus</li>
+                <li>Multi-park BESS portfolio across Cyprus (5 districts)</li>
                 <li>Marsh McLennan brokered insurance programme</li>
             </ul>
         </div>
         <div class="box">
             <h3>Equipment &amp; Technology</h3>
             <ul>
-                <li><strong>Battery:</strong> Linyang Energy &mdash; EVE LFP cells (Tier 1, SSE-listed)</li>
-                <li><strong>PCS:</strong> Kehua Tech &mdash; 3rd largest global manufacturer, grid-forming capable</li>
+                <li><strong>Battery:</strong> Linyang Energy &mdash; EVE LFP 314Ah cells (SSE-listed)</li>
+                <li><strong>PCS:</strong> Kehua C-series &mdash; 1.0 / 1.25 / 1.5 MW, grid-forming (VSG)</li>
                 <li><strong>EMS:</strong> Voltus Energy &mdash; Cyprus-based, IEC 60870-5-104 DSO compliant</li>
                 <li><strong>Certifications:</strong> EN 50549-2 (T&Uuml;V), UL9540A, IEC 62619, IEC 63056</li>
                 <li><strong>Warranty:</strong> 5-year OEM standard + optional 15-year extended</li>
@@ -110,14 +111,14 @@ ul{margin-left:18px}li{margin-bottom:3px}
         </div>
     </div>
     <div class="highlight">
-        <strong>Group Order Advantage:</strong> As part of the 886.78 MWh Cyprus portfolio (51 parks), Ioannis Karis (My Sun Park) benefits from volume-negotiated pricing on hardware, EMS, logistics, and installation &mdash; significantly below individual order rates. This portfolio scale also enables dedicated O&amp;M infrastructure including a local spare parts warehouse, 6 field engineers, and 24/7 monitoring.
+        <strong>Group Order Advantage:</strong> As part of a multi-park Cyprus BESS portfolio, My Sun Park benefits from volume-negotiated pricing on hardware, EMS, logistics, and installation &mdash; significantly below individual order rates. This portfolio scale enables dedicated O&amp;M infrastructure including a local spare parts warehouse, field engineers, and 24/7 monitoring.
     </div>
 </div>
 
 <!-- LIGHTHIEF GROUP OVERVIEW -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
         <div class="doc-info">Company Profile &mdash; Lighthief Cyprus Ltd</div>
     </div>
     <h2>The Lighthief Group</h2>
@@ -143,21 +144,13 @@ ul{margin-left:18px}li{margin-bottom:3px}
             </ul>
         </div>
     </div>
-    <h2>Cyprus BESS Portfolio</h2>
-    <div class="metric-grid-5">
-        <div class="metric-box green"><div class="val">51</div><div class="lbl">Parks</div></div>
-        <div class="metric-box blue"><div class="val">249</div><div class="lbl">Total MW</div></div>
-        <div class="metric-box amber"><div class="val">886.78</div><div class="lbl">Total MWh</div></div>
-        <div class="metric-box purple"><div class="val">252</div><div class="lbl">Containers</div></div>
-        <div class="metric-box red"><div class="val">5</div><div class="lbl">Districts</div></div>
-    </div>
     <h2>Technology Partners</h2>
     <table>
         <thead><tr><th>Partner</th><th>Role</th><th>Key Credentials</th></tr></thead>
         <tbody>
             <tr><td><strong>Linyang Energy</strong></td><td>Battery OEM &amp; System Integrator</td><td>SSE-listed (SHA:601222), 5 GWh+ annual capacity, EVE LFP cells</td></tr>
             <tr><td><strong>Kehua Tech</strong></td><td>Power Conversion System (PCS)</td><td>Tier 1, 3rd largest global PCS manufacturer, grid-forming capable (VSG)</td></tr>
-            <tr><td><strong>EVE Energy</strong></td><td>Cell Manufacturer</td><td>314Ah LFP cells, CATL-grade, UL9540A &mdash; zero thermal propagation</td></tr>
+            <tr><td><strong>EVE Energy</strong></td><td>Cell Manufacturer</td><td>314Ah LFP cells, Global Top 3 ESS cell manufacturer, UL9540A &mdash; zero thermal propagation</td></tr>
             <tr><td><strong>Voltus Energy</strong></td><td>EMS / SCADA Provider</td><td>Cyprus-based, IEC 60870-5-104, DSO-compliant, real-time monitoring</td></tr>
             <tr><td><strong>DEHN + StrikeRA</strong></td><td>Lightning &amp; Surge Protection</td><td>SPD + earthing grid, certified installation team in Cyprus</td></tr>
             <tr><td><strong>Marsh McLennan</strong></td><td>Insurance Broker</td><td>World&rsquo;s largest insurance broker &mdash; CAR/EAR, TPL, PI, DSU</td></tr>
@@ -180,33 +173,91 @@ ul{margin-left:18px}li{margin-bottom:3px}
     </table>
 </div>
 
-<!-- PRICING -->
+<!-- PRICING: Configuration Options -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
-        <div class="doc-info">Turnkey EPC Pricing &mdash; Ioannis Karis (My Sun Park)</div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info">Turnkey EPC Pricing &mdash; Configuration Options</div>
     </div>
-    <h2>Turnkey EPC Pricing</h2>
-    <p class="note">All prices are final turnkey EPC delivered and exclude VAT (19%).</p>
+    <h2>BESS Configuration Options</h2>
+    <p class="note">All options use a balanced <strong>1:1 PCS-to-container ratio</strong> for uniform C-rate across every string. All prices exclude VAT (19%).</p>
     
-    <div class="phase">MY SUN PARK &mdash; 1 Project | 7.7 MW | 25 MWh</div>
     <table>
-        <thead><tr><th>Project</th><th class="c">District</th><th class="c">MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">MV Skid</th><th class="r">&euro;/kWh</th><th class="r">Total Price</th></tr></thead>
+        <thead>
+            <tr>
+                <th></th>
+                <th class="c" style="background:var(--accent)">Option A<br><span style="font-weight:400;font-size:7pt">Available Now</span></th>
+                <th class="c">Option B<br><span style="font-weight:400;font-size:7pt">Available Now</span></th>
+                <th class="c">Option C<br><span style="font-weight:400;font-size:7pt">Late 2026</span></th>
+            </tr>
+        </thead>
         <tbody>
-            <tr><td>My Sun Park</td><td class="c">Limassol</td><td class="c">7.7</td><td class="c">25</td><td class="c">5&times;5MWh</td><td class="c">2&times;MV</td><td class="r">&euro;128.83</td><td class="r price">&euro;3,220,675</td></tr>
+            <tr><td><strong>PCS Model</strong></td><td class="c price">BCS1250K (1.25 MW)</td><td class="c">BCS1250K (1.25 MW)</td><td class="c">BCS1500K (1.50 MW)</td></tr>
+            <tr><td><strong>PCS:BESS Ratio</strong></td><td class="c">1:1</td><td class="c">1:1</td><td class="c">1:1</td></tr>
+            <tr><td><strong>PCS &times; Containers</strong></td><td class="c">4 &times; 4</td><td class="c">5 &times; 5</td><td class="c">5 &times; 5</td></tr>
+            <tr><td><strong>Total Power</strong></td><td class="c">5.0 MW</td><td class="c">6.25 MW</td><td class="c">7.5 MW</td></tr>
+            <tr><td><strong>Total Energy</strong></td><td class="c">20 MWh</td><td class="c">25 MWh</td><td class="c">25 MWh</td></tr>
+            <tr><td><strong>Duration</strong></td><td class="c price">4.0 hours</td><td class="c">4.0 hours</td><td class="c">3.3 hours</td></tr>
+            <tr><td><strong>C-Rate (per string)</strong></td><td class="c">0.25C</td><td class="c">0.25C</td><td class="c">0.3C</td></tr>
+            <tr><td><strong>MV Skids</strong></td><td class="c">1 &times; T4</td><td class="c">1 &times; T4 + 1 &times; T1</td><td class="c">1 &times; T4 + 1 &times; T1</td></tr>
+            <tr><td><strong>Shipping Units</strong></td><td class="c">5</td><td class="c">7</td><td class="c">7</td></tr>
+            <tr><td><strong>Grid Connection Used</strong></td><td class="c">65%</td><td class="c">81%</td><td class="c">97%</td></tr>
+            <tr><td><strong>&euro;/MWh</strong></td><td class="c price">&euro;112,945</td><td class="c" style="font-weight:700">&euro;118,000</td><td class="c" style="font-weight:700">&euro;120,000</td></tr>
+            <tr style="background:#eff6ff"><td><strong>Total EPC Price</strong></td><td class="c price" style="font-size:10pt">&euro;2,258,900</td><td class="c" style="font-weight:700;font-size:10pt">&euro;2,950,000</td><td class="c" style="font-weight:700;font-size:10pt">&euro;3,000,000</td></tr>
+            <tr><td><strong>Expandable?</strong></td><td class="c" style="color:var(--ok);font-weight:700">Yes &rarr; Option B</td><td class="c">&mdash;</td><td class="c">&mdash;</td></tr>
         </tbody>
     </table>
-    <table>
-        <tr class="total-row"><td colspan="6" style="border:none"><strong>GRAND TOTAL &mdash; 1 Project | 7.7 MW | 25 MWh</strong></td><td class="r" style="border:none">&euro;128.83/kWh</td><td class="r" style="border:none">&euro;3,220,675</td></tr>
-    </table>
-    <p class="note">All prices exclude VAT (19%). Prices are final turnkey EPC delivered.</p>
-    
+
+    <div class="warn" style="font-size:7.5pt">
+        <strong>Your original request (7 MW / 22 MWh):</strong> 22 MWh does not divide into 5.015 MWh containers (nearest: 20 or 25 MWh). 7 MW at 1:1 with BCS1250K requires 5.6 PCS &mdash; not a whole number. An unbalanced 7/22 system would cost approximately <strong>&euro;2,700,000</strong> (~&euro;123K/MWh), but mixed C-rates across strings are not recommended. The balanced options above deliver better value and architecture.<br><br>
+        <strong>Alternative container (ME 4.179 MWh):</strong> Linyang also offers a smaller container &mdash; the ME 4.179 MWh &mdash; using the same 20HC shell, cooling, BMS and fire suppression but with 10 cell packs instead of 12 (EVE 306Ah vs 314Ah). Five of these would give 20.9 MWh (closer to 22, but still not exact). However, fewer cells in the same container means <strong>higher &euro;/MWh</strong> &mdash; you pay for the same container infrastructure with less energy. At 1:1 with BCS1000K (1.0 MW), this container delivers ~4.2h duration, but 5 units = only 5.0 MW / 20.9 MWh. This does not solve the 7 MW / 22 MWh requirement as a balanced system.
+    </div>
+
+    <div class="savings">
+        <strong>Recommended path:</strong> If November 2026 is firm, start with <strong>Option A</strong> at confirmed pricing (&euro;2,258,900) &mdash; best &euro;/MWh, longest duration (4h). Expand to Option B later by adding one identical string (same PCS, zero C-rate mismatch). If timeline allows, <strong>Option C</strong> with BCS1500K covers 97% of your grid connection in one phase at &euro;3,000,000.
+    </div>
+
+    <h2>System Architecture &mdash; Option A (Recommended)</h2>
+    <p class="note">4 &times; BCS1250K : 4 &times; BESS at 1:1 ratio | Uniform 0.25C per string | 4.0h duration</p>
+    <svg viewBox="0 0 780 115" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="dp"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.06"/></filter></defs>
+      <rect width="780" height="115" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+      <rect x="8" y="22" width="55" height="42" rx="4" fill="#1e40af" filter="url(#dp)"/>
+      <text x="35" y="40" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">GRID</text>
+      <text x="35" y="51" text-anchor="middle" fill="#93c5fd" font-size="6">22 kV</text>
+      <text x="35" y="59" text-anchor="middle" fill="#93c5fd" font-size="5.5">7.7 MW</text>
+      <line x1="63" y1="43" x2="80" y2="43" stroke="#1e40af" stroke-width="2"/>
+      <rect x="80" y="8" width="150" height="70" rx="5" fill="#16a34a" filter="url(#dp)"/>
+      <text x="155" y="22" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">T4 MV SKID (40ft)</text>
+      <rect x="88" y="30" width="30" height="16" rx="2" fill="#15803d"/><text x="103" y="40" text-anchor="middle" fill="#bbf7d0" font-size="5.5" font-weight="600">PCS1</text>
+      <rect x="122" y="30" width="30" height="16" rx="2" fill="#15803d"/><text x="137" y="40" text-anchor="middle" fill="#bbf7d0" font-size="5.5" font-weight="600">PCS2</text>
+      <rect x="156" y="30" width="30" height="16" rx="2" fill="#15803d"/><text x="171" y="40" text-anchor="middle" fill="#bbf7d0" font-size="5.5" font-weight="600">PCS3</text>
+      <rect x="190" y="30" width="30" height="16" rx="2" fill="#15803d"/><text x="205" y="40" text-anchor="middle" fill="#bbf7d0" font-size="5.5" font-weight="600">PCS4</text>
+      <text x="155" y="68" text-anchor="middle" fill="#bbf7d0" font-size="6">4 &times; 1.25 MW = 5.0 MW</text>
+      <line x1="230" y1="28" x2="260" y2="20" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="230" y1="38" x2="260" y2="38" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="230" y1="48" x2="260" y2="56" stroke="#ea580c" stroke-width="1.5"/>
+      <line x1="230" y1="58" x2="260" y2="74" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="245" y="13" text-anchor="middle" fill="#ea580c" font-size="5.5" font-weight="600">DC 1:1</text>
+      <rect x="260" y="8" width="120" height="20" rx="3" fill="#ea580c" filter="url(#dp)"/><text x="320" y="20" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="700">BESS 1 &mdash; 5.015 MWh</text>
+      <rect x="260" y="30" width="120" height="20" rx="3" fill="#ea580c" filter="url(#dp)"/><text x="320" y="42" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="700">BESS 2 &mdash; 5.015 MWh</text>
+      <rect x="260" y="52" width="120" height="20" rx="3" fill="#ea580c" filter="url(#dp)"/><text x="320" y="64" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="700">BESS 3 &mdash; 5.015 MWh</text>
+      <rect x="260" y="74" width="120" height="20" rx="3" fill="#ea580c" filter="url(#dp)"/><text x="320" y="86" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="700">BESS 4 &mdash; 5.015 MWh</text>
+      <text x="320" y="106" text-anchor="middle" fill="#64748b" font-size="7">Total: 20.06 MWh | 5 shipping units | 0.25C uniform</text>
+      <rect x="430" y="14" width="335" height="80" rx="6" fill="#fff" stroke="#93c5fd"/>
+      <text x="597" y="32" text-anchor="middle" fill="#1e3a5f" font-size="8" font-weight="700">OPTION A &mdash; 5.0 MW / 20 MWh</text>
+      <text x="597" y="46" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="800">&euro;2,258,900</text>
+      <text x="597" y="60" text-anchor="middle" fill="#166534" font-size="7" font-weight="600">CONFIRMED GROUP PRICING | &euro;112,945/MWh</text>
+      <text x="597" y="74" text-anchor="middle" fill="#64748b" font-size="7">Duration: 4.0h | Expandable to 6.25 MW / 25 MWh</text>
+      <text x="597" y="86" text-anchor="middle" fill="#64748b" font-size="7">Add 1 string (same PCS) &rarr; zero C-rate mismatch</text>
+    </svg>
+    <p class="note">Options B (6.25 MW / 25 MWh) and C (7.5 MW / 25 MWh) use 5 PCS : 5 BESS with T4 + T1 skids. See separate sizing document for full architecture diagrams.</p>
 </div>
 
 <!-- EPC SCOPE -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
         <div class="doc-info">EPC Scope &amp; Technical Specifications &mdash; Ioannis Karis (My Sun Park)</div>
     </div>
     <h2>EPC Scope of Works</h2>
@@ -249,10 +300,10 @@ ul{margin-left:18px}li{margin-bottom:3px}
         <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
         <tbody>
             <tr><td><strong>Battery Chemistry</strong></td><td>LFP (Lithium Iron Phosphate) &mdash; EVE 314Ah cells</td></tr>
-            <tr><td><strong>Container Capacity</strong></td><td>5.015 MWh / 4.179 MWh per 20ft high-cube container</td></tr>
-            <tr><td><strong>Cycle Life</strong></td><td>15 years or 7,000 cycles @ 70% EOL, 90% DOD, 25&plusmn;2&deg;C</td></tr>
+            <tr><td><strong>Container Capacity</strong></td><td>5.015 MWh per 20ft high-cube container (41 tonnes)</td></tr>
+            <tr><td><strong>Cycle Life</strong></td><td>15 years or 7,000 cycles @ 70% EOL, 90% DOD</td></tr>
             <tr><td><strong>Round Trip Efficiency</strong></td><td>&ge; 86.32% (full system AC-AC incl. cabling losses)</td></tr>
-            <tr><td><strong>PCS</strong></td><td>Kehua BCS1000K-C / BCS1250K-C &mdash; bi-directional, 4-quadrant, grid-forming capable</td></tr>
+            <tr><td><strong>PCS</strong></td><td>Kehua C-series: BCS1000K (1.0 MW) / BCS1250K (1.25 MW) / BCS1500K (1.5 MW) &mdash; grid-forming (VSG)</td></tr>
             <tr><td><strong>Grid Code</strong></td><td>EN 50549-2 (T&Uuml;V cert D 115067 0077)</td></tr>
             <tr><td><strong>EMS/SCADA</strong></td><td>Voltus Energy &mdash; IEC 60870-5-104, DSO compliant</td></tr>
             <tr><td><strong>Fire Suppression</strong></td><td>Integrated aerosol system per container (auto-activation)</td></tr>
@@ -268,7 +319,7 @@ ul{margin-left:18px}li{margin-bottom:3px}
 <!-- BANKABILITY -->
 <div class="page page-break">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
         <div class="doc-info">Bankable Protection Brief &mdash; Ioannis Karis (My Sun Park)</div>
     </div>
     <h2>Bankability &amp; Protection Framework</h2>
@@ -319,7 +370,7 @@ ul{margin-left:18px}li{margin-bottom:3px}
 <!-- WARRANTY & LTSA -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
         <div class="doc-info">Warranty, LTSA &amp; Payment &mdash; Ioannis Karis (My Sun Park)</div>
     </div>
     <h2>Warranty &amp; Performance Guarantees</h2>
@@ -334,16 +385,30 @@ ul{margin-left:18px}li{margin-bottom:3px}
             <tr><td><strong>Defects Liability</strong></td><td>24 months post-PAC</td><td>5% retention released after DLP</td></tr>
         </tbody>
     </table>
-    <h2>Extended Warranty &amp; LTSA Pricing (OEM Confirmed)</h2>
+    <h2>EMS/SCADA Costs (Voltus &mdash; Client-Paid)</h2>
     <table>
-        <thead><tr><th>Period</th><th>BESS Warranty</th><th>PCS+MVS Warranty</th><th>Combined</th><th>LTSA O&amp;M</th><th>Total Annual</th></tr></thead>
+        <thead><tr><th>Component</th><th>Type</th><th class="r">Option A (20 MWh)</th><th class="r">Option B/C (25 MWh)</th></tr></thead>
         <tbody>
-            <tr><td><strong>Years 1&ndash;5</strong></td><td colspan="2" class="c">Included in EPC</td><td>&euro;0</td><td>&euro;1,740/MWh/yr</td><td class="price">&euro;1,740/MWh/yr</td></tr>
-            <tr><td><strong>Years 6&ndash;10</strong></td><td>&euro;913.92</td><td>&euro;747.76</td><td>&euro;1,661.68</td><td>&euro;1,740/MWh/yr</td><td class="price">&euro;3,401.68/MWh/yr</td></tr>
-            <tr><td><strong>Years 11&ndash;15</strong></td><td>&euro;1,157.62</td><td>&euro;926.10</td><td>&euro;2,083.72</td><td>&euro;1,740/MWh/yr</td><td class="price">&euro;3,823.72/MWh/yr</td></tr>
+            <tr><td><strong>Voltus EMS</strong> (system + hardware + config + install)</td><td>One-off capex</td><td class="r">&euro;47,513</td><td class="r">&euro;54,583</td></tr>
+            <tr><td><strong>SCADA Local</strong> (advanced, &ge;10 MWh)</td><td>One-off capex</td><td class="r">&euro;30,000</td><td class="r">&euro;30,000</td></tr>
+            <tr style="background:#eff6ff"><td><strong>EMS/SCADA Capex Total</strong></td><td><strong>One-off</strong></td><td class="r" style="font-weight:700">&euro;77,513</td><td class="r" style="font-weight:700">&euro;84,583</td></tr>
+            <tr><td><strong>EMS Subscription</strong></td><td>Annual</td><td class="r">&euro;2,312/yr</td><td class="r">&euro;2,670/yr</td></tr>
+            <tr><td><strong>SCADA Local Maintenance</strong></td><td>Annual</td><td class="r">&euro;6,000/yr</td><td class="r">&euro;6,000/yr</td></tr>
+            <tr style="background:#eff6ff"><td><strong>EMS/SCADA Annual Total</strong></td><td><strong>Annual</strong></td><td class="r" style="font-weight:700">&euro;8,312/yr</td><td class="r" style="font-weight:700">&euro;8,670/yr</td></tr>
         </tbody>
     </table>
-    <p class="note">Extended warranty is paid by client directly to Linyang OEM. Alternative to Yr 11&ndash;15 warranty: upfront spare parts purchase at &euro;1,000&ndash;1,250/MWh (one-time).</p>
+    <p class="note">EMS/SCADA capex is included in the turnkey EPC price. Annual EMS subscription + SCADA maintenance is a separate recurring fee paid by client. SCADA Global is not applicable (standalone park &mdash; no group aggregator cost).</p>
+
+    <h2>Extended Warranty, LTSA &amp; EMS &mdash; Full Annual Cost</h2>
+    <table>
+        <thead><tr><th>Period</th><th>BESS Warranty</th><th>PCS+MVS Warranty</th><th>LTSA O&amp;M</th><th>EMS/SCADA</th><th>Total /MWh/yr</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Years 1&ndash;5</strong></td><td colspan="2" class="c">Included in EPC</td><td>&euro;1,740</td><td>&euro;347*</td><td class="price">&euro;2,087/MWh/yr</td></tr>
+            <tr><td><strong>Years 6&ndash;10</strong></td><td>&euro;913.92</td><td>&euro;747.76</td><td>&euro;1,740</td><td>&euro;347*</td><td class="price">&euro;3,749/MWh/yr</td></tr>
+            <tr><td><strong>Years 11&ndash;15</strong></td><td>&euro;1,157.62</td><td>&euro;926.10</td><td>&euro;1,740</td><td>&euro;347*</td><td class="price">&euro;4,171/MWh/yr</td></tr>
+        </tbody>
+    </table>
+    <p class="note">* EMS/SCADA annual shown at &euro;347/MWh based on 25 MWh (Option B/C). For Option A (20 MWh) the rate is &euro;416/MWh. Extended warranty is paid by client directly to Linyang OEM. Alternative to Yr 11&ndash;15 warranty: upfront spare parts purchase at &euro;1,000&ndash;1,250/MWh (one-time).</p>
     <h2>LTSA Tier C &mdash; Service Level Agreement</h2>
     <table>
         <thead><tr><th>Severity</th><th>Remote Response</th><th>On-Site</th><th>Resolution</th><th>Coverage</th></tr></thead>
@@ -369,7 +434,7 @@ ul{margin-left:18px}li{margin-bottom:3px}
 <!-- INSURANCE -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
         <div class="doc-info">Insurance Programme &mdash; Ioannis Karis (My Sun Park)</div>
     </div>
     <h2>Comprehensive Insurance Programme</h2>
@@ -424,23 +489,24 @@ ul{margin-left:18px}li{margin-bottom:3px}
 <!-- NEXT STEPS & CONTACT -->
 <div class="page">
     <div class="header">
-        <div><div class="logo-text">Light<span>hief</span></div><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div><img class="logo-img" src="data:image/png;base64,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" alt="Lighthief"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
         <div class="doc-info">Next Steps &mdash; Ioannis Karis (My Sun Park)</div>
     </div>
     <h2>Next Steps</h2>
     <table>
         <thead><tr><th style="width:5%">#</th><th style="width:30%">Action</th><th style="width:15%">Responsible</th><th>Detail</th></tr></thead>
         <tbody>
-            <tr><td>1</td><td><strong>Confirm BESS sizing per park</strong></td><td>Client</td><td>Review park specifications and confirm MW / MWh configuration</td></tr>
-            <tr><td>2</td><td><strong>Sign EPC Contract</strong></td><td>Both Parties</td><td>Formal EPC agreement with pricing schedule, milestones, and guarantees</td></tr>
-            <tr><td>3</td><td><strong>Advance Payment</strong></td><td>Client</td><td>30% advance within 7 days, protected by Advance Payment Guarantee</td></tr>
-            <tr><td>4</td><td><strong>SLD &amp; Protection Study</strong></td><td>Lighthief + Client Engineer</td><td>Submit single-line diagrams for DSO approval and grid connection</td></tr>
-            <tr><td>5</td><td><strong>Factory Production</strong></td><td>Linyang</td><td>90-day production lead time from order confirmation</td></tr>
-            <tr><td>6</td><td><strong>Factory Acceptance Test</strong></td><td>Lighthief + Client</td><td>Client invited to witness FAT at Linyang factory</td></tr>
-            <tr><td>7</td><td><strong>CIF Delivery to Limassol</strong></td><td>Linyang</td><td>50-day shipping (Shanghai &rarr; Limassol)</td></tr>
-            <tr><td>8</td><td><strong>Site Installation</strong></td><td>Lighthief</td><td>Civil works, equipment placement, cabling, protection</td></tr>
-            <tr><td>9</td><td><strong>Commissioning &amp; PAC</strong></td><td>Lighthief + DSO</td><td>Full system commissioning, grid sync, DSO witness testing</td></tr>
-            <tr><td>10</td><td><strong>LTSA Activation</strong></td><td>Both Parties</td><td>O&amp;M service agreement commences at or before PAC</td></tr>
+            <tr><td>1</td><td><strong>Select configuration</strong></td><td>Client</td><td>Option A (5 MW/20 MWh, confirmed), B (6.25 MW/25 MWh, est.), or C (7.5 MW/25 MWh, pending BCS1500K)</td></tr>
+            <tr><td>2</td><td><strong>Confirm expansion intent</strong></td><td>Client</td><td>If Option A: confirm whether Phase 2 expansion is planned (for civil works sizing)</td></tr>
+            <tr><td>3</td><td><strong>Sign EPC Contract</strong></td><td>Both Parties</td><td>Formal EPC agreement with pricing, milestones, guarantees, and expansion option clause</td></tr>
+            <tr><td>4</td><td><strong>Advance Payment</strong></td><td>Client</td><td>30% advance within 7 days, protected by Advance Payment Guarantee</td></tr>
+            <tr><td>5</td><td><strong>SLD &amp; Protection Study</strong></td><td>Lighthief + Client Engineer</td><td>Designed for full expansion footprint &mdash; DSO approval</td></tr>
+            <tr><td>6</td><td><strong>Factory Production</strong></td><td>Linyang</td><td>90-day production lead time from order confirmation</td></tr>
+            <tr><td>7</td><td><strong>Factory Acceptance Test</strong></td><td>Lighthief + Client</td><td>Client invited to witness FAT at Linyang factory</td></tr>
+            <tr><td>8</td><td><strong>CIF Delivery to Limassol</strong></td><td>Linyang</td><td>50-day shipping (Shanghai &rarr; Limassol)</td></tr>
+            <tr><td>9</td><td><strong>Site Installation</strong></td><td>Lighthief</td><td>Civil works, equipment placement, cabling, protection</td></tr>
+            <tr><td>10</td><td><strong>Commissioning &amp; PAC</strong></td><td>Lighthief + DSO</td><td>Full system commissioning, grid sync, DSO witness testing</td></tr>
+            <tr><td>11</td><td><strong>LTSA Activation</strong></td><td>Both Parties</td><td>O&amp;M service agreement commences at or before PAC</td></tr>
         </tbody>
     </table>
     <div class="highlight">
@@ -471,9 +537,9 @@ ul{margin-left:18px}li{margin-bottom:3px}
     </div>
     <div class="footer">
         <strong>Lighthief Cyprus Ltd</strong> | Energy Storage EPC &amp; O&amp;M<br>
-        Confidential &mdash; Prepared for Ioannis Karis (My Sun Park) | March 2026<br>
-        Source: Linyang Sales Contract (9 March 2026) &middot; RFI V3 (Feb 2026) &middot; AXA Policy (9 March 2026) &middot; Marsh Insurance Programme<br>
-        Pricing valid for 30 days from date of issue. All prices exclude VAT (19%).
+        Confidential &mdash; Prepared for Ioannis Karis (My Sun Park) | 17 March 2026<br>
+        Option A pricing confirmed per group order terms. Options B &amp; C subject to final quotation / BCS1500K availability.<br>
+        All prices exclude VAT (19%). Valid for 30 days from date of issue.
     </div>
 </div>
 

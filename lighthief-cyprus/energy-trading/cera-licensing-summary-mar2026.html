@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERA Electricity Licensing — Application Summary | Lighthief Cyprus</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --accent: #2b6cb0;
+            --accent-light: #ebf4ff;
+            --success: #276749;
+            --success-bg: #f0fff4;
+            --warn: #975a16;
+            --warn-bg: #fffff0;
+            --border: #e2e8f0;
+            --text: #2d3748;
+            --muted: #718096;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: #f7fafc; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+        header { background: var(--primary); color: white; padding: 2.5rem 0; margin-bottom: 2rem; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        header h1 { font-size: 1.75rem; font-weight: 700; }
+        header .subtitle { font-size: 0.95rem; opacity: 0.85; margin-top: 0.25rem; }
+        .badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.8rem; }
+        .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        h2 { color: var(--primary); font-size: 1.35rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent); }
+        h3 { color: var(--accent); font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+        p, li { margin-bottom: 0.5rem; }
+        ul { padding-left: 1.5rem; }
+
+        .card { background: white; border-radius: 8px; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+        .card-title { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
+        .card-tag { font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 12px; font-weight: 600; white-space: nowrap; }
+        .tag-essential { background: #fed7d7; color: #9b2c2c; }
+        .tag-relevant { background: #fefcbf; color: #975a16; }
+        .tag-info { background: #e9d8fd; color: #553c9a; }
+        .tag-bess { background: #c6f6d5; color: #276749; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        th { background: var(--primary); color: white; padding: 0.65rem 0.75rem; text-align: left; font-weight: 600; }
+        td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
+        tr:nth-child(even) { background: #f7fafc; }
+        tr:hover { background: var(--accent-light); }
+        .amount { font-weight: 700; color: var(--accent); white-space: nowrap; }
+        .note { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+
+        .highlight-box { border-left: 4px solid var(--accent); background: var(--accent-light); padding: 1rem 1.25rem; border-radius: 0 6px 6px 0; margin: 1.25rem 0; }
+        .highlight-box.green { border-left-color: var(--success); background: var(--success-bg); }
+        .highlight-box.yellow { border-left-color: var(--warn); background: var(--warn-bg); }
+
+        .fee-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; }
+        .fee-item { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 0.85rem; }
+        .fee-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .fee-value { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-top: 0.2rem; }
+        .fee-note { font-size: 0.78rem; color: var(--muted); }
+
+        .timeline { position: relative; padding-left: 2rem; margin: 1rem 0; }
+        .timeline::before { content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+        .timeline-item { position: relative; margin-bottom: 1rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -1.65rem; top: 0.4rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid white; box-shadow: 0 0 0 2px var(--accent); }
+        .timeline-step { font-weight: 600; color: var(--primary); }
+
+        .contact-box { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-top: 1.5rem; }
+        .contact-box h4 { color: var(--primary); margin-bottom: 0.5rem; }
+
+        footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.82rem; text-align: center; }
+
+        @media (max-width: 700px) {
+            .fee-grid { grid-template-columns: 1fr; }
+            .card-header { flex-direction: column; gap: 0.5rem; }
+            header .container { flex-direction: column; text-align: center; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div>
+                <h1>CERA Electricity Licensing</h1>
+                <div class="subtitle">Cyprus Energy Regulatory Authority — Application Types, Fees & Timelines</div>
+            </div>
+            <span class="badge">Lighthief Cyprus — Energy Trading</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="meta">
+            Source: <a href="https://www.cera.org.cy/en-gb/ilektrismos/details/ilektrismos-adeiodotisi" target="_blank">CERA — Electricity Licensing</a> |
+            Compiled: March 2026 |
+            Contact: <a href="mailto:regulator.cy@cera.org.cy">regulator.cy@cera.org.cy</a> | Tel: +357 22 666363
+        </div>
+
+        <!-- OVERVIEW -->
+        <h2>1. Licensing Framework Overview</h2>
+        <p>Under Article 26 of the Cyprus Electricity Market Regulation Law, the following activities require a CERA license: construction/operation of power stations, electricity supply, transmission/distribution system operation, market operation, aggregation, energy storage installation/operation, and interconnection line ownership/operation.</p>
+        <p>CERA provides <strong>three tiers</strong> of authorisation:</p>
+        <ul>
+            <li><strong>General License</strong> — automatic grant via notification form (smallest installations)</li>
+            <li><strong>Exemption from License</strong> — simplified application for mid-range RES / conventional plants</li>
+            <li><strong>Full License</strong> — complete application process for large commercial installations</li>
+        </ul>
+
+        <!-- MASTER FEE TABLE -->
+        <h2>2. Master Fee & Timeline Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>License Type</th>
+                    <th>Scope / Capacity</th>
+                    <th>Application Fee</th>
+                    <th>Annual Fee</th>
+                    <th>Timeline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>General License</strong></td>
+                    <td>RES &le; 50kW, own use &le; 30kW, plants &le; 20kW, PV on building shell &gt; 50kW</td>
+                    <td class="amount">Free</td>
+                    <td class="amount">Free</td>
+                    <td>1 month (auto-grant)</td>
+                </tr>
+                <tr>
+                    <td><strong>Exemption — RES</strong></td>
+                    <td>RES 50kW – 8MW (excl. building-shell PV)</td>
+                    <td class="amount">&euro;170.86</td>
+                    <td class="amount">68.344 &euro;c / kW</td>
+                    <td>~3–6 months</td>
+                </tr>
+                <tr>
+                    <td><strong>Exemption — Conventional</strong></td>
+                    <td>Conventional 30kW – 1MW (own use)</td>
+                    <td class="amount">&euro;170.86</td>
+                    <td class="amount">68.344 &euro;c / kW</td>
+                    <td>~3–6 months</td>
+                </tr>
+                <tr style="background: var(--success-bg);">
+                    <td><strong>Construction &amp; Operation License</strong></td>
+                    <td>Conventional (commercial), conventional &gt; 1MW own use, RES &gt; 8MW</td>
+                    <td class="amount">8.543 &euro;c / kW <span class="note">(min &euro;170.86)</span></td>
+                    <td class="amount">68.344 &euro;c / kW</td>
+                    <td>~6–12 months</td>
+                </tr>
+                <tr style="background: var(--success-bg);">
+                    <td><strong>Energy Storage — Installation</strong></td>
+                    <td>BESS / storage systems</td>
+                    <td class="amount">10 &euro;c / kW</td>
+                    <td class="amount">None</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr style="background: var(--success-bg);">
+                    <td><strong>Energy Storage — Operation</strong></td>
+                    <td>BESS / storage systems</td>
+                    <td class="amount">10 &euro;c / kW</td>
+                    <td class="amount">70 &euro;c / kW</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Supply License (final customers)</strong></td>
+                    <td>Retail electricity supply</td>
+                    <td class="amount">Per regs</td>
+                    <td class="amount">Per regs</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Supply License (wholesale)</strong></td>
+                    <td>Wholesale electricity supply</td>
+                    <td class="amount">Per regs</td>
+                    <td class="amount">Per regs</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Market Operator License</strong></td>
+                    <td>Electricity market operation</td>
+                    <td class="amount">&euro;1,000</td>
+                    <td class="amount">&euro;10,000</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Balance Responsible Party</strong></td>
+                    <td>Balancing market participation</td>
+                    <td class="amount">&euro;200</td>
+                    <td class="amount">None</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Aggregator License</strong></td>
+                    <td>Aggregation of RES / demand response</td>
+                    <td class="amount">&euro;200</td>
+                    <td class="amount">None</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Interconnection Line Owner</strong></td>
+                    <td>Cross-border line ownership</td>
+                    <td class="amount">&euro;5,000</td>
+                    <td class="amount">&euro;10,000</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Interconnection Line Operator</strong></td>
+                    <td>Cross-border line operation</td>
+                    <td class="amount">&euro;5,000</td>
+                    <td class="amount">&euro;10,000</td>
+                    <td>Per licensing regs</td>
+                </tr>
+                <tr>
+                    <td><strong>Closed Distribution System Operator</strong></td>
+                    <td>Private distribution network</td>
+                    <td class="amount">&euro;200</td>
+                    <td class="amount">&euro;200</td>
+                    <td>Per licensing regs</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box yellow">
+            <strong>Amendment / Transfer / Extension fees:</strong> All license amendments, exemption amendments, and transfers carry a flat fee of <strong>&euro;170.86</strong>. Extension requests must be submitted at least 3 months before expiry. CERA will not accept extension requests after the license has expired (Decision 95/2017).
+        </div>
+
+        <!-- BESS-SPECIFIC -->
+        <h2>3. Energy Storage (BESS) — Detailed Breakdown</h2>
+        <p>Most relevant to Lighthief's BESS portfolio in Cyprus. Two separate licenses are required:</p>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Energy Storage System — Installation License</span>
+                <span class="card-tag tag-bess">BESS Critical</span>
+            </div>
+            <p>Required before physical installation of any battery energy storage system.</p>
+            <div class="fee-grid">
+                <div class="fee-item">
+                    <div class="fee-label">Application Fee</div>
+                    <div class="fee-value">10 &euro;c / kW</div>
+                    <div class="fee-note">of requested output capacity</div>
+                </div>
+                <div class="fee-item">
+                    <div class="fee-label">Annual Fee</div>
+                    <div class="fee-value">None</div>
+                    <div class="fee-note">No annual fee to maintain</div>
+                </div>
+            </div>
+            <h3>Example: 5 MW BESS Installation</h3>
+            <table>
+                <tr><td>Application Fee</td><td class="amount">5,000 kW &times; &euro;0.10 = &euro;500</td></tr>
+                <tr><td>Annual Fee</td><td class="amount">&euro;0</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Energy Storage System — Operation License</span>
+                <span class="card-tag tag-bess">BESS Critical</span>
+            </div>
+            <p>Required before commercial operation of the storage system. Applied for after installation license is secured.</p>
+            <div class="fee-grid">
+                <div class="fee-item">
+                    <div class="fee-label">Application Fee</div>
+                    <div class="fee-value">10 &euro;c / kW</div>
+                    <div class="fee-note">of requested output capacity</div>
+                </div>
+                <div class="fee-item">
+                    <div class="fee-label">Annual Fee</div>
+                    <div class="fee-value">70 &euro;c / kW</div>
+                    <div class="fee-note">of requested output capacity — paid yearly</div>
+                </div>
+            </div>
+            <h3>Example: 5 MW BESS Operation</h3>
+            <table>
+                <tr><td>Application Fee</td><td class="amount">5,000 kW &times; &euro;0.10 = &euro;500</td></tr>
+                <tr><td>Annual Fee</td><td class="amount">5,000 kW &times; &euro;0.70 = &euro;3,500 / year</td></tr>
+                <tr><td>Total Year 1</td><td class="amount">&euro;4,000</td></tr>
+            </table>
+        </div>
+
+        <div class="highlight-box green">
+            <strong>Lighthief Portfolio Cost Estimate (249 MW BESS):</strong><br>
+            Installation Application: 249,000 kW &times; &euro;0.10 = <strong>&euro;24,900</strong> (one-time)<br>
+            Operation Application: 249,000 kW &times; &euro;0.10 = <strong>&euro;24,900</strong> (one-time)<br>
+            Operation Annual Fee: 249,000 kW &times; &euro;0.70 = <strong>&euro;174,300 / year</strong><br>
+            <em>Note: Fees apply per-park if licenses are issued individually. Actual amounts depend on capacity per license application.</em>
+        </div>
+
+        <!-- ENERGY TRADING RELEVANT LICENSES -->
+        <h2>4. Energy Trading — Relevant License Types</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Supply License (Final Customers)</span>
+                <span class="card-tag tag-relevant">Trading</span>
+            </div>
+            <p>Required to sell electricity to end consumers. Currently only EAC holds this in Cyprus. The competitive market framework is under development.</p>
+            <ul>
+                <li>Three sub-types: transitory regulation, competitive market, wholesale</li>
+                <li>Application forms available from CERA</li>
+                <li>EAC is designated as the "ultimate supplier" under Article 106</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Balance Responsible Party License</span>
+                <span class="card-tag tag-relevant">Trading</span>
+            </div>
+            <p>Required to participate in the balancing market — settling imbalances between scheduled and actual generation/consumption.</p>
+            <div class="fee-grid">
+                <div class="fee-item">
+                    <div class="fee-label">Application Fee</div>
+                    <div class="fee-value">&euro;200</div>
+                </div>
+                <div class="fee-item">
+                    <div class="fee-label">Annual Fee</div>
+                    <div class="fee-value">None</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Aggregator License</span>
+                <span class="card-tag tag-relevant">Trading</span>
+            </div>
+            <p>Required for aggregating RES stations operating outside national grant schemes. Maximum limit of 20 MW in total RES capacity served.</p>
+            <div class="fee-grid">
+                <div class="fee-item">
+                    <div class="fee-label">Application Fee</div>
+                    <div class="fee-value">&euro;200</div>
+                </div>
+                <div class="fee-item">
+                    <div class="fee-label">Annual Fee</div>
+                    <div class="fee-value">None</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Electricity Market Operator License</span>
+                <span class="card-tag tag-info">Infrastructure</span>
+            </div>
+            <p>For entities operating the electricity market platform itself. Unlikely to be needed by Lighthief but included for completeness.</p>
+            <div class="fee-grid">
+                <div class="fee-item">
+                    <div class="fee-label">Application Fee</div>
+                    <div class="fee-value">&euro;1,000</div>
+                </div>
+                <div class="fee-item">
+                    <div class="fee-label">Annual Fee</div>
+                    <div class="fee-value">&euro;10,000</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPLICATION PROCESS -->
+        <h2>5. Application Process — General Steps</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-step">1. Prepare Application</div>
+                <p>Complete the relevant CERA application form. Attach all supporting documents (technical specs, company registration, financial capability evidence, land/site permits).</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-step">2. Pay Application Fee</div>
+                <p>Deposit/transfer the fee to one of CERA's two bank accounts. Send the receipt to <a href="mailto:regulator.cy@cera.org.cy">regulator.cy@cera.org.cy</a>. Registration date is determined by date of payment.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-step">3. CERA Registration</div>
+                <p>Application is registered in CERA's Register and assigned a serial number. CERA sends an invoice and receipt to the applicant's stated email.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-step">4. Publication & Consultation</div>
+                <p>Application is published (Official Newspaper of the Republic and/or CERA website). Interested parties may inspect and submit representations/objections within the stated period (min 30 days).</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-step">5. Examination & Decision</div>
+                <p>CERA examines the application per the Licensing Regulations (R.A.A. 538/2004) and relevant regulatory decisions. May request additional information.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-step">6. License Granted</div>
+                <p>License issued with standard terms and conditions. Annual fees become payable to maintain validity.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>General License (simplified):</strong> Submit Notification Form electronically to <a href="mailto:gl@cera.org.cy">gl@cera.org.cy</a> with subject "Notification Form for General License". Granted automatically 1 month after receipt unless CERA requests corrections.
+        </div>
+
+        <!-- RES OPEN MARKET -->
+        <h2>6. RES System Open Market</h2>
+        <p>The Cyprus electricity market is transitioning from a single-buyer model (EAC) to a competitive market. Under the Detailed Planning regulatory decision (RAA 164/2015), the following participants will operate in the new market:</p>
+        <ul>
+            <li>Cyprus Transmission System Operator (CTSO)</li>
+            <li>Market Operator</li>
+            <li>Distribution System Operator (DSO / EAC)</li>
+            <li>Producers with thermal units (&gt; 5MW on distribution system, or on transmission system)</li>
+            <li><strong>RES stations operating outside national grant schemes</strong></li>
+            <li>Aggregators (up to 20MW total RES served)</li>
+            <li>Retailers and Wholesalers</li>
+            <li>Balance Responsible Parties</li>
+        </ul>
+
+        <h3>Connection Requirements</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Connection Power</th>
+                    <th>Apply To</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Producers</td>
+                    <td>&gt; 8 MW</td>
+                    <td>CTSO (Transmission System Operator)</td>
+                </tr>
+                <tr>
+                    <td>Customers</td>
+                    <td>&gt; 12 MVA</td>
+                    <td>CTSO (Transmission System Operator)</td>
+                </tr>
+                <tr>
+                    <td>Producers</td>
+                    <td>&le; 8 MW</td>
+                    <td>EAC / DSO (Distribution System Operator)</td>
+                </tr>
+                <tr>
+                    <td>Customers</td>
+                    <td>&le; 12 MVA</td>
+                    <td>EAC / DSO (Distribution System Operator)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ENERGY COMMUNITIES -->
+        <h2>7. Energy Communities</h2>
+        <p>Under Regulatory Decision 04/2024, CERA established a framework for Citizens Energy Communities and Renewable Energy Communities.</p>
+        <table>
+            <thead>
+                <tr><th>Action</th><th>Fee</th><th>Submission</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Registration in Energy Communities Registry</td><td class="amount">&euro;300</td><td>Email to <a href="mailto:ec@cera.org.cy">ec@cera.org.cy</a></td></tr>
+                <tr><td>Details Change</td><td class="amount">&euro;100</td><td>Email to <a href="mailto:ec@cera.org.cy">ec@cera.org.cy</a></td></tr>
+                <tr><td>Termination / Deregistration</td><td class="amount">Free</td><td>Email to <a href="mailto:ec@cera.org.cy">ec@cera.org.cy</a></td></tr>
+            </tbody>
+        </table>
+        <p class="note">As of July 2025, no Energy Communities have been registered in the CERA Registry.</p>
+
+        <!-- ADMINISTRATIVE -->
+        <h2>8. Administrative Fees Summary</h2>
+        <table>
+            <thead>
+                <tr><th>Action</th><th>Fee</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>License / Exemption Amendment</td><td class="amount">&euro;170.86</td></tr>
+                <tr><td>License / Exemption Transfer</td><td class="amount">&euro;170.86</td></tr>
+                <tr><td>Capacity Increase (amendment)</td><td class="amount">Fee as if new application for additional kW</td></tr>
+                <tr><td>License Extension</td><td class="amount">Per licensing regulations</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Key Amendment Rules</h3>
+        <ul>
+            <li>Technology type changes are <strong>not allowed</strong> (RES to conventional or vice versa)</li>
+            <li>RES technology sub-type changes are <strong>not allowed</strong> (e.g. wind to PV)</li>
+            <li>Manufacturer/model changes <strong>are allowed</strong></li>
+            <li>Parcel expansion to adjacent land <strong>may be allowed</strong> (case-by-case)</li>
+            <li>Operating regime changes <strong>not allowed</strong> (commercial to own-use or vice versa)</li>
+            <li>Extension requests must be submitted <strong>&ge; 3 months before expiry</strong></li>
+            <li>Post-expiry extension requests are <strong>not accepted</strong> (Decision 95/2017)</li>
+        </ul>
+
+        <!-- CONTACT -->
+        <div class="contact-box">
+            <h4>CERA Contact Information</h4>
+            <p>
+                Cyprus Energy Regulatory Authority (CERA / RAEK)<br>
+                Agias Paraskevis 20, 2002 Strovolos, Nicosia, Cyprus<br>
+                P.O. Box: 24936, 1305 Nicosia<br>
+                Tel: +357 22 666363 | Fax: +357 22 667763<br>
+                Email: <a href="mailto:regulator.cy@cera.org.cy">regulator.cy@cera.org.cy</a><br>
+                General License submissions: <a href="mailto:gl@cera.org.cy">gl@cera.org.cy</a><br>
+                Energy Communities: <a href="mailto:ec@cera.org.cy">ec@cera.org.cy</a><br>
+                Online Portal (from Dec 2025): <a href="https://portal.cera.org.cy" target="_blank">portal.cera.org.cy</a>
+            </p>
+        </div>
+
+        <footer>
+            <p>Compiled by Lighthief Cyprus — Energy Trading Division | March 2026</p>
+            <p>Source: CERA Official Website — <a href="https://www.cera.org.cy/en-gb/ilektrismos/details/ilektrismos-adeiodotisi" target="_blank">cera.org.cy</a></p>
+            <p>This document is for internal reference only. Always verify with CERA for current fees and procedures.</p>
+        </footer>
+    </div>
+</body>
+</html>
