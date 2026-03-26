@@ -4,10 +4,10 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 17 March 2026
+// Last updated: 24 March 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx
 // ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
-// Spanercom (Anarita 2×5/15) added to Batch 1.
+// Spanercom (Anarita 2×5/20, €119k/MWh client offer) — Batch 1.
 // ===================================================================
 
 export type DataStatus = 'confirmed' | 'quoted' | 'estimated' | 'pending' | 'client-paid' | 'superseded';
@@ -26,8 +26,8 @@ interface MetaInfo {
 export const PORTFOLIO = {
   parks: 28,
   mw: 134,
-  mwh: 486.50,
-  containers: 140,
+  mwh: 496.50,
+  containers: 138,
   districts: 5,
   orderDate: '2026-04-01',
   firstClientInvoiceDate: '2026-04-01',
@@ -41,28 +41,28 @@ export const PORTFOLIO = {
 // ─────────────────────────────────────────────
 
 export const FINANCIALS = {
-  cifTotal: 47_382_285,
-  cifAvgPerMWh: 97_400,
+  cifTotal: 48_443_684,
+  cifAvgPerMWh: 97_570,
 
   physicalAdders: 4_200_000,
   emsScadaTotal: 2_200_000,
 
-  installedCost: 53_625_000,
-  installedCostAvgPerMWh: 110_200,
+  installedCost: 54_763_066,
+  installedCostAvgPerMWh: 110_300,
 
-  clientRevenue: 60_554_955,
-  clientRevenueAvgPerMWh: 124_500,
+  clientRevenue: 61_391_195,
+  clientRevenueAvgPerMWh: 123_650,
 
-  netMargin: 6_929_811,
-  netMarginPct: 11.45,
-  netMarginRounded: 11.5,
+  netMargin: 6_628_129,
+  netMarginPct: 10.80,
+  netMarginRounded: 10.8,
 
   importDutyRate: 2.66,
   importDutyTotal: 2_286_640.47,
 
   vatRate: 19,
 
-  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx', date: '2026-02-20' } as MetaInfo,
+  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Spanercom 2×5/20 revision', date: '2026-03-24' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -139,7 +139,7 @@ export const GROUPS: GroupData[] = [
   { name: 'A. Kerasi', key: 'kerasi', parks: 3, mw: 6.5, mwh: 20.00, cif: 2_283_660.00, installedCost: 2_841_296.88, revenue: 3_061_369.92, margin: 220_073.03, marginPct: 7.19 },
   { name: 'Lampros Andreadis', key: 'lampros', parks: 2, mw: 4.8, mwh: 15.00, cif: 1_593_785.00, installedCost: 1_923_085.24, revenue: 2_117_419.61, margin: 194_334.36, marginPct: 9.18 },
   { name: 'Ioannis Karis', key: 'karis', parks: 1, mw: 7.7, mwh: 25.00, cif: 2_523_652.00, installedCost: 2_819_401.34, revenue: 3_220_674.61, margin: 401_273.27, marginPct: 12.46 },
-  { name: 'Spanercom (Anarita)', key: 'spanercom', parks: 2, mw: 10.0, mwh: 30.00, cif: 3_184_198.00, installedCost: 3_414_198.00, revenue: 3_923_760.00, margin: 509_562.00, marginPct: 12.98 },
+  { name: 'Spanercom (Anarita)', key: 'spanercom', parks: 2, mw: 10.0, mwh: 40.00, cif: 4_245_597.00, installedCost: 4_552_264.00, revenue: 4_760_000.00, margin: 207_736.00, marginPct: 4.37 },
 ];
 
 // ─────────────────────────────────────────────
@@ -156,12 +156,12 @@ export const BATCHES = [
     id: 1, name: 'Batch 1: Confirmed',
     status: 'confirmed' as BatchStatus,
     groups: ['Galascope (2 parks)', 'Timotheos (3 parks)', 'Lampros (2 parks)', 'Spanercom (2 parks)'],
-    parks: 9, mw: 33.8, mwh: 110.0, containers: 36,
-    cif: 11_116_000, installed: 12_730_000, revenue: 14_231_000, margin: 1_501_000, marginPct: 10.55,
+    parks: 9, mw: 33.8, mwh: 120.0, containers: 34,
+    cif: 12_177_400, installed: 13_868_100, revenue: 15_067_200, margin: 1_199_100, marginPct: 7.96,
     productionStart: '2026-04-01', productionEnd: '2026-06-30',
     fatDate: '2026-06-30', shipDate: '2026-07-01',
     cifDate: '2026-08-20', pacDate: '2026-12-31',
-    _meta: { source: 'Dino/Timotheos verbal, Lampros confirmed, Spanercom Anarita 2×5/15. ABIO removed Mar 2026.', date: '2026-03-12' } as MetaInfo,
+    _meta: { source: 'Dino/Timotheos verbal, Lampros confirmed, Spanercom Anarita 2×5/20 @ €119k/MWh. ABIO removed Mar 2026.', date: '2026-03-24' } as MetaInfo,
   },
   {
     id: 2, name: 'Batch 2: Pipeline',
@@ -193,8 +193,8 @@ export const BATCH1_PARKS = [
   { name: 'TBC (5 MWh park)', group: 'Timotheos',  mw: 1.5,  mwh: 5,     containers: 2,  district: 'TBC',       revenue: 800_000 },
   { name: 'Solar Breeze',     group: 'Lampros',    mw: 1.51, mwh: 5,     containers: 2,  district: 'Limassol',  revenue: 795_443 },
   { name: 'Solar Garden',     group: 'Lampros',    mw: 3.29, mwh: 10,    containers: 3,  district: 'Limassol',  revenue: 1_321_976 },
-  { name: 'Anarita 1',        group: 'Spanercom',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Paphos',    revenue: 1_961_880 },
-  { name: 'Anarita 2',        group: 'Spanercom',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Paphos',    revenue: 1_961_880 },
+  { name: 'Anarita 1',        group: 'Spanercom',  mw: 5.0,  mwh: 20,    containers: 4,  district: 'Paphos',    revenue: 2_380_000 },
+  { name: 'Anarita 2',        group: 'Spanercom',  mw: 5.0,  mwh: 20,    containers: 4,  district: 'Paphos',    revenue: 2_380_000 },
 ] as const;
 
 export const ESP_2028 = {
@@ -209,14 +209,14 @@ export const ESP_2028 = {
 // ─────────────────────────────────────────────
 
 export const GROUP_ORDER_REMAINING = {
-  clientRevenue: 60_554_955,
-  cifTotal: 47_382_285,
-  installedCost: 53_625_000,
-  netMargin: 6_929_811,
-  netMarginPct: 11.45,
+  clientRevenue: 61_391_195,
+  cifTotal: 48_443_684,
+  installedCost: 54_763_066,
+  netMargin: 6_628_129,
+  netMarginPct: 10.80,
   parks: 28,
-  mwh: 486.50,
-  _meta: { source: 'portfolio-data.ts', date: '2026-03-12', note: 'ABIO removed Mar 2026' } as MetaInfo,
+  mwh: 496.50,
+  _meta: { source: 'portfolio-data.ts', date: '2026-03-24', note: 'ABIO removed Mar 2026; Spanercom 2×5/20 Mar 2026' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -225,11 +225,11 @@ export const GROUP_ORDER_REMAINING = {
 // ─────────────────────────────────────────────
 
 export const EXPECTED_COMMISSION = {
-  totalPortfolio: 2_078_943,   // 30% of net margin (€6.93M)
-  batch1: 450_300,             // 30% of Batch 1 margin (€1.50M)
+  totalPortfolio: 1_988_439,   // 30% of net margin (~€6.63M)
+  batch1: 359_730,             // 30% of Batch 1 margin (~€1.20M)
   ratePct: 30,
   basis: '30% of net margin per milestone',
-  _meta: { source: 'commission-cashflow-model-feb2026', date: '2026-03-12' } as MetaInfo,
+  _meta: { source: 'commission-cashflow-model-feb2026', date: '2026-03-24', note: 'Recomputed after Spanercom 2×5/20' } as MetaInfo,
 } as const;
 
 export const FAC_DATE = '2027-03-31';
@@ -523,6 +523,7 @@ export const COMPANY = {
   directorPhone: '+357 99 164 158',
   bessProjectContact: 'Alexander Papacosta',
   bessProjectPhone: '+357 99 164 158',
+  bessProjectEmail: 'alexander.papacosta@lighthief.com',
 } as const;
 
 // ─────────────────────────────────────────────
@@ -534,10 +535,11 @@ export const CLIENT_PRICING = {
   '5MW_15MWh':   { ratePerMWh: 130_792, status: 'confirmed' as DataStatus },
   '5MW_10MWh':   { ratePerMWh: 136_106, status: 'confirmed' as DataStatus },
   '2.5MW_10MWh': { ratePerMWh: 120_630, status: 'confirmed' as DataStatus },
+  '3.75MW_15MWh': { ratePerMWh: 131_000, status: 'quoted' as DataStatus, note: 'Scandinavian Solar Parks (Group7) Mar 2026 — interpolated from 5MW/15 + 3.3MW/10 tiers' },
   '8MW_60MWh':   { ratePerMWh: 100_052, status: 'confirmed' as DataStatus },
   '12MW_40MWh':  { ratePerMWh: 114_990, status: 'confirmed' as DataStatus },
   '25MW_100MWh': { ratePerMWh: 106_279, status: 'confirmed' as DataStatus },
-  _meta: { source: 'confirmed-client-pricing-feb2026.md', date: '2026-02-05' } as MetaInfo,
+  _meta: { source: 'confirmed-client-pricing-feb2026.md + Group7 Scandinavian Solar', date: '2026-03-24' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -743,6 +745,7 @@ export function getTemplateVars(): Record<string, string> {
     'COMPANY.directorPhone':   COMPANY.directorPhone,
     'COMPANY.bessProjectContact': COMPANY.bessProjectContact,
     'COMPANY.bessProjectPhone': COMPANY.bessProjectPhone,
+    'COMPANY.bessProjectEmail': COMPANY.bessProjectEmail,
 
     'BATCH1.parks': String(BATCHES[0].parks),
     'BATCH1.mw':    String(BATCHES[0].mw),

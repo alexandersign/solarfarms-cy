@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandinavian Solar Parks &mdash; BESS Turnkey Proposal | Lighthief</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669}
+        body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+        .page{background:#fff;max-width:210mm;margin:0 auto 24px;padding:22mm 18mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:20px}
+        .logo{font-size:20pt;font-weight:800;color:var(--primary);letter-spacing:-.5px}.logo span{color:var(--accent)}
+        .tagline{font-size:8pt;color:var(--muted);margin-top:2px}
+        .doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+        h1{font-size:14pt;color:var(--primary);margin:20px 0 6px}
+        h2{font-size:11pt;color:var(--primary);margin:22px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+        h3{font-size:9.5pt;color:var(--primary);margin:10px 0 5px}
+        table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+        th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600;white-space:normal}
+        td{padding:5px 7px;border-bottom:1px solid var(--border);word-wrap:break-word}
+        tr:nth-child(even){background:#fafbfc}
+        .r{text-align:right}.c{text-align:center}
+        .price{font-weight:700;color:var(--accent)}
+        .total-row{background:var(--primary)!important;color:#fff;font-weight:700}
+        .total-row td{border:none}
+        .sub-total{background:#edf2f7!important;font-weight:600}
+        .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 20px}
+        .metric-box{background:var(--bg);border-radius:8px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
+        .metric-box .val{font-size:18pt;font-weight:800;color:var(--primary)}
+        .metric-box .lbl{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+        .box{border:1px solid var(--border);border-radius:6px;padding:12px}
+        .box h3{margin-top:0}
+        .box ul{margin-left:16px}.box li{margin-bottom:3px}
+        .highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .warn{background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:8pt}
+        .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+        .team-card{border:1px solid var(--border);border-radius:6px;padding:10px;font-size:8pt}
+        .team-card strong{color:var(--primary);font-size:9pt}.team-card .role{color:var(--accent);font-size:7.5pt;font-weight:600}
+        .footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+        .note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+        .print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .print-btn:hover{background:var(--accent)}
+        ul{margin-left:18px}li{margin-bottom:3px}
+        .incl{color:var(--ok)}.excl{color:#dc2626}
+        .logo-img{height:32px;vertical-align:middle}
+        .partner-strip{display:flex;align-items:center;justify-content:center;gap:28px;padding:16px 0;margin:18px 0 8px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
+        .partner-strip img{height:36px;object-fit:contain}
+        .partner-strip .voltus-logo{filter:invert(1);height:28px}
+        .partner-strip .partner-label{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-right:8px}
+        .indic{font-size:7pt;color:#b45309;font-weight:600}
+        @media print{.print-btn{display:none}body{background:#fff;padding:0}.page{box-shadow:none;margin:0;padding:14mm 16mm}@page{margin:8mm;size:A4}.page-break{page-break-before:always}}
+
+    </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">&#128424; Print / PDF</button>
+
+<!-- PAGE 1: Cover -->
+<div class="page">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"><div class="tagline">Energy Storage EPC &amp; O&amp;M</div></div>
+        <div class="doc-info"><strong>CONFIDENTIAL</strong><br>Ref: LCY-GRP7-2026-MAR<br>Date: March 2026<br>Valid: 30 days</div>
+    </div>
+
+    <h1>Battery Energy Storage System &mdash; Turnkey EPC Proposal</h1>
+    <p style="font-size:12pt;color:var(--accent);font-weight:600;margin-bottom:8px;">Prepared exclusively for <strong>Mr. Hakan Henriksson</strong> &mdash; Scandinavian Solar Parks</p>
+    <p class="note" style="margin-bottom:16px;">
+        <strong>Contact:</strong> +46 70 788 58 22 &nbsp;|&nbsp; +357 96 490050 &nbsp;|&nbsp;
+        <a href="mailto:hakan.henriksson@scandinaviansolarparks.com">hakan.henriksson@scandinaviansolarparks.com</a>
+    </p>
+
+    <div class="metric-grid">
+        <div class="metric-box"><div class="val">2</div><div class="lbl">BESS Sites</div></div>
+        <div class="metric-box"><div class="val">4.8 MW</div><div class="lbl">PV AC (stated)</div></div>
+        <div class="metric-box"><div class="val">20 MWh</div><div class="lbl">Economic sizing (ex.)</div></div>
+        <div class="metric-box"><div class="val">~&euro;2.74M</div><div class="lbl">Indicative (combo B)</div></div>
+    </div>
+
+    <div class="two-col">
+        <div class="box">
+            <h3>Your EPC Partner</h3>
+            <ul>
+                <li>Lighthief Cyprus Ltd &mdash; exclusive EPC partner for Linyang Energy in Cyprus</li>
+                <li>Part of Lighthief European Group &mdash; 150+ engineers across Poland &amp; Cyprus</li>
+                <li>Complete turnkey service: procurement, installation, commissioning &amp; ongoing maintenance</li>
+                <li>Currently delivering {{PORTFOLIO.mwh}} MWh of BESS across {{PORTFOLIO.parks}} projects in Cyprus</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Equipment &amp; Technology</h3>
+            <ul>
+                <li><strong>Battery:</strong> Linyang Energy &mdash; EVE LFP cells (CATL-grade)</li>
+                <li><strong>Inverter:</strong> Kehua Tech &mdash; Tier 1, modular PCS (typically 1.00 MW / 1.25 MW units)</li>
+                <li><strong>Energy Management:</strong> Voltus Energy &mdash; Cyprus-based, DSO compliant</li>
+                <li><strong>Warranty:</strong> 5-year standard + optional extension up to 15 years</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <strong>Group order advantage:</strong> Your quote uses the same island-wide BESS programme economics as our confirmed group clients (volume-negotiated equipment, logistics, and installation). Final prices are firmed after site review, grid connection sizing, and formal batch placement.
+    </div>
+
+    <div class="warn">
+        <strong>Non-catalog sizes (1.3 MW / 3 MWh and 3.5 MW / 14 MWh):</strong> Standard Linyang containers are ~5 MWh (20ft HC). Configurations below one full container or between container steps are <strong>indicative</strong> until OEM confirms PCS/container stacking and CERA/DSO limits.
+    </div>
+
+    <div class="partner-strip">
+        <span class="partner-label">Technology Partners</span>
+        <img src="{{LOGO_LINYANG}}" alt="Linyang Energy" title="Linyang Energy &mdash; Battery OEM">
+        <img src="{{LOGO_KEHUA}}" alt="Kehua Tech" title="Kehua Tech &mdash; Power Conversion">
+        <img src="{{LOGO_VOLTUS}}" alt="Voltus Energy" title="Voltus Energy &mdash; EMS/SCADA" class="voltus-logo">
+    </div>
+</div>
+
+<!-- PAGE 2: Per-site options -->
+<div class="page page-break">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Sizing &amp; Pricing &mdash; Scandinavian Solar Parks</div>
+    </div>
+
+    <h2>Your Two Plants &mdash; BESS Options</h2>
+    <p class="note">All figures are <strong>turnkey DAP site, excluding VAT (19%)</strong>. &ldquo;Confirmed tier&rdquo; prices align with other group-order parks; <span class="indic">indicative</span> rows are interpolated or non-catalog.</p>
+
+    <h3>Plant 1 &mdash; 1.3 MW PV (connection application: 1.3 MW / 3 MWh)</h3>
+    <table>
+        <thead><tr><th>Configuration</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">PCS (typ.)</th><th class="c">Duration</th><th class="r">&euro;/kWh</th><th class="r">Turnkey</th></tr></thead>
+        <tbody>
+            <tr style="background:#fffbeb;"><td>As applied <span class="indic">(indicative)</span></td><td class="c">1.3</td><td class="c">3</td><td class="c">TBC <span class="indic">(&lt;1&times;5)</span></td><td class="c">1&times;1.25 MW</td><td class="c">2.3 h</td><td class="r">&euro;166.20</td><td class="r price">&euro;498,600</td></tr>
+            <tr><td><strong>Option A</strong> &mdash; economic</td><td class="c">1.25</td><td class="c">5</td><td class="c">1&times; ~5 MWh</td><td class="c">1&times;1.25 MW</td><td class="c">4.0 h</td><td class="r">&euro;154.08</td><td class="r price">&euro;770,397</td></tr>
+            <tr><td><strong>Option B</strong> &mdash; higher capture</td><td class="c">2.5</td><td class="c">10</td><td class="c">2&times; ~5 MWh</td><td class="c">2&times;1.25 MW</td><td class="c">4.0 h</td><td class="r">&euro;120.63</td><td class="r price">&euro;1,206,300</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Plant 2 &mdash; 3.5 MW PV (connection application: 3.5 MW / 14 MWh)</h3>
+    <table>
+        <thead><tr><th>Configuration</th><th class="c">BESS MW</th><th class="c">MWh</th><th class="c">Containers</th><th class="c">PCS (typ.)</th><th class="c">Duration</th><th class="r">&euro;/kWh</th><th class="r">Turnkey</th></tr></thead>
+        <tbody>
+            <tr style="background:#fffbeb;"><td>As applied <span class="indic">(indicative)</span></td><td class="c">3.5</td><td class="c">14</td><td class="c">3&times; ~5 MWh</td><td class="c">3&times;1.25 MW</td><td class="c">4.0 h</td><td class="r">&euro;131.57</td><td class="r price">&euro;1,842,000</td></tr>
+            <tr><td><strong>Option C</strong> &mdash; nearest economic (group)</td><td class="c">3.75</td><td class="c">15</td><td class="c">3&times; ~5 MWh</td><td class="c">3&times;1.25 MW</td><td class="c">4.0 h</td><td class="r">&euro;131.00</td><td class="r price">&euro;1,965,000</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>Why 1.25 / 5 MWh and 3.75 / 15 MWh:</strong> These pair full 1.25 MW PCS steps with whole 5 MWh container blocks &mdash; the same building blocks used across our Batch&nbsp;1 parks &mdash; so you avoid partial-container engineering and usually improve bankability and lead time versus sub-5&nbsp;MWh asks.
+    </div>
+</div>
+
+<!-- PAGE 3: Combination packages -->
+<div class="page page-break">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Combination Packages</div>
+    </div>
+
+    <h2>Recommended Combination Packages</h2>
+    <p class="note">Pick one row per plant independently, or take a suggested bundle below. Mixed bundles are allowed (e.g. Option&nbsp;A on Plant&nbsp;1 + Option&nbsp;C on Plant&nbsp;2).</p>
+
+    <table>
+        <thead><tr><th>Package</th><th>Plant 1</th><th>Plant 2</th><th class="c">Total MWh</th><th class="r">Combined turnkey</th><th class="r">Blended &euro;/kWh</th></tr></thead>
+        <tbody>
+            <tr><td><strong>P0</strong> As applied (both)</td><td>1.3 / 3</td><td>3.5 / 14</td><td class="c">17</td><td class="r price">&euro;2,340,600</td><td class="r">&euro;137.68</td></tr>
+            <tr class="sub-total"><td><strong>P1</strong> Economic</td><td>1.25 / 5</td><td>3.75 / 15</td><td class="c">20</td><td class="r price">&euro;2,735,397</td><td class="r">&euro;136.77</td></tr>
+            <tr><td><strong>P2</strong> Higher duration (Plant&nbsp;1)</td><td>2.5 / 10</td><td>3.75 / 15</td><td class="c">25</td><td class="r price">&euro;3,171,300</td><td class="r">&euro;126.85</td></tr>
+            <tr><td><strong>P3</strong> Hybrid</td><td>1.25 / 5</td><td>3.5 / 14 <span class="indic">(indic.)</span></td><td class="c">19</td><td class="r price">&euro;2,612,397</td><td class="r">&euro;137.49</td></tr>
+        </tbody>
+    </table>
+
+    <div class="warn">
+        <strong>Plant 2 &amp; 2.5 / 10 MWh:</strong> A 2.5&nbsp;MW / 10&nbsp;MWh block is economical for smaller sites but is <strong>not</strong> a substitute for a 3.5&nbsp;MW PV export limit; it would only suit Plant&nbsp;2 if the grid licence is revised downward. Package <strong>P2</strong> therefore keeps Plant&nbsp;2 at <strong>3.75 / 15</strong> while upgrading Plant&nbsp;1 to <strong>2.5 / 10</strong>.
+    </div>
+
+    <h3>Illustrative total &mdash; Package P1 (recommended economic)</h3>
+    <table>
+        <thead><tr><th>Site</th><th class="c">MW</th><th class="c">MWh</th><th class="r">Price</th></tr></thead>
+        <tbody>
+            <tr><td>Plant 1</td><td class="c">1.25</td><td class="c">5</td><td class="r price">&euro;770,397</td></tr>
+            <tr><td>Plant 2</td><td class="c">3.75</td><td class="c">15</td><td class="r price">&euro;1,965,000</td></tr>
+            <tr class="total-row"><td colspan="3" style="border:none"><strong>Total &mdash; 5 MW / 20 MWh (two sites)</strong></td><td class="r" style="border:none"><strong>&euro;2,735,397</strong></td></tr>
+        </tbody>
+    </table>
+    <p class="note">Blended unit: <strong>&euro;136.77/kWh</strong> on 20&nbsp;MWh total energy.</p>
+</div>
+
+<!-- PAGE 4: EPC Scope + specs -->
+<div class="page page-break">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">EPC Scope &amp; Specifications</div>
+    </div>
+
+    <h2>What&rsquo;s Included</h2>
+    <div class="two-col">
+        <div class="box">
+            <h3 class="incl">&#10003; Included in turnkey price</h3>
+            <ul>
+                <li>Battery storage containers (LFP chemistry with integrated cooling &amp; fire suppression)</li>
+                <li>Power conversion system (inverter, transformer &amp; MV switchgear / skid)</li>
+                <li>Energy management &amp; monitoring (Voltus &mdash; DSO compliant)</li>
+                <li>Shipping to Limassol, import duties &amp; customs clearance</li>
+                <li>Crane offloading &amp; transport to your site</li>
+                <li>Civil works: concrete platforms, cable trenches &amp; drainage (within BESS compound)</li>
+                <li>Electrical cabling, terminations &amp; protection engineering</li>
+                <li>Surge protection &amp; earthing system</li>
+                <li>SCADA communications infrastructure &amp; site UPS</li>
+                <li>Construction-phase insurance (CAR/EAR scope as per contract)</li>
+                <li>Regulatory documentation support (EAC/CERA pathway)</li>
+                <li>Commissioning &amp; DSO witness testing</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3 class="excl">&#10007; Not included</h3>
+            <ul>
+                <li>Land or lease</li>
+                <li>Grid connection works beyond the BESS MV point of coupling (if applicable)</li>
+                <li>External lightning protection (quoted separately per site)</li>
+                <li>DSO inspection &amp; protection testing fees (client-paid item)</li>
+                <li>VAT (19%)</li>
+                <li>CERA licence fees</li>
+                <li>Licensed electrical drawings for building permit (typically &euro;5,000&ndash;&euro;15,000 per site)</li>
+                <li>Works outside the battery compound boundary</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>System specifications (standard offer)</h2>
+    <table>
+        <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Battery chemistry</strong></td><td>LFP (Lithium Iron Phosphate) &mdash; EVE cells</td></tr>
+            <tr><td><strong>Container energy</strong></td><td>Linyang ~5.015 MWh / ~4.179 MWh variants (20ft HC) per datasheets</td></tr>
+            <tr><td><strong>Cycle life / SOH</strong></td><td>Designed for 7,000+ equivalent full cycles; warranty SOH trajectory per OEM</td></tr>
+            <tr><td><strong>Round-trip efficiency</strong></td><td>&ge; 86.3% AC&ndash;AC (full system, per Linyang island verification)</td></tr>
+            <tr><td><strong>Inverter</strong></td><td>Kehua Tech &mdash; bi-directional, grid-following / grid-forming capable (per project)</td></tr>
+            <tr><td><strong>EMS / SCADA</strong></td><td>Voltus Energy &mdash; Cyprus operations, DSO telemetry interfaces</td></tr>
+            <tr><td><strong>Fire suppression</strong></td><td>Integrated aerosol (container + pack level) per OEM design</td></tr>
+            <tr><td><strong>Operating temperature</strong></td><td>Liquid-cooled container; OEM-rated ambient range per datasheet</td></tr>
+            <tr><td><strong>Grid code</strong></td><td>Equipment certified to EN 50549-2 (T&Uuml;V certificate ref. on file)</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PAGE 5: Warranties & Payment -->
+<div class="page page-break">
+    <div class="header">
+        <div><img src="{{LOGO_LIGHTHIEF}}" alt="Lighthief" class="logo-img"></div>
+        <div class="doc-info">Warranties &amp; Terms</div>
+    </div>
+
+    <h2>Warranty &amp; performance (summary)</h2>
+    <table>
+        <thead><tr><th>Coverage</th><th>Period</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Standard warranty</strong></td><td>5 years</td><td>Battery, PCS, BMS &amp; auxiliaries &mdash; per supply agreement</td></tr>
+            <tr><td><strong>Capacity / SOH</strong></td><td>Up to 15 yr</td><td>OEM degradation curve; remedy via augmentation or compensation (contract terms)</td></tr>
+            <tr><td><strong>Availability</strong></td><td>O&amp;M / LTSA</td><td>Tier C target &ge; {{LTSA.tierC.availabilityTarget}}% with LDs when on premium LTSA</td></tr>
+            <tr><td><strong>Performance security</strong></td><td>To commissioning + buffer</td><td>Corporate / bank guarantee structure per standard Lighthief&ndash;Linyang package</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Ongoing maintenance &amp; extended warranty (optional)</h2>
+    <table>
+        <thead><tr><th>Service</th><th class="r">&euro;/MWh/Year</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Full maintenance (Tier C reference)</strong></td><td class="r price">&euro;{{LTSA.tierC.ratePerMWh}}</td><td>Preventive &amp; corrective maintenance, monitoring, spares path; final rate scales with installed MWh</td></tr>
+            <tr><td><strong>Extended battery warranty (Yr 6&ndash;10)</strong></td><td class="r">&euro;{{WARRANTY.extendedYr6to10.bessPerMWh}}</td><td>Manufacturer-backed extension</td></tr>
+            <tr><td><strong>Extended PCS warranty (Yr 6&ndash;10)</strong></td><td class="r">&euro;{{WARRANTY.extendedYr6to10.pcsPerMWh}}</td><td>Manufacturer-backed extension</td></tr>
+        </tbody>
+    </table>
+
+    <h2>EMS &amp; monitoring (reference)</h2>
+    <p class="note">Voltus EMS subscription is typically quoted per MWh / site complexity; figures in other group proposals (e.g. ~&euro;616/MWh/yr software stack) apply unless a bundled discount is agreed for multi-site clients.</p>
+
+    <h2>Payment terms (group standard)</h2>
+    <table>
+        <thead><tr><th>Milestone</th><th class="c">%</th><th>Trigger</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Advance</strong></td><td class="c">30%</td><td>Within 7 days of contract signing</td></tr>
+            <tr><td><strong>Pre-shipment</strong></td><td class="c">55%</td><td>Equipment ready for shipment (FAT / release)</td></tr>
+            <tr><td><strong>Provisional acceptance (PAC)</strong></td><td class="c">10%</td><td>Commissioned and energised per PAC protocol</td></tr>
+            <tr><td><strong>Retention</strong></td><td class="c">5%</td><td>Released after defects liability period</td></tr>
+            <tr class="total-row"><td colspan="2" style="border:none"><strong>Total</strong></td><td style="border:none"><strong>100%</strong></td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>Next steps:</strong> Confirm preferred MW/MWh per site (or a package P0&ndash;P3), share district / single-line data, and we will align PCS/container counts with Linyang and issue a formal binding quotation tied to batch timing.
+    </div>
+
+    <div class="footer">
+        <strong>Lighthief Cyprus Ltd</strong> | Energy Storage EPC &amp; O&amp;M<br>
+        28 October Avenue 249, Lophitis Business Center I, Office 201, 3035 Limassol, Cyprus<br>
+        Tel: +357 77 77 00 50 | office@lighthief.com<br><br>
+        Confidential &mdash; Prepared exclusively for Scandinavian Solar Parks / Mr. Hakan Henriksson | March 2026<br>
+        Pricing valid 30 days. Excludes VAT (19%). Indicative rows require OEM/grid confirmation.
+    </div>
+</div>
+
+</body>
+</html>

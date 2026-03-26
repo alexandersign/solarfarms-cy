@@ -8,7 +8,7 @@
 ---
 
 # EPC SCOPE STATUS TRACKER
-## Cyprus BESS Portfolio - 486.5 MWh / 28 Parks
+## Cyprus BESS Portfolio - 496.5 MWh / 28 Parks
 
 ---
 

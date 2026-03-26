@@ -455,7 +455,7 @@ def page_next_steps(c):
                 <li><strong>Alexander Papacosta</strong></li>
                 <li>Director &amp; BESS Project Lead</li>
                 <li>Tel: +357 99 164 158</li>
-                <li>Email: alex@lighthief.com</li>
+                <li>Email: alexander.papacosta@lighthief.com</li>
             </ul>
         </div>
         <div class="box">
