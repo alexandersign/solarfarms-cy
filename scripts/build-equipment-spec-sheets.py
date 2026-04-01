@@ -320,6 +320,7 @@ CLIENT_CONFIGS: dict[str, dict] = {
     "Individual_Christos_Nicosia": {"set": "cyprus_individual", "label": "Christos Nicosia"},
     "Individual_Generic_7MW": {"set": "cyprus_individual", "label": "Generic 7 MW"},
     "Individual_Maltezos_Agios_Theodoros": {"set": "cyprus_individual", "label": "Maltezos"},
+    "Individual_Aristoklia_Solar": {"set": "cyprus_individual", "label": "Aristoklia Solar"},
     "Individual_Scandinavian_Solar_Parks": {"set": "cyprus_individual", "label": "Scandinavian Solar Parks"},
     "Individual_Spanercom": {"set": "cyprus_individual", "label": "Spanercom / Anarita"},
     # Poland
