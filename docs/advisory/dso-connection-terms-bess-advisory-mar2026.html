@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Cyprus — Advisory: DSO Grid Connection Terms for Co-Located BESS</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 22mm 18mm; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    .avoid-break { page-break-inside: avoid; }
+  }
+  :root {
+    --bg: #ffffff; --surface: #f8f9fa; --surface2: #eef0f4; --border: #dee2e6;
+    --text: #1a1d27; --text-dim: #5a6170; --accent: #1e3a5f; --accent2: #2563eb;
+    --green: #16a34a; --red: #dc2626; --amber: #d97706;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.65; font-size: 10pt;
+    max-width: 210mm; margin: 0 auto;
+  }
+
+  .letterhead {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 60%, #312e81 100%);
+    padding: 32px 36px 24px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .letterhead-left h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 20pt; font-weight: 700; color: #fff; letter-spacing: 1px; margin-bottom: 2px;
+  }
+  .letterhead-left .tagline {
+    font-size: 7.5pt; color: rgba(255,255,255,0.6); text-transform: uppercase;
+    letter-spacing: 1.5px; font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .letterhead-right {
+    text-align: right; font-size: 7.5pt; color: rgba(255,255,255,0.7);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.5;
+  }
+
+  .doc-bar {
+    background: var(--accent);
+    padding: 10px 36px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .doc-bar .doc-type {
+    font-size: 7pt; font-weight: 700; color: rgba(255,255,255,0.9);
+    text-transform: uppercase; letter-spacing: 1.2px;
+  }
+  .doc-bar .doc-ref {
+    font-size: 7pt; color: rgba(255,255,255,0.6); letter-spacing: 0.5px;
+  }
+
+  .container { padding: 28px 36px 36px; }
+
+  .meta-block {
+    margin-bottom: 24px; font-size: 9pt; line-height: 1.7;
+  }
+  .meta-block .date { margin-bottom: 16px; color: var(--text-dim); }
+  .meta-block .to-line { font-weight: 600; }
+
+  .subject-line {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11.5pt; font-weight: 700; color: var(--accent);
+    margin: 20px 0 8px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent2);
+    line-height: 1.4;
+  }
+
+  .disclaimer-box {
+    background: #fef3c7; border: 1px solid #f59e0b; border-radius: 6px;
+    padding: 12px 16px; margin: 16px 0 24px; font-size: 8pt;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #92400e; line-height: 1.5;
+  }
+  .disclaimer-box strong { color: #78350f; }
+
+  p { margin-bottom: 10px; text-align: justify; }
+
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11pt; font-weight: 700; color: var(--accent);
+    margin: 24px 0 10px; padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2 .num {
+    background: var(--accent2); color: #fff; font-size: 7pt; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%; display: inline-flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h3 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 9.5pt; font-weight: 700; color: var(--text);
+    margin: 16px 0 6px;
+  }
+
+  .legal-quote {
+    background: var(--surface); border-left: 3px solid var(--accent2);
+    padding: 12px 16px; margin: 12px 0 14px; font-size: 9pt;
+    border-radius: 0 4px 4px 0; line-height: 1.6;
+  }
+  .legal-quote .source {
+    display: block; margin-top: 6px; font-size: 7.5pt; color: var(--text-dim);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-style: normal; font-weight: 600;
+  }
+  .legal-quote em { font-style: italic; }
+
+  .greek-text {
+    background: #f0f4ff; border-left: 3px solid #6366f1;
+    padding: 12px 16px; margin: 10px 0 14px; font-size: 9pt;
+    border-radius: 0 4px 4px 0; line-height: 1.6;
+    font-style: italic;
+  }
+  .greek-text .label {
+    display: block; font-size: 7pt; color: #4338ca;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-style: normal; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+
+  .argument-box {
+    background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px;
+    padding: 14px 16px; margin: 12px 0 16px;
+  }
+  .argument-box .arg-title {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 8pt; font-weight: 700; color: var(--green);
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+  }
+  .argument-box p { font-size: 9pt; margin-bottom: 6px; }
+  .argument-box p:last-child { margin-bottom: 0; }
+
+  .action-box {
+    background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px;
+    padding: 14px 16px; margin: 12px 0 16px;
+  }
+  .action-box .action-title {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 8pt; font-weight: 700; color: var(--red);
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+  }
+  .action-box p { font-size: 9pt; margin-bottom: 6px; }
+  .action-box ul { font-size: 9pt; margin: 4px 0 0 18px; }
+  .action-box li { margin-bottom: 4px; }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 8.5pt; margin: 12px 0 16px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  th, td { padding: 6px 10px; text-align: left; border: 1px solid var(--border); }
+  th {
+    background: var(--surface2); color: var(--text-dim); font-weight: 600;
+    font-size: 7pt; text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  td.fail { color: var(--red); font-weight: 600; }
+  td.pass { color: var(--green); font-weight: 600; }
+
+  .reference-list {
+    font-size: 8pt; line-height: 1.6; margin: 8px 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .reference-list li { margin-bottom: 4px; }
+  .reference-list .ref-id { font-weight: 700; color: var(--accent2); }
+
+  .signature-block {
+    margin-top: 36px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 9pt;
+  }
+  .signature-block .sign-name {
+    font-weight: 700; font-size: 10pt; margin-top: 28px;
+  }
+  .signature-block .sign-title { color: var(--text-dim); font-size: 8.5pt; }
+
+  .footer {
+    margin-top: 32px; padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 7pt; color: var(--text-dim);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center; line-height: 1.5;
+  }
+
+  ol.main-list { margin-left: 0; padding-left: 0; list-style: none; }
+  ul.sub-list { margin: 6px 0 10px 20px; }
+  ul.sub-list li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<!-- LETTERHEAD -->
+<div class="letterhead">
+  <div class="letterhead-left">
+    <h1>LIGHTHIEF</h1>
+    <div class="tagline">Energy Storage &amp; Solar EPC &mdash; Cyprus</div>
+  </div>
+  <div class="letterhead-right">
+    Lighthief Cyprus Ltd<br>
+    HE 477423 &middot; TIN 60187188Q<br>
+    28 October Ave 249, Lophitis Business Center 1<br>
+    Office 201, 3035 Limassol, Cyprus<br>
+    +357 77 77 00 50 &middot; office@lighthief.com<br>
+    solarfarms.cy
+  </div>
+</div>
+
+<div class="doc-bar">
+  <span class="doc-type">Advisory Memorandum &mdash; Confidential</span>
+  <span class="doc-ref">Ref: LTH/ADV/2026-03/BESS-CT &middot; 23 March 2026</span>
+</div>
+
+<div class="container">
+
+<!-- META -->
+<div class="meta-block">
+  <div class="date">23 March 2026</div>
+  <div class="to-line">To: Lighthief BESS Clients &mdash; Cyprus Solar Park Operators</div>
+  <div>From: Alexander Papacosta, Director, Lighthief Cyprus Ltd</div>
+  <div style="margin-top:6px;">Re: <strong>DSO Refusal of BESS Connection Terms at Existing PV Park Substations &mdash; Legal Framework, Arguments &amp; Recommended Actions</strong></div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-box">
+  <strong>IMPORTANT NOTICE:</strong> This document is provided by Lighthief Cyprus Ltd for informational and advisory purposes only. It does <strong>not</strong> constitute legal advice and should not be relied upon as such. Recipients are strongly advised to consult their own qualified legal counsel before taking any action based on the content herein. Lighthief Cyprus Ltd accepts no liability for decisions made in reliance on this memorandum.
+</div>
+
+<!-- SUBJECT -->
+<div class="subject-line">
+  Advisory: DSO (EAC) Refusal to Grant BESS Connection Terms at Substations Where Existing PV Connection Terms Are Held
+</div>
+
+<!-- INTRODUCTION -->
+<p>Dear Client,</p>
+
+<p>We are writing to bring to your attention a critical regulatory issue affecting solar park operators in Cyprus who seek to add Battery Energy Storage Systems (BESS) to their existing photovoltaic (PV) installations under connection terms already granted and paid for.</p>
+
+<p>It has come to our attention that the Electricity Authority of Cyprus (EAC / ΑΗΚ), acting as Distribution System Operator (DSO), has in certain cases refused to grant connection terms for BESS additions at substations where PV parks already hold valid, paid-for connection agreements. The stated reason is that the substation has reached full capacity&mdash;however, this capacity limitation has arisen because EAC has subsequently allocated connection terms to <strong>new standalone BESS projects</strong> at the same substation.</p>
+
+<p>Furthermore, EAC appears to be applying an <strong>internal interpretation</strong> that existing PV connection terms only reserve "daytime" MW capacity at the substation&mdash;thereby treating "nighttime" MW capacity as separately available for allocation to standalone BESS projects. <strong>No such time-of-supply limitation appears in the original PV connection terms</strong>.</p>
+
+<p>This memorandum sets out the applicable EU and Cyprus legal framework, identifies the key arguments supporting your position, and recommends concrete steps should the DSO continue to refuse connection modifications.</p>
+
+<!-- SECTION 1 -->
+<h2><span class="num">1</span> The Factual Situation</h2>
+
+<p>The following facts, as reported by affected park operators, form the basis of this analysis:</p>
+
+<ul class="sub-list">
+  <li>PV parks hold <strong>existing, valid connection terms</strong> (Όροι Σύνδεσης / Προσφορά Σύνδεσης) at specified substations, which were granted by EAC and for which connection fees have been paid.</li>
+  <li>Cyprus regulations, effective from January 2026, <strong>permit PV park operators to add co-located BESS</strong> to their existing installations.</li>
+  <li>Upon applying to add BESS under the same connection point, EAC has informed operators that the substation is at full capacity and cannot accommodate BESS additions.</li>
+  <li>The substation reached "full" capacity because EAC allocated connection terms to <strong>new standalone BESS projects</strong> that did not exist when the PV connection terms were originally granted.</li>
+  <li>The original PV connection terms specify <strong>MW capacity at the connection point</strong> but do <strong>not</strong> contain any clause restricting injection to specific hours of the day (daytime/nighttime) or limiting the type of generation technology.</li>
+  <li>EAC has internally interpreted that PV parks "only generate during daytime" and has therefore treated the nighttime capacity at the substation as available for separate allocation.</li>
+</ul>
+
+<!-- SECTION 2 -->
+<div class="page-break"></div>
+<h2><span class="num">2</span> EU Legal Framework</h2>
+
+<p>Cyprus, as a Member State of the European Union, is bound by the following directly applicable regulations and transposed directives governing grid access and connection rights.</p>
+
+<h3>2.1 &ensp; EU Regulation 2019/943 &mdash; Internal Market for Electricity</h3>
+
+<p><strong>Article 3</strong> of Regulation (EU) 2019/943 of the European Parliament and of the Council of 5 June 2019 on the internal market for electricity establishes the fundamental principle of non-discriminatory network access:</p>
+
+<div class="legal-quote">
+  <em>&ldquo;Member States, regulatory authorities, transmission system operators, distribution system operators, suppliers and market participants shall ensure that&hellip; market participants shall have a right to obtain access to the transmission networks and distribution networks on <strong>objective, transparent and non-discriminatory terms</strong>.&rdquo;</em>
+  <span class="source">Source: Regulation (EU) 2019/943, Article 3(q) &mdash; OJ L 158, 14.6.2019, p. 54</span>
+</div>
+
+<div class="argument-box">
+  <div class="arg-title">Application to the Present Case</div>
+  <p>EAC&rsquo;s practice of internally splitting substation MW capacity into &ldquo;daytime&rdquo; and &ldquo;nighttime&rdquo; allocations&mdash;without this distinction appearing in the connection terms, without a published methodology, and without CERA approval&mdash;fails all three tests established by Article 3:</p>
+</div>
+
+<table>
+  <thead>
+    <tr><th style="width:20%">Test</th><th style="width:40%">Requirement</th><th style="width:40%">EAC&rsquo;s Practice</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Objective</strong></td><td>Based on published, measurable criteria</td><td class="fail">No published methodology; internal interpretation only</td></tr>
+    <tr><td><strong>Transparent</strong></td><td>Known to all parties at the time of agreement</td><td class="fail">PV operators were not informed of time-based limitations when connection terms were granted</td></tr>
+    <tr><td><strong>Non-discriminatory</strong></td><td>Equal treatment of all network users</td><td class="fail">Existing PV connection holders are disadvantaged relative to new standalone BESS applicants at the same substation</td></tr>
+  </tbody>
+</table>
+
+<h3>2.2 &ensp; EU Directive 2019/944 &mdash; Electricity Market Directive</h3>
+
+<p><strong>Article 31</strong> of Directive (EU) 2019/944 establishes binding obligations on Distribution System Operators:</p>
+
+<div class="legal-quote">
+  <em>&ldquo;The distribution system operator shall in no case discriminate between system users or categories of system users, including renewable energy communities and citizen energy communities, in particular not in favour of related undertakings.&rdquo;</em>
+  <span class="source">Source: Directive (EU) 2019/944, Article 31(2) &mdash; OJ L 158, 14.6.2019, p. 125</span>
+</div>
+
+<p><strong>Article 31(3)</strong> further requires DSOs to provide system users with &ldquo;transparent and detailed capacity information for new connections with high spatial granularity&rdquo; and to &ldquo;publish criteria for calculating available capacity and update this information regularly, at minimum quarterly.&rdquo;</p>
+
+<div class="argument-box">
+  <div class="arg-title">Application to the Present Case</div>
+  <p>If EAC is using an unpublished internal methodology to calculate &ldquo;available capacity&rdquo; at substations&mdash;one that treats PV connections as occupying only daytime capacity&mdash;this directly violates the transparency requirements of Article 31(3). The methodology for determining available substation capacity must be published and subject to CERA oversight.</p>
+</div>
+
+<h3>2.3 &ensp; Directive (EU) 2023/2413 (RED III) &mdash; Renewable Energy Directive</h3>
+
+<p>The revised Renewable Energy Directive (RED III), adopted 18 October 2023, explicitly addresses co-located energy storage:</p>
+
+<div class="legal-quote">
+  <em>The permit-granting procedure covers &ldquo;co-located energy storage, including power and thermal facilities, as well as assets necessary for the connection of such plants&hellip; to the grid.&rdquo;</em>
+  <span class="source">Source: Directive (EU) 2023/2413, amending Directive (EU) 2018/2001, Article 16 &mdash; OJ L 2023/2413, 31.10.2023</span>
+</div>
+
+<p>RED III establishes <strong>accelerated permit timelines</strong> for co-located storage additions:</p>
+<ul class="sub-list">
+  <li><strong>Solar energy with co-located storage:</strong> maximum 3 months for existing or future artificial structures</li>
+  <li><strong>Repowering with co-located storage:</strong> maximum 12 months</li>
+</ul>
+
+<p>RED III further establishes that Member States must presume that planning, construction, and operation of renewable energy plants, grid connections, and storage assets serve <strong>overriding public interest</strong>.</p>
+
+<div class="argument-box">
+  <div class="arg-title">Application to the Present Case</div>
+  <p>Adding BESS to an existing PV connection point is treated under RED III as a <strong>modification of an existing connection</strong>, not a new connection application. Cyprus is obligated to transpose these provisions. EAC&rsquo;s refusal to accommodate co-located BESS where the PV park already holds connection terms runs counter to the directive&rsquo;s intent and mandatory timelines.</p>
+</div>
+
+<!-- SECTION 3 -->
+<div class="page-break"></div>
+<h2><span class="num">3</span> Cyprus National Legal Framework</h2>
+
+<h3>3.1 &ensp; Amendment to the Electricity Market Regulation Law (March 2026)</h3>
+
+<p>On <strong>13 March 2026</strong>, the Cyprus House of Representatives (Βουλή των Αντιπροσώπων) approved amendments to the Electricity Market Regulation Law introducing provisions directly relevant to this matter. The law was adopted with 21 votes in favour and 13 against.</p>
+
+<p>The following provisions were enacted (original Greek text provided for legal precision):</p>
+
+<h3 style="font-size:9pt; margin-top:14px;">3.1.1 &ensp; Priority for Generation Combined with Storage</h3>
+
+<div class="greek-text">
+  <span class="label">Original Greek Text (Πρωτότυπο Ελληνικό Κείμενο)</span>
+  &laquo;Η σύνδεση έργων στο δίκτυο θα γίνεται βάσει κριτηρίων ωριμότητας, τα οποία θα δημοσιεύονται από το Υπουργείο Ενέργειας, κατόπιν διαβούλευσης με τη ΡΑΕΚ και τους διαχειριστές των συστημάτων, ώστε να δίνεται <strong>προτεραιότητα σε έργα που είναι έτοιμα να λειτουργήσουν, καθώς και σε σταθμούς παραγωγής που συνδυάζονται με εγκαταστάσεις αποθήκευσης ενέργειας</strong>.&raquo;
+</div>
+
+<p><strong>Translation:</strong> <em>&ldquo;Grid connection of projects shall be based on maturity criteria, to be published by the Ministry of Energy following consultation with CERA and the system operators, so as to give <strong>priority to projects that are ready to operate, as well as to generation stations combined with energy storage facilities</strong>.&rdquo;</em></p>
+
+<div class="argument-box">
+  <div class="arg-title">Application to the Present Case</div>
+  <p>The new law explicitly grants <strong>priority to generation projects combined with storage</strong> (PV + BESS) over other categories. Existing PV parks seeking to add co-located BESS should therefore receive <strong>higher connection priority</strong> than standalone BESS projects. EAC&rsquo;s practice of prioritising standalone BESS over PV+BESS co-location directly contradicts this provision.</p>
+</div>
+
+<h3 style="font-size:9pt;">3.1.2 &ensp; No Capacity Reservation Without Full Licensing</h3>
+
+<div class="greek-text">
+  <span class="label">Original Greek Text (Πρωτότυπο Ελληνικό Κείμενο)</span>
+  &laquo;Δεν θα δεσμεύεται ηλεκτρικός χώρος στο σύστημα μεταφοράς ή διανομής εάν δεν έχουν εξασφαλιστεί <strong>όλες οι απαιτούμενες άδειες και εγκρίσεις</strong> για το έργο.&raquo;
+</div>
+
+<p><strong>Translation:</strong> <em>&ldquo;No electrical capacity shall be reserved in the transmission or distribution system unless <strong>all required licenses and approvals</strong> have been secured for the project.&rdquo;</em></p>
+
+<div class="argument-box">
+  <div class="arg-title">Application to the Present Case</div>
+  <p>If standalone BESS projects that received connection terms at the substation had not yet secured all required licences and approvals at the time of allocation, the capacity reservation may have been granted in violation of this provision. This should be verified through a formal request to EAC/CERA.</p>
+</div>
+
+<h3 style="font-size:9pt;">3.1.3 &ensp; Mandatory Transparency of Connection Queues</h3>
+
+<div class="greek-text">
+  <span class="label">Original Greek Text (Πρωτότυπο Ελληνικό Κείμενο)</span>
+  &laquo;Η νομοθεσία εισάγει υποχρεώσεις για τον Διαχειριστή Συστήματος Διανομής και τον Διαχειριστή Συστήματος Μεταφοράς να δημοσιεύουν τη <strong>σειρά προτεραιότητας των εγκεκριμένων και εκκρεμούντων αιτημάτων σύνδεσης ανά υποσταθμό</strong>, τόσο για έργα παραγωγής ανανεώσιμης ενέργειας όσο και για εγκαταστάσεις αποθήκευσης, ενισχύοντας τη διαφάνεια στη διαδικασία.&raquo;
+</div>
+
+<p><strong>Translation:</strong> <em>&ldquo;The legislation introduces obligations for the Distribution System Operator and the Transmission System Operator to publish the <strong>priority order of approved and pending connection requests per substation</strong>, for both renewable energy generation projects and storage facilities, enhancing transparency in the process.&rdquo;</em></p>
+
+<div class="argument-box">
+  <div class="arg-title">Application to the Present Case</div>
+  <p>EAC is now <strong>legally required</strong> to publish the priority ranking of all connection requests per substation. This allows PV park operators to verify: (a) when standalone BESS projects received their connection terms relative to existing PV parks; (b) whether the substation was at capacity when BESS terms were issued; and (c) whether the maturity criteria were properly applied.</p>
+</div>
+
+<!-- SECTION 4 -->
+<div class="page-break"></div>
+<h2><span class="num">4</span> The Core Legal Argument: Connection Terms Grant MW Capacity, Not Time-Sliced Capacity</h2>
+
+<p>This is the central argument and warrants detailed examination.</p>
+
+<h3>4.1 &ensp; What Connection Terms Specify</h3>
+
+<p>Across all EU jurisdictions, a grid connection agreement (Προσφορά Σύνδεσης) specifies:</p>
+<ul class="sub-list">
+  <li><strong>MW capacity</strong> at the connection point (e.g., 5 MW)</li>
+  <li><strong>Voltage level</strong> and technical parameters</li>
+  <li><strong>Connection point</strong> location (substation bay)</li>
+  <li><strong>Connection fees</strong> paid by the applicant</li>
+</ul>
+
+<p>Standard grid connection agreements are <strong>technology-neutral and time-neutral</strong>. They reserve capacity at the substation transformer&mdash;they do <strong>not</strong> specify &ldquo;you may only inject between hours X and Y.&rdquo;</p>
+
+<h3>4.2 &ensp; What EAC Is Doing</h3>
+
+<p>EAC is making an <strong>internal operational assumption</strong>&mdash;that PV parks only generate during daytime hours&mdash;and treating this assumption as if it were a <strong>contractual limitation</strong> in the existing connection terms. This creates a fictitious &ldquo;nighttime capacity&rdquo; pool that EAC then allocates to new standalone BESS projects.</p>
+
+<h3>4.3 &ensp; Why This Interpretation Is Legally Flawed</h3>
+
+<p>A substation transformer has a fixed MVA/MW rating. If a substation has 20 MW of capacity and PV parks hold connection terms for 15 MW, then only 5 MW remains. The transformer does not have &ldquo;20 MW daytime and 20 MW nighttime&rdquo;&mdash;it has <strong>20 MW at any given moment</strong>.</p>
+
+<p>If the PV park owner chooses to add BESS and inject at night using their existing connection capacity, they are exercising rights <strong>already granted and paid for</strong>. EAC cannot retroactively limit these rights based on an assumption about usage patterns that is not reflected in the contractual terms.</p>
+
+<div class="action-box">
+  <div class="action-title">Recommended Request to EAC</div>
+  <p>Request EAC produce the <strong>specific clause in your PV connection terms</strong> that restricts your connection to daytime injection only. If no such clause exists&mdash;and it almost certainly does not&mdash;then you hold rights to the full MW capacity at all times, and EAC has <strong>over-allocated the substation</strong>.</p>
+</div>
+
+<h3>4.4 &ensp; European Precedent: The German DSO Case</h3>
+
+<p>The Energy Storage Europe Association (EASE), in its <strong>December 2025 Position Paper on Grid Connections</strong>, documented an analogous case in Germany:</p>
+
+<div class="legal-quote">
+  <em>&ldquo;In Germany, battery energy storage projects were offered a flexible connection from a DSO under the condition that it could not discharge into the grid between 7:00 a.m. and 5:00 p.m. year-round&mdash;equivalent to over 4,000 hours of restricted operation per year. Additional constraints even dictated the state of charge at specific times of day, effectively removing commercial flexibility, negatively affecting dispatchability and eliminating the business case for the battery energy storage facilities. <strong>These types of restrictions are not based on realistic system needs</strong> and negatively impact the business case for Battery Energy Storage Systems.&rdquo;</em>
+  <span class="source">Source: Energy Storage Europe Association, &ldquo;Position Paper on Grid Connections,&rdquo; December 2025, Section 2, p. 11 &mdash; energystorageeurope.eu</span>
+</div>
+
+<p>EAC&rsquo;s approach in Cyprus is the mirror image of the German case: instead of restricting BESS to nighttime, EAC is telling PV park operators that their connection terms are implicitly &ldquo;daytime only&rdquo; and allocating the nighttime capacity to standalone BESS. The EASE position paper, representing the consensus of the European energy storage industry, explicitly condemns such practices as not based on realistic system needs.</p>
+
+<!-- SECTION 5 -->
+<div class="page-break"></div>
+<h2><span class="num">5</span> Additional Supporting Arguments</h2>
+
+<h3>5.1 &ensp; Co-Located PV+BESS Is Superior to Standalone BESS for the System</h3>
+
+<p>Cyprus experienced <strong>45.8% solar curtailment in 2025</strong>&mdash;nearly half of all distributed solar generation was wasted due to grid constraints. The entire policy rationale for allowing PV parks to add BESS is to:</p>
+
+<ul class="sub-list">
+  <li>Capture curtailed solar energy during peak daytime generation</li>
+  <li>Store and inject it during evening/night peak demand periods</li>
+  <li>Reduce system costs and increase effective renewables penetration</li>
+</ul>
+
+<p>EAC&rsquo;s position is <strong>self-contradictory</strong>: it facilitates standalone BESS projects (which must charge from the grid, as they have no co-located generation) while preventing PV parks from adding BESS that would charge from curtailed solar energy that would otherwise be wasted. The co-located PV+BESS option delivers greater system benefit in every measurable way.</p>
+
+<h3>5.2 &ensp; EASE Recommendation on Modifying Existing Connections</h3>
+
+<p>The EASE December 2025 Position Paper specifically recommends:</p>
+
+<div class="legal-quote">
+  <em>&ldquo;Energy storage operators should be able to <strong>modify existing connections</strong> (e.g., to add flexibility services or integrate renewable energy in hybrid projects) <strong>without requiring a full re-application</strong>, provided the changes do not significantly increase grid capacity needs.&rdquo;</em>
+  <span class="source">Source: Energy Storage Europe Association, &ldquo;Position Paper on Grid Connections,&rdquo; December 2025, Section 1.2, p. 7 &mdash; energystorageeurope.eu</span>
+</div>
+
+<p>Adding BESS behind an existing PV connection point, where the total injection capacity does not exceed the existing MW allocation, is precisely the type of modification that should be processed as a simplified amendment, not refused outright.</p>
+
+<h3>5.3 &ensp; EU Commission Grid Connection Guidance (December 2025)</h3>
+
+<p>The European Commission issued formal guidance on efficient grid connections in December 2025 (C(2025) 8473 final), which states that grid connection procedures must remain <strong>&ldquo;non-discriminatory, transparent, and aligned with third-party access requirements under the Electricity Directive.&rdquo;</strong></p>
+
+<p>This guidance further recognises that energy storage has unique system value through added flexibility and dispatchability, while reducing renewable curtailment and relieving congestion. The guidance calls on Member States to facilitate, not obstruct, the integration of storage at existing connection points.</p>
+
+<!-- SECTION 6 -->
+<h2><span class="num">6</span> Recommended Actions</h2>
+
+<h3>6.1 &ensp; Formal Request for Information to EAC</h3>
+<p>As an immediate step, we recommend sending a formal written request to EAC requiring:</p>
+<ul class="sub-list">
+  <li>The <strong>specific clause</strong> in the existing PV connection terms that limits injection to daytime hours only</li>
+  <li>The <strong>published methodology</strong> approved by CERA for time-based capacity splitting at substations</li>
+  <li>Full <strong>substation capacity accounting</strong>: total MVA transformer capacity vs. total MW of all connection terms issued (PV + BESS)</li>
+  <li>The <strong>priority ranking</strong> of all approved and pending connection requests at the substation, as now required by law (March 2026)</li>
+  <li>The <strong>date and licensing status</strong> of all standalone BESS projects that received connection terms at the substation</li>
+</ul>
+
+<h3>6.2 &ensp; Formal Complaint to CERA (ΡΑΕΚ)</h3>
+<p>If EAC fails to provide satisfactory responses or continues to refuse BESS connection modifications, we recommend filing a formal complaint with the Cyprus Energy Regulatory Authority (CERA / ΡΑΕΚ) citing:</p>
+<ul class="sub-list">
+  <li><strong>EU Regulation 2019/943, Article 3</strong> &mdash; violation of objective, transparent, and non-discriminatory access</li>
+  <li><strong>EU Directive 2019/944, Article 31</strong> &mdash; DSO non-discrimination obligation and transparency requirements</li>
+  <li><strong>Directive (EU) 2023/2413 (RED III)</strong> &mdash; right to co-located storage at existing connection points</li>
+  <li><strong>Cyprus Electricity Market Regulation Law (as amended March 2026)</strong> &mdash; priority for generation combined with storage; no capacity reservation without full licensing; mandatory queue transparency</li>
+</ul>
+
+<h3>6.3 &ensp; Escalation Pathways</h3>
+<p>Should CERA not act on the complaint within a reasonable timeframe, the following escalation pathways exist:</p>
+<ul class="sub-list">
+  <li><strong>Administrative Court of Cyprus</strong> &mdash; judicial review of EAC&rsquo;s decision as an act of a public authority</li>
+  <li><strong>European Commission &mdash; DG Energy</strong> &mdash; formal complaint for failure to transpose/apply EU Regulation 2019/943 and Directive 2019/944</li>
+  <li><strong>ACER (Agency for the Cooperation of Energy Regulators)</strong> &mdash; cross-border dimension and regulatory alignment inquiry</li>
+  <li><strong>Civil proceedings</strong> &mdash; contractual claim against EAC for breach of the existing connection agreement, including damages for delay and lost revenue</li>
+</ul>
+
+<div class="action-box" style="margin-top: 20px;">
+  <div class="action-title">Summary of Legal Basis for Challenge</div>
+  <ul>
+    <li>No European DSO has the legal basis to refuse honouring existing connection terms by retroactively imposing time-of-day restrictions that do not appear in the agreement</li>
+    <li>No published CERA-approved methodology exists for splitting substation MW capacity into daytime/nighttime allocations</li>
+    <li>Cyprus law (March 2026) explicitly prioritises generation stations <strong>combined with storage</strong> over standalone projects</li>
+    <li>The German DSO precedent, documented by EASE, shows this type of time-based restriction has been identified as problematic at EU level</li>
+    <li>RED III mandates simplified permit-granting for co-located storage additions at existing renewable installations</li>
+  </ul>
+</div>
+
+<!-- SECTION 7 -->
+<div class="page-break"></div>
+<h2><span class="num">7</span> Reference Sources</h2>
+
+<ol class="reference-list">
+  <li><span class="ref-id">[1]</span> <strong>Regulation (EU) 2019/943</strong> of the European Parliament and of the Council of 5 June 2019 on the internal market for electricity (recast). OJ L 158, 14.6.2019, p. 54. Available at: <em>eur-lex.europa.eu/eli/reg/2019/943/oj</em></li>
+  <li><span class="ref-id">[2]</span> <strong>Directive (EU) 2019/944</strong> of the European Parliament and of the Council of 5 June 2019 on common rules for the internal market for electricity. OJ L 158, 14.6.2019, p. 125. Available at: <em>eur-lex.europa.eu/eli/dir/2019/944/oj</em></li>
+  <li><span class="ref-id">[3]</span> <strong>Directive (EU) 2023/2413</strong> (RED III) amending Directive (EU) 2018/2001 on the promotion of the use of energy from renewable sources. OJ L 2023/2413, 31.10.2023. Available at: <em>eur-lex.europa.eu/eli/dir/2023/2413/oj</em></li>
+  <li><span class="ref-id">[4]</span> <strong>European Commission Guidance on Efficient Grid Connections</strong>, C(2025) 8473 final, December 2025. Available at: <em>energy.ec.europa.eu/publications/guidance-efficient-grid-connections</em></li>
+  <li><span class="ref-id">[5]</span> <strong>Energy Storage Europe Association</strong>, &ldquo;Position Paper on Grid Connections,&rdquo; December 2025, Brussels. Available at: <em>energystorageeurope.eu/wp-content/uploads/2025/12/2025.12.08-Position-Paper-on-Grid-Connections_Energy-Storage-Europe.pdf</em></li>
+  <li><span class="ref-id">[6]</span> <strong>Eurelectric</strong>, &ldquo;From Backlog to Breakthrough: Managing Connection Queues in Distribution Networks,&rdquo; June 2025. Available at: <em>eurelectric.org/publications/from-backlog-to-breakthrough</em></li>
+  <li><span class="ref-id">[7]</span> <strong>Cyprus House of Representatives</strong> &mdash; Amendment to the Electricity Market Regulation Law, adopted 13 March 2026. Reported by: Politis / CNA (ΚΥΠΕ), 13 March 2026. Available at: <em>politis.com.cy/politis-news/oikonomia/991841</em></li>
+  <li><span class="ref-id">[8]</span> <strong>EAC Distribution</strong> &mdash; RES-E Hosting Capacity Map. Available at: <em>eac.com.cy/EN/RegulatedActivities/Distribution/renewableenergy/Pages/hosting-capacity.aspx</em></li>
+  <li><span class="ref-id">[9]</span> <strong>CERA Decision 134/2024</strong> &mdash; Connection Process to the Distribution System. Available at: <em>cera.org.cy</em></li>
+  <li><span class="ref-id">[10]</span> <strong>TSOC/MECI</strong> &mdash; BESS Technical Specifications (Annex II, Appendix 2). Available at: <em>bfu.meci.gov.cy/wp-content/uploads/2024/05/ANNEX-II-Appendix-2-Technical-Specification-Final.pdf</em></li>
+</ol>
+
+<!-- SIGNATURE -->
+<div class="signature-block">
+  <p>We trust this advisory provides a useful framework for understanding your rights and the legal basis for challenging the DSO&rsquo;s position. Lighthief remains committed to supporting our clients through the regulatory process and ensuring that your existing connection rights are respected.</p>
+  <p>We are available to coordinate with your legal team and to provide any additional technical or regulatory documentation as required.</p>
+  <p class="sign-name">Alexander Papacosta</p>
+  <p class="sign-title">Director, Lighthief Cyprus Ltd</p>
+  <p class="sign-title">+357 99 164 158 &middot; office@lighthief.com</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Lighthief Cyprus Ltd &middot; HE 477423 &middot; 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</p>
+  <p>This document is confidential and intended solely for the named recipients. Not for distribution without prior written consent.</p>
+  <p style="margin-top:4px; color: #9ca3af;">LTH/ADV/2026-03/BESS-CT &middot; Generated 23 March 2026 &middot; Page references for print version</p>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>
