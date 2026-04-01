@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Cyprus — Bank Guarantees, Cashflow &amp; Financing Options</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  :root {
+    --bg: #ffffff; --surface: #f8f9fa; --surface2: #eef0f4; --border: #dee2e6;
+    --text: #1a1d27; --text-dim: #5a6170; --accent: #2563eb; --green: #16a34a;
+    --red: #dc2626; --amber: #d97706; --cyan: #0891b2; --purple: #7c3aed;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; font-size: 9.5pt; }
+
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 60%, #312e81 100%);
+    padding: 36px 32px 28px;
+    margin-bottom: 0;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18); color: #fff;
+    font-size: 7pt; font-weight: 700; padding: 3px 10px; border-radius: 16px;
+    letter-spacing: .7px; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .header h1 { font-size: 18pt; font-weight: 700; margin-bottom: 4px; color: #fff; }
+  .header .subtitle { color: rgba(255,255,255,0.7); font-size: 8.5pt; margin-bottom: 4px; }
+  .header .meta { color: rgba(255,255,255,0.5); font-size: 7.5pt; margin-top: 8px; }
+
+  .kpi-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .kpi { background: rgba(0,0,0,.04); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 12px 14px; flex: 1; min-width: 120px; }
+  .kpi .label { font-size: 6.5pt; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 3px; }
+  .kpi .value { font-size: 14pt; font-weight: 700; color: #fff; }
+  .kpi .value.pos { color: #4ade80; }
+  .kpi .value.neg { color: #f87171; }
+  .kpi .value.warn { color: #fbbf24; }
+  .kpi .note { font-size: 6.5pt; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  .container { max-width: 210mm; margin: 0 auto; padding: 24px 28px; }
+
+  .section { margin-bottom: 28px; }
+  .section h2 {
+    font-size: 12pt; font-weight: 700; display: flex; align-items: center; gap: 8px;
+    margin-bottom: 4px; padding-bottom: 4px; border-bottom: 2px solid var(--accent);
+  }
+  .section h2 .num {
+    background: var(--accent); color: #fff; font-size: 7pt; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%; display: inline-flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .section .desc { font-size: 8.5pt; color: var(--text-dim); margin-bottom: 12px; margin-top: 4px; }
+  .section h3 { font-size: 10pt; font-weight: 700; margin: 14px 0 6px; color: var(--text); }
+  .section h4 { font-size: 9pt; font-weight: 600; margin: 10px 0 4px; color: var(--text-dim); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 8pt; margin-bottom: 12px; }
+  th, td { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--surface2); color: var(--text-dim); font-weight: 600; font-size: 7pt; text-transform: uppercase; letter-spacing: .3px; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'Fira Code', Consolas, monospace; }
+  td.pos { color: var(--green); font-weight: 600; }
+  td.neg { color: var(--red); font-weight: 600; }
+  td.warn { color: var(--amber); font-weight: 600; }
+  td.zero { color: var(--green); font-weight: 700; }
+  tr.total td { font-weight: 700; border-top: 2px solid var(--border); background: var(--surface2); }
+  tr.subtotal td { font-weight: 600; background: rgba(0,0,0,.015); }
+  tr.highlight td { background: rgba(34,197,94,.06); }
+  tr.neg-row td { background: rgba(220,38,38,.04); }
+
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 6.5pt; font-weight: 600; text-transform: uppercase; vertical-align: middle; }
+  .tag.confirmed { background: rgba(34,197,94,.15); color: var(--green); }
+  .tag.recommended { background: rgba(37,99,235,.12); color: var(--accent); }
+  .tag.warning { background: rgba(245,158,11,.15); color: var(--amber); }
+  .tag.critical { background: rgba(220,38,38,.12); color: var(--red); }
+  .tag.neutral { background: rgba(0,0,0,.06); color: var(--text-dim); }
+
+  .callout {
+    border-radius: 8px; padding: 14px 18px; margin-bottom: 14px; font-size: 8.5pt;
+  }
+  .callout.green {
+    background: linear-gradient(135deg, rgba(34,197,94,.06), rgba(37,99,235,.03));
+    border: 1px solid rgba(22,163,74,.25);
+  }
+  .callout.red {
+    background: rgba(220,38,38,.04);
+    border: 1px solid rgba(220,38,38,.2);
+  }
+  .callout.blue {
+    background: rgba(37,99,235,.04);
+    border: 1px solid rgba(37,99,235,.18);
+  }
+  .callout.amber {
+    background: rgba(245,158,11,.05);
+    border: 1px solid rgba(245,158,11,.2);
+  }
+  .callout h4 { font-size: 9pt; margin-bottom: 6px; }
+  .callout p { font-size: 8.5pt; color: var(--text-dim); margin-bottom: 4px; }
+  .callout ul { margin: 6px 0 0 16px; }
+  .callout li { font-size: 8.5pt; color: var(--text-dim); margin-bottom: 3px; }
+  .callout strong { color: var(--text); }
+
+  blockquote {
+    border-left: 3px solid var(--accent); padding: 10px 16px; margin: 10px 0 14px;
+    background: rgba(37,99,235,.03); font-size: 8.5pt; color: var(--text-dim);
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote strong { color: var(--text); }
+
+  ol, ul { margin: 6px 0 10px 18px; }
+  li { font-size: 8.5pt; margin-bottom: 3px; }
+
+  .flow-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin: 12px 0; font-size: 8pt; flex-wrap: wrap;
+  }
+  .flow-box {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 12px; text-align: center; font-weight: 600; min-width: 90px;
+  }
+  .flow-box.primary { background: rgba(37,99,235,.08); border-color: rgba(37,99,235,.3); color: var(--accent); }
+  .flow-box.green { background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.3); color: var(--green); }
+  .flow-box.red { background: rgba(220,38,38,.06); border-color: rgba(220,38,38,.2); color: var(--red); }
+  .flow-arrow { font-size: 14pt; color: var(--text-dim); }
+
+  .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .comparison-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .comparison-card h4 { font-size: 9pt; margin-bottom: 6px; }
+  .comparison-card.recommended { border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.03); }
+
+  .page-break { page-break-before: always; }
+
+  .footer {
+    border-top: 1px solid var(--border); padding: 16px 28px;
+    text-align: center; color: var(--text-dim); font-size: 7pt;
+  }
+
+  @media print {
+    body { font-size: 9pt; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .kpi { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { break-inside: avoid; }
+    table { break-inside: auto; }
+    tr { break-inside: avoid; }
+    .page-break { break-before: page; }
+    .no-break { break-inside: avoid; }
+    .flow-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<div class="header">
+  <div class="badge">Confidential &mdash; Founder &amp; Bank Discussion</div>
+  <h1>Bank Guarantees, Cashflow &amp; Financing Options</h1>
+  <div class="subtitle">Structured discussion paper for the financial framework of the BESS EPC portfolio</div>
+  <div class="meta">LCY-FIN-BG-OPTIONS-MAR2026 &nbsp;|&nbsp; 23 March 2026 &nbsp;|&nbsp; Source: portfolio-data.ts (SSOT), Linyang RFI V3, confirmed quotations</div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Batch 1 Revenue</div>
+      <div class="value">&euro;14.2M</div>
+      <div class="note">9 parks &bull; 110 MWh</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Full Portfolio</div>
+      <div class="value">&euro;60.5M</div>
+      <div class="note">28 parks &bull; 486.5 MWh</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Client APG Gap</div>
+      <div class="value neg">&euro;4.27M</div>
+      <div class="note">Batch 1 &mdash; must issue to clients</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Import VAT Locked</div>
+      <div class="value warn">&euro;2.17M</div>
+      <div class="note">10&ndash;15 months with govt</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Net Margin (B1)</div>
+      <div class="value pos">&euro;1.50M</div>
+      <div class="note">10.55%</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: SITUATION                                          -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">1</span> Situation Summary</h2>
+  <p class="desc">Lighthief Cyprus Ltd is the exclusive distributor for Linyang Energy battery storage systems in Cyprus. The company has assembled a confirmed pipeline and is ready to execute Batch 1 starting 1 April 2026. The core challenge: Lighthief intermediates between clients and Linyang, creating a need for bank guarantees and working capital that exceeds the company's current financial capacity.</p>
+
+  <table>
+    <tr><th>Metric</th><th style="text-align:right">Batch 1 (Confirmed)</th><th style="text-align:right">Full Portfolio</th></tr>
+    <tr><td>Parks</td><td class="r">9</td><td class="r">28</td></tr>
+    <tr><td>Capacity (MWh)</td><td class="r">110</td><td class="r">486.5</td></tr>
+    <tr><td>CIF cost (Linyang)</td><td class="r">&euro;11,116,000</td><td class="r">&euro;47,382,285</td></tr>
+    <tr><td>Installed cost (all-in)</td><td class="r">&euro;12,730,000</td><td class="r">&euro;53,625,000</td></tr>
+    <tr><td>Client revenue</td><td class="r">&euro;14,231,000</td><td class="r">&euro;60,554,955</td></tr>
+    <tr class="highlight"><td>Net margin</td><td class="r pos">&euro;1,501,000 (10.55%)</td><td class="r pos">&euro;6,929,811 (11.45%)</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: PAYMENT WATERFALLS                                 -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">2</span> The Three Payment Waterfalls</h2>
+
+  <h3>Client &rarr; Lighthief (30 / 55 / 10 / 5)</h3>
+  <table>
+    <tr><th>Milestone</th><th style="text-align:right">%</th><th style="text-align:right">Batch 1 (&euro;)</th><th style="text-align:right">Full Portfolio (&euro;)</th><th>Trigger</th></tr>
+    <tr><td>Advance</td><td class="r">30%</td><td class="r">4,269,300</td><td class="r">18,166,487</td><td>On/after 1 April 2026</td></tr>
+    <tr><td>Pre-Shipment</td><td class="r">55%</td><td class="r">7,827,050</td><td class="r">33,305,225</td><td>Factory inspection passed</td></tr>
+    <tr><td>PAC</td><td class="r">10%</td><td class="r">1,423,100</td><td class="r">6,055,496</td><td>Commissioned &amp; grid-connected</td></tr>
+    <tr><td>Retention</td><td class="r">5%</td><td class="r">711,550</td><td class="r">3,027,748</td><td>Released after 24-month DLP</td></tr>
+    <tr class="total"><td>Total</td><td class="r">100%</td><td class="r">14,231,000</td><td class="r">60,554,955</td><td></td></tr>
+  </table>
+
+  <h3>Lighthief &rarr; Linyang (20 / 50 / 20 / 10)</h3>
+  <table>
+    <tr><th>Milestone</th><th style="text-align:right">%</th><th style="text-align:right">Batch 1 (&euro;)</th><th style="text-align:right">Full Portfolio (&euro;)</th><th>Trigger</th></tr>
+    <tr><td>Advance</td><td class="r">20%</td><td class="r">2,223,200</td><td class="r">9,476,457</td><td>On/after 1 April 2026</td></tr>
+    <tr><td>Pre-Shipment</td><td class="r">50%</td><td class="r">5,558,000</td><td class="r">23,691,143</td><td>Ready to ship (Ex-Works)</td></tr>
+    <tr><td>DAP</td><td class="r">20%</td><td class="r">2,223,200</td><td class="r">9,476,457</td><td>CIF Limassol port arrival</td></tr>
+    <tr><td>SAT</td><td class="r">10%</td><td class="r">1,111,600</td><td class="r">4,738,229</td><td>PAC completion</td></tr>
+    <tr class="total"><td>Total</td><td class="r">100%</td><td class="r">11,116,000</td><td class="r">47,382,285</td><td></td></tr>
+  </table>
+
+  <h3>Lighthief &rarr; Voltus (50 / 20 / 30)</h3>
+  <table>
+    <tr><th>Milestone</th><th style="text-align:right">%</th><th>Trigger</th></tr>
+    <tr><td>Advance</td><td class="r">50%</td><td>Order date</td></tr>
+    <tr><td>Pre-Delivery</td><td class="r">20%</td><td>Pre-delivery</td></tr>
+    <tr><td>Acceptance</td><td class="r">30%</td><td>Acceptance</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: GUARANTEE PROBLEM                                  -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <h2><span class="num">3</span> The Guarantee Problem</h2>
+
+  <h3>3A. What Linyang Provides to Lighthief <span class="tag confirmed">Confirmed</span></h3>
+  <table>
+    <tr><th>Guarantee</th><th style="text-align:right">Face Value (B1)</th><th>Form</th><th>Validity</th><th>Cost</th></tr>
+    <tr><td>APG</td><td class="r">&euro;2,223,200</td><td>Irrevocable on-demand bank guarantee</td><td>Until CIF delivery + 30 days</td><td>&euro;0</td></tr>
+    <tr><td>Performance Bond</td><td class="r">&euro;555,800</td><td>Corporate-backed bank guarantee</td><td>Until PAC + 30 days</td><td>&euro;0</td></tr>
+  </table>
+
+  <div class="callout red">
+    <h4>Critical Constraint: Non-Transferable</h4>
+    <p>These guarantees name <strong>Lighthief as the sole beneficiary</strong>. They cannot be assigned to clients, pledged to a bank, or used as collateral for a downstream guarantee.</p>
+  </div>
+
+  <h3>3B. What Lighthief Must Provide to Clients</h3>
+  <table>
+    <tr><th>Guarantee</th><th style="text-align:right">Face Value (B1)</th><th>Form</th><th>Validity</th></tr>
+    <tr><td>Advance Payment Guarantee</td><td class="r">&euro;4,269,300</td><td>Bank guarantee or surety bond</td><td>Until equipment at site + 30 days</td></tr>
+    <tr><td>Performance (retention)</td><td class="r">&euro;711,550</td><td>Cash holdback (not a BG)</td><td>24 months post-PAC</td></tr>
+  </table>
+
+  <h3>3C. The Gap</h3>
+  <table>
+    <tr><th>Item</th><th style="text-align:right">Batch 1</th><th style="text-align:right">Full Portfolio</th></tr>
+    <tr><td>Client APG Lighthief must issue</td><td class="r">&euro;4,269,300</td><td class="r">&euro;18,166,487</td></tr>
+    <tr><td>Linyang APG received (non-transferable)</td><td class="r">&euro;2,223,200</td><td class="r">&euro;9,476,457</td></tr>
+    <tr class="total"><td><strong>Net guarantee exposure</strong></td><td class="r neg">&euro;2,046,100</td><td class="r neg">&euro;8,690,030</td></tr>
+  </table>
+
+  <h4>Why the Linyang APG cannot back the client APG:</h4>
+  <ol>
+    <li><strong>Non-transferable</strong> &mdash; names Lighthief as sole beneficiary</li>
+    <li><strong>Call conditions don&rsquo;t align</strong> &mdash; Linyang APG covers Linyang non-delivery; client APG covers Lighthief non-performance (different risks)</li>
+    <li><strong>Cyprus bank haircut</strong> &mdash; a bank would discount a foreign bank guarantee by 30&ndash;50% and still require cash collateral for the remainder</li>
+    <li><strong>Enforcement gap</strong> &mdash; the bank cannot call the Linyang APG if the client&rsquo;s claim is against Lighthief</li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: CASHFLOW                                           -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">4</span> Cashflow Analysis &mdash; Batch 1</h2>
+
+  <h3>4A. Operations Layer (ex-VAT)</h3>
+  <table>
+    <tr><th>Month</th><th style="text-align:right">Cash In (&euro;K)</th><th style="text-align:right">Cash Out (&euro;K)</th><th style="text-align:right">Monthly Net (&euro;K)</th><th style="text-align:right">Cumulative (&euro;K)</th></tr>
+    <tr><td><strong>Apr 2026</strong></td><td class="r">+4,269</td><td class="r">-2,684</td><td class="r pos">+1,585</td><td class="r pos">+1,585</td></tr>
+    <tr><td>May</td><td class="r">&mdash;</td><td class="r">-165</td><td class="r neg">-165</td><td class="r pos">+1,420</td></tr>
+    <tr><td><strong>Jun</strong></td><td class="r">+7,827</td><td class="r">-5,827</td><td class="r pos">+2,000</td><td class="r pos">+3,420</td></tr>
+    <tr><td>Jul</td><td class="r">&mdash;</td><td class="r">-105</td><td class="r neg">-105</td><td class="r pos">+3,315</td></tr>
+    <tr class="neg-row"><td><strong>Aug</strong></td><td class="r">&mdash;</td><td class="r">-2,688</td><td class="r neg">-2,688</td><td class="r pos">+627</td></tr>
+    <tr><td>Sep</td><td class="r">&mdash;</td><td class="r">-193</td><td class="r neg">-193</td><td class="r pos">+434</td></tr>
+    <tr><td>Oct</td><td class="r">&mdash;</td><td class="r">-425</td><td class="r neg">-425</td><td class="r pos">+9</td></tr>
+    <tr class="neg-row"><td>Nov</td><td class="r">&mdash;</td><td class="r">-124</td><td class="r neg">-124</td><td class="r neg">-115</td></tr>
+    <tr class="highlight"><td><strong>Dec</strong></td><td class="r">+1,423</td><td class="r">-1,167</td><td class="r pos">+256</td><td class="r pos">+141</td></tr>
+  </table>
+
+  <div class="callout green">
+    <h4>Key Finding: Without VAT, Batch 1 is self-funding</h4>
+    <p>The 30/20 advance mismatch creates a &euro;2M buffer. The cumulative position dips only -&euro;115K in November before recovering at PAC. <strong>No external financing needed for operations.</strong></p>
+  </div>
+
+  <h3>4B. VAT Layer &mdash; Where Financing Is Needed</h3>
+  <table>
+    <tr><th>Event</th><th>Month</th><th style="text-align:right">Amount (&euro;K)</th><th>Impact</th></tr>
+    <tr><td>VAT received on client 30% advance</td><td>Apr</td><td class="r pos">+811</td><td>Cash in (held for remittance)</td></tr>
+    <tr><td>VAT received on client 55% pre-ship</td><td>Jun</td><td class="r pos">+1,487</td><td>Cash in (held for remittance)</td></tr>
+    <tr class="neg-row"><td><strong>Q2 VAT return &mdash; remit to tax dept</strong></td><td><strong>10 Aug</strong></td><td class="r neg">-2,248</td><td>Cash out (return of client VAT)</td></tr>
+    <tr class="neg-row"><td><strong>Import VAT at customs</strong></td><td><strong>20 Aug</strong></td><td class="r neg">-2,168</td><td>Cash out (NEW money, no matching income)</td></tr>
+    <tr><td>VAT received on client 10% PAC</td><td>Dec</td><td class="r pos">+270</td><td>Cash in</td></tr>
+    <tr><td>Q3 return &mdash; excess credit carried forward</td><td>10 Nov</td><td class="r">0</td><td>No refund, credit sits with govt</td></tr>
+    <tr class="highlight"><td><strong>VAT refund (8-month rule, earliest)</strong></td><td><strong>Jun 2027</strong></td><td class="r pos">+2,168</td><td>10&ndash;15 months after payment</td></tr>
+  </table>
+
+  <div class="callout red">
+    <h4>The import VAT (&euro;2.17M) is the sole cause of the financing need</h4>
+    <p>Paid in cash at customs in August 2026. Locked with the government until mid-2027. Cyprus has <strong>no postponed VAT accounting</strong> for imports.</p>
+  </div>
+
+  <h3>4C. Combined Position (Ops + VAT)</h3>
+  <table>
+    <tr><th>Month</th><th style="text-align:right">Ops Cumulative (&euro;K)</th><th style="text-align:right">VAT Position (&euro;K)</th><th style="text-align:right">Combined (&euro;K)</th></tr>
+    <tr><td>Apr 2026</td><td class="r pos">+1,585</td><td class="r pos">+811</td><td class="r pos"><strong>+2,396</strong></td></tr>
+    <tr><td>Jun</td><td class="r pos">+3,420</td><td class="r pos">+2,298</td><td class="r pos"><strong>+5,718</strong></td></tr>
+    <tr class="neg-row"><td><strong>Aug</strong></td><td class="r pos">+627</td><td class="r neg">-2,118</td><td class="r neg"><strong>-1,491</strong></td></tr>
+    <tr class="neg-row"><td><strong>Nov</strong></td><td class="r neg">-115</td><td class="r neg">-2,118</td><td class="r neg"><strong>-2,233</strong></td></tr>
+    <tr><td>Dec</td><td class="r pos">+141</td><td class="r neg">-1,848</td><td class="r neg"><strong>-1,707</strong></td></tr>
+  </table>
+
+  <h3>4D. Full Portfolio VAT Exposure</h3>
+  <table>
+    <tr><th>Item</th><th style="text-align:right">Batch 1</th><th style="text-align:right">Full Portfolio</th></tr>
+    <tr><td>Import VAT at customs</td><td class="r">&euro;2,168,000</td><td class="r">&euro;9,437,000</td></tr>
+    <tr><td>Import duty (cash at customs)</td><td class="r">&euro;296,000</td><td class="r">&euro;2,287,000</td></tr>
+    <tr class="subtotal"><td>Total customs cash</td><td class="r">&euro;2,464,000</td><td class="r">&euro;11,724,000</td></tr>
+    <tr><td>VAT locked with govt (net excess credit)</td><td class="r warn">~&euro;2,168,000</td><td class="r warn">~&euro;7,800,000</td></tr>
+    <tr><td>Duration locked</td><td class="r">10&ndash;15 months</td><td class="r">10&ndash;15 months</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: CONSTRAINTS                                        -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <h2><span class="num">5</span> Constraints</h2>
+  <p class="desc">These are the constraints we are solving around. All solutions in Section 6 must work within these boundaries.</p>
+
+  <table>
+    <tr><th>Constraint</th><th>Status</th></tr>
+    <tr><td>Lighthief Cyprus has no existing bank credit line</td><td><span class="tag critical">Confirmed</span></td></tr>
+    <tr><td>Linyang bank guarantees are non-transferable</td><td><span class="tag warning">Standard &mdash; expected</span></td></tr>
+    <tr><td>Parent group has limited funds to inject or guarantee</td><td><span class="tag warning">Working assumption</span></td></tr>
+    <tr><td>Clients with bank financing will require formal APG</td><td><span class="tag warning">Expected for Esperia, Timotheos</span></td></tr>
+    <tr><td>Client contracts are not yet signed</td><td><span class="tag confirmed">Batch 1 target: 1 Apr 2026</span></td></tr>
+    <tr><td>Contract structure can still be changed</td><td><span class="tag confirmed">Yes &mdash; this is the window</span></td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: SOLUTION OPTIONS                                   -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">6</span> Solution Options</h2>
+
+  <!-- OPTION A -->
+  <h3>Option A: Split Contract &mdash; Equipment Supply + EPC Services <span class="tag recommended">Recommended</span></h3>
+  <p class="desc">Restructure the EPC contract into two separate agreements. Linyang contracts directly with clients for equipment; Lighthief provides EPC services separately.</p>
+
+  <div class="flow-diagram">
+    <div class="flow-box">Client</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box primary">Equipment Supply<br><small>&euro;11.1M &rarr; Linyang</small></div>
+    <div class="flow-arrow">&nbsp;&nbsp;&nbsp;</div>
+    <div class="flow-box">Client</div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box green">EPC Services<br><small>&euro;3.1M &rarr; Lighthief</small></div>
+  </div>
+
+  <table>
+    <tr><th>Agreement</th><th>Parties</th><th style="text-align:right">Value (B1)</th><th>Guarantees</th></tr>
+    <tr><td>Equipment Supply</td><td>Client &rarr; Linyang</td><td class="r">&euro;11,116,000</td><td>Linyang issues APG + performance bond directly to client</td></tr>
+    <tr><td>EPC Services</td><td>Client &rarr; Lighthief</td><td class="r">&euro;3,115,000</td><td>No BG needed (small value, milestone payments)</td></tr>
+  </table>
+
+  <h4>How it works:</h4>
+  <ol>
+    <li>Client orders equipment directly from Linyang (Lighthief facilitates under distribution agreement)</li>
+    <li>Client pays Linyang per Linyang&rsquo;s terms (20/50/20/10)</li>
+    <li>Linyang issues APG and performance bond directly to the client</li>
+    <li>Client is named as consignee &mdash; client pays import duty + VAT at customs (recoverable against electricity output VAT)</li>
+    <li>Lighthief provides EPC services under a separate fixed-price services contract with milestone payments</li>
+    <li>Lighthief invoices services on milestone basis &mdash; no large advance, no BG required</li>
+  </ol>
+
+  <h4>Financial impact:</h4>
+  <table>
+    <tr><th>Metric</th><th style="text-align:right">Current Turnkey Model</th><th style="text-align:right">Split Contract Model</th></tr>
+    <tr><td>Client APG from Lighthief</td><td class="r neg">&euro;4,269,300</td><td class="r zero">&euro;0</td></tr>
+    <tr><td>Import VAT for Lighthief</td><td class="r neg">&euro;2,168,000</td><td class="r zero">&euro;0</td></tr>
+    <tr><td>Working capital deficit</td><td class="r neg">~&euro;2,200,000</td><td class="r zero">~&euro;0</td></tr>
+    <tr><td>Bank facility needed</td><td class="r neg">~&euro;2,500,000</td><td class="r zero">&euro;0</td></tr>
+    <tr><td>Financing cost saved</td><td class="r">&mdash;</td><td class="r pos">&euro;75,000&ndash;&euro;150,000</td></tr>
+    <tr class="highlight"><td>Lighthief margin (preserved)</td><td class="r">&euro;1,501,000</td><td class="r pos">&euro;1,501,000 (as services fee)</td></tr>
+  </table>
+
+  <div class="comparison-grid">
+    <div class="comparison-card">
+      <h4 style="color: var(--green);">Advantages</h4>
+      <ul>
+        <li>Eliminates <strong>all</strong> guarantee and cashflow problems</li>
+        <li>Clients get direct OEM guarantees (stronger than Lighthief)</li>
+        <li>Clients recover import VAT through their own returns</li>
+        <li>Lighthief margin preserved as services fee</li>
+        <li>No external financing required</li>
+      </ul>
+    </div>
+    <div class="comparison-card">
+      <h4 style="color: var(--red);">Disadvantages</h4>
+      <ul>
+        <li>Clients see the Linyang CIF price (margin visibility)</li>
+        <li>More complex contract structure (two agreements)</li>
+        <li>Lighthief gives up &ldquo;turnkey EPC&rdquo; positioning</li>
+        <li>Requires Linyang&rsquo;s cooperation on direct contracts</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <h4>Margin visibility mitigation</h4>
+    <p>The services contract is structured as a <strong>fixed lump-sum</strong> covering all EPC scope (civil, electrical, installation, commissioning, project management, insurance, permits). Clients see a CIF price and a services price but not the detailed cost breakdown within either.</p>
+  </div>
+
+  <!-- OPTION B -->
+  <h3 class="page-break">Option B: Escrow Structure <span class="tag neutral">Fallback</span></h3>
+  <p class="desc">Client advance is paid into a joint escrow account instead of directly to Lighthief. Funds released against verifiable milestones.</p>
+
+  <table>
+    <tr><th>Step</th><th>Action</th><th style="text-align:right">Amount (B1)</th></tr>
+    <tr><td>1</td><td>Client pays 30% into escrow (lawyer or bank-held)</td><td class="r">&euro;4,269,300</td></tr>
+    <tr><td>2</td><td>Escrow releases upon proof of Linyang production order</td><td class="r">&euro;2,223,200</td></tr>
+    <tr><td>3</td><td>Escrow releases upon FAT certificate + photo evidence</td><td class="r">&euro;1,500,000</td></tr>
+    <tr><td>4</td><td>Escrow releases upon bill of lading / shipping confirmation</td><td class="r">&euro;546,100</td></tr>
+    <tr><td>5</td><td>Pre-shipment (55%) paid directly to Lighthief</td><td class="r">&euro;7,827,050</td></tr>
+    <tr><td>6</td><td>PAC (10%) paid directly</td><td class="r">&euro;1,423,100</td></tr>
+    <tr><td>7</td><td>Retention (5%) held 24 months</td><td class="r">&euro;711,550</td></tr>
+  </table>
+
+  <div class="callout green">
+    <h4>Why this replaces an APG</h4>
+    <p>The client&rsquo;s money never leaves their control until verifiable milestones occur. The escrow provides <strong>equivalent or better protection</strong> than a bank guarantee from a thinly capitalised company. Standard mechanism in Cyprus construction. Cost: &euro;3,000&ndash;&euro;8,000 per client group.</p>
+  </div>
+
+  <!-- OPTION C -->
+  <h3>Option C: Agency Model &mdash; Lighthief as Linyang&rsquo;s Cyprus Agent</h3>
+  <p class="desc">Lighthief acts as a sales and project management agent rather than as the EPC principal.</p>
+
+  <table>
+    <tr><th>Item</th><th>Current Model</th><th>Agency Model</th></tr>
+    <tr><td>Who contracts with client</td><td>Lighthief</td><td>Linyang (via Cyprus presence)</td></tr>
+    <tr><td>Who issues guarantees</td><td>Lighthief (cannot)</td><td>Linyang&rsquo;s bank</td></tr>
+    <tr><td>Who imports equipment</td><td>Lighthief</td><td>Linyang or client</td></tr>
+    <tr><td>Cash flow through Lighthief</td><td>&euro;14.2M</td><td>~&euro;1.5M</td></tr>
+    <tr><td>BG requirement from Lighthief</td><td class="neg">&euro;4.27M</td><td class="zero">&euro;0</td></tr>
+    <tr><td>VAT exposure</td><td class="neg">&euro;2.17M</td><td class="zero">&euro;0</td></tr>
+  </table>
+
+  <!-- OPTION D -->
+  <h3>Option D: Reduced Advance with Milestone Structure</h3>
+  <p class="desc">Reduce the client advance to a level that does not require a formal bank guarantee.</p>
+
+  <table>
+    <tr><th>Structure</th><th style="text-align:right">Advance</th><th style="text-align:right">Pre-Ship</th><th style="text-align:right">Delivery</th><th style="text-align:right">PAC</th><th style="text-align:right">Retention</th></tr>
+    <tr><td>Current</td><td class="r">30%</td><td class="r">55%</td><td class="r">0%</td><td class="r">10%</td><td class="r">5%</td></tr>
+    <tr class="highlight"><td><strong>Proposed</strong></td><td class="r"><strong>10%</strong></td><td class="r">55%</td><td class="r"><strong>20%</strong></td><td class="r">10%</td><td class="r">5%</td></tr>
+  </table>
+  <p class="desc">Client advance drops from &euro;4,269,300 to <strong>&euro;1,423,100</strong>. Most clients do not require a formal BG for advances under &euro;1.5M. The 20% delivery milestone aligns with Linyang&rsquo;s 20% DAP payment. Trade-off: Lighthief must fund ~&euro;800K gap at order date.</p>
+
+  <!-- OPTION E -->
+  <h3>Option E: JV with a Funded Cyprus Partner</h3>
+  <p class="desc">Partner with an established Cyprus construction or energy company that has bank credit.</p>
+
+  <table>
+    <tr><th>What the Partner Provides</th><th>What Lighthief Provides</th></tr>
+    <tr><td>Balance sheet and BG capacity</td><td>Exclusive Linyang distribution</td></tr>
+    <tr><td>Cyprus bank credit line</td><td>Assembled pipeline (28 parks, &euro;60.5M)</td></tr>
+    <tr><td>Local banking relationships</td><td>Technical BESS knowledge</td></tr>
+    <tr><td>Possibly: construction capability</td><td>Project management, O&amp;M</td></tr>
+  </table>
+  <p class="desc">Cost: 2&ndash;5% of contract value as a finance/guarantee fee. On Batch 1: &euro;285,000&ndash;&euro;712,000 (19&ndash;47% of the &euro;1.5M margin). Use only if structural alternatives (A, B, C, D) are rejected by clients.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: COMPARISON MATRIX                                  -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <h2><span class="num">7</span> Comparison Matrix</h2>
+
+  <table>
+    <tr><th>Criterion</th><th style="text-align:center">A: Split Contract</th><th style="text-align:center">B: Escrow</th><th style="text-align:center">C: Agency</th><th style="text-align:center">D: Reduced Advance</th><th style="text-align:center">E: JV Partner</th></tr>
+    <tr><td>BG from Lighthief needed</td><td class="r zero">No</td><td class="r zero">No</td><td class="r zero">No</td><td class="r warn">Maybe small</td><td class="r">Partner provides</td></tr>
+    <tr><td>Import VAT eliminated</td><td class="r zero">Yes</td><td class="r neg">No</td><td class="r zero">Yes</td><td class="r neg">No</td><td class="r neg">No</td></tr>
+    <tr><td>Margin preserved</td><td class="r pos">Full</td><td class="r pos">Full</td><td class="r pos">Full</td><td class="r pos">Full</td><td class="r warn">Shared (50&ndash;80%)</td></tr>
+    <tr><td>Single contract for client</td><td class="r warn">No (two)</td><td class="r pos">Yes</td><td class="r pos">Yes</td><td class="r pos">Yes</td><td class="r pos">Yes</td></tr>
+    <tr><td>Client sees CIF price</td><td class="r warn">Yes</td><td class="r pos">No</td><td class="r warn">Yes</td><td class="r pos">No</td><td class="r pos">No</td></tr>
+    <tr><td>Linyang cooperation needed</td><td class="r warn">Yes</td><td class="r pos">No</td><td class="r warn">Yes</td><td class="r pos">No</td><td class="r pos">No</td></tr>
+    <tr><td>External financing needed</td><td class="r zero">None</td><td class="r warn">~&euro;2.2M (VAT)</td><td class="r zero">None</td><td class="r warn">~&euro;3M</td><td class="r">Partner funds</td></tr>
+    <tr><td>Implementation complexity</td><td class="r">Medium</td><td class="r pos">Low</td><td class="r neg">High</td><td class="r pos">Low</td><td class="r neg">High</td></tr>
+    <tr><td>Speed to implement</td><td class="r">2&ndash;3 weeks</td><td class="r pos">1 week</td><td class="r neg">4&ndash;6 weeks</td><td class="r pos">1 week</td><td class="r neg">4&ndash;8 weeks</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: RECOMMENDATION                                     -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">8</span> Recommended Approach</h2>
+
+  <div class="callout green">
+    <h4>Primary: Option A (Split Contract) + elements of Option B</h4>
+    <ol>
+      <li><strong>Split the EPC</strong> into Equipment Supply (Linyang &rarr; Client) and EPC Services (Lighthief &rarr; Client)</li>
+      <li>Linyang issues APG and performance bond directly to clients</li>
+      <li>Client is named as importer of record &mdash; client handles import VAT through their own returns</li>
+      <li>Lighthief provides EPC services under a separate fixed-price services contract with milestone payments</li>
+      <li>For the services advance (if any), use an <strong>escrow mechanism</strong> to avoid a Lighthief APG</li>
+      <li>Lighthief earns the full &euro;1.5M Batch 1 margin as a services fee</li>
+    </ol>
+    <p style="margin-top:10px;"><strong>This approach requires zero bank guarantees from Lighthief, zero import VAT exposure, and zero external financing.</strong></p>
+  </div>
+
+  <div class="callout amber">
+    <h4>Fallback: Option B (Escrow) if clients insist on a single turnkey contract</h4>
+    <ol>
+      <li>Maintain single EPC contract structure</li>
+      <li>Replace the APG requirement with a <strong>joint escrow account</strong> for the 30% advance</li>
+      <li>Combine with <strong>client-as-importer-of-record</strong> to eliminate the &euro;2.17M import VAT problem</li>
+      <li>If client-as-importer is not feasible, include import duty + VAT as an additional component of the 55% pre-shipment invoice</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: ACTION ITEMS                                       -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">9</span> Action Items &mdash; Before 1 April 2026</h2>
+
+  <table>
+    <tr><th>#</th><th>Action</th><th>Owner</th><th>By When</th></tr>
+    <tr><td>1</td><td><strong>Discuss split contract model with Linyang</strong> &mdash; confirm willingness to contract directly with Cyprus end-clients for equipment supply</td><td>Founder</td><td>28 Mar</td></tr>
+    <tr><td>2</td><td><strong>Draft two-agreement template</strong> &mdash; Equipment Supply Agreement (Linyang &harr; Client) and EPC Services Agreement (Lighthief &harr; Client)</td><td>Legal / Founder</td><td>31 Mar</td></tr>
+    <tr><td>3</td><td><strong>Confirm Linyang APG terms for direct-to-client issuance</strong> &mdash; issuing bank, face value, validity, call conditions</td><td>Founder / Klaudia</td><td>28 Mar</td></tr>
+    <tr><td>4</td><td><strong>Sound out Batch 1 clients on split structure</strong> &mdash; Galascope/Esperia, Timotheos, Lampros, Spanercom</td><td>Founder</td><td>31 Mar</td></tr>
+    <tr><td>5</td><td><strong>Identify escrow agent (fallback)</strong> &mdash; Cyprus law firm or bank escrow service for client advance holdback</td><td>Founder / Legal</td><td>31 Mar</td></tr>
+    <tr><td>6</td><td><strong>Confirm client-as-importer VAT treatment</strong> with tax advisor &mdash; ensure clients can recover import VAT on BESS equipment</td><td>Tax advisor</td><td>28 Mar</td></tr>
+    <tr><td>7</td><td><strong>Apply for Economic Operator registration</strong> with Cyprus Customs (required regardless of structure)</td><td>Admin</td><td>Immediately</td></tr>
+    <tr><td>8</td><td><strong>Apply for monthly VAT returns</strong> (repayment trader status) with Cyprus Tax Department</td><td>Accountant</td><td>Before May 2026</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 10: FOUNDER QUESTIONS                                 -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <h2><span class="num">10</span> Discussion Questions for Founder</h2>
+
+  <div class="callout blue">
+    <ol>
+      <li style="margin-bottom:10px;"><strong>Is Linyang willing to contract directly with end-clients?</strong><br>The distribution agreement may need an amendment or carve-out for Cyprus projects where Lighthief cannot provide bank guarantees.</li>
+      <li style="margin-bottom:10px;"><strong>Are clients aware that Lighthief has no balance sheet for guarantees?</strong><br>If not, discovering this after contracts are signed creates serious trust issues. Better to present the split structure proactively as &ldquo;direct OEM backing&rdquo; (a strength, not a weakness).</li>
+      <li style="margin-bottom:10px;"><strong>Can the Lighthief international group contribute anything?</strong><br>Even if funds are limited, a corporate guarantee from a parent with audited accounts and 11-country operations may satisfy some clients (particularly those without bank financing).</li>
+      <li style="margin-bottom:10px;"><strong>What is the minimum acceptable margin structure?</strong><br>If a JV partner is needed (Option E), how much margin can be shared? At what point does the deal stop making economic sense for Lighthief?</li>
+      <li><strong>Is the LTSA (O&amp;M) revenue the real long-term value?</strong><br>If so, the EPC margin is less important than securing the installed base. The split contract or agency model both protect LTSA revenue while removing financial risk.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 11: BANK DISCUSSION                                   -->
+<!-- ============================================================ -->
+<div class="section">
+  <h2><span class="num">11</span> Discussion Points for the Bank</h2>
+  <p class="desc">If approaching Bank of Cyprus or Hellenic Bank for any facility.</p>
+
+  <h3>What Lighthief Can Offer</h3>
+  <table>
+    <tr><th>Asset</th><th>Value</th><th>Bankable?</th></tr>
+    <tr><td>Signed EPC/services contracts (Batch 1)</td><td>&euro;14.2M revenue</td><td><span class="tag confirmed">Yes</span> &mdash; assignable receivables</td></tr>
+    <tr><td>Linyang distribution agreement (exclusive Cyprus)</td><td>Strategic</td><td><span class="tag confirmed">Yes</span> &mdash; supports credit assessment</td></tr>
+    <tr><td>Confirmed pipeline (28 parks)</td><td>&euro;60.5M total</td><td><span class="tag neutral">Indicative only</span></td></tr>
+    <tr><td>LTSA contracts (15-year O&amp;M)</td><td>~&euro;846K/year recurring</td><td><span class="tag confirmed">Yes</span> &mdash; long-term cash flow</td></tr>
+    <tr><td>Linyang APG (non-transferable)</td><td>&euro;2.22M</td><td><span class="tag critical">No</span> &mdash; cannot be pledged</td></tr>
+  </table>
+
+  <h3>What Lighthief May Need From the Bank</h3>
+  <table>
+    <tr><th>Facility</th><th style="text-align:right">Amount</th><th>Duration</th><th>Purpose</th><th>Security Offered</th></tr>
+    <tr><td>VAT bridge (if Lighthief imports)</td><td class="r">&euro;2,200,000</td><td>12 months</td><td>Bridge import VAT until govt refund</td><td>Assignment of confirmed VAT refund claim</td></tr>
+    <tr><td>Escrow account services</td><td class="r">N/A</td><td>6 months</td><td>Hold client advance with milestone release</td><td>Self-securing</td></tr>
+    <tr><td>Trade finance (L/C) for Linyang</td><td class="r">&euro;2,223,200</td><td>4 months</td><td>Pay Linyang advance via letter of credit</td><td>The imported equipment itself</td></tr>
+  </table>
+
+  <h3>Key Message to the Bank</h3>
+  <blockquote>
+    <p>Lighthief is not requesting unsecured credit. The proposed structure (split contract or escrow) eliminates the need for bank guarantees. The bank&rsquo;s role is limited to:</p>
+    <p><strong>(a)</strong> providing an escrow account service for client advances, and/or</p>
+    <p><strong>(b)</strong> a short-term VAT bridge facility secured against a confirmed government refund claim.</p>
+    <p style="margin-top:8px;">The EPC project is self-funding at the operational level. The only cashflow gap is caused by Cyprus&rsquo;s lack of postponed VAT accounting for imports &mdash; a structural issue, not a commercial one.</p>
+  </blockquote>
+</div>
+
+<!-- ============================================================ -->
+<!-- APPENDICES                                                    -->
+<!-- ============================================================ -->
+<div class="section page-break">
+  <h2>Appendix A: Batch 1 Parks</h2>
+  <table>
+    <tr><th>Park</th><th>Group</th><th style="text-align:right">MW</th><th style="text-align:right">MWh</th><th style="text-align:right">Containers</th><th>District</th><th style="text-align:right">Revenue (&euro;)</th></tr>
+    <tr><td>Galascope 1</td><td>Galascope</td><td class="r">5.0</td><td class="r">20</td><td class="r">6</td><td>Famagusta</td><td class="r">2,258,900</td></tr>
+    <tr><td>Galascope 2</td><td>Galascope</td><td class="r">2.5</td><td class="r">10</td><td class="r">3</td><td>Famagusta</td><td class="r">1,206,300</td></tr>
+    <tr><td>AGM Sunfield 1</td><td>Timotheos</td><td class="r">5.0</td><td class="r">15</td><td class="r">5</td><td>Nicosia</td><td class="r">1,961,880</td></tr>
+    <tr><td>L&amp;T Sun Energy</td><td>Timotheos</td><td class="r">5.0</td><td class="r">15</td><td class="r">5</td><td>Limassol</td><td class="r">1,961,880</td></tr>
+    <tr><td>TBC (5 MWh)</td><td>Timotheos</td><td class="r">1.5</td><td class="r">5</td><td class="r">2</td><td>TBC</td><td class="r">800,000</td></tr>
+    <tr><td>Solar Breeze</td><td>Lampros</td><td class="r">1.51</td><td class="r">5</td><td class="r">2</td><td>Limassol</td><td class="r">795,443</td></tr>
+    <tr><td>Solar Garden</td><td>Lampros</td><td class="r">3.29</td><td class="r">10</td><td class="r">3</td><td>Limassol</td><td class="r">1,321,976</td></tr>
+    <tr><td>Anarita 1</td><td>Spanercom</td><td class="r">5.0</td><td class="r">15</td><td class="r">5</td><td>Paphos</td><td class="r">1,961,880</td></tr>
+    <tr><td>Anarita 2</td><td>Spanercom</td><td class="r">5.0</td><td class="r">15</td><td class="r">5</td><td>Paphos</td><td class="r">1,961,880</td></tr>
+    <tr class="total"><td><strong>TOTAL</strong></td><td></td><td class="r"><strong>33.8</strong></td><td class="r"><strong>110</strong></td><td class="r"><strong>36</strong></td><td></td><td class="r"><strong>&euro;14,231,000</strong></td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Appendix B: Key Dates (Batch 1)</h2>
+  <table>
+    <tr><th>Milestone</th><th>Date</th></tr>
+    <tr><td>Contract signing / advance</td><td>1 April 2026</td></tr>
+    <tr><td>Production start</td><td>1 April 2026</td></tr>
+    <tr><td>Production complete / FAT</td><td>30 June 2026</td></tr>
+    <tr><td>Shipping (Shanghai &rarr; Limassol)</td><td>1 July 2026</td></tr>
+    <tr><td>CIF Limassol / customs clearance</td><td>20 August 2026</td></tr>
+    <tr><td>Installation &amp; commissioning</td><td>Aug&ndash;Dec 2026</td></tr>
+    <tr><td>PAC (Provisional Acceptance)</td><td>31 December 2026</td></tr>
+    <tr><td>Retention release (24-month DLP)</td><td>31 December 2028</td></tr>
+    <tr><td>FAC (Final Acceptance)</td><td>31 March 2027</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Appendix C: Document Cross-References</h2>
+  <table>
+    <tr><th>Document</th><th>Location</th></tr>
+    <tr><td>Portfolio SSOT</td><td><code>lib/portfolio-data.ts</code></td></tr>
+    <tr><td>Previous BG plan (stale &mdash; includes ABIO, old terms)</td><td><code>financial/batch1-bg-financing-plan-mar2026.md</code></td></tr>
+    <tr><td>Guarantee comparison vs competitors</td><td><code>docs/quotations/internal-analysis/guarantee-comparison.md</code></td></tr>
+    <tr><td>Cashflow analysis (Feb 2026, old portfolio)</td><td><code>docs/internal/cashflow-analysis-feb2026.md</code></td></tr>
+    <tr><td>Client EPC template (guarantee clauses &sect;7.4&ndash;7.6)</td><td><code>legal/templates/client_sales.html</code></td></tr>
+    <tr><td>Linyang distribution agreement (payment terms &sect;11)</td><td><code>legal/active/distribution.md</code></td></tr>
+  </table>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  Lighthief Cyprus Ltd &nbsp;&bull;&nbsp; HE 477423 &nbsp;&bull;&nbsp; 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+  CONFIDENTIAL &mdash; Internal Use Only &nbsp;&bull;&nbsp; Prepared 23 March 2026
+</div>
+
+</body>
+</html>
