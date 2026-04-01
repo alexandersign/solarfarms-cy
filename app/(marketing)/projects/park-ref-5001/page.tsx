@@ -22,6 +22,7 @@ import {
   MessageCircle
 } from 'lucide-react'
 import { formatCurrency, formatPercentage } from '@/lib/utils'
+import { InvestorPackActions } from '@/components/investor/InvestorPackActions'
 
 // Real data from Galascope Limited 5.01MW park
 const PARK_DATA = {
@@ -234,6 +235,10 @@ export default function ParkRef5001Page() {
                   <div className="text-sm text-gray-600">ROI (with BESS)</div>
                 </CardContent>
               </Card>
+            </div>
+
+            <div className="max-w-2xl mx-auto w-full mt-6">
+              <InvestorPackActions slug="park-ref-5001" />
             </div>
           </div>
         </div>

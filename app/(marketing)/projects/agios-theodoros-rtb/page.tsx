@@ -20,10 +20,19 @@ import {
   Clock,
   Shield
 } from 'lucide-react'
+import { InvestorPackActions } from '@/components/investor/InvestorPackActions'
+import {
+  AGIOS_THEODOROS_RTB as RTB,
+  formatAgiosEurCompact,
+} from '@/lib/deals/agios-theodoros-rtb'
+
+const opexY1Operating =
+  RTB.opexY1EUR.pvOm + RTB.opexY1EUR.bessOm + RTB.opexY1EUR.other
+const opexY1Total = opexY1Operating + RTB.opexY1EUR.landLease
 
 export const metadata: Metadata = {
-  title: 'Agios Theodoros Solar Park with BESS | 2.64 MWp RTB Investment | SolarFarms.cy',
-  description: 'Ready-to-build 2.64 MWp bifacial TopCon solar park with 10.56 MWh BESS in Larnaca. Leveraged equity IRR ~30%. Equity participation from 25%. Target Q4 2026.',
+  title: `Agios Theodoros Solar Park with BESS | ${RTB.solarMWp} MWp RTB Investment | SolarFarms.cy`,
+  description: `Ready-to-build ${RTB.solarMWp} MWp bifacial TopCon solar park with ${RTB.bessMWh} MWh BESS in Larnaca. Leveraged equity IRR ${RTB.finance.leveredEquityIrrIndicative}. Equity participation from 25%. ${RTB.timelineHeadline}.`,
   keywords: [
     'Agios Theodoros solar park',
     'Cyprus solar investment',
@@ -36,9 +45,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Agios Theodoros Solar Park with Battery Storage | RTB Investment',
-    description: 'Ready-to-build 2.64 MWp bifacial TopCon solar + 10.56 MWh BESS. Leveraged IRR ~30%. Target Q4 2026.',
+    description: `Ready-to-build ${RTB.solarMWp} MWp bifacial TopCon solar + ${RTB.bessMWh} MWh BESS. Leveraged IRR ${RTB.finance.leveredEquityIrrIndicative}. ${RTB.timelineHeadline}.`,
     type: 'website',
-  }
+  },
 }
 
 export default function AgiosTheodorosProjectPage() {
@@ -62,10 +71,10 @@ export default function AgiosTheodorosProjectPage() {
                 Ready to Build
               </Badge>
               <Badge className="bg-solar-500 text-white text-sm px-4 py-1">
-                Target Q4 2026
+                {RTB.timelineHeadline}
               </Badge>
               <Badge className="bg-white/20 text-white text-sm px-4 py-1 backdrop-blur-sm">
-                Ref: PARK-RTB-2026
+                Ref: {RTB.referenceCode}
               </Badge>
             </div>
             
@@ -81,33 +90,41 @@ export default function AgiosTheodorosProjectPage() {
             
             <div className="flex items-center gap-4 mb-8">
               <MapPin className="w-5 h-5 text-solar-300" />
-              <span className="text-lg">Agios Theodoros, Larnaca District, Cyprus</span>
+              <span className="text-lg">{RTB.locationLine}</span>
             </div>
 
             {/* Key Metrics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Sun className="w-6 h-6 text-solar-300 mx-auto mb-2" />
-                <div className="text-2xl font-bold">2.64 MWp</div>
+                <div className="text-2xl font-bold">{RTB.solarMWp} MWp</div>
                 <div className="text-sm text-white/70">Solar Capacity</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Battery className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold">10.56 MWh</div>
+                <div className="text-2xl font-bold">{RTB.bessMWh} MWh</div>
                 <div className="text-sm text-white/70">Battery Storage</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-6 h-6 text-solar-300 mx-auto mb-2" />
-                <div className="text-2xl font-bold">~30%</div>
-                <div className="text-sm text-white/70">Leveraged IRR</div>
+                <div className="text-2xl font-bold">{RTB.finance.leveredEquityIrrIndicative}</div>
+                <div className="text-sm text-white/70">Leveraged IRR (indic.)</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <Euro className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold">€1.05M</div>
-                <div className="text-sm text-white/70">Annual Revenue</div>
+                <div className="text-2xl font-bold">
+                  {formatAgiosEurCompact(RTB.finance.grossEnergyRevenueY1EUR)}
+                </div>
+                <div className="text-sm text-white/70">Y1 gross energy revenue</div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding pt-0">
+        <div className="container max-w-4xl">
+          <InvestorPackActions slug="agios-theodoros-rtb" />
         </div>
       </section>
 
@@ -129,7 +146,7 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Installed Capacity</div>
-                    <div className="text-xl font-bold text-gray-900">2.64 MWp</div>
+                    <div className="text-xl font-bold text-gray-900">{RTB.solarMWp} MWp</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Technology</div>
@@ -141,7 +158,9 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Specific Yield</div>
-                    <div className="text-xl font-bold text-gray-900">1,800 kWh/kWp</div>
+                    <div className="text-xl font-bold text-gray-900">
+                      {RTB.specificYieldKwhPerKwp.toLocaleString()} kWh/kWp
+                    </div>
                   </div>
                 </div>
                 <div className="bg-solar-50 rounded-lg p-4 border border-solar-200">
@@ -149,7 +168,7 @@ export default function AgiosTheodorosProjectPage() {
                     <Zap className="w-5 h-5 text-solar-600" />
                     <span className="font-semibold text-solar-800">Annual Generation</span>
                   </div>
-                  <div className="text-3xl font-bold text-solar-700">4.75 GWh</div>
+                  <div className="text-3xl font-bold text-solar-700">{RTB.annualProductionGWh} GWh</div>
                   <div className="text-sm text-solar-600">Estimated annual production</div>
                 </div>
               </CardContent>
@@ -169,11 +188,11 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Capacity</div>
-                    <div className="text-xl font-bold text-gray-900">10.56 MWh</div>
+                    <div className="text-xl font-bold text-gray-900">{RTB.bessMWh} MWh</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Duration</div>
-                    <div className="text-xl font-bold text-gray-900">4 Hours</div>
+                    <div className="text-xl font-bold text-gray-900">{RTB.bessDurationHours} Hours</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Daily Cycles</div>
@@ -191,7 +210,11 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <ul className="space-y-1 text-sm text-green-700">
                     <li>• Curtailment elimination</li>
-                    <li>• Curtailment recovery at peak prices (€183/MWh avg evening peak, €158/MWh per discharge at 86.32% AC-AC RTE)</li>
+                    <li>
+                      • Curtailment recovery at peak prices (~€
+                      {Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh evening peak ref., ~€
+                      {Math.round(RTB.marketDAM.avgEURPerMWh)}/MWh DAM avg — see teaser / model)
+                    </li>
                     <li>• Grid stabilization revenue potential</li>
                   </ul>
                 </div>
@@ -226,27 +249,35 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">PV EPC Cost</span>
-                    <span className="font-semibold">€1.90M</span>
+                    <span className="font-semibold">
+                      {formatAgiosEurCompact(RTB.capexStackEUR.pvEpc)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600 text-sm">(€0.72/Wp turnkey)</span>
+                    <span className="text-gray-600 text-sm">({RTB.capexStackEUR.pvUnitNote})</span>
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">BESS System</span>
-                    <span className="font-semibold">€1.34M</span>
+                    <span className="font-semibold">
+                      {formatAgiosEurCompact(RTB.capexStackEUR.bessEpc)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600 text-sm">(€127k/MWh ex. VAT)</span>
+                    <span className="text-gray-600 text-sm">({RTB.capexStackEUR.bessUnitNote})</span>
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">RTB Acquisition</span>
-                    <span className="font-semibold">€1.00M</span>
+                    <span className="font-semibold">
+                      {formatAgiosEurCompact(RTB.capexStackEUR.rtbAcquisition)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Development</span>
-                    <span className="font-semibold">€0.35M</span>
+                    <span className="font-semibold">
+                      {formatAgiosEurCompact(RTB.capexStackEUR.development)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600 text-sm">(Grid, permits, fees, contingency)</span>
@@ -256,7 +287,9 @@ export default function AgiosTheodorosProjectPage() {
                 <div className="bg-solar-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-solar-800">Total CAPEX</span>
-                    <span className="text-2xl font-bold text-solar-700">€4.59M</span>
+                    <span className="text-2xl font-bold text-solar-700">
+                      {formatAgiosEurCompact(RTB.capexStackEUR.total)}
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -273,22 +306,36 @@ export default function AgiosTheodorosProjectPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Senior Debt (70%)</span>
-                    <span className="font-semibold">€2.27M</span>
+                    <span className="text-gray-600">
+                      Senior Debt (~
+                      {Math.round(
+                        (RTB.finance.seniorDebtEUR /
+                          (RTB.capexStackEUR.pvEpc + RTB.capexStackEUR.bessEpc)) *
+                          100
+                      )}
+                      % of PV+BESS)
+                    </span>
+                    <span className="font-semibold">
+                      {formatAgiosEurCompact(RTB.finance.seniorDebtEUR)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600 text-sm">On PV EPC + BESS</span>
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Equity (RTB + Dev + 30%)</span>
-                    <span className="font-semibold">€2.32M</span>
+                    <span className="text-gray-600">Equity (RTB + Dev + balance)</span>
+                    <span className="font-semibold">
+                      {formatAgiosEurCompact(RTB.finance.equityEUR)}
+                    </span>
                   </div>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 mt-4">
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-green-800">Equity Required</span>
-                    <span className="text-2xl font-bold text-green-700">€2.32M</span>
+                    <span className="text-2xl font-bold text-green-700">
+                      {formatAgiosEurCompact(RTB.finance.equityEUR)}
+                    </span>
                   </div>
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
@@ -308,23 +355,36 @@ export default function AgiosTheodorosProjectPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Avg MCP (134-day dataset)</span>
-                    <span className="font-semibold">€158/MWh</span>
+                    <span className="text-gray-600">Avg DAM (TSOC sample)</span>
+                    <span className="font-semibold">
+                      ~€{Math.round(RTB.marketDAM.avgEURPerMWh)}/MWh
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Peak Evening (17-21h)</span>
-                    <span className="font-semibold">€183/MWh</span>
+                    <span className="text-gray-600">Peak evening (17–21h)</span>
+                    <span className="font-semibold">
+                      ~€{Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Annual Revenue</span>
-                    <span className="font-semibold text-green-600">~€1.05M</span>
+                    <span className="text-gray-600">Y1 gross energy revenue</span>
+                    <span className="font-semibold text-green-600">
+                      ~{formatAgiosEurCompact(RTB.finance.grossEnergyRevenueY1EUR)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Annual OPEX</span>
-                    <span className="font-semibold text-red-600">~€104k</span>
+                    <span className="text-gray-600">Annual OPEX (Y1, incl. land)</span>
+                    <span className="font-semibold text-red-600">
+                      ~{formatAgiosEurCompact(opexY1Total)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b text-xs text-gray-500">
-                    <span>PV O&M €40k + BESS O&M €26k + Other €38k</span>
+                    <span>
+                      PV {formatAgiosEurCompact(RTB.opexY1EUR.pvOm)} + BESS{' '}
+                      {formatAgiosEurCompact(RTB.opexY1EUR.bessOm)} + Other{' '}
+                      {formatAgiosEurCompact(RTB.opexY1EUR.other)} + Land{' '}
+                      {formatAgiosEurCompact(RTB.opexY1EUR.landLease)}
+                    </span>
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
@@ -338,8 +398,8 @@ export default function AgiosTheodorosProjectPage() {
                 </div>
                 <div className="bg-gradient-to-r from-solar-500 to-solar-600 rounded-lg p-4 mt-4 text-white">
                   <div className="text-center">
-                    <div className="text-sm opacity-90">Leveraged Equity IRR</div>
-                    <div className="text-3xl font-bold">~30% Range</div>
+                    <div className="text-sm opacity-90">Leveraged Equity IRR (indicative)</div>
+                    <div className="text-3xl font-bold">{RTB.finance.leveredEquityIrrIndicative}</div>
                   </div>
                 </div>
               </CardContent>
@@ -361,38 +421,37 @@ export default function AgiosTheodorosProjectPage() {
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { percent: 25, equity: '€580k', revenue: '~€184k/yr' },
-              { percent: 50, equity: '€1.16M', revenue: '~€367k/yr' },
-              { percent: 75, equity: '€1.74M', revenue: '~€551k/yr' },
-              { percent: 100, equity: '€2.32M', revenue: '~€735k/yr', featured: true },
-            ].map((option) => (
+            {RTB.equityTiers.map((option) => (
               <Card 
-                key={option.percent} 
-                className={`text-center ${option.featured ? 'border-2 border-solar-500 shadow-lg' : ''}`}
+                key={option.pct} 
+                className={`text-center ${'featured' in option && option.featured ? 'border-2 border-solar-500 shadow-lg' : ''}`}
               >
-                {option.featured && (
+                {'featured' in option && option.featured && (
                   <div className="bg-solar-500 text-white text-sm font-bold py-1">
                     FULL OWNERSHIP
                   </div>
                 )}
                 <CardHeader>
                   <CardTitle className="text-4xl font-bold gradient-text">
-                    {option.percent}%
+                    {option.pct}%
                   </CardTitle>
                   <p className="text-gray-600">Equity Stake</p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="bg-gray-50 rounded-lg p-3">
                     <div className="text-sm text-gray-600">Investment</div>
-                    <div className="text-xl font-bold">{option.equity}</div>
+                    <div className="text-xl font-bold">
+                      {formatAgiosEurCompact(option.equityEUR)}
+                    </div>
                   </div>
                   <div className="bg-green-50 rounded-lg p-3">
                     <div className="text-sm text-gray-600">Annual Cash Flow</div>
-                    <div className="text-xl font-bold text-green-600">{option.revenue}</div>
+                    <div className="text-xl font-bold text-green-600">
+                      {option.indicativeAnnualCashEUR}/yr
+                    </div>
                   </div>
                   <Button 
-                    variant={option.featured ? 'gradient' : 'outline'} 
+                    variant={'featured' in option && option.featured ? 'gradient' : 'outline'} 
                     className="w-full"
                     asChild
                   >
@@ -424,7 +483,7 @@ export default function AgiosTheodorosProjectPage() {
               {
                 icon: Battery,
                 title: 'Integrated BESS',
-                description: '4-hour battery storage eliminates curtailment risk via curtailment recovery — storing wasted solar and discharging at €183/MWh evening peak prices.'
+                description: `4-hour battery storage eliminates curtailment risk via curtailment recovery — storing wasted solar and discharging at ~€${Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh evening peak (TSOC DAM sample; see model).`
               },
               {
                 icon: Sun,
@@ -542,7 +601,7 @@ export default function AgiosTheodorosProjectPage() {
             </Button>
           </div>
           <p className="mt-8 text-sm opacity-75">
-            Reference: PARK-RTB-2026 | Agios Theodoros, Larnaca District
+            Reference: {RTB.referenceCode} | {RTB.locationLine}
           </p>
         </div>
       </section>

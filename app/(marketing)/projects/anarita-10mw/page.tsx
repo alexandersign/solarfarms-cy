@@ -20,6 +20,7 @@ import {
   AlertTriangle,
   BarChart3
 } from 'lucide-react'
+import { InvestorPackActions } from '@/components/investor/InvestorPackActions'
 
 export const metadata: Metadata = {
   title: 'Anarita 10MW Operational Solar Park | 35-54% Curtailment - BESS Opportunity | SolarFarms.cy',
@@ -145,6 +146,12 @@ export default function Anarita10MWProjectPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding pt-0">
+        <div className="container max-w-4xl">
+          <InvestorPackActions slug="anarita-10mw" />
         </div>
       </section>
 

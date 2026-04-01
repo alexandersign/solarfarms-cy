@@ -87,7 +87,7 @@ export const ADDERS = {
   dehnLpsSpdEarthing: { total: 446_384.61,   status: 'quoted' as DataStatus,    supplier: 'DEHN + StrikeRA' },
   dehnInstallLabour:  { total: 81_600.00,    status: 'confirmed' as DataStatus, rate: '€1,600 per park', supplier: 'StrikeRA' },
   civilWorks:         { total: 1_763_560.00, status: 'confirmed' as DataStatus, rate: '€2,000 per MWh', supplier: 'Lighthief subcontractors' },
-  insurance:          { total: 644_729.40,   status: 'pending' as DataStatus, rate: '0.75% of CIF budget', note: 'EPC construction insurance (CAR/EAR, TPL, PI). Marine cargo NOT needed — Linyang CIF. Budget: 0.75% of CIF. Awaiting final quotes from Marsh (due 14 Mar) and Holland/Jaap NBI. Linyang AXA policy received 9 Mar — has Absolute Pollution Exclusion (thermal runaway gap), Pure Financial Loss Exclusion, and Cyber exclusion. Lighthief Environmental Liability policy must cover BESS-specific pollution risks that AXA excludes.' },
+  insurance:          { total: 644_729.40,   status: 'pending' as DataStatus, rate: '0.75% of CIF budget', note: 'EPC construction insurance (CAR/EAR, TPL, PI). Marine cargo NOT needed — Linyang CIF. Budget: 0.75% of CIF. Marsh (Aris Samaras, 20 Mar 2026): approached CHUBB, AXIS, GARD, AGCS (all A-rated). AXIS + GARD rough non-binding indications only — CAR 0.24–0.29% of sum insured (+tax); DSU 0.34–0.36% of sum insured (+tax). Deductibles: EQ 2% VARTOL; other Nat CAT incl theft 5% min €50K; thermal runaway €150K–€200K; DSU waiting period 30 days (45 for thermal runaway & EQ); other losses €50K. CHUBB/AGCS pending. Linyang AXA CGL — Absolute Pollution / PFL / Cyber gaps; env liability strategy unchanged.' },
   docsCompliance:     { total: 357_000.00,   status: 'estimated' as DataStatus, rate: '€7,000 per park' },
   lvCabling:          { total: 363_300.00,   status: 'estimated' as DataStatus },
   mvCabling:          { total: 245_000.00,   status: 'estimated' as DataStatus, rate: '€3,500 per MV feeder' },
@@ -520,6 +520,9 @@ export const COMPANY = {
   phone: '+357 77 77 00 50',
   website: 'https://solarfarms.cy',
   cyprusDirector: 'Alexander Papacosta',
+  /** Director higher education — confirm level (BA/BSc/MSc) on diploma; wording per CV/LinkedIn */
+  cyprusDirectorEducation:
+    'Business Development & Entrepreneurship — Halmstad University (Högskolan i Halmstad), Sweden',
   directorPhone: '+357 99 164 158',
   bessProjectContact: 'Alexander Papacosta',
   bessProjectPhone: '+357 99 164 158',
@@ -535,7 +538,8 @@ export const CLIENT_PRICING = {
   '5MW_15MWh':   { ratePerMWh: 130_792, status: 'confirmed' as DataStatus },
   '5MW_10MWh':   { ratePerMWh: 136_106, status: 'confirmed' as DataStatus },
   '2.5MW_10MWh': { ratePerMWh: 120_630, status: 'confirmed' as DataStatus },
-  '3.75MW_15MWh': { ratePerMWh: 131_000, status: 'quoted' as DataStatus, note: 'Scandinavian Solar Parks (Group7) Mar 2026 — interpolated from 5MW/15 + 3.3MW/10 tiers' },
+  '3.5MW_15MWh':  { ratePerMWh: 131_000, status: 'confirmed' as DataStatus, note: 'Same hardware as 3.75MW/15MWh (3×1.25MW PCS, T2+T1 skids, 3×5MWh) — PCS derated to 3.5MW at grid connection, no cost difference. Scandinavian Solar Parks (Group7) Mar 2026.' },
+  '3.75MW_15MWh': { ratePerMWh: 131_000, status: 'confirmed' as DataStatus, note: 'Scandinavian Solar Parks (Group7) Mar 2026 — same hardware as 3.5MW/15MWh, full PCS rating.' },
   '8MW_60MWh':   { ratePerMWh: 100_052, status: 'confirmed' as DataStatus },
   '12MW_40MWh':  { ratePerMWh: 114_990, status: 'confirmed' as DataStatus },
   '25MW_100MWh': { ratePerMWh: 106_279, status: 'confirmed' as DataStatus },
@@ -568,10 +572,10 @@ export const RFI_STATUS = {
   civilWorksPricing:    { status: 'confirmed' as DataStatus, version: 'V1',  date: '2026-02-13', doc: 'civil-works-estimate.md' },
   dehnPricing:          { status: 'quoted' as DataStatus,    version: 'V1',  date: '2026-01-28', doc: 'rfq-dehn-lightning-protection-jan2026' },
   transportPricing:     { status: 'confirmed' as DataStatus,  version: 'V3',  date: '2026-03-17', doc: 'docs/quotations/asoulis/A Soulis Proposal .pdf', note: '€2,500/container flat rate (all routes, all types). 160T crane proposed (10m footprint). Fleet: 6 trucks + 6 cranes. Port: 10 days storage. Permits: 15 days lead, 30 days valid. Insurance: €440K GIT (adequate — max container CIF ~€338K), €5M PL. Open: positioning/levelling may be extra, payment & cancellation terms TBC.' },
-  insurancePricing:     { status: 'pending' as DataStatus,   version: null,  date: null, doc: 'rfp-insurance-comprehensive-feb2026', note: 'Budget €644,729 (0.75% CIF). Holland NBI: €350K (excl. marine cargo). Marsh RFP due 14 Mar. Holland NBI has €10M/site CAR limit — inadequate vs €50M needed.' },
+  insurancePricing:     { status: 'pending' as DataStatus,   version: 'NBI-rough' as const,  date: '2026-03-20', doc: 'email-marsh-aris-samaras-20mar2026', note: 'Marsh rough NBI (AXIS+GARD consolidated, 20 Mar 2026): CAR 0.24–0.29% SI + tax; DSU 0.34–0.36% SI + tax. EQ ded 2% VARTOL; Nat CAT/theft 5% min €50K; thermal runaway €150K–€200K; DSU 30d (45d TR/EQ); other €50K. CHUBB/AGCS still out. Budget adder still €644,729 (0.75% CIF) until firm quotes. Holland NBI €350K ex marine; €10M/site CAR inadequate vs €50M need.' },
   performanceBond:      { status: 'confirmed' as DataStatus,  version: 'V1',  date: '2026-02-10', doc: 'linyang-blended-sales-ltsa', note: '5% bank guarantee (corporate), no parent company backing. Agreed per Linyang RFI.' },
   linyangAxaInsurance:  { status: 'confirmed' as DataStatus,  version: 'V1',  date: '2026-03-09', doc: 'legal/in-negotiation/linyang-sales/linyang-axa-product-liability-policy-mar2026.pdf', note: 'AXA Tianping CGL policy received 9 Mar 2026. 36 pages — policy terms + endorsements only. MISSING: declarations page (named insured, limits €5M, territory, period, product schedule). KEY EXCLUSIONS: Absolute Pollution, Pure Financial Loss, Pure Indirect Third-Party Financial Loss, Silicon, Professional, Cyber/Network, Terrorism, Sanctions (PRC/EU/UK/US), PFAS, Nuclear, Asbestos, Lead. Insured Products clause limits coverage to products listed in schedule (not provided). Mandatory Safety Standards clause requires product compliance with destination country standards. ACTION: Request declarations page + product schedule from Linyang.' },
-  mvSkidDatasheets:     { status: 'confirmed' as DataStatus,  version: 'V2',  date: '2026-02-22', doc: 'legal/linyang_hardware_specs_docs/PCS+SKID+Transformer', note: 'All 4 skid models received: T1, T2, T4, T8. PCS units are 1.00MW or 1.25MW; all park MW sizes are combinations of skids + PCS count.' },
+  mvSkidDatasheets:     { status: 'confirmed' as DataStatus,  version: 'V2',  date: '2026-02-22', doc: 'docs/hardware/PCS+SKID+Transformer', note: 'All 4 skid models received: T1, T2, T4, T8. PCS units are 1.00MW or 1.25MW; all park MW sizes are combinations of skids + PCS count. MV transformer range: 1000–10000 kVA (docs/hardware/mv-transformers/).' },
 } as const;
 
 // ─────────────────────────────────────────────
@@ -627,7 +631,7 @@ export const HISTORICAL_PATHS = [
   'docs/internal/logistics-cost-comparison-jan2026.md',
   'docs/internal/ltsa-updated-rates-jan2026.md',
   'docs/linyang.md',
-  'legal/linyang_hardware_specs_docs/',
+  'docs/hardware/',
   'legal/Documents/',
   'legal/linyang-sales-comments.html',
   'legal/DOCUMENT_INDEX.md',
@@ -742,6 +746,7 @@ export function getTemplateVars(): Record<string, string> {
     'COMPANY.email':           COMPANY.email,
     'COMPANY.phone':           COMPANY.phone,
     'COMPANY.cyprusDirector':  COMPANY.cyprusDirector,
+    'COMPANY.cyprusDirectorEducation': COMPANY.cyprusDirectorEducation,
     'COMPANY.directorPhone':   COMPANY.directorPhone,
     'COMPANY.bessProjectContact': COMPANY.bessProjectContact,
     'COMPANY.bessProjectPhone': COMPANY.bessProjectPhone,
@@ -811,3 +816,6 @@ export function getTemplateVars(): Record<string, string> {
     'FAC_DATE':      FAC_DATE,
   };
 }
+
+/** Public RTB ticket (Agios) — marketing, teaser, xlsx defaults; see module for _meta.source */
+export { AGIOS_THEODOROS_RTB } from './deals/agios-theodoros-rtb';

@@ -1,0 +1,195 @@
+/**
+ * One-page Cyprus market / BESS investment teaser — DAM stats from SSOT.
+ * Run: npx tsx scripts/generate-cyprus-market-teaser-html.ts
+ */
+import * as fs from 'fs'
+import * as path from 'path'
+import { COMPANY, CYPRUS_TAX } from '../lib/portfolio-data'
+import {
+  CYPRUS_TSOC_DAM_SAMPLE as D,
+  damEurMwhRounded,
+} from '../lib/market/cyprus-tsoc-dam-sample'
+
+const OUT_DOCS = path.join(process.cwd(), 'docs', 'teasers', 'cyprus-bess-investment-teaser-mar2026.html')
+const OUT_PUBLIC = path.join(
+  process.cwd(),
+  'public',
+  'lighthief-cyprus',
+  'parks-for-sale',
+  'cyprus-bess-investment-teaser-mar2026.html'
+)
+
+function e(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function fmtMwh(n: number): string {
+  return n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
+function buildHtml(): string {
+  const cit = CYPRUS_TAX.corporateTax
+  const pct = (n: number, d: number) => (n / d) * 100
+  const zeroMiddayPct = pct(D.daysWithZeroMiddayPrints, D.tradingDays)
+  const spreadPct = pct(D.daysWithPositivePeakMiddaySpread, D.tradingDays)
+  const fmtPct = (p: number) => (Number.isInteger(p) ? String(p) : p.toFixed(1))
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Teaser &mdash; Cyprus | March 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1e3a5f;--accent:#2563eb;--bg:#f8fafc;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--ok:#059669}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9.5pt;line-height:1.6;color:var(--text);background:#edf2f7;padding:20px}
+.page{background:#fff;width:210mm;max-width:100%;margin:0 auto;padding:14mm 16mm;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--primary);padding-bottom:12px;margin-bottom:18px}
+.logo-img{height:44px;width:auto;display:block}
+.tagline{font-size:8pt;color:var(--muted);margin-top:6px}
+.doc-info{text-align:right;font-size:7.5pt;color:var(--muted);line-height:1.7}
+h1{font-size:14pt;color:var(--primary);margin:16px 0 6px}
+.lead{font-size:10pt;color:var(--accent);font-weight:600;margin-bottom:16px}
+.metric-grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0 20px}
+.metric-box{background:var(--bg);border-radius:8px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
+.metric-box .val{font-size:18pt;font-weight:800;color:var(--primary)}
+.metric-box .lbl{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.metric-box.green{background:#f0fdf4;border-color:#86efac}.metric-box.green .val{color:#16a34a}
+.metric-box.blue{background:#eff6ff;border-color:#93c5fd}.metric-box.blue .val{color:#2563eb}
+.metric-box.amber{background:#fffbeb;border-color:#fcd34d}.metric-box.amber .val{color:#d97706}
+.metric-box.purple{background:#f5f3ff;border-color:#c4b5fd}.metric-box.purple .val{color:#7c3aed}
+.metric-box.red{background:#fef2f2;border-color:#fecaca}.metric-box.red .val{color:#dc2626}
+h2{font-size:11pt;color:var(--primary);margin:20px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px;display:inline-block}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+.box{border:1px solid var(--border);border-radius:6px;padding:12px}
+.box h3{margin-top:0;font-size:9.5pt;color:var(--primary)}
+.box ul{margin-left:16px}.box li{margin-bottom:3px}
+table{width:100%;border-collapse:collapse;font-size:8pt;margin:8px 0 14px}
+th{background:var(--primary);color:#fff;padding:6px 7px;text-align:left;font-weight:600}
+td{padding:5px 7px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:#fafbfc}
+.r{text-align:right}
+.highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin:12px 0;font-size:8pt}
+.note{font-size:7.5pt;color:var(--muted);margin:4px 0}
+.footer{margin-top:20px;padding-top:10px;border-top:2px solid var(--primary);font-size:7pt;color:var(--muted);text-align:center}
+.print-btn{position:fixed;top:15px;right:15px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-size:10pt;z-index:100}
+@media print{.print-btn{display:none}html,body{background:#fff;padding:0}.page{box-shadow:none;padding:0;max-width:none;width:auto}}
+</style>
+</head>
+<body>
+<button class="print-btn" type="button" onclick="window.print()">Print / PDF</button>
+
+<div class="page">
+  <div class="header">
+    <div>
+      <img class="logo-img" src="/images/logo/lighthief-logo-200.png" alt="Lighthief">
+      <div class="tagline">Cyprus &mdash; confidential investor summary</div>
+    </div>
+    <div class="doc-info"><strong>INVESTOR TEASER</strong><br>Confidential<br>March 2026</div>
+  </div>
+
+  <h1>Cyprus &mdash; wholesale power &amp; infrastructure-linked returns</h1>
+  <p class="lead">A liquid day-ahead market, recurring intraday price asymmetry, and EU rule-of-law with <strong>${cit}% corporate income tax</strong> (effective 1 Jan 2026; previously 12.5%).</p>
+
+  <div class="metric-grid-5">
+    <div class="metric-box blue"><div class="val">&euro;${damEurMwhRounded(D.avgEURPerMWh)}</div><div class="lbl">Avg DAM (&euro;/MWh)</div></div>
+    <div class="metric-box green"><div class="val">&euro;${damEurMwhRounded(D.peakEveningEURPerMWh)}</div><div class="lbl">Peak block (&euro;/MWh)</div></div>
+    <div class="metric-box purple"><div class="val">&euro;${damEurMwhRounded(D.peakMiddaySpreadEURPerMWh)}</div><div class="lbl">Peak&ndash;midday spread</div></div>
+    <div class="metric-box amber"><div class="val">${cit}%</div><div class="lbl">Statutory CIT (from Jan 2026)</div></div>
+    <div class="metric-box red"><div class="val">${fmtPct(spreadPct)}%</div><div class="lbl">Sample days &gt;0 spread</div></div>
+  </div>
+
+  <h2>Investment thesis</h2>
+  <div class="two-col">
+    <div class="box">
+      <h3>Market structure</h3>
+      <ul>
+        <li><strong>Island balancing zone</strong> &mdash; constrained interconnectivity reinforces local price formation.</li>
+        <li><strong>Operational DAM</strong> since 2021 (TSOC / HEnEx); transparent half-hourly clearing.</li>
+        <li><strong>Repeated peak&ndash;off-peak asymmetry</strong> in the observed window &mdash; relevant for merchant and optimisation-linked revenue streams.</li>
+        <li><strong>Eurozone</strong> reporting currency; EU regulatory and accounting norms.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Why allocate here</h3>
+      <ul>
+        <li><strong>Yield-oriented plays</strong> on regulated power exposure with identifiable merchant components.</li>
+        <li><strong>Greenfield and secondary routes</strong> &mdash; permits, operating platforms, and roll-up potential at heterogeneous entry multiples.</li>
+        <li><strong>Policy optionality</strong> from EU energy-transition financing and domestic support schemes (subject to eligibility).</li>
+        <li><strong>Exit</strong> via institutional power portfolios, utilities, or financial sponsors; multiples depend on contract profile and leverage.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Wholesale reference data</h2>
+  <p class="note">Indicative only. Source: ${e(D.sampleNote)}. <a href="${e(D.sourceUrl)}">TSOC MMS reports</a> (compiled).</p>
+  <div class="two-col">
+    <div>
+      <table>
+        <thead><tr><th>Time block</th><th class="r">Avg (&euro;/MWh)</th></tr></thead>
+        <tbody>
+          <tr><td>24-hour average</td><td class="r"><strong>&euro;${fmtMwh(D.avgEURPerMWh)}</strong></td></tr>
+          <tr><td>Daytime (06:00&ndash;17:00)</td><td class="r">&euro;${fmtMwh(D.daytime06001700EURPerMWh)}</td></tr>
+          <tr><td>Midday (10:00&ndash;14:00)</td><td class="r">&euro;${fmtMwh(D.middayEURPerMWh)}</td></tr>
+          <tr style="background:#ecfdf5;"><td><strong>Evening peak (17:00&ndash;21:00)</strong></td><td class="r" style="color:var(--ok);"><strong>&euro;${fmtMwh(D.peakEveningEURPerMWh)}</strong></td></tr>
+          <tr style="background:#eff6ff;"><td><strong>Peak&ndash;midday spread</strong></td><td class="r"><strong>&euro;${fmtMwh(D.peakMiddaySpreadEURPerMWh)}</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table>
+        <thead><tr><th>Indicator</th><th class="r">Observation</th></tr></thead>
+        <tbody>
+          <tr><td>Days with &euro;0/MWh midday prints</td><td class="r">${D.daysWithZeroMiddayPrints} / ${D.tradingDays} (${fmtPct(zeroMiddayPct)}%)</td></tr>
+          <tr><td>Days with positive peak&ndash;midday spread</td><td class="r"><strong>${D.daysWithPositivePeakMiddaySpread} / ${D.tradingDays}</strong></td></tr>
+          <tr><td>Large-scale flexible capacity (utility-reported)</td><td class="r">Limited</td></tr>
+          <tr><td>Interconnection (timeline)</td><td class="r">Material link 2029+</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Takeaway for capital allocation:</strong> The sample shows persistent value between high-priced evening blocks and weaker midday clearing. Any asset or contract stack that captures that shape &mdash; without relying on a single technology narrative &mdash; can support underwriting for a merchant or hybrid return profile. Forward curves and offtake terms are deal-specific. Full illustrative capital bands and model extracts are available under NDA.
+  </div>
+
+  <div class="two-col" style="margin-top:12px">
+    <div class="box">
+      <h3>Investor contact</h3>
+      <ul>
+        <li><strong>${e(COMPANY.cyprusDirector)}</strong></li>
+        <li>${e(COMPANY.directorPhone)}</li>
+        <li>${e(COMPANY.bessProjectEmail)}</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Document control</h3>
+      <ul>
+        <li>Issuer: <strong>${e(COMPANY.name)}</strong> (${e(COMPANY.regNumber)})</li>
+        <li>${e(COMPANY.address)}</li>
+        <li>March 2026 &mdash; not for redistribution</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    For discussion among qualified professional investors only. Not an offer or solicitation. No representation that results will match past or sample market data. ${e(COMPANY.name)} (${e(COMPANY.regNumber)}) &mdash; contact on request.
+  </div>
+</div>
+
+</body>
+</html>`
+}
+
+const html = buildHtml()
+fs.mkdirSync(path.dirname(OUT_DOCS), { recursive: true })
+fs.mkdirSync(path.dirname(OUT_PUBLIC), { recursive: true })
+fs.writeFileSync(OUT_DOCS, html, 'utf8')
+fs.writeFileSync(OUT_PUBLIC, html, 'utf8')
+console.log('Wrote:', OUT_DOCS)
+console.log('Wrote:', OUT_PUBLIC)

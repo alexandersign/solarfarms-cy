@@ -4,425 +4,438 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { 
-  MapPin, 
-  Zap, 
-  TrendingUp, 
-  Calendar, 
-  Euro, 
-  Award,
+import {
+  MapPin,
+  Calendar,
   ArrowRight,
   Star,
-  CheckCircle
+  CheckCircle,
+  FileText,
+  Download,
+  PenLine,
 } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
+import {
+  getDealsListings,
+  getOperationalReferenceListings,
+  dealKindLabel,
+  type InvestmentListing,
+} from '@/lib/investment-listings'
 
 export const metadata: Metadata = {
-  title: 'Solar Farm Projects | Success Stories & Case Studies | Lighthief Cyprus',
-  description: 'Explore our successful solar farm projects across Cyprus. Real investment results, ROI achievements, and client testimonials from 1MW to 10MW installations.',
+  title: 'Solar Projects & Investment Opportunities | Lighthief Cyprus',
+  description:
+    'Cyprus solar and BESS listings: ready-to-build, secondary sale, and operational reference cases. Teasers, models, and LOI.',
   keywords: [
     'Cyprus solar projects',
-    'solar farm case studies',
-    'investment success stories',
-    'solar ROI results',
-    'renewable energy portfolio',
+    'BESS investment Cyprus',
+    'solar farm for sale',
+    'ready to build solar Cyprus',
   ],
 }
-
-const projects = [
-  {
-    title: "Agios Theodoros Solar Park with Battery Storage",
-    location: "Agios Theodoros, Larnaca District",
-    capacity: 2.64,
-    investment: 4590000,
-    roi: 30,
-    annualRevenue: 1050000,
-    status: "Ready to Build",
-    statusColor: "green",
-    completionDate: "Target Q4 2026",
-    image: "/images/solar-farm-aerial-unsplash.jpg",
-    highlights: [
-      "Integrated 10.56 MWh BESS - 4-hour duration (€127k/MWh)",
-      "Bifacial TopCon modules - 1,800 kWh/kWp yield",
-      "Zero curtailment risk with battery arbitrage",
-      "Leveraged equity IRR: ~30% range",
-      "Single operator: Lighthief EPC + O&M"
-    ],
-    testimonial: {
-      quote: "Ready to build utility scale project with integrated battery storage removing curtailment risk. Strong leveraged returns with conservative assumptions.",
-      client: "Reference: PARK-RTB-2026"
-    },
-    featured: true,
-    link: "/projects/agios-theodoros-rtb"
-  },
-  {
-    title: "Anarita Solar Park - 10MW Operational",
-    location: "Anarita, Paphos District",
-    capacity: 10,
-    investment: 12500000,
-    roi: 14.5,
-    annualRevenue: 1950000,
-    status: "Operational",
-    statusColor: "green",
-    completionDate: "Energized & Grid Connected",
-    image: "/images/solar-park-field-unsplash.jpg",
-    highlights: [
-      "Real curtailment data: 35% avg, up to 67% peak",
-      "18 months verified production data available",
-      "BESS opportunity: recover €600k+ annually",
-      "ROI boost from 14.5% to 18%+ with 40MWh BESS",
-      "Tier-1 BESS integration ready: turnkey delivery"
-    ],
-    testimonial: {
-      quote: "Transparent operational asset with real curtailment data. BESS integration to recover lost revenue and maximize returns.",
-      client: "Reference: PARK-ANARITA-10"
-    },
-    featured: true,
-    link: "/projects/anarita-10mw"
-  },
-]
 
 const getStatusColor = (color: string) => {
   const colors = {
     green: 'bg-green-100 text-green-800',
-    blue: 'bg-blue-100 text-blue-800', 
+    blue: 'bg-blue-100 text-blue-800',
     yellow: 'bg-yellow-100 text-yellow-800',
-    red: 'bg-red-100 text-red-800'
+    red: 'bg-red-100 text-red-800',
   }
   return colors[color as keyof typeof colors] || 'bg-gray-100 text-gray-800'
 }
 
+function ListingActions({ listing }: { listing: InvestmentListing }) {
+  const loiHref = `/loi?listing=${encodeURIComponent(listing.slug)}`
+  return (
+    <div className="flex flex-wrap gap-2 pt-2">
+      <Button variant="gradient" size="sm" className="flex-1 min-w-[8rem]" asChild>
+        <Link href={listing.detailRoute}>
+          Details
+          <ArrowRight className="w-4 h-4 ml-2" />
+        </Link>
+      </Button>
+      {listing.teaserFile ? (
+        <Button variant="outline" size="sm" asChild>
+          <a href={listing.teaserFile} target="_blank" rel="noopener noreferrer">
+            <FileText className="w-4 h-4 mr-1" />
+            Teaser
+          </a>
+        </Button>
+      ) : null}
+      {listing.modelFile ? (
+        <Button variant="outline" size="sm" asChild>
+          <a href={listing.modelFile} download>
+            <Download className="w-4 h-4 mr-1" />
+            Excel
+          </a>
+        </Button>
+      ) : null}
+      <Button variant="secondary" size="sm" asChild>
+        <Link href={loiHref}>
+          <PenLine className="w-4 h-4 mr-1" />
+          LOI
+        </Link>
+      </Button>
+    </div>
+  )
+}
+
+function ListingCard({ listing, compact }: { listing: InvestmentListing; compact?: boolean }) {
+  const h = compact ? 'h-40' : 'h-48'
+  return (
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col">
+      <div className={`relative ${h}`}>
+        <Image
+          src={listing.image}
+          alt={listing.publicTitle}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute top-3 left-3 flex flex-wrap gap-1">
+          <Badge className={getStatusColor(listing.statusColor)}>{listing.statusLabel}</Badge>
+          {listing.dealKind ? (
+            <Badge variant="outline" className="bg-white/90 text-gray-800 border-0">
+              {dealKindLabel(listing.dealKind)}
+            </Badge>
+          ) : null}
+        </div>
+        <div className="absolute bottom-3 left-3 text-white">
+          <div className="text-xl font-bold">
+            {listing.capacityMW > 0 ? `${listing.capacityMW} MW` : '—'}
+          </div>
+          <div className="text-xs opacity-90 line-clamp-1">{listing.publicLocation}</div>
+        </div>
+      </div>
+
+      <CardHeader className="pb-2">
+        <CardTitle className="group-hover:text-solar-600 transition-colors line-clamp-2 text-lg">
+          {listing.publicTitle}
+        </CardTitle>
+        <CardDescription className="flex items-center gap-1 text-xs">
+          <Calendar className="w-3 h-3 shrink-0" />
+          {listing.completionDate}
+          <span className="mx-1">·</span>
+          <span className="font-mono text-[10px]">{listing.referenceCode}</span>
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="space-y-3 flex-1 flex flex-col">
+        <p className="text-sm text-gray-600 line-clamp-3">{listing.summary}</p>
+
+        <div className="grid grid-cols-2 gap-2 text-center">
+          {listing.roiPercent != null ? (
+            <div className="p-2 bg-gray-50 rounded-lg">
+              <div className="text-sm font-bold gradient-text">{listing.roiPercent}%</div>
+              <div className="text-[10px] text-gray-600">ROI / IRR (indic.)</div>
+            </div>
+          ) : (
+            <div className="p-2 bg-gray-50 rounded-lg">
+              <div className="text-sm font-bold text-gray-400">—</div>
+              <div className="text-[10px] text-gray-600">ROI / IRR</div>
+            </div>
+          )}
+          {listing.annualRevenueEUR != null ? (
+            <div className="p-2 bg-gray-50 rounded-lg">
+              <div className="text-xs font-bold gradient-text leading-tight">
+                {formatCurrency(listing.annualRevenueEUR)}
+              </div>
+              <div className="text-[10px] text-gray-600">Annual revenue</div>
+            </div>
+          ) : listing.investmentEUR != null ? (
+            <div className="p-2 bg-gray-50 rounded-lg">
+              <div className="text-xs font-bold gradient-text leading-tight">
+                {formatCurrency(listing.investmentEUR)}
+              </div>
+              <div className="text-[10px] text-gray-600">Indic. value</div>
+            </div>
+          ) : (
+            <div className="p-2 bg-gray-50 rounded-lg">
+              <div className="text-sm font-bold text-gray-400">—</div>
+              <div className="text-[10px] text-gray-600">Metrics</div>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-start gap-2 text-xs text-gray-600 border-t pt-3 mt-auto">
+          <Star className="w-3 h-3 text-yellow-500 fill-yellow-400 shrink-0 mt-0.5" />
+          <span className="italic line-clamp-2">&ldquo;{listing.testimonial.quote}&rdquo;</span>
+        </div>
+
+        <ListingActions listing={listing} />
+      </CardContent>
+    </Card>
+  )
+}
+
+function FeaturedListingRow({ listing }: { listing: InvestmentListing }) {
+  return (
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 mb-8">
+      <div className="grid lg:grid-cols-2 gap-0">
+        <div className="relative h-64 lg:h-auto min-h-[240px]">
+          <Image
+            src={listing.image}
+            alt={listing.publicTitle}
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+          <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+            <Badge className={getStatusColor(listing.statusColor)}>{listing.statusLabel}</Badge>
+            {listing.dealKind ? (
+              <Badge className="bg-white/90 text-gray-800">{dealKindLabel(listing.dealKind)}</Badge>
+            ) : null}
+          </div>
+          <div className="absolute bottom-4 left-4 text-white">
+            <div className="text-2xl font-bold">
+              {listing.capacityMW > 0 ? `${listing.capacityMW} MW` : 'Market'}
+            </div>
+            <div className="text-sm opacity-90">{listing.publicLocation}</div>
+          </div>
+        </div>
+
+        <div className="p-8 flex flex-col">
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">{listing.publicTitle}</h3>
+          <div className="flex items-center text-gray-600 mb-4 text-sm flex-wrap gap-2">
+            <MapPin className="w-4 h-4 shrink-0" />
+            <span>{listing.publicLocation}</span>
+            <span>·</span>
+            <Calendar className="w-4 h-4 shrink-0" />
+            <span>{listing.completionDate}</span>
+            <span>·</span>
+            <span className="font-mono">{listing.referenceCode}</span>
+          </div>
+
+          <p className="text-gray-600 mb-4">{listing.summary}</p>
+
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {listing.roiPercent != null && (
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
+                <div className="text-xl font-bold gradient-text">{listing.roiPercent}%</div>
+                <div className="text-xs text-gray-600">Indicative ROI / IRR</div>
+              </div>
+            )}
+            {listing.annualRevenueEUR != null && (
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
+                <div className="text-xl font-bold gradient-text">
+                  {formatCurrency(listing.annualRevenueEUR)}
+                </div>
+                <div className="text-xs text-gray-600">Annual revenue</div>
+              </div>
+            )}
+            {listing.investmentEUR != null && listing.annualRevenueEUR == null && (
+              <div className="text-center p-4 bg-gray-50 rounded-lg col-span-2">
+                <div className="text-xl font-bold gradient-text">
+                  {formatCurrency(listing.investmentEUR)}
+                </div>
+                <div className="text-xs text-gray-600">Indicative transaction value</div>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <h4 className="font-semibold text-gray-900 mb-3 flex items-center text-sm">
+              Highlights
+            </h4>
+            <div className="space-y-2">
+              {listing.highlights.map((highlight, idx) => (
+                <div key={idx} className="flex items-start space-x-2 text-sm">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                  <span className="text-gray-600">{highlight}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-gray-50 rounded-lg p-4 mb-6 text-sm">
+            <p className="italic text-gray-700 mb-1">&ldquo;{listing.testimonial.quote}&rdquo;</p>
+            <p className="text-xs text-gray-600">— {listing.testimonial.client}</p>
+          </div>
+
+          <p className="text-xs text-gray-500 mb-3">
+            Investor pack — indicative only; not an offer. Review teasers and models with your
+            advisers.
+          </p>
+          <ListingActions listing={listing} />
+        </div>
+      </div>
+    </Card>
+  )
+}
+
 export default function ProjectsPage() {
+  const deals = getDealsListings().sort((a, b) => Number(b.featured) - Number(a.featured))
+  const featuredDeals = deals.filter((d) => d.featured)
+  const otherDeals = deals.filter((d) => !d.featured)
+  const operational = getOperationalReferenceListings()
+
+  const dealsCapacityMw = deals
+    .filter((d) => d.capacityMW > 0)
+    .reduce((s, d) => s + d.capacityMW, 0)
+  const dealsInvestment = deals
+    .map((d) => d.investmentEUR)
+    .filter((n): n is number => n != null)
+    .reduce((s, n) => s + n, 0)
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="relative section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
             <Image
               src="/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg"
-              alt="Successful solar farm projects"
+              alt="Solar farm projects"
               fill
               className="object-cover opacity-10"
             />
           </div>
         </div>
-        
+
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-              Proven Solar Farm
-              <span className="block gradient-text">
-                Success Stories
-              </span>
+              Solar &amp; BESS
+              <span className="block gradient-text">Listings &amp; reference projects</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-              Real projects, real returns. Explore our portfolio of successful solar farm 
-              investments delivering consistent 15-20% ROI across Cyprus.
+              Ready-to-build and secondary-sale opportunities alongside operational reference assets.
+              Download teasers and indicative models where available; express interest via LOI.
             </p>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">12.6MW</div>
-                <div className="text-sm text-gray-600">Available Capacity</div>
+                <div className="text-3xl font-bold gradient-text">
+                  {dealsCapacityMw > 0 ? `${dealsCapacityMw.toFixed(2)}` : '—'}
+                </div>
+                <div className="text-sm text-gray-600">MWp in deal lane</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">€16M+</div>
-                <div className="text-sm text-gray-600">Investment Value</div>
+                <div className="text-3xl font-bold gradient-text">
+                  {dealsInvestment > 0 ? `€${(dealsInvestment / 1e6).toFixed(1)}M+` : '—'}
+                </div>
+                <div className="text-sm text-gray-600">Indic. deal scale</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold gradient-text">~30%</div>
-                <div className="text-sm text-gray-600">Top Leveraged IRR</div>
+                <div className="text-sm text-gray-600">Top levered IRR (RTB)</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold gradient-text">2</div>
-                <div className="text-sm text-gray-600">Active Projects</div>
+                <div className="text-3xl font-bold gradient-text">{deals.length + operational.length}</div>
+                <div className="text-sm text-gray-600">Live listings</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Projects */}
       <section className="section-padding">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Featured Projects
+              Investment opportunities
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Showcase of our most successful solar farm investments with detailed performance data
+              RTB, for sale, and market-level materials — one place for teasers, Excel, and LOI.
             </p>
           </div>
 
           <div className="space-y-8">
-            {projects.filter(p => p.featured).map((project, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="relative h-64 lg:h-auto">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
-                    <div className="absolute top-4 left-4">
-                      <Badge className={getStatusColor(project.statusColor)}>
-                        {project.status}
-                      </Badge>
-                    </div>
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <div className="text-2xl font-bold">{project.capacity}MW</div>
-                      <div className="text-sm opacity-90">Solar Farm</div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-8">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
-                        <div className="flex items-center text-gray-600 mb-4">
-                          <MapPin className="w-4 h-4 mr-1" />
-                          <span className="text-sm">{project.location}</span>
-                          <span className="mx-2">•</span>
-                          <Calendar className="w-4 h-4 mr-1" />
-                          <span className="text-sm">{project.completionDate}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Financial Metrics */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="text-center p-4 bg-gray-50 rounded-lg">
-                        <div className="text-xl font-bold gradient-text">{project.roi}%</div>
-                        <div className="text-xs text-gray-600">Annual ROI</div>
-                      </div>
-                      <div className="text-center p-4 bg-gray-50 rounded-lg">
-                        <div className="text-xl font-bold gradient-text">{formatCurrency(project.annualRevenue)}</div>
-                        <div className="text-xs text-gray-600">Annual Revenue</div>
-                      </div>
-                    </div>
-
-                    {/* Project Highlights */}
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                        <Award className="w-4 h-4 text-solar-500 mr-2" />
-                        Project Highlights
-                      </h4>
-                      <div className="space-y-2">
-                        {project.highlights.map((highlight, idx) => (
-                          <div key={idx} className="flex items-start space-x-2 text-sm">
-                            <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-600">{highlight}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Client Testimonial */}
-                    <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                      <div className="flex items-center mb-2">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                        ))}
-                      </div>
-                      <p className="text-sm text-gray-700 italic mb-2">"{project.testimonial.quote}"</p>
-                      <p className="text-xs text-gray-600">— {project.testimonial.client}</p>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <Button variant="gradient" className="flex-1" asChild>
-                        <Link href={project.link || '/contact'}>
-                          View Full {project.link ? 'Project Listing' : 'Case Study'}
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Link>
-                      </Button>
-                      {!project.link && (
-                        <Button variant="outline">
-                          Similar Projects
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Card>
+            {featuredDeals.map((listing) => (
+              <FeaturedListingRow key={listing.slug} listing={listing} />
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* All Projects Grid */}
-      <section className="section-padding bg-gray-50">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Project Portfolio
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Complete overview of our solar farm developments across Cyprus
-            </p>
-          </div>
+          {otherDeals.length > 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+              {otherDeals.map((listing) => (
+                <ListingCard key={listing.slug} listing={listing} compact />
+              ))}
+            </div>
+          )}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                <div className="relative h-48">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <Badge className={getStatusColor(project.statusColor)}>
-                      {project.status}
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="text-xl font-bold">{project.capacity}MW</div>
-                    <div className="text-xs opacity-90">{project.location}</div>
-                  </div>
-                </div>
-                
-                <CardHeader>
-                  <CardTitle className="group-hover:text-solar-600 transition-colors line-clamp-2">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    {project.completionDate}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <div className="text-lg font-bold gradient-text">{project.roi}%</div>
-                      <div className="text-xs text-gray-600">ROI</div>
-                    </div>
-                    <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <div className="text-lg font-bold gradient-text">{formatCurrency(project.annualRevenue)}</div>
-                      <div className="text-xs text-gray-600">Annual Revenue</div>
-                    </div>
-                  </div>
-
-                  <Button variant="outline" className="w-full group-hover:bg-solar-50" asChild>
-                    <Link href={project.link || '/contact'}>
-                      View Project Details
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Investment Opportunities */}
-      <section className="section-padding">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Current Investment Opportunities
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ready-to-build projects with all permits secured and financing available
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="border-2 border-solar-200 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-gradient-to-l from-solar-500 to-solar-400 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                FEATURED
-              </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+            <Card className="border-2 border-solar-200 hover:shadow-xl transition-all duration-300">
               <CardHeader className="text-center">
-                <Badge variant="solar" className="w-fit mx-auto mb-2">Ready to Build</Badge>
-                <CardTitle>Agios Theodoros Solar + BESS</CardTitle>
-                <CardDescription>2.64 MWp + 10.56 MWh Battery</CardDescription>
+                <Badge variant="solar" className="w-fit mx-auto mb-2">
+                  Bespoke
+                </Badge>
+                <CardTitle>Custom solar / BESS</CardTitle>
+                <CardDescription>1–15 MW • Your specifications</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Total CAPEX</span>
-                    <span className="font-semibold">€4.59M</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Equity Required</span>
-                    <span className="font-semibold">€2.32M</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Leveraged IRR</span>
-                    <span className="font-semibold text-green-600">~30%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Annual Revenue</span>
-                    <span className="font-semibold">~€1.05M</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Target</span>
-                    <span className="font-semibold">Q4 2026</span>
-                  </div>
-                </div>
-                <div className="text-xs text-gray-500 bg-gray-50 rounded p-2">
-                  <strong>Equity options:</strong> 25%, 50%, 75%, or 100%
-                </div>
+                <p className="text-sm text-gray-600 text-center">
+                  Greenfield or retrofit — we align capacity, storage, and offtake with your target
+                  returns.
+                </p>
                 <Button variant="solar" className="w-full" asChild>
-                  <Link href="/projects/agios-theodoros-rtb">
-                    View Full Details
+                  <Link href="/contact">Discuss requirements</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-xl transition-all duration-300 border-dashed">
+              <CardHeader className="text-center">
+                <Badge variant="outline" className="w-fit mx-auto mb-2">
+                  Documentation
+                </Badge>
+                <CardTitle>Letter of intent</CardTitle>
+                <CardDescription>Non-binding expression of interest</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-gray-600 text-center">
+                  Prefill from any listing with <span className="font-mono text-xs">?listing=slug</span>{' '}
+                  on the LOI page.
+                </p>
+                <Button variant="outline" className="w-full" asChild>
+                  <Link href="/loi">
+                    <PenLine className="w-4 h-4 mr-2" />
+                    Open LOI generator
                   </Link>
                 </Button>
               </CardContent>
             </Card>
-
-            <Card className="hover:shadow-xl transition-all duration-300">
-              <CardHeader className="text-center">
-                <Badge variant="outline" className="w-fit mx-auto mb-2">Planning</Badge>
-                <CardTitle>Custom Solar Farm</CardTitle>
-                <CardDescription>1-15MW • Your Specifications</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Investment</span>
-                    <span className="font-semibold">Custom</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Projected ROI</span>
-                    <span className="font-semibold text-green-600">15-20%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Timeline</span>
-                    <span className="font-semibold">6-18 months</span>
-                  </div>
-                </div>
-                <Button variant="outline" className="w-full">
-                  Discuss Requirements
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      <section className="section-padding bg-gray-50">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              Operational reference
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Verified performance data and curtailment — useful benchmarks for BESS and merchant
+              strategy.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {operational.map((listing) => (
+              <ListingCard key={listing.slug} listing={listing} compact />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-gradient-to-r from-solar-500 to-cyprus-600 text-white">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Start Your Solar Investment Journey
+            Start your solar investment journey
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join successful investors who have achieved premium returns with our proven solar farm projects
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Book a call or request a data room — we&apos;ll align the right listing and diligence
+            pack.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100">
-              Schedule Project Tour
+            <Button variant="secondary" size="lg" className="bg-white text-solar-600 hover:bg-gray-100" asChild>
+              <Link href="/contact">Contact Lighthief Cyprus</Link>
             </Button>
-            <Button variant="outline-on-dark" size="lg">
-              Download Project Portfolio
+            <Button variant="outline-on-dark" size="lg" asChild>
+              <Link href="/lighthief-cyprus/parks-for-sale/cyprus-bess-investment-teaser-mar2026.html" target="_blank">
+                Cyprus market teaser
+              </Link>
             </Button>
           </div>
         </div>

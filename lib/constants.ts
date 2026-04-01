@@ -200,6 +200,8 @@ export const COMPANY_DATA = {
   registration: {
     companyNumber: "HE 477423",
     tin: "60187188Q",
+    /** Cyprus Social Insurance employer registry (Α.Μ.Ε.) */
+    employerAME: "3520458/5/4329",
     country: "Cyprus"
   },
   contacts: {
