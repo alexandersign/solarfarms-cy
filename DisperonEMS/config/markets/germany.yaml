@@ -1,0 +1,73 @@
+# GridMind Market Configuration - Germany
+#
+# Grid code: VDE-AR-N 4110 (MV) / VDE-AR-N 4120 (HV)
+# DSO: Various regional DSOs
+# TSO: Amprion, 50Hertz, TenneT, TransnetBW
+# Exchange: EPEX SPOT
+
+market:
+  name: "Germany"
+  code: "DE"
+  dso: "Various"
+  tso: "Amprion / 50Hertz / TenneT / TransnetBW"
+  timezone: "Europe/Berlin"
+  currency: "EUR"
+
+grid:
+  nominal_frequency_hz: 50.0
+  nominal_voltage_lv_v: 230.0
+  nominal_voltage_mv_v: 20000.0
+
+protection:
+  undervoltage_stage1:
+    threshold_pu: 0.80
+    time_s: 2.5
+  overvoltage_stage1:
+    threshold_pu: 1.15
+    time_s: 0.1
+  underfrequency_stage1:
+    threshold_hz: 47.5
+    time_s: 0.0  # Instantaneous
+  overfrequency_stage1:
+    threshold_hz: 51.5
+    time_s: 0.0
+
+lfsm_o:
+  activation_hz: 50.2
+  droop_per_hz: 0.4
+  recovery_rate_per_min: 0.2
+
+qu_curve:
+  points:
+    - [0.92, 0.33]
+    - [0.96, 0.00]
+    - [1.00, 0.00]
+    - [1.04, 0.00]
+    - [1.08, -0.33]
+
+trading:
+  exchange: "EPEX SPOT"
+  bidding_zone: "10Y1001A1001A82H"
+  gate_closure_da_minutes: 720
+  gate_closure_id_minutes: 5
+  products:
+    day_ahead:
+      resolution_minutes: 60
+      block_bids: true
+    intraday:
+      continuous: true
+      auction: true
+      resolution_minutes: 15
+  balancing:
+    fcr:
+      enabled: true
+      product_length_hours: 4
+      symmetric: true
+      procurement: "regelleistung.net"
+    afrr:
+      enabled: true
+      activation_time_s: 300
+      procurement: "regelleistung.net"
+    mfrr:
+      enabled: true
+      activation_time_s: 750

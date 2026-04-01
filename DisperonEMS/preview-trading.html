@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GridMind - Trading Desk</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4', 100:'#dcfce7', 200:'#bbf7d0', 300:'#86efac', 400:'#4ade80', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d' },
+            surface: { 0:'#030712', 1:'#0a0f1a', 2:'#111827', 3:'#1a2332', 4:'#1f2937' },
+          },
+          fontFamily: { sans:['Inter','system-ui','sans-serif'], mono:['JetBrains Mono','Fira Code','monospace'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body { font-family:'Inter',system-ui,sans-serif; background:#030712; }
+    .font-mono { font-family:'JetBrains Mono',monospace; }
+    .tabular-nums { font-variant-numeric:tabular-nums; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+    .pulse-dot { animation:pulse-dot 2s ease-in-out infinite; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ticker-scroll { animation:ticker 25s linear infinite; }
+    .ticker-scroll:hover { animation-play-state:paused; }
+    @keyframes fade-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .fade-in { animation:fade-in .5s ease-out both; }
+    .fade-in-1 { animation-delay:.05s } .fade-in-2 { animation-delay:.1s } .fade-in-3 { animation-delay:.15s } .fade-in-4 { animation-delay:.2s } .fade-in-5 { animation-delay:.25s }
+    .card { background:linear-gradient(135deg,rgba(17,24,39,.95),rgba(17,24,39,.85)); border:1px solid rgba(55,65,81,.5); backdrop-filter:blur(12px); }
+    .card:hover { border-color:rgba(55,65,81,.8); }
+    .sidebar-link { transition:all .15s ease; }
+    .sidebar-link:hover { background:rgba(31,41,55,.5); transform:translateX(2px); }
+    .sidebar-active { background:linear-gradient(90deg,rgba(22,163,74,.15),transparent); border-left:2px solid #4ade80; }
+    .row-hover { transition:all .15s ease; }
+    .row-hover:hover { background:rgba(31,41,55,.3); }
+    .scrollbar-thin::-webkit-scrollbar { width:6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background:transparent; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background:#374151; border-radius:3px; }
+    .order-ask { background:linear-gradient(90deg,transparent,rgba(239,68,68,.04)); }
+    .order-bid { background:linear-gradient(90deg,transparent,rgba(34,197,94,.04)); }
+  </style>
+</head>
+<body class="text-gray-100 antialiased">
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-[260px] bg-surface-1 border-r border-gray-800/60 flex flex-col shrink-0">
+      <div class="p-5 border-b border-gray-800/60">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-400 via-emerald-500 to-brand-600 flex items-center justify-center shadow-lg shadow-brand-500/20">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h1 class="text-[17px] font-bold tracking-tight"><span class="text-white">Grid</span><span class="text-brand-400">Mind</span></h1>
+            <p class="text-[10px] text-gray-500 font-medium tracking-wide uppercase">Energy Management</p>
+          </div>
+        </div>
+      </div>
+      <nav class="flex-1 p-3 space-y-0.5 overflow-auto scrollbar-thin">
+        <div class="px-3 pt-3 pb-2 text-[10px] font-semibold text-gray-600 uppercase tracking-wider">Operations</div>
+        <a href="preview-dashboard.html" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          SCADA HMI
+        </a>
+        <a href="#" class="sidebar-link sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white font-medium">
+          <svg class="w-[18px] h-[18px] text-brand-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          Trading Desk
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          Analytics
+        </a>
+        <div class="px-3 pt-5 pb-2 text-[10px] font-semibold text-gray-600 uppercase tracking-wider">Management</div>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+          Assets
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Alarms
+        </a>
+      </nav>
+      <div class="p-4 border-t border-gray-800/60">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-violet-700 flex items-center justify-center text-[11px] font-bold text-white">TR</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs font-medium text-gray-300">Trader</div>
+            <div class="text-[10px] text-gray-600 truncate">trader@gridmind.com</div>
+          </div>
+          <div class="w-2 h-2 rounded-full bg-brand-400 pulse-dot"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 overflow-auto scrollbar-thin bg-surface-0">
+
+      <!-- Price Ticker -->
+      <div class="bg-surface-1/80 backdrop-blur-lg border-b border-gray-800/40 px-4 py-2 overflow-hidden">
+        <div class="flex items-center gap-8 ticker-scroll whitespace-nowrap">
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H15</span><span class="font-mono font-bold text-white tabular-nums">82.50</span><span class="text-brand-400 font-bold">&#9650; 3.2</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H16</span><span class="font-mono font-bold text-white tabular-nums">89.00</span><span class="text-brand-400 font-bold">&#9650; 5.1</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H17</span><span class="font-mono font-bold text-white tabular-nums">105.50</span><span class="text-brand-400 font-bold">&#9650; 8.7</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H18</span><span class="font-mono font-bold text-amber-400 tabular-nums">120.00</span><span class="text-brand-400 font-bold">&#9650; 12.3</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H19</span><span class="font-mono font-bold text-white tabular-nums">98.00</span><span class="text-red-400 font-bold">&#9660; 2.1</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H20</span><span class="font-mono font-bold text-white tabular-nums">75.00</span><span class="text-red-400 font-bold">&#9660; 5.6</span></span>
+          <span class="text-gray-700/50">|</span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">FCR</span><span class="font-mono font-bold text-cyan-400 tabular-nums">12.50</span><span class="text-[10px] text-gray-600">EUR/MW/h</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">aFRR UP</span><span class="font-mono font-bold text-brand-400 tabular-nums">95.00</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">aFRR DN</span><span class="font-mono font-bold text-blue-400 tabular-nums">35.00</span></span>
+          <span class="text-gray-700/50">|</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H15</span><span class="font-mono font-bold text-white tabular-nums">82.50</span><span class="text-brand-400 font-bold">&#9650; 3.2</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H16</span><span class="font-mono font-bold text-white tabular-nums">89.00</span><span class="text-brand-400 font-bold">&#9650; 5.1</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H17</span><span class="font-mono font-bold text-white tabular-nums">105.50</span><span class="text-brand-400 font-bold">&#9650; 8.7</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H18</span><span class="font-mono font-bold text-amber-400 tabular-nums">120.00</span><span class="text-brand-400 font-bold">&#9650; 12.3</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H19</span><span class="font-mono font-bold text-white tabular-nums">98.00</span><span class="text-red-400 font-bold">&#9660; 2.1</span></span>
+          <span class="inline-flex items-center gap-2 text-[11px]"><span class="text-gray-500 font-medium">DA H20</span><span class="font-mono font-bold text-white tabular-nums">75.00</span><span class="text-red-400 font-bold">&#9660; 5.6</span></span>
+        </div>
+      </div>
+
+      <div class="p-6 space-y-5 max-w-[1600px]">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-xl font-bold tracking-tight">Trading Desk</h1>
+            <p class="text-xs text-gray-500 mt-0.5">Multi-market energy trading &middot; HEnEx / EPEX / Balancing</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 bg-brand-500/8 border border-brand-500/15 rounded-full px-3 py-1.5">
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-dot"></div>
+              <span class="text-[11px] font-medium text-brand-400">Markets Connected</span>
+            </div>
+            <button class="px-4 py-2 rounded-lg bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-semibold hover:from-brand-500 hover:to-brand-400 transition-all shadow-lg shadow-brand-500/15 active:scale-[0.98]">+ New Order</button>
+          </div>
+        </div>
+
+        <!-- P&L Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="card rounded-xl p-4 fade-in fade-in-1">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">P&L Today</div>
+            <div class="text-2xl font-bold tabular-nums text-brand-400 mt-1">+1,847 <span class="text-sm text-gray-500 font-normal">EUR</span></div>
+            <div class="flex items-center gap-1 mt-1">
+              <svg class="w-3 h-3 text-brand-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+              <span class="text-[10px] text-brand-400 font-medium">+12.3% vs yesterday</span>
+            </div>
+          </div>
+          <div class="card rounded-xl p-4 fade-in fade-in-2">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">P&L MTD</div>
+            <div class="text-2xl font-bold tabular-nums text-brand-400 mt-1">+38,420 <span class="text-sm text-gray-500 font-normal">EUR</span></div>
+            <div class="text-[10px] text-gray-600 mt-1">7 Feb 2026</div>
+          </div>
+          <div class="card rounded-xl p-4 fade-in fade-in-3">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Open Positions</div>
+            <div class="text-2xl font-bold tabular-nums text-blue-400 mt-1">5</div>
+            <div class="flex gap-1.5 mt-1">
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-medium">3 DA</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">1 FCR</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium">1 OTC</span>
+            </div>
+          </div>
+          <div class="card rounded-xl p-4 fade-in fade-in-4">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Volume Traded</div>
+            <div class="text-2xl font-bold tabular-nums text-violet-400 mt-1">24.5 <span class="text-sm text-gray-500 font-normal">MWh</span></div>
+            <div class="text-[10px] text-gray-600 mt-1">12 trades today</div>
+          </div>
+          <div class="card rounded-xl p-4 fade-in fade-in-5">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Risk Utilization</div>
+            <div class="text-2xl font-bold tabular-nums text-amber-400 mt-1">42%</div>
+            <div class="mt-2 h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-brand-500 via-amber-500 to-amber-400 rounded-full transition-all duration-1000" style="width:42%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Trading Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Order Book -->
+          <div class="card rounded-xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm font-semibold text-gray-300">Order Book</div>
+              <select class="bg-surface-2 border border-gray-700/60 rounded-lg px-2.5 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-brand-500/50">
+                <option>DA H18 (Peak)</option>
+                <option>DA H17</option>
+                <option>DA H19</option>
+                <option>ID QH 17:15</option>
+              </select>
+            </div>
+            <!-- Asks -->
+            <div class="space-y-[2px] mb-2">
+              <div class="grid grid-cols-3 text-[9px] text-gray-600 px-2.5 pb-1 uppercase tracking-wider font-semibold"><span>Price</span><span class="text-center">Qty (MW)</span><span class="text-right">Depth</span></div>
+              <div class="order-ask grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-red-500/5">
+                <span class="font-mono text-red-400 tabular-nums">125.50</span>
+                <span class="font-mono text-gray-400 text-center tabular-nums">2.50</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-red-500/25 rounded-full" style="width:25%"></div></div></div>
+              </div>
+              <div class="order-ask grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-red-500/5">
+                <span class="font-mono text-red-400 tabular-nums">123.00</span>
+                <span class="font-mono text-gray-400 text-center tabular-nums">5.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-red-500/25 rounded-full" style="width:50%"></div></div></div>
+              </div>
+              <div class="order-ask grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-red-500/5">
+                <span class="font-mono text-red-400 tabular-nums">121.00</span>
+                <span class="font-mono text-gray-400 text-center tabular-nums">8.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-red-500/30 rounded-full" style="width:80%"></div></div></div>
+              </div>
+              <div class="order-ask grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-red-500/10 bg-red-500/[.03]">
+                <span class="font-mono text-red-300 font-bold tabular-nums">120.50</span>
+                <span class="font-mono text-gray-300 text-center font-medium tabular-nums">10.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-red-500/40 rounded-full" style="width:100%"></div></div></div>
+              </div>
+            </div>
+            <!-- Spread -->
+            <div class="text-center py-3 border-y border-gray-800/60 my-2">
+              <span class="text-xl font-mono font-bold text-white tabular-nums">120.00</span>
+              <div class="text-[10px] text-gray-500 mt-0.5">Spread: <span class="text-amber-400 font-semibold">0.50</span> EUR/MWh</div>
+            </div>
+            <!-- Bids -->
+            <div class="space-y-[2px] mt-2">
+              <div class="order-bid grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-brand-500/10 bg-brand-500/[.03]">
+                <span class="font-mono text-brand-300 font-bold tabular-nums">119.50</span>
+                <span class="font-mono text-gray-300 text-center font-medium tabular-nums">12.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500/40 rounded-full" style="width:100%"></div></div></div>
+              </div>
+              <div class="order-bid grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-brand-500/5">
+                <span class="font-mono text-brand-400 tabular-nums">118.00</span>
+                <span class="font-mono text-gray-400 text-center tabular-nums">7.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500/25 rounded-full" style="width:58%"></div></div></div>
+              </div>
+              <div class="order-bid grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-brand-500/5">
+                <span class="font-mono text-brand-400 tabular-nums">115.00</span>
+                <span class="font-mono text-gray-400 text-center tabular-nums">4.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500/25 rounded-full" style="width:33%"></div></div></div>
+              </div>
+              <div class="order-bid grid grid-cols-3 items-center px-2.5 py-1.5 rounded text-xs border border-brand-500/5">
+                <span class="font-mono text-brand-400 tabular-nums">112.00</span>
+                <span class="font-mono text-gray-400 text-center tabular-nums">3.00</span>
+                <div class="flex justify-end"><div class="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500/25 rounded-full" style="width:25%"></div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Chart -->
+          <div class="card rounded-xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <div class="text-sm font-semibold text-gray-300">Day-Ahead Price Curve</div>
+                <div class="text-[10px] text-gray-600 mt-0.5">Tomorrow's delivery &middot; EUR/MWh</div>
+              </div>
+              <div class="flex gap-1">
+                <button class="text-[10px] px-2.5 py-1.5 rounded-md bg-surface-2 text-gray-400 border border-gray-700/50 hover:text-gray-300 transition-colors">Forecast</button>
+                <button class="text-[10px] px-2.5 py-1.5 rounded-md bg-blue-500/15 text-blue-400 border border-blue-500/25 font-medium">Actual</button>
+              </div>
+            </div>
+            <div class="relative h-[270px]">
+              <svg viewBox="0 0 500 260" class="w-full h-full" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="amberGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15"/><stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/></linearGradient>
+                  <linearGradient id="forecastGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0.08"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient>
+                </defs>
+                <!-- Grid -->
+                <line x1="38" y1="25" x2="485" y2="25" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="38" y1="70" x2="485" y2="70" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="38" y1="120" x2="485" y2="120" stroke="#374151" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <line x1="38" y1="170" x2="485" y2="170" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="38" y1="215" x2="485" y2="215" stroke="#1f2937" stroke-width="0.5"/>
+                <!-- Y labels -->
+                <text x="4" y="29" fill="#4b5563" font-size="8" font-family="monospace">150</text>
+                <text x="4" y="74" fill="#4b5563" font-size="8" font-family="monospace">120</text>
+                <text x="10" y="124" fill="#4b5563" font-size="8" font-family="monospace">80</text>
+                <text x="10" y="174" fill="#4b5563" font-size="8" font-family="monospace">50</text>
+                <text x="10" y="219" fill="#4b5563" font-size="8" font-family="monospace">20</text>
+                <!-- X labels -->
+                <text x="38" y="235" fill="#374151" font-size="7" font-family="monospace">00</text>
+                <text x="112" y="235" fill="#374151" font-size="7" font-family="monospace">04</text>
+                <text x="186" y="235" fill="#374151" font-size="7" font-family="monospace">08</text>
+                <text x="262" y="235" fill="#374151" font-size="7" font-family="monospace">12</text>
+                <text x="336" y="235" fill="#374151" font-size="7" font-family="monospace">16</text>
+                <text x="412" y="235" fill="#374151" font-size="7" font-family="monospace">20</text>
+                <text x="475" y="235" fill="#374151" font-size="7" font-family="monospace">24</text>
+                <!-- Forecast confidence band -->
+                <path d="M38,178 L58,183 L78,188 L98,186 L118,183 L138,178 L158,168 L178,153 L198,143 L218,133 L238,128 L258,123 L278,118 L298,108 L318,93 L338,73 L358,63 L378,68 L398,83 L418,98 L438,113 L458,133 L478,153 L478,215 L38,215Z" fill="url(#forecastGrad)"/>
+                <path d="M38,178 L58,183 L78,188 L98,186 L118,183 L138,178 L158,168 L178,153 L198,143 L218,133 L238,128 L258,123 L278,118 L298,108 L318,93 L338,73 L358,63 L378,68 L398,83 L418,98 L438,113 L458,133 L478,153" fill="none" stroke="#60a5fa" stroke-width="0.8" opacity="0.25" stroke-dasharray="3,3"/>
+                <path d="M38,168 L58,173 L78,180 L98,178 L118,173 L138,163 L158,153 L178,138 L198,128 L218,118 L238,113 L258,108 L278,103 L298,93 L318,78 L338,55 L358,48 L378,53 L398,68 L418,83 L438,103 L458,123 L478,143" fill="none" stroke="#60a5fa" stroke-width="0.8" opacity="0.25" stroke-dasharray="3,3"/>
+                <!-- Peak zone -->
+                <rect x="328" y="20" width="40" height="200" fill="#f59e0b" opacity="0.03" rx="3"/>
+                <text x="348" y="18" fill="#f59e0b" font-size="7" opacity="0.5" text-anchor="middle" font-weight="600">PEAK</text>
+                <!-- Actual price area -->
+                <path d="M38,173 L58,178 L78,185 L98,183 L118,178 L138,170 L158,160 L178,145 L198,135 L218,125 L238,120 L258,115 L278,110 L298,100 L318,85 L338,63 L358,55 L378,60 L398,75 L418,90 L438,108 L458,128 L478,148 L478,215 L38,215Z" fill="url(#amberGrad)"/>
+                <!-- Actual price line -->
+                <path d="M38,173 L58,178 L78,185 L98,183 L118,178 L138,170 L158,160 L178,145 L198,135 L218,125 L238,120 L258,115 L278,110 L298,100 L318,85 L338,63 L358,55 L378,60 L398,75 L418,90 L438,108 L458,128 L478,148" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Our trades -->
+                <circle cx="98" cy="183" r="6" fill="#3b82f6" stroke="#030712" stroke-width="2"/>
+                <text x="106" y="195" fill="#3b82f6" font-size="7" font-weight="bold">BUY 1.25MW</text>
+                <circle cx="358" cy="55" r="6" fill="#22c55e" stroke="#030712" stroke-width="2"/>
+                <text x="366" y="50" fill="#22c55e" font-size="7" font-weight="bold">SELL 1.25MW</text>
+                <!-- Profit arrow -->
+                <line x1="100" y1="183" x2="356" y2="58" stroke="#4ade80" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.4"/>
+                <text x="228" y="115" fill="#4ade80" font-size="8" font-weight="bold" opacity="0.6" text-anchor="middle">+82 EUR/MWh</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Revenue by Market -->
+          <div class="card rounded-xl p-5 flex flex-col">
+            <div class="text-sm font-semibold text-gray-300 mb-5">Revenue by Market (MTD)</div>
+
+            <div class="flex-1 space-y-3.5">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-[2px] bg-blue-500"></div><span class="text-xs text-gray-400">Day-Ahead</span></div>
+                  <span class="text-xs font-mono font-bold text-white tabular-nums">+22,150</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full" style="width:80%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-[2px] bg-cyan-500"></div><span class="text-xs text-gray-400">FCR</span></div>
+                  <span class="text-xs font-mono font-bold text-white tabular-nums">+8,400</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-full" style="width:55%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-[2px] bg-violet-500"></div><span class="text-xs text-gray-400">aFRR</span></div>
+                  <span class="text-xs font-mono font-bold text-white tabular-nums">+5,200</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-violet-600 to-violet-400 rounded-full" style="width:35%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-[2px] bg-amber-500"></div><span class="text-xs text-gray-400">Intraday</span></div>
+                  <span class="text-xs font-mono font-bold text-white tabular-nums">+3,800</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full" style="width:25%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-[2px] bg-emerald-500"></div><span class="text-xs text-gray-400">OTC / Bilateral</span></div>
+                  <span class="text-xs font-mono font-bold text-white tabular-nums">+1,200</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full" style="width:10%"></div></div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-[2px] bg-red-500/70"></div><span class="text-xs text-gray-500">Degradation Cost</span></div>
+                  <span class="text-xs font-mono font-bold text-red-400 tabular-nums">-2,330</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-red-600/60 to-red-400/60 rounded-full" style="width:15%"></div></div>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-800/60 pt-3 mt-4">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400 font-semibold">Net Revenue MTD</span>
+                <span class="text-xl font-mono font-bold text-brand-400 tabular-nums">+38,420 <span class="text-sm text-gray-500 font-normal">EUR</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trade Blotter -->
+        <div class="card rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div class="text-sm font-semibold text-gray-300">Trade Blotter</div>
+            <div class="flex gap-1">
+              <button class="text-[11px] px-3 py-1.5 rounded-lg bg-surface-2 text-white border border-gray-700/60 font-medium">All</button>
+              <button class="text-[11px] px-3 py-1.5 rounded-lg text-gray-500 hover:bg-surface-2 hover:text-gray-300 border border-transparent transition-colors">Open</button>
+              <button class="text-[11px] px-3 py-1.5 rounded-lg text-gray-500 hover:bg-surface-2 hover:text-gray-300 border border-transparent transition-colors">Filled</button>
+              <button class="text-[11px] px-3 py-1.5 rounded-lg text-gray-500 hover:bg-surface-2 hover:text-gray-300 border border-transparent transition-colors">History</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-[9px] uppercase tracking-wider text-gray-500 border-b border-gray-800/60 font-semibold">
+                  <th class="pb-3 pr-4">Time</th>
+                  <th class="pb-3 pr-4">Market</th>
+                  <th class="pb-3 pr-4">Product</th>
+                  <th class="pb-3 pr-4">Side</th>
+                  <th class="pb-3 pr-4 text-right">Qty (MW)</th>
+                  <th class="pb-3 pr-4 text-right">Price (EUR)</th>
+                  <th class="pb-3 pr-4 text-right">P&L</th>
+                  <th class="pb-3">Status</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-300">
+                <tr class="row-hover border-b border-gray-800/30">
+                  <td class="py-3.5 font-mono text-[11px] text-gray-500 tabular-nums">14:32:07</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>Day-Ahead</span></td>
+                  <td class="py-3.5 font-mono text-xs">H18</td>
+                  <td class="py-3.5"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-brand-500/12 text-brand-400 border border-brand-500/15">SELL</span></td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">1.25</td>
+                  <td class="py-3.5 font-mono text-right text-amber-400 tabular-nums">120.00</td>
+                  <td class="py-3.5 font-mono text-right text-brand-400 tabular-nums font-medium">+150.00</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-brand-500/12 text-brand-400 border border-brand-500/15"><div class="w-1 h-1 rounded-full bg-brand-400"></div>Filled</span></td>
+                </tr>
+                <tr class="row-hover border-b border-gray-800/30">
+                  <td class="py-3.5 font-mono text-[11px] text-gray-500 tabular-nums">14:15:22</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-violet-400"></div>Intraday</span></td>
+                  <td class="py-3.5 font-mono text-xs">QH 17:15</td>
+                  <td class="py-3.5"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/12 text-blue-400 border border-blue-500/15">BUY</span></td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">0.50</td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">42.00</td>
+                  <td class="py-3.5 font-mono text-right text-gray-600 tabular-nums">&mdash;</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/12 text-amber-400 border border-amber-500/15"><div class="w-1 h-1 rounded-full bg-amber-400 pulse-dot"></div>Pending</span></td>
+                </tr>
+                <tr class="row-hover border-b border-gray-800/30">
+                  <td class="py-3.5 font-mono text-[11px] text-gray-500 tabular-nums">13:45:00</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-cyan-400"></div>FCR</span></td>
+                  <td class="py-3.5 font-mono text-xs">16-20h Sym</td>
+                  <td class="py-3.5"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-brand-500/12 text-brand-400 border border-brand-500/15">SELL</span></td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">0.80</td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">12.50</td>
+                  <td class="py-3.5 font-mono text-right text-brand-400 tabular-nums font-medium">+40.00</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-brand-500/12 text-brand-400 border border-brand-500/15"><div class="w-1 h-1 rounded-full bg-brand-400"></div>Filled</span></td>
+                </tr>
+                <tr class="row-hover border-b border-gray-800/30">
+                  <td class="py-3.5 font-mono text-[11px] text-gray-500 tabular-nums">12:00:00</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>Day-Ahead</span></td>
+                  <td class="py-3.5 font-mono text-xs">H03 (Night)</td>
+                  <td class="py-3.5"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/12 text-blue-400 border border-blue-500/15">BUY</span></td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">1.25</td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">38.00</td>
+                  <td class="py-3.5 font-mono text-right text-brand-400 tabular-nums font-medium">+102.50</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-brand-500/12 text-brand-400 border border-brand-500/15"><div class="w-1 h-1 rounded-full bg-brand-400"></div>Filled</span></td>
+                </tr>
+                <tr class="row-hover border-b border-gray-800/30">
+                  <td class="py-3.5 font-mono text-[11px] text-gray-500 tabular-nums">11:30:00</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>OTC</span></td>
+                  <td class="py-3.5 font-mono text-xs">Baseload Feb</td>
+                  <td class="py-3.5"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-brand-500/12 text-brand-400 border border-brand-500/15">SELL</span></td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">0.30</td>
+                  <td class="py-3.5 font-mono text-right tabular-nums">72.00</td>
+                  <td class="py-3.5 font-mono text-right text-brand-400 tabular-nums font-medium">+21.60</td>
+                  <td class="py-3.5"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/12 text-blue-400 border border-blue-500/15"><div class="w-1 h-1 rounded-full bg-blue-400 pulse-dot"></div>Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Risk & Compliance -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Risk -->
+          <div class="card rounded-xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm font-semibold text-gray-300">Risk Dashboard</div>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-[10px] font-medium bg-brand-500/8 text-brand-400 border border-brand-500/15">
+                <div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>All Clear
+              </span>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Position Limit</div>
+                <div class="flex items-center gap-2 mt-2">
+                  <div class="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-blue-500 rounded-full" style="width:35%"></div></div>
+                  <span class="text-[11px] font-mono text-gray-400 tabular-nums">3.5/10 MW</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Daily Volume</div>
+                <div class="flex items-center gap-2 mt-2">
+                  <div class="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-violet-500 rounded-full" style="width:24%"></div></div>
+                  <span class="text-[11px] font-mono text-gray-400 tabular-nums">24/100 MWh</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Loss Limit</div>
+                <div class="flex items-center gap-2 mt-2">
+                  <div class="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full" style="width:0%"></div></div>
+                  <span class="text-[11px] font-mono text-brand-400 tabular-nums">+1.8k/-10k</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Kill Switch</div>
+                <div class="mt-2">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-brand-500/8 text-brand-400 border border-brand-500/15">
+                    <div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>Inactive
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REMIT -->
+          <div class="card rounded-xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm font-semibold text-gray-300">REMIT Compliance</div>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-[10px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/15">
+                2 pending
+              </span>
+            </div>
+            <div class="space-y-3.5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">Reports Submitted Today</span>
+                <span class="text-xs font-mono text-white tabular-nums font-medium">12</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">ACER Participant ID</span>
+                <span class="text-xs font-mono text-gray-400">ACER-CY-00123</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">Last Submission</span>
+                <span class="text-xs font-mono text-gray-400 tabular-nums">14:30:00 UTC</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400">Compliance Status</span>
+                <span class="inline-flex items-center gap-1 text-xs text-brand-400 font-medium"><div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>Compliant</span>
+              </div>
+              <button class="w-full mt-1 text-xs px-3 py-2.5 rounded-lg bg-surface-2 border border-gray-700/60 text-gray-300 hover:bg-surface-3 hover:text-white transition-all font-medium active:scale-[0.99]">Submit Pending Reports</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

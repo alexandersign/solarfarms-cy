@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GridMind - EMS Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f0fdf4', 100:'#dcfce7', 200:'#bbf7d0', 300:'#86efac', 400:'#4ade80', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d' },
+            surface: { 0:'#030712', 1:'#0a0f1a', 2:'#111827', 3:'#1a2332', 4:'#1f2937' },
+          },
+          fontFamily: { sans:['Inter','system-ui','sans-serif'], mono:['JetBrains Mono','Fira Code','monospace'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body { font-family:'Inter',system-ui,sans-serif; background:#030712; }
+    .font-mono { font-family:'JetBrains Mono',monospace; }
+    .tabular-nums { font-variant-numeric:tabular-nums; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+    .pulse-dot { animation:pulse-dot 2s ease-in-out infinite; }
+    @keyframes fade-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .fade-in { animation:fade-in .5s ease-out both; }
+    .fade-in-1 { animation-delay:.05s } .fade-in-2 { animation-delay:.1s } .fade-in-3 { animation-delay:.15s } .fade-in-4 { animation-delay:.2s }
+    .fade-in-5 { animation-delay:.25s } .fade-in-6 { animation-delay:.3s } .fade-in-7 { animation-delay:.35s }
+    .card { background:linear-gradient(135deg,rgba(17,24,39,.95),rgba(17,24,39,.85)); border:1px solid rgba(55,65,81,.5); backdrop-filter:blur(12px); }
+    .card:hover { border-color:rgba(55,65,81,.8); }
+    .glow-green { box-shadow:0 0 20px rgba(74,222,128,.08); }
+    .sidebar-link { transition:all .15s ease; }
+    .sidebar-link:hover { background:rgba(31,41,55,.5); transform:translateX(2px); }
+    .sidebar-active { background:linear-gradient(90deg,rgba(22,163,74,.15),transparent); border-left:2px solid #4ade80; }
+    .measurement-tile { transition:all .2s ease; }
+    .measurement-tile:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,.3); }
+    .scrollbar-thin::-webkit-scrollbar { width:6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background:transparent; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background:#374151; border-radius:3px; }
+  </style>
+</head>
+<body class="text-gray-100 antialiased">
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-[260px] bg-surface-1 border-r border-gray-800/60 flex flex-col shrink-0">
+      <!-- Logo -->
+      <div class="p-5 border-b border-gray-800/60">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-400 via-emerald-500 to-brand-600 flex items-center justify-center shadow-lg shadow-brand-500/20">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h1 class="text-[17px] font-bold tracking-tight">
+              <span class="text-white">Grid</span><span class="text-brand-400">Mind</span>
+            </h1>
+            <p class="text-[10px] text-gray-500 font-medium tracking-wide uppercase">Energy Management</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 p-3 space-y-0.5 overflow-auto scrollbar-thin">
+        <div class="px-3 pt-3 pb-2 text-[10px] font-semibold text-gray-600 uppercase tracking-wider">Operations</div>
+        <a href="#" class="sidebar-link sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white font-medium">
+          <svg class="w-[18px] h-[18px] text-brand-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          SCADA HMI
+        </a>
+        <a href="preview-trading.html" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          Trading Desk
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          Analytics
+        </a>
+
+        <div class="px-3 pt-5 pb-2 text-[10px] font-semibold text-gray-600 uppercase tracking-wider">Management</div>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+          Assets
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Alarms
+          <span class="ml-auto bg-amber-500/15 text-amber-400 text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-amber-500/20">1</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <!-- User -->
+      <div class="p-4 border-t border-gray-800/60">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-gray-600 to-gray-700 flex items-center justify-center text-[11px] font-bold text-gray-300">OP</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs font-medium text-gray-300">Operator</div>
+            <div class="text-[10px] text-gray-600 truncate">admin@gridmind.com</div>
+          </div>
+          <div class="w-2 h-2 rounded-full bg-brand-400 pulse-dot"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 overflow-auto scrollbar-thin bg-surface-0">
+
+      <!-- Top Bar -->
+      <header class="sticky top-0 z-10 bg-surface-0/80 backdrop-blur-xl border-b border-gray-800/40 px-6 py-3">
+        <div class="flex items-center justify-between max-w-[1600px]">
+          <div>
+            <h1 class="text-xl font-bold tracking-tight">Dashboard</h1>
+            <p class="text-xs text-gray-500 mt-0.5">Real-time fleet overview &middot; 1 site active</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 bg-brand-500/8 border border-brand-500/15 rounded-full px-3 py-1.5">
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-dot"></div>
+              <span class="text-[11px] font-medium text-brand-400">All Systems Online</span>
+            </div>
+            <div class="h-5 w-px bg-gray-800"></div>
+            <span class="text-xs text-gray-500 font-mono bg-surface-2 px-3 py-1.5 rounded-lg border border-gray-800/50 tabular-nums" id="clock">14:32:07</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-6 space-y-5 max-w-[1600px]">
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Sites -->
+          <div class="card rounded-xl p-5 fade-in fade-in-1">
+            <div class="flex items-center justify-between">
+              <div class="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Total Sites</div>
+              <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                <svg class="w-[18px] h-[18px] text-blue-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+            </div>
+            <div class="mt-3 text-3xl font-bold tabular-nums">1</div>
+            <div class="flex items-center gap-1.5 mt-1.5">
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>
+              <span class="text-[11px] text-gray-500">Cyprus pilot active</span>
+            </div>
+          </div>
+
+          <!-- Power -->
+          <div class="card rounded-xl p-5 fade-in fade-in-2">
+            <div class="flex items-center justify-between">
+              <div class="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Active Power</div>
+              <div class="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                <svg class="w-[18px] h-[18px] text-amber-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1.5">
+              <span class="text-3xl font-bold tabular-nums text-amber-400">625.0</span>
+              <span class="text-sm text-gray-500 font-medium">kW</span>
+            </div>
+            <div class="flex items-center gap-1 mt-1.5">
+              <svg class="w-3 h-3 text-brand-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+              <span class="text-[11px] text-brand-400 font-medium">+12.5% vs yesterday</span>
+            </div>
+          </div>
+
+          <!-- SOC -->
+          <div class="card rounded-xl p-5 fade-in fade-in-3">
+            <div class="flex items-center justify-between">
+              <div class="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Average SOC</div>
+              <div class="w-9 h-9 rounded-lg bg-brand-500/10 flex items-center justify-center">
+                <svg class="w-[18px] h-[18px] text-brand-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="6" y="7" width="12" height="14" rx="2"/><rect x="9" y="4" width="6" height="3" rx="1"/><rect x="9" y="12" width="6" height="5" rx="0.5" fill="currentColor" opacity="0.3"/></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1.5">
+              <span class="text-3xl font-bold tabular-nums text-brand-400">72.5</span>
+              <span class="text-sm text-gray-500 font-medium">%</span>
+            </div>
+            <div class="mt-2 w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-brand-700 via-brand-500 to-brand-400 transition-all duration-1000" style="width:72.5%"></div>
+            </div>
+          </div>
+
+          <!-- Alarms -->
+          <div class="card rounded-xl p-5 fade-in fade-in-4">
+            <div class="flex items-center justify-between">
+              <div class="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Active Alarms</div>
+              <div class="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                <svg class="w-[18px] h-[18px] text-amber-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              </div>
+            </div>
+            <div class="mt-3 flex items-baseline gap-2">
+              <span class="text-3xl font-bold tabular-nums text-amber-400">1</span>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-amber-400 border border-amber-500/20">WARNING</span>
+            </div>
+            <div class="flex items-center gap-1.5 mt-1.5">
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-400"></div>
+              <span class="text-[11px] text-gray-500">No critical alarms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Site Card -->
+        <div class="card rounded-xl p-5 glow-green fade-in fade-in-5">
+          <div class="flex items-start justify-between flex-wrap gap-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/20 to-emerald-600/20 border border-brand-500/25 flex items-center justify-center">
+                <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-3 flex-wrap">
+                  <h3 class="text-lg font-bold tracking-tight">Cyprus BESS Pilot</h3>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/12 text-amber-400 border border-amber-500/20">
+                    <div class="w-1 h-1 rounded-full bg-amber-400 pulse-dot"></div>
+                    Discharging
+                  </span>
+                </div>
+                <div class="flex items-center gap-2 mt-1 flex-wrap">
+                  <span class="text-xs text-gray-500 font-mono bg-surface-2 px-2 py-0.5 rounded">CY-BESS-001</span>
+                  <span class="text-[11px] text-gray-500">Kehua 1.25MW / Linyang 5.0MWh</span>
+                  <span class="text-gray-700">&middot;</span>
+                  <span class="text-[11px] text-gray-500">EAC / TSOC</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-brand-500/8 text-brand-400 border border-brand-500/15">
+                <div class="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-dot"></div>
+                IEC 104
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-brand-500/8 text-brand-400 border border-brand-500/15">
+                <div class="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-dot"></div>
+                NATS
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-brand-500/8 text-brand-400 border border-brand-500/15">
+                <div class="w-1.5 h-1.5 rounded-full bg-brand-400 pulse-dot"></div>
+                Modbus
+              </span>
+            </div>
+          </div>
+
+          <!-- Live Measurements -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mt-5">
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Active P</div>
+              <div class="text-[20px] font-mono font-bold text-blue-400 mt-1 tabular-nums leading-none">625.0</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">kW</div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Reactive Q</div>
+              <div class="text-[20px] font-mono font-bold text-violet-400 mt-1 tabular-nums leading-none">42.3</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">kVAr</div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">SOC</div>
+              <div class="text-[20px] font-mono font-bold text-brand-400 mt-1 tabular-nums leading-none">72.5</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">%</div>
+              <div class="mt-1.5 h-1 bg-gray-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-brand-700 to-brand-400 rounded-full" style="width:72.5%"></div></div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">SOH</div>
+              <div class="text-[20px] font-mono font-bold text-emerald-400 mt-1 tabular-nums leading-none">99.2</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">%</div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Frequency</div>
+              <div class="text-[20px] font-mono font-bold text-cyan-400 mt-1 tabular-nums leading-none">50.01</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">Hz</div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">AC Voltage</div>
+              <div class="text-[20px] font-mono font-bold text-amber-400 mt-1 tabular-nums leading-none">689.2</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">V</div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">DC Voltage</div>
+              <div class="text-[20px] font-mono font-bold text-orange-400 mt-1 tabular-nums leading-none">1328</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">V</div>
+            </div>
+            <div class="measurement-tile bg-surface-0 rounded-lg p-3 border border-gray-800/40">
+              <div class="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Cell Temp</div>
+              <div class="text-[20px] font-mono font-bold text-red-400 mt-1 tabular-nums leading-none">28.3</div>
+              <div class="text-[10px] text-gray-600 mt-0.5">&deg;C</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Power Profile -->
+          <div class="card rounded-xl p-5 fade-in fade-in-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <div class="text-sm font-semibold text-gray-300">Power Profile</div>
+                <div class="text-[10px] text-gray-600 mt-0.5">24-hour dispatch cycle</div>
+              </div>
+              <div class="flex gap-4 text-[10px] text-gray-500">
+                <span class="flex items-center gap-1.5"><div class="w-5 h-[2px] rounded bg-blue-400"></div>Active (kW)</span>
+                <span class="flex items-center gap-1.5"><div class="w-5 h-[2px] rounded bg-violet-400 opacity-60" style="background:repeating-linear-gradient(90deg,#a78bfa 0,#a78bfa 3px,transparent 3px,transparent 6px)"></div>Reactive (kVAr)</span>
+              </div>
+            </div>
+            <div class="relative h-52">
+              <svg viewBox="0 0 620 200" class="w-full h-full" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="powerGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Grid -->
+                <line x1="45" y1="20" x2="600" y2="20" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="45" y1="55" x2="600" y2="55" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="45" y1="100" x2="600" y2="100" stroke="#374151" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <line x1="45" y1="145" x2="600" y2="145" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="45" y1="175" x2="600" y2="175" stroke="#1f2937" stroke-width="0.5"/>
+                <!-- Y axis -->
+                <text x="3" y="24" fill="#4b5563" font-size="9" font-family="monospace">1250</text>
+                <text x="13" y="59" fill="#4b5563" font-size="9" font-family="monospace">625</text>
+                <text x="28" y="104" fill="#4b5563" font-size="9" font-family="monospace">0</text>
+                <text x="8" y="149" fill="#4b5563" font-size="9" font-family="monospace">-625</text>
+                <text x="0" y="179" fill="#4b5563" font-size="9" font-family="monospace">-1250</text>
+                <!-- X axis -->
+                <text x="45" y="192" fill="#374151" font-size="8" font-family="monospace">00</text>
+                <text x="138" y="192" fill="#374151" font-size="8" font-family="monospace">04</text>
+                <text x="230" y="192" fill="#374151" font-size="8" font-family="monospace">08</text>
+                <text x="322" y="192" fill="#374151" font-size="8" font-family="monospace">12</text>
+                <text x="414" y="192" fill="#374151" font-size="8" font-family="monospace">16</text>
+                <text x="507" y="192" fill="#374151" font-size="8" font-family="monospace">20</text>
+                <text x="588" y="192" fill="#374151" font-size="8" font-family="monospace">24</text>
+                <!-- Charging zone shade -->
+                <rect x="45" y="15" width="185" height="165" fill="#3b82f6" opacity="0.02" rx="2"/>
+                <text x="115" y="14" fill="#3b82f6" font-size="7" opacity="0.4" text-anchor="middle">CHARGING</text>
+                <!-- Discharging zone shade -->
+                <rect x="260" y="15" width="250" height="165" fill="#22c55e" opacity="0.02" rx="2"/>
+                <text x="380" y="14" fill="#22c55e" font-size="7" opacity="0.4" text-anchor="middle">DISCHARGING</text>
+                <!-- Active power area -->
+                <path d="M45,145 L80,148 L115,152 L150,150 L185,145 L220,125 L260,100 L290,70 L322,55 L360,60 L400,55 L420,58 L450,55 L480,65 L510,78 L545,90 L580,100 L600,105 L600,175 L45,175Z" fill="url(#powerGrad)"/>
+                <!-- Active power line -->
+                <path d="M45,145 L80,148 L115,152 L150,150 L185,145 L220,125 L260,100 L290,70 L322,55 L360,60 L400,55 L420,58 L450,55 L480,65 L510,78 L545,90 L580,100 L600,105" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Reactive -->
+                <path d="M45,98 L80,97 L115,96 L150,97 L185,98 L220,95 L260,92 L290,89 L322,87 L360,89 L400,87 L440,88 L480,91 L520,94 L560,97 L600,98" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.6"/>
+                <!-- NOW line -->
+                <line x1="450" y1="10" x2="450" y2="180" stroke="#4ade80" stroke-width="1" stroke-dasharray="3,3" opacity="0.7"/>
+                <rect x="436" y="3" width="28" height="12" rx="3" fill="#4ade80" opacity="0.15"/>
+                <text x="450" y="11" fill="#4ade80" font-size="7" font-family="monospace" font-weight="bold" text-anchor="middle">NOW</text>
+                <circle cx="450" cy="55" r="3.5" fill="#60a5fa" stroke="#030712" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- SOC Profile -->
+          <div class="card rounded-xl p-5 fade-in fade-in-7">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <div class="text-sm font-semibold text-gray-300">SOC Profile</div>
+                <div class="text-[10px] text-gray-600 mt-0.5">State of charge over 24h</div>
+              </div>
+              <div class="flex gap-4 text-[10px] text-gray-500">
+                <span class="flex items-center gap-1.5"><div class="w-5 h-[2px] rounded bg-brand-400"></div>SOC (%)</span>
+                <span class="flex items-center gap-1.5"><div class="w-5 h-[2px] rounded bg-red-400 opacity-50" style="background:repeating-linear-gradient(90deg,#f87171 0,#f87171 3px,transparent 3px,transparent 6px)"></div>Limits</span>
+              </div>
+            </div>
+            <div class="relative h-52">
+              <svg viewBox="0 0 620 200" class="w-full h-full" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="socGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Grid -->
+                <line x1="45" y1="20" x2="600" y2="20" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="45" y1="55" x2="600" y2="55" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="45" y1="100" x2="600" y2="100" stroke="#374151" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <line x1="45" y1="145" x2="600" y2="145" stroke="#1f2937" stroke-width="0.5"/>
+                <line x1="45" y1="175" x2="600" y2="175" stroke="#1f2937" stroke-width="0.5"/>
+                <!-- Y axis -->
+                <text x="10" y="24" fill="#4b5563" font-size="9" font-family="monospace">100%</text>
+                <text x="15" y="59" fill="#4b5563" font-size="9" font-family="monospace">75%</text>
+                <text x="15" y="104" fill="#4b5563" font-size="9" font-family="monospace">50%</text>
+                <text x="15" y="149" fill="#4b5563" font-size="9" font-family="monospace">25%</text>
+                <text x="22" y="179" fill="#4b5563" font-size="9" font-family="monospace">0%</text>
+                <!-- SOC limits -->
+                <line x1="45" y1="28" x2="600" y2="28" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.35"/>
+                <line x1="45" y1="168" x2="600" y2="168" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.35"/>
+                <text x="558" y="25" fill="#ef4444" font-size="7" opacity="0.5">MAX 95%</text>
+                <text x="563" y="166" fill="#ef4444" font-size="7" opacity="0.5">MIN 5%</text>
+                <!-- SOC area -->
+                <path d="M45,60 L80,70 L115,82 L150,92 L185,98 L210,92 L240,82 L270,70 L300,60 L330,48 L360,42 L390,44 L420,48 L450,55 L470,60 L490,65 L510,67 L530,65 L550,60 L570,55 L590,52 L600,53 L600,175 L45,175Z" fill="url(#socGrad)"/>
+                <!-- SOC line -->
+                <path d="M45,60 L80,70 L115,82 L150,92 L185,98 L210,92 L240,82 L270,70 L300,60 L330,48 L360,42 L390,44 L420,48 L450,55 L470,60 L490,65 L510,67 L530,65 L550,60 L570,55 L590,52 L600,53" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- NOW -->
+                <line x1="450" y1="10" x2="450" y2="180" stroke="#4ade80" stroke-width="1" stroke-dasharray="3,3" opacity="0.7"/>
+                <circle cx="450" cy="55" r="5" fill="#4ade80" stroke="#030712" stroke-width="2"/>
+                <rect x="457" y="47" width="52" height="16" rx="4" fill="#030712" stroke="#4ade80" stroke-width="0.5" opacity="0.9"/>
+                <text x="483" y="58" fill="#4ade80" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">72.5%</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Market Prices -->
+          <div class="card rounded-xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm font-semibold text-gray-300">Market Prices</div>
+              <span class="text-[10px] text-gray-600 font-mono">EUR/MWh</span>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-400">Current Hour</span>
+                <div class="flex items-center gap-2">
+                  <span class="font-mono font-bold text-white tabular-nums">82.50</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-brand-500/15 text-brand-400 font-bold">+3.2%</span>
+                </div>
+              </div>
+              <div class="h-px bg-gray-800/60"></div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">Average Today</span>
+                <span class="font-mono font-medium text-gray-300 tabular-nums">78.30</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">Peak (H18)</span>
+                <span class="font-mono font-medium text-amber-400 tabular-nums">120.00</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">Off-Peak</span>
+                <span class="font-mono font-medium text-blue-400 tabular-nums">45.00</span>
+              </div>
+              <div class="h-px bg-gray-800/60"></div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-400 font-medium">Spread</span>
+                <span class="font-mono font-bold text-brand-400 tabular-nums text-lg">75.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Revenue -->
+          <div class="card rounded-xl p-5">
+            <div class="text-sm font-semibold text-gray-300 mb-4">Revenue Today</div>
+            <div class="text-3xl font-bold tabular-nums">
+              <span class="text-brand-400">+1,847</span> <span class="text-lg text-gray-500 font-normal">EUR</span>
+            </div>
+            <div class="mt-5 space-y-2.5">
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-2.5 h-2.5 rounded-[3px] bg-blue-500"></div><span class="text-gray-400">Arbitrage</span>
+                </div>
+                <span class="font-mono text-white tabular-nums">+1,250</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-2.5 h-2.5 rounded-[3px] bg-cyan-500"></div><span class="text-gray-400">FCR</span>
+                </div>
+                <span class="font-mono text-white tabular-nums">+420</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-2.5 h-2.5 rounded-[3px] bg-violet-500"></div><span class="text-gray-400">aFRR</span>
+                </div>
+                <span class="font-mono text-white tabular-nums">+177</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-2.5 h-2.5 rounded-[3px] bg-red-500/70"></div><span class="text-gray-500">Degradation</span>
+                </div>
+                <span class="font-mono text-red-400 tabular-nums">-52</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alarms -->
+          <div class="card rounded-xl p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm font-semibold text-gray-300">Active Alarms</div>
+              <span class="text-[10px] text-gray-600">1 active</span>
+            </div>
+            <div class="space-y-3">
+              <div class="bg-amber-500/5 border border-amber-500/15 rounded-lg p-3.5 border-l-[3px] border-l-amber-400">
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/15 text-amber-400 uppercase tracking-wider">Warning</span>
+                  <span class="text-sm font-medium text-gray-200">SOC low warning</span>
+                </div>
+                <div class="text-[11px] text-gray-500 mt-1.5 font-mono">BMS &middot; Code 13 &middot; CY-BESS-001 &middot; 12:45:23</div>
+                <div class="flex gap-2 mt-3">
+                  <button class="text-[11px] px-3 py-1.5 rounded-md bg-surface-2 border border-gray-700 text-gray-300 hover:bg-surface-3 hover:text-white transition-all font-medium">Acknowledge</button>
+                  <button class="text-[11px] px-3 py-1.5 rounded-md border border-gray-800 text-gray-500 hover:bg-surface-2 hover:text-gray-300 transition-all">Details</button>
+                </div>
+              </div>
+              <div class="flex items-center justify-center gap-2 py-3 text-[11px] text-gray-600">
+                <div class="w-1.5 h-1.5 rounded-full bg-brand-500/50"></div>
+                No critical or emergency alarms
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function updateClock() {
+      const el = document.getElementById('clock');
+      if (el) el.textContent = new Date().toLocaleTimeString('en-GB');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
