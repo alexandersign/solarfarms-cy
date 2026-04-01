@@ -363,12 +363,13 @@ The client has requested:
 - [x] Confirm architecture — ✅ **AC-coupled** (confirmed)
 - [x] Confirm site conditions — ✅ 45°C max / -5°C min, heavy pollution, 916 m altitude, 9.2% slopes
 - [x] System fault level — ✅ **4.55 kA** at 132 kV
+- [x] **Request Linyang quotation for 12 MW / 50 MWh** — ✅ Received: Quote 274/A/KT/2026 (27 Mar 2026). FOB Shanghai **€4,976,886**. 10 containers + T8+T2 skids (10+2 PCS). Valid 14 days. Production 90-120 days + 10 days transport.
+- [x] **Prepare indicative pricing and technical proposal** — ✅ Sent to client 30 Mar 2026. Turnkey EPC offer: **€7,900,000** (€158/kWh). Based on Linyang FOB + 10% equipment margin + EPC costs with 15% margin + 5% contingency. Payment: 30% advance / 70% FAT.
 - [ ] Confirm who provides 33/132 kV step-up transformer and HV interconnection (EPC scope detail)
 - [ ] Verify Linyang/Kehua inverter compliance with SA grid code (LVRT 0pu/150ms, RoCoF ±2.5 Hz/s, Q ±0.33Pn)
 - [ ] Confirm Voltus EMS can support IEC 60870-5-101 protocol (required for TS-connected RPP)
 - [ ] Assess inverter/container derating at 45°C and 916 m altitude
 - [ ] Specify IP rating / dust protection for heavy pollution environment
 - [ ] Evaluate local installation/EPC partner requirement for SA
-- [ ] **Request Linyang CIF quotation to Cape Town for 12 MW / 48 MWh (4h)**
-- [ ] Prepare indicative pricing and technical proposal
-- [ ] Determine pricing approach — currency (EUR/USD/ZAR), non-portfolio markup
+- [ ] Awaiting client response to turnkey offer
+- [ ] Determine pricing approach — currency (EUR/USD/ZAR) — offer currently in EUR
