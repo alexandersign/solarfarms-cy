@@ -150,11 +150,13 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Technology</div>
-                    <div className="text-xl font-bold text-gray-900">Bifacial TopCon</div>
+                    <div className="text-lg font-bold text-gray-900">{RTB.panelSpec.wattage}W Bifacial TopCon</div>
+                    <div className="text-xs text-gray-500">Bifaciality {RTB.panelSpec.bifacialityPct}%, gain +{RTB.panelSpec.bifacialGainPct}%</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Mounting</div>
-                    <div className="text-xl font-bold text-gray-900">Fixed Tilt South</div>
+                    <div className="text-lg font-bold text-gray-900">Fixed Tilt {RTB.panelSpec.tiltDeg}° South</div>
+                    <div className="text-xs text-gray-500">Albedo {RTB.panelSpec.albedo} (white surface)</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Specific Yield</div>
@@ -372,6 +374,14 @@ export default function AgiosTheodorosProjectPage() {
                       ~{formatAgiosEurCompact(RTB.finance.grossEnergyRevenueY1EUR)}
                     </span>
                   </div>
+                  <div className="flex justify-between items-center py-2 border-b text-xs text-gray-500">
+                    <span>
+                      Solar {formatAgiosEurCompact(RTB.revenueModel.uncurtailedSolarRevY1EUR)} +
+                      {' '}BESS {formatAgiosEurCompact(RTB.revenueModel.bessRevY1EUR)}
+                      {' '}({Math.round(RTB.revenueModel.curtailmentPct * 100)}% curtailment)
+                    </span>
+                    <span></span>
+                  </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Annual OPEX (Y1, incl. land)</span>
                     <span className="font-semibold text-red-600">
@@ -388,12 +398,8 @@ export default function AgiosTheodorosProjectPage() {
                     <span></span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Debt Service</span>
-                    <span className="font-semibold text-red-600">~€211k/yr</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600">Net Cash Flow</span>
-                    <span className="font-semibold text-green-600">~€735K/yr</span>
+                    <span className="text-gray-600">FCFE / debt service</span>
+                    <span className="font-semibold text-gray-500 text-sm">see Excel model</span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-solar-500 to-solar-600 rounded-lg p-4 mt-4 text-white">
@@ -483,17 +489,17 @@ export default function AgiosTheodorosProjectPage() {
               {
                 icon: Battery,
                 title: 'Integrated BESS',
-                description: `4-hour battery storage eliminates curtailment risk via curtailment recovery — storing wasted solar and discharging at ~€${Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh evening peak (TSOC DAM sample; see model).`
+                description: `${RTB.bessDurationHours}-hour battery storage captures ${Math.round(RTB.revenueModel.curtailmentPct * 100)}% curtailed solar and discharges at ~€${Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh evening peak (TSOC DAM sample). ${RTB.revenueModel.bessDischargedMWh.toLocaleString()} MWh/yr discharged = ${formatAgiosEurCompact(RTB.revenueModel.bessRevY1EUR)} BESS revenue Y1.`
               },
               {
                 icon: Sun,
                 title: 'Premium Technology',
-                description: 'Bifacial TopCon PV modules, south-facing fixed-tilt, delivering 1,800 kWh/kWp specific yield.'
+                description: `${RTB.panelSpec.wattage}W bifacial TopCon, fixed tilt ${RTB.panelSpec.tiltDeg}° south, white albedo ground (bifacial gain +${RTB.panelSpec.bifacialGainPct}%) — delivering ${RTB.specificYieldKwhPerKwp.toLocaleString()} kWh/kWp specific yield.`
               },
               {
                 icon: TrendingUp,
                 title: 'Strong Returns',
-                description: 'Leveraged equity IRR in the ~30% range with conservative assumptions.'
+                description: `Leveraged equity IRR ${RTB.finance.leveredEquityIrrIndicative} — based on real dispatch model (${Math.round(RTB.revenueModel.curtailmentPct * 100)}% curtailment baseline, rising DAM prices upside). Full derivation in Excel Revenue_Model sheet.`
               },
               {
                 icon: Users,
