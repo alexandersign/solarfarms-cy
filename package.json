@@ -24,7 +24,14 @@
     "solhash:presentation": "npx tsx solhash/scripts/generate-presentation.ts",
     "sanity": "sanity dev",
     "sanity:build": "sanity build",
-    "sanity:deploy": "sanity deploy"
+    "sanity:deploy": "sanity deploy",
+    "wp:info": "npx tsx scripts/wp-lighthief-sync.ts info",
+    "wp:list": "npx tsx scripts/wp-lighthief-sync.ts list-pages",
+    "wp:posts": "npx tsx scripts/wp-lighthief-sync.ts list-posts",
+    "wp:push": "npx tsx scripts/wp-lighthief-sync.ts push-page",
+    "wp:push-all": "npx tsx scripts/wp-lighthief-sync.ts push-all",
+    "wp:media": "npx tsx scripts/wp-lighthief-sync.ts upload-media",
+    "wp:new-post": "npx tsx scripts/wp-lighthief-sync.ts new-post"
   },
   "dependencies": {
     "@auth/supabase-adapter": "^1.11.1",
