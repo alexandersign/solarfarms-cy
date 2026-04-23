@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trozena — Option B: Deye Materials @ Retail | Lighthief Cyprus</title>
+<style>
+  :root {
+    --navy: #1a365d;
+    --blue: #2b6cb0;
+    --accent: #ed8936;
+    --muted: #4a5568;
+    --line: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1a202c;
+    font-size: 11px;
+    line-height: 1.45;
+    background: #fff;
+  }
+  .sheet {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 10mm 12mm;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  .brand { display: flex; align-items: center; gap: 8px; }
+  .brand img { height: 36px; width: auto; }
+  .brand h1 {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--navy);
+  }
+  .brand .sub { font-size: 9px; color: var(--muted); font-weight: 600; }
+  .doc-meta { text-align: right; font-size: 9px; color: var(--muted); }
+  .doc-meta strong { color: #1a202c; }
+  h2 {
+    font-size: 11px;
+    color: var(--navy);
+    margin: 8px 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  p { margin-bottom: 6px; color: var(--muted); }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .box {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px;
+    background: #f8fafc;
+  }
+  .box h3 { font-size: 10px; color: var(--navy); margin-bottom: 4px; }
+  ul { margin: 0 0 0 14px; color: var(--muted); }
+  li { margin-bottom: 2px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    margin: 4px 0 6px;
+  }
+  th, td { padding: 4px 6px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { background: var(--navy); color: #fff; font-weight: 600; }
+  td.num, th.num { text-align: right; }
+  tr.total td { font-weight: 700; background: #edf2f7; }
+  tr.grand td { background: var(--navy); color: #fff; font-size: 11px; }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin: 6px 0;
+  }
+  .products figure {
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .products img {
+    width: 100%;
+    height: 72px;
+    object-fit: cover;
+    display: block;
+  }
+  .products figcaption {
+    font-size: 8px;
+    padding: 4px 5px;
+    color: var(--muted);
+    line-height: 1.25;
+  }
+  .callout {
+    background: #fffaf0;
+    border-left: 3px solid var(--accent);
+    padding: 6px 8px;
+    font-size: 9px;
+    margin: 6px 0;
+    color: #4a5568;
+  }
+  .footer {
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+    font-size: 8px;
+    color: #718096;
+  }
+  .print-hint {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--navy);
+    color: #fff;
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    z-index: 99;
+  }
+  .print-hint button {
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  @media print {
+    .print-hint { display: none !important; }
+    .sheet { padding: 0; max-width: none; margin-top: 0 !important; }
+    @page { size: A4; margin: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="print-hint">
+  <span>Option B — Deye retail materials (one page)</span>
+  <button type="button" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="sheet" style="margin-top:44px">
+  <header class="top">
+    <div class="brand">
+      <img src="../../../public/images/logo/lighthief-logo-200.png" alt="Lighthief" width="120" height="36">
+      <div>
+        <h1>LIGHTHIEF CYPRUS</h1>
+        <div class="sub">EPC · PV &amp; BESS · Cyprus</div>
+      </div>
+    </div>
+    <div class="doc-meta">
+      <div><strong>Second offer — Option B</strong></div>
+      <div>Ref: <strong>LCY-PV-TRZ-002B</strong></div>
+      <div>Date: April 2026</div>
+      <div>Client: <strong>Habanay / Trozena Wellness Resort</strong></div>
+    </div>
+  </header>
+
+  <h2>Commercial terms</h2>
+  <div class="grid-2">
+    <div class="box">
+      <h3>Pricing basis</h3>
+      <ul>
+        <li><strong>Retail equipment prices</strong> per Trikkis Energy CY price list effective <strong>1 March 2026</strong> (excl. VAT).</li>
+        <li><strong>Lead time:</strong> approx. <strong>3 months</strong> to delivery (Deye C&amp;I lines as listed by distributor).</li>
+        <li><strong>Payment:</strong> <strong>80% prepayment</strong> with order; balance per agreed milestone (e.g. prior to ex-works / prior to site delivery).</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Lighthief Cyprus Ltd</h3>
+      <ul style="list-style:none;margin-left:0">
+        <li>HE 477423 · Cyprus</li>
+        <li>Office 201, 3035 Limassol, Cyprus</li>
+        <li>Equipment supply coordination, electrical design, and site supervision as quoted below.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>System in brief (Deye route)</h2>
+  <p style="color:#2d3748">
+    This option supplies a <strong>~75&nbsp;kWp</strong> photovoltaic array using <strong>REC Alpha Pure-R 410&nbsp;W</strong> modules, paired with a <strong>Deye 215&nbsp;kWh</strong> commercial battery system that includes integrated power conversion and solar MPPT (MS-GS215 class). A <strong>Deye MS-EMS</strong> station controller coordinates operation; the <strong>automatic switching board</strong> interfaces grid (when available), battery, and your <strong>backup generator</strong> (generator set supplied and connected by the client per our design). During the day, solar powers the site and charges the battery; overnight the battery discharges; when solar and stored energy are insufficient, the generator starts automatically according to the control strategy. The layout is suitable for later grid connection subject to EAC approval and protection upgrades.
+  </p>
+
+  <h2>Key equipment (illustrative)</h2>
+  <div class="products">
+    <figure>
+      <img src="assets/rec-module.jpg" alt="Solar PV modules">
+      <figcaption><strong>PV array</strong> — REC Alpha Pure-R 410&nbsp;W (183 pcs, ~75.0&nbsp;kWp STC).</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/ms-gs215-1.webp" alt="Deye MS-GS215 energy storage">
+      <figcaption><strong>Deye C&amp;I ESS</strong> — 215&nbsp;kWh integrated container system with PCS &amp; PV inputs (Trikkis 700076 family).</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/ms-gs215-cabinet.webp" alt="Deye system cabinet">
+      <figcaption><strong>Integrated system</strong> — outdoor IP-rated enclosure; parallel off-grid capable per manufacturer documentation.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/ms-ems-1000.webp" alt="Deye MS-EMS">
+      <figcaption><strong>MS-EMS</strong> — energy management &amp; supervision (STS / grid / generator logic per Deye ESS).</figcaption>
+    </figure>
+  </div>
+  <p class="footer" style="border:none;padding:0;margin:0 0 6px;font-size:7px">
+    Product images sourced from manufacturer / distributor public materials (Deye ESS). PV photo may be representative of crystalline modules; final module datasheets apply.
+  </p>
+
+  <h2>Retail price schedule (excl. VAT)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th class="num">Qty</th>
+        <th class="num">Unit €</th>
+        <th class="num">Total €</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>REC Alpha Pure-R 410&nbsp;W module (Trikkis code 100035)</td>
+        <td class="num">183</td>
+        <td class="num">99.57</td>
+        <td class="num">18,221.31</td>
+      </tr>
+      <tr>
+        <td>Deye C&amp;I 215&nbsp;kWh ESS, 384&nbsp;V, ~100/200&nbsp;kW PCS (Trikkis 700076)</td>
+        <td class="num">1</td>
+        <td class="num">55,924.29</td>
+        <td class="num">55,924.29</td>
+      </tr>
+      <tr>
+        <td>Deye automatic board — grid / generator / ESS switching (Trikkis 700077)</td>
+        <td class="num">1</td>
+        <td class="num">12,444.00</td>
+        <td class="num">12,444.00</td>
+      </tr>
+      <tr>
+        <td>Accessory module — same line family (Trikkis 700078) — confirm requirement with distributor</td>
+        <td class="num">1</td>
+        <td class="num">1,566.00</td>
+        <td class="num">1,566.00</td>
+      </tr>
+      <tr class="total">
+        <td colspan="3"><strong>Equipment subtotal</strong></td>
+        <td class="num"><strong>88,155.60</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Additional electrical protection &amp; BOS (indicative retail)</h2>
+  <p>Not all items are on the distributor card price list; the following are typically required for a safe, insurable installation. Final bill of quantities is fixed with the electrical design &amp; SLD.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th class="num">Est. €</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DC: string-level protection / disconnecting means, DC isolators, PV combiner arrangements per MPPT design, <strong>DC Type&nbsp;II SPDs</strong> as required</td>
+        <td class="num">bundled below</td>
+      </tr>
+      <tr>
+        <td>AC: main / distribution switching, <strong>AC Type&nbsp;II SPDs</strong>, metering CTs / utility interface components for future grid, aux. control power</td>
+        <td class="num">bundled below</td>
+      </tr>
+      <tr>
+        <td>Generator path: client breaker coordination, interface cabling trays, earthing &amp; GCR documentation support (hardware per SLD)</td>
+        <td class="num">bundled below</td>
+      </tr>
+      <tr class="total">
+        <td><strong>Indicative protection &amp; BOS package (retail band)</strong></td>
+        <td class="num"><strong>4,800.00</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>MS-EMS:</strong> Priced as part of the Deye C&amp;I package through Trikkis — confirm final SKU bundle (MS-EMS + STS) on order. If invoiced separately, Lighthief will pass through distributor retail with no markup beyond coordination fee already covered in services.
+  </div>
+
+  <h2>Lighthief services (excl. VAT)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th class="num">Qty</th>
+        <th class="num">Unit €</th>
+        <th class="num">Total €</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Electrical system design + single-line diagram (SLD) + protection coordination notes</td>
+        <td class="num">1</td>
+        <td class="num">2,500.00</td>
+        <td class="num">2,500.00</td>
+      </tr>
+      <tr>
+        <td>Installation supervision — <strong>€2,200 / day</strong>, estimated <strong>4 days</strong> (includes electrical engineer + civil engineer support for layout, foundations, and structural interfaces)</td>
+        <td class="num">4</td>
+        <td class="num">2,200.00</td>
+        <td class="num">8,800.00</td>
+      </tr>
+      <tr class="total">
+        <td colspan="3"><strong>Services subtotal</strong></td>
+        <td class="num"><strong>11,300.00</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr class="total">
+        <td><strong>Equipment + indicative BOS</strong></td>
+        <td class="num"><strong>92,955.60</strong></td>
+      </tr>
+      <tr class="total">
+        <td><strong>Lighthief services</strong></td>
+        <td class="num"><strong>11,300.00</strong></td>
+      </tr>
+      <tr class="grand">
+        <td><strong>Total (excl. VAT)</strong></td>
+        <td class="num"><strong>104,255.60</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:9px;margin-top:4px">VAT at the applicable Cyprus rate will be added where chargeable. Transport, unloading, crane hire, and civil works are not included unless separately agreed.</p>
+
+  <div class="footer">
+    Confidential — prepared for Habanay / Trozena. Equipment brands and Trikkis codes are for identification; binding offer subject to written contract, stock confirmation, and final engineering sign-off.
+  </div>
+</div>
+</body>
+</html>
