@@ -17,6 +17,7 @@
     "docs:update": "tsx scripts/generate-docs.ts && tsx scripts/validate-docs.ts",
     "investor-model:agios": "npx tsx scripts/generate-agios-theodoros-investor-xlsx.ts",
     "teaser:agios": "npx tsx scripts/generate-agios-teaser-html.ts",
+    "pack:agios": "npx tsx scripts/generate-agios-teaser-html.ts && npx tsx scripts/generate-agios-theodoros-investor-xlsx.ts",
     "teaser:cyprus": "npx tsx scripts/generate-cyprus-market-teaser-html.ts",
     "contracts:generate": "tsx scripts/generate-contracts.ts",
     "solhash:roi": "npx tsx solhash/scripts/run-roi-comparison.ts",

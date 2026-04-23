@@ -3,7 +3,10 @@
  * Teaser/model paths are under /public (served as absolute paths from site root).
  */
 
-import { AGIOS_THEODOROS_RTB as AGIOS } from '@/lib/deals/agios-theodoros-rtb'
+import {
+  AGIOS_THEODOROS_RTB as AGIOS,
+  AGIOS_INVESTOR_PACK,
+} from '@/lib/deals/agios-theodoros-rtb'
 
 export type HubSection = 'deals' | 'operational_reference'
 
@@ -76,8 +79,8 @@ const LISTINGS: InvestmentListing[] = [
     },
     featured: true,
     detailRoute: '/projects/agios-theodoros-rtb',
-    teaserFile: '/lighthief-cyprus/parks-for-sale/agios-theodoros-park-sale-teaser-mar2026.html',
-    modelFile: '/lighthief-cyprus/parks-for-sale/agios-theodoros-rtb-investor-model-mar2026.xlsx',
+    teaserFile: `${AGIOS_INVESTOR_PACK.basePath}/${AGIOS_INVESTOR_PACK.teaserFile}`,
+    modelFile: `${AGIOS_INVESTOR_PACK.basePath}/${AGIOS_INVESTOR_PACK.modelFile}`,
     loiPreset: {
       projectName: AGIOS.publicTitle,
       projectReference: AGIOS.referenceCode,

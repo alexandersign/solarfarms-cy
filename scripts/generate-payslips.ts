@@ -239,7 +239,7 @@ function main() {
     workingDays: 21,
   });
 
-  // Costas Jan 2026 (pro-rated: started Jan 19, 10 of 20 working days = 50%)
+  // Costas Jan 2026 (pro-rated: started Jan 19, 10 of 21 working days)
   payslips.push({
     name: 'Costas Hadjikyriacou',
     position: 'BESS Division Lead — ETEK Licensed Engineer, Sales & Technical Consultant',
@@ -255,7 +255,92 @@ function main() {
     payDate: '1 – 5 February 2026',
     workingDays: 10,
     proRated: true,
-    proRateNote: 'Pro-rated: 10 of 20 working days (start date 19 Jan). Full monthly salary: €3,000.00',
+    proRateNote: 'Pro-rated: 10 of 21 working days (start date 19 Jan). Full monthly salary: €3,000.00',
+  });
+
+  // ── MARCH 2026 ────────────────────────────────────────────────────────────
+
+  // Alexander — March 2026 (full month)
+  payslips.push({
+    name: 'Alexander Papacosta',
+    position: 'Director',
+    startDate: '1 July 2025',
+    gross: 2375,
+    paye: 102.63,
+    month: '2026-03',
+    monthLabel: 'March 2026',
+    periodStart: '1 Mar',
+    periodEnd: '31 Mar 2026',
+    payDate: '1 – 5 April 2026',
+    workingDays: 22,
+  });
+
+  // Costas — March 2026 (full month)
+  payslips.push({
+    name: 'Costas Hadjikyriacou',
+    position: 'BESS Division Lead — ETEK Licensed Engineer, Sales & Technical Consultant',
+    cyprusId: '874287',
+    siNo: '1347386',
+    startDate: '19 January 2026',
+    gross: 3000,
+    paye: 241,
+    month: '2026-03',
+    monthLabel: 'March 2026',
+    periodStart: '1 Mar',
+    periodEnd: '31 Mar 2026',
+    payDate: '1 – 5 April 2026',
+    workingDays: 22,
+  });
+
+  // Andreas — March 2026 (pro-rated: started 2 Mar, 21 of 22 working days)
+  // Pro-rated gross: €2,500 × 21/22 = €2,386.36
+  // PAYE pro-rated: ~€121 (based on monthly equivalent)
+  payslips.push({
+    name: 'Andreas Christoforou',
+    position: 'Business Development & Technical Sales Consultant',
+    startDate: '2 March 2026',
+    gross: 2386.36,
+    paye: 121,
+    month: '2026-03',
+    monthLabel: 'March 2026',
+    periodStart: '2 Mar',
+    periodEnd: '31 Mar 2026',
+    payDate: '1 – 5 April 2026',
+    workingDays: 21,
+    proRated: true,
+    proRateNote: 'Pro-rated: 21 of 22 working days (start date 2 Mar). Full monthly salary: €2,500.00. PAYE is approximate — subject to confirmation by accountant.',
+  });
+
+  // Zinovia — March 2026 (full month, no PAYE)
+  payslips.push({
+    name: 'Zinovia Efesopoulou',
+    position: 'Sales Executive & Lead Intake Coordinator',
+    cyprusId: '1160290',
+    siNo: '1676925',
+    startDate: '1 December 2025',
+    gross: 1400,
+    paye: 0,
+    month: '2026-03',
+    monthLabel: 'March 2026',
+    periodStart: '1 Mar',
+    periodEnd: '31 Mar 2026',
+    payDate: '1 – 5 April 2026',
+    workingDays: 22,
+  });
+
+  // Jihat — March 2026 (full month, no PAYE)
+  payslips.push({
+    name: 'Jihat [Surname]',
+    position: 'Field Engineer — Civil Works & O&M',
+    startDate: '[START DATE]',
+    gross: 1400,
+    paye: 0,
+    month: '2026-03',
+    monthLabel: 'March 2026',
+    periodStart: '1 Mar',
+    periodEnd: '31 Mar 2026',
+    payDate: '1 – 5 April 2026',
+    workingDays: 22,
   });
 
   let generated = 0;

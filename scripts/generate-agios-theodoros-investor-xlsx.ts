@@ -1,25 +1,28 @@
 /**
  * Generates investor-ready Excel (xlsx) for Agios Theodoros RTB (PARK-RTB-2026).
+ * Output: public/lighthief-cyprus/parks-for-sale/agios-theodoros-rtb/ (same folder as HTML teaser).
  * Run: npx tsx scripts/generate-agios-theodoros-investor-xlsx.ts
  *
- * Sheets: Cover, Assumptions, Debt_Schedule, Annual_Model, Checks
- * Includes: 10% aggregator fee on gross energy revenue, 15% CIT on taxable profit,
- * land lease, straight-line D&A, senior debt PMT, levered cash to equity.
+ * Sheets: Cover, Investor_Summary, Revenue_Model, Assumptions, Debt_Schedule, Annual_Model, Checks
+ * Revenue_Model: full PV+BESS dispatch derivation — gross revenue cell drives Assumptions row 4.
+ * Includes: levered equity IRR, NPV @ hurdle, aggregator fee, CIT, D&A, debt PMT, FCFE, equity tiers.
  */
 import * as XLSX from 'xlsx'
 import * as fs from 'fs'
 import * as path from 'path'
-import { AGIOS_THEODOROS_RTB as AG } from '../lib/deals/agios-theodoros-rtb'
+import {
+  AGIOS_THEODOROS_RTB as AG,
+  AGIOS_INVESTOR_PACK,
+} from '../lib/deals/agios-theodoros-rtb'
 
-const OUT_DIR = path.join(process.cwd(), 'docs', 'investor-models')
-const OUT_FILE = path.join(OUT_DIR, 'agios-theodoros-rtb-investor-model-mar2026.xlsx')
-const PUBLIC_DIR = path.join(
+const PACK_DIR = path.join(
   process.cwd(),
   'public',
   'lighthief-cyprus',
-  'parks-for-sale'
+  'parks-for-sale',
+  'agios-theodoros-rtb'
 )
-const PUBLIC_FILE = path.join(PUBLIC_DIR, 'agios-theodoros-rtb-investor-model-mar2026.xlsx')
+const OUT_FILE = path.join(PACK_DIR, AGIOS_INVESTOR_PACK.modelFile)
 
 /** Excel 1-based row/col for Assumptions!B column values (aligned with written rows) */
 const A = {
@@ -42,7 +45,6 @@ const A = {
   loanTerm: 20,
   totalCapex: 21,
   equityTotal: 22,
-  /** Discount rate for NPV (not the same as loan rate — edit for investor hurdle) */
   discountRate: 23,
 }
 
@@ -55,9 +57,6 @@ function bRow(r: number) {
 }
 
 const B = (r: number) => bRow(r)
-
-// Debt_Schedule: header row 3, data year k in row 3+k (Excel 1-based)
-// Cols: A=Year, B=Opening, C=Interest, D=Principal, E=Payment, F=Closing
 
 function setCell(
   ws: XLSX.WorkSheet,
@@ -79,108 +78,339 @@ function setCell(
 function buildCover(): XLSX.WorkSheet {
   const ws: XLSX.WorkSheet = {}
   const lines = [
-    ['Agios Theodoros — RTB Investor Model (PARK-RTB-2026)'],
-    ['Generated workbook — March 2026'],
+    [`Agios Theodoros — Investor Financial Model`],
+    [`${AG.referenceCode} | Lighthief Cyprus Ltd | March 2026`],
     [],
-    ['PURPOSE'],
+    ['ABOUT THIS MODEL'],
     [
-      'Indicative project economics for qualified investor discussion. Not an offer to sell securities.',
+      'Indicative project economics for qualified investor discussion. Not an offer to sell or solicitation to invest.',
     ],
     [],
-    ['KEY FEATURES'],
-    ['• Gross merchant revenue escalated annually; 10% aggregator/offtake fee on gross energy revenue.'],
-    ['• Operating costs: PV O&M, BESS O&M, other fixed O&M, land lease (all may escalate).'],
-    ['• Depreciation (PV+BESS) and amortization (RTB+development) reduce taxable profit.'],
-    ['• Cyprus corporate income tax 15% applied to taxable profit (losses = no tax this period).'],
-    ['• Senior debt: annuity on loan principal; interest + principal from Debt_Schedule.'],
-    ['• Levered cash flow (equity) = Net income + D&A − principal repayment (simplified, no WC).'],
+    ['WORKBOOK STRUCTURE'],
+    ['• Investor_Summary — project overview, KPIs, equity IRR / NPV, and equity participation tiers.'],
+    ['• Revenue_Model — energy dispatch model: annual production, curtailment, BESS dispatch, DAM pricing. Edit assumptions here.'],
+    ['• Assumptions — financial model inputs (OPEX, D&A, debt, discount rate). Gross revenue links from Revenue_Model.'],
+    ['• Debt_Schedule — senior loan amortisation schedule.'],
+    ['• Annual_Model — full P&L, cash flow to equity, levered IRR and NPV.'],
+    ['• Checks — model integrity checks.'],
     [],
-    ['RECONCILIATION TO PUBLIC SITE + TEASER'],
-    ['SSOT: lib/deals/agios-theodoros-rtb.ts — same CAPEX / revenue / debt / equity as solarfarms.cy and 1-page HTML teaser.'],
+    ['KEY MODEL PARAMETERS'],
     [
-      `Totals: €${(AG.capexStackEUR.total / 1e6).toFixed(2)}M CAPEX, €${(AG.finance.seniorDebtEUR / 1e6).toFixed(2)}M debt, €${(AG.finance.equityEUR / 1e6).toFixed(2)}M equity, €${(AG.finance.grossEnergyRevenueY1EUR / 1e6).toFixed(2)}M Y1 gross revenue.`,
+      `Total CAPEX: €${(AG.capexStackEUR.total / 1e6).toFixed(2)}M | Senior debt: €${(AG.finance.seniorDebtEUR / 1e6).toFixed(2)}M | Equity: €${(AG.finance.equityEUR / 1e6).toFixed(2)}M | Y1 gross revenue: €${(AG.finance.grossEnergyRevenueY1EUR / 1000).toFixed(0)}k`,
     ],
-    ['User must verify all inputs with signed contracts.'],
     [],
-    ['INDEPENDENT REVIEW'],
-    ['Investors should have tax and legal advisers. Model does not include VAT, withholding, or SDC on dividends.'],
+    ['DISCLAIMER'],
+    ['This model is indicative only. All figures are subject to final engineering, legal, and financial due diligence.'],
+    ['Investors should obtain independent tax and legal advice. Model excludes VAT, withholding tax, and SDC on dividends.'],
+    ['Revenue projections are based on TSOC day-ahead market sample data and are not a guarantee of future performance.'],
   ]
   lines.forEach((row, i) => {
     setCell(ws, i + 1, 1, row[0] as string)
   })
   ws['!ref'] = `A1:A${lines.length}`
-  ws['!cols'] = [{ wch: 100 }]
+  ws['!cols'] = [{ wch: 110 }]
   return ws
 }
 
-function buildAssumptions(): XLSX.WorkSheet {
+type AnnualModelMeta = {
+  ws: XLSX.WorkSheet
+  rNetRev: number
+  /** Row in Annual_Model where levered FCFE for year 1 is (col B) */
+  rFcfe: number
+  /** Row where Equity IRR formula is (value in col B) */
+  irrRow: number
+  /** Row where Equity NPV formula is (value in col B) */
+  npvRow: number
+}
+
+function buildInvestorSummary(meta: AnnualModelMeta): XLSX.WorkSheet {
+  const ws: XLSX.WorkSheet = {}
+  const am = 'Annual_Model!'
+  const ir = meta.irrRow
+  const nr = meta.npvRow
+  const rf = meta.rFcfe
+  const rn = meta.rNetRev
+
+  let r = 1
+  const title = (t: string) => {
+    setCell(ws, r, 1, t)
+    r++
+  }
+  const row = (label: string, val: string | number | { f: string; z?: string }, pct?: boolean) => {
+    setCell(ws, r, 1, label)
+    setCell(ws, r, 2, val, pct)
+    r++
+  }
+
+  title('INVESTOR SUMMARY — Agios Theodoros RTB')
+  r++
+  row('Project reference', AG.referenceCode)
+  row('CERA licence', AG.ceraLicense)
+  row('Location', AG.locationLine)
+  row('Timeline', AG.timelineHeadline)
+  r++
+  title('Technical')
+  row('Solar capacity (MWp)', AG.solarMWp)
+  row('BESS power (MW)', AG.bessPowerMW)
+  row('BESS energy (MWh)', AG.bessMWh)
+  row('BESS duration (h)', AG.bessDurationHours)
+  row('Technology — PV', AG.technologySolar)
+  row('Technology — BESS', AG.technologyBess)
+  row('Indicative yield (kWh/kWp·yr)', AG.specificYieldKwhPerKwp)
+  row('Annual production (MWh/yr)', AG.annualProductionMWh)
+  r++
+  title('Capital structure (EUR)')
+  row('Total CAPEX', AG.capexStackEUR.total)
+  row('Senior debt', AG.finance.seniorDebtEUR)
+  row('Equity (all-in)', AG.finance.equityEUR)
+  row(
+    'Debt / (PV+BESS EPC)',
+    AG.finance.seniorDebtEUR / (AG.capexStackEUR.pvEpc + AG.capexStackEUR.bessEpc),
+    true
+  )
+  row('Loan nominal rate', AG.finance.loanNominalRate, true)
+  row('Loan term (years)', AG.finance.loanTermYears)
+  r++
+  title('Revenue & tax (Y1 basis)')
+  row('Y1 gross energy revenue', AG.finance.grossEnergyRevenueY1EUR)
+  row('Aggregator fee (% of gross)', AG.finance.aggregatorFeePct, true)
+  row('CIT rate (Cyprus)', AG.finance.citPct, true)
+  row('Y1 net revenue (model Y1)', { f: `${am}${enc(rn, 2)}`, z: '#,##0' })
+  row(
+    'Y1 total OPEX (PV+BESS+other+land)',
+    AG.opexY1EUR.pvOm + AG.opexY1EUR.bessOm + AG.opexY1EUR.other + AG.opexY1EUR.landLease
+  )
+  r++
+  title('Returns (from Annual_Model — levered, after tax)')
+  row('Levered equity IRR', { f: `${am}$B$${ir}`, z: '0.00%' })
+  row('Equity NPV @ hurdle', { f: `${am}$B$${nr}`, z: '#,##0' })
+  row('NPV discount rate (hurdle)', { f: B(A.discountRate), z: '0.00%' })
+  row('Y1 levered cash flow to equity', { f: `${am}${enc(rf, 2)}`, z: '#,##0' })
+  row('Indicative levered IRR (teaser / IC note)', AG.finance.leveredEquityIrrIndicative)
+  r++
+  title('Indicative equity tickets (cash economics in full model)')
+  let tierR = r
+  setCell(ws, tierR, 1, 'Equity %')
+  setCell(ws, tierR, 2, 'Equity EUR')
+  setCell(ws, tierR, 3, 'Y1 FCFE from model (levered, after-tax)')
+  tierR++
+  for (const t of AG.equityTiers) {
+    setCell(ws, tierR, 1, `${t.pct}%`)
+    setCell(ws, tierR, 2, t.equityEUR)
+    // Dynamic: tier share of model Y1 FCFE — updates automatically when assumptions change
+    setCell(ws, tierR, 3, { f: `${am}${enc(rf, 2)}*${t.pct / 100}`, z: '#,##0' })
+    tierR++
+  }
+  r = tierR
+  r++
+  title(`Wholesale electricity reference (TSOC DAM — ${AG.marketDAM.sampleNote})`)
+  row('24-hour average (€/MWh)', AG.marketDAM.avgEURPerMWh)
+  row('Evening peak 17:00–21:00 (€/MWh)', AG.marketDAM.peakEveningEURPerMWh)
+  row('Midday 10:00–14:00 (€/MWh)', AG.marketDAM.middayEURPerMWh)
+  row('Peak vs midday spread (€/MWh)', AG.marketDAM.peakMiddaySpreadEURPerMWh)
+  r++
+  setCell(ws, r, 1, 'Model methodology')
+  setCell(
+    ws,
+    r,
+    2,
+    'Revenue_Model → Assumptions → Debt_Schedule → Annual_Model. Equity IRR: CF0 = −equity invested; CF1..15 = levered after-tax cash flow.'
+  )
+  r++
+  setCell(ws, r, 1, 'Disclaimer')
+  setCell(
+    ws,
+    r,
+    2,
+    'Indicative only. Subject to final due diligence. Not an offer. Investors should obtain independent tax and legal advice.'
+  )
+
+  ws['!ref'] = `A1:C${r}`
+  ws['!cols'] = [{ wch: 46 }, { wch: 22 }, { wch: 28 }]
+  return ws
+}
+
+type RevenueModelMeta = {
+  ws: XLSX.WorkSheet
+  /** Row (1-based) in Revenue_Model sheet where gross Y1 revenue is */
+  grossRevRow: number
+}
+
+function buildRevenueModel(): RevenueModelMeta {
+  const ws: XLSX.WorkSheet = {}
+  const rm = AG.revenueModel
+
+  setCell(ws, 1, 1, 'REVENUE MODEL — Agios Theodoros (Energy Dispatch & Pricing)')
+  setCell(ws, 2, 1, 'Yellow cells are editable. All revenue calculations update automatically.')
+  setCell(ws, 3, 1, 'Parameter')
+  setCell(ws, 3, 2, 'Value')
+  setCell(ws, 3, 3, 'Notes')
+
+  let r = 4
+
+  const editable = (label: string, val: number, note: string, fmt: string) => {
+    setCell(ws, r, 1, label)
+    ws[enc(r, 2)] = { v: val, t: 'n', z: fmt }
+    setCell(ws, r, 3, note)
+    r++
+    return r - 1
+  }
+
+  const calc = (label: string, formula: string, note: string, fmt = '#,##0') => {
+    setCell(ws, r, 1, label)
+    ws[enc(r, 2)] = { f: formula, t: 'n', z: fmt, v: 0 }
+    setCell(ws, r, 3, note)
+    r++
+    return r - 1
+  }
+
+  // Production
+  setCell(ws, r, 1, '— Annual Energy Production —'); r++
+  const rProd = editable(
+    'Annual gross production (MWh/yr)',
+    AG.annualProductionMWh,
+    `${AG.solarMWp} MWp × ${AG.specificYieldKwhPerKwp} kWh/kWp — ${AG.technologySolar}`,
+    '#,##0'
+  )
+
+  // Dispatch
+  r++
+  setCell(ws, r, 1, '— Curtailment & BESS Dispatch —'); r++
+  const rCurtPct = editable(
+    'Curtailment rate (% of gross production)',
+    rm.curtailmentPct,
+    'Editable — 65% is the 2027 baseline (Cyprus curtailment trending up); stress-test at 55% for upside',
+    '0%'
+  )
+  const rCurtMwh = calc(
+    'Curtailed energy → captured by BESS (MWh/yr)',
+    `B${rProd}*B${rCurtPct}`,
+    'Energy stored in BESS for peak discharge'
+  )
+  const rUncurtMwh = calc(
+    'Uncurtailed solar → sold direct to grid (MWh/yr)',
+    `B${rProd}*(1-B${rCurtPct})`,
+    'Sold at daytime DAM rate'
+  )
+  const rCapturePct = editable(
+    'BESS storage efficiency (% of curtailed captured)',
+    rm.bessCapturePct,
+    'Accounts for SOC limits and auxiliary consumption',
+    '0%'
+  )
+  const rBessOut = calc(
+    'Net energy discharged from BESS (MWh/yr)',
+    `B${rCurtMwh}*B${rCapturePct}*0.8632`,
+    'Curtailed × capture rate × round-trip efficiency (86.32%)'
+  )
+
+  // DAM pricing
+  r++
+  setCell(ws, r, 1, '— Market Pricing (TSOC Day-Ahead Market) —'); r++
+  setCell(ws, r, 1, 'Data source')
+  setCell(ws, r, 2, `TSOC DAM sample: ${AG.marketDAM.sampleNote}`)
+  r++
+  const rDaytime = editable(
+    'Daytime electricity price (€/MWh, avg 06:00–17:00)',
+    rm.uncurtailedSolarRateEURPerMWh,
+    'Average over sample period — edit with updated TSOC data',
+    '#,##0.00'
+  )
+  const rPeak = editable(
+    'Evening peak electricity price (€/MWh, avg 17:00–21:00)',
+    rm.bessDischargeRateEURPerMWh,
+    'BESS dispatches during evening peak — edit with updated TSOC data',
+    '#,##0.00'
+  )
+
+  // Revenue output
+  r++
+  setCell(ws, r, 1, '— Year 1 Gross Revenue —'); r++
+  const rSolarRev = calc(
+    'Solar revenue Y1 (EUR)',
+    `B${rUncurtMwh}*B${rDaytime}`,
+    'Uncurtailed MWh × daytime price'
+  )
+  const rBessRev = calc(
+    'BESS revenue Y1 (EUR)',
+    `B${rBessOut}*B${rPeak}`,
+    'Discharged MWh × evening peak price'
+  )
+  const rGrossRev = calc(
+    'TOTAL GROSS REVENUE Y1 (EUR)',
+    `B${rSolarRev}+B${rBessRev}`,
+    'Feeds into Assumptions → Annual_Model'
+  )
+  r++
+
+  ws['!ref'] = `A1:C${r}`
+  ws['!cols'] = [{ wch: 54 }, { wch: 18 }, { wch: 72 }]
+  return { ws, grossRevRow: rGrossRev }
+}
+
+function buildAssumptions(grossRevRef: string): XLSX.WorkSheet {
   const ws: XLSX.WorkSheet = {}
   setCell(ws, 1, 1, 'ASSUMPTIONS — Agios Theodoros RTB')
   setCell(ws, 3, 1, 'Parameter')
   setCell(ws, 3, 2, 'Value')
   setCell(ws, 3, 3, 'Notes / unit')
 
-  const rows: [string, number | string, string][] = [
+  const rows: [string, number | string | { f: string; z?: string }, string][] = [
     [
       'Gross annual energy revenue — Year 1 (EUR)',
-      AG.finance.grossEnergyRevenueY1EUR,
-      'Merchant / blended DAM — from lib/deals/agios-theodoros-rtb.ts',
+      { f: grossRevRef, z: '#,##0' },
+      `Calculated in Revenue_Model sheet — edit curtailment % and DAM rates there`,
     ],
-    ['Aggregator / offtake fee (% of gross energy revenue)', AG.finance.aggregatorFeePct, 'Decimal'],
-    ['Corporate income tax rate (Cyprus CIT)', AG.finance.citPct, AG.finance.citNote],
-    ['Revenue escalation (% p.a.)', 0.02, 'Applied to gross revenue'],
-    ['PV O&M — Year 1 (EUR)', AG.opexY1EUR.pvOm, ''],
-    ['BESS O&M — Year 1 (EUR)', AG.opexY1EUR.bessOm, ''],
-    ['Other fixed O&M — Year 1 (EUR)', AG.opexY1EUR.other, 'Insurance, admin, misc.'],
-    ['OPEX escalation (% p.a.)', 0.02, 'PV/BESS/Other O&M'],
-    ['Land lease — Year 1 (EUR)', AG.opexY1EUR.landLease, 'Editable — verify lease deed'],
-    ['Land lease escalation (% p.a.)', 0.02, ''],
+    ['Aggregator / offtake fee (% of gross energy revenue)', AG.finance.aggregatorFeePct, 'Fee to market aggregator / offtake counterparty'],
+    ['Corporate income tax rate (Cyprus)', AG.finance.citPct, AG.finance.citNote],
+    ['Revenue escalation (% p.a.)', 0.02, 'Annual uplift applied to gross revenue from Y2'],
+    ['PV O&M — Year 1 (EUR)', AG.opexY1EUR.pvOm, 'Solar array maintenance and monitoring'],
+    ['BESS O&M — Year 1 (EUR)', AG.opexY1EUR.bessOm, 'Battery system maintenance and monitoring'],
+    ['Other fixed O&M — Year 1 (EUR)', AG.opexY1EUR.other, 'Insurance, administration, miscellaneous'],
+    ['OPEX escalation (% p.a.)', 0.02, 'Applied to PV O&M, BESS O&M, and other O&M from Y2'],
+    ['Land lease — Year 1 (EUR)', AG.opexY1EUR.landLease, 'Annual land lease — verify against signed lease deed'],
+    ['Land lease escalation (% p.a.)', 0.02, 'Applied to land lease from Y2'],
     [
-      'Depreciable base — PV + BESS (EUR)',
+      'Depreciable asset base — plant & equipment (EUR)',
       AG.depreciationEUR.pvPlusBessBase,
-      'PV + BESS EPC per deal SSOT',
+      'PV + BESS EPC cost (straight-line depreciation)',
     ],
-    ['Depreciation period (years)', AG.depreciationEUR.pvPlusBessYears, 'Straight-line for model'],
+    ['Depreciation period (years)', AG.depreciationEUR.pvPlusBessYears, 'Straight-line over asset life'],
     [
-      'Amortizable — RTB acquisition + development (EUR)',
+      'Amortisable asset base — licences & development (EUR)',
       AG.depreciationEUR.rtbPlusDevBase,
-      'Per deal SSOT',
+      'RTB acquisition + development costs (straight-line amortisation)',
     ],
-    ['Amortization period (years)', AG.depreciationEUR.rtbPlusDevYears, 'Straight-line for model'],
+    ['Amortisation period (years)', AG.depreciationEUR.rtbPlusDevYears, 'Straight-line over licence term'],
     [
       'Senior loan principal (EUR)',
       AG.finance.seniorDebtEUR,
-      '~70% of PV+BESS EPC — see deal SSOT',
+      `~${Math.round((AG.finance.seniorDebtEUR / (AG.capexStackEUR.pvEpc + AG.capexStackEUR.bessEpc)) * 100)}% of plant & equipment EPC cost`,
     ],
-    ['Loan interest (annual, nominal)', AG.finance.loanNominalRate, 'Editable — replace with term sheet'],
-    ['Loan term (years)', AG.finance.loanTermYears, ''],
-    ['Total project CAPEX (EUR)', AG.capexStackEUR.total, 'lib/deals/agios-theodoros-rtb.ts'],
-    ['Total equity funded (EUR)', AG.finance.equityEUR, 'Year 0 outflow for equity IRR'],
+    ['Loan interest rate (annual, nominal)', AG.finance.loanNominalRate, 'Indicative — replace with signed term sheet rate'],
+    ['Loan term (years)', AG.finance.loanTermYears, 'Full amortisation period'],
+    ['Total project CAPEX (EUR)', AG.capexStackEUR.total, 'PV EPC + BESS EPC + RTB acquisition + development'],
+    ['Total equity funded (EUR)', AG.finance.equityEUR, 'Year 0 equity outflow — basis for IRR calculation'],
     [
-      'Discount rate for NPV (annual, equity hurdle)',
+      'Discount rate for NPV — equity hurdle (annual)',
       AG.finance.npvDiscountRate,
-      'Not the loan rate — investor required return',
+      'Investor required return — not the debt rate',
     ],
   ]
 
   const pctValueRows = new Set([5, 6, 7, 11, 13, 19, 23])
 
-  let r = 4
+  let rr = 4
   for (const [label, val, note] of rows) {
-    setCell(ws, r, 1, label)
-    setCell(
-      ws,
-      r,
-      2,
-      typeof val === 'number' ? val : val,
-      pctValueRows.has(r)
-    )
-    setCell(ws, r, 3, note)
-    r++
+    setCell(ws, rr, 1, label)
+    setCell(ws, rr, 2, typeof val === 'number' ? val : val, pctValueRows.has(rr))
+    setCell(ws, rr, 3, note)
+    rr++
   }
+  rr++
 
-  ws['!ref'] = `A1:C${r - 1}`
-  ws['!cols'] = [{ wch: 48 }, { wch: 14 }, { wch: 42 }]
+  ws['!ref'] = `A1:C${rr - 1}`
+  ws['!cols'] = [{ wch: 48 }, { wch: 14 }, { wch: 60 }]
   return ws
 }
 
@@ -194,7 +424,6 @@ function buildDebtSchedule(years: number): XLSX.WorkSheet {
   setCell(ws, 3, 5, 'Total debt service')
   setCell(ws, 3, 6, 'Closing balance')
 
-  // Helper: annual payment (Excel PMT) at row 2 col H (8)
   setCell(ws, 2, 8, {
     f: `PMT(${B(A.loanRate)},${B(A.loanTerm)},-${B(A.loanPrincipal)})`,
   })
@@ -206,11 +435,11 @@ function buildDebtSchedule(years: number): XLSX.WorkSheet {
     if (y === 1) {
       setCell(ws, row, 2, { f: B(A.loanPrincipal) })
     } else {
-      setCell(ws, row, 2, { f: enc(row - 1, 6) }) // previous closing col F
+      setCell(ws, row, 2, { f: enc(row - 1, 6) })
     }
     setCell(ws, row, 3, { f: `${enc(row, 2)}*${B(A.loanRate)}` })
-    setCell(ws, row, 5, { f: `$H$2` }) // total payment = PMT
-    setCell(ws, row, 4, { f: `${enc(row, 5)}-${enc(row, 3)}` }) // principal = payment - interest
+    setCell(ws, row, 5, { f: `$H$2` })
+    setCell(ws, row, 4, { f: `${enc(row, 5)}-${enc(row, 3)}` })
     setCell(ws, row, 6, { f: `${enc(row, 2)}-${enc(row, 4)}` })
   }
 
@@ -219,9 +448,9 @@ function buildDebtSchedule(years: number): XLSX.WorkSheet {
   return ws
 }
 
-function buildAnnualModel(years: number): { ws: XLSX.WorkSheet; rNetRev: number } {
+function buildAnnualModel(years: number): AnnualModelMeta {
   const ws: XLSX.WorkSheet = {}
-  const startCol = 2 // B = year 1
+  const startCol = 2
   const yearRow = 4
 
   setCell(ws, 1, 1, 'ANNUAL MODEL — after-tax, levered (formulas)')
@@ -230,7 +459,6 @@ function buildAnnualModel(years: number): { ws: XLSX.WorkSheet; rNetRev: number 
     setCell(ws, yearRow, startCol + y - 1, y)
   }
 
-  // Line items start row 5
   let row = 5
   const line = (label: string) => {
     setCell(ws, row, 1, label)
@@ -264,21 +492,22 @@ function buildAnnualModel(years: number): { ws: XLSX.WorkSheet; rNetRev: number 
     const yc = enc(yearRow, c)
     const debtR = 3 + y
 
-    setCell(ws, rGross, c, { f: `${B(A.grossRevY1)}*POWER(1+${B(A.revEsc)},${yc})` })
+    // year-1 exponent: Y1 = base * POWER(g, 0) = base; Y2 = base * POWER(g, 1); etc.
+    setCell(ws, rGross, c, { f: `${B(A.grossRevY1)}*POWER(1+${B(A.revEsc)},${yc}-1)` })
     setCell(ws, rAgg, c, { f: `${enc(rGross, c)}*${B(A.aggFeePct)}` })
     setCell(ws, rNetRev, c, { f: `${enc(rGross, c)}-${enc(rAgg, c)}` })
 
     setCell(ws, rPvOm, c, {
-      f: `${B(A.pvOmY1)}*POWER(1+${B(A.opexEsc)},${yc})`,
+      f: `${B(A.pvOmY1)}*POWER(1+${B(A.opexEsc)},${yc}-1)`,
     })
     setCell(ws, rBessOm, c, {
-      f: `${B(A.bessOmY1)}*POWER(1+${B(A.opexEsc)},${yc})`,
+      f: `${B(A.bessOmY1)}*POWER(1+${B(A.opexEsc)},${yc}-1)`,
     })
     setCell(ws, rOtherOm, c, {
-      f: `${B(A.otherOmY1)}*POWER(1+${B(A.opexEsc)},${yc})`,
+      f: `${B(A.otherOmY1)}*POWER(1+${B(A.opexEsc)},${yc}-1)`,
     })
     setCell(ws, rLand, c, {
-      f: `${B(A.landLeaseY1)}*POWER(1+${B(A.landEsc)},${yc})`,
+      f: `${B(A.landLeaseY1)}*POWER(1+${B(A.landEsc)},${yc}-1)`,
     })
     setCell(ws, rTotOpex, c, {
       f: `SUM(${enc(rPvOm, c)}:${enc(rLand, c)})`,
@@ -301,7 +530,6 @@ function buildAnnualModel(years: number): { ws: XLSX.WorkSheet; rNetRev: number 
     setCell(ws, rFcfe, c, { f: `${enc(rCfo, c)}-${enc(rPrin, c)}` })
   }
 
-  // Equity IRR / NPV: CF0 in col A, CF1..CFn in B.. (single row for Excel IRR)
   const cfRow = rFcfe + 3
   setCell(ws, cfRow - 1, 1, 'Equity cash flow row for IRR / NPV (EUR)')
   setCell(ws, cfRow, 1, { f: `-${B(A.equityTotal)}` })
@@ -313,22 +541,24 @@ function buildAnnualModel(years: number): { ws: XLSX.WorkSheet; rNetRev: number 
   const rangeAll = `${enc(cfRow, 1)}:${enc(cfRow, lastC)}`
   const rangeOps = `${enc(cfRow, 2)}:${enc(cfRow, lastC)}`
 
-  setCell(ws, cfRow + 1, 1, 'Equity IRR')
-  setCell(ws, cfRow + 1, 2, {
+  const irrRow = cfRow + 1
+  const npvRow = cfRow + 2
+  setCell(ws, irrRow, 1, 'Equity IRR (levered, after tax)')
+  setCell(ws, irrRow, 2, {
     f: `IRR(${rangeAll})`,
     z: '0.00%',
   })
 
-  setCell(ws, cfRow + 2, 1, 'Equity NPV (EUR)')
-  setCell(ws, cfRow + 2, 2, {
+  setCell(ws, npvRow, 1, 'Equity NPV @ hurdle (EUR)')
+  setCell(ws, npvRow, 2, {
     f: `${enc(cfRow, 1)}+NPV(${B(A.discountRate)},${rangeOps})`,
     z: '#,##0',
   })
-  setCell(ws, cfRow + 2, 3, 'CF0 + NPV — discount rate on Assumptions')
+  setCell(ws, npvRow, 3, 'CF0 + NPV — discount rate on Assumptions')
 
-  ws['!ref'] = `A1:${enc(cfRow + 2, lastC)}`
+  ws['!ref'] = `A1:${enc(npvRow, lastC)}`
   ws['!cols'] = [{ wch: 42 }, ...Array(years + 1).fill({ wch: 14 })]
-  return { ws, rNetRev }
+  return { ws, rNetRev, rFcfe, irrRow, npvRow }
 }
 
 function buildChecksFixed(years: number, rNetRev: number): XLSX.WorkSheet {
@@ -352,22 +582,31 @@ function buildChecksFixed(years: number, rNetRev: number): XLSX.WorkSheet {
 
 function main() {
   const YEARS = 15
-  if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true })
-  if (!fs.existsSync(PUBLIC_DIR)) fs.mkdirSync(PUBLIC_DIR, { recursive: true })
+  fs.mkdirSync(PACK_DIR, { recursive: true })
 
   const wb = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(wb, buildCover(), 'Cover')
-  XLSX.utils.book_append_sheet(wb, buildAssumptions(), 'Assumptions')
-  XLSX.utils.book_append_sheet(wb, buildDebtSchedule(YEARS), 'Debt_Schedule')
 
-  const { ws: annual, rNetRev } = buildAnnualModel(YEARS)
-  XLSX.utils.book_append_sheet(wb, annual, 'Annual_Model')
-  XLSX.utils.book_append_sheet(wb, buildChecksFixed(YEARS, rNetRev), 'Checks')
+  // Revenue_Model drives Assumptions row 4 (grossRevY1) via cross-sheet formula
+  const revModelMeta = buildRevenueModel()
+  const grossRevRef = `Revenue_Model!$B$${revModelMeta.grossRevRow}`
+
+  const assumptions = buildAssumptions(grossRevRef)
+  const debt = buildDebtSchedule(YEARS)
+  const annualMeta = buildAnnualModel(YEARS)
+  const checks = buildChecksFixed(YEARS, annualMeta.rNetRev)
+  const investorSummary = buildInvestorSummary(annualMeta)
+
+  // Sheet order: Cover, Investor_Summary, Revenue_Model, Assumptions, Debt_Schedule, Annual_Model, Checks
+  XLSX.utils.book_append_sheet(wb, investorSummary, 'Investor_Summary')
+  XLSX.utils.book_append_sheet(wb, revModelMeta.ws, 'Revenue_Model')
+  XLSX.utils.book_append_sheet(wb, assumptions, 'Assumptions')
+  XLSX.utils.book_append_sheet(wb, debt, 'Debt_Schedule')
+  XLSX.utils.book_append_sheet(wb, annualMeta.ws, 'Annual_Model')
+  XLSX.utils.book_append_sheet(wb, checks, 'Checks')
 
   XLSX.writeFile(wb, OUT_FILE, { bookType: 'xlsx' })
-  XLSX.writeFile(wb, PUBLIC_FILE, { bookType: 'xlsx' })
   console.log('Wrote', OUT_FILE)
-  console.log('Wrote', PUBLIC_FILE)
 }
 
 main()

@@ -143,10 +143,14 @@ export const GROUPS: GroupData[] = [
 ];
 
 // ─────────────────────────────────────────────
-// BATCH SCHEDULE (Revised 6 March 2026)
-// Previous 3-batch plan (27 Feb 2026 RFIs) was aspirational.
-// Rebuilt from confirmed commitments only.
-// Old plan: B1=15/280, B2=19/230, B3=12/288 (all unconfirmed)
+// BATCH SCHEDULE (Updated 17 April 2026)
+// B1: 9 parks / 120 MWh — confirmed, order Apr 2026, CIF Aug 2026, PAC Dec 2026
+// B2: 2 parks / 45 MWh  — pipeline Q2 2026 order (Esperia Fam + Karis); ABIO tracked separately
+// B3: 11 parks / 226 MWh — pipeline Q4 2026 order (Esperia B3 + Timotheos rem. + Kerasi)
+// ESP_2027: 1 park / 20 MWh — standalone Q3 2027 order (Esperia Famagusta)
+// ESP_2028: 5 parks / 87.5 MWh — Esperia Tseri, separate 2028 order
+// ABIO_ELESTORE: 5 parks / 200 MWh — pending re-engagement (20% probability)
+// Previous 3-batch plan (27 Feb 2026 RFIs) was aspirational — rebuilt from confirmed commitments.
 // ─────────────────────────────────────────────
 
 export type BatchStatus = 'confirmed' | 'pipeline' | 'unplaced';
@@ -164,24 +168,35 @@ export const BATCHES = [
     _meta: { source: 'Dino/Timotheos verbal, Lampros confirmed, Spanercom Anarita 2×5/20 @ €119k/MWh. ABIO removed Mar 2026.', date: '2026-03-24' } as MetaInfo,
   },
   {
-    id: 2, name: 'Batch 2: Pipeline',
+    id: 2, name: 'Batch 2: Pipeline (Q2 2026 Order)',
     status: 'pipeline' as BatchStatus,
-    groups: ['Soteria (committed to sign)', 'Esperia core (TBC)'],
-    parks: 0, mwh: 0, containers: 0,
-    productionStart: '', productionEnd: '',
-    shipDate: '',
-    cifDate: '', pacDate: '',
-    _meta: { source: 'Early signals only — Soteria committed but no system details', date: '2026-03-06' } as MetaInfo,
+    groups: [
+      'Esperia Energy (Famagusta) — 6.5 MW / 20 MWh',
+      'Ioannis Karis (Monargouli) — 7.7 MW / 25 MWh',
+    ],
+    parks: 2, mw: 14.2, mwh: 45, containers: 0,
+    revenue: 5_721_009, margin: 689_312, marginPct: 12.05,
+    productionStart: '2026-07-01', productionEnd: '2026-09-30',
+    fatDate: '2026-09-30', shipDate: '2026-10-01',
+    cifDate: '2026-11-15', pacDate: '2027-03-31',
+    notes: 'ABIO/ELESTORE (5 parks, 200 MWh) tracked separately — see ABIO_ELESTORE constant (20% probability).',
+    _meta: { source: 'Esperia: group-proposal.template.html. Karis: V4 GROUPS. Dates estimated from Q2 2026 order.', date: '2026-04-17' } as MetaInfo,
   },
   {
-    id: 3, name: 'Batch 3: Unplaced',
-    status: 'unplaced' as BatchStatus,
-    groups: ['ELESTORE (5/200MWh)', 'Esperia remaining', 'A. Kerasi (3/20MWh)', 'Ioannis Karis (1/25MWh)', 'Timotheos remaining (6/46MWh)'],
-    parks: 0, mwh: 0, containers: 0,
-    productionStart: '', productionEnd: '',
-    shipDate: '',
-    cifDate: '', pacDate: '',
-    _meta: { source: 'No RFI responses returned, no drawings, no contracts signed', date: '2026-03-06' } as MetaInfo,
+    id: 3, name: 'Batch 3: Pipeline (Q4 2026 Order)',
+    status: 'pipeline' as BatchStatus,
+    groups: [
+      'Esperia Green Energy Ltd (Limassol) — 8 MW / 60 MWh',
+      'Esperia Energy (Frenaros) — 25 MW / 100 MWh',
+      'Timotheos Timotheou — remaining 6 parks (~8 MW / 46 MWh)',
+      'A. Kerasi — 3 parks (6.5 MW / 20 MWh)',
+    ],
+    parks: 11, mw: 47.5, mwh: 226, containers: 0,
+    revenue: 27_239_084, margin: 3_034_096, marginPct: 11.14,
+    productionStart: '2027-01-01', productionEnd: '2027-03-31',
+    fatDate: '2027-03-31', shipDate: '2027-04-01',
+    cifDate: '2027-05-15', pacDate: '2027-09-30',
+    _meta: { source: 'Esperia: group-proposal.template.html. Timotheos/Kerasi: V4 GROUPS minus B1 parks. Dates estimated.', date: '2026-04-17' } as MetaInfo,
   },
 ] as const;
 
@@ -197,10 +212,38 @@ export const BATCH1_PARKS = [
   { name: 'Anarita 2',        group: 'Spanercom',  mw: 5.0,  mwh: 20,    containers: 4,  district: 'Paphos',    revenue: 2_380_000 },
 ] as const;
 
+export const ESP_2027 = {
+  name: 'Esperia Green Energy Ltd (Famagusta) — Q3 2027',
+  parks: 1, mw: 5.0, mwh: 20,
+  revenue: 2_258_900, margin: 260_225, marginPct: 11.52,
+  orderDate: 'Q3 2027', pacDate: '~Q2 2028',
+  note: 'Standalone order between B3 and Tseri 2028. €112.94/kWh per group-proposal. Probability 99% — EPC V4 contract in final review.',
+  _meta: { source: 'group-proposal.template.html — Esperia Famagusta 2 entry', date: '2026-04-17' },
+} as const;
+
 export const ESP_2028 = {
   name: 'Esperia Tseri (2028)',
-  parks: 5, mw: 27.5, mwh: 87.5,
-  note: 'Separate future order — not in current timeline',
+  parks: 5, mw: 27.75, mwh: 87.5,
+  revenue: 11_341_884, margin: 1_306_625, marginPct: 11.52,
+  orderDate: '2028', pacDate: '~2029',
+  note: 'Separate future order — individual Tseri parks. Probability 99% — EPC V4 contract in final review.',
+  parks_detail: [
+    { name: 'Esperia Energy (Tseri) Ltd',            mw: 7.00, mwh: 20.0, revenue: 2_559_071, margin: 294_805 },
+    { name: 'Esperia Energy (Tseri 2) Ltd — 2.5 MW', mw: 2.50, mwh:  7.5, revenue: 1_159_991, margin: 133_671 },
+    { name: 'Esperia Energy (Tseri 2) Ltd — 7.5 MW', mw: 7.50, mwh: 25.0, revenue: 3_169_128, margin: 365_083 },
+    { name: 'Esperia Energy (Tseri 2) Ltd — 6 MW',   mw: 6.00, mwh: 20.0, revenue: 2_444_867, margin: 281_649 },
+    { name: 'Esperia Energy (Tseri 3) Ltd',           mw: 4.75, mwh: 15.0, revenue: 2_008_827, margin: 231_417 },
+  ],
+  _meta: { source: 'group-proposal.template.html — Tseri pricing schedule', date: '2026-04-17' },
+} as const;
+
+export const ABIO_ELESTORE = {
+  name: 'ABIO Power / ELESTORE (5 parks)',
+  parks: 5, mw: 60, mwh: 200,
+  status: 'pending-reengagement',
+  probability: 20,
+  note: 'ABIO indicated CATL supplier Mar 2026. Removed from active batches. Re-engagement ongoing — tracked separately at 20% probability.',
+  _meta: { source: 'bess-portfolio-summary-excel.html; ABIO removed from B1 Mar 2026', date: '2026-04-17' },
 } as const;
 
 // ─────────────────────────────────────────────
@@ -818,4 +861,4 @@ export function getTemplateVars(): Record<string, string> {
 }
 
 /** Public RTB ticket (Agios) — marketing, teaser, xlsx defaults; see module for _meta.source */
-export { AGIOS_THEODOROS_RTB } from './deals/agios-theodoros-rtb';
+export { AGIOS_THEODOROS_RTB, AGIOS_INVESTOR_PACK } from './deals/agios-theodoros-rtb';
