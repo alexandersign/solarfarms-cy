@@ -187,6 +187,32 @@ Both Galascope solar plants are already operational with full SCADA/IEC 104 infr
 
 ---
 
+## ⚠️ EPC Budget Gap — BoP Protection Hardware (April 2026)
+
+> **Identified during SLD Rev. C engineering review.**  
+> The current EPC adder model for Galascope 2 (€110,580) **does not include** the following hardware required for DSO Category B grid connection compliance:
+
+| Item | Est. Cost |
+|------|-----------|
+| New MV feeder panel (JZ4) in existing SwS — Schneider SM6 or matching | €15,000 – €25,000 |
+| Protection relay — Siemens SIPROTEC 7SJ82 (50/51, 50N/51N, 67N, 27/59, 81, 78) | €5,000 – €8,000 |
+| MV CTs × 3 phases (dual-core 5P20 + 0.5) | €3,000 – €5,000 |
+| MV VTs (22/0.1 kV, Class 0.5/3P) | €2,000 – €3,000 |
+| NER 25 Ω / 100 kJ (if not included in Linyang T2 skid — confirm) | €3,000 – €5,000 |
+| **Total unbudgeted** | **€28,000 – €46,000** |
+
+**Also note**: Linyang BCS1250K-C-HUD LV output is confirmed **690 V AC** (per offer ref. 198/A/KT/2025).  
+T2 skid transformer ratio must be **22 kV / 690 V** (not 800 V as previously assumed in some internal documents).  
+SLD drawing `SLD-galascope-2.5MW-BESS.html` corrected to Rev. C — use that as reference.
+
+**Actions:**
+- [ ] Confirm with Linyang: NER, MV surge arresters, LV surge arresters — in or out of T2 skid scope?
+- [ ] Get local contractor quotation for JZ4 panel + protection relay integration
+- [ ] Update `docs/Bess - EPC System Cost v2.xlsx` with new BoP Protection HW line (~€28k base)
+- [ ] Check all other Esperia Phase 1 projects for same gap (Famagusta 6.5MW/20MWh and Frenaros 25MW/100MWh)
+
+---
+
 ## Data Discrepancy Flag
 
 > **⚠️ Galascope 2 MWh discrepancy**: This document and the group proposal template show Galascope 2 as **2.5MW/8MWh** (2× 4.179 MWh containers per original quotation LY202511281). However, `lib/portfolio-data.ts` shows Galascope 2 as **10 MWh with 3 containers**. The proposal template also shows 2× 5MWh containers. These need reconciliation — confirm with Dino which container configuration is confirmed.
