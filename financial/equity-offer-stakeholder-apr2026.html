@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equity Investment Offer — Lighthief Cyprus Ltd — April 2026</title>
+<style>
+  @page { size: A4 portrait; margin: 14mm 14mm 18mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, -apple-system, Arial, sans-serif; font-size: 9.5pt; line-height: 1.5; color: #1a1a2e; background: #f5f6fa; }
+
+  /* ── Confidential bar ── */
+  .conf-bar { background: #c1121f; color: #fff; text-align: center; font-size: 7pt; font-weight: 800; padding: 5px; letter-spacing: 2.5px; }
+
+  /* ── Header ── */
+  .header { background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 55%, #243b55 100%); color: #fff; padding: 30px 36px 24px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header-logo { font-size: 10pt; font-weight: 800; letter-spacing: 3px; color: #8ecae6; text-transform: uppercase; }
+  .header-doc-ref { font-size: 7.5pt; color: #8ecae6; text-align: right; line-height: 1.6; }
+  .header h1 { font-size: 21pt; font-weight: 900; letter-spacing: -0.5px; margin-top: 14px; }
+  .header .subtitle { font-size: 11pt; color: #8ecae6; font-weight: 500; margin-top: 5px; }
+  .header .meta { display: flex; gap: 28px; margin-top: 14px; font-size: 8pt; color: #a8dadc; flex-wrap: wrap; }
+  .header .meta span { display: flex; align-items: center; gap: 4px; }
+  .header .meta strong { color: #fff; }
+
+  /* ── Page wrapper ── */
+  .page { max-width: 880px; margin: 0 auto; padding: 24px 36px 48px; }
+
+  /* ── Section headings ── */
+  h2.sec { font-size: 12.5pt; font-weight: 800; color: #0d1b2a; border-bottom: 2.5px solid #0d1b2a; padding-bottom: 4px; margin: 32px 0 14px; text-transform: uppercase; letter-spacing: 0.3px; }
+  h3.sec { font-size: 10pt; font-weight: 700; color: #1b4965; margin: 18px 0 8px; }
+
+  /* ── KPI strip ── */
+  .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 22px 0; }
+  .kpi { background: #fff; border-radius: 8px; padding: 14px 12px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.07); border-top: 3px solid #457b9d; }
+  .kpi.navy  { border-top-color: #0d1b2a; }
+  .kpi.navy .kv { color: #0d1b2a; }
+  .kpi.green { border-top-color: #2d6a4f; }
+  .kpi.green .kv { color: #2d6a4f; }
+  .kpi.amber { border-top-color: #b8860b; }
+  .kpi.amber .kv { color: #b8860b; }
+  .kpi.blue  { border-top-color: #1b4965; }
+  .kpi.blue  .kv { color: #1b4965; }
+  .kpi.gold  { border-top-color: #c9a227; }
+  .kpi.gold  .kv { color: #c9a227; }
+  .kpi .kv { font-size: 17pt; font-weight: 900; line-height: 1.1; }
+  .kpi .kl { font-size: 7pt; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  /* ── Intro / rationale boxes ── */
+  .rationale-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 14px 0; }
+  .rat-card { background: #fff; border-radius: 8px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 4px solid #1b4965; }
+  .rat-card.green { border-left-color: #2d6a4f; }
+  .rat-card.amber { border-left-color: #b8860b; }
+  .rat-card .rt { font-size: 9pt; font-weight: 800; margin-bottom: 4px; color: #0d1b2a; }
+  .rat-card .rb { font-size: 8pt; color: #495057; line-height: 1.45; }
+
+  /* ── Valuation table ── */
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 18px; font-size: 8.5pt; }
+  th { background: #0d1b2a; color: #fff; padding: 7px 9px; text-align: left; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; }
+  th.c, td.c { text-align: center; }
+  th.r, td.r { text-align: right; }
+  td { padding: 6px 9px; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .total-row td { background: #e8f4f8 !important; font-weight: 800; border-top: 2px solid #457b9d; color: #0d1b2a; }
+  .grand-row td { background: #0d1b2a !important; color: #fff; font-weight: 800; font-size: 9pt; }
+  .sub-row td { background: #f0f4f8 !important; font-weight: 700; font-style: italic; color: #1b4965; }
+  .b { font-weight: 700; }
+  .mono { font-family: 'Consolas', 'Courier New', monospace; }
+  .green-t { color: #2d6a4f; font-weight: 700; }
+  .amber-t { color: #b8860b; font-weight: 700; }
+  .grey-t  { color: #6c757d; }
+  .red-t   { color: #c1121f; font-weight: 700; }
+  .blue-t  { color: #1b4965; font-weight: 700; }
+
+  /* ── Tag pills ── */
+  .tag { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 7pt; font-weight: 800; letter-spacing: 0.3px; }
+  .tag-green  { background: #d4edda; color: #155724; }
+  .tag-amber  { background: #fff3cd; color: #856404; }
+  .tag-blue   { background: #cce5ff; color: #004085; }
+  .tag-grey   { background: #e9ecef; color: #495057; }
+  .tag-navy   { background: #0d1b2a; color: #fff; }
+  .tag-gold   { background: #fff3cd; color: #856404; border: 1px solid #c9a227; }
+
+  /* ── Stake cards ── */
+  .stake-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 14px 0 28px; }
+  .stake-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .stake-head { padding: 14px 12px; color: #fff; text-align: center; }
+  .sh-5   { background: linear-gradient(160deg, #6c757d 0%, #495057 100%); }
+  .sh-10  { background: linear-gradient(160deg, #457b9d 0%, #1b4965 100%); }
+  .sh-15  { background: linear-gradient(160deg, #2d6a4f 0%, #1b4332 100%); }
+  .sh-20  { background: linear-gradient(160deg, #b8860b 0%, #8a6514 100%); }
+  .sh-25  { background: linear-gradient(160deg, #0d1b2a 0%, #000d1a 100%); }
+  .stake-head .spct { font-size: 26pt; font-weight: 900; line-height: 1; }
+  .stake-head .slbl { font-size: 8pt; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.85; margin-top: 2px; }
+  .stake-body { padding: 14px 12px; }
+  .sk-row { margin-bottom: 9px; }
+  .sk-row .sk-lbl { font-size: 7pt; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; font-weight: 700; }
+  .sk-row .sk-val { font-size: 9.5pt; font-weight: 800; color: #0d1b2a; line-height: 1.2; }
+  .sk-row .sk-range { font-size: 7.5pt; color: #6c757d; margin-top: 1px; }
+  .sk-divider { border: none; border-top: 1px solid #e9ecef; margin: 10px 0; }
+  .sk-rights { list-style: none; padding: 0; margin: 0; }
+  .sk-rights li { font-size: 7.5pt; color: #343a40; padding: 2.5px 0; border-bottom: 1px solid #f0f0f0; display: flex; gap: 6px; }
+  .sk-rights li:last-child { border-bottom: none; }
+  .sk-rights li .ico { flex-shrink: 0; }
+  .highlight-card { background: #fff8e1; border: 1.5px solid #c9a227; border-radius: 10px; }
+
+  /* ── Timeline bar ── */
+  .timeline { display: flex; margin: 14px 0 22px; gap: 0; }
+  .tl-seg { flex: 1; }
+  .tl-bar { height: 30px; display: flex; align-items: center; justify-content: center; font-size: 7.5pt; font-weight: 700; color: #fff; }
+  .tl-lbl { font-size: 7pt; color: #495057; text-align: center; margin-top: 4px; line-height: 1.3; }
+  .tl-1 .tl-bar { background: #2d6a4f; border-radius: 4px 0 0 4px; }
+  .tl-2 .tl-bar { background: #1b4965; }
+  .tl-3 .tl-bar { background: #457b9d; }
+  .tl-4 .tl-bar { background: #b8860b; }
+  .tl-5 .tl-bar { background: #6c757d; border-radius: 0 4px 4px 0; }
+
+  /* ── Note / callout ── */
+  .note { background: #fff; border-left: 4px solid #457b9d; padding: 11px 14px; border-radius: 0 6px 6px 0; margin: 14px 0; font-size: 8.5pt; color: #343a40; line-height: 1.5; }
+  .note strong { color: #0d1b2a; }
+  .note.amber-note { border-left-color: #b8860b; }
+  .note.green-note { border-left-color: #2d6a4f; }
+
+  /* ── Footer ── */
+  .footer { margin-top: 40px; border-top: 1px solid #dee2e6; padding-top: 12px; font-size: 7pt; color: #6c757d; display: flex; justify-content: space-between; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="conf-bar">⚑ &nbsp; STRICTLY PRIVATE &amp; CONFIDENTIAL — NOT FOR DISTRIBUTION &nbsp; ⚑</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">Lighthief Cyprus Ltd</div>
+    <div class="header-doc-ref">
+      Document: LCY-EQ-2026-001<br>
+      Date: 17 April 2026<br>
+      Version: 1.0 — For Discussion
+    </div>
+  </div>
+  <h1>Equity Investment Offer</h1>
+  <div class="subtitle">Shareholding Options — 5% · 10% · 15% · 20% · 25%</div>
+  <div class="meta">
+    <span><strong>Issuing Entity:</strong> Lighthief Cyprus Ltd (Reg. Cyprus)</span>
+    <span><strong>Sector:</strong> BESS / Renewable Energy EPC</span>
+    <span><strong>Base Valuation:</strong> €26.7M (6× GP)</span>
+    <span><strong>Order Book:</strong> €38.6M locked</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi navy">
+      <div class="kv">€38.6M</div>
+      <div class="kl">Locked Order Book</div>
+    </div>
+    <div class="kpi green">
+      <div class="kv">€4.46M</div>
+      <div class="kl">Total Gross Profit</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kv">11.5%</div>
+      <div class="kl">Net GP Margin</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kv">317.5 MWh</div>
+      <div class="kl">Esperia Pipeline (locked)</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kv">2026–2029</div>
+      <div class="kl">Revenue Execution Window</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <h2 class="sec">Executive Summary</h2>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:14px;">
+    Lighthief Cyprus Ltd is a Battery Energy Storage System (BESS) EPC contractor operating in Cyprus, with a confirmed and near-confirmed order book totalling <strong>€38.6 million</strong> in revenue and <strong>€4.46 million</strong> in gross profit. The company holds an exclusive long-term EPC relationship with <strong>Esperia Energy</strong> — a major RES licence holder — covering 317.5 MWh of projects spanning 2026 through 2029, all with EPC V4 contracts in final review. Batch 1 (45 MWh) is confirmed for delivery in 2026 under a signed supply agreement with Linyang Energy (China).
+  </p>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6;">
+    This document presents five equity participation tiers for an incoming strategic or financial investor. The investment is denominated in Euros and is structured as a direct shareholding in Lighthief Cyprus Ltd.
+  </p>
+
+  <!-- WHY INVEST -->
+  <h2 class="sec">Why Invest</h2>
+  <div class="rationale-grid">
+    <div class="rat-card green">
+      <div class="rt">Locked Pipeline — Not Indicative</div>
+      <div class="rb">The Esperia relationship represents 317.5 MWh of BESS EPC projects with signed EPC V4 contracts in final legal review. This is not pipeline — it is a committed multi-year programme with a single counterparty controlled by Dino Constantinou.</div>
+    </div>
+    <div class="rat-card">
+      <div class="rt">Batch 1 in Execution Now</div>
+      <div class="rb">45 MWh (Galascope 1 &amp; 2 + Timotheos) in active delivery. Linyang supply agreement signed. CIF Limassol port August 2026. PAC December 2026. Revenue €5.43M cash-realised within 12 months.</div>
+    </div>
+    <div class="rat-card amber">
+      <div class="rt">Scalable Platform — €61M+ Potential</div>
+      <div class="rb">Additional groups (Timotheos remaining, Kerasi, Karis) represent a further €13.6M in B3 revenue. ABIO/ELESTORE re-engagement adds potential for 200 MWh at 20% probability. Platform is established and repeatable.</div>
+    </div>
+  </div>
+
+  <!-- VALUATION METHODOLOGY -->
+  <h2 class="sec">Valuation Methodology</h2>
+
+  <div class="note">
+    <strong>Basis:</strong> Company is valued on a <strong>Locked Order Book × Gross Profit Multiple</strong> methodology — standard for EPC contractors at pre-revenue/early-revenue stage with contractually secured backlog. Base case is <strong>6× Gross Profit</strong> on the total locked order book (B1 + Esperia full pipeline). Floor and ceiling reflect 5× and 7× respectively.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Valuation Method</th>
+        <th class="r">Multiple</th>
+        <th class="r">GP Basis (€)</th>
+        <th class="r">Implied Company Value (€)</th>
+        <th class="c">Scenario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GP Multiple — Floor</td>
+        <td class="r mono">5×</td>
+        <td class="r mono">4,455,948</td>
+        <td class="r mono b">22,279,740</td>
+        <td class="c"><span class="tag tag-grey">Conservative</span></td>
+      </tr>
+      <tr>
+        <td class="b">GP Multiple — Base</td>
+        <td class="r mono b">6×</td>
+        <td class="r mono b">4,455,948</td>
+        <td class="r mono b blue-t">26,735,688</td>
+        <td class="c"><span class="tag tag-blue">Base Case</span></td>
+      </tr>
+      <tr>
+        <td>GP Multiple — Ceiling</td>
+        <td class="r mono">7×</td>
+        <td class="r mono">4,455,948</td>
+        <td class="r mono b">31,191,636</td>
+        <td class="c"><span class="tag tag-amber">Optimistic</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec">Order Book Underpinning the Valuation</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Project / Group</th>
+        <th class="c">Batch</th>
+        <th class="c">MWh</th>
+        <th class="r">Revenue (€)</th>
+        <th class="r">Gross Profit (€)</th>
+        <th class="c">GP %</th>
+        <th class="c">PAC</th>
+        <th class="c">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Galascope 1 (Famagusta)</td>
+        <td class="c">B1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,258,900</td>
+        <td class="r mono">260,225</td>
+        <td class="c">11.52%</td>
+        <td class="c">Dec 2026</td>
+        <td class="c"><span class="tag tag-green">Confirmed</span></td>
+      </tr>
+      <tr>
+        <td class="b">Galascope 2 (Famagusta)</td>
+        <td class="c">B1</td>
+        <td class="c">10</td>
+        <td class="r mono">1,206,300</td>
+        <td class="r mono">138,966</td>
+        <td class="c">11.52%</td>
+        <td class="c">Dec 2026</td>
+        <td class="c"><span class="tag tag-green">Confirmed</span></td>
+      </tr>
+      <tr>
+        <td class="b">Timotheos — 1 Park (15 MWh)</td>
+        <td class="c">B1</td>
+        <td class="c">15</td>
+        <td class="r mono">1,961,880</td>
+        <td class="r mono">234,037</td>
+        <td class="c">11.93%</td>
+        <td class="c">Dec 2026</td>
+        <td class="c"><span class="tag tag-green">Confirmed</span></td>
+      </tr>
+      <tr class="sub-row">
+        <td colspan="2" class="b">Batch 1 Sub-total</td>
+        <td class="c b">45 MWh</td>
+        <td class="r mono b">5,427,080</td>
+        <td class="r mono b">633,228</td>
+        <td class="c">11.67%</td>
+        <td class="c">Dec 2026</td>
+        <td class="c">—</td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Famagusta B2)</td>
+        <td class="c">B2</td>
+        <td class="c">20</td>
+        <td class="r mono">2,500,334</td>
+        <td class="r mono">288,039</td>
+        <td class="c">11.52%</td>
+        <td class="c">Q1 2027</td>
+        <td class="c"><span class="tag tag-blue">EPC V4 Review</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Green Energy (Limassol)</td>
+        <td class="c">B3</td>
+        <td class="c">60</td>
+        <td class="r mono">6,003,120</td>
+        <td class="r mono">691,560</td>
+        <td class="c">11.52%</td>
+        <td class="c">Q3 2027</td>
+        <td class="c"><span class="tag tag-blue">EPC V4 Review</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Frenaros)</td>
+        <td class="c">B3</td>
+        <td class="c">100</td>
+        <td class="r mono">11,079,435</td>
+        <td class="r mono">1,276,271</td>
+        <td class="c">11.52%</td>
+        <td class="c">Q3 2027</td>
+        <td class="c"><span class="tag tag-blue">EPC V4 Review</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Green Energy (Famagusta 2027)</td>
+        <td class="c">2027</td>
+        <td class="c">20</td>
+        <td class="r mono">2,258,900</td>
+        <td class="r mono">260,225</td>
+        <td class="c">11.52%</td>
+        <td class="c">Q2 2028</td>
+        <td class="c"><span class="tag tag-blue">EPC V4 Review</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Tseri — 5 Parks (2028)</td>
+        <td class="c">2028</td>
+        <td class="c">87.5</td>
+        <td class="r mono">11,341,884</td>
+        <td class="r mono">1,306,625</td>
+        <td class="c">11.52%</td>
+        <td class="c">2029</td>
+        <td class="c"><span class="tag tag-blue">EPC V4 Review</span></td>
+      </tr>
+      <tr class="sub-row">
+        <td colspan="2" class="b">Esperia Future Sub-total</td>
+        <td class="c b">287.5 MWh</td>
+        <td class="r mono b">33,183,673</td>
+        <td class="r mono b">3,822,720</td>
+        <td class="c">11.52%</td>
+        <td class="c">2027–2029</td>
+        <td class="c">—</td>
+      </tr>
+      <tr class="grand-row">
+        <td colspan="2" class="b">TOTAL LOCKED ORDER BOOK</td>
+        <td class="c b">332.5 MWh</td>
+        <td class="r mono b">38,610,753</td>
+        <td class="r mono b">4,455,948</td>
+        <td class="c">11.54%</td>
+        <td class="c">2026–2029</td>
+        <td class="c">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- REVENUE TIMELINE -->
+  <h2 class="sec">Revenue Execution Timeline</h2>
+  <div class="timeline">
+    <div class="tl-seg tl-1" style="flex:1.4;">
+      <div class="tl-bar">€5.4M</div>
+      <div class="tl-lbl"><strong>2026</strong><br>Batch 1<br>45 MWh</div>
+    </div>
+    <div class="tl-seg tl-2" style="flex:5.1;">
+      <div class="tl-bar">€19.6M</div>
+      <div class="tl-lbl"><strong>2027</strong><br>Esperia B2 + B3<br>180 MWh</div>
+    </div>
+    <div class="tl-seg tl-3" style="flex:1.6;">
+      <div class="tl-bar">€6.0M</div>
+      <div class="tl-lbl"><strong>2028</strong><br>Esperia 2027 order<br>+ Tseri start</div>
+    </div>
+    <div class="tl-seg tl-4" style="flex:2.9;">
+      <div class="tl-bar">€7.5M</div>
+      <div class="tl-lbl"><strong>2029</strong><br>Tseri remaining<br>4 parks</div>
+    </div>
+  </div>
+
+  <!-- STAKE OPTIONS -->
+  <h2 class="sec">Shareholding Options</h2>
+  <p style="font-size:8.5pt; color:#495057; margin-bottom:14px;">All figures below use the <strong>base case valuation of €26.7M</strong> (6× GP). Floor / ceiling ranges shown in parentheses based on 5× / 7× GP.</p>
+
+  <div class="stake-grid">
+
+    <!-- 5% -->
+    <div class="stake-card">
+      <div class="stake-head sh-5">
+        <div class="spct">5%</div>
+        <div class="slbl">Seed Tier</div>
+      </div>
+      <div class="stake-body">
+        <div class="sk-row">
+          <div class="sk-lbl">Investment Ask</div>
+          <div class="sk-val">€1,337,000</div>
+          <div class="sk-range">Range: €1.1M – €1.6M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">Implied Co. Value</div>
+          <div class="sk-val">€26.7M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">GP Entitlement</div>
+          <div class="sk-val">€222,800</div>
+          <div class="sk-range">5% of €4.46M total GP</div>
+        </div>
+        <hr class="sk-divider">
+        <ul class="sk-rights">
+          <li><span class="ico">✔</span> Quarterly financial reporting</li>
+          <li><span class="ico">✔</span> Annual dividend entitlement</li>
+          <li><span class="ico">✔</span> Pro-rata on any exit / liquidity event</li>
+          <li><span class="ico">—</span> No board or observer rights</li>
+          <li><span class="ico">—</span> No governance influence</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 10% -->
+    <div class="stake-card">
+      <div class="stake-head sh-10">
+        <div class="spct">10%</div>
+        <div class="slbl">Passive Tier</div>
+      </div>
+      <div class="stake-body">
+        <div class="sk-row">
+          <div class="sk-lbl">Investment Ask</div>
+          <div class="sk-val">€2,674,000</div>
+          <div class="sk-range">Range: €2.2M – €3.1M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">Implied Co. Value</div>
+          <div class="sk-val">€26.7M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">GP Entitlement</div>
+          <div class="sk-val">€445,600</div>
+          <div class="sk-range">10% of €4.46M total GP</div>
+        </div>
+        <hr class="sk-divider">
+        <ul class="sk-rights">
+          <li><span class="ico">✔</span> Quarterly financial reporting</li>
+          <li><span class="ico">✔</span> Annual dividend entitlement</li>
+          <li><span class="ico">✔</span> Observer seat at board meetings</li>
+          <li><span class="ico">✔</span> Annual audit access</li>
+          <li><span class="ico">✔</span> Tag-along rights on exit</li>
+          <li><span class="ico">—</span> No voting or veto rights</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 15% -->
+    <div class="stake-card">
+      <div class="stake-head sh-15">
+        <div class="spct">15%</div>
+        <div class="slbl">Strategic Tier</div>
+      </div>
+      <div class="stake-body">
+        <div class="sk-row">
+          <div class="sk-lbl">Investment Ask</div>
+          <div class="sk-val">€4,011,000</div>
+          <div class="sk-range">Range: €3.3M – €4.7M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">Implied Co. Value</div>
+          <div class="sk-val">€26.7M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">GP Entitlement</div>
+          <div class="sk-val">€668,400</div>
+          <div class="sk-range">15% of €4.46M total GP</div>
+        </div>
+        <hr class="sk-divider">
+        <ul class="sk-rights">
+          <li><span class="ico">✔</span> Quarterly financial reporting</li>
+          <li><span class="ico">✔</span> Annual dividend entitlement</li>
+          <li><span class="ico">✔</span> Observer seat at board meetings</li>
+          <li><span class="ico">✔</span> Information rights (full)</li>
+          <li><span class="ico">✔</span> Tag-along rights on exit</li>
+          <li><span class="ico">✔</span> Veto: major asset disposals &gt;€500K</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 20% -->
+    <div class="stake-card highlight-card">
+      <div class="stake-head sh-20">
+        <div class="spct">20%</div>
+        <div class="slbl">Partner Tier ★</div>
+      </div>
+      <div class="stake-body">
+        <div class="sk-row">
+          <div class="sk-lbl">Investment Ask</div>
+          <div class="sk-val">€5,347,000</div>
+          <div class="sk-range">Range: €4.5M – €6.2M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">Implied Co. Value</div>
+          <div class="sk-val">€26.7M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">GP Entitlement</div>
+          <div class="sk-val">€891,200</div>
+          <div class="sk-range">20% of €4.46M total GP</div>
+        </div>
+        <hr class="sk-divider">
+        <ul class="sk-rights">
+          <li><span class="ico">✔</span> Quarterly financial reporting</li>
+          <li><span class="ico">✔</span> Dividend from Batch 2 onwards</li>
+          <li><span class="ico">✔</span> <strong>Non-executive director seat</strong></li>
+          <li><span class="ico">✔</span> Full information rights</li>
+          <li><span class="ico">✔</span> Drag-along &amp; tag-along rights</li>
+          <li><span class="ico">✔</span> Pre-emption on new share issue</li>
+          <li><span class="ico">✔</span> Veto: major strategic decisions</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 25% -->
+    <div class="stake-card">
+      <div class="stake-head sh-25">
+        <div class="spct">25%</div>
+        <div class="slbl">Lead Tier</div>
+      </div>
+      <div class="stake-body">
+        <div class="sk-row">
+          <div class="sk-lbl">Investment Ask</div>
+          <div class="sk-val">€6,684,000</div>
+          <div class="sk-range">Range: €5.6M – €7.8M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">Implied Co. Value</div>
+          <div class="sk-val">€26.7M</div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-lbl">GP Entitlement</div>
+          <div class="sk-val">€1,114,000</div>
+          <div class="sk-range">25% of €4.46M total GP</div>
+        </div>
+        <hr class="sk-divider">
+        <ul class="sk-rights">
+          <li><span class="ico">✔</span> Quarterly financial reporting</li>
+          <li><span class="ico">✔</span> Dividend from Batch 2 onwards</li>
+          <li><span class="ico">✔</span> <strong>Non-executive director seat</strong></li>
+          <li><span class="ico">✔</span> Full information rights</li>
+          <li><span class="ico">✔</span> Drag-along &amp; tag-along rights</li>
+          <li><span class="ico">✔</span> Pre-emption on new share issue</li>
+          <li><span class="ico">✔</span> Anti-dilution protection</li>
+          <li><span class="ico">✔</span> Right of first refusal — future rounds</li>
+          <li><span class="ico">✔</span> Strategic co-development input</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <h2 class="sec">Summary: Ask vs. Return</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="c">Stake</th>
+        <th>Tier</th>
+        <th class="r">Investment Ask (Base)</th>
+        <th class="r">Floor Ask (5×)</th>
+        <th class="r">Ceiling Ask (7×)</th>
+        <th class="r">GP Entitlement (€)</th>
+        <th class="r">GP Entitlement / yr (avg)</th>
+        <th class="c">Governance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="c b">5%</td>
+        <td>Seed</td>
+        <td class="r mono b">1,337,000</td>
+        <td class="r mono grey-t">1,114,000</td>
+        <td class="r mono grey-t">1,560,000</td>
+        <td class="r mono">222,800</td>
+        <td class="r mono">~55,700</td>
+        <td class="c"><span class="tag tag-grey">Passive</span></td>
+      </tr>
+      <tr>
+        <td class="c b">10%</td>
+        <td>Passive</td>
+        <td class="r mono b">2,674,000</td>
+        <td class="r mono grey-t">2,228,000</td>
+        <td class="r mono grey-t">3,119,000</td>
+        <td class="r mono">445,600</td>
+        <td class="r mono">~111,400</td>
+        <td class="c"><span class="tag tag-grey">Observer</span></td>
+      </tr>
+      <tr>
+        <td class="c b">15%</td>
+        <td>Strategic</td>
+        <td class="r mono b">4,011,000</td>
+        <td class="r mono grey-t">3,342,000</td>
+        <td class="r mono grey-t">4,679,000</td>
+        <td class="r mono">668,400</td>
+        <td class="r mono">~167,100</td>
+        <td class="c"><span class="tag tag-blue">Observer + Veto</span></td>
+      </tr>
+      <tr>
+        <td class="c b" style="color:#b8860b;">20%</td>
+        <td><strong>Partner ★</strong></td>
+        <td class="r mono b" style="color:#b8860b;">5,347,000</td>
+        <td class="r mono grey-t">4,456,000</td>
+        <td class="r mono grey-t">6,238,000</td>
+        <td class="r mono">891,200</td>
+        <td class="r mono">~222,800</td>
+        <td class="c"><span class="tag tag-amber">NED + Full Rights</span></td>
+      </tr>
+      <tr>
+        <td class="c b">25%</td>
+        <td>Lead</td>
+        <td class="r mono b">6,684,000</td>
+        <td class="r mono grey-t">5,570,000</td>
+        <td class="r mono grey-t">7,798,000</td>
+        <td class="r mono">1,114,000</td>
+        <td class="r mono">~278,500</td>
+        <td class="c"><span class="tag tag-navy">NED + ROFR + Anti-Dil</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:7.5pt; color:#6c757d; margin-top:-10px; margin-bottom:20px;">
+    GP Entitlement / yr: averaged over 4-year execution window (2026–2029). Actual dividend distribution subject to board approval. GP entitlement is gross; dividends paid after corporate tax and working capital requirements.
+  </p>
+
+  <!-- EXIT SCENARIO -->
+  <h2 class="sec">Indicative Exit Scenarios</h2>
+  <div class="note green-note">
+    <strong>Primary exit pathway:</strong> Trade sale or secondary share sale upon completion of Esperia B3 (Q4 2027). At that point ~€25M of the €38.6M backlog will be executed, providing a strong track record for a buyer at 8–10× GP on remaining pipeline.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Exit Scenario</th>
+        <th class="r">Exit Valuation</th>
+        <th class="r">5% Return</th>
+        <th class="r">10% Return</th>
+        <th class="r">15% Return</th>
+        <th class="r">20% Return</th>
+        <th class="r">25% Return</th>
+        <th class="c">Timing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Post-B1 trade sale (8× GP remaining)</td>
+        <td class="r mono">~€29M</td>
+        <td class="r mono">1,450,000</td>
+        <td class="r mono">2,900,000</td>
+        <td class="r mono">4,350,000</td>
+        <td class="r mono">5,800,000</td>
+        <td class="r mono">7,250,000</td>
+        <td class="c">Q1 2027</td>
+      </tr>
+      <tr>
+        <td>Post-B3 trade sale (8× GP remaining)</td>
+        <td class="r mono">~€35M</td>
+        <td class="r mono">1,750,000</td>
+        <td class="r mono">3,500,000</td>
+        <td class="r mono">5,250,000</td>
+        <td class="r mono">7,000,000</td>
+        <td class="r mono">8,750,000</td>
+        <td class="c">Q4 2027</td>
+      </tr>
+      <tr class="total-row">
+        <td>Full platform sale (all Tseri executed, 9× GP)</td>
+        <td class="r mono">~€40M</td>
+        <td class="r mono">2,000,000</td>
+        <td class="r mono">4,000,000</td>
+        <td class="r mono">6,000,000</td>
+        <td class="r mono">8,000,000</td>
+        <td class="r mono">10,000,000</td>
+        <td class="c">2029</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- KEY TERMS -->
+  <h2 class="sec">Key Terms &amp; Conditions</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%;">Term</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Investment Vehicle</td>
+        <td>Direct equity shareholding in Lighthief Cyprus Ltd (Cyprus-registered entity)</td>
+      </tr>
+      <tr>
+        <td class="b">Share Class</td>
+        <td>Ordinary shares (same class as founders). No preference shares offered at this stage.</td>
+      </tr>
+      <tr>
+        <td class="b">Dividend Policy</td>
+        <td>Pro-rata dividend distributions commencing upon receipt of Batch 2 deposits (est. Q3 2026). Subject to board approval and working capital requirements.</td>
+      </tr>
+      <tr>
+        <td class="b">Exclusivity</td>
+        <td>30-day exclusivity period upon signing of term sheet. LOI required to proceed to due diligence.</td>
+      </tr>
+      <tr>
+        <td class="b">Due Diligence</td>
+        <td>Full management accounts, EPC contracts (redacted client names), Linyang supply agreement, and pipeline documentation made available under NDA.</td>
+      </tr>
+      <tr>
+        <td class="b">Anti-dilution</td>
+        <td>Broad-based weighted average anti-dilution protection for stakes of 25%+. Standard pre-emption rights on new share issuance for all tiers.</td>
+      </tr>
+      <tr>
+        <td class="b">Lock-up</td>
+        <td>Investor shares subject to 24-month lock-up from completion date, with limited carve-outs for intra-group transfers.</td>
+      </tr>
+      <tr>
+        <td class="b">Governing Law</td>
+        <td>Cyprus law. Disputes resolved by ICC arbitration, Nicosia seat.</td>
+      </tr>
+      <tr>
+        <td class="b">Completion Date</td>
+        <td>Target: 31 May 2026 (ahead of Batch 1 deposit collection in Q2 2026)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note amber-note">
+    <strong>Note on Valuation:</strong> The 6× GP multiple applied to the locked order book reflects the contracted, relationship-anchored nature of the Esperia pipeline. The company does not yet have 4 years of audited P&amp;L. Any investor should treat this as a growth-stage investment and conduct independent due diligence. Figures in this document are prepared on a management accounts basis and are unaudited.
+  </div>
+
+  <!-- NEXT STEPS -->
+  <h2 class="sec">Next Steps</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="c">#</th>
+        <th>Step</th>
+        <th class="c">Responsibility</th>
+        <th class="c">Target Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="c">1</td><td>Sign NDA &amp; indicate preferred stake tier</td><td class="c">Investor</td><td class="c">Within 7 days</td></tr>
+      <tr><td class="c">2</td><td>Management presentation + data room access</td><td class="c">Lighthief</td><td class="c">Within 14 days</td></tr>
+      <tr><td class="c">3</td><td>Investor due diligence period</td><td class="c">Investor / advisors</td><td class="c">2–4 weeks</td></tr>
+      <tr><td class="c">4</td><td>Term sheet signed</td><td class="c">Both parties</td><td class="c">May 2026</td></tr>
+      <tr><td class="c">5</td><td>Shareholder agreement drafted &amp; executed</td><td class="c">Legal counsel</td><td class="c">May 2026</td></tr>
+      <tr class="total-row"><td class="c">6</td><td>Completion — funds transfer &amp; shares issued</td><td class="c">Both parties</td><td class="c">31 May 2026</td></tr>
+    </tbody>
+  </table>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>Lighthief Cyprus Ltd · Document LCY-EQ-2026-001 · 17 April 2026 · Version 1.0</div>
+    <div>STRICTLY PRIVATE &amp; CONFIDENTIAL — Prepared for discussion purposes only. Not an offer of securities.</div>
+  </div>
+
+</div><!-- end .page -->
+</body>
+</html>
