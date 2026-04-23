@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battery Energy Storage Systems | Lighthief Cyprus</title>
+<meta name="description" content="Utility-scale and C&amp;I battery energy storage systems for Cyprus. Turnkey EPC delivery — Linyang Atlantic containers, Kehua BCS skids. Supply, install, commission, O&amp;M.">
+<style>
+/* ── Brand tokens ───────────────────────────────────────── */
+:root {
+  --navy:          #1A365D;
+  --navy-mid:      #2B5FA0;
+  --navy-light:    #3B7BC4;
+  --gold:          #C9A432;
+  --gold-dark:     #9C7D22;
+  --white:         #FFFFFF;
+  --grey-text:     #404040;
+  --body-bg:       #F0F4F8;
+  --card-bg:       #FFFFFF;
+  --border:        #DDE3EC;
+  --text-muted:    #6B7C93;
+  --green:         #1A7A4A;
+  --green-bg:      #EAF6EF;
+}
+
+/* ── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--body-bg);
+  color: var(--grey-text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--navy-mid); text-decoration: none; }
+a:hover { color: var(--gold); }
+
+/* ── Layout helpers ─────────────────────────────────────── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+.section { padding: 80px 0; }
+.section-alt { background: var(--white); }
+
+/* ── Typography ─────────────────────────────────────────── */
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::before {
+  content: ''; display: inline-block; width: 24px; height: 2px; background: var(--gold);
+}
+h1 { font-size: clamp(30px, 5vw, 52px); font-weight: 800; line-height: 1.1; color: var(--white); }
+h2 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
+h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+p { margin-bottom: 14px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── NAV ────────────────────────────────────────────────── */
+.nav {
+  background: var(--navy);
+  padding: 16px 0;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,.3);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: 1.5px;
+}
+.nav-logo .dot {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--gold); display: flex; align-items: center;
+  justify-content: center; font-size: 15px; font-weight: 900; color: var(--navy);
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,.78); font-size: 13px; font-weight: 600;
+  letter-spacing: .3px; transition: color .2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--gold); color: var(--navy) !important;
+  padding: 8px 22px; border-radius: 6px; font-weight: 700 !important;
+  font-size: 13px !important; transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--gold-dark) !important; color: var(--white) !important; }
+
+/* ── HERO ───────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, #1E4D8C 100%);
+  padding: 0;
+  position: relative; overflow: hidden;
+  min-height: 580px; display: flex; align-items: stretch;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr; width: 100%;
+  position: relative;
+}
+.hero-content {
+  padding: 96px 56px 80px 0;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,164,50,.15); border: 1px solid rgba(201,164,50,.35);
+  color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
+  width: fit-content;
+}
+.hero h1 { margin-bottom: 20px; }
+.hero-subtitle {
+  font-size: 16px; color: rgba(255,255,255,.82); line-height: 1.75; margin-bottom: 36px;
+  max-width: 440px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--navy); font-weight: 700; font-size: 15px;
+  padding: 13px 30px; border-radius: 8px; transition: background .2s, transform .15s;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--gold-dark); color: var(--white); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 2px solid rgba(255,255,255,.45); color: var(--white); font-weight: 600; font-size: 15px;
+  padding: 13px 28px; border-radius: 8px; transition: border-color .2s, background .2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,164,50,.07); }
+
+.hero-stats {
+  display: flex; gap: 0;
+  border: 1px solid rgba(255,255,255,.15); border-radius: 12px; overflow: hidden;
+  background: rgba(0,0,0,.18); margin-top: 44px; backdrop-filter: blur(4px);
+  width: fit-content;
+}
+.hero-stat {
+  padding: 18px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,.1);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat .val {
+  font-size: 30px; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 4px;
+}
+.hero-stat .lbl { font-size: 10px; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Hero image side */
+.hero-image-panel {
+  position: relative; overflow: hidden;
+}
+.hero-image-panel img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  opacity: .85;
+}
+.hero-image-panel::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, var(--navy) 0%, transparent 30%);
+}
+.hero-image-panel::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+  background: linear-gradient(0deg, rgba(26,54,93,.7) 0%, transparent 60%);
+}
+.hero-image-label {
+  position: absolute; bottom: 20px; right: 20px; z-index: 2;
+  background: rgba(0,0,0,.55); color: rgba(255,255,255,.7);
+  font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 4px; backdrop-filter: blur(4px);
+}
+
+/* ── PROOF BAR ──────────────────────────────────────────── */
+.proof-bar {
+  background: var(--navy); padding: 22px 0;
+  border-bottom: 3px solid var(--gold);
+}
+.proof-bar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.proof-item {
+  display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.75); font-size: 13px;
+}
+.proof-item svg { flex-shrink: 0; color: var(--gold); }
+.proof-item strong { color: var(--white); }
+
+/* ── INTRO ──────────────────────────────────────────────── */
+.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.intro-text h2 { color: var(--navy); }
+.intro-text .lead {
+  font-size: 16px; color: var(--grey-text); line-height: 1.8; margin-bottom: 24px;
+}
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.check-list li {
+  display: flex; align-items: flex-start; gap: 10px; font-size: 14px;
+}
+.check-list li::before {
+  content: '✓';
+  background: var(--green-bg); color: var(--green);
+  border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center;
+  justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.intro-highlights {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.highlight-card {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: 14px; padding: 24px 20px; color: var(--white);
+}
+.highlight-card .num { font-size: 34px; font-weight: 800; color: var(--gold); line-height: 1; }
+.highlight-card .unit { font-size: 14px; font-weight: 600; color: var(--gold); }
+.highlight-card .desc { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 8px; }
+
+/* ── HARDWARE SHOWCASE ──────────────────────────────────── */
+.hardware-section {
+  background: #0F2240;
+  padding: 80px 0;
+}
+.hardware-section .section-label { color: var(--gold); }
+.hardware-section h2 { color: var(--white); }
+.hardware-section h2 span { color: var(--gold); }
+
+.hw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  margin-top: 40px;
+}
+.hw-card {
+  border-radius: 14px; overflow: hidden; position: relative;
+  background: rgba(255,255,255,.05);
+}
+.hw-card.large {
+  grid-row: span 2;
+}
+.hw-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.hw-card:hover img { transform: scale(1.03); }
+.hw-card .hw-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, rgba(15,34,64,.92) 0%, transparent 100%);
+  padding: 40px 24px 20px;
+}
+.hw-card .hw-label h3 { color: var(--white); margin-bottom: 2px; font-size: 16px; }
+.hw-card .hw-label p { color: rgba(255,255,255,.65); font-size: 12px; margin: 0; }
+.hw-card .hw-tag {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 800;
+  padding: 4px 12px; border-radius: 20px; letter-spacing: .5px; text-transform: uppercase;
+}
+
+/* Right-column images */
+.hw-card.top { }
+.hw-card.bottom { }
+
+/* Full-width strip */
+.hw-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;
+}
+.hw-strip-card {
+  border-radius: 14px; overflow: hidden; position: relative; height: 200px;
+}
+.hw-strip-card img { width: 100%; height: 100%; object-fit: cover; }
+.hw-strip-card .hw-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, rgba(15,34,64,.88) 0%, transparent 100%);
+  padding: 32px 18px 14px;
+}
+.hw-strip-card .hw-label h4 { color: var(--white); font-size: 13px; margin-bottom: 2px; }
+.hw-strip-card .hw-label p { color: rgba(255,255,255,.6); font-size: 11px; margin: 0; }
+
+/* ── PRODUCT RANGE ──────────────────────────────────────── */
+.product-tabs {
+  display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 44px;
+}
+.tab-btn {
+  padding: 12px 30px; font-size: 14px; font-weight: 600; cursor: pointer;
+  border: none; background: transparent; color: var(--text-muted);
+  border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s;
+}
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
+.tab-btn:hover:not(.active) { color: var(--navy); background: var(--body-bg); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.product-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+
+.product-card {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; transition: box-shadow .25s, transform .25s; display: flex; flex-direction: column;
+}
+.product-card:hover { box-shadow: 0 12px 40px rgba(26,54,93,.16); transform: translateY(-4px); }
+.product-card-img {
+  aspect-ratio: 4/3; overflow: hidden;
+  position: relative; background: var(--navy);
+}
+.product-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .4s ease;
+}
+.product-card:hover .product-card-img img { transform: scale(1.06); }
+.product-card-img .img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; color: rgba(255,255,255,.4); font-size: 11px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+.product-card-img .img-placeholder svg { width: 44px; height: 44px; }
+.power-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 800;
+  padding: 4px 12px; border-radius: 20px; letter-spacing: .5px; z-index: 1;
+}
+.product-card-body { padding: 20px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+.product-card h3 { font-size: 15px; margin-bottom: 4px; }
+.product-card .product-subtitle { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; }
+.spec-list { list-style: none; font-size: 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.spec-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.spec-list li + li { border-top: 1px solid #F2F5F9; padding-top: 6px; }
+.spec-list .spec-k { color: var(--text-muted); }
+.spec-list .spec-v { font-weight: 600; color: var(--navy); text-align: right; }
+.product-card .card-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--gold-dark); font-size: 12px; font-weight: 700; margin-top: 16px;
+  border-top: 1px solid var(--border); padding-top: 14px;
+}
+.product-card .card-link:hover { color: var(--navy); }
+
+/* ── BATTERY CONTAINER SECTION ──────────────────────────── */
+.container-showcase {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+}
+.container-photo-stack {
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 12px; height: 420px;
+}
+.container-photo-stack .photo-main {
+  grid-column: 1; grid-row: 1 / span 2;
+  border-radius: 14px; overflow: hidden;
+}
+.container-photo-stack .photo-main img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.container-photo-stack .photo-sub {
+  border-radius: 14px; overflow: hidden;
+}
+.container-photo-stack .photo-sub img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.container-specs-list {
+  list-style: none; display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  margin-bottom: 24px;
+}
+.container-specs-list li {
+  display: flex; justify-content: space-between;
+  padding: 11px 16px; font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.container-specs-list li:last-child { border-bottom: none; }
+.container-specs-list li:nth-child(even) { background: #F7F9FC; }
+.container-specs-list .sk { color: var(--text-muted); }
+.container-specs-list .sv { font-weight: 700; color: var(--navy); }
+
+/* ── SPECS TABLE ────────────────────────────────────────── */
+.specs-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+table.specs {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+table.specs thead th {
+  background: var(--navy); color: var(--white); padding: 12px 16px;
+  text-align: left; font-size: 11px; letter-spacing: .5px; font-weight: 700;
+  white-space: nowrap;
+}
+table.specs tbody td {
+  padding: 11px 16px; border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+table.specs tbody tr:last-child td { border-bottom: none; }
+table.specs tbody tr:nth-child(even) { background: #F7F9FC; }
+table.specs tbody tr:hover { background: #EDF2F7; }
+table.specs td.param { color: var(--text-muted); font-size: 12px; }
+table.specs td.model { font-weight: 700; color: var(--navy); }
+table.specs .badge {
+  display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 4px; letter-spacing: .3px;
+}
+table.specs .badge-green { background: var(--green-bg); color: var(--green); }
+table.specs .badge-blue  { background: #EBF4FF; color: var(--navy-mid); }
+
+/* ── USE CASES ──────────────────────────────────────────── */
+.use-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.use-case-card {
+  background: var(--card-bg); border-radius: 16px; padding: 30px 26px;
+  border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px;
+  transition: box-shadow .2s, transform .2s;
+}
+.use-case-card:hover { box-shadow: 0 8px 28px rgba(26,54,93,.12); transform: translateY(-3px); }
+.use-case-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.use-case-icon svg { width: 26px; height: 26px; color: var(--gold); }
+.use-case-card h3 { font-size: 16px; }
+.use-case-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; flex: 1; }
+.use-case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase;
+  background: var(--body-bg); color: var(--text-muted); border: 1px solid var(--border);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+/* ── CERTIFICATIONS ─────────────────────────────────────── */
+.cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.cert-card {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px 16px; text-align: center;
+  transition: box-shadow .2s;
+}
+.cert-card:hover { box-shadow: 0 4px 16px rgba(26,54,93,.1); }
+.cert-card .cert-icon {
+  font-size: 28px; margin-bottom: 10px;
+}
+.cert-card h4 { font-size: 12px; color: var(--navy); margin-bottom: 4px; }
+.cert-card p  { font-size: 11px; color: var(--text-muted); margin: 0; }
+
+/* ── WHY LIGHTHIEF ──────────────────────────────────────── */
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.why-card {
+  background: var(--white); border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0; padding: 22px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+  transition: box-shadow .2s;
+}
+.why-card:hover { box-shadow: 0 4px 20px rgba(26,54,93,.1); }
+.why-card .why-num {
+  font-size: 30px; font-weight: 900; color: var(--gold); line-height: 1; flex-shrink: 0; width: 40px;
+}
+.why-card h3 { font-size: 15px; margin-bottom: 5px; }
+.why-card p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+/* ── PROCESS STEPS ──────────────────────────────────────── */
+.process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+.process-steps::before {
+  content: ''; position: absolute; top: 28px; left: calc(10% + 12px); right: calc(10% + 12px);
+  height: 2px; background: var(--border); z-index: 0;
+}
+.step { text-align: center; padding: 0 12px; position: relative; z-index: 1; }
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-size: 18px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px; border: 3px solid var(--body-bg);
+}
+.step.active .step-num { background: var(--gold); color: var(--navy); }
+.step h4 { font-size: 13px; margin-bottom: 6px; }
+.step p { font-size: 11.5px; color: var(--text-muted); }
+
+/* ── CTA ────────────────────────────────────────────────── */
+.cta-section {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  padding: 80px 0; text-align: center;
+}
+.cta-section h2 { color: var(--gold); margin-bottom: 14px; }
+.cta-section p { color: rgba(255,255,255,.8); font-size: 16px; margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-cards {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px;
+}
+.cta-card {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 14px; padding: 22px 28px; text-align: left;
+  display: flex; align-items: center; gap: 14px; min-width: 240px;
+  transition: background .2s;
+}
+.cta-card:hover { background: rgba(255,255,255,.13); }
+.cta-card svg { color: var(--gold); flex-shrink: 0; }
+.cta-card .cta-lbl { font-size: 11px; color: rgba(255,255,255,.55); margin-bottom: 2px; }
+.cta-card .cta-val { font-size: 15px; font-weight: 700; color: var(--white); }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-gold-outline {
+  border: 2px solid var(--gold); color: var(--gold); font-weight: 700; font-size: 15px;
+  padding: 13px 28px; border-radius: 8px; background: transparent;
+  transition: background .2s, color .2s; cursor: pointer; display: inline-block;
+}
+.btn-gold-outline:hover { background: var(--gold); color: var(--navy); }
+
+/* ── NOTE BOX ───────────────────────────────────────────── */
+.note-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0; padding: 16px 20px;
+  font-size: 13px; color: var(--text-muted);
+}
+.note-box strong { color: var(--navy); }
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+.footer { background: #0F2240; padding: 36px 0; }
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+}
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+.footer-logo .dot {
+  width: 30px; height: 30px; border-radius: 6px; background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; color: var(--navy);
+}
+.footer-logo span { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+.footer-note { font-size: 12px; color: rgba(255,255,255,.4); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,.5); }
+.footer-links a:hover { color: var(--gold); }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-image-panel { display: none; }
+  .hero-content { padding: 80px 0 64px; }
+  .intro-grid { grid-template-columns: 1fr; }
+  .container-showcase { grid-template-columns: 1fr; }
+  .container-photo-stack { height: 300px; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .use-cases-grid { grid-template-columns: 1fr 1fr; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .process-steps::before { display: none; }
+  .hw-grid { grid-template-columns: 1fr; }
+  .hw-card.large { grid-row: span 1; height: 320px; }
+  .hw-strip { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .product-grid { grid-template-columns: 1fr; }
+  .product-grid-2 { grid-template-columns: 1fr; }
+  .use-cases-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { flex-direction: column; width: 100%; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .hero-stat:last-child { border-bottom: none; }
+  .intro-highlights { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .cta-card { min-width: unset; width: 100%; }
+  .hw-strip { grid-template-columns: 1fr; }
+}
+
+@media print { .nav, .cta-section, .footer { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="https://lighthief.cy" class="nav-logo">
+        <div class="dot">L</div>
+        <span>LIGHTHIEF</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#use-cases">Applications</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="container" style="width: 100%; max-width: 100%; padding: 0;">
+    <div class="hero-inner">
+
+      <div class="hero-content container" style="max-width: 580px; margin-left: auto; margin-right: 0;">
+        <div class="hero-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Turnkey BESS EPC · Cyprus &amp; Region
+        </div>
+        <h1>Battery Energy<br>Storage Systems</h1>
+        <p class="hero-subtitle">
+          From 215 kWh C&amp;I cabinets to 10 MW grid-scale stations — Linyang Atlantic containers paired with Kehua BCS skids, fully installed and commissioned by our Cyprus EPC team.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Request a Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a href="#hardware" class="btn-outline">See the Hardware</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="val">28</div>
+            <div class="lbl">Parks</div>
+          </div>
+          <div class="hero-stat">
+            <div class="val">134<span style="font-size:16px"> MW</span></div>
+            <div class="lbl">Power</div>
+          </div>
+          <div class="hero-stat">
+            <div class="val">496<span style="font-size:16px"> MWh</span></div>
+            <div class="lbl">Deployed</div>
+          </div>
+          <div class="hero-stat">
+            <div class="val">138</div>
+            <div class="lbl">Containers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-panel">
+        <img src="../../../public/images/linyang/t4-mv-skid.jpeg"
+             alt="Kehua BCS T4 5MW MV Skid — 40ft HC container" loading="eager">
+        <div class="hero-image-label">Kehua BCS T4 · 5 MW MV Skid</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PROOF BAR ════════════════════════ -->
+<div class="proof-bar">
+  <div class="container">
+    <div class="proof-bar-inner">
+      <div class="proof-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span><strong>TÜV certified</strong> — EN 50549-2 grid code</span>
+      </div>
+      <div class="proof-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span><strong>10-year cell warranty</strong> — Linyang LFP</span>
+      </div>
+      <div class="proof-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <span><strong>Local EPC team</strong> — Cyprus-based engineering</span>
+      </div>
+      <div class="proof-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span><strong>86.32% AC-AC RTE</strong> — verified on 134-day TSOC dataset</span>
+      </div>
+      <div class="proof-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span><strong>EAC/DSO compliant</strong> — IEC &amp; CE certified stack</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ INTRO ══════════════════════════ -->
+<section class="section section-alt" id="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <div class="section-label">What We Offer</div>
+        <h2>Complete BESS — from factory to grid connection</h2>
+        <p class="lead">
+          Lighthief is Cyprus's dedicated BESS EPC contractor. We handle the full project lifecycle: OEM procurement direct from Linyang Energy (battery containers) and Kehua Tech (PCS/MV skids), import logistics, civil works, electrical installation, DSO interface, commissioning, and ongoing O&amp;M.
+        </p>
+        <ul class="check-list">
+          <li>Direct OEM supply — Linyang Atlantic Series containers + Kehua BCS-C-HUD skids</li>
+          <li>Utility-scale: 1.25 MW → 10 MW per skid unit, scalable to 100+ MWh per site</li>
+          <li>C&amp;I containerised ESS: 215 kWh Deye MS-GS215 with integrated solar MPPT</li>
+          <li>IEC 61850 / IEC 104 / Modbus — EAC/DSO ready from day one</li>
+          <li>DisperonEMS cloud SCADA — real-time monitoring &amp; market trading integration</li>
+          <li>10-year LFP cell warranty + optional LTSA packages</li>
+        </ul>
+      </div>
+
+      <div class="intro-highlights">
+        <div class="highlight-card">
+          <div class="num">≥99<span class="unit">%</span></div>
+          <div class="desc">PCS efficiency — Kehua BCS-C-HUD series</div>
+        </div>
+        <div class="highlight-card">
+          <div class="num">IP65</div>
+          <div class="desc">Ingress protection — no shelter required, outdoor rated</div>
+        </div>
+        <div class="highlight-card">
+          <div class="num">C5</div>
+          <div class="desc">Anti-corrosion — coastal &amp; marine environments</div>
+        </div>
+        <div class="highlight-card">
+          <div class="num">6,000<span class="unit">+</span></div>
+          <div class="desc">Cycle life — Linyang LFP cells at 80% DoD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ HARDWARE SHOWCASE ══════════════════ -->
+<section class="hardware-section" id="hardware">
+  <div class="container">
+    <div class="section-label">The Hardware</div>
+    <h2>Built to last. <span>Built for Cyprus.</span></h2>
+    <p style="color: rgba(255,255,255,.7); font-size: 16px; max-width: 600px; margin-top: 8px;">
+      Every installation pairs Linyang Atlantic battery containers with Kehua BCS power conversion &amp; MV skids. Factory-tested, IP65-rated, and C5 anti-corrosion treated for Mediterranean coastal sites.
+    </p>
+
+    <!-- Main 2-column grid: large left + stacked right -->
+    <div class="hw-grid">
+
+      <!-- Large: Linyang container exterior -->
+      <div class="hw-card large" style="height: 440px;">
+        <img src="../../../public/images/linyang/container-exterior.jpeg"
+             alt="Linyang Atlantic battery container exterior — 40ft HC" loading="lazy">
+        <div class="hw-tag">Linyang Atlantic</div>
+        <div class="hw-label">
+          <h3>Battery Container — 5 MWh</h3>
+          <p>40ft HC · LFP cells · 6,000+ cycle life · IP65</p>
+        </div>
+      </div>
+
+      <!-- Right top: T8 skid -->
+      <div class="hw-card top" style="height: 210px;">
+        <img src="../../../public/images/linyang/t8-mv-skid.jpeg"
+             alt="Kehua BCS T8 10MW MV skid" loading="lazy">
+        <div class="hw-tag">Kehua BCS T8</div>
+        <div class="hw-label">
+          <h3>T8 MV Skid — 10 MW</h3>
+          <p>8 × BCS1250K PCS · 40ft HC · 10,000 kVA transformer</p>
+        </div>
+      </div>
+
+      <!-- Right bottom: T2 skid -->
+      <div class="hw-card bottom" style="height: 210px;">
+        <img src="../../../public/images/linyang/t2-mv-skid.jpeg"
+             alt="Kehua BCS T2 2MW MV skid" loading="lazy">
+        <div class="hw-tag">Kehua BCS T2</div>
+        <div class="hw-label">
+          <h3>T2 MV Skid — 2 MW</h3>
+          <p>2 × BCS1000K PCS · 20ft container · 2,000 kVA</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Strip of 3 -->
+    <div class="hw-strip">
+
+      <div class="hw-strip-card">
+        <img src="../../../public/images/linyang/container-cell-racks.jpeg"
+             alt="Linyang container interior — LFP cell racks" loading="lazy">
+        <div class="hw-label">
+          <h4>Battery Cell Racks</h4>
+          <p>Linyang Atlantic interior — LFP high-voltage packs</p>
+        </div>
+      </div>
+
+      <div class="hw-strip-card">
+        <img src="../../../public/images/linyang/pcs-1000-1250.jpeg"
+             alt="Kehua BCS-1000/1250K PCS unit" loading="lazy">
+        <div class="hw-label">
+          <h4>Kehua BCS PCS Unit</h4>
+          <p>1,000–1,250 kW AC · ≥99% efficiency · IEC 61850</p>
+        </div>
+      </div>
+
+      <div class="hw-strip-card">
+        <img src="../../../public/images/linyang/mc-transformer-8mw.jpeg"
+             alt="MV transformer 8MW skid" loading="lazy">
+        <div class="hw-label">
+          <h4>MV Transformer Skid</h4>
+          <p>Integrated MV step-up · 690 V → 11/22 kV grid interface</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PRODUCTS ════════════════════════ -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-label">Product Range</div>
+    <h2 style="margin-bottom: 36px;">Utility-Scale &amp; C&amp;I Systems</h2>
+
+    <div class="product-tabs">
+      <button class="tab-btn active" onclick="switchTab('utility', this)">Utility-Scale — Kehua BCS Skids</button>
+      <button class="tab-btn" onclick="switchTab('ci', this)">C&amp;I ESS — Deye</button>
+    </div>
+
+    <!-- Tab: Utility -->
+    <div class="tab-panel active" id="tab-utility">
+      <div class="product-grid">
+
+        <!-- T1 -->
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="../../../public/images/linyang/pcs-1000-1250.jpeg"
+                 alt="Kehua BCS T1 1.25MW PCS unit" loading="lazy">
+            <div class="power-badge">1.25 MW</div>
+          </div>
+          <div class="product-card-body">
+            <h3>BCS1250K-C-HUD T1</h3>
+            <div class="product-subtitle">Single-PCS skid · 20ft container</div>
+            <ul class="spec-list">
+              <li><span class="spec-k">AC Power</span><span class="spec-v">1.0–1.25 MW</span></li>
+              <li><span class="spec-k">DC Bus</span><span class="spec-v">1000–1500 Vdc</span></li>
+              <li><span class="spec-k">AC Output</span><span class="spec-v">690 Vac, 3-phase</span></li>
+              <li><span class="spec-k">Transformer</span><span class="spec-v">1,000–1,250 kVA</span></li>
+              <li><span class="spec-k">Container</span><span class="spec-v">20ft Std (6,058 mm)</span></li>
+              <li><span class="spec-k">Grid code</span><span class="spec-v">EN 50549-2 ✓</span></li>
+            </ul>
+            <a href="#contact" class="card-link">
+              Request datasheet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- T2 -->
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="../../../public/images/linyang/t2-mv-skid.jpeg"
+                 alt="Kehua BCS T2 2MW MV skid" loading="lazy">
+            <div class="power-badge">2.0 MW</div>
+          </div>
+          <div class="product-card-body">
+            <h3>BCS2000K-C-HUD T2</h3>
+            <div class="product-subtitle">Dual-PCS skid · 20ft container</div>
+            <ul class="spec-list">
+              <li><span class="spec-k">AC Power</span><span class="spec-v">2.0 MW</span></li>
+              <li><span class="spec-k">PCS Units</span><span class="spec-v">2 × BCS1000K</span></li>
+              <li><span class="spec-k">Transformer</span><span class="spec-v">2,000 kVA</span></li>
+              <li><span class="spec-k">Container</span><span class="spec-v">20ft Std (6,058 mm)</span></li>
+              <li><span class="spec-k">Efficiency</span><span class="spec-v">≥99%</span></li>
+              <li><span class="spec-k">Comms</span><span class="spec-v">IEC 61850 / Modbus</span></li>
+            </ul>
+            <a href="#contact" class="card-link">
+              Request datasheet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- T4 -->
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="../../../public/images/linyang/t4-mv-skid.jpeg"
+                 alt="Kehua BCS T4 5MW MV skid" loading="lazy">
+            <div class="power-badge">5.0 MW</div>
+          </div>
+          <div class="product-card-body">
+            <h3>BCS4000K-C-HUD T4</h3>
+            <div class="product-subtitle">Four-PCS skid · 40ft HC container</div>
+            <ul class="spec-list">
+              <li><span class="spec-k">AC Power</span><span class="spec-v">4.0–5.0 MW</span></li>
+              <li><span class="spec-k">PCS Units</span><span class="spec-v">4 × BCS1000/1250K</span></li>
+              <li><span class="spec-k">Transformer</span><span class="spec-v">4,000–5,000 kVA</span></li>
+              <li><span class="spec-k">Container</span><span class="spec-v">40ft HC (12,192 mm)</span></li>
+              <li><span class="spec-k">IP Rating</span><span class="spec-v">IP65</span></li>
+              <li><span class="spec-k">Corrosion</span><span class="spec-v">C5 coastal grade</span></li>
+            </ul>
+            <a href="#contact" class="card-link">
+              Request datasheet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- T8 -->
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="../../../public/images/linyang/t8-mv-skid.jpeg"
+                 alt="Kehua BCS T8 10MW MV skid" loading="lazy">
+            <div class="power-badge">10.0 MW</div>
+          </div>
+          <div class="product-card-body">
+            <h3>BCS10000K-C-HUD T8</h3>
+            <div class="product-subtitle">Eight-PCS flagship skid · 40ft HC</div>
+            <ul class="spec-list">
+              <li><span class="spec-k">AC Power</span><span class="spec-v">10.0 MW</span></li>
+              <li><span class="spec-k">PCS Units</span><span class="spec-v">8 × BCS1250K</span></li>
+              <li><span class="spec-k">Transformer</span><span class="spec-v">10,000 kVA</span></li>
+              <li><span class="spec-k">MV Output</span><span class="spec-v">22 kV (custom)</span></li>
+              <li><span class="spec-k">Container</span><span class="spec-v">40ft HC (12,192 mm)</span></li>
+              <li><span class="spec-k">SLD</span><span class="spec-v">22 kV available ✓</span></li>
+            </ul>
+            <a href="#contact" class="card-link">
+              Request datasheet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-box" style="margin-top: 28px;">
+        <strong>Battery Containers (Linyang Atlantic Series)</strong> — T1–T8 PCS/transformer skids pair with Linyang Atlantic 4 MWh or 5.015 MWh battery containers (LFP, 40ft HC). Configuration and string count are project-specific. Contact us for a site-specific BOM.
+      </div>
+
+      <!-- Linyang Container Detail -->
+      <section style="margin-top: 64px;" id="linyang-container">
+        <div class="section-label">Linyang Atlantic Series</div>
+        <h2 style="margin-bottom: 36px;">The Battery Container</h2>
+        <div class="container-showcase">
+
+          <div class="container-photo-stack">
+            <div class="photo-main">
+              <img src="../../../public/images/linyang/container-exterior.jpeg"
+                   alt="Linyang Atlantic container exterior" loading="lazy"
+                   style="border-radius: 14px;">
+            </div>
+            <div class="photo-sub">
+              <img src="../../../public/images/linyang/container-cell-racks.jpeg"
+                   alt="Linyang container LFP cell racks interior" loading="lazy"
+                   style="border-radius: 14px;">
+            </div>
+            <div class="photo-sub">
+              <img src="../../../public/images/linyang/cellpack bpl y166.jpeg"
+                   alt="Linyang LFP cell pack BPL Y166" loading="lazy"
+                   style="border-radius: 14px;">
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size: 16px; line-height: 1.8; color: var(--grey-text); margin-bottom: 24px;">
+              The Linyang Atlantic is a complete 40ft HC battery container housing LFP high-voltage cell packs, battery management system, thermal management, and fire suppression — ready to pair directly with any Kehua BCS skid.
+            </p>
+            <ul class="container-specs-list">
+              <li><span class="sk">Usable Capacity</span><span class="sv">5.015 MWh (std) / 4.0 MWh</span></li>
+              <li><span class="sk">Cell Chemistry</span><span class="sv">LFP (Lithium Iron Phosphate)</span></li>
+              <li><span class="sk">Cycle Life</span><span class="sv">6,000+ cycles @ 80% DoD</span></li>
+              <li><span class="sk">Container</span><span class="sv">40ft HC (12,192 × 2,438 × 2,896 mm)</span></li>
+              <li><span class="sk">DC Voltage Range</span><span class="sv">1,000–1,500 Vdc</span></li>
+              <li><span class="sk">AC-AC Round-Trip Eff.</span><span class="sv">86.32% (verified)</span></li>
+              <li><span class="sk">IP Protection</span><span class="sv">IP65 — no shelter required</span></li>
+              <li><span class="sk">Anti-corrosion</span><span class="sv">C5 coastal grade</span></li>
+              <li><span class="sk">Operating Temp.</span><span class="sv">−35°C to +60°C</span></li>
+              <li><span class="sk">Cell Warranty</span><span class="sv">10 years</span></li>
+              <li><span class="sk">Certifications</span><span class="sv">IEC 62619, UL 9540A, CE</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Specs comparison table -->
+      <div style="margin-top: 56px;">
+        <h3 style="margin-bottom: 20px; color: var(--navy);">PCS Skid Comparison</h3>
+        <div class="specs-table-wrap">
+          <table class="specs">
+            <thead>
+              <tr>
+                <th>Model</th><th>AC Power</th><th>PCS Units</th><th>Transformer</th><th>Container</th><th>DC Voltage</th><th>Efficiency</th><th>Grid Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="model">T1 · BCS1250K</td>
+                <td>1.0–1.25 MW</td><td>1</td><td>1,250 kVA</td><td>20ft Std</td><td>1000–1500 Vdc</td><td>≥99%</td>
+                <td><span class="badge badge-green">EN 50549-2</span></td>
+              </tr>
+              <tr>
+                <td class="model">T2 · BCS2000K</td>
+                <td>2.0 MW</td><td>2</td><td>2,000 kVA</td><td>20ft Std</td><td>1000–1500 Vdc</td><td>≥99%</td>
+                <td><span class="badge badge-green">EN 50549-2</span></td>
+              </tr>
+              <tr>
+                <td class="model">T4 · BCS4000K</td>
+                <td>4.0–5.0 MW</td><td>4</td><td>4,000–5,000 kVA</td><td>40ft HC</td><td>1000–1500 Vdc</td><td>≥99%</td>
+                <td><span class="badge badge-green">EN 50549-2</span></td>
+              </tr>
+              <tr>
+                <td class="model">T8 · BCS10000K</td>
+                <td>10.0 MW</td><td>8</td><td>10,000 kVA</td><td>40ft HC</td><td>1000–1500 Vdc</td><td>≥99%</td>
+                <td><span class="badge badge-green">EN 50549-2</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: C&I (Deye) -->
+    <div class="tab-panel" id="tab-ci">
+      <div class="product-grid-2">
+
+        <!-- Deye MS-GS215 -->
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="../../pv-clients/habanay/assets/ms-gs215-cabinet.webp"
+                 alt="Deye MS-GS215-2H3 215kWh ESS cabinet" loading="lazy">
+            <div class="power-badge">215 kWh</div>
+          </div>
+          <div class="product-card-body">
+            <h3>Deye MS-GS215-2H3</h3>
+            <div class="product-subtitle">C&amp;I Solar + Storage Container · Integrated MPPT</div>
+            <ul class="spec-list">
+              <li><span class="spec-k">Usable Energy</span><span class="spec-v">215 kWh</span></li>
+              <li><span class="spec-k">AC Power (PCS)</span><span class="spec-v">100 kW</span></li>
+              <li><span class="spec-k">PV Input</span><span class="spec-v">Up to 200 kWp DC</span></li>
+              <li><span class="spec-k">Chemistry</span><span class="spec-v">LFP (high-voltage pack)</span></li>
+              <li><span class="spec-k">Nominal Voltage</span><span class="spec-v">384 Vdc pack</span></li>
+              <li><span class="spec-k">Gen Integration</span><span class="spec-v">Dry contact + RS-485</span></li>
+              <li><span class="spec-k">Off-grid Parallel</span><span class="spec-v">Up to 10 units</span></li>
+              <li><span class="spec-k">EMS</span><span class="spec-v">Deye MS-EMS (built-in)</span></li>
+              <li><span class="spec-k">Protection</span><span class="spec-v">TMS + fire suppression</span></li>
+            </ul>
+            <a href="#contact" class="card-link">
+              Request datasheet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Deye GE-F120 -->
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="../../pv-clients/habanay/assets/ms-gs215-1.webp"
+                 alt="Deye GE-F120 Series C&I ESS" loading="lazy">
+            <div class="power-badge">122 kWh</div>
+          </div>
+          <div class="product-card-body">
+            <h3>Deye GE-F120 Series</h3>
+            <div class="product-subtitle">Compact C&amp;I ESS · 50 kW class</div>
+            <ul class="spec-list">
+              <li><span class="spec-k">Usable Energy</span><span class="spec-v">~122.8 kWh</span></li>
+              <li><span class="spec-k">AC Power</span><span class="spec-v">~50 kW</span></li>
+              <li><span class="spec-k">PV Integration</span><span class="spec-v">Integrated MPPT</span></li>
+              <li><span class="spec-k">Chemistry</span><span class="spec-v">LFP</span></li>
+              <li><span class="spec-k">Generator</span><span class="spec-v">Compatible (STS)</span></li>
+              <li><span class="spec-k">Form factor</span><span class="spec-v">Indoor/outdoor cabinet</span></li>
+              <li><span class="spec-k">Use case</span><span class="spec-v">SME, hotel, clinic</span></li>
+            </ul>
+            <a href="#contact" class="card-link">
+              Request datasheet
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <div class="note-box" style="margin-top: 28px;">
+        <strong>C&amp;I Note</strong> — Deye systems are designed for commercial &amp; industrial sites pairing rooftop or ground-mount PV with battery backup. The MS-GS215 supports full island-mode operation and diesel generator integration without a separate inverter.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════ USE CASES ═══════════════════════ -->
+<section class="section section-alt" id="use-cases">
+  <div class="container">
+    <div class="section-label">Applications</div>
+    <h2 style="margin-bottom: 40px;">What BESS Does for You</h2>
+    <div class="use-cases-grid">
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Grid Services &amp; Frequency Regulation</h3>
+        <p>Earn revenue providing frequency containment reserves (FCR), balancing energy, and voltage support to the TSO/DSO. Response time &lt;200 ms from IEC 104 dispatch command.</p>
+        <div class="use-case-tags">
+          <span class="tag">FCR</span><span class="tag">aFRR</span><span class="tag">Voltage Support</span>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+        </div>
+        <h3>Solar Firming &amp; Curtailment Recovery</h3>
+        <p>Store excess daytime solar generation and dispatch at evening peak or on grid request. Eliminates curtailment losses and maximises PPA revenue for co-located PV assets.</p>
+        <div class="use-case-tags">
+          <span class="tag">PV + BESS</span><span class="tag">Curtailment</span><span class="tag">Peak Shift</span>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/></svg>
+        </div>
+        <h3>Energy Arbitrage</h3>
+        <p>Charge during low-price hours, discharge during high-price periods. DisperonEMS integrates with day-ahead and intraday market data to optimise charge/discharge cycles automatically.</p>
+        <div class="use-case-tags">
+          <span class="tag">DAM</span><span class="tag">Intraday</span><span class="tag">Price Signal</span>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>C&amp;I Peak Shaving</h3>
+        <p>Reduce maximum demand charges for commercial buildings, hotels, factories and data centres. Deye MS-GS215 with on-site PV delivers 24/7 power reliability and bill savings.</p>
+        <div class="use-case-tags">
+          <span class="tag">Demand Charge</span><span class="tag">C&amp;I</span><span class="tag">Hotel / Factory</span>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <h3>Island Mode &amp; Microgrid</h3>
+        <p>Full off-grid and islanded operation for remote sites, islands, or grid-independent microgrids. Generator integration (STS, dry contacts) included as standard — no additional inverter required.</p>
+        <div class="use-case-tags">
+          <span class="tag">Off-grid</span><span class="tag">Generator</span><span class="tag">Island</span>
+        </div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>DSO Connection &amp; Compliance</h3>
+        <p>EAC (Cyprus) and EU DSO grid connection from day one. IEC 61850, IEC 104, Modbus RTU/TCP interfaces pre-configured. EN 50549-2 TÜV certified — no additional grid study delays.</p>
+        <div class="use-case-tags">
+          <span class="tag">EAC Cyprus</span><span class="tag">IEC 61850</span><span class="tag">Grid Code</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ CERTIFICATIONS ══════════════════════ -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-label">Standards &amp; Compliance</div>
+    <h2 style="margin-bottom: 36px;">Fully Certified Stack</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <h4>EN 50549-2</h4>
+        <p>Grid connection requirements — TÜV certified</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">⚡</div>
+        <h4>IEC 62477-1</h4>
+        <p>PCS safety — CB certificate</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🌐</div>
+        <h4>IEC 61850</h4>
+        <p>Substation communication &amp; control</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📡</div>
+        <h4>IEC 104</h4>
+        <p>Telecontrol / SCADA protocol</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔒</div>
+        <h4>CE-LVD &amp; CE-EMC</h4>
+        <p>Low voltage &amp; EMC directives</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔋</div>
+        <h4>IEC 62619</h4>
+        <p>Battery safety — stationary applications</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔥</div>
+        <h4>UL 9540A</h4>
+        <p>Fire propagation — cell &amp; pack level</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🌊</div>
+        <h4>IP65 · C5</h4>
+        <p>Outdoor &amp; coastal environment rated</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ WHY LIGHTHIEF ══════════════════════ -->
+<section class="section section-alt" id="why-us">
+  <div class="container">
+    <div class="section-label">Why Lighthief</div>
+    <h2 style="margin-bottom: 36px;">Your BESS Partner in Cyprus</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div>
+          <h3>Direct OEM Access</h3>
+          <p>We order factory-direct from Linyang Energy and Kehua Tech — no middlemen, no mark-up chains. You get OEM pricing with full traceability and warranty assignment.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div>
+          <h3>Cyprus-Based EPC Team</h3>
+          <p>Local engineers, subcontractors, and DSO relationships. We hold EAC permits, crane logistics, and customs clearance — 28 parks delivered across 5 districts, 496 MWh deployed.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div>
+          <h3>DisperonEMS — Our Own Platform</h3>
+          <p>Proprietary cloud SCADA and EMS built for Linyang/Kehua hardware. Real-time telemetry, market integration, remote dispatch, and alarms — no third-party licence fees.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div>
+          <h3>Lifetime O&amp;M Coverage</h3>
+          <p>LTSA contracts available from commissioning. Linyang-backed 10-year battery warranty. On-site preventive maintenance, remote diagnostics, and spares logistics included.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <div>
+          <h3>Full DSO &amp; Grid Interface</h3>
+          <p>We prepare and submit EAC connection applications, protection relay settings, and IEC 104 SCADA point lists on your behalf. Grid connection from day one.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <div>
+          <h3>Scalable — 215 kWh to 100+ MWh</h3>
+          <p>C&amp;I Deye systems for commercial premises; Linyang + Kehua for utility scale. One contractor, one contract, any capacity. Multi-site portfolio management available.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PROCESS ═════════════════════════ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-label">Project Journey</div>
+    <h2 style="margin-bottom: 52px;">From Enquiry to Energisation</h2>
+    <div class="process-steps">
+      <div class="step active">
+        <div class="step-num">1</div>
+        <h4>Site Assessment</h4>
+        <p>Load profile, grid connection point, civil survey, DSO pre-application</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Technical Design</h4>
+        <p>System sizing, SLD, protection settings, BOM finalisation</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Contract &amp; Order</h4>
+        <p>EPC contract, OEM purchase order, EAC permit submission</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Delivery &amp; Install</h4>
+        <p>~90 days factory production, sea freight, crane placement, cabling</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4>Commission &amp; O&amp;M</h4>
+        <p>OEM commissioning team, DSO energisation, DisperonEMS go-live, LTSA start</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CTA ════════════════════════════ -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="section-label" style="color: var(--gold); justify-content: center;">Get Started</div>
+    <h2>Ready to deploy battery storage?</h2>
+    <p>Tell us your site location, required capacity and application. We'll respond with a preliminary technical proposal and indicative budget within 5 working days.</p>
+
+    <div class="cta-cards">
+      <a href="mailto:office@lighthief.com?subject=BESS%20Enquiry%20-%20lighthief.cy&body=Site%20location%3A%0ARequired%20capacity%20(MWh)%3A%0AApplication%3A%0AGrid%20connection%20voltage%3A%0ATimeline%3A" class="cta-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <div class="cta-lbl">Email</div>
+          <div class="cta-val">office@lighthief.com</div>
+        </div>
+      </a>
+      <a href="tel:+35799164158" class="cta-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.32 2.18 2 2 0 012.31 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        <div>
+          <div class="cta-lbl">Phone / WhatsApp</div>
+          <div class="cta-val">+357 99 164 158</div>
+        </div>
+      </a>
+      <div class="cta-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <div class="cta-lbl">Office</div>
+          <div class="cta-val">Limassol, Cyprus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-actions">
+      <a href="mailto:office@lighthief.com?subject=BESS%20Enquiry%20-%20lighthief.cy&body=Site%20location%3A%0ARequired%20capacity%20(MWh)%3A%0AApplication%3A%0AGrid%20connection%20voltage%3A%0ATimeline%3A" class="btn-primary">
+        Send Enquiry
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+      <a href="https://lighthief.cy" class="btn-gold-outline">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="dot">L</div>
+        <span>LIGHTHIEF</span>
+      </div>
+      <div class="footer-note">© 2026 Lighthief Cyprus Ltd · HE 477423 · All rights reserved</div>
+      <div class="footer-links">
+        <a href="https://lighthief.cy/privacy">Privacy</a>
+        <a href="https://lighthief.cy/terms">Terms</a>
+        <a href="mailto:office@lighthief.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
