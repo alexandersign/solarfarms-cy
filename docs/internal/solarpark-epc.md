@@ -341,6 +341,103 @@ Example:
 
 ---
 
+## 7. Bifacial Yield Model (PV Hybrid Projects)
+
+Use this section when modelling **new PV + BESS projects** (not BESS-only retrofits). Always derive yield and revenue from physical panel specs, not lookup tables.
+
+### 7.1 Bifacial Gain Calculation
+
+```
+Bifacial gain (%) = bifaciality_factor × rear_irradiance / front_POA
+
+Where:
+  Cyprus GHI:             ~1,900 kWh/m²/yr
+  Optimal tilt:           25° (35°N latitude)
+  Front POA (fixed tilt): ~2,050 kWh/m²/yr
+  Rear view factor:       ~0.97 at 25° tilt (sky + ground contribution)
+  White albedo (0.70):    rear irradiance ≈ 0.70 × 1,900 × 0.97 ÷ 2,050 ≈ 0.63 relative
+  Bifacial gain:          0.75 (bifaciality) × 0.63 × correction ≈ +11%
+```
+
+| Panel Type | Bifaciality | Albedo | Tilt | Monofacial Baseline | Bifacial Gain | **Specific Yield** |
+|---|---|---|---|---|---|---|
+| 680W TopCon bifacial | 75% | 0.70 (white) | 25° fixed | 1,950 kWh/kWp | +11% | **~2,150 kWh/kWp** |
+| 680W TopCon bifacial | 75% | 0.25 (soil) | 25° fixed | 1,950 kWh/kWp | +4% | ~2,030 kWh/kWp |
+| 590W standard bifacial | 70% | 0.25 (soil) | 25° fixed | 1,900 kWh/kWp | +3.5% | ~1,967 kWh/kWp |
+
+> **Key insight**: White ground surface (limestone gravel, coated concrete) delivers ~+7% incremental gain over soil for 75% bifacial panels. Specify in EPC scope.
+
+### 7.2 PV + BESS Dispatch Revenue Formula
+
+For a PV+BESS project, the Year 1 gross revenue splits into two independent streams:
+
+```
+Gross_Rev_Y1 = Solar_Rev_Y1 + BESS_Rev_Y1
+
+Where:
+  Annual_Production_MWh  = MW_peak × Specific_Yield_kWh_per_kWp
+  Curtailed_MWh          = Annual_Production_MWh × Curtailment_Pct
+  Uncurtailed_MWh        = Annual_Production_MWh × (1 − Curtailment_Pct)
+  BESS_Into_Storage_MWh  = Curtailed_MWh × BESS_Capture_Rate
+  BESS_Discharged_MWh    = BESS_Into_Storage_MWh × BESS_RTE
+
+  Solar_Rev_Y1 (EUR)  = Uncurtailed_MWh × DAM_Daytime_Rate
+  BESS_Rev_Y1 (EUR)   = BESS_Discharged_MWh × DAM_Peak_Rate
+```
+
+**Agios Theodoros example (65% curtailment baseline):**
+
+| Variable | Value | Source |
+|---|---|---|
+| Annual production | 5,676 MWh | 2.64 MWp × 2,150 kWh/kWp |
+| Curtailment | 65% → 3,689 MWh curtailed | Cyprus 2027 baseline |
+| Uncurtailed solar | 1,987 MWh × €140.88/MWh | DAM daytime 06-17h (TSOC sample) |
+| BESS capture (95%) | 3,505 MWh into storage | |
+| BESS RTE (86.32%) | 3,025 MWh discharged × €182.99/MWh | DAM evening peak 17-21h |
+| **Solar revenue Y1** | **€279,872** | |
+| **BESS revenue Y1** | **€553,628** | |
+| **Gross Y1** | **€833,500** | |
+
+### 7.3 Tracker vs Fixed-Tilt Decision Guide
+
+| Factor | Fixed Tilt 25° | Single-Axis Tracker |
+|---|---|---|
+| Specific yield (no bifacial) | ~1,900 kWh/kWp | ~2,200–2,400 kWh/kWp (+15-25%) |
+| Bifacial yield (white albedo) | ~2,150 kWh/kWp | ~2,350–2,500 kWh/kWp |
+| Row spacing (GCR) | GCR ~0.4–0.45; pitch ~7m | GCR ~0.30–0.35; pitch ~9-10m |
+| Land requirement | Baseline | +20–30% more land |
+| CAPEX premium | Baseline | ~+€80–120k/MW (tracker hardware + install) |
+| Breakeven on CAPEX | — | Need ~€80-100/MWh premium revenue or >0.5 MW |
+| Cyprus recommendation | **Default for BESS parks** | Use if land is abundant and >2 MWp |
+
+> **Rule of thumb**: For BESS-hybrid parks ≤2.64 MWp with moderate land, fixed tilt + white albedo is more cost-effective than trackers. Trackers make sense for standalone PV ≥4 MWp with flat open land.
+
+### 7.4 Implementation in New Deal SSOTs
+
+When creating a new deal SSOT file (`lib/deals/<deal-name>.ts`), include:
+
+```typescript
+panelSpec: {
+  wattage: 680,                        // W — confirm with procurement
+  bifacialityPct: 75,                  // % — from panel datasheet
+  mountType: 'fixed-tilt-south',       // or 'single-axis-tracker'
+  tiltDeg: 25,                         // degrees — optimise for site latitude
+  albedo: 0.70,                        // 0.70 = white surface; 0.25 = soil
+  bifacialGainPct: 11,                 // derived — see section 7.1
+  monofacialBaselineKwhPerKwp: 1950,   // from irradiance data / PVsyst
+},
+specificYieldKwhPerKwp: 2150,          // = baseline × (1 + bifacialGainPct/100)
+revenueModel: {
+  curtailmentPct: 0.65,                // project-specific; check TSOC curtailment data
+  bessCapturePct: 0.95,                // standard
+  // ... derive MWh splits and rates from lib/market/cyprus-tsoc-dam-sample.ts
+},
+```
+
+> **SSOT rule**: All yield and revenue figures must flow from `panelSpec` + `revenueModel`. Never hardcode blended revenue without a derivation chain.
+
+---
+
 *All costs ex-VAT*
 *Excluding off-site grid reinforcement and financing*
 *PV EPC Markup: €100,000/MW (flat) | BESS EPC Markup: 17.4%*

@@ -56,6 +56,26 @@
 | **Mechanical Installation** | €20k-€70k | ⚠️ VERIFY | Estimate | Need contractor quotes |
 | **Commissioning** | €32k-€80k | ⚠️ VERIFY | Estimate | Linyang vs local commissioning costs |
 | **Inland Transport** | **€2,360/container** | ✅ **VERIFIED** | A. Soulis | Limassol-Larnaca route |
+| **⚠️ BoP MV Switchgear & Protection** | **€28k–€46k** | 🔴 **MISSING FROM MODEL** | SLD Rev. C analysis | See note below — NOT in Linyang CIF, NOT in adder model |
+
+> ### ⚠️ BUDGET GAP — BoP MV Switchgear & Protection Hardware
+>
+> Identified during SLD Rev. C engineering review (April 2026). For any project connecting to an **existing customer Switching Substation** (e.g. Galascope, and most Esperia sites), the following hardware is **outside Linyang's CIF scope and currently missing from the EPC adder formula**:
+>
+> | Item | Est. Cost |
+> |------|-----------|
+> | New MV feeder panel (JZ4) — Schneider SM6 or matching | €15,000 – €25,000 |
+> | Protection relay (Siemens SIPROTEC 7SJ82 or ABB REJ601) | €5,000 – €8,000 |
+> | MV CTs × 3 phases (dual-core 5P20 + 0.5, 30 VA) | €3,000 – €5,000 |
+> | MV VTs × 1 set (22/0.1 kV, 3P, class 0.5/3P) | €2,000 – €3,000 |
+> | NER (25 Ω / 100 kJ class) — if external to Linyang skid | €3,000 – €5,000 |
+> | **Total gap per project** | **€28,000 – €46,000** |
+>
+> **Action required:**
+> - [ ] Send Linyang RFI: confirm whether MV surge arresters, NER, and LV surge arresters are inside the T2 skid scope
+> - [ ] Add `BoP Protection Hardware` line to the EPC adder formula (see below)
+> - [ ] Get quotation from local electrical contractor for SM6 panel supply + protection relay integration
+> - [ ] Note: for projects with a **new standalone RMU** (not adding to existing SwS), cost may differ
 
 ### 🟡 MEDIUM PRIORITY - Review When Possible
 
@@ -65,7 +85,7 @@
 | LV Cabling | €1.4k-€35k | ⚠️ REVIEW | Estimate | Varies by MW rating |
 | MV Cabling | €3.5k-€7k | ⚠️ REVIEW | Estimate | Per project |
 | MV Terminations | €2.2k-€4.4k | ⚠️ REVIEW | Estimate | Based on MV Skid count |
-| Protection Engineering | €5k-€6k | ⚠️ REVIEW | Estimate | DSO requirements impact |
+| Protection Engineering | €5k-€6k | ⚠️ REVIEW | Estimate | **Engineering/settings service fee only — hardware is separate (see BoP gap above)** |
 
 ### 🟢 LOW PRIORITY - Standard Costs
 
@@ -94,7 +114,8 @@ Mechanical Install  = €20,000 base + (MW × €2,500)
 LV Cabling          = MW × €1,400
 MV Cabling          = €3,500 per MV Skid
 MV Terminations     = €2,200 per MV Skid
-Protection Eng      = €5,000 base (€6,000 if >5MW)
+Protection Eng      = €5,000 base (€6,000 if >5MW)   # settings study ONLY — hardware separate
+BoP Protection HW   = €28,000 base (add to all projects connecting to existing SwS)  # ⚠️ VERIFY — new line Apr 2026
 Remote Trip         = €3,000 fixed
 Export Logic        = €2,000 fixed
 UPS/Aux             = €2,000 fixed

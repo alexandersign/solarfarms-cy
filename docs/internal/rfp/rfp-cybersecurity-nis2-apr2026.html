@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — Cybersecurity & NIS2 Compliance | Lighthief Group BESS Portfolio</title>
+    <style>
+        :root {
+            --primary:       #1A365D;
+            --primary-light: #2B5FA0;
+            --accent:        #C9A432;
+            --accent-dark:   #9C7D22;
+            --white:         #FFFFFF;
+            --grey-text:     #404040;
+            --body-bg:       #F0F4F8;
+            --border:        #D1D5DB;
+            --red:           #DC2626;
+            --red-bg:        #FEE2E2;
+            --yellow-bg:     #FFFBEB;
+            --yellow-border: #D97706;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--body-bg); color: var(--grey-text); line-height: 1.65; font-size: 13px; }
+        .page { max-width: 1120px; margin: 0 auto; background: #fff; padding: 0; box-shadow: 0 4px 30px rgba(0,0,0,0.12); }
+
+        /* ── HEADER ── */
+        .header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; padding: 30px 40px 24px; border-bottom: 5px solid var(--accent); }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+        .brand-block { display: flex; align-items: center; gap: 14px; }
+        .brand-icon { width: 52px; height: 52px; background: rgba(201,164,50,0.25); border: 2px solid var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; color: var(--accent); letter-spacing: -1px; }
+        .brand-name { font-size: 22px; font-weight: 800; letter-spacing: 3px; color: #fff; }
+        .brand-sub  { font-size: 10px; opacity: 0.75; letter-spacing: 1px; margin-top: 2px; }
+        .doc-meta   { text-align: right; font-size: 9pt; opacity: 0.85; line-height: 1.8; }
+        .doc-meta strong { color: var(--accent); }
+        .rfp-badge { display: inline-block; background: var(--accent); color: var(--primary); padding: 4px 14px; border-radius: 4px; font-size: 11px; font-weight: 800; letter-spacing: 1px; margin-top: 6px; }
+        .header h1 { color: #fff; font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 4px; }
+        .header .subtitle { color: rgba(255,255,255,0.8); text-align: center; font-size: 13px; letter-spacing: 0.5px; }
+
+        /* ── ISSUERS BAND ── */
+        .issuers { background: var(--primary); color: #fff; padding: 14px 40px; display: flex; gap: 40px; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.12); }
+        .issuer-block { flex: 1; min-width: 200px; }
+        .issuer-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 3px; }
+        .issuer-name  { font-size: 12px; font-weight: 600; color: #fff; }
+        .issuer-role  { font-size: 10px; color: rgba(255,255,255,0.6); }
+
+        /* ── BODY ── */
+        .body { padding: 36px 40px; }
+
+        .info-box { background: #EFF6FF; border-left: 4px solid var(--primary-light); padding: 14px 18px; margin: 18px 0; border-radius: 0 8px 8px 0; }
+        .info-box strong { color: var(--primary); }
+        .warn-box  { background: var(--red-bg); border-left: 4px solid var(--red); padding: 14px 18px; margin: 18px 0; border-radius: 0 8px 8px 0; }
+        .warn-box strong { color: var(--red); }
+
+        h2 { color: var(--accent); font-size: 15px; font-weight: 700; margin: 32px 0 12px; padding-bottom: 7px; border-bottom: 2px solid var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
+        h3 { color: var(--primary); font-size: 13px; font-weight: 700; margin: 20px 0 8px; }
+        p  { margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 12px; }
+        thead th { background: var(--primary); color: #fff; padding: 9px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+        td { border: 1px solid var(--border); padding: 9px 12px; vertical-align: top; }
+        tr:nth-child(even) td { background: #F8FAFC; }
+        .total-row td { background: var(--primary) !important; color: #fff; font-weight: 700; }
+        .price-input { background: var(--yellow-bg); border: 1px dashed var(--yellow-border); min-width: 90px; }
+        .section-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 3px; text-transform: uppercase; }
+        .tag-cy  { background: #DBEAFE; color: #1D4ED8; }
+        .tag-eu  { background: #D1FAE5; color: #065F46; }
+        .tag-all { background: #EDE9FE; color: #5B21B6; }
+
+        ul, ol { margin: 8px 0 12px 22px; }
+        li { margin: 4px 0; }
+
+        .contact-box { background: var(--primary); color: #fff; padding: 22px 26px; margin-top: 28px; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .contact-box h3 { color: var(--accent); margin-top: 0; margin-bottom: 8px; }
+        .contact-box p  { font-size: 12px; color: rgba(255,255,255,0.85); margin: 3px 0; }
+
+        .footer { margin-top: 36px; padding: 18px 40px; border-top: 3px solid var(--accent); text-align: center; color: #888; font-size: 11px; background: #F8FAFC; }
+
+        @media print { body { background: #fff; } .page { box-shadow: none; } }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <div class="header">
+        <div class="header-top">
+            <div class="brand-block">
+                <div class="brand-icon">LH</div>
+                <div>
+                    <div class="brand-name">LIGHTHIEF</div>
+                    <div class="brand-sub">BESS &amp; Energy Storage Solutions</div>
+                    <div class="rfp-badge">RFP-LH-CYBER-2026-002</div>
+                </div>
+            </div>
+            <div class="doc-meta">
+                <div><strong>Issue Date:</strong> 21 April 2026</div>
+                <div><strong>Questions Deadline:</strong> 5 May 2026</div>
+                <div><strong>Proposals Due:</strong> 16 May 2026</div>
+                <div><strong>Vendor Selection:</strong> 30 May 2026</div>
+            </div>
+        </div>
+        <h1>Request for Proposal</h1>
+        <p class="subtitle">Cybersecurity Hardening &amp; NIS2 Compliance Services — Group Portfolio</p>
+    </div>
+
+    <!-- ══════════════ ISSUER ENTITIES ══════════════ -->
+    <div class="issuers">
+        <div class="issuer-block">
+            <div class="issuer-label">Issuing Entity 1 — EMS &amp; Cloud Platform</div>
+            <div class="issuer-name">Lighthief EU BESS Sp. z o.o.</div>
+            <div class="issuer-role">Disperon EMS / SCADA / Cloud Infrastructure Provider | EU Headquarters, Poland</div>
+        </div>
+        <div class="issuer-block">
+            <div class="issuer-label">Issuing Entity 2 — EPC &amp; General Operations</div>
+            <div class="issuer-name">Lighthief Cyprus Ltd</div>
+            <div class="issuer-role">EPC Contractor &amp; On-Site Operations | Cyprus Portfolio Operator</div>
+        </div>
+    </div>
+
+    <div class="body">
+
+        <!-- ══ INFO BOX ══ -->
+        <div class="info-box">
+            <strong>Scope:</strong> Group-wide NIS2 cybersecurity compliance covering the Cyprus BESS portfolio (47 parks, 863.5 MWh) and the Disperon EMS cloud/OT infrastructure operated by Lighthief EU BESS.<br><br>
+            <strong>Regulatory Driver:</strong> EU Directive 2022/2555 (NIS2), transposed in Cyprus by <strong>Law 60(I)/2025</strong> (in force 25 April 2025). Lighthief entities are classified as Essential/Important Entities under Annex I — Energy (Electricity Producers &amp; Storage Operators). The Digital Security Authority (DSA) of Cyprus is the competent authority.
+        </div>
+
+        <div class="warn-box">
+            <strong>⚠ REGULATORY REQUIREMENT</strong><br>
+            Under NIS2 / Law 60(I)/2025, energy storage facilities and EMS platforms connected to the grid are classified as critical infrastructure. Cyprus applies a <strong>6-hour early-warning</strong> requirement for significant incidents (stricter than the EU 24-hour baseline). Cybersecurity measures are <strong>mandatory</strong> for continued DSO (EAC) grid connection approval and regulatory standing.
+        </div>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>1. Project Overview &amp; Entity Roles</h2>
+
+        <p>This RFP is issued jointly by Lighthief EU BESS and Lighthief Cyprus Ltd to procure a single integrated cybersecurity and NIS2 compliance programme covering both entities' systems, networks, and physical sites.</p>
+
+        <table>
+            <thead><tr><th>Entity</th><th>Role</th><th>Systems in Scope</th><th>NIS2 Class</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lighthief EU BESS Sp. z o.o.</strong><br><span class="section-tag tag-eu">EU HQ</span></td>
+                    <td>EMS / SCADA / Disperon cloud platform operator; data processor for all park telemetry</td>
+                    <td>Disperon cloud infrastructure, SCADA servers, VPN gateway, API endpoints, multi-country EMS fleet, edge controllers (WAGO PFC200 PLCs)</td>
+                    <td>Essential Entity — IT/OT infrastructure across 7 EU countries</td>
+                </tr>
+                <tr>
+                    <td><strong>Lighthief Cyprus Ltd</strong><br><span class="section-tag tag-cy">Cyprus</span></td>
+                    <td>EPC contractor, park owner/operator, DSO interface, on-site O&amp;M provider for Cyprus portfolio</td>
+                    <td>47 BESS sites (OT: BMS, PCS, SCADA, IEC 60870-5-104 links to EAC DSO), company LAN, remote-access infrastructure</td>
+                    <td>Important/Essential Entity — energy storage operator, Cyprus (Law 60(I)/2025)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>The awarded vendor must deliver a <strong>unified programme</strong> that covers both entities with a single governance framework, shared documentation library, and entity-specific site deliverables.</p>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>2. Scope of Work</h2>
+
+        <h3>2.1 Stream A — Lighthief EU BESS: EMS / Cloud / OT Platform Hardening</h3>
+        <p><span class="section-tag tag-eu">EU BESS</span> Applies to the Disperon EMS cloud and edge infrastructure operated from the EU headquarters.</p>
+        <table>
+            <thead><tr><th>Work Package</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td>Cloud Infrastructure Security Assessment</td><td>Architecture review of Disperon cloud platform (API, SCADA servers, database layer, multi-tenant isolation); penetration test; threat modelling</td></tr>
+                <tr><td>OT/Edge Security — WAGO PLC Hardening</td><td>Secure configuration of WAGO PFC200 edge controllers; firmware update policy; local network segmentation at each EMS edge node</td></tr>
+                <tr><td>IEC 62443 Gap Analysis</td><td>Assessment of Disperon EMS against IEC 62443-3-3 (system) and IEC 62443-4-2 (component) requirements; remediation roadmap</td></tr>
+                <tr><td>Secure SDLC for Disperon EMS</td><td>Establish secure development lifecycle policy (vulnerability disclosure, patch management, release security review) for EMS software</td></tr>
+                <tr><td>Multi-Country CSIRT Mapping</td><td>Map incident notification obligations for each country Lighthief EU BESS operates in (PL, CY, IT, NL, DE, ES, GR) — notification contacts, timelines, reporting templates</td></tr>
+                <tr><td>SOC / SIEM Integration</td><td>Centralized log aggregation from all edge nodes and cloud services; SIEM deployment or integration with existing platform; alert playbooks</td></tr>
+                <tr><td>Supply-Chain Security Assessment</td><td>Vendor risk review for Linyang, Kehua, WAGO, and cloud service providers — NIS2 Article 21 supply-chain obligations</td></tr>
+            </tbody>
+        </table>
+
+        <h3>2.2 Stream B — Lighthief Cyprus Ltd: Site-Level OT Hardening (47 Parks)</h3>
+        <p><span class="section-tag tag-cy">Cyprus</span> Applies to each of the 47 BESS installations connected to the EAC DSO.</p>
+
+        <h4 style="color:#1A365D; margin: 14px 0 6px; font-size:12px;">2.2.1 Network Security Hardware (Per Park)</h4>
+        <table>
+            <thead><tr><th>Item</th><th>Specification</th><th>Purpose</th></tr></thead>
+            <tbody>
+                <tr><td>Industrial Firewall</td><td>IEC 62443 certified (e.g. Fortinet Rugged, Cisco IR, Palo Alto)</td><td>OT/IT network segmentation; IDS/IPS</td></tr>
+                <tr><td>VPN Appliance / Secure Gateway</td><td>IPSec / OpenVPN capable; MFA-enforced remote access</td><td>Encrypted remote access to SCADA/EMS</td></tr>
+                <tr><td>Managed Industrial Switch</td><td>Industrial grade (IP40+), VLAN capable, STP</td><td>OT network segregation; VLAN isolation of BMS/PCS</td></tr>
+                <tr><td>4G/5G Backup Router</td><td>Dual-SIM, failover-capable</td><td>Redundant DSO communication link</td></tr>
+                <tr><td>Cabinet / Enclosure</td><td>IP54+, DIN-rail mounted, lockable</td><td>Secure network equipment housing</td></tr>
+                <tr><td>UPS for Network Equipment</td><td>≥ 30 min backup at full load</td><td>Availability during grid events</td></tr>
+            </tbody>
+        </table>
+
+        <h4 style="color:#1A365D; margin: 14px 0 6px; font-size:12px;">2.2.2 Site Hardening Services (Per Park)</h4>
+        <table>
+            <thead><tr><th>Service</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td>Firewall Configuration</td><td>Rule-based access control, IDS/IPS setup, whitelist-only DSO IP rules</td></tr>
+                <tr><td>Password &amp; Credential Policy</td><td>Strong unique passwords per device; rotation schedule; MFA for remote access</td></tr>
+                <tr><td>RBAC / Access Control</td><td>Role-based access, principle of least privilege; removal of default accounts</td></tr>
+                <tr><td>OT/IT Network Segmentation</td><td>Separate OT (BMS, PCS, meter) and IT (EMS, remote access) VLANs; DMZ for SCADA outbound</td></tr>
+                <tr><td>Logging &amp; Monitoring</td><td>Syslog forwarding to central SIEM (Stream A); local audit trail retention ≥ 12 months</td></tr>
+                <tr><td>Patch Management Procedure</td><td>Documented process for firmware/software security updates on OT devices</td></tr>
+                <tr><td>Configuration Backup &amp; Recovery</td><td>Automated backup of firewall, switch, and PCS/BMS configs; tested recovery procedure</td></tr>
+            </tbody>
+        </table>
+
+        <h3>2.3 Stream C — Group-Level NIS2 Governance (Both Entities)</h3>
+        <p><span class="section-tag tag-all">Group</span> Covers both Lighthief EU BESS and Lighthief Cyprus Ltd with shared policies and entity-specific annexes.</p>
+        <table>
+            <thead><tr><th>Deliverable</th><th>Description</th><th>Entity</th></tr></thead>
+            <tbody>
+                <tr><td>NIS2 Gap Assessment Report</td><td>Baseline assessment against all 10 Article 21 measures for both entities; prioritised remediation plan</td><td>Both</td></tr>
+                <tr><td>Information Security Policy (ISMS)</td><td>Board-approved ISMS policy, signed by management body (Article 20 obligation)</td><td>Both (separate docs)</td></tr>
+                <tr><td>Risk Assessment</td><td>Annual risk assessment per IEC 62443 / ISO/IEC 27001 Annex A; asset register; threat register</td><td>Both</td></tr>
+                <tr><td>Incident Response Plan</td><td>IR playbooks for OT and cloud; 6-hour (Cyprus DSA) / 24-hour / 72-hour / 30-day reporting templates pre-filled per jurisdiction</td><td>Both</td></tr>
+                <tr><td>Business Continuity &amp; DRP</td><td>BCP/DRP with defined RTO/RPO for Disperon EMS and for each Cyprus site; tabletop exercise</td><td>Both</td></tr>
+                <tr><td>Supply-Chain Security Policy</td><td>Contractual security requirements for Linyang, Kehua, WAGO, cloud providers; flowdown clauses for LTSA/EPC contracts</td><td>Both</td></tr>
+                <tr><td>Cryptography &amp; Encryption Policy</td><td>TLS 1.2+ mandate; at-rest encryption requirements; key management procedure</td><td>Both</td></tr>
+                <tr><td>Asset Inventory</td><td>Full OT/IT asset register per entity; network topology diagrams (logical &amp; physical)</td><td>Both</td></tr>
+                <tr><td>NIS2 Compliance Statement</td><td>Signed attestation of compliance with Law 60(I)/2025 / NIS2, suitable for DSA submission</td><td>Lighthief Cyprus Ltd (DSA)</td></tr>
+                <tr><td>DSA Registration Package</td><td>Preparation of DSA registration form (entity details, IP ranges, sector classification, PoC)</td><td>Lighthief Cyprus Ltd</td></tr>
+                <tr><td>Awareness Training Programme</td><td>Cyber hygiene training for all staff; board-level NIS2 accountability session (Article 20); attendance records</td><td>Both</td></tr>
+                <tr><td>Annual Penetration Test Report</td><td>External pen test of cloud API, VPN, OT network; CREST-aligned methodology preferred</td><td>Both</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>3. Technical Requirements</h2>
+
+        <h3>3.1 DSO Communication Security (Cyprus — EAC Interface)</h3>
+        <table>
+            <thead><tr><th>Requirement</th><th>Specification</th></tr></thead>
+            <tbody>
+                <tr><td>Protocol</td><td>IEC 60870-5-104 over TCP/IP (Port 2404)</td></tr>
+                <tr><td>Encryption</td><td>TLS 1.2+ for all SCADA/EMS communications</td></tr>
+                <tr><td>Authentication</td><td>Certificate-based where supported by EAC infrastructure</td></tr>
+                <tr><td>Firewall Rules</td><td>Strict whitelist — DSO/EAC IP addresses only on Port 2404; deny-all default</td></tr>
+                <tr><td>Monitoring</td><td>Real-time connection monitoring; alert on unexpected source IPs</td></tr>
+                <tr><td>IEC 60870-5-104 Timeouts</td><td>t0=30s, t1=15s, t2=10s, t3=20s, k=12, w=8 — per EAC DSO specification</td></tr>
+            </tbody>
+        </table>
+
+        <h3>3.2 NIS2 Article 21 — All 10 Mandatory Measures</h3>
+        <p>Vendor proposals must demonstrate how they address all 10 measures. Proposals that do not map to each measure will be disqualified.</p>
+        <table>
+            <thead><tr><th>#</th><th>Article 21 Measure</th><th>Required Deliverable</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Policies on risk analysis and information system security</td><td>Risk Assessment + ISMS Policy</td></tr>
+                <tr><td>2</td><td>Incident handling (prevention, detection, response, recovery)</td><td>Incident Response Plan + IR runbooks</td></tr>
+                <tr><td>3</td><td>Business continuity, backup management, disaster recovery, crisis management</td><td>BCP / DRP</td></tr>
+                <tr><td>4</td><td>Supply chain security</td><td>Supply-Chain Security Policy + vendor assessments</td></tr>
+                <tr><td>5</td><td>Security in network/IS acquisition, development, maintenance; vulnerability handling</td><td>Secure SDLC Policy; Vulnerability Management Procedure</td></tr>
+                <tr><td>6</td><td>Policies to assess effectiveness of cybersecurity risk-management measures</td><td>Annual Pen Test + Audit Report</td></tr>
+                <tr><td>7</td><td>Cyber hygiene practices and cybersecurity training</td><td>Training Programme + attendance records</td></tr>
+                <tr><td>8</td><td>Policies and procedures regarding cryptography and encryption</td><td>Cryptography &amp; Encryption Policy</td></tr>
+                <tr><td>9</td><td>Human resources security, access control policies, asset management</td><td>RBAC Matrix; Asset Inventory; HR Security Policy</td></tr>
+                <tr><td>10</td><td>Use of MFA or continuous authentication; secured emergency communications</td><td>MFA enforcement evidence; secure comms procedure</td></tr>
+            </tbody>
+        </table>
+
+        <h3>3.3 Incident Reporting Timeline — Cyprus (Law 60(I)/2025)</h3>
+        <table>
+            <thead><tr><th>Deadline</th><th>Report Type</th><th>Content Required</th><th>Recipient</th></tr></thead>
+            <tbody>
+                <tr><td><strong>6 hours</strong></td><td>Early Warning</td><td>Brief: incident known, suspected malicious / cross-border impact, initial classification</td><td>DSA Cyprus / CSIRT-CY</td></tr>
+                <tr><td><strong>72 hours</strong></td><td>Incident Notification</td><td>Initial assessment: severity, affected systems, IoCs, estimated impact</td><td>DSA Cyprus / CSIRT-CY</td></tr>
+                <tr><td><strong>On request</strong></td><td>Progress Report</td><td>Status update if incident is ongoing</td><td>DSA Cyprus</td></tr>
+                <tr><td><strong>1 month</strong></td><td>Final Report</td><td>Root cause, full impact, remediation taken, lessons learned</td><td>DSA Cyprus / CSIRT-CY</td></tr>
+            </tbody>
+        </table>
+        <p><em>Note: Cyprus imposes a 6-hour early-warning requirement, stricter than the EU Directive's 24-hour baseline. All IR templates must be pre-configured for this deadline.</em></p>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>4. Portfolio Summary</h2>
+
+        <h3>4.1 Lighthief Cyprus Ltd — Cyprus BESS Portfolio</h3>
+        <table>
+            <thead><tr><th>District</th><th>Parks</th><th>SCADA/EMS Nodes</th><th>DSO Remote Connections (IEC 104)</th></tr></thead>
+            <tbody>
+                <tr><td>Nicosia</td><td>30</td><td>30</td><td>30</td></tr>
+                <tr><td>Famagusta</td><td>7</td><td>7</td><td>7</td></tr>
+                <tr><td>Limassol</td><td>5</td><td>5</td><td>5</td></tr>
+                <tr><td>Paphos</td><td>3</td><td>3</td><td>3</td></tr>
+                <tr><td>Larnaca</td><td>2</td><td>2</td><td>2</td></tr>
+                <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>47</strong></td><td><strong>47</strong></td><td><strong>47</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>4.2 Lighthief EU BESS — Disperon EMS Infrastructure</h3>
+        <table>
+            <thead><tr><th>Component</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td>Cloud Platform</td><td>Disperon EMS cloud (AI optimization, VPP, fleet management) — EU-hosted, multi-tenant</td></tr>
+                <tr><td>Edge Controllers</td><td>WAGO PFC200 PLC per site — 47 Cyprus nodes + EU portfolio</td></tr>
+                <tr><td>SCADA Servers</td><td>Global fleet SCADA (fleet-wide aggregation); local SCADA per park</td></tr>
+                <tr><td>Grid Protocols Supported</td><td>IEC 60870-5-104, IEC 60870-5-101, IEC 61850, Modbus TCP, DNP3</td></tr>
+                <tr><td>Countries Operated</td><td>Cyprus, Poland, Italy, Netherlands, Germany, Spain, Greece (expanding)</td></tr>
+                <tr><td>WAN / Remote Access</td><td>Centralised VPN gateway; 4G/5G backup per site</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>5. Pricing Template</h2>
+
+        <h3>5.1 Stream A — EU BESS EMS/Cloud (One-off)</h3>
+        <table>
+            <thead><tr><th>Work Package</th><th>Unit</th><th>Price (€)</th></tr></thead>
+            <tbody>
+                <tr><td>Cloud Infrastructure Security Assessment &amp; Pen Test</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>OT / WAGO PLC Hardening</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>IEC 62443 Gap Analysis &amp; Remediation Roadmap</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Secure SDLC Policy Development</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Multi-Country CSIRT Mapping</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>SIEM / SOC Integration &amp; Playbooks</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Supply-Chain Vendor Assessments (top 5 vendors)</td><td>lump sum</td><td class="price-input">&nbsp;</td></tr>
+                <tr class="total-row"><td><strong>Stream A Subtotal</strong></td><td>—</td><td class="price-input">&nbsp;</td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.2 Stream B — Site Hardware (Per Park × 47)</h3>
+        <table>
+            <thead><tr><th>Item</th><th>Qty</th><th>Unit Price (€)</th><th>47-Park Total (€)</th></tr></thead>
+            <tbody>
+                <tr><td>Industrial Firewall (IEC 62443)</td><td>1</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>VPN Appliance / Secure Gateway</td><td>1</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Managed Industrial Switch</td><td>1</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>4G/5G Backup Router</td><td>1</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Cabinet / Enclosure</td><td>1</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>UPS for Network Equipment</td><td>1</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr class="total-row"><td><strong>Hardware Subtotal</strong></td><td>—</td><td>—</td><td class="price-input">&nbsp;</td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.3 Stream B — Site Services (Per Park × 47)</h3>
+        <table>
+            <thead><tr><th>Service</th><th>Unit</th><th>Per-Park Price (€)</th><th>47-Park Total (€)</th></tr></thead>
+            <tbody>
+                <tr><td>Hardware Installation &amp; Configuration</td><td>per park</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>OT/IT Network Segmentation</td><td>per park</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Firewall Rule Configuration</td><td>per park</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Security Hardening &amp; RBAC Setup</td><td>per park</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>SIEM Log Onboarding (per site)</td><td>per park</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Site Documentation Package</td><td>per park</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr class="total-row"><td><strong>Site Services Subtotal</strong></td><td>—</td><td>—</td><td class="price-input">&nbsp;</td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.4 Stream C — Group NIS2 Governance (One-off)</h3>
+        <table>
+            <thead><tr><th>Deliverable</th><th>Price (€)</th></tr></thead>
+            <tbody>
+                <tr><td>NIS2 Gap Assessment (both entities)</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>ISMS Policy Pack (10 Article 21 documents)</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Incident Response Plan + Reporting Templates</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>BCP / DRP (both entities)</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>DSA Registration Package</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Board + Staff Training Programme</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Annual Penetration Test (Year 1)</td><td class="price-input">&nbsp;</td></tr>
+                <tr class="total-row"><td><strong>Governance Subtotal</strong></td><td class="price-input">&nbsp;</td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.5 Portfolio Summary Pricing</h3>
+        <table>
+            <thead><tr><th>Stream</th><th>Total (€)</th></tr></thead>
+            <tbody>
+                <tr><td>Stream A — EU BESS EMS / Cloud Hardening</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Stream B — Site Hardware (47 parks)</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Stream B — Site Services (47 parks)</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Stream C — Group NIS2 Governance</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Volume Discount (if applicable)</td><td class="price-input">&nbsp;</td></tr>
+                <tr class="total-row"><td><strong>GRAND TOTAL (One-Off)</strong></td><td class="price-input">&nbsp;</td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.6 Optional — Ongoing Managed Services (Annual, Per Entity)</h3>
+        <table>
+            <thead><tr><th>Service</th><th>Term</th><th>Per Year — LH Cyprus Ltd (€)</th><th>Per Year — LH EU BESS (€)</th></tr></thead>
+            <tbody>
+                <tr><td>24/7 SOC Monitoring (SIEM alerts, triage)</td><td>Annual</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Patch Management Service</td><td>Annual</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Annual Security Audit / Pen Test</td><td>Annual</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>Incident Response Retainer</td><td>Annual</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+                <tr><td>NIS2 Compliance Review &amp; DSA Update</td><td>Annual</td><td class="price-input">&nbsp;</td><td class="price-input">&nbsp;</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>6. Vendor Qualification Requirements</h2>
+        <ul>
+            <li>ISO/IEC 27001 certified (organisation) or evidence of equivalent ISMS maturity</li>
+            <li>Demonstrated experience with <strong>IEC 62443</strong> (industrial / OT cybersecurity) — mandatory for Stream A and Stream B</li>
+            <li>Demonstrated knowledge of <strong>IEC 60870-5-104</strong> protocol and energy/utility SCADA security</li>
+            <li>Active NIS2 compliance project experience (references in energy, utilities, or critical infrastructure sector)</li>
+            <li>Ability to deploy and support across <strong>47 geographically dispersed sites in Cyprus</strong></li>
+            <li>Capability for multi-jurisdiction NIS2 advisory (EU HQ Poland + Cyprus operating entity)</li>
+            <li>CREST membership or equivalent for penetration testing delivery (preferred)</li>
+            <li>Financial stability: provide last 2 years' audited accounts or equivalent evidence</li>
+        </ul>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>7. Proposal Requirements</h2>
+        <p>All proposals must include the following sections:</p>
+        <ol>
+            <li><strong>Technical Approach</strong> — methodology per stream; article-by-article NIS2 Article 21 mapping table</li>
+            <li><strong>Project Plan</strong> — Gantt chart showing pilot site, phased rollout, and governance deliverable milestones</li>
+            <li><strong>Team CVs</strong> — lead consultant, OT security engineer, and project manager CVs</li>
+            <li><strong>References</strong> — minimum two energy/utility sector NIS2 or IEC 62443 references with contact details</li>
+            <li><strong>Certifications</strong> — copies of ISO 27001 certificate, IEC 62443 credentials, CREST or equivalent</li>
+            <li><strong>Commercial Proposal</strong> — completed pricing template (sections 5.1–5.6 above) in € excl. VAT</li>
+            <li><strong>Exceptions</strong> — any deviations from this RFP scope, clearly listed</li>
+        </ol>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>8. Evaluation Criteria</h2>
+        <table>
+            <thead><tr><th>Criterion</th><th>Weight</th></tr></thead>
+            <tbody>
+                <tr><td>Technical capability (NIS2, IEC 62443, OT/SCADA experience)</td><td>35%</td></tr>
+                <tr><td>Commercial proposal (price, value, volume discount)</td><td>30%</td></tr>
+                <tr><td>Delivery capability (Cyprus on-site coverage, EU HQ scope)</td><td>20%</td></tr>
+                <tr><td>References &amp; track record in energy/critical infrastructure</td><td>10%</td></tr>
+                <tr><td>Quality of proposed project plan</td><td>5%</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <h2>9. Project Timeline</h2>
+        <table>
+            <thead><tr><th>Milestone</th><th>Date</th></tr></thead>
+            <tbody>
+                <tr><td>RFP Issued</td><td>21 April 2026</td></tr>
+                <tr><td>Clarification Questions Deadline</td><td>5 May 2026</td></tr>
+                <tr><td>Clarification Answers Issued</td><td>9 May 2026</td></tr>
+                <tr><td><strong>Proposals Due</strong></td><td><strong>16 May 2026</strong></td></tr>
+                <tr><td>Evaluation &amp; Shortlist</td><td>16–23 May 2026</td></tr>
+                <tr><td>Vendor Presentations (shortlisted only)</td><td>26–28 May 2026</td></tr>
+                <tr><td><strong>Vendor Selection &amp; Contract Award</strong></td><td><strong>30 May 2026</strong></td></tr>
+                <tr><td>Kick-off &amp; Gap Assessment Begins</td><td>9 June 2026</td></tr>
+                <tr><td>Gap Assessment Report Delivered</td><td>30 June 2026</td></tr>
+                <tr><td>Pilot Site Implementation (1 park)</td><td>July 2026</td></tr>
+                <tr><td>Stream A (EMS/Cloud) Hardening Complete</td><td>31 August 2026</td></tr>
+                <tr><td>Governance Docs &amp; DSA Registration Package</td><td>30 September 2026</td></tr>
+                <tr><td>Full 47-Park Rollout Complete</td><td>31 December 2026</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <div class="contact-box">
+            <div>
+                <h3>Lighthief Cyprus Ltd — EPC &amp; Operations Lead</h3>
+                <p><strong>Contact:</strong> Alexander Papacosta, Director</p>
+                <p><strong>Email:</strong> office@lighthief.com</p>
+                <p><strong>Ref:</strong> RFP-LH-CYBER-2026-002</p>
+                <p><strong>Registered:</strong> Republic of Cyprus</p>
+            </div>
+            <div>
+                <h3>Lighthief EU BESS — EMS &amp; Cloud Lead</h3>
+                <p><strong>Contact:</strong> Dr. Arkadius Sybaris, Founder &amp; CEO</p>
+                <p><strong>Email:</strong> office@lighthief.com</p>
+                <p><strong>Ref:</strong> RFP-LH-CYBER-2026-002</p>
+                <p><strong>Registered:</strong> Republic of Poland</p>
+            </div>
+        </div>
+
+    </div><!-- /body -->
+
+    <div class="footer">
+        <p><strong>RFP-LH-CYBER-2026-002</strong> &nbsp;|&nbsp; Cybersecurity &amp; NIS2 Compliance — Group Portfolio &nbsp;|&nbsp; Lighthief EU BESS &amp; Lighthief Cyprus Ltd &nbsp;|&nbsp; April 2026</p>
+        <p style="margin-top:6px;">This document is confidential and issued solely for the purpose of obtaining proposals. Recipient must not disclose its contents to third parties.</p>
+    </div>
+
+</div>
+</body>
+</html>
