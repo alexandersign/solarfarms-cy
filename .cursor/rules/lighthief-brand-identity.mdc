@@ -1,0 +1,71 @@
+---
+description: Lighthief brand identity — color palette, typography, and usage rules for all documents, scripts, and HTML templates
+alwaysApply: true
+---
+
+# Lighthief Brand Identity
+
+All agents must use this palette when creating or editing any Lighthief-branded document, script, or HTML template. **Never use `#1A6B3C` green** — that is a legacy color from early contract templates and does not represent the Lighthief brand.
+
+## Color Palette
+
+| Token | Hex | RGB | Usage |
+|-------|-----|-----|-------|
+| `NAVY` | `#1A365D` | `rgb(26, 54, 93)` | Table header backgrounds, document header bars, primary UI elements |
+| `GOLD` | `#C9A432` | `rgb(201, 164, 50)` | H1/H2 headings, reference numbers, accent highlights |
+| `WHITE` | `#FFFFFF` | `rgb(255, 255, 255)` | Text on NAVY/dark backgrounds |
+| `BLACK` | `#000000` | `rgb(0, 0, 0)` | Body text in `.docx` documents |
+| `GREY` | `#404040` | `rgb(64, 64, 64)` | Sub-body text, footnotes, secondary labels |
+
+> Derived from the official Lighthief wordmark: deep navy background (`#1A365D`) + gold text/logo mark (`#C9A432`).
+
+## Python / python-docx Usage
+
+```python
+from docx.shared import RGBColor
+
+NAVY  = RGBColor(0x1A, 0x36, 0x5D)
+GOLD  = RGBColor(0xC9, 0xA4, 0x32)
+WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+BLACK = RGBColor(0x00, 0x00, 0x00)
+GREY  = RGBColor(0x40, 0x40, 0x40)
+```
+
+- **Section headings (H1, H2):** `font.color.rgb = GOLD`
+- **Table header row background:** `set_cell_bg(cell, "1A365D")` with `font.color.rgb = WHITE`
+- **Body text:** `font.color.rgb = BLACK`
+- **Reference numbers / sub-labels:** `font.color.rgb = GREY`
+
+## CSS / HTML Usage
+
+```css
+:root {
+  --primary:       #1A365D;   /* navy — headers, nav, table heads */
+  --primary-light: #2B5FA0;   /* lighter navy — hover states */
+  --accent:        #C9A432;   /* gold — headings, badges, highlights */
+  --accent-dark:   #9C7D22;   /* dark gold — hover on gold elements */
+  --white:         #FFFFFF;
+  --grey-text:     #404040;
+  --body-bg:       #F0F4F8;
+}
+```
+
+- Page/card headers: `background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff;`
+- `<h1>`, `<h2>`: `color: var(--accent);`
+- Table `<thead>`: `background: var(--primary); color: #fff;`
+
+## Typography
+
+| Medium | Font | Notes |
+|--------|------|-------|
+| `.docx` contracts | Calibri | Body 11pt, H1 14pt bold, H2 12pt bold |
+| HTML documents | `'Segoe UI', system-ui, sans-serif` | Body 13px |
+
+## Rules for All Agents
+
+1. **NEVER use `#1A6B3C`** (legacy green) in any new Lighthief document, script, or template.
+2. When creating a new `.docx` generator script, import the Python tokens above verbatim.
+3. When creating a new HTML document, use the CSS variables above in a `:root {}` block.
+4. The GOLD (`#C9A432`) is for **text/headings only** — do not use it as a large background fill.
+5. The NAVY (`#1A365D`) is the **primary brand color** — use it for structural elements (headers, table rows).
+6. When in doubt: NAVY structure, GOLD headings, WHITE-on-NAVY text.

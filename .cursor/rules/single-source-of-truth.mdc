@@ -24,6 +24,12 @@ This project uses a centralised data registry. **NEVER hardcode** project figure
 
 ## Rules for ALL Agents
 
+### Client-Facing Document Standards
+- **NEVER include internal notes, sourcing references, quotation numbers (LY202601xxx), margin percentages, CIF values, group-order references, or portfolio pipeline data in client-facing proposals**
+- Client proposals show only: configuration specs, scope, pricing, warranty, payment terms, timeline
+- Internal analysis belongs in `docs/internal/` or `technical-rfi-*.md` files only
+- Before sending any proposal: search for "CIF", "group", "margin", "LY20260", "portfolio" — none should appear in client-visible text
+
 ### When updating project data (parks, pricing, margins, MWh, etc.):
 1. Update the value in `lib/portfolio-data.ts`
 2. Run `npm run docs:generate` to regenerate all templated documents
