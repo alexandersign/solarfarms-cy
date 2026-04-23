@@ -35,8 +35,11 @@ legal/
 │       └── linyang-distribution-comments.html
 │
 ├── templates/                           ← Client-facing contract templates
-│   ├── client_sales.md / .html             EPC Agreement template
-│   ├── ClientLTSA.md / .html               LTSA template
+│   ├── client_sales.md / .html             EPC Agreement template (v3.0 — superseded by v4.0)
+│   ├── client_sales_v4.0.docx              EPC Agreement v4.0 BANKABILITY REVISION (17 Mar 2026)
+│   ├── OEM-Direct-Warranty-Undertaking-Linyang.docx  OEM step-in letter v1.0
+│   ├── ClientLTSA.md / .html               LTSA template (v3.0 — superseded by v4.0)
+│   ├── ClientLTSA_v4.0.docx                LTSA v4.0 clean (17 Mar 2026)
 │   └── client_compliance_memo.md           Compliance memo template
 │
 ├── reference/                           ← Compliance, regulatory, operations
@@ -354,8 +357,11 @@ All documents include consistent Force Majeure provisions covering:
 | NDA Linyang PL.docx | `active/` | 1.0 | 2025 | **Signed** |
 | Linyang Sales Contract V1 | `in-negotiation/linyang-sales/` | V1 | 6 Mar 2026 | **In Negotiation — comments sent 6 Mar** |
 | sales_agrement.md (Lighthief draft) | `in-negotiation/linyang-sales/` | 2.0 | Jan 2026 | Internal draft (not sent) |
-| client_sales.md | `templates/` | 2.5 | Feb 2026 | Template — Updated to Linyang RFI |
-| ClientLTSA.md | `templates/` | 2.4 | Feb 2026 | Template — Updated to Linyang RFI |
+| client_sales.md | `templates/` | 3.0 | Feb 2026 | Template v3.0 — Superseded by v4.0 |
+| client_sales_v4.0.docx | `templates/` | **4.0** | **17 Mar 2026** | **BANKABILITY REVISION — single counterparty, title at PAC, 15% cap** |
+| OEM-Direct-Warranty-Undertaking-Linyang.docx | `templates/` | **1.0** | **17 Mar 2026** | **OEM step-in letter for Linyang signature** |
+| ClientLTSA.md | `templates/` | 3.0 | Feb 2026 | Template v3.0 — Superseded by v4.0 |
+| ClientLTSA_v4.0.docx | `templates/` | **4.0** | **17 Mar 2026** | **Tier D removed, section numbers fixed, SOH table corrected, lender assignment** |
 | service_management.md | `reference/` | 1.1 | Jan 2025 | Active |
 | employee_service_manual.md | `reference/` | 2.0 | Jan 2026 | Active |
 | DSO_compliance.md | `reference/` | 3.0 | Jan 2026 | Active |
@@ -691,7 +697,7 @@ See: `employee_service_manual.md` for detailed procedures on:
 
 ---
 
-*Document Index Version: 7.0*
+*Document Index Version: 8.0*
 *Updated: 17 March 2026*
 *Legal Basis: Gazette No. 5992 (16/01/2026)*
 *Lighthief Cyprus Ltd - Legal Framework*

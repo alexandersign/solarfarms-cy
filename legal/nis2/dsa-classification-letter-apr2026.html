@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIS2 Entity Classification — Letter to DSA Cyprus | Lighthief Cyprus Ltd</title>
+    <style>
+        :root {
+            --primary:       #1A365D;
+            --primary-light: #2B5FA0;
+            --accent:        #C9A432;
+            --white:         #FFFFFF;
+            --grey-text:     #404040;
+            --body-bg:       #F0F4F8;
+            --border:        #D1D5DB;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--body-bg); color: var(--grey-text); font-size: 13px; line-height: 1.7; }
+        .page { max-width: 860px; margin: 30px auto; background: #fff; padding: 0; box-shadow: 0 4px 30px rgba(0,0,0,0.12); }
+
+        /* ── LETTERHEAD ── */
+        .letterhead { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 28px 44px 22px; border-bottom: 5px solid var(--accent); display: flex; justify-content: space-between; align-items: flex-start; }
+        .lh-brand { }
+        .lh-icon { display: inline-block; width: 48px; height: 48px; background: rgba(201,164,50,0.22); border: 2px solid var(--accent); border-radius: 9px; text-align: center; line-height: 48px; font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: -1px; vertical-align: middle; margin-right: 10px; }
+        .lh-name { font-size: 20px; font-weight: 800; letter-spacing: 3px; color: #fff; vertical-align: middle; }
+        .lh-tagline { font-size: 9.5px; color: rgba(255,255,255,0.65); letter-spacing: 1px; margin-top: 4px; }
+        .lh-details { text-align: right; font-size: 9.5pt; color: rgba(255,255,255,0.8); line-height: 1.75; }
+        .lh-details strong { color: var(--accent); }
+
+        /* ── LETTER BODY ── */
+        .letter-body { padding: 40px 44px 36px; }
+
+        .date-ref { display: flex; justify-content: space-between; margin-bottom: 30px; }
+        .date-ref .date { font-size: 12px; color: #666; }
+        .ref-badge { display: inline-block; background: var(--primary); color: var(--accent); padding: 3px 12px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+
+        .addressee { margin-bottom: 28px; }
+        .addressee .org { font-weight: 700; color: var(--primary); font-size: 13px; }
+        .addressee p { font-size: 12px; color: #555; margin: 1px 0; }
+
+        .subject-line { background: #EFF6FF; border-left: 5px solid var(--primary); padding: 10px 16px; margin-bottom: 28px; border-radius: 0 6px 6px 0; }
+        .subject-line strong { color: var(--primary); font-size: 13px; }
+
+        p { margin-bottom: 14px; font-size: 13px; }
+        .indent { padding-left: 20px; }
+
+        h3 { color: var(--accent); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 24px 0 10px; border-bottom: 1px solid #E5E7EB; padding-bottom: 5px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 10px 0 20px; font-size: 12px; }
+        thead th { background: var(--primary); color: #fff; padding: 8px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+        td { border: 1px solid var(--border); padding: 8px 12px; vertical-align: top; }
+        tr:nth-child(even) td { background: #F8FAFC; }
+        td strong { color: var(--primary); }
+
+        .highlight { background: #FFFBEB; border: 1px solid #D97706; border-radius: 5px; padding: 10px 14px; margin: 14px 0; font-size: 12px; }
+        .highlight strong { color: #92400E; }
+
+        .signoff { margin-top: 36px; }
+        .signoff p { margin-bottom: 6px; }
+        .sig-block { margin-top: 36px; border-top: 2px solid var(--accent); padding-top: 16px; }
+        .sig-name { font-weight: 700; color: var(--primary); font-size: 14px; }
+        .sig-title { font-size: 12px; color: #555; }
+        .sig-company { font-size: 12px; color: #555; margin-top: 4px; }
+        .sig-contact { font-size: 11px; color: #888; margin-top: 6px; }
+
+        .enclosures { margin-top: 30px; padding: 14px 18px; background: #F8FAFC; border: 1px solid var(--border); border-radius: 6px; }
+        .enclosures h4 { color: var(--primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .enclosures ul { margin: 0 0 0 18px; font-size: 12px; }
+        .enclosures li { margin: 3px 0; }
+
+        .footer { background: var(--primary); color: rgba(255,255,255,0.6); font-size: 10px; text-align: center; padding: 12px 20px; }
+        .footer strong { color: rgba(255,255,255,0.9); }
+
+        @media print { body { background: #fff; } .page { box-shadow: none; margin: 0; } }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- ══ LETTERHEAD ══ -->
+    <div class="letterhead">
+        <div class="lh-brand">
+            <div>
+                <span class="lh-icon">LH</span>
+                <span class="lh-name">LIGHTHIEF</span>
+            </div>
+            <div class="lh-tagline">BESS &amp; Energy Storage Solutions</div>
+        </div>
+        <div class="lh-details">
+            <div><strong>Lighthief Cyprus Ltd</strong></div>
+            <div>Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31</div>
+            <div>3036 Limassol, Republic of Cyprus</div>
+            <div>Reg. No. <strong>HE 477423</strong> &nbsp;|&nbsp; TIN <strong>60187188Q</strong></div>
+            <div>office@lighthief.com</div>
+        </div>
+    </div>
+
+    <div class="letter-body">
+
+        <!-- ══ DATE + REF ══ -->
+        <div class="date-ref">
+            <div class="date">21 April 2026</div>
+            <div><span class="ref-badge">LCY-DSA-NIS2-2026-001</span></div>
+        </div>
+
+        <!-- ══ ADDRESSEE ══ -->
+        <div class="addressee">
+            <div class="org">Digital Security Authority (DSA)</div>
+            <p>Office of the Commissioner of Electronic Communications &amp; Postal Regulation (OCECPR)</p>
+            <p>Helioupolis Business Park, Block A</p>
+            <p>Omonia Avenue 1, 1082 Nicosia</p>
+            <p>Republic of Cyprus</p>
+            <p style="margin-top:6px;">Email: <strong>info@dsa.gov.cy</strong></p>
+        </div>
+
+        <!-- ══ SUBJECT ══ -->
+        <div class="subject-line">
+            <strong>RE: NIS2 Entity Self-Classification Notification &amp; Registration Request under Law 60(I)/2025<br>
+            Lighthief Cyprus Ltd — Energy Sector / Electricity Storage Operator &amp; Producer</strong>
+        </div>
+
+        <!-- ══ BODY ══ -->
+        <p>Dear Commissioner,</p>
+
+        <p>We write on behalf of <strong>Lighthief Cyprus Ltd</strong> (Registration No. HE 477423, TIN 60187188Q), a company incorporated under the laws of the Republic of Cyprus with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, and operational offices at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol.</p>
+
+        <p>This letter constitutes our formal self-classification notification under the <strong>Security of Networks and Information Systems (Amendment) Law of 2025 (Law 60(I)/2025)</strong>, which transposes EU Directive 2022/2555 (NIS2 Directive) into Cypriot law (in force 25 April 2025). We respectfully request that the Authority:</p>
+
+        <ol style="margin: 0 0 14px 22px; font-size: 13px;">
+            <li style="margin-bottom: 6px;">Confirm our classification as an <strong>Essential Entity</strong> or <strong>Important Entity</strong> under Annex I of the Directive (Energy — Electricity);</li>
+            <li style="margin-bottom: 6px;">Provide the current registration template and portal access for formal registration; and</li>
+            <li style="margin-bottom: 6px;">Confirm any Cyprus-specific decrees or guidance applicable to electricity storage operators and EPC contractors.</li>
+        </ol>
+
+        <!-- SECTION 1 -->
+        <h3>1. Entity Details</h3>
+        <table>
+            <thead><tr><th>Field</th><th>Details</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Legal Entity Name</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+                <tr><td><strong>Company Registration No.</strong></td><td>HE 477423</td></tr>
+                <tr><td><strong>Tax Identification No. (TIN)</strong></td><td>60187188Q</td></tr>
+                <tr><td><strong>Registered Address</strong></td><td>Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus</td></tr>
+                <tr><td><strong>Operational Address</strong></td><td>28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</td></tr>
+                <tr><td><strong>Director / Legal Representative</strong></td><td>Alexander Papacosta, Director</td></tr>
+                <tr><td><strong>Email</strong></td><td>office@lighthief.com</td></tr>
+                <tr><td><strong>Designated Security Point of Contact</strong></td><td>Alexander Papacosta, Director — office@lighthief.com</td></tr>
+                <tr><td><strong>Jurisdiction of Incorporation</strong></td><td>Republic of Cyprus</td></tr>
+                <tr><td><strong>Member States in which services are provided</strong></td><td>Republic of Cyprus (primary); Romania (expanding 2026)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- SECTION 2 -->
+        <h3>2. Sector &amp; Sub-Sector Classification</h3>
+        <p>Based on our operational activities, we consider Lighthief Cyprus Ltd to fall within the following NIS2 Annex I categories:</p>
+        <table>
+            <thead><tr><th>Annex I Sector</th><th>Sub-Sector</th><th>Basis</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><strong>Energy</strong></td>
+                    <td>Electricity — <em>Operators of electricity storage facilities</em></td>
+                    <td>Owner and operator of 47 BESS (Battery Energy Storage System) installations across Cyprus with a combined capacity of 863.5 MWh, all grid-connected via EAC DSO</td>
+                </tr>
+                <tr>
+                    <td><strong>Energy</strong></td>
+                    <td>Electricity — <em>Electricity producers</em></td>
+                    <td>Co-located PV generation assets licensed under CERA/EAC; Lighthief Cyprus Ltd acts as EPC contractor and O&amp;M operator for 47 licensed RES+BESS parks</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>We note that whilst our current employee headcount and annual turnover may place us below the standard thresholds for mandatory classification (≥250 employees / &gt;€50m turnover for Essential Entities), we submit that the scale and grid-criticality of the portfolio — 863.5 MWh of grid-connected storage distributed across all five administrative districts of Cyprus — is likely to trigger designation regardless of size, as envisaged by Recital 61 and Article 2(2)(b) of the Directive.</p>
+
+        <p>We therefore request that the Authority confirm our classification and, if appropriate, formally designate us as either an <strong>Essential Entity</strong> or <strong>Important Entity</strong> under Law 60(I)/2025.</p>
+
+        <!-- SECTION 3 -->
+        <h3>3. Network and Information Systems in Scope</h3>
+        <table>
+            <thead><tr><th>System / Asset Category</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><strong>OT / SCADA at park level</strong></td>
+                    <td>47 BESS installations each equipped with BMS (Battery Management System), PCS (Power Conversion System), and site SCADA/EMS connected to EAC DSO via IEC 60870-5-104 protocol over TCP/IP (Port 2404)</td>
+                </tr>
+                <tr>
+                    <td><strong>Disperon EMS (cloud)</strong></td>
+                    <td>Proprietary Energy Management System operated by our EU affiliate Lighthief EU BESS Sp. z o.o. (Poland); cloud-based fleet management, real-time dispatch, and SCADA aggregation for all Cyprus parks. Edge controllers (WAGO PFC200 PLC) deployed at each site.</td>
+                </tr>
+                <tr>
+                    <td><strong>Remote access infrastructure</strong></td>
+                    <td>VPN gateway enabling remote monitoring and intervention by operations team; 4G/5G backup communications per site</td>
+                </tr>
+                <tr>
+                    <td><strong>Corporate IT</strong></td>
+                    <td>Company LAN, email, and business systems at Limassol offices</td>
+                </tr>
+                <tr>
+                    <td><strong>IP Ranges</strong></td>
+                    <td>To be provided in completed registration form upon receipt of DSA template. We hold site-specific static IP addresses for DSO communication links. WAN/VPN IP ranges available on request.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- SECTION 4 -->
+        <h3>4. Relationship with Lighthief EU BESS Sp. z o.o.</h3>
+        <p>We draw to the Authority's attention that Lighthief Cyprus Ltd operates in close technical coordination with <strong>Lighthief EU BESS Sp. z o.o.</strong> (EU headquarters, Republic of Poland), which is the provider of the Disperon EMS cloud platform used for management of all Cyprus sites. Lighthief EU BESS processes telemetry data from all 47 Cyprus parks and provides remote operational support.</p>
+
+        <p>A parallel NIS2 notification is being prepared in Poland by Lighthief EU BESS, and we are committed to maintaining a <strong>joint cybersecurity governance framework</strong> across both entities in compliance with Article 21 supply-chain security obligations. We would welcome guidance from the Authority on whether cross-entity coordination requirements apply under the Cyprus transposition law.</p>
+
+        <!-- SECTION 5 -->
+        <h3>5. Compliance Preparedness</h3>
+        <p>We wish to inform the Authority that Lighthief Cyprus Ltd has already initiated its NIS2 compliance programme:</p>
+        <ul style="margin: 0 0 14px 22px; font-size: 13px;">
+            <li style="margin-bottom: 5px;">An <strong>RFP for Cybersecurity Hardening &amp; NIS2 Compliance Services</strong> (Ref: RFP-LH-CYBER-2026-002, dated 21 April 2026) has been issued to qualified vendors covering all 10 Article 21 measures;</li>
+            <li style="margin-bottom: 5px;">Technical hardening of OT/SCADA systems is planned to commence Q2/Q3 2026, with full rollout completing by end of 2026;</li>
+            <li style="margin-bottom: 5px;">An ISO/IEC 27001 and IEC 62443 certification project is included in the programme scope;</li>
+            <li style="margin-bottom: 5px;">Incident response procedures including the <strong>6-hour early warning</strong> requirement under Cyprus law are being developed and will be submitted to the Authority upon completion.</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Good-Faith Notice:</strong> This letter is submitted proactively as evidence of good faith and cooperative engagement with the Authority prior to formal designation. We are committed to full compliance with Law 60(I)/2025 and welcome any guidance, clarification, or supervisory engagement the Authority deems appropriate.
+        </div>
+
+        <!-- SECTION 6 -->
+        <h3>6. Requested Actions</h3>
+        <p>We respectfully request the Authority to:</p>
+        <ol style="margin: 0 0 14px 22px; font-size: 13px;">
+            <li style="margin-bottom: 6px;"><strong>Confirm classification</strong> of Lighthief Cyprus Ltd as an Essential or Important Entity under Annex I (Energy — Electricity), or advise if further information is required for designation;</li>
+            <li style="margin-bottom: 6px;"><strong>Provide the current DSA registration template</strong> and portal access for formal entity registration under Article 27 of the Directive;</li>
+            <li style="margin-bottom: 6px;"><strong>Advise on any sector-specific decrees or guidance</strong> issued for electricity storage operators and EPC/O&amp;M contractors under Cyprus Law 60(I)/2025;</li>
+            <li style="margin-bottom: 6px;"><strong>Confirm the current incident reporting contact details</strong> for CSIRT-CY for our records and pre-population into our Incident Response Plan;</li>
+            <li style="margin-bottom: 6px;"><strong>Advise on cross-entity obligations</strong> where a Cyprus operator relies on an EU-headquartered EMS/cloud provider (Lighthief EU BESS, Poland).</li>
+        </ol>
+
+        <!-- SIGNOFF ══ -->
+        <div class="signoff">
+            <p>We are available for a meeting or call at the Authority's convenience and can provide any additional technical or legal documentation upon request. Please do not hesitate to contact the undersigned directly.</p>
+            <p>We thank you for your attention to this matter and look forward to your response.</p>
+            <p>Yours faithfully,</p>
+        </div>
+
+        <div class="sig-block">
+            <div class="sig-name">Alexander Papacosta</div>
+            <div class="sig-title">Director</div>
+            <div class="sig-company">Lighthief Cyprus Ltd</div>
+            <div class="sig-contact">28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+            office@lighthief.com &nbsp;|&nbsp; HE 477423</div>
+        </div>
+
+        <!-- ══ ENCLOSURES ══ -->
+        <div class="enclosures">
+            <h4>Enclosures</h4>
+            <ul>
+                <li>Enclosure 1 — Certificate of Incorporation, Lighthief Cyprus Ltd (HE 477423)</li>
+                <li>Enclosure 2 — Summary portfolio schedule: 47 BESS parks, district distribution, total capacity (863.5 MWh)</li>
+                <li>Enclosure 3 — RFP-LH-CYBER-2026-002: NIS2 Cybersecurity Hardening &amp; Compliance RFP (programme evidence)</li>
+                <li>Enclosure 4 — Description of Disperon EMS system and Lighthief EU BESS relationship</li>
+            </ul>
+        </div>
+
+    </div><!-- /letter-body -->
+
+    <div class="footer">
+        <strong>LCY-DSA-NIS2-2026-001</strong> &nbsp;|&nbsp; NIS2 Classification Letter to DSA Cyprus &nbsp;|&nbsp; Lighthief Cyprus Ltd &nbsp;|&nbsp; 21 April 2026 &nbsp;|&nbsp; Confidential
+    </div>
+
+</div>
+</body>
+</html>
