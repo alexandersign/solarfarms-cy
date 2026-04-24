@@ -14,7 +14,7 @@ Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus
 **Company Registration No:** HE 477423
 **TIN:** 60187188Q
 
-**Date of Agreement:** 1 July 2025
+**Date of Agreement:** 1 December 2025
 
 ---
 
@@ -36,7 +36,7 @@ The Employee is employed in the position of **Sales Executive and Lead Intake Co
 
 ## 3. Commencement and Duration
 
-Employment commences on **1 July 2025** and is for an indefinite duration, subject to termination in accordance with this Agreement and applicable law.
+Employment commences on **1 December 2025** and is for an indefinite duration, subject to termination in accordance with this Agreement and applicable law.
 
 ---
 
