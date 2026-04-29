@@ -9,7 +9,7 @@
 > - Protection settings
 > - Project proposal documentation
 
-> **Source**: DSO Technical Guide for Storage - Edition 2025.1 (July 2025 - DRAFT)
+> **Source**: EAC Technical Guide for Storage Systems - Edition 2026 (April 2026) — supersedes Edition 2025.1 draft
 
 ---
 
@@ -71,16 +71,17 @@
 
 ### 2.3 Category C: Standalone Storage Facility (EAH)
 
-> Storage facility where discharge capacity > RES capacity (or no RES)
+> Storage facility where discharge capacity > RES capacity (or no RES). **Formally introduced in Edition 2026** — previously BESS required co-located RES; Category C enables pure battery-only grid connections.
 
 | Parameter | Requirement |
 |-----------|-------------|
 | Grid Exchange | **ALLOWED** - Can charge from grid and discharge to grid |
 | Charging Source | Grid and/or RES |
 | Grid Discharge | **ALLOWED** - Per market dispatch schedule |
-| SCADA Connection | **REQUIRED** for systems ≥ 120 kW |
-| Connection Capacity | Based on max charge/discharge capability |
+| SCADA Connection | **REQUIRED** for systems ≥ 120 kW **discharge capacity** |
+| Connection Capacity | Based on **Maximum Discharge Capacity** (kW), not installed kWp |
 | RES Component | Optional (does not count toward connection capacity) |
+| Sizing Metric | **Μέγιστη Ικανότητα Αποφόρτισης** (Max Discharge Capacity) — new 2026 metric |
 
 ---
 
@@ -863,7 +864,85 @@ Before commencing works, the **Responsible Engineer Declaration** (Υπεύθυ�
 
 ---
 
-## 19. REVISION HISTORY
+## 19. NEW REQUIREMENTS — APRIL 2026 EDITION
+
+> **Source**: EAC Technical Guide for Storage Systems, Edition 2026 (April 2026)
+> These items were introduced or formally defined for the first time in the 2026 edition.
+
+### 19.1 ΔΕΑΗ — Storage Installation Manager (New Legal Role)
+
+The 2026 framework introduces a legally distinct **ΔΕΑΗ (Διαχειριστής Εγκατάστασης Αποθήκευσης Ηλεκτρισμού)** — the operator/manager of the storage installation — separate from the owner (**ΙΕΑΗ**).
+
+| Aspect | Detail |
+|--------|--------|
+| Pre-connection obligations | Fall on **ΙΕΑΗ** (owner) |
+| Post-connection grid compliance | Falls on **ΔΕΑΗ** (manager/operator) |
+| Same entity allowed | Yes — ΙΕΑΗ and ΔΕΑΗ can be the same person/company |
+| Hybrid systems | Owner of BESS and owner of RES **must** be the same entity (shared connection point) |
+| Relevance to Lighthief | O&M operator (Lighthief) can be registered as ΔΕΑΗ, taking on grid compliance responsibility |
+
+### 19.2 Island Mode Operation (New — Annex V)
+
+Full new annex covering **Απομονωμένη Λειτουργία (Island Mode)** for grid-connected installations.
+
+| Parameter | Requirement |
+|-----------|-------------|
+| Definition | Premises isolate from distribution network and operate solely on BESS/generator |
+| Approval | Requires explicit EAC/DSO written permission per site |
+| Anti-islanding | Special protection coordination required |
+| Use case | Backup power, resilience — valuable feature to offer clients |
+
+### 19.3 IT Grounding Retrofit (New — Annex IV)
+
+New technical annex for **adding BESS to existing PV parks** where the storage system uses a different grounding scheme (I.T.) than the existing installation. Provides a formal technical pathway for BESS retrofits onto operating PV parks.
+
+### 19.4 NBIoT Remote Control (New Technology)
+
+Remote control receiver (mandatory on all systems regardless of size) now supports:
+- Traditional **ripple control** (existing)
+- **Narrow Band IoT (NBIoT)** — new option in 2026
+
+DSO selects which technology to deploy; producer installs compatible receiver.
+
+### 19.5 DSO Dispatch Rights — Charge/Discharge Mode (Clarified 2026)
+
+Annex A-2, §21 explicitly states:
+
+> The DSO/TSO has the right to **switch BESS operation from charging to discharging and vice versa** at any time for grid stability — not just curtail output.
+
+This must be disclosed to clients. EAC can command a 5MW BESS to stop charging and start discharging (or vice versa) independently of the owner's market schedule.
+
+### 19.6 Zero-Injection Modes (Formally Defined 2026)
+
+| Mode | Greek | Behaviour |
+|------|-------|-----------|
+| **Permanent zero-injection** | Λειτουργία μόνιμης μηδενικής έγχυσης | Never exports to grid under any circumstances |
+| **Occasional zero-injection** | Λειτουργία περιστασιακής μηδενικής έγχυσης | Zero export only during specific DSO-instructed periods |
+
+### 19.7 DIgSILENT PowerFactory Modelling Requirement (New)
+
+For connection applications above certain thresholds (triggered by DSO), the applicant must submit:
+
+| Deliverable | Specification |
+|-------------|---------------|
+| Static model | Load flow analysis capable |
+| Dynamic model | RMS analysis, protection system modelling |
+| Format | DIgSILENT PowerFactory `.pfd` — latest version compatible |
+| Deadline | Within 4 months (ΠΔ1.4) of DSO request |
+
+**Impact on Dino-type 5MW applications**: EAC will almost certainly request this. Add to project cost/timeline.
+
+### 19.8 Connection Process Fees (April 2024 Process Document)
+
+| Category | Fee |
+|----------|-----|
+| Producers ≤ 50 kW | €150 application fee |
+| Producers > 50 kW | €300 application fee |
+| ΠΟΣ acceptance deposit | 5% of preliminary connection cost (non-refundable if final offer rejected) |
+
+---
+
+## 20. REVISION HISTORY
 
 | Date | Version | Changes | Author |
 |------|---------|---------|--------|
@@ -872,6 +951,7 @@ Before commencing works, the **Responsible Engineer Declaration** (Υπεύθυ�
 | 2026-01-23 | 1.2 | Added TSO BESS Technical Specification (ANNEX-II-Appendix-2): RTE, availability, safety, fire protection, BMS/EMS requirements. Added Linyang TSO compliance matrix. | AI Assistant |
 | 2026-01-23 | 1.3 | Added RES Connection Requirements from Technical Guide 2023.2 (ΣAAΗ): Protection settings, LFSM-O (10%/0.1Hz), Q(U) control, LVFRT, SCADA thresholds (≥120kWp), reconnection (180s + 10%/min ramp). Added Linyang compliance matrix. | AI Assistant |
 | 2026-01-23 | 1.4 | **Added Κ.Δ.Π. 15/2026 and Κ.Δ.Π. 17/2026** (Official Gazette 5992, 16 Jan 2026): Building/Planning permit exemptions for BESS in RES stations. 33 conditions covering general, fire, environment, and labour requirements. Replaces Κ.Δ.Π. 215/2025. | AI Assistant |
+| 2026-04-28 | 1.5 | **Updated to EAC Technical Guide Edition 2026 (April 2026).** Added: Category C formally open for standalone BESS (no RES required); ΔΕΑΗ (Storage Manager) legal role; Island Mode Operation (Annex V); IT Grounding retrofit (Annex IV); NBIoT remote control; explicit DSO charge/discharge dispatch rights; permanent vs. occasional zero-injection mode definitions; DIgSILENT PowerFactory modelling requirement; April 2024 connection process fees. | Lighthief |
 
 ---
 

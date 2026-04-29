@@ -2,9 +2,9 @@
 ## BESS Grid Connection Requirements
 
 **Document Reference:** LCY-DSO-001
-**Version:** 3.0
-**Effective Date:** January 2026
-**Source:** EAC Technical Guide for Storage – Edition 2025.1
+**Version:** 3.1
+**Effective Date:** April 2026
+**Source:** EAC Technical Guide for Storage Systems – Edition 2026 (April 2026)
 
 ---
 
@@ -14,7 +14,7 @@
 
 | Document | Edition | Description |
 |----------|---------|-------------|
-| EAC Technical Guide for Storage | 2025.1 | ΣΑΗΕ connection requirements |
+| EAC Technical Guide for Storage | **2026 (April 2026)** | ΣΑΗΕ connection requirements — supersedes 2025.1 |
 | EAC Technical Guide for RES | 2025 | Renewable energy systems |
 | DSO PV Requirements | 2025 | Photovoltaic connection |
 | IEC 60870-5-104 | - | SCADA communication protocol |
@@ -530,7 +530,23 @@ Signature: ____________________
 
 ---
 
-*Document Version: 3.0*
-*Updated: January 2026*
-*Source: EAC Technical Guide for Storage – Edition 2025.1*
+### Key Changes in Edition 2026 (vs. 2025.1)
+
+| Change | Detail |
+|--------|--------|
+| **Category C formally open** | Standalone BESS (no RES) can now connect to Distribution Network |
+| **ΔΕΑΗ role** | New legal entity: Storage Manager separate from owner; takes on post-connection grid compliance |
+| **Island Mode (Annex V)** | New provision for grid-connected island operation; requires explicit EAC approval per site |
+| **IT Grounding retrofit (Annex IV)** | Technical pathway for adding BESS to existing PV parks with different grounding |
+| **NBIoT** | Remote control receiver now supports Narrow Band IoT in addition to ripple control |
+| **DSO dispatch over charge/discharge** | EAC can now explicitly command switching between charge and discharge modes (not just curtailment) |
+| **Zero-injection modes** | Formally defined: permanent (μόνιμης) vs. occasional (περιστασιακής) |
+| **DIgSILENT modelling** | New requirement: static + dynamic `.pfd` models for large connection applications |
+| **SCADA Category C threshold** | Now references ≥120 kW **discharge capacity** (not kWp) for standalone BESS |
+
+---
+
+*Document Version: 3.1*
+*Updated: April 2026*
+*Source: EAC Technical Guide for Storage Systems – Edition 2026 (April 2026)*
 *Lighthief Cyprus Ltd*
