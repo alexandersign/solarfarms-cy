@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PV + BESS Scenario Analysis — Lighthief</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A365D;
+    --navy-light: #2B5FA0;
+    --gold: #C9A432;
+    --gold-dark: #9C7D22;
+    --white: #FFFFFF;
+    --grey: #404040;
+    --body-bg: #F0F4F8;
+    --card-bg: #FFFFFF;
+    --border: #D6E0EE;
+    --green: #1E7D4A;
+    --green-light: #E8F5ED;
+    --amber: #92400E;
+    --amber-bg: #FFFBF0;
+    --amber-border: #F0D980;
+    --red: #991B1B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--body-bg); color: var(--grey); }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1D4E8F 100%);
+    padding: 28px 40px 24px;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: rgba(201,164,50,0.07); pointer-events: none;
+  }
+  .header-inner { max-width: 1140px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .header-badge {
+    display: inline-block; background: rgba(201,164,50,0.18);
+    border: 1px solid rgba(201,164,50,0.4); color: var(--gold);
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900;
+    color: var(--white); line-height: 1.2; margin-bottom: 5px;
+  }
+  header h1 span { color: var(--gold); }
+  .header-sub { color: rgba(255,255,255,0.6); font-size: 12.5px; }
+  .panel-badge {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 12px 16px; text-align: right; flex-shrink: 0;
+  }
+  .panel-badge-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 4px; }
+  .panel-badge-name { font-size: 14px; font-weight: 700; color: var(--gold); }
+  .panel-badge-spec { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .header-pills { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.13);
+    color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500;
+    padding: 4px 11px; border-radius: 6px;
+  }
+  .pill strong { color: var(--gold); }
+
+  /* ── MAIN ── */
+  main { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+
+  /* ── ASSUMPTIONS BAR ── */
+  .assumptions {
+    background: var(--navy); border-radius: 10px;
+    padding: 14px 20px; margin-bottom: 26px;
+    display: flex; gap: 0; flex-wrap: wrap;
+  }
+  .assump-group {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding-right: 24px; margin-right: 24px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .assump-group:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+  .assump-group-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.3); margin-bottom: 8px; width: 100%;
+  }
+  .assump-item { display: flex; flex-direction: column; gap: 1px; }
+  .assump-label { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); font-weight: 600; }
+  .assump-val { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .assump-note { font-size: 9.5px; color: rgba(255,255,255,0.35); }
+
+  /* ── PLOT SECTION ── */
+  .plot-section { margin-bottom: 32px; }
+  .plot-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .plot-num {
+    width: 34px; height: 34px; background: var(--gold); color: var(--navy);
+    font-weight: 900; font-size: 15px; font-family: 'Playfair Display', serif;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .plot-title h2 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); font-weight: 700; }
+  .plot-title p { font-size: 11.5px; color: #7A8FA6; margin-top: 1px; }
+  .plot-size { margin-left: auto; background: var(--navy); color: var(--white); font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; white-space: nowrap; }
+
+  /* ── CARDS GRID ── */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .card {
+    background: var(--card-bg); border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(26,54,93,0.06);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover { box-shadow: 0 6px 24px rgba(26,54,93,0.12); transform: translateY(-2px); }
+
+  .card-head {
+    background: linear-gradient(135deg, var(--navy) 0%, #244F87 100%);
+    padding: 13px 16px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-orient { font-size: 13px; font-weight: 700; color: var(--white); }
+  .card-kwp { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 12px; }
+
+  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  /* section label */
+  .sec-label {
+    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #94A3B8; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    margin-bottom: 2px;
+  }
+
+  /* CAPEX rows */
+  .rows { display: flex; flex-direction: column; gap: 6px; }
+  .row { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; }
+  .row-label { color: #6B7F96; display: flex; align-items: center; gap: 5px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-pv   { background: var(--navy-light); }
+  .dot-bess { background: var(--gold); }
+  .dot-docs { background: #94A3B8; }
+  .dot-om   { background: #10B981; }
+  .row-val { font-weight: 600; color: var(--grey); font-variant-numeric: tabular-nums; font-size: 12.5px; }
+  .sub-note { font-size: 10px; color: #B0C0D4; text-align: right; margin-top: -4px; }
+  .divider { height: 1px; background: var(--border); }
+
+  /* totals */
+  .capex-total {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #F4F7FD; border-radius: 8px; padding: 9px 12px;
+  }
+  .capex-total-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); }
+  .capex-total-val { font-size: 17px; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+
+  /* metrics 2-col grid */
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .metric {
+    background: #F8FAFC; border: 1px solid #E8EFF8;
+    border-radius: 8px; padding: 9px 11px; text-align: center;
+  }
+  .metric.full { grid-column: span 2; }
+  .metric-label { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #94A3B8; font-weight: 600; margin-bottom: 3px; }
+  .metric-val { font-size: 15px; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .metric-val.gold { color: var(--gold-dark); }
+  .metric-val.green { color: var(--green); }
+  .metric-val.small { font-size: 12px; }
+
+  /* Financing block */
+  .finance-block {
+    background: linear-gradient(135deg, #EEF3FB 0%, #F4F7FD 100%);
+    border: 1px solid #D0DDEF; border-radius: 10px; padding: 11px 13px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .finance-rows { display: flex; flex-direction: column; gap: 5px; }
+  .finance-row { display: flex; justify-content: space-between; font-size: 12px; }
+  .finance-row-label { color: #5A7090; }
+  .finance-row-val { font-weight: 600; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .finance-divider { height: 1px; background: #C8D8EE; }
+  .finance-net { display: flex; justify-content: space-between; align-items: center; }
+  .finance-net-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--navy); }
+  .finance-net-val { font-size: 15px; font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; }
+
+  /* payback bar */
+  .pb-wrap { display: flex; flex-direction: column; gap: 5px; }
+  .pb-header { display: flex; justify-content: space-between; font-size: 11px; }
+  .pb-title { color: #7A8FA6; font-weight: 500; }
+  .pb-val { font-weight: 700; color: var(--navy); }
+  .pb-bg { height: 5px; background: #E2EAF4; border-radius: 3px; overflow: hidden; }
+  .pb-fill { height: 100%; border-radius: 3px; }
+  .dscr-badge {
+    display: inline-block; background: var(--green-light);
+    border: 1px solid #9FD8BC; color: var(--green);
+    font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison { margin-top: 32px; }
+  .sec-title {
+    font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); font-weight: 700;
+    margin-bottom: 12px; padding-bottom: 7px; border-bottom: 2px solid var(--gold); display: inline-block;
+  }
+  table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(26,54,93,0.06); border: 1px solid var(--border); }
+  thead { background: var(--navy); }
+  thead th { padding: 11px 12px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); white-space: nowrap; }
+  thead th:first-child { color: var(--gold); }
+  th.r, td.r { text-align: right; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #F6F9FF; }
+  td { padding: 11px 12px; font-size: 12.5px; color: var(--grey); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.bold { font-weight: 700; color: var(--navy); }
+  td.best { font-weight: 700; color: var(--green); }
+  .scen-label .plot-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: #94A3B8; font-weight: 600; display: block; }
+  .scen-label .orient { font-size: 12.5px; font-weight: 600; color: var(--grey); }
+
+  /* ── O&M TABLE ── */
+  .om-section { margin-top: 24px; }
+  .om-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+  .om-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 13px 14px;
+  }
+  .om-card-head { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7A8FA6; margin-bottom: 10px; }
+  .om-rows { display: flex; flex-direction: column; gap: 6px; }
+  .om-row { display: flex; justify-content: space-between; font-size: 11.5px; }
+  .om-label { color: #7A8FA6; }
+  .om-val { font-weight: 600; color: var(--grey); font-variant-numeric: tabular-nums; }
+  .om-total-row { display: flex; justify-content: space-between; font-size: 12px; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); }
+  .om-total-label { font-weight: 700; color: var(--navy); }
+  .om-total-val { font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+
+  /* ── NOTES ── */
+  .notes { margin-top: 24px; background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 10px; padding: 14px 18px; }
+  .notes-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); margin-bottom: 8px; }
+  .notes ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .notes li { font-size: 12px; color: var(--amber); padding-left: 16px; position: relative; }
+  .notes li::before { content: '⚠'; position: absolute; left: 0; font-size: 10px; }
+
+  footer { text-align: center; padding: 18px; font-size: 11px; color: #94A3B8; border-top: 1px solid var(--border); margin-top: 8px; }
+  footer strong { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="header-badge">Internal Analysis · April 2026</div>
+        <h1>PV + BESS Scenario Analysis<br><span>Softades & Αρκατζιά</span></h1>
+        <p class="header-sub">AE Solar Meteor bifacial · White albedo · 4h BESS · Bank financing · O&M — Lighthief confirmed costs</p>
+        <div class="header-pills">
+          <span class="pill">PV: <strong>€0.72/Wp</strong></span>
+          <span class="pill">BESS: <strong>€127k/MWh</strong></span>
+          <span class="pill">Tariff: <strong>€0.16/kWh</strong></span>
+          <span class="pill">LTV: <strong>65% @ 5.5% / 12yr</strong></span>
+          <span class="pill">Albedo: <strong>0.70 white ground</strong></span>
+        </div>
+      </div>
+      <div class="panel-badge">
+        <div class="panel-badge-label">Panel Spec</div>
+        <div class="panel-badge-name">AE Solar Meteor</div>
+        <div class="panel-badge-spec">N-type TOPCon · Bifacial · 620–630 Wp</div>
+        <div class="panel-badge-spec">Bifaciality 80% · η 22.9%</div>
+        <div class="panel-badge-spec">30yr product warranty</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ASSUMPTIONS -->
+  <div class="assumptions">
+    <div class="assump-group">
+      <div class="assump-group-label">EPC &amp; Equipment</div>
+      <div class="assump-item">
+        <span class="assump-label">PV EPC</span>
+        <span class="assump-val">€720/kWp</span>
+        <span class="assump-note">Bifacial TopCon turnkey</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">BESS (4h)</span>
+        <span class="assump-val">€127k/MWh</span>
+        <span class="assump-note">LFP installed</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">Permitting</span>
+        <span class="assump-val">€35,000</span>
+        <span class="assump-note">Per park</span>
+      </div>
+    </div>
+    <div class="assump-group">
+      <div class="assump-group-label">Yield (AE Meteor + Albedo 0.70)</div>
+      <div class="assump-item">
+        <span class="assump-label">South yield</span>
+        <span class="assump-val">2,150 kWh/kWp</span>
+        <span class="assump-note">25–30° tilt · +10.3% bifacial</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">EW yield</span>
+        <span class="assump-val">1,450 kWh/kWp</span>
+        <span class="assump-note">12–15° tilt · +5% bifacial</span>
+      </div>
+    </div>
+    <div class="assump-group">
+      <div class="assump-group-label">O&amp;M (per year)</div>
+      <div class="assump-item">
+        <span class="assump-label">PV O&amp;M</span>
+        <span class="assump-val">€15/kWp</span>
+        <span class="assump-note">Cleaning + inspection</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">BESS O&amp;M</span>
+        <span class="assump-val">€2,500/MWh</span>
+        <span class="assump-note">Based on Agios RTB opex</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">Fixed overhead</span>
+        <span class="assump-val">€2,000–2,500</span>
+        <span class="assump-note">Monitoring + insurance</span>
+      </div>
+    </div>
+    <div class="assump-group">
+      <div class="assump-group-label">Bank Financing</div>
+      <div class="assump-item">
+        <span class="assump-label">LTV</span>
+        <span class="assump-val">65%</span>
+        <span class="assump-note">Senior debt</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">Rate</span>
+        <span class="assump-val">5.5% p.a.</span>
+        <span class="assump-note">Fixed / green loan</span>
+      </div>
+      <div class="assump-item">
+        <span class="assump-label">Term</span>
+        <span class="assump-val">12 years</span>
+        <span class="assump-note">Annuity factor 0.116</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════ PLOT 1 ═══════════════════════════ -->
+  <div class="plot-section">
+    <div class="plot-header">
+      <div class="plot-num">1</div>
+      <div class="plot-title">
+        <h2>Παρασόλια, Σοφτάδες — Λάρνακα</h2>
+        <p>Plot 0/2150 · Παύλος Παύλου · Agricultural · 1,363 m²</p>
+      </div>
+      <div class="plot-size">1,363 m²</div>
+    </div>
+
+    <div class="cards">
+
+      <!-- SOUTH -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-orient">☀ South-Facing · 25°</div>
+          <div class="card-kwp">95 kWp · 44 panels</div>
+        </div>
+        <div class="card-body">
+
+          <div>
+            <div class="sec-label">Capital Expenditure</div>
+            <div class="rows" style="margin-top:8px">
+              <div class="row">
+                <span class="row-label"><span class="dot dot-pv"></span>PV EPC (95 kWp × €720)</span>
+                <span class="row-val">€68,400</span>
+              </div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-bess"></span>BESS 4h — 380 kWh</span>
+                <span class="row-val">€48,260</span>
+              </div>
+              <div class="sub-note">0.38 MWh × €127,000/MWh</div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-docs"></span>Permitting &amp; Docs</span>
+                <span class="row-val">€35,000</span>
+              </div>
+              <div class="divider"></div>
+            </div>
+            <div class="capex-total" style="margin-top:8px">
+              <span class="capex-total-label">Total CAPEX</span>
+              <span class="capex-total-val">€151,660</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Annual Performance</div>
+            <div class="metrics" style="margin-top:8px">
+              <div class="metric">
+                <div class="metric-label">Production</div>
+                <div class="metric-val">204 MWh</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Gross Revenue</div>
+                <div class="metric-val gold">€32,640</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">O&amp;M Cost/yr</div>
+                <div class="metric-val small" style="color:#E53E3E">−€4,375</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Net EBITDA</div>
+                <div class="metric-val green">€28,265</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Bank Financing</div>
+            <div class="finance-block" style="margin-top:8px">
+              <div class="finance-rows">
+                <div class="finance-row">
+                  <span class="finance-row-label">Loan (65%) @ 5.5% / 12yr</span>
+                  <span class="finance-row-val">€98,579</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Equity required (35%)</span>
+                  <span class="finance-row-val">€53,081</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Annual debt service</span>
+                  <span class="finance-row-val" style="color:#E53E3E">−€11,435</span>
+                </div>
+                <div class="finance-divider"></div>
+              </div>
+              <div class="finance-net">
+                <div>
+                  <div class="finance-net-label">Net Cash / yr</div>
+                  <span class="dscr-badge">DSCR 2.86×</span>
+                </div>
+                <div class="finance-net-val">€16,830</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="pb-wrap">
+              <div class="pb-header">
+                <span class="pb-title">Unlevered payback</span><span class="pb-val">5.4 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:54%;background:linear-gradient(90deg,#2B5FA0,#C9A432)"></div></div>
+            </div>
+            <div class="pb-wrap" style="margin-top:7px">
+              <div class="pb-header">
+                <span class="pb-title">Equity payback (levered)</span><span class="pb-val" style="color:var(--green)">3.2 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:32%;background:linear-gradient(90deg,#1E7D4A,#2ECC8A)"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EW -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-orient">↔ East–West · 12°</div>
+          <div class="card-kwp">150 kWp · 69 panels</div>
+        </div>
+        <div class="card-body">
+
+          <div>
+            <div class="sec-label">Capital Expenditure</div>
+            <div class="rows" style="margin-top:8px">
+              <div class="row">
+                <span class="row-label"><span class="dot dot-pv"></span>PV EPC (150 kWp × €720)</span>
+                <span class="row-val">€108,000</span>
+              </div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-bess"></span>BESS 4h — 600 kWh</span>
+                <span class="row-val">€76,200</span>
+              </div>
+              <div class="sub-note">0.60 MWh × €127,000/MWh</div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-docs"></span>Permitting &amp; Docs</span>
+                <span class="row-val">€35,000</span>
+              </div>
+              <div class="divider"></div>
+            </div>
+            <div class="capex-total" style="margin-top:8px">
+              <span class="capex-total-label">Total CAPEX</span>
+              <span class="capex-total-val">€219,200</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Annual Performance</div>
+            <div class="metrics" style="margin-top:8px">
+              <div class="metric">
+                <div class="metric-label">Production</div>
+                <div class="metric-val">218 MWh</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Gross Revenue</div>
+                <div class="metric-val gold">€34,800</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">O&amp;M Cost/yr</div>
+                <div class="metric-val small" style="color:#E53E3E">−€5,750</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Net EBITDA</div>
+                <div class="metric-val green">€29,050</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Bank Financing</div>
+            <div class="finance-block" style="margin-top:8px">
+              <div class="finance-rows">
+                <div class="finance-row">
+                  <span class="finance-row-label">Loan (65%) @ 5.5% / 12yr</span>
+                  <span class="finance-row-val">€142,480</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Equity required (35%)</span>
+                  <span class="finance-row-val">€76,720</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Annual debt service</span>
+                  <span class="finance-row-val" style="color:#E53E3E">−€16,528</span>
+                </div>
+                <div class="finance-divider"></div>
+              </div>
+              <div class="finance-net">
+                <div>
+                  <div class="finance-net-label">Net Cash / yr</div>
+                  <span class="dscr-badge">DSCR 2.11×</span>
+                </div>
+                <div class="finance-net-val">€6,522</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="pb-wrap">
+              <div class="pb-header">
+                <span class="pb-title">Unlevered payback</span><span class="pb-val">7.5 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:75%;background:linear-gradient(90deg,#2B5FA0,#C9A432)"></div></div>
+            </div>
+            <div class="pb-wrap" style="margin-top:7px">
+              <div class="pb-header">
+                <span class="pb-title">Equity payback (levered)</span><span class="pb-val">11.8 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:100%;background:linear-gradient(90deg,#C9A432,#E53E3E)"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════ PLOT 2 ═══════════════════════════ -->
+  <div class="plot-section">
+    <div class="plot-header">
+      <div class="plot-num">2</div>
+      <div class="plot-title">
+        <h2>Αρκατζιά, Δήμος Κώτηρας — Αμμόχωστος</h2>
+        <p>Plot 0/2257 · Παύλου Κούλλα · Χωράφι · Provisional title</p>
+      </div>
+      <div class="plot-size">3,704 m²</div>
+    </div>
+
+    <div class="cards">
+
+      <!-- SOUTH -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-orient">☀ South-Facing · 25°</div>
+          <div class="card-kwp">270 kWp · 125 panels</div>
+        </div>
+        <div class="card-body">
+
+          <div>
+            <div class="sec-label">Capital Expenditure</div>
+            <div class="rows" style="margin-top:8px">
+              <div class="row">
+                <span class="row-label"><span class="dot dot-pv"></span>PV EPC (270 kWp × €720)</span>
+                <span class="row-val">€194,400</span>
+              </div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-bess"></span>BESS 4h — 1,080 kWh</span>
+                <span class="row-val">€137,160</span>
+              </div>
+              <div class="sub-note">1.08 MWh × €127,000/MWh</div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-docs"></span>Permitting &amp; Docs</span>
+                <span class="row-val">€35,000</span>
+              </div>
+              <div class="divider"></div>
+            </div>
+            <div class="capex-total" style="margin-top:8px">
+              <span class="capex-total-label">Total CAPEX</span>
+              <span class="capex-total-val">€366,560</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Annual Performance</div>
+            <div class="metrics" style="margin-top:8px">
+              <div class="metric">
+                <div class="metric-label">Production</div>
+                <div class="metric-val">581 MWh</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Gross Revenue</div>
+                <div class="metric-val gold">€92,880</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">O&amp;M Cost/yr</div>
+                <div class="metric-val small" style="color:#E53E3E">−€9,250</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Net EBITDA</div>
+                <div class="metric-val green">€83,630</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Bank Financing</div>
+            <div class="finance-block" style="margin-top:8px">
+              <div class="finance-rows">
+                <div class="finance-row">
+                  <span class="finance-row-label">Loan (65%) @ 5.5% / 12yr</span>
+                  <span class="finance-row-val">€238,264</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Equity required (35%)</span>
+                  <span class="finance-row-val">€128,296</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Annual debt service</span>
+                  <span class="finance-row-val" style="color:#E53E3E">−€27,639</span>
+                </div>
+                <div class="finance-divider"></div>
+              </div>
+              <div class="finance-net">
+                <div>
+                  <div class="finance-net-label">Net Cash / yr</div>
+                  <span class="dscr-badge">DSCR 3.36×</span>
+                </div>
+                <div class="finance-net-val">€55,991</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="pb-wrap">
+              <div class="pb-header">
+                <span class="pb-title">Unlevered payback</span><span class="pb-val">4.4 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:44%;background:linear-gradient(90deg,#2B5FA0,#C9A432)"></div></div>
+            </div>
+            <div class="pb-wrap" style="margin-top:7px">
+              <div class="pb-header">
+                <span class="pb-title">Equity payback (levered)</span><span class="pb-val" style="color:var(--green)">2.3 yr ✓</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:23%;background:linear-gradient(90deg,#1E7D4A,#2ECC8A)"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EW -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-orient">↔ East–West · 12°</div>
+          <div class="card-kwp">420 kWp · 194 panels</div>
+        </div>
+        <div class="card-body">
+
+          <div>
+            <div class="sec-label">Capital Expenditure</div>
+            <div class="rows" style="margin-top:8px">
+              <div class="row">
+                <span class="row-label"><span class="dot dot-pv"></span>PV EPC (420 kWp × €720)</span>
+                <span class="row-val">€302,400</span>
+              </div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-bess"></span>BESS 4h — 1,680 kWh</span>
+                <span class="row-val">€213,360</span>
+              </div>
+              <div class="sub-note">1.68 MWh × €127,000/MWh</div>
+              <div class="row">
+                <span class="row-label"><span class="dot dot-docs"></span>Permitting &amp; Docs</span>
+                <span class="row-val">€35,000</span>
+              </div>
+              <div class="divider"></div>
+            </div>
+            <div class="capex-total" style="margin-top:8px">
+              <span class="capex-total-label">Total CAPEX</span>
+              <span class="capex-total-val">€550,760</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Annual Performance</div>
+            <div class="metrics" style="margin-top:8px">
+              <div class="metric">
+                <div class="metric-label">Production</div>
+                <div class="metric-val">609 MWh</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Gross Revenue</div>
+                <div class="metric-val gold">€97,440</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">O&amp;M Cost/yr</div>
+                <div class="metric-val small" style="color:#E53E3E">−€13,000</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Net EBITDA</div>
+                <div class="metric-val green">€84,440</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-label">Bank Financing</div>
+            <div class="finance-block" style="margin-top:8px">
+              <div class="finance-rows">
+                <div class="finance-row">
+                  <span class="finance-row-label">Loan (65%) @ 5.5% / 12yr</span>
+                  <span class="finance-row-val">€357,994</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Equity required (35%)</span>
+                  <span class="finance-row-val">€192,766</span>
+                </div>
+                <div class="finance-row">
+                  <span class="finance-row-label">Annual debt service</span>
+                  <span class="finance-row-val" style="color:#E53E3E">−€41,527</span>
+                </div>
+                <div class="finance-divider"></div>
+              </div>
+              <div class="finance-net">
+                <div>
+                  <div class="finance-net-label">Net Cash / yr</div>
+                  <span class="dscr-badge">DSCR 2.35×</span>
+                </div>
+                <div class="finance-net-val">€42,913</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="pb-wrap">
+              <div class="pb-header">
+                <span class="pb-title">Unlevered payback</span><span class="pb-val">6.5 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:65%;background:linear-gradient(90deg,#2B5FA0,#C9A432)"></div></div>
+            </div>
+            <div class="pb-wrap" style="margin-top:7px">
+              <div class="pb-header">
+                <span class="pb-title">Equity payback (levered)</span><span class="pb-val" style="color:var(--green)">4.5 yr</span>
+              </div>
+              <div class="pb-bg"><div class="pb-fill" style="width:45%;background:linear-gradient(90deg,#1E7D4A,#2ECC8A)"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════ O&M BREAKDOWN ═══════════════════════════ -->
+  <div class="om-section">
+    <div class="sec-title">O&amp;M Breakdown — All Scenarios</div>
+    <div class="om-grid">
+
+      <div class="om-card">
+        <div class="om-card-head">Plot 1 · South · 95 kWp</div>
+        <div class="om-rows">
+          <div class="om-row"><span class="om-label">PV O&amp;M (95 × €15)</span><span class="om-val">€1,425</span></div>
+          <div class="om-row"><span class="om-label">BESS O&amp;M (0.38 MWh × €2,500)</span><span class="om-val">€950</span></div>
+          <div class="om-row"><span class="om-label">Monitoring + insurance</span><span class="om-val">€2,000</span></div>
+        </div>
+        <div class="om-total-row"><span class="om-total-label">Total O&amp;M / yr</span><span class="om-total-val">€4,375</span></div>
+      </div>
+
+      <div class="om-card">
+        <div class="om-card-head">Plot 1 · EW · 150 kWp</div>
+        <div class="om-rows">
+          <div class="om-row"><span class="om-label">PV O&amp;M (150 × €15)</span><span class="om-val">€2,250</span></div>
+          <div class="om-row"><span class="om-label">BESS O&amp;M (0.60 MWh × €2,500)</span><span class="om-val">€1,500</span></div>
+          <div class="om-row"><span class="om-label">Monitoring + insurance</span><span class="om-val">€2,000</span></div>
+        </div>
+        <div class="om-total-row"><span class="om-total-label">Total O&amp;M / yr</span><span class="om-total-val">€5,750</span></div>
+      </div>
+
+      <div class="om-card">
+        <div class="om-card-head">Plot 2 · South · 270 kWp</div>
+        <div class="om-rows">
+          <div class="om-row"><span class="om-label">PV O&amp;M (270 × €15)</span><span class="om-val">€4,050</span></div>
+          <div class="om-row"><span class="om-label">BESS O&amp;M (1.08 MWh × €2,500)</span><span class="om-val">€2,700</span></div>
+          <div class="om-row"><span class="om-label">Monitoring + insurance</span><span class="om-val">€2,500</span></div>
+        </div>
+        <div class="om-total-row"><span class="om-total-label">Total O&amp;M / yr</span><span class="om-total-val">€9,250</span></div>
+      </div>
+
+      <div class="om-card">
+        <div class="om-card-head">Plot 2 · EW · 420 kWp</div>
+        <div class="om-rows">
+          <div class="om-row"><span class="om-label">PV O&amp;M (420 × €15)</span><span class="om-val">€6,300</span></div>
+          <div class="om-row"><span class="om-label">BESS O&amp;M (1.68 MWh × €2,500)</span><span class="om-val">€4,200</span></div>
+          <div class="om-row"><span class="om-label">Monitoring + insurance</span><span class="om-val">€2,500</span></div>
+        </div>
+        <div class="om-total-row"><span class="om-total-label">Total O&amp;M / yr</span><span class="om-total-val">€13,000</span></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════ COMPARISON TABLE ═══════════════════════════ -->
+  <div class="comparison" style="margin-top:24px">
+    <div class="sec-title">Full Comparison — All Scenarios</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th class="r">kWp</th>
+          <th class="r">Total CAPEX</th>
+          <th class="r">MWh/yr</th>
+          <th class="r">Revenue/yr</th>
+          <th class="r">O&amp;M/yr</th>
+          <th class="r">EBITDA/yr</th>
+          <th class="r">Equity In</th>
+          <th class="r">Debt Svc/yr</th>
+          <th class="r">Net Cash/yr</th>
+          <th class="r">DSCR</th>
+          <th class="r">Eq. Payback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="scen-label"><span class="plot-tag">Plot 1 · Softades · 1,363 m²</span><span class="orient">☀ South</span></div></td>
+          <td class="r">95</td>
+          <td class="r bold">€151,660</td>
+          <td class="r">204</td>
+          <td class="r">€32,640</td>
+          <td class="r" style="color:#E53E3E">€4,375</td>
+          <td class="r">€28,265</td>
+          <td class="r">€53,081</td>
+          <td class="r" style="color:#E53E3E">€11,435</td>
+          <td class="r bold">€16,830</td>
+          <td class="r">2.86×</td>
+          <td class="r">3.2 yr</td>
+        </tr>
+        <tr>
+          <td><div class="scen-label"><span class="plot-tag">Plot 1 · Softades · 1,363 m²</span><span class="orient">↔ East–West</span></div></td>
+          <td class="r">150</td>
+          <td class="r bold">€219,200</td>
+          <td class="r">218</td>
+          <td class="r">€34,800</td>
+          <td class="r" style="color:#E53E3E">€5,750</td>
+          <td class="r">€29,050</td>
+          <td class="r">€76,720</td>
+          <td class="r" style="color:#E53E3E">€16,528</td>
+          <td class="r bold">€6,522</td>
+          <td class="r">2.11×</td>
+          <td class="r">11.8 yr</td>
+        </tr>
+        <tr style="background:#F0FBF5">
+          <td><div class="scen-label"><span class="plot-tag">Plot 2 · Αρκατζιά · 3,704 m²</span><span class="orient">☀ South ★</span></div></td>
+          <td class="r">270</td>
+          <td class="r bold">€366,560</td>
+          <td class="r">581</td>
+          <td class="r">€92,880</td>
+          <td class="r" style="color:#E53E3E">€9,250</td>
+          <td class="r">€83,630</td>
+          <td class="r">€128,296</td>
+          <td class="r" style="color:#E53E3E">€27,639</td>
+          <td class="r bold">€55,991</td>
+          <td class="r best">3.36×</td>
+          <td class="r best">2.3 yr ✓</td>
+        </tr>
+        <tr>
+          <td><div class="scen-label"><span class="plot-tag">Plot 2 · Αρκατζιά · 3,704 m²</span><span class="orient">↔ East–West</span></div></td>
+          <td class="r">420</td>
+          <td class="r bold">€550,760</td>
+          <td class="r">609</td>
+          <td class="r">€97,440</td>
+          <td class="r" style="color:#E53E3E">€13,000</td>
+          <td class="r">€84,440</td>
+          <td class="r">€192,766</td>
+          <td class="r" style="color:#E53E3E">€41,527</td>
+          <td class="r bold">€42,913</td>
+          <td class="r">2.35×</td>
+          <td class="r">4.5 yr</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- NOTES -->
+  <div class="notes">
+    <div class="notes-title">Key Assumptions &amp; Flags</div>
+    <ul>
+      <li>AE Solar Meteor yield: 2,150 kWh/kWp south (monofacial 1,950 + 10.3% bifacial gain at 80% bifaciality / albedo 0.70); 1,450 kWh/kWp EW (~5% bifacial gain at low tilt). Based on Agios Theodoros RTB confirmed yield methodology.</li>
+      <li>BESS sizing: 4h × peak PV kW. All 4 systems (0.38–1.68 MWh) are sub-Linyang minimum (5.015 MWh). Practical BESS would use sub-5MWh commercial units (Huawei/Sungrow). €127k/MWh rate applied proportionally from Agios RTB confirmed stack.</li>
+      <li>Bank financing: 65% LTV, 5.5% fixed, 12yr annuity (factor 0.116). Cyprus green/SME loan typical range. Assumes RES license and net metering contract as collateral support.</li>
+      <li>O&M: PV €15/kWp/yr + BESS €2,500/MWh/yr + monitoring/insurance €2,000–2,500/yr flat. Based on Agios Theodoros opex stack (pvOm €15.15/kWp, bessOm €2,462/MWh).</li>
+      <li>Plot 2 title is Provisional (Προσωρινός τίτλος, Art.10 Law 44/84) — confirm upgrade before permitting. Both plots are agricultural — Town Planning Permission required.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <strong>Lighthief Cyprus Ltd</strong> · Internal Working Document · April 2026 · Cost basis: Agios Theodoros PARK-RTB-2026 confirmed CAPEX stack · AE Solar Meteor N-type TOPCon bifacial 620–630Wp
+</footer>
+
+</body>
+</html>
