@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Solar Assessment — Lighthief</title>
+<!--
+  Lighthief Solar Prospecting Email Template (email-safe, table-based)
+  Variables injected by solar-prospect-sweep.py:
+    {{BUILDING_NAME}}        business / building name
+    {{ADDRESS}}              formatted address
+    {{PEAK_KW}}              system size in kWp
+    {{PANEL_COUNT}}          number of panels
+    {{ANNUAL_KWH}}           annual yield kWh (comma-formatted)
+    {{SAVINGS_EUR}}          annual savings EUR (comma-formatted)
+    {{PAYBACK_YEARS}}        simple payback period
+    {{CO2_TONNES}}           annual CO2 offset tonnes
+    {{ROOF_AREA_M2}}         estimated roof area m²
+    {{ROOF_IMAGE_BASE64}}    full data URI: data:image/png;base64,...
+    {{SENDER_NAME}}          sender full name
+    {{SENDER_TITLE}}         job title
+    {{SENDER_EMAIL}}         sender email
+    {{SENDER_PHONE}}         phone number
+    {{UNSUBSCRIBE_MAILTO}}   mailto:...?subject=Unsubscribe
+    {{YEAR}}                 current year
+-->
+<style>
+  body, table, td, p, a, h1, h2 { margin:0; padding:0; border:0; }
+  body { background-color:#F0F4F8; font-family:Arial,Helvetica,sans-serif; -webkit-text-size-adjust:100%; }
+  table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { display:block; border:0; outline:none; text-decoration:none; }
+  a { color:#C9A432; }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#F0F4F8;">
+
+<!-- Wrapper -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F0F4F8;">
+<tr><td align="center" style="padding:24px 16px;">
+
+<!-- Container -->
+<table width="620" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;background-color:#ffffff;border-radius:8px;overflow:hidden;">
+
+  <!-- ── HEADER (solid navy — gradients not supported in Outlook/Gmail) ── -->
+  <tr>
+    <td bgcolor="#1A365D" style="padding:32px 40px 28px;background-color:#1A365D;">
+      <p style="font-size:20px;font-weight:700;color:#C9A432;letter-spacing:1px;text-transform:uppercase;margin:0;">LIGHTHIEF</p>
+      <p style="font-size:11px;color:#9BB5D4;margin:3px 0 0;letter-spacing:0.5px;">Solar &amp; Energy Storage Solutions &middot; Cyprus</p>
+      <h1 style="font-size:24px;color:#ffffff;font-weight:700;line-height:1.35;margin:20px 0 0;">{{HEADLINE}}</h1>
+      <p style="font-size:13px;color:#9BB5D4;margin:8px 0 0;">{{BUILDING_NAME}} &middot; {{ADDRESS}}</p>
+    </td>
+  </tr>
+
+  <!-- ── ROOF IMAGE (base64 inline — shows in all email clients) ── -->
+  <tr>
+    <td bgcolor="#0d1f35" style="background-color:#0d1f35;padding:0;line-height:0;font-size:0;">
+      <img src="{{ROOF_IMAGE_BASE64}}" alt="Satellite view with proposed solar panel layout — {{PANEL_COUNT}} panels" width="620" style="width:100%;max-width:620px;height:auto;display:block;" />
+    </td>
+  </tr>
+
+  <!-- ── PANEL BADGE (table row below image) ── -->
+  <tr>
+    <td bgcolor="#1A365D" style="background-color:#1A365D;padding:8px 16px;">
+      <p style="font-size:11px;font-weight:700;color:#C9A432;text-align:right;text-transform:uppercase;letter-spacing:0.5px;margin:0;">{{PANEL_COUNT}} PANELS &middot; {{PEAK_KW}} kWp</p>
+    </td>
+  </tr>
+
+  <!-- ── STATS BAR ── -->
+  <tr>
+    <td bgcolor="#1A365D" style="background-color:#1A365D;padding:0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="25%" align="center" style="padding:16px 8px;border-right:1px solid #2B4C7A;">
+            <p style="font-size:22px;font-weight:700;color:#C9A432;margin:0;line-height:1;">{{PEAK_KW}}</p>
+            <p style="font-size:10px;color:#9BB5D4;text-transform:uppercase;letter-spacing:0.5px;margin:4px 0 0;">kWp System</p>
+          </td>
+          <td width="25%" align="center" style="padding:16px 8px;border-right:1px solid #2B4C7A;">
+            <p style="font-size:22px;font-weight:700;color:#C9A432;margin:0;line-height:1;">{{ANNUAL_KWH}}</p>
+            <p style="font-size:10px;color:#9BB5D4;text-transform:uppercase;letter-spacing:0.5px;margin:4px 0 0;">kWh / Year</p>
+          </td>
+          <td width="25%" align="center" style="padding:16px 8px;border-right:1px solid #2B4C7A;">
+            <p style="font-size:22px;font-weight:700;color:#C9A432;margin:0;line-height:1;">&#8364;{{SAVINGS_EUR}}</p>
+            <p style="font-size:10px;color:#9BB5D4;text-transform:uppercase;letter-spacing:0.5px;margin:4px 0 0;">Annual Saving</p>
+          </td>
+          <td width="25%" align="center" style="padding:16px 8px;">
+            <p style="font-size:22px;font-weight:700;color:#C9A432;margin:0;line-height:1;">{{PAYBACK_YEARS}}yr</p>
+            <p style="font-size:10px;color:#9BB5D4;text-transform:uppercase;letter-spacing:0.5px;margin:4px 0 0;">Payback</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ── BODY ── -->
+  <tr>
+    <td bgcolor="#ffffff" style="background-color:#ffffff;padding:36px 40px;">
+      <p style="font-size:14px;line-height:1.7;color:#404040;margin:0 0 16px;">Dear {{BUILDING_NAME}} team,</p>
+      <p style="font-size:14px;line-height:1.7;color:#404040;margin:0 0 16px;">We carried out a preliminary solar assessment of your premises at <strong>{{ADDRESS}}</strong>. Based on your roof area of approximately <strong>{{ROOF_AREA_M2}} m&sup2;</strong> and Cyprus&rsquo;s excellent solar irradiance &mdash; one of the highest in Europe at ~1,850 kWh/kWp/year &mdash; the numbers are compelling.</p>
+
+      <h2 style="font-size:17px;color:#C9A432;font-weight:700;margin:28px 0 14px;">Preliminary Assessment Summary</h2>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-size:13px;">
+        <tr>
+          <th align="left" bgcolor="#1A365D" style="background-color:#1A365D;color:#ffffff;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:0.4px;">Parameter</th>
+          <th align="left" bgcolor="#1A365D" style="background-color:#1A365D;color:#ffffff;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:0.4px;">Value</th>
+        </tr>
+        <tr><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;color:#666;">Estimated usable roof area</td><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;font-weight:700;color:#1A365D;">{{ROOF_AREA_M2}} m&sup2;</td></tr>
+        <tr bgcolor="#F5F7FA"><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;color:#666;background-color:#F5F7FA;">Proposed system size</td><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;font-weight:700;color:#1A365D;background-color:#F5F7FA;">{{PEAK_KW}} kWp ({{PANEL_COUNT}} panels &times; 500W)</td></tr>
+        <tr><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;color:#666;">Estimated annual generation</td><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;font-weight:700;color:#1A365D;">{{ANNUAL_KWH}} kWh</td></tr>
+        <tr bgcolor="#F5F7FA"><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;color:#666;background-color:#F5F7FA;">Annual electricity savings</td><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;font-weight:700;color:#1A365D;background-color:#F5F7FA;">&#8364;{{SAVINGS_EUR}}</td></tr>
+        <tr><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;color:#666;">Simple payback period</td><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;font-weight:700;color:#1A365D;">{{PAYBACK_YEARS}} years</td></tr>
+        <tr bgcolor="#F5F7FA"><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;color:#666;background-color:#F5F7FA;">Annual CO&#8322; offset</td><td style="padding:10px 14px;border-bottom:1px solid #E8EDF3;font-weight:700;color:#1A365D;background-color:#F5F7FA;">{{CO2_TONNES}} tonnes</td></tr>
+        <tr><td style="padding:10px 14px;color:#666;">System lifetime</td><td style="padding:10px 14px;font-weight:700;color:#1A365D;">25+ years with performance guarantee</td></tr>
+      </table>
+
+      <h2 style="font-size:17px;color:#C9A432;font-weight:700;margin:28px 0 14px;">Why Solar Now?</h2>
+      <p style="font-size:14px;line-height:1.7;color:#404040;margin:0 0 16px;">{{WHY_SOLAR_BODY}}</p>
+      <p style="font-size:14px;line-height:1.7;color:#404040;margin:0 0 16px;">Lighthief designs, installs, and maintains commercial solar and BESS systems across Cyprus. We handle the full EAC application, grid connection, and permitting &mdash; you simply enjoy the savings from day one.</p>
+
+      <h2 style="font-size:17px;color:#C9A432;font-weight:700;margin:28px 0 14px;">Next Steps</h2>
+      <p style="font-size:14px;line-height:1.7;color:#404040;margin:0;">{{NEXT_STEPS_BODY}}</p>
+    </td>
+  </tr>
+
+  <!-- ── CTA ── -->
+  <tr>
+    <td bgcolor="#F5F7FA" style="background-color:#F5F7FA;padding:28px 40px 36px;text-align:center;border-top:1px solid #E8EDF3;">
+      <p style="font-size:14px;color:#404040;margin:0 0 20px;">Ready to see the full numbers for your site?</p>
+      <a href="https://lighthief.cy/contact?ref=solar-prospect" style="display:inline-block;background-color:#C9A432;color:#1A365D;font-weight:700;font-size:14px;padding:14px 36px;border-radius:4px;text-decoration:none;letter-spacing:0.3px;">{{CTA_TEXT}}</a>
+    </td>
+  </tr>
+
+  <!-- ── SIGNATURE ── -->
+  <tr>
+    <td bgcolor="#ffffff" style="background-color:#ffffff;padding:24px 40px;border-top:1px solid #E8EDF3;">
+      <p style="font-size:14px;font-weight:700;color:#1A365D;margin:0;">{{SENDER_NAME}}</p>
+      <p style="font-size:12px;color:#888;margin:3px 0 0;">{{SENDER_TITLE}} &middot; Lighthief Cyprus Ltd</p>
+      <p style="font-size:12px;color:#555;margin:6px 0 0;">{{SENDER_PHONE}} &middot; <a href="mailto:{{SENDER_EMAIL}}" style="color:#C9A432;">{{SENDER_EMAIL}}</a> &middot; <a href="https://lighthief.cy" style="color:#C9A432;">lighthief.cy</a></p>
+    </td>
+  </tr>
+
+  <!-- ── FOOTER ── -->
+  <tr>
+    <td bgcolor="#F0F4F8" style="background-color:#F0F4F8;padding:18px 40px;text-align:center;">
+      <p style="font-size:11px;color:#999;line-height:1.6;margin:0;"><strong style="color:#777;">Lighthief Cyprus Ltd</strong> &middot; HE 477423<br />
+      28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br />
+      This email was sent because your business premises were identified as a potential solar installation site.<br />
+      <a href="{{UNSUBSCRIBE_MAILTO}}" style="color:#C9A432;text-decoration:underline;">Unsubscribe</a> &middot; <a href="https://lighthief.cy" style="color:#999;text-decoration:underline;">lighthief.cy</a></p>
+      <p style="font-size:11px;color:#bbb;margin:8px 0 0;">&copy; {{YEAR}} Lighthief Cyprus Ltd. All rights reserved.</p>
+    </td>
+  </tr>
+
+</table>
+<!-- /Container -->
+
+</td></tr>
+</table>
+<!-- /Wrapper -->
+
+</body>
+</html>
