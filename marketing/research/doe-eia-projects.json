@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-04-30T14:26:58.627617+00:00",
+  "source": "Public DoE / Environment ministry HTML crawl (best-effort)",
+  "limitation": "Official project registers may require manual portal navigation; use marketing/research/rtb-enrichment-template.csv for confirmed env permit rows.",
+  "pages": [
+    {
+      "url": "https://www.eia.gov.cy/",
+      "error": "HTTPSConnectionPool(host='www.eia.gov.cy', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000001FA71F48EC0>: Failed to resolve 'www.eia.gov.cy' ([Errno 11001] getaddrinfo failed)\"))"
+    },
+    {
+      "url": "https://eia.gov.cy/el/",
+      "error": "HTTPSConnectionPool(host='eia.gov.cy', port=443): Max retries exceeded with url: /el/ (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000001FA74811EE0>: Failed to resolve 'eia.gov.cy' ([Errno 11001] getaddrinfo failed)\"))"
+    },
+    {
+      "url": "https://www.environment.gov.cy/",
+      "error": "HTTPSConnectionPool(host='www.environment.gov.cy', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000001FA74812390>: Failed to resolve 'www.environment.gov.cy' ([Errno 11001] getaddrinfo failed)\"))"
+    },
+    {
+      "url": "https://environment.gov.cy/el/",
+      "error": "HTTPSConnectionPool(host='environment.gov.cy', port=443): Max retries exceeded with url: /el/ (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000001FA74812900>: Failed to resolve 'environment.gov.cy' ([Errno 11001] getaddrinfo failed)\"))"
+    },
+    {
+      "url": "https://www.moec.gov.cy/",
+      "snippet_count": 0,
+      "snippets": [],
+      "follow_links": []
+    }
+  ],
+  "extra_snippets": []
+}

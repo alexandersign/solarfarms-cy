@@ -29,8 +29,8 @@
 | Project | PV Power | BESS Power | BESS Energy | Duration | Timeline |
 |---------|----------|------------|-------------|----------|----------|
 | Galascope 1 | 5.00 MW | 5.0 MW | 20 MWh | 4 hr | Q4 2025 |
-| Galascope 2 | 2.50 MW | 2.5 MW | 8 MWh | 3.2 hr | Q4 2025 |
-| **TOTAL** | 7.50 MW | **7.5 MW** | **28 MWh** | - | - |
+| Galascope 2 | 2.50 MW | 2.5 MW | 10 MWh | 4 hr | Q4 2025 |
+| **TOTAL** | 7.50 MW | **7.5 MW** | **30 MWh** | - | - |
 
 ---
 
@@ -41,24 +41,24 @@
 | Project | CIF (Linyang) | Installed Cost | Client Price | Non-Group | €/kWh (CIF) |
 |---------|---------------|----------------|--------------|-----------|-------------|
 | Galascope 1 (5MW/20MWh) | TBC | TBC | €2,258,900 | TBC | TBC |
-| Galascope 2 (2.5MW/8MWh) | €791,740 | €923,697 | €1,084,620 | €1,214,774 | €94.71 |
-| **TOTALS** | **TBC** | **TBC** | **€3,343,520** | **TBC** | - |
+| Galascope 2 (2.5MW/10MWh) | €791,740 | €923,697 | €1,206,300 | TBC | €94.71 |
+| **TOTALS** | **TBC** | **TBC** | **€3,465,200** | **TBC** | - |
 
 ### EPC Adders Summary ⚠️ VERIFY
 
 | Project | Containers | Adders Total | Status |
 |---------|------------|--------------|--------|
-| Galascope 1 | 6 | TBC | ⚠️ VERIFY |
+| Galascope 1 | 5 | TBC | ⚠️ VERIFY |
 | Galascope 2 | 3 | €110,580 | ⚠️ VERIFY |
 
 > 📋 **See**: [Pricing Verification Tracker](../internal/pricing-verification.md)
 
-### System Configuration (from Quotation)
+### System Configuration (Confirmed by Dino Constantinou — 28 April 2026)
 
 | Project | Battery | MV Skid | PCS Count |
 |---------|---------|---------|-----------|
-| Galascope 1 | 4× 5.015MWh (20HC) | 1.725MW + 3.45MW | 4 × BCS1250K |
-| Galascope 2 | 2× 4.179MWh (20HC) | 2.5MW | 2 × BCS1250K |
+| Galascope 1 | 4× 5.015MWh (20HC) | T4 single skid (5MW, 40ft) | 4 × BCS1250K |
+| Galascope 2 | 2× 5.015MWh (20HC) | T2 single skid (2.5MW, 20ft) | 2 × BCS1250K |
 
 ---
 
@@ -68,16 +68,17 @@
 
 | Component | Specification | Quantity |
 |-----------|--------------|----------|
-| Battery Container | 20HC 5.015MWh LFP | 4 sets |
-| MV Skid (Primary) | 1.725MW | 1 set |
-| MV Skid (Secondary) | 3.45MW | 1 set |
+| Battery Container | 20HC 5.015MWh LFP (EVE 314Ah) | 4 sets |
+| MV Skid | T4 (40ft HC) — 4× BCS1250K + SL-5000 transformer + RMU | 1 set |
+| **Total containers** | **5 (4 BESS + 1 T4 MV skid)** | — |
 
-### Project 2: 2.5MW/8MWh
+### Project 2: 2.5MW/10MWh
 
 | Component | Specification | Quantity |
 |-----------|--------------|----------|
-| Battery Container | 20HC 4.179MWh LFP | 2 sets |
-| MV Skid | 2.5MW | 1 set |
+| Battery Container | 20HC 5.015MWh LFP (EVE 314Ah) | 2 sets |
+| MV Skid | T2 (20ft) — 2× BCS1250K + SL-2500/3000 transformer + RMU | 1 set |
+| **Total containers** | **3 (2 BESS + 1 T2 MV skid)** | — |
 
 ---
 
@@ -87,9 +88,9 @@
 |-----------|-------------|
 | Order Confirmed | Q4 2025 |
 | Production | In Progress |
-| Shipment | Q1 2026 |
-| Installation | Q1 2026 |
-| Commissioning | Q1 2026 |
+| Shipment | Q3 2026 |
+| Installation | Q3–Q4 2026 |
+| Commissioning (PAC) | December 2026 |
 
 ---
 
@@ -203,7 +204,7 @@ Both Galascope solar plants are already operational with full SCADA/IEC 104 infr
 
 **Also note**: Linyang BCS1250K-C-HUD LV output is confirmed **690 V AC** (per offer ref. 198/A/KT/2025).  
 T2 skid transformer ratio must be **22 kV / 690 V** (not 800 V as previously assumed in some internal documents).  
-SLD drawing `SLD-galascope-2.5MW-BESS.html` corrected to Rev. C — use that as reference.
+SLD drawing `SLD-galascope-2.5MW-BESS.html` corrected to Rev. D — use that as reference.
 
 **Actions:**
 - [ ] Confirm with Linyang: NER, MV surge arresters, LV surge arresters — in or out of T2 skid scope?
@@ -213,16 +214,13 @@ SLD drawing `SLD-galascope-2.5MW-BESS.html` corrected to Rev. C — use that as 
 
 ---
 
-## Data Discrepancy Flag
-
-> **⚠️ Galascope 2 MWh discrepancy**: This document and the group proposal template show Galascope 2 as **2.5MW/8MWh** (2× 4.179 MWh containers per original quotation LY202511281). However, `lib/portfolio-data.ts` shows Galascope 2 as **10 MWh with 3 containers**. The proposal template also shows 2× 5MWh containers. These need reconciliation — confirm with Dino which container configuration is confirmed.
-
----
-
 ## Notes
 
 - First confirmed orders from client list
-- Both projects in Famagusta district
+- Both projects in Famagusta district — Avgorou site
 - Combined delivery recommended for logistics efficiency
 - Full SCADA documentation now available for both existing PV plants
 - Client is actively evaluating MV/LV equipment for BESS BoP
+- EOA (Environmental/Planning) submitted 28 April 2026 — awaiting application number
+- Dino Constantinou confirmed civil/earthworks are client scope (30 April 2026)
+- **Configuration confirmed by Dino Constantinou 30 April 2026**: G1 = 5MW/20MWh (T4 + 4×BESS), G2 = 2.5MW/10MWh (T2 + 2×BESS)

@@ -19,6 +19,8 @@
     "teaser:agios": "npx tsx scripts/generate-agios-teaser-html.ts",
     "pack:agios": "npx tsx scripts/generate-agios-teaser-html.ts && npx tsx scripts/generate-agios-theodoros-investor-xlsx.ts",
     "teaser:cyprus": "npx tsx scripts/generate-cyprus-market-teaser-html.ts",
+    "rtb:segments": "npx tsx scripts/import-cera-prospects.ts --dry-run --min-mwp 1",
+    "rtb:report": "npx tsx scripts/generate-rtb-intelligence-report.ts",
     "contracts:generate": "tsx scripts/generate-contracts.ts",
     "solhash:roi": "npx tsx solhash/scripts/run-roi-comparison.ts",
     "solhash:presentation": "npx tsx solhash/scripts/generate-presentation.ts",

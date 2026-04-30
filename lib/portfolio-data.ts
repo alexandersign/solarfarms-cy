@@ -201,7 +201,7 @@ export const BATCHES = [
 ] as const;
 
 export const BATCH1_PARKS = [
-  { name: 'Galascope 1',      group: 'Galascope',  mw: 5.0,  mwh: 20,    containers: 6,  district: 'Famagusta', revenue: 2_258_900 },
+  { name: 'Galascope 1',      group: 'Galascope',  mw: 5.0,  mwh: 20,    containers: 5,  district: 'Famagusta', revenue: 2_258_900 },
   { name: 'Galascope 2',      group: 'Galascope',  mw: 2.5,  mwh: 10,    containers: 3,  district: 'Famagusta', revenue: 1_206_300 },
   { name: 'AGM Sunfield 1',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Nicosia',   revenue: 1_961_880 },
   { name: 'L&T Sun Energy',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Limassol',  revenue: 1_961_880 },

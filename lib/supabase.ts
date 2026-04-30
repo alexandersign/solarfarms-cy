@@ -228,6 +228,16 @@ export interface PvProspect {
   data_source?: string
   tags?: string[]
   priority?: 'low' | 'medium' | 'high' | 'urgent'
+  /** RTB pipeline: candidate | verified | not_rtb | partial_candidate */
+  rtb_status?: string
+  connection_terms_status?: 'none' | 'applied' | 'preliminary_issued' | 'final_issued'
+  env_permit_status?: 'none' | 'applied' | 'approved'
+  building_permit_status?: 'none' | 'applied' | 'approved'
+  satellite_check?: 'not_built' | 'partially_built' | 'built' | 'unknown'
+  /** retrofit | pre_sale | both | none */
+  bess_sales_angle?: string
+  construction_mwp?: number
+  operational_mwp?: number
 }
 
 export interface GridOperatorContact {
