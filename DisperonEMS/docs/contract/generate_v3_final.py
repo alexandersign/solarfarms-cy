@@ -170,7 +170,11 @@ def build():
         ("PARTY 5 — MR. KAMIL TALAR",
          'An individual, holder of a Polish identity document, residing at an address notified to the '
          'Company ("Mr. Talar").'),
-        ("PARTY 6 — VOLTUS ENERGY SP. Z O.O.",
+        ("PARTY 6 — MR. KOSTAS ALEXANDER PAPACOSTA",
+         'An individual, holder of a Cypriot identity document, tax resident of the Republic of Cyprus, '
+         'permanently residing in Cyprus, serving as Director of Lighthief EUBESS Ltd '
+         '("Mr. Papacosta" or "Cyprus Director").'),
+        ("PARTY 7 — VOLTUS ENERGY SP. Z O.O.",
          'A limited liability company incorporated and existing under the laws of the Republic of Poland, '
          'with its registered office at Gdański Park Naukowo-Technologiczny, Budynek B, Lokal 2.10.3, '
          'ul. Trzy Lipy 3, 80-172 Gdańsk, Poland, NIP: 1990133260, represented by its Management Board '
@@ -187,10 +191,10 @@ def build():
         doc.add_paragraph()
 
     para(doc,
-         'Lighthief International, Mr. Szumiło, Mr. Lechowicz, and Mr. Talar are referred to individually '
-         'as a "Shareholder" and collectively as the "Shareholders". Mr. Szumiło and Mr. Lechowicz together '
-         'with Voltus Energy Sp. z o.o. are referred to collectively as the "Voltus Parties". Parties 1 '
-         'through 6 are collectively referred to as the "Parties".')
+         'Lighthief International, Mr. Szumiło, Mr. Lechowicz, Mr. Talar, and Mr. Papacosta are referred '
+         'to individually as a "Shareholder" and collectively as the "Shareholders". Mr. Szumiło and '
+         'Mr. Lechowicz together with Voltus Energy Sp. z o.o. are referred to collectively as the '
+         '"Voltus Parties". Parties 1 through 7 are collectively referred to as the "Parties".')
 
     # ── ARTICLE 1 — DEFINITIONS ───────────────────────────────────────────────
     doc.add_page_break()
@@ -292,21 +296,26 @@ def build():
          "by all Parties:")
     tbl(doc, [
         ["Shareholder", "Shareholding", "Percentage (%)", "Purchase Consideration"],
-        ["Lighthief International", "76 shares", "76%", "N/A (Retained)"],
-        ["Mr. Marcin Szumiło",      "8 shares",  "8%",  "EUR 200"],
-        ["Mr. Andrzej Lechowicz",   "8 shares",  "8%",  "EUR 200"],
-        ["Mr. Kamil Talar",         "8 shares",  "8%",  "EUR 200"],
+        ["Lighthief International",         "65 shares", "65%", "N/A (Retained)"],
+        ["Mr. Kostas Alexander Papacosta",  "10 shares", "10%", "EUR 250"],
+        ["Mr. Marcin Szumiło",              "6 shares",  "6%",  "EUR 150"],
+        ["Mr. Andrzej Lechowicz",           "6 shares",  "6%",  "EUR 150"],
+        ["Mr. Kamil Talar",                 "13 shares", "13%", "EUR 325"],
     ], col_widths=[5, 3, 3, 4])
     doc.add_paragraph()
 
     h2(doc, "2.3  Purchase Consideration — Confirmed Payment")
     para(doc,
-         "The Parties confirm and acknowledge that the purchase consideration of EUR 200 (two hundred "
-         "euros) per 8% shareholding package has been received in full by the Company from each of "
-         "Mr. Marcin Szumiło, Mr. Andrzej Lechowicz, and Mr. Kamil Talar prior to or simultaneously "
-         "with the execution of this Agreement. Written receipts have been issued by the Company to "
-         "each paying Shareholder. The payment obligations under Article 2.2 are hereby acknowledged "
-         "as fully discharged.")
+         "The Parties confirm and acknowledge that the purchase consideration of EUR 25 (twenty-five "
+         "euros) per 1% shareholding has been received in full by the Company from each paying "
+         "Shareholder prior to or simultaneously with the execution of this Agreement, as follows: "
+         "(a) EUR 250 (two hundred and fifty euros) from Mr. Kostas Alexander Papacosta in respect "
+         "of his 10% shareholding; (b) EUR 150 (one hundred and fifty euros) from each of "
+         "Mr. Marcin Szumiło and Mr. Andrzej Lechowicz in respect of their respective 6% "
+         "shareholdings; (c) EUR 325 (three hundred and twenty-five euros) from Mr. Kamil Talar in "
+         "respect of his 13% shareholding. Written receipts have been issued by the Company to each "
+         "paying Shareholder. The payment obligations under Article 2.2 are hereby acknowledged as "
+         "fully discharged.")
 
     h2(doc, "2.4  Registration of Transfer")
     para(doc,
@@ -317,12 +326,12 @@ def build():
 
     h2(doc, "2.5  Appointment of Shareholder Director")
     para(doc,
-         "The incoming Shareholders — Mr. Marcin Szumiło, Mr. Andrzej Lechowicz, and Mr. Kamil "
-         "Talar — shall, within 30 (thirty) days of execution of this Agreement, jointly designate "
-         "one individual from among themselves to serve as a Director of the Company in accordance "
-         "with Article 10.2. Written notice of such designation shall be delivered to Mr. Arkadiusz "
-         "Sybaris, who shall thereupon cause the newly appointed Director to be registered with the "
-         "Cyprus Registrar of Companies.")
+         "The Shareholders other than Lighthief International and Mr. Papacosta — being Mr. Marcin "
+         "Szumiło, Mr. Andrzej Lechowicz, and Mr. Kamil Talar — shall, within 30 (thirty) days of "
+         "execution of this Agreement, jointly designate one individual from among themselves to serve "
+         "as a Director of the Company in accordance with Article 10.2. Written notice of such "
+         "designation shall be delivered to Mr. Arkadiusz Sybaris, who shall thereupon cause the newly "
+         "appointed Director to be registered with the Cyprus Registrar of Companies.")
 
     h2(doc, "2.6  Current Directors")
     para(doc,
@@ -370,7 +379,7 @@ def build():
     h2(doc, "4.1  Lighthief International")
     para(doc, "Lighthief International, as Majority Shareholder, shall:")
     for item in [
-        "Hold 76% of the issued share capital of the Company and exercise corresponding voting rights;",
+        "Hold 65% of the issued share capital of the Company and exercise corresponding voting rights;",
         "Provide strategic direction and oversight of the Company's operations;",
         "Develop and manage sales channels for the EMS under the DISPERON brand through its own "
         "offices and networks across Europe and beyond;",
@@ -385,7 +394,7 @@ def build():
     h2(doc, "4.2  Mr. Kamil Talar")
     para(doc, "Mr. Kamil Talar shall:")
     for item in [
-        "Hold 8% of the issued share capital of the Company in his own name and for his own account;",
+        "Hold 13% of the issued share capital of the Company in his own name and for his own account;",
         "Actively develop and manage sales channels for the DISPERON EMS in European markets, in "
         "coordination with Lighthief International;",
         "Deploy his existing business relationships, offices, and market presence — including his "
@@ -405,7 +414,7 @@ def build():
 
     h2(doc, "4.3  Mr. Marcin Szumiło and Mr. Andrzej Lechowicz")
     para(doc,
-         "Mr. Marcin Szumiło and Mr. Andrzej Lechowicz each individually hold 8% of the issued share "
+         "Mr. Marcin Szumiło and Mr. Andrzej Lechowicz each individually hold 6% of the issued share "
          "capital of the Company in their own names and for their own respective accounts. Both "
          "Mr. Marcin Szumiło and Mr. Andrzej Lechowicz, individually and in their capacity as "
          "Management Board members of Voltus Energy Sp. z o.o., shall:")
@@ -421,6 +430,38 @@ def build():
         "including NIS2, GDPR, and relevant grid code standards.",
     ]:
         bul(doc, item)
+
+    h2(doc, "4.4  Mr. Kostas Alexander Papacosta")
+    para(doc,
+         "Mr. Kostas Alexander Papacosta holds 10% of the issued share capital of the Company in his "
+         "own name and for his own account. Mr. Papacosta, in his capacity as Cyprus Managing Director "
+         "and Director of the Company, shall:")
+    for item in [
+        "Serve as the primary executive director of Lighthief EUBESS Ltd in the Republic of Cyprus, "
+        "holding all necessary registrations and authorisations required for the Company's Cyprus "
+        "operations;",
+        "Lead all engineering, procurement, and construction (EPC) delivery for BESS projects "
+        "commissioned under the DISPERON brand in Cyprus and such other markets as the Board may "
+        "designate;",
+        "Manage all relationships with the Cyprus Distribution System Operator (EAC), Transmission "
+        "System Operator (TSOC), and Energy Regulatory Authority (CERA), including DSO applications, "
+        "SCADA integration approvals, and grid connection certifications;",
+        "Act as the primary client relationship manager for the Company's Cyprus customer portfolio, "
+        "including executing EPC and LTSA contracts on behalf of the Company;",
+        "Oversee commissioning, IEC 60870-5-104 SCADA integration, and project handover for all "
+        "BESS installations in Cyprus, coordinating with Voltus for EMS configuration and with "
+        "Lighthief International for equipment supply;",
+        "Report operational performance, project pipeline, and financial results to the Board on a "
+        "monthly basis.",
+    ]:
+        bul(doc, item)
+    para(doc,
+         "Performance Obligation: Mr. Papacosta shall, during each calendar year following execution "
+         "of this Agreement: (a) maintain the Company's Cyprus operating licences, DSO registrations, "
+         "and SCADA approvals in good standing; and (b) achieve commissioning of not less than 10 MWh "
+         "of BESS capacity under the DISPERON brand per calendar year from the second year of "
+         "operations onwards. Persistent failure to maintain regulatory registrations shall constitute "
+         "a material breach of his obligations as Director, subject to Board review.", indent=0.5)
 
     # ── ARTICLE 5 — IP ────────────────────────────────────────────────────────
     h1(doc, "ARTICLE 5 — INTELLECTUAL PROPERTY")
@@ -592,10 +633,12 @@ def build():
 
     h2(doc, "7.1  Sales and Market Development")
     para(doc,
-         "The Company, acting through Lighthief International and Mr. Kamil Talar, shall be primarily "
-         "responsible for the commercial development of the DISPERON brand and generation of customer "
-         "pipeline across the Territory, including direct sales, partner channels, tender responses, "
-         "and industry representation.")
+         "The Company, acting through Lighthief International, Mr. Kamil Talar, and Mr. Kostas "
+         "Alexander Papacosta, shall be primarily responsible for the commercial development of the "
+         "DISPERON brand and generation of customer pipeline across the Territory, including direct "
+         "sales, partner channels, tender responses, EPC delivery, and industry representation. "
+         "Mr. Papacosta shall lead all market development, client management, and EPC execution "
+         "activities in the Republic of Cyprus.")
 
     h2(doc, "7.2  Technology and Product Development")
     para(doc,
@@ -787,27 +830,32 @@ def build():
     h2(doc, "10.1  Current Directors")
     para(doc,
          "As of the date of this Agreement, the duly appointed Directors of the Company are:\n"
-         "(a) Mr. Arkadiusz Sybaris — Director and Secretary, tax resident of the Republic of Cyprus;\n"
-         "(b) Mr. Kostas Alexander Papakosta — Director, tax resident of the Republic of Cyprus.")
+         "(a) Mr. Arkadiusz Sybaris — Director and Secretary, tax resident of the Republic of Cyprus, "
+         "representing Lighthief International;\n"
+         "(b) Mr. Kostas Alexander Papacosta — Director and Cyprus Managing Director, tax resident "
+         "of the Republic of Cyprus, permanently residing in Cyprus.")
 
     h2(doc, "10.2  Board Composition")
     para(doc,
          "The Board of Directors of the Company shall be composed as follows:\n"
          "(a) Lighthief International, as Majority Shareholder, shall have the right to appoint up "
-         "to 3 (three) Directors to the Board, including the Director and Secretary role;\n"
-         "(b) The Shareholders other than Lighthief International — being Mr. Marcin Szumiło, "
-         "Mr. Andrzej Lechowicz, and Mr. Kamil Talar jointly — shall have the right to appoint "
-         "1 (one) Director from among themselves to the Board.\n"
+         "to 3 (three) Directors to the Board, including the Director and Secretary role. "
+         "Mr. Kostas Alexander Papacosta, as Cyprus Managing Director, shall be one of the Directors "
+         "appointed by Lighthief International for the duration of this Agreement;\n"
+         "(b) The Shareholders other than Lighthief International and Mr. Papacosta — being "
+         "Mr. Marcin Szumiło, Mr. Andrzej Lechowicz, and Mr. Kamil Talar jointly — shall have the "
+         "right to appoint 1 (one) Director from among themselves to the Board.\n"
          "The Shareholder Director appointed under (b) above shall be the person designated "
          "pursuant to Article 2.5.")
 
     h2(doc, "10.3  Appointment and Removal")
     para(doc,
          "Directors appointed by Lighthief International may be appointed and removed at any time "
-         "by written resolution of Lighthief International. The Shareholder Director may be replaced "
-         "by written agreement of Mr. Marcin Szumiło, Mr. Andrzej Lechowicz, and Mr. Kamil Talar. "
-         "Any appointment or removal shall take effect upon registration with the Cyprus Registrar "
-         "of Companies.")
+         "by written resolution of Lighthief International, provided that the removal of "
+         "Mr. Papacosta as Director shall additionally require a resolution of the Board. "
+         "The Shareholder Director may be replaced by written agreement of Mr. Marcin Szumiło, "
+         "Mr. Andrzej Lechowicz, and Mr. Kamil Talar. Any appointment or removal shall take effect "
+         "upon registration with the Cyprus Registrar of Companies.")
 
     h2(doc, "10.4  Decisions Requiring Majority Shareholder Consent")
     para(doc,
@@ -932,6 +980,8 @@ def build():
         "Represented by: Mr. Arkadiusz Sybaris, Director")
     sig(doc, "LIGHTHIEF EUBESS LTD (HE 474192)",
         "Represented by: Mr. Arkadiusz Sybaris, Director and Secretary")
+    sig(doc, "MR. KOSTAS ALEXANDER PAPACOSTA",
+        "Individual Shareholder and Cyprus Managing Director")
     sig(doc, "MR. MARCIN SZUMIŁO",
         "Individual Shareholder")
     sig(doc, "MR. ANDRZEJ LECHOWICZ",
@@ -951,10 +1001,11 @@ def build():
          "appended hereto:")
     for item in [
         "Current share certificate issued to Lighthief International (100% prior to transfer);",
-        "New share certificate issued to Mr. Marcin Szumiło (8%);",
-        "New share certificate issued to Mr. Andrzej Lechowicz (8%);",
-        "New share certificate issued to Mr. Kamil Talar (8%);",
-        "Updated share certificate issued to Lighthief International (76% post-transfer).",
+        "New share certificate issued to Mr. Kostas Alexander Papacosta (10%);",
+        "New share certificate issued to Mr. Marcin Szumiło (6%);",
+        "New share certificate issued to Mr. Andrzej Lechowicz (6%);",
+        "New share certificate issued to Mr. Kamil Talar (13%);",
+        "Updated share certificate issued to Lighthief International (65% post-transfer).",
     ]:
         bul(doc, item)
 
@@ -1111,7 +1162,7 @@ def build():
          "of all Parties.")
 
     # ─── SAVE ─────────────────────────────────────────────────────────────────
-    out = "/Volumes/T7 Grey/solinvest/DisperonEMS/docs/contract/DISPERON_SHA_v3_FINAL.docx"
+    out = "/Volumes/T7 Grey/solinvest/DisperonEMS/docs/contract/DISPERON_SHA_v3_FINAL_rev2.docx"
     doc.save(out)
     print(f"Saved: {out}")
 
