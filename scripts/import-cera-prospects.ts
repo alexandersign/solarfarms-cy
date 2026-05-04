@@ -12,8 +12,14 @@
  * Options:
  *   --dry-run        Parse and display results without inserting into DB
  *   --min-kw N       Minimum total capacity per company in kW (default: 100)
+ *   --min-mwp N      Convenience: set min-kw to N * 1000 (e.g. --min-mwp 1 → 1000 kW)
  *   --operational    Only import operational plants (skip construction permits)
  *   --all            Import all PV (including individuals / ΦΥΣΙΚΟ ΠΡΟΣΩΠΟ)
+ *   --write-rtb-json Always write marketing/cera-rtb-segments.json (also on dry-run)
+ *
+ * RTB segmentation (≥1 MW panels — use --min-mwp 1 for imports aligned with pipeline):
+ *   - Writes marketing/cera-rtb-segments.json with rtbCandidates, bessRetrofitTargets, bessPreSaleTargets
+ *   - Supabase rows include rtb_status, bess_sales_angle, construction_mwp, operational_mwp, permit placeholders
  */
 
 import * as fs from 'fs'
@@ -23,6 +29,9 @@ import { createClient } from '@supabase/supabase-js'
 // ─── Config ──────────────────────────────────────────────────────────────────
 
 const CSV_PATH = path.join(process.cwd(), 'marketing', 'ALL Cyprus PV plants.csv - Website Registry.csv')
+const RTB_SEGMENTS_JSON = path.join(process.cwd(), 'marketing', 'cera-rtb-segments.json')
+/** Utility-scale floor for Cyprus RTB intelligence (MWp) */
+const RTB_PANEL_MIN_MWP = 1
 
 const SUPABASE_URL = 'https://iipbxwyvlzxthlblayvw.supabase.co'
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpcGJ4d3l2bHp4dGhsYmxheXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM5MjUsImV4cCI6MjA3NDM2OTkyNX0.-hfq9twwZxILD4mIW4Flgngryaxaw34hN1qzY6rBDdE'
@@ -70,6 +79,10 @@ interface CompanyAggregate {
   companyName: string
   totalCapacityKw: number
   totalCapacityMwp: number
+  /** Capacity on CERA rows that are operational (Λειτουργίας) */
+  operationalMwp: number
+  /** Capacity on CERA rows that are construction-only (Κατασκευής, no Λειτουργίας on same row) */
+  constructionMwp: number
   totalBessKw: number
   totalBessKwh: number
   hasBess: boolean
@@ -162,6 +175,14 @@ function cleanCompanyName(name: string): string {
     .replace(/\s+/g, ' ')
 }
 
+/** Split PV capacity by CERA licence phase on this row */
+function capacitySplitByLicensePhase(row: CeraRow): { operationalKw: number; constructionKw: number } {
+  const lt = row.licenseType
+  if (lt.includes('Λειτουργίας')) return { operationalKw: row.capacityKw, constructionKw: 0 }
+  if (lt.includes('Κατασκευής')) return { operationalKw: 0, constructionKw: row.capacityKw }
+  return { operationalKw: 0, constructionKw: 0 }
+}
+
 // ─── Aggregation ─────────────────────────────────────────────────────────────
 
 function aggregateByCompany(rows: CeraRow[]): CompanyAggregate[] {
@@ -178,6 +199,13 @@ function aggregateByCompany(rows: CeraRow[]): CompanyAggregate[] {
   for (const [, licenses] of map) {
     const company = licenses[0].companyName
     const totalCapacityKw = licenses.reduce((sum, l) => sum + l.capacityKw, 0)
+    let operationalKw = 0
+    let constructionKw = 0
+    for (const l of licenses) {
+      const s = capacitySplitByLicensePhase(l)
+      operationalKw += s.operationalKw
+      constructionKw += s.constructionKw
+    }
     const totalBessKw = licenses.reduce((sum, l) => sum + l.bessOutputKw, 0)
     const totalBessKwh = licenses.reduce((sum, l) => sum + l.bessCapacityKwh, 0)
 
@@ -199,6 +227,8 @@ function aggregateByCompany(rows: CeraRow[]): CompanyAggregate[] {
       companyName: company,
       totalCapacityKw,
       totalCapacityMwp: Math.round(totalCapacityKw / 10) / 100, // kW to MWp, rounded to 2 decimal
+      operationalMwp: Math.round(operationalKw / 10) / 100,
+      constructionMwp: Math.round(constructionKw / 10) / 100,
       totalBessKw,
       totalBessKwh,
       hasBess: totalBessKw > 0 || totalBessKwh > 0,
@@ -266,6 +296,80 @@ function estimateDealValue(agg: CompanyAggregate): number | undefined {
   return Math.round(bessMwh * 127000)
 }
 
+/** Strict RTB from CERA alone: construction ≥1 MW and no operational licences at company level */
+function determineRtbStatus(agg: CompanyAggregate): 'candidate' | 'partial_candidate' | 'not_rtb' {
+  const bigConstruction = agg.constructionMwp >= RTB_PANEL_MIN_MWP
+  if (!bigConstruction) return 'not_rtb'
+  if (agg.operationalMwp <= 0) return 'candidate'
+  return 'partial_candidate'
+}
+
+/** BESS commercial angle from licence mix */
+function determineBessSalesAngle(agg: CompanyAggregate): 'retrofit' | 'pre_sale' | 'both' | 'none' {
+  if (agg.hasBess) return 'none'
+  const retrofitOk = agg.operationalMwp >= RTB_PANEL_MIN_MWP
+  const preSaleOk = agg.constructionMwp >= RTB_PANEL_MIN_MWP
+  if (retrofitOk && preSaleOk) return 'both'
+  if (retrofitOk) return 'retrofit'
+  if (preSaleOk) return 'pre_sale'
+  return 'none'
+}
+
+function segmentSummary(agg: CompanyAggregate) {
+  const districts = agg.districts.map(d => DISTRICT_MAP[d] || d)
+  const rtb = determineRtbStatus(agg)
+  const bessAngle = determineBessSalesAngle(agg)
+  return {
+    company: agg.companyName,
+    capacityMwp: agg.totalCapacityMwp,
+    constructionMwp: agg.constructionMwp,
+    operationalMwp: agg.operationalMwp,
+    hasBess: agg.hasBess,
+    bessKwh: agg.totalBessKwh,
+    status: agg.plantStatus,
+    districts,
+    municipalities: agg.municipalities,
+    licenseCount: agg.licenses.length,
+    licenses: agg.licenseNumbers,
+    rtb_status: rtb,
+    bess_sales_angle: bessAngle,
+    priority: scorePriority(agg),
+    offerType: determineOfferType(agg),
+  }
+}
+
+function writeRtbSegmentsJson(companies: CompanyAggregate[]) {
+  const rtbCandidates = companies.filter(
+    c => determineRtbStatus(c) === 'candidate' && c.constructionMwp >= RTB_PANEL_MIN_MWP
+  )
+  const bessRetrofitTargets = companies.filter(
+    c => c.operationalMwp >= RTB_PANEL_MIN_MWP && !c.hasBess
+  )
+  const bessPreSaleTargets = companies.filter(
+    c => c.constructionMwp >= RTB_PANEL_MIN_MWP && !c.hasBess
+  )
+  const mixedConstructionPipeline = companies.filter(
+    c => determineRtbStatus(c) === 'partial_candidate' && c.constructionMwp >= RTB_PANEL_MIN_MWP
+  )
+
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    minMwpPanel: RTB_PANEL_MIN_MWP,
+    sourceCsv: 'marketing/ALL Cyprus PV plants.csv - Website Registry.csv',
+    rtbCandidates: rtbCandidates.map(segmentSummary),
+    mixedConstructionPipeline: mixedConstructionPipeline.map(segmentSummary),
+    bessRetrofitTargets: bessRetrofitTargets.map(segmentSummary),
+    bessPreSaleTargets: bessPreSaleTargets.map(segmentSummary),
+    counts: {
+      rtbCandidates: rtbCandidates.length,
+      mixedConstructionPipeline: mixedConstructionPipeline.length,
+      bessRetrofitTargets: bessRetrofitTargets.length,
+      bessPreSaleTargets: bessPreSaleTargets.length,
+    },
+  }
+  fs.writeFileSync(RTB_SEGMENTS_JSON, JSON.stringify(payload, null, 2))
+}
+
 // ─── CLI Args ────────────────────────────────────────────────────────────────
 
 function parseArgs() {
@@ -274,24 +378,31 @@ function parseArgs() {
   let minKw = 100
   let operationalOnly = false
   let includeIndividuals = false
+  let writeRtbJson = false
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--dry-run') dryRun = true
     if (args[i] === '--operational') operationalOnly = true
     if (args[i] === '--all') includeIndividuals = true
+    if (args[i] === '--write-rtb-json') writeRtbJson = true
     if (args[i] === '--min-kw' && args[i + 1]) {
       minKw = parseInt(args[i + 1], 10)
       i++
     }
+    if (args[i] === '--min-mwp' && args[i + 1]) {
+      const mwp = parseFloat(args[i + 1])
+      if (!Number.isNaN(mwp)) minKw = Math.round(mwp * 1000)
+      i++
+    }
   }
 
-  return { dryRun, minKw, operationalOnly, includeIndividuals }
+  return { dryRun, minKw, operationalOnly, includeIndividuals, writeRtbJson }
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const { dryRun, minKw, operationalOnly, includeIndividuals } = parseArgs()
+  const { dryRun, minKw, operationalOnly, includeIndividuals, writeRtbJson } = parseArgs()
 
   console.log('╔══════════════════════════════════════════════════════════╗')
   console.log('║  CERA PV Plant Prospects Auto-Importer                  ║')
@@ -300,6 +411,7 @@ async function main() {
   console.log(`  Min kW:     ${minKw} kW (${minKw / 1000} MWp)`)
   console.log(`  Filter:     ${operationalOnly ? 'Operational only' : 'All (operational + construction)'}`)
   console.log(`  Individuals: ${includeIndividuals ? 'Included' : 'Excluded (ΦΥΣΙΚΟ ΠΡΟΣΩΠΟ)'}`)
+  console.log(`  RTB JSON:    ${dryRun || writeRtbJson ? `→ ${RTB_SEGMENTS_JSON}` : 'off (use --dry-run or --write-rtb-json)'}`)
   console.log('')
 
   // ── Read CSV ──
@@ -367,15 +479,18 @@ async function main() {
     const bessLabel = c.hasBess ? 'Yes' : 'No'
     const status = c.plantStatus === 'operational' ? 'Operational' : 'Construction'
     const districts = c.districts.map(d => DISTRICT_MAP[d] || d).join(', ')
+    const rtb = determineRtbStatus(c)
 
     console.log(
-      `  ${c.companyName.substring(0, 39).padEnd(40)} ${c.totalCapacityMwp.toFixed(2).padStart(8)} ${bessLabel.padStart(6)} ${status.padEnd(18)} ${districts.substring(0, 11).padEnd(12)} ${priority}`
+      `  ${c.companyName.substring(0, 39).padEnd(40)} ${c.totalCapacityMwp.toFixed(2).padStart(8)} ${bessLabel.padStart(6)} ${status.padEnd(18)} ${districts.substring(0, 11).padEnd(12)} ${priority} ${rtb}`
     )
   }
   console.log('  ' + '-'.repeat(90))
   console.log('')
 
   if (dryRun) {
+    writeRtbSegmentsJson(filtered)
+    console.log(`  RTB segments written to: ${RTB_SEGMENTS_JSON}`)
     console.log('  DRY RUN: No data inserted. Remove --dry-run to import into Supabase.')
 
     // Write JSON preview
@@ -383,6 +498,8 @@ async function main() {
     const preview = filtered.map(c => ({
       company: c.companyName,
       capacityMwp: c.totalCapacityMwp,
+      constructionMwp: c.constructionMwp,
+      operationalMwp: c.operationalMwp,
       hasBess: c.hasBess,
       bessKwh: c.totalBessKwh,
       status: c.plantStatus,
@@ -390,6 +507,8 @@ async function main() {
       municipalities: c.municipalities,
       licenseCount: c.licenses.length,
       licenses: c.licenseNumbers,
+      rtb_status: determineRtbStatus(c),
+      bess_sales_angle: determineBessSalesAngle(c),
       priority: scorePriority(c),
       offerType: determineOfferType(c),
     }))
@@ -426,6 +545,8 @@ async function main() {
     const offerType = determineOfferType(c)
     const bessPotential = estimateBessPotentialMwh(c)
     const dealValue = estimateDealValue(c)
+    const rtbStatus = determineRtbStatus(c)
+    const bessAngle = determineBessSalesAngle(c)
 
     const prospect = {
       plant_name: c.companyName,
@@ -443,17 +564,28 @@ async function main() {
       bess_potential_mwh: bessPotential,
       priority,
       data_source: 'cera',
+      rtb_status: rtbStatus === 'candidate' ? 'candidate' : rtbStatus === 'partial_candidate' ? 'partial_candidate' : 'not_rtb',
+      connection_terms_status: 'none',
+      env_permit_status: 'none',
+      building_permit_status: 'none',
+      satellite_check: 'unknown',
+      bess_sales_angle: bessAngle,
+      construction_mwp: c.constructionMwp,
+      operational_mwp: c.operationalMwp,
       tags: [
         ...(c.hasBess ? ['has-bess'] : ['no-bess']),
         ...districts.map(d => d.toLowerCase()),
         c.plantStatus,
+        `rtb-${rtbStatus}`,
+        `bess-angle-${bessAngle}`,
         ...(c.totalCapacityMwp >= 10 ? ['large-scale'] : c.totalCapacityMwp >= 5 ? ['utility-scale'] : []),
         ...(c.operatingRegimes.includes('FiT') ? ['fit-tariff'] : []),
         ...(c.operatingRegimes.includes('Εμπορική Χρήση') ? ['commercial'] : []),
       ],
       notes: [
         `CERA Licenses: ${c.licenseNumbers.join(', ')}`,
-        `Total PV: ${c.totalCapacityMwp} MWp across ${c.licenses.length} license(s)`,
+        `Total PV: ${c.totalCapacityMwp} MWp (operational ${c.operationalMwp} / construction ${c.constructionMwp}) across ${c.licenses.length} license(s)`,
+        `RTB status (CERA-only): ${rtbStatus}; BESS sales angle: ${bessAngle}`,
         c.hasBess ? `Has BESS: ${c.totalBessKw} kW / ${c.totalBessKwh} kWh` : 'No BESS - retrofit opportunity',
         `Districts: ${districts.join(', ')}`,
         `Municipalities: ${c.municipalities.join(', ')}`,
@@ -488,6 +620,11 @@ async function main() {
 
   if (inserted > 0) {
     console.log(`\n  View your prospects at: /admin/prospects`)
+  }
+
+  if (writeRtbJson) {
+    writeRtbSegmentsJson(filtered)
+    console.log(`\n  RTB segments written to: ${RTB_SEGMENTS_JSON}`)
   }
 }
 

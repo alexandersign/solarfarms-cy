@@ -192,14 +192,15 @@ Dino Constantinou provided the following technical documentation for the Galasco
 
 ---
 
-## Data Discrepancies to Resolve
+## Data Discrepancies — RESOLVED 30 April 2026
 
-| Item | This Document | portfolio-data.ts | Proposal Template | Action |
-|------|--------------|-------------------|-------------------|--------|
-| Galascope 2 MWh | 8 MWh (2× 4.179) | 10 MWh (3 containers) | 8 MWh (2× 5MWh) | ⚠️ Clarify with Dino |
-| Galascope 1 containers | 4× 5.015MWh | 6 containers | 3× 5MWh | ⚠️ Reconcile |
-| Total Esperia MWh | 287.5 MWh (excl. Galascope) | 315.50 MWh | 310.5 MWh | ⚠️ Verify scope |
-| Galascope subtotal | 28 MWh | — | 23 MWh | ⚠️ Container config TBD |
+> **All Galascope configuration discrepancies resolved — confirmed by Dino Constantinou 30 April 2026.**
+
+| Item | Confirmed Value | Source |
+|------|----------------|--------|
+| Galascope 1 | 5 MW / **20 MWh** / **5 containers** (4× BESS 5.015 MWh + 1× T4 MV skid) | Dino confirmation |
+| Galascope 2 | 2.5 MW / **10 MWh** / **3 containers** (2× BESS 5.015 MWh + 1× T2 MV skid) | Dino confirmation |
+| Galascope subtotal | **7.5 MW / 30 MWh / 8 containers** | Calculated |
 
 ---
 
@@ -211,16 +212,18 @@ Dino Constantinou provided the following technical documentation for the Galasco
 - Tseri portfolio (Phase 3) subject to final confirmation
 - Full SCADA documentation now available for Galascope sites (March 2026)
 - Client actively evaluating MV/LV equipment for BESS BoP
+- EOA (Environmental/Planning) submitted 28 April 2026 — awaiting application number
+- Dino confirmed civil/earthworks are client scope (30 April 2026)
 
 ---
 
 ## Action Items
 
-- [ ] Finalize Phase 1 contracts
+- [ ] Finalize Phase 1 contracts (update G1 containers 6→5)
 - [ ] Submit DSO applications for Q2/Q4 2026 projects
 - [ ] Coordinate Phase 2 timeline with client
 - [ ] Confirm Phase 3 specifications and timeline
-- [ ] **Resolve Galascope 2 container/MWh discrepancy** — confirm 2× 4.179MWh or 2× 5.015MWh or 3× 5.015MWh
+- [x] ~~Resolve Galascope 2 container/MWh discrepancy~~ — **RESOLVED: 2× 5.015MWh, 10 MWh, T2 skid**
 - [ ] **Coordinate IEC 104 ASDU addressing** — Voltus EMS needs to use ASDU addresses that don't conflict with existing 114/115
 - [ ] **Review client MV/LV equipment selection** — Schneider SM6/RM6 and ABB breakers vs. what's included in our EPC scope
 - [ ] **Analyze 2025 curtailment data** — Use 12-month xlsx data to quantify BESS revenue recovery potential for Galascope
