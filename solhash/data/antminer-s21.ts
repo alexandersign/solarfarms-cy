@@ -18,15 +18,15 @@ export const ANTMINER_S21_PLUS = {
 export const ANTMINER_S21_PRO = {
   model: 'Antminer S21 Pro',
   hashrateThs: 234,
-  powerWatts: 3500,
-  /** €/unit — Mineshop sale + 15% quantity discount */
-  priceEur: 2_380,
+  powerWatts: 3510,
+  /** €/unit — updated bulk benchmark for 2026 review */
+  priceEur: 1_500,
   source: 'Mineshop.eu',
-  date: '2025-03',
+  date: '2026-05',
 } as const;
 
-/** Default miner for full-field sizing (S21+ best value) */
-export const DEFAULT_MINER = ANTMINER_S21_PLUS;
+/** Default miner for full-field sizing (S21 Pro benchmark) */
+export const DEFAULT_MINER = ANTMINER_S21_PRO;
 
 /** Hash price: €/PH/s/day. ~$48/PH/s/day × 0.92 */
 export const HASH_PRICE_EUR_PER_PH_PER_DAY = 44;

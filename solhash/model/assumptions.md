@@ -17,7 +17,7 @@ Only the works needed to generate and feed containerized load:
 
 - **PV**: Existing or new panels to generate on-site.
 - **Civil**: Container pads, trenches (rate from SSOT: €2,000/MWh BESS-equivalent or per-site quote; for PV-only, use site-specific civil for container tie-in).
-- **LV/MV tie-in**: Connection from PV/inverter to container(s); no full BESS in baseline (BESS comes with grid connection).
+- **LV/MV tie-in**: Connection from PV/inverter to container(s); for fully off-grid deployments include compact grid-forming BESS to provide inverter reference and auxiliary continuity.
 - **No grid export**: No meter, no PPA; all generation consumed on-site by mining/datacenter load.
 
 If BESS-is-early is considered later, degradation model extends to BESS SOH/cycle cost (see `lib/portfolio-data.ts` WARRANTY.sohGuarantees, ClientLTSA).
@@ -27,12 +27,12 @@ If BESS-is-early is considered later, degradation model extends to BESS SOH/cycl
 ## Power to load (MWh per year)
 
 - **Source**: PV only in baseline (no BESS).
-- **Cyprus solar yield**: **2,500 kWh/kWp/year** (tracker + bifacial + albedo, used in `modular-parks.ts`). This is the standard for all new Solhash deployments. Previous fixed-tilt south-facing baseline was 1,800. E-W layouts use 1,440 (×0.80 of fixed-tilt). See "Tracker + Bifacial + Albedo" section below.
+- **Cyprus solar yield**: **2,200 kWh/kWp/year** (credible tracker + bifacial baseline, used in `modular-parks.ts`). This is the standard for investor-facing Solhash deployments. Previous fixed-tilt south-facing baseline was 1,800. E-W layouts use 1,440 (×0.80 of fixed-tilt). See "Tracker + Bifacial + Albedo" section below.
 - **PV capacity**: Assume PV MWp aligned with or exceeding BESS MW for the park.
 - **PV capex**: €750/kWp (tracker + bifacial system). Previous fixed-tilt was €600/kWp. Tracker adds ~€150/kWp.
 - **MWh available to load per year** (per park):  
-  `MWh/year = MWp × 2,500`  
-  Example: 5 MWp → 5 × 2,500 = 12,500 MWh/year.
+  `MWh/year = MWp × 2,200`  
+  Example: 5 MWp → 5 × 2,200 = 11,000 MWh/year.
 - **Capacity factor**: For PV-only, production is diurnal; mining/datacenter can run 24/7 only if there is storage or we use “available MWh” as the cap (e.g. 11,550 MWh/year max consumption from PV).
 
 ### Daytime-only mining (baseline)
@@ -50,10 +50,10 @@ All new Solhash deployments use tracker + bifacial panels for maximum energy yie
 | Component | Yield Contribution | Notes |
 |-----------|-------------------|-------|
 | Fixed-tilt south-facing baseline | 1,800 kWh/kWp/yr | Standard Cyprus reference |
-| Single-axis tracker gain | +25–30% | Follows sun east→west. Extends productive hours. |
-| Bifacial gain | +10–15% | Rear-side capture from reflected ground light |
-| Albedo enhancement (white gravel/membrane) | +3–5% | Increases ground reflectance from ~25% to ~50%+ |
-| **Combined yield** | **~2,500 kWh/kWp/yr** | 1,800 × 1.27 × 1.10 × 1.03 ≈ 2,500 |
+| Single-axis tracker gain | +18–22% | Follows sun east→west. Extends productive hours. |
+| Bifacial gain | +3–5% | Rear-side capture from reflected ground light |
+| Albedo enhancement (white gravel/membrane) | +0–2% | Incremental uplift when surface treatment is applied |
+| **Combined yield** | **~2,200 kWh/kWp/yr** | 1,800 × 1.20 × 1.02 ≈ 2,200 |
 
 ### Additional Costs
 
@@ -67,7 +67,7 @@ All new Solhash deployments use tracker + bifacial panels for maximum energy yie
 ### Impact on Mining Economics
 
 Higher yield means more MWh to mine with:
-- **More S21+ units** deployed (proportional to MWh)
+- **More S21 Pro units** deployed (proportional to MWh)
 - **Longer daily mining window** (8 hrs vs 6 hrs with trackers)
 - **Higher annual revenue** per MW of PV installed
 - **Better unit economics** — fixed costs (BESS, internet, controller) spread over more MWh
@@ -89,7 +89,7 @@ Higher yield means more MWh to mine with:
 
 ## Mining / datacenter inputs (solhash-specific)
 
-**BTC mining**: Modelled with **Antminer S21+** (216 TH/s, 3.56 kW) in containerized setup. See [data/antminer-s21.ts](../data/antminer-s21.ts). Revenue derived from hash price (€44/PH/s/day), daytime-only factor (6 hrs/day). Capex = S21+ units × **€2,040** (Mineshop sale + 15% qty discount) + container shell (€21,500/unit). S21+ count sized to consume available MWh/year.
+**BTC mining**: Modelled with **Antminer S21 Pro** (234 TH/s, 3.51 kW) in containerized setup. See [data/antminer-s21.ts](../data/antminer-s21.ts). Revenue derived from hash price (€44/PH/s/day), daytime-only factor (8 hrs/day). Capex = S21 Pro units × **€1,500** (bulk benchmark) + container shell (€21,500/unit). S21 Pro count sized to consume available MWh/year.
 
 To be set in code or `data/assumptions.ts`; ranges for sensitivity:
 
@@ -116,7 +116,7 @@ To be set in code or `data/assumptions.ts`; ranges for sensitivity:
 
 - **Land lease**: €2,500/ha/year (typical Cyprus agricultural solar). At 1.5 ha/MW, a 5 MW park pays €18,750/year. Deducted from JV net before split.
 - **PV capex tied up early**: Park owner deploys ~€600/kWp (€3M for 5 MW) 3–5 years before grid revenue begins. At 10% WACC, the opportunity cost is ~€300K/year. The 30% revenue share partially compensates for this.
-- **ASIC depreciation**: S21+ miners depreciate to ~10% residual over 5 years (technology obsolescence). This consumable-asset risk justifies the Mining Partner's 70% share.
+- **ASIC depreciation**: S21 Pro miners depreciate to ~10% residual over 5 years (technology obsolescence). This consumable-asset risk justifies the Mining Partner's 70% share.
 
 ---
 
@@ -131,8 +131,8 @@ To be set in code or `data/assumptions.ts`; ranges for sensitivity:
 
 ## Auxiliary power & cooling
 
-- **No overnight battery**: Miners run daytime-only. When PV drops at sunset, miners and cooling shut down. Cyprus night temps (15–25°C) within S21+ idle tolerance (−5°C to +45°C).
-- **UPS**: €3,000/container (5–10 kWh). Graceful shutdown during cloud transients. Prevents hard power cuts that damage hash boards. See `data/epc-costs.ts` → `UPS_EUR_PER_CONTAINER`.
+- **Compact auxiliary BESS preferred**: For fully off-grid sites, include compact grid-forming BESS to hold inverter reference and keep critical auxiliaries online overnight.
+- **Shutdown continuity**: Auxiliary storage supports controlled miner shutdown during cloud transients and protects hash boards from hard power cuts.
 - **Cooling**: Container fans/pumps draw ~3–5% of miner power (~25 kW max). Included in total power budget — PV sized to total load including cooling. Air-cooled 20ft containers handle Cyprus summer (up to 40°C).
 
 ---

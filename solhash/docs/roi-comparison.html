@@ -26,7 +26,7 @@
 </head>
 <body>
   <h1>solhash — Pre-connection ROI comparison</h1>
-  <p class="subtitle">Equipment venture: 5 years, aggregate MWh/year = 49500.0 (ESP_2028 parks). Daytime-only (no BESS). Degradation €10/MWh, opex €120.0k/year. Datacenter revenue × 0.6 (daytime-only penalty).</p>
+  <p class="subtitle">Equipment venture: 5 years, aggregate MWh/year = 60500.0 (ESP_2028 parks). Daytime-only (no BESS). Degradation €10/MWh, opex €120.0k/year. Datacenter revenue × 0.6 (daytime-only penalty).</p>
 
   <h2>1. Input assumptions</h2>
   <table class="section">
@@ -35,29 +35,29 @@
       <tr><td>Discount rate</td><td class="r">10.0%</td></tr>
       <tr><td>Degradation (park owner)</td><td class="r">€10/MWh</td></tr>
       <tr><td>Opex (cooling, maintenance, moves)</td><td class="r">€120.0k/year</td></tr>
-      <tr><td>PV yield (Cyprus)</td><td class="r">1800 kWh/kWp/year</td></tr>
+      <tr><td>PV yield (Cyprus)</td><td class="r">2200 kWh/kWp/year</td></tr>
     </tbody>
   </table>
-  <h3>BTC mining — Antminer S21+ (20ft containers, Mineshop)</h3>
+  <h3>BTC mining — Antminer S21 Pro (20ft containers, Mineshop)</h3>
   <table class="section">
     <tbody>
-      <tr><td>Miner</td><td class="r">Antminer S21+ (216 TH/s, 3.56 kW)</td></tr>
+      <tr><td>Miner</td><td class="r">Antminer S21 Pro (234 TH/s, 3.51 kW)</td></tr>
       <tr><td>Hash price</td><td class="r">€44/PH/s/day</td></tr>
-      <tr><td>Daytime hours</td><td class="r">6 hrs/day</td></tr>
+      <tr><td>Daytime hours</td><td class="r">8 hrs/day</td></tr>
       <tr><td>20ft container</td><td class="r">168 slots, €21,500 (Mineshop)</td></tr>
-      <tr><td>S21+ count (ESP_2028 aggregate)</td><td class="r">6350</td></tr>
-      <tr><td>Container(s)</td><td class="r">38</td></tr>
+      <tr><td>Antminer S21 Pro count (ESP_2028 aggregate)</td><td class="r">5903</td></tr>
+      <tr><td>Container(s)</td><td class="r">36</td></tr>
     </tbody>
   </table>
 
   <h2>2. Modular park sizing (1, 2.6, 5, 10 MW)</h2>
-  <p class="subtitle">Full solar-field deployment. S21+ (Mineshop), 20ft containers (168 slots). Daytime-only.</p>
+  <p class="subtitle">Full solar-field deployment. Antminer S21 Pro (Mineshop), 20ft containers (168 slots). Daytime-only.</p>
   <table class="section">
     <thead>
       <tr>
         <th>Park size</th>
         <th class="r">MWh/year</th>
-        <th class="r">S21+ count</th>
+        <th class="r">Antminer S21 Pro count</th>
         <th class="r">20ft containers</th>
         <th class="r">Capex (€)</th>
         <th class="r">NPV (€)</th>
@@ -68,39 +68,39 @@
       
       <tr>
         <td>1 MW</td>
-        <td class="r">1,800</td>
-        <td class="r">231</td>
+        <td class="r">2,200</td>
+        <td class="r">215</td>
         <td class="r">2</td>
-        <td class="r">€514.2k</td>
-        <td class="r">€-278.0k</td>
-        <td class="r">-14.7%</td>
+        <td class="r">€365.5k</td>
+        <td class="r">€117.2k</td>
+        <td class="r">21.9%</td>
       </tr>
       <tr>
         <td>2.6 MW</td>
-        <td class="r">4,680</td>
-        <td class="r">601</td>
+        <td class="r">5,720</td>
+        <td class="r">559</td>
         <td class="r">4</td>
-        <td class="r">€1312.0k</td>
-        <td class="r">€31.5k</td>
-        <td class="r">10.9%</td>
+        <td class="r">€924.5k</td>
+        <td class="r">€1058.3k</td>
+        <td class="r">48.8%</td>
       </tr>
       <tr>
         <td>5 MW</td>
-        <td class="r">9,000</td>
-        <td class="r">1155</td>
+        <td class="r">11,000</td>
+        <td class="r">1074</td>
         <td class="r">7</td>
-        <td class="r">€2506.7k</td>
-        <td class="r">€494.3k</td>
-        <td class="r">17.5%</td>
+        <td class="r">€1761.5k</td>
+        <td class="r">€2466.7k</td>
+        <td class="r">56.6%</td>
       </tr>
       <tr>
         <td>10 MW</td>
-        <td class="r">18,000</td>
-        <td class="r">2309</td>
-        <td class="r">14</td>
-        <td class="r">€5011.4k</td>
-        <td class="r">€1442.3k</td>
-        <td class="r">20.7%</td>
+        <td class="r">22,000</td>
+        <td class="r">2147</td>
+        <td class="r">13</td>
+        <td class="r">€3500.0k</td>
+        <td class="r">€5406.5k</td>
+        <td class="r">60.9%</td>
       </tr>
     </tbody>
   </table>
@@ -127,54 +127,54 @@
       
       <tr>
         <td>1 MW</td>
-        <td class="r">€514.2k</td>
-        <td class="r">88.8%</td>
-        <td class="r">11.2%</td>
-        <td class="r">0.99¢</td>
-        <td class="r">€160.3k</td>
-        <td class="r">€25.7k</td>
+        <td class="r">€365.5k</td>
+        <td class="r">44.9%</td>
+        <td class="r">55.1%</td>
+        <td class="r">5.64¢</td>
+        <td class="r">€225.3k</td>
+        <td class="r">€18.3k</td>
         <td class="r">11.9%</td>
         <td class="r">3.6 yr</td>
-        <td class="r">€67.8k</td>
+        <td class="r">€470.4k</td>
         <td class="r">—</td>
       </tr>
       <tr>
         <td>2.6 MW</td>
-        <td class="r">€1312.0k</td>
-        <td class="r">87.1%</td>
-        <td class="r">12.9%</td>
-        <td class="r">1.15¢</td>
-        <td class="r">€417.2k</td>
-        <td class="r">€65.6k</td>
+        <td class="r">€924.5k</td>
+        <td class="r">43.7%</td>
+        <td class="r">56.3%</td>
+        <td class="r">5.77¢</td>
+        <td class="r">€585.8k</td>
+        <td class="r">€46.2k</td>
         <td class="r">11.9%</td>
         <td class="r">3.6 yr</td>
-        <td class="r">€203.9k</td>
+        <td class="r">€1250.1k</td>
         <td class="r">—</td>
       </tr>
       <tr>
         <td>5 MW</td>
-        <td class="r">€2506.7k</td>
-        <td class="r">86.6%</td>
-        <td class="r">13.4%</td>
-        <td class="r">1.19¢</td>
-        <td class="r">€801.7k</td>
-        <td class="r">€125.3k</td>
+        <td class="r">€1761.5k</td>
+        <td class="r">43.4%</td>
+        <td class="r">56.6%</td>
+        <td class="r">5.80¢</td>
+        <td class="r">€1125.4k</td>
+        <td class="r">€88.1k</td>
         <td class="r">11.9%</td>
         <td class="r">3.6 yr</td>
-        <td class="r">€406.9k</td>
+        <td class="r">€2416.5k</td>
         <td class="r">—</td>
       </tr>
       <tr>
         <td>10 MW</td>
-        <td class="r">€5011.4k</td>
-        <td class="r">86.6%</td>
-        <td class="r">13.4%</td>
-        <td class="r">1.19¢</td>
-        <td class="r">€1602.5k</td>
-        <td class="r">€250.6k</td>
+        <td class="r">€3500.0k</td>
+        <td class="r">43.1%</td>
+        <td class="r">56.9%</td>
+        <td class="r">5.82¢</td>
+        <td class="r">€2249.5k</td>
+        <td class="r">€175.0k</td>
         <td class="r">11.9%</td>
         <td class="r">3.6 yr</td>
-        <td class="r">€812.6k</td>
+        <td class="r">€4852.4k</td>
         <td class="r">—</td>
       </tr>
     </tbody>
@@ -188,33 +188,33 @@
       <td>Esperia Tseri</td>
       <td class="r">7</td>
       <td class="r">20</td>
-      <td class="r">12600.0</td>
+      <td class="r">15400.0</td>
     </tr>
     <tr>
       <td>Esperia Tseri 2a</td>
       <td class="r">2.5</td>
       <td class="r">7.5</td>
-      <td class="r">4500.0</td>
+      <td class="r">5500.0</td>
     </tr>
     <tr>
       <td>Esperia Tseri 2b</td>
       <td class="r">7.5</td>
       <td class="r">25</td>
-      <td class="r">13500.0</td>
+      <td class="r">16500.0</td>
     </tr>
     <tr>
       <td>Esperia Tseri 2c</td>
       <td class="r">6</td>
       <td class="r">20</td>
-      <td class="r">10800.0</td>
+      <td class="r">13200.0</td>
     </tr>
     <tr>
       <td>Esperia Tseri 3</td>
       <td class="r">4.5</td>
       <td class="r">15</td>
-      <td class="r">8100.0</td>
+      <td class="r">9900.0</td>
     </tr>
-    <tr style="background:#f9f9f9"><td><strong>Total</strong></td><td class="r"><strong>27.5</strong></td><td class="r"><strong>87.5</strong></td><td class="r"><strong>49500.0</strong></td></tr>
+    <tr style="background:#f9f9f9"><td><strong>Total</strong></td><td class="r"><strong>27.5</strong></td><td class="r"><strong>87.5</strong></td><td class="r"><strong>60500.0</strong></td></tr>
     </tbody>
   </table>
 
@@ -233,39 +233,39 @@
     </thead>
     <tbody>
     <tr>
-      <td>BTC mining (S21+)</td>
-      <td class="r">€4773.4k</td>
-      <td class="r">22.8%</td>
-      <td class="r">€13771.0k</td>
-      <td class="r">€27534.9k</td>
-      <td class="r">€2475.0k</td>
+      <td>BTC mining (Antminer S21 Pro)</td>
+      <td class="r">€15654.4k</td>
+      <td class="r">63.3%</td>
+      <td class="r">€9628.5k</td>
+      <td class="r">€36972.9k</td>
+      <td class="r">€3025.0k</td>
       <td class="r">€600.0k</td>
     </tr>
     <tr>
-      <td>BTC mining (S21+) — behind-the-meter</td>
-      <td class="r">€5133.6k</td>
-      <td class="r">23.7%</td>
-      <td class="r">€13771.0k</td>
-      <td class="r">€27534.9k</td>
-      <td class="r">€2475.0k</td>
+      <td>BTC mining (Antminer S21 Pro) — behind-the-meter</td>
+      <td class="r">€16014.5k</td>
+      <td class="r">64.4%</td>
+      <td class="r">€9628.5k</td>
+      <td class="r">€36972.9k</td>
+      <td class="r">€3025.0k</td>
       <td class="r">€125.0k</td>
     </tr>
     <tr>
       <td>GPU mining</td>
-      <td class="r">€8065.5k</td>
-      <td class="r">142.9%</td>
+      <td class="r">€10358.9k</td>
+      <td class="r">177.1%</td>
       <td class="r">€1800.0k</td>
-      <td class="r">€16087.5k</td>
-      <td class="r">€2475.0k</td>
+      <td class="r">€19662.5k</td>
+      <td class="r">€3025.0k</td>
       <td class="r">€600.0k</td>
     </tr>
     <tr>
       <td>Datacenter GPU</td>
-      <td class="r">€4738.5k</td>
-      <td class="r">71.2%</td>
+      <td class="r">€6448.2k</td>
+      <td class="r">90.7%</td>
       <td class="r">€2500.0k</td>
-      <td class="r">€12622.5k</td>
-      <td class="r">€2475.0k</td>
+      <td class="r">€15427.5k</td>
+      <td class="r">€3025.0k</td>
       <td class="r">€600.0k</td>
     </tr>
     </tbody>
@@ -274,38 +274,38 @@
   <h2>6. Per-year cash flow breakdown</h2>
   <div class="breakdown-grid">
     <div class="breakdown-card">
-      <h3>BTC mining (S21+) — annual cash flow</h3>
-      <p class="breakdown-meta">Revenue €111/MWh × 49500.0 MWh/yr = €5507.0k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €13771.0k. 6350× Antminer S21, 38 container(s).</p>
+      <h3>BTC mining (Antminer S21 Pro) — annual cash flow</h3>
+      <p class="breakdown-meta">Revenue €122/MWh × 60500.0 MWh/yr = €7394.6k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €9628.5k. 5903× Antminer S21 Pro, 36 container(s).</p>
       <table>
         <thead><tr><th>Period</th><th class="r">Revenue</th><th class="r">Degradation</th><th class="r">Opex</th><th class="r">Net</th></tr></thead>
-        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-13771.0k</td></tr><tr><td>Year 1</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€4892.0k</td></tr><tr><td>Year 2</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€4892.0k</td></tr><tr><td>Year 3</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€4892.0k</td></tr><tr><td>Year 4</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€4892.0k</td></tr><tr><td>Year 5</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€4892.0k</td></tr></tbody>
+        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-9628.5k</td></tr><tr><td>Year 1</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€6669.6k</td></tr><tr><td>Year 2</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€6669.6k</td></tr><tr><td>Year 3</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€6669.6k</td></tr><tr><td>Year 4</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€6669.6k</td></tr><tr><td>Year 5</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€6669.6k</td></tr></tbody>
       </table>
     </div>
     <div class="breakdown-card">
-      <h3>BTC mining (S21+) — behind-the-meter — annual cash flow</h3>
-      <p class="breakdown-meta">Revenue €111/MWh × 49500.0 MWh/yr = €5507.0k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €13771.0k. 6350× Antminer S21, 38 container(s).</p>
+      <h3>BTC mining (Antminer S21 Pro) — behind-the-meter — annual cash flow</h3>
+      <p class="breakdown-meta">Revenue €122/MWh × 60500.0 MWh/yr = €7394.6k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €9628.5k. 5903× Antminer S21 Pro, 36 container(s).</p>
       <table>
         <thead><tr><th>Period</th><th class="r">Revenue</th><th class="r">Degradation</th><th class="r">Opex</th><th class="r">Net</th></tr></thead>
-        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-13771.0k</td></tr><tr><td>Year 1</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€25.0k</td><td class="r">€4987.0k</td></tr><tr><td>Year 2</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€25.0k</td><td class="r">€4987.0k</td></tr><tr><td>Year 3</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€25.0k</td><td class="r">€4987.0k</td></tr><tr><td>Year 4</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€25.0k</td><td class="r">€4987.0k</td></tr><tr><td>Year 5</td><td class="r">€5507.0k</td><td class="r">€495.0k</td><td class="r">€25.0k</td><td class="r">€4987.0k</td></tr></tbody>
+        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-9628.5k</td></tr><tr><td>Year 1</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€25.0k</td><td class="r">€6764.6k</td></tr><tr><td>Year 2</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€25.0k</td><td class="r">€6764.6k</td></tr><tr><td>Year 3</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€25.0k</td><td class="r">€6764.6k</td></tr><tr><td>Year 4</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€25.0k</td><td class="r">€6764.6k</td></tr><tr><td>Year 5</td><td class="r">€7394.6k</td><td class="r">€605.0k</td><td class="r">€25.0k</td><td class="r">€6764.6k</td></tr></tbody>
       </table>
     </div>
     <div class="breakdown-card">
       <h3>GPU mining — annual cash flow</h3>
-      <p class="breakdown-meta">Revenue €65/MWh × 49500.0 MWh/yr = €3217.5k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €1800.0k.</p>
+      <p class="breakdown-meta">Revenue €65/MWh × 60500.0 MWh/yr = €3932.5k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €1800.0k.</p>
       <table>
         <thead><tr><th>Period</th><th class="r">Revenue</th><th class="r">Degradation</th><th class="r">Opex</th><th class="r">Net</th></tr></thead>
-        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-1800.0k</td></tr><tr><td>Year 1</td><td class="r">€3217.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€2602.5k</td></tr><tr><td>Year 2</td><td class="r">€3217.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€2602.5k</td></tr><tr><td>Year 3</td><td class="r">€3217.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€2602.5k</td></tr><tr><td>Year 4</td><td class="r">€3217.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€2602.5k</td></tr><tr><td>Year 5</td><td class="r">€3217.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€2602.5k</td></tr></tbody>
+        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-1800.0k</td></tr><tr><td>Year 1</td><td class="r">€3932.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€3207.5k</td></tr><tr><td>Year 2</td><td class="r">€3932.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€3207.5k</td></tr><tr><td>Year 3</td><td class="r">€3932.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€3207.5k</td></tr><tr><td>Year 4</td><td class="r">€3932.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€3207.5k</td></tr><tr><td>Year 5</td><td class="r">€3932.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€3207.5k</td></tr></tbody>
       </table>
     </div>
     <div class="breakdown-card">
       <h3>Datacenter GPU — annual cash flow</h3>
-      <p class="breakdown-meta">Revenue €51/MWh × 49500.0 MWh/yr = €2524.5k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €2500.0k.</p>
+      <p class="breakdown-meta">Revenue €51/MWh × 60500.0 MWh/yr = €3085.5k/yr. Degradation €10/MWh, opex €120.0k/yr. Capex €2500.0k.</p>
       <table>
         <thead><tr><th>Period</th><th class="r">Revenue</th><th class="r">Degradation</th><th class="r">Opex</th><th class="r">Net</th></tr></thead>
-        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-2500.0k</td></tr><tr><td>Year 1</td><td class="r">€2524.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€1909.5k</td></tr><tr><td>Year 2</td><td class="r">€2524.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€1909.5k</td></tr><tr><td>Year 3</td><td class="r">€2524.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€1909.5k</td></tr><tr><td>Year 4</td><td class="r">€2524.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€1909.5k</td></tr><tr><td>Year 5</td><td class="r">€2524.5k</td><td class="r">€495.0k</td><td class="r">€120.0k</td><td class="r">€1909.5k</td></tr></tbody>
+        <tbody><tr><td>Year 0 (capex)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r neg">€-2500.0k</td></tr><tr><td>Year 1</td><td class="r">€3085.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€2360.5k</td></tr><tr><td>Year 2</td><td class="r">€3085.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€2360.5k</td></tr><tr><td>Year 3</td><td class="r">€3085.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€2360.5k</td></tr><tr><td>Year 4</td><td class="r">€3085.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€2360.5k</td></tr><tr><td>Year 5</td><td class="r">€3085.5k</td><td class="r">€605.0k</td><td class="r">€120.0k</td><td class="r">€2360.5k</td></tr></tbody>
       </table>
     </div></div>
 
-  <p class="note">Best NPV under base case: <strong>GPU mining</strong> (highest NPV). Behind-the-meter scenario uses €25k opex (shared ops). See <a href="behind-the-meter-financials.md">behind-the-meter-financials.md</a> for deep dive. Re-run: <code>npm run solhash:roi</code>.</p>
+  <p class="note">Best NPV under base case: <strong>BTC mining (Antminer S21 Pro) — behind-the-meter</strong> (highest NPV). Behind-the-meter scenario uses €25k opex (shared ops). See <a href="behind-the-meter-financials.md">behind-the-meter-financials.md</a> for deep dive. Re-run: <code>npm run solhash:roi</code>.</p>
 </body>
 </html>

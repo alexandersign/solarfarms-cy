@@ -5,7 +5,7 @@
 
 import { PENDING_CONNECTION_PARKS } from '../data/pending-connection-parks';
 import { MODULAR_PARK_SIZES, KWH_PER_KWP_PER_YEAR, PARK_OM_EUR_PER_KW_PER_YEAR } from '../data/modular-parks';
-import { deriveBtcParamsFromS21 } from '../data/antminer-s21';
+import { DEFAULT_MINER, DAYTIME_HOURS_PER_DAY, deriveBtcParamsFromS21 } from '../data/antminer-s21';
 import type { ParkInput, SharedROIInputs, ROIResult } from '../model/types';
 import { runBtcMiningROI } from '../model/roi-btc-mining';
 import { runJVSplit } from '../model/roi-jv-split';
@@ -138,7 +138,7 @@ function buildHtml(
     const params = optionParams[i];
     const meta = r.meta ?? params?.meta;
     const metaStr = meta && typeof meta === 'object' && 's21Count' in meta
-      ? ` ${(meta as { s21Count: number }).s21Count}× Antminer S21, ${(meta as { containerCount: number }).containerCount} container(s).`
+      ? ` ${(meta as { s21Count: number }).s21Count}× ${DEFAULT_MINER.model}, ${(meta as { containerCount: number }).containerCount} container(s).`
       : '';
     const annualRev = r.totalRevenueEur / shared.years;
     const annualDeg = r.totalDegradationCostEur / shared.years;
@@ -201,26 +201,26 @@ function buildHtml(
       <tr><td>PV yield (Cyprus)</td><td class="r">${KWH_PER_KWP_PER_YEAR} kWh/kWp/year</td></tr>
     </tbody>
   </table>
-  <h3>BTC mining — Antminer S21+ (20ft containers, Mineshop)</h3>
+  <h3>BTC mining — ${DEFAULT_MINER.model} (20ft containers, Mineshop)</h3>
   <table class="section">
     <tbody>
-      <tr><td>Miner</td><td class="r">Antminer S21+ (216 TH/s, 3.56 kW)</td></tr>
+      <tr><td>Miner</td><td class="r">${DEFAULT_MINER.model} (${DEFAULT_MINER.hashrateThs} TH/s, ${(DEFAULT_MINER.powerWatts / 1000).toFixed(2)} kW)</td></tr>
       <tr><td>Hash price</td><td class="r">€44/PH/s/day</td></tr>
-      <tr><td>Daytime hours</td><td class="r">6 hrs/day</td></tr>
+      <tr><td>Daytime hours</td><td class="r">${DAYTIME_HOURS_PER_DAY} hrs/day</td></tr>
       <tr><td>20ft container</td><td class="r">168 slots, €21,500 (Mineshop)</td></tr>
-      <tr><td>S21+ count (ESP_2028 aggregate)</td><td class="r">${(results[0]?.meta as { s21Count?: number })?.s21Count ?? '—'}</td></tr>
+      <tr><td>${DEFAULT_MINER.model} count (ESP_2028 aggregate)</td><td class="r">${(results[0]?.meta as { s21Count?: number })?.s21Count ?? '—'}</td></tr>
       <tr><td>Container(s)</td><td class="r">${(results[0]?.meta as { containerCount?: number })?.containerCount ?? '—'}</td></tr>
     </tbody>
   </table>
 
   <h2>2. Modular park sizing (1, 2.6, 5, 10 MW)</h2>
-  <p class="subtitle">Full solar-field deployment. S21+ (Mineshop), 20ft containers (168 slots). Daytime-only.</p>
+  <p class="subtitle">Full solar-field deployment. ${DEFAULT_MINER.model} (Mineshop), 20ft containers (168 slots). Daytime-only.</p>
   <table class="section">
     <thead>
       <tr>
         <th>Park size</th>
         <th class="r">MWh/year</th>
-        <th class="r">S21+ count</th>
+        <th class="r">${DEFAULT_MINER.model} count</th>
         <th class="r">20ft containers</th>
         <th class="r">Capex (€)</th>
         <th class="r">NPV (€)</th>
@@ -346,7 +346,7 @@ function main(): void {
     };
   });
 
-  // JV: 5-year pre-connection period. Park capex = 0 (built anyway, no PPA loss). 50/50 split.
+  // JV: 5-year pre-connection period. Park capex = 0 (built anyway, no PPA loss).
   const jvRows: JVRow[] = modularParks.map((mp) => {
     const derived = deriveBtcParamsFromS21(mp.mwhPerYear);
     const opexEur = Math.round(mp.mw * 12_000); // €12k per MW (equipment)
@@ -393,9 +393,9 @@ function main(): void {
     revenueEurPerMwh: s21Derived.revenueEurPerMwh,
     capexEur: s21Derived.capexEur,
     revenueStartsYear: 1,
-    label: 'BTC mining (S21+)',
+    label: `BTC mining (${DEFAULT_MINER.model})`,
     meta: {
-      miner: 'Antminer S21+',
+      miner: DEFAULT_MINER.model,
       s21Count: s21Derived.s21Count,
       containerCount: s21Derived.containerCount,
       utilizationPct: s21Derived.utilizationPct,
@@ -408,14 +408,14 @@ function main(): void {
 
   // Behind-the-meter: reduced opex (€25k — shared ops, no dedicated staff). See docs/behind-the-meter-financials.md
   const sharedBtm = { ...shared, opexAnnualEur: 25_000 };
-  const btcBtmParams = { ...btcParams, label: 'BTC mining (S21+) — behind-the-meter' };
+  const btcBtmParams = { ...btcParams, label: `BTC mining (${DEFAULT_MINER.model}) — behind-the-meter` };
   const btcBtmResult = runBtcMiningROI(parks, sharedBtm, btcBtmParams);
 
   const results: ROIResult[] = [btcResult, btcBtmResult, gpuResult, dcResult];
   const dcEffectiveRev = shared.daytimeOnly ? dcParams.revenueEurPerMwh * (shared.daytimeOnlyDatacenterRevenueFactor ?? 0.6) : dcParams.revenueEurPerMwh;
   const optionParams: OptionParams[] = [
-    { label: 'BTC mining (S21+)', revenueEurPerMwh: btcParams.revenueEurPerMwh, capexEur: btcParams.capexEur, meta: btcParams.meta },
-    { label: 'BTC mining (S21+) — behind-the-meter', revenueEurPerMwh: btcParams.revenueEurPerMwh, capexEur: btcParams.capexEur, meta: { ...btcParams.meta, opexNote: '€25k/yr' } },
+    { label: `BTC mining (${DEFAULT_MINER.model})`, revenueEurPerMwh: btcParams.revenueEurPerMwh, capexEur: btcParams.capexEur, meta: btcParams.meta },
+    { label: `BTC mining (${DEFAULT_MINER.model}) — behind-the-meter`, revenueEurPerMwh: btcParams.revenueEurPerMwh, capexEur: btcParams.capexEur, meta: { ...btcParams.meta, opexNote: '€25k/yr' } },
     { label: 'GPU mining', revenueEurPerMwh: gpuParams.revenueEurPerMwh, capexEur: gpuParams.capexEur },
     { label: 'Datacenter GPU', revenueEurPerMwh: dcEffectiveRev, capexEur: dcParams.capexEur },
   ];

@@ -4,8 +4,8 @@
  */
 
 import { MODULAR_PARK_SIZES, KWH_PER_KWP_PER_YEAR, PARK_OM_EUR_PER_KW_PER_YEAR } from '../data/modular-parks';
-import { deriveBtcParamsFromS21 } from '../data/antminer-s21';
-import { epcCostsEur } from '../data/epc-costs';
+import { DEFAULT_MINER, DAYTIME_HOURS_PER_DAY, deriveBtcParamsFromS21 } from '../data/antminer-s21';
+import { TRANSPORT_EUR_PER_CONTAINER, epcCostsEur } from '../data/epc-costs';
 import { BTC_SCENARIOS, btcScenarioMultiplier } from '../data/btc-scenarios';
 import { runJVSplit } from '../model/roi-jv-split';
 import * as path from 'path';
@@ -208,7 +208,7 @@ const html = `<!DOCTYPE html>
   </div>
   <div class="role-card">
     <h3>Mining Partner</h3>
-    <p><strong>Role:</strong> Provides Antminer S21+ miners and 20ft containers. Equipment moves to another park when connection comes.</p>
+    <p><strong>Role:</strong> Provides ${DEFAULT_MINER.model} miners and 20ft containers. Equipment moves to another park when connection comes.</p>
     <p><strong>Costs:</strong> Equipment capex + EPC (platforms, civil, transport). Opex €12k/MW.</p>
     <p><strong>Revenue:</strong> Fair share of mining revenue (~88–91% of net).</p>
     <p><strong>Horizon:</strong> 5 years per park (pre-connection period).</p>
@@ -227,7 +227,7 @@ const html = `<!DOCTYPE html>
     <tr>
       <th>Park size</th>
       <th class="r">MWh/yr</th>
-      <th class="r">S21+</th>
+      <th class="r">${DEFAULT_MINER.model}</th>
       <th class="r">Containers</th>
       <th class="r">Equip. capex</th>
       <th class="r">EPC (platforms, civil, transport)</th>
@@ -249,7 +249,7 @@ const html = `<!DOCTYPE html>
 </table>
 
 <h2>4. EPC Cost Breakdown (Solhash)</h2>
-<p>Platforms (€15k/container), civil works (€25k/MW), transport (€10k/container).</p>
+<p>Platforms (€15k/container), civil works (€25k/MW), transport (€${TRANSPORT_EUR_PER_CONTAINER.toLocaleString()}/container).</p>
 <table>
   <thead>
     <tr>
@@ -331,16 +331,16 @@ const html = `<!DOCTYPE html>
 ${(function () {
   const r5 = rows.find((x) => x.mwPv === 5);
   if (!r5) return '';
-  const minersEur = r5.s21Count * 2040;
+  const minersEur = r5.s21Count * DEFAULT_MINER.priceEur;
   const containersEur = r5.containerCount * 21500;
   return `<table>
   <thead><tr><th>Item</th><th class="r">Amount</th></tr></thead>
   <tbody>
-    <tr><td>Antminer S21+ (${r5.s21Count} × €2,040)</td><td class="r">${fmtK(minersEur)}</td></tr>
+    <tr><td>${DEFAULT_MINER.model} (${r5.s21Count} × €${DEFAULT_MINER.priceEur.toLocaleString()})</td><td class="r">${fmtK(minersEur)}</td></tr>
     <tr><td>20ft containers (${r5.containerCount} × €21,500)</td><td class="r">${fmtK(containersEur)}</td></tr>
     <tr><td>Platforms (${r5.containerCount} × €15,000)</td><td class="r">${fmtK(r5.platformEur)}</td></tr>
     <tr><td>Civil works (${r5.mwPv} MW × €25,000)</td><td class="r">${fmtK(r5.civilEur)}</td></tr>
-    <tr><td>Transport (${r5.containerCount} × €10,000)</td><td class="r">${fmtK(r5.transportEur)}</td></tr>
+    <tr><td>Transport (${r5.containerCount} × €${TRANSPORT_EUR_PER_CONTAINER.toLocaleString()})</td><td class="r">${fmtK(r5.transportEur)}</td></tr>
     <tr style="background:#e8f5e9"><td><strong>Total capex</strong></td><td class="r"><strong>${fmtK(r5.totalCapex)}</strong></td></tr>
   </tbody>
 </table>`;
@@ -403,8 +403,8 @@ ${(function () {
 <table>
   <tbody>
     <tr><td>PV yield (Cyprus)</td><td class="r">${KWH_PER_KWP_PER_YEAR} kWh/kWp/year</td></tr>
-    <tr><td>Daytime hours</td><td class="r">6 hrs/day</td></tr>
-    <tr><td>Miner</td><td class="r">Antminer S21+ (216 TH/s, 3.56 kW)</td></tr>
+    <tr><td>Daytime hours</td><td class="r">${DAYTIME_HOURS_PER_DAY} hrs/day</td></tr>
+    <tr><td>Miner</td><td class="r">${DEFAULT_MINER.model} (${DEFAULT_MINER.hashrateThs} TH/s, ${(DEFAULT_MINER.powerWatts / 1000).toFixed(2)} kW)</td></tr>
     <tr><td>Hash price</td><td class="r">€44/PH/s/day</td></tr>
     <tr><td>20ft container</td><td class="r">168 slots, €21,500 (Mineshop)</td></tr>
     <tr><td>Degradation</td><td class="r">€10/MWh</td></tr>
