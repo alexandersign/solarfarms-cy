@@ -358,7 +358,8 @@ All documents include consistent Force Majeure provisions covering:
 | Linyang Sales Contract V1 | `in-negotiation/linyang-sales/` | V1 | 6 Mar 2026 | **In Negotiation — comments sent 6 Mar** |
 | sales_agrement.md (Lighthief draft) | `in-negotiation/linyang-sales/` | 2.0 | Jan 2026 | Internal draft (not sent) |
 | client_sales.md | `templates/` | 3.0 | Feb 2026 | Template v3.0 — Superseded by v4.0 |
-| client_sales_v4.0.docx | `templates/` | **4.0** | **17 Mar 2026** | **BANKABILITY REVISION — single counterparty, title at PAC, 15% cap** |
+| client_sales_v4.0.docx | `templates/` | 4.0 | 17 Mar 2026 | Bankability revision (superseded by v5.0) |
+| client_sales_v5.0.docx | `templates/` | **5.0** | **6 May 2026** | **FINAL \u2014 two-component price split, APG on equipment only, 3-month DLP, tiered liability 10%/50%/uncapped, all Anastasis v4.0 comments resolved** |
 | OEM-Direct-Warranty-Undertaking-Linyang.docx | `templates/` | **1.0** | **17 Mar 2026** | **OEM step-in letter for Linyang signature** |
 | ClientLTSA.md | `templates/` | 3.0 | Feb 2026 | Template v3.0 — Superseded by v4.0 |
 | ClientLTSA_v4.0.docx | `templates/` | **4.0** | **17 Mar 2026** | **Tier D removed, section numbers fixed, SOH table corrected, lender assignment** |
@@ -697,8 +698,26 @@ See: `employee_service_manual.md` for detailed procedures on:
 
 ---
 
-*Document Index Version: 8.0*
-*Updated: 17 March 2026*
+---
+
+## Full Contract Risk Review (May 2026)
+
+**Document:** `docs/internal/full-contract-risk-review-may2026.html`
+**Reference:** LCY-RISK-001 v1.0
+**Date:** 6 May 2026
+**Scope:** Full upstream + downstream legal alignment matrix, Batch 1 cashflow waterfall, 5 stress scenarios (S1–S5), 6 partner-level risk assessments, Go/No-Go signing checklist, 9-item clause gap register.
+
+**Key findings:**
+- 3 Critical gates before B1 advance: Sales Contract signed, APG received, CAR insurance placed
+- August/September 2026 cash pinch: balance drops to ~€190K after Linyang DAP payment — €500K–€1M working capital facility required
+- PI policy (Grawe) is wrong class (architect/engineer vs EPC contractor) — must rebroker
+- AXA Absolute Pollution Exclusion + no declarations page = critical insurance evidence gap
+- 9 clause amendments identified (G1–G9); G1 critical (DA payment term vs Sales Contract discrepancy)
+
+---
+
+*Document Index Version: 10.0*
+*Updated: 6 May 2026*
 *Legal Basis: Gazette No. 5992 (16/01/2026)*
 *Lighthief Cyprus Ltd - Legal Framework*
 

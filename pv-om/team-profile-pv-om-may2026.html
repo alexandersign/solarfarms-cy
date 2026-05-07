@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PV O&amp;M Team Profile - Lighthief Cyprus Ltd</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        @page { size: A4; margin: 12mm; }
+
+        body {
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            color: #12263f;
+            background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 160px);
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0 auto;
+            max-width: 980px;
+            padding: 24px 22px 36px;
+        }
+
+        .cover {
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #d7e3f5;
+            border-top: 5px solid #173b66;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(21, 46, 79, 0.08);
+            padding: 24px 18px 26px;
+            margin-bottom: 16px;
+        }
+
+        .cover-logo {
+            display: block;
+            margin: 0 auto 14px;
+            width: 210px;
+            max-width: 62%;
+            height: auto;
+        }
+
+        .tagline {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #b9861d;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .cover h1 {
+            color: #173b66;
+            font-size: 29px;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .cover h2 {
+            color: #506484;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .row-break {
+            border: none;
+            border-top: 1px solid #d9e5f5;
+            margin: 14px 0 16px;
+        }
+
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 14px;
+        }
+
+        .badge {
+            border: 1px solid #c6d5ea;
+            border-radius: 18px;
+            padding: 7px 11px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1e3d65;
+            background: #f7fbff;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #d7e3f5;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(23, 59, 102, 0.05);
+            margin-bottom: 14px;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+
+        .panel-head {
+            background: #173b66;
+            color: #ffffff;
+            padding: 9px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .panel-body {
+            padding: 12px 13px 14px;
+        }
+
+        .intro p { margin-bottom: 6px; }
+        .intro p:last-child { margin-bottom: 0; }
+
+        .table-wrap {
+            border: 1px solid #d6e2f3;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border-bottom: 1px solid #dee8f6;
+            padding: 9px 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 12px;
+        }
+
+        thead th {
+            background: #eef4fc;
+            color: #1d3f67;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) td {
+            background: #f9fcff;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .card {
+            border: 1px solid #d3e1f4;
+            border-radius: 9px;
+            padding: 11px 11px 10px;
+            background: #ffffff;
+        }
+
+        .card h4 {
+            color: #16365c;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .card .role {
+            color: #566b8d;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #d5e1f2;
+            padding-bottom: 6px;
+        }
+
+        ul { padding-left: 16px; }
+        li { margin-bottom: 5px; }
+        li:last-child { margin-bottom: 0; }
+
+        .footer {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 11px;
+            color: #5c6e86;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .cover, .panel { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <img src="../public/logo/lighthief-logo.png" alt="Lighthief Logo" class="cover-logo" />
+        <div class="tagline">Lighthief Cyprus Ltd</div>
+        <h1>PV Operations and Maintenance Team</h1>
+        <h2>Team Profile - May 2026</h2>
+    </header>
+
+    <section class="credentials">
+        <div class="badge">ETEK Licensed Engineer</div>
+        <div class="badge">NATA-Certified SCADA Operations (Poland)</div>
+        <div class="badge">Exclusive Linyang Distributor - Cyprus</div>
+        <div class="badge">24/7 NOC - 4 European Control Centres</div>
+        <div class="badge">150+ Field Engineers Across EU</div>
+    </section>
+
+    <hr class="row-break" />
+
+    <section class="panel intro">
+        <div class="panel-head">Scope</div>
+        <div class="panel-body">
+            <p>This profile presents the Cyprus delivery team and the supporting EU electrical engineering structure.</p>
+            <p>It summarises technical roles, operational coverage, and documented support capabilities relevant to PV and BESS O&amp;M.</p>
+            <p>All points below are limited to information available in project records.</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head">Lighthief Cyprus - Group Footprint</div>
+        <div class="panel-body">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 34%;">Item</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cyprus Team</td>
+                            <td>On-site delivery team based in Cyprus for installation, O&amp;M execution, compliance, and client services.</td>
+                        </tr>
+                        <tr>
+                            <td>EU Engineering Support</td>
+                            <td>Senior electrical engineers based in Poland (Solarfun Poland sp. z o.o. — Linyang EU subsidiary), available for escalation support and Cyprus deployment.</td>
+                        </tr>
+                        <tr>
+                            <td>EU Presence</td>
+                            <td>11 offices and warehouses across Europe.</td>
+                        </tr>
+                        <tr>
+                            <td>Field Engineering Capacity</td>
+                            <td>150+ field engineers across the EU network.</td>
+                        </tr>
+                        <tr>
+                            <td>Monitoring Backbone</td>
+                            <td>24/7 NOC with 4 European control centres.</td>
+                        </tr>
+                        <tr>
+                            <td>Linyang Distribution Status</td>
+                            <td>Exclusive Linyang Cyprus distributor (active from November 2025).</td>
+                        </tr>
+                        <tr>
+                            <td>Linyang Poland Infrastructure</td>
+                            <td>23 ha R&amp;D/logistics campus (Solarfun Poland) including 950 m2 spare-parts warehouse.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head">Cyprus Core Team</div>
+        <div class="panel-body">
+            <div class="cards">
+                <article class="card">
+                    <h4>Costas Hadjikyriacou</h4>
+                    <div class="role">BESS Division Lead, ETEK Licensed Engineer</div>
+                    <ul>
+                        <li>Signs off BESS and electrical scope under Cyprus compliance requirements.</li>
+                        <li>Leads inspections, technical studies, and corrective action decisions on site.</li>
+                        <li>Coordinates technical planning and client-side service escalation.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h4>Cihat Ertugrul</h4>
+                    <div class="role">Field Engineer, Civil Works and Site Execution</div>
+                    <ul>
+                        <li>Executes site installation tasks, civil coordination, and quality checks.</li>
+                        <li>Manages small corrective works and supports PV O&amp;M callout actions.</li>
+                        <li>Coordinates field crews and site workflow execution.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h4>Andreas Christoforou</h4>
+                    <div class="role">Energy Consultant, Reporting and Client Services</div>
+                    <ul>
+                        <li>Maintains client reporting, issue tracking, and communication records.</li>
+                        <li>Supports work-order follow-up and cross-team action visibility.</li>
+                        <li>Assists coordination of service documentation and technical outputs.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-head">EU Partner Network - SCADA and Electrical Engineering Support</div>
+        <div class="panel-body">
+            <div class="table-wrap" style="margin-bottom: 10px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 34%;">Capability</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Operating Entity</td>
+                            <td>Solarfun Poland sp. z o.o. (KRS 0001164462) — Linyang EU subsidiary operating the SCADA service centre, Czestochowa.</td>
+                        </tr>
+                        <tr>
+                            <td>Monitoring Operations</td>
+                            <td>NATA-certified SCADA monitoring operations.</td>
+                        </tr>
+                        <tr>
+                            <td>NOC Operations</td>
+                            <td>24/7 NOC linked with 4 European control centres.</td>
+                        </tr>
+                        <tr>
+                            <td>SCADA Stack</td>
+                            <td>Voltus SCADA platform with IEC 60870-5-104 protocol support.</td>
+                        </tr>
+                        <tr>
+                            <td>Spare Parts Support</td>
+                            <td>950 m2 Linyang parts warehouse for service recovery.</td>
+                        </tr>
+                        <tr>
+                            <td>Deployment Capacity</td>
+                            <td>48-hour Cyprus deployment capacity from Poland for urgent intervention.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 28%;">Engineer</th>
+                            <th style="width: 25%;">Role</th>
+                            <th>Primary Experience Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dawid Lesnikowski</td>
+                            <td>Senior Electrical Engineer</td>
+                            <td>High-voltage diagnostics, BESS integration, and field troubleshooting.</td>
+                        </tr>
+                        <tr>
+                            <td>Szymon Drozdz</td>
+                            <td>Senior Electrical Engineer</td>
+                            <td>Commissioning quality controls, SCADA data validation, and restoration planning.</td>
+                        </tr>
+                        <tr>
+                            <td>Kacper Goral</td>
+                            <td>Senior Electrical Engineer</td>
+                            <td>Electrical inspections, root-cause analysis, and corrective execution support.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        Lighthief Cyprus Ltd - PV O&amp;M Team Profile - May 2026
+    </div>
+</body>
+</html>

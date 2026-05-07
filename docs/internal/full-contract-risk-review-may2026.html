@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Contract Risk Review — Lighthief BESS Cyprus | May 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a2e; background: #f5f7fa; line-height: 1.55; }
+  .page { max-width: 1200px; margin: 0 auto; background: #fff; padding: 40px 48px; }
+  h1 { font-size: 22px; font-weight: 700; color: #0d1b4b; border-bottom: 3px solid #0d47a1; padding-bottom: 10px; margin-bottom: 8px; }
+  h2 { font-size: 16px; font-weight: 700; color: #0d47a1; margin: 32px 0 12px; border-left: 4px solid #0d47a1; padding-left: 10px; }
+  h3 { font-size: 14px; font-weight: 700; color: #1a237e; margin: 20px 0 8px; }
+  h4 { font-size: 13px; font-weight: 700; color: #283593; margin: 12px 0 6px; }
+  .meta { font-size: 11px; color: #555; margin-bottom: 28px; }
+  .meta span { margin-right: 20px; }
+  p { margin-bottom: 8px; }
+  ul, ol { margin: 6px 0 8px 20px; }
+  li { margin-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 12px; }
+  th { background: #0d47a1; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+  td { padding: 6px 10px; border-bottom: 1px solid #e0e4ef; vertical-align: top; }
+  tr:nth-child(even) td { background: #f4f6fd; }
+  tr:hover td { background: #eef1fc; }
+  .green { background: #e8f5e9 !important; }
+  .amber { background: #fff8e1 !important; }
+  .red { background: #ffebee !important; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+  .badge-green { background: #2e7d32; color: #fff; }
+  .badge-amber { background: #e65100; color: #fff; }
+  .badge-red { background: #b71c1c; color: #fff; }
+  .badge-blue { background: #0d47a1; color: #fff; }
+  .badge-grey { background: #546e7a; color: #fff; }
+  .signal-box { display: inline-block; width: 14px; height: 14px; border-radius: 50%; vertical-align: middle; margin-right: 5px; }
+  .sig-green { background: #2e7d32; }
+  .sig-amber { background: #f57f17; }
+  .sig-red { background: #c62828; }
+  .exec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0 24px; }
+  .exec-card { border: 1px solid #c5cae9; border-radius: 6px; padding: 14px 16px; }
+  .exec-card h4 { margin-top: 0; font-size: 13px; }
+  .exec-card .rating { font-size: 18px; font-weight: 800; margin: 6px 0; }
+  .critical { color: #b71c1c; }
+  .high { color: #e65100; }
+  .medium { color: #f57f17; }
+  .low { color: #2e7d32; }
+  .cashflow-table td { text-align: right; font-family: monospace; }
+  .cashflow-table td:first-child, .cashflow-table td:nth-child(2) { text-align: left; font-family: inherit; }
+  .positive { color: #1b5e20; }
+  .negative { color: #b71c1c; }
+  .warning-box { background: #fff3e0; border-left: 4px solid #f57f17; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .danger-box { background: #ffebee; border-left: 4px solid #c62828; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .ok-box { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .info-box { background: #e3f2fd; border-left: 4px solid #0d47a1; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .section-break { border: none; border-top: 2px solid #e8eaf6; margin: 36px 0; }
+  .checklist td:first-child { width: 30px; text-align: center; font-size: 16px; }
+  .toc a { color: #0d47a1; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc li { line-height: 2; }
+  @media print { body { background: #fff; } .page { padding: 20px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════ -->
+<h1>FULL CONTRACT RISK REVIEW</h1>
+<h1 style="font-size:15px;border:none;padding:4px 0 0;margin:0;color:#1a237e;">Legal Alignment · Cashflow Waterfall · Stress Test · Partner Risk Assessment</h1>
+<div class="meta">
+  <span><strong>Document ref:</strong> LCY-RISK-001 v1.0</span>
+  <span><strong>Prepared:</strong> 6 May 2026</span>
+  <span><strong>Prepared by:</strong> Lighthief Cyprus Ltd — Internal</span>
+  <span><strong>Classification:</strong> STRICTLY CONFIDENTIAL</span>
+</div>
+<div class="info-box"><strong>Scope:</strong> This review covers all upstream and downstream contracts as at 6 May 2026 — Linyang Sales Contract (17 Mar, clean for signature), Linyang Distribution Agreement (signed Feb 2026), Client EPC v5.0 (6 May 2026), Client LTSA v4.0 (17 Mar 2026), and OEM Direct Warranty Undertaking v1.0. Financial model based on SSOT <code>lib/portfolio-data.ts</code> (24 Mar 2026) and <code>Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx</code>. Stress base: Batch 1 (9 parks, 120 MWh, €15.07M revenue).</div>
+
+<!-- TABLE OF CONTENTS -->
+<h2>Contents</h2>
+<ol class="toc" style="margin-left:22px;font-size:13px;">
+  <li><a href="#s1">Executive Summary &amp; Partner Traffic Lights</a></li>
+  <li><a href="#s2">Source Pack — Contract Document Status</a></li>
+  <li><a href="#s3">Cross-Contract Legal Alignment Matrix</a></li>
+  <li><a href="#s4">Cashflow Base Case — Batch 1 Monthly Waterfall</a></li>
+  <li><a href="#s5">Stress Scenarios S1–S5</a></li>
+  <li><a href="#s6">Partner-Level Risk Assessments</a></li>
+  <li><a href="#s7">Go / No-Go Signing Checklist</a></li>
+  <li><a href="#s8">Clause Gap Register</a></li>
+</ol>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     1. EXECUTIVE SUMMARY
+═══════════════════════════════════════════ -->
+<h2 id="s1">1. Executive Summary &amp; Partner Traffic Lights</h2>
+
+<p><strong>Overall finding:</strong> The contract stack is commercially sound and substantially aligned, but has three gating issues that must be resolved before committing Batch 1 capital. The Linyang Sales Contract must be signed; the APG/Performance Bond must be received before the advance payment is made; and insurance coverage must be confirmed for construction risk. Subject to those three gates, Batch 1 can proceed.</p>
+
+<div class="exec-grid">
+  <div class="exec-card">
+    <h4>Linyang (OEM / Upstream)</h4>
+    <div class="rating high"><span class="signal-box sig-amber"></span>MEDIUM-HIGH</div>
+    <p style="font-size:11px;">Contract unsigned. APG not yet received. Payment terms confirmed but not contractually locked. AXA insurance has key exclusions.</p>
+  </div>
+  <div class="exec-card">
+    <h4>Lighthief Cyprus (EPC / Distributor)</h4>
+    <div class="rating medium"><span class="signal-box sig-amber"></span>MEDIUM</div>
+    <p style="font-size:11px;">Thin cash buffer in Aug 2026 (DAP gap). No parent guarantee. Liability cap at 50% of contract price for general breaches is adequate given OEM back-to-back.</p>
+  </div>
+  <div class="exec-card">
+    <h4>End Clients / SPVs</h4>
+    <div class="rating medium"><span class="signal-box sig-amber"></span>MEDIUM</div>
+    <p style="font-size:11px;">EPC v5.0 and LTSA v4.0 are template only — no signed client contracts yet. Anastasis V4 review ongoing. LOIs not executed.</p>
+  </div>
+  <div class="exec-card">
+    <h4>Lenders / Project Finance</h4>
+    <div class="rating low"><span class="signal-box sig-green"></span>LOW</div>
+    <p style="font-size:11px;">Step-in rights, lender assignment, title transfer at PAC, OEM Direct Warranty Undertaking, and performance securities all present in current drafts.</p>
+  </div>
+  <div class="exec-card">
+    <h4>Insurers / Sureties</h4>
+    <div class="rating high"><span class="signal-box sig-amber"></span>MEDIUM-HIGH</div>
+    <p style="font-size:11px;">CAR policy not yet placed (rough NBI only). AXA pollution gap unresolved. Grawe PI may be wrong policy class. APG timing is a CP — no advance without APG.</p>
+  </div>
+  <div class="exec-card">
+    <h4>Lighthief EU BESS (EMS JV)</h4>
+    <div class="rating low"><span class="signal-box sig-green"></span>LOW</div>
+    <p style="font-size:11px;">Parent guarantee from Lighthief Cyprus adequately backstops EMS obligations. EMS is scoped separately. EPC §4.4 affiliate guarantee is clear.</p>
+  </div>
+</div>
+
+<h3>Three Gating Conditions Before Batch 1 Advance Payment</h3>
+<div class="danger-box">
+<strong>Gate 1 — Linyang Sales Contract signed</strong> (not yet executed): Until signed, there is no contractual commitment from Linyang for B1 pricing, delivery timeline, APG, or performance bond. All downstream client commitments are exposed without this upstream anchor.<br><br>
+<strong>Gate 2 — APG received from Linyang</strong>: EPC v5.0 §10.9 and Sales Contract §9B.4 both make advance payment a CP on APG receipt. Do not remit the €2.44M advance to Linyang until the bank-guaranteed APG for 70% of Component A is in hand.<br><br>
+<strong>Gate 3 — CAR/EAR insurance evidence</strong>: EPC v5.0 §14.4 requires insurance evidence within 14 days of first payment. Marsh rough NBI is not sufficient. Firm placement or binding indication needed by the time client first invoices (1 April 2026 target — now passed; confirm status with Marsh).
+</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     2. SOURCE PACK
+═══════════════════════════════════════════ -->
+<h2 id="s2">2. Source Pack — Contract Document Status</h2>
+<table>
+  <tr><th>Document</th><th>Version / Date</th><th>Location</th><th>Status</th><th>Notes</th></tr>
+  <tr class="amber">
+    <td><strong>Linyang Sales Contract</strong></td>
+    <td>17 Mar 2026</td>
+    <td><code>legal/active/Linyang-sales-contract-17Mar-CLEAN-FOR-SIGNATURE.docx</code></td>
+    <td><span class="badge badge-amber">UNSIGNED</span></td>
+    <td>Clean for signature. Lighthief has counter-signed the redline summary. Awaiting Linyang countersignature.</td>
+  </tr>
+  <tr class="green">
+    <td><strong>Linyang Distribution Agreement</strong></td>
+    <td>v2.1, Nov 2025 / Updated Feb 2026</td>
+    <td><code>legal/Signed Documents/SIGNED_DISTRIBUTION AGREEMENT Lightief 2026.pdf</code></td>
+    <td><span class="badge badge-green">SIGNED</span></td>
+    <td>Executed. Working copy: <code>legal/active/distribution.md</code>. Note typo "Lightief" in filename — no legal effect.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Client EPC Agreement</strong></td>
+    <td>v5.0, 6 May 2026</td>
+    <td><code>legal/templates/client_sales_v5.0.docx</code></td>
+    <td><span class="badge badge-amber">TEMPLATE</span></td>
+    <td>All Anastasis v4 feedback incorporated. Awaiting client negotiations. Anastasis V4 comments doc (6 May) still active in <code>legal/in-negotiation/</code>.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Client LTSA</strong></td>
+    <td>v4.0, 17 Mar 2026</td>
+    <td><code>legal/templates/ClientLTSA_v4.0.docx</code></td>
+    <td><span class="badge badge-amber">TEMPLATE</span></td>
+    <td>v5.0 equivalent for LTSA not yet created. Companion to EPC v5.0 per §11.4.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>OEM Direct Warranty Undertaking</strong></td>
+    <td>v1.0, [●] Mar 2026</td>
+    <td><code>legal/templates/OEM-Direct-Warranty-Undertaking-Linyang.docx</code></td>
+    <td><span class="badge badge-amber">UNSIGNED</span></td>
+    <td>Drafted. Needs Linyang countersignature — to be requested alongside Sales Contract. Date field blank.</td>
+  </tr>
+  <tr>
+    <td><strong>SSOT (financial)</strong></td>
+    <td>24 Mar 2026</td>
+    <td><code>lib/portfolio-data.ts</code></td>
+    <td><span class="badge badge-green">CURRENT</span></td>
+    <td>20/50/20/10 Linyang terms confirmed. 30/55/10/5 client terms. B1: 9 parks, 120 MWh, €15.07M rev, €12.18M CIF.</td>
+  </tr>
+  <tr>
+    <td><strong>Insurance RFP</strong></td>
+    <td>Feb 2026 (Marsh NBI: Mar 2026)</td>
+    <td><code>docs/internal/rfp/rfp-insurance-comprehensive-feb2026.md</code></td>
+    <td><span class="badge badge-amber">PENDING</span></td>
+    <td>Marsh rough NBI received (AXIS+GARD): CAR 0.24–0.29% SI, DSU 0.34–0.36% SI. CHUBB/AGCS still out. No firm placement.</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     3. LEGAL ALIGNMENT MATRIX
+═══════════════════════════════════════════ -->
+<h2 id="s3">3. Cross-Contract Legal Alignment Matrix</h2>
+<p style="margin-bottom:8px;"><strong>Legend:</strong> <span class="badge badge-green">ALIGNED</span> Back-to-back &nbsp; <span class="badge badge-amber">EXPOSED</span> Acceptable but risk exists &nbsp; <span class="badge badge-red">GAP</span> Misaligned / must address</p>
+
+<h3>3.1 Payment Terms &amp; Milestone Structure</h3>
+<table>
+  <tr><th>Topic</th><th>Linyang Sales Contract</th><th>Distribution Agreement</th><th>Client EPC v5.0</th><th>Client LTSA v4.0</th><th>Status</th></tr>
+  <tr>
+    <td><strong>Advance</strong></td>
+    <td>20% within 7 days of contract effectiveness (Apr 1)</td>
+    <td>§11.1A: 25% default / confirmed 20% per RFI</td>
+    <td>30% client advance; triggers 7 days after CP (Connection Terms + Effective Date)</td>
+    <td>Annual fee, invoiced in advance from commissioning date</td>
+    <td class="amber"><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr>
+    <td><strong>Pre-shipment</strong></td>
+    <td>50% within 3 days of FAT + Linyang written confirmation</td>
+    <td>§11.1A: 50%</td>
+    <td>55% at "Equipment ready, factory inspection passed"</td>
+    <td>N/A</td>
+    <td class="green"><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr>
+    <td><strong>DAP / PAC</strong></td>
+    <td>20% on CIF arrival (Limassol port)</td>
+    <td>§11.1A: 20% arrival</td>
+    <td>10% on PAC (commissioning). Retention 5% after 3-month DLP</td>
+    <td>N/A (separate fee schedule)</td>
+    <td class="amber"><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr>
+    <td><strong>Final / SAT</strong></td>
+    <td>10% on SAT / PAC completion</td>
+    <td>§11.1A: 5% SAT + 5% PB</td>
+    <td>5% retention released after 3-month DLP (§7.4)</td>
+    <td>N/A</td>
+    <td class="green"><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr>
+    <td><strong>Late payment interest</strong></td>
+    <td>EU Directive 2011/7/EU (ECB + 8%, simple interest)</td>
+    <td>§11.2–11.3: no default for client-caused delays</td>
+    <td>§5A.4(b)(i): EU Directive 2011/7/EU rate. 30-day overdue triggers suspension; 30 further days triggers termination</td>
+    <td>§7.5: EU Directive 2011/7/EU rate</td>
+    <td class="green"><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr>
+    <td><strong>VAT</strong></td>
+    <td>Prices exclusive of VAT</td>
+    <td>N/A</td>
+    <td>§6.1: ex-VAT; VAT added to invoices per Cyprus law (19%)</td>
+    <td>§7.2(c): VAT per Cyprus law</td>
+    <td class="green"><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr>
+    <td colspan="6">
+      <div class="warning-box"><strong>Key gap — DAP timing mismatch:</strong> Lighthief must pay Linyang's 20% DAP (~€2.44M) on CIF arrival (~Aug 20, 2026) but the next client inflow is PAC 10% (~€1.51M) not until Dec 2026. This creates a 4-month cash gap of ~€2.44M outflow before the next client inflow. The buffer accumulated from client pre-ship vs Linyang pre-ship is ~€4.3M at pre-ship point, but other adder costs (EMS, civil, import duty, transport) consume most of this. Peak thin period: Aug–Sep 2026. See Section 4.</div>
+    </td>
+  </tr>
+</table>
+
+<h3>3.2 Liquidated Damages</h3>
+<table>
+  <tr><th>Topic</th><th>Linyang Sales Contract</th><th>Distribution Agreement</th><th>Client EPC v5.0</th><th>Client LTSA v4.0</th><th>Status</th></tr>
+  <tr>
+    <td><strong>Delay LD basis</strong></td>
+    <td>§9C: Critical Path Equipment only. Full Order Delay = 0.1%/day (days 1–30), 0.15%/day (31–60), 0.2%/day (61+)</td>
+    <td>Anti-circumvention LD via §9: 15–20% of contract value — separate, not equipment delay</td>
+    <td>§8.4: Tied to total Contract Price. Full Park Delay = same escalating bands. Partial Delay = proportional to Affected MWh</td>
+    <td>Availability LD: 5–20% of annual fee reduction (§9.4)</td>
+    <td class="amber"><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr>
+    <td><strong>LD cap</strong></td>
+    <td>10% of LD Value (combined)</td>
+    <td>€500,000 per violation (circumvention)</td>
+    <td>§8.4.4: 10% of Contract Price (combined)</td>
+    <td>20% of annual Service Fee (§9.5)</td>
+    <td class="amber"><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr>
+    <td><strong>Sole remedy</strong></td>
+    <td>Not stated as sole remedy for delay LDs — buyer retains termination rights for >30 days delay</td>
+    <td>N/A</td>
+    <td>§8.4.4: LDs are sole remedy for delay (except termination rights)</td>
+    <td>§9.6: Availability LDs are sole remedy</td>
+    <td class="green"><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr>
+    <td><strong>LD exclusions</strong></td>
+    <td>§9C.2: Buyer payment failure, FM, site readiness, grid specs confirmation</td>
+    <td>N/A</td>
+    <td>§8.4.6: FM, client-caused delays, grid authority, client change orders, customs (proved timely shipment), client late technical confirmation</td>
+    <td>§9.3: Scheduled maintenance, grid, FM, client actions, EMS, non-dispatch</td>
+    <td class="green"><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr>
+    <td colspan="6">
+      <div class="warning-box"><strong>LD cap alignment risk:</strong> Linyang's delay LD cap is 10% of the LD Value (being the CIF contract value). Lighthief's client EPC cap is 10% of total Contract Price (CIF + EPC services). For B1: Linyang cap = ~€1.22M vs client cap = ~€1.51M. The €290K delta must be absorbed by Lighthief from EPC services margin. This is manageable for B1 (margin €1.2M) but tight for lower-margin parks (Kerasi 7.2%, Spanercom 4.4%).</div>
+    </td>
+  </tr>
+</table>
+
+<h3>3.3 Liability Caps &amp; Carve-Outs</h3>
+<table>
+  <tr><th>Tier</th><th>Linyang → Lighthief</th><th>Lighthief → Client</th><th>Back-to-Back?</th><th>Status</th></tr>
+  <tr class="green">
+    <td><strong>Warranty claims</strong></td>
+    <td>10% of price paid for defective Commodities (§8B.1)</td>
+    <td>10% of Contract Price (§13.2(a))</td>
+    <td>Aligned — Linyang supplies replacement parts; Lighthief manages labour pass-through</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="green">
+    <td><strong>General breaches</strong></td>
+    <td>50% of total price paid (§9)</td>
+    <td>50% of Contract Price (§13.2(b))</td>
+    <td>Aligned — both 50%</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="green">
+    <td><strong>Manufacturing defects</strong></td>
+    <td>Uncapped — full cost of repair/replacement incl. shipping under §8B.2 and §9A.1</td>
+    <td>Uncapped — Contractor pursues OEM recovery; flows through to Client per §13.3(d) and §13A.1(e)</td>
+    <td>Effectively back-to-back: OEM bears cost, Lighthief is conduit</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>SOH warranty labour gap</strong></td>
+    <td>SOH remedy = replacement modules only (FOB/CIF). Labour and logistics = Buyer's cost (§8D.1 remedy)</td>
+    <td>Contractor warrants performance including SOH (§10.6); remedy: procures replacement modules from OEM at Contractor's cost</td>
+    <td>PARTIAL gap: Client EPC says Contractor bears replacement cost. Linyang only covers modules CIF. Lighthief absorbs installation labour (~€50K/container) not recovered from Linyang</td>
+    <td><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Coastal warranty (PCS/transformer)</strong></td>
+    <td>Within 500m sea: 2-year PCS/transformer/switchgear warranty (§8A)</td>
+    <td>Same restriction (§10.2(c))</td>
+    <td>Aligned on the restriction. Risk: no parks confirmed coastal but client must declare at signing</td>
+    <td><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr class="green">
+    <td><strong>Consequential loss exclusion</strong></td>
+    <td>§9: loss of profits, sales, business, contracts excluded</td>
+    <td>§13.1: indirect/consequential excluded both ways</td>
+    <td>Aligned</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+</table>
+
+<h3>3.4 Force Majeure</h3>
+<table>
+  <tr><th>Topic</th><th>Linyang Sales Contract</th><th>Distribution Agreement</th><th>Client EPC v5.0</th><th>Client LTSA v4.0</th><th>Status</th></tr>
+  <tr>
+    <td><strong>FM definition</strong></td>
+    <td>§15: circumstances beyond reasonable control (broad, includes governmental actions; grid delays not specified)</td>
+    <td>§18.1: war, natural disasters, pandemics, governmental actions, grid connection delays, regulatory changes (broad)</td>
+    <td>§12.1: war, terrorism, riots, natural disasters, pandemics, sanctions, acts of govt. EXPLICITLY EXCLUDES regulatory changes, grid delays, port congestion, financing difficulties</td>
+    <td>Standard FM definition</td>
+    <td class="amber"><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr>
+    <td><strong>FM termination</strong></td>
+    <td>Not explicit (only suspension rights); Buyer cannot terminate until 30+ days delay</td>
+    <td>§18.3: suspension only, not termination</td>
+    <td>§12.5: either Party may terminate after 6 months FM. Refund formula: value of works completed + materials delivered; excess refunded within 30 days</td>
+    <td>N/A</td>
+    <td class="amber"><span class="badge badge-amber">EXPOSED</span></td>
+  </tr>
+  <tr>
+    <td colspan="6"><div class="warning-box"><strong>FM definition misalignment (medium risk):</strong> The Distribution Agreement allows FM for "grid connection delays and regulatory changes" — these are EXCLUDED from FM in EPC v5.0. If a grid delay triggers FM for Linyang (Distribution Agreement) but not for Lighthief under client EPC v5.0, Lighthief is caught in the middle and must compensate the client while receiving no relief from Linyang. <strong>Mitigation:</strong> Add a grid delay extension-of-time clause to client EPC §8.4.6 as already done (§8.4.6 excludes grid authority delays from LD). This partially addresses it — an extension of time is available even if FM is not. The remaining risk is for termination economics if grid delay exceeds 6 months.</div></td>
+  </tr>
+</table>
+
+<h3>3.5 Title &amp; Risk Transfer</h3>
+<table>
+  <tr><th>Topic</th><th>Linyang Sales Contract</th><th>Client EPC v5.0</th><th>Status</th></tr>
+  <tr class="green">
+    <td><strong>Title passage</strong></td>
+    <td>§7.1: Legal title passes on full payment received by Seller. Until title passes, Buyer is bailee.</td>
+    <td>§7.5: Title passes to Client upon PAC and receipt of PAC payment. Retention does not defer title.</td>
+    <td><span class="badge badge-green">ALIGNED</span> — Lighthief holds title on behalf of client from arrival to PAC payment. Retention does not defer title in either direction.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Risk transfer</strong></td>
+    <td>CIF Limassol: risk transfers to Buyer on loading at Shanghai port</td>
+    <td>§7.2: Risk transfers to Client upon delivery to Site (post-port unloading). Lighthief carries in-transit risk after CIF handoff.</td>
+    <td><span class="badge badge-amber">EXPOSED</span> — Gap from CIF Limassol to Site: Lighthief carries inland transit risk. Mitigated by Soulis €440K GIT + Lighthief Marsh inland transit (€2M/shipment).</td>
+  </tr>
+  <tr class="green">
+    <td><strong>Lender step-in / title</strong></td>
+    <td>N/A (upstream)</td>
+    <td>§7.5(e): early title transfer negotiable if required by lender, provided no additional Lighthief exposure. §16.3: lender assignment without consent.</td>
+    <td><span class="badge badge-green">ALIGNED</span> — Bankability enhanced with lender-friendly clauses.</td>
+  </tr>
+  <tr>
+    <td><strong>Retention of title / Linyang reclaim</strong></td>
+    <td>§7.1–§7.2: Until full payment, Buyer is bailee. Seller may recover goods if Buyer defaults.</td>
+    <td>N/A (downstream title to client)</td>
+    <td><span class="badge badge-amber">EXPOSED</span> — If Lighthief defaults on Linyang DAP (20%), Linyang could theoretically claim goods at site. Client would be unprotected. Mitigation: APG secures advance; BESS is installed and immovable by PAC, making repossession practically impossible post-installation.</td>
+  </tr>
+</table>
+
+<h3>3.6 Warranty — Back-to-Back Coverage</h3>
+<table>
+  <tr><th>Warranty Element</th><th>Linyang → Lighthief</th><th>Lighthief → Client (EPC v5)</th><th>OEM Direct Undertaking</th><th>Status</th></tr>
+  <tr class="green">
+    <td><strong>5-year base warranty</strong></td>
+    <td>5 years from PAC (or 6 months post-ship if earlier) — defects in materials/workmanship</td>
+    <td>§10.1: 5-year unified warranty from Warranty Start Date — entire system</td>
+    <td>§1.1: confirms 5-year warranty, enforceable directly</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="green">
+    <td><strong>SOH guarantees</strong></td>
+    <td>§8D.1: Yr5 ≥85%, Yr10 ≥79.58%, Yr15 ≥70%</td>
+    <td>§10.6(a): same thresholds</td>
+    <td>§3.1: same thresholds confirmed</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="green">
+    <td><strong>RTE guarantee</strong></td>
+    <td>§8D.2: ≥86.32% AC-AC (0.5C, 25±2°C). Linyang PCS-level = 87.8% (excluding cabling).</td>
+    <td>§10.6(b): ≥86.32% at 0.5C. PAC floor at 84% (§9.1 — field tolerance applied)</td>
+    <td>§3.1(b): ≥86.32% confirmed</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="green">
+    <td><strong>Cycle life</strong></td>
+    <td>§8D.3: 7,000 cycles at 0.5C, 90% DoD, to 70% EOL</td>
+    <td>§10.6(c): same</td>
+    <td>§3.1(c): same</td>
+    <td><span class="badge badge-green">ALIGNED</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>SOH remedy scope</strong></td>
+    <td>Replacement modules FOB/CIF Limassol — no labour or logistics (§8D.1 remedy). Labour = Buyer's cost.</td>
+    <td>§10.6(d): "Contractor procures replacement modules from OEM at Contractor's cost" — implies Lighthief covers installation</td>
+    <td>§3.2: OEM supplies modules. Labour not mentioned.</td>
+    <td><span class="badge badge-amber">EXPOSED</span> — Lighthief is on the hook for SOH replacement installation labour (~€50K/event) not recoverable from Linyang. Budget as a warranty reserve cost.</td>
+  </tr>
+  <tr class="green">
+    <td><strong>Warranty voiding — SOC &lt;5%</strong></td>
+    <td>§8D.2 voiding condition: SOC &lt;5% for 7+ consecutive days</td>
+    <td>§10.5(d): same condition. CARVE-OUTS added for grid fault, EMS malfunction, FM, and Contractor monitoring failure.</td>
+    <td>§5.2: standard warranty conditions apply</td>
+    <td><span class="badge badge-green">ALIGNED</span> — EPC carve-outs protect client in most legitimate scenarios. OEM undertaking references same voiding terms.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Coastal restriction</strong></td>
+    <td>§8A: within 500m sea → PCS/transformer/switchgear 2-year warranty only</td>
+    <td>§10.2: same restriction mirrored</td>
+    <td>§5.3: same coastal restriction</td>
+    <td><span class="badge badge-amber">EXPOSED</span> — Client must confirm at signing. If undisclosed coastal park, Lighthief absorbs gap between 5-year EPC warranty promise and 2-year OEM coverage.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Extended warranty (Yr 6–15)</strong></td>
+    <td>Separate arrangement, client → Linyang directly. Rate confirmed.</td>
+    <td>§10.6: "Year 15 subject to extended warranty under LTSA." LTSA governs years 6–15.</td>
+    <td>§7.3: separate arrangement between client and Linyang</td>
+    <td><span class="badge badge-amber">EXPOSED</span> — LTSA §10 handles SOH pass-through but the commercial arrangement (client pays Linyang directly) is not fully documented in the EPC or LTSA. Should be clearly stated in Schedule A.</td>
+  </tr>
+</table>
+
+<h3>3.7 Step-In / Direct Warranty (OEM Undertaking)</h3>
+<table>
+  <tr><th>Topic</th><th>OEM Direct Warranty Undertaking v1.0</th><th>Client EPC v5.0 §10.8</th><th>Status</th></tr>
+  <tr class="green"><td><strong>Trigger conditions</strong></td><td>§4.1: Lighthief insolvency, cessation, distribution agreement termination, failure to respond within 30 days</td><td>References OEM DWU as Schedule C</td><td><span class="badge badge-green">ALIGNED</span></td></tr>
+  <tr class="green"><td><strong>OEM response time</strong></td><td>§4.2: 14 days response; standard terms apply if accepted</td><td>Referenced</td><td><span class="badge badge-green">ALIGNED</span></td></tr>
+  <tr class="amber"><td><strong>Governing law / jurisdiction</strong></td><td>§9: Singapore law, SIAC arbitration. End-customer may apply to Cyprus courts for interim relief.</td><td>EPC governed by Cyprus law</td><td><span class="badge badge-amber">EXPOSED</span> — Split jurisdiction risk. Client enforces OEM undertaking under Singapore/SIAC while main EPC is Cyprus. Cost and time of Singapore arbitration may be a barrier for smaller clients. Consider adding a Cyprus-courts option for claims below €500K.</td></tr>
+  <tr class="amber"><td><strong>Undertaking status</strong></td><td>UNSIGNED — template only</td><td>Referenced as Schedule C (to be attached)</td><td><span class="badge badge-amber">EXPOSED</span> — No client can rely on it until Linyang signs. Must be collected alongside the Sales Contract signature.</td></tr>
+  <tr class="green"><td><strong>Survives termination</strong></td><td>§8.2: survives termination of Distribution Agreement and Sales Contract</td><td>Referenced</td><td><span class="badge badge-green">ALIGNED</span></td></tr>
+</table>
+
+<h3>3.8 Assignment &amp; Lender Step-In</h3>
+<table>
+  <tr><th>Topic</th><th>Client EPC v5.0</th><th>Client LTSA v4.0</th><th>Status</th></tr>
+  <tr class="green"><td><strong>Lender assignment</strong></td><td>§16.3: Client may assign rights to project finance lender without consent</td><td>§21.3A: same</td><td><span class="badge badge-green">ALIGNED</span></td></tr>
+  <tr class="green"><td><strong>Early title for lenders</strong></td><td>§7.5(e): negotiable on request, no additional Lighthief exposure</td><td>N/A</td><td><span class="badge badge-green">ALIGNED</span></td></tr>
+  <tr class="amber"><td><strong>Change of control — Lighthief</strong></td><td>Not addressed (standard practice to allow)</td><td>Not addressed</td><td><span class="badge badge-amber">EXPOSED</span> — If Lighthief Cyprus is sold or restructured, client has no explicit step-in right beyond the OEM undertaking. Consider adding a change-of-control notification clause.</td></tr>
+  <tr class="green"><td><strong>Subcontracting</strong></td><td>§4.3(b): Subcontracting to OEM does not relieve Lighthief of obligations</td><td>§6.5: OEM coordination by SP on behalf of client</td><td><span class="badge badge-green">ALIGNED</span></td></tr>
+</table>
+
+<h3>3.9 Insurance Requirements</h3>
+<table>
+  <tr><th>Insured Party</th><th>Required (Contract)</th><th>Current Status</th><th>Gap</th><th>Status</th></tr>
+  <tr class="amber">
+    <td><strong>Lighthief CAR/EAR</strong></td>
+    <td>EPC §14.1(c): full Contract Price, LEG3 defects clause</td>
+    <td>Rough NBI (AXIS+GARD): 0.24–0.29% SI. Not placed. CHUBB/AGCS pending. Marsh confirmed approaching.</td>
+    <td>No firm placement. Deductible for thermal runaway: €150K–€200K per event.</td>
+    <td><span class="badge badge-amber">PENDING PLACEMENT</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Lighthief PI</strong></td>
+    <td>EPC §14.1(b): €2M/occurrence. Distribution §19.2: €1M (older figure)</td>
+    <td>Grawe PI03-2846 draft filed as architect/engineer class — wrong policy class for EPC/contractor activity</td>
+    <td>Policy class mismatch. Must rebroker as EPC contractor PI. Potential non-disclosure risk.</td>
+    <td><span class="badge badge-red">GAP — MUST FIX</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Lighthief PL</strong></td>
+    <td>EPC §14.1(a): €5M/occurrence</td>
+    <td>No confirmation of €5M policy placed</td>
+    <td>EPC v5 upgraded from €1M (v3) to €5M. Must confirm placed or obtain.</td>
+    <td><span class="badge badge-red">GAP — CONFIRM</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Linyang AXA (OEM PL)</strong></td>
+    <td>EPC §14.2 / Sales §9B.3: €5M/occurrence AXA Tianping</td>
+    <td>Policy terms received. Declarations page (named insured, limits, product schedule) NOT received.</td>
+    <td>Cannot confirm products covered or territorial scope without declarations page.</td>
+    <td><span class="badge badge-amber">EVIDENCE MISSING</span></td>
+  </tr>
+  <tr class="red">
+    <td><strong>Pollution / thermal runaway</strong></td>
+    <td>Comprehensive RFP §3.9: environmental/pollution HIGH priority</td>
+    <td>AXA policy: Absolute Pollution Exclusion. Lighthief RFP includes env liability but not placed.</td>
+    <td>No coverage for BESS thermal runaway with chemical release on either Linyang or Lighthief policies currently confirmed.</td>
+    <td><span class="badge badge-red">CRITICAL GAP</span></td>
+  </tr>
+  <tr class="amber">
+    <td><strong>DSU / Business Interruption</strong></td>
+    <td>RFP includes DSU (12-month, 30-day wait). Not in EPC/LTSA as contractual requirement.</td>
+    <td>Marsh NBI: 0.34–0.36% SI. Not placed.</td>
+    <td>Without DSU, a prolonged outage from insured event does not trigger revenue replacement.</td>
+    <td><span class="badge badge-amber">PENDING</span></td>
+  </tr>
+  <tr>
+    <td><strong>Inland transit</strong></td>
+    <td>EPC §4.2(d): logistics included in Contractor scope</td>
+    <td>Soulis: €440K GIT + Marsh €2M/shipment inland transit (as per ADDERS.craneTransport note)</td>
+    <td>Adequate (max container CIF ~€338K vs €440K Soulis cover)</td>
+    <td><span class="badge badge-green">ADEQUATE</span></td>
+  </tr>
+</table>
+
+<h3>3.10 Anti-Circumvention (Distribution Agreement)</h3>
+<div class="ok-box"><strong>Well protected:</strong> Distribution Agreement §§7–9 provides robust anti-circumvention with: automatic protection on written notification (§7.2), 18-month deal registration protection (§7.4), CLD of 15–20% of total contract value (€500K cap) per violation (§9.2), survival post-termination until Dec 2027 or 24 months whichever is later (§13.5), and Cyprus court jurisdiction option for anti-circumvention disputes (§20.2(b)).</div>
+<div class="warning-box"><strong>Gap to monitor:</strong> Distribution Agreement §11.1A still references 25% advance (old structure) while confirmed structure is 20/50/20/10. Working copy <code>distribution.md</code> shows 25% default in §11.1 and 25% in §11.1A (Group Order). The signed PDF controls — verify it matches confirmed 20% or confirm as commercially aligned through the Sales Contract reference (§1A.1 of Sales Contract subordinates to Distribution Agreement).</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     4. CASHFLOW BASE CASE
+═══════════════════════════════════════════ -->
+<h2 id="s4">4. Cashflow Base Case — Batch 1 Monthly Waterfall</h2>
+
+<p><strong>Assumptions:</strong> Batch 1 — 9 parks, 120 MWh, 34 containers. Revenue: €15,067,200. CIF: €12,177,400. Installed cost: €13,868,100. Gross margin: €1,199,100 (7.96%). Order date: 1 April 2026. FAT: 30 June 2026. CIF arrival: 20 August 2026. PAC: 31 December 2026. Retention release: 31 March 2027 (3-month DLP). All figures are project cashflow only; VAT is excluded (in/out approximately matching). Monthly OPEX: €60,333 (€724K/12).</p>
+
+<table class="cashflow-table">
+  <tr>
+    <th>Month</th>
+    <th>Event</th>
+    <th>Inflow (€)</th>
+    <th>Outflow (€)</th>
+    <th>Net Month (€)</th>
+    <th>Cumulative Balance (€)</th>
+  </tr>
+  <tr>
+    <td>Apr 2026</td>
+    <td>Client advance (30%)</td>
+    <td class="positive">4,520,160</td>
+    <td>—</td>
+    <td class="positive">4,520,160</td>
+    <td class="positive">4,520,160</td>
+  </tr>
+  <tr>
+    <td>Apr 2026</td>
+    <td>Linyang advance (20%) + OPEX</td>
+    <td>—</td>
+    <td class="negative">2,495,813</td>
+    <td class="negative">(2,495,813)</td>
+    <td class="positive">2,024,347</td>
+  </tr>
+  <tr>
+    <td>May 2026</td>
+    <td>Civil works commencement + Voltus advance (50%) + OPEX</td>
+    <td>—</td>
+    <td class="negative">792,333</td>
+    <td class="negative">(792,333)</td>
+    <td class="positive">1,232,014</td>
+  </tr>
+  <tr>
+    <td>Jun 2026</td>
+    <td>Client pre-ship (55%) + FAT</td>
+    <td class="positive">8,286,960</td>
+    <td>—</td>
+    <td class="positive">8,286,960</td>
+    <td class="positive">9,518,974</td>
+  </tr>
+  <tr>
+    <td>Jun 2026</td>
+    <td>Linyang pre-ship (50%) + DEHN/LPS + OPEX</td>
+    <td>—</td>
+    <td class="negative">6,284,033</td>
+    <td class="negative">(6,284,033)</td>
+    <td class="positive">3,234,941</td>
+  </tr>
+  <tr>
+    <td>Jul 2026</td>
+    <td>Import duty (on arrival) + transport + OPEX</td>
+    <td>—</td>
+    <td class="negative">491,253</td>
+    <td class="negative">(491,253)</td>
+    <td class="positive">2,743,688</td>
+  </tr>
+  <tr style="border-top: 2px solid #c62828;">
+    <td><strong style="color:#b71c1c;">Aug 2026</strong></td>
+    <td><strong>Linyang DAP (20%) — CIF arrival + Voltus pre-delivery (20%) + OPEX</strong></td>
+    <td>—</td>
+    <td class="negative"><strong>2,753,613</strong></td>
+    <td class="negative"><strong>(2,753,613)</strong></td>
+    <td style="color:#e65100;font-weight:700;">€ 190,075 ← PEAK RISK</td>
+  </tr>
+  <tr>
+    <td>Sep 2026</td>
+    <td>OPEX only</td>
+    <td>—</td>
+    <td class="negative">60,333</td>
+    <td class="negative">(60,333)</td>
+    <td style="color:#e65100;font-weight:700;">€ 129,742</td>
+  </tr>
+  <tr>
+    <td>Oct 2026</td>
+    <td>VAT Q3 refund (claim Oct 2) + OPEX</td>
+    <td class="positive">860,000</td>
+    <td class="negative">60,333</td>
+    <td class="positive">799,667</td>
+    <td class="positive">929,409</td>
+  </tr>
+  <tr>
+    <td>Nov 2026</td>
+    <td>OPEX only</td>
+    <td>—</td>
+    <td class="negative">60,333</td>
+    <td class="negative">(60,333)</td>
+    <td class="positive">869,076</td>
+  </tr>
+  <tr>
+    <td>Dec 2026</td>
+    <td>Client PAC (10%) + Linyang SAT (10%) + Voltus acceptance (30%) + OPEX</td>
+    <td class="positive">1,506,720</td>
+    <td class="negative">1,573,073</td>
+    <td class="negative">(66,353)</td>
+    <td class="positive">802,723</td>
+  </tr>
+  <tr>
+    <td>Mar 2027</td>
+    <td>Client retention released (5% after 3-month DLP)</td>
+    <td class="positive">753,360</td>
+    <td>—</td>
+    <td class="positive">753,360</td>
+    <td class="positive">1,556,083</td>
+  </tr>
+  <tr style="font-weight:700;background:#e8f5e9;">
+    <td>TOTAL</td>
+    <td>B1 Project cashflow net (before LTSA recurring)</td>
+    <td class="positive">15,927,200</td>
+    <td class="negative">14,510,784</td>
+    <td class="positive">1,416,416</td>
+    <td>—</td>
+  </tr>
+</table>
+
+<div class="danger-box">
+<strong>Critical cash pinch point — August/September 2026:</strong> After paying Linyang DAP 20% (~€2.44M) on CIF arrival, the project cash balance drops to approximately <strong>€190K</strong> before the VAT Q3 refund is received in October. If any single payment is delayed or any unexpected cost arises in this window, the project goes cash-negative. This is the single most important financial risk in Batch 1.
+
+<strong>Mitigation required:</strong> (1) Confirm VAT Q3 refund timing with Sofia at Limassol VAT office — assume 40 days from Oct 2 claim = mid-November at earliest. (2) Establish a €500K–€1M working capital facility (overdraft or short-term revolving credit) as an emergency buffer for this period. (3) Consider staggering Linyang DAP payment by 30 days if contractually permissible (negotiate grace period in Sales Contract). (4) Ensure civil works contract has payment milestone tied to actual delivery, not a fixed June 30 date.
+</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     5. STRESS SCENARIOS
+═══════════════════════════════════════════ -->
+<h2 id="s5">5. Stress Scenarios S1–S5</h2>
+
+<h3>S1 — Payment Delay Stress</h3>
+<p><em>Scenario: Client delays pre-shipment milestone (55%) by 30–60 days. Linyang expects payment within 3 days of FAT.</em></p>
+<table>
+  <tr><th>Impact Item</th><th>Base Case</th><th>S1 (30-day delay)</th><th>S1 (60-day delay)</th></tr>
+  <tr><td>Client pre-ship receipt date</td><td>Jun 30, 2026</td><td>Jul 31, 2026</td><td>Aug 31, 2026</td></tr>
+  <tr><td>Linyang pre-ship due date</td><td>Jul 3, 2026</td><td>Jul 3, 2026</td><td>Jul 3, 2026</td></tr>
+  <tr class="red"><td><strong>Bridge financing needed</strong></td><td>None</td><td><strong>€6.09M for 28 days</strong></td><td><strong>€6.09M for 58 days</strong></td></tr>
+  <tr><td>Estimated financing cost (6% pa)</td><td>—</td><td>~€28,000</td><td>~€58,000</td></tr>
+  <tr><td>Peak cash negative position</td><td>+€190K (Aug)</td><td><strong>-€5,900K (Jul)</strong></td><td><strong>-€5,900K (Jul–Aug)</strong></td></tr>
+  <tr><td>Late payment interest from client</td><td>—</td><td>€6.09M × (ECB+8%)/365 × 30 = ~€30K</td><td>~€60K</td></tr>
+  <tr><td>Linyang suspension right</td><td>N/A</td><td>Triggered if overdue &gt;30 days (Sales Contract §6)</td><td>Linyang may cancel future deliveries</td></tr>
+  <tr><td>Impact on B1 margin</td><td>€1,199,100</td><td>€1,171,100 (-€28K)</td><td>€1,141,100 (-€58K)</td></tr>
+</table>
+<div class="danger-box"><strong>Rating: CRITICAL.</strong> A 30-day client delay on the pre-ship milestone creates a €6M bridge financing requirement with zero contractual relief from Linyang. This is the single highest probability risk event for Batch 1. <strong>Action required:</strong> (1) Confirm a bank facility (even unutilised) before signing client contracts. (2) In client contract negotiations, consider requiring the pre-ship milestone to be funded into escrow at FAT confirmation to avoid reliance on client payment timing. (3) The Distribution Agreement §11.2–11.3 (no default for client delay) is contractual protection from Linyang's perspective — ensure it is relied upon explicitly if a gap occurs.</div>
+
+<h3>S2 — Partial Project Fallout</h3>
+<p><em>Scenario: Only Esperia's 2 parks (Galascope 1 &amp; 2 — 30 MWh, revenue €3.46M) proceed in Batch 1. Other clients drop out or delay.</em></p>
+<table>
+  <tr><th>Metric</th><th>Full B1 (9 parks)</th><th>S2a: Esperia 2 only (30 MWh)</th><th>S2b: 4 parks minimum (60 MWh)</th></tr>
+  <tr><td>Revenue</td><td>€15,067,200</td><td>€3,465,200</td><td>~€7,500,000</td></tr>
+  <tr><td>Linyang CIF cost</td><td>€12,177,400</td><td>~€2,910,000</td><td>~€6,050,000</td></tr>
+  <tr><td>Client advance (30%)</td><td>€4,520,160</td><td>€1,039,560</td><td>€2,250,000</td></tr>
+  <tr><td>Linyang advance (20%)</td><td>€2,435,480</td><td>€582,000</td><td>€1,210,000</td></tr>
+  <tr><td>Buffer after advance net</td><td>€2,084,680</td><td>€457,560</td><td>€1,040,000</td></tr>
+  <tr><td>Adder costs (proportional)</td><td>€1,690,700</td><td>~€563,000</td><td>~€845,000</td></tr>
+  <tr class="red"><td><strong>Cash position after adders</strong></td><td>€394,000+</td><td><strong>-€105,440 (NEGATIVE)</strong></td><td>€195,000</td></tr>
+  <tr><td>Minimum viable B1 parks</td><td>9</td><td colspan="2"><strong>Minimum: 5–6 parks (approx 60–70 MWh) to remain cash-positive throughout</strong></td></tr>
+  <tr><td>Linyang minimum order implication</td><td>No minimum in framework PO structure</td><td>PO can be placed for 2 parks only. No penalty.</td><td>PO for 4–5 parks.</td></tr>
+</table>
+<div class="warning-box"><strong>Rating: HIGH.</strong> If fewer than 5 parks proceed in B1, Lighthief runs into negative cash territory during adder funding (May–Jun 2026 window). The framework PO structure of the Linyang Sales Contract (Lighthief's proposed amendment — no minimum order) protects Lighthief from being over-committed, but cash remains an issue for very small first orders. <strong>Mitigation:</strong> Do not place the Linyang PO until client advance payments are confirmed received. The PO triggers the 7-day advance payment obligation to Linyang.</div>
+
+<h3>S3 — Warranty + LD Event</h3>
+<p><em>Scenario: A park experiences SOH degradation below 85% in Year 5, and separately, an availability miss in Year 2 of the LTSA.</em></p>
+<table>
+  <tr><th>Event</th><th>Probability</th><th>Financial Impact</th><th>Recovery from Linyang</th><th>Net Lighthief Exposure</th></tr>
+  <tr><td>SOH miss — 1 container (5 MWh)</td><td>5–10%/year</td><td>Replacement: modules CIF €300K; installation labour €50K; total €350K</td><td>Modules at Linyang's cost (CIF). ~€300K recovered.</td><td class="amber"><strong>~€50K</strong> (labour gap)</td></tr>
+  <tr><td>SOH miss — full park (20 MWh)</td><td>1–3%/year</td><td>Replacement: 4 containers × €350K = €1.4M</td><td>~€1.2M (modules). Labour/logistics gap: €200K.</td><td class="amber"><strong>~€200K</strong></td></tr>
+  <tr><td>Availability miss — 93–95% (1 year)</td><td>10% (early years)</td><td>LTSA LD: 10% of annual fee. B1: 120 MWh × €1,740 = €208,800/yr × 10% = €20,880</td><td>N/A (LTSA is Lighthief's own service)</td><td class="amber"><strong>€20,880</strong></td></tr>
+  <tr><td>Availability miss — &lt;90% (1 year)</td><td>2–3%</td><td>LTSA LD: 20% of annual fee = €41,760</td><td>N/A</td><td class="amber"><strong>€41,760</strong></td></tr>
+  <tr><td>OEM equipment failure (non-warranty) requiring emergency parts</td><td>5%/year/park</td><td>Emergency sourcing: €20K–€80K per event (spares not in warehouse)</td><td>Linyang covers if under warranty</td><td class="amber"><strong>€20K–€80K</strong></td></tr>
+</table>
+<div class="ok-box"><strong>Rating: MEDIUM — manageable with adequate warranty reserve.</strong> Individual warranty events are financially manageable. Recommended warranty reserve: €50K/year (Years 1–5), increasing to €100K/year (Years 6–15 as fleet ages). This is already partially budgeted in OPEX (€60K/year spares). The key risk is simultaneous failures across multiple parks in the same period — if 5 parks each need module replacements in Year 5, the concurrent labour exposure is €250K–€500K at once.</div>
+
+<h3>S4 — Insurance Gap Event</h3>
+<p><em>Scenario: Thermal runaway at one site with electrolyte release and localised soil contamination. AXA Tianping (Linyang's policy) invokes Absolute Pollution Exclusion. Lighthief's own CAR policy not yet placed.</em></p>
+<table>
+  <tr><th>Cost Component</th><th>Estimated Cost</th><th>Linyang AXA Response</th><th>Lighthief CAR Response</th><th>Net Exposure</th></tr>
+  <tr><td>BESS equipment damage (replacement)</td><td>€300K–€1.5M</td><td>EXCLUDED (pollution exclusion triggers)</td><td>Responds if placed with LEG3 and thermal runaway sublimit. Deductible: €150K–€200K.</td><td class="amber">€150K–€200K (deductible)</td></tr>
+  <tr><td>Soil/groundwater remediation</td><td>€100K–€500K</td><td>EXCLUDED (absolute pollution)</td><td>Depends on env liability cover placement</td><td class="red"><strong>Potentially €0–€500K</strong></td></tr>
+  <tr><td>Third-party property damage</td><td>€50K–€200K</td><td>EXCLUDED (financial loss exclusion)</td><td>Covered under PL/TPL</td><td class="amber">PL deductible only</td></tr>
+  <tr><td>Business interruption / DSU</td><td>6–12 months, ~€200K/park</td><td>N/A</td><td>DSU pending placement (0.34–0.36% SI). Waiting period: 30 days.</td><td class="amber">If DSU placed: 30-day wait period exposure (~€17K). If not: full amount.</td></tr>
+  <tr><td>Third-party bodily injury</td><td>Theoretically unlimited</td><td>Covered under AXA CGL (if pollution is secondary cause)</td><td>Covered under PL (€5M/occurrence when placed)</td><td class="green">Covered</td></tr>
+  <tr class="red"><td colspan="4"><strong>Worst-case uninsured loss (current — pre-placement):</strong></td><td><strong>€500K–€2M</strong></td></tr>
+  <tr class="amber"><td colspan="4"><strong>Worst-case residual loss (post-placement with CAR + env liability):</strong></td><td><strong>€150K–€400K</strong> (deductibles)</td></tr>
+</table>
+<div class="danger-box"><strong>Rating: HIGH until CAR is placed; MEDIUM post-placement.</strong> The current gap between contract signature and insurance placement creates a window of full uninsured exposure. <strong>Immediate action:</strong> (1) Confirm with Marsh whether AXIS+GARD rough NBI can be converted to a binding indicative quotation this week. (2) Request interim CAR/TPL binder from the best-placed insurer to cover the period from client contract signing to policy placement. (3) Do not commence civil works or accept delivery to site until CAR is formally bound. (4) Ensure environmental pollution cover is included — this is the critical gap in both Linyang AXA and current Lighthief program. AXA pollution exclusion is absolute and BESS-relevant.</div>
+
+<h3>S5 — FX / Logistics Shock</h3>
+<p><em>Scenario: EUR/CNY moves &gt;8% (Linyang price adjustment right under Distribution §10.5), and Suez disruption adds 45-day transit delay.</em></p>
+<table>
+  <tr><th>Shock Component</th><th>Base Case</th><th>S5 Impact</th><th>Contractual Protection</th><th>Net Risk</th></tr>
+  <tr><td>EUR/CNY 8% shift</td><td>€12,177,400 CIF (B1)</td><td>+€974,192 (8% of CIF)</td><td>Distribution §10.5: adjustment only for uncommitted orders with 60 days notice. Committed POs are locked at quoted price.</td><td class="green"><strong>€0 if PO placed at confirmed CIF rate</strong> — lock price on PO issuance</td></tr>
+  <tr><td>Logistics cost increase (Suez)</td><td>€161,895 port landing + €85,000 transport</td><td>+€20K (extra port storage) + €17K (container daily cost × 45 days)</td><td>CIF Incoterms — Linyang bears sea freight cost. Lighthief bears port landing and inland.</td><td class="amber"><strong>~€37K</strong> incremental (manageable)</td></tr>
+  <tr><td>Transit delay 45 days</td><td>CIF Aug 20, PAC Dec 31</td><td>CIF Oct 4, PAC Feb 15, 2027</td><td>§8.4.7: Extension of Time for port congestion with proved timely shipment. Client cannot charge delay LDs.</td><td class="amber"><strong>Working capital extended 45 days</strong>: additional ~€60K OPEX + delayed client PAC receipt</td></tr>
+  <tr><td>Client revenue at risk from delay</td><td>PAC Dec 31, 2026</td><td>Parks not operational until Feb 2027 — 45-day lost revenue opportunity</td><td>Client bears operational delay risk; EPC delay LDs excluded under §8.4.6(v)</td><td class="green"><strong>No financial liability to Lighthief</strong> from delay LDs</td></tr>
+  <tr><td>Additional working capital needed (45-day slip)</td><td>—</td><td>Linyang DAP still due on CIF arrival (Oct 4): €2.44M. Next client PAC: Feb 2027. Gap expands from 4 months to 5.5 months.</td><td>Distribution §11.2: client delay extends Lighthief deadline from Linyang without penalty</td><td class="amber"><strong>Peak cash exposure increases</strong> to ~€2.44M from Oct to Feb</td></tr>
+</table>
+<div class="warning-box"><strong>Rating: MEDIUM.</strong> FX risk is fully hedged if POs are placed at confirmed quotation rates (no retrospective adjustment on committed orders). Logistics delays are contractually protected from delay LD claims. The principal risk is the extended working capital requirement during a transit delay — an additional 45 days of thin cash position. Mitigation: same €500K–€1M revolving credit facility recommended for S1 covers S5 as well.</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     6. PARTNER RISK ASSESSMENTS
+═══════════════════════════════════════════ -->
+<h2 id="s6">6. Partner-Level Risk Assessments</h2>
+
+<h3>6.1 Linyang Energy (OEM / Upstream Supplier)</h3>
+<table>
+  <tr><th>Risk Category</th><th>Rating</th><th>Trigger</th><th>Mitigation</th><th>Owner / Deadline</th></tr>
+  <tr class="red">
+    <td><strong>Contract unsigned</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>No signed Sales Contract = no binding obligation on price, delivery, APG, or warranty</td>
+    <td>Chase Linyang for countersignature on 17 Mar clean copy. Simultaneously request OEM DWU signature.</td>
+    <td>Alexander / This week</td>
+  </tr>
+  <tr class="red">
+    <td><strong>APG not received</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Advance payment is a CP on APG receipt (§9B.4). Do not pay without APG.</td>
+    <td>APG is a demand guarantee from a reputable bank covering 70% of Component A (~€8.52M for B1). Confirm bank and form acceptable to Lighthief before signing client EPC.</td>
+    <td>Alexander + Linyang (Kamil/Conor) / Pre-advance</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>AXA declarations page missing</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Cannot confirm €5M PL applies to Cyprus BESS products without declarations/product schedule</td>
+    <td>Request from Linyang (Conor/Kamil). Required before client EPC insurance evidence clause (§14.2) can be satisfied.</td>
+    <td>Alexander / Pre-client signing</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Performance bond timing</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>§9B.2: 5% PB delivered after advance payment — 14 days. If delayed, no remedy against OEM defects beyond warranty claim.</td>
+    <td>Confirm PB is a formal bank guarantee (not just corporate guarantee). Bank must be reputable and international.</td>
+    <td>Alexander / 14 days post-advance</td>
+  </tr>
+  <tr>
+    <td><strong>OEM insolvency / distribution termination</strong></td>
+    <td><span class="badge badge-grey">LOW</span></td>
+    <td>OEM Direct Warranty Undertaking survives termination of Distribution Agreement</td>
+    <td>OEM DWU §8.2 survives termination. Extended warranty arranged direct client–Linyang.</td>
+    <td>Ongoing / structural</td>
+  </tr>
+  <tr>
+    <td><strong>Payment terms misalignment in DA</strong></td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Distribution Agreement §11.1A still references 25% advance; confirmed structure is 20%. Discrepancy between signed DA and Sales Contract.</td>
+    <td>Sales Contract §1A.1 subordinates to Distribution Agreement. Confirm whether DA has been updated or whether Sales Contract governs payment structure.</td>
+    <td>Verify against signed DA PDF / Before advance</td>
+  </tr>
+</table>
+
+<h3>6.2 Lighthief Cyprus Ltd (EPC Contractor / Distributor)</h3>
+<table>
+  <tr><th>Risk Category</th><th>Rating</th><th>Trigger</th><th>Mitigation</th><th>Owner / Deadline</th></tr>
+  <tr class="red">
+    <td><strong>Aug/Sep 2026 cash pinch</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>After Linyang DAP payment (~€2.44M), balance drops to ~€190K. Single unexpected cost or 30-day client pre-ship delay could make this negative.</td>
+    <td>Establish €500K–€1M overdraft facility before April 2026. VAT refund timing with Sofia at Limassol VAT office must be confirmed. Consider staggering Linyang DAP payment by 30 days via Sales Contract negotiation.</td>
+    <td>Alexander / Before Apr 1 advance</td>
+  </tr>
+  <tr class="red">
+    <td><strong>Insurance not placed (PI wrong class)</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Grawe PI03-2846 is architect/engineer class — wrong for EPC contractor activity. CAR/EAR not placed. PL €5M not confirmed.</td>
+    <td>(1) Rebroker PI as EPC contractor PI through Marsh or alternative. (2) Obtain binding CAR indication before first client invoice. (3) Confirm PL €5M coverage.</td>
+    <td>Alexander + Marsh (Aris Samaras) / Within 2 weeks</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>No signed client contracts (EPC/LTSA templates only)</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Revenue and margin projections rely on clients signing at agreed terms. Anastasis V4 review still ongoing for Esperia. Other groups — no executed EPC.</td>
+    <td>Prioritise Esperia EPC (Anastasis) negotiation. Target execution within 4 weeks. Use LOI as interim commitment mechanism. Do not place Linyang PO until at least 5 parks have signed client EPCs or firm LOIs.</td>
+    <td>Alexander / April–May 2026</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>SOH warranty labour gap</strong></td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Linyang covers SOH module replacement CIF; Lighthief covers installation labour (~€50K/container). Not budgeted explicitly in OPEX.</td>
+    <td>Add €50K/year to warranty reserve budget from Year 4 onwards. Negotiate with Linyang to include basic installation supervision in SOH remedy scope.</td>
+    <td>Include in OPEX v2 / Year 4</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Liability cap exposure — general breaches (50%)</strong></td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>For B1, 50% of contract price = ~€7.5M. Lighthief has no parent guarantee and limited capitalisation. A major breach claim (e.g., failed commissioning at multiple parks) could exceed assets.</td>
+    <td>OEM back-to-back for manufacturing defects (uncapped on both sides). EPC services failure risk: CAR policy covers physical damage. PI covers professional services errors. Maintain adequate net assets via retained earnings.</td>
+    <td>Structural / Ongoing</td>
+  </tr>
+  <tr>
+    <td><strong>No parent company guarantee</strong></td>
+    <td><span class="badge badge-grey">LOW</span></td>
+    <td>Lighthief International Ltd (founder holding) has no formal parent guarantee in any contract. Some clients may request this.</td>
+    <td>APG from Linyang is the primary financial security. If clients/lenders require, founder can provide personal guarantee for specific projects (rare for BESS EPC). Not currently requested.</td>
+    <td>As requested / Reactive</td>
+  </tr>
+</table>
+
+<h3>6.3 End Clients / SPVs</h3>
+<table>
+  <tr><th>Client</th><th>Risk</th><th>Rating</th><th>Mitigation</th></tr>
+  <tr class="amber">
+    <td><strong>Esperia / Galascope (Anastasis)</strong></td>
+    <td>Lawyer review (Anastasis) raised 15 points on EPC v4. V5 addresses all but negotiation not complete. Client is largest single group (€36.4M revenue, 11 parks).</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Schedule call with Anastasis on v5.0. Key outstanding: LD basis explanation (partial vs full delay), PAC criteria (84% RTE floor explained), insurance evidence timing (14 days post-first payment). Agree within 4 weeks.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Timotheos / AGM Group</strong></td>
+    <td>3 parks in B1 (€4.72M). Verbally confirmed but no signed EPC or LOI. EPC template not yet sent.</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Send EPC v5.0 and LTSA v4.0 immediately. Request LOI as interim commitment. Include full portfolio commitment mechanism.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Lampros Andreadis</strong></td>
+    <td>2 parks in B1 (€2.12M). Confirmed. No signed documents.</td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Same as Timotheos — send EPC/LTSA package, obtain LOI.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Spanercom (Anarita)</strong></td>
+    <td>2 parks B1 (€4.76M). Lowest margin (4.37%). No signed documents.</td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Confirm Spanercom commitment before including in B1 PO. Low margin leaves no buffer for any cost overrun.</td>
+  </tr>
+  <tr>
+    <td><strong>Karis, Kerasi (B2/B3)</strong></td>
+    <td>Not in B1. Pipeline. No immediate contract risk.</td>
+    <td><span class="badge badge-grey">LOW</span></td>
+    <td>Send LOIs to secure full-portfolio commitment. Track via sales pipeline.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Client non-payment (pre-ship milestone)</strong></td>
+    <td>If client delays or refuses pre-ship milestone, Lighthief needs to fund €6M bridge (S1 scenario)</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>EPC v5 §5A.4(b): payment default triggers interest, suspension, termination rights. Ensure client finance is confirmed before invoicing pre-ship. Consider requesting bank guarantee for client obligations from lenders.</td>
+  </tr>
+</table>
+
+<h3>6.4 Lenders / Project Finance</h3>
+<table>
+  <tr><th>Risk Category</th><th>Rating</th><th>Assessment</th></tr>
+  <tr class="green">
+    <td><strong>Lender step-in rights</strong></td>
+    <td><span class="badge badge-green">LOW</span></td>
+    <td>EPC v5.0 §16.3 and LTSA v4.0 §21.3A allow assignment to project finance lender without consent. Step-in rights effective and clear.</td>
+  </tr>
+  <tr class="green">
+    <td><strong>Title transfer timing</strong></td>
+    <td><span class="badge badge-green">LOW</span></td>
+    <td>Title passes to Client at PAC and PAC payment — lender can take security from PAC. §7.5(e) allows early title negotiation. OEM Direct Warranty Undertaking survives Lighthief failure.</td>
+  </tr>
+  <tr class="green">
+    <td><strong>Performance securities</strong></td>
+    <td><span class="badge badge-green">LOW</span></td>
+    <td>APG (70% Component A), 5% performance bond, OEM 5-year warranty with direct enforcement — adequate for lender comfort.</td>
+  </tr>
+  <tr class="amber">
+    <td><strong>Insurance covenant mismatch</strong></td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Finance docs typically require €5M+ CAR, DSU, specific deductible limits. EPC v5.0 states €5M PL and €2M PI. CAR not yet placed. Lender will request insurance evidence as CP to drawdown. See S4.</td>
+  </tr>
+  <tr class="green">
+    <td><strong>SOH/performance data</strong></td>
+    <td><span class="badge badge-green">LOW</span></td>
+    <td>Lenders can rely on SCADA data ownership (LTSA §5.8 — data owned by client). OEM TÜV EN 50549-2 cert (D 115067 0077). SOH guarantees confirmed in OEM DWU.</td>
+  </tr>
+</table>
+
+<h3>6.5 Insurers / Sureties</h3>
+<table>
+  <tr><th>Item</th><th>Current Status</th><th>Rating</th><th>Immediate Action</th></tr>
+  <tr class="red"><td>CAR/EAR placement</td><td>Rough NBI only (AXIS+GARD). Not binding.</td><td><span class="badge badge-red">CRITICAL</span></td><td>Request firm/binding quote from Marsh this week. Budget: 0.24–0.29% of B1 installed cost ~€13.9M = €33K–€40K premium.</td></tr>
+  <tr class="red"><td>PI — policy class fix</td><td>Grawe PI03-2846 filed as architect/engineer — wrong class for EPC contractor</td><td><span class="badge badge-red">CRITICAL</span></td><td>Contact Grawe or alternative to rebroke as EPC/Contractor PI. Do not submit to clients until corrected.</td></tr>
+  <tr class="red"><td>Pollution / env liability</td><td>Not placed</td><td><span class="badge badge-red">CRITICAL</span></td><td>Confirm with Marsh whether AXIS/GARD CAR quote includes thermal runaway and environmental pollution sublimit. If not, obtain separately.</td></tr>
+  <tr class="amber"><td>PL €5M placement</td><td>Not confirmed</td><td><span class="badge badge-amber">HIGH</span></td><td>Confirm PL €5M policy is placed or obtain quotation. Required per EPC §14.1(a).</td></tr>
+  <tr class="amber"><td>APG bank guarantee</td><td>Pending Linyang</td><td><span class="badge badge-amber">HIGH</span></td><td>APG is a CP before advance payment. Must confirm bank and form before wiring funds.</td></tr>
+  <tr><td>DSU placement</td><td>NBI: 0.34–0.36% SI</td><td><span class="badge badge-grey">MEDIUM</span></td><td>Include in CAR placement package. 12-month indemnity, 30-day waiting period.</td></tr>
+  <tr><td>AXA declarations page</td><td>Missing</td><td><span class="badge badge-amber">MEDIUM</span></td><td>Request from Linyang. Needed to confirm €5M PL scope and product coverage.</td></tr>
+</table>
+
+<h3>6.6 Lighthief EU BESS Ltd (EMS JV Affiliate)</h3>
+<div class="ok-box"><strong>Rating: LOW.</strong> Lighthief Cyprus guarantees the performance of Lighthief EU BESS Ltd's EMS Integration obligations (EPC §4.4(b)). Voltus (Lighthief EU BESS's platform partner) has confirmed pricing (50/20/30 payment terms). Kamil confirmed Linyang team assists with local EMS commissioning. The main risk is scope creep — EMS features, analytics, and market participation algorithms are explicitly excluded from EPC scope (§4.4(d)), which is correctly documented. Key open item: EMS Integration Agreement between Lighthief EU BESS and the client should be drafted and executed as a companion document to the EPC before commissioning begins.</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     7. GO / NO-GO SIGNING CHECKLIST
+═══════════════════════════════════════════ -->
+<h2 id="s7">7. Go / No-Go Signing Checklist</h2>
+<p><strong>Before signing client EPC contracts and placing the Linyang PO, confirm all items below. Items marked CRITICAL must be resolved; HIGH should be resolved before first invoice.</strong></p>
+
+<table class="checklist">
+  <tr><th>#</th><th>Item</th><th>Priority</th><th>Current Status</th><th>Action</th><th>Signed Off?</th></tr>
+  <tr class="red">
+    <td>⛔</td>
+    <td><strong>Linyang Sales Contract (17 Mar) signed by both parties</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Clean copy in active folder. Lighthief signed. Linyang not yet.</td>
+    <td>Chase Kamil/Conor for countersignature with date (Linyang entity Jiangsu). Confirm correct entity signing.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="red">
+    <td>⛔</td>
+    <td><strong>OEM Direct Warranty Undertaking signed by Linyang</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Template complete. Unsigned.</td>
+    <td>Request alongside Sales Contract. One signatory event for both.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="red">
+    <td>⛔</td>
+    <td><strong>APG bank guarantee form confirmed (pre-advance)</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Not received.</td>
+    <td>Linyang to confirm bank (international, reputable), form (demand guarantee), and amount (70% of Component A per PO). Receive physical guarantee before wiring advance.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="red">
+    <td>⛔</td>
+    <td><strong>CAR/EAR insurance — binding quotation received</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Rough NBI only from AXIS+GARD (20 Mar 2026). CHUBB/AGCS pending.</td>
+    <td>Marsh to convert to binding indication or formal quote. Confirm thermal runaway sublimit and pollution exclusion handling. Obtain interim binder if needed.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="red">
+    <td>⛔</td>
+    <td><strong>Professional Indemnity policy — correct class (EPC contractor)</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Grawe PI03-2846 filed as architect/engineer — wrong class.</td>
+    <td>Rebroker as EPC/contractor PI through Marsh or Grawe (updated form). Minimum €2M/occurrence per EPC §14.1(b).</td>
+    <td>☐</td>
+  </tr>
+  <tr class="red">
+    <td>⛔</td>
+    <td><strong>Working capital facility confirmed (€500K–€1M)</strong></td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+    <td>Not in place.</td>
+    <td>Apply for overdraft or revolving credit facility from Cyprus bank before April advance. Required as buffer for Aug/Sep 2026 peak risk period.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="amber">
+    <td>⚠</td>
+    <td><strong>AXA policy declarations page received from Linyang</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Policy terms received 9 Mar. Declarations page (limits, named insured, product schedule) missing.</td>
+    <td>Request from Linyang (Conor). Required to satisfy EPC §14.2 insurance evidence.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="amber">
+    <td>⚠</td>
+    <td><strong>Esperia EPC negotiation complete (Anastasis V5 review)</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>EPC v5.0 sent. Anastasis review of v4 active. V5 addresses all 15 points.</td>
+    <td>Schedule call with Anastasis for v5.0 walk-through. Target execution within 4 weeks. Do not include Esperia parks in Linyang PO until EPC signed.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="amber">
+    <td>⚠</td>
+    <td><strong>Minimum 5 parks' EPCs signed (or firm LOIs) before placing Linyang PO</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>No signed client EPCs. Verbal commitments from Timotheos, Lampros, Spanercom.</td>
+    <td>Obtain LOIs from all B1 clients with binding penalty for withdrawal (at minimum: loss of advance payment). Minimum 5 parks (~60 MWh) required for positive cashflow.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="amber">
+    <td>⚠</td>
+    <td><strong>Performance bond delivery confirmed (5% within 14 days of advance)</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Confirmed in principle (RFI). Formal bank guarantee form not received.</td>
+    <td>Confirm bank guarantee form and delivery timeline with Linyang.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="amber">
+    <td>⚠</td>
+    <td><strong>PL €5M placement confirmed</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Required per EPC v5.0 §14.1(a). No confirmation of placement.</td>
+    <td>Confirm with Marsh whether AXIS+GARD NBI includes €5M PL or obtain separately.</td>
+    <td>☐</td>
+  </tr>
+  <tr class="amber">
+    <td>⚠</td>
+    <td><strong>Distribution Agreement — confirm 20% advance term vs signed DA §11.1A (25%)</strong></td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Signed DA PDF has 25% default / 25% Group Order in §11.1A. SSOT confirms 20% final. Sales Contract confirms 20%.</td>
+    <td>Verify whether signed DA PDF was updated to reflect 20% or whether Sales Contract §1A.1 governs. If DA says 25%, add a written amendment or rely on Sales Contract which controls.</td>
+    <td>☐</td>
+  </tr>
+  <tr>
+    <td>✓</td>
+    <td>VAT refund timing confirmed with Limassol VAT office</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+    <td>Sofia confirmed rush processing from Oct 1, refund ~40 days after claim (mid-Nov).</td>
+    <td>Document in SSOT. Include in cashflow model as Oct/Nov receipt.</td>
+    <td>☑</td>
+  </tr>
+  <tr>
+    <td>✓</td>
+    <td>Linyang EN 50549-2 grid code certificate confirmed (TÜV D 115067 0077)</td>
+    <td><span class="badge badge-grey">LOW</span></td>
+    <td>Confirmed.</td>
+    <td>File with client technical packs.</td>
+    <td>☑</td>
+  </tr>
+  <tr>
+    <td>✓</td>
+    <td>Import duty rate confirmed (2.66% weighted HS codes)</td>
+    <td><span class="badge badge-grey">LOW</span></td>
+    <td>Confirmed. Interfreight customs agent engaged.</td>
+    <td>Include in B1 cashflow as Jul 2026 outflow on arrival.</td>
+    <td>☑</td>
+  </tr>
+  <tr>
+    <td>✓</td>
+    <td>Civil works contractor (€2,000/MWh) confirmed</td>
+    <td><span class="badge badge-grey">LOW</span></td>
+    <td>Confirmed. Payment terms and cancellation terms TBC with specific contractors.</td>
+    <td>Confirm payment milestone (avoid full upfront) and cancellation terms before commencing. Payment and cancellation terms are open items per SSOT.</td>
+    <td>△</td>
+  </tr>
+</table>
+
+<h3>Signability Status by Document</h3>
+<table>
+  <tr><th>Document</th><th>Signability</th><th>Condition</th></tr>
+  <tr class="amber"><td><strong>Linyang Sales Contract (17 Mar)</strong></td><td><span class="badge badge-amber">READY WITH CONDITIONS</span></td><td>Lighthief already counter-signed. Awaiting Linyang. APG must be received before advance is paid (CP is contractual, not a signability blocker per se).</td></tr>
+  <tr class="red"><td><strong>OEM Direct Warranty Undertaking</strong></td><td><span class="badge badge-red">NOT SIGN-READY</span></td><td>Linyang has not signed. Must be collected simultaneously with Sales Contract.</td></tr>
+  <tr class="amber"><td><strong>Client EPC v5.0</strong></td><td><span class="badge badge-amber">READY WITH CONDITIONS</span></td><td>Template ready. Conditions: (1) Schedule A populated per park; (2) Insurance evidence available within 14 days of first payment; (3) Connection Terms received; (4) Upstream contract signed. Ready for distribution to clients now for negotiation.</td></tr>
+  <tr class="amber"><td><strong>Client LTSA v4.0</strong></td><td><span class="badge badge-amber">READY WITH CONDITIONS</span></td><td>Template ready. Companion to EPC v5.0. Conditions: same as EPC. No v5 LTSA drafted — note this gap if any LTSA-specific updates from Anastasis review apply.</td></tr>
+  <tr class="green"><td><strong>Distribution Agreement</strong></td><td><span class="badge badge-green">SIGNED — IN FORCE</span></td><td>Executed. Working copy <code>active/distribution.md</code> — verify §11.1A payment term vs confirmed 20%.</td></tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════
+     8. CLAUSE GAP REGISTER
+═══════════════════════════════════════════ -->
+<h2 id="s8">8. Clause Gap Register — Amendment Actions</h2>
+<p>Items requiring contract amendments or side letters to fully close all identified gaps.</p>
+
+<table>
+  <tr><th>#</th><th>Document</th><th>Section</th><th>Issue</th><th>Proposed Fix</th><th>Priority</th></tr>
+  <tr class="red">
+    <td>G1</td>
+    <td>Linyang Sales Contract</td>
+    <td>§11.1A (via DA)</td>
+    <td>Distribution Agreement §11.1A references 25% advance (Group Order structure). Sales Contract confirms 20%. Discrepancy.</td>
+    <td>Add a side letter to the Distribution Agreement confirming payment terms are 20/50/20/10 as per RFI final confirmation. Or confirm Sales Contract §1A.1 supersedes.</td>
+    <td><span class="badge badge-red">CRITICAL</span></td>
+  </tr>
+  <tr class="red">
+    <td>G2</td>
+    <td>OEM DWU</td>
+    <td>§9 (Jurisdiction)</td>
+    <td>Singapore law / SIAC arbitration for OEM DWU. Client EPC is Cyprus law. Split jurisdiction creates enforcement barrier for smaller clients.</td>
+    <td>Add to OEM DWU: "Notwithstanding §9.1, for claims below EUR 500,000 arising from Products installed in Cyprus, either party may submit to Cyprus courts." Or ensure EPC §10.8 Schedule C reference and Cyprus interim relief clause (§9.3 of DWU) is highlighted to clients.</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+  </tr>
+  <tr class="amber">
+    <td>G3</td>
+    <td>Client EPC v5.0</td>
+    <td>§10.6 / §10 generally</td>
+    <td>SOH remedy: Lighthief says "procures replacement modules at Contractor's cost" but Linyang covers modules only (not labour/logistics). Labour gap ~€50K/container.</td>
+    <td>Amend EPC §10.6(d) to: "Contractor procures replacement modules from OEM. Replacement module cost is at OEM's cost (CIF Limassol). Installation labour and site logistics costs are at the Contractor's cost." This makes the limitation explicit and avoids client claim for full replacement cost including labour from Linyang.</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+  </tr>
+  <tr class="amber">
+    <td>G4</td>
+    <td>Client EPC v5.0</td>
+    <td>§12.1 vs DA §18.1</td>
+    <td>EPC v5 excludes grid delays from FM. Distribution Agreement §18.1 includes grid connection delays as FM. If grid delay > 6 months, Lighthief can't terminate upstream (DA) but can be terminated downstream (EPC) with refund obligation.</td>
+    <td>Add to EPC §12.5: "Where termination is triggered by prolonged grid authority delay, the Contractor's refund obligation is limited to advance and pre-ship payments received less value of works completed. No interest applies to refunded amounts if grid delay is the sole cause." This limits Lighthief's refund exposure to its actual upstream position.</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+  </tr>
+  <tr class="amber">
+    <td>G5</td>
+    <td>Client EPC v5.0</td>
+    <td>§6.2 / Schedule A</td>
+    <td>Extended warranty (Years 6–15) commercial arrangement (client pays Linyang directly) is referenced in §10.6(a) but not documented in Schedule A or the EPC body.</td>
+    <td>Add a Schedule D (Extended Warranty Framework) to EPC v5.0 confirming: (1) Extended warranty is a separate commercial arrangement; (2) Lighthief facilitates introduction of client to Linyang; (3) Linyang's confirmed rates (€1,661.68/MWh Yr6–10; €2,083.72/MWh Yr11–15) apply as reference; (4) Lighthief has no liability for Linyang's extended warranty delivery.</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+  </tr>
+  <tr class="amber">
+    <td>G6</td>
+    <td>Client EPC v5.0</td>
+    <td>§16 (General)</td>
+    <td>No change-of-control clause for Lighthief. If Lighthief Cyprus is sold/restructured, client has no explicit rights beyond OEM DWU.</td>
+    <td>Add §16.4: "If the Contractor undergoes a change of control materially affecting its ability to perform, the Contractor shall notify the Client within 30 Business Days. The Client shall have 30 days to assess impact and, if materially adverse, may terminate without penalty, retaining all paid advance amounts as credit."</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+  </tr>
+  <tr class="amber">
+    <td>G7</td>
+    <td>Client LTSA v4.0</td>
+    <td>§4.3(c)</td>
+    <td>"Cost of replacement parts is included" in Tier B/C corrective maintenance. This conflicts with the carve-out in §4.4(g) for battery degradation beyond Guaranteed SOH. Ambiguity on who pays for parts when SOH drops below threshold in a corrective maintenance event.</td>
+    <td>Amend §4.3(c) to: "Cost of replacement parts is included, except for battery cell/module replacement arising from SOH degradation beyond the Guaranteed SOH, which is governed by Section 10 (OEM-backed SOH warranty) and the extended warranty arrangement."</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+  </tr>
+  <tr class="amber">
+    <td>G8</td>
+    <td>Client LTSA v4.0</td>
+    <td>§9.4 (Availability LD table)</td>
+    <td>Availability LD structure (5–20% of annual fee reduction) is generous to Lighthief vs market standard (often 100% of fee as LD). For lenders relying on LTSA revenue stream, this may be seen as weak protection. Also, availability LD is capped at 20% of fee — if availability is 80%, client only gets 20% fee reduction, not 80%.</td>
+    <td>No change required immediately — cap is commercially negotiated. However, document this in the bankability brief as a conscious choice: Lighthief caps LTSA LD at 20% to maintain service provider viability; absolute guarantee is provided by the performance securities in the EPC. Ensure lenders understand this structure.</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+  </tr>
+  <tr>
+    <td>G9</td>
+    <td>Linyang Sales Contract</td>
+    <td>§9C / LD cap</td>
+    <td>Linyang LD cap: 10% of LD Value (CIF). Lighthief client LD cap: 10% of Contract Price (CIF + EPC). Delta: ~€290K for B1 (Lighthief absorbs from EPC margin).</td>
+    <td>No amendment needed if margin is adequate. For Spanercom (4.37% margin, €207K): the delta (~€43K for their parks) is within margin. Monitor on low-margin parks in B3.</td>
+    <td><span class="badge badge-grey">LOW</span></td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- FOOTER -->
+<div style="text-align:center;color:#888;font-size:11px;margin-top:32px;border-top:1px solid #e0e4ef;padding-top:16px;">
+  <strong>LIGHTHIEF CYPRUS LTD</strong> — CONFIDENTIAL &amp; PRIVILEGED<br>
+  LCY-RISK-001 v1.0 &nbsp;|&nbsp; Prepared 6 May 2026 &nbsp;|&nbsp; Based on SSOT: <code>lib/portfolio-data.ts</code> (24 Mar 2026) &amp; contract set as at 6 May 2026<br>
+  Review cycle: Update after each new contract execution or material financial change. Next review: On Linyang Sales Contract signature.
+</div>
+
+</div>
+</body>
+</html>
