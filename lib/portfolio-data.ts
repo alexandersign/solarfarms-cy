@@ -53,22 +53,22 @@ export const PORTFOLIO = {
 // ─────────────────────────────────────────────
 
 export const FINANCIALS = {
-  // GROUP ORDER (28 parks, post-ABIO, Galascope resized):
-  cifTotal: 48_803_528,       // Corrected: +€359,844 for Galascope resize (G1 €1,848,712 + G2 €974,457)
-  cifAvgPerMWh: 98_295,       // 48,803,528 / 496.5 MWh
+  // GROUP ORDER (28 parks, post-ABIO, Galascope + Spanercom CIF corrected):
+  cifTotal: 48_255_355,       // Corrected: Galascope +€359,844 AND Spanercom -€548,173 → net -€188,329 vs prior
+  cifAvgPerMWh: 97_185,       // 48,255,355 / 496.5 MWh
 
   physicalAdders: 4_200_000,  // Budget estimate; ADDERS.* totals are stale 51-park figures — see notes
   emsScadaTotal: 2_158_730,   // Corrected: Disperon v3 pricing, 28 parks, flat €15K SCADA Local all parks
 
-  installedCost: 55_162_258,  // cifTotal + physicalAdders + emsScadaTotal (group order only)
-  installedCostAvgPerMWh: 111_060,
+  installedCost: 54_614_085,  // cifTotal + physicalAdders + emsScadaTotal (group order only)
+  installedCostAvgPerMWh: 110_000,
 
-  clientRevenue: 61_391_195,  // Unchanged — Galascope revenue already used correct 20/10 MWh sizing
+  clientRevenue: 61_391_195,  // Unchanged
   clientRevenueAvgPerMWh: 123_650,
 
-  netMargin: 6_228_937,       // Revenue − installedCost (group order; margin reduced vs prior due to CIF correction)
-  netMarginPct: 10.15,
-  netMarginRounded: 10.2,
+  netMargin: 6_777_110,       // Revenue − installedCost. Improved vs prior — Spanercom was overcosted by €548K
+  netMarginPct: 11.04,
+  netMarginRounded: 11.0,
 
   // STANDALONE (Aeolian Dynamics — not in group order):
   aeolianRevenue: 2_660_000,
@@ -194,10 +194,17 @@ export const GROUPS: GroupData[] = [
   {
     name: 'Spanercom (Anarita)', key: 'spanercom',
     parks: 2, mw: 10.0, mwh: 40.00,
-    cif: 4_245_597, installedCost: 4_552_264, revenue: 4_760_000, margin: 207_736, marginPct: 4.37,
+    // CIF CORRECTED 8 May 2026: Anarita 1 + 2 are each 5 MW / 20 MWh = identical config to
+    // Esperia Famagusta 2 (LY202601271 Jan 2026). Old SSOT CIF €4,245,597 was a stale estimate
+    // at €106/kWh. Correct CIF = 2 × €1,848,712 = €3,697,424 (€92.44/kWh, same as Famagusta 2).
+    cif: 3_697_424,       // Corrected: 2 × €1,848,712 from LY202601271 (was €4,245,597 — overestimated by €548,173)
+    installedCost: 4_170_754, // Corrected: CIF + phys (2×€158,222) + EMS (€97,897 + €37,897)
+    revenue: 4_760_000,
+    margin: 589_246,      // Corrected: €4,760,000 − €4,170,754 (was €207,736 — margin now 12.4%)
+    marginPct: 12.38,
     signingStatus: 'high',
     signingProbabilityPct: 85,
-    signingNote: 'Active negotiation. EPC to be sent. Low margin (4.37%) — confirm Voltus EMS quote before committing.',
+    signingNote: 'Active negotiation. EPC to be sent. Margin corrected to 12.4% (old 4.37% was wrong CIF estimate). Same hardware as Galascope 1, higher client price €119K/MWh.',
   },
   {
     name: 'Timotheos Timotheou', key: 'timotheos',
