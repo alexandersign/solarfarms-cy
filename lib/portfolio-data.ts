@@ -4,10 +4,17 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 24 March 2026
-// Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx
+// Last updated: 8 May 2026
+// Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Disperon SHA v5
 // ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
-// Spanercom (Anarita 2×5/20, €119k/MWh client offer) — Batch 1.
+// Spanercom (Anarita 2×5/20, €119k/MWh client offer) — high probability.
+// Galascope resized: G1 15→20 MWh (CIF €1,848,712), G2 8→10 MWh (CIF €974,457).
+//   CIF sourced from same-config park quotations (LY202601271 Jan 2026).
+// Aeolian Dynamics added: 6.5 MW / 20 MWh wind hybrid, Larnaca. Final offer €2,660,000.
+// EMS/SCADA: corrected to Disperon v3 pricing — flat €15K SCADA Local ALL parks (not tiered).
+//   SCADA Global €60K first park per group. Annual maintenance: €3K/park + €12K/group.
+//   Total 28-park upfront EMS/SCADA: €2,158,730.
+// SIGNING STATUS: Esperia (incl. Galascope) confirmed signing. Others pending.
 // ===================================================================
 
 export type DataStatus = 'confirmed' | 'quoted' | 'estimated' | 'pending' | 'client-paid' | 'superseded';
@@ -24,16 +31,21 @@ interface MetaInfo {
 // ─────────────────────────────────────────────
 
 export const PORTFOLIO = {
-  parks: 28,
-  mw: 134,
-  mwh: 496.50,
-  containers: 138,
+  parks: 29,        // 28 group-order parks + 1 Aeolian standalone
+  mw: 141,          // 134 group order + 6.5 Aeolian
+  mwh: 516.50,      // 496.5 group order + 20 Aeolian
+  containers: 144,  // 138 group order + 6 Aeolian (4 BESS + 2 MV skids)
   districts: 5,
   orderDate: '2026-04-01',
   firstClientInvoiceDate: '2026-04-01',
   vatStartQuarter: 'Q2 2026',
-  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx', date: '2026-02-20',
-           note: 'April 1 start confirmed: no client invoice or payment before 1 Apr 2026. Clean Q1 VAT. Linyang production order may be placed earlier.' } as MetaInfo,
+  // SIGNING STATUS (8 May 2026):
+  // CONFIRMED:       Esperia Energy (incl. Galascope) — EPC signing imminent
+  // HIGH (80-90%):   Spanercom (Anarita), Aeolian Dynamics (wind hybrid)
+  // PENDING (50%):   Timotheos Timotheou, Lampros Andreadis
+  // UNCONFIRMED:     A. Kerasi, Ioannis Karis
+  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + May 2026 signing updates', date: '2026-05-08',
+           note: 'Galascope resized (G1 20MWh, G2 10MWh). Aeolian added. Signing: Esperia confirmed, Spanercom/Aeolian high, Timotheos/Lampros 50%.' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -41,28 +53,35 @@ export const PORTFOLIO = {
 // ─────────────────────────────────────────────
 
 export const FINANCIALS = {
-  cifTotal: 48_443_684,
-  cifAvgPerMWh: 97_570,
+  // GROUP ORDER (28 parks, post-ABIO, Galascope resized):
+  cifTotal: 48_803_528,       // Corrected: +€359,844 for Galascope resize (G1 €1,848,712 + G2 €974,457)
+  cifAvgPerMWh: 98_295,       // 48,803,528 / 496.5 MWh
 
-  physicalAdders: 4_200_000,
-  emsScadaTotal: 2_200_000,
+  physicalAdders: 4_200_000,  // Budget estimate; ADDERS.* totals are stale 51-park figures — see notes
+  emsScadaTotal: 2_158_730,   // Corrected: Disperon v3 pricing, 28 parks, flat €15K SCADA Local all parks
 
-  installedCost: 54_763_066,
-  installedCostAvgPerMWh: 110_300,
+  installedCost: 55_162_258,  // cifTotal + physicalAdders + emsScadaTotal (group order only)
+  installedCostAvgPerMWh: 111_060,
 
-  clientRevenue: 61_391_195,
+  clientRevenue: 61_391_195,  // Unchanged — Galascope revenue already used correct 20/10 MWh sizing
   clientRevenueAvgPerMWh: 123_650,
 
-  netMargin: 6_628_129,
-  netMarginPct: 10.80,
-  netMarginRounded: 10.8,
+  netMargin: 6_228_937,       // Revenue − installedCost (group order; margin reduced vs prior due to CIF correction)
+  netMarginPct: 10.15,
+  netMarginRounded: 10.2,
+
+  // STANDALONE (Aeolian Dynamics — not in group order):
+  aeolianRevenue: 2_660_000,
+  aeolianCif: 1_951_711,      // CIF LY202601271 (6.5 MW / 20 MWh = same as Esperia Famagusta)
+  aeolianMargin: 402_083,     // Revenue €2,660,000 − installed ~€2,257,917 (see AEOLIAN constant)
 
   importDutyRate: 2.66,
-  importDutyTotal: 2_286_640.47,
+  importDutyTotal: 2_298_174, // 2.66% × 48,803,528 (corrected cifTotal)
 
   vatRate: 19,
 
-  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Spanercom 2×5/20 revision', date: '2026-03-24' } as MetaInfo,
+  _meta: { source: 'v4 Excel + Galascope CIF correction (LY202601271) + Disperon v3 EMS pricing', date: '2026-05-08',
+           note: 'ADDERS section totals are STALE (51-park figures from Feb 2026 Excel). Use FINANCIALS totals for current 28-park portfolio. Aeolian tracked separately.' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -93,15 +112,32 @@ export const ADDERS = {
   mvCabling:          { total: 245_000.00,   status: 'estimated' as DataStatus, rate: '€3,500 per MV feeder' },
   mvTerminations:     { total: 154_000.00,   status: 'estimated' as DataStatus, rate: '€2,200 per MV feeder' },
   protectionEng:      { total: 275_000.00,   status: 'estimated' as DataStatus, rate: '€5K (≤3 cnt) / €6K (≥4 cnt)' },
-  remoteTripScada:    { total: 153_000.00,   status: 'estimated' as DataStatus, rate: '€3,000 per park' },
-  upsAuxiliary:       { total: 102_000.00,   status: 'estimated' as DataStatus, rate: '€2,000 per park' },
+  remoteTripComms:    { total: 153_000.00,   status: 'estimated' as DataStatus, rate: '€3,000 per park',
+                        note: 'Physical RTU/modem hardware for DSO grid remote trip compliance. SEPARATE from Voltus SCADA monitoring platform — do not confuse.' },
+  upsAuxiliary:       { total: 102_000.00,   status: 'estimated' as DataStatus, rate: '€2,000 per park',
+                        note: 'Site-level UPS for protection relays and RTU. Linyang container has its own internal UPS (BAMS). This is the external site-level supply.' },
 
-  // EMS / SCADA (Voltus)
-  voltusEms:       { total: 2_298_609.00, status: 'quoted' as DataStatus, supplier: 'Voltus' },
-  scadaLocal:      { total: 1_275_000.00, status: 'quoted' as DataStatus, supplier: 'Voltus', note: '€15K basic (≤8 MWh) / €30K advanced (≥10 MWh)' },
-  scadaGlobal:     { total: 420_008.00,   status: 'quoted' as DataStatus, supplier: 'Voltus', note: '€60K per group (3 groups) + standalone' },
+  // EMS / SCADA — Disperon brand (Lighthief EUBESS Ltd / Voltus JV)
+  // Source: Voltus v3 pricing CSV (voltusv3pricing) — flat rates, container-count-based
+  // SHA v5: Exhibit C rates BLANK — to be agreed within 14 days of execution (BLOCKER for project brief submission)
+  // Upfront structure: EMS hardware+install (per container config) + SCADA Local €15K/park + SCADA Global €60K/first park per group
+  // Annual recurring: SCADA Local maint €3K/park/yr + SCADA Global maint €12K/group/yr (= €180K/yr for 28 parks, 8 groups)
+  // EMS Subscription (SHA §6.7): €400/MWh/yr charged to client; 20% to Voltus (€80/MWh/yr); Lighthief EUBESS retains 80% (€320/MWh/yr)
+  // SCADA Local rate: FLAT €15,000/park ALL parks (v3 corrected — v2/v4-Excel tier of €30K for ≥10MWh was WRONG)
+  // SCADA Global: €60,000 per client group (first park only; subsequent parks in same group = zero additional)
+  // SCADA Global for margin: allocate proportionally by MWh within group for per-park internal calculations
+  emsHardwareInstall: { total: 1_258_730,   status: 'quoted' as DataStatus, supplier: 'Voltus/Disperon',
+                        note: 'EMS System + Hardware + Remote Config + On-site Install. 28 parks. Container-count-based from v3 pricing CSV.' },
+  scadaLocal:         { total: 420_000,     status: 'quoted' as DataStatus, supplier: 'Voltus/Disperon',
+                        rate: '€15,000/park flat (ALL parks — NOT tiered)', note: '28 parks × €15K = €420K. v4 Excel used €30K for ≥10MWh — CORRECTED. +€3K/park/yr maintenance.' },
+  scadaGlobal:        { total: 480_000,     status: 'quoted' as DataStatus, supplier: 'Voltus/Disperon',
+                        rate: '€60,000 per client group (first park only)', note: '8 groups × €60K = €480K. +€12K/group/yr maintenance. Allocate proportionally by MWh for per-park margins.' },
+  // Legacy names kept for backwards compatibility:
+  voltusEms:       { total: 2_298_609.00, status: 'superseded' as DataStatus, supplier: 'Voltus',
+                     note: 'STALE — 51-park figure from v4 Excel. Use emsHardwareInstall + scadaLocal + scadaGlobal above.' },
 
-  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx', date: '2026-02-20' } as MetaInfo,
+  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Voltus v3 pricing CSV (voltusv3pricing) + Disperon SHA v5', date: '2026-05-08',
+           note: 'WARNING: Most ADDERS totals are stale 51-park figures from v4 Excel (Feb 2026). Only craneTransport, emsHardwareInstall, scadaLocal, scadaGlobal have been corrected for the current 28-park portfolio. Use FINANCIALS.physicalAdders (€4.2M) and FINANCIALS.emsScadaTotal (€2,158,730) for portfolio totals.' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -130,86 +166,191 @@ interface GroupData {
   revenue: number;
   margin: number;
   marginPct: number;
+  signingStatus: 'confirmed' | 'high' | 'pending' | 'unconfirmed';
+  signingProbabilityPct: number;  // 100 = confirmed, 80 = high, 50 = pending, etc.
+  signingNote?: string;
 }
 
 // ABIO Power REMOVED Mar 2026 — chose another supplier (CATL at €124K/MWh flat)
+// Signing status updated 8 May 2026:
+//   confirmed  = EPC being executed now
+//   high       = ~80-90% probability, active negotiation
+//   pending    = ~50% probability, part of group order discussion
+//   unconfirmed= no active timeline
 export const GROUPS: GroupData[] = [
-  { name: 'Esperia Energy', key: 'esperia', parks: 11, mw: 79.5, mwh: 315.50, cif: 28_802_957.61, installedCost: 32_218_768.88, revenue: 36_412_811.96, margin: 4_194_043.09, marginPct: 11.52 },
-  { name: 'Timotheos Timotheou', key: 'timotheos', parks: 9, mw: 25.5, mwh: 81.00, cif: 8_994_033.00, installedCost: 10_408_394.01, revenue: 11_818_919.17, margin: 1_410_525.16, marginPct: 11.93 },
-  { name: 'A. Kerasi', key: 'kerasi', parks: 3, mw: 6.5, mwh: 20.00, cif: 2_283_660.00, installedCost: 2_841_296.88, revenue: 3_061_369.92, margin: 220_073.03, marginPct: 7.19 },
-  { name: 'Lampros Andreadis', key: 'lampros', parks: 2, mw: 4.8, mwh: 15.00, cif: 1_593_785.00, installedCost: 1_923_085.24, revenue: 2_117_419.61, margin: 194_334.36, marginPct: 9.18 },
-  { name: 'Ioannis Karis', key: 'karis', parks: 1, mw: 7.7, mwh: 25.00, cif: 2_523_652.00, installedCost: 2_819_401.34, revenue: 3_220_674.61, margin: 401_273.27, marginPct: 12.46 },
-  { name: 'Spanercom (Anarita)', key: 'spanercom', parks: 2, mw: 10.0, mwh: 40.00, cif: 4_245_597.00, installedCost: 4_552_264.00, revenue: 4_760_000.00, margin: 207_736.00, marginPct: 4.37 },
+  {
+    name: 'Esperia Energy (incl. Galascope)', key: 'esperia',
+    parks: 11, mw: 79.5, mwh: 315.50,
+    // CIF corrected 8 May 2026: Galascope G1 €1,848,712 (was €1,592,018) + G2 €974,457 (was €871,308) → +€359,844
+    cif: 29_162_802,
+    installedCost: 32_574_613,  // prior installedCost + €359,844 CIF delta (approx; full recalc pending)
+    revenue: 36_412_812,        // unchanged — revenue already used correct Galascope 20/10 MWh sizing
+    margin: 3_838_199,          // revenue − installedCost (reduced vs prior: CIF delta -€359,844 + EMS savings +€25K)
+    marginPct: 10.54,
+    signingStatus: 'confirmed',
+    signingProbabilityPct: 100,
+    signingNote: 'EPC v5.0 sent to Anastasis (Esperia lawyer). Galascope parks (Dino) confirmed. Signing imminent.',
+  },
+  {
+    name: 'Spanercom (Anarita)', key: 'spanercom',
+    parks: 2, mw: 10.0, mwh: 40.00,
+    cif: 4_245_597, installedCost: 4_552_264, revenue: 4_760_000, margin: 207_736, marginPct: 4.37,
+    signingStatus: 'high',
+    signingProbabilityPct: 85,
+    signingNote: 'Active negotiation. EPC to be sent. Low margin (4.37%) — confirm Voltus EMS quote before committing.',
+  },
+  {
+    name: 'Timotheos Timotheou', key: 'timotheos',
+    parks: 9, mw: 25.5, mwh: 81.00,
+    cif: 8_994_033, installedCost: 10_408_394, revenue: 11_818_919, margin: 1_410_525, marginPct: 11.93,
+    signingStatus: 'pending',
+    signingProbabilityPct: 50,
+    signingNote: 'Part of group order discussion. Verbal confirmation of intent. No signed EPC. 50% probability.',
+  },
+  {
+    name: 'Lampros Andreadis', key: 'lampros',
+    parks: 2, mw: 4.8, mwh: 15.00,
+    cif: 1_593_785, installedCost: 1_923_085, revenue: 2_117_420, margin: 194_334, marginPct: 9.18,
+    signingStatus: 'pending',
+    signingProbabilityPct: 50,
+    signingNote: 'Part of group order discussion. Verbal confirmation. No signed EPC. 50% probability.',
+  },
+  {
+    name: 'A. Kerasi', key: 'kerasi',
+    parks: 3, mw: 6.5, mwh: 20.00,
+    cif: 2_283_660, installedCost: 2_841_297, revenue: 3_061_370, margin: 220_073, marginPct: 7.19,
+    signingStatus: 'unconfirmed',
+    signingProbabilityPct: 30,
+    signingNote: 'No active timeline. Low margin (7.19%). Await Esperia/Timotheos signing before chasing.',
+  },
+  {
+    name: 'Ioannis Karis', key: 'karis',
+    parks: 1, mw: 7.7, mwh: 25.00,
+    cif: 2_523_652, installedCost: 2_819_401, revenue: 3_220_675, margin: 401_273, marginPct: 12.46,
+    signingStatus: 'unconfirmed',
+    signingProbabilityPct: 30,
+    signingNote: 'No active timeline. Good margin. Revisit after B1 committed.',
+  },
 ];
 
 // ─────────────────────────────────────────────
-// BATCH SCHEDULE (Updated 17 April 2026)
-// B1: 9 parks / 120 MWh — confirmed, order Apr 2026, CIF Aug 2026, PAC Dec 2026
-// B2: 2 parks / 45 MWh  — pipeline Q2 2026 order (Esperia Fam + Karis); ABIO tracked separately
-// B3: 11 parks / 226 MWh — pipeline Q4 2026 order (Esperia B3 + Timotheos rem. + Kerasi)
-// ESP_2027: 1 park / 20 MWh — standalone Q3 2027 order (Esperia Famagusta)
-// ESP_2028: 5 parks / 87.5 MWh — Esperia Tseri, separate 2028 order
-// ABIO_ELESTORE: 5 parks / 200 MWh — pending re-engagement (20% probability)
-// Previous 3-batch plan (27 Feb 2026 RFIs) was aspirational — rebuilt from confirmed commitments.
+// BATCH SCHEDULE (Updated 8 May 2026)
+// Restructured to reflect actual signing status:
+// B1_ESPERIA: Galascope 1+2 (Esperia confirmed) — order on EPC signing
+// B1_CONDITIONAL: Timotheos (3 parks) + Lampros (2 parks) + Spanercom (2 parks) — pending their EPC
+// B2: Esperia main portfolio (Famagusta + Limassol + Frenaros) — pipeline Q3 2026
+// B3: Remaining Esperia Tseri + conditional group order — pipeline 2027
+// AEOLIAN: Standalone, independent timeline — high probability
 // ─────────────────────────────────────────────
 
-export type BatchStatus = 'confirmed' | 'pipeline' | 'unplaced';
+export type BatchStatus = 'confirmed' | 'pipeline' | 'conditional' | 'unplaced';
 
 export const BATCHES = [
   {
-    id: 1, name: 'Batch 1: Confirmed',
+    id: 1, name: 'Batch 1 — Esperia/Galascope (Confirmed)',
     status: 'confirmed' as BatchStatus,
-    groups: ['Galascope (2 parks)', 'Timotheos (3 parks)', 'Lampros (2 parks)', 'Spanercom (2 parks)'],
-    parks: 9, mw: 33.8, mwh: 120.0, containers: 34,
-    cif: 12_177_400, installed: 13_868_100, revenue: 15_067_200, margin: 1_199_100, marginPct: 7.96,
-    productionStart: '2026-04-01', productionEnd: '2026-06-30',
-    fatDate: '2026-06-30', shipDate: '2026-07-01',
-    cifDate: '2026-08-20', pacDate: '2026-12-31',
-    _meta: { source: 'Dino/Timotheos verbal, Lampros confirmed, Spanercom Anarita 2×5/20 @ €119k/MWh. ABIO removed Mar 2026.', date: '2026-03-24' } as MetaInfo,
+    groups: ['Galascope (2 parks — Esperia confirmed)'],
+    parks: 2, mw: 7.5, mwh: 30.0, containers: 8,
+    // Galascope 1: 4 BESS + 1 MV = 5 units; Galascope 2: 2 BESS + 1 MV = 3 units
+    cif: 2_823_169,       // G1 €1,848,712 + G2 €974,457 (CIF corrected 8 May 2026)
+    installed: 3_193_707, // CIF + physical adders + EMS (proportional, Disperon v3 pricing)
+    revenue: 3_465_200,   // G1 €2,258,900 + G2 €1,206,300
+    margin: 271_493, marginPct: 7.84,
+    productionStart: '2026-05-01', productionEnd: '2026-07-31',
+    fatDate: '2026-07-31', shipDate: '2026-08-01',
+    cifDate: '2026-09-15', pacDate: '2027-01-31',
+    _meta: { source: 'Dino (Esperia) confirmed. Galascope resized: G1 20MWh (€1,848,712 CIF), G2 10MWh (€974,457 CIF). EPC v5.0 with Anastasis.', date: '2026-05-08' } as MetaInfo,
   },
   {
-    id: 2, name: 'Batch 2: Pipeline (Q2 2026 Order)',
-    status: 'pipeline' as BatchStatus,
+    id: 2, name: 'Batch 1 Extension — Conditional (50-85% probability)',
+    status: 'conditional' as BatchStatus,
     groups: [
-      'Esperia Energy (Famagusta) — 6.5 MW / 20 MWh',
-      'Ioannis Karis (Monargouli) — 7.7 MW / 25 MWh',
+      'Timotheos Timotheou — 3 parks (35 MWh) — 50% probability',
+      'Lampros Andreadis — 2 parks (15 MWh) — 50% probability',
+      'Spanercom (Anarita) — 2 parks (40 MWh) — 85% probability',
     ],
-    parks: 2, mw: 14.2, mwh: 45, containers: 0,
-    revenue: 5_721_009, margin: 689_312, marginPct: 12.05,
-    productionStart: '2026-07-01', productionEnd: '2026-09-30',
-    fatDate: '2026-09-30', shipDate: '2026-10-01',
-    cifDate: '2026-11-15', pacDate: '2027-03-31',
-    notes: 'ABIO/ELESTORE (5 parks, 200 MWh) tracked separately — see ABIO_ELESTORE constant (20% probability).',
-    _meta: { source: 'Esperia: group-proposal.template.html. Karis: V4 GROUPS. Dates estimated from Q2 2026 order.', date: '2026-04-17' } as MetaInfo,
+    parks: 7, mw: 26.3, mwh: 90.0, containers: 26,
+    cif: 9_354_231, installed: 10_674_393, revenue: 11_601_976,
+    margin: 927_583, marginPct: 8.00,
+    notes: 'Order to be placed when client EPCs are signed. Timeline mirrors B1 Esperia if signed May/Jun 2026.',
+    productionStart: '2026-05-01', productionEnd: '2026-07-31',
+    fatDate: '2026-07-31', shipDate: '2026-08-01',
+    cifDate: '2026-09-15', pacDate: '2027-01-31',
+    _meta: { source: 'Conditional on EPC signatures. Timotheos/Lampros verbal, Spanercom active negotiation.', date: '2026-05-08' } as MetaInfo,
   },
   {
-    id: 3, name: 'Batch 3: Pipeline (Q4 2026 Order)',
+    id: 3, name: 'Batch 2 — Esperia Main Portfolio (Pipeline Q3 2026)',
     status: 'pipeline' as BatchStatus,
     groups: [
-      'Esperia Green Energy Ltd (Limassol) — 8 MW / 60 MWh',
-      'Esperia Energy (Frenaros) — 25 MW / 100 MWh',
-      'Timotheos Timotheou — remaining 6 parks (~8 MW / 46 MWh)',
-      'A. Kerasi — 3 parks (6.5 MW / 20 MWh)',
+      'Esperia Famagusta — 6.5 MW / 20 MWh',
+      'Esperia Famagusta 2 — 5 MW / 20 MWh',
+      'Esperia Limassol — 8 MW / 60 MWh',
+      'Esperia Frenaros — 25 MW / 100 MWh',
     ],
-    parks: 11, mw: 47.5, mwh: 226, containers: 0,
-    revenue: 27_239_084, margin: 3_034_096, marginPct: 11.14,
-    productionStart: '2027-01-01', productionEnd: '2027-03-31',
-    fatDate: '2027-03-31', shipDate: '2027-04-01',
-    cifDate: '2027-05-15', pacDate: '2027-09-30',
-    _meta: { source: 'Esperia: group-proposal.template.html. Timotheos/Kerasi: V4 GROUPS minus B1 parks. Dates estimated.', date: '2026-04-17' } as MetaInfo,
+    parks: 4, mw: 44.5, mwh: 200.0, containers: 0,
+    revenue: 21_841_589, margin: 2_440_000, marginPct: 11.17,
+    productionStart: '2026-09-01', productionEnd: '2026-11-30',
+    fatDate: '2026-11-30', shipDate: '2026-12-01',
+    cifDate: '2027-01-20', pacDate: '2027-05-31',
+    _meta: { source: 'Esperia main parks per group-proposal.template.html. Timeline follows B1 Esperia signing.', date: '2026-05-08' } as MetaInfo,
+  },
+  {
+    id: 4, name: 'Batch 3 — Esperia Tseri + Remaining Group Order (2027)',
+    status: 'pipeline' as BatchStatus,
+    groups: [
+      'Esperia Tseri (5 parks — 87.5 MWh) — 2028 order',
+      'Timotheos remaining (6 parks) — if signed',
+      'A. Kerasi (3 parks) — if signed',
+      'Ioannis Karis (1 park) — if signed',
+    ],
+    parks: 15, mw: 54.65, mwh: 237.5, containers: 0,
+    revenue: 28_663_988, margin: 3_193_000, marginPct: 11.14,
+    productionStart: '2027-06-01', productionEnd: '2027-09-30',
+    fatDate: '2027-09-30', shipDate: '2027-10-01',
+    cifDate: '2027-11-15', pacDate: '2028-03-31',
+    _meta: { source: 'Esperia Tseri + remaining conditional clients. Dates estimated.', date: '2026-05-08' } as MetaInfo,
   },
 ] as const;
 
+// CONFIRMED B1 parks (Esperia/Galascope — signing now)
+export const BATCH1_PARKS_CONFIRMED = [
+  {
+    name: 'Galascope 1', group: 'Galascope', mw: 5.0, mwh: 20, containers: 5, district: 'Famagusta',
+    // 5 units = 4 BESS (5.015 MWh each) + 1 T4 MV Skid (4×1.25 MW = 5 MW)
+    cif: 1_848_712,         // CIF LY202601271 — same config as Esperia Famagusta 2 (5 MW/20 MWh)
+    physAdders: 158_222,    // corrected (civil +€10K, duty +€6.8K, vs old 15 MWh)
+    emsAllocated: 66_935,   // Disperon v3 proportional: €46,718 EMS + €15,000 SCADA Local + €5,217 SCADA Global (20/230 MWh share)
+    installedCost: 2_073_869,
+    revenue: 2_258_900,
+    margin: 185_031, marginPct: 8.19,
+  },
+  {
+    name: 'Galascope 2', group: 'Galascope', mw: 2.5, mwh: 10, containers: 3, district: 'Famagusta',
+    // 3 units = 2 BESS + 1 T2 MV Skid (2×1.25 MW = 2.5 MW)
+    cif: 974_457,           // CIF LY202601271 — same config as Dianary 1 (2.5 MW/10 MWh)
+    physAdders: 96_030,     // corrected (civil +€4K, vs old 8 MWh)
+    emsAllocated: 49_351,   // Disperon v3 proportional: €31,742 EMS + €15,000 SCADA Local + €2,609 SCADA Global (10/230 MWh share)
+    installedCost: 1_119_838,
+    revenue: 1_206_300,
+    margin: 86_462, marginPct: 7.17,
+  },
+] as const;
+
+// CONDITIONAL B1 parks (Timotheos, Lampros, Spanercom — pending EPC signature)
+export const BATCH1_PARKS_CONDITIONAL = [
+  { name: 'AGM Sunfield 1',   group: 'Timotheos',  mw: 5.0,  mwh: 15,  containers: 5,  district: 'Nicosia',   revenue: 1_961_880, signingProbabilityPct: 50 },
+  { name: 'L&T Sun Energy',   group: 'Timotheos',  mw: 5.0,  mwh: 15,  containers: 5,  district: 'Limassol',  revenue: 1_961_880, signingProbabilityPct: 50 },
+  { name: 'TBC (5 MWh park)', group: 'Timotheos',  mw: 1.5,  mwh: 5,   containers: 2,  district: 'TBC',       revenue: 800_000,   signingProbabilityPct: 50 },
+  { name: 'Solar Breeze',     group: 'Lampros',    mw: 1.51, mwh: 5,   containers: 2,  district: 'Limassol',  revenue: 795_443,   signingProbabilityPct: 50 },
+  { name: 'Solar Garden',     group: 'Lampros',    mw: 3.29, mwh: 10,  containers: 3,  district: 'Limassol',  revenue: 1_321_976, signingProbabilityPct: 50 },
+  { name: 'Anarita 1',        group: 'Spanercom',  mw: 5.0,  mwh: 20,  containers: 5,  district: 'Paphos',    revenue: 2_380_000, signingProbabilityPct: 85 },
+  { name: 'Anarita 2',        group: 'Spanercom',  mw: 5.0,  mwh: 20,  containers: 5,  district: 'Paphos',    revenue: 2_380_000, signingProbabilityPct: 85 },
+] as const;
+
+// Backwards-compat alias — full 9-park B1 (use when assuming all sign)
 export const BATCH1_PARKS = [
-  { name: 'Galascope 1',      group: 'Galascope',  mw: 5.0,  mwh: 20,    containers: 5,  district: 'Famagusta', revenue: 2_258_900 },
-  { name: 'Galascope 2',      group: 'Galascope',  mw: 2.5,  mwh: 10,    containers: 3,  district: 'Famagusta', revenue: 1_206_300 },
-  { name: 'AGM Sunfield 1',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Nicosia',   revenue: 1_961_880 },
-  { name: 'L&T Sun Energy',   group: 'Timotheos',  mw: 5.0,  mwh: 15,    containers: 5,  district: 'Limassol',  revenue: 1_961_880 },
-  { name: 'TBC (5 MWh park)', group: 'Timotheos',  mw: 1.5,  mwh: 5,     containers: 2,  district: 'TBC',       revenue: 800_000 },
-  { name: 'Solar Breeze',     group: 'Lampros',    mw: 1.51, mwh: 5,     containers: 2,  district: 'Limassol',  revenue: 795_443 },
-  { name: 'Solar Garden',     group: 'Lampros',    mw: 3.29, mwh: 10,    containers: 3,  district: 'Limassol',  revenue: 1_321_976 },
-  { name: 'Anarita 1',        group: 'Spanercom',  mw: 5.0,  mwh: 20,    containers: 4,  district: 'Paphos',    revenue: 2_380_000 },
-  { name: 'Anarita 2',        group: 'Spanercom',  mw: 5.0,  mwh: 20,    containers: 4,  district: 'Paphos',    revenue: 2_380_000 },
+  ...BATCH1_PARKS_CONFIRMED,
+  ...BATCH1_PARKS_CONDITIONAL,
 ] as const;
 
 export const ESP_2027 = {
@@ -244,6 +385,50 @@ export const ABIO_ELESTORE = {
   probability: 20,
   note: 'ABIO indicated CATL supplier Mar 2026. Removed from active batches. Re-engagement ongoing — tracked separately at 20% probability.',
   _meta: { source: 'bess-portfolio-summary-excel.html; ABIO removed from B1 Mar 2026', date: '2026-04-17' },
+} as const;
+
+// ─────────────────────────────────────────────
+// AEOLIAN DYNAMICS — STANDALONE CLIENT (High probability)
+// 10.8 MW Wind Farm Hybrid, Agia Anna, Larnaca
+// Tender: Θ.Α.ΛΕ.Ι.Α 2021-2027 (Just Transition Fund grant scheme)
+// ─────────────────────────────────────────────
+export const AEOLIAN = {
+  name: 'TP Aeolian Dynamics — Agia Anna Wind Farm Hybrid',
+  key: 'aeolian',
+  location: 'Agia Anna, Larnaca',
+  windFarmMw: 10.8,               // 6 × Vestas V100-1.8 MW turbines
+  // BESS configuration (final offer 24 Mar 2026):
+  parks: 1, mw: 6.5, mwh: 20,
+  bessContainers: 4,              // 4 × 5.015 MWh battery containers
+  mvSkids: 2,                     // T4 skid (5 MW) + T1 skid (1.25 MW) = 6.25 MW
+  totalUnits: 6,
+  district: 'Larnaca',
+  // Pricing:
+  revenue: 2_660_000,             // Final offer 24 Mar 2026 (ex VAT). Turnkey EPC.
+  cif: 1_951_711,                 // CIF LY202601271 — same 6.5 MW / 20 MWh config as Esperia Famagusta
+  physAdders: 177_000,            // Estimated: duty €51.9K + port €3.6K + crane €15K + civil €40K + electrical €28K + DEHN €17K + insurance €14.6K + docs €7K
+  emsUpfront: 129_206,            // Disperon v3: 6 containers ~€54,206 EMS + €15,000 SCADA Local + €60,000 SCADA Global (new standalone group)
+  installedCost: 2_257_917,
+  margin: 402_083, marginPct: 15.12,
+  // Signing:
+  signingStatus: 'high' as const,
+  signingProbabilityPct: 80,
+  // Timeline:
+  tenderDeadline: 'Q2 2026 (grant scheme)',
+  orderDate: 'Q3 2026 (estimated on EPC signing)',
+  pacDate: '~Q2 2027',
+  // Special considerations:
+  notes: [
+    'Grant scheme participant (Θ.Α.ΛΕ.Ι.Α 2021-2027 Just Transition Fund) — tender compliance required.',
+    'Army firing range access: Agia Anna site requires coordinated access windows with military authority.',
+    'Wind + BESS export: EMS enforces combined export limit on 22 kV line to PSEUDAS S/S (5.17 km).',
+    'Tender requirement: ≥5.4 MW BESS, ≥16.2 MWh at POC. Config: 6.25 MW / 20 MWh = compliant (+16% headroom).',
+    'Year-10 capacity: 20 MWh × 80% SOH = 16.0 MWh (within tolerance of 16.2 MWh requirement).',
+    'Standalone client — not part of group order. Separate EPC contract and LTSA.',
+    'Aeolian counted separately from 28-park group order portfolio.',
+    'Previous proposals on file: 5.4 MW/16.2 MWh (Mar), 6 MW/20 MWh (Mar), 6.5 MW/20 MWh final (24 Mar 2026).',
+  ],
+  _meta: { source: 'bess-aeolian-dynamics-final-offer-6.5mw-20mwh-24mar2026.html + technical-rfi-aeolian-dynamics-mar2026.md', date: '2026-03-24' },
 } as const;
 
 // ─────────────────────────────────────────────

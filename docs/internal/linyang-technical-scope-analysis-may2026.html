@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linyang Technical Scope Analysis — BESS Cyprus | May 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a2e; background: #f5f7fa; line-height: 1.55; }
+  .page { max-width: 1200px; margin: 0 auto; background: #fff; padding: 40px 48px; }
+  h1 { font-size: 22px; font-weight: 700; color: #0d1b4b; border-bottom: 3px solid #0d47a1; padding-bottom: 10px; margin-bottom: 8px; }
+  h2 { font-size: 16px; font-weight: 700; color: #0d47a1; margin: 32px 0 12px; border-left: 4px solid #0d47a1; padding-left: 10px; }
+  h3 { font-size: 14px; font-weight: 700; color: #1a237e; margin: 20px 0 8px; }
+  h4 { font-size: 13px; font-weight: 700; color: #283593; margin: 12px 0 6px; }
+  .meta { font-size: 11px; color: #555; margin-bottom: 28px; }
+  .meta span { margin-right: 20px; }
+  p { margin-bottom: 8px; }
+  ul, ol { margin: 6px 0 8px 20px; }
+  li { margin-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 12px; }
+  th { background: #0d47a1; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+  td { padding: 6px 10px; border-bottom: 1px solid #e0e4ef; vertical-align: top; }
+  tr:nth-child(even) td { background: #f4f6fd; }
+  .in-scope { background: #e8f5e9 !important; }
+  .out-scope { background: #fce4ec !important; }
+  .shared { background: #fff8e1 !important; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+  .badge-green { background: #2e7d32; color: #fff; }
+  .badge-amber { background: #e65100; color: #fff; }
+  .badge-red { background: #b71c1c; color: #fff; }
+  .badge-blue { background: #0d47a1; color: #fff; }
+  .badge-grey { background: #546e7a; color: #fff; }
+  .ok-box { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .warning-box { background: #fff3e0; border-left: 4px solid #f57f17; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .danger-box { background: #ffebee; border-left: 4px solid #c62828; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .info-box { background: #e3f2fd; border-left: 4px solid #0d47a1; padding: 10px 14px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+  .section-break { border: none; border-top: 2px solid #e8eaf6; margin: 36px 0; }
+  code { background: #f0f0f0; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+  .rte-calc { font-family: monospace; font-size: 12px; background: #f8f9ff; border: 1px solid #c5cae9; padding: 12px; border-radius: 4px; margin: 10px 0; line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>LINYANG TECHNICAL SCOPE ANALYSIS</h1>
+<h1 style="font-size:15px;border:none;padding:4px 0 0;margin:0;color:#1a237e;">What Linyang Supplies · What Lighthief Delivers · Technical Warranty Conditions · Contract Implications</h1>
+<div class="meta">
+  <span><strong>Ref:</strong> LCY-TECH-SCOPE-001 v1.0</span>
+  <span><strong>Date:</strong> 7 May 2026</span>
+  <span><strong>Sources:</strong> 5MWh Spec, Power Atlantic Datasheet, User Manual v2.0, Maintenance Manual, Warranty Terms v2, RFI Legal Guarantees V3, Sales Contract 17 Mar 2026, EPC v5.0</span>
+  <span><strong>Classification:</strong> INTERNAL — CONFIDENTIAL</span>
+</div>
+
+<div class="info-box">
+<strong>Purpose:</strong> This document maps the exact technical boundaries of Linyang's supply scope against Lighthief's EPC scope, identifies all maintenance requirements that affect warranty validity, flags technical discrepancies between the product documentation and executed contracts, and notes the contract/legal implications of each finding. Companion to LCY-RISK-001 Full Contract Risk Review (6 May 2026).
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2>1. Linyang CIF Supply Scope — What Is Physically Delivered to Limassol Port</h2>
+
+<p>The following is everything included within the CIF Limassol price based on the Power Atlantic 5MWh specification and component table. Each item is delivered as a self-contained, factory-tested unit. <strong>The 20HC container departs the factory with all internal systems pre-installed and pre-tested (FAT).</strong></p>
+
+<h3>1.1 Battery Container (20HC — 5.015 MWh per unit)</h3>
+<table>
+  <tr><th>Sub-System</th><th>Components Included</th><th>Key Technical Specs</th><th>Warranty?</th></tr>
+  <tr class="in-scope">
+    <td><strong>Battery System</strong></td>
+    <td>48 × battery packs (1P104S configuration), 12 × battery cluster switchgear units (BCMU, breaker, fuse, contactor, current sensor), 1 × DC combiner cabinet (BAMS, disconnector, UPS)</td>
+    <td>5,015 kWh nominal; 314Ah LFP cells (EVE); 12P416S; voltage range 1,164.8–1,497.6 V; IP54 enclosure</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>Battery Management System (BMS)</strong></td>
+    <td>BMU (cell-level, CAN2.0), BCMU (cluster-level, CAN/RS485/Modbus), BAMS (system-level, CAN/RS485/Modbus TCP/RTU, Ethernet). Pre-configured with protection thresholds and communication protocols.</td>
+    <td>Cell voltage accuracy ±5mV; SOC accuracy ≤5%; current ±0.5% FSR; comms: Modbus TCP, IEC 104, CAN, RS485. Northbound protocol documented (xlsx included in hardware folder).</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>Liquid Cooling System</strong></td>
+    <td>1 × liquid cooling machine (45 kW cooling capacity), three-stage coolant pipes; ethylene glycol-water coolant solution pre-filled</td>
+    <td>Charge temp range: 0–55°C; Discharge: –20–55°C; active thermal management maintains cell temperature uniformity</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>Fire Suppression System</strong></td>
+    <td>FK5112 Perfluoroketone (PFK) suppression controller + perforated nozzles per pack; backup water-based system; smoke sensors ×3; flammable gas sensors ×2 (H₂); CO sensors ×2; exhaust fan; ventilation system; audible/visual alarms; manual emergency start/stop</td>
+    <td>Two-stage detection: primary (single detector) → alarm; secondary (smoke + heat simultaneous) → automatic discharge. Each battery pack has integrated CO + temperature detection nozzle device.</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>Internal Power Distribution &amp; Lighting</strong></td>
+    <td>Container distribution panel, internal AC/DC power supply, UPS (in DC combiner cabinet), internal lighting, cable routing infrastructure</td>
+    <td>Auxiliary power supply: 380/400V AC, 50/60Hz</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>Container Enclosure</strong></td>
+    <td>20HC steel container with C5-rated corrosion protection (Cyprus standard), door locks, sealing strips, IP54 rating</td>
+    <td>Dimensions: 6,058 × 2,438 × 2,896 mm; Weight: ~43 tonnes. Foundation anchor points at container corners.</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+</table>
+
+<h3>1.2 Power Conversion System (PCS) — BCS1000K-C-HUD / BCS1250K-C-HUD (per skid unit)</h3>
+<table>
+  <tr><th>Component</th><th>What's Included</th><th>Key Specs</th><th>Warranty?</th></tr>
+  <tr class="in-scope">
+    <td><strong>PCS Unit</strong></td>
+    <td>AC/DC bidirectional inverter/rectifier; pre-wired and pre-tested at factory</td>
+    <td>1.0 MW (BCS1000K) or 1.25 MW (BCS1250K); PCS efficiency ≥98% at rated power; EN 50549-2 (TÜV D 115067 0077); IEC 62909, IEC 62477, IEC 62116/61727; CE-LVD, CE-EMC</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>PCS Control &amp; Protection</strong></td>
+    <td>Integrated protection relays, grid compliance firmware, Q(U)/P(f) response capability, FRT, anti-islanding per EN 50549-2</td>
+    <td>FRT, Q(U), P(f) curves included per Polish/EU grid codes (Charakterystyka FRT doc). Cyprus EAC compliance coordination required during commissioning.</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+  <tr class="in-scope">
+    <td><strong>PCS northbound communication</strong></td>
+    <td>Modbus protocol documentation provided (WRDF-0I002 xlsx); IEC 104 point list (WRWF-0I002 xlsx)</td>
+    <td>Interface for EMS/SCADA integration (Voltus connects here). EMS is NOT supplied by Linyang — separate Voltus scope.</td>
+    <td><span class="badge badge-green">5 YEARS</span></td>
+  </tr>
+</table>
+
+<h3>1.3 Medium Voltage Skid (T1 / T2 / T4 / T8 models) — Included in CIF</h3>
+<table>
+  <tr><th>Skid Model</th><th>Container</th><th>PCS Slots</th><th>Max MW</th><th>What's Included in Skid</th><th>Warranty</th></tr>
+  <tr class="in-scope">
+    <td><strong>T1</strong></td><td>20ft Std</td><td>1 PCS</td><td>1.5 MW</td>
+    <td rowspan="4">MV step-up transformer; MV switchgear; DC busbars; skid structure; internal HV/MV cabling within skid; pre-wired and factory-tested as a unit</td>
+    <td rowspan="4"><span class="badge badge-green">5 YEARS</span><br><small>(2 yrs if &lt;500m sea)</small></td>
+  </tr>
+  <tr class="in-scope"><td><strong>T2</strong></td><td>20ft Std</td><td>2 PCS</td><td>3.0 MW</td></tr>
+  <tr class="in-scope"><td><strong>T4</strong></td><td>40ft HC</td><td>4 PCS</td><td>6.0 MW</td></tr>
+  <tr class="in-scope"><td><strong>T8</strong></td><td>40ft HC</td><td>8 PCS</td><td>12.0 MW</td></tr>
+</table>
+<div class="info-box"><strong>Note on MV transformer:</strong> Linyang's MV transformer is inside the skid and has a 5-year warranty (or 2 years if &lt;500m from sea for C5 systems). Per Warranty Terms v2: any system without C5 enclosure within 2–5 km of the sea gets a 2-year PCS/transformer/switchgear warranty, and within &lt;2 km the warranty is <strong>void</strong>. For systems WITH C5 enclosure (Cyprus standard): only &lt;500m threshold applies, giving 2-year warranty. EPC §10.2 and Sales Contract §8A correctly mirror this.</div>
+
+<h3>1.4 Commissioning Scope — Linyang's On-Site Responsibility</h3>
+<p>Per Sales Contract §5A and consistent with Linyang's technical documentation, the following are <strong>within Linyang's scope</strong> on-site:</p>
+<table>
+  <tr><th>Activity</th><th>Basis</th><th>Detail</th></tr>
+  <tr class="in-scope">
+    <td>Equipment commissioning by factory-trained technicians</td>
+    <td>Sales §5A(a)</td>
+    <td>Linyang sends its own engineers to commission each park. They activate and test the battery system, BMS, thermal management, and fire suppression.</td>
+  </tr>
+  <tr class="in-scope">
+    <td>OEM system configuration</td>
+    <td>Sales §5A(b)</td>
+    <td>BMS parameter setting, protection threshold calibration, SOC calibration, communication protocol validation (Modbus/IEC104 to EMS).</td>
+  </tr>
+  <tr class="in-scope">
+    <td>Connection of battery modules, BMS, and cooling systems</td>
+    <td>Sales §5A(c)</td>
+    <td>Internal to container: module busbars, BMS harnesses, coolant line connections. This is factory-done and confirmed on arrival; on-site Linyang confirms integrity after transport.</td>
+  </tr>
+  <tr class="in-scope">
+    <td>OEM testing protocols and verification (FAT + SAT)</td>
+    <td>Sales §5A(d)</td>
+    <td>FAT at factory (triggers pre-ship payment). SAT at site: capacity test, RTE test, protection function test, comms check, BMS log review. PAC certificate issued when SAT passes.</td>
+  </tr>
+  <tr class="in-scope">
+    <td>Installation supervision and quality assurance</td>
+    <td>Sales §5A(e)</td>
+    <td>Linyang engineers supervise Lighthief's team connecting containers to PCS, PCS to MV skid. They do not perform civil/cabling work themselves but sign off on workmanship for warranty validity.</td>
+  </tr>
+  <tr class="in-scope">
+    <td>Installation workmanship warranty</td>
+    <td>Sales §5A(f)</td>
+    <td>5 years from PAC — covers any defect attributable to Linyang's installation activities. Lighthief's EPC §10.1 unifies this as the single 5-year warranty to the client.</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>2. Lighthief EPC Scope — What Is NOT Included in Linyang's CIF</h2>
+
+<p>The following are <strong>Lighthief's responsibility</strong> under the EPC contract (§4.2) and were explicitly assigned to the Buyer in Sales Contract §5A Buyer Scope:</p>
+
+<table>
+  <tr><th>Scope Item</th><th>Contract Ref</th><th>Technical Requirement</th><th>Key Risk / Dependency</th></tr>
+  <tr class="out-scope">
+    <td><strong>Civil works, foundations, fencing</strong></td>
+    <td>Sales §5A Buyer / EPC §4.2(e)</td>
+    <td>Concrete pad or gravel foundation. Container corner anchoring to foundation steel plates (welded). Foundation must support 43-tonne containers. Site survey, geotechnical assessment required.</td>
+    <td>Maintenance manual requires checking container-foundation weld condition monthly. Foundation quality is a warranty condition — poor foundation = non-warranty damage.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>Grounding and earthing systems</strong></td>
+    <td>Sales §5A(c) Buyer / EPC §4.2(f)</td>
+    <td>Maintenance manual specifies: grounding resistance ≤4Ω annually verified. Equipotential bonding of all containers. Separation of signal/power grounds per BMS requirements.</td>
+    <td><strong>WARRANTY CONDITION:</strong> If grounding resistance exceeds 4Ω, BMS protection may fail to operate correctly. Annual check required. Lighthief's field team must verify and document this.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>External AC/DC cabling — BESS to grid</strong></td>
+    <td>Sales §5A(b) Buyer / EPC §4.2(f)</td>
+    <td>LV cabling between battery containers and PCS DC side; MV cabling from PCS skid to grid connection (transformer or EAC connection point). Cabling must meet Linyang's cable specifications to maintain warranty.</td>
+    <td>Linyang's warranty terms exclude "improper installation" including wrong cable specs. Lighthief must use cables meeting Linyang's spec (documented in installation section of user manual).</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>PCS connection to BESS (added 17 Mar contract)</strong></td>
+    <td>Sales §5A(g) Buyer</td>
+    <td>Connecting the PCS AC/DC terminals to the battery container busbars. This was explicitly moved to Buyer scope in the 17 March Sales Contract. Linyang will supervise but not physically install these connections.</td>
+    <td>This change has a direct warranty implication: if the PCS-to-BESS connection is done incorrectly by Lighthief's team (not Linyang), any damage from wiring error is Lighthief's liability, not Linyang's.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>Transport and unloading on site</strong></td>
+    <td>Sales §5A(h) Buyer / EPC §4.2(d)</td>
+    <td>Port-to-site transport by A. Soulis (€2,500/container, 160T crane). Container placement on foundation. Linyang's transport requirements: four-point lifting using container corner castings; no tilting &gt;5°; warning barriers required.</td>
+    <td>Transport damage (post-CIF Limassol) is Lighthief's risk. A. Soulis carries €440K GIT insurance. Lighthief's Marsh inland transit (€2M/shipment) provides additional cover. Linyang must be notified of transport damage within 30 days of delivery.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>Import duties, customs clearance, port landing</strong></td>
+    <td>EPC §4.2(d) / ADDERS</td>
+    <td>2.66% import duty on CIF value. Interfreight as customs agent. Port landing: €600/container (ECTL). Customs declaration: €85/declaration.</td>
+    <td>SSOT confirmed. Fixed costs unless HS code classification is disputed — previous history of customs query on BESS classification noted in import duty model.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>Lightning protection (LPS / SPD)</strong></td>
+    <td>EPC §4.2(f) / ADDERS: DEHN</td>
+    <td>DEHN external lightning protection system, surge protection devices (SPD) for all containers. Required per Cyprus electrical regulations and Linyang's installation requirements (maintenance manual: check SPD/fuse annually).</td>
+    <td>SPD maintenance is an annual check item in Linyang's maintenance manual. If SPD fails and a lightning strike causes BMS damage, Linyang may dispute warranty if SPD check was not documented. LTSA must include SPD annual inspection.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>EMS / SCADA integration</strong></td>
+    <td>EPC §4.4 (Lighthief EU BESS / Voltus) / Sales §6.4</td>
+    <td>Voltus EMS connects to BAMS northbound interface via Modbus TCP or IEC 104. BMS communication protocol documentation provided (WRDF-0I002 xlsx). EMS is NOT Linyang's scope — explicitly excluded in Sales §6.4 and Distribution §6.4.</td>
+    <td>EMS-caused BESS damage is NOT covered by Linyang warranty. If EMS commands incorrect charge/discharge sequences causing deep discharge (SOC &lt;5% for 7+ days), warranty is voided. The EPC §10.5 carve-out for EMS malfunction protects the client from this, but it does NOT extend Linyang's warranty obligation.</td>
+  </tr>
+  <tr class="out-scope">
+    <td><strong>Regulatory compliance (EAC submissions, building permits)</strong></td>
+    <td>EPC §4.2(i)</td>
+    <td>Cyprus EAC/CERA regulatory approval for BESS grid connection. EN 50549-2 compliance (Linyang provides TÜV cert). Licensed engineer drawings (client-paid, €5–15K/site).</td>
+    <td>EAC approval is a Condition Precedent to the EPC (§1A). Grid connection terms must be obtained before advance payment obligation matures. If EAC changes requirements mid-project, this is classified as a grid authority delay — extension of time available per EPC §8.4.6.</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>3. Shared / Interface Zone — Supervision vs. Execution</h2>
+
+<div class="warning-box">
+<strong>The most contractually sensitive zone</strong> is the interface between Linyang's installation supervision and Lighthief's physical execution. The Sales Contract 17 March explicitly shifted PCS-to-BESS connection to Buyer scope (§5A(g)). This means Lighthief's team physically installs the critical DC/AC interconnections — but Linyang supervises and signs off. If a defect arises from this interface, determining fault will require analysis of Linyang's sign-off documentation.
+</div>
+
+<table>
+  <tr><th>Activity</th><th>Who Physically Does It</th><th>Who Supervises / Signs Off</th><th>Warranty Implication</th></tr>
+  <tr class="shared">
+    <td>PCS-to-BESS DC connection</td>
+    <td>Lighthief team (as of 17 Mar contract)</td>
+    <td>Linyang engineer supervises and confirms in SAT sign-off</td>
+    <td>If properly supervised and documented in SAT, warranty preserved. Gap: need Linyang sign-off sheet as evidence of supervision.</td>
+  </tr>
+  <tr class="shared">
+    <td>Container placement &amp; anchoring</td>
+    <td>A. Soulis crane team</td>
+    <td>Linyang to inspect positioning before any internal work</td>
+    <td>Foundation contact and levelling must meet Linyang spec. If container tilts &gt;spec during operation, cooling may be affected.</td>
+  </tr>
+  <tr class="shared">
+    <td>External MV cabling to grid</td>
+    <td>Lighthief subcontractors</td>
+    <td>Protection engineer (DEHN/Lighthief); grid authority (EAC)</td>
+    <td>Linyang not responsible for external cabling. Cable spec must comply with PCS requirements — any damage from incorrect cable (e.g., wrong cross-section causing overload) is Lighthief's liability.</td>
+  </tr>
+  <tr class="shared">
+    <td>Initial grid connection testing (protection relay settings)</td>
+    <td>EAC/protection engineer (Lighthief subcontractor)</td>
+    <td>Linyang involved via OEM commissioning protocol for grid code compliance</td>
+    <td>EAC protection settings interact with PCS firmware. Miscoordination could cause repeated PCS tripping — warranty claim territory. Linyang's FAT to SAT protocol should document protection settings agreed.</td>
+  </tr>
+  <tr class="shared">
+    <td>BMS to EMS interface wiring</td>
+    <td>Voltus team (EMS) / Lighthief</td>
+    <td>Linyang provides BAMS northbound protocol docs; Voltus configures EMS</td>
+    <td>Linyang warrants BMS communication interface compatibility at commissioning (EPC §4.4(c)). If EMS sends incorrect commands, this is Voltus/Lighthief responsibility.</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>4. Technical Warranty Conditions — What Lighthief Must Do to Keep Warranty Valid</h2>
+
+<h3>4.1 Mandatory Maintenance Schedule (Warranty Terms v2 + Maintenance Manual)</h3>
+<p>The Linyang Maintenance Manual (Power Atlantic 5MWh, Feb 2025) defines mandatory maintenance intervals. <strong>Failure to perform these activities, or failure to document them, gives Linyang grounds to reject warranty claims</strong> per Warranty Terms v2 Section III.</p>
+
+<table>
+  <tr><th>Interval</th><th>Key Items</th><th>LTSA Coverage?</th></tr>
+  <tr>
+    <td><strong>Initial Grid Connection</strong></td>
+    <td>Inspect input/output cable materials &amp; specifications; terminal materials &amp; installation direction; bolt size &amp; gasket mounting direction</td>
+    <td><span class="badge badge-green">YES — PAC inspection</span></td>
+  </tr>
+  <tr>
+    <td><strong>Monthly</strong></td>
+    <td>Container enclosure damage/oxidation check; container door seals; cable integrity; internal dust/condensation; air inlet/outlet blockage; BMS data read &amp; log save; parameter settings check; software update check</td>
+    <td><span class="badge badge-amber">PARTIAL — some monthly, some quarterly</span></td>
+  </tr>
+  <tr>
+    <td><strong>Semi-Annual</strong></td>
+    <td>Emergency stop button test; safety warning marks; circuit board cleanliness; fan operation; radiator temperature/dust; air filter replacement if needed; metal corrosion check; contactor inspection; running parameters (voltage, insulation); UPS recharge (every 6 months)</td>
+    <td><span class="badge badge-green">YES — bi-annual PM visit (Tier A+)</span></td>
+  </tr>
+  <tr>
+    <td><strong>Annual</strong></td>
+    <td>Ground/shielded cable checks; SPD and fuse condition; cable layout (short circuit check, sealing, torque); grounding resistance ≤4Ω verification; equipotential connection check</td>
+    <td><span class="badge badge-green">YES — annual maintenance visit</span></td>
+  </tr>
+</table>
+
+<div class="warning-box">
+<strong>LTSA Gap identified:</strong> The current LTSA v4.0 Tier C offers bi-annual preventive maintenance visits and 24/7 monitoring. However, Linyang's monthly maintenance requirements (BMS data read, log save, software update check, cable inspection) go beyond what two annual visits can cover. <strong>Lighthief's 24/7 remote monitoring covers BMS data and log reading remotely</strong>, but physical monthly checks (cable inspection, air inlet/outlet, container enclosure) can only be done on-site. Action: clarify in LTSA that monthly on-site checks are NOT included in Tier C. To maintain Linyang warranty, clients on Tier C must accept that some monthly physical items are advisory (visual inspection by client-designated person) rather than SP-attended. Alternatively, offer a monthly site visit add-on at additional cost.
+</div>
+
+<h3>4.2 Critical Battery Operating Conditions (Warranty Voiding Triggers)</h3>
+<p>These are defined in both the User Manual and Warranty Terms v2, and incorporated into the Sales Contract §8D.2 and EPC v5.0 §10.5:</p>
+
+<table>
+  <tr><th>Condition</th><th>Threshold</th><th>Duration</th><th>Consequence</th><th>EPC Protection</th></tr>
+  <tr class="out-scope">
+    <td>Cell deep discharge (voltage)</td>
+    <td>Discharge cell voltage &lt;2.8V</td>
+    <td>120 consecutive hours</td>
+    <td>Warranty null and void for affected cells and modules</td>
+    <td>EPC §10.5(a) — carve-out for grid fault, EMS malfunction, FM. SOC monitoring alert obligation.</td>
+  </tr>
+  <tr class="out-scope">
+    <td>Cluster SOC at zero</td>
+    <td>Any cluster SOC = 0%</td>
+    <td>120 consecutive hours</td>
+    <td>Warranty null and void</td>
+    <td>EPC §10.5(b) — same carve-outs apply.</td>
+  </tr>
+  <tr class="out-scope">
+    <td>Extreme undervoltage</td>
+    <td>Discharge cell voltage ≤2.5V</td>
+    <td>Any single occurrence</td>
+    <td>Warranty null and void — immediate</td>
+    <td>EPC §10.5(c) — same carve-outs. Note: this is the most severe condition — a single event voids warranty.</td>
+  </tr>
+  <tr class="out-scope">
+    <td>Low SOC prolonged</td>
+    <td>SOC &lt;5%</td>
+    <td>7 consecutive days</td>
+    <td>Battery warranty void for affected cells/modules</td>
+    <td>EPC §10.5(d) — same carve-outs. Added per EPC v3 amendment. LTSA 24/7 monitoring triggers alert at SOC &lt;10% within 24 hours.</td>
+  </tr>
+</table>
+
+<div class="ok-box">
+<strong>LTSA monitoring obligation is critical here:</strong> EPC §10.5 carve-out states warranty is NOT voided if the condition was caused by "failure by the Contractor to provide a monitoring alert under an LTSA with 24/7 monitoring (Tier A+), where such alert would have enabled the Client to prevent the condition." This means if Lighthief has a Tier A/C LTSA active and fails to alert the client when SOC drops below 10%, and the SOC subsequently drops below 5% for 7 days, <strong>Lighthief is liable for the voided warranty costs</strong> — even though the client caused the SOC issue by not responding. The 24-hour SOC &lt;10% alert in LTSA §10.5 is therefore not just good service — it is Lighthief's contractual protection mechanism.
+</div>
+
+<h3>4.3 Additional Warranty Conditions from Warranty Terms v2</h3>
+<table>
+  <tr><th>Condition</th><th>Required Action</th><th>Lighthief Implication</th></tr>
+  <tr>
+    <td>All payments must be current</td>
+    <td>Warranty Right Holder must have no overdue payments to Linyang</td>
+    <td>If Lighthief has any overdue payment to Linyang (e.g., DAP payment delayed), Linyang can require a deposit before servicing warranty claims. <strong>This is a payment risk that converts to operational risk.</strong></td>
+  </tr>
+  <tr>
+    <td>Products at original installation site</td>
+    <td>Warranty terminates if products relocated without prior Linyang on-site inspection and written approval</td>
+    <td>If a client needs to move or decommission a park and sell the BESS, Lighthief must coordinate a Linyang site inspection before relocation. Cost of inspection borne by client (Warranty Terms IX.3).</td>
+  </tr>
+  <tr>
+    <td>Serial numbers intact</td>
+    <td>Serial numbers must not be altered or unidentifiable</td>
+    <td>LTSA must include serial number integrity checks. If vandalism or theft damages serial numbers, document immediately. Request replacement plate from Linyang.</td>
+  </tr>
+  <tr>
+    <td>Access for inspection/repair</td>
+    <td>Client must provide access and working conditions for Linyang service personnel</td>
+    <td>LTSA §14 (OEM Coordination) covers this. Client access obligation is in EPC §5A.3(f).</td>
+  </tr>
+  <tr>
+    <td>Third-party equipment non-interference</td>
+    <td>Third-party controllers must not interfere with Linyang on-site service work</td>
+    <td>EMS (Voltus) must have a maintenance mode that allows Linyang to operate BESS in manual/local mode during warranty servicing.</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>5. RTE — Technical Clarification of Warranted Values</h2>
+
+<h3>5.1 RTE Calculation Breakdown (from Linyang RTE Calculation doc, Feb 2025)</h3>
+<p>The full system AC-AC RTE of <strong>86.32%</strong> used in contracts is calculated as follows (with auxiliary power consumption included):</p>
+
+<div class="rte-calc">
+RTE (without auxiliary) = 87.8%, calculated as:
+  99.95% (HV transformer) × 99.95% (MV cable)
+× 99.00% (MV transformer)  × 99.95% (LV cable)
+× 98.20% (PCS rectifying)  × 99.80% (DC cable)
+× 96.50% (Battery charging) × 97.50% (Battery discharging)
+× 99.80% (DC cable)        × 98.50% (PCS inverting)
+× 99.95% (LV cable)        × 99.00% (MV transformer)
+× 99.50% (MV cable)        × 99.50% (HV transformer)
+≈ 87.8% (at MV side, without auxiliary power)
+
+Auxiliary power consumption: ~1.48% additional loss
+Full system AC-AC RTE (at POC, with aux): ≈ 86.32%
+
+PAC field test threshold: 84.0% (2.32 percentage point below warranted 86.32%)
+This tolerance accounts for: site conditions, test instrument accuracy, ambient temperature variation
+</div>
+
+<h3>5.2 Contract Alignment Check</h3>
+<table>
+  <tr><th>Document</th><th>RTE Value</th><th>Condition</th><th>Consistent?</th></tr>
+  <tr class="in-scope"><td>Sales Contract §8D.2</td><td>≥86.32%</td><td>0.5C, 25±2°C, full AC-AC</td><td><span class="badge badge-green">YES</span></td></tr>
+  <tr class="in-scope"><td>EPC v5.0 §10.6(b)</td><td>≥86.32%</td><td>0.5C, 25±2°C</td><td><span class="badge badge-green">YES</span></td></tr>
+  <tr class="in-scope"><td>EPC v5.0 §9.1 (PAC)</td><td>≥84% hard floor</td><td>Site conditions (tolerance applied)</td><td><span class="badge badge-green">YES</span></td></tr>
+  <tr class="in-scope"><td>OEM DWU §3.1(b)</td><td>≥86.32%</td><td>0.5C, 25±2°C</td><td><span class="badge badge-green">YES</span></td></tr>
+  <tr class="in-scope"><td>SSOT (portfolio-data.ts)</td><td>86.32 (full system)</td><td>Note: PCS-level = 87.8% excl. cabling</td><td><span class="badge badge-green">YES</span></td></tr>
+  <tr class="shared"><td>RFI V3 Linyang response</td><td>≥87% at POC without aux power</td><td>MV side</td><td><span class="badge badge-amber">NOTE</span> — RFI V3 confirmed 87% at MV without aux. 86.32% with aux. Both correct, just different measurement points.</td></tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>6. Technical Discrepancies Found — Contract Implications</h2>
+
+<h3>T1 — Arbitration Venue Conflict: Warranty Terms v2 (SHIAC Shanghai) vs. Sales Contract (SIAC Singapore)</h3>
+<div class="danger-box">
+<strong>Rating: HIGH</strong><br>
+<strong>Finding:</strong> Linyang's Warranty Terms v2 (Section XIII) specifies <strong>Shanghai International Arbitration Centre (SHIAC)</strong> as the dispute resolution forum. The Sales Contract uses <strong>SIAC Singapore</strong>. The OEM Direct Warranty Undertaking uses <strong>SIAC Singapore</strong>.<br><br>
+<strong>Impact:</strong> If a warranty claim is disputed and Linyang invokes Warranty Terms v2, they may argue SHIAC jurisdiction. If Lighthief or a client relies on the Sales Contract or OEM DWU, they would go to SIAC. This could result in parallel proceedings or jurisdictional challenges.<br><br>
+<strong>Mitigation:</strong> Sales Contract §1A.1 establishes the Sales Contract governs in case of conflict — and the Sales Contract specifies SIAC. The Sales Contract, once signed, supersedes Warranty Terms v2 as the contractual framework. However, add a clause to Sales Contract confirmation: "In the event of conflict between this Contract and Linyang's standard Warranty Terms (LYCN/WI-3410), this Contract shall prevail." This is implicit in current §1A.1 language but should be explicit for warranty disputes.
+</div>
+
+<h3>T2 — Fire Suppression Agent (Perfluoroketone / FK5112) — AXA PFAS Exclusion</h3>
+<div class="danger-box">
+<strong>Rating: HIGH — Insurance Gap Confirmed</strong><br>
+<strong>Finding:</strong> The Power Atlantic 5MWh container uses <strong>FK5112 Perfluoroketone (PFK)</strong> fire suppression, also identified in the User Manual as "perfluo" agent. This is a PFAS-family compound (per- and polyfluoroalkyl substances). The AXA Tianping CGL policy (received 9 Mar 2026) contains a <strong>PFAS exclusion</strong> listed in the RFP analysis (Section 8.4).<br><br>
+<strong>Impact:</strong> If a fire suppression system activates and discharges FK5112 compound, and this causes: (a) soil/groundwater contamination; (b) third-party exposure claims; (c) environmental regulatory penalties — AXA will likely invoke the PFAS exclusion and decline coverage.<br><br>
+<strong>Mitigation:</strong> (1) Confirm with Marsh whether the Lighthief CAR/environmental liability policy can include a PFAS sublimit or PFAS carve-in for fire suppression agent discharge. (2) Check whether Linyang can provide confirmation that FK5112 is classified as a short-chain PFAS (which have different regulatory status to long-chain PFAS in some jurisdictions). (3) Include in Lighthief's environmental liability RFP cover letter that the fire suppression agent is FK5112/perfluoroketone and request explicit cover.
+</div>
+
+<h3>T3 — "Only Linyang-Approved Personnel Can Maintain Battery Internals"</h3>
+<div class="warning-box">
+<strong>Rating: MEDIUM — Operational and Warranty Impact</strong><br>
+<strong>Finding:</strong> User Manual Section 1.6 states: <em>"There are no user-maintainable parts inside the battery unit. Only personnel approved by LINYANG can remove, replace and dispose of the batteries. Users are not allowed to maintain batteries without guidance."</em><br><br>
+<strong>Impact:</strong> Lighthief's 6 field engineers <strong>cannot</strong> open battery containers for internal repairs without Linyang authorization. This means: (a) any internal battery fault requires calling Linyang service personnel; (b) Lighthief's field team handles external maintenance only (cables, cooling system external, fire system sensors, BMS communication, container enclosure); (c) if Linyang's response time is slow (Distribution §14.2: critical issues 4-hour remote, 5 Business Days on-site), there may be extended downtime during internal battery faults.<br><br>
+<strong>Contract implications:</strong> LTSA §8.2 commits Lighthief to 8-hour on-site attendance for critical alerts. But if the critical fault is internal battery, Lighthief's team can only attend, diagnose externally, and request Linyang remote/on-site support. Resolution clock (Linyang: 5 Business Days = up to 120 hours) significantly exceeds Lighthief's SLA response time. LTSA §8.2(e) clarification on "Response vs Resolution" provides some protection — but client may be frustrated.<br><br>
+<strong>Mitigation:</strong> (1) Arrange Linyang certification training for Lighthief's field team leads (2 engineers) per Distribution §15. This would allow certified Lighthief engineers to handle routine battery internal maintenance tasks. (2) Add explicit language to LTSA that resolution time for internal battery faults is subject to OEM availability, and that this is documented in the LTSA scope.
+</div>
+
+<h3>T4 — Cycle Life Discrepancy: Cell Spec (6,000) vs. System Contract (7,000)</h3>
+<div class="ok-box">
+<strong>Rating: LOW — Not a Contract Risk, Explanation Required</strong><br>
+<strong>Finding:</strong> Battery cell spec states 6,000 cycles at 100% DoD, 80% SOH, 0.5C. System warranty and contracts state 7,000 cycles at 90% DoD, 70% EOL (whichever first: 15 years or 7,000 cycles).<br><br>
+<strong>Explanation:</strong> These are not contradictory — they measure different things. Cell-level spec uses 100% DoD and 80% SOH as end-of-life (stricter). System-level contract uses 90% DoD and 70% EOL (less aggressive cycling, deeper remaining capacity before EOL). At 90% DoD, the cells will reach 7,000+ cycles before reaching 70% SOH, consistent with the contracted warranty. The 15-year term acts as the primary binding constraint (not 7,000 cycles in normal operation at 1 cycle/day = 5,475 cycles over 15 years). RFI V3 confirmed: "15 years OR 7,000 cycles at 70% EOL, 90% DoD, 25±2°C, whichever comes first."<br><br>
+<strong>Action:</strong> No amendment needed. However, if clients or their engineers raise the cell spec vs. contract cycle life discrepancy, the above explanation should be documented and available. Consider adding a brief technical note to Schedule A of the EPC (or a separate technical annex) clarifying the cycle life measurement basis.
+</div>
+
+<h3>T5 — Monthly Physical Maintenance vs. Bi-Annual LTSA Visits</h3>
+<div class="warning-box">
+<strong>Rating: MEDIUM — LTSA Service Design Gap</strong><br>
+<strong>Finding:</strong> Linyang's Maintenance Manual requires monthly physical checks (container enclosure, cables, air inlet/outlet). LTSA Tier C provides bi-annual PM visits + 24/7 remote monitoring. Physical monthly items cannot all be done remotely.<br><br>
+<strong>Impact:</strong> If a warranty claim arises and Linyang requests maintenance records (as required under Warranty Claim Procedure VIII.4), and the records only show bi-annual visits (not monthly), Linyang could challenge the claim as inadequately maintained under Warranty Terms v2 Section III.1.<br><br>
+<strong>Mitigation:</strong> (a) Remote monitoring covers the BMS data, software logs, and parameter checks monthly (this is the most important item). (b) Add to LTSA client obligations (§14 or Annex): client or designated site operator to perform visual monthly walk-around (check container enclosure, cables, air inlets) and log in the CMMS. Lighthief provides the checklist. This shifts monthly physical inspection to client with Lighthief providing the log template. (c) Add a quarterly light site visit (1 hour per park) for field engineer at additional cost for larger groups.
+</div>
+
+<h3>T6 — Warranty Terms v2 Allows Linyang to Withhold Warranty if Lighthief Has Overdue Payments</h3>
+<div class="danger-box">
+<strong>Rating: HIGH — Payment Default Creates Downstream Warranty Disruption Risk</strong><br>
+<strong>Finding:</strong> Warranty Terms v2 Section VIII.5: <em>"In the event that the Warranty Right Holder has any overdue payments... Linyang Energy Storage reserves the right to require the Warranty Right Holder to pay a deposit... prior to the implementation of any warranty service resolution."</em><br><br>
+<strong>Impact:</strong> If Lighthief delays a DAP payment or SAT payment to Linyang (see cashflow risk in LCY-RISK-001), Linyang can refuse warranty service until a deposit is paid. This means client park outages during a payment dispute would not be remedied by Linyang, putting Lighthief in breach of LTSA availability obligations to the client.<br><br>
+<strong>Connection to cashflow risk (S1):</strong> A 30-day client pre-ship delay (S1 scenario) that cascades into a Linyang DAP delay would not only create a bridge financing need — it could temporarily suspend Linyang's warranty service obligations to all existing commissioned parks. This is the most severe second-order consequence of a payment delay.<br><br>
+<strong>Mitigation:</strong> (1) Maintain the working capital facility specifically to ensure Linyang payments are never overdue. (2) In the Sales Contract, add explicit language: "Linyang's warranty service obligations under the separately issued Warranty Terms shall not be suspended or conditioned upon payment of deposits solely due to a payment delay under this Contract that is caused by end-customer payment default, provided Lighthief has notified Linyang of the delay per §6 (End-Customer Payment Provisions)." This aligns with the end-customer payment provisions already in the Sales Contract.
+</div>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>7. Summary — Technical Scope Boundary Map</h2>
+
+<table>
+  <tr>
+    <th>Layer</th>
+    <th>Linyang Delivers (CIF Limassol)</th>
+    <th>Lighthief Delivers (EPC)</th>
+    <th>Interface / Shared</th>
+  </tr>
+  <tr>
+    <td><strong>Battery System</strong></td>
+    <td class="in-scope">Complete 5MWh container incl. cells, BMS, cooling, fire suppression, internal wiring — factory tested</td>
+    <td class="out-scope">Transport from port to site; crane placement on foundation; connect cooling lines to site services (none required — self-contained)</td>
+    <td class="shared">Linyang confirms container integrity after transport; signs off foundation contact</td>
+  </tr>
+  <tr>
+    <td><strong>PCS &amp; MV Skid</strong></td>
+    <td class="in-scope">Complete PCS unit + MV transformer + switchgear within skid — factory tested</td>
+    <td class="out-scope">Transport; crane placement; external MV cabling from skid to grid connection; PCS-to-BESS DC connection (as of 17 Mar)</td>
+    <td class="shared">Linyang supervises PCS-BESS connection; validates grid compliance at commissioning</td>
+  </tr>
+  <tr>
+    <td><strong>BMS / Controls</strong></td>
+    <td class="in-scope">BMS hardware + pre-configured firmware; northbound communication protocols; Modbus/IEC104 interface</td>
+    <td class="out-scope">EMS (Voltus); SCADA platform; EMS-to-BMS integration configuration</td>
+    <td class="shared">Linyang confirms BMS–EMS interface compatibility at PAC (EPC §4.4(c))</td>
+  </tr>
+  <tr>
+    <td><strong>Civil / Site</strong></td>
+    <td class="in-scope">Foundation anchor points (container corner castings) — as-designed</td>
+    <td class="out-scope">Concrete/gravel foundation; earthing grid; fencing; drainage; cabling trenches; LPS</td>
+    <td class="shared">Linyang defines foundation spec; Lighthief builds to spec</td>
+  </tr>
+  <tr>
+    <td><strong>Commissioning</strong></td>
+    <td class="in-scope">FAT at factory; OEM SAT at site; system configuration; testing protocols; PAC certificate sign-off</td>
+    <td class="out-scope">Civil readiness; grid connection; permit completion; client handing over site access</td>
+    <td class="shared">Lighthief coordinates; Linyang conducts technical tests; EAC witness testing</td>
+  </tr>
+  <tr>
+    <td><strong>O&amp;M (post-PAC)</strong></td>
+    <td class="in-scope">Remote OEM support (critical: 4hr, major: 24hr); warranty claim response (48hr); on-site service within 5 Business Days for critical issues</td>
+    <td class="out-scope">24/7 SCADA monitoring; monthly/annual maintenance (external scope); LTSA service fee management; client relationship</td>
+    <td class="shared">Battery internal maintenance: requires Linyang-approved personnel. Lighthief field team handles externals.</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+
+<!-- ══════════════════════════════════════════ -->
+<h2>8. Action Items — Technical Issues to Resolve Before Client Contract Execution</h2>
+
+<table>
+  <tr><th>#</th><th>Action</th><th>Priority</th><th>Owner</th><th>Deadline</th></tr>
+  <tr>
+    <td>TA1</td>
+    <td>Add explicit Sales Contract clause: Sales Contract governs over Warranty Terms v2 for dispute resolution (SIAC prevails over SHIAC)</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Alexander + Linyang (Kamil)</td>
+    <td>At Sales Contract signing</td>
+  </tr>
+  <tr>
+    <td>TA2</td>
+    <td>Confirm with Marsh that FK5112 / perfluoroketone fire suppression agent discharge is covered under Lighthief's environmental liability / CAR policy. Request explicit cover or sublimit.</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Alexander + Marsh (Aris)</td>
+    <td>Within 1 week</td>
+  </tr>
+  <tr>
+    <td>TA3</td>
+    <td>Arrange Linyang certification training for 2 Lighthief field engineer leads (Distribution §15 provides for this at no additional cost)</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Alexander + Linyang training team</td>
+    <td>Before B1 commissioning (Nov 2026)</td>
+  </tr>
+  <tr>
+    <td>TA4</td>
+    <td>Add to Sales Contract confirmation: Linyang's warranty service obligations cannot be suspended for delayed payment caused by end-customer non-payment, where Lighthief has properly notified delay per §6</td>
+    <td><span class="badge badge-amber">HIGH</span></td>
+    <td>Alexander + Kamil</td>
+    <td>At Sales Contract signing</td>
+  </tr>
+  <tr>
+    <td>TA5</td>
+    <td>Amend LTSA to clarify: monthly physical inspections are client responsibility (with Lighthief-provided checklist); remote monthly monitoring via SCADA covers BMS data, logs, parameters; bi-annual on-site PM covers physical/electrical items</td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Alexander — LTSA v5 (companion to EPC v5)</td>
+    <td>Before client LTSA negotiations</td>
+  </tr>
+  <tr>
+    <td>TA6</td>
+    <td>Request Linyang to provide written confirmation that FK5112 is classified under its trade name and CAS number to enable insurance disclosure; confirm PFAS regulatory status in Cyprus/EU</td>
+    <td><span class="badge badge-amber">MEDIUM</span></td>
+    <td>Alexander + Conor/Kamil</td>
+    <td>Within 2 weeks</td>
+  </tr>
+  <tr>
+    <td>TA7</td>
+    <td>Add a Technical Annex to EPC Schedule A: cycle life measurement basis (90% DoD, 70% EOL, 25±2°C), RTE measurement point (full system AC-AC at POC), and coastal distance declaration form</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+    <td>Alexander — EPC v5.0 Schedule A</td>
+    <td>Before first client EPC execution</td>
+  </tr>
+  <tr>
+    <td>TA8</td>
+    <td>Confirm EMS maintenance mode with Voltus: Linyang must be able to operate BESS in local/manual mode during warranty servicing, with EMS de-coupled</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+    <td>Alexander + Voltus technical team</td>
+    <td>Before commissioning</td>
+  </tr>
+  <tr>
+    <td>TA9</td>
+    <td>Add Linyang SAT sign-off sheet (as Schedule B of EPC) documenting PCS-to-BESS connection supervision sign-off — protects Lighthief in warranty disputes on connection quality</td>
+    <td><span class="badge badge-grey">MEDIUM</span></td>
+    <td>Alexander — EPC v5 Schedule B</td>
+    <td>Before first client EPC execution</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+<div style="text-align:center;color:#888;font-size:11px;margin-top:32px;border-top:1px solid #e0e4ef;padding-top:16px;">
+  <strong>LIGHTHIEF CYPRUS LTD</strong> — CONFIDENTIAL &amp; INTERNAL<br>
+  LCY-TECH-SCOPE-001 v1.0 &nbsp;|&nbsp; 7 May 2026 &nbsp;|&nbsp; Sources: Power Atlantic 5MWh Spec · User Manual v2.0 · Maintenance Manual · Warranty Terms v2 (LYCN/WI-3410) · RFI Legal Guarantees V3 · Sales Contract 17 Mar 2026<br>
+  Companion document to: LCY-RISK-001 Full Contract Risk Review (6 May 2026)
+</div>
+
+</div>
+</body>
+</html>

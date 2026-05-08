@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipment Scope &amp; Adder Reconciliation | May 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a2e; background: #f5f7fa; line-height: 1.55; }
+  .page { max-width: 1200px; margin: 0 auto; background: #fff; padding: 40px 48px; }
+  h1 { font-size: 21px; font-weight: 700; color: #0d1b4b; border-bottom: 3px solid #0d47a1; padding-bottom: 10px; margin-bottom: 8px; }
+  h2 { font-size: 16px; font-weight: 700; color: #0d47a1; margin: 32px 0 10px; border-left: 4px solid #0d47a1; padding-left: 10px; }
+  h3 { font-size: 14px; font-weight: 700; color: #1a237e; margin: 18px 0 7px; }
+  p { margin-bottom: 8px; }
+  ul, ol { margin: 6px 0 8px 20px; }
+  li { margin-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 12px; }
+  th { background: #0d47a1; color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+  th.right, td.right { text-align: right; }
+  td { padding: 5px 10px; border-bottom: 1px solid #e0e4ef; vertical-align: top; }
+  tr:nth-child(even) td { background: #f4f6fd; }
+  .subtotal td { background: #e8eaf6 !important; font-weight: 700; }
+  .total td { background: #283593 !important; color: #fff; font-weight: 700; }
+  .cif td { background: #e8f5e9 !important; }
+  .adder td { background: #fff8e1 !important; }
+  .ems td { background: #e3f2fd !important; }
+  .excluded td { background: #fce4ec !important; }
+  .badge { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+  .bg-green { background: #2e7d32; color: #fff; }
+  .bg-amber { background: #e65100; color: #fff; }
+  .bg-red { background: #b71c1c; color: #fff; }
+  .bg-blue { background: #0d47a1; color: #fff; }
+  .bg-grey { background: #546e7a; color: #fff; }
+  .bg-purple { background: #6a1b9a; color: #fff; }
+  .ok-box { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 9px 13px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .warn-box { background: #fff3e0; border-left: 4px solid #f57f17; padding: 9px 13px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .danger-box { background: #ffebee; border-left: 4px solid #c62828; padding: 9px 13px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .info-box { background: #e3f2fd; border-left: 4px solid #0d47a1; padding: 9px 13px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+  .section-break { border: none; border-top: 2px solid #e8eaf6; margin: 32px 0; }
+  code { background: #f0f0f0; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .meta { font-size: 11px; color: #666; margin-bottom: 24px; }
+  .meta span { margin-right: 18px; }
+  .num { font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Equipment Scope &amp; Adder Cost Reconciliation</h1>
+<h1 style="font-size:14px;border:none;padding:3px 0 0;margin:0;color:#1a237e;">SSOT vs Excel v4 vs EPC v5 Component Split — Full Discrepancy Register</h1>
+<div class="meta">
+  <span><strong>Ref:</strong> LCY-SCOPE-REC-001 v1.0</span>
+  <span><strong>Date:</strong> 8 May 2026</span>
+  <span><strong>Sources:</strong> lib/portfolio-data.ts · Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx · client_sales_v5.0.docx · Linyang Sales Contract 17 Mar 2026</span>
+</div>
+
+<div class="info-box">
+<strong>What this document answers:</strong> There are three places in the codebase where equipment scope and costs are defined, and they do not fully agree with each other. This document maps out every discrepancy, explains why it exists, and states the authoritative correct value for each item.
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<h2>1. The Three Sources — What Each One Is</h2>
+
+<table>
+  <tr><th>Source</th><th>Created</th><th>Park Universe</th><th>MWh</th><th>Purpose</th><th>Authoritative for</th></tr>
+  <tr>
+    <td><strong>Excel v4</strong><br><code>Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx</code></td>
+    <td>16 Feb 2026</td>
+    <td>51 parks (incl. ABIO). Non-ABIO subset = 26 parks.</td>
+    <td>881.78 (all 51) / 451.5 (non-ABIO 26)</td>
+    <td>Bottom-up per-park cost model. Most granular data — individual adder calculations per park.</td>
+    <td>Individual park-level adder calculations. Crane rate (now superseded to €2,500). Use as reference only — do NOT use totals.</td>
+  </tr>
+  <tr>
+    <td><strong>SSOT</strong><br><code>lib/portfolio-data.ts</code></td>
+    <td>Updated 24 Mar 2026</td>
+    <td>28 parks (ABIO removed, Spanercom added, Galascope resized)</td>
+    <td>496.5</td>
+    <td>Master data source for all documents and calculations.</td>
+    <td><strong>ALL revenue, CIF, and margin figures. All payment terms. All client pricing.</strong> This is the SSOT — it wins in any conflict.</td>
+  </tr>
+  <tr>
+    <td><strong>EPC v5.0</strong><br><code>legal/templates/client_sales_v5.0.docx</code></td>
+    <td>6 May 2026</td>
+    <td>Template — per client</td>
+    <td>Per park</td>
+    <td>Defines the legal/commercial structure of how costs are packaged and presented to clients.</td>
+    <td>Component A / Component B definition. APG scope. Payment milestone basis.</td>
+  </tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>2. Complete Equipment &amp; Cost Stack — What Is in Each Layer</h2>
+
+<p>The table below shows <strong>every cost item</strong>, which source it comes from, and whether it is in Component A (equipment) or Component B (EPC services) per the EPC v5.0 definition.</p>
+
+<table>
+  <tr>
+    <th>Layer</th>
+    <th>Item</th>
+    <th>Supplier</th>
+    <th>Rate / Basis</th>
+    <th>EPC Component</th>
+    <th>Excel v4 Status</th>
+    <th>SSOT Status</th>
+    <th>Confirmed?</th>
+  </tr>
+
+  <!-- CIF LAYER -->
+  <tr class="cif"><td rowspan="6"><strong>COMPONENT A<br>CIF Linyang</strong></td>
+    <td>Battery containers (5.015 MWh each) incl. BMS, liquid cooling, fire suppression, internal wiring</td>
+    <td>Linyang</td>
+    <td>From LY202601271 + LY202602111 quotations</td>
+    <td><span class="badge bg-green">A — Equipment</span></td>
+    <td>✓ Confirmed per-park</td>
+    <td>✓ <code>FINANCIALS.cifTotal</code></td>
+    <td><span class="badge bg-green">CONFIRMED</span></td>
+  </tr>
+  <tr class="cif"><td>Power Conversion System (PCS) BCS1000K / BCS1250K</td><td>Linyang / Kehua</td><td>Included in CIF quotation</td><td><span class="badge bg-green">A — Equipment</span></td><td>✓</td><td>✓</td><td><span class="badge bg-green">CONFIRMED</span></td></tr>
+  <tr class="cif"><td>MV Skids (T1/T2/T4/T8) — incl. step-up transformer + MV switchgear</td><td>Linyang</td><td>Included in CIF quotation</td><td><span class="badge bg-green">A — Equipment</span></td><td>✓</td><td>✓</td><td><span class="badge bg-green">CONFIRMED</span></td></tr>
+  <tr class="cif"><td>OEM commissioning (factory-trained technicians, SAT protocols)</td><td>Linyang</td><td>Within CIF — no separate charge</td><td><span class="badge bg-green">A — Equipment</span></td><td>Row 25: <strong>"TBC — Linyang scope?"</strong> ← <span class="badge bg-amber">NOW RESOLVED</span></td><td>No adder (correct)</td><td><span class="badge bg-green">WITHIN CIF</span></td></tr>
+  <tr class="cif"><td>Export packing &amp; sea freight to Limassol (CIF)</td><td>Linyang</td><td>Within CIF — Linyang bears marine risk</td><td><span class="badge bg-green">A — Equipment</span></td><td>✓</td><td>✓</td><td><span class="badge bg-green">CONFIRMED</span></td></tr>
+  <tr class="cif"><td>Marine insurance (China → Limassol port)</td><td>Linyang</td><td>Within CIF — Linyang's obligation (Incoterms 2020)</td><td><span class="badge bg-green">A — Equipment</span></td><td><em>Not counted as Lighthief cost</em></td><td>Not in ADDERS (correct)</td><td><span class="badge bg-green">LINYANG BEARS</span></td></tr>
+
+  <!-- LOGISTICS -->
+  <tr class="adder"><td rowspan="5"><strong>COMPONENT B<br>Logistics</strong></td>
+    <td>Import duty (2.66% of CIF — weighted HS codes)</td>
+    <td>Cyprus Customs</td>
+    <td>2.66% × CIF. HS 8507: 2.7%, 8504: 0%/3.7%, 8537: 2.1%</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€2,286,640 (51 parks). Non-ABIO 26 parks: €1,175,669</td>
+    <td><code>ADDERS.importDuty: €2,286,640</code> ← 51-park figure (stale)</td>
+    <td><span class="badge bg-green">CONFIRMED rate</span></td>
+  </tr>
+  <tr class="adder"><td>Port landing / THC (ECTL Limassol)</td><td>ECTL</td><td>€600/40HC container (THC €399 + agent fees)</td><td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€161,895 (51 parks). Non-ABIO: €81,270</td>
+    <td><code>ADDERS.portLanding: €161,895</code> ← 51-park figure (stale)</td>
+    <td><span class="badge bg-amber">QUOTED</span></td>
+  </tr>
+  <tr class="adder"><td>Customs clearance (Interfreight)</td><td>Interfreight</td><td>€85/declaration per park</td><td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€4,335 (51 parks). Non-ABIO: €2,210</td>
+    <td><code>ADDERS.customsClearance: €4,335</code> ← 51-park figure (stale)</td>
+    <td><span class="badge bg-amber">QUOTED</span></td>
+  </tr>
+  <tr class="adder"><td>Crane &amp; inland transport (A. Soulis)</td><td>A. Soulis</td>
+    <td><strong>€2,500/container</strong> (confirmed Mar 2026). Excel v4 uses €2,360 — STALE.</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€604,160 at €2,360 (51 parks) — <span class="badge bg-amber">STALE RATE</span></td>
+    <td><code>ADDERS.craneTransport: €350,000</code> (138 containers × €2,500 ≈ €345K). <span class="badge bg-green">CORRECT RATE</span></td>
+    <td><span class="badge bg-green">CONFIRMED €2,500</span></td>
+  </tr>
+  <tr class="adder"><td>IMO storage contingency (ECTL — Class 9)</td><td>ECTL</td><td>€45/container — no free days for IMO cargo</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>Included separately in Excel</td>
+    <td><strong>NOT in SSOT as separate line</strong> — folded into portLanding assumption</td>
+    <td><span class="badge bg-amber">MINOR GAP</span> — €45/cnt ≈ €6,210 for 138 cnt</td>
+  </tr>
+
+  <!-- ELECTRICAL -->
+  <tr class="adder"><td rowspan="6"><strong>COMPONENT B<br>Electrical</strong></td>
+    <td>LV cabling (DC side — container to PCS connection)</td><td>Subcontractors</td><td>€700–€1,680/container (config-scaled)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€363,300 (51 parks)</td>
+    <td><code>ADDERS.lvCabling: €363,300</code> ← 51-park figure (stale)</td><td><span class="badge bg-amber">ESTIMATE</span></td>
+  </tr>
+  <tr class="adder"><td>MV cabling (external — PCS skid terminals to grid connection)</td><td>Subcontractors</td><td>€3,500/MV feeder (each MV skid = 1 feeder)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€245,000 (51 parks)</td>
+    <td><code>ADDERS.mvCabling: €245,000</code> ← 51-park figure (stale)</td><td><span class="badge bg-amber">ESTIMATE</span></td>
+  </tr>
+  <tr class="adder"><td>MV cable terminations</td><td>Subcontractors</td><td>€2,200/MV feeder</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€154,000 (51 parks)</td>
+    <td><code>ADDERS.mvTerminations: €154,000</code> ← 51-park figure (stale)</td><td><span class="badge bg-amber">ESTIMATE</span></td>
+  </tr>
+  <tr class="adder"><td>Protection engineering (relay settings, grid compliance)</td><td>Subcontractors</td><td>€5,000 (≤3 cnt) / €6,000 (≥4 cnt) per park</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€275,000 (51 parks)</td>
+    <td><code>ADDERS.protectionEng: €275,000</code> ← 51-park figure (stale)</td><td><span class="badge bg-amber">ESTIMATE</span></td>
+  </tr>
+  <tr class="adder"><td><strong>"Remote Trip / SCADA Comms"</strong> — physical RTU/modem for grid remote trip signalling</td><td>Subcontractors</td><td>€3,000/park flat</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€153,000 (51 parks)</td>
+    <td><code>ADDERS.remoteTripScada: €153,000</code> ← 51-park figure (stale)</td>
+    <td><span class="badge bg-amber">ESTIMATE</span> <strong>⚠ See naming note below</strong></td>
+  </tr>
+  <tr class="adder"><td>UPS &amp; auxiliary power supply (site-level UPS for grid protection)</td><td>Subcontractors</td><td>€2,000/park</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€102,000 (51 parks)</td>
+    <td><code>ADDERS.upsAuxiliary: €102,000</code> ← 51-park figure (stale)</td><td><span class="badge bg-amber">ESTIMATE</span></td>
+  </tr>
+
+  <!-- DEHN -->
+  <tr class="adder"><td rowspan="4"><strong>COMPONENT B<br>Lightning / Surge</strong></td>
+    <td>LPS — external lightning protection (air terminals, down conductors)</td><td>DEHN + StrikeRA</td><td>€429.41/BESS cnt + €617.52/MV skid</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€120,197 (51 parks). Non-ABIO 26: €60,313</td>
+    <td><code>ADDERS.dehnLpsSpdEarthing: €446,385</code> ← includes SPD + earthing, 51-park figure</td><td><span class="badge bg-amber">QUOTED</span></td>
+  </tr>
+  <tr class="adder"><td>SPD — surge protection devices (DC + LV + MV + aux + comms)</td><td>DEHN</td><td>Per component type (see Excel Adder Rates)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€126,596 (51 parks). Non-ABIO: €63,796</td>
+    <td>Combined in <code>ADDERS.dehnLpsSpdEarthing</code></td><td><span class="badge bg-amber">QUOTED</span></td>
+  </tr>
+  <tr class="adder"><td>Site earthing grid (ground rods, busbars, connections)</td><td>DEHN</td><td>€793.59/structure (BESS+MV pair)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€199,191 (51 parks). Non-ABIO: €99,992</td>
+    <td>Combined in <code>ADDERS.dehnLpsSpdEarthing</code></td><td><span class="badge bg-amber">QUOTED</span></td>
+  </tr>
+  <tr class="adder"><td>LPS/SPD installation labour (StrikeRA)</td><td>StrikeRA</td><td>€1,600/park flat</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td><td>€81,600 (51 parks). Non-ABIO: €41,600</td>
+    <td><code>ADDERS.dehnInstallLabour: €81,600</code> ← 51-park figure</td><td><span class="badge bg-green">CONFIRMED</span></td>
+  </tr>
+
+  <!-- CIVIL -->
+  <tr class="adder"><td><strong>COMPONENT B<br>Civil Works</strong></td>
+    <td>All civil works (concrete platforms, cable trenches, foundations, fencing, drainage)</td>
+    <td>Subcontractors</td>
+    <td>€2,000/MWh (all-in flat rate confirmed Kamil Feb 2026)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€1,763,560 (51 parks, 881.78 MWh). Non-ABIO 26: €903,000</td>
+    <td><code>ADDERS.civilWorks: €1,763,560</code> ← 51-park figure (stale)</td>
+    <td><span class="badge bg-green">CONFIRMED €2K/MWh</span></td>
+  </tr>
+
+  <!-- EMS/SCADA -->
+  <tr class="ems"><td rowspan="3"><strong>COMPONENT B<br>EMS / SCADA<br>(Voltus)</strong></td>
+    <td>Voltus EMS — dispatch optimisation system, hardware, config, install</td>
+    <td>Voltus</td>
+    <td>Per park, per container config (Voltus Feb 16 quote)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€2,298,609 (51 parks). Non-ABIO 26 parks: €1,167,334</td>
+    <td><code>ADDERS.voltusEms: €2,298,609</code> ← <strong>51-park figure — STALE for 28 parks</strong></td>
+    <td><span class="badge bg-amber">QUOTED (51-park total)</span></td>
+  </tr>
+  <tr class="ems"><td>SCADA Local — per-park monitoring station</td><td>Voltus</td>
+    <td>€15,000 basic (≤8 MWh) / €30,000 advanced (≥10 MWh)</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€1,275,000 (51 parks). Non-ABIO 26: €600,000</td>
+    <td><code>ADDERS.scadaLocal: €1,275,000</code> ← <strong>51-park figure — STALE</strong></td>
+    <td><span class="badge bg-amber">QUOTED (51-park total)</span></td>
+  </tr>
+  <tr class="ems"><td>SCADA Global — group-level fleet management platform</td><td>Voltus</td>
+    <td>€60,000/group (3 groups) + €60,008 standalone</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€420,008 (all groups)</td>
+    <td><code>ADDERS.scadaGlobal: €420,008</code> — largely unchanged by ABIO removal</td>
+    <td><span class="badge bg-amber">QUOTED</span></td>
+  </tr>
+
+  <!-- INSURANCE -->
+  <tr class="adder"><td rowspan="2"><strong>COMPONENT B<br>Insurance &amp; Docs</strong></td>
+    <td>EPC construction insurance (CAR/EAR, TPL, PI) — budget adder</td>
+    <td>Marsh / TBC</td>
+    <td>0.75% of CIF — <strong>budget only, not placed</strong></td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>Excel calls it "Marine/Transit Insurance" — <span class="badge bg-red">WRONG NAME</span>. Linyang CIF covers marine.</td>
+    <td><code>ADDERS.insurance: €644,729</code> (51-park budget). Note in SSOT correctly says CAR/EAR. Stale total.</td>
+    <td><span class="badge bg-amber">BUDGET PENDING placement</span></td>
+  </tr>
+  <tr class="adder"><td>Docs &amp; statutory compliance (EAC/CERA permits, submissions)</td><td>Licensed engineers</td>
+    <td>€7,000/park estimate</td>
+    <td><span class="badge bg-blue">B — EPC Services</span></td>
+    <td>€357,000 (51 parks). Non-ABIO 26: €182,000</td>
+    <td><code>ADDERS.docsCompliance: €357,000</code> ← 51-park figure (stale)</td>
+    <td><span class="badge bg-amber">ESTIMATE</span></td>
+  </tr>
+
+  <!-- EXCLUDED -->
+  <tr class="excluded"><td rowspan="4"><strong>EXCLUDED<br>Client-Paid</strong></td>
+    <td>Protection relay testing (per DSO/EAC requirement)</td><td>Client</td><td>€1,250/container</td>
+    <td><span class="badge bg-grey">EXCLUDED</span></td>
+    <td>Client-paid per Dino Feb 2026</td><td><code>CLIENT_PAID.protectionTesting</code></td><td><span class="badge bg-green">CONFIRMED excluded</span></td>
+  </tr>
+  <tr class="excluded"><td>Electrical drawings &amp; as-built (licensed engineer)</td><td>Client</td><td>€5,000–15,000/site</td>
+    <td><span class="badge bg-grey">EXCLUDED</span></td><td>Excluded</td><td><code>CLIENT_PAID.electricalDrawings</code></td><td><span class="badge bg-green">CONFIRMED excluded</span></td>
+  </tr>
+  <tr class="excluded"><td>External LPS (client premises)</td><td>Client</td><td>Per DEHN site quote</td>
+    <td><span class="badge bg-grey">EXCLUDED</span></td><td>Excluded</td><td><code>CLIENT_PAID.externalLps</code></td><td><span class="badge bg-green">CONFIRMED excluded</span></td>
+  </tr>
+  <tr class="excluded"><td>VAT (19%)</td><td>Client</td><td>19% on EPC invoice</td>
+    <td><span class="badge bg-grey">EXCLUDED</span></td><td>Excluded</td><td><code>CLIENT_PAID.vat</code></td><td><span class="badge bg-green">CONFIRMED excluded</span></td>
+  </tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>3. The Main Discrepancies — Reconciliation Table</h2>
+
+<table>
+  <tr><th>#</th><th>Item</th><th>Excel v4 Value</th><th>SSOT Value</th><th>Correct Value</th><th>Root Cause</th><th>Action</th></tr>
+  <tr>
+    <td>D1</td>
+    <td><strong>Portfolio totals</strong></td>
+    <td>51 parks, 881.78 MWh, CIF €85.96M, Revenue €109.2M, Margin €11.64M</td>
+    <td>28 parks, 496.5 MWh, CIF €48.44M, Revenue €61.39M, Margin €6.63M</td>
+    <td><strong>SSOT wins</strong> — ABIO removed Mar 2026, Spanercom added, Galascope resized</td>
+    <td>v4 Excel created before ABIO removal. Not updated.</td>
+    <td>Do not use Excel v4 totals for any current purpose. Use SSOT only.</td>
+  </tr>
+  <tr>
+    <td>D2</td>
+    <td><strong>ADDERS section totals in SSOT</strong> (voltusEms, scadaLocal, importDuty etc.)</td>
+    <td>Based on 51 parks (Excel v4 source)</td>
+    <td>ADDERS totals still show 51-park figures (e.g., <code>voltusEms: €2,298,609</code> for 51 parks) but FINANCIALS shows rounded 28-park estimates</td>
+    <td><strong>FINANCIALS section wins for totals</strong>. ADDERS items have stale totals but correct per-unit rates.</td>
+    <td>ADDERS section was NOT recalculated when ABIO was removed. The <code>_meta</code> source date '2026-02-20' confirms this.</td>
+    <td>Update ADDERS totals to 28-park figures. See Section 5 for corrected values.</td>
+  </tr>
+  <tr>
+    <td>D3</td>
+    <td><strong>FINANCIALS.physicalAdders = €4,200,000 vs derivable sum</strong></td>
+    <td>Excel non-ABIO 26 parks: €3,885,517</td>
+    <td>SSOT: €4,200,000</td>
+    <td>Correct 28-park figure ≈ <strong>€4,050,000–€4,250,000</strong> (difference = Spanercom + updated Galascope + €2,500 crane rate)</td>
+    <td>SSOT physicalAdders was manually estimated. Spanercom (2 parks, 40 MWh) adds ~€135K in physical adders at current rates.</td>
+    <td>Accept €4,200,000 as adequate budget estimate. Recalculate exactly when Spanercom parks finalised.</td>
+  </tr>
+  <tr>
+    <td>D4</td>
+    <td><strong>FINANCIALS.emsScadaTotal = €2,200,000 vs ADDERS sum</strong></td>
+    <td>Excel non-ABIO 26 parks: €2,127,342</td>
+    <td>SSOT ADDERS sum: €2,298,609 + €1,275,000 + €420,008 = €3,993,617 (51 parks)</td>
+    <td>28-park EMS/SCADA ≈ <strong>€2,200,000–€2,350,000</strong>. Use FINANCIALS.emsScadaTotal = €2,200,000 as working budget.</td>
+    <td>ADDERS.voltusEms/scadaLocal were not updated. FINANCIALS.emsScadaTotal was manually estimated for 28 parks.</td>
+    <td>Same as D2. Accept €2,200,000 as budget. Update ADDERS when Voltus re-quotes for 28-park scope.</td>
+  </tr>
+  <tr>
+    <td>D5</td>
+    <td><strong>Galascope 1 sizing</strong></td>
+    <td>Excel v4: Galascope 1 = 15 MWh (3 BESS + 2 MV skids), CIF €1,592,018</td>
+    <td>SSOT BATCH1_PARKS: Galascope 1 = 20 MWh, 5 containers, revenue €2,258,900</td>
+    <td><strong>SSOT wins</strong> — Galascope 1 is 20 MWh (5 × 5.015 MWh containers). CIF needs to be re-quoted from Linyang for 20 MWh configuration.</td>
+    <td>Galascope size changed post-Excel v4. Excel not updated.</td>
+    <td>Request updated CIF quotation from Linyang for Galascope 1 at 20 MWh. Update park CIF in SSOT GROUPS table for Esperia once confirmed.</td>
+  </tr>
+  <tr>
+    <td>D6</td>
+    <td><strong>Galascope 2 sizing</strong></td>
+    <td>Excel v4: Galascope 2 = 8 MWh (2 BESS + 1 MV skid), CIF €871,308</td>
+    <td>SSOT BATCH1_PARKS: Galascope 2 = 10 MWh, 3 containers, revenue €1,206,300</td>
+    <td><strong>SSOT wins</strong> — Galascope 2 is 10 MWh. CIF needs re-quote.</td>
+    <td>Same as D5.</td>
+    <td>Same as D5. Re-quote Galascope 2 at 10 MWh.</td>
+  </tr>
+  <tr>
+    <td>D7</td>
+    <td><strong>Crane rate</strong></td>
+    <td>Excel v4: €2,360/container (A. Soulis)</td>
+    <td>SSOT: €2,500/container flat rate (all routes, all container types)</td>
+    <td><strong>SSOT wins — €2,500 is confirmed Mar 2026 rate</strong>. Excel v4 used earlier quotation.</td>
+    <td>A. Soulis revised to flat €2,500 in March 2026. Excel not updated.</td>
+    <td>No action needed. SSOT is correct.</td>
+  </tr>
+  <tr>
+    <td>D8</td>
+    <td><strong>Insurance naming: "Marine/Transit" in Excel vs "CAR/EAR" in SSOT</strong></td>
+    <td>Excel: "Marine/Transit Insurance (0.75% CIF)"</td>
+    <td>SSOT: "EPC construction insurance (CAR/EAR, TPL, PI)"</td>
+    <td><strong>SSOT is correct</strong>. Linyang CIF includes marine insurance. The 0.75% budget is for Lighthief's EPC construction coverage.</td>
+    <td>Excel was created before it was clarified that Linyang CIF covers marine. SSOT note corrects this.</td>
+    <td>No action needed on numbers. When updating Excel, rename to "EPC CAR/EAR Insurance Budget".</td>
+  </tr>
+  <tr>
+    <td>D9</td>
+    <td><strong>Commissioning row in Excel: "TBC — Linyang scope?"</strong></td>
+    <td>Row 25 in Confirmed Adder Rates: "Commissioning — TBC — Linyang scope?"</td>
+    <td>No commissioning adder in SSOT</td>
+    <td><strong>Commissioning is within Linyang's CIF — no separate adder.</strong> Sales Contract §5A confirms Linyang provides factory-trained technicians, OEM testing, and SAT protocol at no additional charge.</td>
+    <td>Unresolved at time of Excel v4. Now resolved per Sales Contract 17 Mar 2026.</td>
+    <td>Close out row 25 in Excel as "INCLUDED IN LINYANG CIF". No adder needed.</td>
+  </tr>
+  <tr>
+    <td>D10</td>
+    <td><strong>Spanercom (Anarita 1 &amp; 2) missing from Excel v4</strong></td>
+    <td>Not in Excel v4</td>
+    <td>SSOT: 2 parks, 40 MWh, CIF €4,245,597, revenue €4,760,000, margin €207,736 (4.37%)</td>
+    <td><strong>SSOT is correct</strong> — Spanercom added Mar 2026</td>
+    <td>Added after Excel v4 was finalised.</td>
+    <td>Request Linyang CIF quotation for Anarita 1+2 (10 MW / 20 MWh each). Update SSOT with confirmed CIF when received.</td>
+  </tr>
+  <tr>
+    <td>D11</td>
+    <td><strong>"Remote Trip / SCADA Comms" naming confusion</strong></td>
+    <td>€3,000/park — listed under "Electrical" adders</td>
+    <td><code>ADDERS.remoteTripScada: €153,000</code> — listed alongside EMS/SCADA items</td>
+    <td>This is <strong>physical communication hardware</strong> (RTU, modem, remote trip relay) for DSO grid compliance — NOT the Voltus SCADA monitoring platform. Completely different item.</td>
+    <td>Name ambiguity — "SCADA" appears in both the physical hardware adder and the Voltus software platform.</td>
+    <td>Rename in SSOT to <code>remoteTripComms</code> (removing "SCADA"). Add note: "Physical RTU/modem hardware for DSO grid remote trip compliance — separate from Voltus SCADA platform."</td>
+  </tr>
+  <tr>
+    <td>D12</td>
+    <td><strong>Component A/B split not in SSOT or Excel</strong></td>
+    <td>No A/B split — single "Installed Cost" figure</td>
+    <td>No A/B split — single <code>installedCost</code></td>
+    <td>EPC v5.0 requires Component A (CIF = Linyang equipment) and Component B (all adders) be stated separately in Schedule A.</td>
+    <td>EPC v5.0 was created after Excel v4 and SSOT last update.</td>
+    <td>When executing EPC contracts, fill Schedule A with:<br>Component A = Park-specific CIF from Linyang quotation<br>Component B = Installed Cost − CIF = all adders</td>
+  </tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>4. Authoritative Numbers for Current 28-Park Portfolio</h2>
+
+<p>Use these numbers — all derived from SSOT, verified against Excel v4 where applicable:</p>
+
+<table>
+  <tr><th>Metric</th><th>Value</th><th>Source</th><th>Note</th></tr>
+  <tr class="cif"><td>Total portfolio parks</td><td class="right num">28</td><td>SSOT PORTFOLIO.parks</td><td>ABIO excluded. Spanercom added.</td></tr>
+  <tr class="cif"><td>Total MWh</td><td class="right num">496.50 MWh</td><td>SSOT PORTFOLIO.mwh</td><td>Includes Galascope updated sizing + Spanercom</td></tr>
+  <tr class="cif"><td>Total containers (BESS + MV skids combined)</td><td class="right num">138</td><td>SSOT PORTFOLIO.containers</td><td>Approx 99 BESS containers + 39 MV skids = 138 total units</td></tr>
+  <tr class="cif"><td><strong>Total CIF (Component A)</strong></td><td class="right num"><strong>€48,443,684</strong></td><td>SSOT FINANCIALS.cifTotal</td><td>From Linyang quotations LY202601271 + LY202602111. Excludes Galascope resized and Spanercom (need updated CIF for these).</td></tr>
+  <tr class="adder"><td>Physical adders (Component B — non-EMS)</td><td class="right num">~€4,200,000</td><td>SSOT FINANCIALS.physicalAdders</td><td>Budget estimate. Excel v4 non-ABIO 26 parks = €3,885,517. Delta = Spanercom + Galascope update + crane rate change.</td></tr>
+  <tr class="ems"><td>EMS/SCADA (Component B — Voltus)</td><td class="right num">~€2,200,000</td><td>SSOT FINANCIALS.emsScadaTotal</td><td>Budget estimate. Excel non-ABIO 26 parks = €2,127,342. Voltus to re-quote for exact 28-park scope.</td></tr>
+  <tr class="subtotal"><td><strong>Total installed cost (Component A + B)</strong></td><td class="right num"><strong>€54,763,066</strong></td><td>SSOT FINANCIALS.installedCost</td><td>CIF + physical adders + EMS. Average €110,300/MWh installed.</td></tr>
+  <tr><td>Client revenue</td><td class="right num">€61,391,195</td><td>SSOT FINANCIALS.clientRevenue</td><td>Average €123,650/MWh client price</td></tr>
+  <tr class="total"><td><strong>Net margin</strong></td><td class="right num"><strong>€6,628,129 (10.80%)</strong></td><td>SSOT FINANCIALS.netMargin</td><td>Revenue − Installed Cost. This is the EPC gross margin before OPEX and commission.</td></tr>
+</table>
+
+<h3>Batch 1 Breakdown (SSOT authoritative)</h3>
+<table>
+  <tr><th>Item</th><th>Value</th><th>Note</th></tr>
+  <tr class="cif"><td>Revenue</td><td class="right num">€15,067,200</td><td>9 parks, 120 MWh</td></tr>
+  <tr class="cif"><td>CIF (Component A)</td><td class="right num">€12,177,400</td><td>Confirmed Linyang quotation</td></tr>
+  <tr class="adder"><td>Other adders (Component B excl. EMS)</td><td class="right num">~€1,000,000</td><td>Proportional: 120/496.5 × €4.2M ≈ €1.0M</td></tr>
+  <tr class="ems"><td>EMS/SCADA Component B</td><td class="right num">~€690,700</td><td>Proportional: 34/138 × €2.8M Voltus + fixed SCADA global share</td></tr>
+  <tr class="subtotal"><td>Installed cost</td><td class="right num">€13,868,100</td><td>SSOT BATCHES[0].installed</td></tr>
+  <tr class="total"><td><strong>Gross margin</strong></td><td class="right num"><strong>€1,199,100 (7.96%)</strong></td><td>Revenue − Installed Cost</td></tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>5. SSOT Internal Inconsistency — The ADDERS Section</h2>
+
+<div class="danger-box">
+<strong>The ADDERS section in portfolio-data.ts contains 51-park totals that are stale.</strong> The <code>ADDERS.*</code> objects still contain the full-portfolio totals from the v4 Excel (Feb 2026), which include ABIO parks. The <code>FINANCIALS</code> section has the correct 28-park estimates (physicalAdders, emsScadaTotal) but these were set manually and are rounded. These two sections are internally inconsistent. Anyone summing up ADDERS totals will get 51-park figures, not 28-park figures.
+</div>
+
+<table>
+  <tr><th>ADDERS Item</th><th>Current SSOT value</th><th>v4 Excel (51 parks)</th><th>Corrected 28-park estimate</th><th>Rate for recalculation</th></tr>
+  <tr><td>importDuty</td><td class="right num">€2,286,640</td><td class="right num">€2,286,640</td><td class="right num">~€1,288,602</td><td>2.66% × €48,443,684 CIF</td></tr>
+  <tr><td>portLanding</td><td class="right num">€161,895</td><td class="right num">€161,895</td><td class="right num">~€82,800</td><td>€600 × 138 containers</td></tr>
+  <tr><td>customsClearance</td><td class="right num">€4,335</td><td class="right num">€4,335</td><td class="right num">~€2,380</td><td>€85 × 28 parks</td></tr>
+  <tr><td>craneTransport</td><td class="right num">€350,000</td><td class="right num">€604,160 (old rate)</td><td class="right num">€345,000</td><td>€2,500 × 138 containers. SSOT already updated ✓</td></tr>
+  <tr><td>dehnLpsSpdEarthing</td><td class="right num">€446,385</td><td class="right num">€446,385 (51 parks)</td><td class="right num">~€265,000</td><td>Per-park formula × 28 parks</td></tr>
+  <tr><td>dehnInstallLabour</td><td class="right num">€81,600</td><td class="right num">€81,600</td><td class="right num">€44,800</td><td>€1,600 × 28 parks</td></tr>
+  <tr><td>civilWorks</td><td class="right num">€1,763,560</td><td class="right num">€1,763,560</td><td class="right num">€993,000</td><td>€2,000 × 496.5 MWh</td></tr>
+  <tr><td>insurance (CAR budget)</td><td class="right num">€644,729</td><td class="right num">€644,729</td><td class="right num">~€363,328</td><td>0.75% × €48,443,684 CIF</td></tr>
+  <tr><td>docsCompliance</td><td class="right num">€357,000</td><td class="right num">€357,000</td><td class="right num">€196,000</td><td>€7,000 × 28 parks</td></tr>
+  <tr><td>lvCabling</td><td class="right num">€363,300</td><td class="right num">€363,300</td><td class="right num">~€190,000</td><td>~€1,380/container avg × 138</td></tr>
+  <tr><td>mvCabling</td><td class="right num">€245,000</td><td class="right num">€245,000</td><td class="right num">~€136,500</td><td>€3,500 × 39 MV skids</td></tr>
+  <tr><td>mvTerminations</td><td class="right num">€154,000</td><td class="right num">€154,000</td><td class="right num">~€85,800</td><td>€2,200 × 39 MV skids</td></tr>
+  <tr><td>protectionEng</td><td class="right num">€275,000</td><td class="right num">€275,000</td><td class="right num">~€152,000</td><td>€5K–€6K × 28 parks (tiered)</td></tr>
+  <tr><td>remoteTripScada</td><td class="right num">€153,000</td><td class="right num">€153,000</td><td class="right num">€84,000</td><td>€3,000 × 28 parks</td></tr>
+  <tr><td>upsAuxiliary</td><td class="right num">€102,000</td><td class="right num">€102,000</td><td class="right num">€56,000</td><td>€2,000 × 28 parks</td></tr>
+  <tr><td>voltusEms</td><td class="right num">€2,298,609</td><td class="right num">€2,298,609</td><td class="right num">~€1,170,000</td><td>Needs Voltus re-quote for 28 parks</td></tr>
+  <tr><td>scadaLocal</td><td class="right num">€1,275,000</td><td class="right num">€1,275,000</td><td class="right num">~€615,000</td><td>€15K or €30K × 28 parks (mix)</td></tr>
+  <tr><td>scadaGlobal</td><td class="right num">€420,008</td><td class="right num">€420,008</td><td class="right num">~€360,008</td><td>€60K × 3 active groups + €60K standalone (ABIO group drop saves €60K)</td></tr>
+  <tr class="subtotal"><td><strong>Physical adders sum (28 parks)</strong></td><td class="right num">Derivable: €4,200,000 (FINANCIALS)</td><td class="right num">N/A</td><td class="right num"><strong>~€4,003,000</strong></td><td>Sum of corrected per-item estimates above (excl. EMS)</td></tr>
+  <tr class="subtotal"><td><strong>EMS/SCADA sum (28 parks)</strong></td><td class="right num">€2,200,000 (FINANCIALS)</td><td class="right num">N/A</td><td class="right num"><strong>~€2,145,000</strong></td><td>Sum of corrected Voltus items above</td></tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>6. Component A / Component B Split for Client Invoicing</h2>
+
+<p>The EPC v5.0 (§6.2, §6.3, Schedule A) requires both components to be stated per contract. This is how to derive them:</p>
+
+<table>
+  <tr><th>Component</th><th>Definition</th><th>Formula</th><th>B1 Example</th><th>APG Coverage?</th></tr>
+  <tr class="cif">
+    <td><strong>Component A<br>Equipment Supply Price</strong></td>
+    <td>CIF Limassol value of Linyang hardware only (battery containers + PCS + MV skids + all equipment within CIF quotation)</td>
+    <td>= CIF from Linyang quotation for that specific park</td>
+    <td>B1 parks: €12,177,400 total (≈€1,353,044 per park avg)</td>
+    <td><strong>YES — APG = 70% of Component A</strong> (advance 20% + pre-ship 50%). B1 APG = €8,524,180</td>
+  </tr>
+  <tr class="adder">
+    <td><strong>Component B<br>EPC Services Price</strong></td>
+    <td>All EPC adder costs: logistics, electrical, civil, DEHN, EMS/SCADA, insurance, docs, project management</td>
+    <td>= Installed Cost − CIF<br>= (Physical Adders + EMS) per park</td>
+    <td>B1: €13,868,100 − €12,177,400 = €1,690,700 (≈€187,856 per park avg)</td>
+    <td><strong>NO — APG does NOT cover Component B</strong> per EPC §10.9(e)</td>
+  </tr>
+  <tr class="subtotal">
+    <td><strong>Contract Price</strong></td>
+    <td>A + B — the price invoiced to client</td>
+    <td>= Client Revenue per park</td>
+    <td>B1: €15,067,200 (client pays this — inclusive of margin)</td>
+    <td>Client payment milestones apply to total Contract Price</td>
+  </tr>
+</table>
+
+<div class="warn-box">
+<strong>Practical implication for Schedule A population:</strong> For each client EPC, Component A = the CIF quoted by Linyang for that park (from LY202601271 or LY202602111). Component B = Contract Price − Component A. Both must be declared in Schedule A. The APG is then sized at 70% of Component A only, not 70% of total Contract Price. For a €3M park: Component A ≈ €2.5M, APG = €1.75M. Component B ≈ €0.5M, no APG coverage.
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<h2>7. Action Items to Fix the SSOT</h2>
+
+<table>
+  <tr><th>#</th><th>Action</th><th>Priority</th><th>Who</th></tr>
+  <tr>
+    <td>A1</td>
+    <td>Update <code>ADDERS.*</code> totals in portfolio-data.ts to 28-park figures (or add a flag that they are stale 51-park figures). Best approach: add a <code>note: '51-park figure — see FINANCIALS for current 28-park estimates'</code> to each stale ADDER object.</td>
+    <td><span class="badge bg-amber">HIGH</span></td>
+    <td>Developer</td>
+  </tr>
+  <tr>
+    <td>A2</td>
+    <td>Rename <code>ADDERS.remoteTripScada</code> → <code>ADDERS.remoteTripComms</code> and update description to clarify it is physical hardware (RTU/modem) for DSO remote trip — NOT the Voltus SCADA platform.</td>
+    <td><span class="badge bg-amber">HIGH</span></td>
+    <td>Developer</td>
+  </tr>
+  <tr>
+    <td>A3</td>
+    <td>Request updated Linyang CIF quotations for: (a) Galascope 1 at 20 MWh (was 15 MWh in Excel), (b) Galascope 2 at 10 MWh (was 8 MWh), (c) Anarita 1 &amp; 2 (Spanercom — not in any quotation yet). Update SSOT CIF values once received.</td>
+    <td><span class="badge bg-red">CRITICAL — affects APG calculation</span></td>
+    <td>Alexander + Linyang (Conor/Kamil)</td>
+  </tr>
+  <tr>
+    <td>A4</td>
+    <td>Request Voltus to re-quote EMS and SCADA for the actual 28-park scope (removing ABIO parks, updating Galascope/Spanercom). Update <code>ADDERS.voltusEms</code>, <code>scadaLocal</code>, and <code>FINANCIALS.emsScadaTotal</code>.</td>
+    <td><span class="badge bg-amber">HIGH</span></td>
+    <td>Alexander + Voltus</td>
+  </tr>
+  <tr>
+    <td>A5</td>
+    <td>Add <code>componentA</code> and <code>componentB</code> fields to each park in <code>BATCH1_PARKS</code> once CIF re-quotes are received, to enable EPC Schedule A population directly from SSOT.</td>
+    <td><span class="badge bg-grey">MEDIUM</span></td>
+    <td>Developer</td>
+  </tr>
+  <tr>
+    <td>A6</td>
+    <td>Mark commissioning in Excel v4 (Row 25) as "WITHIN LINYANG CIF — no adder". Update any proposal docs that show commissioning as a separate cost line.</td>
+    <td><span class="badge bg-grey">MEDIUM</span></td>
+    <td>Alexander</td>
+  </tr>
+</table>
+
+<hr class="section-break">
+<div style="text-align:center;color:#888;font-size:11px;margin-top:28px;padding-top:14px;border-top:1px solid #e0e4ef;">
+  <strong>LIGHTHIEF CYPRUS LTD</strong> — CONFIDENTIAL<br>
+  LCY-SCOPE-REC-001 v1.0 &nbsp;|&nbsp; 8 May 2026 &nbsp;|&nbsp; Sources: lib/portfolio-data.ts · Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx · client_sales_v5.0.docx<br>
+  Companion documents: LCY-RISK-001 (Full Contract Risk Review) · LCY-TECH-SCOPE-001 (Technical Scope Analysis)
+</div>
+
+</div>
+</body>
+</html>
