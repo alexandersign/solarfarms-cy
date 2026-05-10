@@ -63,11 +63,11 @@ export const FINANCIALS = {
   installedCost: 54_614_085,  // cifTotal + physicalAdders + emsScadaTotal (group order only)
   installedCostAvgPerMWh: 110_000,
 
-  clientRevenue: 61_391_195,  // Unchanged
-  clientRevenueAvgPerMWh: 123_650,
+  clientRevenue: 61_370_295,  // Galascope 1 negotiated rate €111,900/MWh (10 May 2026): -€20,900
+  clientRevenueAvgPerMWh: 123_607,
 
-  netMargin: 6_777_110,       // Revenue − installedCost. Improved vs prior — Spanercom was overcosted by €548K
-  netMarginPct: 11.04,
+  netMargin: 6_756_210,       // Revenue − installedCost. -€20,900 vs prior (Galascope 1 negotiation)
+  netMarginPct: 11.01,
   netMarginRounded: 11.0,
 
   // STANDALONE (Aeolian Dynamics — not in group order):
@@ -184,12 +184,12 @@ export const GROUPS: GroupData[] = [
     // CIF corrected 8 May 2026: Galascope G1 €1,848,712 (was €1,592,018) + G2 €974,457 (was €871,308) → +€359,844
     cif: 29_162_802,
     installedCost: 32_574_613,  // prior installedCost + €359,844 CIF delta (approx; full recalc pending)
-    revenue: 36_412_812,        // unchanged — revenue already used correct Galascope 20/10 MWh sizing
-    margin: 3_838_199,          // revenue − installedCost (reduced vs prior: CIF delta -€359,844 + EMS savings +€25K)
-    marginPct: 10.54,
+    revenue: 36_391_912,        // Galascope 1 negotiated 10 May 2026: -€20,900 (€2,258,900 → €2,238,000)
+    margin: 3_817_299,          // revenue − installedCost (Galascope 1 price reduction)
+    marginPct: 10.49,
     signingStatus: 'confirmed',
     signingProbabilityPct: 100,
-    signingNote: 'EPC v5.0 sent to Anastasis (Esperia lawyer). Galascope parks (Dino) confirmed. Signing imminent.',
+    signingNote: 'EPC v5.1 ready to send to Anastasis. Galascope (Dino) confirmed at €111,900/MWh G1 + €120,630/MWh G2. Signing imminent.',
   },
   {
     name: 'Spanercom (Anarita)', key: 'spanercom',
@@ -261,8 +261,8 @@ export const BATCHES = [
     // Galascope 1: 4 BESS + 1 MV = 5 units; Galascope 2: 2 BESS + 1 MV = 3 units
     cif: 2_823_169,       // G1 €1,848,712 + G2 €974,457 (CIF corrected 8 May 2026)
     installed: 3_193_707, // CIF + physical adders + EMS (proportional, Disperon v3 pricing)
-    revenue: 3_465_200,   // G1 €2,258,900 + G2 €1,206,300
-    margin: 271_493, marginPct: 7.84,
+    revenue: 3_444_300,   // G1 €2,238,000 (€111,900/MWh, negotiated 10 May 2026) + G2 €1,206,300
+    margin: 250_593, marginPct: 7.28,
     productionStart: '2026-05-01', productionEnd: '2026-07-31',
     fatDate: '2026-07-31', shipDate: '2026-08-01',
     cifDate: '2026-09-15', pacDate: '2027-01-31',
@@ -328,8 +328,8 @@ export const BATCH1_PARKS_CONFIRMED = [
     physAdders: 158_222,    // corrected (civil +€10K, duty +€6.8K, vs old 15 MWh)
     emsAllocated: 66_935,   // Disperon v3 proportional: €46,718 EMS + €15,000 SCADA Local + €5,217 SCADA Global (20/230 MWh share)
     installedCost: 2_073_869,
-    revenue: 2_258_900,
-    margin: 185_031, marginPct: 8.19,
+    revenue: 2_238_000,     // Negotiated 10 May 2026: €111,900/MWh × 20 MWh (was €112,945/MWh = €2,258,900)
+    margin: 164_131, marginPct: 7.33,
   },
   {
     name: 'Galascope 2', group: 'Galascope', mw: 2.5, mwh: 10, containers: 3, district: 'Famagusta',
@@ -769,7 +769,7 @@ export const COMPANY = {
 // ─────────────────────────────────────────────
 
 export const CLIENT_PRICING = {
-  '5MW_20MWh':   { ratePerMWh: 112_945, status: 'confirmed' as DataStatus },
+  '5MW_20MWh':   { ratePerMWh: 111_900, status: 'confirmed' as DataStatus, note: 'Galascope final negotiated rate (€111,900/MWh) — Spanercom Anarita uses €119,000/MWh (separate confirmed pricing).' },
   '5MW_15MWh':   { ratePerMWh: 130_792, status: 'confirmed' as DataStatus },
   '5MW_10MWh':   { ratePerMWh: 136_106, status: 'confirmed' as DataStatus },
   '2.5MW_10MWh': { ratePerMWh: 120_630, status: 'confirmed' as DataStatus },
