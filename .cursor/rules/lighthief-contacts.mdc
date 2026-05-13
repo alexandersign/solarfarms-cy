@@ -1,0 +1,70 @@
+---
+description: Lighthief contact details — always use these exact values in any generated document, template, email, proposal, or code. Never use placeholders like "[contact number]" or "info@lighthief.com".
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.html"
+  - "**/*.md"
+  - "**/*.docx"
+  - "scripts/**"
+alwaysApply: true
+---
+
+# Lighthief Contact Details — Single Source of Truth
+
+**NEVER use placeholder text** such as `[contact number]`, `info@lighthief.com`, `your@email.com`, or `+357 XXXXXXX` in any document, template, script, or generated file. Always use the verified details below.
+
+## Primary Source
+
+All contact details live in **`lib/constants.ts`** → `COMPANY_DATA` and `COMPANY_DATA.contacts`.  
+Always import from there when writing TypeScript. For HTML templates or static generation scripts, use the values below directly.
+
+---
+
+## Company
+
+| Field | Value |
+|---|---|
+| Legal name | Lighthief Cyprus Ltd |
+| Company number | HE 477423 |
+| Office email | **office@lighthief.com** |
+| Office phone | **+357 77 77 00 50** |
+| Website | **solarfarms.cy** |
+| Office address | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus |
+| Registered address | Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus |
+
+---
+
+## Key Contacts
+
+### Cyprus Director (primary contact for BESS, EPC, investor deals)
+| Field | Value |
+|---|---|
+| Name | Alexander Papacosta |
+| Title | Cyprus Director |
+| Phone | **+357 99 164 158** |
+| Email | **office@lighthief.com** |
+
+### Founder & CEO
+| Field | Value |
+|---|---|
+| Name | Dr. Arkadius Sybaris |
+| Title | Founder & CEO |
+| Email | a.sybaris@lighthief.com |
+
+### Electrical Engineer (Cyprus)
+| Field | Value |
+|---|---|
+| Name | Costas Hadjikyriacou |
+| Title | Electrical Engineer (ETEK) |
+| Email | costas@lighthief.com |
+
+---
+
+## Rules for ALL Agents
+
+1. **Never use `info@lighthief.com`** — the correct general email is `office@lighthief.com`.
+2. **Never leave `+357 [contact number]`** as a placeholder — use `+357 77 77 00 50` (office) or `+357 99 164 158` (Cyprus Director direct).
+3. For investor teasers, proposals, and client-facing documents: show **Alexander Papacosta** as the named contact with phone `+357 99 164 158` and email `office@lighthief.com`.
+4. For generated HTML/scripts: import from `lib/constants.ts` → `COMPANY_DATA` rather than hardcoding.
+5. Footer of all documents must include: company name, company number (HE 477423), and website (solarfarms.cy).

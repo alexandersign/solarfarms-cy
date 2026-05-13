@@ -200,9 +200,11 @@ export const TEAM: Employee[] = [
   },
   {
     id: 'jihat',
-    fullName: 'Jihat [SURNAME]',
+    fullName: 'Cihat Ertugrul',
     cyprusId: '[ID NUMBER]',
     socialInsurance: '[SI NUMBER]',
+    mobile: '+357 96 108651',
+    email: 'cihatertgrl65@gmail.com',
     title: 'Field Engineer — Civil Works & O&M',
     role: 'field',
     compensationType: 'employee',

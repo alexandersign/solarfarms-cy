@@ -87,10 +87,12 @@
 | Field | Detail |
 |-------|--------|
 | Role | Field Engineer — Civil Works & O&M |
+| Full Name | Cihat Ertugrul |
 | Cyprus ID | [ID NUMBER] |
 | Social Insurance | [SI NUMBER] |
-| Mobile | [MOBILE] |
-| Email | [EMAIL] |
+| Mobile | +357 96 108651 |
+| Email | cihatertgrl65@gmail.com |
+| LinkedIn | linkedin.com/in/cihatertgrl65 |
 | Bank | [BANK NAME] |
 | IBAN | [IBAN] |
 | BIC/SWIFT | [BIC] |

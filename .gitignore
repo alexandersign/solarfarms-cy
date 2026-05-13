@@ -93,3 +93,9 @@ _backup_before_pull/
 
 # Temp Office lock files
 ~$*
+
+# Firecrawl plugin cache (local research snapshots; not project source)
+.firecrawl/
+
+# Parks for sale — duplicate DD export exceeds GitHub 100MB limit (unpacked SHIA DD package/ is canonical)
+parks-for-sale/novikov/SHIA DD package-*.zip

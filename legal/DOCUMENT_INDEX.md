@@ -700,6 +700,16 @@ See: `employee_service_manual.md` for detailed procedures on:
 
 ---
 
+## Downstream — Esperia / Galascope Ltd (May 2026)
+
+| Date | Event | Location | Status |
+|------|-------|----------|--------|
+| **10 May 2026** | **Full contract package emailed to Dino (Esperia)** — EPC v5.1, LTSA v4.0, EMS subscription addendum, OEM Direct Warranty Undertaking (Linyang), updated pipeline LOI; supporting Linyang technical agreement drafts (2.5/10 and 5/20) | `docs/clients/group-order/Group2_Esperia_Energy/contracts/` | **Awaiting client legal review** |
+
+**Note:** Internal SSOT (`lib/portfolio-data.ts`) and Batch 1 metadata updated to reflect “sent — awaiting review,” not “ready to send.” Spanercom package remains prepared separately until instructed to transmit.
+
+---
+
 ## Full Contract Risk Review (May 2026)
 
 **Document:** `docs/internal/full-contract-risk-review-may2026.html`
@@ -716,8 +726,8 @@ See: `employee_service_manual.md` for detailed procedures on:
 
 ---
 
-*Document Index Version: 10.0*
-*Updated: 6 May 2026*
+*Document Index Version: 10.1*
+*Updated: 10 May 2026*
 *Legal Basis: Gazette No. 5992 (16/01/2026)*
 *Lighthief Cyprus Ltd - Legal Framework*
 

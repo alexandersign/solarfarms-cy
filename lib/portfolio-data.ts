@@ -4,7 +4,7 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 8 May 2026
+// Last updated: 10 May 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Disperon SHA v5
 // ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
 // Spanercom (Anarita 2×5/20, €119k/MWh client offer) — high probability.
@@ -14,7 +14,7 @@
 // EMS/SCADA: corrected to Disperon v3 pricing — flat €15K SCADA Local ALL parks (not tiered).
 //   SCADA Global €60K first park per group. Annual maintenance: €3K/park + €12K/group.
 //   Total 28-park upfront EMS/SCADA: €2,158,730.
-// SIGNING STATUS: Esperia (incl. Galascope) confirmed signing. Others pending.
+// SIGNING STATUS: Esperia (incl. Galascope) — full contract package sent to Dino; awaiting client legal review.
 // ===================================================================
 
 export type DataStatus = 'confirmed' | 'quoted' | 'estimated' | 'pending' | 'client-paid' | 'superseded';
@@ -39,13 +39,13 @@ export const PORTFOLIO = {
   orderDate: '2026-04-01',
   firstClientInvoiceDate: '2026-04-01',
   vatStartQuarter: 'Q2 2026',
-  // SIGNING STATUS (8 May 2026):
-  // CONFIRMED:       Esperia Energy (incl. Galascope) — EPC signing imminent
+  // SIGNING STATUS (10 May 2026):
+  // CONFIRMED:       Esperia Energy (incl. Galascope) — package emailed to Dino; awaiting review / signature
   // HIGH (80-90%):   Spanercom (Anarita), Aeolian Dynamics (wind hybrid)
   // PENDING (50%):   Timotheos Timotheou, Lampros Andreadis
   // UNCONFIRMED:     A. Kerasi, Ioannis Karis
-  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + May 2026 signing updates', date: '2026-05-08',
-           note: 'Galascope resized (G1 20MWh, G2 10MWh). Aeolian added. Signing: Esperia confirmed, Spanercom/Aeolian high, Timotheos/Lampros 50%.' } as MetaInfo,
+  _meta: { source: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + May 2026 signing updates', date: '2026-05-10',
+           note: 'Galascope resized (G1 20MWh, G2 10MWh). Aeolian added. Esperia/Galascope v5.1 pack emailed to Dino — awaiting client legal review. Spanercom/Aeolian high; Timotheos/Lampros 50%.' } as MetaInfo,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -189,7 +189,7 @@ export const GROUPS: GroupData[] = [
     marginPct: 10.49,
     signingStatus: 'confirmed',
     signingProbabilityPct: 100,
-    signingNote: 'EPC v5.1 ready to send to Anastasis. Galascope (Dino) confirmed at €111,900/MWh G1 + €120,630/MWh G2. Signing imminent.',
+    signingNote: 'Galascope Ltd — full EPC v5.1 + LTSA + EMS addendum + OEM DWU + updated pipeline LOI emailed to Dino (Esperia) 10 May 2026; awaiting client legal review. G1 €111,900/MWh; G2 €120,630/MWh.',
   },
   {
     name: 'Spanercom (Anarita)', key: 'spanercom',
@@ -241,7 +241,7 @@ export const GROUPS: GroupData[] = [
 ];
 
 // ─────────────────────────────────────────────
-// BATCH SCHEDULE (Updated 8 May 2026)
+// BATCH SCHEDULE (Updated 10 May 2026)
 // Restructured to reflect actual signing status:
 // B1_ESPERIA: Galascope 1+2 (Esperia confirmed) — order on EPC signing
 // B1_CONDITIONAL: Timotheos (3 parks) + Lampros (2 parks) + Spanercom (2 parks) — pending their EPC
@@ -266,7 +266,7 @@ export const BATCHES = [
     productionStart: '2026-05-01', productionEnd: '2026-07-31',
     fatDate: '2026-07-31', shipDate: '2026-08-01',
     cifDate: '2026-09-15', pacDate: '2027-01-31',
-    _meta: { source: 'Dino (Esperia) confirmed. Galascope resized: G1 20MWh (€1,848,712 CIF), G2 10MWh (€974,457 CIF). EPC v5.0 with Anastasis.', date: '2026-05-08' } as MetaInfo,
+    _meta: { source: 'Galascope package emailed to Dino 10 May 2026 — awaiting review. Galascope resized: G1 20MWh (€1,848,712 CIF), G2 10MWh (€974,457 CIF). EPC v5.1.', date: '2026-05-10' } as MetaInfo,
   },
   {
     id: 2, name: 'Batch 1 Extension — Conditional (50-85% probability)',
