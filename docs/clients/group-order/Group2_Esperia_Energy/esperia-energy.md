@@ -204,6 +204,12 @@ Dino Constantinou provided the following technical documentation for the Galasco
 
 ---
 
+## Related documents (internal)
+
+- [EPC scope & responsibility matrix — Galascope 1 & 2 only (May 2026)](./epc-scope-responsibility-matrix-mar2026.md) — RACI, SoV alignment, Linyang boundary, SSOT economics (~30 MWh batch).
+
+---
+
 ## Notes
 
 - Largest client portfolio by total value
