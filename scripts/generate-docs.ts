@@ -15,7 +15,7 @@ import { getTemplateVars } from '../lib/portfolio-data';
 const ROOT = path.resolve(__dirname, '..');
 
 const LOGO_FILES: Record<string, { path: string; mime: string }> = {
-  'LOGO_LIGHTHIEF': { path: 'public/images/lighthief-commercial-pv_files/lighthief-logo.png', mime: 'image/png' },
+  'LOGO_LIGHTHIEF': { path: 'public/images/logo/lighthief-logo.png', mime: 'image/png' },
   'LOGO_LINYANG':   { path: 'public/logo/linyang_logo.jpg', mime: 'image/jpeg' },
   'LOGO_KEHUA':     { path: 'public/logo/kehua_logo.jpg', mime: 'image/jpeg' },
   'LOGO_VOLTUS':    { path: 'public/logo/VE-logo-white.png.webp', mime: 'image/webp' },
@@ -41,6 +41,7 @@ const TEMPLATE_DIRS = [
   'docs/internal/proposals',
   'docs/quotations/internal-analysis',
   'business-plan',
+  'pv-development',
 ];
 
 function findTemplates(dir: string): string[] {

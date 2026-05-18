@@ -34,6 +34,9 @@ export const RAGELIA_2206_RTB: RtbDeal = {
   locationLine: 'Cyprus',
 
   rtbStatus: 'fully_licensed',
+  gridConnectionStatus: 'preliminary_filed',
+  gridConnectionNote:
+    'Awaiting DSO formal EAC connection offer — terms priced separately upon issue (aligned with Ragelia #2205+#2206 package disclosure)',
   permitSummary: 'Fully licensed · Ready to Build — all permits issued',
 
   timelineNote: 'RTB — construction ready upon financial close',

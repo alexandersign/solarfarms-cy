@@ -1,5 +1,6 @@
 import { Resend } from 'resend'
 import { COMPANY_DATA } from './constants'
+import { getFeasibilityPackagesEmailHtml } from './pv-feasibility-packages'
 
 // Initialize Resend only if API key is available
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
@@ -590,17 +591,19 @@ function getLandAssessmentAutoresponderTemplate(data: LandAssessmentEmailData): 
             </div>
             `}
             
+            ${getFeasibilityPackagesEmailHtml()}
+
             <h3>Next Steps</h3>
-            <p>Our land development specialist <strong>Arkadius Sybaris</strong> will contact you within 24 hours to discuss:</p>
+            <p>Our Cyprus team will contact you within 24 hours to discuss your results and recommend the right feasibility package:</p>
             <ul>
-                <li>Detailed site survey and feasibility study</li>
-                <li>Zoning and permit requirements</li>
-                <li>Grid connection analysis</li>
-                <li>Financial structuring options</li>
+                <li><strong>Essential (€2,500)</strong> — desktop pre-feasibility if you are still exploring</li>
+                <li><strong>Professional (€7,500)</strong> — site visit, grid pre-assessment, and full financial model</li>
+                <li><strong>Development Ready (€39,500)</strong> — full licensing support up to 5 MWp</li>
             </ul>
             
             <div style="text-align: center; margin: 30px 0;">
-                <a href="https://solarfarms.cy/contact" class="cta">Schedule Call with Specialist</a>
+                <a href="https://solarfarms.cy/landowners#feasibility-packages" class="cta" style="background:#1A365D;">View Feasibility Packages</a>
+                <a href="https://solarfarms.cy/contact?subject=Free%20Landowner%20Consultation" class="cta">Book Free Consultation</a>
             </div>
             
             <p>Best regards,<br>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feasibility Study Packages — Lighthief Cyprus</title>
+<style>
+@page { size: A4 portrait; margin: 0; }
+:root {
+  --primary: #1A365D;
+  --primary-light: #2B5FA0;
+  --accent: #C9A432;
+  --grey: #404040;
+  --pad-x: 10mm;
+  --pad-y: 8mm;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #dde4ec; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 7.5pt;
+  line-height: 1.38;
+  color: #1a1a1a;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.page {
+  background: #fff;
+  width: 210mm;
+  height: 297mm;
+  margin: 0 auto;
+  padding: var(--pad-y) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,.1);
+}
+.page-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 5px;
+  padding: 7px 10px;
+}
+.page-hdr .logo { height: 26px; width: auto; display: block; }
+.page-hdr .meta { text-align: right; font-size: 7pt; color: rgba(255,255,255,.92); line-height: 1.4; }
+.page-hdr .meta strong { color: #fff; font-size: 8pt; display: block; }
+.intro {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+}
+.intro h1 { font-size: 13.5pt; color: var(--accent); font-weight: 800; line-height: 1.1; }
+.intro p { font-size: 7.75pt; color: var(--grey); margin-top: 3px; }
+.packages-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  align-items: start;
+}
+.pkg-col {
+  border: 1px solid #c5d3e0;
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 0;
+}
+.pkg-col.popular { border: 2px solid var(--accent); }
+.pkg-top {
+  background: #f3f7fb;
+  padding: 6px 8px 5px;
+  border-bottom: 1px solid #d7e0ea;
+}
+.pkg-col.popular .pkg-top { background: #eef4fc; }
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #1a1a1a;
+  font-size: 6pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .35px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  margin-bottom: 3px;
+}
+.pkg-num { font-size: 6pt; color: var(--grey); text-transform: uppercase; letter-spacing: .4px; }
+.pkg-name { font-size: 10.5pt; font-weight: 800; color: var(--primary); line-height: 1.1; }
+.pkg-tagline { font-size: 6.75pt; color: var(--grey); margin-top: 2px; line-height: 1.3; }
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 4px;
+  gap: 4px;
+}
+.price { font-size: 13pt; font-weight: 800; color: var(--primary); white-space: nowrap; line-height: 1; }
+.cap { font-size: 6pt; color: var(--grey); text-align: right; line-height: 1.25; }
+.pkg-body { padding: 5px 8px 4px; }
+.pkg-body h3 { font-size: 6.75pt; color: var(--primary); font-weight: 700; margin-bottom: 3px; text-transform: uppercase; letter-spacing: .3px; }
+ul { margin: 0 0 0 10px; padding: 0; }
+li { font-size: 7pt; line-height: 1.32; margin-bottom: 2px; }
+li.excl { list-style: none; margin-left: -10px; color: #b45309; font-size: 6.75pt; margin-top: 3px; }
+li.excl::before { content: "✗ "; font-weight: 700; }
+.pkg-meta {
+  padding: 5px 8px 6px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-size: 6.75pt;
+  color: var(--grey);
+  line-height: 1.35;
+}
+.pkg-meta div + div { margin-top: 3px; }
+.pkg-meta strong { color: var(--primary); }
+.section-title {
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+}
+.process-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.step {
+  background: #f3f7fb;
+  border: 1px solid #d7e0ea;
+  border-radius: 4px;
+  padding: 5px 6px;
+  text-align: center;
+}
+.step-num {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 7pt;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.step-title { font-size: 7pt; font-weight: 700; color: var(--primary); }
+.step-desc { font-size: 6.5pt; color: var(--grey); margin-top: 2px; line-height: 1.28; }
+.landowner-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.land-card {
+  border: 1px solid #d7e0ea;
+  border-radius: 4px;
+  padding: 5px 7px;
+  background: #fff;
+}
+.land-card h4 { font-size: 7pt; color: var(--accent); font-weight: 700; margin-bottom: 2px; }
+.land-card .val { font-size: 9pt; font-weight: 800; color: var(--primary); }
+.land-card p { font-size: 6.5pt; color: var(--grey); margin-top: 2px; line-height: 1.3; }
+.why-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.why-item {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 4px;
+}
+.why-item .val { font-size: 9pt; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.why-item .lbl { font-size: 6pt; opacity: .92; margin-top: 2px; line-height: 1.25; }
+.notes {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 6.5pt;
+  color: var(--grey);
+  line-height: 1.35;
+}
+.notes strong { color: var(--primary); }
+.notes p + p { margin-top: 3px; }
+.page-footer {
+  border-top: 1px solid #cbd5e1;
+  padding-top: 4px;
+  font-size: 6.5pt;
+  color: #64748b;
+  line-height: 1.35;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: auto;
+}
+.page-footer .contact { text-align: right; }
+.print-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10pt;
+  z-index: 100;
+}
+@media print {
+  .no-print { display: none !important; }
+  html, body { background: #fff; margin: 0; padding: 0; }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: var(--pad-y) var(--pad-x);
+    box-shadow: none;
+  }
+}
+@media screen { body { padding: 12px 0; } }
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">Print / Save PDF</button>
+
+<section class="page">
+  <header class="page-hdr">
+    <img class="logo" src="{{LOGO_LIGHTHIEF}}" alt="Lighthief Cyprus">
+    <div class="meta">
+      <strong>Feasibility Study Packages</strong>
+      Solar PV · BESS · EPC · Cyprus · {{FEASIBILITY.documentDate}}
+    </div>
+  </header>
+
+  <div class="intro">
+    <h1>Solar Park Development Packages</h1>
+    <p>Fixed-fee packages for Cyprus landowners — from desktop pre-feasibility to full licensing support. Start with our free online land assessment at <strong>solarfarms.cy/landowners</strong>. Package fees credited toward EPC if you build with Lighthief.</p>
+  </div>
+
+  <div class="packages-grid">
+    <article class="pkg-col">
+      <div class="pkg-top">
+        <div class="pkg-num">Package {{FEASIBILITY.essential.number}}</div>
+        <div class="pkg-name">{{FEASIBILITY.essential.name}}</div>
+        <div class="pkg-tagline">{{FEASIBILITY.essential.tagline}}</div>
+        <div class="price-row">
+          <div class="price">{{FEASIBILITY.essential.price}}</div>
+          <div class="cap">ex VAT<br>fees separate</div>
+        </div>
+      </div>
+      <div class="pkg-body">
+        <h3>Deliverables</h3>
+        <ul>{{FEASIBILITY.essential.includedList}}</ul>
+        <ul>{{FEASIBILITY.essential.excludedList}}</ul>
+      </div>
+      <div class="pkg-meta">
+        <div><strong>Best for:</strong> {{FEASIBILITY.essential.recommendedFor}}</div>
+        <div><strong>Delivery:</strong> {{FEASIBILITY.essential.delivery}}</div>
+        <div><strong>Payment:</strong> {{FEASIBILITY.essential.paymentTerms}}</div>
+      </div>
+    </article>
+
+    <article class="pkg-col popular">
+      <div class="pkg-top">
+        <span class="badge">Most Popular</span>
+        <div class="pkg-num">Package {{FEASIBILITY.professional.number}}</div>
+        <div class="pkg-name">{{FEASIBILITY.professional.name}}</div>
+        <div class="pkg-tagline">{{FEASIBILITY.professional.tagline}}</div>
+        <div class="price-row">
+          <div class="price">{{FEASIBILITY.professional.price}}</div>
+          <div class="cap">ex VAT<br>fees separate</div>
+        </div>
+      </div>
+      <div class="pkg-body">
+        <h3>Deliverables</h3>
+        <ul>{{FEASIBILITY.professional.includedList}}</ul>
+      </div>
+      <div class="pkg-meta">
+        <div><strong>Best for:</strong> {{FEASIBILITY.professional.recommendedFor}}</div>
+        <div><strong>Delivery:</strong> {{FEASIBILITY.professional.delivery}}</div>
+        <div><strong>Payment:</strong> {{FEASIBILITY.professional.paymentTerms}}</div>
+      </div>
+    </article>
+
+    <article class="pkg-col">
+      <div class="pkg-top">
+        <div class="pkg-num">Package {{FEASIBILITY.development_ready.number}}</div>
+        <div class="pkg-name">{{FEASIBILITY.development_ready.name}}</div>
+        <div class="pkg-tagline">{{FEASIBILITY.development_ready.tagline}} · {{FEASIBILITY.development_ready.maxCapacity}}</div>
+        <div class="price-row">
+          <div class="price">{{FEASIBILITY.development_ready.price}}</div>
+          <div class="cap">ex VAT<br>fees separate</div>
+        </div>
+      </div>
+      <div class="pkg-body">
+        <h3>Deliverables</h3>
+        <ul>{{FEASIBILITY.development_ready.includedList}}</ul>
+        <ul>{{FEASIBILITY.development_ready.excludedList}}</ul>
+      </div>
+      <div class="pkg-meta">
+        <div><strong>Best for:</strong> {{FEASIBILITY.development_ready.recommendedFor}}</div>
+        <div><strong>Delivery:</strong> {{FEASIBILITY.development_ready.delivery}}</div>
+        <div><strong>Payment:</strong> {{FEASIBILITY.development_ready.paymentTerms}}</div>
+      </div>
+    </article>
+  </div>
+
+  <div>
+    <div class="section-title">How It Works</div>
+    <div class="process-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Free Assessment</div>
+        <div class="step-desc">Instant zone check, capacity &amp; revenue estimate at solarfarms.cy/landowners</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Choose Package</div>
+        <div class="step-desc">Free 30-min consultation, then Essential, Professional, or Development Ready</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Feasibility &amp; Permits</div>
+        <div class="step-desc">Site visit, grid pre-assessment, licensing submissions — authority fees separate</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">EPC &amp; Build</div>
+        <div class="step-desc">Package fees credited toward construction. Full turnkey EPC from Lighthief Cyprus</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">Your Land — Revenue Options After Feasibility</div>
+    <div class="landowner-row">
+      <div class="land-card">
+        <h4>Land Lease</h4>
+        <div class="val">€15K – €80K / year</div>
+        <p>Keep ownership. Typical 6–8% of annual park revenue. 25+ year agreements. No capital outlay.</p>
+      </div>
+      <div class="land-card">
+        <h4>Land Sale Premium</h4>
+        <div class="val">€200K – €2M</div>
+        <p>Sell with solar development rights. Immediate lump sum. Premium over agricultural land value.</p>
+      </div>
+      <div class="land-card">
+        <h4>Self-Develop &amp; Own</h4>
+        <div class="val">8 – 13% IRR</div>
+        <p>Build on your land, own the asset. Lighthief EPC + O&amp;M. Typical 1–5 MW parks in Γ3/Γ4 zones.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-row">
+    <div class="why-item"><div class="val">51+</div><div class="lbl">BESS parks in Cyprus pipeline</div></div>
+    <div class="why-item"><div class="val">ETEK</div><div class="lbl">Licensed engineering sign-off</div></div>
+    <div class="why-item"><div class="val">CERA</div><div class="lbl">Licensing &amp; grid experience</div></div>
+    <div class="why-item"><div class="val">Since 2017</div><div class="lbl">Solar lifecycle expertise</div></div>
+  </div>
+
+  <div class="notes">
+    <p><strong>Important:</strong> {{FEASIBILITY.epcCredit}} {{FEASIBILITY.freeConsultation}}</p>
+    <p>{{FEASIBILITY.authorityFees}} {{FEASIBILITY.bespokePricing}}</p>
+    <p>{{FEASIBILITY.validity}} Not a contractual offer. Lighthief may adjust pricing for atypical site complexity, access constraints, or regulatory requirements.</p>
+  </div>
+
+  <footer class="page-footer">
+    <div>
+      <strong>Lighthief Cyprus Ltd</strong> · HE 477423 · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+      office@lighthief.com · +357 77 77 00 50 · solarfarms.cy
+    </div>
+    <div class="contact"><strong>Alexander Papacosta</strong><br>Cyprus Director · +357 99 164 158</div>
+  </footer>
+</section>
+</body>
+</html>

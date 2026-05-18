@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { FeasibilityPackages } from '@/components/sections/landowners/FeasibilityPackages'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -218,7 +219,7 @@ export default function LandownersPage() {
       </section>
 
       {/* Instant Assessment Tool */}
-      <section className="section-padding">
+      <section id="assessment-form" className="section-padding">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -639,7 +640,16 @@ export default function LandownersPage() {
                         size="lg"
                         asChild
                       >
-                        <Link href="/contact">
+                        <Link href="#feasibility-packages">
+                          View Feasibility Packages
+                        </Link>
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="lg"
+                        asChild
+                      >
+                        <Link href="/contact?subject=Free%20Landowner%20Consultation">
                           Schedule Consultation
                         </Link>
                       </Button>
@@ -662,6 +672,8 @@ export default function LandownersPage() {
           </div>
         </div>
       </section>
+
+      <FeasibilityPackages />
 
       {/* What is RTB */}
       <section className="section-padding bg-gray-50">
@@ -862,7 +874,7 @@ export default function LandownersPage() {
             Ready to Unlock Your Land&apos;s Solar Potential?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Get instant assessment with real zone data and capacity calculations
+            Free instant assessment · Feasibility packages from €2,500 · Fees credited toward EPC
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -876,8 +888,8 @@ export default function LandownersPage() {
               </Link>
             </Button>
             <Button variant="cyprus" size="lg" asChild>
-              <Link href="/services/epc-services">
-                Learn About Our EPC Services
+              <Link href="#feasibility-packages">
+                View Feasibility Packages
               </Link>
             </Button>
           </div>

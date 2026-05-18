@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Landowners - Leverage Your Land for Solar Revenue | Lighthief Cyprus',
-  description: 'Transform your Cyprus land into profitable solar farms. Free instant assessment, RTB development, €15K-80K annual lease or €200K-2M sale premium. Upload title deed for analysis.',
+  description: 'Transform your Cyprus land into profitable solar farms. Free instant assessment, feasibility packages from €2,500, RTB development. €15K-80K annual lease or €200K-2M sale premium.',
   keywords: [
     'Cyprus land solar development',
     'solar farm land lease',

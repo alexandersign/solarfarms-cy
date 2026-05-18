@@ -4,7 +4,7 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 10 May 2026
+// Last updated: 18 May 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Disperon SHA v5
 // ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
 // Spanercom (Anarita 2×5/20, €119k/MWh client offer) — high probability.
@@ -15,7 +15,10 @@
 //   SCADA Global €60K first park per group. Annual maintenance: €3K/park + €12K/group.
 //   Total 28-park upfront EMS/SCADA: €2,158,730.
 // SIGNING STATUS: Esperia (incl. Galascope) — full contract package sent to Dino; awaiting client legal review.
+// LINYANG: Sales Contract (17 Mar 2026 baseline) — fully executed (both parties). See RFI_STATUS.linyangSalesContract.
 // ===================================================================
+
+import { getFeasibilityTemplateVars } from './pv-feasibility-packages';
 
 export type DataStatus = 'confirmed' | 'quoted' | 'estimated' | 'pending' | 'client-paid' | 'superseded';
 
@@ -798,6 +801,14 @@ export const CIF_SOURCES = {
 // ─────────────────────────────────────────────
 
 export const RFI_STATUS = {
+  /** Upstream OEM supply — Linyang Energy sales agreement (framework / Batch 1 anchor) */
+  linyangSalesContract: {
+    status: 'confirmed' as DataStatus,
+    version: '17 Mar 2026',
+    date: '2026-05-18',
+    doc: 'legal/active/Linyang-sales-contract-17Mar-CLEAN-FOR-SIGNATURE.docx (executed)',
+    note: 'Fully signed by Lighthief Cyprus Ltd and Linyang — replaces prior “awaiting Linyang” gate in internal risk snapshots. APG-before-advance and construction insurance CPs remain per EPC §10.9 / Sales Contract.',
+  },
   cifPricing:           { status: 'confirmed' as DataStatus, version: 'V3',  date: '2026-02-11', doc: 'Quotation - Linyang ESS 202602111.xlsx' },
   extWarrantyYr6to10:   { status: 'confirmed' as DataStatus, version: 'V3',  date: '2026-02-15', doc: 'rfi-linyang-final-feb2026' },
   extWarrantyYr11to15:  { status: 'confirmed' as DataStatus, version: 'V3',  date: '2026-02-15', doc: 'rfi-linyang-final-feb2026', note: 'V1 conflict resolved' },
@@ -1049,6 +1060,8 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH3.pacDate': BATCHES[2].pacDate || 'TBC',
     'BATCH3.pacDateFmt': fmtDate(BATCHES[2].pacDate),
     'FAC_DATE':      FAC_DATE,
+
+    ...getFeasibilityTemplateVars(),
   };
 }
 

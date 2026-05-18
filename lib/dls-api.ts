@@ -482,11 +482,11 @@ export async function performLandAssessment(
   // Compile next steps
   const nextSteps = viable
     ? [
-        'Professional site survey to confirm topography and shading',
-        'Grid connection feasibility study with EAC',
-        'Environmental impact assessment (if required)',
-        'Planning permit application preparation',
-        'Financial structuring and investor matching'
+        'Book a free 30-minute consultation with our Cyprus team',
+        'Choose a feasibility package — Essential (€2,500), Professional (€7,500), or Development Ready (€39,500)',
+        'Professional includes site visit, grid pre-assessment, and full financial model',
+        'Package fees are credited toward EPC if you build with Lighthief',
+        'Review lease vs land sale options and RTB timeline with our specialists'
       ]
     : [
         'Consult with planning department for zone clarification',

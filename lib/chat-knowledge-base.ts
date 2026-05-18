@@ -292,6 +292,9 @@ Visitors can view our full interactive market dashboard with historical DAM char
 ### Licensing & Development
 - Support with CERA licensing, environmental permits, grid connection applications, and project development.
 
+### Landowners
+- Free instant plot assessment at /landowners; feasibility packages from €2,500 (Essential), €7,500 (Professional), €39,500 (Development Ready, up to 5 MWp). Package fees credited toward EPC. Brochure: /documents/lighthief-feasibility-packages.html. Primary contact: Alexander Papacosta, Cyprus Director — office@lighthief.com, +357 99 164 158.
+
 ## ROI Calculator
 We offer a free BESS ROI calculator on our website that allows you to model returns based on your park size, curtailment rate, electricity prices, and financing structure. Try it at /energy-storage/calculator.
 

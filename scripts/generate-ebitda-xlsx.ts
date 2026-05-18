@@ -30,7 +30,7 @@ const summaryData = [
   ['MV Cabling', -ADDERS.mvCabling.total, -Math.round(ADDERS.mvCabling.total / 1000), '0.2%', ADDERS.mvCabling.rate!],
   ['MV Terminations', -ADDERS.mvTerminations.total, -Math.round(ADDERS.mvTerminations.total / 1000), '0.1%', ADDERS.mvTerminations.rate!],
   ['Protection Engineering', -ADDERS.protectionEng.total, -Math.round(ADDERS.protectionEng.total / 1000), '0.3%', ADDERS.protectionEng.rate!],
-  ['Remote Trip SCADA', -ADDERS.remoteTripScada.total, -Math.round(ADDERS.remoteTripScada.total / 1000), '0.1%', ADDERS.remoteTripScada.rate!],
+  ['Remote trip / comms (RTU)', -ADDERS.remoteTripComms.total, -Math.round(ADDERS.remoteTripComms.total / 1000), '0.1%', ADDERS.remoteTripComms.rate!],
   ['UPS / Auxiliary', -ADDERS.upsAuxiliary.total, -Math.round(ADDERS.upsAuxiliary.total / 1000), '0.1%', ADDERS.upsAuxiliary.rate!],
   ['Voltus EMS', -ADDERS.voltusEms.total, -Math.round(ADDERS.voltusEms.total / 1000), '2.1%', `${ADDERS.voltusEms.supplier}`],
   ['SCADA Local', -ADDERS.scadaLocal.total, -Math.round(ADDERS.scadaLocal.total / 1000), '1.2%', `${ADDERS.scadaLocal.supplier}`],

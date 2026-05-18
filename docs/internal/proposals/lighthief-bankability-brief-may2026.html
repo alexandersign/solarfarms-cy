@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lighthief BESS — Bankability Brief (May 2026)</title>
+  <style>
+    :root {
+      --navy: #1A365D;
+      --navy-light: #2B5FA0;
+      --gold: #C9A432;
+      --white: #fff;
+      --grey: #404040;
+      --muted: #64748b;
+      --bg: #F0F4F8;
+      --border: #e2e8f0;
+      --amber-bg: #fffbeb;
+      --amber-border: #fcd34d;
+      --green-bg: #f0fdf4;
+      --red-bg: #fef2f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--grey);
+      line-height: 1.55;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      font-size: 13px;
+    }
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: var(--white);
+      padding: 20px 24px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      color: var(--gold);
+      font-size: 1.35rem;
+      margin: 0 0 6px 0;
+      font-weight: 700;
+    }
+    header .ref { font-size: 11px; opacity: 0.9; }
+    .confidential {
+      text-align: center;
+      background: var(--red-bg);
+      color: #991b1b;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 6px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    h2 {
+      color: var(--gold);
+      font-size: 1.05rem;
+      margin: 28px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--navy);
+    }
+    h3 { color: var(--navy); font-size: 0.95rem; margin: 18px 0 8px 0; }
+    p { margin: 0 0 10px 0; }
+    ul { margin: 8px 0 12px 0; padding-left: 22px; }
+    li { margin-bottom: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 12px;
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: var(--white); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    code { font-size: 11px; background: #e2e8f0; padding: 1px 5px; border-radius: 3px; }
+    .box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+    .box.warn { background: var(--amber-bg); border-color: var(--amber-border); }
+    .box.ok { background: var(--green-bg); border-color: #86efac; }
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-right: 4px;
+      text-transform: uppercase;
+    }
+    .tag-epc { background: #dbeafe; color: #1e40af; }
+    .tag-ltsa { background: #ede9fe; color: #5b21b6; }
+    .tag-v51 { background: #fef3c7; color: #92400e; }
+    .footer {
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 2px solid var(--navy);
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .mono { font-family: ui-monospace, monospace; font-size: 11px; }
+    @media print {
+      body { background: #fff; max-width: 100%; }
+      .box { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Bankability Brief — BESS EPC &amp; LTSA</h1>
+  <div class="ref">LCY-BANK-BRIEF-MAY2026 · Version 1.0 · May 2026</div>
+  <div class="ref" style="margin-top:8px;opacity:0.95;">Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy</div>
+</header>
+
+<div class="confidential">Confidential — internal alignment with executed or template contracts only</div>
+
+<p>This brief is <strong>regenerated for accuracy</strong> against the repository <strong>contract generators</strong> and index. It <strong>supersedes</strong> marketing language in <span class="mono">lighthief-bankable-protection-brief-feb2026.html</span> where that file conflicted with EPC v5 (e.g. 24‑month DLP, “100% of Contract Price” liability, APG § reference, insurance limits).</p>
+
+<div class="box">
+  <h3 style="margin-top:0;color:var(--navy);">Sources of truth (paths)</h3>
+  <table>
+    <tr><th>Artefact</th><th>Location</th></tr>
+    <tr><td>EPC clause generator (v5.0 baseline)</td><td><code>legal/templates/generate_epc_v5.py</code></td></tr>
+    <tr><td>EPC v5.1 Word deltas (May 2026)</td><td><code>scripts/generate-contracts-v5.1-may2026.py</code> (Indicative/Confirmed price §6.1, LD Value split §8.4.1(g), upstream FM §8.4.7A, 12‑month connection longstop §1A.1, 30‑day advance trigger §1A.3)</td></tr>
+    <tr><td>LTSA v4 (markdown mirror)</td><td><code>legal/templates/ClientLTSA.md</code> — verify numbering vs shipped <code>ClientLTSA_v4.0.docx</code></td></tr>
+    <tr><td>OEM DWU template</td><td><code>legal/templates/generate_oem_step_in.py</code></td></tr>
+    <tr><td>Frozen template index</td><td><code>legal/DOCUMENT_INDEX.md</code> (LCY‑EPC‑001 v5.0, v5.1 builder output, LCY‑LTSA‑001 v4.0, LCY‑OEM‑DWU‑001 v1.0)</td></tr>
+    <tr><td>Risk / CP status (May 2026)</td><td><code>docs/internal/full-contract-risk-review-may2026.html</code></td></tr>
+  </table>
+</div>
+
+<h2>1. Contract package</h2>
+<p>The bankable <strong>client stack</strong> is intended to be:</p>
+<ul>
+  <li><strong>EPC Agreement</strong> — Document reference <strong>LCY‑EPC‑001</strong>: <strong>v5.0</strong> (May 2026) per <code>DOCUMENT_INDEX.md</code>; <strong>v5.1</strong> adds commercial/schedule mechanics on top of v5.0 (see §2).</li>
+  <li><strong>LTSA</strong> — <strong>LCY‑LTSA‑001 v4.0</strong> (lender assignment §21.3A in generator output).</li>
+  <li><strong>OEM Direct Warranty Undertaking</strong> — <strong>LCY‑OEM‑DWU‑001 v1.0</strong> (Schedule C / standalone deed poll style).</li>
+</ul>
+
+<h2>2. EPC v5.1 changes vs v5.0 (May 2026)</h2>
+<p><span class="tag tag-v51">v5.1</span> Per <code>scripts/generate-contracts-v5.1-may2026.py</code>:</p>
+<ul>
+  <li><strong>§1A.1</strong> — Connection Terms longstop: <strong>twelve (12) months</strong>.</li>
+  <li><strong>§1A.3</strong> — Advance payment trigger: <strong>thirty (30) days</strong> (replacing seven days in that clause only — confirm executed pack for any dual trigger).</li>
+  <li><strong>§6.1</strong> — <strong>Indicative + Confirmed Contract Price</strong> (Mysteel lithium / EUR‑CNY bands, ≤5% upward cap, walk‑away if exceeded).</li>
+  <li><strong>§8.4.1(g)</strong> — <strong>LD Value split</strong>: equipment delivery delay uses <strong>Confirmed Component A</strong>; commissioning delay after delivery uses <strong>Confirmed Component B</strong> (combined cap still §8.4.4).</li>
+  <li><strong>§8.4.6(vii) + §8.4.7A</strong> — <strong>Upstream OEM Force Majeure</strong> flow‑through to extend Target PAC (client counsel may negotiate dispute rights).</li>
+</ul>
+
+<h2>3. Parties &amp; single-point responsibility</h2>
+<div class="box ok">
+  <p><strong>Chain:</strong> Jiangsu Linyang (OEM) → <strong>Lighthief Cyprus Ltd</strong> (EPC) → Client / SPV.</p>
+  <p><strong>EPC §4.3</strong> — Client’s <strong>sole recourse</strong> for defect, delay, or performance is against the <strong>Contractor</strong>, including OEM equipment; OEM subcontracting does <strong>not</strong> relieve Lighthief.</p>
+</div>
+
+<h2>4. Price structure (two components)</h2>
+<p><span class="tag tag-epc">EPC v5</span> Contract Price = <strong>Component A</strong> (equipment supply, CIF basis in narrative) + <strong>Component B</strong> (EPC services). Milestone percentages in <strong>§7.1</strong> are on the <strong>Contract Price</strong> (Indicative until Confirmed Price Certificate under v5.1 §6.1).</p>
+
+<h2>5. Payment milestones &amp; financial security</h2>
+<table>
+  <tr><th>Milestone</th><th>EPC §7.1</th><th>Notes</th></tr>
+  <tr><td>Advance</td><td><strong>30%</strong> within trigger under <strong>§1A.3</strong></td><td>v5.1: 30‑day trigger from script; v5.0 generator still shows 7 days in §1A.3 — align executed doc.</td></tr>
+  <tr><td>Pre‑shipment</td><td><strong>55%</strong> prior to shipment after FAT evidence</td><td>—</td></tr>
+  <tr><td>PAC</td><td><strong>10%</strong> on PAC</td><td>Title passes with PAC payment per §7.5(b)</td></tr>
+  <tr><td>Retention</td><td><strong>5%</strong> held until end of <strong>DLP</strong></td><td>Released per §7.4 after DLP</td></tr>
+</table>
+
+<h3>5.1 Advance Payment Guarantee (APG) <span class="tag tag-epc">§10.9</span></h3>
+<ul>
+  <li><strong>Issuer:</strong> OEM procures bank APG.</li>
+  <li><strong>Amount:</strong> Equal to the sum of payments under <strong>§7.1(a)</strong> and <strong>§7.1(b)</strong> <strong>in respect of Component A (equipment supply price) only</strong> — <code>generate_epc_v5.py</code> §10.9(a).</li>
+  <li><strong>Condition precedent:</strong> APG delivered before advance becomes due (upstream §9B.4 referenced in §10.9(c)).</li>
+  <li><strong>Validity:</strong> Until <strong>equipment delivery to Site + 30 days</strong> — §10.9(d).</li>
+  <li><strong>Not covered:</strong> No APG on <strong>Component B</strong> — §10.9(e).</li>
+</ul>
+<div class="box warn">
+  <strong>Reconcile template sub‑clause §10.9(b)</strong> in <code>generate_epc_v5.py</code> (“20% + 50% = 70% of Component A”) with <strong>§7.1</strong> (30% + 55% of <em>Contract Price</em>): the operative formula is <strong>§10.9(a)</strong> (payments under §7.1(a)–(b) <em>referable to Component A</em>). Finance should model APG on the <strong>executed Schedule A</strong> split, not headline % alone.
+</div>
+
+<h3>5.2 Performance bond <span class="tag tag-epc">§10.9(f)</span></h3>
+<ul>
+  <li><strong>5%</strong> of <strong>Component A Equipment Supply Price</strong> (not “5% of Contract Price” unless A = full price).</li>
+  <li>Valid until end of <strong>DLP</strong> (three months after PAC).</li>
+</ul>
+
+<h2>6. Defects Liability Period (DLP) &amp; retention</h2>
+<ul>
+  <li><strong>DLP = three (3) months</strong> from PAC — §9.2; definition in EPC definitions block of <code>generate_epc_v5.py</code>.</li>
+  <li><strong>No FAC</strong>; retention auto‑releases after DLP subject to punch list deduction — §7.4, §9.2.</li>
+</ul>
+<p class="box warn"><strong>Not</strong> a 24‑month DLP — any older “bankability” slide or brief stating 24 months is <strong>incorrect</strong> for v5.</p>
+
+<h2>7. Title, risk &amp; lenders</h2>
+<table>
+  <tr><th>Topic</th><th>EPC clause</th><th>Summary</th></tr>
+  <tr><td>Risk</td><td>§7.5(a)</td><td>Passes on delivery to site and unloading.</td></tr>
+  <tr><td>Title</td><td>§7.5(b)</td><td>Passes at <strong>PAC + PAC payment</strong>; retention does not defer title.</td></tr>
+  <tr><td>Lender security on equipment</td><td>§7.5(d)</td><td>After title transfer, client may grant security to lenders without contractor consent.</td></tr>
+  <tr><td>Early title</td><td>§7.5(e)</td><td>Negotiable if lender requires earlier title, provided contractor exposure does not materially increase.</td></tr>
+  <tr><td>Assignment</td><td>§16.3</td><td>Client may assign to <strong>project finance lender</strong> for security without contractor consent; contractor recognises lender step‑in on enforcement.</td></tr>
+</table>
+
+<h2>8. Delay liquidated damages</h2>
+<ul>
+  <li>Tiered rate on <strong>LD Value</strong> — days 1–30: 0.1%/day; 31–60: 0.15%; 61+: 0.2% — §8.4.3.</li>
+  <li><strong>Cap:</strong> 10% of Contract Price per park — §8.4.4.</li>
+  <li><strong>v5.1:</strong> LD Value split between Component A (equipment delivery) and Component B (commissioning) per §8.4.1(g) in v5.1 script.</li>
+  <li><strong>Exclusions</strong> include FM, client delay, grid authority, etc. — §8.4.6; <strong>v5.1</strong> adds upstream OEM FM path — §8.4.6(vii) / §8.4.7A.</li>
+</ul>
+
+<h2>9. Warranty &amp; performance (EPC)</h2>
+<ul>
+  <li><strong>§10.1</strong> — Unified warranty: whole system, Lighthief sole counterparty.</li>
+  <li><strong>§10.2</strong> — Coastal / C5 rules (PCS/MV shortened warranty &lt;500 m etc.).</li>
+  <li><strong>§10.5</strong> — Battery warranty‑voiding conditions + carve‑outs (grid, FM, EMS, LTSA monitoring).</li>
+  <li><strong>§10.6</strong> — SOH (85% / 79.58% / 70% Y5/Y10/Y15), RTE ≥86.32% (PAC floor 84% §9.1), 7,000 cycles; remedy through OEM modules at contractor cost.</li>
+  <li><strong>§10.8</strong> — OEM Direct Warranty Undertaking alongside EPC.</li>
+  <li><strong>§11</strong> — 97% availability &amp; extended warranty years 6–15 live under <strong>LTSA</strong>, not EPC.</li>
+</ul>
+
+<h2>10. Limitation of liability (EPC §13)</h2>
+<table>
+  <tr><th>Tier</th><th>Cap / treatment</th><th>EPC §13.2</th></tr>
+  <tr><td>Warranty claims (materials, workmanship, OEM equipment)</td><td><strong>10%</strong> of Contract Price</td><td>(a)</td></tr>
+  <tr><td>Other breaches (excl. warranty, fraud, wilful misconduct, mfg defects)</td><td><strong>50%</strong> of Contract Price</td><td>(b)</td></tr>
+  <tr><td>Fraud, wilful misconduct, manufacturing defects in OEM equipment</td><td><strong>Uncapped</strong></td><td>(c)</td></tr>
+</table>
+<p><strong>§13.4</strong> — Manufacturing defects: OEM bears full replacement cost including shipping per upstream supply agreement (flow‑through narrative).</p>
+<p class="box warn">This is <strong>not</strong> “contractor aggregate liability = 100% of Contract Price” as a single cap. Older briefs stating that were <strong>wrong</strong>.</p>
+
+<h2>11. Insurance minimums (EPC §14)</h2>
+<table>
+  <tr><th>Cover</th><th>Contractual minimum (Lighthief)</th><th>Clause</th></tr>
+  <tr><td>Public Liability</td><td>EUR <strong>5,000,000</strong> per occurrence</td><td>§14.1(a)</td></tr>
+  <tr><td>Professional Indemnity</td><td>EUR <strong>2,000,000</strong> per occurrence</td><td>§14.1(b)</td></tr>
+  <tr><td>CAR</td><td>Full Contract Price, LEG3 defects</td><td>§14.1(c)</td></tr>
+  <tr><td>OEM PL / PI</td><td>EUR 5M PL + EUR 2M PI (AXA Tianping etc.)</td><td>§14.2</td></tr>
+</table>
+<p><strong>§14.4</strong> — Certificates within <strong>14 days</strong> of first payment under §7.1(a).</p>
+
+<h2>12. LTSA (v4) — availability &amp; SOH <span class="tag tag-ltsa">LCY‑LTSA‑001</span></h2>
+<p>Excerpts from <code>legal/templates/ClientLTSA.md</code> (confirm against executed Word):</p>
+<ul>
+  <li><strong>§9.1</strong> — Tier C: <strong>97%</strong> minimum annual availability, calculated at <strong>group / portfolio level</strong> (Schedule 4).</li>
+  <li><strong>§9.4–9.5</strong> — Availability shortfall remedies as <strong>tiered percentage reductions to the annual service fee</strong> (5% / 10% / 15% / 20% bands below 97%), with an annual <strong>cap of 20%</strong> of the annual service fee — not the legacy “€30/MWh/day” wording from older marketing briefs.</li>
+  <li><strong>§10</strong> — SOH guarantee, measurement, augmentation / LD mechanics; <strong>§10.5</strong> SOH LD formula and lifetime cap (50% of total service fees paid in template text).</li>
+  <li><strong>§21.3A</strong> — Assignment for security (mirror EPC lender route).</li>
+</ul>
+
+<h2>13. OEM Direct Warranty Undertaking (DWU)</h2>
+<ul>
+  <li>5‑year product warranty from Warranty Start Date (template aligns with earlier of PAC or six months ex‑factory — <strong>reconcile with EPC Warranty Start</strong> if client counsel requires).</li>
+  <li>Direct enforcement against Linyang only in specified trigger events (insolvency, DA termination, 30‑day non‑response, etc.) — see <code>generate_oem_step_in.py</code> §4.1.</li>
+  <li>Remedy: replacement modules <strong>FOB or CIF Limassol</strong> at Linyang cost — on‑site reinstall not stated as Linyang obligation in DWU template.</li>
+</ul>
+
+<h2>14. Critical path items (financing CPs)</h2>
+<p>From <code>docs/internal/full-contract-risk-review-may2026.html</code> — treat as <strong>status to re‑confirm</strong>:</p>
+<ul>
+  <li>Executed <strong>Linyang sales contract</strong> + counter‑signature.</li>
+  <li><strong>APG</strong> bank form issued and acceptable to client/lender.</li>
+  <li><strong>DWU</strong> signed by Linyang with seal.</li>
+  <li><strong>CAR/EAR</strong> binding placement (not NBI only).</li>
+  <li><strong>PI</strong> on correct EPC contractor class.</li>
+  <li><strong>EMS subscription addendum</strong> aligned with LTSA Schedule 2 (where offered).</li>
+</ul>
+
+<h2>15. Superseded internal documents</h2>
+<table>
+  <tr><th>File</th><th>Issue</th></tr>
+  <tr><td><code>docs/internal/proposals/lighthief-bankable-protection-brief-feb2026.html</code></td><td>24‑month DLP; wrong EPC § for APG; “100% contractor liability”; PL/PI limits; “100% APG of advance” wording oversimplified vs §10.9 Component A scope.</td></tr>
+  <tr><td><code>docs/internal/guarantee-comparison.md</code> (Jan 2026)</td><td>Predates EPC v5 APG obligation — use only with “historical” label.</td></tr>
+</table>
+
+<div class="footer">
+  Lighthief Cyprus Ltd · HE 477423 · office@lighthief.com · solarfarms.cy<br>
+  Internal working paper — not a binding offer. Verify against executed EPC/LTSA/DWU and Linyang instruments before lender submission.
+</div>
+
+</body>
+</html>
