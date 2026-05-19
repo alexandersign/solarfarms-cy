@@ -59,8 +59,7 @@ export const organizationSchema = {
   },
   "taxID": "60187188Q",
   "sameAs": [
-    "https://linkedin.com/company/lighthief-cyprus",
-    "https://twitter.com/solarfarmscyprus"
+    "https://linkedin.com/company/lighthief-cyprus"
   ],
   "foundingDate": "2020",
   "numberOfEmployees": "150+",

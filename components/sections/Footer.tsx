@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Linkedin, Twitter, BarChart3 } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, BarChart3 } from 'lucide-react'
 import { NAVIGATION, COMPANY_DATA } from '@/lib/constants'
 
 export function Footer() {
@@ -34,9 +34,6 @@ export function Footer() {
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/lighthiefcyprus/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-solar-400 transition-colors" aria-label="Follow us on LinkedIn">
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://twitter.com/solarfarmscyprus" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-solar-400 transition-colors" aria-label="Follow us on Twitter">
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
