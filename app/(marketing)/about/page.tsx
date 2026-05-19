@@ -428,7 +428,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section className="section-padding">
+      <section id="team" className="section-padding scroll-mt-20">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">

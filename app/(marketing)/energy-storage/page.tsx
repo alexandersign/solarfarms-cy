@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { BessInquiryForm } from '@/components/forms/BessInquiryForm'
+import { BessDeliveryProcess } from '@/components/energy-storage/BessDeliveryProcess'
+import { BessTeamSection } from '@/components/energy-storage/BessTeamSection'
 import { 
   Battery, 
   Zap, 
@@ -25,7 +27,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Battery Energy Storage Systems Cyprus | Tier-1 BESS | Lighthief Official Distributor',
-  description: 'Utility-scale BESS solutions in Cyprus. Tier-1 LFP battery systems from €100k/MWh. Official Cyprus distributor & O&M partner. Reduce curtailment, maximize solar ROI.',
+  description: 'Utility-scale BESS in Cyprus. Tier-1 LFP from €100k/MWh. In-house Cyprus engineering team, turnkey delivery, and long-term O&M — backed by Lighthief Europe.',
   keywords: [
     'BESS Cyprus',
     'battery energy storage Cyprus',
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Battery Energy Storage Systems Cyprus | Tier-1 BESS',
-    description: 'Official Tier-1 BESS distributor in Cyprus. Utility-scale battery storage from €100k/MWh. Expert O&M services.',
+    description: 'Official Tier-1 BESS distributor in Cyprus. In-house engineering, turnkey delivery, and expert O&M from €100k/MWh.',
     type: 'website',
   },
   alternates: {
@@ -177,11 +179,10 @@ export default function EnergyStoragePage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-8">
-              Tier-1 LFP battery systems • From €100k/MWh • 
-              Official Cyprus distributor & O&M partner
+              Tier-1 LFP battery systems • From €100k/MWh • In-house Cyprus engineering with European EPC & O&M backing
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-8">
               <Button size="xl" className="bg-white text-blue-600 hover:bg-gray-100" asChild>
                 <Link href="/energy-storage/calculator">
                   <Zap className="w-5 h-5 mr-2" />
@@ -192,6 +193,12 @@ export default function EnergyStoragePage() {
                 <Link href="#inquiry-form">
                   <Battery className="w-5 h-5 mr-2" />
                   Request Proposal
+                </Link>
+              </Button>
+              <Button size="xl" variant="outline" className="bg-white/10 border-2 border-white/60 text-white hover:bg-white/20 backdrop-blur-sm" asChild>
+                <Link href="#how-we-deliver">
+                  How we deliver
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
             </div>
@@ -235,8 +242,8 @@ export default function EnergyStoragePage() {
                   <span className="block text-cyprus-600 text-2xl mt-2">Official Tier-1 ESS Distributor</span>
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  As the exclusive Cyprus partner for Tier-1 BESS, we provide complete 
-                  turnkey BESS solutions from supply through installation and long-term O&M.
+                  As the exclusive Cyprus partner for Tier-1 BESS, we provide complete turnkey solutions —
+                  delivered by our in-house Cyprus engineering team with factory-grade EPC and O&M depth from Lighthief Poland.
                 </p>
                 
                 <div className="space-y-4">
@@ -320,6 +327,9 @@ export default function EnergyStoragePage() {
           </div>
         </div>
       </section>
+
+      <BessDeliveryProcess />
+      <BessTeamSection />
 
       {/* System Sizing Options */}
       <section id="systems" className="section-padding">
@@ -522,7 +532,7 @@ export default function EnergyStoragePage() {
                 Request BESS Study & Proposal
               </h2>
               <p className="text-xl text-gray-600">
-                Own a solar park? Get a free curtailment analysis and BESS sizing proposal.
+                Own a solar park? Get a free site assessment and BESS sizing proposal from our Cyprus team.
               </p>
             </div>
 
