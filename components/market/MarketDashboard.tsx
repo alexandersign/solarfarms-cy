@@ -175,7 +175,15 @@ export function MarketDashboard() {
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
   }
   const formatHour = (hour: number) => `${String(hour).padStart(2, '0')}:00`
-  
+
+  const dataStaleDays =
+    dateRange.end && !isDemo
+      ? Math.floor(
+          (Date.now() - new Date(`${dateRange.end}T12:00:00`).getTime()) / (1000 * 60 * 60 * 24)
+        )
+      : 0
+  const isDataStale = !isDemo && dataStaleDays > 3
+
   // Custom tooltip for charts
   const PriceTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null
@@ -235,6 +243,18 @@ export function MarketDashboard() {
             <p className="text-sm text-amber-700 mt-1">
               Showing simulated market data based on typical Cyprus patterns. Download real TSOC data 
               by running: <code className="bg-amber-100 px-1.5 py-0.5 rounded text-xs font-mono">npx ts-node scripts/download-market-data.ts</code>
+            </p>
+          </div>
+        </div>
+      ) : isDataStale ? (
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+          <Activity className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="font-medium text-amber-800">Data update pending</p>
+            <p className="text-sm text-amber-700 mt-1">
+              Showing TSOC data through {dateRange.end ? formatDate(dateRange.end) : ''} ({dataStaleDays}{' '}
+              days ago). {overall?.totalRecords || 0} hourly records — daily sync will refresh when the fetch
+              pipeline succeeds.
             </p>
           </div>
         </div>
@@ -766,7 +786,7 @@ export function MarketDashboard() {
       {/* Data Source Attribution */}
       <div className="text-center text-xs text-gray-400 py-4">
         <p>
-          Data source: <a href="https://tsoc.org.cy/competitive-electricity-market/third-dryrun/reports/day-ahead-market-daily-activity-reports-el/" 
+          Data source: <a href="https://tsoc.org.cy/competitive-electricity-market/mms-reports/day-ahead-market-daily-activity-reports-en/" 
             target="_blank" rel="noopener noreferrer" className="text-cyprus-500 hover:underline">
             TSOC Cyprus - Day-Ahead Market Reports
           </a>

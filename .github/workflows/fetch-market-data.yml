@@ -6,25 +6,17 @@
 # day-ahead reports. Downloads new Excel files, processes them into
 # market-data.json, and commits the update.
 #
-# The git push triggers Vercel auto-deploy, so the website stays current.
+# Required for CI (Cloudflare blocks GitHub Actions IPs):
+#   SCRAPINGBEE_API_KEY — https://www.scrapingbee.com (free tier ~1000 req/mo)
 #
-# Can also be triggered manually from GitHub Actions tab or via Vercel cron.
-#
-# Required secrets:
-#   None (uses GITHUB_TOKEN automatically)
-#
-# Optional secrets (for Cloudflare bypass fallbacks):
-#   SCRAPINGBEE_API_KEY  - scrapingbee.com free tier (1000 req/month)
-#   ZENROWS_API_KEY      - zenrows.com free tier (1000 req/month)
-#   PROXY_URL            - Residential proxy URL
+# Optional:
+#   ZENROWS_API_KEY, PROXY_URL
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Fetch TSOC Market Data
 
 on:
   schedule:
-    # Daily at 14:00 UTC = 16:00 Cyprus time (EET/EEST)
-    # TSOC typically publishes day-ahead data by ~14:00 local time
     - cron: '0 14 * * *'
 
   workflow_dispatch:
@@ -41,10 +33,9 @@ permissions:
 jobs:
   fetch-market-data:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
-      # ── Setup ──────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -60,22 +51,14 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
-      # ── Restore cached Excel files ─────────────────────────────────
-      # Excel files are gitignored (too large), but we cache them
-      # between runs so we only download new ones each day.
       - name: Restore Excel cache
         uses: actions/cache@v4
         with:
           path: market/excel
-          # Use a weekly rotating key so the cache stays warm.
-          # The restore-keys prefix ensures we always get the most recent cache
-          # even if the exact key doesn't match. Caches expire after 7 days of
-          # no access, so using a date-based key keeps them alive.
           key: tsoc-excel-${{ github.run_id }}
           restore-keys: |
             tsoc-excel-
 
-      # ── Check if cache was restored ──────────────────────────────
       - name: Check Excel cache status
         id: cache-check
         run: |
@@ -89,8 +72,6 @@ jobs:
             echo "✓ Cache restored with $EXCEL_COUNT Excel files."
           fi
 
-      # ── Fetch new data ─────────────────────────────────────────────
-      # Auto-backfill if cache was lost (< 10 files), otherwise just fetch latest
       - name: Fetch TSOC Excel files
         run: |
           BACKFILL_FLAG=""
@@ -100,6 +81,9 @@ jobs:
           else
             echo "📥 Running in INCREMENTAL mode (fetching latest files only)"
           fi
+          if [ -z "${{ secrets.SCRAPINGBEE_API_KEY }}" ] && [ -z "${{ secrets.ZENROWS_API_KEY }}" ]; then
+            echo "::warning::SCRAPINGBEE_API_KEY not set — CI fetch may fail behind Cloudflare. Add it in repo Settings → Secrets."
+          fi
           npx ts-node --compiler-options '{"module":"commonjs"}' \
             scripts/fetch-tsoc-playwright.ts $BACKFILL_FLAG
         env:
@@ -108,19 +92,16 @@ jobs:
           ZENROWS_API_KEY: ${{ secrets.ZENROWS_API_KEY }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
 
-      # ── Process data ───────────────────────────────────────────────
       - name: Process Excel files into market-data.json
         run: |
           npx ts-node --compiler-options '{"module":"commonjs"}' \
             scripts/download-market-data.ts --parse-only
 
-      # ── Commit & push ──────────────────────────────────────────────
       - name: Commit updated market data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Only commit the processed JSON (Excel files are gitignored)
           git add market/data/market-data.json
 
           if git diff --staged --quiet; then
@@ -128,19 +109,20 @@ jobs:
           else
             DATES=$(git diff --staged -- market/data/market-data.json | grep '"end"' | tail -1 | grep -oP '\d{4}-\d{2}-\d{2}' || echo "unknown")
             git commit -m "$(cat <<EOF
-          chore: update TSOC market data through ${DATES}
+chore: update TSOC market data through ${DATES}
 
-          Automated daily fetch from tsoc.org.cy
-          EOF
-          )"
+Automated daily fetch from tsoc.org.cy (REP_MO-003 / S3)
+EOF
+)"
             git push
             echo "::notice::Market data updated and pushed"
           fi
 
-      # ── Notify on failure ──────────────────────────────────────────
       - name: Report failure
         if: failure()
         run: |
           echo "::error::Market data fetch failed. Check logs above."
-          echo "Manual fallback: download Excel files from TSOC website to market/excel/"
-          echo "Then run: npm run market:parse"
+          echo "Add SCRAPINGBEE_API_KEY to GitHub secrets, or run locally:"
+          echo "  curl -sL TSOC_URL -o market/tsoc-index.html"
+          echo "  npm run market:fetch -- --index-html market/tsoc-index.html"
+          echo "  npm run market:parse"

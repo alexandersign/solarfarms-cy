@@ -2,7 +2,7 @@
  * TSOC Cyprus Day-Ahead Market Data Downloader
  * 
  * Downloads Excel files from the TSOC website:
- * https://tsoc.org.cy/competitive-electricity-market/third-dryrun/reports/day-ahead-market-daily-activity-reports-el/
+ * https://tsoc.org.cy/competitive-electricity-market/mms-reports/day-ahead-market-daily-activity-reports-en/
  * 
  * Usage:
  *   npx ts-node scripts/download-market-data.ts
@@ -20,8 +20,15 @@ import * as path from 'path'
 import * as https from 'https'
 import * as http from 'http'
 
-const TSOC_BASE_URL = 'https://tsoc.org.cy'
-const TSOC_REPORTS_URL = `${TSOC_BASE_URL}/competitive-electricity-market/third-dryrun/reports/day-ahead-market-daily-activity-reports-el/`
+import {
+  TSOC_DAM_REPORTS_URL,
+  TSOC_BASE,
+  extractExcelLinksFromHtml,
+  extractReportDateFromFilename,
+} from '../lib/tsoc-market-fetch'
+
+const TSOC_BASE_URL = TSOC_BASE
+const TSOC_REPORTS_URL = TSOC_DAM_REPORTS_URL
 const EXCEL_DIR = path.join(process.cwd(), 'market', 'excel')
 const DATA_DIR = path.join(process.cwd(), 'market', 'data')
 
@@ -109,57 +116,8 @@ function downloadFile(url: string, filePath: string): Promise<void> {
   })
 }
 
-/**
- * Extract Excel file links from the TSOC reports page HTML
- */
 function extractExcelLinks(html: string): { url: string; filename: string }[] {
-  const links: { url: string; filename: string }[] = []
-  
-  // Match links to .xlsx or .xls files
-  // Pattern 1: Direct href links to Excel files
-  const hrefRegex = /href=["']([^"']*\.xlsx?)["']/gi
-  let match
-  
-  while ((match = hrefRegex.exec(html)) !== null) {
-    let url = match[1]
-    if (!url.startsWith('http')) {
-      url = `${TSOC_BASE_URL}${url}`
-    }
-    
-    // Extract filename from URL or generate from date in URL
-    const urlParts = url.split('/')
-    let filename = urlParts[urlParts.length - 1]
-    
-    // Clean up query params from filename
-    if (filename.includes('?')) {
-      filename = filename.split('?')[0]
-    }
-    
-    // If filename doesn't have .xlsx extension, try to extract from the link text
-    if (!filename.endsWith('.xlsx') && !filename.endsWith('.xls')) {
-      filename = `report_${Date.now()}.xlsx`
-    }
-    
-    links.push({ url, filename })
-  }
-  
-  // Pattern 2: Links with title/text containing .xlsx
-  const linkTextRegex = /<a[^>]*href=["']([^"']+)["'][^>]*>([^<]*\.xlsx?[^<]*)<\/a>/gi
-  while ((match = linkTextRegex.exec(html)) !== null) {
-    let url = match[1]
-    const filename = match[2].trim()
-    
-    if (!url.startsWith('http')) {
-      url = `${TSOC_BASE_URL}${url}`
-    }
-    
-    // Avoid duplicates
-    if (!links.some(l => l.filename === filename)) {
-      links.push({ url, filename })
-    }
-  }
-  
-  return links
+  return extractExcelLinksFromHtml(html)
 }
 
 /**
@@ -652,9 +610,9 @@ async function main() {
       const cutoffStr = cutoffDate.toISOString().slice(0, 10).replace(/-/g, '')
       
       linksToDownload = links.filter(l => {
-        const dateMatch = l.filename.match(/(\d{8})/)
-        if (!dateMatch) return true // Download files without dates
-        return dateMatch[1] >= cutoffStr
+        const reportDate = extractReportDateFromFilename(l.filename)
+        if (!reportDate) return true // Download files without dates
+        return reportDate >= cutoffStr
       })
       
       console.log(`Downloading ${linksToDownload.length} files (last ${maxDays} days)`)
