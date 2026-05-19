@@ -321,6 +321,7 @@ export const NAVIGATION = {
     { name: "Energy Storage", href: "/energy-storage" },
     { name: "Market Data", href: "/market" },
     { name: "Projects", href: "/projects" },
+    { name: "Landowners", href: "/landowners" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
