@@ -33,22 +33,7 @@ const CONTACT = {
   address: COMPANY_DATA.address.office.full,
 } as const
 
-// ── Import all RTB deals ─────────────────────────────────────────────────────
-import { SHIA_SIA_RTB }           from '../lib/deals/shia-sia-rtb'
-import { JONATHAN_VANALIO_RTB }    from '../lib/deals/jonathan-vanalio-rtb'
-import { RAGELIA_2205_2206_RTB }   from '../lib/deals/ragelia-2205-2206-rtb'
-import { RAGELIA_2302_RTB }        from '../lib/deals/ragelia-2302-rtb'
-import { RAGELIA_2110_RTB }        from '../lib/deals/ragelia-2110-rtb'
-import { RAGELIA_2105_RTB }        from '../lib/deals/ragelia-2105-rtb'
-
-const ALL_DEALS: RtbDeal[] = [
-  SHIA_SIA_RTB,
-  JONATHAN_VANALIO_RTB,
-  RAGELIA_2205_2206_RTB,
-  RAGELIA_2302_RTB,
-  RAGELIA_2110_RTB,
-  RAGELIA_2105_RTB,
-]
+import { ALL_RTB_DEALS as ALL_DEALS } from '../lib/deals/rtb-deals-registry'
 
 // ── Embed logo as base64 so HTML works offline / in email ────────────────────
 const LOGO_PATH = path.join(process.cwd(), 'public', 'images', 'logo', 'lighthief-logo-200.png')

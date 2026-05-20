@@ -299,8 +299,8 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-              Ready-to-build and secondary-sale opportunities alongside operational reference assets.
-              Download teasers and indicative models where available; express interest via LOI.
+              Ready-to-build tickets, operational acquisitions, and portfolio-scale opportunities — with
+              indicative economics, teasers, and LOI where available.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
@@ -406,8 +406,8 @@ export default function ProjectsPage() {
               Operational reference
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Verified performance data and curtailment — useful benchmarks for BESS and merchant
-              strategy.
+              Operational benchmarks with verified production — useful for sizing BESS and merchant
+              investment cases.
             </p>
           </div>
 

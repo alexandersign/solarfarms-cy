@@ -51,7 +51,12 @@ legal/
 │   ├── employee_service_manual.md          Employee manual
 │   └── dino-legal-upadate-flexible-connection.docx
 │
-├── voltus-contracts/                    ← EMS/SCADA provider contracts
+├── voltus-contracts/                    ← Voltus EMS/SCADA order agreements (upstream template)
+│   ├── ORDER AGREEMENT PART I …docx
+│   └── ORDER AGREEMENT PART II …docx
+│
+│   Client-facing DISPERON versions (Lighthief EU BESS Ltd):
+│   → lighthief-eu-bess/legal/contracts/  (LEB-EMS-ORDER-I / II)
 ├── linyang_hardware_specs_docs/         ← OEM datasheets & SLDs
 └── DOCUMENT_INDEX.md                    ← This file
 ```

@@ -62,6 +62,8 @@ interface OverallStats {
   avgPrice: number
   minPrice: number
   maxPrice: number
+  maxPriceDate?: string
+  minPriceDate?: string
   medianPrice: number
   totalRecords: number
   solarHoursAvg: number
@@ -94,6 +96,19 @@ interface BESSArbitrage {
 
 type TimeRange = '7d' | '30d' | '90d' | 'all'
 
+const PERIOD_MAX_FROM = '2025-11-01'
+
+function getPeriodMaxPrice(
+  daily: DailyStats[],
+  from: string,
+  end: string
+): { maxPrice: number; date: string } | null {
+  const inRange = daily.filter((d) => d.date >= from && (!end || d.date <= end))
+  if (!inRange.length) return null
+  const peak = inRange.reduce((best, d) => (d.maxPrice > best.maxPrice ? d : best))
+  return { maxPrice: peak.maxPrice, date: peak.date }
+}
+
 export function MarketDashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -104,6 +119,7 @@ export function MarketDashboard() {
   const [overall, setOverall] = useState<OverallStats | null>(null)
   const [hourlyAvg, setHourlyAvg] = useState<HourlyAverage[]>([])
   const [daily, setDaily] = useState<DailyStats[]>([])
+  const [allDaily, setAllDaily] = useState<DailyStats[]>([])
   const [weekly, setWeekly] = useState<WeeklyStats[]>([])
   const [latestRecords, setLatestRecords] = useState<LatestRecord[]>([])
   const [latestDate, setLatestDate] = useState('')
@@ -144,9 +160,10 @@ export function MarketDashboard() {
       setDateRange(summaryData.dateRange || { start: '', end: '' })
       
       // Apply time range filter to daily data
-      const allDaily: DailyStats[] = summaryData.statistics?.daily || []
+      const dailyAll: DailyStats[] = summaryData.statistics?.daily || []
       const days = parseInt(daysMap[timeRange])
-      setDaily(allDaily.slice(-days))
+      setAllDaily(dailyAll)
+      setDaily(dailyAll.slice(-days))
       
       if (latestData) {
         setLatestRecords(latestData.records || [])
@@ -231,6 +248,8 @@ export function MarketDashboard() {
   const previousAvg = previousDaily.length > 0
     ? previousDaily.reduce((a, d) => a + d.avgPrice, 0) / previousDaily.length : 0
   const priceTrend = previousAvg > 0 ? ((recentAvg - previousAvg) / previousAvg) * 100 : 0
+
+  const periodMax = getPeriodMaxPrice(allDaily, PERIOD_MAX_FROM, dateRange.end)
   
   return (
     <div className="space-y-6">
@@ -366,10 +385,14 @@ export function MarketDashboard() {
           <CardContent className="pt-4 pb-4">
             <TrendingUp className="w-5 h-5 text-red-600" />
             <p className="text-2xl font-bold text-gray-900 mt-2">
-              {overall ? formatPrice(overall.maxPrice) : '--'}
+              {periodMax ? formatPrice(periodMax.maxPrice) : '--'}
             </p>
             <p className="text-xs text-gray-600">Max Price</p>
-            <p className="text-xs text-gray-500 mt-1">All-time high</p>
+            <p className="text-xs text-gray-500 mt-1">
+              {periodMax
+                ? `Nov 2025 – ${dateRange.end ? formatDate(dateRange.end) : 'today'} · ${formatDate(periodMax.date)}`
+                : 'Nov 2025 – today'}
+            </p>
           </CardContent>
         </Card>
         

@@ -56,6 +56,10 @@ export interface OverallStats {
   avgPrice: number
   minPrice: number
   maxPrice: number
+  /** Date (YYYY-MM-DD) of first half-hourly print at maxPrice in the open-market dataset */
+  maxPriceDate?: string
+  /** Date (YYYY-MM-DD) of first half-hourly print at minPrice in the open-market dataset */
+  minPriceDate?: string
   medianPrice: number
   totalRecords: number
   solarHoursAvg: number
@@ -123,12 +127,41 @@ export function getMarketDataFull(): MarketDataFull | null {
 /**
  * Get market data summary (without individual records, for lighter API responses)
  */
+function findOpenMarketPriceExtrema(records: HourlyRecord[]): Pick<OverallStats, 'maxPriceDate' | 'minPriceDate'> {
+  if (records.length === 0) return {}
+
+  const sorted = [...records].sort((a, b) => a.date.localeCompare(b.date) || a.hour - b.hour)
+  let maxPrice = -Infinity
+  let minPrice = Infinity
+  let maxPriceDate = ''
+  let minPriceDate = ''
+
+  for (const r of sorted) {
+    if (r.price > maxPrice) {
+      maxPrice = r.price
+      maxPriceDate = r.date
+    }
+    if (r.price < minPrice) {
+      minPrice = r.price
+      minPriceDate = r.date
+    }
+  }
+
+  return { maxPriceDate, minPriceDate }
+}
+
 export function getMarketDataSummary(): MarketDataSummary | null {
   const data = getMarketDataFull()
   if (!data) return null
-  
+
   // eslint-disable-next-line no-unused-vars
   const { records, ...summary } = data
+
+  if (!summary.statistics.overall.maxPriceDate && records.length > 0) {
+    const extrema = findOpenMarketPriceExtrema(records)
+    summary.statistics.overall = { ...summary.statistics.overall, ...extrema }
+  }
+
   return summary
 }
 
@@ -411,10 +444,14 @@ function computeStatistics(records: HourlyRecord[]) {
   const peakHoursAvg = peakPrices.length > 0 ? peakPrices.reduce((a, b) => a + b, 0) / peakPrices.length : 0
   const offPeakAvg = offPeakPrices.length > 0 ? offPeakPrices.reduce((a, b) => a + b, 0) / offPeakPrices.length : 0
   
+  const { maxPriceDate, minPriceDate } = findOpenMarketPriceExtrema(records)
+
   const overall: OverallStats = {
     avgPrice: prices.reduce((a, b) => a + b, 0) / prices.length,
     minPrice: Math.min(...prices),
     maxPrice: Math.max(...prices),
+    maxPriceDate,
+    minPriceDate,
     medianPrice: sortedPrices[Math.floor(sortedPrices.length / 2)],
     totalRecords: records.length,
     solarHoursAvg,

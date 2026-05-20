@@ -74,9 +74,11 @@ IMPORT_DUTY_PCT   = 0.0266   # 2.66% of CIF
 PORT_LANDING      = 600      # €/container (ECTL)
 CUSTOMS           = 85       # €/park
 CRANE             = 2_500    # €/container (A. Soulis, confirmed Mar 2026)
-LV_CABLE_BESS     = 1_400    # €/BESS container (avg)
-MV_CABLE_MV       = 3_500    # €/MV skid
-MV_TERM_MV        = 2_200    # €/MV skid
+# Joha Cable — per-park QUOTED lump sums in v4 Excel ("LV MV DC AC Cables (joha)").
+# TODO: load JOHa_BY_PARK dict from Joha quote / v4 column — formula below UNDERSTATES some parks (e.g. Galascope €17,300 vs €9,100).
+LV_CABLE_BESS     = 1_400    # €/BESS container — FALLBACK ONLY if no Joha line for park
+MV_CABLE_MV       = 3_500    # €/MV skid — FALLBACK ONLY
+MV_TERM_MV        = 2_200    # €/MV skid — confirm if in Joha scope
 PROT_ENG_SMALL    = 5_000    # ≤3 containers
 PROT_ENG_LARGE    = 6_000    # ≥4 containers
 REMOTE_TRIP       = 3_000    # €/park (physical RTU hardware for DSO compliance)
@@ -448,9 +450,9 @@ ref_rows = [
     ('Crane + Inland Transport','€2,500 / container  ← UPDATED Mar 2026','A. Soulis','CONFIRMED'),
     ('','','',''),
     ('ELECTRICAL','','',''),
-    ('LV Cabling (DC side)','€1,400 / BESS container (avg)','Internal estimate','ESTIMATE'),
-    ('MV Cabling (external)','€3,500 / MV skid','Internal estimate','ESTIMATE'),
-    ('MV Terminations','€2,200 / MV skid','Internal estimate','ESTIMATE'),
+    ('LV+MV+DC Cabling (Joha Cable)','Per-park lump sum — see v4 Excel column','Joha Cable','QUOTED'),
+    ('  (fallback model if no park line)','€1,400 / BESS + €3,500 / MV skid','Internal — do not use for margin','ESTIMATE'),
+    ('MV Terminations','€2,200 / MV skid','TBC — confirm vs Joha quote','ESTIMATE'),
     ('Protection Engineering','€5,000 (≤3 cnt) / €6,000 (≥4 cnt) per park','Internal estimate','ESTIMATE'),
     ('RTU/Comms (DSO remote trip) ← RENAMED','€3,000 / park flat  [physical hardware only, NOT SCADA]','Internal estimate','ESTIMATE'),
     ('UPS & Auxiliary','€2,000 / park','Internal estimate','ESTIMATE'),

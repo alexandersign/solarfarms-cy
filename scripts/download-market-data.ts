@@ -460,10 +460,30 @@ function generateStatistics(records: any[]): any {
   
   // Overall stats
   const prices = records.map(r => r.price).filter(p => p > 0)
+  const sortedByTime = [...records].sort(
+    (a, b) => a.date.localeCompare(b.date) || a.hour - b.hour
+  )
+  let maxPriceDate = ''
+  let minPriceDate = ''
+  let maxSeen = -Infinity
+  let minSeen = Infinity
+  for (const r of sortedByTime) {
+    if (r.price > maxSeen) {
+      maxSeen = r.price
+      maxPriceDate = r.date
+    }
+    if (r.price < minSeen) {
+      minSeen = r.price
+      minPriceDate = r.date
+    }
+  }
+
   const overall = {
     avgPrice: prices.reduce((a, b) => a + b, 0) / prices.length,
     minPrice: Math.min(...prices),
     maxPrice: Math.max(...prices),
+    maxPriceDate,
+    minPriceDate,
     medianPrice: prices.sort((a, b) => a - b)[Math.floor(prices.length / 2)],
     totalRecords: records.length,
     // Solar hours (6:00-18:00) average

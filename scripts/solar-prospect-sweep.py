@@ -792,6 +792,7 @@ def build_roof_image(lat: float, lon: float, panel_count: int,
 
     buf = io.BytesIO()
     img.convert("RGB").save(buf, format="PNG", optimize=True)
+    pv_info["panels_drawn"] = drawn
     return buf.getvalue(), pv_info
 
 
@@ -1234,9 +1235,18 @@ def write_html_review(results: list[dict], html_path: Path, images_dir: Path):
         pv_status   = r.get("pv_status", "none")
         pv_coverage = float(r.get("pv_coverage", 0.0))
 
-        # Embed roof image
-        safe_name = re.sub(r'[\\/:*?"<>|()\']+', '', name)[:30].replace(' ', '_')
-        img_path = images_dir / f"roof_{i:04d}_{safe_name}.png"
+        # Embed roof image — use stored filename from run_sweep (globally unique)
+        img_filename_stored = r.get("img_filename", "")
+        safe_name = re.sub(r'[\\/:*?"<>|()\']+', '', name)[:40].replace(' ', '_')
+        # Try stored filename first, then fallback legacy pattern
+        img_path = (images_dir / img_filename_stored
+                    if img_filename_stored else
+                    images_dir / f"roof_{safe_name}.png")
+        # Also try older index-based naming as last resort
+        if not img_path.exists():
+            candidates = list(images_dir.glob(f"roof_*_{safe_name[:20]}*.png"))
+            if candidates:
+                img_path = candidates[0]
         if img_path.exists():
             img_b64 = base64.b64encode(img_path.read_bytes()).decode()
             img_tag = f'<img src="data:image/png;base64,{img_b64}" style="width:100%;border-radius:6px 6px 0 0;" />'
@@ -1426,17 +1436,35 @@ def run_sweep(buildings: list[dict], limit: int, dry_run: bool,
         # Satellite image + PV detection
         image_bytes, pv_info = build_roof_image(lat, lon, solar["panel_count"], name,
                                                 building.get("geom_nodes", []))
-        pv_status   = pv_info.get("pv_status", "none")
-        pv_coverage = pv_info.get("pv_coverage", 0.0)
+        pv_status    = pv_info.get("pv_status", "none")
+        pv_coverage  = pv_info.get("pv_coverage", 0.0)
+        panels_drawn = pv_info.get("panels_drawn", solar["panel_count"])
+        img_filename = ""
+
         if image_bytes:
-            safe_name = re.sub(r'[\\/:*?"<>|()\']+', '', name)[:30].replace(' ', '_')
-            img_path  = OUTPUT_DIR / f"roof_{i:04d}_{safe_name}.png"
+            # Use name-based filename (no sector-local index) so the review HTML can find it
+            safe_name    = re.sub(r'[\\/:*?"<>|()\']+', '', name)[:40].replace(' ', '_')
+            img_filename = f"roof_{safe_name}.png"
+            img_path     = OUTPUT_DIR / img_filename
             img_path.write_bytes(image_bytes)
-            pv_label  = f" [EXISTING PV ~{pv_coverage*100:.0f}%]" if pv_status != "none" else ""
-            print(f"  Roof image saved: {img_path.name}{pv_label}")
+            pv_label = f" [EXISTING PV ~{pv_coverage*100:.0f}%]" if pv_status != "none" else ""
+            print(f"  Roof image saved: {img_filename}{pv_label}")
+
+            # Recalculate solar stats based on actual drawn panel count if it differs
+            # significantly (>20% less) — keeps badge numbers consistent with the image
+            if panels_drawn > 0 and panels_drawn < solar["panel_count"] * 0.8:
+                actual_kw  = round(panels_drawn * PANEL_WATTS / 1000, 1)
+                ratio      = actual_kw / max(solar["peak_kw"], 0.001)
+                solar = {**solar,
+                         "panel_count": panels_drawn,
+                         "peak_kw":     actual_kw,
+                         "annual_kwh":  round(solar["annual_kwh"] * ratio),
+                         "savings_eur": round(solar["savings_eur"] * ratio),
+                         "system_cost": round(solar["system_cost"] * ratio),
+                         "co2_tonnes":  round(solar["co2_tonnes"] * ratio, 1)}
         else:
             pv_status = "unknown"
-            print("  (No satellite image — MAPBOX_TOKEN not set)")
+            print("  (No satellite image — Mapbox token missing or request failed)")
 
         # Contact extraction (OSM tags → website scrape → Hunter.io)
         # Also try phone/website from Places API result above
@@ -1450,6 +1478,7 @@ def run_sweep(buildings: list[dict], limit: int, dry_run: bool,
             "email_sent":     False,
             "pv_status":      pv_status,
             "pv_coverage":    pv_coverage,
+            "img_filename":   img_filename,
             "gmaps_url":      gmaps_url,
             "gmb_found":      places.get("gmb_found", False),
             "gmb_confidence": places.get("gmb_confidence", ""),

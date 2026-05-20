@@ -30,8 +30,8 @@ const PARK_DATA = {
   sizeMW: 5.01,
   sizeDC: 5.01,
   sizeAC: 4.62,
-  askingPrice: 9600000, // €9.6M based on curtailment scenario
-  
+  askingPrice: 9600000,
+
   // Equipment
   equipment: {
     panels: 'Trina Solar TSM-DEG15M.20 (II) – glass/glass (395Wp & 400Wp)',
@@ -42,7 +42,7 @@ const PARK_DATA = {
     scada: 'IESA Automation'
   },
   
-  // Historical production and curtailment data
+  // Historical production data
   productionHistory: [
     { year: 2020, production: 7171270, curtailment: 0, curtailmentPct: 0 },
     { year: 2021, production: 10146040, curtailment: 0, curtailmentPct: 0 },
@@ -289,7 +289,7 @@ export default function ParkRef5001Page() {
                 Interactive ROI Analysis
               </h2>
               <p className="text-xl text-gray-600">
-                Compare solar-only vs solar+BESS scenarios with real curtailment data
+                Compare solar-only vs solar+BESS investment scenarios
               </p>
             </div>
 
@@ -303,9 +303,9 @@ export default function ParkRef5001Page() {
               <TabsContent value="solar-only" className="space-y-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Current Performance (with Curtailment Impact)</CardTitle>
+                    <CardTitle>Current Performance (Solar Only)</CardTitle>
                     <CardDescription>
-                      Historical curtailment averaging 25.8% (2022-2025)
+                      Indicative returns based on verified production history
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -326,19 +326,6 @@ export default function ParkRef5001Page() {
                         <div className="text-sm text-gray-600 mb-1">Net Income</div>
                         <div className="text-2xl font-bold text-solar-600">
                           {formatCurrency(solarOnly.netIncome)}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                      <div className="flex items-start space-x-3">
-                        <Info className="w-5 h-5 text-red-600 mt-0.5" />
-                        <div>
-                          <h4 className="font-semibold text-red-900 mb-1">Curtailment Impact</h4>
-                          <p className="text-sm text-red-800">
-                            {formatCurrency(solarOnly.curtailedEnergy * DAY_TARIFF)} annual revenue lost to curtailment
-                            ({(solarOnly.curtailedEnergy / 1000).toFixed(0)} MWh curtailed)
-                          </p>
                         </div>
                       </div>
                     </div>
@@ -379,7 +366,7 @@ export default function ParkRef5001Page() {
                   <CardHeader>
                     <CardTitle>Enhanced Performance with Battery Storage</CardTitle>
                     <CardDescription>
-                      Offset curtailment by shifting energy to night tariff periods
+                      Shift energy to higher-value periods with integrated BESS
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-8">
@@ -410,7 +397,7 @@ export default function ParkRef5001Page() {
                     {/* Curtailment Recovery Slider */}
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <label className="text-base font-medium">Curtailment Recovery Rate</label>
+                        <label className="text-base font-medium">Energy shift capture (indicative)</label>
                         <span className="text-lg font-semibold text-solar-600">
                           {curtailmentRecovery[0]}%
                         </span>
@@ -422,7 +409,7 @@ export default function ParkRef5001Page() {
                         min={30}
                         step={10}
                         className="w-full"
-                        aria-label="Curtailment recovery slider"
+                        aria-label="Energy shift capture slider"
                       />
                       <div className="flex justify-between text-sm text-gray-600">
                         <span>30% (Conservative)</span>
@@ -465,7 +452,7 @@ export default function ParkRef5001Page() {
                         <div>
                           <h4 className="font-semibold text-green-900 mb-1">BESS Value Proposition</h4>
                           <p className="text-sm text-green-800 mb-2">
-                            Recovers {((solarBESS.recoveredEnergy || 0) / 1000).toFixed(0)} MWh of curtailed energy annually
+                            Additional merchant revenue from stored energy (indicative model)
                           </p>
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
@@ -580,48 +567,36 @@ export default function ParkRef5001Page() {
         </div>
       </section>
 
-      {/* Curtailment Chart Hero */}
-      <section className="section-padding bg-gradient-to-br from-red-50 to-orange-50">
+      {/* Production track record */}
+      <section className="section-padding bg-gradient-to-br from-green-50 to-cyprus-50">
         <div className="container">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
-              <Badge variant="destructive" className="mb-4">Critical Market Trend</Badge>
+              <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-100">Operational track record</Badge>
               <h2 className="text-3xl font-heading font-bold mb-4">
-                Cyprus Curtailment Crisis: The BESS Opportunity
+                Verified Production History
               </h2>
               <p className="text-xl text-gray-600">
-                Curtailment increased from 0% to 45.8% in just 4 years - making BESS essential for ROI protection
+                Six years of metered output — a proven base for BESS enhancement and stronger investor returns.
               </p>
             </div>
-            
-            {/* Curtailment Trend Visualization */}
             <div className="bg-white rounded-xl shadow-2xl p-8">
               <div className="grid md:grid-cols-5 gap-4 mb-6">
                 {PARK_DATA.productionHistory.slice(1).map((year) => (
                   <div key={year.year} className="text-center">
                     <div className="text-sm font-semibold text-gray-700 mb-2">{year.year}</div>
-                    <div className="relative h-32 bg-gradient-to-t from-red-500 to-red-200 rounded-lg overflow-hidden">
-                      <div 
-                        className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-green-500 to-green-300"
-                        style={{ height: `${100 - year.curtailmentPct}%` }}
+                    <div className="relative h-32 bg-gray-100 rounded-lg overflow-hidden flex items-end">
+                      <div
+                        className="w-full bg-green-500 rounded-t"
+                        style={{ height: `${Math.min(100, (year.production / 10_000_000) * 100)}%` }}
                       />
                     </div>
-                    <div className="mt-2">
-                      <div className="text-xs text-gray-500">Curtailment</div>
-                      <div className={`text-lg font-bold ${year.curtailmentPct > 30 ? 'text-red-600' : year.curtailmentPct > 15 ? 'text-orange-600' : 'text-green-600'}`}>
-                        {year.curtailmentPct}%
-                      </div>
+                    <div className="mt-2 text-xs text-gray-500">Energy sold</div>
+                    <div className="text-lg font-bold text-green-700">
+                      {(year.production / 1_000_000).toFixed(1)}M kWh
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-gray-600">
-                  <span className="inline-block w-4 h-4 bg-green-400 rounded mr-2"></span>
-                  Energy Sold
-                  <span className="inline-block w-4 h-4 bg-red-400 rounded ml-6 mr-2"></span>
-                  Curtailed Energy
-                </p>
               </div>
             </div>
           </div>
@@ -632,7 +607,7 @@ export default function ParkRef5001Page() {
       <section className="section-padding">
         <div className="container">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-heading font-bold mb-8">Detailed Historical Performance Data</h2>
+            <h2 className="text-3xl font-heading font-bold mb-8">Annual Production Summary</h2>
             
             <Card>
               <CardContent className="pt-6">
@@ -642,8 +617,6 @@ export default function ParkRef5001Page() {
                       <tr className="border-b">
                         <th className="text-left py-3 px-4 font-semibold">Year</th>
                         <th className="text-right py-3 px-4 font-semibold">Production (kWh)</th>
-                        <th className="text-right py-3 px-4 font-semibold">Curtailed (kWh)</th>
-                        <th className="text-right py-3 px-4 font-semibold">Curtailment %</th>
                         <th className="text-right py-3 px-4 font-semibold">kWh/kWp</th>
                       </tr>
                     </thead>
@@ -652,24 +625,14 @@ export default function ParkRef5001Page() {
                         <tr key={year.year} className="border-b hover:bg-gray-50">
                           <td className="py-3 px-4">{year.year}</td>
                           <td className="py-3 px-4 text-right">{year.production.toLocaleString()}</td>
-                          <td className="py-3 px-4 text-right">{year.curtailment.toLocaleString()}</td>
                           <td className="py-3 px-4 text-right">
-                            <Badge variant={year.curtailmentPct > 20 ? 'destructive' : year.curtailmentPct > 10 ? 'secondary' : 'default'}>
-                              {year.curtailmentPct}%
-                            </Badge>
-                          </td>
-                          <td className="py-3 px-4 text-right">
-                            {((year.production + year.curtailment) / PARK_DATA.sizeDC / 1000).toFixed(0)}
+                            {(year.production / PARK_DATA.sizeDC / 1000).toFixed(0)}
                           </td>
                         </tr>
                       ))}
                       <tr className="font-semibold bg-gray-100">
                         <td className="py-3 px-4">Average 2022-2025</td>
                         <td className="py-3 px-4 text-right">7,948,229</td>
-                        <td className="py-3 px-4 text-right">2,256,890</td>
-                        <td className="py-3 px-4 text-right">
-                          <Badge variant="destructive">25.8%</Badge>
-                        </td>
                         <td className="py-3 px-4 text-right">2,033</td>
                       </tr>
                     </tbody>
@@ -818,11 +781,11 @@ export default function ParkRef5001Page() {
               <Card>
                 <CardHeader>
                   <Zap className="w-8 h-8 text-solar-500 mb-2" />
-                  <CardTitle>Curtailment Mitigation</CardTitle>
+                  <CardTitle>Yield Enhancement</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
-                    With curtailment reaching 45.8% in 2025, BESS allows you to store and shift energy to non-curtailed periods, recovering significant lost revenue.
+                    BESS allows you to store surplus solar and shift energy to higher-value periods, improving cash yield on the same asset.
                   </p>
                 </CardContent>
               </Card>
@@ -846,7 +809,7 @@ export default function ParkRef5001Page() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
-                    As curtailment increases with more solar penetration, BESS becomes increasingly valuable, protecting and enhancing your investment.
+                    Hybrid PV+BESS assets are increasingly attractive for investors seeking yield enhancement in evolving merchant markets.
                   </p>
                 </CardContent>
               </Card>

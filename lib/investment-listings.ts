@@ -7,10 +7,21 @@ import {
   AGIOS_THEODOROS_RTB as AGIOS,
   AGIOS_INVESTOR_PACK,
 } from '@/lib/deals/agios-theodoros-rtb'
+import { ALL_RTB_DEALS } from '@/lib/deals/rtb-deals-registry'
+import {
+  type RtbDeal,
+  type RtbStatus,
+  type GridConnectionStatus,
+  investorPackForDeal,
+} from '@/lib/deals/rtb-deal-types'
+import {
+  RAGELIA_LATE_STAGE_PARKS,
+  type RageliaLateStagePark,
+} from '@/lib/deals/ragelia-late-stage'
 
 export type HubSection = 'deals' | 'operational_reference'
 
-export type DealKind = 'rtb' | 'secondary_sale' | 'market_teaser'
+export type DealKind = 'rtb' | 'secondary_sale' | 'market_teaser' | 'development'
 
 export interface LoIPreset {
   projectName: string
@@ -48,7 +59,136 @@ export interface InvestmentListing {
   loiPreset: LoIPreset
 }
 
-const LISTINGS: InvestmentListing[] = [
+const DEFAULT_RTB_IMAGE = '/images/solar-park-field-unsplash.jpg'
+const DEFAULT_LATE_IMAGE = '/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg'
+
+function rtbStatusLabel(status: RtbStatus): string {
+  switch (status) {
+    case 'ready_to_build':
+      return 'Ready to Build'
+    case 'permit_ready':
+      return 'Permit Ready'
+    case 'fully_licensed':
+      return 'Fully Licensed'
+    default:
+      return 'RTB'
+  }
+}
+
+function rtbStatusColor(status: RtbStatus): InvestmentListing['statusColor'] {
+  switch (status) {
+    case 'ready_to_build':
+    case 'fully_licensed':
+      return 'green'
+    case 'permit_ready':
+      return 'blue'
+    default:
+      return 'yellow'
+  }
+}
+
+function gridNoteShort(grid: GridConnectionStatus): string | null {
+  switch (grid) {
+    case 'final_issued':
+      return 'Grid terms issued'
+    case 'preliminary_filed':
+      return 'Grid offer expected Q3 2026'
+    case 'pending_upgrade':
+      return 'Area grid upgrade in progress'
+    case 'not_filed':
+      return 'Grid not yet filed'
+    default:
+      return null
+  }
+}
+
+export function listingFromRtbDeal(
+  deal: RtbDeal,
+  opts?: { featured?: boolean; image?: string }
+): InvestmentListing {
+  const pack = investorPackForDeal(deal)
+  const gridNote = gridNoteShort(deal.gridConnectionStatus)
+  const highlights = [
+    `${deal.solarMWp} MWp · ${deal.bessMWh} MWh BESS (${deal.bessDurationHours}h)`,
+    deal.technologySolar,
+    gridNote ?? deal.gridConnectionNote.split('.')[0],
+    `Indicative RTB acquisition €${(deal.capex.rtbAcquisition / 1000).toFixed(0)}k`,
+  ]
+
+  return {
+    slug: deal.slug,
+    referenceCode: deal.referenceCode,
+    hubSection: 'deals',
+    dealKind: 'rtb',
+    publicTitle: deal.publicTitle,
+    publicLocation: deal.locationLine,
+    summary: deal.permitSummary.split('·')[0].trim(),
+    capacityMW: deal.solarMWp,
+    investmentEUR: deal.capex.rtbAcquisition,
+    roiPercent: undefined,
+    annualRevenueEUR: deal.finance.grossEnergyRevenueY1EUR,
+    statusLabel: rtbStatusLabel(deal.rtbStatus),
+    statusColor: rtbStatusColor(deal.rtbStatus),
+    completionDate: deal.timelineNote,
+    image: opts?.image ?? DEFAULT_RTB_IMAGE,
+    highlights,
+    testimonial: {
+      quote: deal.permitSummary,
+      client: `Reference: ${deal.referenceCode}`,
+    },
+    featured: opts?.featured ?? false,
+    detailRoute: `/projects/${deal.slug}`,
+    teaserFile: `${pack.basePath}/${pack.teaserFile}`,
+    modelFile: null,
+    loiPreset: {
+      projectName: deal.publicTitle,
+      projectReference: deal.referenceCode,
+      projectCapacityMW: deal.solarMWp,
+      estimatedInvestment: deal.capex.rtbAcquisition,
+      bessIncluded: deal.bessMWh > 0,
+      timeline: deal.timelineNote,
+    },
+  }
+}
+
+function listingFromLateStage(park: RageliaLateStagePark): InvestmentListing {
+  return {
+    slug: park.slug,
+    referenceCode: park.referenceCode,
+    hubSection: 'deals',
+    dealKind: 'development',
+    publicTitle: park.publicTitle,
+    publicLocation: park.publicLocation,
+    summary: park.summary,
+    capacityMW: park.capacityMW,
+    investmentEUR: park.askingPriceEUR,
+    roiPercent: undefined,
+    annualRevenueEUR: undefined,
+    statusLabel: 'Late stage',
+    statusColor: 'yellow',
+    completionDate: `RTB target ${park.rtbTarget}`,
+    image: DEFAULT_LATE_IMAGE,
+    highlights: park.highlights,
+    testimonial: {
+      quote: `${park.tierLabel}. Investor pack available upon RTB milestone.`,
+      client: `Reference: ${park.referenceCode}`,
+    },
+    featured: false,
+    detailRoute: `/projects/${park.slug}`,
+    teaserFile: null,
+    modelFile: null,
+    loiPreset: {
+      projectName: park.publicTitle,
+      projectReference: park.referenceCode,
+      projectCapacityMW: park.capacityMW,
+      estimatedInvestment: park.askingPriceEUR,
+      bessIncluded: !!park.bessLabel,
+      timeline: `RTB target ${park.rtbTarget}`,
+    },
+  }
+}
+
+const MANUAL_LISTINGS: InvestmentListing[] = [
   {
     slug: 'agios-theodoros-rtb',
     referenceCode: AGIOS.referenceCode,
@@ -57,7 +197,7 @@ const LISTINGS: InvestmentListing[] = [
     publicTitle: 'Agios Theodoros Solar Park with Battery Storage',
     publicLocation: 'Agios Theodoros, Larnaca District',
     summary:
-      'Ready-to-build 2.64 MWp bifacial solar + 10.56 MWh BESS. Merchant exposure with curtailment mitigation.',
+      'Ready-to-build 2.64 MWp bifacial solar + 10.56 MWh BESS. Merchant DAM exposure with integrated storage and strong leveraged returns.',
     capacityMW: AGIOS.solarMWp,
     investmentEUR: AGIOS.capexStackEUR.total,
     roiPercent: 30,
@@ -109,7 +249,7 @@ const LISTINGS: InvestmentListing[] = [
     image: '/images/solar-park-field-unsplash.jpg',
     highlights: [
       '5.01 MWp DC / 4.62 MW AC — premium trackers',
-      'Historical production and curtailment data',
+      'Multi-year operational track record',
       'BESS scenarios on project page',
       'Reference PARK-REF-5001',
     ],
@@ -149,7 +289,7 @@ const LISTINGS: InvestmentListing[] = [
     image: '/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg',
     highlights: [
       'CIT 15% from Jan 2026',
-      'Curtailment and merchant context',
+      'Cyprus merchant market and hybrid PV+BESS context',
       'BESS value stack (indicative)',
       'Contact for specific parks',
     ],
@@ -177,7 +317,7 @@ const LISTINGS: InvestmentListing[] = [
     publicTitle: 'Cyprus Solar Portfolio — 8 Parks, 9.81 MW',
     publicLocation: 'Cyprus (multiple locations)',
     summary:
-      '8-park portfolio totalling 9.81 MW: 3 RTB (fully licensed), 4 late-stage, 1 mid-stage. Includes agrivoltaic and BESS-integrated assets. No asking price published — inquire for details.',
+      '8-park portfolio totalling 9.81 MW: 5 RTB (fully licensed), 2 late-stage, 1 mid-stage. Includes agrivoltaic and BESS-integrated assets. Inquire for portfolio or single-park acquisition.',
     capacityMW: 9.813,
     investmentEUR: undefined,
     roiPercent: undefined,
@@ -187,9 +327,9 @@ const LISTINGS: InvestmentListing[] = [
     completionDate: 'Various (RTB to Q1 2027)',
     image: '/images/solar-park-field-unsplash.jpg',
     highlights: [
-      '3 fully licensed RTB parks (0.5 – 2.32 MW each)',
-      'Agrivoltaic + BESS park (0.95 MW / 1.9 MWh)',
-      '2 additional BESS-hybrid assets',
+      '5 fully licensed RTB tickets with investor teasers',
+      'Agrivoltaic + BESS parks in pipeline',
+      'Individual listings for each park',
       'Staged pipeline: immediate & Q3/Q4 2026 delivery',
     ],
     testimonial: {
@@ -215,7 +355,7 @@ const LISTINGS: InvestmentListing[] = [
     publicTitle: 'Anarita Solar Park — 10 MW Operational',
     publicLocation: 'Anarita, Paphos District',
     summary:
-      'Operational asset with published curtailment statistics — reference case for BESS retrofit economics.',
+      'Operational 10 MW asset with verified production — reference case for BESS retrofit and yield enhancement.',
     capacityMW: 10,
     investmentEUR: 12_500_000,
     roiPercent: 14.5,
@@ -225,12 +365,12 @@ const LISTINGS: InvestmentListing[] = [
     completionDate: 'Energized & grid connected',
     image: '/images/solar-park-field-unsplash.jpg',
     highlights: [
-      'Real curtailment data (multi-year)',
-      'BESS opportunity narrative',
+      'Verified multi-year production',
+      'BESS retrofit upside to 18%+ ROI',
       'Tier-1 integration pathway',
     ],
     testimonial: {
-      quote: 'Transparent operational asset with real curtailment data.',
+      quote: 'Transparent operational asset with verified performance and clear BESS investment path.',
       client: 'Reference: PARK-ANARITA-10',
     },
     featured: true,
@@ -246,6 +386,24 @@ const LISTINGS: InvestmentListing[] = [
       timeline: 'Operational — BESS add-on subject to study',
     },
   },
+]
+
+const RTB_LISTINGS = ALL_RTB_DEALS.map((deal) =>
+  listingFromRtbDeal(deal, {
+    featured: deal.slug === 'vanalio-nicosia',
+    image:
+      deal.slug === 'shia-sia-nicosia'
+        ? '/images/solar-farm-aerial-unsplash.jpg'
+        : DEFAULT_RTB_IMAGE,
+  })
+)
+
+const LATE_STAGE_LISTINGS = RAGELIA_LATE_STAGE_PARKS.map(listingFromLateStage)
+
+const LISTINGS: InvestmentListing[] = [
+  ...MANUAL_LISTINGS,
+  ...RTB_LISTINGS,
+  ...LATE_STAGE_LISTINGS,
 ]
 
 export function getPublicListings(): InvestmentListing[] {
@@ -264,6 +422,12 @@ export function getOperationalReferenceListings(): InvestmentListing[] {
   return LISTINGS.filter((l) => l.hubSection === 'operational_reference')
 }
 
+/** Project detail routes for sitemap (excludes /contact). */
+export function getProjectSlugsForSitemap(): string[] {
+  return LISTINGS.filter((l) => l.detailRoute.startsWith('/projects/'))
+    .map((l) => l.detailRoute.replace('/projects/', ''))
+}
+
 export function dealKindLabel(kind: DealKind | undefined): string {
   switch (kind) {
     case 'rtb':
@@ -272,6 +436,8 @@ export function dealKindLabel(kind: DealKind | undefined): string {
       return 'For sale'
     case 'market_teaser':
       return 'Market'
+    case 'development':
+      return 'Late stage'
     default:
       return 'Opportunity'
   }

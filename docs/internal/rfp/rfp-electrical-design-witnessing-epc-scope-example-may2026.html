@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP — Electrical Design &amp; DSO Witnessing (EPC Scope) | Example — 2 Parks</title>
+    <style>
+        :root {
+            --primary: #1A365D;
+            --primary-light: #2B5FA0;
+            --accent: #C9A432;
+            --accent-dark: #9C7D22;
+            --white: #FFFFFF;
+            --grey-text: #404040;
+            --body-bg: #F0F4F8;
+            --gray-50: #f7fafc;
+            --gray-200: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: #000; background: var(--body-bg); font-size: 13px; }
+        .page { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 50px; box-shadow: 0 0 20px rgba(0,0,0,0.08); }
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #fff; padding: 25px 30px; margin: -40px -50px 30px -50px;
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 45px; height: 45px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+        .company-name { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .company-tagline { font-size: 10px; opacity: 0.85; }
+        .doc-meta { text-align: right; font-size: 9pt; opacity: 0.9; }
+        h1 { color: var(--accent); font-size: 22px; margin: 10px 0 4px; text-align: center; }
+        .subtitle { color: rgba(255,255,255,0.9); text-align: center; font-size: 14px; }
+        h2 { color: var(--accent); font-size: 17px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--primary); }
+        h3 { color: var(--primary); font-size: 14px; margin: 18px 0 8px; }
+        .info-box { background: var(--gray-50); border-left: 4px solid var(--primary); padding: 14px 18px; margin: 16px 0; }
+        .callout { background: #ebf8ff; border-left: 4px solid var(--primary-light); padding: 14px 18px; margin: 16px 0; font-size: 12px; }
+        .critical-box { background: #fffaf0; border-left: 4px solid var(--accent); padding: 14px 18px; margin: 16px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+        th, td { border: 1px solid var(--gray-200); padding: 9px 11px; text-align: left; }
+        th { background: var(--primary); color: #fff; font-weight: 600; }
+        tr:nth-child(even) { background: var(--gray-50); }
+        .r { text-align: right; }
+        .total-row { background: var(--primary) !important; color: #fff; font-weight: 700; }
+        .total-row td { border-color: var(--primary); }
+        .price-input { background: #fffde7; border: 1px dashed var(--accent); padding: 5px; min-width: 80px; }
+        .scope-design th { background: var(--primary-light); }
+        .scope-witness th { background: var(--accent-dark); }
+        ul, ol { margin: 8px 0 8px 22px; }
+        li { margin: 4px 0; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: 600; color: #fff; }
+        .badge-design { background: var(--primary); }
+        .badge-witness { background: var(--accent-dark); }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+        .scope-card { border-radius: 8px; padding: 14px; border: 2px solid var(--gray-200); }
+        .scope-card.design { border-color: var(--primary); background: #f0f4f8; }
+        .scope-card.witness { border-color: var(--accent); background: #fffdf5; }
+        .note { font-size: 11px; color: var(--grey-text); margin: 8px 0; }
+        .contact-box { background: var(--primary); color: #fff; padding: 18px; margin-top: 28px; border-radius: 6px; }
+        .contact-box h3 { color: var(--accent); margin-bottom: 8px; }
+        .footer { margin-top: 32px; padding-top: 16px; border-top: 2px solid var(--gray-200); text-align: center; color: var(--grey-text); font-size: 11px; }
+        .print-btn { position: fixed; top: 15px; right: 15px; background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; z-index: 1000; }
+        @media print {
+            .print-btn { display: none; }
+            body { background: white; }
+            .page { box-shadow: none; padding: 20px 30px; }
+            .header, th, .total-row, .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">Print / PDF</button>
+    <div class="page">
+
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">L</div>
+                    <div>
+                        <div class="company-name">LIGHTHIEF</div>
+                        <div class="company-tagline">Energy Storage Solutions | Cyprus</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div><strong>Ref:</strong> RFP-LCY-ELEC-DES-WIT-2026-EX01</div>
+                    <div><strong>Date:</strong> 19 May 2026</div>
+                    <div><strong>Classification:</strong> CONFIDENTIAL</div>
+                </div>
+            </div>
+            <h1 style="color: var(--accent);">Request for Proposal</h1>
+            <p class="subtitle">Electrical Design Works &amp; DSO Witnessing — EPC Scope (Separate Line Items)</p>
+            <p class="subtitle" style="font-size: 12px; margin-top: 6px;">Example package: 2 BESS parks (Category B) — names redacted</p>
+        </div>
+
+        <!-- ADDRESSEE -->
+        <div class="info-box">
+            <strong>To:</strong> [Consultant / EPC Subcontractor — insert name]<br>
+            <strong>From:</strong> Alexander Papacosta — Cyprus Director, Lighthief Cyprus Ltd<br>
+            <strong>Email:</strong> office@lighthief.com &nbsp;|&nbsp; <strong>Phone:</strong> +357 99 164 158<br>
+            <strong>Proposal due:</strong> [insert date] &nbsp;|&nbsp; <strong>Validity:</strong> 60 days from submission
+        </div>
+
+        <h2>1. Purpose &amp; EPC Context</h2>
+        <p>Lighthief Cyprus Ltd is the local EPC partner for two utility-scale Battery Energy Storage System (BESS) installations co-located with existing PV parks in Cyprus (Category B — RES + integrated storage). Equipment is supplied CIF Limassol by the OEM (Linyang battery containers, Kehua PCS, integrated MV SKIDs).</p>
+        <p>This RFP requests priced proposals for <strong>two separate scopes</strong> that sit within the wider EPC delivery boundary but are <strong>not</strong> included in the OEM CIF supply:</p>
+
+        <div class="two-col">
+            <div class="scope-card design">
+                <strong><span class="badge badge-design">LINE 1</span> Electrical Design Works</strong>
+                <p class="note" style="margin-top: 8px;">Licensed electrical design, drawings, CT/VT specification, protection coordination, and DSO application packages — per park.</p>
+            </div>
+            <div class="scope-card witness">
+                <strong><span class="badge badge-witness">LINE 2</span> DSO Witnessing &amp; Protection Testing</strong>
+                <p class="note" style="margin-top: 8px;">Protection relay testing, secondary injection, DSO witness attendance, formal test reports, and grid-connection clearance support — per park.</p>
+            </div>
+        </div>
+
+        <div class="callout">
+            <strong>Please quote Line 1 and Line 2 separately.</strong> Lump-sum options per park and portfolio discount are welcome. Do not combine design and witnessing into a single undifferentiated price unless you also provide the split.
+        </div>
+
+        <!-- PROJECTS -->
+        <h2>2. Project Reference — Two Parks (Redacted Example)</h2>
+        <p class="note">Technical data sourced from confirmed portfolio configuration (May 2026). Site names withheld for this example RFP.</p>
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Project One</th>
+                <th>Project Two</th>
+            </tr>
+            <tr><td>Reference name</td><td><strong>Project One</strong></td><td><strong>Project Two</strong></td></tr>
+            <tr><td>District</td><td>Famagusta</td><td>Famagusta</td></tr>
+            <tr><td>Grid connection category</td><td colspan="2">Category B — co-located with existing PV (RES + integrated storage)</td></tr>
+            <tr><td>BESS power / energy</td><td class="r"><strong>5.0 MW / 20 MWh</strong></td><td class="r"><strong>2.5 MW / 10 MWh</strong></td></tr>
+            <tr><td>BESS containers (20' HC)</td><td class="r">4 × 5.015 MWh</td><td class="r">2 × 5.015 MWh</td></tr>
+            <tr><td>MV SKID configuration</td><td>1 × T4 skid (40' HC) — 4 × 1.25 MW PCS slots</td><td>1 × T2 skid (20' Std) — 2 × 1.25 MW PCS slots</td></tr>
+            <tr><td>Total CIF units (BESS + MV)</td><td class="r">5</td><td class="r">3</td></tr>
+            <tr><td>PCS model</td><td colspan="2">Kehua BCS1250K-C-HUD (1.25 MW per unit)</td></tr>
+            <tr><td>Protection relay (MV SKID)</td><td colspan="2">ABB or Schneider (OEM-supplied in MV SKID)</td></tr>
+            <tr><td>Grid voltage</td><td colspan="2">11 kV or 22 kV MV — via existing PV point of connection (POC)</td></tr>
+            <tr><td>DSO</td><td colspan="2">EAC (Electricity Authority of Cyprus)</td></tr>
+            <tr><td>SCADA to DSO</td><td colspan="2">IEC 60870-5-104 (mandatory for installations ≥ 120 kW)</td></tr>
+            <tr><td>EMS</td><td colspan="2">Third-party EMS/SCADA (Lighthief supply — Modbus integration to PCS/BMS)</td></tr>
+        </table>
+
+        <!-- EPC MATRIX -->
+        <h2>3. Position Within EPC Scope of Work</h2>
+        <p>The table below shows where Lines 1 and 2 sit relative to the agreed EPC responsibility split. Items marked <strong>Lighthief</strong> are in scope for this RFP unless performed by the OEM under a separate agreement.</p>
+
+        <table>
+            <tr><th>#</th><th>EPC Work Item</th><th>OEM (CIF)</th><th>Lighthief / Sub</th><th>This RFP</th></tr>
+            <tr><td>A</td><td>BESS containers, PCS, MV SKID, BMS, cooling, fire suppression</td><td>✅</td><td></td><td>—</td></tr>
+            <tr><td>B</td><td>Mechanical install, DC/AC cabling (container to PCS)</td><td>✅</td><td>Support</td><td>—</td></tr>
+            <tr><td>C</td><td>MV cabling SKID → POC, LV aux/comms cabling</td><td></td><td>✅</td><td>Design input (Line 1)</td></tr>
+            <tr><td>D</td><td>Civil works — foundations, trenches</td><td>Subcontract</td><td>✅</td><td>—</td></tr>
+            <tr><td>E</td><td>Earthing / LPS / SPD</td><td></td><td>✅ (specialist)</td><td>Coordinate with Line 1 drawings</td></tr>
+            <tr><td>F</td><td>EMS/SCADA, IEC 104 RTU, cybersecurity</td><td>Data</td><td>✅</td><td>Interface diagram (Line 1)</td></tr>
+            <tr><td>G1</td><td><strong>Electrical design — SLD, protection, CT/VT, DSO package</strong></td><td>Support</td><td>✅</td><td><strong>LINE 1</strong></td></tr>
+            <tr><td>G2</td><td><strong>Protection testing &amp; DSO witness</strong></td><td>Shared</td><td>✅</td><td><strong>LINE 2</strong></td></tr>
+            <tr><td>H</td><td>Commissioning (cold / hot / system)</td><td>Shared</td><td>✅</td><td>Witness supports hot commissioning</td></tr>
+        </table>
+
+        <div class="critical-box">
+            <strong>Production blocker:</strong> CT class, ratio, and mounting location must be agreed with EAC <em>before</em> OEM production order. Line 1 must deliver CT specification and DSO coordination letter in time for equipment procurement (target: within 6 weeks of contract award).
+        </div>
+
+        <!-- LINE 1 DESIGN -->
+        <h2>4. Line 1 — Electrical Design Works</h2>
+
+        <h3>4.1 Deliverables (per park unless noted)</h3>
+        <table class="scope-design">
+            <tr><th style="width:4%">#</th><th style="width:28%">Deliverable</th><th>Description</th><th style="width:10%">Qty</th></tr>
+            <tr>
+                <td>D1</td>
+                <td><strong>Single-line diagram (SLD)</strong></td>
+                <td>BESS containers → PCS → MV SKID (transformer + RMU + switchgear) → MV cable → POC; protection relay; CT/VT positions; metering; earthing; DSO boundary. Compliant with EAC Technical Guide for Storage 2025.1.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D2</td>
+                <td><strong>Protection scheme drawings</strong></td>
+                <td>Relay wiring, trip circuits, remote trip interlock with PCS, SCADA interface. Settings per EAC Table 1 (U&lt; 0.9Un/0.2s, U&gt; 1.1Un/0.2s, f&lt; 47Hz/0.2s, f&gt; 52Hz/0.2s, LoM/ROCOF).</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D3</td>
+                <td><strong>CT/VT specification &amp; metering scheme</strong></td>
+                <td>Two sets of 3-phase CTs (protection + metering/PQR per DSO SLD); VT connections; burden calculations; accuracy class; MV vs LV placement recommendation with justification.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D4</td>
+                <td><strong>MV cabling layout &amp; calculations</strong></td>
+                <td>Route SKID → POC; cable sizing; voltage drop; trench cross-sections; termination details (indoor SKID / outdoor POC).</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D5</td>
+                <td><strong>LV / auxiliary / comms layout</strong></td>
+                <td>DC (BESS–PCS), LV AC, Ethernet to EMS, 24 V UPS distribution, BMS/SCADA aux power.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D6</td>
+                <td><strong>Earthing &amp; bonding coordination</strong></td>
+                <td>Interface with LPS/earthing subcontractor; earth grid, bonding to containers, resistance targets.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D7</td>
+                <td><strong>SCADA / EMS interface diagram</strong></td>
+                <td>EMS ↔ PCS/BMS (Modbus TCP) ↔ RTU (IEC 60870-5-104) ↔ DSO; network, router, UPS for comms.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D8</td>
+                <td><strong>Cable schedule &amp; BoM</strong></td>
+                <td>Cable types, sizes, lengths, routes; CT/VT, relay, PQR, metering panel quantities.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D9</td>
+                <td><strong>DSO application package</strong></td>
+                <td>Drawing set formatted for EAC grid-connection application (Appendix I): SLD, protection settings, cable specs, site layout with BESS positions and boundary distances.</td>
+                <td>Per park</td>
+            </tr>
+            <tr>
+                <td>D10</td>
+                <td><strong>CT coordination with EAC</strong></td>
+                <td>Written technical proposal to EAC for CT class/location agreement; attendance at technical meetings if required.</td>
+                <td>Portfolio (2 parks)</td>
+            </tr>
+            <tr>
+                <td>D11</td>
+                <td><strong>As-built drawings</strong></td>
+                <td>Red-lined / final record drawings after installation — issued within 30 days of energisation.</td>
+                <td>Per park</td>
+            </tr>
+        </table>
+
+        <h3>4.2 Design Standards</h3>
+        <table>
+            <tr><th>Standard / Reference</th><th>Application</th></tr>
+            <tr><td>EAC Technical Guide for Storage — Edition 2025.1</td><td>DSO BESS connection requirements</td></tr>
+            <tr><td>EAC Technical Guide for RES (ΣΑΗ) — Edition 2023.2</td><td>RES protection, SCADA</td></tr>
+            <tr><td>EN 50549-2</td><td>Grid connection for generating plants</td></tr>
+            <tr><td>IEC 60870-5-104</td><td>DSO SCADA protocol</td></tr>
+            <tr><td>IEC 60255 / IEC 60044 / IEC 61869</td><td>Protection relays; CT/VT</td></tr>
+            <tr><td>IEC 60502-2 / IEC 60364</td><td>MV cables; electrical installations</td></tr>
+        </table>
+
+        <p class="note"><strong>Information provided by Lighthief:</strong> OEM datasheets (Linyang/Kehua), MV SKID configuration drawings, DQG layout files, EMS architecture, existing PV SLD/POC details, and EAC technical guides. Site visits can be arranged.</p>
+
+        <!-- LINE 2 WITNESSING -->
+        <h2>5. Line 2 — DSO Witnessing &amp; Protection Testing</h2>
+        <p>Separate from design. Assumes protection settings and relay configuration are available from Line 1 (or OEM) before site testing.</p>
+
+        <h3>5.1 Scope (per park)</h3>
+        <table class="scope-witness">
+            <tr><th style="width:4%">#</th><th style="width:30%">Activity</th><th>Description</th></tr>
+            <tr><td>W1</td><td><strong>Pre-witness preparation</strong></td><td>Review settings, calibrate test equipment, prepare test sheets and documentation pack for EAC.</td></tr>
+            <tr><td>W2</td><td><strong>Secondary injection testing</strong></td><td>Verify relay operation — pickup, trip times, directional elements (if applicable). IEC 60255.</td></tr>
+            <tr><td>W3</td><td><strong>Trip time verification</strong></td><td>Confirm operate times vs DSO settings (EN 50549-2).</td></tr>
+            <tr><td>W4</td><td><strong>Communication test</strong></td><td>Relay ↔ SCADA/RTU (IEC 61850 and/or Modbus as applicable).</td></tr>
+            <tr><td>W5</td><td><strong>End-to-end protection test</strong></td><td>Full protection chain including remote trip interlock with PCS where applicable.</td></tr>
+            <tr><td>W6</td><td><strong>DSO notification &amp; scheduling</strong></td><td>Coordinate witness test date with EAC.</td></tr>
+            <tr><td>W7</td><td><strong>DSO witness test execution</strong></td><td>On-site demonstration to EAC inspector; engineer attendance throughout witness window.</td></tr>
+            <tr><td>W8</td><td><strong>Re-test (if required)</strong></td><td>Remedial re-test following EAC observations — quote as optional day rate.</td></tr>
+            <tr><td>W9</td><td><strong>Formal test report &amp; certificates</strong></td><td>Protection settings verification report, injection certificates, trip graphs, as-tested settings record, DSO witness report.</td></tr>
+            <tr><td>W10</td><td><strong>Grid connection clearance support</strong></td><td>Respond to EAC queries until written energisation approval.</td></tr>
+        </table>
+
+        <h3>5.2 DSO Protection Settings (reference)</h3>
+        <table>
+            <tr><th>Protection</th><th>Setting</th><th>Trip time</th></tr>
+            <tr><td>Undervoltage (U&lt;)</td><td>0.9 Un</td><td>0.2 s</td></tr>
+            <tr><td>Overvoltage (U&gt;)</td><td>1.1 Un</td><td>0.2 s</td></tr>
+            <tr><td>Underfrequency (f&lt;)</td><td>47.0 Hz</td><td>0.2 s</td></tr>
+            <tr><td>Overfrequency (f&gt;)</td><td>52.0 Hz</td><td>0.2 s</td></tr>
+            <tr><td>Loss of Mains (LoM)</td><td>Active detection</td><td>Per IEC 62116</td></tr>
+            <tr><td>ROCOF</td><td>Per EAC setting</td><td>Configurable</td></tr>
+        </table>
+
+        <h3>5.3 Equipment Under Test</h3>
+        <table>
+            <tr><th>Project</th><th>MV SKIDs</th><th>Protection relays</th><th>Witness events (typical)</th></tr>
+            <tr><td>Project One</td><td class="r">1 (T4)</td><td class="r">1</td><td class="r">1</td></tr>
+            <tr><td>Project Two</td><td class="r">1 (T2)</td><td class="r">1</td><td class="r">1</td></tr>
+            <tr class="total-row"><td><strong>Total</strong></td><td class="r"><strong>2</strong></td><td class="r"><strong>2</strong></td><td class="r"><strong>2</strong></td></tr>
+        </table>
+
+        <!-- PRICING -->
+        <h2>6. Pricing Template — Separate Lines Required</h2>
+        <p class="note">All prices EUR, excl. VAT. Complete yellow cells. Provide both itemised and lump-sum options.</p>
+
+        <h3>6.1 Line 1 — Electrical Design (per park)</h3>
+        <table>
+            <tr>
+                <th>Deliverable group</th>
+                <th>Project One (€)</th>
+                <th>Project Two (€)</th>
+                <th>Both parks lump sum (€)</th>
+            </tr>
+            <tr><td>D1–D2 SLD + protection drawings</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>D3 CT/VT specification + burden calcs</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>D4–D5 MV + LV cabling layouts &amp; calcs</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>D6–D7 Earthing coordination + SCADA interface</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>D8 Cable schedule &amp; BoM</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>D9 DSO application package</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>D10 EAC CT coordination (portfolio)</td><td colspan="2" class="r">—</td><td class="price-input"></td></tr>
+            <tr><td>D11 As-built (per park, on completion)</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr class="total-row"><td><strong>LINE 1 SUBTOTAL</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>6.2 Line 2 — DSO Witnessing &amp; Testing (per park)</h3>
+        <table>
+            <tr>
+                <th>Service</th>
+                <th>Unit</th>
+                <th>Project One (€)</th>
+                <th>Project Two (€)</th>
+                <th>Both parks lump sum (€)</th>
+            </tr>
+            <tr><td>W1–W5 Pre-witness + injection + E2E testing</td><td>per MV SKID</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>W6–W7 DSO witness day(s)</td><td>per day</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>W8 Re-test (optional)</td><td>per day</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>W9–W10 Reports + clearance support</td><td>per park</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr class="total-row"><td><strong>LINE 2 SUBTOTAL</strong></td><td></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <h3>6.3 Combined Summary</h3>
+        <table>
+            <tr><th>Park</th><th class="r">MWh</th><th class="r">MV SKIDs</th><th>Line 1 — Design (€)</th><th>Line 2 — Witnessing (€)</th><th>Total (€)</th></tr>
+            <tr><td>Project One</td><td class="r">20</td><td class="r">1</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr><td>Project Two</td><td class="r">10</td><td class="r">1</td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+            <tr class="total-row"><td><strong>Portfolio (2 parks)</strong></td><td class="r"><strong>30</strong></td><td class="r"><strong>2</strong></td><td class="price-input"></td><td class="price-input"></td><td class="price-input"></td></tr>
+        </table>
+
+        <!-- QUALIFICATIONS -->
+        <h2>7. Contractor Qualifications</h2>
+        <ul>
+            <li>ETEK-registered electrical engineer (Cyprus) or equivalent EU professional body</li>
+            <li>Demonstrated BESS or utility-scale RES grid-connection experience in Cyprus</li>
+            <li>Prior EAC technical meetings / CT class agreements (Line 1)</li>
+            <li>Prior EAC witness test attendance (Line 2)</li>
+            <li>Experience with ABB and Schneider protection relays; IEC 61850 / IEC 60870-5-104</li>
+            <li>Calibrated test equipment with valid certificates (Line 2)</li>
+            <li>Professional indemnity insurance — minimum €1M (state limit in proposal)</li>
+        </ul>
+
+        <h2>8. Programme &amp; Milestones</h2>
+        <table>
+            <tr><th>Milestone</th><th>Target (indicative)</th><th>Line</th></tr>
+            <tr><td>Contract award</td><td>T+0</td><td>Both</td></tr>
+            <tr><td>CT specification &amp; EAC coordination letter</td><td>T+6 weeks</td><td>Line 1 — <strong>critical path for OEM order</strong></td></tr>
+            <tr><td>DSO application drawing package (draft)</td><td>T+8 weeks</td><td>Line 1</td></tr>
+            <tr><td>Equipment delivery / site install</td><td>T+5–6 months</td><td>—</td></tr>
+            <tr><td>Pre-witness testing</td><td>T+1 week before witness</td><td>Line 2</td></tr>
+            <tr><td>DSO witness test &amp; energisation clearance</td><td>T+6–7 months</td><td>Line 2</td></tr>
+            <tr><td>As-built drawings</td><td>Within 30 days of energisation</td><td>Line 1</td></tr>
+        </table>
+
+        <h2>9. Exclusions</h2>
+        <ul>
+            <li>Supply of equipment, cables, CT/VT, relays, or EMS hardware</li>
+            <li>Civil works, foundations, mechanical installation, MV/LV installation labour</li>
+            <li>Earthing/LPS/SPD installation (separate subcontract — coordinate only)</li>
+            <li>EAC application fees, permit fees, and DSO charges</li>
+            <li>EMS/SCADA software licensing and integration (Lighthief / Voltus scope)</li>
+            <li>Travel and accommodation outside Cyprus unless agreed in advance</li>
+        </ul>
+
+        <h2>10. Submission Requirements</h2>
+        <ol>
+            <li>Completed pricing tables (Section 6) with Line 1 and Line 2 clearly separated</li>
+            <li>Company profile and relevant project references (BESS or ≥ 2 MW RES)</li>
+            <li>CV of lead ETEK engineer and witness-test lead</li>
+            <li>Insurance certificate summary</li>
+            <li>Proposed programme aligned to Section 8</li>
+            <li>Assumptions, exclusions, and clarifications</li>
+        </ol>
+
+        <div class="contact-box">
+            <h3>Contact</h3>
+            <p><strong>Lighthief Cyprus Ltd</strong> — HE 477423</p>
+            <p>Alexander Papacosta, Cyprus Director</p>
+            <p>Email: office@lighthief.com &nbsp;|&nbsp; Phone: +357 99 164 158</p>
+            <p>Reference: <strong>RFP-LCY-ELEC-DES-WIT-2026-EX01</strong></p>
+        </div>
+
+        <div class="footer">
+            <p>RFP-LCY-ELEC-DES-WIT-2026-EX01 | Electrical Design &amp; DSO Witnessing — EPC Scope Example (2 parks)</p>
+            <p>Lighthief Cyprus Ltd | solarfarms.cy | May 2026</p>
+            <p class="note" style="margin-top: 8px;">Example document — site names redacted (Project One / Project Two). Technical configuration per portfolio SSOT May 2026.</p>
+        </div>
+
+    </div>
+</body>
+</html>

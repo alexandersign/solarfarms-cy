@@ -84,8 +84,8 @@ export default function AgiosTheodorosProjectPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-8">
-              Utility-scale solar PV with integrated BESS • Merchant market exposure • 
-              Zero curtailment risk
+              Utility-scale solar PV with integrated BESS • Merchant DAM exposure • Strong
+              leveraged equity returns
             </p>
             
             <div className="flex items-center gap-4 mb-8">
@@ -202,7 +202,7 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <div className="text-sm text-gray-600">Function</div>
-                    <div className="text-xl font-bold text-gray-900">Curtailment Recovery</div>
+                    <div className="text-xl font-bold text-gray-900">Peak Shifting</div>
                   </div>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 border border-green-200">
@@ -211,13 +211,9 @@ export default function AgiosTheodorosProjectPage() {
                     <span className="font-semibold text-green-800">Key Benefits</span>
                   </div>
                   <ul className="space-y-1 text-sm text-green-700">
-                    <li>• Curtailment elimination</li>
-                    <li>
-                      • Curtailment recovery at peak prices (~€
-                      {Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh evening peak ref., ~€
-                      {Math.round(RTB.marketDAM.avgEURPerMWh)}/MWh DAM avg — see teaser / model)
-                    </li>
-                    <li>• Grid stabilization revenue potential</li>
+                    <li>• Evening peak dispatch (~€{Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh ref.)</li>
+                    <li>• Hybrid solar + BESS revenue stack on merchant DAM</li>
+                    <li>• Grid services and future market upside</li>
                   </ul>
                 </div>
               </CardContent>
@@ -376,9 +372,8 @@ export default function AgiosTheodorosProjectPage() {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b text-xs text-gray-500">
                     <span>
-                      Solar {formatAgiosEurCompact(RTB.revenueModel.uncurtailedSolarRevY1EUR)} +
-                      {' '}BESS {formatAgiosEurCompact(RTB.revenueModel.bessRevY1EUR)}
-                      {' '}({Math.round(RTB.revenueModel.curtailmentPct * 100)}% curtailment)
+                      Solar {formatAgiosEurCompact(RTB.revenueModel.uncurtailedSolarRevY1EUR)} + BESS{' '}
+                      {formatAgiosEurCompact(RTB.revenueModel.bessRevY1EUR)} (indicative model)
                     </span>
                     <span></span>
                   </div>
@@ -489,7 +484,7 @@ export default function AgiosTheodorosProjectPage() {
               {
                 icon: Battery,
                 title: 'Integrated BESS',
-                description: `${RTB.bessDurationHours}-hour battery storage captures ${Math.round(RTB.revenueModel.curtailmentPct * 100)}% curtailed solar and discharges at ~€${Math.round(RTB.marketDAM.peakEveningEURPerMWh)}/MWh evening peak (TSOC DAM sample). ${RTB.revenueModel.bessDischargedMWh.toLocaleString()} MWh/yr discharged = ${formatAgiosEurCompact(RTB.revenueModel.bessRevY1EUR)} BESS revenue Y1.`
+                description: `${RTB.bessDurationHours}-hour integrated BESS — ${RTB.revenueModel.bessDischargedMWh.toLocaleString()} MWh/yr indicative discharge at evening peak prices (TSOC DAM sample). BESS revenue Y1 ~${formatAgiosEurCompact(RTB.revenueModel.bessRevY1EUR)}.`
               },
               {
                 icon: Sun,
@@ -499,7 +494,7 @@ export default function AgiosTheodorosProjectPage() {
               {
                 icon: TrendingUp,
                 title: 'Strong Returns',
-                description: `Leveraged equity IRR ${RTB.finance.leveredEquityIrrIndicative} — based on real dispatch model (${Math.round(RTB.revenueModel.curtailmentPct * 100)}% curtailment baseline, rising DAM prices upside). Full derivation in Excel Revenue_Model sheet.`
+                description: `Leveraged equity IRR ${RTB.finance.leveredEquityIrrIndicative} — merchant DAM and hybrid dispatch model with upside from rising peak prices. Full derivation in Excel Revenue_Model sheet.`
               },
               {
                 icon: Users,
@@ -509,7 +504,7 @@ export default function AgiosTheodorosProjectPage() {
               {
                 icon: Shield,
                 title: 'De-risked Investment',
-                description: 'RTB status, BESS curtailment protection, and DSCR above 3.0x provides safety margin.'
+                description: 'RTB status, integrated BESS, and DSCR above 3.0x provides a de-risked investment profile.'
               }
             ].map((highlight, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">

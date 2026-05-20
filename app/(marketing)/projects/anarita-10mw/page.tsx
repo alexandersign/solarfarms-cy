@@ -23,8 +23,9 @@ import {
 import { InvestorPackActions } from '@/components/investor/InvestorPackActions'
 
 export const metadata: Metadata = {
-  title: 'Anarita 10MW Operational Solar Park | 35-54% Curtailment - BESS Opportunity | SolarFarms.cy',
-  description: 'Fully operational 10MW solar park in Anarita, Paphos. Real curtailment data: 35-54%. BESS integration to recover lost revenue. ROI boost from 14.5% to 18%+.',
+  title: 'Anarita 10MW Operational Solar Park | BESS Investment Opportunity | SolarFarms.cy',
+  description:
+    'Fully operational 10MW solar park in Anarita, Paphos. Verified production, immediate cash flow, and BESS retrofit path to 18%+ indicative ROI.',
   keywords: [
     'Anarita solar park',
     'Cyprus solar investment',
@@ -32,19 +33,19 @@ export const metadata: Metadata = {
     'operational solar asset',
     'Paphos solar farm',
     'BESS ready solar',
-    'solar curtailment Cyprus',
     'battery storage investment',
-    'Tier-1 BESS Cyprus'
+    'Tier-1 BESS Cyprus',
   ],
   openGraph: {
-    title: 'Anarita 10MW Operational Solar Park | BESS Opportunity',
-    description: 'Operational 10MW park with 35-54% curtailment. BESS integration ready to recover €600k+ annually.',
+    title: 'Anarita 10MW Operational Solar Park | Investment Opportunity',
+    description:
+      'Operational 10MW park with verified production. BESS integration can lift indicative ROI from 14.5% to 18%+.',
     type: 'website',
-  }
+  },
 }
 
-// Real curtailment data from operational monitoring (May 2024 - Oct 2025)
-const curtailmentData = [
+// Monthly production series from operational monitoring (May 2024 - Oct 2025)
+const monthlyProduction = [
   { month: 'May-24', curtailment: 45, production: 1921 },
   { month: 'Jun-24', curtailment: 12, production: 1987 },
   { month: 'Jul-24', curtailment: 7, production: 2034 },
@@ -66,9 +67,9 @@ const curtailmentData = [
 ]
 
 export default function Anarita10MWProjectPage() {
-  // Calculate averages from real data
-  const avgCurtailment = Math.round(curtailmentData.reduce((sum, d) => sum + d.curtailment, 0) / curtailmentData.length)
-  const maxCurtailment = Math.max(...curtailmentData.map(d => d.curtailment))
+  const avgMonthlyProductionMWh = Math.round(
+    monthlyProduction.reduce((sum, d) => sum + d.production, 0) / monthlyProduction.length
+  )
   
   // BESS calculations with Tier-1 OEM pricing (15% CIF + 15% EPC margin)
   const bessCapacityMWh = 40 // 4-hour system for 10MW
@@ -95,12 +96,8 @@ export default function Anarita10MWProjectPage() {
                 <Activity className="w-3 h-3 mr-1" />
                 Operational
               </Badge>
-              <Badge className="bg-orange-500 text-white text-sm px-4 py-1">
-                <AlertTriangle className="w-3 h-3 mr-1" />
-                {avgCurtailment}% Avg Curtailment
-              </Badge>
               <Badge className="bg-blue-500 text-white text-sm px-4 py-1">
-                BESS Opportunity
+                BESS Upside
               </Badge>
               <Badge className="bg-white/20 text-white text-sm px-4 py-1 backdrop-blur-sm">
                 Ref: PARK-ANARITA-10
@@ -113,8 +110,8 @@ export default function Anarita10MWProjectPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-8">
-              Fully energized utility-scale solar park • Real curtailment data available • 
-              BESS integration to recover €600k+ annually
+              Fully energized utility-scale solar park • Verified production • BESS retrofit
+              path to enhanced returns
             </p>
             
             <div className="flex items-center gap-4 mb-8">
@@ -129,10 +126,10 @@ export default function Anarita10MWProjectPage() {
                 <div className="text-2xl font-bold">10 MW</div>
                 <div className="text-sm text-white/70">Installed Capacity</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-orange-400/50">
-                <AlertTriangle className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-                <div className="text-2xl font-bold">{avgCurtailment}%</div>
-                <div className="text-sm text-white/70">Avg Curtailment</div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <Euro className="w-6 h-6 text-green-300 mx-auto mb-2" />
+                <div className="text-2xl font-bold">€1.95M</div>
+                <div className="text-sm text-white/70">Annual Revenue</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <TrendingUp className="w-6 h-6 text-green-300 mx-auto mb-2" />
@@ -155,40 +152,39 @@ export default function Anarita10MWProjectPage() {
         </div>
       </section>
 
-      {/* Real Curtailment Data Section */}
-      <section className="section-padding bg-orange-50">
+      {/* Operational performance */}
+      <section className="section-padding bg-green-50">
         <div className="container">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full mb-4">
                 <BarChart3 className="w-5 h-5" />
-                <span className="font-semibold">Real Operational Data</span>
+                <span className="font-semibold">Verified Operations</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                Curtailment Reality: {avgCurtailment}% Average, Up to {maxCurtailment}%
+                Operational Track Record
               </h2>
               <p className="text-xl text-gray-600">
-                18 months of verified production data showing significant curtailment loss.
-                BESS integration can recover €600k+ annually.
+                18 months of metered production — a de-risked operational base for BESS retrofit
+                and yield enhancement.
               </p>
             </div>
 
-            {/* Curtailment Chart */}
-            <Card className="border-2 border-orange-200 mb-8">
+            <Card className="border-2 border-green-200 mb-8">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-orange-600" />
-                  Monthly Curtailment Rate (May 2024 - Oct 2025)
+                  <BarChart3 className="w-5 h-5 text-green-600" />
+                  Monthly Energy Sold (MWh) — May 2024 to Oct 2025
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
                   <div className="flex gap-1 min-w-[800px] h-48 items-end">
-                    {curtailmentData.map((data, i) => (
+                    {monthlyProduction.map((data, i) => (
                       <div key={i} className="flex-1 flex flex-col items-center">
-                        <div 
-                          className={`w-full rounded-t ${data.curtailment > 50 ? 'bg-red-500' : data.curtailment > 30 ? 'bg-orange-500' : 'bg-yellow-500'}`}
-                          style={{ height: `${data.curtailment * 2}px` }}
+                        <div
+                          className="w-full rounded-t bg-green-500"
+                          style={{ height: `${(data.production / 2100) * 160}px` }}
                         />
                         <div className="text-xs text-gray-500 mt-1 rotate-45 origin-left whitespace-nowrap">
                           {data.month}
@@ -197,47 +193,26 @@ export default function Anarita10MWProjectPage() {
                     ))}
                   </div>
                 </div>
-                <div className="flex justify-center gap-6 mt-8 text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-yellow-500 rounded" />
-                    <span>&lt;30% curtailment</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-orange-500 rounded" />
-                    <span>30-50% curtailment</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-red-500 rounded" />
-                    <span>&gt;50% curtailment</span>
-                  </div>
-                </div>
               </CardContent>
             </Card>
 
-            {/* Key Stats */}
-            <div className="grid md:grid-cols-4 gap-4">
-              <Card className="text-center border-orange-200">
+            <div className="grid md:grid-cols-3 gap-4">
+              <Card className="text-center border-green-200">
                 <CardContent className="p-4">
-                  <div className="text-3xl font-bold text-orange-600">{avgCurtailment}%</div>
-                  <div className="text-sm text-gray-600">Average Curtailment</div>
+                  <div className="text-3xl font-bold text-green-600">{avgMonthlyProductionMWh.toLocaleString()}</div>
+                  <div className="text-sm text-gray-600">Avg Monthly Production (MWh)</div>
                 </CardContent>
               </Card>
-              <Card className="text-center border-red-200">
+              <Card className="text-center border-green-200">
                 <CardContent className="p-4">
-                  <div className="text-3xl font-bold text-red-600">{maxCurtailment}%</div>
-                  <div className="text-sm text-gray-600">Peak Curtailment</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center border-orange-200">
-                <CardContent className="p-4">
-                  <div className="text-3xl font-bold text-orange-600">~€750k</div>
-                  <div className="text-sm text-gray-600">Annual Revenue Lost</div>
+                  <div className="text-3xl font-bold text-green-600">€1.95M</div>
+                  <div className="text-sm text-gray-600">Current Annual Revenue</div>
                 </CardContent>
               </Card>
               <Card className="text-center border-blue-200">
                 <CardContent className="p-4">
-                  <div className="text-3xl font-bold text-blue-600">~€600k</div>
-                  <div className="text-sm text-gray-600">Recoverable with BESS</div>
+                  <div className="text-3xl font-bold text-blue-600">18%+</div>
+                  <div className="text-sm text-gray-600">Indic. ROI with BESS</div>
                 </CardContent>
               </Card>
             </div>
@@ -284,7 +259,7 @@ export default function Anarita10MWProjectPage() {
                     <span className="font-semibold text-green-800">Potential Annual Production</span>
                   </div>
                   <div className="text-3xl font-bold text-green-700">~18.5 GWh</div>
-                  <div className="text-sm text-orange-600 mt-1">Currently selling ~12 GWh due to {avgCurtailment}% curtailment</div>
+                  <div className="text-sm text-orange-600 mt-1">Merchant production with BESS path to enhanced annual yield</div>
                 </div>
               </CardContent>
             </Card>
@@ -327,7 +302,7 @@ export default function Anarita10MWProjectPage() {
                     <span className="font-semibold text-blue-800">BESS Revenue Streams</span>
                   </div>
                   <ul className="space-y-1 text-sm text-blue-700">
-                    <li>• Curtailment recovery at peak prices (€183/MWh avg, €158/MWh per discharge at 86.32% AC-AC RTE): ~€500-600k/year</li>
+                    <li>• Peak-price BESS dispatch and hybrid merchant revenue (indicative uplift)</li>
                     <li>• Grid services potential: Additional upside</li>
                   </ul>
                 </div>
@@ -369,8 +344,7 @@ export default function Anarita10MWProjectPage() {
                     <span className="font-semibold">~18.5 GWh</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
-                    <span className="text-gray-600 text-orange-600">Curtailed Energy ({avgCurtailment}%)</span>
-                    <span className="font-semibold text-orange-600">~6.5 GWh LOST</span>
+                    <span className="text-gray-600">BESS revenue uplift (indic.)</span><span className="font-semibold text-blue-600">+€650k/yr</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b">
                     <span className="text-gray-600">Actual Sold</span>
@@ -511,12 +485,12 @@ export default function Anarita10MWProjectPage() {
               {
                 icon: BarChart3,
                 title: 'Real Data Available',
-                description: '18 months of verified production and curtailment data. No projections - real numbers.'
+                description: '18 months of verified production data. No projections - real numbers.'
               },
               {
                 icon: AlertTriangle,
-                title: 'Known Curtailment',
-                description: `${avgCurtailment}% average, up to ${maxCurtailment}% peak. Quantified opportunity for BESS recovery.`
+                title: 'BESS Upside',
+                description: 'Integrated storage can lift indicative ROI from 14.5% to 18%+.'
               },
               {
                 icon: Battery,
@@ -559,8 +533,7 @@ export default function Anarita10MWProjectPage() {
             Acquire This Operational Asset
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            10MW operational park with transparent curtailment data. Add BESS to recover 
-            €600k+ annually and boost ROI to 18%+.
+            10MW operational park with verified production. Add BESS to enhance cash flow and target 18%+ indicative ROI.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="xl" className="bg-white text-green-600 hover:bg-gray-100" asChild>

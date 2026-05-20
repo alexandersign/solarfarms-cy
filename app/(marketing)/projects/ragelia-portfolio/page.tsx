@@ -30,6 +30,8 @@ interface Park {
   tier: string
   tierColor: 'green' | 'yellow' | 'orange'
   rtbTimeline: string
+  /** Public listing slug on /projects when published */
+  listingSlug?: string
 }
 
 const PARKS: Park[] = [
@@ -41,6 +43,17 @@ const PARKS: Park[] = [
     tier: 'Tier 1 — RTB (Fully Licensed)',
     tierColor: 'green',
     rtbTimeline: 'RTB',
+    listingSlug: 'ragelia-2105',
+  },
+  {
+    id: '#2110',
+    type: 'Photovoltaic',
+    capacityMW: 0.714,
+    bessLabel: null,
+    tier: 'Tier 1 — RTB (Fully Licensed)',
+    tierColor: 'green',
+    rtbTimeline: 'RTB',
+    listingSlug: 'ragelia-2110',
   },
   {
     id: '#2302',
@@ -50,15 +63,7 @@ const PARKS: Park[] = [
     tier: 'Tier 1 — RTB (Fully Licensed)',
     tierColor: 'green',
     rtbTimeline: 'RTB',
-  },
-  {
-    id: '#2209',
-    type: 'Photovoltaic',
-    capacityMW: 0.816,
-    bessLabel: null,
-    tier: 'Tier 2 — Late Stage (~70–85%)',
-    tierColor: 'yellow',
-    rtbTimeline: 'Q3 2026',
+    listingSlug: 'ragelia-2302',
   },
   {
     id: '#2402',
@@ -68,6 +73,7 @@ const PARKS: Park[] = [
     tier: 'Tier 2 — Late Stage (~70–85%)',
     tierColor: 'yellow',
     rtbTimeline: 'Q4 2026',
+    listingSlug: 'ragelia-2402',
   },
   {
     id: '#2501',
@@ -77,6 +83,7 @@ const PARKS: Park[] = [
     tier: 'Tier 2 — Late Stage (~70–85%)',
     tierColor: 'yellow',
     rtbTimeline: 'Q4 2026',
+    listingSlug: 'ragelia-2501',
   },
   {
     id: '#2205',
@@ -86,6 +93,7 @@ const PARKS: Park[] = [
     tier: 'Tier 1 — Constructed',
     tierColor: 'green',
     rtbTimeline: 'RTB',
+    listingSlug: 'ragelia-2205-2206',
   },
   {
     id: '#2206',
@@ -95,6 +103,7 @@ const PARKS: Park[] = [
     tier: 'Tier 1 — RTB (Fully Licensed)',
     tierColor: 'green',
     rtbTimeline: 'RTB',
+    listingSlug: 'ragelia-2205-2206',
   },
   {
     id: '#2502',
@@ -104,6 +113,7 @@ const PARKS: Park[] = [
     tier: 'Tier 3 — Mid Stage (~40–60%)',
     tierColor: 'orange',
     rtbTimeline: 'Q1 2027',
+    listingSlug: 'ragelia-2502',
   },
 ]
 
@@ -253,6 +263,7 @@ export default function RageliaPortfolioPage() {
                         <th className="text-left p-4 font-semibold">BESS</th>
                         <th className="text-left p-4 font-semibold">Status</th>
                         <th className="text-center p-4 font-semibold">RTB Timeline</th>
+                        <th className="text-center p-4 font-semibold">Listing</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -296,6 +307,18 @@ export default function RageliaPortfolioPage() {
                               {park.rtbTimeline}
                             </span>
                           </td>
+                          <td className="p-4 text-center">
+                            {park.listingSlug ? (
+                              <Link
+                                href={`/projects/${park.listingSlug}`}
+                                className="text-xs font-medium text-cyprus-600 hover:text-cyprus-800 underline"
+                              >
+                                View
+                              </Link>
+                            ) : (
+                              <span className="text-gray-300 text-xs">—</span>
+                            )}
+                          </td>
                         </tr>
                       ))}
                       <tr className="border-t-2 border-gray-300 bg-gray-100 font-bold">
@@ -303,7 +326,7 @@ export default function RageliaPortfolioPage() {
                           TOTAL
                         </td>
                         <td className="p-4 text-right tabular-nums">{TOTAL_MW.toFixed(3)}</td>
-                        <td colSpan={3} />
+                        <td colSpan={4} />
                       </tr>
                     </tbody>
                   </table>
@@ -338,6 +361,11 @@ export default function RageliaPortfolioPage() {
                             {park.rtbTimeline}
                           </span>
                         </div>
+                        {park.listingSlug ? (
+                          <Button variant="outline" size="sm" className="w-full mt-3" asChild>
+                            <Link href={`/projects/${park.listingSlug}`}>View listing</Link>
+                          </Button>
+                        ) : null}
                       </CardContent>
                     </Card>
                   ))}
@@ -355,7 +383,7 @@ export default function RageliaPortfolioPage() {
                     {
                       icon: <Zap className="w-5 h-5 text-solar-500" />,
                       title: 'Immediate RTB availability',
-                      body: '3 parks are fully licensed and ready to build, including a constructed 0.5 MW asset.',
+                      body: '5 RTB tickets with investor teasers, including a constructed 0.5 MW asset (#2205) in the #2205+#2206 package.',
                     },
                     {
                       icon: <Battery className="w-5 h-5 text-amber-500" />,

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { CYPRUS_CITIES } from '@/lib/constants'
+import { getProjectSlugsForSitemap } from '@/lib/investment-listings'
 
 export async function GET() {
   const baseUrl = 'https://solarfarms.cy'
@@ -26,7 +27,9 @@ export async function GET() {
     '/solar-farm-roi/10mw-calculator'
   ]
   
-  const allPages = [...staticPages, ...cityPages, ...calculatorPages]
+  const projectPages = getProjectSlugsForSitemap().map((slug) => `/projects/${slug}`)
+
+  const allPages = [...staticPages, ...cityPages, ...calculatorPages, ...projectPages]
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
