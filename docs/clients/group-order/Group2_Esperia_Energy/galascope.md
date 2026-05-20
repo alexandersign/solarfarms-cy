@@ -156,25 +156,49 @@ Both Galascope solar plants are already operational with full SCADA/IEC 104 infr
 
 ---
 
-## MV/LV Equipment Data Sheets Received
+## As-Built Electrical Plant (May 2026)
 
-> The following equipment data sheets were provided by the client (March 2026):
+> **Electrical hub:** [`electrical/README.md`](electrical/README.md) · [`electrical/CHANGELOG.md`](electrical/CHANGELOG.md)  
+> **Full register:** [`electrical/analysis/galascope-as-built-equipment.md`](electrical/analysis/galascope-as-built-equipment.md)  
+> **Datasheet folder (Drive):** `Galascope Datasheets Existing PV Park`  
+> **MCTS renders:** [`electrical/as-built-refs/`](electrical/as-built-refs/)
 
-| Document | Equipment | Key Specs |
-|----------|-----------|-----------|
-| MV data sheet_SM6_IM_DMVLA.pdf | Schneider SM6 indoor MV switchgear | 7.2-36 kV, up to 25 kA/1s, vacuum CB (DMVL-A) |
-| MV data sheet_RM6_DI.pdf | Schneider RM6 gas-insulated switchgear | Up to 24 kV, SF6 sealed-for-life, 20 kA/1s, IP67 tank |
-| MV data sheet MV terminal kits_RSTI_Tyco.pdf | Raychem RSTI-58 screened connectors | 800A, up to 24 kV, CENELEC type "C" bushings |
-| LV data sheet_ABB_ACB_4P_1000VAC.pdf | ABB Emax2 E2.2S ACB | 1250A, 4-pole, 900V, 50 kA Icu |
-| LV data sheet_ABB_MCCB_4P_1000VAC.pdf | ABB Tmax T4L250 MCCB | 250A, 4-pole, 1000V AC, 12 kA at 1kV |
-| LV panel_11_MCCB_4P_800VAC.pdf | LV panel assembly drawing | 2000×1750×700mm panel |
+| Layer | As-built | Design docs (pre-May 2026) |
+|-------|----------|----------------------------|
+| Customer SwS | **ABB UniSec** 24 kV, 16 kA/1s, 200 A (photo `IMG_0664.jpg`) | Schneider SM6 (incorrect) |
+| G2 MCTS | **1× 1250 kVA** 22/0.8 kV, JZ1→SwS, JZ2→80 A fuse (EL00.01.02) | SLD HTML showed “2×1250” — **corrected** |
+| G1 MCTS | **Siemens 8DJH** + **Lami 1250 kVA** per EL00.02.02; MCTS 1–4 naming | Confirm two MCTS for Rev F |
+| PV transformer spare spec | **GALA BkAo 1250 kVA** Dyn11 Uk6% (client PDF) | Use if paralleling requires matched unit |
 
-### Equipment Analysis
+### MV/LV Data Sheets (client pack — March 2026)
 
-- **SM6 / RM6**: Client is evaluating MV switchgear options for either BESS MV room or grid connection point. SM6 (indoor, modular) is typical for BESS installations. RM6 (compact, SF6) is more common for secondary distribution.
-- **ABB ACB 1250A**: Suitable as BESS LV main breaker on PCS output side (690V AC). Ekip Dip LSI protection trip unit provides full overcurrent protection.
-- **ABB MCCB 250A**: Likely for auxiliary/distribution circuits within the BESS compound.
-- **RSTI-58 connectors**: MV cable terminations for connecting to SM6/RM6 switchgear — standard for BESS MV interconnection.
+| Document | Role |
+|----------|------|
+| `data sheet_1250kVA_11-22-0,8KV_GALA_rev.1.pdf` | Spare/replacement 1250 kVA for parallel operation |
+| `data sheet_MV power cable_NA2XSY.pdf` | Existing MV cable family |
+| SM6 / RM6 / RSTI PDFs | **Evaluation only** — not as-built at SwS |
+| ABB Emax2 / Tmax / LV panel PDFs | Matches 5 MW MCTS LVS |
+
+---
+
+## BESS MV Connection — SLD Revisions
+
+| Rev | Topology | Status |
+|-----|----------|--------|
+| **D** | New indoor cubicle (JZ4/JZ5) + MV cable to skid | Conservative; SM6 label wrong vs UniSec |
+| **E** | Repurpose spare SwS bay → skid RMU (no new cubicle) | Needs confirmed free bay |
+| **F** | **JZ2:** merge two PV MV feeders (2×1250 kVA, **G1**); **JZ3:** BESS feeder | [`electrical/analysis/galascope-revF-parallel-feeder-analysis.md`](electrical/analysis/galascope-revF-parallel-feeder-analysis.md) |
+| **G** | Same SwS as **F**; field **G1a / G1b / G1c** (~10 m); **G2a/b/c** (~75–95 m) | [`electrical/analysis/galascope-revG-field-coupling.md`](electrical/analysis/galascope-revG-field-coupling.md) |
+
+**DXF:** [`electrical/sld/rev-F/`](electrical/sld/rev-F/) · [`electrical/sld/rev-G/`](electrical/sld/rev-G/)
+
+**Rev F — SwS:** **JZ3** = BESS (**7SJ82**). **JZ2** = combined PV. **ABB UniSec** (not SM6).
+
+**Rev G — field (G1):** **G1a** outdoor tee + ~10 m cable (no 8DJH swap) · **G1b** add **8DJH T-module** · **G1c** ring **R↔R** ~10 m.
+
+**G2 (2.5 MW):** Same **UniSec full / Rev F** issue as G1. Satellite: **3 pads** — **~75–240 m** apart. Detail: [`electrical/analysis/galascope-revG-field-coupling-g2.md`](electrical/analysis/galascope-revG-field-coupling-g2.md).
+
+**Legacy HTML SLD:** [`electrical/sld/html/`](electrical/sld/html/)
 
 ---
 
@@ -188,29 +212,25 @@ Both Galascope solar plants are already operational with full SCADA/IEC 104 infr
 
 ---
 
-## ⚠️ EPC Budget Gap — BoP Protection Hardware (April 2026)
+## ⚠️ EPC Budget Gap — BoP Protection Hardware (April 2026, updated May 2026)
 
-> **Identified during SLD Rev. C engineering review.**  
-> The current EPC adder model for Galascope 2 (€110,580) **does not include** the following hardware required for DSO Category B grid connection compliance:
+> **Identified during SLD Rev. C engineering review.** Rev **F** may avoid **new cubicle** cost if MCTS approves parallel PV feeders + JZ3 repurposing.
 
-| Item | Est. Cost |
-|------|-----------|
-| New MV feeder panel (JZ4) in existing SwS — Schneider SM6 or matching | €15,000 – €25,000 |
-| Protection relay — Siemens SIPROTEC 7SJ82 (50/51, 50N/51N, 67N, 27/59, 81, 78) | €5,000 – €8,000 |
-| MV CTs × 3 phases (dual-core 5P20 + 0.5) | €3,000 – €5,000 |
-| MV VTs (22/0.1 kV, Class 0.5/3P) | €2,000 – €3,000 |
-| NER 25 Ω / 100 kJ (if not included in Linyang T2 skid — confirm) | €3,000 – €5,000 |
-| **Total unbudgeted** | **€28,000 – €46,000** |
+| Item | Est. Cost | Rev F impact |
+|------|-----------|--------------|
+| New MV cubicle (Rev D) — **ABB UniSec extension**, not SM6 | €15,000 – €25,000 | **Avoided** if Rev F approved |
+| Client civil: MV tee + dual MCTS feeds + cable upgrade | €8,000 – €15,000 (indicative) | **Client scope** |
+| 7SJ82 + CT/VT at **JZ3** BESS bay | €10,000 – €16,000 | Still required |
+| GALA 1250 kVA trafo swap (if Lami mismatch) | €25,000 – €40,000 | **Only if** parallel witness fails |
+| NER 25 Ω in skid (confirm CIF) | €0 – €5,000 | Unchanged |
 
-**Also note**: Linyang BCS1250K-C-HUD LV output is confirmed **690 V AC** (per offer ref. 198/A/KT/2025).  
-T2 skid transformer ratio must be **22 kV / 690 V** (not 800 V as previously assumed in some internal documents).  
-SLD drawing `SLD-galascope-2.5MW-BESS.html` corrected to Rev. D — use that as reference.
+**Also note**: Linyang BCS1250K-C-HUD LV output is **690 V AC**. T2/T4 skid = **22 kV / 690 V**. Existing PV LVS = **800 V** — do not tie LV buses.
 
 **Actions:**
-- [ ] Confirm with Linyang: NER, MV surge arresters, LV surge arresters — in or out of T2 skid scope?
-- [ ] Get local contractor quotation for JZ4 panel + protection relay integration
-- [ ] Update `docs/Bess - EPC System Cost v2.xlsx` with new BoP Protection HW line (~€28k base)
-- [ ] Check all other Esperia Phase 1 projects for same gap (Famagusta 6.5MW/20MWh and Frenaros 25MW/100MWh)
+- [ ] MCTS RFI: Rev F parallel trafos + JZ3 BESS (see Rev F analysis checklist)
+- [ ] Site walk: map **JZ2/JZ3** cables to MCTS-A / MCTS-B
+- [ ] Confirm with Linyang: NER, surge arresters in skid scope
+- [ ] Update EPC cost model: Rev F client works vs Rev D new cubicle
 
 ---
 

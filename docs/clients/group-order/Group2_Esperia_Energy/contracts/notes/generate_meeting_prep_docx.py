@@ -184,7 +184,24 @@ def main() -> None:
         ],
     )
 
-    h(doc, "10. Suggested talking points for Wednesday")
+    h(doc, "10. Scope & pricing clarifications for Dino (group / Galascope)")
+    bullets(
+        doc,
+        [
+            "Show group-proposal.html scope page: included vs excluded split is now explicit.",
+            "INCLUDED in group €/kWh: Costas Hadjikyriacou ETEK installer sign-off (installation "
+            "compliance, protection settings attestation, EAC liaison for BESS compound); "
+            "Lighthief coordinates and attends DSO witness; full commissioning.",
+            "EXCLUDED: licensed electrical design / permit / as-built drawing packages for the "
+            "wider site (€5k–15k/site typical — Client's engineer); EAC/DSO inspection and "
+            "protection-test invoices; external LPS; telecom OPEX.",
+            "Key message: installer sign-off ≠ licensed design drawings — confirm Dino understands "
+            "before signature; mirror in EPC Schedule A.",
+            "See meeting-dino-terms-may2026.md for verbatim talking lines.",
+        ],
+    )
+
+    h(doc, "11. Suggested talking points — commercial / legal")
     bullets(
         doc,
         [

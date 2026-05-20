@@ -170,7 +170,7 @@ Dino Constantinou provided the following technical documentation for the Galasco
 ### MV/LV Equipment Data Sheets
 | Document | Equipment |
 |----------|-----------|
-| MV data sheet_SM6_IM_DMVLA.pdf | Schneider SM6 indoor MV switchgear (7.2-36 kV, vacuum CB) |
+| MV data sheet_SM6_IM_DMVLA.pdf | Schneider SM6 — **evaluation only** (Galascope SwS as-built: **ABB UniSec**) |
 | MV data sheet_RM6_DI.pdf | Schneider RM6 gas-insulated switchgear (up to 24 kV, SF6) |
 | MV data sheet MV terminal kits_RSTI_Tyco.pdf | Raychem RSTI-58 MV cable connectors (800A/24 kV) |
 | LV data sheet_ABB_ACB_4P_1000VAC.pdf | ABB Emax2 E2.2S ACB (1250A, 4P, 900V) |
@@ -187,7 +187,7 @@ Dino Constantinou provided the following technical documentation for the Galasco
 
 1. **Existing IEC 104 infrastructure** — Both Galascope PV plants already have IXXAT IEC 104 gateways communicating with DSO (ASDU 114 and 115). Voltus EMS must use separate ASDU addresses.
 2. **Curtailment handling active** — DSO sends Active Power setpoints at 100%/60%/30%/0%. Full Modbus register maps are documented.
-3. **Client evaluating BoP equipment** — MV switchgear (Schneider SM6/RM6) and LV breakers (ABB Emax2/Tmax) data sheets suggest Dino is independently assessing BESS electrical infrastructure options.
+3. **Client evaluating BoP equipment** — SM6/RM6 datasheets are evaluation options; **Galascope SwS as-built is ABB UniSec** (May 2026). BESS MV: [`electrical/CHANGELOG.md`](electrical/CHANGELOG.md) — Rev **F** / **G**.
 4. **Curtailment data available** — 12 months of curtailment data (Jan-Dec 2025) for Galascope 2.5MW are in `esperia-galascope-2.5-curtailment/` folder.
 
 ---
@@ -231,5 +231,5 @@ Dino Constantinou provided the following technical documentation for the Galasco
 - [ ] Confirm Phase 3 specifications and timeline
 - [x] ~~Resolve Galascope 2 container/MWh discrepancy~~ — **RESOLVED: 2× 5.015MWh, 10 MWh, T2 skid**
 - [ ] **Coordinate IEC 104 ASDU addressing** — Voltus EMS needs to use ASDU addresses that don't conflict with existing 114/115
-- [ ] **Review client MV/LV equipment selection** — Schneider SM6/RM6 and ABB breakers vs. what's included in our EPC scope
+- [ ] **Review Galascope MV connection** — Rev F/G vs Rev D; confirm UniSec JZ3 BESS + G1 field option with MCTS
 - [ ] **Analyze 2025 curtailment data** — Use 12-month xlsx data to quantify BESS revenue recovery potential for Galascope

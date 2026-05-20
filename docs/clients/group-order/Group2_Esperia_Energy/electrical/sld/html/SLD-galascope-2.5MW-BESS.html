@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Galascope 2.5 — BESS 2.5 MW / 10 MWh — Single Line Diagram (Rev. C — SUPERSEDED)</title>
+<style>
+  @page { size: A3 landscape; margin: 6mm; }
+  html, body { margin: 0; padding: 0; background: #e8e8e8; font-family: Arial, Helvetica, sans-serif; }
+  .page {
+    width: 1400px; height: 920px; margin: 14px auto;
+    background: #fff; border: 1.5px solid #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    position: relative; overflow: hidden;
+  }
+  svg { display: block; }
+  @media print { .page { margin: 0; border: none; box-shadow: none; } body { background: #fff; } }
+</style>
+</head>
+<body>
+
+<!-- ================================================ SHEET 1 — SLD ================================================ -->
+<div class="page">
+<svg width="1400" height="920" viewBox="0 0 1400 920" xmlns="http://www.w3.org/2000/svg"
+     font-family="Arial,Helvetica,sans-serif" font-size="11" fill="none">
+
+  <!-- ─── SHEET BORDER & TITLE STRIP ──────────────────────────────────────── -->
+  <rect x="10" y="10" width="1380" height="900" stroke="#000" stroke-width="1"/>
+  <rect x="10" y="870" width="1380" height="40" stroke="#000" stroke-width="1" fill="#f5f5f5"/>
+
+  <!-- ─── DSO / PRIVATE BOUNDARY ─────────────────────────────────────────── -->
+  <!-- Horizontal double arrow indicating boundary -->
+  <line x1="28" y1="52" x2="240" y2="52" stroke="#000" stroke-width="1"/>
+  <polygon points="28,52 38,48 38,56" fill="#000"/>
+  <polygon points="240,52 230,48 230,56" fill="#000"/>
+  <text x="30"  y="44"  fill="#000" font-size="10">DSO Area Responsibility</text>
+  <text x="30"  y="70"  fill="#000" font-size="10">Private Area Responsibility</text>
+  <!-- vertical tick marks -->
+  <line x1="28"  y1="42" x2="28"  y2="76" stroke="#000" stroke-width="1.2"/>
+  <line x1="240" y1="42" x2="240" y2="76" stroke="#000" stroke-width="1.2"/>
+
+  <!-- ─── UPWARD ARROW → EAC RMU ──────────────────────────────────────────── -->
+  <line x1="370" y1="22" x2="370" y2="102" stroke="#000" stroke-width="1.4"/>
+  <polygon points="370,22 364,36 376,36" fill="#000"/>
+  <text x="382" y="40"  fill="#000">to EAC RMU  11 / 22 kV</text>
+  <text x="382" y="56"  fill="#000" font-size="10">(existing — ref. EL00.01.01)</text>
+
+  <!-- ─── 22 kV CUSTOMER SWITCHING SUBSTATION BUS ─────────────────────────── -->
+  <line x1="260" y1="102" x2="1120" y2="102" stroke="#000" stroke-width="2.4"/>
+  <text x="265" y="92" fill="#000" font-size="12" font-weight="700">22 kV — Customer SwS (as-built: ABB UniSec)</text>
+  <!-- existing panels bracket -->
+  <line x1="260" y1="116" x2="560" y2="116" stroke="#000" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text x="335" y="128" fill="#000" font-size="10">existing JZ1 / JZ2 / JZ3 — see Rev F/G (JZ3 BESS)</text>
+  <!-- BESS feeder bracket -->
+  <rect x="570" y="86" width="290" height="230" stroke="#000" stroke-width="1" stroke-dasharray="5 3" fill="none"/>
+  <text x="578" y="82" fill="#000" font-weight="700" font-size="11">JZ3 REPURPOSED — BESS feeder (Rev F/G)</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- BRANCH L — EXISTING PV PARK                                            -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <line x1="380" y1="102" x2="380" y2="148" stroke="#000" stroke-width="1.4"/>
+
+  <!-- CB (existing) -->
+  <rect x="371" y="148" width="18" height="18" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="371" y1="148" x2="389" y2="166" stroke="#000" stroke-width="1.4"/>
+  <line x1="389" y1="148" x2="371" y2="166" stroke="#000" stroke-width="1.4"/>
+  <text x="396" y="158" fill="#000">CB</text>
+  <text x="396" y="170" fill="#000" font-size="10">existing</text>
+
+  <line x1="380" y1="166" x2="380" y2="194" stroke="#000" stroke-width="1.4"/>
+
+  <!-- Disconnector (existing) -->
+  <circle cx="380" cy="194" r="2.5" fill="#000"/>
+  <line x1="380" y1="194" x2="396" y2="182" stroke="#000" stroke-width="1.4"/>
+  <circle cx="380" cy="208" r="2.5" fill="#000"/>
+  <line x1="380" y1="208" x2="380" y2="256" stroke="#000" stroke-width="1.4"/>
+  <text x="400" y="196" fill="#000" font-size="10">DS (existing)</text>
+
+  <!-- existing MV cable label -->
+  <text x="393" y="234" fill="#000" font-size="10" font-style="italic">existing MV cable</text>
+
+  <!-- Existing PV Park box -->
+  <rect x="312" y="256" width="136" height="72" stroke="#000" stroke-width="1" fill="none"/>
+  <text x="380" y="280" text-anchor="middle" fill="#000" font-weight="700">Existing PV Park</text>
+  <text x="380" y="296" text-anchor="middle" fill="#000" font-weight="700">2.5 MWp</text>
+  <text x="380" y="314" text-anchor="middle" fill="#000" font-size="10">2–3 field pads — confirm trafos (Rev F/G)</text>
+  <text x="380" y="326" text-anchor="middle" fill="#000" font-size="9">MCTS sheet: 1×1250; satellite: T1/T2/T3 ~75–240m</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- BRANCH C — JZ4 → T2 SKID → LV BUS                                     -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <line x1="700" y1="102" x2="700" y2="148" stroke="#000" stroke-width="1.4"/>
+
+  <!-- MV CB (new, vacuum) -->
+  <rect x="691" y="148" width="18" height="18" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="691" y1="148" x2="709" y2="166" stroke="#000" stroke-width="1.4"/>
+  <line x1="709" y1="148" x2="691" y2="166" stroke="#000" stroke-width="1.4"/>
+  <text x="716" y="156" fill="#000">MV CB (new)</text>
+  <text x="716" y="168" fill="#000" font-size="10">Vacuum · 630 A · 25 kA / 1 s</text>
+
+  <line x1="700" y1="166" x2="700" y2="194" stroke="#000" stroke-width="1.4"/>
+
+  <!-- Disconnector + Earthing switch -->
+  <circle cx="700" cy="194" r="2.5" fill="#000"/>
+  <line x1="700" y1="194" x2="716" y2="182" stroke="#000" stroke-width="1.4"/>
+  <circle cx="700" cy="208" r="2.5" fill="#000"/>
+  <line x1="700" y1="208" x2="700" y2="234" stroke="#000" stroke-width="1.4"/>
+  <text x="720" y="196" fill="#000" font-size="10">DS + ES (3-pos. interlocked)</text>
+
+  <!-- MV CT -->
+  <circle cx="700" cy="242" r="8" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="716" y="246" fill="#000" font-size="10">CT  200 / 1 A  ·  5P20 + 0.5  ·  30 VA</text>
+
+  <!-- MV surge arrester (left side, small) -->
+  <line x1="700" y1="258" x2="660" y2="258" stroke="#000" stroke-width="1"/>
+  <rect x="650" y="248" width="10" height="20" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="655" y1="268" x2="650" y2="274" stroke="#000" stroke-width="1"/>
+  <line x1="649" y1="274" x2="661" y2="274" stroke="#000" stroke-width="1"/>
+  <line x1="651" y1="276" x2="659" y2="276" stroke="#000" stroke-width="1"/>
+  <line x1="653" y1="278" x2="657" y2="278" stroke="#000" stroke-width="1"/>
+  <line x1="650" y1="280" x2="660" y2="280" stroke="#000" stroke-width="1"/><!-- earth -->
+  <text x="622" y="254" fill="#000" font-size="10">SA-MV</text>
+  <text x="612" y="266" fill="#000" font-size="10">24 kV/10 kA</text>
+
+  <line x1="700" y1="258" x2="700" y2="278" stroke="#000" stroke-width="1.4"/>
+
+  <!-- T2 TRANSFORMER (two circles) -->
+  <circle cx="700" cy="298" r="20" stroke="#000" stroke-width="1.2" fill="#fff"/>
+  <circle cx="700" cy="328" r="20" stroke="#000" stroke-width="1.2" fill="#fff"/>
+  <!-- primary side label -->
+  <text x="728" y="286" fill="#000" font-size="10">T2  (Linyang MV Skid)</text>
+  <text x="728" y="300" fill="#000" font-size="10">3000 kVA  ·  22 kV / 690 V</text>
+  <text x="728" y="314" fill="#000" font-size="10">Dyn11  ·  Uk 6 %  ·  ONAN</text>
+  <!-- winding symbol inside circles (delta / star) -->
+  <text x="700" y="302" text-anchor="middle" fill="#000" font-size="9">Δ</text>
+  <text x="700" y="332" text-anchor="middle" fill="#000" font-size="9">Y</text>
+
+  <!-- NER on LV neutral (right side) -->
+  <line x1="720" y1="330" x2="780" y2="330" stroke="#000" stroke-width="1"/>
+  <line x1="780" y1="330" x2="780" y2="350" stroke="#000" stroke-width="1"/>
+  <!-- resistor symbol -->
+  <rect x="772" y="350" width="16" height="28" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="780" y1="378" x2="780" y2="400" stroke="#000" stroke-width="1"/>
+  <!-- earth symbol -->
+  <line x1="770" y1="400" x2="790" y2="400" stroke="#000" stroke-width="1.2"/>
+  <line x1="773" y1="404" x2="787" y2="404" stroke="#000" stroke-width="1"/>
+  <line x1="776" y1="408" x2="784" y2="408" stroke="#000" stroke-width="1"/>
+  <text x="800" y="358" fill="#000" font-size="10">NER</text>
+  <text x="800" y="370" fill="#000" font-size="10">R ≈ 25 Ω</text>
+  <text x="800" y="382" fill="#000" font-size="10">If ≤ 16 A / 10 s</text>
+
+  <line x1="700" y1="348" x2="700" y2="368" stroke="#000" stroke-width="1.4"/>
+
+  <!-- Revenue meter -->
+  <rect x="686" y="368" width="28" height="18" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="700" y="381" text-anchor="middle" fill="#000" font-size="10">M</text>
+  <text x="732" y="381" fill="#000" font-size="10">Revenue meter  Class 0.2 S</text>
+
+  <line x1="700" y1="386" x2="700" y2="410" stroke="#000" stroke-width="1.4"/>
+
+  <!-- Main ACB 2500 A -->
+  <rect x="685" y="410" width="30" height="26" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="685" y1="410" x2="715" y2="436" stroke="#000" stroke-width="1.4"/>
+  <line x1="715" y1="410" x2="685" y2="436" stroke="#000" stroke-width="1.4"/>
+  <text x="722" y="420" fill="#000" font-weight="700">Main ACB</text>
+  <text x="722" y="434" fill="#000" font-size="10">2500 A  ·  4P  ·  690 V  ·  Icu 50 kA</text>
+
+  <!-- LV surge arrester (left) -->
+  <line x1="700" y1="436" x2="660" y2="436" stroke="#000" stroke-width="1"/>
+  <rect x="650" y="428" width="10" height="18" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="617" y="433" fill="#000" font-size="10">SA-LV</text>
+  <text x="610" y="445" fill="#000" font-size="10">690 V/20 kA</text>
+
+  <line x1="700" y1="436" x2="700" y2="462" stroke="#000" stroke-width="1.4"/>
+
+  <!-- ─── 690 V LV BUS ──────────────────────────────────────────────────── -->
+  <line x1="250" y1="462" x2="1120" y2="462" stroke="#000" stroke-width="2.8"/>
+  <text x="252" y="455" fill="#000" font-size="11" font-weight="700">690 V  LV BUS</text>
+  <text x="1125" y="466" fill="#000" font-size="10">690 V</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- LV BRANCH A (left — PCS A / BESS A)                                    -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <line x1="460" y1="462" x2="460" y2="490" stroke="#000" stroke-width="1.4"/>
+
+  <!-- CT -->
+  <circle cx="460" cy="500" r="8" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="474" y="504" fill="#000" font-size="10">CT  1000 / 5  ·  Class 0.5</text>
+
+  <line x1="460" y1="508" x2="460" y2="530" stroke="#000" stroke-width="1.4"/>
+
+  <!-- Branch ACB A  1250 A -->
+  <rect x="445" y="530" width="30" height="26" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="445" y1="530" x2="475" y2="556" stroke="#000" stroke-width="1.4"/>
+  <line x1="475" y1="530" x2="445" y2="556" stroke="#000" stroke-width="1.4"/>
+  <text x="484" y="540" fill="#000">ACB  1250 A</text>
+  <text x="484" y="554" fill="#000" font-size="10">4P · 690 V · Icu 50 kA</text>
+
+  <line x1="460" y1="556" x2="460" y2="586" stroke="#000" stroke-width="1.4"/>
+
+  <!-- PCS A -->
+  <rect x="386" y="586" width="148" height="66" stroke="#000" stroke-width="1" fill="none"/>
+  <text x="460" y="608" text-anchor="middle" fill="#000" font-weight="700">PCS A  —  1.25 MW</text>
+  <text x="460" y="624" text-anchor="middle" fill="#000" font-size="10">Kehua BCS1250K-C-HUD</text>
+  <text x="460" y="638" text-anchor="middle" fill="#000" font-size="10">690 V AC  ·  η ≥ 99 %  ·  IP55</text>
+  <!-- AC/DC line -->
+  <line x1="400" y1="649" x2="520" y2="649" stroke="#000" stroke-width="0.8"/>
+  <text x="386" y="652" fill="#000" font-size="10">~</text>
+  <text x="524" y="652" fill="#000" font-size="10">=</text>
+
+  <line x1="460" y1="652" x2="460" y2="676" stroke="#000" stroke-width="1.4"/>
+
+  <!-- BESS A -->
+  <rect x="368" y="676" width="184" height="86" stroke="#000" stroke-width="1.2" fill="none"/>
+  <text x="460" y="700" text-anchor="middle" fill="#000" font-weight="700">BESS-A  —  5 MWh</text>
+  <text x="460" y="716" text-anchor="middle" fill="#000" font-size="10">Linyang ME 20HC  ·  LFP</text>
+  <text x="460" y="730" text-anchor="middle" fill="#000" font-size="10">EVE 314 Ah  ·  liquid cooled</text>
+  <text x="460" y="744" text-anchor="middle" fill="#000" font-size="10">integrated BMS + FAS (aerosol)</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- LV BRANCH B (right — PCS B / BESS B)                                   -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <line x1="890" y1="462" x2="890" y2="490" stroke="#000" stroke-width="1.4"/>
+
+  <circle cx="890" cy="500" r="8" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="904" y="504" fill="#000" font-size="10">CT  1000 / 5  ·  Class 0.5</text>
+
+  <line x1="890" y1="508" x2="890" y2="530" stroke="#000" stroke-width="1.4"/>
+
+  <rect x="875" y="530" width="30" height="26" stroke="#000" stroke-width="1" fill="#fff"/>
+  <line x1="875" y1="530" x2="905" y2="556" stroke="#000" stroke-width="1.4"/>
+  <line x1="905" y1="530" x2="875" y2="556" stroke="#000" stroke-width="1.4"/>
+  <text x="914" y="540" fill="#000">ACB  1250 A</text>
+  <text x="914" y="554" fill="#000" font-size="10">4P · 690 V · Icu 50 kA</text>
+
+  <line x1="890" y1="556" x2="890" y2="586" stroke="#000" stroke-width="1.4"/>
+
+  <rect x="816" y="586" width="148" height="66" stroke="#000" stroke-width="1" fill="none"/>
+  <text x="890" y="608" text-anchor="middle" fill="#000" font-weight="700">PCS B  —  1.25 MW</text>
+  <text x="890" y="624" text-anchor="middle" fill="#000" font-size="10">Kehua BCS1250K-C-HUD</text>
+  <text x="890" y="638" text-anchor="middle" fill="#000" font-size="10">690 V AC  ·  η ≥ 99 %  ·  IP55</text>
+  <line x1="830" y1="649" x2="950" y2="649" stroke="#000" stroke-width="0.8"/>
+  <text x="816" y="652" fill="#000" font-size="10">~</text>
+  <text x="954" y="652" fill="#000" font-size="10">=</text>
+
+  <line x1="890" y1="652" x2="890" y2="676" stroke="#000" stroke-width="1.4"/>
+
+  <rect x="798" y="676" width="184" height="86" stroke="#000" stroke-width="1.2" fill="none"/>
+  <text x="890" y="700" text-anchor="middle" fill="#000" font-weight="700">BESS-B  —  5 MWh</text>
+  <text x="890" y="716" text-anchor="middle" fill="#000" font-size="10">Linyang ME 20HC  ·  LFP</text>
+  <text x="890" y="730" text-anchor="middle" fill="#000" font-size="10">EVE 314 Ah  ·  liquid cooled</text>
+  <text x="890" y="744" text-anchor="middle" fill="#000" font-size="10">integrated BMS + FAS (aerosol)</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- BMS / FAS box + control links                                           -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <rect x="156" y="700" width="110" height="40" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="211" y="724" text-anchor="middle" fill="#000" font-weight="700">BMS / FAS</text>
+  <!-- dashed to BESS-A -->
+  <line x1="266" y1="716" x2="368" y2="716" stroke="#000" stroke-width="1" stroke-dasharray="5 3"/>
+  <!-- dashed to BESS-B — route below both containers -->
+  <polyline points="211,740 211,790 890,790 890,762" stroke="#000" stroke-width="1" stroke-dasharray="5 3" fill="none"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- RIGHT SIDE: AUX / PROTECTION / EMS STACK                               -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Aux & Control Panel -->
+  <rect x="1148" y="130" width="220" height="62" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="1258" y="151" text-anchor="middle" fill="#000" font-weight="700">Aux &amp; Control Panel</text>
+  <text x="1258" y="166" text-anchor="middle" fill="#000" font-size="10">230 VAC  ·  24 VDC  ·  UPS ≥ 8 h</text>
+  <text x="1258" y="180" text-anchor="middle" fill="#000" font-size="10">Mikrotik  +  Teltonika cellular</text>
+
+  <!-- Protection Relay -->
+  <rect x="1148" y="212" width="220" height="68" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="1258" y="232" text-anchor="middle" fill="#000" font-weight="700">Protection Relay</text>
+  <text x="1258" y="248" text-anchor="middle" fill="#000" font-size="10">Siemens SIPROTEC 7SJ82</text>
+  <text x="1258" y="262" text-anchor="middle" fill="#000" font-size="10">50/51  ·  50N/51N  ·  67N  ·  27/59</text>
+  <text x="1258" y="274" text-anchor="middle" fill="#000" font-size="10">trips MV CB (JZ4) via binary output</text>
+
+  <!-- Anti-islanding / LOM relay -->
+  <rect x="1148" y="300" width="220" height="56" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="1258" y="320" text-anchor="middle" fill="#000" font-weight="700">Anti-Islanding (LOM)</text>
+  <text x="1258" y="336" text-anchor="middle" fill="#000" font-size="10">81U / 81O  ·  ROCOF 81R  ·  Vector shift 78</text>
+  <text x="1258" y="350" text-anchor="middle" fill="#000" font-size="10">trips main ACB + signals PCS e-stop</text>
+
+  <!-- EMS -->
+  <rect x="1148" y="376" width="220" height="68" stroke="#000" stroke-width="1" fill="#fff"/>
+  <text x="1258" y="396" text-anchor="middle" fill="#000" font-weight="700">EMS  (Voltus)</text>
+  <text x="1258" y="412" text-anchor="middle" fill="#000" font-size="10">IEC 60870-5-104  →  DSO</text>
+  <text x="1258" y="426" text-anchor="middle" fill="#000" font-size="10">ASDU 117  (proposed — confirm w/ DSO)</text>
+  <text x="1258" y="440" text-anchor="middle" fill="#000" font-size="10">Modbus TCP master  →  PCS-A/B + BMS</text>
+
+  <!-- ─── dashed control / signal cables ─────────────────────── -->
+  <!-- Protection relay  →  MV CT / CB -->
+  <polyline points="1148,246 1080,246 1080,242 709,242" stroke="#000" stroke-width="1" stroke-dasharray="5 3" fill="none"/>
+  <!-- LOM relay  →  Main ACB trip -->
+  <polyline points="1148,328 1110,328 1110,420 715,420" stroke="#000" stroke-width="1" stroke-dasharray="5 3" fill="none"/>
+  <!-- EMS  →  LV bus -->
+  <polyline points="1148,410 1125,410 1125,462" stroke="#000" stroke-width="1" stroke-dasharray="5 3" fill="none"/>
+
+  <!-- ─── TITLE BLOCK ───────────────────────────────────────────────────── -->
+  <!-- outer rect already drawn above -->
+  <line x1="10"   y1="870" x2="1390" y2="870" stroke="#000" stroke-width="1"/>
+  <line x1="440"  y1="870" x2="440"  y2="920" stroke="#000" stroke-width="0.8"/>
+  <line x1="930"  y1="870" x2="930"  y2="920" stroke="#000" stroke-width="0.8"/>
+  <line x1="1190" y1="870" x2="1190" y2="920" stroke="#000" stroke-width="0.8"/>
+
+  <text x="18"  y="884" fill="#000" font-size="9">Client</text>
+  <text x="18"  y="898" fill="#000" font-size="10" font-weight="700">Esperia Energy Group  /  Galascope Limited</text>
+  <text x="18"  y="912" fill="#000" font-size="9">Site: Famagusta — Avgorou (existing 2.5 MWp PV park)</text>
+
+  <text x="448" y="884" fill="#000" font-size="9">Project</text>
+  <text x="448" y="898" fill="#000" font-size="10" font-weight="700">Galascope 2.5 MWp  —  BESS Retrofit  2.5 MW / 10 MWh</text>
+  <text x="448" y="912" fill="#000" font-size="9">Design firm: Lighthief Cyprus Ltd</text>
+
+  <text x="938" y="884" fill="#000" font-size="9">Drawing title</text>
+  <text x="938" y="898" fill="#000" font-size="10" font-weight="700">MV / LV Single Line Diagram  —  Rev. C</text>
+  <text x="938" y="912" fill="#000" font-size="9">Sheet 1 of 2  ·  Design by: Iacovos Charalambous</text>
+
+  <text x="1198" y="884" fill="#000" font-size="9">Date  /  Rev.</text>
+  <text x="1198" y="898" fill="#000" font-size="10" font-weight="700">20 / 04 / 2026  —  Rev. C</text>
+  <text x="1198" y="912" fill="#000" font-size="9">Drawing No.:  LC-G25-SLD-001</text>
+
+</svg>
+</div>
+
+
+<!-- ================================================ SHEET 2 — BoM & NOTES ================================================ -->
+<div class="page">
+<svg width="1400" height="920" viewBox="0 0 1400 920" xmlns="http://www.w3.org/2000/svg"
+     font-family="Arial,Helvetica,sans-serif" font-size="11" fill="none">
+
+  <rect x="10" y="10" width="1380" height="900" stroke="#000" stroke-width="1"/>
+  <rect x="10" y="870" width="1380" height="40" stroke="#000" stroke-width="1" fill="#f5f5f5"/>
+
+  <!-- HEADING -->
+  <text x="30" y="46" fill="#000" font-size="17" font-weight="700">
+    Galascope 2.5  —  BESS 2.5 MW / 10 MWh  —  BoM, Sizing &amp; Design Notes  (Rev. C)
+  </text>
+  <line x1="30" y1="54" x2="1370" y2="54" stroke="#000" stroke-width="1"/>
+
+  <!-- ═══════ A. EQUIPMENT SCHEDULE ═══════ -->
+  <text x="30" y="76" fill="#000" font-size="12" font-weight="700">A.  Equipment Schedule</text>
+
+  <!-- table border + header row -->
+  <rect x="30" y="82" width="1340" height="314" stroke="#000" stroke-width="1" fill="none"/>
+  <line x1="30"   y1="102" x2="1370" y2="102" stroke="#000" stroke-width="1"/>
+  <!-- column dividers -->
+  <line x1="110"  y1="82"  x2="110"  y2="396" stroke="#000" stroke-width="0.7"/>
+  <line x1="380"  y1="82"  x2="380"  y2="396" stroke="#000" stroke-width="0.7"/>
+  <line x1="700"  y1="82"  x2="700"  y2="396" stroke="#000" stroke-width="0.7"/>
+  <line x1="1050" y1="82"  x2="1050" y2="396" stroke="#000" stroke-width="0.7"/>
+
+  <text x="38"   y="96" fill="#000" font-weight="700">Tag</text>
+  <text x="118"  y="96" fill="#000" font-weight="700">Item</text>
+  <text x="388"  y="96" fill="#000" font-weight="700">Description</text>
+  <text x="708"  y="96" fill="#000" font-weight="700">Rating / Specification</text>
+  <text x="1058" y="96" fill="#000" font-weight="700">Qty  /  Scope</text>
+
+  <!-- rows (y spacing 20 px) -->
+  <g fill="#000" font-size="10">
+    <text x="38"   y="120">JZ4-CB</text>
+    <text x="118"  y="120">MV Circuit Breaker — new feeder panel</text>
+    <text x="388"  y="120">Vacuum CB in existing ABB UniSec SwS (16 kA/1s, 200 A) — not SM6</text>
+    <text x="708"  y="120">24 kV  ·  630 A  ·  25 kA / 1 s</text>
+    <text x="1058" y="120">1  —  BoP scope ⚠️</text>
+
+    <text x="38"   y="140">JZ4-DS</text>
+    <text x="118"  y="140">Disconnector + earthing switch</text>
+    <text x="388"  y="140">3-position (closed / open / earthed), interlocked with MV CB</text>
+    <text x="708"  y="140">24 kV  ·  630 A  ·  3-position</text>
+    <text x="1058" y="140">1  —  BoP scope ⚠️</text>
+
+    <text x="38"   y="160">CT-MV</text>
+    <text x="118"  y="160">MV current transformers (dual-core)</text>
+    <text x="388"  y="160">Protection core 5P20 + metering core 0.5 — in JZ4 panel</text>
+    <text x="708"  y="160">200 / 1 A  ·  30 VA per core  ·  3 phases</text>
+    <text x="1058" y="160">3  —  BoP scope ⚠️</text>
+
+    <text x="38"   y="180">VT-MV</text>
+    <text x="118"  y="180">MV voltage transformers</text>
+    <text x="388"  y="180">For protection relay (27/59/81/78) — in JZ4 panel or bus VT</text>
+    <text x="708"  y="180">22 / 0.1 kV  ·  3P  ·  Class 0.5 / 3P</text>
+    <text x="1058" y="180">1 set  —  BoP scope ⚠️</text>
+
+    <text x="38"   y="200">PROT</text>
+    <text x="118"  y="200">Protection relay</text>
+    <text x="388"  y="200">Siemens SIPROTEC 7SJ82 (or ABB REJ601) — 50/51, 50N/51N, 67N, 27/59, 81, 78</text>
+    <text x="708"  y="200">Numeric  ·  IEC 61850  ·  binary output to MV CB trip coil</text>
+    <text x="1058" y="200">1  —  BoP scope ⚠️</text>
+
+    <text x="38"   y="220">SA-MV</text>
+    <text x="118"  y="220">MV surge arrester</text>
+    <text x="388"  y="220">ZnO polymer, at T2 primary terminals — likely included in Linyang skid (confirm)</text>
+    <text x="708"  y="220">24 kV  ·  10 kA  ·  class 2</text>
+    <text x="1058" y="220">3  —  Linyang / confirm</text>
+
+    <text x="38"   y="240">T2</text>
+    <text x="118"  y="240">MV/LV transformer skid (Linyang)</text>
+    <text x="388"  y="240">Integrated: T2 transformer + LV main panel + LV ACBs + NER + aux TX</text>
+    <text x="708"  y="240">3000 kVA  ·  22 kV / 690 V  ·  Dyn11  ·  Uk 6 %  ·  ONAN</text>
+    <text x="1058" y="240">1  —  Linyang CIF ✅</text>
+
+    <text x="38"   y="260">NER</text>
+    <text x="118"  y="260">Neutral earthing resistor</text>
+    <text x="388"  y="260">Stainless steel, IP23 — on T2 LV neutral. Confirm inclusion in Linyang skid scope.</text>
+    <text x="708"  y="260">R ≈ 25 Ω  ·  If ≤ 16 A  ·  10 s  ·  100 kJ class  ·  690 V</text>
+    <text x="1058" y="260">1  —  Linyang / confirm ⚠️</text>
+
+    <text x="38"   y="280">ACB-M</text>
+    <text x="118"  y="280">LV main ACB</text>
+    <text x="388"  y="280">Inside Linyang skid LV panel. ABB Emax2 E3 or Linyang OEM</text>
+    <text x="708"  y="280">2500 A  ·  4P  ·  690 V  ·  Icu ≥ 50 kA</text>
+    <text x="1058" y="280">1  —  Linyang CIF ✅</text>
+
+    <text x="38"   y="300">SA-LV</text>
+    <text x="118"  y="300">LV surge arrester</text>
+    <text x="388"  y="300">Type II  ·  at LV main panel — confirm with Linyang if included</text>
+    <text x="708"  y="300">690 V AC  ·  In 20 kA  ·  Iimp 12.5 kA</text>
+    <text x="1058" y="300">1 set  —  Linyang / confirm ⚠️</text>
+
+    <text x="38"   y="320">ACB-1/2</text>
+    <text x="118"  y="320">PCS branch ACB (inside Linyang skid)</text>
+    <text x="388"  y="320">Inside Linyang skid LV panel. ABB Emax2 E2.2 or Linyang OEM</text>
+    <text x="708"  y="320">1250 A  ·  4P  ·  690 V  ·  Icu ≥ 50 kA</text>
+    <text x="1058" y="320">2  —  Linyang CIF ✅</text>
+
+    <text x="38"   y="340">PCS-A/B</text>
+    <text x="118"  y="340">Power Conversion System</text>
+    <text x="388"  y="340">Kehua BCS1250K-C-HUD  ·  690 V AC LV side (as per Linyang offer spec)</text>
+    <text x="708"  y="340">1.25 MW each  ·  η ≥ 99 %  ·  PF &gt; 0.99  ·  IP55</text>
+    <text x="1058" y="340">2  —  Linyang CIF ✅</text>
+
+    <text x="38"   y="360">BESS-A/B</text>
+    <text x="118"  y="360">Battery container</text>
+    <text x="388"  y="360">Linyang ME 20HC  ·  LFP  ·  EVE 314 Ah  ·  liquid cooled  ·  aerosol FAS</text>
+    <text x="708"  y="360">5 MWh nominal  ·  integrated BMS + FAS + HVAC</text>
+    <text x="1058" y="360">2  —  Linyang CIF ✅</text>
+
+    <text x="38"   y="380">EMS</text>
+    <text x="118"  y="380">Aux &amp; Control Panel + EMS</text>
+    <text x="388"  y="380">Voltus EMS  ·  IEC 60870-5-104  ·  Modbus TCP  ·  UPS  ·  comms</text>
+    <text x="708"  y="380">ASDU 117 (proposed)  ·  ≥ 8 h UPS autonomy</text>
+    <text x="1058" y="380">1  —  EPC adder ✅</text>
+  </g>
+
+  <!-- ═══════ B. SIZING ═══════ -->
+  <text x="30" y="420" fill="#000" font-size="12" font-weight="700">B.  Sizing &amp; Short-Circuit Verification  (690 V basis — Rev. C correction)</text>
+  <g fill="#000" font-size="10">
+    <text x="30" y="440">B.1  Active power: 2 × 1.25 MW = 2.50 MW.  Required S at PF 0.95 = 2.63 MVA.  Selected T2 = 3000 kVA → 14 % thermal margin. ✓</text>
+    <text x="30" y="456">B.2  Full-load current (690 V): I_FL = 2500 / (√3 × 0.69) = 2090 A.  Main ACB = 2500 A → I_n / I_FL = 1.19. ✓</text>
+    <text x="30" y="472">B.3  Per-branch current: I_FL = 1250 / (√3 × 0.69) = 1045 A.  Branch ACB = 1250 A → 1.19 margin. ✓</text>
+    <text x="30" y="488">B.4  MV feeder current (22 kV): I_FL = 2500 / (√3 × 22) = 65.6 A.  JZ4 panel rated 630 A → 10 % loading. ✓</text>
+    <text x="30" y="504">B.5  Short-circuit at 690 V LV terminals: Z_T = 0.06 × 690² / 3 000 000 = 9.52 mΩ;  Z_grid(250 MVA) = 1.90 mΩ;  Z_total = 11.42 mΩ  → I_sc ≈ 35 kA.  ACB Icu 50 kA ✓</text>
+    <text x="30" y="520">B.6  NER sizing (690 V neutral): R = (690/√3) / 16 = 24.9 Ω → use 25 Ω.  Energy = 16² × 25 × 10 = 64 kJ → select 100 kJ class. ✓</text>
+    <text x="30" y="536">B.7  MV cable JZ4 ↔ T2: 3 × (1×95) Cu XLPE 12/20(24) kV.  Ampacity 405 A → 6× margin on 65.6 A. ✓  (max run ~30 m assumed)</text>
+    <text x="30" y="552">B.8  LV cables PCS ↔ ACB (per branch): 4 × (3×1×240 + 1×120) Cu XLPE 1 kV in parallel → ≥ 1800 A at 40 °C.  ✓  (max run ≤ 8 m)</text>
+  </g>
+
+  <!-- ═══════ C. PROTECTION ═══════ -->
+  <text x="30" y="578" fill="#000" font-size="12" font-weight="700">C.  Protection Settings  —  Siemens 7SJ82 on JZ4</text>
+  <rect x="30" y="585" width="1340" height="165" stroke="#000" stroke-width="1" fill="none"/>
+  <line x1="30"  y1="603" x2="1370" y2="603" stroke="#000" stroke-width="1"/>
+  <line x1="120" y1="585" x2="120" y2="750" stroke="#000" stroke-width="0.7"/>
+  <line x1="310" y1="585" x2="310" y2="750" stroke="#000" stroke-width="0.7"/>
+  <line x1="640" y1="585" x2="640" y2="750" stroke="#000" stroke-width="0.7"/>
+  <line x1="950" y1="585" x2="950" y2="750" stroke="#000" stroke-width="0.7"/>
+
+  <text x="40"  y="598" fill="#000" font-weight="700">ANSI</text>
+  <text x="130" y="598" fill="#000" font-weight="700">Function</text>
+  <text x="320" y="598" fill="#000" font-weight="700">Setting</text>
+  <text x="650" y="598" fill="#000" font-weight="700">Curve / Time</text>
+  <text x="960" y="598" fill="#000" font-weight="700">Notes</text>
+
+  <g fill="#000" font-size="10">
+    <text x="40"  y="620">50/51</text>
+    <text x="130" y="620">Phase overcurrent</text>
+    <text x="320" y="620">I&gt; = 1.20 × 65.6 A = 79 A  ·  I&gt;&gt; = 8 × In = 525 A</text>
+    <text x="650" y="620">IEC very-inverse · TMS 0.20 · t&gt;&gt; 0.05 s instant</text>
+    <text x="960" y="620">Co-ord. with JZ3 existing relay (upstream)</text>
+
+    <text x="40"  y="638">50N/51N</text>
+    <text x="130" y="638">Earth fault</text>
+    <text x="320" y="638">I_E&gt; = 5 A (typ. 5 % In)  ·  I_E&gt;&gt; = 40 A</text>
+    <text x="650" y="638">IEC very-inverse · TMS 0.15 · t&gt;&gt; 0.10 s</text>
+    <text x="960" y="638">Residual CT connection — check polarity</text>
+
+    <text x="40"  y="656">67N</text>
+    <text x="130" y="656">Directional earth fault</text>
+    <text x="320" y="656">5 % × In  ·  characteristic angle 80°</text>
+    <text x="650" y="656">Definite-time  0.4 s</text>
+    <text x="960" y="656">Cyprus T&amp;D Rules v4.0.0 §5  —  mandatory</text>
+
+    <text x="40"  y="674">27 / 59</text>
+    <text x="130" y="674">Under / over voltage</text>
+    <text x="320" y="674">U&lt; 0.85 pu  (18.7 kV)  ·  U&gt; 1.10 pu  (24.2 kV)</text>
+    <text x="650" y="674">Definite-time  1.0 s</text>
+    <text x="960" y="674">Anti-islanding stage 1</text>
+
+    <text x="40"  y="692">81 U/O</text>
+    <text x="130" y="692">Under / over frequency</text>
+    <text x="320" y="692">f&lt; 47.5 Hz  ·  f&gt; 51.5 Hz</text>
+    <text x="650" y="692">Instant trip</text>
+    <text x="960" y="692">Anti-islanding stage 2  (EAC mandatory)</text>
+
+    <text x="40"  y="710">81R</text>
+    <text x="130" y="710">ROCOF</text>
+    <text x="320" y="710">df/dt &gt; 1.0 Hz/s</text>
+    <text x="650" y="710">Definite-time  0.5 s</text>
+    <text x="960" y="710">LOM  ·  Cyprus DSO Cat. B  —  mandatory</text>
+
+    <text x="40"  y="728">78</text>
+    <text x="130" y="728">Vector shift</text>
+    <text x="320" y="728">Δφ &gt; 8°</text>
+    <text x="650" y="728">Instant trip</text>
+    <text x="960" y="728">LOM backup — tune to avoid nuisance on load switching</text>
+
+    <text x="40"  y="746">87T</text>
+    <text x="130" y="746">Transformer differential</text>
+    <text x="320" y="746">n/a at 3 MVA (optional — add if client requests)</text>
+    <text x="650" y="746">—</text>
+    <text x="960" y="746">Typically required &gt; 5 MVA</text>
+  </g>
+
+  <!-- ═══════ D. DESIGN NOTES ═══════ -->
+  <text x="30" y="770" fill="#000" font-size="12" font-weight="700">D.  Design Notes  (Rev. C)</text>
+  <g fill="#000" font-size="10">
+    <text x="30" y="788">1. Rev. C corrects LV bus to 690 V (matching Kehua BCS1250K-C-HUD spec per Linyang offer ref. 198/A/KT/2025). Previous Rev. B used 800 V in error.</text>
+    <text x="30" y="802">2. ⚠️ BUDGET GAP: JZ4 panel + protection relay + CT/VT hardware (~€28–46 k) is not in Linyang CIF and not explicitly in EPC adder model. See pricing-verification.md.</text>
+    <text x="30" y="816">3. Hybrid plant — Cyprus DSO Category B. BESS power (2.5 MW) ≤ PV power (2.5 MW). Grid charging prohibited. BESS charges from PV only per dispatch schedule.</text>
+    <text x="30" y="830">4. SUPERSEDED: use Rev F/G — see electrical/sld/rev-F and electrical/sld/rev-G (CHANGELOG.md).</text>
+    <text x="30" y="844">5. EMS ASDU 117 (proposed). Must not conflict with existing ASDU 115 (Galascope 2 PV) and 114 (Galascope 1 PV). Coordinate with DSO before commissioning EMS.</text>
+    <text x="30" y="858">6. Ref. drawings: EL00.01.01 (overall topology), EL00.01.02 (MCTS 1,2 — existing PV LV).  This SLD (LC-G25-SLD-001) covers BESS extension only.</text>
+  </g>
+
+  <!-- title block sheet 2 -->
+  <line x1="10"   y1="870" x2="1390" y2="870" stroke="#000" stroke-width="1"/>
+  <line x1="440"  y1="870" x2="440"  y2="920" stroke="#000" stroke-width="0.8"/>
+  <line x1="930"  y1="870" x2="930"  y2="920" stroke="#000" stroke-width="0.8"/>
+  <line x1="1190" y1="870" x2="1190" y2="920" stroke="#000" stroke-width="0.8"/>
+  <text x="18"  y="898" fill="#000" font-size="10" font-weight="700">Esperia Energy Group  /  Galascope Limited</text>
+  <text x="448" y="898" fill="#000" font-size="10" font-weight="700">Galascope 2.5  —  BESS BoM, Sizing &amp; Notes  —  Rev. C</text>
+  <text x="938" y="898" fill="#000" font-size="10" font-weight="700">Sheet 2 of 2  ·  LC-G25-SLD-001</text>
+  <text x="1198" y="898" fill="#000" font-size="10" font-weight="700">20 / 04 / 2026  —  Rev. C</text>
+
+</svg>
+</div>
+
+</body>
+</html>
