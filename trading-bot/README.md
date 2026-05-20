@@ -20,9 +20,14 @@ python scripts/stochrsi_leveraged.py       # leveraged sim
 python scripts/stochrsi_timeframe_sweep.py # timeframe comparison
 ```
 
+## Config
+
+- `config/default.yaml` — strategy parameters
+- `config/example.env` — API keys template (testnet first)
+
 ## Status
 
-**Planning / backtest only** — no live bot code in this folder yet. See [development-plan.md](./development-plan.md) for M0–M4 roadmap.
+**Planning** — backtests in `../scripts/`; bot source in `src/` per [development-plan.md](./development-plan.md) (M0 dry-run → M1 testnet paper).
 
 ## Disclaimer
 
