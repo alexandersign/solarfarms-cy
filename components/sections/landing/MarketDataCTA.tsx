@@ -13,10 +13,9 @@ export function MarketDataCTA() {
           <AnimatedSection animation="scaleUp">
             <div className="bg-white rounded-2xl shadow-lg border border-cyprus-100 overflow-hidden">
               <div className="grid md:grid-cols-2 gap-0">
-                {/* Left — Info */}
                 <div className="p-8 md:p-10">
                   <div className="inline-flex items-center gap-1.5 bg-cyprus-100 text-cyprus-700 px-3 py-1 rounded-full text-xs font-medium mb-4">
-                    <BarChart3 className="w-3.5 h-3.5" />
+                    <BarChart3 className="w-3.5 h-3.5" aria-hidden />
                     Cyprus Open Market
                   </div>
                   <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
@@ -24,55 +23,54 @@ export function MarketDataCTA() {
                     <span className="block gradient-text">Market Pricing</span>
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Verified day-ahead market data from a 134-day complete TSOC dataset (Oct 2025 – Feb 2026).
-                    With an €82/MWh peak-midday spread, €183/MWh evening peak prices, and 29.4%
-                    midday curtailment periods, BESS curtailment recovery delivers €161/MWh per discharge cycle.
+                    Verified day-ahead data from a 134-day TSOC sample (Oct 2025 – Feb 2026).
+                    Evening peaks near €183/MWh versus midday around €77/MWh create a strong
+                    spread for BESS — peak shifting and merchant dispatch, not only curtailment recovery.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button variant="gradient" asChild>
+                    <Button variant="gradient" asChild className="focus-visible:ring-2 focus-visible:ring-[#1A365D]">
                       <Link href="/market">
-                        <BarChart3 className="w-4 h-4 mr-2" />
+                        <BarChart3 className="w-4 h-4 mr-2" aria-hidden />
                         View Market Data
                       </Link>
                     </Button>
-                    <Button variant="outline" asChild>
+                    <Button variant="outline" asChild className="focus-visible:ring-2 focus-visible:ring-[#1A365D]">
                       <Link href="/energy-storage/calculator">
-                        <Battery className="w-4 h-4 mr-2" />
+                        <Battery className="w-4 h-4 mr-2" aria-hidden />
                         BESS Calculator
                       </Link>
                     </Button>
                   </div>
                 </div>
 
-                {/* Right — Key Stats */}
                 <div className="bg-gradient-to-br from-cyprus-600 to-cyprus-800 p-8 md:p-10 text-white">
                   <h3 className="font-heading font-semibold text-lg mb-6 opacity-90">Market Insights</h3>
                   <div className="space-y-5">
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-                        <Zap className="w-4 h-4 text-solar-300" />
+                        <Zap className="w-4 h-4 text-solar-300" aria-hidden />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">Hourly Price Charts</p>
-                        <p className="text-xs text-cyprus-200">24-hour price curves showing solar dip and evening peak</p>
+                        <p className="font-semibold text-sm">Hourly price curves</p>
+                        <p className="text-xs text-cyprus-200">Solar dip vs evening peak — the spread that drives storage economics</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-                        <TrendingUp className="w-4 h-4 text-green-300" />
+                        <TrendingUp className="w-4 h-4 text-green-300" aria-hidden />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">BESS Curtailment Recovery</p>
-                        <p className="text-xs text-cyprus-200">Store curtailed solar (€0 cost), discharge at €183/MWh peak — €161/MWh revenue per cycle</p>
+                        <p className="font-semibold text-sm">Peak shifting &amp; merchant upside</p>
+                        <p className="text-xs text-cyprus-200">Charge when prices are low, discharge into the evening peak — indicative €150+ /MWh spread value</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-                        <Battery className="w-4 h-4 text-amber-300" />
+                        <Battery className="w-4 h-4 text-amber-300" aria-hidden />
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">Revenue Projections</p>
-                        <p className="text-xs text-cyprus-200">Real-data-backed storage revenue estimates per MWh</p>
+                        <p className="font-semibold text-sm">BESS yield models</p>
+                        <p className="text-xs text-cyprus-200">Real-data-backed revenue estimates per MWh of storage</p>
                       </div>
                     </div>
                   </div>

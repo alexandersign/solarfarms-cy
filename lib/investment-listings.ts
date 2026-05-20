@@ -418,6 +418,11 @@ export function getDealsListings(): InvestmentListing[] {
   return LISTINGS.filter((l) => l.hubSection === 'deals')
 }
 
+/** Featured deal cards for homepage and cross-links (deals section only). */
+export function getFeaturedListings(limit = 3): InvestmentListing[] {
+  return LISTINGS.filter((l) => l.featured && l.hubSection === 'deals').slice(0, limit)
+}
+
 export function getOperationalReferenceListings(): InvestmentListing[] {
   return LISTINGS.filter((l) => l.hubSection === 'operational_reference')
 }

@@ -1,4 +1,5 @@
-import { COMPANY_DATA } from '@/lib/constants'
+export { BESS_CYPRUS_TEAM, BESS_POLAND_BACKING } from '@/lib/marketing/team'
+export type { BessTeamMember } from '@/lib/marketing/team'
 
 export interface BessDeliveryStep {
   step: number
@@ -7,17 +8,6 @@ export interface BessDeliveryStep {
   duration: string
   lighthiefAdvantage: string
   deliverables: string[]
-}
-
-export interface BessTeamMember {
-  name: string
-  position: string
-  role: string
-  bio: string
-  credentials: string[]
-  email: string
-  phone?: string
-  image: string
 }
 
 export const BESS_DELIVERY_STEPS: BessDeliveryStep[] = [
@@ -120,53 +110,3 @@ export const BESS_DELIVERY_STEPS: BessDeliveryStep[] = [
     ],
   },
 ]
-
-export const BESS_CYPRUS_TEAM: BessTeamMember[] = [
-  {
-    name: COMPANY_DATA.contacts.cyprusDirector.name,
-    position: COMPANY_DATA.contacts.cyprusDirector.title,
-    role: 'Commercial lead & BESS proposals',
-    bio: 'Leads Cyprus and Greece operations. Manages investor relations, BESS sizing, and turnkey proposals for utility-scale solar+storage projects.',
-    credentials: [
-      'Cyprus & Greece Market Lead',
-      'Off-Grid & BESS Specialist',
-      '7Sun JV Partnership',
-    ],
-    email: COMPANY_DATA.contacts.cyprusDirector.email,
-    phone: COMPANY_DATA.contacts.cyprusDirector.phone,
-    image: '/images/team/alexander-papacosta.jpg',
-  },
-  {
-    name: COMPANY_DATA.contacts.engineer.name,
-    position: COMPANY_DATA.contacts.engineer.title,
-    role: 'Design, grid integration & commissioning',
-    bio: 'ETEK-licensed electrical engineer with extensive PV and storage experience — from single-line design through grid acceptance and O&M handover.',
-    credentials: [
-      'ETEK Licensed Engineer',
-      'MEng Electrical & Computer Engineering',
-      'MSc Energy Systems',
-    ],
-    email: COMPANY_DATA.contacts.engineer.email,
-    image: '/images/1690376781153.jpg',
-  },
-]
-
-export const BESS_POLAND_BACKING = {
-  name: COMPANY_DATA.contacts.polandDirector.name,
-  position: COMPANY_DATA.contacts.polandDirector.title,
-  email: COMPANY_DATA.contacts.polandDirector.email,
-  image: '/images/team/maciej.jpg',
-  headline: 'European EPC & O&M depth behind every Cyprus BESS project',
-  description:
-    'Your Cyprus project team is backed by Lighthief Poland — factory-grade EPC, warehouse spares, and a live R&D site where BESS systems are tested alongside utility-scale PV.',
-  rdCenter: {
-    location: COMPANY_DATA.rdCenter.location,
-    size: COMPANY_DATA.rdCenter.size,
-    facilities: COMPANY_DATA.rdCenter.facilities,
-  },
-  credentials: [
-    'Poland Operations Director',
-    'Solar EPC & BESS Division',
-    'Częstochowa HQ & R&D Centre',
-  ],
-}

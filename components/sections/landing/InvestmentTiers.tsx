@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
+import { getFeaturedListings } from '@/lib/investment-listings'
 
 const tiers = [
   {
@@ -39,6 +40,8 @@ const tiers = [
   },
 ]
 
+const featured = getFeaturedListings(2)
+
 export function InvestmentTiers() {
   return (
     <section className="section-padding bg-white">
@@ -53,8 +56,47 @@ export function InvestmentTiers() {
               All-in turnkey pricing: PV EPC + BESS + Ready-to-Build permitting.
               Transparent financials with optional long-term O&amp;M.
             </p>
+            <div className="mt-6">
+              <Button variant="gradient" size="lg" asChild className="focus-visible:ring-2 focus-visible:ring-[#1A365D]">
+                <Link href="/projects">
+                  View current opportunities
+                  <ArrowRight className="w-4 h-4 ml-2" aria-hidden />
+                </Link>
+              </Button>
+            </div>
           </div>
         </AnimatedSection>
+
+        {featured.length > 0 && (
+          <AnimatedSection animation="fadeUp" delay={0.1}>
+            <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
+              {featured.map((listing) => (
+                <Link
+                  key={listing.slug}
+                  href={listing.detailRoute}
+                  className="group rounded-xl border border-cyprus-100 bg-cyprus-50/50 p-4 hover:border-cyprus-300 hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1A365D]"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-xs font-medium text-cyprus-600 uppercase tracking-wide">
+                        Live listing
+                      </p>
+                      <p className="font-semibold text-gray-900 group-hover:text-[#1A365D] line-clamp-1">
+                        {listing.publicTitle}
+                      </p>
+                      <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">
+                        <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden />
+                        {listing.publicLocation}
+                        {listing.capacityMW > 0 ? ` · ${listing.capacityMW} MW` : ''}
+                      </p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-cyprus-500 shrink-0 mt-1 group-hover:translate-x-0.5 transition-transform" aria-hidden />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </AnimatedSection>
+        )}
 
         <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8" staggerDelay={0.12}>
           {tiers.map((tier) => (
@@ -99,16 +141,21 @@ export function InvestmentTiers() {
                   </div>
                 </div>
 
-                <Button
-                  variant={tier.popular ? 'gradient' : 'outline'}
-                  className="w-full"
-                  asChild
-                >
-                  <Link href="/calculator">
-                    Calculate Returns
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
+                <div className="space-y-2">
+                  <Button
+                    variant={tier.popular ? 'gradient' : 'outline'}
+                    className="w-full focus-visible:ring-2 focus-visible:ring-[#1A365D]"
+                    asChild
+                  >
+                    <Link href="/calculator">
+                      Calculate Returns
+                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden />
+                    </Link>
+                  </Button>
+                  <Button variant="ghost" size="sm" className="w-full text-cyprus-700" asChild>
+                    <Link href="/projects">Browse listings</Link>
+                  </Button>
+                </div>
               </div>
             </StaggerItem>
           ))}

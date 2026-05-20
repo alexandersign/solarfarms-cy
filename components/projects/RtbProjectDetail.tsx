@@ -58,6 +58,8 @@ export function RtbProjectDetail({ deal }: Props) {
             src="/images/solar-park-field-unsplash.jpg"
             alt={deal.publicTitle}
             fill
+            sizes="100vw"
+            priority
             className="object-cover opacity-20"
           />
         </div>

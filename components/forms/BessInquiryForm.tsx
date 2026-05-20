@@ -109,7 +109,7 @@ export function BessInquiryForm() {
         <div className="bg-blue-50 rounded-lg p-4 max-w-md mx-auto">
           <p className="text-sm text-blue-800">
             <strong>Next steps:</strong> We&apos;ll review your park details and prepare a customized 
-            curtailment recovery analysis with ROI projections.
+            BESS sizing and revenue analysis with ROI projections.
           </p>
         </div>
       </div>
@@ -190,10 +190,10 @@ export function BessInquiryForm() {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="curtailmentRate">Current Curtailment Rate</Label>
+            <Label htmlFor="curtailmentRate">Grid / export constraints (optional)</Label>
             <Select name="curtailmentRate">
-              <SelectTrigger>
-                <SelectValue placeholder="Select if known" />
+              <SelectTrigger id="curtailmentRate">
+                <SelectValue placeholder="Estimated unsold production, if known" />
               </SelectTrigger>
               <SelectContent>
                 {curtailmentRanges.map((range) => (

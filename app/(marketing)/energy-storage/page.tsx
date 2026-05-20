@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button'
 import { BessInquiryForm } from '@/components/forms/BessInquiryForm'
 import { BessDeliveryProcess } from '@/components/energy-storage/BessDeliveryProcess'
 import { BessTeamSection } from '@/components/energy-storage/BessTeamSection'
+import { JournalStrip } from '@/components/marketing/JournalStrip'
+import { BESS_JOURNAL_POSTS } from '@/lib/marketing/journal-posts'
 import { 
   Battery, 
   Zap, 
@@ -37,7 +39,6 @@ export const metadata: Metadata = {
     'energy storage systems Cyprus',
     'LFP battery Cyprus',
     'grid scale battery',
-    'curtailment solution Cyprus',
     'solar farm battery',
     'BESS installation Cyprus',
     'battery storage pricing Cyprus',
@@ -46,8 +47,9 @@ export const metadata: Metadata = {
     'renewable energy storage',
     'Cyprus grid storage',
     'solar plus storage Cyprus',
-    'BESS curtailment recovery Cyprus',
     'peak shaving Cyprus',
+    'energy arbitrage Cyprus',
+    'merchant BESS Cyprus',
     'frequency regulation Cyprus'
   ],
   openGraph: {
@@ -108,7 +110,7 @@ const bessFeatures = [
   {
     icon: TrendingUp,
     title: 'Revenue Optimization',
-    description: 'Curtailment recovery at peak prices and grid services to maximize returns.'
+    description: 'Peak shifting, merchant dispatch, and grid services to maximize returns on Cyprus spreads.'
   },
   {
     icon: Euro,
@@ -124,15 +126,15 @@ const bessFeatures = [
 
 const useCases = [
   {
-    title: 'Curtailment Recovery',
-    description: 'Cyprus solar parks face 25-55% curtailment. Store excess during peak production and sell during evening hours.',
-    benefit: 'Recover €50-80k per MW annually',
+    title: 'Peak Shifting',
+    description: 'Charge when midday prices are low and discharge into the evening peak. Verified TSOC data shows a wide spread on Cyprus’s isolated grid.',
+    benefit: 'Strong merchant upside per MWh cycled',
     icon: Sun
   },
   {
-    title: 'Curtailment Recovery at Peak Prices',
-    description: 'Store curtailed solar energy (€0 charge cost) and discharge at evening peak prices (€183/MWh avg). Revenue of €158/MWh discharged at 86.32% RTE. Based on 134-day verified TSOC dataset.',
-    benefit: '€161/MWh revenue per cycle',
+    title: 'Merchant & Spread Capture',
+    description: 'Store low-cost energy and sell into evening peaks (€183/MWh avg in our sample). Indicative €150+ /MWh spread value at 86.32% round-trip efficiency.',
+    benefit: 'Revenue per discharge cycle',
     icon: TrendingUp
   },
   {
@@ -522,6 +524,12 @@ export default function EnergyStoragePage() {
           </div>
         </div>
       </section>
+
+      <JournalStrip
+        title="From our journal"
+        subtitle="BESS investment guides and Cyprus market analysis from our team."
+        posts={BESS_JOURNAL_POSTS}
+      />
 
       {/* Inquiry Form Section */}
       <section id="inquiry-form" className="section-padding scroll-mt-20">

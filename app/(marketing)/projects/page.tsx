@@ -21,6 +21,8 @@ import {
   dealKindLabel,
   type InvestmentListing,
 } from '@/lib/investment-listings'
+import { JournalStrip } from '@/components/marketing/JournalStrip'
+import { PROJECTS_JOURNAL_POSTS } from '@/lib/marketing/journal-posts'
 
 export const metadata: Metadata = {
   title: 'Solar Projects & Investment Opportunities | Lighthief Cyprus',
@@ -32,6 +34,16 @@ export const metadata: Metadata = {
     'solar farm for sale',
     'ready to build solar Cyprus',
   ],
+  openGraph: {
+    title: 'Solar & BESS Investment Opportunities | Lighthief Cyprus',
+    description:
+      'Live Cyprus listings: RTB solar parks, late-stage development, and operational benchmarks with investor packs.',
+    type: 'website',
+    url: 'https://solarfarms.cy/projects',
+  },
+  alternates: {
+    canonical: 'https://solarfarms.cy/projects',
+  },
 }
 
 const getStatusColor = (color: string) => {
@@ -89,6 +101,7 @@ function ListingCard({ listing, compact }: { listing: InvestmentListing; compact
           src={listing.image}
           alt={listing.publicTitle}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -177,6 +190,7 @@ function FeaturedListingRow({ listing }: { listing: InvestmentListing }) {
             src={listing.image}
             alt={listing.publicTitle}
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
@@ -418,6 +432,12 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
+
+      <JournalStrip
+        title="From our journal"
+        subtitle="Financing, risk, and BESS guides for Cyprus solar investors."
+        posts={PROJECTS_JOURNAL_POSTS}
+      />
 
       <section className="section-padding bg-gradient-to-r from-solar-500 to-cyprus-600 text-white">
         <div className="container text-center">

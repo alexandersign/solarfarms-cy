@@ -65,23 +65,29 @@ export function BessDeliveryProcess() {
         </div>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="bg-[#1A365D] hover:bg-[#2B5FA0]" asChild>
+          <Button size="lg" className="bg-[#1A365D] hover:bg-[#2B5FA0] focus-visible:ring-2 focus-visible:ring-[#1A365D]" asChild>
             <Link href="/energy-storage/calculator">
-              <Zap className="w-5 h-5 mr-2" />
+              <Zap className="w-5 h-5 mr-2" aria-hidden />
               BESS ROI Calculator
             </Link>
           </Button>
-          <Button size="lg" variant="outline" asChild>
+          <Button size="lg" variant="outline" className="focus-visible:ring-2 focus-visible:ring-[#1A365D]" asChild>
             <Link href="#inquiry-form">
-              <Battery className="w-5 h-5 mr-2" />
+              <Battery className="w-5 h-5 mr-2" aria-hidden />
               Request Proposal
+            </Link>
+          </Button>
+          <Button size="lg" variant="outline" className="focus-visible:ring-2 focus-visible:ring-[#1A365D]" asChild>
+            <Link href="/projects">
+              View solar + BESS listings
+              <ArrowRight className="w-4 h-4 ml-2" aria-hidden />
             </Link>
           </Button>
         </div>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Installation discipline:{' '}
-          <Link href="/services/epc-services" className="text-[#1A365D] hover:underline font-medium">
+          <Link href="/services/epc-services" className="text-[#1A365D] hover:underline font-medium focus-visible:ring-2 focus-visible:ring-[#1A365D] rounded">
             EPC services
           </Link>
           {' · '}

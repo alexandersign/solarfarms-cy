@@ -49,16 +49,22 @@ export function BESSShowcase() {
                 ))}
               </ul>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button size="lg" className="bg-white text-cyprus-900 hover:bg-gray-100" asChild>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                <Button size="lg" className="bg-white text-cyprus-900 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-white" asChild>
                   <Link href="/energy-storage">
                     Explore BESS Solutions
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-4 h-4 ml-2" aria-hidden />
                   </Link>
                 </Button>
-                <Button variant="outline-on-dark" size="lg" asChild>
+                <Button variant="outline-on-dark" size="lg" className="focus-visible:ring-2 focus-visible:ring-white" asChild>
+                  <Link href="/projects">
+                    Solar + BESS opportunities
+                    <ArrowRight className="w-4 h-4 ml-2" aria-hidden />
+                  </Link>
+                </Button>
+                <Button variant="outline-on-dark" size="lg" className="focus-visible:ring-2 focus-visible:ring-white" asChild>
                   <Link href="/energy-storage/calculator">
-                    BESS Investment Calculator
+                    BESS Calculator
                   </Link>
                 </Button>
               </div>
