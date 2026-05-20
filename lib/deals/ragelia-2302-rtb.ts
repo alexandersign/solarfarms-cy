@@ -34,7 +34,7 @@ export const RAGELIA_2302_RTB: RtbDeal = {
   rtbStatus: 'fully_licensed',
   gridConnectionStatus: 'preliminary_filed',
   gridConnectionNote: 'Preliminary DSO application submitted; formal EAC connection offer expected Q3 2026',
-  permitSummary: 'Tier 1 RTB — all licences and approvals in place · Land lease registered, zero encumbrances · Grid: preliminary DSO application submitted, formal offer expected Q3 2026',
+  permitSummary: 'Tier 1 licensed — permits in place · Land lease registered, zero encumbrances · Grid: preliminary DSO filed; formal EAC connection terms pending (offer expected Q3 2026)',
 
   timelineNote: 'Target COD Q4 2026 / Q1 2027 (upon grid offer + EPC procurement)',
 

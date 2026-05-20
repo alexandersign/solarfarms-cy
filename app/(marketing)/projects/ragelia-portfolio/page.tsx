@@ -40,9 +40,9 @@ const PARKS: Park[] = [
     type: 'Photovoltaic',
     capacityMW: 0.690,
     bessLabel: null,
-    tier: 'Tier 1 — RTB (Fully Licensed)',
-    tierColor: 'green',
-    rtbTimeline: 'RTB',
+    tier: 'Tier 1 — Licensed · connection terms pending',
+    tierColor: 'yellow',
+    rtbTimeline: 'Grid terms pending',
     listingSlug: 'ragelia-2105',
   },
   {
@@ -50,9 +50,9 @@ const PARKS: Park[] = [
     type: 'Photovoltaic',
     capacityMW: 0.714,
     bessLabel: null,
-    tier: 'Tier 1 — RTB (Fully Licensed)',
-    tierColor: 'green',
-    rtbTimeline: 'RTB',
+    tier: 'Tier 1 — Licensed · connection terms pending',
+    tierColor: 'yellow',
+    rtbTimeline: 'Grid terms pending',
     listingSlug: 'ragelia-2110',
   },
   {
@@ -60,9 +60,9 @@ const PARKS: Park[] = [
     type: 'Photovoltaic',
     capacityMW: 0.825,
     bessLabel: null,
-    tier: 'Tier 1 — RTB (Fully Licensed)',
-    tierColor: 'green',
-    rtbTimeline: 'RTB',
+    tier: 'Tier 1 — Licensed · connection terms pending',
+    tierColor: 'yellow',
+    rtbTimeline: 'Grid terms pending',
     listingSlug: 'ragelia-2302',
   },
   {
@@ -90,9 +90,9 @@ const PARKS: Park[] = [
     type: 'Photovoltaic',
     capacityMW: 0.500,
     bessLabel: null,
-    tier: 'Tier 1 — Constructed',
-    tierColor: 'green',
-    rtbTimeline: 'RTB',
+    tier: 'Tier 1 — Licensed · connection terms pending',
+    tierColor: 'yellow',
+    rtbTimeline: 'Grid terms pending',
     listingSlug: 'ragelia-2205-2206',
   },
   {
@@ -100,9 +100,9 @@ const PARKS: Park[] = [
     type: 'Photovoltaic + BESS',
     capacityMW: 2.317,
     bessLabel: '2.2 MW / 0.75 MWh',
-    tier: 'Tier 1 — RTB (Fully Licensed)',
-    tierColor: 'green',
-    rtbTimeline: 'RTB',
+    tier: 'Tier 1 — Licensed · connection terms pending',
+    tierColor: 'yellow',
+    rtbTimeline: 'Grid terms pending',
     listingSlug: 'ragelia-2205-2206',
   },
   {
@@ -118,7 +118,7 @@ const PARKS: Park[] = [
 ]
 
 const TOTAL_MW = PARKS.reduce((s, p) => s + p.capacityMW, 0)
-const RTB_COUNT = PARKS.filter((p) => p.tierColor === 'green').length
+const LICENSED_COUNT = PARKS.filter((p) => p.tier.includes('Licensed')).length
 const BESS_COUNT = PARKS.filter((p) => p.bessLabel).length
 
 const tierBadgeClass: Record<Park['tierColor'], string> = {
@@ -209,7 +209,8 @@ export default function RageliaPortfolioPage() {
             <span className="block text-solar-300 mt-1">8 Parks · {TOTAL_MW.toFixed(3)} MW</span>
           </h1>
           <p className="text-white/80 text-lg max-w-2xl">
-            Diversified small-cap portfolio spanning RTB, late-stage, and mid-stage development — suitable for phased or bulk acquisition.
+            Diversified small-cap portfolio — licensed tickets with grid connection terms mostly pending,
+            plus late- and mid-stage development. Suitable for phased or bulk acquisition.
           </p>
         </div>
       </section>
@@ -227,8 +228,8 @@ export default function RageliaPortfolioPage() {
               <div className="text-sm text-gray-400 mt-1">Parks</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-green-400">{RTB_COUNT}</div>
-              <div className="text-sm text-gray-400 mt-1">RTB / Constructed</div>
+              <div className="text-3xl font-bold text-amber-400">{LICENSED_COUNT}</div>
+              <div className="text-sm text-gray-400 mt-1">Licensed (grid TBD)</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-amber-400">{BESS_COUNT}</div>
@@ -262,7 +263,7 @@ export default function RageliaPortfolioPage() {
                         <th className="text-right p-4 font-semibold">Capacity (MW)</th>
                         <th className="text-left p-4 font-semibold">BESS</th>
                         <th className="text-left p-4 font-semibold">Status</th>
-                        <th className="text-center p-4 font-semibold">RTB Timeline</th>
+                        <th className="text-center p-4 font-semibold">Grid / milestone</th>
                         <th className="text-center p-4 font-semibold">Listing</th>
                       </tr>
                     </thead>
@@ -299,8 +300,8 @@ export default function RageliaPortfolioPage() {
                           <td className="p-4 text-center">
                             <span
                               className={`text-xs font-semibold ${
-                                park.rtbTimeline === 'RTB'
-                                  ? 'text-green-700'
+                                park.rtbTimeline === 'Grid terms pending'
+                                  ? 'text-amber-700'
                                   : 'text-gray-700'
                               }`}
                             >
@@ -382,8 +383,8 @@ export default function RageliaPortfolioPage() {
                   {[
                     {
                       icon: <Zap className="w-5 h-5 text-solar-500" />,
-                      title: 'Immediate RTB availability',
-                      body: '5 RTB tickets with investor teasers, including a constructed 0.5 MW asset (#2205) in the #2205+#2206 package.',
+                      title: 'Licensed tickets — grid terms mostly pending',
+                      body: 'Four licensed parks with investor teasers; formal EAC connection terms outstanding on most (see each listing). Package includes constructed 0.5 MW (#2205) with #2206.',
                     },
                     {
                       icon: <Battery className="w-5 h-5 text-amber-500" />,

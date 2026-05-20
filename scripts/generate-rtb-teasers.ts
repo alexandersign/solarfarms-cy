@@ -82,14 +82,12 @@ function y1CashToEquity(deal: RtbDeal): number {
   return Math.max(0, ebitda - debtService)
 }
 
-function statusBadge(status: RtbDeal['rtbStatus']): string {
-  const map: Record<RtbDeal['rtbStatus'], { label: string; cls: string }> = {
-    ready_to_build: { label: 'Ready to Build',       cls: 'badge-green' },
-    permit_ready:   { label: 'Permit-Ready',          cls: 'badge-amber' },
-    fully_licensed: { label: 'Fully Licensed / RTB',  cls: 'badge-green' },
-  }
-  const { label, cls } = map[status]
-  return `<span class="badge ${cls}">${label}</span>`
+function statusBadge(deal: RtbDeal): string {
+  const grid =
+    deal.gridConnectionStatus === 'final_issued'
+      ? { label: 'Connection terms issued', cls: 'badge-green' }
+      : { label: 'Connection terms pending', cls: 'badge-amber' }
+  return `<span class="badge ${grid.cls}">${grid.label}</span>`
 }
 
 /** Compute revenue at alternate curtailment levels for sensitivity table */
@@ -295,7 +293,7 @@ function renderTeaser(deal: RtbDeal): string {
   <!-- Title block -->
   <h1>${e(deal.publicTitle)}</h1>
   <div class="location">${e(deal.locationLine)}</div>
-  <div>${statusBadge(deal.rtbStatus)}</div>
+  <div>${statusBadge(deal)}</div>
   <div class="permit-line">${e(deal.permitSummary)}</div>
 
   <!-- Headline KPIs -->

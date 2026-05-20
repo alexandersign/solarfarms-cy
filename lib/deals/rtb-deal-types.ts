@@ -21,6 +21,41 @@ export type GridConnectionStatus =
   | 'pending_upgrade'    // Area grid at capacity; waiting for TSO/EAC substation upgrade
   | 'not_filed'          // No application filed yet
 
+/** Public hub badge — driven by grid connection, not permit/rtb status alone. */
+export type PublicListingStatusColor = 'green' | 'blue' | 'yellow' | 'red'
+
+export function publicGridListingStatus(grid: GridConnectionStatus): {
+  label: string
+  color: PublicListingStatusColor
+} {
+  switch (grid) {
+    case 'final_issued':
+      return { label: 'Connection terms issued', color: 'green' }
+    case 'preliminary_filed':
+      return { label: 'Connection terms pending', color: 'yellow' }
+    case 'pending_upgrade':
+      return { label: 'Connection terms pending', color: 'yellow' }
+    case 'not_filed':
+      return { label: 'Connection terms pending', color: 'yellow' }
+    default:
+      return { label: 'Connection terms pending', color: 'yellow' }
+  }
+}
+
+/** Secondary permit line for cards — avoids implying full RTB when grid is outstanding. */
+export function permitsInPlaceLabel(rtbStatus: RtbStatus): string {
+  switch (rtbStatus) {
+    case 'ready_to_build':
+      return 'Permits & licences in place'
+    case 'fully_licensed':
+      return 'Fully licensed (permits)'
+    case 'permit_ready':
+      return 'Major permits issued'
+    default:
+      return 'Permitting in progress'
+  }
+}
+
 export interface RtbDealCapex {
   rtbAcquisition: number          // €  flat RTB acquisition cost
   pvEpc: number                   // €  PV EPC turnkey (Lighthief)

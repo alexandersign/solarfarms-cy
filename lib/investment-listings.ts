@@ -10,9 +10,10 @@ import {
 import { ALL_RTB_DEALS } from '@/lib/deals/rtb-deals-registry'
 import {
   type RtbDeal,
-  type RtbStatus,
   type GridConnectionStatus,
   investorPackForDeal,
+  publicGridListingStatus,
+  permitsInPlaceLabel,
 } from '@/lib/deals/rtb-deal-types'
 import {
   RAGELIA_LATE_STAGE_PARKS,
@@ -62,41 +63,16 @@ export interface InvestmentListing {
 const DEFAULT_RTB_IMAGE = '/images/solar-park-field-unsplash.jpg'
 const DEFAULT_LATE_IMAGE = '/images/renewable-energy-project-featuring-solar-panels-in-2025-05-05-17-12-38-utc.jpg'
 
-function rtbStatusLabel(status: RtbStatus): string {
-  switch (status) {
-    case 'ready_to_build':
-      return 'Ready to Build'
-    case 'permit_ready':
-      return 'Permit Ready'
-    case 'fully_licensed':
-      return 'Fully Licensed'
-    default:
-      return 'RTB'
-  }
-}
-
-function rtbStatusColor(status: RtbStatus): InvestmentListing['statusColor'] {
-  switch (status) {
-    case 'ready_to_build':
-    case 'fully_licensed':
-      return 'green'
-    case 'permit_ready':
-      return 'blue'
-    default:
-      return 'yellow'
-  }
-}
-
 function gridNoteShort(grid: GridConnectionStatus): string | null {
   switch (grid) {
     case 'final_issued':
-      return 'Grid terms issued'
+      return 'EAC connection terms on file'
     case 'preliminary_filed':
-      return 'Grid offer expected Q3 2026'
+      return 'Formal EAC connection terms pending'
     case 'pending_upgrade':
-      return 'Area grid upgrade in progress'
+      return 'Area grid upgrade — connection terms pending'
     case 'not_filed':
-      return 'Grid not yet filed'
+      return 'Grid application / terms not yet filed'
     default:
       return null
   }
@@ -108,11 +84,12 @@ export function listingFromRtbDeal(
 ): InvestmentListing {
   const pack = investorPackForDeal(deal)
   const gridNote = gridNoteShort(deal.gridConnectionStatus)
+  const gridBadge = publicGridListingStatus(deal.gridConnectionStatus)
   const highlights = [
     `${deal.solarMWp} MWp · ${deal.bessMWh} MWh BESS (${deal.bessDurationHours}h)`,
-    deal.technologySolar,
+    permitsInPlaceLabel(deal.rtbStatus),
     gridNote ?? deal.gridConnectionNote.split('.')[0],
-    `Indicative RTB acquisition €${(deal.capex.rtbAcquisition / 1000).toFixed(0)}k`,
+    `Indicative acquisition €${(deal.capex.rtbAcquisition / 1000).toFixed(0)}k (RTB ticket)`,
   ]
 
   return {
@@ -127,8 +104,8 @@ export function listingFromRtbDeal(
     investmentEUR: deal.capex.rtbAcquisition,
     roiPercent: undefined,
     annualRevenueEUR: deal.finance.grossEnergyRevenueY1EUR,
-    statusLabel: rtbStatusLabel(deal.rtbStatus),
-    statusColor: rtbStatusColor(deal.rtbStatus),
+    statusLabel: gridBadge.label,
+    statusColor: gridBadge.color,
     completionDate: deal.timelineNote,
     image: opts?.image ?? DEFAULT_RTB_IMAGE,
     highlights,
@@ -197,13 +174,13 @@ const MANUAL_LISTINGS: InvestmentListing[] = [
     publicTitle: 'Agios Theodoros Solar Park with Battery Storage',
     publicLocation: 'Agios Theodoros, Larnaca District',
     summary:
-      'Ready-to-build 2.64 MWp bifacial solar + 10.56 MWh BESS. Merchant DAM exposure with integrated storage and strong leveraged returns.',
+      '2.64 MWp bifacial solar + 10.56 MWh BESS — permits in place; confirm grid connection terms in diligence. Merchant DAM exposure with integrated storage.',
     capacityMW: AGIOS.solarMWp,
     investmentEUR: AGIOS.capexStackEUR.total,
     roiPercent: 30,
     annualRevenueEUR: AGIOS.finance.grossEnergyRevenueY1EUR,
-    statusLabel: 'Ready to Build',
-    statusColor: 'green',
+    statusLabel: 'Connection terms pending',
+    statusColor: 'yellow',
     completionDate: AGIOS.timelineHeadline,
     image: '/images/solar-farm-aerial-unsplash.jpg',
     highlights: [
@@ -214,7 +191,7 @@ const MANUAL_LISTINGS: InvestmentListing[] = [
     ],
     testimonial: {
       quote:
-        'Ready-to-build utility-scale project with integrated battery storage. Strong leveraged returns with conservative assumptions.',
+        'Licensed utility-scale project with integrated battery storage — verify grid connection terms before close.',
       client: `Reference: ${AGIOS.referenceCode}`,
     },
     featured: true,
@@ -317,23 +294,23 @@ const MANUAL_LISTINGS: InvestmentListing[] = [
     publicTitle: 'Cyprus Solar Portfolio — 8 Parks, 9.81 MW',
     publicLocation: 'Cyprus (multiple locations)',
     summary:
-      '8-park portfolio totalling 9.81 MW: 5 RTB (fully licensed), 2 late-stage, 1 mid-stage. Includes agrivoltaic and BESS-integrated assets. Inquire for portfolio or single-park acquisition.',
+      '8-park portfolio totalling 9.81 MW: licensed tickets with grid terms mostly pending (see each listing), 2 late-stage, 1 mid-stage. Agrivoltaic and BESS-integrated assets. Portfolio or single-park acquisition.',
     capacityMW: 9.813,
     investmentEUR: undefined,
     roiPercent: undefined,
     annualRevenueEUR: undefined,
     statusLabel: 'For sale',
     statusColor: 'blue',
-    completionDate: 'Various (RTB to Q1 2027)',
+    completionDate: 'Various (grid terms mostly pending)',
     image: '/images/solar-park-field-unsplash.jpg',
     highlights: [
-      '5 fully licensed RTB tickets with investor teasers',
+      'Licensed parks — connection terms pending except where stated on listing',
       'Agrivoltaic + BESS parks in pipeline',
       'Individual listings for each park',
       'Staged pipeline: immediate & Q3/Q4 2026 delivery',
     ],
     testimonial: {
-      quote: 'A diversified small-cap portfolio spanning RTB, late-stage, and mid-stage development — suitable for phased or bulk acquisition.',
+      quote: 'A diversified small-cap portfolio — permits largely in place; grid connection terms vary by park (see individual listings).',
       client: 'Reference: RAGELIA-PORTFOLIO-2026',
     },
     featured: true,
@@ -436,7 +413,7 @@ export function getProjectSlugsForSitemap(): string[] {
 export function dealKindLabel(kind: DealKind | undefined): string {
   switch (kind) {
     case 'rtb':
-      return 'Ready to build'
+      return 'Licensed project'
     case 'secondary_sale':
       return 'For sale'
     case 'market_teaser':

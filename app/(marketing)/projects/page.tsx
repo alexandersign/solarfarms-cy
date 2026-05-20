@@ -313,8 +313,8 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 mb-8 text-balance">
-              Ready-to-build tickets, operational acquisitions, and portfolio-scale opportunities — with
-              indicative economics, teasers, and LOI where available.
+              Licensed development tickets (grid connection status per listing), operational acquisitions,
+              and portfolio-scale opportunities — with indicative economics, teasers, and LOI where available.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
@@ -350,7 +350,7 @@ export default function ProjectsPage() {
               Investment opportunities
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              RTB, for sale, and market-level materials — one place for teasers, Excel, and LOI.
+              Licensed projects, for sale, and market-level materials — grid terms stated on each card.
             </p>
           </div>
 

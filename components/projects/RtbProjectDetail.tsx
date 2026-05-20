@@ -14,31 +14,20 @@ import {
   Shield,
 } from 'lucide-react'
 import { InvestorPackActions } from '@/components/investor/InvestorPackActions'
-import type { RtbDeal, RtbStatus } from '@/lib/deals/rtb-deal-types'
+import type { RtbDeal } from '@/lib/deals/rtb-deal-types'
+import { publicGridListingStatus, permitsInPlaceLabel } from '@/lib/deals/rtb-deal-types'
 import { formatCurrency } from '@/lib/utils'
 
-function statusBadgeClass(status: RtbStatus): string {
-  switch (status) {
-    case 'ready_to_build':
-    case 'fully_licensed':
+function gridStatusBadgeClass(color: ReturnType<typeof publicGridListingStatus>['color']): string {
+  switch (color) {
+    case 'green':
       return 'bg-green-500 text-white'
-    case 'permit_ready':
+    case 'blue':
       return 'bg-blue-500 text-white'
-    default:
+    case 'yellow':
       return 'bg-amber-500 text-white'
-  }
-}
-
-function statusLabel(status: RtbStatus): string {
-  switch (status) {
-    case 'ready_to_build':
-      return 'Ready to Build'
-    case 'permit_ready':
-      return 'Permit Ready'
-    case 'fully_licensed':
-      return 'Fully Licensed'
     default:
-      return 'RTB'
+      return 'bg-gray-500 text-white'
   }
 }
 
@@ -72,7 +61,15 @@ export function RtbProjectDetail({ deal }: Props) {
           </Button>
           <div className="max-w-4xl">
             <div className="flex flex-wrap gap-3 mb-6">
-              <Badge className={statusBadgeClass(deal.rtbStatus)}>{statusLabel(deal.rtbStatus)}</Badge>
+              {(() => {
+                const grid = publicGridListingStatus(deal.gridConnectionStatus)
+                return (
+                  <Badge className={gridStatusBadgeClass(grid.color)}>{grid.label}</Badge>
+                )
+              })()}
+              <Badge className="bg-white/20 text-white backdrop-blur-sm">
+                {permitsInPlaceLabel(deal.rtbStatus)}
+              </Badge>
               <Badge className="bg-white/20 text-white backdrop-blur-sm">{deal.referenceCode}</Badge>
             </div>
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">{deal.publicTitle}</h1>

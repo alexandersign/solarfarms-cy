@@ -62,7 +62,7 @@ export const RAGELIA_2205_2206_RTB: RtbDeal = {
   rtbStatus: 'fully_licensed',
   gridConnectionStatus: 'preliminary_filed',
   gridConnectionNote: 'Grid connection awaiting DSO formal offer on both plots (#2205 already constructed)',
-  permitSummary: '#2205 (0.5 MWp): Construction complete — awaiting grid connection · #2206 (2.317 MWp + BESS): Tier 1 RTB, all licences in place · Land: FREEHOLD on both plots · Grid: awaiting DSO connection offer',
+  permitSummary: '#2205 (0.5 MWp): Construction complete — grid connection terms pending · #2206 (2.317 MWp + BESS): Tier 1 licensed, permits in place · Land: FREEHOLD on both plots · Grid: formal EAC connection terms pending',
 
   timelineNote: '#2205: target energisation Q3 2026 · #2206: target COD Q4 2026 (upon grid offer)',
 

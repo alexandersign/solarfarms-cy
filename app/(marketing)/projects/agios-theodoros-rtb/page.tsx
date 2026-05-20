@@ -67,8 +67,8 @@ export default function AgiosTheodorosProjectPage() {
         <div className="container relative z-10">
           <div className="max-w-4xl">
             <div className="flex flex-wrap gap-3 mb-6">
-              <Badge className="bg-green-500 text-white text-sm px-4 py-1">
-                Ready to Build
+              <Badge className="bg-amber-500 text-white text-sm px-4 py-1">
+                Connection terms pending
               </Badge>
               <Badge className="bg-solar-500 text-white text-sm px-4 py-1">
                 {RTB.timelineHeadline}
@@ -478,8 +478,8 @@ export default function AgiosTheodorosProjectPage() {
             {[
               {
                 icon: CheckCircle,
-                title: 'Ready to Build',
-                description: 'All permits secured. Construction can begin immediately upon closing.'
+                title: 'Connection terms pending',
+                description: 'Major permits in place — confirm formal EAC grid connection terms in diligence before close.'
               },
               {
                 icon: Battery,
