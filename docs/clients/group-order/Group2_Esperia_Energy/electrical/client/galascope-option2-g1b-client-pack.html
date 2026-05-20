@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galascope 1 — BESS MV Option 2 (8DJH extension) | Lighthief Cyprus</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --accent-dark: #9C7D22;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+      --ok: #2E7D32;
+      --warn: #B7791F;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #1a1a1a;
+      background: var(--body-bg);
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 28px 32px 24px;
+    }
+    header h1 { margin: 0 0 6px; font-size: 1.45rem; color: var(--accent); }
+    header p { margin: 0; opacity: 0.92; max-width: 720px; }
+    .meta { margin-top: 12px; font-size: 12px; opacity: 0.85; }
+    main { max-width: 960px; margin: 0 auto; padding: 24px 20px 48px; }
+    section {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(26, 54, 93, 0.08);
+    }
+    h2 { color: var(--accent); font-size: 1.15rem; margin: 0 0 14px; border-bottom: 2px solid var(--primary); padding-bottom: 6px; }
+    h3 { color: var(--primary); font-size: 1rem; margin: 18px 0 8px; }
+    p, li { color: var(--grey-text); }
+    ul { padding-left: 1.2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+    th { background: var(--primary); color: var(--white); text-align: left; padding: 8px 10px; }
+    td { border-bottom: 1px solid #dde4ec; padding: 8px 10px; vertical-align: top; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .fig {
+      margin: 16px 0;
+      text-align: center;
+    }
+    .fig img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #dde4ec;
+      border-radius: 6px;
+    }
+    .fig figcaption {
+      font-size: 12px;
+      color: var(--grey-text);
+      margin-top: 8px;
+      text-align: left;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+    .note {
+      background: #EBF5FB;
+      border-left: 4px solid var(--primary-light);
+      padding: 12px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    .warn {
+      background: #FEF9E7;
+      border-left: 4px solid var(--warn);
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--grey-text);
+      padding: 20px;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    .tag.new { background: var(--ok); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galascope 1 (5 MW / 20 MWh BESS) — MV connection Option 2</h1>
+    <p>Extend the nearest field <strong>Siemens 8DJH</strong> switchgear with an additional <strong>T-module</strong>, couple <strong>MCTS 1 &amp; 2</strong> (nearest to the customer MV station), and repurpose one <strong>ABB UniSec</strong> bay for the BESS feeder.</p>
+    <p class="meta">Lighthief Cyprus Ltd · HE 477423 · Reference LC-G1-MV-OPT2 · May 2026 · For Esperia / Galascope review</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Summary</h2>
+      <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td>Park</td><td>Galascope 1 — 5 MW PV (44 inverters) + 5 MW / 20 MWh BESS (T4 MV skid)</td></tr>
+        <tr><td>As-built SwS</td><td><strong>ABB UniSec</strong> 24 kV, 16 kA/1 s, 200 A — four functional cubicles</td></tr>
+        <tr><td>Field plant</td><td><strong>Four</strong> MCTS buildings (MCTS 1–4), each <strong>1250 kVA</strong> + <strong>8DJH R+T</strong></td></tr>
+        <tr><td>This option scope</td><td><strong>MCTS 1 &amp; 2 only</strong> (~10 m apart, nearest SwS) — MCTS 3 &amp; 4 unchanged</td></tr>
+        <tr><td>What we add</td><td><span class="tag new">NEW</span> One matched <strong>8DJH T-unit</strong> (80 A fuse) + <strong>~10 m</strong> MV cable between pads</td></tr>
+        <tr><td>What we free</td><td>One UniSec bay (e.g. <strong>JZ3</strong>) → dedicated <strong>BESS</strong> 22 kV feeder to T4 skid</td></tr>
+        <tr><td>What stays separate</td><td><strong>800 V</strong> LV on each transformer — no LV paralleling with BESS (690 V skid)</td></tr>
+      </table>
+      <div class="note warn">
+        <strong>MCTS / EAC approval required</strong> before construction — parallel operation of two 1250 kVA units on one MV feeder, tap settings, and protection grading must be witnessed.
+      </div>
+    </section>
+
+    <section>
+      <h2>Figure 1 — Before and after (MV station &amp; nearest transformers)</h2>
+      <figure class="fig">
+        <img src="diagrams/01-g1b-before-after-sws-mcts.png" alt="Before and after single-line concept for Option 2" />
+        <figcaption>Left: today — separate SwS feeders to MCTS 1–4, no spare bay for BESS. Right: Option 2 — combined feed to MCTS 1 (R+T₁+T₂), short cable to MCTS 2, JZ3 for BESS.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Figure 2 — 8DJH module lineup (nearest MCTS)</h2>
+      <p>Option 2 uses the <strong>same switchgear family</strong> already on site. The nearest MCTS is extended from <strong>R + T</strong> to <strong>R + T₁ + T₂</strong> on one gas-insulated busbar.</p>
+      <figure class="fig">
+        <img src="diagrams/02-g1b-8djh-r-t1-t2-lineup.png" alt="8DJH R T1 T2 module lineup" />
+      </figure>
+      <div class="grid-2">
+        <figure class="fig">
+          <img src="../client-refs/siemens-8djh-t-module-reference.png" alt="Siemens 8DJH switchgear reference photo" />
+          <figcaption><strong>Reference — Siemens 8DJH</strong> (typical 3-position / transformer feeder arrangement). Procurement: factory-matched extension to existing MCTS serial — not a different manufacturer.</figcaption>
+        </figure>
+        <div>
+          <h3>Supplier specification (copy to RFQ)</h3>
+          <ul>
+            <li>Product: <strong>Siemens 8DJH</strong> extension <strong>T-module</strong></li>
+            <li>Rating: <strong>24 kV</strong>, <strong>80 A</strong> fuse-switch, compatible with existing <strong>20 kA / 3 s</strong> bus</li>
+            <li>Configuration: <strong>R + T₁ + T₂</strong> on existing MCTS at Galascope 1</li>
+            <li>Second outgoing: <strong>~10 m</strong> MV cable to adjacent 1250 kVA (MCTS 2) HV terminals</li>
+          </ul>
+          <div class="note">
+            <strong>Not Option 2:</strong> outdoor screened T-connectors alone (cable tee kit) — that is <em>Option 1</em>. Option 2 keeps branching <em>inside</em> the 8DJH building.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Figure 3 — Site layout (concept)</h2>
+      <figure class="fig">
+        <img src="diagrams/03-g1b-site-layout-mcts1-2.png" alt="Site layout MCTS 1 to 4 and BESS" />
+        <figcaption>Four transformer compounds; Option 2 only modifies the two closest to the UniSec switching station (~10 m spacing).</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Figure 4 — Indicative works sequence</h2>
+      <figure class="fig">
+        <img src="diagrams/04-g1b-works-sequence.png" alt="Works sequence" />
+      </figure>
+    </section>
+
+    <section>
+      <h2>Issued engineering drawing (full single-line)</h2>
+      <p>Formal SLD with Rev F SwS + Rev G options (including G1b) — for EAC / MCTS submission:</p>
+      <ul>
+        <li><strong>LC-G1-SLD-001-G</strong> (Cypriot symbols) — <code>../sld/rev-G/LC-G1-SLD-001-G_Cypriot.png</code></li>
+        <li><strong>LC-G1-SLD-001-G-IEC</strong> — <code>../sld/rev-G/LC-G1-SLD-001-G-IEC.png</code></li>
+      </ul>
+      <figure class="fig">
+        <img src="../sld/rev-G/LC-G1-SLD-001-G_Cypriot.png" alt="LC-G1-SLD-001-G Cypriot full SLD" style="max-height: 520px;" />
+        <figcaption>LC-G1-SLD-001-G — includes SwS topology (JZ2 combined PV, JZ3 BESS) and field option notes G1a / <strong>G1b</strong> / G1c.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Option comparison (field coupling)</h2>
+      <table>
+        <tr><th></th><th>Option 1 — Outdoor tee</th><th><strong>Option 2 — 8DJH extension (this pack)</strong></th></tr>
+        <tr><td>Change at MCTS</td><td>None</td><td><strong>Add T-module</strong> on nearest 8DJH</td></tr>
+        <tr><td>Civil</td><td>Tee pit + ~10 m cable</td><td>Factory module + ~10 m cable</td></tr>
+        <tr><td>Lead time</td><td>Short</td><td>Weeks (matched 8DJH)</td></tr>
+        <tr><td>When to choose</td><td>Lowest switchgear touch</td><td>MCTS prefers metal-clad branching</td></tr>
+      </table>
+      <figure class="fig" style="max-width: 420px; margin-left: 0;">
+        <img src="../client-refs/mv-t-connector-not-option2.png" alt="MV T-connector — Option 1 only" />
+        <figcaption><em>Option 1 only</em> — screened MV T-connector (cable accessory). Not used for Option 2 inside 8DJH.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p><strong>Alexander Papacosta</strong> — Cyprus Director<br />
+      Lighthief Cyprus Ltd · HE 477423<br />
+      office@lighthief.com · +357 99 164 158<br />
+      solarfarms.cy</p>
+    </section>
+  </main>
+
+  <footer>
+    Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy · Confidential — Galascope / Esperia Energy
+  </footer>
+</body>
+</html>

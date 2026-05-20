@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FeasibilityPackages } from '@/components/sections/landowners/FeasibilityPackages'
+import { SubstationDashboardSection } from '@/components/sections/landowners/SubstationDashboardSection'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -89,6 +90,8 @@ export default function LandownersPage() {
   const [showAssessment, setShowAssessment] = useState(false)
   const [assessmentResults, setAssessmentResults] = useState<any>(null)
   const [dlsAssessment, setDlsAssessment] = useState<any>(null)
+  const [titleDeedExtract, setTitleDeedExtract] = useState<any>(null)
+  const [enrichedFromTitle, setEnrichedFromTitle] = useState(false)
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -128,6 +131,8 @@ export default function LandownersPage() {
       if (result.success) {
         setAssessmentResults(result.assessment)
         setDlsAssessment(result.dlsAssessment)
+        setTitleDeedExtract(result.titleDeedExtract ?? null)
+        setEnrichedFromTitle(!!result.enrichedFromTitle)
         setShowAssessment(true)
       } else {
         alert(result.message || 'Assessment failed. Please try again.')
@@ -267,7 +272,7 @@ export default function LandownersPage() {
                             Drop your title deed or plot map here
                           </p>
                           <p className="text-sm text-gray-500">
-                            PDF, JPG, PNG files • Helps our team verify zone data
+                            PDF, JPG, PNG — we scan registration no., village, area &amp; zone when possible
                           </p>
                         </label>
                       </div>
@@ -409,7 +414,7 @@ export default function LandownersPage() {
                         )}
                       </Button>
                       <p className="text-sm text-gray-500 mt-2">
-                        Free instant analysis powered by Cyprus Land Registry data
+                        Free instant analysis — Cyprus Land Registry zoning, optional title-deed scan, and grid map
                       </p>
                     </div>
                   </>
@@ -438,6 +443,101 @@ export default function LandownersPage() {
                         </div>
                       </div>
                     </div>
+
+                    {titleDeedExtract && (
+                      <Card className="border-solar-200 bg-solar-50/30">
+                        <CardHeader>
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <FileText className="w-5 h-5 text-solar-600" />
+                            Details from your title deed
+                            {enrichedFromTitle && (
+                              <Badge className="bg-green-100 text-green-800 ml-2">Used in this assessment</Badge>
+                            )}
+                          </CardTitle>
+                          <CardDescription>
+                            Extracted automatically — always verify against your official Land Registry document.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                          {titleDeedExtract.registrationNumber && (
+                            <div>
+                              <span className="text-gray-500 block">Registration</span>
+                              <span className="font-semibold">{titleDeedExtract.registrationNumber}</span>
+                            </div>
+                          )}
+                          {titleDeedExtract.sheetPlan && (
+                            <div>
+                              <span className="text-gray-500 block">Sheet / plan</span>
+                              <span className="font-semibold">{titleDeedExtract.sheetPlan}</span>
+                            </div>
+                          )}
+                          {titleDeedExtract.plotNumber && (
+                            <div>
+                              <span className="text-gray-500 block">Plot</span>
+                              <span className="font-semibold">{titleDeedExtract.plotNumber}</span>
+                            </div>
+                          )}
+                          {titleDeedExtract.village && (
+                            <div>
+                              <span className="text-gray-500 block">Village</span>
+                              <span className="font-semibold">{titleDeedExtract.village}</span>
+                            </div>
+                          )}
+                          {titleDeedExtract.district && (
+                            <div>
+                              <span className="text-gray-500 block">District</span>
+                              <span className="font-semibold">{titleDeedExtract.district}</span>
+                            </div>
+                          )}
+                          {titleDeedExtract.areaSqm && (
+                            <div>
+                              <span className="text-gray-500 block">Area</span>
+                              <span className="font-semibold">{titleDeedExtract.areaSqm.toLocaleString()} m²</span>
+                            </div>
+                          )}
+                          {titleDeedExtract.zoneCode && (
+                            <div>
+                              <span className="text-gray-500 block">Zone (if stated)</span>
+                              <span className="font-semibold">{titleDeedExtract.zoneCode}</span>
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {assessmentResults?.geocodedLocation && (
+                      <Card className="border-cyprus-100">
+                        <CardContent className="pt-6 flex items-start gap-3">
+                          <MapPin className="w-5 h-5 text-cyprus-600 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-semibold text-gray-900">Site location (geocoded)</p>
+                            <p className="text-sm text-gray-600">{assessmentResults.geocodedLocation.display}</p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Used for zoning lookup via Cyprus Land Registry services where available.
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {(assessmentResults?.grid?.connectionHint || assessmentResults?.plotAnalysis?.gridDistance) && (
+                      <Card className="border-cyprus-200 bg-cyprus-50/40">
+                        <CardContent className="pt-6 flex items-start gap-3">
+                          <Zap className="w-5 h-5 text-cyprus-600 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-semibold text-gray-900">Grid connection</p>
+                            <p className="text-sm text-gray-600 mt-1">
+                              {assessmentResults?.grid?.connectionHint || assessmentResults?.plotAnalysis?.gridDistance}
+                            </p>
+                            {assessmentResults?.grid?.dashboardNote && (
+                              <p className="text-xs text-gray-500 mt-2">{assessmentResults.grid.dashboardNote}</p>
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    <SubstationDashboardSection compact />
 
                     {/* Capacity Comparison */}
                     {dlsAssessment?.recommendation?.viable && (
@@ -672,6 +772,8 @@ export default function LandownersPage() {
           </div>
         </div>
       </section>
+
+      <SubstationDashboardSection />
 
       <FeasibilityPackages />
 

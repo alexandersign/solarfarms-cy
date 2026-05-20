@@ -6,9 +6,13 @@ import { trackLandownerLead } from '@/lib/meta-conversions'
 import { 
   performLandAssessment, 
   assessZoneViability,
-  ZONE_RULES,
   type LandAssessmentResult 
 } from '@/lib/dls-api'
+import {
+  extractTitleDeedFromFile,
+  mergeTitleExtractIntoAssessment,
+  type TitleDeedExtract,
+} from '@/lib/title-deed-extract'
 
 // Validation schema for land assessment
 const landAssessmentSchema = z.object({
@@ -29,10 +33,18 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
     
-    // Handle file upload if present
-    let titleDeedUrl = null
     const file = formData.get('titleDeed') as File | null
-    
+
+    let titleDeedExtract: TitleDeedExtract | null = null
+    if (file && process.env.OPENAI_API_KEY) {
+      try {
+        titleDeedExtract = await extractTitleDeedFromFile(file)
+      } catch {
+        titleDeedExtract = null
+      }
+    }
+
+    let titleDeedUrl = null
     if (file) {
       try {
         titleDeedUrl = await fileUploadService.uploadFile(file, 'title-deeds', 'assessments')
@@ -69,18 +81,34 @@ export async function POST(request: NextRequest) {
     
     // Validate the form data
     const validatedData = landAssessmentSchema.parse(assessmentData)
-    
-    // Perform DLS-based land assessment
+
+    const merged = mergeTitleExtractIntoAssessment({
+      plotSize: validatedData.plotSize,
+      location: validatedData.location,
+      zoneCode: validatedData.zoneCode || '',
+      extract: titleDeedExtract,
+    })
+
+    const plotSizeForAssessment = merged.plotSize || validatedData.plotSize
+    const locationForAssessment = merged.location || validatedData.location
+    const zoneForAssessment = merged.zoneCode || validatedData.zoneCode || ''
+
+    // Perform DLS-based land assessment (geocode village/district when no lat/lng)
     const dlsAssessment = await performLandAssessment(
-      validatedData.plotSize,
-      validatedData.location,
+      plotSizeForAssessment,
+      locationForAssessment,
       coordinates,
-      0.16 // Default tariff €0.16/kWh
+      0.16,
+      {
+        geocodeIfMissing: true,
+        village: titleDeedExtract?.village,
+        district: titleDeedExtract?.district,
+      }
     )
     
     // If user provided zone code, override the assessment
-    if (validatedData.zoneCode) {
-      const userZoneAssessment = assessZoneViability(validatedData.zoneCode)
+    if (zoneForAssessment) {
+      const userZoneAssessment = assessZoneViability(zoneForAssessment)
       dlsAssessment.zoning = userZoneAssessment
       dlsAssessment.recommendation.viable = userZoneAssessment.isViable
       if (!userZoneAssessment.isViable) {
@@ -90,7 +118,12 @@ export async function POST(request: NextRequest) {
     }
     
     // Format results for legacy compatibility and email templates
-    const assessmentResults = formatAssessmentResults(dlsAssessment, validatedData.currentUse)
+    const assessmentResults = formatAssessmentResults(
+      dlsAssessment,
+      validatedData.currentUse,
+      titleDeedExtract,
+      merged.enrichedFromTitle
+    )
     
     // Try to save to Supabase database, continue if database is down
     let landAssessment = null
@@ -144,7 +177,9 @@ export async function POST(request: NextRequest) {
       { 
         success: true,
         assessment: assessmentResults,
-        dlsAssessment, // Full DLS assessment data
+        dlsAssessment,
+        titleDeedExtract,
+        enrichedFromTitle: merged.enrichedFromTitle,
         message: 'Assessment completed successfully',
         assessmentId: landAssessment.id
       },
@@ -176,7 +211,12 @@ export async function POST(request: NextRequest) {
 /**
  * Format DLS assessment results into legacy format for compatibility
  */
-function formatAssessmentResults(dls: LandAssessmentResult, currentUse?: string) {
+function formatAssessmentResults(
+  dls: LandAssessmentResult,
+  currentUse?: string,
+  titleDeed?: TitleDeedExtract | null,
+  enrichedFromTitle?: boolean
+) {
   const bestEstimate = dls.recommendation.bestOption === 'EAST_WEST' 
     ? dls.eastWest 
     : dls.southFacing
@@ -200,7 +240,7 @@ function formatAssessmentResults(dls: LandAssessmentResult, currentUse?: string)
       panelCount: `${bestEstimate.panelCount.toLocaleString()} panels`,
       orientation: dls.recommendation.bestOption === 'EAST_WEST' ? 'East-West (1m pitch)' : 'South-facing (4m pitch)',
       solarIrradiation: `${bestEstimate.specificYield} kWh/kWp/year`,
-      gridDistance: 'To be verified during site survey',
+      gridDistance: dls.grid?.connectionHint || 'To be verified during site survey',
       zoning: dls.zoning.status === 'GO' 
         ? `✅ ${dls.zoning.zoneCode} - Favorable for solar development`
         : dls.zoning.status === 'NO_GO'
@@ -258,6 +298,39 @@ function formatAssessmentResults(dls: LandAssessmentResult, currentUse?: string)
     confidence: dls.recommendation.viable 
       ? (dls.zoning.status === 'GO' ? 'High' : 'Medium')
       : 'Low',
+    titleDeed: titleDeed
+      ? {
+          registrationNumber: titleDeed.registrationNumber,
+          sheetPlan: titleDeed.sheetPlan,
+          block: titleDeed.block,
+          plotNumber: titleDeed.plotNumber,
+          district: titleDeed.district,
+          village: titleDeed.village,
+          areaSqm: titleDeed.areaSqm,
+          zoneCode: titleDeed.zoneCode,
+          owners: titleDeed.owners,
+          notes: titleDeed.notes,
+          confidence: titleDeed.confidence,
+          enrichedFromTitle: !!enrichedFromTitle,
+        }
+      : null,
+    grid: dls.grid
+      ? {
+          connectionHint: dls.grid.connectionHint,
+          geocoded: dls.grid.geocoded,
+          coordinatesUsed: dls.grid.coordinatesUsed,
+          dashboardNote: dls.grid.dashboardNote,
+        }
+      : null,
+    geocodedLocation: dls.location.coordinates
+      ? {
+          lat: dls.location.coordinates.lat,
+          lng: dls.location.coordinates.lng,
+          display: dls.location.municipality
+            ? `${dls.location.municipality}, ${dls.location.district || dls.location.query}`
+            : dls.location.query,
+        }
+      : null,
     dataSource: dls.dataSource,
     timestamp: dls.timestamp
   }

@@ -130,6 +130,14 @@ export interface LandAssessmentResult {
     nextSteps: string[]
   }
   
+  // Grid / substation (indicative)
+  grid?: {
+    connectionHint: string
+    geocoded: boolean
+    coordinatesUsed: boolean
+    dashboardNote: string
+  }
+
   // Data source info
   dataSource: string
   timestamp: string
@@ -408,11 +416,26 @@ export async function performLandAssessment(
   plotSizeInput: string,
   location: string,
   coordinates?: { lat: number; lng: number },
-  tariffEurKwh: number = 0.16
+  tariffEurKwh: number = 0.16,
+  options?: { geocodeIfMissing?: boolean; village?: string; district?: string }
 ): Promise<LandAssessmentResult> {
   const areaHectares = parsePlotSize(plotSizeInput)
   const areaM2 = areaHectares * 10000
   const usableAreaM2 = areaM2 * SOLAR_CONSTANTS.USABLE_AREA_RATIO
+
+  let resolvedCoordinates = coordinates
+  let geocoded = false
+  if (!resolvedCoordinates && options?.geocodeIfMissing !== false) {
+    const { geocodeCyprusLocation } = await import('@/lib/geocode-cyprus')
+    const geo = await geocodeCyprusLocation(location, {
+      village: options?.village,
+      district: options?.district,
+    })
+    if (geo) {
+      resolvedCoordinates = { lat: geo.lat, lng: geo.lng }
+      geocoded = true
+    }
+  }
   
   // Default zone assessment (will be updated if API call succeeds)
   let zoning: ZoneAssessment = {
@@ -428,11 +451,11 @@ export async function performLandAssessment(
   let inNatura2000 = false
   const inBirdPath = false // Bird path detection not yet implemented in DLS API
   
-  // Query DLS API if coordinates provided
-  if (coordinates) {
+  // Query DLS API if coordinates available
+  if (resolvedCoordinates) {
     const [zoneData, natura2000] = await Promise.all([
-      queryZoneAtLocation(coordinates.lat, coordinates.lng),
-      queryNatura2000AtLocation(coordinates.lat, coordinates.lng)
+      queryZoneAtLocation(resolvedCoordinates.lat, resolvedCoordinates.lng),
+      queryNatura2000AtLocation(resolvedCoordinates.lat, resolvedCoordinates.lng)
     ])
     
     if (zoneData) {
@@ -495,12 +518,16 @@ export async function performLandAssessment(
         'Contact our team for guidance on next steps'
       ]
   
+  const gridConnectionHint = resolvedCoordinates
+    ? 'Location geocoded — review the public substation capacity map for your area. Formal grid study is included in Professional feasibility and above.'
+    : 'Add village/district on your title deed or upload a plot map so we can geocode your site. Always confirm capacity on the substation dashboard and with EAC.'
+
   return {
     location: {
       query: location,
-      coordinates,
-      district: undefined, // Could be enriched from DLS API
-      municipality: undefined
+      coordinates: resolvedCoordinates,
+      district: options?.district,
+      municipality: options?.village
     },
     plot: {
       areaHectares,
@@ -524,8 +551,17 @@ export async function performLandAssessment(
       summary,
       nextSteps
     },
-    dataSource: coordinates 
-      ? 'Cyprus Department of Land and Surveys (DLS) API + Calculations'
+    grid: {
+      connectionHint: gridConnectionHint,
+      geocoded,
+      coordinatesUsed: !!resolvedCoordinates,
+      dashboardNote:
+        'Use the Cyprus substation situation dashboard (linked on this page) to check regional grid headroom before financial close.',
+    },
+    dataSource: resolvedCoordinates
+      ? geocoded
+        ? 'DLS API + OpenStreetMap geocode + Calculations'
+        : 'Cyprus Department of Land and Surveys (DLS) API + Calculations'
       : 'Calculations based on user input (Zone verification pending)',
     timestamp: new Date().toISOString()
   }

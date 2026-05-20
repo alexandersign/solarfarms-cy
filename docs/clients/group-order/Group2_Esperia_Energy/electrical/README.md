@@ -10,4 +10,6 @@
 
 **Current issued drawings for MCTS:** `sld/rev-G/` (field options) and `sld/rev-F/` (SwS topology).
 
+**Client presentation — Option 2 (G1b):** open [`client/galascope-option2-g1b-client-pack.html`](client/galascope-option2-g1b-client-pack.html) in a browser. Regenerate concept PNGs: `python scripts/galascope-g1b-client-diagrams.py`.
+
 **Parent docs:** [`../galascope.md`](../galascope.md) · [`../esperia-energy.md`](../esperia-energy.md)
