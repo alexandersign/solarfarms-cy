@@ -2,22 +2,22 @@
 # TSOC Market Data Daily Fetcher
 # ─────────────────────────────────────────────────────────────────────────────
 #
-# Runs daily at 14:00 UTC (4 PM Cyprus time) - after TSOC publishes
-# day-ahead reports. Downloads new Excel files, processes them into
-# market-data.json, and commits the update.
+# Manual-only workflow (scheduled runs disabled — TSOC/Cloudflare blocks GitHub IPs).
 #
-# Required for CI (Cloudflare blocks GitHub Actions IPs):
-#   SCRAPINGBEE_API_KEY — https://www.scrapingbee.com (free tier ~1000 req/mo)
+# Update data locally, then commit market/data/market-data.json:
+#   npm run market:fetch
+#   npm run market:parse
 #
-# Optional:
-#   ZENROWS_API_KEY, PROXY_URL
+# To run in CI: add SCRAPINGBEE_API_KEY (or ZENROWS_API_KEY / PROXY_URL) in repo secrets,
+# then trigger via Actions → "Fetch TSOC Market Data" → Run workflow.
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Fetch TSOC Market Data
 
 on:
-  schedule:
-    - cron: '0 14 * * *'
+  # Disabled: daily runs failed behind Cloudflare without SCRAPINGBEE_API_KEY.
+  # schedule:
+  #   - cron: '0 14 * * *'
 
   workflow_dispatch:
     inputs:
