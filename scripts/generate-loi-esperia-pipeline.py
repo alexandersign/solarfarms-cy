@@ -1,10 +1,10 @@
 """
-Generate LOI — Esperia Energy Remaining Pipeline (post-Galascope signing)
+Generate LOI — Esperia Energy Group + Galascope (standalone portfolio LOI)
 Output: docs/clients/group-order/Group2_Esperia_Energy/contracts/
-        LOI-Esperia-Energy-remaining-pipeline-apr2026.docx
+        LOI-Esperia-Energy-pipeline-may2026.docx
 
 Data source: lib/portfolio-data.ts + esperia-energy.md (SSOT)
-Excludes:   Galascope 1 & 2 (bound by concurrent EPC Agreement)
+Scope:       Galascope 1 (5 MW / 20 MWh) + Galascope 2 (2.5 MW / 10 MWh) + nine (9) pipeline parks.
 """
 
 from docx import Document
@@ -28,7 +28,13 @@ LIGHT_HEX = "EBF0F7"
 AMBER_HEX = "FEF3C7"
 
 # ── Portfolio data (SSOT: lib/portfolio-data.ts + esperia-energy.md) ──────────
+GALASCOPE = [
+    {"name": "Galascope 1", "district": "Famagusta", "mw": 5.0,  "mwh": 20, "containers": 5, "client_price": 2_238_000},
+    {"name": "Galascope 2", "district": "Famagusta", "mw": 2.5,  "mwh": 10, "containers": 3, "client_price": 1_206_300},
+]
+
 PIPELINE = {
+    "galascope": GALASCOPE,
     "phase1": [
         {"name": "Esperia Energy (Famagusta)",      "district": "Famagusta", "mw": 6.5,  "mwh": 20,   "containers": 4,  "client_price": 2_316_815, "epc_target": "Q2 2026", "cod": "Q4 2026"},
         {"name": "Esperia Green Energy (Limassol)", "district": "Limassol",  "mw": 8.0,  "mwh": 60,   "containers": 12, "client_price": 5_644_044, "epc_target": "Q2 2026", "cod": "Q4 2026"},
@@ -46,25 +52,45 @@ PIPELINE = {
     ],
 }
 
-ALL_PARKS  = PIPELINE["phase1"] + PIPELINE["phase2"] + PIPELINE["phase3"]
-TOTAL_MW   = sum(p["mw"]  for p in ALL_PARKS)
-TOTAL_MWH  = sum(p["mwh"] for p in ALL_PARKS)
-TOTAL_CONT = sum(p["containers"] for p in ALL_PARKS)
-TOTAL_VAL  = sum(p["client_price"] for p in ALL_PARKS)
+PIPELINE_ONLY = PIPELINE["phase1"] + PIPELINE["phase2"] + PIPELINE["phase3"]
+ALL_PARKS     = GALASCOPE + PIPELINE_ONLY
+
+GAL_MW   = sum(p["mw"]  for p in GALASCOPE)
+GAL_MWH  = sum(p["mwh"] for p in GALASCOPE)
+GAL_CONT = sum(p["containers"] for p in GALASCOPE)
+GAL_VAL  = sum(p["client_price"] for p in GALASCOPE)
+
+PIPE_MW   = sum(p["mw"]  for p in PIPELINE_ONLY)
+PIPE_MWH  = sum(p["mwh"] for p in PIPELINE_ONLY)
+PIPE_CONT = sum(p["containers"] for p in PIPELINE_ONLY)
+PIPE_VAL  = sum(p["client_price"] for p in PIPELINE_ONLY)
+
+TOTAL_MW   = GAL_MW + PIPE_MW
+TOTAL_MWH  = GAL_MWH + PIPE_MWH
+TOTAL_CONT = GAL_CONT + PIPE_CONT
+TOTAL_VAL  = GAL_VAL + PIPE_VAL
+
+PHASE_ORDER = ("galascope", "phase1", "phase2", "phase3")
 
 PHASE_TOTALS = {
-    k: {
-        "label": lbl,
-        "mw":  sum(p["mw"]  for p in PIPELINE[k]),
-        "mwh": sum(p["mwh"] for p in PIPELINE[k]),
-        "containers": sum(p["containers"] for p in PIPELINE[k]),
-        "val": sum(p["client_price"] for p in PIPELINE[k]),
-    }
-    for k, lbl in (
-        ("phase1", "Phase 1 \u2014 2026 Delivery"),
-        ("phase2", "Phase 2 \u2014 2027 Delivery"),
-        ("phase3", "Phase 3 \u2014 2028 Delivery (Tseri Portfolio)"),
-    )
+    "galascope": {
+        "label": "Galascope Ltd \u2014 Batch 1 (confirmed pricing May 2026)",
+        "mw": GAL_MW, "mwh": GAL_MWH, "containers": GAL_CONT, "val": GAL_VAL,
+    },
+    **{
+        k: {
+            "label": lbl,
+            "mw":  sum(p["mw"]  for p in PIPELINE[k]),
+            "mwh": sum(p["mwh"] for p in PIPELINE[k]),
+            "containers": sum(p["containers"] for p in PIPELINE[k]),
+            "val": sum(p["client_price"] for p in PIPELINE[k]),
+        }
+        for k, lbl in (
+            ("phase1", "Phase 1 \u2014 2026 Delivery (Esperia pipeline)"),
+            ("phase2", "Phase 2 \u2014 2027 Delivery"),
+            ("phase3", "Phase 3 \u2014 2028 Delivery (Tseri Portfolio)"),
+        )
+    },
 }
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -222,8 +248,8 @@ rp.paragraph_format.space_before = Pt(6)
 rp.paragraph_format.space_after  = Pt(6)
 for line, is_gold in [
     ("LETTER OF INTENT", True),
-    ("Ref: LCY-LOI-ESP-PIPELINE-2026", False),
-    ("Date: 23 April 2026", False),
+    ("Ref: LCY-LOI-ESP-PIPELINE-2026-R4", False),
+    ("Date: May 2026", False),
     ("STRICTLY CONFIDENTIAL", True),
 ]:
     add_run(rp, line + "\n", bold=is_gold, size_pt=8,
@@ -242,7 +268,7 @@ add_run(tp, "Letter of Intent", bold=True, size_pt=18, color=NAVY)
 
 sp = doc.add_paragraph()
 sp.paragraph_format.space_after = Pt(10)
-add_run(sp, "Esperia Energy Group \u2014 BESS Portfolio EPC Pipeline Commitment",
+add_run(sp, "Esperia Energy Group \u2014 Galascope & BESS Pipeline Commitment",
         italic=True, size_pt=11, color=GREY)
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -293,11 +319,9 @@ doc.add_paragraph().paragraph_format.space_after = Pt(2)
 # ═══════════════════════════════════════════════════════════════════════════════
 h1(doc, "RECITALS")
 recitals = [
-    ("A.", "Lighthief is an EPC contractor specialising in the supply, installation and commissioning of battery energy storage systems (\u201cBESS\u201d) for grid-connected hybrid photovoltaic and BESS installations in Cyprus."),
-    ("B.", "The Client owns and/or develops a portfolio of hybrid PV + BESS projects requiring Category B grid connection under Cyprus EAC/DSO rules, located across Famagusta, Limassol and Nicosia districts."),
-    ("C.", "Concurrently with the execution of this LOI, the Parties have entered into a binding EPC Agreement (ref. LCY-EPC-GALASCOPE-2026) for the Galascope portfolio: Galascope 1 (5.0 MW / 20 MWh, Famagusta) and Galascope 2 (2.5 MW / 8 MWh, Famagusta) (\u201cthe Galascope EPC\u201d)."),
-    ("D.", "The Client wishes to confirm its intention to award further EPC Agreements to Lighthief for the nine (9) remaining Esperia Energy parks described herein (\u201cthe Pipeline Projects\u201d), subject to the terms of this LOI."),
-    ("E.", "Lighthief wishes to undertake advance procurement and resource planning on the basis of the Client\u2019s commitment set out in this LOI."),
+    ("A.", "Lighthief supplies and installs grid-connected BESS for hybrid PV projects in Cyprus."),
+    ("B.", "The Client (Esperia Energy Group) develops BESS projects in Famagusta, Limassol, and Nicosia."),
+    ("C.", "The Client wishes to commit to the eleven (11) parks in Schedule 1, including Galascope 1 and Galascope 2 (Galascope Ltd) and nine (9) further group parks."),
 ]
 for letter, text in recitals:
     rp = doc.add_paragraph()
@@ -307,69 +331,42 @@ for letter, text in recitals:
     add_run(rp, text, size_pt=10)
 
 doc.add_paragraph().paragraph_format.space_after = Pt(2)
-body(doc, "NOW THEREFORE, in consideration of the mutual commitments set out herein and intending to be bound by the provisions expressly stated to be binding, the Parties agree as follows:", space_after=8)
+body(doc, "NOW THEREFORE, the Parties agree as follows:", space_after=8)
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 1. DEFINITIONS
+# 1. COMMITMENT
 # ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "1.   DEFINITIONS")
-definitions = [
-    ("\"COD\"", "means Commercial Operation Date, being the date on which a BESS park achieves grid-export capability following commissioning."),
-    ("\"EPC Agreement\"", "means an Engineering, Procurement and Construction contract for a specific BESS park, to be executed separately between the Parties."),
-    ("\"EPC Target Date\"", "means the indicative date by which the Parties intend to execute an EPC Agreement for a given phase, as set out in Schedule 1."),
-    ("\"FAT\"", "means Factory Acceptance Test conducted at Linyang\u2019s facility prior to shipment."),
-    ("\"Group-Order Pricing\"", "means the preferential pricing applicable to the Client as a group purchaser of multiple parks, based on Quotation LY202511281 or any successor quotation agreed in writing."),
-    ("\"LTSA\"", "means a Long-Term Service Agreement for the ongoing maintenance and performance guarantee of commissioned parks."),
-    ("\"PAC\"", "means Provisional Acceptance Certificate issued upon successful commissioning and grid energisation of a BESS park."),
-    ("\"Pipeline Projects\"", "means the nine (9) Esperia Energy BESS parks identified in Schedule 1 of this LOI, excluding the Galascope EPC."),
-    ("\"Validity Period\"", "has the meaning given in Clause 10."),
-]
-for term, defn in definitions:
-    dp = doc.add_paragraph()
-    dp.paragraph_format.space_after = Pt(3)
-    dp.paragraph_format.left_indent = Cm(0.5)
-    dp.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    add_run(dp, term + "  ", bold=True, size_pt=10)
-    add_run(dp, defn, size_pt=10)
+h1(doc, "1.   COMMITMENT AND PURPOSE")
+body(doc,
+    "1.1  The Client confirms its intention to award BESS EPC contracts to Lighthief for "
+    "eleven (11) parks in Schedule 1: Galascope 1 (5.0 MW / 20 MWh) and Galascope 2 "
+    "(2.5 MW / 10 MWh) with Galascope Ltd under EPC ref. LCY-EPC-GAL-B1-2026; and nine "
+    f"(9) further Esperia group parks ({PIPE_MW:.1f} MW / {PIPE_MWH:.1f} MWh). Combined "
+    f"indicative value {fmt_eur(TOTAL_VAL)} (excl. VAT), based on Linyang quotation "
+    "LY202601271 and group-order pricing.")
+body(doc,
+    "1.2  This LOI supports Lighthief\u2019s procurement and OEM planning. Except where "
+    "expressly stated as binding below, this LOI is not an obligation to sign any EPC; "
+    "each EPC (Galascope batch and each pipeline phase) is binding only when signed.")
+body(doc,
+    "1.3  (Binding) If the Client withdraws from Schedule 1 without valid reason after "
+    "Lighthief has reasonably relied on this LOI, the Client shall reimburse documented "
+    "pre-contractual costs directly incurred.")
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 2. SCOPE & INTENT
+# 2. SCHEDULE 1
 # ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "2.   SCOPE AND INTENT")
+h1(doc, "2.   SCHEDULE 1 — PARKS AND INDICATIVE PRICING")
 body(doc,
-    "2.1  The Client hereby confirms its firm intention to award EPC Agreements to "
-    "Lighthief for all nine (9) Pipeline Projects set out in Schedule 1, comprising "
-    f"a total of {TOTAL_MW:.2f} MW / {TOTAL_MWH:.1f} MWh of BESS capacity across "
-    "Famagusta, Limassol and Nicosia districts, with an aggregate indicative contract "
-    f"value of {fmt_eur(TOTAL_VAL)} (excl. VAT).")
-body(doc,
-    "2.2  The Parties acknowledge that the Pipeline Projects will be executed in three "
-    "phases as described in Clause 4, with each phase subject to a separately executed "
-    "EPC Agreement. This LOI does not constitute a binding obligation to execute any such "
-    "EPC Agreement; however, the confidentiality, good-faith negotiation, and exclusivity "
-    "obligations in Clauses 8, 9 and 10 are legally binding on both Parties.")
-body(doc,
-    "2.3  The Client acknowledges that Lighthief will rely on this LOI to initiate "
-    "procurement planning, OEM batch reservations, and resource scheduling for the "
-    "Pipeline Projects. Any withdrawal by the Client from the Pipeline without valid "
-    "justification following such reliance may give rise to a claim for reasonable "
-    "pre-contractual costs incurred by Lighthief.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 3. PIPELINE OVERVIEW — SCHEDULE 1
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "3.   PIPELINE OVERVIEW (SCHEDULE 1)")
-body(doc,
-    "The Pipeline Projects are as follows. All pricing is indicative at Group-Order "
-    "Pricing rates. Final pricing for each phase will be confirmed in the relevant EPC "
-    "Agreement, no later than sixty (60) days prior to the EPC Target Date.")
+    "Indicative prices only. Final terms are set in each executed EPC (Lighthief EPC "
+    "template v5.1 or successor).")
 
 # Metrics strip
 mx_tbl = doc.add_table(rows=1, cols=4)
 mx_tbl.alignment = WD_TABLE_ALIGNMENT.LEFT
 mx_tbl.autofit   = False
 for i, (val, lbl) in enumerate([
-    ("9 Parks",          "Pipeline Projects"),
+    ("11 Parks",         "Schedule 1 Total"),
     (f"{TOTAL_MW:.2f} MW",   "Total BESS Power"),
     (f"{TOTAL_MWH:.1f} MWh", "Total BESS Energy"),
     (fmt_eur(TOTAL_VAL), "Indicative Value (ex. VAT)"),
@@ -394,7 +391,7 @@ pipe_tbl.autofit   = False
 tbl_hdr(pipe_tbl, ["Park / Project", "District", "MW", "MWh", "Cont.", "Indicative Price (ex. VAT)"])
 
 RC = {2, 3, 4, 5}
-for phase_key in ("phase1", "phase2", "phase3"):
+for phase_key in PHASE_ORDER:
     parks = PIPELINE[phase_key]
     for p in parks:
         tbl_row(pipe_tbl, [
@@ -410,282 +407,113 @@ for phase_key in ("phase1", "phase2", "phase3"):
     ], right_cols=RC, total=True)
 
 tbl_row(pipe_tbl, [
-    "TOTAL PIPELINE  (9 parks)", "",
+    "TOTAL SCHEDULE 1  (11 parks: 2 Galascope + 9 pipeline)", "",
     f"{TOTAL_MW:.2f}", f"{TOTAL_MWH:.1f}",
     str(TOTAL_CONT), fmt_eur(TOTAL_VAL),
 ], right_cols=RC, total=True)
 lock_table_widths(pipe_tbl, _PC)
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 4. PHASED PROGRAMME
+# 3. PROGRAMME (INDICATIVE)
 # ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "4.   PHASED PROGRAMME")
+h1(doc, "3.   INDICATIVE PROGRAMME")
 body(doc,
-    "4.1  The Parties intend to execute EPC Agreements for the Pipeline Projects in "
-    "three phases as set out below. EPC Target Dates are indicative and shall be "
-    "confirmed in each EPC Agreement.")
+    "Target dates are indicative; each EPC sets binding milestones. Pipeline phases "
+    "generally require EAC/DSO grid connection and satisfactory PAC of the prior phase.")
 
-h2(doc, "Phase 1 \u2014 2026 Delivery  |  3 Parks  |  180 MWh  |  " + fmt_eur(PHASE_TOTALS["phase1"]["val"]))
-body(doc,
-    "EPC Agreements for the three Phase 1 parks (Esperia Energy Famagusta 6.5 MW / 20 MWh; "
-    "Esperia Green Energy Limassol 8.0 MW / 60 MWh; Esperia Energy Frenaros 25.0 MW / "
-    "100 MWh) shall be executed no later than Q2 2026. Target COD for all Phase 1 parks "
-    "is Q4 2026, subject to grid connection permits from EAC/DSO.")
-
-h2(doc, "Phase 2 \u2014 2027 Delivery  |  1 Park  |  20 MWh  |  " + fmt_eur(PHASE_TOTALS["phase2"]["val"]))
-body(doc,
-    "An EPC Agreement for Esperia Green Energy (Famagusta 2, 5.0 MW / 20 MWh) shall be "
-    "executed no later than Q3 2027. Target COD is Q1 2028, subject to EAC/DSO grid "
-    "connection approval for that site.")
-
-h2(doc, "Phase 3 \u2014 2028 Delivery  |  5 Parks  |  87.5 MWh  |  " + fmt_eur(PHASE_TOTALS["phase3"]["val"]))
-body(doc,
-    "EPC Agreements for the five Tseri portfolio parks (Nicosia district) shall be "
-    "executed during 2027, with staggered CODs through 2028. Final specifications and "
-    "sub-entity structure for Tseri 2 are subject to written confirmation by the Client "
-    "no later than Q1 2027.")
-
-body(doc, "4.2  Execution of each EPC Agreement is subject to:", space_after=3)
-bullet(doc, "Successful PAC and satisfactory performance of the immediately preceding phase (not applicable to Phase 1);")
-bullet(doc, "Receipt of written grid connection approval from EAC/DSO for the relevant sites;")
-bullet(doc, "Finalisation of site-specific technical designs (single-line diagram, SCADA configuration, MV/LV layout); and")
-bullet(doc, "Agreement in writing on final pricing for the relevant phase, at Group-Order Pricing rates.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 5. COMMERCIAL TERMS
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "5.   COMMERCIAL TERMS")
-body(doc,
-    "5.1  All Pipeline Projects shall be priced at Group-Order Pricing rates based on "
-    "Quotation LY202511281 or a successor quotation to be agreed in writing. Lighthief "
-    "shall issue a revised indicative quotation for each phase no later than ninety (90) "
-    "days prior to the relevant EPC Target Date.")
-body(doc,
-    "5.2  Subject to final negotiation in each EPC Agreement, the indicative payment "
-    "structure for each phase shall be:")
-bullet(doc, "30%  \u2014  Advance payment upon EPC Agreement signature;")
-bullet(doc, "55%  \u2014  Pre-shipment milestone, upon confirmation of FAT completion and ex-works despatch;")
-bullet(doc, "10%  \u2014  Upon issuance of PAC (Provisional Acceptance Certificate); and")
-bullet(doc, "5%   \u2014  Retention, released upon expiry of the 24-month Defect Liability Period (\u201cDLP\u201d).")
-body(doc,
-    "5.3  All prices are exclusive of VAT and any applicable import duties or levies. "
-    "The Client shall be responsible for all costs relating to site preparation, civil "
-    "works, grid connection fees, and DSO/EAC application fees unless otherwise agreed "
-    "in writing in the relevant EPC Agreement.")
-body(doc,
-    "5.4  Indicative pricing is valid for ninety (90) days from the date of this LOI, "
-    "after which it shall be subject to review based on prevailing OEM pricing and "
-    "logistics costs. Lighthief shall provide at least thirty (30) days\u2019 written "
-    "notice of any material pricing change.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 6. LTSA FRAMEWORK
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "6.   LONG-TERM SERVICE AGREEMENT (LTSA)")
-body(doc,
-    "6.1  The Client confirms its intention to enter into a group Long-Term Service "
-    "Agreement (\u201cLTSA\u201d) with Lighthief covering all parks under the Galascope EPC "
-    "and all Pipeline Projects. The LTSA shall be negotiated and executed concurrently "
-    "with or prior to the Phase 1 EPC Agreements.")
-body(doc, "6.2  The LTSA framework shall incorporate the following principal terms:")
-bullet(doc, "Commencement: from the PAC date of each individual park, accumulating progressively;")
-bullet(doc, "Availability Guarantee: 97% calculated on a group-wide basis across all active Esperia / Galascope parks;")
-bullet(doc, "Shortfall remedy: performance liquidated damages calculated on a per-MWh basis for availability shortfalls below the guaranteed threshold;")
-bullet(doc, "Pricing: fixed annual service fee per MWh of installed capacity, in accordance with the agreed LTSA pricing schedule (Tier C or as separately agreed); and")
-bullet(doc, "Term: a minimum of ten (10) years from the PAC date of the first commissioned park.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 7. TECHNICAL REQUIREMENTS
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "7.   TECHNICAL REQUIREMENTS")
-body(doc,
-    "7.1  All BESS systems delivered under the Pipeline Projects shall conform to the "
-    "technical specification referenced in the Galascope EPC (Linyang ME 5.015 MWh "
-    "LFP containers, Kehua BCS1250K-C-HUD PCS units) or any updated specification "
-    "agreed in writing.")
-body(doc,
-    "7.2  Each system shall meet Category B hybrid RES + BESS grid connection requirements "
-    "under the Cyprus Transmission and Distribution Rules (v4.0.0 or the version in force "
-    "at the time of DSO application), including IEC 60870-5-104 SCADA connectivity, "
-    "active power dispatch and curtailment compliance.")
-body(doc,
-    "7.3  The Client shall provide Lighthief with all site-specific technical documentation "
-    "(SLD, title deeds, existing SCADA configurations, DSO approval references) at least "
-    "ninety (90) days prior to the EPC Target Date for each phase.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 8. GOOD FAITH NEGOTIATION
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "8.   GOOD FAITH NEGOTIATION")
-body(doc,
-    "8.1  Both Parties undertake to negotiate the EPC Agreements for the Pipeline "
-    "Projects in good faith and with reasonable commercial diligence, with the aim of "
-    "executing each EPC Agreement by the relevant EPC Target Date.")
-body(doc,
-    "8.2  If the Parties are unable to agree the terms of an EPC Agreement within "
-    "sixty (60) days of the relevant EPC Target Date, either Party may terminate this "
-    "LOI in respect of that phase by written notice, without liability to the other, "
-    "save in respect of any pre-contractual costs recoverable under Clause 2.3.")
-body(doc,
-    "8.3  Neither Party shall be obliged to accept terms that are materially less "
-    "favourable than those prevailing in the market for comparable BESS EPC contracts "
-    "in Cyprus at the relevant time.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 9. EXCLUSIVITY
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "9.   EXCLUSIVITY")
-body(doc,
-    "9.1  During the Validity Period and for a period of six (6) months following the "
-    "PAC date of each phase, the Client shall not, directly or indirectly, solicit, "
-    "negotiate or enter into any agreement with any third-party EPC contractor in "
-    "respect of the Pipeline Projects identified in Schedule 1, without the prior "
-    "written consent of Lighthief.")
-body(doc,
-    "9.2  The exclusivity obligation in Clause 9.1 shall not apply where: (a) the "
-    "Parties have failed to agree an EPC Agreement for the relevant phase within the "
-    "period specified in Clause 8.2; or (b) Lighthief has materially breached its "
-    "obligations under this LOI or the Galascope EPC and has not remedied such breach "
-    "within thirty (30) days of written notice.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 10. VALIDITY AND EXPIRY
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "10.   VALIDITY AND EXPIRY")
-body(doc,
-    "10.1  This LOI shall remain in force from the date of execution until the earlier "
-    "of: (a) the execution of EPC Agreements for all Pipeline Projects; (b) expiry of "
-    "thirty-six (36) months from the date of this LOI; or (c) termination by either "
-    "Party in accordance with Clause 8.2 or Clause 13 (\u201cthe Validity Period\u201d).")
-body(doc,
-    "10.2  On expiry or termination of this LOI, all obligations of the Parties shall "
-    "cease, except for: (i) confidentiality obligations under Clause 11, which shall "
-    "survive for five (5) years; (ii) any accrued rights or obligations; and "
-    "(iii) obligations under any EPC Agreement already executed.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 11. CONFIDENTIALITY
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "11.   CONFIDENTIALITY")
-body(doc,
-    "11.1  Each Party shall keep confidential all information disclosed by the other "
-    "Party in connection with this LOI and the Pipeline Projects, including but not "
-    "limited to pricing, technical specifications, commercial strategy and portfolio "
-    "data (\u201cConfidential Information\u201d).")
-body(doc,
-    "11.2  Confidential Information shall not be disclosed to any third party without "
-    "the prior written consent of the disclosing Party, except: (a) to employees, "
-    "advisers or lenders on a need-to-know basis who are bound by equivalent "
-    "confidentiality obligations; or (b) as required by applicable law or regulatory "
-    "authority.")
-body(doc,
-    "11.3  This obligation shall survive the termination or expiry of this LOI for "
-    "a period of five (5) years.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 12. GOVERNING LAW AND JURISDICTION
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "12.   GOVERNING LAW AND JURISDICTION")
-body(doc,
-    "12.1  This LOI and any non-contractual obligations arising out of or in connection "
-    "with it shall be governed by and construed in accordance with the laws of the "
-    "Republic of Cyprus.")
-body(doc,
-    "12.2  The Parties irrevocably submit to the exclusive jurisdiction of the courts "
-    "of the Republic of Cyprus to settle any dispute arising out of or in connection "
-    "with this LOI.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 13. COSTS
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "13.   COSTS")
-body(doc,
-    "Each Party shall bear its own legal, professional and administrative costs incurred "
-    "in connection with the negotiation, preparation and execution of this LOI and any "
-    "EPC Agreement, unless otherwise agreed in writing.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 14. TERMINATION
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "14.   TERMINATION")
-body(doc,
-    "14.1  Either Party may terminate this LOI by giving thirty (30) days\u2019 written "
-    "notice to the other Party, without cause. Termination shall not affect any EPC "
-    "Agreement already in force.")
-body(doc,
-    "14.2  Either Party may terminate this LOI with immediate effect by written notice "
-    "if the other Party: (a) commits a material breach of this LOI that is incapable "
-    "of remedy; (b) is subject to insolvency, liquidation or administration proceedings; "
-    "or (c) undergoes a change of control without the prior written consent of the "
-    "non-affected Party.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 15. NOTICES
-# ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "15.   NOTICES")
-body(doc,
-    "All notices under this LOI shall be in writing and delivered by email with "
-    "read-receipt confirmation or by registered post to the following addresses:")
-
-notices_tbl = doc.add_table(rows=2, cols=2)
-notices_tbl.alignment = WD_TABLE_ALIGNMENT.LEFT
-notices_tbl.autofit   = False
-notices_data = [
-    ("Lighthief Cyprus Ltd",
-     "28 October Ave 249, Lophitis Business Center 1,\n"
-     "Office 201, 3035 Limassol, Cyprus\n"
-     "Email: office@lighthief.com\n"
-     "Attn: Alexander Papacosta, Managing Director"),
-    ("Esperia Energy Group",
-     "Attn: Dino Constantinou, Owner\n"
-     "Email: [to be inserted]\n"
-     "Address: [to be inserted]"),
+prog_tbl = doc.add_table(rows=1, cols=5)
+prog_tbl.alignment = WD_TABLE_ALIGNMENT.LEFT
+prog_tbl.autofit   = False
+tbl_hdr(prog_tbl, ["Batch / Phase", "Parks", "MWh", "EPC target", "Indicative value (ex VAT)"])
+prog_rows = [
+    ("Galascope Ltd \u2014 LCY-EPC-GAL-B1-2026", "2", 30.0, "Signed / Q2 2026", PHASE_TOTALS["galascope"]["val"]),
+    ("Phase 1 \u2014 2026", "3", 180.0, "Q2 2026", PHASE_TOTALS["phase1"]["val"]),
+    ("Phase 2 \u2014 2027", "1", 20.0,  "Q3 2027", PHASE_TOTALS["phase2"]["val"]),
+    ("Phase 3 \u2014 Tseri 2028", "5", 87.5, "2027", PHASE_TOTALS["phase3"]["val"]),
 ]
-for row_i, (party, details) in enumerate(notices_data):
-    lc_n = notices_tbl.rows[row_i].cells[0]
-    rc_n = notices_tbl.rows[row_i].cells[1]
-    set_cell_bg(lc_n, NAVY_HEX)
-    lc_n.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
-    lnp = lc_n.paragraphs[0]
-    lnp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    lnp.paragraph_format.space_before = Pt(4)
-    lnp.paragraph_format.space_after  = Pt(4)
-    add_run(lnp, party, bold=True, size_pt=9, color=WHITE)
-    rnp = rc_n.paragraphs[0]
-    rnp.paragraph_format.space_before = Pt(4)
-    rnp.paragraph_format.space_after  = Pt(4)
-    add_run(rnp, details, size_pt=9, color=BLACK)
-lock_table_widths(notices_tbl, [3.5, 10.5])
+for label, n_parks, mwh, epc_tgt, val in prog_rows:
+    tbl_row(prog_tbl, [label, str(n_parks), f"{mwh:.1f}", epc_tgt, fmt_eur(val)], right_cols={2, 3, 4})
+lock_table_widths(prog_tbl, [5.5, 1.0, 1.2, 2.0, 3.3])
+doc.add_paragraph().paragraph_format.space_after = Pt(6)
+body(doc,
+    "Galascope target PAC: 31 January 2027. Galascope EPC is with Galascope Ltd; companion "
+    "LTSA, EMS addendum, and OEM warranty undertaking per park are intended with that EPC.")
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 16. GENERAL
+# 4. COMMERCIAL SUMMARY
 # ═══════════════════════════════════════════════════════════════════════════════
-h1(doc, "16.   GENERAL")
+h1(doc, "4.   COMMERCIAL SUMMARY")
 body(doc,
-    "16.1  Entire Agreement.  This LOI, together with the Galascope EPC and Schedule 1, "
-    "constitutes the entire agreement between the Parties with respect to its subject "
-    "matter and supersedes all prior discussions, representations and understandings, "
-    "whether oral or written.")
+    "4.1  Indicative payment structure for each EPC (detail in the EPC): 30% advance; "
+    "55% pre-shipment; 10% on PAC; 5% retention released after a three (3) month defects "
+    "liability period following PAC.")
 body(doc,
-    "16.2  Amendments.  This LOI may only be amended by a written instrument signed "
-    "by authorised representatives of both Parties.")
+    "4.2  Prices exclude VAT. Client scope includes civil works, planning, permits, and "
+    "grid connection fees unless agreed otherwise in the EPC.")
 body(doc,
-    "16.3  Severability.  If any provision of this LOI is held to be invalid or "
-    "unenforceable, the remaining provisions shall continue in full force and effect.")
+    "4.3  Schedule 1 pricing is indicative for ninety (90) days from this LOI. Material "
+    "changes will be notified at least thirty (30) days before a phase EPC is signed.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 5. COMPANION AGREEMENTS
+# ═══════════════════════════════════════════════════════════════════════════════
+h1(doc, "5.   COMPANION AGREEMENTS (INTENT)")
 body(doc,
-    "16.4  Counterparts.  This LOI may be executed in counterparts, each of which "
-    "shall constitute an original, and all of which together shall form a single "
-    "instrument. Electronic signatures shall be deemed valid.")
+    "5.1  LTSA and EMS: The Client intends to enter LTSA(s) and, where applicable, "
+    "DISPERON EMS subscription (Lighthief EU BESS Ltd) with each commissioned park. "
+    "Indicative EMS rate EUR 400/MWh/year from PAC (separate addendum). Terms per "
+    "the executed LTSA and EMS documents.")
 body(doc,
-    "16.5  Anti-Bribery.  Each Party warrants that it has not and shall not offer, "
-    "pay, accept or authorise any bribe, kickback or improper inducement in connection "
-    "with this LOI or any EPC Agreement.")
+    "5.2  Galascope: Companion documents for the Galascope batch (LTSA, EMS addendum, "
+    "OEM warranty undertaking) are intended to be signed with the Galascope EPC.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 6. NEGOTIATION
+# ═══════════════════════════════════════════════════════════════════════════════
+h1(doc, "6.   GOOD FAITH AND PHASE EXIT")
 body(doc,
-    "16.6  Force Majeure.  Neither Party shall be liable for delay or failure to "
-    "perform its obligations under this LOI to the extent caused by circumstances "
-    "beyond its reasonable control (including natural disasters, war, government "
-    "action, pandemic or grid-connection moratoria), provided that the affected Party "
-    "promptly notifies the other and uses reasonable endeavours to mitigate.")
+    "6.1  The Parties will negotiate each phase EPC in good faith. If terms are not "
+    "agreed within sixty (60) days after the relevant EPC target date in Section 3, "
+    "either Party may end this LOI for that phase only, without liability except "
+    "Clause 1.3 costs.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 7. EXCLUSIVITY (BINDING)
+# ═══════════════════════════════════════════════════════════════════════════════
+h1(doc, "7.   EXCLUSIVITY")
+body(doc,
+    "7.1  (Binding) Until this LOI expires or all Schedule 1 EPCs are signed, and for "
+    "six (6) months after each park\u2019s PAC, the Client will not appoint another EPC "
+    "contractor for any Schedule 1 park without Lighthief\u2019s consent.")
+body(doc,
+    "7.2  This does not apply if Lighthief fails to agree an EPC for a phase within "
+    "sixty (60) days after the target date, or if Lighthief materially breaches this "
+    "LOI and does not remedy within thirty (30) days.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 8. CONFIDENTIALITY (BINDING)
+# ═══════════════════════════════════════════════════════════════════════════════
+h1(doc, "8.   CONFIDENTIALITY")
+body(doc,
+    "8.1  (Binding) Each Party shall keep confidential this LOI and related commercial, "
+    "technical, and pricing information, except to advisers, lenders, or as required "
+    "by law. This survives for five (5) years after this LOI ends.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 9. TERM AND GOVERNING LAW
+# ═══════════════════════════════════════════════════════════════════════════════
+h1(doc, "9.   TERM AND GOVERNING LAW")
+body(doc,
+    "9.1  This LOI runs until the earlier of: all Schedule 1 EPCs signed, thirty-six "
+    "(36) months from signing, or termination of a phase under Section 6.")
+body(doc,
+    "9.2  This LOI is governed by Cyprus law. Cyprus courts have exclusive jurisdiction.")
+body(doc,
+    "9.3  Amendments require written agreement. This LOI and Schedule 1 are the full "
+    "record for the portfolio commitment described here.")
+body(doc,
+    "Notices: Lighthief \u2014 office@lighthief.com (Alexander Papacosta). "
+    "Client \u2014 Dino Constantinou (details to be inserted).")
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # NON-BINDING NOTICE BOX
@@ -703,13 +531,10 @@ nbp.paragraph_format.space_after  = Pt(6)
 nbp.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 add_run(nbp, "NATURE OF THIS DOCUMENT:  ", bold=True, size_pt=9, color=AMBER_HDR)
 add_run(nbp,
-    "Save for Clauses 2.3, 9, 10, 11, 12 and 16 which are legally binding on the "
-    "Parties, this LOI is a statement of commercial intent and does not constitute "
-    "a legally binding obligation to execute EPC Agreements for the Pipeline Projects. "
-    "The binding commitment for the Galascope portfolio is contained solely in the "
-    "Galascope EPC Agreement (ref. LCY-EPC-GALASCOPE-2026) executed concurrently. "
-    "Each Pipeline Project EPC Agreement shall be separately negotiated and executed "
-    "and shall become binding only upon signature by both Parties.",
+    "Non-binding except Clauses 1.3 (reliance costs), 7 (exclusivity), and 8 "
+    "(confidentiality). This LOI covers Galascope 1 & 2 and nine (9) pipeline parks in "
+    "Schedule 1. Each EPC is binding only when signed. Legal and commercial detail "
+    "(warranty, LDs, APG, price confirmation, etc.) is in the relevant EPC v5.1, not here.",
     size_pt=9, color=AMBER_TXT)
 lock_table_widths(nb_tbl, [14.0])
 
@@ -760,7 +585,7 @@ add_run(fp,
     "Lighthief Cyprus Ltd  \u2502  HE 477423  \u2502  28 October Ave 249, Lophitis Business Center 1, "
     "Office 201, 3035 Limassol, Cyprus\n"
     "office@lighthief.com  \u2502  +357 77 77 00 50  \u2502  solarfarms.cy  \u2502  "
-    "Ref: LCY-LOI-ESP-PIPELINE-2026",
+    "Ref: LCY-LOI-ESP-PIPELINE-2026-R4",
     size_pt=7.5, color=GREY)
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -770,7 +595,7 @@ base         = os.path.join(os.path.dirname(__file__), "..",
                             "docs", "clients", "group-order", "Group2_Esperia_Energy")
 contracts_dir = os.path.join(base, "contracts")
 os.makedirs(contracts_dir, exist_ok=True)
-filename = "LOI-Esperia-Energy-remaining-pipeline-apr2026.docx"
+filename = "LOI-Esperia-Energy-pipeline-may2026.docx"
 
 p1 = os.path.join(contracts_dir, filename)
 doc.save(p1)

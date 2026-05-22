@@ -500,7 +500,7 @@ export const PAYMENT_TERMS = {
     advance:     { pct: 30, trigger: 'On or after 1 April 2026 (no invoice/payment before April 1 — clean Q1 VAT)' },
     preShipment: { pct: 55, trigger: 'Equipment ready, factory inspection passed' },
     pac:         { pct: 10, trigger: 'System commissioned & grid-connected' },
-    retention:   { pct: 5,  trigger: 'Released after 24-month DLP' },
+    retention:   { pct: 5,  trigger: 'Released after 3-month DLP (post-PAC, no FAC)' },
   },
   linyang: {
     advance:     { pct: 20, trigger: 'On or after 1 April (final confirmed Mar 2026)' },
