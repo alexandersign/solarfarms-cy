@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equity Investment Proposal — Lighthief Cyprus Ltd — May 2026</title>
+<style>
+  @page { size: A4 portrait; margin: 14mm 14mm 18mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --white: #FFFFFF;
+    --grey-text: #404040;
+    --body-bg: #F0F4F8;
+  }
+  body { font-family: 'Segoe UI', Calibri, -apple-system, Arial, sans-serif; font-size: 9.5pt; line-height: 1.5; color: #1a1a2e; background: var(--body-bg); }
+
+  .conf-bar { background: #8B0000; color: #fff; text-align: center; font-size: 7pt; font-weight: 800; padding: 5px; letter-spacing: 2.5px; }
+
+  .header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; padding: 30px 36px 24px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header-logo { font-size: 10pt; font-weight: 800; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; }
+  .header-doc-ref { font-size: 7.5pt; color: #d4e4f7; text-align: right; line-height: 1.6; }
+  .header h1 { font-size: 21pt; font-weight: 900; letter-spacing: -0.5px; margin-top: 14px; color: var(--accent); }
+  .header .subtitle { font-size: 11pt; color: #fff; font-weight: 500; margin-top: 5px; }
+  .header .meta { display: flex; gap: 28px; margin-top: 14px; font-size: 8pt; color: #c8d9ec; flex-wrap: wrap; }
+  .header .meta strong { color: #fff; }
+
+  .page { max-width: 880px; margin: 0 auto; padding: 24px 36px 48px; }
+
+  h2.sec { font-size: 12.5pt; font-weight: 800; color: var(--accent); border-bottom: 2.5px solid var(--primary); padding-bottom: 4px; margin: 32px 0 14px; text-transform: uppercase; letter-spacing: 0.3px; }
+  h3.sec { font-size: 10pt; font-weight: 700; color: var(--primary); margin: 18px 0 8px; }
+
+  .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 22px 0; }
+  .kpi { background: #fff; border-radius: 8px; padding: 14px 12px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.07); border-top: 3px solid var(--primary-light); }
+  .kpi.gold { border-top-color: var(--accent); }
+  .kpi.gold .kv { color: var(--accent-dark); }
+  .kpi .kv { font-size: 17pt; font-weight: 900; line-height: 1.1; color: var(--primary); }
+  .kpi .kl { font-size: 7pt; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  .rationale-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 14px 0; }
+  .rat-card { background: #fff; border-radius: 8px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 4px solid var(--primary); }
+  .rat-card.gold { border-left-color: var(--accent); }
+  .rat-card .rt { font-size: 9pt; font-weight: 800; margin-bottom: 4px; color: var(--primary); }
+  .rat-card .rb { font-size: 8pt; color: #495057; line-height: 1.45; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 18px; font-size: 8.5pt; }
+  th { background: var(--primary); color: #fff; padding: 7px 9px; text-align: left; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; }
+  th.c, td.c { text-align: center; }
+  th.r, td.r { text-align: right; }
+  td { padding: 6px 9px; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .total-row td { background: #e8eef5 !important; font-weight: 800; border-top: 2px solid var(--primary-light); color: var(--primary); }
+  .grand-row td { background: var(--primary) !important; color: #fff; font-weight: 800; font-size: 9pt; }
+  .sub-row td { background: #f0f4f8 !important; font-weight: 700; font-style: italic; color: var(--primary); }
+  .b { font-weight: 700; }
+  .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 8pt; }
+
+  .tag { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 7pt; font-weight: 800; letter-spacing: 0.3px; }
+  .tag-green  { background: #d4edda; color: #155724; }
+  .tag-amber  { background: #fff3cd; color: #856404; }
+  .tag-blue   { background: #cce5ff; color: #004085; }
+  .tag-grey   { background: #e9ecef; color: #495057; }
+  .tag-navy   { background: var(--primary); color: #fff; }
+  .tag-loi-epc { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+  .tag-study { background: #e2e3e5; color: #383d41; border: 1px dashed #6c757d; }
+  .tag-quoted { background: #e9ecef; color: #495057; }
+
+  .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 24px; }
+  .offer-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .offer-card.primary { border: 2px solid var(--accent); }
+  .offer-head { padding: 16px 14px; background: var(--primary); color: #fff; text-align: center; }
+  .offer-head.alt { background: linear-gradient(160deg, var(--primary-light) 0%, var(--primary) 100%); }
+  .offer-head .opct { font-size: 28pt; font-weight: 900; line-height: 1; color: var(--accent); }
+  .offer-head .olbl { font-size: 8pt; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.9; margin-top: 4px; }
+  .offer-body { padding: 16px 14px; }
+  .ok-row { margin-bottom: 10px; }
+  .ok-row .ok-lbl { font-size: 7pt; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; font-weight: 700; }
+  .ok-row .ok-val { font-size: 10pt; font-weight: 800; color: var(--primary); }
+
+  .note { background: #fff; border-left: 4px solid var(--primary-light); padding: 11px 14px; border-radius: 0 6px 6px 0; margin: 14px 0; font-size: 8.5pt; color: #343a40; line-height: 1.5; }
+  .note strong { color: var(--primary); }
+  .note.gold-note { border-left-color: var(--accent); }
+
+  .loi-box { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 14px 16px; margin: 10px 0; }
+  .loi-box h4 { font-size: 9pt; color: var(--accent); margin-bottom: 6px; }
+  .loi-box p { font-size: 8.5pt; color: #495057; line-height: 1.5; }
+  .loi-ref { font-size: 7pt; color: #6c757d; font-family: monospace; margin-top: 4px; }
+
+  .contact-box { background: var(--primary); color: #fff; border-radius: 8px; padding: 16px 20px; margin-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .contact-box .ct-name { font-size: 11pt; font-weight: 800; color: var(--accent); }
+  .contact-box .ct-detail { font-size: 8.5pt; line-height: 1.6; }
+
+  .footer { margin-top: 32px; border-top: 1px solid #dee2e6; padding-top: 12px; font-size: 7pt; color: #6c757d; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; }
+    .page-break { page-break-before: always; }
+  }
+
+  .page-break { margin-top: 40px; padding-top: 8px; border-top: 3px solid var(--primary); }
+  .faq-item { margin-bottom: 14px; }
+  .faq-q { font-size: 9pt; font-weight: 800; color: var(--primary); margin-bottom: 3px; }
+  .faq-a { font-size: 8.5pt; color: #495057; line-height: 1.45; }
+</style>
+</head>
+<body>
+
+<div class="conf-bar">STRICTLY PRIVATE &amp; CONFIDENTIAL — NOT FOR DISTRIBUTION — PREPARED FOR [INVESTOR NAME]</div>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">Lighthief Cyprus Ltd</div>
+    <div class="header-doc-ref">
+      Document: LCY-EQ-INV-2026-001<br>
+      Date: 27 May 2026<br>
+      Version: 1.0 — Template
+    </div>
+  </div>
+  <h1>Equity Investment Proposal</h1>
+  <div class="subtitle">Prepared for [Investor Name] — 25% Shareholding</div>
+  <div class="meta">
+    <span><strong>Issuing Entity:</strong> Lighthief Cyprus Ltd (HE 477423)</span>
+    <span><strong>Sector:</strong> BESS / Renewable Energy EPC</span>
+    <span><strong>Offer:</strong> €1,000,000 for 25%</span>
+    <span><strong>Implied Valuation:</strong> €4.0M post-money</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kv">€65.5M</div>
+      <div class="kl">Quoted EPC Backlog</div>
+    </div>
+    <div class="kpi">
+      <div class="kv">€7.6M</div>
+      <div class="kl">Est. Gross Profit</div>
+    </div>
+    <div class="kpi">
+      <div class="kv">546 MWh</div>
+      <div class="kl">Quoted BESS Capacity</div>
+    </div>
+    <div class="kpi">
+      <div class="kv">30 MWh</div>
+      <div class="kl">Galascope — LOI + EPC</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kv">315 MWh</div>
+      <div class="kl">Esperia Pipeline LOI</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <h2 class="sec">Executive Summary</h2>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:12px;">
+    Lighthief Cyprus Ltd is a Battery Energy Storage System (BESS) EPC contractor operating in Cyprus, with a quoted order book of approximately <strong>€65.5 million</strong> in client revenue and an estimated <strong>€7.6 million</strong> in gross profit across 546 MWh of quoted projects (plus a further 120 MWh standalone opportunity under study). The company is the appointed EPC for <strong>Galascope Ltd</strong> and <strong>Esperia Energy Group</strong> — two of Cyprus's largest BESS programmes — plus a growing portfolio of standalone and group-order clients.
+  </p>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:12px;">
+    This proposal offers <strong>[Investor Name]</strong> a <strong>25% equity stake</strong> in Lighthief Cyprus Ltd for an investment of <strong>€1,000,000</strong>, implying a post-money valuation of <strong>€4.0 million</strong>. The offer takes effect and share transfer is triggered only upon the <strong>Galascope Ltd EPC being signed and stamped</strong> by both <strong>Lighthief Cyprus Ltd</strong> and <strong>Galascope Ltd</strong> — expected within approximately <strong>10 days</strong> following completion of client legal review.
+  </p>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6;">
+    An optional staged structure is also available: <strong>12.5% for €500,000</strong> on Galascope EPC signing and stamping (both parties), with a call option to acquire a further <strong>12.5% for €500,000</strong> upon signing of the first Esperia pipeline EPC. Detailed commercial terms are set out below; formal subscription and shareholder agreements to be prepared by Cyprus counsel.
+  </p>
+
+  <!-- INVESTMENT TERMS -->
+  <h2 class="sec">Investment Structures</h2>
+
+  <div class="offer-grid">
+
+    <div class="offer-card primary">
+      <div class="offer-head">
+        <div class="opct">25%</div>
+        <div class="olbl">Structure A — Single Closing</div>
+      </div>
+      <div class="offer-body">
+        <div class="ok-row">
+          <div class="ok-lbl">Investment Amount</div>
+          <div class="ok-val">€1,000,000</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Equity Stake</div>
+          <div class="ok-val">25% post-money</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Implied Company Valuation</div>
+          <div class="ok-val">€4,000,000</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Closing Trigger</div>
+          <div class="ok-val" style="font-size:8.5pt;">Galascope EPC signed &amp; stamped by Lighthief Cyprus and Galascope — expected ~10 days</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Mechanism</div>
+          <div class="ok-val" style="font-size:8.5pt;">Share subscription / transfer on Galascope EPC Effective Date (both parties signed &amp; stamped)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-head alt">
+        <div class="opct">12.5% + 12.5%</div>
+        <div class="olbl">Structure B — Staged Entry (Optional)</div>
+      </div>
+      <div class="offer-body">
+        <div class="ok-row">
+          <div class="ok-lbl">Tranche 1</div>
+          <div class="ok-val">€500,000 → 12.5%</div>
+          <div style="font-size:7.5pt;color:#6c757d;margin-top:2px;">Trigger: Galascope EPC signed &amp; stamped (both parties)</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Tranche 2 (Call Option)</div>
+          <div class="ok-val">€500,000 → +12.5%</div>
+          <div style="font-size:7.5pt;color:#6c757d;margin-top:2px;">Trigger: First Esperia pipeline EPC signed</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Total if Exercised</div>
+          <div class="ok-val">€1,000,000 → 25%</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Valuation</div>
+          <div class="ok-val" style="font-size:8.5pt;">Same €4.0M implied post-money on full exercise</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note gold-note">
+    <strong>Closing trigger:</strong> Under both structures, the initial share transfer occurs only when the <strong>Galascope Ltd EPC</strong> (LCY-EPC-GAL-B1-2026) is <strong>signed and stamped by both Lighthief Cyprus Ltd and Galascope Ltd</strong>. Until that date, this proposal remains conditional — it does not take effect on LOI alone. The full EPC v5.1 pack — including LTSA, EMS addendum, and OEM warranty undertaking — has been submitted to Esperia's counsel and is in final legal review; signing and stamping is expected within approximately <strong>10 days</strong>. Under Structure B, the second tranche is triggered separately upon execution of the first <strong>Esperia pipeline</strong> EPC (LOI Schedule 1 — distinct from the Galascope carve-out).
+  </div>
+
+  <!-- WHY INVEST -->
+  <h2 class="sec">Why Invest Now</h2>
+  <div class="rationale-grid">
+    <div class="rat-card gold">
+      <div class="rt">Galascope — LOI + EPC</div>
+      <div class="rb">Batch 1 comprises Galascope 1 (5 MW / 20 MWh) and Galascope 2 (2.5 MW / 10 MWh) — €3.44M in LOI-locked pricing. EPC v5.1 pack in final legal review; equity closing tied to EPC signed and stamped by both parties. Linyang supply agreement executed 17 March 2026. PAC target January 2027.</div>
+    </div>
+    <div class="rat-card">
+      <div class="rt">Esperia Pipeline LOI</div>
+      <div class="rb">Nine further parks (315 MWh) covered by a separate pipeline LOI with Esperia Energy Group, phased delivery 2026–2028. Combined Galascope + pipeline represents a multi-year EPC programme with a single strategic counterparty.</div>
+    </div>
+    <div class="rat-card">
+      <div class="rt">Diversified Quoted Backlog</div>
+      <div class="rb">Beyond Esperia/Galascope: standalone wind-hybrid (Aeolian), quoted clients (Anarita, Timotheos, Lampros, Kerasi, Karis — latter four re-quoted at 12.5% after missing group pricing), and a 120 MWh standalone BESS study — quoted backlog ~€65M; indicative study upside ~€16M.</div>
+    </div>
+  </div>
+
+  <!-- VALUATION FRAMING -->
+  <h2 class="sec">Valuation Basis</h2>
+  <div class="note">
+    <strong>Entry price:</strong> The €4.0 million post-money valuation reflects an early strategic investment ahead of first EPC cashflows. It is offered at a significant discount to the commercial value implied by the quoted order book below. The table summarises contracted and quoted EPC backlog that underpins future earnings — figures are management estimates, ex VAT, and unaudited.
+  </div>
+
+  <div class="note gold-note">
+    <strong>Economics — origination pool:</strong> Up to <strong>30% of net margin</strong> on executed EPC projects is allocated to the <strong>existing Cyprus team that sourced and quoted the current backlog</strong> — led by current management and in place before this investment. Paid pro-rata with client milestones; separate from the equity subscription. <strong>New personnel</strong> (including any the investor introduces) are compensated on their own employment or advisory terms and <strong>do not participate in this pool</strong> unless expressly agreed. Remaining margin (~70%) accrues to the company and shareholders.
+  </div>
+
+  <!-- LOI SUPPORT -->
+  <h2 class="sec">Contractual Support — LOIs &amp; Quotes</h2>
+
+  <div class="loi-box">
+    <h4>Galascope Ltd — Batch 1 LOI</h4>
+    <p>Separate letter of intent covering two Famagusta parks (Galascope 1: 5 MW / 20 MWh; Galascope 2: 2.5 MW / 10 MWh). Negotiated all-in pricing locked at <strong>€2,238,000</strong> and <strong>€1,206,300</strong> ex VAT respectively. Full EPC v5.1 contract pack submitted; awaiting client legal sign-off. Status: <strong>LOI + EPC</strong> — EPC to be signed and stamped by Lighthief Cyprus Ltd and Galascope Ltd (see closing trigger above). Galascope is explicitly carved out of the Esperia pipeline LOI.</p>
+    <div class="loi-ref">Ref: LCY-LOI-GAL-B1-2026-R15 · EPC: LCY-EPC-GAL-B1-2026</div>
+  </div>
+
+  <div class="loi-box">
+    <h4>Esperia Energy Group — Pipeline LOI</h4>
+    <p>Letter of intent covering nine BESS parks (315 MWh) across three delivery batches: 2026 (75 MWh), 2027 (115 MWh), and 2028 (125 MWh). LOI-schedule pricing tiers apply per configuration class. EPC contracts to follow on a park-by-park basis as licensing and grid connection terms are satisfied.</p>
+    <div class="loi-ref">Ref: LCY-LOI-ESP-PIPELINE-2026 · Schedule 1 — nine parks (excl. Galascope)</div>
+  </div>
+
+  <div class="loi-box">
+    <h4>Remaining Quoted Projects</h4>
+    <p>Additional BESS EPC proposals issued to group-order clients and standalone developers, summarised by client code in the table below. All figures represent quoted client prices and estimated gross margins based on confirmed adder stacks and OEM supply pricing.</p>
+  </div>
+
+  <!-- QUOTED PROJECT TABLE -->
+  <h2 class="sec">Quoted Project Backlog</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Code / Project</th>
+        <th class="c">Parks</th>
+        <th class="c">MWh</th>
+        <th class="r">Est. Revenue (€)</th>
+        <th class="r">Est. Margin (€)</th>
+        <th class="c">Margin %</th>
+        <th class="c">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Galascope -->
+      <tr>
+        <td class="b">GAL1 — Galascope 1</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,238,000</td>
+        <td class="r mono">164,000</td>
+        <td class="c">7.3%</td>
+        <td class="c"><span class="tag tag-loi-epc">LOI + EPC</span></td>
+      </tr>
+      <tr>
+        <td class="b">GAL2 — Galascope 2</td>
+        <td class="c">1</td>
+        <td class="c">10</td>
+        <td class="r mono">1,206,300</td>
+        <td class="r mono">86,000</td>
+        <td class="c">7.1%</td>
+        <td class="c"><span class="tag tag-loi-epc">LOI + EPC</span></td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b">Galascope sub-total</td>
+        <td class="c">2</td>
+        <td class="c">30</td>
+        <td class="r mono">3,444,300</td>
+        <td class="r mono">250,000</td>
+        <td class="c">7.3%</td>
+        <td class="c">—</td>
+      </tr>
+
+      <!-- Esperia Pipeline — full names -->
+      <tr>
+        <td class="b">Esperia Energy (Tseri)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,073,225</td>
+        <td class="r mono">338,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Tseri 2-A)</td>
+        <td class="c">1</td>
+        <td class="c">10</td>
+        <td class="r mono">1,206,300</td>
+        <td class="r mono">133,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Tseri 3)</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,238,000</td>
+        <td class="r mono">246,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Famagusta)</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,374,920</td>
+        <td class="r mono">261,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Green Energy (Limassol)</td>
+        <td class="c">1</td>
+        <td class="c">60</td>
+        <td class="r mono">5,644,044</td>
+        <td class="r mono">621,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2027</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Tseri 2-B)</td>
+        <td class="c">1</td>
+        <td class="c">30</td>
+        <td class="r mono">3,687,870</td>
+        <td class="r mono">406,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2027</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Tseri 2-C)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,073,225</td>
+        <td class="r mono">338,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2027</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Energy (Frenaros)</td>
+        <td class="c">1</td>
+        <td class="c">100</td>
+        <td class="r mono">10,088,014</td>
+        <td class="r mono">1,110,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2028</span></td>
+      </tr>
+      <tr>
+        <td class="b">Esperia Green Energy (Famagusta 2)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,073,225</td>
+        <td class="r mono">338,000</td>
+        <td class="c">~11%</td>
+        <td class="c"><span class="tag tag-blue">LOI 2028</span></td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b">Esperia pipeline sub-total</td>
+        <td class="c">9</td>
+        <td class="c">315</td>
+        <td class="r mono">34,458,823</td>
+        <td class="r mono">3,791,000</td>
+        <td class="c">~11%</td>
+        <td class="c">—</td>
+      </tr>
+
+      <!-- Other clients — acronyms only -->
+      <tr>
+        <td class="b">ANA — Anarita (Spanercom)</td>
+        <td class="c">2</td>
+        <td class="c">40</td>
+        <td class="r mono">4,760,000</td>
+        <td class="r mono">589,000</td>
+        <td class="c">12.4%</td>
+        <td class="c"><span class="tag tag-amber">High (85%)</span></td>
+      </tr>
+      <tr>
+        <td class="b">TIM — Timotheos Timotheou</td>
+        <td class="c">9</td>
+        <td class="c">81</td>
+        <td class="r mono">11,818,919</td>
+        <td class="r mono">1,477,000</td>
+        <td class="c">12.5%</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+      </tr>
+      <tr>
+        <td class="b">LAM — Lampros Andreadis</td>
+        <td class="c">2</td>
+        <td class="c">15</td>
+        <td class="r mono">2,117,420</td>
+        <td class="r mono">265,000</td>
+        <td class="c">12.5%</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+      </tr>
+      <tr>
+        <td class="b">KER — A. Kerasi</td>
+        <td class="c">3</td>
+        <td class="c">20</td>
+        <td class="r mono">3,061,370</td>
+        <td class="r mono">383,000</td>
+        <td class="c">12.5%</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+      </tr>
+      <tr>
+        <td class="b">KAR — Ioannis Karis</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,220,675</td>
+        <td class="r mono">403,000</td>
+        <td class="c">12.5%</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+      </tr>
+      <tr>
+        <td class="b">AEO — TP Aeolian Dynamics</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,660,000</td>
+        <td class="r mono">402,000</td>
+        <td class="c">15.1%</td>
+        <td class="c"><span class="tag tag-amber">High (80%)</span></td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b">Other quoted clients sub-total</td>
+        <td class="c">18</td>
+        <td class="c">201</td>
+        <td class="r mono">27,638,384</td>
+        <td class="r mono">3,519,000</td>
+        <td class="c">12.7%</td>
+        <td class="c">—</td>
+      </tr>
+
+      <!-- Study-stage — not yet quoted -->
+      <tr>
+        <td class="b">HESS — Standalone 120 MWh BESS*</td>
+        <td class="c">1</td>
+        <td class="c">120</td>
+        <td class="r mono">~16,320,000</td>
+        <td class="r mono">~2,160,000</td>
+        <td class="c">~13%</td>
+        <td class="c"><span class="tag tag-study">Under study for quotation</span></td>
+      </tr>
+
+      <tr class="grand-row">
+        <td class="b">TOTAL QUOTED BACKLOG</td>
+        <td class="c">30</td>
+        <td class="c">546</td>
+        <td class="r mono">65,541,507</td>
+        <td class="r mono">7,560,000</td>
+        <td class="c">~11.5%</td>
+        <td class="c">—</td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b">+ HESS indicative study (not in total above)</td>
+        <td class="c">1</td>
+        <td class="c">120</td>
+        <td class="r mono">~16,320,000</td>
+        <td class="r mono">~2,160,000</td>
+        <td class="c">~13%</td>
+        <td class="c">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:7.5pt; color:#6c757d; margin-top:-10px;">
+    <strong>Margin %:</strong> LOI / confirmed work runs ~11%; Galascope Batch 1 is ~7% on negotiated pricing. <strong>TIM, LAM, KER, KAR</strong> missed the group-order pricing window and are quoted at <strong>12.5% margin</strong> — revised proposals to be re-issued on standard terms. <strong>HESS*</strong> (50 MW / 120 MWh standalone BESS) is <em>under study for quotation</em> — indicative figures only (€136,000/MWh proposal vs €118,000/MWh cost basis); excluded from the quoted backlog total above. Galascope: LOI in place; equity closing tied to EPC signed and stamped by Lighthief Cyprus Ltd and Galascope Ltd. All figures ex VAT.
+  </p>
+
+  <!-- KEY TERMS -->
+  <h2 class="sec">Key Terms</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%;">Term</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Investment Vehicle</td>
+        <td>Direct equity shareholding in Lighthief Cyprus Ltd (HE 477423, Cyprus)</td>
+      </tr>
+      <tr>
+        <td class="b">Share Class</td>
+        <td>Ordinary shares (same class as founders). Preference terms subject to counsel.</td>
+      </tr>
+      <tr>
+        <td class="b">Closing Trigger</td>
+        <td>Structure A: full 25% when Galascope EPC is signed and stamped by Lighthief Cyprus Ltd and Galascope Ltd. Structure B: 12.5% on same Galascope EPC trigger; optional +12.5% on first Esperia pipeline EPC.</td>
+      </tr>
+      <tr>
+        <td class="b">Origination pool</td>
+        <td>Up to 30% of <strong>net margin</strong> on executed projects compensates the <strong>existing Cyprus team that built the quoted pipeline</strong> (current management-led). Paid with client milestones; not funded from equity proceeds. New hires — including investor-introduced personnel — sit outside this pool unless separately agreed. Balance remains with shareholders.</td>
+      </tr>
+      <tr>
+        <td class="b">Use of proceeds</td>
+        <td>Investment capital supports Galascope execution (deposits, adders, working capital) and balance-sheet strength. Detailed allocation in term sheet.</td>
+      </tr>
+      <tr>
+        <td class="b">Governance</td>
+        <td>Commercial terms only at this stage. Board observer / information rights and reserved matters to be agreed in shareholder agreement.</td>
+      </tr>
+      <tr>
+        <td class="b">Due Diligence</td>
+        <td>EPC contracts, LOIs, OEM supply agreement, and management accounts available under NDA.</td>
+      </tr>
+      <tr>
+        <td class="b">Governing Law</td>
+        <td>Cyprus law. Disputes by ICC arbitration, Nicosia seat.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Important:</strong> This document is a commercial proposal for discussion purposes only and does not constitute a binding offer. Formal investment will be documented through a subscription agreement and updated shareholders' agreement prepared by qualified Cyprus counsel. Figures are management estimates and unaudited.
+  </div>
+
+  <!-- NEXT STEPS -->
+  <h2 class="sec">Next Steps</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="c">#</th>
+        <th>Step</th>
+        <th class="c">Party</th>
+        <th class="c">Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="c">1</td><td>Indicate preferred structure (A or B) and sign NDA</td><td class="c">[Investor Name]</td><td class="c">Within 7 days</td></tr>
+      <tr><td class="c">2</td><td>Management presentation and data room access</td><td class="c">Lighthief</td><td class="c">Upon NDA</td></tr>
+      <tr><td class="c">3</td><td>Galascope EPC signed &amp; stamped by Lighthief Cyprus and Galascope (closing trigger)</td><td class="c">Lighthief / Galascope</td><td class="c">~10 days</td></tr>
+      <tr><td class="c">4</td><td>Term sheet and subscription agreement</td><td class="c">Counsel</td><td class="c">Concurrent with EPC</td></tr>
+      <tr class="total-row"><td class="c">5</td><td>Completion — funds transfer and share issuance</td><td class="c">Both parties</td><td class="c">On Galascope EPC signed &amp; stamped</td></tr>
+    </tbody>
+  </table>
+
+  <!-- FAQ -->
+  <div class="page-break"></div>
+  <h2 class="sec">Anticipated Questions</h2>
+  <p style="font-size:8pt; color:#6c757d; margin-bottom:16px;">Short answers to points likely raised in diligence. Not binding — for alignment before term sheet.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">Why €4M valuation against a €65M quoted backlog?</div>
+    <div class="faq-a">Early entry before first EPC cashflow. Most of the table is LOI or quoted, not signed EPC — we haircut accordingly. €4M prices the <em>platform at first contract execution</em>, not full backlog conversion. Structure B (€500k / 12.5%) available if you prefer less capital at Galascope close.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How much of the backlog is actually committed?</div>
+    <div class="faq-a">Near-term: Galascope (LOI + EPC in legal review, ~€3.4M). Esperia pipeline: LOI covering 315 MWh. Other lines are quoted or high-probability proposals. HESS is study-only and excluded from the total. Closing trigger is Galascope EPC signed &amp; stamped — not LOI alone.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the 30% origination pool — who participates?</div>
+    <div class="faq-a">Up to <strong>30% of net margin</strong> on executed projects rewards the <strong>existing team that sourced and quoted the current backlog</strong> — Cyprus origination, engineering, and delivery under current management. It is funded from project margin on client cash, not from equity proceeds. Personnel the investor places in the company would be on separate terms and <strong>outside this pool</strong> unless expressly agreed. Shareholders participate in the remaining ~70% of net margin after project costs and pool allocation.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Why wire on Galascope EPC if it is only €3.4M?</div>
+    <div class="faq-a">Galascope de-risks the platform (signed EPC, Linyang supply executed, first revenue path). You are buying into the EPC machine that carries the Esperia LOI pipeline and quoted book — not only one park. Longstop date and conditions to be set in term sheet if EPC slips.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What governance do I get at 25%?</div>
+    <div class="faq-a">Term sheet and SHA to define board observer (or seat), information rights, reserved matters (related-party spend, new debt, dividends, group entities), and standard pre-emption. Not finalised in this proposal — expect a one-page heads of terms with counsel.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where does the €1M go?</div>
+    <div class="faq-a">Primarily Galascope working capital (OEM deposit, adders, delivery) and company runway — not the origination pool. Pool is funded from project margin on client payments. Use-of-proceeds schedule in subscription agreement.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Cyprus only, or Poland / group?</div>
+    <div class="faq-a">This investment is in <strong>Lighthief Cyprus Ltd</strong> — Cyprus BESS EPC. Poland and other group activities are separate; no cross-charge to your stake unless agreed later.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Are margin figures audited?</div>
+    <div class="faq-a">Management estimates, ex VAT. Data room under NDA: adder stack, Linyang supply contract, sample EPC/LOI, per-park pricing. TIM/LAM/KER/KAR re-quotes at 12.5% to be re-issued after missing group pricing window.</div>
+  </div>
+
+  <div class="note" style="margin-top:20px;">
+    <strong>Binding terms:</strong> This FAQ is illustrative. Investment completes only via executed subscription agreement and SHA with Cyprus counsel.
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-box">
+    <div>
+      <div class="ct-name">Dr. Arkadius Sybaris</div>
+      <div class="ct-detail">Founder &amp; CEO · Lighthief Cyprus Ltd</div>
+    </div>
+    <div class="ct-detail">
+      <strong style="color:var(--accent);">a.sybaris@lighthief.com</strong><br>
+      +357 77 77 00 50 (office)
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Dr. Arkadius Sybaris · Founder &amp; CEO · Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy</div>
+    <div>Document LCY-EQ-INV-2026-001 · 27 May 2026 · v1.0 · Strictly Private &amp; Confidential</div>
+  </div>
+
+</div>
+</body>
+</html>

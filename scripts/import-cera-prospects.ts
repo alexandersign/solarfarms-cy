@@ -25,6 +25,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { createClient } from '@supabase/supabase-js'
+import { mergePlantLevelIntoSegmentsFile } from '../lib/cyprus-rtb-segments-merge'
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -368,6 +369,7 @@ function writeRtbSegmentsJson(companies: CompanyAggregate[]) {
     },
   }
   fs.writeFileSync(RTB_SEGMENTS_JSON, JSON.stringify(payload, null, 2))
+  mergePlantLevelIntoSegmentsFile()
 }
 
 // ─── CLI Args ────────────────────────────────────────────────────────────────

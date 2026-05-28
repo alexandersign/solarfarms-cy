@@ -339,6 +339,12 @@ export default function ProspectsPage() {
               </Button>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">PV Plant Prospects</h1>
+                <Link
+                  href="/admin/prospects/plants"
+                  className="text-sm font-medium text-[#1A365D] hover:underline mt-1 inline-block"
+                >
+                  Cyprus plant intelligence (CERA × EAC) →
+                </Link>
                 <p className="text-gray-600">Track plant owners, outreach, and deals</p>
               </div>
             </div>

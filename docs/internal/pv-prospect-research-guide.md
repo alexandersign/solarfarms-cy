@@ -135,9 +135,10 @@ Verify with Hunter.io email verifier or NeverBounce.
    → Search director names
    → Extract: LinkedIn URL, current title, mutual connections
    
-4. Email Discovery (Hunter/Apollo/Lusha)
-   → Enter company domain or person name
-   → Extract: verified email, phone number
+4. Email Discovery (automated in repo — no Hunter credits required)
+   → **Stage 1** `npm run enrich:register` — Cyprus company register → directors + HE number (Playwright)
+   → **Stage 3** `npm run enrich:contacts` — domain guess + website scrape + email patterns + optional Google Places
+   → **Manual** Hunter / Apollo / Lusha when automation fails (SPVs often have no public website)
    
 5. Add to PV Prospects Tracker (/admin/prospects)
    → Enter all data

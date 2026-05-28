@@ -365,6 +365,121 @@ export const pvProspectsService = {
   },
 }
 
+export interface EacResSystem {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  district: string
+  applicant_name: string
+  capacity_kw?: number
+  technology?: string
+  municipality?: string
+  feeder_substation?: string
+  application_ref?: string
+  meter_id?: string
+  raw_row?: Record<string, unknown>
+  source_pdf_url?: string
+  source_pdf_sha256?: string
+  normalized_name?: string
+}
+
+export interface CyprusEnergyPlant {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  cera_license_no: string
+  company_name: string
+  company_reg_no?: string
+  pv_kw?: number
+  bess_kw?: number
+  bess_kwh?: number
+  plant_class: 'pv_only' | 'pv_bess_hybrid' | 'bess_standalone'
+  license_status: 'operational' | 'under_construction'
+  license_type_raw?: string
+  operating_regime?: string
+  district?: string
+  municipality?: string
+  license_start_date?: string
+  license_end_date?: string
+  eac_res_listed?: boolean
+  eac_match_id?: string
+  eac_match_confidence?: number
+  eac_listed_capacity_kw?: number
+  connection_terms_status?: string
+  commercial_segments?: string[]
+  priority_score?: number
+  outreach_priority?: string
+  existing_client?: boolean
+  portfolio_group?: string
+  notes?: string
+  pipeline_stage?: string
+  primary_sales_target?: string
+  secondary_sales_targets?: string[]
+  sales_target_summary?: string
+  contact_director_1?: string
+  contact_director_2?: string
+  contact_secretary?: string
+  contact_email?: string
+  contact_phone?: string
+  contact_website?: string
+  contact_email_source?: string
+  registered_address?: string
+}
+
+export const cyprusEnergyPlantsService = {
+  async getAll(filters?: {
+    plant_class?: string
+    eac_res_listed?: boolean
+    commercial_segment?: string
+    min_match_confidence?: number
+    district?: string
+    existing_client?: boolean
+    search?: string
+  }) {
+    let query = supabase
+      .from('cyprus_energy_plants')
+      .select('*')
+      .order('priority_score', { ascending: false })
+
+    if (filters?.plant_class) query = query.eq('plant_class', filters.plant_class)
+    if (filters?.eac_res_listed !== undefined) {
+      query = query.eq('eac_res_listed', filters.eac_res_listed)
+    }
+    if (filters?.district) query = query.eq('district', filters.district)
+    if (filters?.existing_client !== undefined) {
+      query = query.eq('existing_client', filters.existing_client)
+    }
+    if (filters?.commercial_segment) {
+      query = query.contains('commercial_segments', [filters.commercial_segment])
+    }
+    if (filters?.min_match_confidence != null) {
+      query = query.gte('eac_match_confidence', filters.min_match_confidence)
+    }
+    if (filters?.search) {
+      query = query.or(
+        `company_name.ilike.%${filters.search}%,cera_license_no.ilike.%${filters.search}%,municipality.ilike.%${filters.search}%`
+      )
+    }
+
+    const { data, error } = await query
+    if (error) throw error
+    return data as CyprusEnergyPlant[]
+  },
+
+  async getStats() {
+    const { data, error } = await supabase.from('cyprus_energy_plants').select('*')
+    if (error) throw error
+    const plants = (data || []) as CyprusEnergyPlant[]
+    return {
+      total: plants.length,
+      eacListed: plants.filter((p) => p.eac_res_listed).length,
+      standaloneBess: plants.filter((p) => p.plant_class === 'bess_standalone').length,
+      existingClients: plants.filter((p) => p.existing_client).length,
+      highPriority: plants.filter((p) => (p.priority_score || 0) >= 55).length,
+    }
+  },
+}
+
 export const gridOperatorService = {
   async getAll() {
     const { data, error } = await supabase

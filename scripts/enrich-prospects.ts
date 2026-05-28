@@ -1,22 +1,24 @@
 /**
  * PV Prospect Enrichment Pipeline
- * 
- * Stage 1: Cyprus Company Register (Playwright) → directors, reg number, address
- * Stage 2: Hunter.io API → email addresses from company domains & person names
- * 
+ *
+ * Stage 1: Cyprus Company Register (Playwright) → directors, HE number, address (FREE)
+ * Stage 2: Hunter.io API → emails (optional; skip when out of credits)
+ * Stage 3: No Hunter — domain guess, website scrape, Google Places text search, email patterns
+ *
  * Usage:
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/enrich-prospects.ts
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/enrich-prospects.ts --stage 1
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/enrich-prospects.ts --stage 2
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/enrich-prospects.ts --limit 50
- *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/enrich-prospects.ts --priority urgent,high
- * 
+ *   npx tsx scripts/enrich-prospects.ts --stage 1 --limit 50
+ *   npx tsx scripts/enrich-prospects.ts --stage 3 --limit 30
+ *   npx tsx scripts/enrich-prospects.ts --stage 1 --stage 3   # invalid; use no --stage for 1+2, or run separately
+ *   npx tsx scripts/enrich-prospects.ts --stage 3 --priority urgent,high
+ *
  * Environment:
- *   HUNTER_API_KEY    Hunter.io API key (or pass via --hunter-key)
+ *   HUNTER_API_KEY     Hunter.io (Stage 2 only)
+ *   GOOGLE_MAPS_KEY    Google Places Text Search for company websites (Stage 3)
  */
 
 import { createClient } from '@supabase/supabase-js'
 import * as https from 'https'
+import { discoverContactNoHunter } from '../lib/contact-discovery'
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -542,6 +544,115 @@ async function stage2_hunterEmails(prospects: any[], hunterKey: string, dryRun: 
   console.log(`    Failed:       ${failed}`)
 }
 
+// ─── Stage 3: No Hunter (register directors + scrape + pattern guess) ───────
+
+const CONTACT_DELAY_MS = 1500
+
+async function stage3_noHunterContacts(prospects: any[], dryRun: boolean) {
+  console.log('\n══════════════════════════════════════════════')
+  console.log('  STAGE 3: Contact discovery (no Hunter.io)')
+  console.log('══════════════════════════════════════════════')
+
+  const googleKey = process.env.GOOGLE_MAPS_KEY || process.env.GOOGLE_PLACES_KEY || ''
+  if (!googleKey) {
+    console.log('  Tip: set GOOGLE_MAPS_KEY for Places text search (optional).')
+  }
+
+  const toProcess = prospects.filter((p) => !p.contact_email)
+  console.log(`  Prospects without email: ${toProcess.length}`)
+
+  if (toProcess.length === 0) {
+    console.log('  All have emails. Skipping.')
+    return
+  }
+
+  if (dryRun) {
+    toProcess.slice(0, 10).forEach((p) => {
+      console.log(`    - ${p.company_name || p.plant_name}`)
+    })
+    return
+  }
+
+  let found = 0
+  let partial = 0
+  let none = 0
+
+  for (const prospect of toProcess) {
+    const companyName = prospect.company_name || prospect.plant_name
+    if (!companyName) continue
+
+    const directors: string[] = []
+    if (prospect.contact_name) directors.push(prospect.contact_name)
+    if (prospect.secondary_contact_name) directors.push(prospect.secondary_contact_name)
+
+    try {
+      const result = await discoverContactNoHunter({
+        companyName,
+        directorNames: directors,
+        existingWebsite: prospect.company_website,
+        googlePlacesKey: googleKey || undefined,
+      })
+
+      const updates: Record<string, unknown> = {}
+      const tags = [...(prospect.tags || [])]
+
+      if (result.company_website && !prospect.company_website) {
+        updates.company_website = result.company_website
+      }
+      if (result.contact_phone && !prospect.contact_phone) {
+        updates.contact_phone = result.contact_phone
+      }
+      if (result.contact_email) {
+        updates.contact_email = result.contact_email
+        if (result.contact_name && !prospect.contact_name) {
+          updates.contact_name = result.contact_name
+        }
+        const src = result.email_source || 'stage3'
+        updates.notes = [
+          prospect.notes || '',
+          `Email source: ${src}${result.email_verified === false ? ' (unverified)' : ''}`,
+        ]
+          .filter(Boolean)
+          .join('\n')
+        tags.push(`email_${src}`)
+        found++
+        console.log(`  ✓ ${companyName}: ${result.contact_email} (${src})`)
+      } else if (updates.company_website || directors.length) {
+        partial++
+        if (partial <= 15) {
+          console.log(
+            `  ~ ${companyName}: website/directors only${directors.length ? ` — ${directors.join(', ')}` : ''}`
+          )
+        }
+      } else {
+        none++
+        if (none <= 15) console.log(`  - ${companyName}: no email (try LinkedIn / Apollo manual)`)
+        tags.push('email_manual_needed')
+      }
+
+      if (Object.keys(updates).length > 0) {
+        updates.tags = [...new Set(tags)]
+        await supabase.from('pv_prospects').update(updates).eq('id', prospect.id)
+      } else if (!result.contact_email) {
+        await supabase
+          .from('pv_prospects')
+          .update({ tags: [...new Set(tags)] })
+          .eq('id', prospect.id)
+      }
+
+      await sleep(CONTACT_DELAY_MS)
+    } catch (err) {
+      console.log(`  ✗ ${companyName}: ${(err as Error).message}`)
+      await sleep(CONTACT_DELAY_MS)
+    }
+  }
+
+  console.log(`\n  Stage 3 Complete:`)
+  console.log(`    Emails found:     ${found}`)
+  console.log(`    Partial / manual: ${partial}`)
+  console.log(`    No result:        ${none}`)
+}
+
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -551,7 +662,7 @@ async function main() {
   console.log('║  PV Prospect Enrichment Pipeline                        ║')
   console.log('╚══════════════════════════════════════════════════════════╝')
   console.log(`  Mode:       ${dryRun ? 'DRY RUN' : 'LIVE'}`)
-  console.log(`  Stage:      ${stage || 'All (1 + 2)'}`)
+  console.log(`  Stage:      ${stage || 'All (1 + 2; use --stage 3 for no-Hunter emails)'}`)
   console.log(`  Limit:      ${limit} prospects`)
   console.log(`  Priorities: ${priorities.join(', ')}`)
   console.log(`  Hunter.io:  ${hunterKey ? 'Key provided' : 'No key (Stage 2 will skip)'}`)
@@ -604,6 +715,19 @@ async function main() {
     }
     
     await stage2_hunterEmails(prospectsForStage2, hunterKey, dryRun)
+  }
+
+  if (stage === 3) {
+    let prospectsForStage3 = prospects
+    const { data: refreshed } = await supabase
+      .from('pv_prospects')
+      .select('*')
+      .in('priority', priorities)
+      .not('outreach_status', 'in', '("won","lost","not_interested")')
+      .order('capacity_mwp', { ascending: false })
+      .limit(limit)
+    prospectsForStage3 = refreshed || prospects
+    await stage3_noHunterContacts(prospectsForStage3, dryRun)
   }
 
   console.log('\n══════════════════════════════════════════════')

@@ -6,6 +6,8 @@ Research and implementation docs for a **daily StochRSI 25/75** strategy on **Bi
 
 | File | Description |
 |------|-------------|
+| [expected-performance.md](./expected-performance.md) | **Expected bot performance** — backtest tables, live haircuts, risk, rollout |
+| [expected-performance.html](./expected-performance.html) | HTML report (open in browser / print to PDF) |
 | [strategy-summary.md](./strategy-summary.md) | Full chat summary: rules, backtests, fees, setup, lessons |
 | [development-plan.md](./development-plan.md) | Bot architecture, phases, API workflow, deployment |
 
@@ -25,9 +27,21 @@ python scripts/stochrsi_timeframe_sweep.py # timeframe comparison
 - `config/default.yaml` — strategy parameters
 - `config/example.env` — API keys template (testnet first)
 
+## Paper trading (start here)
+
+**[PAPER-TRADING-SETUP.md](./PAPER-TRADING-SETUP.md)** — step-by-step testnet guide.
+
+Quick start:
+
+```powershell
+cd trading-bot
+.\run.ps1 dry-run          # no API keys
+.\run.ps1 testnet          # after .env configured
+```
+
 ## Status
 
-**Planning** — backtests in `../scripts/`; bot source in `src/` per [development-plan.md](./development-plan.md) (M0 dry-run → M1 testnet paper).
+**M0 + M1 implemented** — dry-run and testnet paper in `src/stochrsi_bot/`. See [development-plan.md](./development-plan.md).
 
 ## Disclaimer
 

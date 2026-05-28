@@ -1,0 +1,6753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyprus RTB / BESS intelligence — 2026-05-28</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+    }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; background: var(--body-bg); color: var(--grey-text); font-size: 13px; }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 1.25rem 1.5rem;
+    }
+    header h1 { margin: 0; font-size: 1.35rem; color: var(--accent); }
+    header .meta { margin-top: 0.5rem; opacity: 0.95; font-size: 12px; }
+    main { max-width: 1200px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+    .callout {
+      background: #fff;
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(26,54,93,0.08);
+    }
+    .panel { margin-bottom: 2rem; }
+    .panel h2 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .intro { margin-top: 0; max-width: 900px; line-height: 1.45; }
+    .table-wrap { overflow-x: auto; background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(26,54,93,0.08); }
+    table { border-collapse: collapse; width: 100%; min-width: 880px; }
+    thead { background: var(--primary); color: var(--white); }
+    th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    th { font-weight: 600; font-size: 12px; }
+    td.num { text-align: right; white-space: nowrap; }
+    td.lic { font-size: 11px; color: var(--grey-text); max-width: 240px; }
+    tbody tr:hover { background: #f8fafc; }
+    .count { font-size: 12px; color: var(--grey-text); margin-top: 0.5rem; }
+    footer { max-width: 1200px; margin: 0 auto; padding: 0 1rem 2rem; font-size: 11px; color: var(--grey-text); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cyprus RTB / BESS intelligence</h1>
+    <div class="meta">Internal — generated 2026-05-28 · Source segments: 2026-05-28T10:59:38.137Z</div>
+    <div class="meta">Threshold: ≥ 1 MWp per segment axis · CERA CSV only; enrich via marketing/research/rtb-enrichment-template.csv</div>
+  </header>
+  <main>
+    <div class="callout">
+      <strong>Limits:</strong> CERA catalogue does not include connection terms, environmental approval, or building permits.
+      Preliminary connection offers are not public — validate via TSOC/EAC contacts and applicant disclosures.
+      Mixed portfolios (operational + construction licences) appear under “Mixed construction pipeline” rather than strict RTB candidates.
+    </div>
+    
+  <section class="panel">
+    <h2>Panel A — RTB candidates (construction ≥1 MWp, no operational CERA rows)</h2>
+    <p class="intro">Companies with only construction-phase PV licences totalling ≥1 MWp. Cross-check env permit, connection terms, and satellite imagery before outreach.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Total MWp</th>
+            <th>Construction MWp</th>
+            <th>Operational MWp</th>
+            <th>BESS (licence)</th>
+            <th>BESS angle</th>
+            <th>Municipality</th>
+            <th>Licences (sample)</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td>GREENFIN ENERGIES KYRA LTD</td>
+    <td class="num">115.35</td>
+    <td class="num">115.35</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε004186/2023, Ε004185/2023, Ε004184/2023 (+13)</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="num">97.07</td>
+    <td class="num">97.07</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ύψωνα, Σουνι - Ζανατζιά</td>
+    <td class="lic">Ε004490/2024, Ε004489/2024, Ε004488/2024 (+20)</td>
+  </tr>
+<tr>
+    <td>ESC EASTERN SOLAR COMPANY LTD</td>
+    <td class="num">84.65</td>
+    <td class="num">84.65</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αυγόρου, Φρέναρος</td>
+    <td class="lic">Ε004081/2023, Ε004080/2023, Ε004079/2023 (+23)</td>
+  </tr>
+<tr>
+    <td>AGM SOLAR POWER LTD</td>
+    <td class="num">75.50</td>
+    <td class="num">75.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμπου, Ξυλοτύμβου</td>
+    <td class="lic">Ε004199/2023, Ε003512/2022, Ε003452/2022 (+10)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 90 LTD</td>
+    <td class="num">72.88</td>
+    <td class="num">72.88</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Γέρι, Λύμπια</td>
+    <td class="lic">Ε003925/2023, Ε003882/2023, Ε003881/2023 (+20)</td>
+  </tr>
+<tr>
+    <td>GKA SUNPOWER LTD</td>
+    <td class="num">57.05</td>
+    <td class="num">57.05</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πετροφάνι, Αλάμπρα</td>
+    <td class="lic">Ε004476/2024, Ε004454/2024, Ε004453/2024 (+19)</td>
+  </tr>
+<tr>
+    <td>SAOLA LTD</td>
+    <td class="num">50.80</td>
+    <td class="num">50.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιο Θεόδωρο, Αλαμινό</td>
+    <td class="lic">Ε005004/2025, Ε005003/2025, Ε005002/2025 (+10)</td>
+  </tr>
+<tr>
+    <td>SOLEK LARNAKA I LTD</td>
+    <td class="num">47.34</td>
+    <td class="num">47.34</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αλαμινό, Αλαμινός</td>
+    <td class="lic">Ε004220/2023, Ε004049/2023, Ε003930/2023 (+12)</td>
+  </tr>
+<tr>
+    <td>AGM LIGHTPOWER LTD</td>
+    <td class="num">46.00</td>
+    <td class="num">46.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Λουρουκίνα, Κοκκινοτριμιθιά</td>
+    <td class="lic">Ε004031/2023, Ε003398/2022, Ε003330/2022 (+6)</td>
+  </tr>
+<tr>
+    <td>GP RODIK SERVICES LTD</td>
+    <td class="num">45.20</td>
+    <td class="num">45.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αβδελερό</td>
+    <td class="lic">Ε004748/2025, Ε004747/2025, Ε004746/2025 (+8)</td>
+  </tr>
+<tr>
+    <td>CALIFERA LTD</td>
+    <td class="num">44.52</td>
+    <td class="num">44.52</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αλαμινός</td>
+    <td class="lic">Ε004127/2023, Ε004126/2023, Ε004125/2023 (+5)</td>
+  </tr>
+<tr>
+    <td>IGVA SOLAR ENERGY LTD</td>
+    <td class="num">35.22</td>
+    <td class="num">35.22</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ορμήδεια, Πετροφάνι</td>
+    <td class="lic">Ε004875/2025, Ε004874/2025, Ε004850/2025 (+5)</td>
+  </tr>
+<tr>
+    <td>ONERED LTD</td>
+    <td class="num">32.78</td>
+    <td class="num">32.78</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Κιβισίλι, Σοφτιάδες</td>
+    <td class="lic">Ε004915/2025, Ε004914/2025, Ε004088/2023 (+3)</td>
+  </tr>
+<tr>
+    <td>HELLENIQ RENEWABLES CYPRUS AGIA VARVARA LTD</td>
+    <td class="num">28.43</td>
+    <td class="num">28.43</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάνω Δευτερά, Λινού</td>
+    <td class="lic">Ε004707/2025, Ε004632/2025, Ε004631/2025 (+5)</td>
+  </tr>
+<tr>
+    <td>REVESIUS LTD</td>
+    <td class="num">26.80</td>
+    <td class="num">26.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πύργος, Πύργο</td>
+    <td class="lic">Ε004166/2023, Ε004165/2023, Ε004164/2023 (+2)</td>
+  </tr>
+<tr>
+    <td>L. E. EVERGREEN ENERGY LTD</td>
+    <td class="num">26.00</td>
+    <td class="num">26.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αλέκτορα</td>
+    <td class="lic">Ε003393/2022, Ε003392/2022, Ε003391/2022 (+2)</td>
+  </tr>
+<tr>
+    <td>PHOENIX POWER 4 LTD</td>
+    <td class="num">22.40</td>
+    <td class="num">22.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε004672/2025, Ε004422/2024, Ε004421/2024</td>
+  </tr>
+<tr>
+    <td>ERGO ENERGY PV PARKS LTD</td>
+    <td class="num">22.16</td>
+    <td class="num">22.16</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πισσούρι, Πραστιό Αυδήμου</td>
+    <td class="lic">Ε004563/2024, Ε004350/2024, Ε003774/2022 (+3)</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (TSERI 2) LTD</td>
+    <td class="num">21.12</td>
+    <td class="num">21.12</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αλάμπρα, Δήμος Τσερίου</td>
+    <td class="lic">Ε005091/2025, Ε004187/2023, Ε003960/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>G.F. CYSOLAR PVP1 LTD</td>
+    <td class="num">20.45</td>
+    <td class="num">20.45</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε003986/2023, Ε003985/2023, Ε003984/2023 (+3)</td>
+  </tr>
+<tr>
+    <td>ΑΗΚ - ΙΑΚ ΑΧΕΡΑ ΑΝΑΝΕΩΣΙΜΕΣ ΛΤΔ</td>
+    <td class="num">20.00</td>
+    <td class="num">20.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε003257/2021, Ε003256/2021, Ε003255/2021 (+1)</td>
+  </tr>
+<tr>
+    <td>GKA ENERGY LTD</td>
+    <td class="num">18.82</td>
+    <td class="num">18.82</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δρούσεια, Φρέναρος</td>
+    <td class="lic">Ε004819/2025, Ε004818/2025, Ε004782/2025 (+6)</td>
+  </tr>
+<tr>
+    <td>PETROLINA ELECTRIC LTD</td>
+    <td class="num">18.61</td>
+    <td class="num">18.61</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Περιστερώνα, Καλό Χωριό Λάρνακας</td>
+    <td class="lic">Ε005070/2025, Ε005046/2025, Ε005045/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>HUBLOC ENERGY LTD</td>
+    <td class="num">18.32</td>
+    <td class="num">18.32</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πενταλιά, Αρμού</td>
+    <td class="lic">Ε004017/2023, Ε004016/2023, Ε004015/2023 (+5)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 46 LTD</td>
+    <td class="num">18.00</td>
+    <td class="num">18.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Καλό Χωριό Λάρνακας, Αραδίππου</td>
+    <td class="lic">Ε004313/2024, Ε004312/2024, Ε004311/2024 (+1)</td>
+  </tr>
+<tr>
+    <td>ESPERIA GREEN ENERGY LTD</td>
+    <td class="num">17.44</td>
+    <td class="num">17.44</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αγία Βαρβάρα, Πισσούρι</td>
+    <td class="lic">Ε005089/2025, Ε004429/2024, Ε003571/2022</td>
+  </tr>
+<tr>
+    <td>GKA SUNENERGY LTD</td>
+    <td class="num">16.82</td>
+    <td class="num">16.82</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πετροφάνι, Λύμπια</td>
+    <td class="lic">Ε004365/2024, Ε004364/2024, Ε004192/2023 (+4)</td>
+  </tr>
+<tr>
+    <td>FUTURE SUN POWER LTD</td>
+    <td class="num">16.30</td>
+    <td class="num">16.30</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Λύμπια, Σουνι - Ζανατζιά</td>
+    <td class="lic">Ε004235/2023, Ε004234/2023, Ε004233/2023 (+2)</td>
+  </tr>
+<tr>
+    <td>YM ENERGIAN (CYPRUS) LTD</td>
+    <td class="num">16.21</td>
+    <td class="num">16.21</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιο Θεόδωρο</td>
+    <td class="lic">Ε004857/2025, Ε004856/2025, Ε004855/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>SUN PADIVAN GROUP LTD</td>
+    <td class="num">15.34</td>
+    <td class="num">15.34</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004622/2025, Ε004621/2025, Ε004620/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>ΦΑΝΟΣ Ν. ΕΠΙΦΑΝΙΟΥ Δ.Ε. ΛΤΔ</td>
+    <td class="num">14.90</td>
+    <td class="num">14.90</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Βάβλα</td>
+    <td class="lic">Ε003829/2023, Ε003828/2023</td>
+  </tr>
+<tr>
+    <td>M.X. PUREENERGYINTEL LTD</td>
+    <td class="num">14.22</td>
+    <td class="num">14.22</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάχνα, Κάθηκας</td>
+    <td class="lic">Ε003560/2022, Ε003559/2022, Ε003523/2022 (+1)</td>
+  </tr>
+<tr>
+    <td>VATHIA GONIA SOLAR ENERGY LTD</td>
+    <td class="num">14.00</td>
+    <td class="num">14.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε003717/2022, Ε003716/2022</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (XYLOTYMBOU 1) LTD</td>
+    <td class="num">13.74</td>
+    <td class="num">13.74</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμβου</td>
+    <td class="lic">Ε005092/2025, Ε005090/2025</td>
+  </tr>
+<tr>
+    <td>ΑΡΗΣ ΑΘΛΗΤΙΚΕΣ ΕΓΚΑΤΑΣΤΑΣΕΙΣ ΛΤΔ</td>
+    <td class="num">12.70</td>
+    <td class="num">12.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μοναγρούλι</td>
+    <td class="lic">Ε004772/2025, Ε004771/2025, Ε004770/2025</td>
+  </tr>
+<tr>
+    <td>DAISYRISE VENTURES LTD</td>
+    <td class="num">11.50</td>
+    <td class="num">11.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Παρεκκλησιά, Ανώγυρα</td>
+    <td class="lic">Ε004817/2025, Ε004676/2025</td>
+  </tr>
+<tr>
+    <td>VANALIO HOLDINGS LTD</td>
+    <td class="num">11.50</td>
+    <td class="num">11.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε001958/2018, Ε001941/2018, Ε001940/2018 (+1)</td>
+  </tr>
+<tr>
+    <td>FIVE RED LTD</td>
+    <td class="num">10.97</td>
+    <td class="num">10.97</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αλαμινός, Τερσεφάνου</td>
+    <td class="lic">Ε004780/2025, Ε004777/2025, Ε004046/2023</td>
+  </tr>
+<tr>
+    <td>HELIOPEX 5 LTD</td>
+    <td class="num">10.80</td>
+    <td class="num">10.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πετροφάνι, Αθηαίνου</td>
+    <td class="lic">Ε004673/2025, Ε004615/2024</td>
+  </tr>
+<tr>
+    <td>EUNICE WIND PARK HOLDINGS (INTL) LTD</td>
+    <td class="num">10.70</td>
+    <td class="num">10.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Χωλέτρια</td>
+    <td class="lic">Ε003942/2023, Ε003710/2022, Ε003709/2022 (+2)</td>
+  </tr>
+<tr>
+    <td>MZEO LTD</td>
+    <td class="num">10.19</td>
+    <td class="num">10.19</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Σοζώμενος, Ιδαλίου</td>
+    <td class="lic">Ε004534/2024, Ε004363/2024, Ε004362/2024</td>
+  </tr>
+<tr>
+    <td>CYRUS SOLAR THERMAL LTD</td>
+    <td class="num">10.00</td>
+    <td class="num">10.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Καταλιόντας</td>
+    <td class="lic">Ε004059/2023, Ε004058/2023, Ε004057/2023</td>
+  </tr>
+<tr>
+    <td>EARTHLIGHT PARK LTD</td>
+    <td class="num">10.00</td>
+    <td class="num">10.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σωτήρα</td>
+    <td class="lic">Ε001986/2018, Ε001985/2018</td>
+  </tr>
+<tr>
+    <td>ELOADS ENERGIES STORAGE LTD</td>
+    <td class="num">9.95</td>
+    <td class="num">9.95</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηένου</td>
+    <td class="lic">Ε005102/2025, Ε005101/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 114 LTD</td>
+    <td class="num">9.50</td>
+    <td class="num">9.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμβου, Ξυλοτύμπου</td>
+    <td class="lic">Ε005050/2025, Ε005037/2025, Ε004285/2024 (+1)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 93 LTD</td>
+    <td class="num">9.50</td>
+    <td class="num">9.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ξυλοφάγου, Σωτήρα</td>
+    <td class="lic">Ε003756/2022, Ε003670/2022</td>
+  </tr>
+<tr>
+    <td>GREENIUM ENERGY LTD</td>
+    <td class="num">9.46</td>
+    <td class="num">9.46</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε004273/2024, Ε004272/2024</td>
+  </tr>
+<tr>
+    <td>TFC DEVELOMENTS LTD</td>
+    <td class="num">9.26</td>
+    <td class="num">9.26</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε001992/2018, Ε001991/2018</td>
+  </tr>
+<tr>
+    <td>SOLAR FLOW ENERGY LTD</td>
+    <td class="num">9.20</td>
+    <td class="num">9.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μοναγρούλλι, Μοναγρούλι</td>
+    <td class="lic">Ε004550/2024, Ε004549/2024</td>
+  </tr>
+<tr>
+    <td>A&amp;T ENERGY LTD</td>
+    <td class="num">9.00</td>
+    <td class="num">9.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμβου, Πολέμι</td>
+    <td class="lic">Ε003513/2022, Ε003462/2022, Ε003461/2022</td>
+  </tr>
+<tr>
+    <td>MANDRILL LTD</td>
+    <td class="num">8.00</td>
+    <td class="num">8.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πετροφάνι</td>
+    <td class="lic">Ε005020/2025</td>
+  </tr>
+<tr>
+    <td>POLYSTEP (ENERGY) LTD</td>
+    <td class="num">8.00</td>
+    <td class="num">8.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Κυβισίλι</td>
+    <td class="lic">Ε003777/2022</td>
+  </tr>
+<tr>
+    <td>ELECTRILO LTD</td>
+    <td class="num">8.00</td>
+    <td class="num">8.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Απεσιά, Χοιροκοιτία</td>
+    <td class="lic">Ε004455/2024, Ε004367/2024, Ε004366/2024</td>
+  </tr>
+<tr>
+    <td>GIANKO1 SOLAR LTD</td>
+    <td class="num">7.95</td>
+    <td class="num">7.95</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δωρά</td>
+    <td class="lic">Ε002563/2019</td>
+  </tr>
+<tr>
+    <td>PETROLINA ENERGY LTD</td>
+    <td class="num">7.92</td>
+    <td class="num">7.92</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αραδίππου, Πάνω Δευτερά</td>
+    <td class="lic">Ε005067/2025, Ε004778/2025, Ε002569/2019 (+1)</td>
+  </tr>
+<tr>
+    <td>M.A.X.X. ENERGY GR LTD</td>
+    <td class="num">7.79</td>
+    <td class="num">7.79</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ασγάτα, Ξυλοτύμπου</td>
+    <td class="lic">Ε003525/2022, Ε003522/2022</td>
+  </tr>
+<tr>
+    <td>RISANTHI LTD</td>
+    <td class="num">7.54</td>
+    <td class="num">7.54</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αγιοί Τριμιθιάς, Δάλι</td>
+    <td class="lic">Ε005128/2025, Ε005127/2025</td>
+  </tr>
+<tr>
+    <td>RENERGETIC LTD</td>
+    <td class="num">7.52</td>
+    <td class="num">7.52</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάνω Δευτερά</td>
+    <td class="lic">Ε003533/2022</td>
+  </tr>
+<tr>
+    <td>SOLEK LEMESOS I LTD</td>
+    <td class="num">7.43</td>
+    <td class="num">7.43</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πισσούρι</td>
+    <td class="lic">Ε004116/2023</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (AGLANTZIA 1) LTD</td>
+    <td class="num">7.36</td>
+    <td class="num">7.36</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αγλαντζιά</td>
+    <td class="lic">Ε005093/2025</td>
+  </tr>
+<tr>
+    <td>CARCALINA LTD</td>
+    <td class="num">7.30</td>
+    <td class="num">7.30</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Λινού</td>
+    <td class="lic">Ε004807/2025</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (TSERI) LTD</td>
+    <td class="num">7.20</td>
+    <td class="num">7.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμος Τσερίου</td>
+    <td class="lic">Ε003958/2023</td>
+  </tr>
+<tr>
+    <td>CYRUS POWER LTD</td>
+    <td class="num">7.09</td>
+    <td class="num">7.09</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πολιτικό, Σια</td>
+    <td class="lic">Ε004251/2024, Ε004250/2024</td>
+  </tr>
+<tr>
+    <td>PV SUNSET LTD</td>
+    <td class="num">7.06</td>
+    <td class="num">7.06</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μοναγρούλι</td>
+    <td class="lic">Ε003665/2022, Ε003664/2022, Ε003591/2022</td>
+  </tr>
+<tr>
+    <td>BP-S 152 LTD</td>
+    <td class="num">7.00</td>
+    <td class="num">7.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιο Θεόδωρο, Άγιος Θεόδωρος</td>
+    <td class="lic">Ε005088/2025, Ε005087/2025, Ε004605/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 124 LTD</td>
+    <td class="num">7.00</td>
+    <td class="num">7.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Π. Κουτραφά, Πάνω Κουτραφάς</td>
+    <td class="lic">Ε005028/2025, Ε005027/2025, Ε005026/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>PHOENIX POWER 3 LTD</td>
+    <td class="num">7.00</td>
+    <td class="num">7.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ορμήδεια</td>
+    <td class="lic">Ε004141/2023, Ε004140/2023</td>
+  </tr>
+<tr>
+    <td>ZELDE HOLDINGS LTD</td>
+    <td class="num">6.85</td>
+    <td class="num">6.85</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αναφωτία</td>
+    <td class="lic">Ε004916/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 87 LTD</td>
+    <td class="num">6.80</td>
+    <td class="num">6.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τερσεφάνου, Άχνα</td>
+    <td class="lic">Ε003924/2023, Ε003541/2022, Ε003538/2022 (+1)</td>
+  </tr>
+<tr>
+    <td>HELIOPEX 3 LTD</td>
+    <td class="num">6.73</td>
+    <td class="num">6.73</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δάλι</td>
+    <td class="lic">Ε004356/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 113 LTD</td>
+    <td class="num">6.70</td>
+    <td class="num">6.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πετροφάνι</td>
+    <td class="lic">Ε004561/2024, Ε004560/2024, Ε004274/2024</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (FAMAGUSTA) LTD</td>
+    <td class="num">6.53</td>
+    <td class="num">6.53</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δήμος Σωτήρας</td>
+    <td class="lic">Ε003572/2022</td>
+  </tr>
+<tr>
+    <td>CROTALINA LTD</td>
+    <td class="num">6.50</td>
+    <td class="num">6.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δρομολαξιά-Μενεού-Τερσεφάνου</td>
+    <td class="lic">Ε004774/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 109 LTD</td>
+    <td class="num">6.40</td>
+    <td class="num">6.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αθηαίνου</td>
+    <td class="lic">Ε004241/2023, Ε004201/2023</td>
+  </tr>
+<tr>
+    <td>HELIOPEX 1 LTD</td>
+    <td class="num">6.23</td>
+    <td class="num">6.23</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Σωζόμενος</td>
+    <td class="lic">Ε004354/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 110 LTD</td>
+    <td class="num">6.15</td>
+    <td class="num">6.15</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε003645/2022, Ε003537/2022</td>
+  </tr>
+<tr>
+    <td>PLETEA INVESTMENTS LTD</td>
+    <td class="num">6.11</td>
+    <td class="num">6.11</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηαίνου</td>
+    <td class="lic">Ε004735/2025</td>
+  </tr>
+<tr>
+    <td>GALBENITA LTD</td>
+    <td class="num">6.05</td>
+    <td class="num">6.05</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αβδελερό</td>
+    <td class="lic">Ε004575/2024</td>
+  </tr>
+<tr>
+    <td>ACV SOUNI SOLAR VALLEY LTD</td>
+    <td class="num">6.00</td>
+    <td class="num">6.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σούνι</td>
+    <td class="lic">Ε003799/2023</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (AYIA NAPA 1) LTD</td>
+    <td class="num">5.99</td>
+    <td class="num">5.99</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγία Νάπα</td>
+    <td class="lic">Ε004206/2023</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΠΟΛΕΜΙΔΙΩΝ</td>
+    <td class="num">5.90</td>
+    <td class="num">5.90</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Κάτω Πολεμίδια</td>
+    <td class="lic">Ε004677/2025</td>
+  </tr>
+<tr>
+    <td>ARNAL VERDE LTD</td>
+    <td class="num">5.77</td>
+    <td class="num">5.77</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Μάμας, Σια</td>
+    <td class="lic">Ε003520/2022, Ε003518/2022, Ε003511/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 88 LTD</td>
+    <td class="num">5.70</td>
+    <td class="num">5.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου, Τρούλλοι</td>
+    <td class="lic">Ε003536/2022, Ε003399/2022</td>
+  </tr>
+<tr>
+    <td>PVP ECOSAVER ENERGY LTD</td>
+    <td class="num">5.59</td>
+    <td class="num">5.59</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμβου</td>
+    <td class="lic">Ε005058/2025, Ε005057/2025, Ε005056/2025 (+1)</td>
+  </tr>
+<tr>
+    <td>S.S.H. SOLAR ENERGY PLUS LTD</td>
+    <td class="num">5.56</td>
+    <td class="num">5.56</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε004912/2025, Ε004613/2024, Ε004221/2023</td>
+  </tr>
+<tr>
+    <td>BP-S 140 LTD</td>
+    <td class="num">5.50</td>
+    <td class="num">5.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμβου, Ξυλοτύμπου</td>
+    <td class="lic">Ε005038/2025, Ε004548/2024</td>
+  </tr>
+<tr>
+    <td>JPB ENERGY LTD</td>
+    <td class="num">5.50</td>
+    <td class="num">5.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μοναγρούλι, Πολέμι</td>
+    <td class="lic">Ε004646/2025, Ε003469/2022</td>
+  </tr>
+<tr>
+    <td>D.K. SOLAR PROJECT HOLDINGS LTD</td>
+    <td class="num">5.50</td>
+    <td class="num">5.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε003711/2022</td>
+  </tr>
+<tr>
+    <td>AGRISOLAR LTD</td>
+    <td class="num">5.39</td>
+    <td class="num">5.39</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάνω Κουτραφάς</td>
+    <td class="lic">Ε004769/2025, Ε004768/2025</td>
+  </tr>
+<tr>
+    <td>MEZIA LTD</td>
+    <td class="num">5.32</td>
+    <td class="num">5.32</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μοναγρούλλι</td>
+    <td class="lic">Ε004335/2024</td>
+  </tr>
+<tr>
+    <td>ENERGYVERSE LTD</td>
+    <td class="num">5.10</td>
+    <td class="num">5.10</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Σκαρίνου</td>
+    <td class="lic">Ε004336/2024</td>
+  </tr>
+<tr>
+    <td>SUNFAN LTD</td>
+    <td class="num">5.06</td>
+    <td class="num">5.06</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε004323/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 75 LTD</td>
+    <td class="num">5.05</td>
+    <td class="num">5.05</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πύλα, Αλεθρικό</td>
+    <td class="lic">Ε003073/2021, Ε003045/2021, Ε002566/2019</td>
+  </tr>
+<tr>
+    <td>SIDESUNNY.COM CYPRUS LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μαραθούντα, Αρμού</td>
+    <td class="lic">Ε005025/2025, Ε004878/2025, Ε004825/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>K. ROUKWOOUDEN.SPEARGUNS LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πέγεια</td>
+    <td class="lic">Ε004139/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 70 LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αναφωτίδα</td>
+    <td class="lic">Ε003945/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 91 LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003923/2023</td>
+  </tr>
+<tr>
+    <td>INTENTIONS GREEN LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμος Αραδίππου</td>
+    <td class="lic">Ε003713/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 71 LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ψημολόφου, Ορούντα</td>
+    <td class="lic">Ε003484/2022, Ε002645/2020, Ε002105/2018</td>
+  </tr>
+<tr>
+    <td>ASP 304 SOLAR LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αυδήμου</td>
+    <td class="lic">Ε001954/2018</td>
+  </tr>
+<tr>
+    <td>HELLENIQ RENEWABLES CYPRUS ALAMINOS LTD</td>
+    <td class="num">4.91</td>
+    <td class="num">4.91</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άχνα, Αυγόρου</td>
+    <td class="lic">Ε004321/2024, Ε004320/2024</td>
+  </tr>
+<tr>
+    <td>CYSW SOLAR WORLD LTD</td>
+    <td class="num">4.90</td>
+    <td class="num">4.90</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ανάγεια &amp; Εργάτες</td>
+    <td class="lic">Ε003450/2022</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (TSERI 3) LTD</td>
+    <td class="num">4.75</td>
+    <td class="num">4.75</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμος Τσερίου</td>
+    <td class="lic">Ε004000/2023</td>
+  </tr>
+<tr>
+    <td>BP-S 137 LTD</td>
+    <td class="num">4.70</td>
+    <td class="num">4.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ορμήδεια</td>
+    <td class="lic">Ε004695/2025, Ε004530/2024</td>
+  </tr>
+<tr>
+    <td>SUBARROW INVESTMENTS LTD</td>
+    <td class="num">4.70</td>
+    <td class="num">4.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Θεόδωρος</td>
+    <td class="lic">Ε004576/2024, Ε003997/2023</td>
+  </tr>
+<tr>
+    <td>RED RAIN LTD</td>
+    <td class="num">4.70</td>
+    <td class="num">4.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Στενή, Λυσό</td>
+    <td class="lic">Ε004204/2023, Ε004203/2023</td>
+  </tr>
+<tr>
+    <td>BP-S 133 LTD</td>
+    <td class="num">4.65</td>
+    <td class="num">4.65</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Στρουμπί</td>
+    <td class="lic">Ε005036/2025, Ε004574/2024, Ε004520/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 108 LTD</td>
+    <td class="num">4.65</td>
+    <td class="num">4.65</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ορμήδεια, Ξυλοφάγου</td>
+    <td class="lic">Ε004670/2025, Ε004358/2024, Ε004136/2023 (+2)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 73 LTD</td>
+    <td class="num">4.61</td>
+    <td class="num">4.61</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάχνα, Ορούντα</td>
+    <td class="lic">Ε003240/2021, Ε003050/2021, Ε003010/2021</td>
+  </tr>
+<tr>
+    <td>IVSMM ENERGY LTD</td>
+    <td class="num">4.60</td>
+    <td class="num">4.60</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηαίνου</td>
+    <td class="lic">Ε004566/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 86 LTD</td>
+    <td class="num">4.55</td>
+    <td class="num">4.55</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Φρέναρος, Τσέρι</td>
+    <td class="lic">Ε003755/2022, Ε003544/2022, Ε003467/2022 (+1)</td>
+  </tr>
+<tr>
+    <td>BP-S 153 LTD</td>
+    <td class="num">4.50</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δρομολαξιά</td>
+    <td class="lic">Ε004910/2025, Ε004909/2025, Ε004908/2025</td>
+  </tr>
+<tr>
+    <td>CCK ALTENERGO ENTERPRISES - PROJECT 1 LTD</td>
+    <td class="num">4.50</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004407/2024, Ε004406/2024</td>
+  </tr>
+<tr>
+    <td>G.V.P. SOLAR ENERGY 2 LTD</td>
+    <td class="num">4.50</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πόλη Χρυσοχούς</td>
+    <td class="lic">Ε003991/2023</td>
+  </tr>
+<tr>
+    <td>KERIA ENERGY LTD</td>
+    <td class="num">4.50</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε003941/2023</td>
+  </tr>
+<tr>
+    <td>SONTSE PV ALPHA LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε003993/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 76 LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Στενή, Πάχνα</td>
+    <td class="lic">Ε003493/2022, Ε003492/2022, Ε003463/2022 (+1)</td>
+  </tr>
+<tr>
+    <td>HELIOTRICITY LOFOU PV PARKS LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Θεράπων</td>
+    <td class="lic">Ε002644/2020</td>
+  </tr>
+<tr>
+    <td>ROYAL VALLEY HOLDINGS LTD</td>
+    <td class="num">4.35</td>
+    <td class="num">4.35</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ποταμιά</td>
+    <td class="lic">Ε004711/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 101 LTD</td>
+    <td class="num">4.35</td>
+    <td class="num">4.35</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αθηένου, Τρούλλοι</td>
+    <td class="lic">Ε003754/2022, Ε003009/2021, Ε002253/2019</td>
+  </tr>
+<tr>
+    <td>DAROSTEL LTD</td>
+    <td class="num">4.30</td>
+    <td class="num">4.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε004113/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 51 LTD</td>
+    <td class="num">4.30</td>
+    <td class="num">4.30</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Κάτω Κουτραφάς</td>
+    <td class="lic">Ε002085/2018</td>
+  </tr>
+<tr>
+    <td>M.A.C. YIOFYRKA ENERGY LTD</td>
+    <td class="num">4.20</td>
+    <td class="num">4.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Λυθρδόντα</td>
+    <td class="lic">Ε004349/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 96 LTD</td>
+    <td class="num">4.15</td>
+    <td class="num">4.15</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δρομολαξιά, Μαργί</td>
+    <td class="lic">Ε004065/2023, Ε003961/2023, Ε003758/2022</td>
+  </tr>
+<tr>
+    <td>L.K. ENERGY LTD</td>
+    <td class="num">4.10</td>
+    <td class="num">4.10</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε002741/2020</td>
+  </tr>
+<tr>
+    <td>HELIOPEX 2 LTD</td>
+    <td class="num">4.04</td>
+    <td class="num">4.04</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ποταμιά</td>
+    <td class="lic">Ε004355/2024</td>
+  </tr>
+<tr>
+    <td>IACOVOU PV PARK 1 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Λεύκαρα-Κόρνο</td>
+    <td class="lic">Ε004614/2024</td>
+  </tr>
+<tr>
+    <td>R.E. ECO EMPORIO LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004564/2024</td>
+  </tr>
+<tr>
+    <td>SOLAR NOVA LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004492/2024</td>
+  </tr>
+<tr>
+    <td>RAYGENIX LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Σούσκιου</td>
+    <td class="lic">Ε004443/2024</td>
+  </tr>
+<tr>
+    <td>SIMF SUN ENERGY LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σοφτάδες</td>
+    <td class="lic">Ε004246/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 78 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άχνα, Πάχνα</td>
+    <td class="lic">Ε003920/2023, Ε003464/2022, Ε003336/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 20 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε003359/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 65 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άχνας</td>
+    <td class="lic">Ε002772/2020</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 25 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε001915/2018</td>
+  </tr>
+<tr>
+    <td>BP-S 131 LTD</td>
+    <td class="num">3.90</td>
+    <td class="num">3.90</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Θρινιά, Φυτή</td>
+    <td class="lic">Ε004519/2024, Ε004518/2024, Ε004517/2024</td>
+  </tr>
+<tr>
+    <td>PVP ECOSPARKS ENERGY LTD</td>
+    <td class="num">3.89</td>
+    <td class="num">3.89</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμβου</td>
+    <td class="lic">Ε005061/2025, Ε005060/2025, Ε005059/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 77 LTD</td>
+    <td class="num">3.75</td>
+    <td class="num">3.75</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάχνα, Ορούντα</td>
+    <td class="lic">Ε003494/2022, Ε002716/2020, Ε002567/2019</td>
+  </tr>
+<tr>
+    <td>PHOENIX POWER 5 LTD</td>
+    <td class="num">3.70</td>
+    <td class="num">3.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ορμήδεια</td>
+    <td class="lic">Ε004604/2024</td>
+  </tr>
+<tr>
+    <td>SONTSE PV BETA LTD</td>
+    <td class="num">3.62</td>
+    <td class="num">3.62</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μαρώνι</td>
+    <td class="lic">Ε003994/2023</td>
+  </tr>
+<tr>
+    <td>GREENFIN ENERGIES LTD</td>
+    <td class="num">3.60</td>
+    <td class="num">3.60</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Φρέναρος</td>
+    <td class="lic">Ε003741/2022</td>
+  </tr>
+<tr>
+    <td>BP-S 102 LTD</td>
+    <td class="num">3.60</td>
+    <td class="num">3.60</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ποτάμι</td>
+    <td class="lic">Ε003540/2022, Ε002132/2018, Ε001923/2018</td>
+  </tr>
+<tr>
+    <td>BP-S 157 LTD</td>
+    <td class="num">3.50</td>
+    <td class="num">3.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πισσούρι</td>
+    <td class="lic">Ε005042/2025, Ε005041/2025</td>
+  </tr>
+<tr>
+    <td>G.V.P SOLAR ENERGY LTD</td>
+    <td class="num">3.50</td>
+    <td class="num">3.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Χολέτρια</td>
+    <td class="lic">Ε003968/2023</td>
+  </tr>
+<tr>
+    <td>SARAPIS ENERGY LTD</td>
+    <td class="num">3.43</td>
+    <td class="num">3.43</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σίμου</td>
+    <td class="lic">Ε004357/2024</td>
+  </tr>
+<tr>
+    <td>K. KYTHREOTIS HOLDINGS PUBLIC LTD</td>
+    <td class="num">3.42</td>
+    <td class="num">3.42</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ύψωνας</td>
+    <td class="lic">Ε005124/2025, Ε005123/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 100 LTD</td>
+    <td class="num">3.40</td>
+    <td class="num">3.40</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άχνα, Αυγόρου</td>
+    <td class="lic">Ε005006/2025, Ε005005/2025, Ε004691/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 69 LTD</td>
+    <td class="num">3.35</td>
+    <td class="num">3.35</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Απλάντα, Αυγόρου</td>
+    <td class="lic">Ε003992/2023, Ε003543/2022, Ε002564/2019</td>
+  </tr>
+<tr>
+    <td>BP-S 139 LTD</td>
+    <td class="num">3.30</td>
+    <td class="num">3.30</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε004532/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 98 LTD</td>
+    <td class="num">3.21</td>
+    <td class="num">3.21</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αναφωτίδα, Κιβισίλι</td>
+    <td class="lic">Ε003950/2023, Ε003949/2023, Ε003947/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>BP-S 151 LTD</td>
+    <td class="num">3.20</td>
+    <td class="num">3.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε004557/2024, Ε004556/2024</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΑΘΗΕΝΟΥ</td>
+    <td class="num">3.20</td>
+    <td class="num">3.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμο Αθηένου</td>
+    <td class="lic">Ε004205/2023</td>
+  </tr>
+<tr>
+    <td>HELLENIQ RENEWABLES CYPRUS PACHNA LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αψιού</td>
+    <td class="lic">Ε004708/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 121 LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηένου</td>
+    <td class="lic">Ε004535/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 138 LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Θρινιά, Θελέτρα</td>
+    <td class="lic">Ε004531/2024, Ε004524/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 127 LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τσέρι, Εργάτες</td>
+    <td class="lic">Ε004513/2024, Ε004318/2024</td>
+  </tr>
+<tr>
+    <td>SOLARITY LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Ιωάννης Μαλούντας</td>
+    <td class="lic">Ε004289/2024</td>
+  </tr>
+<tr>
+    <td>Y&amp;K SOLAR ENERGY LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε004280/2024</td>
+  </tr>
+<tr>
+    <td>OPAE ODYSSEOS RENEWABLE SOLUTIONS LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Απεσιά</td>
+    <td class="lic">Ε004119/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 72 LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Περιστερώνα, Ποτάμι</td>
+    <td class="lic">Ε003326/2022, Ε003232/2021</td>
+  </tr>
+<tr>
+    <td>ABOVENERGY LTD</td>
+    <td class="num">2.99</td>
+    <td class="num">2.99</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηένου, Τερσεφάνου</td>
+    <td class="lic">Ε005040/2025, Ε005039/2025</td>
+  </tr>
+<tr>
+    <td>ALIRION SOLAR ENERGY LTD</td>
+    <td class="num">2.82</td>
+    <td class="num">2.82</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αστρομερίτης, Περιστερώνα</td>
+    <td class="lic">Ε004001/2023, Ε003858/2023</td>
+  </tr>
+<tr>
+    <td>PANWA GREEN SUNRISE PV PARK 1 LTD</td>
+    <td class="num">2.80</td>
+    <td class="num">2.80</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αλάμπρα</td>
+    <td class="lic">Ε004025/2023</td>
+  </tr>
+<tr>
+    <td>THE CYPRUS CEMENT PUBLIC COMPANY LTD</td>
+    <td class="num">2.80</td>
+    <td class="num">2.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τόχνη</td>
+    <td class="lic">Ε003573/2022</td>
+  </tr>
+<tr>
+    <td>LEALOUS LTD</td>
+    <td class="num">2.76</td>
+    <td class="num">2.76</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δρομολαξιά</td>
+    <td class="lic">Ε004715/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 57 LTD</td>
+    <td class="num">2.70</td>
+    <td class="num">2.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηένου</td>
+    <td class="lic">Ε004973/2025, Ε003234/2021</td>
+  </tr>
+<tr>
+    <td>BP-S 154 LTD</td>
+    <td class="num">2.70</td>
+    <td class="num">2.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δρομολαξιά</td>
+    <td class="lic">Ε004776/2025, Ε004775/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 80 LTD</td>
+    <td class="num">2.70</td>
+    <td class="num">2.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου, Τρούλλοι</td>
+    <td class="lic">Ε003451/2022, Ε003044/2021</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 8 LTD</td>
+    <td class="num">2.66</td>
+    <td class="num">2.66</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Παλαιομέτοχο, Παλαιμέτοχο</td>
+    <td class="lic">Ε005119/2025, Ε005065/2025</td>
+  </tr>
+<tr>
+    <td>RAGECO LTD</td>
+    <td class="num">2.62</td>
+    <td class="num">2.62</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Περιστερώνα, Αστρομερίτη</td>
+    <td class="lic">Ε004240/2023, Ε004202/2023, Ε004195/2023</td>
+  </tr>
+<tr>
+    <td>ΤΜΗΜΑ ΑΝΑΠΤΥΞΕΩΣ ΥΔΑΤΩΝ</td>
+    <td class="num">2.60</td>
+    <td class="num">2.60</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάνω Δευτερά, Κλαυδιά</td>
+    <td class="lic">Ε004828/2025, Ε004589/2024, Ε004588/2024 (+4)</td>
+  </tr>
+<tr>
+    <td>SOLARWISE SOLUTIONS LTD</td>
+    <td class="num">2.58</td>
+    <td class="num">2.58</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Στενή</td>
+    <td class="lic">Ε005097/2025</td>
+  </tr>
+<tr>
+    <td>SUNREA ENERGY 2 LTD</td>
+    <td class="num">2.51</td>
+    <td class="num">2.51</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε003432/2022, Ε003431/2022, Ε003430/2022</td>
+  </tr>
+<tr>
+    <td>RAGUNA LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μαθικολώνη</td>
+    <td class="lic">Ε005077/2025</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 7 LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Φασούλα</td>
+    <td class="lic">Ε005064/2025, Ε005063/2025</td>
+  </tr>
+<tr>
+    <td>A.F. NEW-AGE CONSTRUCTIONS LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ποτάμι</td>
+    <td class="lic">Ε004423/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 82 LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου, Άχνα</td>
+    <td class="lic">Ε003922/2023, Ε003100/2021, Ε003099/2021</td>
+  </tr>
+<tr>
+    <td>EMSH MEDITERRANEAN SOLAR HARVEST LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ασγάτα</td>
+    <td class="lic">Ε003712/2022</td>
+  </tr>
+<tr>
+    <td>BP-S 103 LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Κουτραφάς, Κάτω Κουτραφάς</td>
+    <td class="lic">Ε003466/2022, Ε001937/2018</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 89 LTD</td>
+    <td class="num">2.40</td>
+    <td class="num">2.40</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τόχνη, Τερσεφάνου</td>
+    <td class="lic">Ε004525/2024, Ε003757/2022</td>
+  </tr>
+<tr>
+    <td>ABIO GREENERGY LTD</td>
+    <td class="num">2.39</td>
+    <td class="num">2.39</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ψεματισμένος</td>
+    <td class="lic">Ε003489/2022</td>
+  </tr>
+<tr>
+    <td>BP-S 126 LTD</td>
+    <td class="num">2.30</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τόχνη</td>
+    <td class="lic">Ε004338/2024</td>
+  </tr>
+<tr>
+    <td>FRONTARICO LTD</td>
+    <td class="num">2.30</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Παλώδια</td>
+    <td class="lic">Ε003449/2022</td>
+  </tr>
+<tr>
+    <td>CAVERAT INVESTMENTS LTD</td>
+    <td class="num">2.30</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Καλό Χωριό</td>
+    <td class="lic">Ε003429/2022</td>
+  </tr>
+<tr>
+    <td>DROMON ENERGY LTD</td>
+    <td class="num">2.28</td>
+    <td class="num">2.28</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Δημητριανός</td>
+    <td class="lic">Ε004877/2025</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 5 LTD</td>
+    <td class="num">2.23</td>
+    <td class="num">2.23</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αλάμπρα</td>
+    <td class="lic">Ε005022/2025, Ε004848/2025</td>
+  </tr>
+<tr>
+    <td>Y.A. PV ENERGY LTD</td>
+    <td class="num">2.20</td>
+    <td class="num">2.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πραστιό Αυδήμου</td>
+    <td class="lic">Ε004092/2023</td>
+  </tr>
+<tr>
+    <td>CYRUS ENERGY LTD</td>
+    <td class="num">2.16</td>
+    <td class="num">2.16</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πέρα</td>
+    <td class="lic">Ε004633/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 79 LTD</td>
+    <td class="num">2.15</td>
+    <td class="num">2.15</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Σίμου, Ψημολόφου</td>
+    <td class="lic">Ε003465/2022, Ε003051/2021</td>
+  </tr>
+<tr>
+    <td>ZECORANO ENERGY LTD</td>
+    <td class="num">2.12</td>
+    <td class="num">2.12</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε004265/2024</td>
+  </tr>
+<tr>
+    <td>SHERBETIFY LTD</td>
+    <td class="num">2.10</td>
+    <td class="num">2.10</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ορμήδεια, Ξυλοτύμπου</td>
+    <td class="lic">Ε004279/2024, Ε004276/2024</td>
+  </tr>
+<tr>
+    <td>PONDEROZA SOLAR PARK LTD</td>
+    <td class="num">2.10</td>
+    <td class="num">2.10</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε003590/2022</td>
+  </tr>
+<tr>
+    <td>GREENDORADO ENERGIES LTD</td>
+    <td class="num">2.10</td>
+    <td class="num">2.10</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε003486/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 59 LTD</td>
+    <td class="num">2.08</td>
+    <td class="num">2.08</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Στενή, Λύμπια</td>
+    <td class="lic">Ε003361/2022, Ε002565/2019</td>
+  </tr>
+<tr>
+    <td>PATELIA HOLDINGS LTD</td>
+    <td class="num">2.06</td>
+    <td class="num">2.06</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Περιστερώνα, Αστρομερίτη</td>
+    <td class="lic">Ε004037/2023, Ε003934/2023, Ε003933/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>BP-S 107 LTD</td>
+    <td class="num">2.05</td>
+    <td class="num">2.05</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004270/2024, Ε004114/2023</td>
+  </tr>
+<tr>
+    <td>STENOS LTD</td>
+    <td class="num">2.02</td>
+    <td class="num">2.02</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε002986/2021</td>
+  </tr>
+<tr>
+    <td>BP-S 119 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Λύμπια</td>
+    <td class="lic">Ε004806/2025, Ε004705/2025</td>
+  </tr>
+<tr>
+    <td>WINVESTPOLIS ENERGY LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε004641/2025</td>
+  </tr>
+<tr>
+    <td>R.E. SUN SUSTAIN LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004565/2024</td>
+  </tr>
+<tr>
+    <td>PALMANOVA ENERGY LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τσερίου</td>
+    <td class="lic">Ε004552/2024</td>
+  </tr>
+<tr>
+    <td>NAYAN ENTERPRISES LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τρούλλοι</td>
+    <td class="lic">Ε004417/2024</td>
+  </tr>
+<tr>
+    <td>JOIST ENERGY LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Χωλέτρια</td>
+    <td class="lic">Ε004271/2024</td>
+  </tr>
+<tr>
+    <td>DC.AC &amp; RENEWABLES LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πόλη Χρυσοχούς</td>
+    <td class="lic">Ε004147/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 63 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003534/2022</td>
+  </tr>
+<tr>
+    <td>G.A.P. TRADING &amp; SERVICES LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγίοι Τριμιθιάς</td>
+    <td class="lic">Ε003380/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 39 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003334/2022</td>
+  </tr>
+<tr>
+    <td>BP-S 104 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Φιλούσα</td>
+    <td class="lic">Ε003238/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 81 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τρούλλοι</td>
+    <td class="lic">Ε003011/2021</td>
+  </tr>
+<tr>
+    <td>TXMN ENERGY LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σωτήρα</td>
+    <td class="lic">Ε002140/2019</td>
+  </tr>
+<tr>
+    <td>S.S.H. SOLAR ENERGY 01 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Γεράσα</td>
+    <td class="lic">Ε004577/2024</td>
+  </tr>
+<tr>
+    <td>SOLARQUEST INVESTMENTS LTD</td>
+    <td class="num">1.90</td>
+    <td class="num">1.90</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε004322/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 28 LTD</td>
+    <td class="num">1.83</td>
+    <td class="num">1.83</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε001917/2018, Ε001916/2018</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 68 LTD</td>
+    <td class="num">1.80</td>
+    <td class="num">1.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πάνω Κουτραφάς, Τρούλλοι</td>
+    <td class="lic">Ε003491/2022, Ε003417/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 42 LTD</td>
+    <td class="num">1.80</td>
+    <td class="num">1.80</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ποτάμι</td>
+    <td class="lic">Ε002109/2018</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 92 LTD</td>
+    <td class="num">1.80</td>
+    <td class="num">1.80</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε001979/2018</td>
+  </tr>
+<tr>
+    <td>BP-S 136 LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αθηένου, Τρούλλοι</td>
+    <td class="lic">Ε004529/2024, Ε004523/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 116 LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μενόγεια, Αλαμινός</td>
+    <td class="lic">Ε004512/2024, Ε004369/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 74 LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αναφωτία, Δρομολαξιά</td>
+    <td class="lic">Ε003542/2022, Ε003335/2022</td>
+  </tr>
+<tr>
+    <td>BP SOLAR POWER ENERGY LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003241/2021, Ε002966/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 99 LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αναλυόντας</td>
+    <td class="lic">Ε001921/2018</td>
+  </tr>
+<tr>
+    <td>HELLENIQ RENEWABLES CYPRUS PAPHOS LTD</td>
+    <td class="num">1.65</td>
+    <td class="num">1.65</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δρούσεια</td>
+    <td class="lic">Ε004253/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 155 LTD</td>
+    <td class="num">1.60</td>
+    <td class="num">1.60</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε005049/2025, Ε005048/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 83 LTD</td>
+    <td class="num">1.60</td>
+    <td class="num">1.60</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Στρουμπί, Πολέμι, Τρούλλοι</td>
+    <td class="lic">Ε003360/2022, Ε003233/2021</td>
+  </tr>
+<tr>
+    <td>TP MEDITERRANEAN ADVENTURES ENERGY LTD</td>
+    <td class="num">1.60</td>
+    <td class="num">1.60</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε001942/2018</td>
+  </tr>
+<tr>
+    <td>NAT ENERGY LTD</td>
+    <td class="num">1.57</td>
+    <td class="num">1.57</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάνω Δευτερά</td>
+    <td class="lic">Ε004309/2024, Ε004308/2024</td>
+  </tr>
+<tr>
+    <td>ΛΑΤΟΜΕΙΑ ΛΑΤΟΥΡΟΣ ΛΤΔ</td>
+    <td class="num">1.53</td>
+    <td class="num">1.53</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ιδαλίου</td>
+    <td class="lic">Ε004754/2025</td>
+  </tr>
+<tr>
+    <td>MILIA ENERGY LTD</td>
+    <td class="num">1.53</td>
+    <td class="num">1.53</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μηλιά</td>
+    <td class="lic">Ε003563/2022</td>
+  </tr>
+<tr>
+    <td>CYRUS SOLAR LTD</td>
+    <td class="num">1.51</td>
+    <td class="num">1.51</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αναφωτίδα</td>
+    <td class="lic">Ε004634/2025</td>
+  </tr>
+<tr>
+    <td>4F SOLAR ENERGY LTD</td>
+    <td class="num">1.51</td>
+    <td class="num">1.51</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αγιοί Τριμιθιάς</td>
+    <td class="lic">Ε004579/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 112 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Λύμπια</td>
+    <td class="lic">Ε004907/2025, Ε004906/2025, Ε004281/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 94 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε003999/2023, Ε003921/2023</td>
+  </tr>
+<tr>
+    <td>MDG SOLAR POWER LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τάλα</td>
+    <td class="lic">Ε003282/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 34 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγία Βαρβάρα</td>
+    <td class="lic">Ε003147/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 10 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ποταμιά</td>
+    <td class="lic">Ε002488/2019</td>
+  </tr>
+<tr>
+    <td>AKMK ECO PIONEER LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε001911/2018</td>
+  </tr>
+<tr>
+    <td>ΣΤΕΛΟΥΜΕΣΤΑ ΛΤΔ</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε001738/2017</td>
+  </tr>
+<tr>
+    <td>HELIOPEX 4 LTD</td>
+    <td class="num">1.43</td>
+    <td class="num">1.43</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αβδελερό</td>
+    <td class="lic">Ε004567/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 54 LTD</td>
+    <td class="num">1.40</td>
+    <td class="num">1.40</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε003261/2021</td>
+  </tr>
+<tr>
+    <td>N &amp; R SOLAR LTD</td>
+    <td class="num">1.40</td>
+    <td class="num">1.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Θεράπων</td>
+    <td class="lic">Ε004553/2024</td>
+  </tr>
+<tr>
+    <td>BMF TALIADOROS LTD</td>
+    <td class="num">1.34</td>
+    <td class="num">1.34</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μαργί</td>
+    <td class="lic">Ε004026/2023</td>
+  </tr>
+<tr>
+    <td>G.P. PARK PV LTD</td>
+    <td class="num">1.31</td>
+    <td class="num">1.31</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πέρα, Μαργί</td>
+    <td class="lic">Ε005126/2025, Ε005125/2025</td>
+  </tr>
+<tr>
+    <td>ACGK RENEWABLE SOLUTIONS LTD</td>
+    <td class="num">1.30</td>
+    <td class="num">1.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πολέμι</td>
+    <td class="lic">Ε004093/2023</td>
+  </tr>
+<tr>
+    <td>ΣΚΥΡΑ ΛΙΜΑ ΛΤΔ</td>
+    <td class="num">1.30</td>
+    <td class="num">1.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Κόρνος</td>
+    <td class="lic">Ε003806/2023</td>
+  </tr>
+<tr>
+    <td>SPANEX ENERGY LTD</td>
+    <td class="num">1.29</td>
+    <td class="num">1.29</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αρμού</td>
+    <td class="lic">Ε004442/2024</td>
+  </tr>
+<tr>
+    <td>RANGY TRADING LTD</td>
+    <td class="num">1.27</td>
+    <td class="num">1.27</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σιά</td>
+    <td class="lic">Ε004287/2024</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 6 LTD</td>
+    <td class="num">1.25</td>
+    <td class="num">1.25</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Παραμύθα</td>
+    <td class="lic">Ε005066/2025</td>
+  </tr>
+<tr>
+    <td>ΕΡΜΗΣ ΑΝΤΩΝΙΑΔΗΣ ΛΤΔ</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Θρηνιά</td>
+    <td class="lic">Ε004767/2025, Ε004766/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 40 LTD</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε004479/2024</td>
+  </tr>
+<tr>
+    <td>BP-S 117 LTD</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Σωτήρα</td>
+    <td class="lic">Ε004316/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 26 LTD</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πολιτικό</td>
+    <td class="lic">Ε002670/2020</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 48 LTD</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Περιστερώνα</td>
+    <td class="lic">Ε002130/2018</td>
+  </tr>
+<tr>
+    <td>XBLA GEOSOLUTIONS LTD</td>
+    <td class="num">1.19</td>
+    <td class="num">1.19</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Περιστερώνα, Νικητάρι</td>
+    <td class="lic">Ε004002/2023, Ε003859/2023</td>
+  </tr>
+<tr>
+    <td>DENSOL R. LTD</td>
+    <td class="num">1.15</td>
+    <td class="num">1.15</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ευρύχου</td>
+    <td class="lic">Ε003470/2022</td>
+  </tr>
+<tr>
+    <td>GRB PHOTOVOLTAIC PARK LTD</td>
+    <td class="num">1.14</td>
+    <td class="num">1.14</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε004491/2024</td>
+  </tr>
+<tr>
+    <td>A. KAMEL CREATIVE CONSTRUCTION LTD</td>
+    <td class="num">1.13</td>
+    <td class="num">1.13</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ορούντα</td>
+    <td class="lic">Ε004056/2023</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 1 LTD</td>
+    <td class="num">1.13</td>
+    <td class="num">1.13</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Στρουμπί</td>
+    <td class="lic">Ε005021/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 115 LTD</td>
+    <td class="num">1.10</td>
+    <td class="num">1.10</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Σωτήρα</td>
+    <td class="lic">Ε004690/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 41 LTD</td>
+    <td class="num">1.10</td>
+    <td class="num">1.10</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τρούλλοι</td>
+    <td class="lic">Ε002293/2019, Ε002292/2019</td>
+  </tr>
+<tr>
+    <td>GENERGETIC LTD</td>
+    <td class="num">1.09</td>
+    <td class="num">1.09</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε004047/2023</td>
+  </tr>
+<tr>
+    <td>TZOPAN INVESTMENTS LTD</td>
+    <td class="num">1.09</td>
+    <td class="num">1.09</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Πέρα</td>
+    <td class="lic">Ε004580/2024</td>
+  </tr>
+<tr>
+    <td>KING EVELTHON HOTEL LTD</td>
+    <td class="num">1.05</td>
+    <td class="num">1.05</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Χλώρκα</td>
+    <td class="lic">Ε004756/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 105 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αγία Βαρβάρα</td>
+    <td class="lic">Ε005098/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 156 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αλαμινό</td>
+    <td class="lic">Ε005051/2025</td>
+  </tr>
+<tr>
+    <td>AGM GREENFIELD LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Φρέναρος</td>
+    <td class="lic">Ε004674/2025</td>
+  </tr>
+<tr>
+    <td>VIRTUAL ENERGY NET LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Τσερίου</td>
+    <td class="lic">Ε004635/2025</td>
+  </tr>
+<tr>
+    <td>BP-S 134 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αγγλισίδες</td>
+    <td class="lic">Ε004521/2024</td>
+  </tr>
+<tr>
+    <td>GVP SOLAR ENERGY 1 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Χολέτρια</td>
+    <td class="lic">Ε004317/2024</td>
+  </tr>
+<tr>
+    <td>T.S.V. ENERGY OF FUTURE LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μηλιά Πάφου</td>
+    <td class="lic">Ε003998/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 52 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πόλις Χρυσοχούς</td>
+    <td class="lic">Ε003324/2022</td>
+  </tr>
+<tr>
+    <td>BENQUET ENTERPRISES LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Καταλιόντας</td>
+    <td class="lic">Ε002311/2019</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <p class="count">271 row(s)</p>
+  </section>
+    
+  <section class="panel">
+    <h2>Mixed construction pipeline (≥1 MWp construction but also operational licences)</h2>
+    <p class="intro">Developer has operating assets and new construction — RTB work may apply only to greenfield licences; verify per licence.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Total MWp</th>
+            <th>Construction MWp</th>
+            <th>Operational MWp</th>
+            <th>BESS (licence)</th>
+            <th>BESS angle</th>
+            <th>Municipality</th>
+            <th>Licences (sample)</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td>ΑΡΧΗ ΗΛΕΚΤΡΙΣΜΟΥ ΚΥΠΡΟΥ</td>
+    <td class="num">77.37</td>
+    <td class="num">53.90</td>
+    <td class="num">23.47</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Ιωάννης, Λουρουκίνα</td>
+    <td class="lic">Ε004547/2024, Ε004546/2024, Ε004230/2023 (+17)</td>
+  </tr>
+<tr>
+    <td>D.P. ELSIM LTD</td>
+    <td class="num">54.50</td>
+    <td class="num">50.50</td>
+    <td class="num">4.00</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αθηαίνου, Κάτω Πολεμίδια</td>
+    <td class="lic">Ε004764/2025, Ε004763/2025, Ε004762/2025 (+14)</td>
+  </tr>
+<tr>
+    <td>HAFFNEVE HOLDING LTD</td>
+    <td class="num">54.23</td>
+    <td class="num">31.90</td>
+    <td class="num">22.33</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Κιβισίλι, Μαργί</td>
+    <td class="lic">Ε003946/2023, Ε003666/2022, Ε003408/2022 (+12)</td>
+  </tr>
+<tr>
+    <td>EASY POWER (CYPRUS) LTD</td>
+    <td class="num">20.06</td>
+    <td class="num">9.78</td>
+    <td class="num">10.28</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Άγιος Σοζώμενος, Άγιο Σοζώμενος</td>
+    <td class="lic">Ε004976/2025, Ε004975/2025, Ε003651/2022 (+3)</td>
+  </tr>
+<tr>
+    <td>ΤΣΙΜΕΝΤΟΠΟΙΙΑ ΒΑΣΙΛΙΚΟΥ ΔΗΜΟΣΙΑ ΕΤΑΙΡΕΙΑ ΛΤΔ</td>
+    <td class="num">16.02</td>
+    <td class="num">16.00</td>
+    <td class="num">0.02</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τόχνη, Ψεματισμένος, Χοιροκιτία</td>
+    <td class="lic">Ε003667/2022, Ε003367/2022, Ε001687/2017</td>
+  </tr>
+<tr>
+    <td>ΠΑΝΕΠΙΣΤΗΜΙΟ ΚΥΠΡΟΥ</td>
+    <td class="num">10.84</td>
+    <td class="num">5.44</td>
+    <td class="num">5.39</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αγλαντζιά</td>
+    <td class="lic">Ε004755/2025, Ε004751/2025, Ε004585/2024 (+3)</td>
+  </tr>
+<tr>
+    <td>RES ZEUS ELECTRICITY COMPANY LTD</td>
+    <td class="num">10.20</td>
+    <td class="num">2.70</td>
+    <td class="num">7.50</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Κοκκινοτριμιθιά</td>
+    <td class="lic">Ε005035/2025, Ε004859/2025, Ε003629/2022</td>
+  </tr>
+<tr>
+    <td>SOLIGHT ELECTRICITY COMPANY LTD</td>
+    <td class="num">9.64</td>
+    <td class="num">2.14</td>
+    <td class="num">7.50</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Κοκκινοτριμιθιά</td>
+    <td class="lic">Ε005047/2025, Ε004858/2025, Ε003630/2022</td>
+  </tr>
+<tr>
+    <td>DIANARY HOLDINGS LTD</td>
+    <td class="num">9.00</td>
+    <td class="num">6.40</td>
+    <td class="num">2.60</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε003748/2022, Ε001956/2018, Ε001955/2018</td>
+  </tr>
+<tr>
+    <td>S.S.H. SOLAR ENERGY LTD</td>
+    <td class="num">7.59</td>
+    <td class="num">7.20</td>
+    <td class="num">0.39</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ψημολόφου, Άγιος Ιωάννης</td>
+    <td class="lic">Ε003745/2022, Ε003744/2022, Ε003456/2022 (+1)</td>
+  </tr>
+<tr>
+    <td>HERMES AIRPORTS LTD</td>
+    <td class="num">7.20</td>
+    <td class="num">2.60</td>
+    <td class="num">4.60</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Ιεροκήπια, Τίμη, Δρομολαξιά - Μενεού</td>
+    <td class="lic">Ε004894/2025, Ε004893/2025, Ε004009/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΑΡΑΔΙΠΠΟΥ</td>
+    <td class="num">6.57</td>
+    <td class="num">3.61</td>
+    <td class="num">2.96</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε004680/2025, Ε002666/2020</td>
+  </tr>
+<tr>
+    <td>A.CH. DMD FUTURE ENERGY LTD</td>
+    <td class="num">6.55</td>
+    <td class="num">6.40</td>
+    <td class="num">0.15</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μηλιά, Πέγεια</td>
+    <td class="lic">Ε004804/2025, Ε004693/2025, Ε004692/2025 (+4)</td>
+  </tr>
+<tr>
+    <td>PISCES POWER INVESTMENTS LTD</td>
+    <td class="num">6.45</td>
+    <td class="num">5.00</td>
+    <td class="num">1.45</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Απαισιά, Ανώγυρα</td>
+    <td class="lic">Ε004103/2023, Ε002145/2019</td>
+  </tr>
+<tr>
+    <td>MERBAL HOLDINGS LTD</td>
+    <td class="num">6.10</td>
+    <td class="num">6.00</td>
+    <td class="num">0.10</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Νατά, Μαραθούντα</td>
+    <td class="lic">Ε003419/2022, Ε003418/2022, Ε000710/2013</td>
+  </tr>
+<tr>
+    <td>L &amp; T SUN ENERGY LTD</td>
+    <td class="num">6.00</td>
+    <td class="num">1.00</td>
+    <td class="num">5.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αλέκτορα, Αλέκτωρα</td>
+    <td class="lic">Ε004293/2024, Ε002983/2021</td>
+  </tr>
+<tr>
+    <td>SUNREA ENERGY LTD</td>
+    <td class="num">5.80</td>
+    <td class="num">3.30</td>
+    <td class="num">2.50</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αγία Νάπα, Δρομολαξιά</td>
+    <td class="lic">Ε003008/2021, Ε002580/2020</td>
+  </tr>
+<tr>
+    <td>NEW WAY ENGINEERING LTD</td>
+    <td class="num">5.67</td>
+    <td class="num">3.20</td>
+    <td class="num">2.47</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Ακάμα - Πάνω Αρόδες, Πάνω Αρόδες</td>
+    <td class="lic">Ε005024/2025, Ε004861/2025, Ε004820/2025 (+22)</td>
+  </tr>
+<tr>
+    <td>AGM SUNFIELD LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">4.00</td>
+    <td class="num">1.00</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Δάλι, Γέρι</td>
+    <td class="lic">Ε004897/2025, Ε004004/2023</td>
+  </tr>
+<tr>
+    <td>A.V. EARTH REGENERATION LTD</td>
+    <td class="num">4.30</td>
+    <td class="num">2.50</td>
+    <td class="num">1.80</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αραδίππου, Τρούλλοι</td>
+    <td class="lic">Ε004932/2025, Ε004716/2025, Ε003363/2022</td>
+  </tr>
+<tr>
+    <td>ARISTOKLIA SOLAR LTD</td>
+    <td class="num">3.94</td>
+    <td class="num">2.74</td>
+    <td class="num">1.20</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Βυζακιά, Νικητάρι</td>
+    <td class="lic">Ε004809/2025, Ε004319/2024, Ε004086/2023 (+4)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 31 LTD</td>
+    <td class="num">3.70</td>
+    <td class="num">3.00</td>
+    <td class="num">0.70</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μενόγεια, Τρούλλοι</td>
+    <td class="lic">Ε004949/2025, Ε003935/2023, Ε002106/2018</td>
+  </tr>
+<tr>
+    <td>SUN DANCE CITY LTD</td>
+    <td class="num">3.25</td>
+    <td class="num">3.15</td>
+    <td class="num">0.10</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Αυγόρου, Τσέρι</td>
+    <td class="lic">Ε004703/2025, Ε003457/2022, Ε001387/2015</td>
+  </tr>
+<tr>
+    <td>TEKOS RENEWABLE TECHNOLOGIES LTD</td>
+    <td class="num">3.19</td>
+    <td class="num">1.25</td>
+    <td class="num">1.94</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Μοναγρούλι</td>
+    <td class="lic">Ε004664/2025, Ε004612/2024</td>
+  </tr>
+<tr>
+    <td>ΗΦΑΙΣΤΟΣ ΦΩΤΟΒΟΛΤΑΙΚΟ ΠΑΡΚΟ ΛΤΔ</td>
+    <td class="num">2.99</td>
+    <td class="num">2.84</td>
+    <td class="num">0.15</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Νικητάρι, Αγία Βαρβάρα</td>
+    <td class="lic">Ε004844/2025, Ε004811/2025, Ε004810/2025 (+1)</td>
+  </tr>
+<tr>
+    <td>K. NICOLAOU &amp; SONS ROADTECH LTD</td>
+    <td class="num">2.39</td>
+    <td class="num">1.50</td>
+    <td class="num">0.89</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγία Βαρβάρα, Αγία Μαρίνουδα</td>
+    <td class="lic">Ε004167/2023, Ε002352/2019</td>
+  </tr>
+<tr>
+    <td>RENEWABLE SOLARVIKING LTD</td>
+    <td class="num">2.09</td>
+    <td class="num">1.17</td>
+    <td class="num">0.92</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σίμου, Θρυνιά</td>
+    <td class="lic">Ε004896/2025, Ε004487/2024, Ε004486/2024 (+9)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 32 LTD</td>
+    <td class="num">1.60</td>
+    <td class="num">1.30</td>
+    <td class="num">0.30</td>
+    <td>Yes</td>
+    <td>none</td>
+    <td>Μενόγεια, Μενογεια</td>
+    <td class="lic">Ε004954/2025, Ε003445/2022, Ε003237/2021</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <p class="count">28 row(s)</p>
+  </section>
+    
+  <section class="panel">
+    <h2>Panel B — BESS retrofit targets (operational ≥1 MWp, no BESS in CERA row)</h2>
+    <p class="intro">Operational PV without co-licensed BESS; priority for stand-alone BESS / hybrid studies.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Total MWp</th>
+            <th>Construction MWp</th>
+            <th>Operational MWp</th>
+            <th>BESS (licence)</th>
+            <th>BESS angle</th>
+            <th>Municipality</th>
+            <th>Licences (sample)</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td>D.P. ELSIM LTD</td>
+    <td class="num">54.50</td>
+    <td class="num">50.50</td>
+    <td class="num">4.00</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αθηαίνου, Κάτω Πολεμίδια</td>
+    <td class="lic">Ε004764/2025, Ε004763/2025, Ε004762/2025 (+14)</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT I LTD</td>
+    <td class="num">14.00</td>
+    <td class="num">0.00</td>
+    <td class="num">14.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Φλάσου</td>
+    <td class="lic">Ε004223/2023, Ε004222/2023</td>
+  </tr>
+<tr>
+    <td>ΠΑΝΕΠΙΣΤΗΜΙΟ ΚΥΠΡΟΥ</td>
+    <td class="num">10.84</td>
+    <td class="num">5.44</td>
+    <td class="num">5.39</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αγλαντζιά</td>
+    <td class="lic">Ε004755/2025, Ε004751/2025, Ε004585/2024 (+3)</td>
+  </tr>
+<tr>
+    <td>DIANARY HOLDINGS LTD</td>
+    <td class="num">9.00</td>
+    <td class="num">6.40</td>
+    <td class="num">2.60</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε003748/2022, Ε001956/2018, Ε001955/2018</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 1 LTD</td>
+    <td class="num">7.50</td>
+    <td class="num">0.00</td>
+    <td class="num">7.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αλαμινός</td>
+    <td class="lic">Ε002973/2021, Ε002912/2020, Ε001730/2017</td>
+  </tr>
+<tr>
+    <td>HERMES AIRPORTS LTD</td>
+    <td class="num">7.20</td>
+    <td class="num">2.60</td>
+    <td class="num">4.60</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Ιεροκήπια, Τίμη, Δρομολαξιά - Μενεού</td>
+    <td class="lic">Ε004894/2025, Ε004893/2025, Ε004009/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΑΡΑΔΙΠΠΟΥ</td>
+    <td class="num">6.57</td>
+    <td class="num">3.61</td>
+    <td class="num">2.96</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε004680/2025, Ε002666/2020</td>
+  </tr>
+<tr>
+    <td>PISCES POWER INVESTMENTS LTD</td>
+    <td class="num">6.45</td>
+    <td class="num">5.00</td>
+    <td class="num">1.45</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Απαισιά, Ανώγυρα</td>
+    <td class="lic">Ε004103/2023, Ε002145/2019</td>
+  </tr>
+<tr>
+    <td>SUNREA ENERGY LTD</td>
+    <td class="num">5.80</td>
+    <td class="num">3.30</td>
+    <td class="num">2.50</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αγία Νάπα, Δρομολαξιά</td>
+    <td class="lic">Ε003008/2021, Ε002580/2020</td>
+  </tr>
+<tr>
+    <td>TUBETECH LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td class="num">5.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003440/2022, Ε003439/2022</td>
+  </tr>
+<tr>
+    <td>SUNA LTD</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td class="num">4.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Κούκα</td>
+    <td class="lic">Ε005115/2025</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 14 LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td class="num">4.40</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Πάνω Κουτραφάς, Τρούλλοι</td>
+    <td class="lic">Ε002828/2020, Ε002346/2019</td>
+  </tr>
+<tr>
+    <td>CYPV ENERGY LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td class="num">4.40</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Φρέναρος</td>
+    <td class="lic">Ε001751/2017</td>
+  </tr>
+<tr>
+    <td>CYPV SUN POWER LTD</td>
+    <td class="num">3.82</td>
+    <td class="num">0.00</td>
+    <td class="num">3.82</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Φρέναρος, Τσέρι</td>
+    <td class="lic">Ε003103/2021, Ε003012/2021</td>
+  </tr>
+<tr>
+    <td>CSAP INVESTMENTS LTD</td>
+    <td class="num">3.30</td>
+    <td class="num">0.00</td>
+    <td class="num">3.30</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Μαργί</td>
+    <td class="lic">Ε004836/2025</td>
+  </tr>
+<tr>
+    <td>TEKOS RENEWABLE TECHNOLOGIES LTD</td>
+    <td class="num">3.19</td>
+    <td class="num">1.25</td>
+    <td class="num">1.94</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Μοναγρούλι</td>
+    <td class="lic">Ε004664/2025, Ε004612/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 5 LTD</td>
+    <td class="num">3.05</td>
+    <td class="num">0.00</td>
+    <td class="num">3.05</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Δρομολαξιά</td>
+    <td class="lic">Ε002006/2018</td>
+  </tr>
+<tr>
+    <td>NANOKI LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Βυζακιά</td>
+    <td class="lic">Ε003570/2022</td>
+  </tr>
+<tr>
+    <td>WANERON ENTERPRISES LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Άγιος Ιωάννης Μαλούντας</td>
+    <td class="lic">Ε001436/2016</td>
+  </tr>
+<tr>
+    <td>GREE. SOL. EN. LTD</td>
+    <td class="num">2.60</td>
+    <td class="num">0.00</td>
+    <td class="num">2.60</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Μενεού</td>
+    <td class="lic">Ε002975/2021</td>
+  </tr>
+<tr>
+    <td>P. KYTHREOTIS (INVESTMENT) LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td class="num">2.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Παρεκκλησία</td>
+    <td class="lic">Ε003628/2022</td>
+  </tr>
+<tr>
+    <td>MUSKITA ALUMINIUM INDUSTRIES LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td class="num">2.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Βιομηχανική Αγίου Σπυρίδωνα</td>
+    <td class="lic">Ε002599/2020, Ε002598/2020</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 7 LTD</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td class="num">2.30</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Πάνω Κουτραφάς</td>
+    <td class="lic">Ε002827/2020</td>
+  </tr>
+<tr>
+    <td>VLASIOU ELECTRIC SISTERS &amp; PARTNERS LTD</td>
+    <td class="num">2.20</td>
+    <td class="num">0.00</td>
+    <td class="num">2.20</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Τριμίκληνη</td>
+    <td class="lic">Ε005116/2025</td>
+  </tr>
+<tr>
+    <td>JUMBO TRADING LTD</td>
+    <td class="num">2.13</td>
+    <td class="num">0.41</td>
+    <td class="num">1.72</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Στρόβολος, Λειβάδια</td>
+    <td class="lic">Ε004471/2024, Ε003734/2022, Ε003227/2021 (+1)</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT II LTD</td>
+    <td class="num">1.90</td>
+    <td class="num">0.00</td>
+    <td class="num">1.90</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε004007/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 9 LTD</td>
+    <td class="num">1.90</td>
+    <td class="num">0.00</td>
+    <td class="num">1.90</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αλεθρικό</td>
+    <td class="lic">Ε002366/2019</td>
+  </tr>
+<tr>
+    <td>ΚΕΡΑΜΕΙΟ ΑΝΔΡΕΑΣ ΚΑΣΑΠΗΣ ΛΤΔ</td>
+    <td class="num">1.60</td>
+    <td class="num">0.32</td>
+    <td class="num">1.28</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Καλαβασός</td>
+    <td class="lic">Ε004749/2025, Ε002765/2020</td>
+  </tr>
+<tr>
+    <td>TEMPO BEVERAGES CYPRUS LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε003516/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 8 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Πάνω Κουτραφάς</td>
+    <td class="lic">Ε002746/2020</td>
+  </tr>
+<tr>
+    <td>IRIS LENOR ENERGY LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε002745/2020</td>
+  </tr>
+<tr>
+    <td>LGEG SOLAR POWER LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Δάλι</td>
+    <td class="lic">Ε001681/2017</td>
+  </tr>
+<tr>
+    <td>LGEG PHOTOVOLTAIC LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Πέρα Χωρίο Νήσου</td>
+    <td class="lic">Ε001671/2017</td>
+  </tr>
+<tr>
+    <td>CONBETTER LIMITED</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Παλιομέτοχο</td>
+    <td class="lic">Ε001669/2017</td>
+  </tr>
+<tr>
+    <td>C.A &amp; P PISSOURI ENERGY LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Πισσούρι</td>
+    <td class="lic">Ε001336/2015</td>
+  </tr>
+<tr>
+    <td>M.P. AYIA MARINA SOLAR LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε001079/2014</td>
+  </tr>
+<tr>
+    <td>APV SUNLIGHT SYSTEMS LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Σκαρίνου</td>
+    <td class="lic">Ε001055/2014</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 4 LTD</td>
+    <td class="num">1.49</td>
+    <td class="num">0.00</td>
+    <td class="num">1.49</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε001735/2017</td>
+  </tr>
+<tr>
+    <td>Ο. Κ. ΥΠ. Υ.</td>
+    <td class="num">1.30</td>
+    <td class="num">0.00</td>
+    <td class="num">1.30</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Στρόβολος</td>
+    <td class="lic">Ε004522/2024</td>
+  </tr>
+<tr>
+    <td>PHOTOS PHOTIADES BREWERIES LTD</td>
+    <td class="num">1.29</td>
+    <td class="num">0.00</td>
+    <td class="num">1.29</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Δάλι</td>
+    <td class="lic">Ε004348/2024, Ε001012/2013</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 13 LTD</td>
+    <td class="num">1.25</td>
+    <td class="num">0.00</td>
+    <td class="num">1.25</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Μαρί</td>
+    <td class="lic">Ε001692/2017</td>
+  </tr>
+<tr>
+    <td>P. EVANGELOU SOLAR TRADING LTD</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td class="num">1.20</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε004501/2024, Ε004500/2024</td>
+  </tr>
+<tr>
+    <td>Κ. ΚΥΘΡΑΙΩΤΗΣ - ΣΚΥΡΟΔΕΜΑ ΛΤΔ</td>
+    <td class="num">1.10</td>
+    <td class="num">0.00</td>
+    <td class="num">1.10</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Παρακκλησία</td>
+    <td class="lic">Ε003749/2022</td>
+  </tr>
+<tr>
+    <td>IOANNOU ALTERNATIVE ENERGY LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Ύψωνα</td>
+    <td class="lic">Ε004793/2025</td>
+  </tr>
+<tr>
+    <td>GEISEL LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε002325/2019</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 3 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε001670/2017</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 15 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αλαμινός</td>
+    <td class="lic">Ε001663/2017</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 11 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>No</td>
+    <td>retrofit</td>
+    <td>Αλαμινός</td>
+    <td class="lic">Ε001623/2016</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <p class="count">48 row(s)</p>
+  </section>
+    
+  <section class="panel">
+    <h2>Panel C — BESS pre-sale targets (construction ≥1 MWp, no BESS in CERA row)</h2>
+    <p class="intro">Construction-phase PV without BESS fields populated — co-locate BESS in build.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Total MWp</th>
+            <th>Construction MWp</th>
+            <th>Operational MWp</th>
+            <th>BESS (licence)</th>
+            <th>BESS angle</th>
+            <th>Municipality</th>
+            <th>Licences (sample)</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td>GREENFIN ENERGIES KYRA LTD</td>
+    <td class="num">115.35</td>
+    <td class="num">115.35</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε004186/2023, Ε004185/2023, Ε004184/2023 (+13)</td>
+  </tr>
+<tr>
+    <td>ESC EASTERN SOLAR COMPANY LTD</td>
+    <td class="num">84.65</td>
+    <td class="num">84.65</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αυγόρου, Φρέναρος</td>
+    <td class="lic">Ε004081/2023, Ε004080/2023, Ε004079/2023 (+23)</td>
+  </tr>
+<tr>
+    <td>D.P. ELSIM LTD</td>
+    <td class="num">54.50</td>
+    <td class="num">50.50</td>
+    <td class="num">4.00</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αθηαίνου, Κάτω Πολεμίδια</td>
+    <td class="lic">Ε004764/2025, Ε004763/2025, Ε004762/2025 (+14)</td>
+  </tr>
+<tr>
+    <td>SOLEK LARNAKA I LTD</td>
+    <td class="num">47.34</td>
+    <td class="num">47.34</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αλαμινό, Αλαμινός</td>
+    <td class="lic">Ε004220/2023, Ε004049/2023, Ε003930/2023 (+12)</td>
+  </tr>
+<tr>
+    <td>GP RODIK SERVICES LTD</td>
+    <td class="num">45.20</td>
+    <td class="num">45.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αβδελερό</td>
+    <td class="lic">Ε004748/2025, Ε004747/2025, Ε004746/2025 (+8)</td>
+  </tr>
+<tr>
+    <td>ONERED LTD</td>
+    <td class="num">32.78</td>
+    <td class="num">32.78</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Κιβισίλι, Σοφτιάδες</td>
+    <td class="lic">Ε004915/2025, Ε004914/2025, Ε004088/2023 (+3)</td>
+  </tr>
+<tr>
+    <td>PHOENIX POWER 4 LTD</td>
+    <td class="num">22.40</td>
+    <td class="num">22.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε004672/2025, Ε004422/2024, Ε004421/2024</td>
+  </tr>
+<tr>
+    <td>ΑΗΚ - ΙΑΚ ΑΧΕΡΑ ΑΝΑΝΕΩΣΙΜΕΣ ΛΤΔ</td>
+    <td class="num">20.00</td>
+    <td class="num">20.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε003257/2021, Ε003256/2021, Ε003255/2021 (+1)</td>
+  </tr>
+<tr>
+    <td>HUBLOC ENERGY LTD</td>
+    <td class="num">18.32</td>
+    <td class="num">18.32</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πενταλιά, Αρμού</td>
+    <td class="lic">Ε004017/2023, Ε004016/2023, Ε004015/2023 (+5)</td>
+  </tr>
+<tr>
+    <td>ΤΣΙΜΕΝΤΟΠΟΙΙΑ ΒΑΣΙΛΙΚΟΥ ΔΗΜΟΣΙΑ ΕΤΑΙΡΕΙΑ ΛΤΔ</td>
+    <td class="num">16.02</td>
+    <td class="num">16.00</td>
+    <td class="num">0.02</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τόχνη, Ψεματισμένος, Χοιροκιτία</td>
+    <td class="lic">Ε003667/2022, Ε003367/2022, Ε001687/2017</td>
+  </tr>
+<tr>
+    <td>SUN PADIVAN GROUP LTD</td>
+    <td class="num">15.34</td>
+    <td class="num">15.34</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ξυλοτύμπου</td>
+    <td class="lic">Ε004622/2025, Ε004621/2025, Ε004620/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>ΦΑΝΟΣ Ν. ΕΠΙΦΑΝΙΟΥ Δ.Ε. ΛΤΔ</td>
+    <td class="num">14.90</td>
+    <td class="num">14.90</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Βάβλα</td>
+    <td class="lic">Ε003829/2023, Ε003828/2023</td>
+  </tr>
+<tr>
+    <td>VATHIA GONIA SOLAR ENERGY LTD</td>
+    <td class="num">14.00</td>
+    <td class="num">14.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε003717/2022, Ε003716/2022</td>
+  </tr>
+<tr>
+    <td>VANALIO HOLDINGS LTD</td>
+    <td class="num">11.50</td>
+    <td class="num">11.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε001958/2018, Ε001941/2018, Ε001940/2018 (+1)</td>
+  </tr>
+<tr>
+    <td>FIVE RED LTD</td>
+    <td class="num">10.97</td>
+    <td class="num">10.97</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αλαμινός, Τερσεφάνου</td>
+    <td class="lic">Ε004780/2025, Ε004777/2025, Ε004046/2023</td>
+  </tr>
+<tr>
+    <td>ΠΑΝΕΠΙΣΤΗΜΙΟ ΚΥΠΡΟΥ</td>
+    <td class="num">10.84</td>
+    <td class="num">5.44</td>
+    <td class="num">5.39</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αγλαντζιά</td>
+    <td class="lic">Ε004755/2025, Ε004751/2025, Ε004585/2024 (+3)</td>
+  </tr>
+<tr>
+    <td>CYRUS SOLAR THERMAL LTD</td>
+    <td class="num">10.00</td>
+    <td class="num">10.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Καταλιόντας</td>
+    <td class="lic">Ε004059/2023, Ε004058/2023, Ε004057/2023</td>
+  </tr>
+<tr>
+    <td>EARTHLIGHT PARK LTD</td>
+    <td class="num">10.00</td>
+    <td class="num">10.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σωτήρα</td>
+    <td class="lic">Ε001986/2018, Ε001985/2018</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 93 LTD</td>
+    <td class="num">9.50</td>
+    <td class="num">9.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ξυλοφάγου, Σωτήρα</td>
+    <td class="lic">Ε003756/2022, Ε003670/2022</td>
+  </tr>
+<tr>
+    <td>DIANARY HOLDINGS LTD</td>
+    <td class="num">9.00</td>
+    <td class="num">6.40</td>
+    <td class="num">2.60</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="lic">Ε003748/2022, Ε001956/2018, Ε001955/2018</td>
+  </tr>
+<tr>
+    <td>POLYSTEP (ENERGY) LTD</td>
+    <td class="num">8.00</td>
+    <td class="num">8.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Κυβισίλι</td>
+    <td class="lic">Ε003777/2022</td>
+  </tr>
+<tr>
+    <td>GIANKO1 SOLAR LTD</td>
+    <td class="num">7.95</td>
+    <td class="num">7.95</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δωρά</td>
+    <td class="lic">Ε002563/2019</td>
+  </tr>
+<tr>
+    <td>S.S.H. SOLAR ENERGY LTD</td>
+    <td class="num">7.59</td>
+    <td class="num">7.20</td>
+    <td class="num">0.39</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ψημολόφου, Άγιος Ιωάννης</td>
+    <td class="lic">Ε003745/2022, Ε003744/2022, Ε003456/2022 (+1)</td>
+  </tr>
+<tr>
+    <td>RENERGETIC LTD</td>
+    <td class="num">7.52</td>
+    <td class="num">7.52</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάνω Δευτερά</td>
+    <td class="lic">Ε003533/2022</td>
+  </tr>
+<tr>
+    <td>SOLEK LEMESOS I LTD</td>
+    <td class="num">7.43</td>
+    <td class="num">7.43</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πισσούρι</td>
+    <td class="lic">Ε004116/2023</td>
+  </tr>
+<tr>
+    <td>HERMES AIRPORTS LTD</td>
+    <td class="num">7.20</td>
+    <td class="num">2.60</td>
+    <td class="num">4.60</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Ιεροκήπια, Τίμη, Δρομολαξιά - Μενεού</td>
+    <td class="lic">Ε004894/2025, Ε004893/2025, Ε004009/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (TSERI) LTD</td>
+    <td class="num">7.20</td>
+    <td class="num">7.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμος Τσερίου</td>
+    <td class="lic">Ε003958/2023</td>
+  </tr>
+<tr>
+    <td>CYRUS POWER LTD</td>
+    <td class="num">7.09</td>
+    <td class="num">7.09</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πολιτικό, Σια</td>
+    <td class="lic">Ε004251/2024, Ε004250/2024</td>
+  </tr>
+<tr>
+    <td>PV SUNSET LTD</td>
+    <td class="num">7.06</td>
+    <td class="num">7.06</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μοναγρούλι</td>
+    <td class="lic">Ε003665/2022, Ε003664/2022, Ε003591/2022</td>
+  </tr>
+<tr>
+    <td>PHOENIX POWER 3 LTD</td>
+    <td class="num">7.00</td>
+    <td class="num">7.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ορμήδεια</td>
+    <td class="lic">Ε004141/2023, Ε004140/2023</td>
+  </tr>
+<tr>
+    <td>ZELDE HOLDINGS LTD</td>
+    <td class="num">6.85</td>
+    <td class="num">6.85</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αναφωτία</td>
+    <td class="lic">Ε004916/2025</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΑΡΑΔΙΠΠΟΥ</td>
+    <td class="num">6.57</td>
+    <td class="num">3.61</td>
+    <td class="num">2.96</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε004680/2025, Ε002666/2020</td>
+  </tr>
+<tr>
+    <td>PISCES POWER INVESTMENTS LTD</td>
+    <td class="num">6.45</td>
+    <td class="num">5.00</td>
+    <td class="num">1.45</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Απαισιά, Ανώγυρα</td>
+    <td class="lic">Ε004103/2023, Ε002145/2019</td>
+  </tr>
+<tr>
+    <td>BP-S 109 LTD</td>
+    <td class="num">6.40</td>
+    <td class="num">6.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αθηαίνου</td>
+    <td class="lic">Ε004241/2023, Ε004201/2023</td>
+  </tr>
+<tr>
+    <td>MERBAL HOLDINGS LTD</td>
+    <td class="num">6.10</td>
+    <td class="num">6.00</td>
+    <td class="num">0.10</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Νατά, Μαραθούντα</td>
+    <td class="lic">Ε003419/2022, Ε003418/2022, Ε000710/2013</td>
+  </tr>
+<tr>
+    <td>ACV SOUNI SOLAR VALLEY LTD</td>
+    <td class="num">6.00</td>
+    <td class="num">6.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σούνι</td>
+    <td class="lic">Ε003799/2023</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (AYIA NAPA 1) LTD</td>
+    <td class="num">5.99</td>
+    <td class="num">5.99</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγία Νάπα</td>
+    <td class="lic">Ε004206/2023</td>
+  </tr>
+<tr>
+    <td>SUNREA ENERGY LTD</td>
+    <td class="num">5.80</td>
+    <td class="num">3.30</td>
+    <td class="num">2.50</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Αγία Νάπα, Δρομολαξιά</td>
+    <td class="lic">Ε003008/2021, Ε002580/2020</td>
+  </tr>
+<tr>
+    <td>MEZIA LTD</td>
+    <td class="num">5.32</td>
+    <td class="num">5.32</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μοναγρούλλι</td>
+    <td class="lic">Ε004335/2024</td>
+  </tr>
+<tr>
+    <td>SIDESUNNY.COM CYPRUS LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μαραθούντα, Αρμού</td>
+    <td class="lic">Ε005025/2025, Ε004878/2025, Ε004825/2025 (+2)</td>
+  </tr>
+<tr>
+    <td>K. ROUKWOOUDEN.SPEARGUNS LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πέγεια</td>
+    <td class="lic">Ε004139/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 91 LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003923/2023</td>
+  </tr>
+<tr>
+    <td>INTENTIONS GREEN LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμος Αραδίππου</td>
+    <td class="lic">Ε003713/2022</td>
+  </tr>
+<tr>
+    <td>ASP 304 SOLAR LTD</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αυδήμου</td>
+    <td class="lic">Ε001954/2018</td>
+  </tr>
+<tr>
+    <td>CYSW SOLAR WORLD LTD</td>
+    <td class="num">4.90</td>
+    <td class="num">4.90</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ανάγεια &amp; Εργάτες</td>
+    <td class="lic">Ε003450/2022</td>
+  </tr>
+<tr>
+    <td>ESPERIA ENERGY (TSERI 3) LTD</td>
+    <td class="num">4.75</td>
+    <td class="num">4.75</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμος Τσερίου</td>
+    <td class="lic">Ε004000/2023</td>
+  </tr>
+<tr>
+    <td>SUBARROW INVESTMENTS LTD</td>
+    <td class="num">4.70</td>
+    <td class="num">4.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Θεόδωρος</td>
+    <td class="lic">Ε004576/2024, Ε003997/2023</td>
+  </tr>
+<tr>
+    <td>RED RAIN LTD</td>
+    <td class="num">4.70</td>
+    <td class="num">4.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Στενή, Λυσό</td>
+    <td class="lic">Ε004204/2023, Ε004203/2023</td>
+  </tr>
+<tr>
+    <td>G.V.P. SOLAR ENERGY 2 LTD</td>
+    <td class="num">4.50</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πόλη Χρυσοχούς</td>
+    <td class="lic">Ε003991/2023</td>
+  </tr>
+<tr>
+    <td>SONTSE PV ALPHA LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε003993/2023</td>
+  </tr>
+<tr>
+    <td>HELIOTRICITY LOFOU PV PARKS LTD</td>
+    <td class="num">4.40</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Θεράπων</td>
+    <td class="lic">Ε002644/2020</td>
+  </tr>
+<tr>
+    <td>BP-S 101 LTD</td>
+    <td class="num">4.35</td>
+    <td class="num">4.35</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αθηένου, Τρούλλοι</td>
+    <td class="lic">Ε003754/2022, Ε003009/2021, Ε002253/2019</td>
+  </tr>
+<tr>
+    <td>DAROSTEL LTD</td>
+    <td class="num">4.30</td>
+    <td class="num">4.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάχνα</td>
+    <td class="lic">Ε004113/2023</td>
+  </tr>
+<tr>
+    <td>L.K. ENERGY LTD</td>
+    <td class="num">4.10</td>
+    <td class="num">4.10</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε002741/2020</td>
+  </tr>
+<tr>
+    <td>IACOVOU PV PARK 1 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Λεύκαρα-Κόρνο</td>
+    <td class="lic">Ε004614/2024</td>
+  </tr>
+<tr>
+    <td>SIMF SUN ENERGY LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σοφτάδες</td>
+    <td class="lic">Ε004246/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 20 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε003359/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 65 LTD</td>
+    <td class="num">4.00</td>
+    <td class="num">4.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άχνας</td>
+    <td class="lic">Ε002772/2020</td>
+  </tr>
+<tr>
+    <td>PHOENIX POWER 5 LTD</td>
+    <td class="num">3.70</td>
+    <td class="num">3.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ορμήδεια</td>
+    <td class="lic">Ε004604/2024</td>
+  </tr>
+<tr>
+    <td>SONTSE PV BETA LTD</td>
+    <td class="num">3.62</td>
+    <td class="num">3.62</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μαρώνι</td>
+    <td class="lic">Ε003994/2023</td>
+  </tr>
+<tr>
+    <td>GREENFIN ENERGIES LTD</td>
+    <td class="num">3.60</td>
+    <td class="num">3.60</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Φρέναρος</td>
+    <td class="lic">Ε003741/2022</td>
+  </tr>
+<tr>
+    <td>G.V.P SOLAR ENERGY LTD</td>
+    <td class="num">3.50</td>
+    <td class="num">3.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Χολέτρια</td>
+    <td class="lic">Ε003968/2023</td>
+  </tr>
+<tr>
+    <td>SARAPIS ENERGY LTD</td>
+    <td class="num">3.43</td>
+    <td class="num">3.43</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σίμου</td>
+    <td class="lic">Ε004357/2024</td>
+  </tr>
+<tr>
+    <td>K. KYTHREOTIS HOLDINGS PUBLIC LTD</td>
+    <td class="num">3.42</td>
+    <td class="num">3.42</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ύψωνας</td>
+    <td class="lic">Ε005124/2025, Ε005123/2025</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΑΘΗΕΝΟΥ</td>
+    <td class="num">3.20</td>
+    <td class="num">3.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δήμο Αθηένου</td>
+    <td class="lic">Ε004205/2023</td>
+  </tr>
+<tr>
+    <td>TEKOS RENEWABLE TECHNOLOGIES LTD</td>
+    <td class="num">3.19</td>
+    <td class="num">1.25</td>
+    <td class="num">1.94</td>
+    <td>No</td>
+    <td>both</td>
+    <td>Μοναγρούλι</td>
+    <td class="lic">Ε004664/2025, Ε004612/2024</td>
+  </tr>
+<tr>
+    <td>Y&amp;K SOLAR ENERGY LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε004280/2024</td>
+  </tr>
+<tr>
+    <td>OPAE ODYSSEOS RENEWABLE SOLUTIONS LTD</td>
+    <td class="num">3.00</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Απεσιά</td>
+    <td class="lic">Ε004119/2023</td>
+  </tr>
+<tr>
+    <td>PANWA GREEN SUNRISE PV PARK 1 LTD</td>
+    <td class="num">2.80</td>
+    <td class="num">2.80</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αλάμπρα</td>
+    <td class="lic">Ε004025/2023</td>
+  </tr>
+<tr>
+    <td>LEALOUS LTD</td>
+    <td class="num">2.76</td>
+    <td class="num">2.76</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Δρομολαξιά</td>
+    <td class="lic">Ε004715/2025</td>
+  </tr>
+<tr>
+    <td>ΤΜΗΜΑ ΑΝΑΠΤΥΞΕΩΣ ΥΔΑΤΩΝ</td>
+    <td class="num">2.60</td>
+    <td class="num">2.60</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάνω Δευτερά, Κλαυδιά</td>
+    <td class="lic">Ε004828/2025, Ε004589/2024, Ε004588/2024 (+4)</td>
+  </tr>
+<tr>
+    <td>SUNREA ENERGY 2 LTD</td>
+    <td class="num">2.51</td>
+    <td class="num">2.51</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πύλα</td>
+    <td class="lic">Ε003432/2022, Ε003431/2022, Ε003430/2022</td>
+  </tr>
+<tr>
+    <td>A.F. NEW-AGE CONSTRUCTIONS LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ποτάμι</td>
+    <td class="lic">Ε004423/2024</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 82 LTD</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου, Άχνα</td>
+    <td class="lic">Ε003922/2023, Ε003100/2021, Ε003099/2021</td>
+  </tr>
+<tr>
+    <td>ABIO GREENERGY LTD</td>
+    <td class="num">2.39</td>
+    <td class="num">2.39</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ψεματισμένος</td>
+    <td class="lic">Ε003489/2022</td>
+  </tr>
+<tr>
+    <td>K. NICOLAOU &amp; SONS ROADTECH LTD</td>
+    <td class="num">2.39</td>
+    <td class="num">1.50</td>
+    <td class="num">0.89</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγία Βαρβάρα, Αγία Μαρίνουδα</td>
+    <td class="lic">Ε004167/2023, Ε002352/2019</td>
+  </tr>
+<tr>
+    <td>FRONTARICO LTD</td>
+    <td class="num">2.30</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Παλώδια</td>
+    <td class="lic">Ε003449/2022</td>
+  </tr>
+<tr>
+    <td>CAVERAT INVESTMENTS LTD</td>
+    <td class="num">2.30</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Καλό Χωριό</td>
+    <td class="lic">Ε003429/2022</td>
+  </tr>
+<tr>
+    <td>Y.A. PV ENERGY LTD</td>
+    <td class="num">2.20</td>
+    <td class="num">2.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πραστιό Αυδήμου</td>
+    <td class="lic">Ε004092/2023</td>
+  </tr>
+<tr>
+    <td>PONDEROZA SOLAR PARK LTD</td>
+    <td class="num">2.10</td>
+    <td class="num">2.10</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Γέρι</td>
+    <td class="lic">Ε003590/2022</td>
+  </tr>
+<tr>
+    <td>GREENDORADO ENERGIES LTD</td>
+    <td class="num">2.10</td>
+    <td class="num">2.10</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε003486/2022</td>
+  </tr>
+<tr>
+    <td>RENEWABLE SOLARVIKING LTD</td>
+    <td class="num">2.09</td>
+    <td class="num">1.17</td>
+    <td class="num">0.92</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σίμου, Θρυνιά</td>
+    <td class="lic">Ε004896/2025, Ε004487/2024, Ε004486/2024 (+9)</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 59 LTD</td>
+    <td class="num">2.08</td>
+    <td class="num">2.08</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Στενή, Λύμπια</td>
+    <td class="lic">Ε003361/2022, Ε002565/2019</td>
+  </tr>
+<tr>
+    <td>PATELIA HOLDINGS LTD</td>
+    <td class="num">2.06</td>
+    <td class="num">2.06</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Περιστερώνα, Αστρομερίτη</td>
+    <td class="lic">Ε004037/2023, Ε003934/2023, Ε003933/2023 (+1)</td>
+  </tr>
+<tr>
+    <td>STENOS LTD</td>
+    <td class="num">2.02</td>
+    <td class="num">2.02</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε002986/2021</td>
+  </tr>
+<tr>
+    <td>NAYAN ENTERPRISES LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τρούλλοι</td>
+    <td class="lic">Ε004417/2024</td>
+  </tr>
+<tr>
+    <td>DC.AC &amp; RENEWABLES LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πόλη Χρυσοχούς</td>
+    <td class="lic">Ε004147/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 63 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003534/2022</td>
+  </tr>
+<tr>
+    <td>G.A.P. TRADING &amp; SERVICES LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγίοι Τριμιθιάς</td>
+    <td class="lic">Ε003380/2022</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 39 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003334/2022</td>
+  </tr>
+<tr>
+    <td>BP-S 104 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Φιλούσα</td>
+    <td class="lic">Ε003238/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 81 LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τρούλλοι</td>
+    <td class="lic">Ε003011/2021</td>
+  </tr>
+<tr>
+    <td>TXMN ENERGY LTD</td>
+    <td class="num">2.00</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σωτήρα</td>
+    <td class="lic">Ε002140/2019</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 92 LTD</td>
+    <td class="num">1.80</td>
+    <td class="num">1.80</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άχνα</td>
+    <td class="lic">Ε001979/2018</td>
+  </tr>
+<tr>
+    <td>BP SOLAR POWER ENERGY LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τερσεφάνου</td>
+    <td class="lic">Ε003241/2021, Ε002966/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 99 LTD</td>
+    <td class="num">1.70</td>
+    <td class="num">1.70</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αναλυόντας</td>
+    <td class="lic">Ε001921/2018</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 83 LTD</td>
+    <td class="num">1.60</td>
+    <td class="num">1.60</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Στρουμπί, Πολέμι, Τρούλλοι</td>
+    <td class="lic">Ε003360/2022, Ε003233/2021</td>
+  </tr>
+<tr>
+    <td>NAT ENERGY LTD</td>
+    <td class="num">1.57</td>
+    <td class="num">1.57</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πάνω Δευτερά</td>
+    <td class="lic">Ε004309/2024, Ε004308/2024</td>
+  </tr>
+<tr>
+    <td>ΛΑΤΟΜΕΙΑ ΛΑΤΟΥΡΟΣ ΛΤΔ</td>
+    <td class="num">1.53</td>
+    <td class="num">1.53</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ιδαλίου</td>
+    <td class="lic">Ε004754/2025</td>
+  </tr>
+<tr>
+    <td>MDG SOLAR POWER LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Τάλα</td>
+    <td class="lic">Ε003282/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 34 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αγία Βαρβάρα</td>
+    <td class="lic">Ε003147/2021</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 10 LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ποταμιά</td>
+    <td class="lic">Ε002488/2019</td>
+  </tr>
+<tr>
+    <td>AKMK ECO PIONEER LTD</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αυγόρου</td>
+    <td class="lic">Ε001911/2018</td>
+  </tr>
+<tr>
+    <td>ΣΤΕΛΟΥΜΕΣΤΑ ΛΤΔ</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ανώγυρα</td>
+    <td class="lic">Ε001738/2017</td>
+  </tr>
+<tr>
+    <td>N &amp; R SOLAR LTD</td>
+    <td class="num">1.40</td>
+    <td class="num">1.40</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Άγιος Θεράπων</td>
+    <td class="lic">Ε004553/2024</td>
+  </tr>
+<tr>
+    <td>BMF TALIADOROS LTD</td>
+    <td class="num">1.34</td>
+    <td class="num">1.34</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μαργί</td>
+    <td class="lic">Ε004026/2023</td>
+  </tr>
+<tr>
+    <td>ACGK RENEWABLE SOLUTIONS LTD</td>
+    <td class="num">1.30</td>
+    <td class="num">1.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πολέμι</td>
+    <td class="lic">Ε004093/2023</td>
+  </tr>
+<tr>
+    <td>ΣΚΥΡΑ ΛΙΜΑ ΛΤΔ</td>
+    <td class="num">1.30</td>
+    <td class="num">1.30</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Κόρνος</td>
+    <td class="lic">Ε003806/2023</td>
+  </tr>
+<tr>
+    <td>RANGY TRADING LTD</td>
+    <td class="num">1.27</td>
+    <td class="num">1.27</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Σιά</td>
+    <td class="lic">Ε004287/2024</td>
+  </tr>
+<tr>
+    <td>ΕΡΜΗΣ ΑΝΤΩΝΙΑΔΗΣ ΛΤΔ</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Θρηνιά</td>
+    <td class="lic">Ε004767/2025, Ε004766/2025</td>
+  </tr>
+<tr>
+    <td>XBLA GEOSOLUTIONS LTD</td>
+    <td class="num">1.19</td>
+    <td class="num">1.19</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Περιστερώνα, Νικητάρι</td>
+    <td class="lic">Ε004002/2023, Ε003859/2023</td>
+  </tr>
+<tr>
+    <td>DENSOL R. LTD</td>
+    <td class="num">1.15</td>
+    <td class="num">1.15</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ευρύχου</td>
+    <td class="lic">Ε003470/2022</td>
+  </tr>
+<tr>
+    <td>A. KAMEL CREATIVE CONSTRUCTION LTD</td>
+    <td class="num">1.13</td>
+    <td class="num">1.13</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Ορούντα</td>
+    <td class="lic">Ε004056/2023</td>
+  </tr>
+<tr>
+    <td>GENERGETIC LTD</td>
+    <td class="num">1.09</td>
+    <td class="num">1.09</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Αραδίππου</td>
+    <td class="lic">Ε004047/2023</td>
+  </tr>
+<tr>
+    <td>KING EVELTHON HOTEL LTD</td>
+    <td class="num">1.05</td>
+    <td class="num">1.05</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Χλώρκα</td>
+    <td class="lic">Ε004756/2025</td>
+  </tr>
+<tr>
+    <td>GVP SOLAR ENERGY 1 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Χολέτρια</td>
+    <td class="lic">Ε004317/2024</td>
+  </tr>
+<tr>
+    <td>T.S.V. ENERGY OF FUTURE LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Μηλιά Πάφου</td>
+    <td class="lic">Ε003998/2023</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 52 LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Πόλις Χρυσοχούς</td>
+    <td class="lic">Ε003324/2022</td>
+  </tr>
+<tr>
+    <td>BENQUET ENTERPRISES LTD</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td class="num">0.00</td>
+    <td>No</td>
+    <td>pre_sale</td>
+    <td>Καταλιόντας</td>
+    <td class="lic">Ε002311/2019</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <p class="count">119 row(s)</p>
+  </section>
+    
+  <section class="panel">
+    <h2>Panel D — Standalone BESS licences (CERA PV kW = 0)</h2>
+    <p class="intro">BESS-only construction licences — BESS EPC + O&amp;M targets.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>CERA licence</th>
+            <th>PV MWp</th>
+            <th>BESS MW</th>
+            <th>Class</th>
+            <th>EAC listed</th>
+            <th>Segments</th>
+            <th>Municipality</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td>TH. SOULIS ENERGY LTD</td>
+    <td class="lic">Ε005122/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.40</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Καλό Χωριό Λάρνακας</td>
+    <td class="num">22</td>
+  </tr>
+<tr>
+    <td>Α. ΚΕΡΑΣΙ (ΦΩΤΟΒΟΛΤΑΙΚΑ) ΛΤΔ</td>
+    <td class="lic">Ε005118/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μηλιά</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>Α. ΚΕΡΑΣΙ (ΦΩΤΟΒΟΛΤΑΙΚΑ) ΛΤΔ</td>
+    <td class="lic">Ε005117/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μηλιά</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 67 LTD</td>
+    <td class="lic">Ε005114/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.12</td>
+    <td>bess_standalone</td>
+    <td>Yes</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Σανίδα</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 67 LTD</td>
+    <td class="lic">Ε005113/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.12</td>
+    <td>bess_standalone</td>
+    <td>Yes</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Σανίδα</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 67 LTD</td>
+    <td class="lic">Ε005112/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.12</td>
+    <td>bess_standalone</td>
+    <td>Yes</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Σανίδα</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT VI LTD</td>
+    <td class="lic">Ε005086/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.56</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT V LTD</td>
+    <td class="lic">Ε005085/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.92</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT IV LTD</td>
+    <td class="lic">Ε005084/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.60</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Γέρι</td>
+    <td class="num">34</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT III LTD</td>
+    <td class="lic">Ε005083/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.26</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Περιστερώνα</td>
+    <td class="num">29</td>
+  </tr>
+<tr>
+    <td>SANTIAM INVESTMENT IΙ LTD</td>
+    <td class="lic">Ε005082/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.90</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 66 LTD</td>
+    <td class="lic">Ε005054/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αλαμινό</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>NEPHESH LTD</td>
+    <td class="lic">Ε005018/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κονιά</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>EASY POWER (CYPRUS) LTD</td>
+    <td class="lic">Ε004976/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">4.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Σοζώμενος</td>
+    <td class="num">39</td>
+  </tr>
+<tr>
+    <td>EASY POWER (CYPRUS) LTD</td>
+    <td class="lic">Ε004975/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">5.58</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιο Σοζώμενος</td>
+    <td class="num">42</td>
+  </tr>
+<tr>
+    <td>CKG SUN ENERGY LTD</td>
+    <td class="lic">Ε004974/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Σκαρίνου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>Y.A. WINDENERGY LTD</td>
+    <td class="lic">Ε004972/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.60</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Δάλι</td>
+    <td class="num">22</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 64 LTD</td>
+    <td class="lic">Ε004971/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.45</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Απλάντα</td>
+    <td class="num">22</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 64 LTD</td>
+    <td class="lic">Ε004970/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.20</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αναφωτία</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 36 LTD</td>
+    <td class="lic">Ε004969/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κοφίνου</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 17 LTD</td>
+    <td class="lic">Ε004968/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.40</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Πάνω Κουτραφά</td>
+    <td class="num">22</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 17 LTD</td>
+    <td class="lic">Ε004967/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.99</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κάτω Κουτραφά</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 17 LTD</td>
+    <td class="lic">Ε004966/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Πάνω Κουτραφάς</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 16 LTD</td>
+    <td class="lic">Ε004965/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μαρώνι</td>
+    <td class="num">23</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 21 LTD</td>
+    <td class="lic">Ε004964/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κοφίνου</td>
+    <td class="num">23</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 38 LTD</td>
+    <td class="lic">Ε004963/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άχνα</td>
+    <td class="num">23</td>
+  </tr>
+<tr>
+    <td>DLM FAMILIAR SOLAR LTD</td>
+    <td class="lic">Ε004962/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.15</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μαλούντα</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>BP-S 106 LTD</td>
+    <td class="lic">Ε004961/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αλεθρικό</td>
+    <td class="num">23</td>
+  </tr>
+<tr>
+    <td>AK SOLAR LTD</td>
+    <td class="lic">Ε004960/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.15</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αγία Μαρίνα Ξυλιάτου</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 60 LTD</td>
+    <td class="lic">Ε004959/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αραδίππου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>DLKC SOLAR LTD</td>
+    <td class="lic">Ε004958/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.15</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αγία Μαρίνα Ξυλιάτου</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>LPV STARLIGHT SYSTEMS LTD</td>
+    <td class="lic">Ε004957/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Λιοπέτρι</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 2 LTD</td>
+    <td class="lic">Ε004956/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.24</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κοφίνου</td>
+    <td class="num">29</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 35 LTD</td>
+    <td class="lic">Ε004955/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Πόλη Χρυσοχούς</td>
+    <td class="num">27</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 32 LTD</td>
+    <td class="lic">Ε004954/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.30</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μενόγεια</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 22 LTD</td>
+    <td class="lic">Ε004953/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.80</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αραδίππου</td>
+    <td class="num">23</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 45 LTD</td>
+    <td class="lic">Ε004952/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.90</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αραδίππου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 44 LTD</td>
+    <td class="lic">Ε004951/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Πάνω Δευτερά</td>
+    <td class="num">34</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 62 LTD</td>
+    <td class="lic">Ε004950/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αναφωτία</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 31 LTD</td>
+    <td class="lic">Ε004949/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.70</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μενόγεια</td>
+    <td class="num">23</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 61 LTD</td>
+    <td class="lic">Ε004948/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αναφωτίδα</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 55 LTD</td>
+    <td class="lic">Ε004947/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αραδίππου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 55 LTD</td>
+    <td class="lic">Ε004946/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αραδίππου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 30 LTD</td>
+    <td class="lic">Ε004945/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μαργί</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 53 LTD</td>
+    <td class="lic">Ε004944/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.20</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Τσέρι</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 53 LTD</td>
+    <td class="lic">Ε004943/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.30</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Τσέρι</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 29 LTD</td>
+    <td class="lic">Ε004942/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.90</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αγιοί Τριμιθιάς</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 47 LTD</td>
+    <td class="lic">Ε004941/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.20</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μαζωτός</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 27 LTD</td>
+    <td class="lic">Ε004940/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αθηένου</td>
+    <td class="num">22</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 27 LTD</td>
+    <td class="lic">Ε004939/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αθηένου</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 24 LTD</td>
+    <td class="lic">Ε004938/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.20</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μαρώνι</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 19 LTD</td>
+    <td class="lic">Ε004937/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αγιοί Τριμιθιάς</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 19 LTD</td>
+    <td class="lic">Ε004936/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αυγόρου</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 18 LTD</td>
+    <td class="lic">Ε004935/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.20</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αβδελερό</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 16 LTD</td>
+    <td class="lic">Ε004934/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.30</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Μαρώνι</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>M.X. GREENENERGY LTD</td>
+    <td class="lic">Ε004933/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.80</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Φρέναρος</td>
+    <td class="num">31</td>
+  </tr>
+<tr>
+    <td>A.V. EARTH REGENERATION LTD</td>
+    <td class="lic">Ε004932/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.80</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αραδίππου</td>
+    <td class="num">27</td>
+  </tr>
+<tr>
+    <td>M.X. GREENENERGY LTD</td>
+    <td class="lic">Ε004931/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.60</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Τσέρι</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>CAVEXOUN LTD</td>
+    <td class="lic">Ε004930/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αστρομερίτη</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>THREE HATS LTD</td>
+    <td class="lic">Ε004929/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Δένεια</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>THREE HATS LTD</td>
+    <td class="lic">Ε004928/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης Μαλούντας</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>RES ZEUS ELECTRICITY COMPANY LTD</td>
+    <td class="lic">Ε004859/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κοκκινοτριμιθιά</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>SOLIGHT ELECTRICITY COMPANY LTD</td>
+    <td class="lic">Ε004858/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Κοκκινοτριμιθιά</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>VEMARIA ENTERPRISES LTD</td>
+    <td class="lic">Ε004852/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">2.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης Μαλούντας</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>VEMARIA ENTERPRISES LTD</td>
+    <td class="lic">Ε004851/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">5.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης Μαλούντας</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>ΗΛΙΟΜΟΡΦΟΝ 1 ΛΤΔ</td>
+    <td class="lic">Ε004846/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">5.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Επιφάνειος Σολέας</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>ARMOLIA INVESTMENTS LTD</td>
+    <td class="lic">Ε004845/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">5.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Επιφάνειος Σολέας</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>CYPV SUNRISING ENERGY LTD</td>
+    <td class="lic">Ε004734/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>GIGAWATT GLOBAL (CYPRUS) LTD</td>
+    <td class="lic">Ε004733/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">5.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>GIGAWATT GLOBAL (CYPRUS) LTD</td>
+    <td class="lic">Ε004732/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">5.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>PANASKA TRADING COMPANY LTD</td>
+    <td class="lic">Ε004713/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">0.30</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Γέρι</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>SVEA SOLAR CYPRUS LTD</td>
+    <td class="lic">Ε004671/2025</td>
+    <td class="num">0.00</td>
+    <td class="num">3.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Ανάγια</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>S.S.H. IDALIUM SOLAR ENERGY LTD</td>
+    <td class="lic">Ε004573/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">1.30</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Δάλι</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>S.S.H. ARKOSYKIA SOLAR ENERGY LTD</td>
+    <td class="lic">Ε004572/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">3.50</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Δάλι</td>
+    <td class="num">34</td>
+  </tr>
+<tr>
+    <td>SOLARGEN 2 LTD</td>
+    <td class="lic">Ε004558/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Ψευδάς</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>T.P.M. ABITENERGY LTD</td>
+    <td class="lic">Ε004368/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Άγιος Ιωάννης</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>L &amp; T PV TECH LTD</td>
+    <td class="lic">Ε004294/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Φρέναρος</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>L &amp; T ENERGIA LTD</td>
+    <td class="lic">Ε004292/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">2.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Δάλι</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>L &amp; T RES SYSTEMS LTD</td>
+    <td class="lic">Ε004291/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">1.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Αυγόρου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>L &amp; T SOLAR LTD</td>
+    <td class="lic">Ε004290/2024</td>
+    <td class="num">0.00</td>
+    <td class="num">2.00</td>
+    <td>bess_standalone</td>
+    <td>No</td>
+    <td>standalone_bess, bess_pre_sale_epc, bess_om</td>
+    <td>Φρέναρος</td>
+    <td class="num">28</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <p class="count">80 row(s)</p>
+  </section>
+    
+  <section class="panel">
+    <h2>Panel E — Construction + EAC RES listed (grid POS proxy)</h2>
+    <p class="intro">Matched by municipality + capacity to EAC RES table. EAC listed confirms POS progress on distribution network — not the same as a private final connection terms PDF.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>CERA licence</th>
+            <th>PV MWp</th>
+            <th>BESS MW</th>
+            <th>Class</th>
+            <th>EAC listed</th>
+            <th>Segments</th>
+            <th>Municipality</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td>K. KYTHREOTIS HOLDINGS PUBLIC LTD</td>
+    <td class="lic">Ε005124/2025</td>
+    <td class="num">2.29</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ύψωνας</td>
+    <td class="num">9</td>
+  </tr>
+<tr>
+    <td>K. KYTHREOTIS HOLDINGS PUBLIC LTD</td>
+    <td class="lic">Ε005123/2025</td>
+    <td class="num">1.12</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ύψωνας</td>
+    <td class="num">4</td>
+  </tr>
+<tr>
+    <td>RAGUNA LTD</td>
+    <td class="lic">Ε005077/2025</td>
+    <td class="num">2.50</td>
+    <td class="num">2.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Μαθικολώνη</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 6 LTD</td>
+    <td class="lic">Ε005066/2025</td>
+    <td class="num">1.25</td>
+    <td class="num">1.25</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Παραμύθα</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 7 LTD</td>
+    <td class="lic">Ε005064/2025</td>
+    <td class="num">1.40</td>
+    <td class="num">1.40</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Φασούλα</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>WATTZ PROJECT 7 LTD</td>
+    <td class="lic">Ε005063/2025</td>
+    <td class="num">1.10</td>
+    <td class="num">1.10</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Φασούλα</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BP-S 157 LTD</td>
+    <td class="lic">Ε005042/2025</td>
+    <td class="num">1.40</td>
+    <td class="num">1.40</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πισσούρι</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>BP-S 157 LTD</td>
+    <td class="lic">Ε005041/2025</td>
+    <td class="num">2.10</td>
+    <td class="num">2.10</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πισσούρι</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>DAISYRISE VENTURES LTD</td>
+    <td class="lic">Ε004817/2025</td>
+    <td class="num">7.00</td>
+    <td class="num">5.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Παρεκκλησιά</td>
+    <td class="num">48</td>
+  </tr>
+<tr>
+    <td>ΑΡΗΣ ΑΘΛΗΤΙΚΕΣ ΕΓΚΑΤΑΣΤΑΣΕΙΣ ΛΤΔ</td>
+    <td class="lic">Ε004772/2025</td>
+    <td class="num">2.15</td>
+    <td class="num">2.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">29</td>
+  </tr>
+<tr>
+    <td>ΑΡΗΣ ΑΘΛΗΤΙΚΕΣ ΕΓΚΑΤΑΣΤΑΣΕΙΣ ΛΤΔ</td>
+    <td class="lic">Ε004771/2025</td>
+    <td class="num">2.59</td>
+    <td class="num">2.40</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>ΑΡΗΣ ΑΘΛΗΤΙΚΕΣ ΕΓΚΑΤΑΣΤΑΣΕΙΣ ΛΤΔ</td>
+    <td class="lic">Ε004770/2025</td>
+    <td class="num">7.96</td>
+    <td class="num">7.80</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">52</td>
+  </tr>
+<tr>
+    <td>HELLENIQ RENEWABLES CYPRUS PACHNA LTD</td>
+    <td class="lic">Ε004708/2025</td>
+    <td class="num">3.00</td>
+    <td class="num">1.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αψιού</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>ΔΗΜΟΣ ΠΟΛΕΜΙΔΙΩΝ</td>
+    <td class="lic">Ε004677/2025</td>
+    <td class="num">5.90</td>
+    <td class="num">1.97</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Κάτω Πολεμίδια</td>
+    <td class="num">44</td>
+  </tr>
+<tr>
+    <td>DAISYRISE VENTURES LTD</td>
+    <td class="lic">Ε004676/2025</td>
+    <td class="num">4.50</td>
+    <td class="num">2.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">38</td>
+  </tr>
+<tr>
+    <td>JPB ENERGY LTD</td>
+    <td class="lic">Ε004646/2025</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>TEKOS RENEWABLE TECHNOLOGIES LTD</td>
+    <td class="lic">Ε004612/2024</td>
+    <td class="num">1.25</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">5</td>
+  </tr>
+<tr>
+    <td>S.S.H. SOLAR ENERGY 01 LTD</td>
+    <td class="lic">Ε004577/2024</td>
+    <td class="num">2.00</td>
+    <td class="num">2.03</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Γεράσα</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>ERGO ENERGY PV PARKS LTD</td>
+    <td class="lic">Ε004563/2024</td>
+    <td class="num">8.00</td>
+    <td class="num">2.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πισσούρι</td>
+    <td class="num">52</td>
+  </tr>
+<tr>
+    <td>N &amp; R SOLAR LTD</td>
+    <td class="lic">Ε004553/2024</td>
+    <td class="num">1.40</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Άγιος Θεράπων</td>
+    <td class="num">6</td>
+  </tr>
+<tr>
+    <td>SOLAR FLOW ENERGY LTD</td>
+    <td class="lic">Ε004550/2024</td>
+    <td class="num">2.70</td>
+    <td class="num">2.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Μοναγρούλλι</td>
+    <td class="num">31</td>
+  </tr>
+<tr>
+    <td>BP-S 139 LTD</td>
+    <td class="lic">Ε004532/2024</td>
+    <td class="num">3.30</td>
+    <td class="num">3.30</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">33</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004490/2024</td>
+    <td class="num">1.80</td>
+    <td class="num">1.15</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ύψωνα</td>
+    <td class="num">27</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004489/2024</td>
+    <td class="num">1.28</td>
+    <td class="num">0.80</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ύψωνα</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004488/2024</td>
+    <td class="num">1.94</td>
+    <td class="num">1.25</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Σουνι - Ζανατζιά</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 40 LTD</td>
+    <td class="lic">Ε004479/2024</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>ELECTRILO LTD</td>
+    <td class="lic">Ε004455/2024</td>
+    <td class="num">1.00</td>
+    <td class="num">1.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc</td>
+    <td>Απεσιά</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>IGVA SOLAR ENERGY LTD</td>
+    <td class="lic">Ε004428/2024</td>
+    <td class="num">7.30</td>
+    <td class="num">5.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πάνω Κυβίδες</td>
+    <td class="num">49</td>
+  </tr>
+<tr>
+    <td>D.P. ELSIM LTD</td>
+    <td class="lic">Ε004427/2024</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Κάτω Πολεμίδια</td>
+    <td class="num">12</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004375/2024</td>
+    <td class="num">7.96</td>
+    <td class="num">5.55</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">52</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004374/2024</td>
+    <td class="num">7.04</td>
+    <td class="num">4.75</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">48</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004371/2024</td>
+    <td class="num">5.76</td>
+    <td class="num">4.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">43</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004370/2024</td>
+    <td class="num">5.28</td>
+    <td class="num">3.40</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πύργος Λεμεσού</td>
+    <td class="num">41</td>
+  </tr>
+<tr>
+    <td>ERGO ENERGY PV PARKS LTD</td>
+    <td class="lic">Ε004350/2024</td>
+    <td class="num">5.00</td>
+    <td class="num">5.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πραστιό Αυδήμου</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>MEZIA LTD</td>
+    <td class="lic">Ε004335/2024</td>
+    <td class="num">5.32</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Μοναγρούλλι</td>
+    <td class="num">21</td>
+  </tr>
+<tr>
+    <td>SUNFAN LTD</td>
+    <td class="lic">Ε004323/2024</td>
+    <td class="num">5.05</td>
+    <td class="num">5.05</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">40</td>
+  </tr>
+<tr>
+    <td>BP-S 117 LTD</td>
+    <td class="lic">Ε004316/2024</td>
+    <td class="num">1.20</td>
+    <td class="num">1.20</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Σωτήρα</td>
+    <td class="num">25</td>
+  </tr>
+<tr>
+    <td>L &amp; T SUN ENERGY LTD</td>
+    <td class="lic">Ε004293/2024</td>
+    <td class="num">1.00</td>
+    <td class="num">4.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αλέκτορα</td>
+    <td class="num">36</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004284/2024</td>
+    <td class="num">7.09</td>
+    <td class="num">4.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ύψωνα</td>
+    <td class="num">48</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004283/2024</td>
+    <td class="num">4.35</td>
+    <td class="num">2.75</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ύψωνα</td>
+    <td class="num">37</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004282/2024</td>
+    <td class="num">2.39</td>
+    <td class="num">1.60</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ύψωνα</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>ZECORANO ENERGY LTD</td>
+    <td class="lic">Ε004265/2024</td>
+    <td class="num">2.12</td>
+    <td class="num">1.40</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">28</td>
+  </tr>
+<tr>
+    <td>FUTURE SUN POWER LTD</td>
+    <td class="lic">Ε004234/2023</td>
+    <td class="num">1.62</td>
+    <td class="num">1.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Σουνι - Ζανατζιά</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>ΑΡΧΗ ΗΛΕΚΤΡΙΣΜΟΥ ΚΥΠΡΟΥ</td>
+    <td class="lic">Ε004228/2023</td>
+    <td class="num">8.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ακρωτήρι</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>REVESIUS LTD</td>
+    <td class="lic">Ε004164/2023</td>
+    <td class="num">4.50</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">18</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004161/2023</td>
+    <td class="num">1.04</td>
+    <td class="num">0.60</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004160/2023</td>
+    <td class="num">4.16</td>
+    <td class="num">2.20</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">37</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004159/2023</td>
+    <td class="num">3.12</td>
+    <td class="num">1.70</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004158/2023</td>
+    <td class="num">1.55</td>
+    <td class="num">0.80</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004157/2023</td>
+    <td class="num">1.12</td>
+    <td class="num">0.60</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004156/2023</td>
+    <td class="num">2.78</td>
+    <td class="num">1.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">31</td>
+  </tr>
+<tr>
+    <td>GOTIARE LTD</td>
+    <td class="lic">Ε004154/2023</td>
+    <td class="num">3.73</td>
+    <td class="num">2.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">35</td>
+  </tr>
+<tr>
+    <td>OPAE ODYSSEOS RENEWABLE SOLUTIONS LTD</td>
+    <td class="lic">Ε004119/2023</td>
+    <td class="num">3.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Απεσιά</td>
+    <td class="num">12</td>
+  </tr>
+<tr>
+    <td>SOLEK LEMESOS I LTD</td>
+    <td class="lic">Ε004116/2023</td>
+    <td class="num">7.43</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πισσούρι</td>
+    <td class="num">30</td>
+  </tr>
+<tr>
+    <td>DAROSTEL LTD</td>
+    <td class="lic">Ε004113/2023</td>
+    <td class="num">4.30</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">17</td>
+  </tr>
+<tr>
+    <td>Y.A. PV ENERGY LTD</td>
+    <td class="lic">Ε004092/2023</td>
+    <td class="num">2.20</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πραστιό Αυδήμου</td>
+    <td class="num">9</td>
+  </tr>
+<tr>
+    <td>SONTSE PV ALPHA LTD</td>
+    <td class="lic">Ε003993/2023</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">18</td>
+  </tr>
+<tr>
+    <td>KERIA ENERGY LTD</td>
+    <td class="lic">Ε003941/2023</td>
+    <td class="num">4.50</td>
+    <td class="num">4.05</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">38</td>
+  </tr>
+<tr>
+    <td>D.P. ELSIM LTD</td>
+    <td class="lic">Ε003824/2023</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Λάνεια</td>
+    <td class="num">8</td>
+  </tr>
+<tr>
+    <td>EMSH MEDITERRANEAN SOLAR HARVEST LTD</td>
+    <td class="lic">Ε003712/2022</td>
+    <td class="num">2.50</td>
+    <td class="num">3.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ασγάτα</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>D.K. SOLAR PROJECT HOLDINGS LTD</td>
+    <td class="lic">Ε003711/2022</td>
+    <td class="num">5.50</td>
+    <td class="num">4.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">42</td>
+  </tr>
+<tr>
+    <td>PV SUNSET LTD</td>
+    <td class="lic">Ε003665/2022</td>
+    <td class="num">2.76</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">11</td>
+  </tr>
+<tr>
+    <td>PV SUNSET LTD</td>
+    <td class="lic">Ε003664/2022</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">9</td>
+  </tr>
+<tr>
+    <td>PV SUNSET LTD</td>
+    <td class="lic">Ε003591/2022</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Μοναγρούλι</td>
+    <td class="num">8</td>
+  </tr>
+<tr>
+    <td>M.X. PUREENERGYINTEL LTD</td>
+    <td class="lic">Ε003560/2022</td>
+    <td class="num">7.99</td>
+    <td class="num">1.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">52</td>
+  </tr>
+<tr>
+    <td>M.A.X.X. ENERGY GR LTD</td>
+    <td class="lic">Ε003525/2022</td>
+    <td class="num">5.33</td>
+    <td class="num">1.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Ασγάτα</td>
+    <td class="num">41</td>
+  </tr>
+<tr>
+    <td>ARNAL VERDE LTD</td>
+    <td class="lic">Ε003520/2022</td>
+    <td class="num">1.41</td>
+    <td class="num">1.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Άγιος Μάμας</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>ARNAL VERDE LTD</td>
+    <td class="lic">Ε003518/2022</td>
+    <td class="num">1.03</td>
+    <td class="num">1.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Άγιος Μάμας</td>
+    <td class="num">24</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 90 LTD</td>
+    <td class="lic">Ε003501/2022</td>
+    <td class="num">3.20</td>
+    <td class="num">3.20</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Παρεκκλησιά</td>
+    <td class="num">33</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 90 LTD</td>
+    <td class="lic">Ε003500/2022</td>
+    <td class="num">1.50</td>
+    <td class="num">1.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Παρεκκλησιά</td>
+    <td class="num">26</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 78 LTD</td>
+    <td class="lic">Ε003464/2022</td>
+    <td class="num">2.60</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">10</td>
+  </tr>
+<tr>
+    <td>FRONTARICO LTD</td>
+    <td class="lic">Ε003449/2022</td>
+    <td class="num">2.30</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Παλώδια</td>
+    <td class="num">9</td>
+  </tr>
+<tr>
+    <td>L. E. EVERGREEN ENERGY LTD</td>
+    <td class="lic">Ε003393/2022</td>
+    <td class="num">8.00</td>
+    <td class="num">5.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αλέκτορα</td>
+    <td class="num">52</td>
+  </tr>
+<tr>
+    <td>L. E. EVERGREEN ENERGY LTD</td>
+    <td class="lic">Ε003392/2022</td>
+    <td class="num">8.00</td>
+    <td class="num">5.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αλέκτορα</td>
+    <td class="num">52</td>
+  </tr>
+<tr>
+    <td>L. E. EVERGREEN ENERGY LTD</td>
+    <td class="lic">Ε003391/2022</td>
+    <td class="num">4.00</td>
+    <td class="num">2.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αλέκτορα</td>
+    <td class="num">36</td>
+  </tr>
+<tr>
+    <td>L. E. EVERGREEN ENERGY LTD</td>
+    <td class="lic">Ε003390/2022</td>
+    <td class="num">3.70</td>
+    <td class="num">2.00</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αλέκτορα</td>
+    <td class="num">35</td>
+  </tr>
+<tr>
+    <td>L. E. EVERGREEN ENERGY LTD</td>
+    <td class="lic">Ε003389/2022</td>
+    <td class="num">2.30</td>
+    <td class="num">1.50</td>
+    <td>pv_bess_hybrid</td>
+    <td>Yes</td>
+    <td>bess_pre_sale_epc, pv_rtb_epc</td>
+    <td>Αλέκτορα</td>
+    <td class="num">29</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 73 LTD</td>
+    <td class="lic">Ε003240/2021</td>
+    <td class="num">1.11</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πάχνα</td>
+    <td class="num">4</td>
+  </tr>
+<tr>
+    <td>BIOLAND PROJECT 73 LTD</td>
+    <td class="lic">Ε003010/2021</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">6</td>
+  </tr>
+<tr>
+    <td>L.K. ENERGY LTD</td>
+    <td class="lic">Ε002741/2020</td>
+    <td class="num">4.10</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">16</td>
+  </tr>
+<tr>
+    <td>HELIOTRICITY LOFOU PV PARKS LTD</td>
+    <td class="lic">Ε002644/2020</td>
+    <td class="num">4.40</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Άγιος Θεράπων</td>
+    <td class="num">18</td>
+  </tr>
+<tr>
+    <td>GIANKO1 SOLAR LTD</td>
+    <td class="lic">Ε002563/2019</td>
+    <td class="num">7.95</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Δωρά</td>
+    <td class="num">32</td>
+  </tr>
+<tr>
+    <td>PISCES POWER INVESTMENTS LTD</td>
+    <td class="lic">Ε002145/2019</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>TXMN ENERGY LTD</td>
+    <td class="lic">Ε002140/2019</td>
+    <td class="num">2.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Σωτήρα</td>
+    <td class="num">8</td>
+  </tr>
+<tr>
+    <td>EARTHLIGHT PARK LTD</td>
+    <td class="lic">Ε001986/2018</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Σωτήρα</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>EARTHLIGHT PARK LTD</td>
+    <td class="lic">Ε001985/2018</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Σωτήρα</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>ASP 304 SOLAR LTD</td>
+    <td class="lic">Ε001954/2018</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Αυδήμου</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>AGM LIGHTPOWER LTD</td>
+    <td class="lic">Ε001884/2018</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πραστιό Αυδήμου</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>AGM LIGHTPOWER LTD</td>
+    <td class="lic">Ε001883/2018</td>
+    <td class="num">5.00</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Πραστιό Αυδήμου</td>
+    <td class="num">20</td>
+  </tr>
+<tr>
+    <td>ΣΤΕΛΟΥΜΕΣΤΑ ΛΤΔ</td>
+    <td class="lic">Ε001738/2017</td>
+    <td class="num">1.50</td>
+    <td class="num">0.00</td>
+    <td>pv_only</td>
+    <td>Yes</td>
+    <td>pv_rtb_epc</td>
+    <td>Ανώγυρα</td>
+    <td class="num">6</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <p class="count">90 row(s)</p>
+  </section>
+    
+  <section class="panel">
+    <h2>Panel F — PV O&amp;M targets (operational, EAC listed)</h2>
+    <p class="intro">Operational PV ≥1 MWp with EAC inventory match — PV O&amp;M outreach.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>CERA licence</th>
+            <th>PV MWp</th>
+            <th>BESS MW</th>
+            <th>Class</th>
+            <th>EAC listed</th>
+            <th>Segments</th>
+            <th>Municipality</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="9">No rows.</td></tr></tbody>
+      </table>
+    </div>
+    <p class="count">0 row(s)</p>
+  </section>
+  </main>
+  <footer>
+    Counts JSON: RTB 271, mixed 28, retrofit 48, pre-sale 119.
+    Plant-level: standalone BESS 80, EAC+construction 90, PV O&M 0.
+  </footer>
+</body>
+</html>

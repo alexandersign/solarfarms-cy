@@ -48,7 +48,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
 
-REF = "Ref: LCY-LOI-GAL-B1-2026-R13"
+REF = "Ref: LCY-LOI-GAL-B1-2026-R15"
 EPC_REF = "LCY-EPC-GAL-B1-2026"
 GT = galascope_totals()
 
@@ -94,7 +94,7 @@ def build():
         (
             "D.",
             "Other Esperia group pipeline parks are covered under a separate Letter of Intent with "
-            "Esperia Energy Group (Ref: LCY-LOI-ESP-PIPELINE-2026-R13).",
+            "Esperia Energy Group (Ref: LCY-LOI-ESP-PIPELINE-2026-R15).",
         ),
     ]:
         rp = doc.add_paragraph()

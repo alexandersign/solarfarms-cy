@@ -31,6 +31,24 @@ interface SegmentRow {
   offerType?: string
 }
 
+interface PlantLevelRow {
+  cera_license_no?: string
+  company_name: string
+  pv_kw?: number
+  bess_kw?: number
+  plant_class?: string
+  license_status?: string
+  municipality?: string
+  district?: string
+  district_en?: string
+  eac_res_listed?: boolean
+  commercial_segments?: string[]
+  primary_sales_target?: string
+  contact_director_1?: string
+  contact_email?: string
+  priority_score?: number
+}
+
 interface SegmentsFile {
   generatedAt?: string
   minMwpPanel?: number
@@ -39,6 +57,13 @@ interface SegmentsFile {
   mixedConstructionPipeline: SegmentRow[]
   bessRetrofitTargets: SegmentRow[]
   bessPreSaleTargets: SegmentRow[]
+  plantLevel?: {
+    standaloneBess?: PlantLevelRow[]
+    eacMatchedConstruction?: PlantLevelRow[]
+    bessPreSalePlants?: PlantLevelRow[]
+    pvOmPlants?: PlantLevelRow[]
+    unmatchedEacSample?: unknown[]
+  }
 }
 
 function esc(s: string): string {
@@ -62,6 +87,51 @@ function rowCells(r: SegmentRow): string {
     <td>${esc((r.municipalities || []).slice(0, 2).join(', '))}</td>
     <td class="lic">${esc(lic)}${esc(more)}</td>
   </tr>`
+}
+
+function plantRowCells(r: PlantLevelRow): string {
+  const contact = [r.contact_director_1, r.contact_email].filter(Boolean).join(' · ')
+  return `<tr>
+    <td>${esc(r.company_name)}</td>
+    <td class="lic">${esc(r.cera_license_no || '')}</td>
+    <td><strong>${esc(r.primary_sales_target || '-')}</strong></td>
+    <td class="num">${r.pv_kw != null ? (r.pv_kw / 1000).toFixed(2) : '-'}</td>
+    <td class="num">${r.bess_kw != null ? (r.bess_kw / 1000).toFixed(2) : '-'}</td>
+    <td>${esc(r.plant_class || '')}</td>
+    <td>${esc(contact || '-')}</td>
+    <td>${esc(r.municipality || '')}</td>
+    <td class="num">${r.priority_score ?? '-'}</td>
+  </tr>`
+}
+
+function plantTable(title: string, rows: PlantLevelRow[], intro: string): string {
+  const body = rows.length
+    ? rows.map(plantRowCells).join('\n')
+    : '<tr><td colspan="9">No rows.</td></tr>'
+  return `
+  <section class="panel">
+    <h2>${esc(title)}</h2>
+    <p class="intro">${esc(intro)}</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>CERA licence</th>
+            <th>Sales target</th>
+            <th>PV MWp</th>
+            <th>BESS MW</th>
+            <th>Class</th>
+            <th>Contact</th>
+            <th>Municipality</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>${body}</tbody>
+      </table>
+    </div>
+    <p class="count">${rows.length} row(s)</p>
+  </section>`
 }
 
 function table(title: string, rows: SegmentRow[], intro: string): string {
@@ -182,9 +252,25 @@ function main() {
       data.bessPreSaleTargets || [],
       'Construction-phase PV without BESS fields populated — co-locate BESS in build.'
     )}
+    ${plantTable(
+      'Panel D — Standalone BESS licences (CERA PV kW = 0)',
+      data.plantLevel?.standaloneBess || [],
+      'BESS-only construction licences — BESS EPC + O&M targets.'
+    )}
+    ${plantTable(
+      'Panel E — Construction + EAC RES listed (grid POS proxy)',
+      data.plantLevel?.eacMatchedConstruction || [],
+      'Matched by municipality + capacity to EAC RES table. EAC listed confirms POS progress on distribution network — not the same as a private final connection terms PDF.'
+    )}
+    ${plantTable(
+      'Panel F — PV O&M targets (operational, EAC listed)',
+      data.plantLevel?.pvOmPlants || [],
+      'Operational PV ≥1 MWp with EAC inventory match — PV O&M outreach.'
+    )}
   </main>
   <footer>
     Counts JSON: RTB ${data.counts?.rtbCandidates ?? '-'}, mixed ${data.counts?.mixedConstructionPipeline ?? '-'}, retrofit ${data.counts?.bessRetrofitTargets ?? '-'}, pre-sale ${data.counts?.bessPreSaleTargets ?? '-'}.
+    Plant-level: standalone BESS ${data.counts?.standaloneBess ?? '-'}, EAC+construction ${data.counts?.eacMatchedConstruction ?? '-'}, PV O&M ${data.counts?.pvOmPlants ?? '-'}.
   </footer>
 </body>
 </html>`

@@ -255,8 +255,8 @@ export const GROUPS: GroupData[] = [
 // Restructured to reflect actual signing status:
 // B1_ESPERIA: Galascope 1+2 (Esperia confirmed) — order on EPC signing
 // B1_CONDITIONAL: Timotheos (3 parks) + Lampros (2 parks) + Spanercom (2 parks) — pending their EPC
-// B2: Esperia main portfolio (Famagusta + Limassol + Frenaros) — pipeline Q3 2026
-// B3: Remaining Esperia Tseri + conditional group order — pipeline 2027
+// B2–B4: Esperia pipeline LOI — three batches by delivery (2026 / 2027 / 2028)
+// B1_EXTENSION: Timotheos + Lampros + Spanercom — conditional on their EPC
 // AEOLIAN: Standalone, independent timeline — high probability
 // ─────────────────────────────────────────────
 
@@ -296,36 +296,50 @@ export const BATCHES = [
     _meta: { source: 'Conditional on EPC signatures. Timotheos/Lampros verbal, Spanercom active negotiation.', date: '2026-05-08' } as MetaInfo,
   },
   {
-    id: 3, name: 'Batch 2 — Esperia Main Portfolio (Pipeline Q3 2026)',
+    id: 3, name: 'Batch 2 — Esperia Pipeline 2026',
     status: 'pipeline' as BatchStatus,
     groups: [
-      'Esperia Famagusta — 6.5 MW / 20 MWh',
-      'Esperia Famagusta 2 — 5 MW / 20 MWh',
-      'Esperia Limassol — 8 MW / 60 MWh',
-      'Esperia Frenaros — 25 MW / 100 MWh',
+      'Esperia Tseri — 7.2 MW / 25 MWh (2026)',
+      'Esperia Tseri 2-A — 2.75 MW / 10 MWh (Q3 2026)',
+      'Esperia Tseri 3 — 4.75 MW / 20 MWh (Q3 2026)',
+      'Esperia Famagusta — 6.5 MW / 20 MWh (Q4 2026)',
     ],
-    parks: 4, mw: 44.5, mwh: 200.0, containers: 0,
-    revenue: 21_841_589, margin: 2_440_000, marginPct: 11.17,
-    productionStart: '2026-09-01', productionEnd: '2026-11-30',
-    fatDate: '2026-11-30', shipDate: '2026-12-01',
-    cifDate: '2027-01-20', pacDate: '2027-05-31',
-    _meta: { source: 'Esperia main parks per group-proposal.template.html. Timeline follows B1 Esperia signing.', date: '2026-05-08' } as MetaInfo,
+    parks: 4, mw: 21.2, mwh: 75.0, containers: 22,
+    revenue: 8_892_445, margin: 980_000, marginPct: 11.0,
+    productionStart: '2026-04-01', productionEnd: '2026-09-30',
+    fatDate: '2026-09-30', shipDate: '2026-10-01',
+    cifDate: '2026-12-15', pacDate: '2027-06-30',
+    _meta: { source: 'LOI pipeline Batch 1 — 2026 (Dino Schedule 1). Revenue from loi_docx_common May 2026.', date: '2026-05-20' } as MetaInfo,
   },
   {
-    id: 4, name: 'Batch 3 — Esperia Tseri + Remaining Group Order (2027)',
+    id: 4, name: 'Batch 3 — Esperia Pipeline 2027',
     status: 'pipeline' as BatchStatus,
     groups: [
-      'Esperia Tseri (5 parks — 87.5 MWh) — 2028 order',
-      'Timotheos remaining (6 parks) — if signed',
-      'A. Kerasi (3 parks) — if signed',
-      'Ioannis Karis (1 park) — if signed',
+      'Esperia Limassol — 8 MW / 60 MWh (Q2 2027)',
+      'Esperia Tseri 2-B — 7.99 MW / 30 MWh (2027)',
+      'Esperia Tseri 2-C — 6.3 MW / 25 MWh (2027)',
     ],
-    parks: 15, mw: 54.65, mwh: 237.5, containers: 0,
-    revenue: 28_663_988, margin: 3_193_000, marginPct: 11.14,
-    productionStart: '2027-06-01', productionEnd: '2027-09-30',
-    fatDate: '2027-09-30', shipDate: '2027-10-01',
-    cifDate: '2027-11-15', pacDate: '2028-03-31',
-    _meta: { source: 'Esperia Tseri + remaining conditional clients. Dates estimated.', date: '2026-05-08' } as MetaInfo,
+    parks: 3, mw: 22.29, mwh: 115.0, containers: 26,
+    revenue: 12_405_139, margin: 1_365_000, marginPct: 11.0,
+    productionStart: '2027-01-01', productionEnd: '2027-06-30',
+    fatDate: '2027-06-30', shipDate: '2027-07-01',
+    cifDate: '2027-03-31', pacDate: '2027-12-31',
+    _meta: { source: 'LOI pipeline Batch 2 — 2027 (Dino Schedule 1).', date: '2026-05-20' } as MetaInfo,
+  },
+  {
+    id: 5, name: 'Batch 4 — Esperia Pipeline 2028',
+    status: 'pipeline' as BatchStatus,
+    groups: [
+      'Esperia Frenaros — 25 MW / 100 MWh (Q2 2028)',
+      'Esperia Famagusta 2 — 7 MW / 25 MWh (Q2 2028)',
+      'Timotheos / Kerasi / Karis — if signed (conditional)',
+    ],
+    parks: 2, mw: 32.0, mwh: 125.0, containers: 27,
+    revenue: 13_161_239, margin: 1_448_000, marginPct: 11.0,
+    productionStart: '2027-10-01', productionEnd: '2028-03-31',
+    fatDate: '2028-03-31', shipDate: '2028-04-01',
+    cifDate: '2028-03-31', pacDate: '2028-09-30',
+    _meta: { source: 'LOI pipeline Batch 3 — 2028 (Dino Schedule 1). Conditional group order noted separately.', date: '2026-05-20' } as MetaInfo,
   },
 ] as const;
 
@@ -1067,6 +1081,20 @@ export function getTemplateVars(): Record<string, string> {
     'BATCH3.cifDateFmt': fmtDate(BATCHES[2].cifDate),
     'BATCH3.pacDate': BATCHES[2].pacDate || 'TBC',
     'BATCH3.pacDateFmt': fmtDate(BATCHES[2].pacDate),
+    'BATCH4.parks': String(BATCHES[3].parks),
+    'BATCH4.mwh':   String(BATCHES[3].mwh),
+    'BATCH4.status': BATCHES[3].status,
+    'BATCH4.cifDate': BATCHES[3].cifDate || 'TBC',
+    'BATCH4.cifDateFmt': fmtDate(BATCHES[3].cifDate),
+    'BATCH4.pacDate': BATCHES[3].pacDate || 'TBC',
+    'BATCH4.pacDateFmt': fmtDate(BATCHES[3].pacDate),
+    'BATCH5.parks': String(BATCHES[4].parks),
+    'BATCH5.mwh':   String(BATCHES[4].mwh),
+    'BATCH5.status': BATCHES[4].status,
+    'BATCH5.cifDate': BATCHES[4].cifDate || 'TBC',
+    'BATCH5.cifDateFmt': fmtDate(BATCHES[4].cifDate),
+    'BATCH5.pacDate': BATCHES[4].pacDate || 'TBC',
+    'BATCH5.pacDateFmt': fmtDate(BATCHES[4].pacDate),
     'FAC_DATE':      FAC_DATE,
 
     ...getFeasibilityTemplateVars(),
