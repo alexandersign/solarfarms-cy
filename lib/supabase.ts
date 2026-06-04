@@ -186,6 +186,14 @@ export const loiSubmissionsService = {
   },
 }
 
+// CRM activity feed entry
+export interface ActivityEntry {
+  ts: string      // ISO timestamp
+  author: string  // display name or email of actor
+  type: 'note' | 'status' | 'assign' | 'email' | 'call' | 'system'
+  body: string
+}
+
 // PV Prospects CRM Types
 export interface PvProspect {
   id?: string
@@ -245,6 +253,10 @@ export interface PvProspect {
   email_confidence?: number
   developer_group?: string
   developer_domain?: string
+  // Search + activity + industry
+  search_aliases?: string
+  activity_feed?: ActivityEntry[]
+  industry?: string
   // Commercial (rooftop self-consumption) fields
   place_id?: string
   roof_area_m2?: number

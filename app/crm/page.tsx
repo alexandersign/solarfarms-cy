@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -9,61 +9,36 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
-  Users,
-  Search,
-  Plus,
-  RefreshCw,
-  ExternalLink,
-  Download,
-  Filter,
-  Building,
-  MapPin,
-  Phone,
-  Mail,
-  Linkedin,
-  Globe,
-  Calendar,
-  DollarSign,
-  Zap,
-  Target,
-  ChevronDown,
-  ChevronUp,
-  Edit,
-  Trash2,
-  CheckCircle,
-  XCircle,
-  Clock,
-  AlertCircle,
-  BarChart3,
-  FileText,
-  Copy,
-  UserCheck,
-  LogOut,
-  Send,
-  Eye,
-  MailCheck,
+  Users, Search, Plus, RefreshCw, ExternalLink, Download, Filter,
+  Building, MapPin, Phone, Mail, Linkedin, Globe, Calendar, DollarSign,
+  Zap, Target, ChevronDown, ChevronUp, Edit, Trash2, CheckCircle, XCircle,
+  Clock, AlertCircle, BarChart3, FileText, Copy, UserCheck, LogOut,
+  Send, Eye, MailCheck, MessageSquare, ArrowUpDown, Folder, PhoneCall,
+  X, Save,
 } from 'lucide-react'
-import type { PvProspect } from '@/lib/supabase'
+import type { PvProspect, ActivityEntry } from '@/lib/supabase'
 import { CRM_USERS } from '@/lib/crm-users'
 
+// ─── Constants ────────────────────────────────────────────────────────────────
+
 const OUTREACH_STATUSES = [
-  { value: 'new',           label: 'New',             color: 'bg-gray-100 text-gray-800'   },
-  { value: 'researching',   label: 'Researching',     color: 'bg-blue-100 text-blue-800'   },
-  { value: 'contacted',     label: 'Contacted',       color: 'bg-yellow-100 text-yellow-800'},
-  { value: 'responded',     label: 'Responded',       color: 'bg-green-100 text-green-800' },
-  { value: 'meeting_set',   label: 'Meeting Set',     color: 'bg-purple-100 text-purple-800'},
-  { value: 'proposal_sent', label: 'Proposal Sent',   color: 'bg-indigo-100 text-indigo-800'},
-  { value: 'negotiating',   label: 'Negotiating',     color: 'bg-orange-100 text-orange-800'},
-  { value: 'won',           label: 'Won',             color: 'bg-emerald-100 text-emerald-800'},
-  { value: 'lost',          label: 'Lost',            color: 'bg-red-100 text-red-800'     },
-  { value: 'not_interested',label: 'Not Interested',  color: 'bg-slate-100 text-slate-800' },
+  { value: 'new',            label: 'New',           color: 'bg-gray-100 text-gray-800'    },
+  { value: 'researching',    label: 'Researching',   color: 'bg-blue-100 text-blue-800'    },
+  { value: 'contacted',      label: 'Contacted',     color: 'bg-yellow-100 text-yellow-800' },
+  { value: 'responded',      label: 'Responded',     color: 'bg-green-100 text-green-800'  },
+  { value: 'meeting_set',    label: 'Meeting Set',   color: 'bg-purple-100 text-purple-800' },
+  { value: 'proposal_sent',  label: 'Proposal Sent', color: 'bg-indigo-100 text-indigo-800' },
+  { value: 'negotiating',    label: 'Negotiating',   color: 'bg-orange-100 text-orange-800' },
+  { value: 'won',            label: 'Won',           color: 'bg-emerald-100 text-emerald-800'},
+  { value: 'lost',           label: 'Lost',          color: 'bg-red-100 text-red-800'      },
+  { value: 'not_interested', label: 'Not Interested',color: 'bg-slate-100 text-slate-800'  },
 ]
 
 const PRIORITIES = [
-  { value: 'urgent', label: 'Urgent', color: 'bg-red-100 text-red-800'   },
+  { value: 'urgent', label: 'Urgent', color: 'bg-red-100 text-red-800'    },
   { value: 'high',   label: 'High',   color: 'bg-orange-100 text-orange-800'},
   { value: 'medium', label: 'Medium', color: 'bg-yellow-100 text-yellow-800'},
-  { value: 'low',    label: 'Low',    color: 'bg-gray-100 text-gray-800'  },
+  { value: 'low',    label: 'Low',    color: 'bg-gray-100 text-gray-800'   },
 ]
 
 const OFFER_TYPES = [
@@ -78,7 +53,7 @@ const OFFER_TYPES = [
 
 const RTB_STAGES = [
   { value: 'operational',        label: 'Operational' },
-  { value: 'under_construction', label: 'Under construction / RTB' },
+  { value: 'under_construction', label: 'Under construction' },
   { value: 'mixed',              label: 'Mixed portfolio' },
 ]
 
@@ -89,23 +64,38 @@ const BUILT_STAGES = [
   { value: 'unknown',         label: 'Unknown' },
 ]
 
-const DISTRICTS       = ['Nicosia', 'Limassol', 'Larnaca', 'Paphos', 'Famagusta']
-const TECHNOLOGIES    = ['PV', 'Wind', 'Biomass', 'BESS', 'Hybrid', 'CSP']
-const DATA_SOURCES    = [
-  { value: 'cera',             label: 'CERA Licensing Archive'   },
-  { value: 'company_register', label: 'Cyprus Company Register'  },
-  { value: 'linkedin',         label: 'LinkedIn'                 },
-  { value: 'referral',         label: 'Referral'                 },
-  { value: 'web_research',     label: 'Web Research'             },
-  { value: 'conference',       label: 'Conference / Event'       },
-  { value: 'tsoc',             label: 'TSOC / DSO'               },
+const DISTRICTS    = ['Nicosia', 'Limassol', 'Larnaca', 'Paphos', 'Famagusta']
+const TECHNOLOGIES = ['PV', 'Wind', 'Biomass', 'BESS', 'Hybrid', 'CSP']
+const DATA_SOURCES = [
+  { value: 'cera',             label: 'CERA Licensing Archive' },
+  { value: 'company_register', label: 'Cyprus Company Register' },
+  { value: 'linkedin',         label: 'LinkedIn' },
+  { value: 'referral',         label: 'Referral' },
+  { value: 'web_research',     label: 'Web Research' },
+  { value: 'conference',       label: 'Conference / Event' },
+  { value: 'tsoc',             label: 'TSOC / DSO' },
 ]
-const PLANT_STATUSES  = [
-  { value: 'operational',      label: 'Operational'       },
-  { value: 'under_construction', label: 'Under Construction'},
-  { value: 'licensed',         label: 'Licensed'          },
-  { value: 'planned',          label: 'Planned'           },
-  { value: 'decommissioned',   label: 'Decommissioned'    },
+const PLANT_STATUSES = [
+  { value: 'operational',       label: 'Operational'        },
+  { value: 'under_construction',label: 'Under Construction' },
+  { value: 'licensed',          label: 'Licensed'           },
+  { value: 'planned',           label: 'Planned'            },
+  { value: 'decommissioned',    label: 'Decommissioned'     },
+]
+
+// Developer folder groups (derived from offer_type + BESS)
+const DEV_FOLDERS = [
+  { id: 'pv_epc',    label: 'PV EPC',          match: (p: ProspectFull) => p.offer_type === 'epc' && !p.bess_potential_mwh  },
+  { id: 'pv_bess',   label: 'PV + BESS EPC',   match: (p: ProspectFull) => p.offer_type === 'epc' && !!p.bess_potential_mwh },
+  { id: 'pv_om',     label: 'PV O&M',          match: (p: ProspectFull) => p.offer_type === 'o_and_m' },
+  { id: 'bess',      label: 'BESS',            match: (p: ProspectFull) => p.offer_type === 'bess_retrofit' },
+  { id: 'other_dev', label: 'Other',           match: (p: ProspectFull) => !['epc','o_and_m','bess_retrofit'].includes(p.offer_type||'') },
+]
+
+// Commercial industries (map from industry column)
+const COMMERCIAL_INDUSTRIES = [
+  'Warehouse / Logistics','Hotel / Hospitality','Clinic / Medical','Supermarket / Retail',
+  'Factory / Manufacturing','Car Dealership','Gym / Sports','Restaurant / Café','Other',
 ]
 
 const EMPTY_PROSPECT: PvProspect = {
@@ -122,13 +112,28 @@ const EMPTY_PROSPECT: PvProspect = {
   data_source: '', tags: [], priority: 'medium',
 }
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+type ProspectFull = PvProspect & {
+  assigned_to?: string; assigned_name?: string; segment?: string
+  rtb_status?: string; satellite_check?: string; bess_sales_angle?: string
+  construction_mwp?: number; operational_mwp?: number; developer_group?: string
+  developer_domain?: string; email_confidence?: number; contact_director_1?: string
+  roof_area_m2?: number; annual_kwh?: number; annual_savings_eur?: number
+  payback_years?: number; has_existing_pv?: boolean; roof_image_url?: string
+  industry?: string; activity_feed?: ActivityEntry[]; search_aliases?: string
+  connection_terms_status?: string; env_permit_status?: string; building_permit_status?: string
+}
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-type ProspectWithAssign = PvProspect & { assigned_to?: string; assigned_name?: string }
-
 const formatDate = (d?: string) => {
-  if (!d) return '-'
+  if (!d) return '—'
   return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+const formatDateTime = (d?: string) => {
+  if (!d) return ''
+  return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 }
 
 const formatCurrency = (n: number) =>
@@ -140,50 +145,106 @@ const getStatusColor = (s: string) =>
 const getPriorityColor = (p: string) =>
   PRIORITIES.find(x => x.value === p)?.color || 'bg-gray-100 text-gray-800'
 
+const activityIcon = (type: ActivityEntry['type']) => {
+  if (type === 'note')   return <MessageSquare className="w-3 h-3" />
+  if (type === 'call')   return <PhoneCall className="w-3 h-3" />
+  if (type === 'email')  return <Mail className="w-3 h-3" />
+  if (type === 'status') return <CheckCircle className="w-3 h-3" />
+  if (type === 'assign') return <UserCheck className="w-3 h-3" />
+  return <Clock className="w-3 h-3" />
+}
+
+// ─── Inline editable field component ─────────────────────────────────────────
+
+function InlineEdit({ label, value, onSave, href, type = 'text' }: {
+  label: string; value?: string; onSave: (v: string) => void
+  href?: string; type?: string
+}) {
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState(value || '')
+  const ref = useRef<HTMLInputElement>(null)
+  useEffect(() => { if (editing) ref.current?.focus() }, [editing])
+  const save = () => { onSave(draft); setEditing(false) }
+  if (editing) {
+    return (
+      <div>
+        <dt className="text-gray-400 text-xs">{label}</dt>
+        <dd className="flex items-center gap-1">
+          <input ref={ref} type={type} value={draft} onChange={e => setDraft(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter') save(); if (e.key === 'Escape') setEditing(false) }}
+            className="border rounded px-2 py-0.5 text-sm flex-1" />
+          <button onClick={save} className="text-green-600 hover:text-green-700"><Save className="w-3.5 h-3.5" /></button>
+          <button onClick={() => { setDraft(value||''); setEditing(false) }} className="text-gray-400"><X className="w-3.5 h-3.5" /></button>
+        </dd>
+      </div>
+    )
+  }
+  return (
+    <div>
+      <dt className="text-gray-400 text-xs">{label}</dt>
+      <dd className="flex items-center gap-1 group">
+        {value
+          ? href
+            ? <a href={href} target={href.startsWith('http')?'_blank':'_self'} rel="noopener noreferrer" className="text-blue-600 hover:underline">{value}</a>
+            : <span>{value}</span>
+          : <span className="text-gray-300 italic text-xs">not set</span>}
+        <button onClick={() => { setDraft(value||''); setEditing(true) }}
+          className="opacity-0 group-hover:opacity-100 transition ml-1 text-gray-400 hover:text-[#1A365D]">
+          <Edit className="w-3 h-3" />
+        </button>
+      </dd>
+    </div>
+  )
+}
+
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function CrmPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
 
-  const [prospects,   setProspects]   = useState<ProspectWithAssign[]>([])
-  const [followUps,   setFollowUps]   = useState<ProspectWithAssign[]>([])
-  const [stats,       setStats]       = useState<{
+  const [prospects,    setProspects]    = useState<ProspectFull[]>([])
+  const [followUps,    setFollowUps]    = useState<ProspectFull[]>([])
+  const [stats,        setStats]        = useState<{
     total: number; byStatus: Record<string,number>; byPriority: Record<string,number>;
     totalPipeline: number; totalCapacity: number
   }>({ total: 0, byStatus: {}, byPriority: {}, totalPipeline: 0, totalCapacity: 0 })
-  const [loading,     setLoading]     = useState(true)
-  const [activeView,  setActiveView]  = useState<'list'|'pipeline'|'grid_contacts'|'data_sources'>('list')
-  const [showForm,    setShowForm]    = useState(false)
-  const [editingId,   setEditingId]   = useState<string|null>(null)
-  const [expandedId,  setExpandedId]  = useState<string|null>(null)
-  const [formData,    setFormData]    = useState<ProspectWithAssign>(EMPTY_PROSPECT)
-  const [actionResult,setActionResult]= useState<{success:boolean;message:string}|null>(null)
+  const [loading,      setLoading]      = useState(true)
+  const [activeView,   setActiveView]   = useState<'list'|'pipeline'|'grid_contacts'|'data_sources'>('list')
+  const [showForm,     setShowForm]     = useState(false)
+  const [editingId,    setEditingId]    = useState<string|null>(null)
+  const [expandedId,   setExpandedId]   = useState<string|null>(null)
+  const [formData,     setFormData]     = useState<ProspectFull>(EMPTY_PROSPECT)
+  const [actionResult, setActionResult] = useState<{success:boolean;message:string}|null>(null)
+  const [noteText,     setNoteText]     = useState<Record<string,string>>({})
+  const [groupBy,      setGroupBy]      = useState(false)
+  const [openFolders,  setOpenFolders]  = useState<Set<string>>(new Set(['pv_epc','pv_bess','pv_om','bess','other_dev','Other']))
+  const [sortBy,       setSortBy]       = useState<'created_at'|'priority_score'|'capacity'|'last_activity'>('created_at')
+  const [dragId,       setDragId]       = useState<string|null>(null)
+  const [dropTarget,   setDropTarget]   = useState<string|null>(null)
 
   // Filters
-  const [searchQuery,    setSearchQuery]    = useState('')
-  const [filterStatus,   setFilterStatus]   = useState('all')
-  const [filterPriority, setFilterPriority] = useState('all')
-  const [filterDistrict, setFilterDistrict] = useState('all')
-  const [filterOfferType,setFilterOfferType]= useState('all')
-  const [filterAssigned, setFilterAssigned] = useState<'all'|'mine'>('all')
-  const [filterNew, setFilterNew] = useState<'all'|'7'|'30'>('all')
+  const [searchQuery,     setSearchQuery]     = useState('')
+  const [filterStatus,    setFilterStatus]    = useState('all')
+  const [filterPriority,  setFilterPriority]  = useState('all')
+  const [filterDistrict,  setFilterDistrict]  = useState('all')
+  const [filterOfferType, setFilterOfferType] = useState('all')
+  const [filterAssigned,  setFilterAssigned]  = useState<'all'|'mine'>('all')
+  const [filterNew,       setFilterNew]       = useState<'all'|'7'|'30'>('all')
+  const [segment,         setSegment]         = useState<'developer'|'commercial'>('developer')
+  const [filterRtb,       setFilterRtb]       = useState('all')
+  const [filterBuilt,     setFilterBuilt]     = useState('all')
+  const [filterTech,      setFilterTech]      = useState('all')
+  const [filterBess,      setFilterBess]      = useState('all')
+  const [filterIndustry,  setFilterIndustry]  = useState('all')
 
-  // segment + segment-specific filters
-  const [segment, setSegment] = useState<'developer'|'commercial'>('developer')
-  const [filterRtb, setFilterRtb] = useState('all')
-  const [filterBuilt, setFilterBuilt] = useState('all')
-  const [filterTech, setFilterTech] = useState('all')
-  const [filterBess, setFilterBess] = useState('all')
-
-  // outreach
+  // Outreach
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
-  const [sending, setSending] = useState(false)
+  const [sending,     setSending]     = useState(false)
 
   const myEmail = session?.user?.email ?? ''
   const myName  = CRM_USERS.find(u => u.email === myEmail)?.name ?? ''
 
-  // Redirect to login if not authenticated
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/crm/login')
   }, [status, router])
@@ -201,11 +262,12 @@ export default function CrmPage() {
       if (filterNew !== 'all')       params.set('new_days',  filterNew)
       params.set('segment', segment)
       if (segment === 'developer') {
-        if (filterRtb !== 'all')   params.set('rtb_status', filterRtb)
+        if (filterRtb   !== 'all') params.set('rtb_status',     filterRtb)
         if (filterBuilt !== 'all') params.set('satellite_check', filterBuilt)
-        if (filterTech !== 'all')  params.set('technology', filterTech)
-        if (filterBess !== 'all')  params.set('has_bess', filterBess)
+        if (filterTech  !== 'all') params.set('technology',      filterTech)
+        if (filterBess  !== 'all') params.set('has_bess',        filterBess)
       }
+      if (segment === 'commercial' && filterIndustry !== 'all') params.set('industry', filterIndustry)
 
       const [pRes, fRes] = await Promise.all([
         fetch(`/api/crm/prospects?${params.toString()}`),
@@ -213,36 +275,58 @@ export default function CrmPage() {
       ])
       if (pRes.ok) {
         const d = await pRes.json()
-        setProspects(d.data || [])
+        setProspects((d.data || []) as ProspectFull[])
         setStats(d.stats || { total:0, byStatus:{}, byPriority:{}, totalPipeline:0, totalCapacity:0 })
       }
       if (fRes.ok) {
         const d = await fRes.json()
-        setFollowUps(d.data || [])
+        setFollowUps((d.data || []) as ProspectFull[])
       }
     } catch {
       setActionResult({ success: false, message: 'Failed to load prospects' })
     } finally {
       setLoading(false)
     }
-  }, [filterStatus, filterPriority, filterDistrict, filterOfferType, searchQuery, filterAssigned, filterNew, segment, filterRtb, filterBuilt, filterTech, filterBess, myEmail])
+  }, [filterStatus, filterPriority, filterDistrict, filterOfferType, searchQuery,
+      filterAssigned, filterNew, segment, filterRtb, filterBuilt, filterTech, filterBess,
+      filterIndustry, myEmail])
 
   useEffect(() => { if (status === 'authenticated') fetchProspects() }, [fetchProspects, status])
 
+  // ─── In-place row patch (no scroll jump) ─────────────────────────────────
+  const patchRow = useCallback((id: string, updates: Partial<ProspectFull>) => {
+    setProspects(ps => ps.map(p => p.id === id ? { ...p, ...updates } : p))
+  }, [])
+
+  const putRow = useCallback(async (id: string, updates: Partial<ProspectFull>) => {
+    patchRow(id, updates)  // optimistic
+    try {
+      await fetch('/api/crm/prospects', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, ...updates }),
+      })
+    } catch { /* revert not implemented — silent */ }
+  }, [patchRow])
+
+  // ─── CRUD ─────────────────────────────────────────────────────────────────
   const saveProspect = async () => {
-    if (!formData.plant_name) {
-      setActionResult({ success: false, message: 'Plant name is required' }); return
-    }
+    if (!formData.plant_name) { setActionResult({ success: false, message: 'Plant name required' }); return }
     try {
       const method = editingId ? 'PUT' : 'POST'
       const body   = editingId ? { ...formData, id: editingId } : formData
-      const res    = await fetch('/api/crm/prospects', {
-        method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
-      })
+      const res    = await fetch('/api/crm/prospects', { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       const result = await res.json()
       setActionResult({ success: result.success, message: result.message })
-      if (result.success) { setShowForm(false); setEditingId(null); setFormData(EMPTY_PROSPECT); fetchProspects() }
-    } catch { setActionResult({ success: false, message: 'Network error saving prospect' }) }
+      if (result.success) {
+        setShowForm(false); setEditingId(null); setFormData(EMPTY_PROSPECT)
+        if (editingId) {
+          patchRow(editingId, formData)
+        } else {
+          fetchProspects()
+        }
+      }
+    } catch { setActionResult({ success: false, message: 'Network error' }) }
   }
 
   const deleteProspect = async (id: string) => {
@@ -251,219 +335,238 @@ export default function CrmPage() {
       const res = await fetch(`/api/crm/prospects?id=${id}`, { method: 'DELETE' })
       const result = await res.json()
       setActionResult({ success: result.success, message: result.message })
-      if (result.success) fetchProspects()
+      if (result.success) setProspects(ps => ps.filter(p => p.id !== id))
     } catch { setActionResult({ success: false, message: 'Failed to delete' }) }
   }
 
-  const quickUpdateStatus = async (id: string, outreach_status: string) => {
-    try {
-      const now = new Date().toISOString()
-      const updates: Partial<ProspectWithAssign> = {
-        outreach_status: outreach_status as PvProspect['outreach_status'],
-      }
-      if (outreach_status === 'contacted' || outreach_status === 'responded')
-        updates.last_contact_date = now
-      if (!prospects.find(p => p.id === id)?.first_contact_date && outreach_status === 'contacted')
-        updates.first_contact_date = now
+  const quickUpdateStatus = useCallback(async (id: string, outreach_status: string) => {
+    const now = new Date().toISOString()
+    const updates: Partial<ProspectFull> = { outreach_status: outreach_status as PvProspect['outreach_status'] }
+    if (outreach_status === 'contacted' || outreach_status === 'responded') updates.last_contact_date = now
+    const existing = prospects.find(p => p.id === id)
+    if (!existing?.first_contact_date && outreach_status === 'contacted') updates.first_contact_date = now
+    await putRow(id, updates)
+    // log activity
+    fetch('/api/crm/prospects/activity', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, type: 'status', body: `Status → ${outreach_status}` }),
+    }).then(r => r.json()).then(d => {
+      if (d.data?.activity_feed) patchRow(id, { activity_feed: d.data.activity_feed })
+    }).catch(() => {})
+  }, [prospects, putRow, patchRow])
 
-      await fetch('/api/crm/prospects', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, ...updates }),
-      })
-      fetchProspects()
-    } catch { /* silent */ }
-  }
-
-  const assignProspect = async (id: string, email: string) => {
+  const assignProspect = useCallback(async (id: string, email: string) => {
     const user = CRM_USERS.find(u => u.email === email)
-    try {
-      await fetch('/api/crm/prospects', {
-        method: 'PUT',
+    await putRow(id, { assigned_to: email || undefined, assigned_name: user?.name || undefined })
+    if (email) {
+      fetch('/api/crm/prospects/activity', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, assigned_to: email || null, assigned_name: user?.name || null }),
-      })
-      fetchProspects()
-    } catch { /* silent */ }
+        body: JSON.stringify({ id, type: 'assign', body: `Assigned to ${user?.name || email}` }),
+      }).then(r => r.json()).then(d => {
+        if (d.data?.activity_feed) patchRow(id, { activity_feed: d.data.activity_feed })
+      }).catch(() => {})
+    }
+  }, [putRow, patchRow])
+
+  const addNote = async (id: string, type: ActivityEntry['type'] = 'note') => {
+    const text = noteText[id]?.trim()
+    if (!text) return
+    const res = await fetch('/api/crm/prospects/activity', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, type, body: text }),
+    })
+    const d = await res.json()
+    if (d.success) {
+      setNoteText(prev => ({ ...prev, [id]: '' }))
+      patchRow(id, { activity_feed: d.data.activity_feed, last_contact_date: d.data.last_contact_date })
+    }
   }
 
+  // ─── DnD pipeline ─────────────────────────────────────────────────────────
+  const handleDrop = useCallback((stage: string) => {
+    if (dragId && stage !== dropTarget) {
+      quickUpdateStatus(dragId, stage)
+    }
+    setDragId(null); setDropTarget(null)
+  }, [dragId, dropTarget, quickUpdateStatus])
+
+  // ─── Outreach helpers ─────────────────────────────────────────────────────
   const toggleSelect = (id: string) => {
-    setSelectedIds(prev => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id); else next.add(id)
-      return next
-    })
+    setSelectedIds(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n })
   }
 
   const currentFilter = () => {
-    const f: Record<string, string> = { segment }
-    if (filterStatus !== 'all') f.status = filterStatus
-    if (filterDistrict !== 'all') f.district = filterDistrict
-    if (filterOfferType !== 'all') f.offer_type = filterOfferType
+    const f: Record<string,string> = { segment }
+    if (filterStatus    !== 'all') f.status    = filterStatus
+    if (filterDistrict  !== 'all') f.district  = filterDistrict
+    if (filterOfferType !== 'all') f.offer_type= filterOfferType
     if (searchQuery) f.search = searchQuery
     if (filterAssigned === 'mine' && myEmail) f.assigned_to = myEmail
     if (segment === 'developer') {
-      if (filterRtb !== 'all') f.rtb_status = filterRtb
-      if (filterBuilt !== 'all') f.satellite_check = filterBuilt
-      if (filterTech !== 'all') f.technology = filterTech
-      if (filterBess !== 'all') f.has_bess = filterBess
+      if (filterRtb   !== 'all') f.rtb_status    = filterRtb
+      if (filterBuilt !== 'all') f.satellite_check= filterBuilt
+      if (filterTech  !== 'all') f.technology     = filterTech
+      if (filterBess  !== 'all') f.has_bess       = filterBess
     }
     return f
   }
 
-  const runOutreach = async (payload: Record<string, unknown>, confirmMsg?: string) => {
+  const runOutreach = async (payload: Record<string,unknown>, confirmMsg?: string) => {
     if (confirmMsg && !confirm(confirmMsg)) return
     setSending(true)
     try {
-      const res = await fetch('/api/crm/send-outreach', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
+      const res = await fetch('/api/crm/send-outreach', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       const result = await res.json()
       setActionResult({ success: result.success, message: result.message })
-      if (result.success && !payload.test) { setSelectedIds(new Set()); fetchProspects() }
-    } catch {
-      setActionResult({ success: false, message: 'Outreach request failed' })
-    } finally {
-      setSending(false)
-    }
+      if (result.success && !payload.test) setSelectedIds(new Set())
+    } catch { setActionResult({ success: false, message: 'Outreach failed' }) }
+    finally { setSending(false) }
   }
 
-  const sendTest        = () => runOutreach({ test: true, filter: currentFilter() })
-  const emailSelected   = () => runOutreach({ ids: [...selectedIds] }, `Send the intro email to ${selectedIds.size} selected prospect(s)?`)
-  const emailFiltered   = () => runOutreach({ all: true, filter: currentFilter() }, 'Send the intro email to ALL prospects matching the current filter (skips unsubscribed and already-emailed)?')
-  const openPreview     = (id?: string) => window.open(`/api/crm/preview-outreach${id ? `?id=${id}` : ''}`, '_blank')
-
-  const exportCSV = () => window.open('/api/admin/plants/export', '_blank')
-
+  const openPreview   = (id?: string) => window.open(`/api/crm/preview-outreach${id ? `?id=${id}` : ''}`, '_blank')
+  const exportCSV     = () => window.open('/api/admin/plants/export', '_blank')
   const copyEmailList = () => {
     const emails = prospects.filter(p => p.contact_email).map(p => p.contact_email).join(', ')
     navigator.clipboard.writeText(emails)
     setActionResult({ success: true, message: `Copied ${emails.split(',').length} emails` })
   }
 
+  // ─── Sorted prospects ─────────────────────────────────────────────────────
+  const sortedProspects = [...prospects].sort((a, b) => {
+    if (sortBy === 'capacity')      return (b.capacity_mwp || 0) - (a.capacity_mwp || 0)
+    if (sortBy === 'last_activity') {
+      const aFeed = (a.activity_feed || [])[0]?.ts || a.last_contact_date || a.created_at || ''
+      const bFeed = (b.activity_feed || [])[0]?.ts || b.last_contact_date || b.created_at || ''
+      return bFeed.localeCompare(aFeed)
+    }
+    if (sortBy === 'priority_score') {
+      const PRI = { urgent:4, high:3, medium:2, low:1 }
+      return (PRI[b.priority as keyof typeof PRI]||0) - (PRI[a.priority as keyof typeof PRI]||0)
+    }
+    return (b.created_at || '').localeCompare(a.created_at || '')
+  })
+
+  // ─── Folder grouping ──────────────────────────────────────────────────────
+  const toggleFolder = (id: string) => {
+    setOpenFolders(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n })
+  }
+
+  // ─── Render ───────────────────────────────────────────────────────────────
+
   if (status === 'loading' || status === 'unauthenticated') {
     return <div className="min-h-screen flex items-center justify-center bg-gray-50 text-gray-500">Loading…</div>
   }
 
+  // Sticky header wraps: header + sub-header + tabs
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div style={{ background: 'linear-gradient(135deg, #1A365D 0%, #2B5FA0 100%)' }}>
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-xl font-bold" style={{ color: '#C9A432' }}>Lighthief CRM</span>
-            <span className="text-sm text-blue-200 hidden md:inline">Cyprus PV prospect tracker</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-blue-200">
-              {myName || myEmail}
-            </span>
-            <Button size="sm" variant="outline" className="text-white border-white/30 hover:bg-white/10"
-              onClick={() => signOut({ callbackUrl: '/crm/login' })}>
-              <LogOut className="w-3 h-3 mr-1" /> Sign out
-            </Button>
+
+      {/* ── Sticky floating header ── */}
+      <div className="sticky top-0 z-50 shadow-md">
+        {/* Top bar */}
+        <div style={{ background: 'linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%)' }}>
+          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span className="text-xl font-bold" style={{ color: '#C9A432' }}>Lighthief CRM</span>
+              <span className="text-sm text-blue-200 hidden md:inline">Cyprus PV prospect tracker</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-blue-200">{myName || myEmail}</span>
+              <Button size="sm" variant="outline" className="text-white border-white/30 hover:bg-white/10"
+                onClick={() => signOut({ callbackUrl: '/crm/login' })}>
+                <LogOut className="w-3 h-3 mr-1" /> Sign out
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Sub-header */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between flex-wrap gap-3">
-            <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-xl font-bold text-gray-900">PV Plant Prospects</h1>
-              <a href="/admin/prospects/plants"
-                className="text-sm font-medium text-[#1A365D] hover:underline">
-                Cyprus intelligence →
-              </a>
+        {/* Segment tabs + action buttons */}
+        <div className="bg-[#1A365D] border-b border-blue-800">
+          <div className="container mx-auto px-4 py-2 flex items-center justify-between flex-wrap gap-2">
+            <div className="flex gap-2">
+              {([
+                { key: 'developer',  label: 'PV Parks & Developers', icon: Zap     },
+                { key: 'commercial', label: 'Commercial Rooftop',    icon: Building },
+              ] as const).map(({ key, label, icon: Icon }) => (
+                <button key={key}
+                  onClick={() => { setSegment(key); setExpandedId(null); setSelectedIds(new Set()) }}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded text-sm font-semibold transition ${
+                    segment === key ? 'bg-[#C9A432] text-[#1A365D]' : 'bg-white/10 text-white hover:bg-white/20'}`}>
+                  <Icon className="w-4 h-4" />{label}
+                </button>
+              ))}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <Button variant="outline" size="sm" onClick={fetchProspects} disabled={loading}>
-                <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />Refresh
+              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={fetchProspects} disabled={loading}>
+                <RefreshCw className={`w-3 h-3 mr-1 ${loading?'animate-spin':''}`} />Refresh
               </Button>
-              <Button variant="outline" size="sm" onClick={exportCSV}>
-                <Download className="w-4 h-4 mr-2" />Export CSV
+              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={exportCSV}>
+                <Download className="w-3 h-3 mr-1" />CSV
               </Button>
-              <Button variant="outline" size="sm" onClick={copyEmailList}>
-                <Copy className="w-4 h-4 mr-2" />Copy Emails
+              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={copyEmailList}>
+                <Copy className="w-3 h-3 mr-1" />Emails
               </Button>
-              <Button variant="outline" size="sm" onClick={() => openPreview()}>
-                <Eye className="w-4 h-4 mr-2" />Preview Intro
+              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={() => openPreview()}>
+                <Eye className="w-3 h-3 mr-1" />Preview
               </Button>
-              <Button variant="outline" size="sm" onClick={sendTest} disabled={sending}>
-                <MailCheck className="w-4 h-4 mr-2" />Send Test
+              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={() => runOutreach({ test: true, filter: currentFilter() })} disabled={sending}>
+                <MailCheck className="w-3 h-3 mr-1" />Test email
               </Button>
-              <Button onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(!showForm) }}>
-                <Plus className="w-4 h-4 mr-2" />Add Prospect
+              <Button size="sm" className="bg-[#C9A432] text-[#1A365D] hover:bg-[#b8931f]"
+                onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(s => !s) }}>
+                <Plus className="w-3 h-3 mr-1" />Add
               </Button>
             </div>
           </div>
+        </div>
 
-          {/* Segment tabs */}
-          <div className="flex gap-2 mt-4">
+        {/* View tabs */}
+        <div className="bg-white border-b">
+          <div className="container mx-auto px-4 py-2 flex gap-2 flex-wrap">
             {([
-              { key: 'developer',  label: 'PV Parks & Developers', icon: Zap },
-              { key: 'commercial', label: 'Commercial Rooftop',    icon: Building },
+              { key: 'list',         label: 'Prospects', icon: Users     },
+              { key: 'pipeline',     label: 'Pipeline',  icon: BarChart3 },
+              { key: 'grid_contacts',label: 'DSO / TSO', icon: Zap       },
+              { key: 'data_sources', label: 'Sources',   icon: FileText  },
             ] as const).map(({ key, label, icon: Icon }) => (
-              <button
-                key={key}
-                onClick={() => { setSegment(key); setExpandedId(null); setSelectedIds(new Set()) }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition ${
-                  segment === key ? 'bg-[#C9A432] text-[#1A365D]' : 'bg-white/10 text-white hover:bg-white/20'
-                }`}
-              >
-                <Icon className="w-4 h-4" />{label}
+              <button key={key} onClick={() => setActiveView(key)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-sm transition ${
+                  activeView === key ? 'bg-[#1A365D] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                <Icon className="w-3.5 h-3.5" />{label}
               </button>
             ))}
           </div>
-
-          {/* View tabs */}
-          <div className="flex gap-2 mt-4 flex-wrap">
-            {[
-              { key: 'list',         label: 'Prospect List', icon: Users    },
-              { key: 'pipeline',     label: 'Pipeline',      icon: BarChart3},
-              { key: 'grid_contacts',label: 'DSO / TSO',     icon: Zap      },
-              { key: 'data_sources', label: 'Data Sources',  icon: FileText },
-            ].map(({ key, label, icon: Icon }) => (
-              <Button key={key} size="sm"
-                variant={activeView === key ? 'default' : 'outline'}
-                onClick={() => setActiveView(key as typeof activeView)}>
-                <Icon className="w-4 h-4 mr-2" />{label}
-              </Button>
-            ))}
-          </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-5">
+
         {/* Banner */}
         {actionResult && (
-          <div className={`border rounded-lg p-4 mb-6 flex items-center gap-3 ${
+          <div className={`border rounded-lg p-3 mb-4 flex items-center gap-3 ${
             actionResult.success ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-            {actionResult.success
-              ? <CheckCircle className="w-5 h-5 text-green-600" />
-              : <XCircle    className="w-5 h-5 text-red-600"   />}
-            <p className={actionResult.success ? 'text-green-800' : 'text-red-800'}>{actionResult.message}</p>
-            <Button variant="ghost" size="sm" className="ml-auto" onClick={() => setActionResult(null)}>Dismiss</Button>
+            {actionResult.success ? <CheckCircle className="w-4 h-4 text-green-600" /> : <XCircle className="w-4 h-4 text-red-600" />}
+            <p className={`text-sm ${actionResult.success ? 'text-green-800' : 'text-red-800'}`}>{actionResult.message}</p>
+            <Button variant="ghost" size="sm" className="ml-auto" onClick={() => setActionResult(null)}>×</Button>
           </div>
         )}
 
         {/* Follow-ups */}
         {followUps.length > 0 && activeView === 'list' && (
-          <Card className="mb-6 border-orange-200 bg-orange-50">
-            <CardContent className="pt-6">
+          <Card className="mb-4 border-orange-200 bg-orange-50">
+            <CardContent className="pt-4 pb-3">
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5" />
-                <div className="flex-1">
-                  <h3 className="font-semibold text-orange-800">{followUps.length} Follow-up{followUps.length > 1 ? 's' : ''} Due</h3>
-                  <div className="mt-2 space-y-1">
-                    {followUps.slice(0, 5).map(f => (
-                      <div key={f.id} className="flex items-center gap-2 text-sm text-orange-700">
+                <AlertCircle className="w-4 h-4 text-orange-600 mt-0.5" />
+                <div>
+                  <h3 className="font-semibold text-orange-800 text-sm">{followUps.length} Follow-up{followUps.length>1?'s':''} due</h3>
+                  <div className="mt-1 space-y-0.5">
+                    {followUps.slice(0,5).map(f => (
+                      <div key={f.id} className="flex items-center gap-2 text-xs text-orange-700">
                         <Clock className="w-3 h-3" />
                         <span className="font-medium">{f.plant_name}</span>
-                        <span>({f.company_name})</span>
                         {f.assigned_name && <span className="text-orange-500">→ {f.assigned_name}</span>}
                         <span>due {formatDate(f.next_follow_up)}</span>
                       </div>
@@ -477,142 +580,97 @@ export default function CrmPage() {
 
         {/* Stats */}
         {activeView === 'list' && (
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-            <Card><CardContent className="pt-4 pb-3">
-              <p className="text-xs text-gray-500">Total</p>
-              <p className="text-2xl font-bold">{stats.total}</p>
-            </CardContent></Card>
-            <Card><CardContent className="pt-4 pb-3">
-              <p className="text-xs text-gray-500">Active Pipeline</p>
-              <p className="text-2xl font-bold text-green-600">
-                {['contacted','responded','meeting_set','proposal_sent','negotiating']
-                  .reduce((s,k) => s + (stats.byStatus[k]||0), 0)}
-              </p>
-            </CardContent></Card>
-            <Card><CardContent className="pt-4 pb-3">
-              <p className="text-xs text-gray-500">Pipeline Value</p>
-              <p className="text-2xl font-bold text-blue-600">
-                {stats.totalPipeline > 0 ? formatCurrency(stats.totalPipeline) : '-'}
-              </p>
-            </CardContent></Card>
-            <Card><CardContent className="pt-4 pb-3">
-              <p className="text-xs text-gray-500">Total Capacity</p>
-              <p className="text-2xl font-bold text-purple-600">
-                {stats.totalCapacity > 0 ? `${stats.totalCapacity.toFixed(1)} MWp` : '-'}
-              </p>
-            </CardContent></Card>
-            <Card><CardContent className="pt-4 pb-3">
-              <p className="text-xs text-gray-500">Won</p>
-              <p className="text-2xl font-bold text-emerald-600">{stats.byStatus['won']||0}</p>
-            </CardContent></Card>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+            {[
+              { label: 'Total', val: stats.total, color: '' },
+              { label: 'Active pipeline', val: ['contacted','responded','meeting_set','proposal_sent','negotiating'].reduce((s,k)=>s+(stats.byStatus[k]||0),0), color: 'text-green-600' },
+              { label: 'Pipeline value', val: stats.totalPipeline>0 ? formatCurrency(stats.totalPipeline) : '—', color: 'text-blue-600' },
+              { label: 'Total capacity', val: stats.totalCapacity>0 ? `${stats.totalCapacity.toFixed(1)} MWp` : '—', color: 'text-purple-600' },
+              { label: 'Won', val: stats.byStatus['won']||0, color: 'text-emerald-600' },
+            ].map(({ label, val, color }) => (
+              <Card key={label}><CardContent className="pt-3 pb-2">
+                <p className="text-xs text-gray-500">{label}</p>
+                <p className={`text-2xl font-bold ${color}`}>{val}</p>
+              </CardContent></Card>
+            ))}
           </div>
         )}
 
-        {/* ─── ADD/EDIT FORM ─── */}
+        {/* ─── ADD / EDIT FORM ─── */}
         {showForm && (
-          <Card className="mb-6 border-2 border-blue-200">
-            <CardHeader>
-              <CardTitle>{editingId ? 'Edit Prospect' : 'Add New Prospect'}</CardTitle>
-              <CardDescription>Plant, company, and contact details</CardDescription>
+          <Card className="mb-5 border-2 border-blue-200">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">{editingId ? 'Edit Prospect' : 'Add New Prospect'}</CardTitle>
+              <CardDescription>Enter plant, company, and contact details</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {/* Plant */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2"><Zap className="w-4 h-4" /> Plant Information</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div><Label>Plant Name *</Label><Input value={formData.plant_name} onChange={e => setFormData({...formData,plant_name:e.target.value})} placeholder="e.g. Kokkinotrimithia Solar Park" /></div>
-                    <div><Label>CERA License No.</Label><Input value={formData.cera_license_no||''} onChange={e => setFormData({...formData,cera_license_no:e.target.value})} placeholder="e.g. E-123/2020" /></div>
-                    <div><Label>Capacity (MWp)</Label><Input type="number" step="0.01" value={formData.capacity_mwp||''} onChange={e => setFormData({...formData,capacity_mwp:e.target.value?parseFloat(e.target.value):undefined})} placeholder="10.5" /></div>
-                    <div><Label>Technology</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.technology||'PV'} onChange={e => setFormData({...formData,technology:e.target.value})}>
-                        {TECHNOLOGIES.map(t => <option key={t}>{t}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>Plant Status</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.plant_status||'operational'} onChange={e => setFormData({...formData,plant_status:e.target.value})}>
-                        {PLANT_STATUSES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>District</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.district||''} onChange={e => setFormData({...formData,district:e.target.value})}>
-                        <option value="">Select district…</option>
-                        {DISTRICTS.map(d => <option key={d}>{d}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>Location</Label><Input value={formData.location||''} onChange={e => setFormData({...formData,location:e.target.value})} placeholder="Village / area" /></div>
+                  <h3 className="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-1"><Zap className="w-4 h-4"/>Plant</h3>
+                  <div className="grid md:grid-cols-3 gap-3">
+                    <div><Label className="text-xs">Plant Name *</Label><Input value={formData.plant_name} onChange={e=>setFormData({...formData,plant_name:e.target.value})} /></div>
+                    <div><Label className="text-xs">CERA License</Label><Input value={formData.cera_license_no||''} onChange={e=>setFormData({...formData,cera_license_no:e.target.value})} /></div>
+                    <div><Label className="text-xs">Capacity (MWp)</Label><Input type="number" step="0.01" value={formData.capacity_mwp||''} onChange={e=>setFormData({...formData,capacity_mwp:e.target.value?parseFloat(e.target.value):undefined})} /></div>
+                    <div><Label className="text-xs">Technology</Label>
+                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.technology||'PV'} onChange={e=>setFormData({...formData,technology:e.target.value})}>
+                        {TECHNOLOGIES.map(t=><option key={t}>{t}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">District</Label>
+                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.district||''} onChange={e=>setFormData({...formData,district:e.target.value})}>
+                        <option value="">Select…</option>{DISTRICTS.map(d=><option key={d}>{d}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">Location</Label><Input value={formData.location||''} onChange={e=>setFormData({...formData,location:e.target.value})} /></div>
                   </div>
                 </div>
                 {/* Company */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2"><Building className="w-4 h-4" /> Company Information</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div><Label>Company Name</Label><Input value={formData.company_name||''} onChange={e => setFormData({...formData,company_name:e.target.value})} /></div>
-                    <div><Label>Reg. No.</Label><Input value={formData.company_reg_no||''} onChange={e => setFormData({...formData,company_reg_no:e.target.value})} placeholder="HE 123456" /></div>
-                    <div><Label>Parent / Developer Group</Label><Input value={formData.parent_group||''} onChange={e => setFormData({...formData,parent_group:e.target.value})} /></div>
-                    <div><Label>Website</Label><Input value={formData.company_website||''} onChange={e => setFormData({...formData,company_website:e.target.value})} placeholder="https://…" /></div>
+                  <h3 className="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-1"><Building className="w-4 h-4"/>Company</h3>
+                  <div className="grid md:grid-cols-3 gap-3">
+                    <div><Label className="text-xs">Company Name</Label><Input value={formData.company_name||''} onChange={e=>setFormData({...formData,company_name:e.target.value})} /></div>
+                    <div><Label className="text-xs">Reg. No.</Label><Input value={formData.company_reg_no||''} onChange={e=>setFormData({...formData,company_reg_no:e.target.value})} /></div>
+                    <div><Label className="text-xs">Developer / Parent Group</Label><Input value={formData.parent_group||''} onChange={e=>setFormData({...formData,parent_group:e.target.value})} /></div>
+                    <div><Label className="text-xs">Website</Label><Input value={formData.company_website||''} onChange={e=>setFormData({...formData,company_website:e.target.value})} /></div>
                   </div>
                 </div>
                 {/* Contact */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2"><Users className="w-4 h-4" /> Primary Decision Maker</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div><Label>Name</Label><Input value={formData.contact_name||''} onChange={e => setFormData({...formData,contact_name:e.target.value})} /></div>
-                    <div><Label>Title</Label><Input value={formData.contact_title||''} onChange={e => setFormData({...formData,contact_title:e.target.value})} placeholder="CEO, Director…" /></div>
-                    <div><Label>Email</Label><Input type="email" value={formData.contact_email||''} onChange={e => setFormData({...formData,contact_email:e.target.value})} /></div>
-                    <div><Label>Phone</Label><Input value={formData.contact_phone||''} onChange={e => setFormData({...formData,contact_phone:e.target.value})} placeholder="+357…" /></div>
-                    <div><Label>LinkedIn</Label><Input value={formData.contact_linkedin||''} onChange={e => setFormData({...formData,contact_linkedin:e.target.value})} placeholder="https://linkedin.com/in/…" /></div>
+                  <h3 className="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-1"><Users className="w-4 h-4"/>Contact</h3>
+                  <div className="grid md:grid-cols-3 gap-3">
+                    <div><Label className="text-xs">Name</Label><Input value={formData.contact_name||''} onChange={e=>setFormData({...formData,contact_name:e.target.value})} /></div>
+                    <div><Label className="text-xs">Title</Label><Input value={formData.contact_title||''} onChange={e=>setFormData({...formData,contact_title:e.target.value})} /></div>
+                    <div><Label className="text-xs">Email</Label><Input type="email" value={formData.contact_email||''} onChange={e=>setFormData({...formData,contact_email:e.target.value})} /></div>
+                    <div><Label className="text-xs">Phone</Label><Input value={formData.contact_phone||''} onChange={e=>setFormData({...formData,contact_phone:e.target.value})} /></div>
+                    <div><Label className="text-xs">LinkedIn</Label><Input value={formData.contact_linkedin||''} onChange={e=>setFormData({...formData,contact_linkedin:e.target.value})} /></div>
                   </div>
                 </div>
                 {/* Outreach */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2"><Target className="w-4 h-4" /> Outreach & Opportunity</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <div><Label>Status</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.outreach_status||'new'} onChange={e => setFormData({...formData,outreach_status:e.target.value as PvProspect['outreach_status']})}>
-                        {OUTREACH_STATUSES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>Priority</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.priority||'medium'} onChange={e => setFormData({...formData,priority:e.target.value as PvProspect['priority']})}>
-                        {PRIORITIES.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>Offer Type</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.offer_type||''} onChange={e => setFormData({...formData,offer_type:e.target.value})}>
-                        <option value="">Select…</option>
-                        {OFFER_TYPES.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>Assign to</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm"
-                        value={formData.assigned_to||''}
-                        onChange={e => {
-                          const u = CRM_USERS.find(x => x.email === e.target.value)
-                          setFormData({...formData, assigned_to: e.target.value, assigned_name: u?.name||''})
-                        }}>
-                        <option value="">Unassigned</option>
-                        {CRM_USERS.map(u => <option key={u.email} value={u.email}>{u.name}</option>)}
-                      </select>
-                    </div>
-                    <div><Label>Deal Value (EUR)</Label><Input type="number" value={formData.estimated_deal_value||''} onChange={e => setFormData({...formData,estimated_deal_value:e.target.value?parseFloat(e.target.value):undefined})} placeholder="500000" /></div>
-                    <div><Label>BESS Potential (MWh)</Label><Input type="number" step="0.1" value={formData.bess_potential_mwh||''} onChange={e => setFormData({...formData,bess_potential_mwh:e.target.value?parseFloat(e.target.value):undefined})} /></div>
-                    <div><Label>Next Follow-up</Label><Input type="date" value={formData.next_follow_up||''} onChange={e => setFormData({...formData,next_follow_up:e.target.value})} /></div>
-                    <div><Label>Data Source</Label>
-                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.data_source||''} onChange={e => setFormData({...formData,data_source:e.target.value})}>
-                        <option value="">Select…</option>
-                        {DATA_SOURCES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                      </select>
-                    </div>
+                  <h3 className="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-1"><Target className="w-4 h-4"/>Outreach</h3>
+                  <div className="grid md:grid-cols-3 gap-3">
+                    <div><Label className="text-xs">Status</Label>
+                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.outreach_status||'new'} onChange={e=>setFormData({...formData,outreach_status:e.target.value as PvProspect['outreach_status']})}>
+                        {OUTREACH_STATUSES.map(s=><option key={s.value} value={s.value}>{s.label}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">Priority</Label>
+                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.priority||'medium'} onChange={e=>setFormData({...formData,priority:e.target.value as PvProspect['priority']})}>
+                        {PRIORITIES.map(p=><option key={p.value} value={p.value}>{p.label}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">Offer Type</Label>
+                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.offer_type||''} onChange={e=>setFormData({...formData,offer_type:e.target.value})}>
+                        <option value="">Select…</option>{OFFER_TYPES.map(o=><option key={o.value} value={o.value}>{o.label}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">Deal Value (EUR)</Label><Input type="number" value={formData.estimated_deal_value||''} onChange={e=>setFormData({...formData,estimated_deal_value:e.target.value?parseFloat(e.target.value):undefined})} /></div>
+                    <div><Label className="text-xs">BESS Potential (MWh)</Label><Input type="number" step="0.1" value={formData.bess_potential_mwh||''} onChange={e=>setFormData({...formData,bess_potential_mwh:e.target.value?parseFloat(e.target.value):undefined})} /></div>
+                    <div><Label className="text-xs">Next Follow-up</Label><Input type="date" value={formData.next_follow_up||''} onChange={e=>setFormData({...formData,next_follow_up:e.target.value})} /></div>
                   </div>
-                  <div className="mt-4"><Label>Notes</Label>
-                    <textarea className="w-full border rounded-md px-3 py-2 text-sm min-h-[80px] mt-1"
-                      value={formData.notes||''} onChange={e => setFormData({...formData,notes:e.target.value})}
-                      placeholder="Research notes, call summary, next steps…" />
-                  </div>
+                  <div className="mt-3"><Label className="text-xs">Notes</Label>
+                    <textarea className="w-full border rounded-md px-3 py-2 text-sm min-h-[70px] mt-1"
+                      value={formData.notes||''} onChange={e=>setFormData({...formData,notes:e.target.value})}
+                      placeholder="Research notes, call summary…" /></div>
                 </div>
-                <div className="flex gap-3 pt-4 border-t">
-                  <Button onClick={saveProspect}><CheckCircle className="w-4 h-4 mr-2" />{editingId?'Update':'Save'}</Button>
+                <div className="flex gap-3 pt-3 border-t">
+                  <Button onClick={saveProspect}><CheckCircle className="w-4 h-4 mr-2"/>{editingId?'Update':'Save'}</Button>
                   <Button variant="outline" onClick={() => { setShowForm(false); setEditingId(null); setFormData(EMPTY_PROSPECT) }}>Cancel</Button>
                 </div>
               </div>
@@ -623,326 +681,175 @@ export default function CrmPage() {
         {/* ─── LIST VIEW ─── */}
         {activeView === 'list' && (
           <>
-            <Card className="mb-6">
-              <CardContent className="pt-4 pb-4">
-                <div className="flex flex-wrap items-end gap-4">
-                  <div className="flex-1 min-w-[200px]">
+            {/* Filters */}
+            <Card className="mb-4">
+              <CardContent className="pt-3 pb-3">
+                <div className="flex flex-wrap items-end gap-3">
+                  <div className="flex-1 min-w-[180px]">
                     <Label className="text-xs">Search</Label>
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <Input className="pl-10" placeholder="Plant, company, contact…" value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                        onKeyDown={e => e.key === 'Enter' && fetchProspects()} />
+                      <Input className="pl-9 text-sm" placeholder="Name, company, Greek or English…"
+                        value={searchQuery} onChange={e=>setSearchQuery(e.target.value)}
+                        onKeyDown={e=>e.key==='Enter'&&fetchProspects()} />
                     </div>
                   </div>
-                  <div>
-                    <Label className="text-xs">Status</Label>
-                    <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
-                      <option value="all">All</option>
-                      {OUTREACH_STATUSES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <Label className="text-xs">Priority</Label>
-                    <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterPriority} onChange={e => setFilterPriority(e.target.value)}>
-                      <option value="all">All</option>
-                      {PRIORITIES.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <Label className="text-xs">District</Label>
-                    <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterDistrict} onChange={e => setFilterDistrict(e.target.value)}>
-                      <option value="all">All</option>
-                      {DISTRICTS.map(d => <option key={d}>{d}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <Label className="text-xs">Assigned</Label>
-                    <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterAssigned} onChange={e => setFilterAssigned(e.target.value as 'all'|'mine')}>
-                      <option value="all">All</option>
-                      <option value="mine">Mine only</option>
-                    </select>
-                  </div>
-                  <div>
-                    <Label className="text-xs">Added</Label>
-                    <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterNew} onChange={e => setFilterNew(e.target.value as 'all'|'7'|'30')}>
-                      <option value="all">Any time</option>
-                      <option value="7">Last 7 days</option>
-                      <option value="30">Last 30 days</option>
-                    </select>
-                  </div>
-                  {segment === 'developer' && (
-                    <>
-                      <div>
-                        <Label className="text-xs">RTB stage</Label>
-                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterRtb} onChange={e => setFilterRtb(e.target.value)}>
-                          <option value="all">All stages</option>
-                          {RTB_STAGES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                        </select>
-                      </div>
-                      <div>
-                        <Label className="text-xs">Built</Label>
-                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterBuilt} onChange={e => setFilterBuilt(e.target.value)}>
-                          <option value="all">Any</option>
-                          {BUILT_STAGES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                        </select>
-                      </div>
-                      <div>
-                        <Label className="text-xs">Technology</Label>
-                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterTech} onChange={e => setFilterTech(e.target.value)}>
-                          <option value="all">All</option>
-                          {TECHNOLOGIES.map(t => <option key={t} value={t}>{t}</option>)}
-                        </select>
-                      </div>
-                      <div>
-                        <Label className="text-xs">Has BESS</Label>
-                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterBess} onChange={e => setFilterBess(e.target.value)}>
-                          <option value="all">Any</option>
-                          <option value="true">With BESS</option>
-                          <option value="false">PV only</option>
-                        </select>
-                      </div>
-                    </>
+                  <div><Label className="text-xs">Status</Label>
+                    <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterStatus} onChange={e=>setFilterStatus(e.target.value)}>
+                      <option value="all">All</option>{OUTREACH_STATUSES.map(s=><option key={s.value} value={s.value}>{s.label}</option>)}
+                    </select></div>
+                  <div><Label className="text-xs">Priority</Label>
+                    <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterPriority} onChange={e=>setFilterPriority(e.target.value)}>
+                      <option value="all">All</option>{PRIORITIES.map(p=><option key={p.value} value={p.value}>{p.label}</option>)}
+                    </select></div>
+                  <div><Label className="text-xs">District</Label>
+                    <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterDistrict} onChange={e=>setFilterDistrict(e.target.value)}>
+                      <option value="all">All</option>{DISTRICTS.map(d=><option key={d}>{d}</option>)}
+                    </select></div>
+                  <div><Label className="text-xs">Assigned</Label>
+                    <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterAssigned} onChange={e=>setFilterAssigned(e.target.value as 'all'|'mine')}>
+                      <option value="all">All</option><option value="mine">Mine</option>
+                    </select></div>
+                  <div><Label className="text-xs">Added</Label>
+                    <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterNew} onChange={e=>setFilterNew(e.target.value as 'all'|'7'|'30')}>
+                      <option value="all">Any time</option><option value="7">Last 7d</option><option value="30">Last 30d</option>
+                    </select></div>
+                  {segment==='developer' && (<>
+                    <div><Label className="text-xs">RTB stage</Label>
+                      <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterRtb} onChange={e=>setFilterRtb(e.target.value)}>
+                        <option value="all">All</option>{RTB_STAGES.map(s=><option key={s.value} value={s.value}>{s.label}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">Built</Label>
+                      <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterBuilt} onChange={e=>setFilterBuilt(e.target.value)}>
+                        <option value="all">Any</option>{BUILT_STAGES.map(s=><option key={s.value} value={s.value}>{s.label}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">Tech</Label>
+                      <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterTech} onChange={e=>setFilterTech(e.target.value)}>
+                        <option value="all">All</option>{TECHNOLOGIES.map(t=><option key={t}>{t}</option>)}
+                      </select></div>
+                    <div><Label className="text-xs">BESS</Label>
+                      <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterBess} onChange={e=>setFilterBess(e.target.value)}>
+                        <option value="all">Any</option><option value="true">With</option><option value="false">PV only</option>
+                      </select></div>
+                  </>)}
+                  {segment==='commercial' && (
+                    <div><Label className="text-xs">Industry</Label>
+                      <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterIndustry} onChange={e=>setFilterIndustry(e.target.value)}>
+                        <option value="all">All</option>{COMMERCIAL_INDUSTRIES.map(i=><option key={i}>{i}</option>)}
+                      </select></div>
                   )}
-                  <Button size="sm" onClick={fetchProspects}><Filter className="w-4 h-4 mr-1" />Apply</Button>
+                  <Button size="sm" onClick={fetchProspects}><Filter className="w-3 h-3 mr-1"/>Apply</Button>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Outreach action bar */}
-            <div className="flex flex-wrap items-center gap-3 mb-4 p-3 bg-white border rounded-lg">
-              <Send className="w-4 h-4 text-[#1A365D]" />
-              <span className="text-sm font-medium text-gray-700">Email outreach:</span>
-              <Button size="sm" variant="outline" onClick={emailSelected}
-                disabled={sending || selectedIds.size === 0}>
-                <Mail className="w-4 h-4 mr-2" />Email selected ({selectedIds.size})
-              </Button>
-              <Button size="sm" variant="outline" onClick={emailFiltered} disabled={sending}>
-                <Send className="w-4 h-4 mr-2" />Email all matching filter
-              </Button>
-              <span className="text-xs text-gray-400">
-                Sends the BESS/PV intro · skips unsubscribed &amp; already-emailed · replies go to you
-              </span>
-              {sending && <RefreshCw className="w-4 h-4 animate-spin text-[#1A365D]" />}
+            {/* Toolbar: sort + group + outreach */}
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <div className="flex items-center gap-2">
+                <ArrowUpDown className="w-4 h-4 text-gray-500" />
+                <select className="border rounded px-2 py-1 text-sm" value={sortBy} onChange={e=>setSortBy(e.target.value as typeof sortBy)}>
+                  <option value="created_at">Date added</option>
+                  <option value="priority_score">Priority</option>
+                  <option value="capacity">Capacity</option>
+                  <option value="last_activity">Last activity</option>
+                </select>
+              </div>
+              <button onClick={()=>setGroupBy(v=>!v)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-sm border transition ${groupBy?'bg-[#1A365D] text-white border-[#1A365D]':'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}>
+                <Folder className="w-3.5 h-3.5"/>Group by {segment==='commercial'?'industry':'offer type'}
+              </button>
+              <div className="ml-auto flex items-center gap-2">
+                <Send className="w-4 h-4 text-gray-500" />
+                <Button size="sm" variant="outline" onClick={()=>runOutreach({ids:[...selectedIds]},`Send to ${selectedIds.size} selected?`)} disabled={sending||selectedIds.size===0}>
+                  <Mail className="w-3 h-3 mr-1"/>Email {selectedIds.size>0?`(${selectedIds.size})`:'selected'}
+                </Button>
+                <Button size="sm" variant="outline" onClick={()=>runOutreach({all:true,filter:currentFilter()},'Send to ALL matching filter?')} disabled={sending}>
+                  <Send className="w-3 h-3 mr-1"/>Email all
+                </Button>
+              </div>
             </div>
 
             {loading ? (
               <div className="text-center py-12 text-gray-500">Loading…</div>
             ) : prospects.length === 0 ? (
               <Card><CardContent className="py-12 text-center">
-                <Users className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                <h3 className="text-lg font-semibold mb-2">No Prospects</h3>
-                <Button onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(true) }}>
-                  <Plus className="w-4 h-4 mr-2" />Add First Prospect
+                <Users className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                <h3 className="font-semibold mb-2">No prospects</h3>
+                <Button onClick={() => { setFormData(EMPTY_PROSPECT); setShowForm(true) }}>
+                  <Plus className="w-4 h-4 mr-2"/>Add First
                 </Button>
               </CardContent></Card>
-            ) : (
+            ) : groupBy ? (
+              /* ── Grouped / folder view ── */
               <div className="space-y-3">
-                {prospects.map(prospect => (
-                  <Card key={prospect.id} className={`overflow-hidden transition-all ${expandedId===prospect.id?'ring-2 ring-blue-200':''}`}>
-                    <div className="p-4">
-                      <div className="flex items-start gap-4">
-                        <input
-                          type="checkbox"
-                          className="mt-1.5 h-4 w-4 shrink-0 accent-[#1A365D]"
-                          checked={prospect.id ? selectedIds.has(prospect.id) : false}
-                          onChange={() => prospect.id && toggleSelect(prospect.id)}
-                          title="Select for outreach"
-                        />
-                        {prospect.roof_image_url && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={prospect.roof_image_url}
-                            alt={`Roof of ${prospect.plant_name}`}
-                            className="w-28 h-20 object-cover rounded-md border shrink-0 hidden sm:block"
-                            loading="lazy"
-                          />
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="font-semibold text-gray-900 truncate">{prospect.plant_name}</h3>
-                            {(prospect.tags || []).some(t => t.startsWith('intro_sent')) && (
-                              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center gap-1">
-                                <MailCheck className="w-3 h-3" />intro sent
-                              </span>
-                            )}
-                            {(prospect.tags || []).includes('unsubscribed') && (
-                              <span className="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">unsubscribed</span>
-                            )}
-                            {prospect.capacity_mwp && <span className="text-sm text-blue-600 font-medium">{prospect.capacity_mwp} MWp</span>}
-                            <Badge className={getStatusColor(prospect.outreach_status||'new')}>
-                              {OUTREACH_STATUSES.find(s=>s.value===prospect.outreach_status)?.label||'New'}
-                            </Badge>
-                            <Badge className={getPriorityColor(prospect.priority||'medium')}>{prospect.priority||'medium'}</Badge>
-                            {prospect.offer_type && <Badge variant="outline">{OFFER_TYPES.find(o=>o.value===prospect.offer_type)?.label||prospect.offer_type}</Badge>}
-                            {prospect.assigned_name && (
-                              <span className="text-xs px-2 py-0.5 rounded-full bg-[#1A365D] text-white flex items-center gap-1">
-                                <UserCheck className="w-3 h-3" />{prospect.assigned_name}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-gray-500">
-                            {prospect.company_name && <span className="flex items-center gap-1"><Building className="w-3 h-3" />{prospect.company_name}</span>}
-                            {prospect.parent_group && <span className="text-gray-400">({prospect.parent_group})</span>}
-                            {prospect.district && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{prospect.district}</span>}
-                            {prospect.contact_name && <span className="flex items-center gap-1"><Users className="w-3 h-3" />{prospect.contact_name}{prospect.contact_title&&` (${prospect.contact_title})`}</span>}
-                            {prospect.estimated_deal_value && <span className="flex items-center gap-1 text-green-600 font-medium"><DollarSign className="w-3 h-3" />{formatCurrency(prospect.estimated_deal_value)}</span>}
-                            {prospect.next_follow_up && <span className="flex items-center gap-1 text-orange-600"><Calendar className="w-3 h-3" />Follow-up: {formatDate(prospect.next_follow_up)}</span>}
-                          </div>
-                          {/* Segment-specific metric line */}
-                          {segment === 'commercial' ? (
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
-                              {prospect.roof_area_m2 != null && <span>{Math.round(prospect.roof_area_m2).toLocaleString()} m² roof</span>}
-                              {prospect.capacity_mwp != null && <span>{(prospect.capacity_mwp * 1000).toFixed(0)} kWp</span>}
-                              {prospect.annual_savings_eur != null && <span className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}/yr saved</span>}
-                              {prospect.payback_years != null && <span>{prospect.payback_years}-yr payback</span>}
-                              {prospect.has_existing_pv && <span className="text-amber-600">existing PV → BESS</span>}
-                            </div>
-                          ) : (
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
-                              {prospect.rtb_status && <span className="capitalize">RTB: {prospect.rtb_status.replace(/_/g,' ')}</span>}
-                              {prospect.operational_mwp ? <span>{prospect.operational_mwp.toFixed(1)} MWp operating</span> : null}
-                              {prospect.construction_mwp ? <span>{prospect.construction_mwp.toFixed(1)} MWp construction</span> : null}
-                              {prospect.bess_potential_mwh ? <span className="text-[#1A365D]">{prospect.bess_potential_mwh.toFixed(1)} MWh BESS</span> : null}
-                              {prospect.satellite_check && prospect.satellite_check !== 'unknown' && <span className="capitalize">{prospect.satellite_check.replace(/_/g,' ')}</span>}
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Quick actions */}
-                        <div className="flex items-center gap-1 flex-shrink-0">
-                          {prospect.contact_email && <a href={`mailto:${prospect.contact_email}`} className="p-2 text-gray-400 hover:text-blue-600" title={prospect.contact_email}><Mail className="w-4 h-4" /></a>}
-                          {prospect.contact_phone && <a href={`tel:${prospect.contact_phone}`} className="p-2 text-gray-400 hover:text-green-600" title={prospect.contact_phone}><Phone className="w-4 h-4" /></a>}
-                          {prospect.contact_linkedin && <a href={prospect.contact_linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-400 hover:text-blue-700"><Linkedin className="w-4 h-4" /></a>}
-                          {prospect.company_website && <a href={prospect.company_website} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-400 hover:text-purple-600"><Globe className="w-4 h-4" /></a>}
-                          <button className="p-2 text-gray-400 hover:text-[#C9A432]" onClick={() => prospect.id && openPreview(prospect.id)} title="Preview intro email"><Eye className="w-4 h-4" /></button>
-                          <button className="p-2 text-gray-400 hover:text-blue-600" onClick={() => { setFormData(prospect); setEditingId(prospect.id||null); setShowForm(true); window.scrollTo({top:0,behavior:'smooth'}) }} title="Edit"><Edit className="w-4 h-4" /></button>
-                          <button className="p-2 text-gray-400 hover:text-red-600" onClick={() => prospect.id && deleteProspect(prospect.id)} title="Delete"><Trash2 className="w-4 h-4" /></button>
-                          <button className="p-2 text-gray-400 hover:text-gray-600" onClick={() => setExpandedId(expandedId===prospect.id?null:prospect.id||null)}>
-                            {expandedId===prospect.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Expanded */}
-                      {expandedId === prospect.id && (
-                        <div className="mt-4 pt-4 border-t space-y-4">
-                          {/* Assign + quick status side-by-side */}
-                          <div className="flex flex-wrap gap-6">
-                            <div className="flex-1 min-w-[200px]">
-                              <Label className="text-xs text-gray-500 flex items-center gap-1 mb-1">
-                                <UserCheck className="w-3 h-3" />Assign to
-                              </Label>
-                              <select
-                                className="w-full border rounded-md px-3 py-2 text-sm"
-                                value={prospect.assigned_to||''}
-                                onChange={e => prospect.id && assignProspect(prospect.id, e.target.value)}>
-                                <option value="">Unassigned</option>
-                                {CRM_USERS.map(u => <option key={u.email} value={u.email}>{u.name} ({u.email})</option>)}
-                              </select>
-                            </div>
-                            <div className="flex-1 min-w-[240px]">
-                              <Label className="text-xs text-gray-500 mb-1">Quick Status Update</Label>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {OUTREACH_STATUSES.map(s => (
-                                  <button key={s.value}
-                                    className={`text-xs px-2 py-1 rounded-full transition ${
-                                      prospect.outreach_status===s.value ? s.color+' font-semibold ring-2 ring-offset-1' : 'bg-gray-50 text-gray-500 hover:bg-gray-100'}`}
-                                    onClick={() => prospect.id && quickUpdateStatus(prospect.id, s.value)}>
-                                    {s.label}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Details */}
-                          <div className="grid md:grid-cols-3 gap-4 text-sm">
-                            <div>
-                              <h4 className="font-medium text-gray-700 mb-2">{segment === 'commercial' ? 'Site & System' : 'Plant & RTB'}</h4>
-                              <dl className="space-y-1">
-                                {prospect.cera_license_no && <div><dt className="text-gray-400 text-xs">CERA License</dt><dd className="text-xs">{prospect.cera_license_no}</dd></div>}
-                                {prospect.technology      && <div><dt className="text-gray-400 text-xs">Technology</dt><dd>{prospect.technology}</dd></div>}
-                                {segment === 'developer' && prospect.rtb_status && <div><dt className="text-gray-400 text-xs">RTB stage</dt><dd className="capitalize">{prospect.rtb_status.replace(/_/g,' ')}</dd></div>}
-                                {segment === 'developer' && prospect.satellite_check && <div><dt className="text-gray-400 text-xs">Built status</dt><dd className="capitalize">{prospect.satellite_check.replace(/_/g,' ')}</dd></div>}
-                                {prospect.operational_mwp ? <div><dt className="text-gray-400 text-xs">Operating</dt><dd>{prospect.operational_mwp.toFixed(1)} MWp</dd></div> : null}
-                                {prospect.construction_mwp ? <div><dt className="text-gray-400 text-xs">Construction</dt><dd>{prospect.construction_mwp.toFixed(1)} MWp</dd></div> : null}
-                                {prospect.bess_potential_mwh ? <div><dt className="text-gray-400 text-xs">BESS Potential</dt><dd className="text-green-600 font-medium">{prospect.bess_potential_mwh} MWh</dd></div> : null}
-                                {prospect.bess_sales_angle && <div><dt className="text-gray-400 text-xs">BESS angle</dt><dd className="capitalize">{prospect.bess_sales_angle.replace(/_/g,' ')}</dd></div>}
-                                {segment === 'commercial' && prospect.roof_area_m2 != null && <div><dt className="text-gray-400 text-xs">Roof area</dt><dd>{Math.round(prospect.roof_area_m2).toLocaleString()} m²</dd></div>}
-                                {segment === 'commercial' && prospect.annual_savings_eur != null && <div><dt className="text-gray-400 text-xs">Annual saving</dt><dd className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}</dd></div>}
-                                {segment === 'commercial' && prospect.payback_years != null && <div><dt className="text-gray-400 text-xs">Payback</dt><dd>{prospect.payback_years} yrs</dd></div>}
-                                {prospect.location        && <div><dt className="text-gray-400 text-xs">Location</dt><dd>{prospect.location}</dd></div>}
-                              </dl>
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-700 mb-2">Company & Contact</h4>
-                              <dl className="space-y-1">
-                                {prospect.parent_group && <div><dt className="text-gray-400 text-xs">Developer group</dt><dd className="font-medium text-[#1A365D]">{prospect.parent_group}</dd></div>}
-                                {prospect.contact_name && <div><dt className="text-gray-400 text-xs">Director / contact</dt><dd>{prospect.contact_name}{prospect.contact_title ? ` (${prospect.contact_title})` : ''}</dd></div>}
-                                {prospect.contact_email && <div><dt className="text-gray-400 text-xs">Email</dt><dd><a href={`mailto:${prospect.contact_email}`} className="text-blue-600 hover:underline">{prospect.contact_email}</a></dd></div>}
-                                {prospect.contact_phone && <div><dt className="text-gray-400 text-xs">Phone</dt><dd><a href={`tel:${prospect.contact_phone}`} className="text-blue-600 hover:underline">{prospect.contact_phone}</a></dd></div>}
-                                {prospect.contact_linkedin && <div><dt className="text-gray-400 text-xs">LinkedIn</dt><dd><a href={prospect.contact_linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">profile</a></dd></div>}
-                                {prospect.company_reg_no && <div><dt className="text-gray-400 text-xs">Reg. No.</dt>
-                                  <dd><a href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{prospect.company_reg_no}</a></dd></div>}
-                                {prospect.company_website && <div><dt className="text-gray-400 text-xs">Website</dt><dd><a href={prospect.company_website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{prospect.company_website.replace(/^https?:\/\/(www\.)?/, '')}</a></dd></div>}
-                                {prospect.registered_address && <div><dt className="text-gray-400 text-xs">Address</dt><dd>{prospect.registered_address}</dd></div>}
-                              </dl>
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-700 mb-2">Permits & Outreach</h4>
-                              <dl className="space-y-1">
-                                {segment === 'developer' && prospect.connection_terms_status && <div><dt className="text-gray-400 text-xs">Connection terms</dt><dd className="capitalize">{prospect.connection_terms_status.replace(/_/g,' ')}</dd></div>}
-                                {segment === 'developer' && prospect.env_permit_status && <div><dt className="text-gray-400 text-xs">Env permit</dt><dd className="capitalize">{prospect.env_permit_status.replace(/_/g,' ')}</dd></div>}
-                                {segment === 'developer' && prospect.building_permit_status && <div><dt className="text-gray-400 text-xs">Building permit</dt><dd className="capitalize">{prospect.building_permit_status.replace(/_/g,' ')}</dd></div>}
-                                {prospect.first_contact_date && <div><dt className="text-gray-400 text-xs">First Contact</dt><dd>{formatDate(prospect.first_contact_date)}</dd></div>}
-                                {prospect.last_contact_date  && <div><dt className="text-gray-400 text-xs">Last Contact</dt><dd>{formatDate(prospect.last_contact_date)}</dd></div>}
-                                {prospect.outreach_channel   && <div><dt className="text-gray-400 text-xs">Channel</dt><dd className="capitalize">{prospect.outreach_channel.replace('_',' ')}</dd></div>}
-                                {prospect.assigned_name && <div><dt className="text-gray-400 text-xs">Assigned</dt><dd>{prospect.assigned_name}</dd></div>}
-                              </dl>
-                            </div>
-                          </div>
-                          {prospect.notes && (
-                            <div>
-                              <h4 className="font-medium text-gray-700 text-sm mb-1">Notes</h4>
-                              <p className="text-sm text-gray-600 bg-gray-50 rounded p-3 whitespace-pre-wrap">{prospect.notes}</p>
-                            </div>
-                          )}
+                {(segment==='developer' ? DEV_FOLDERS : COMMERCIAL_INDUSTRIES.map(ind=>({
+                  id: ind, label: ind,
+                  match: (p: ProspectFull) => (p.industry || 'Other') === ind,
+                }))).map(folder => {
+                  const folderProspects = sortedProspects.filter(folder.match)
+                  if (folderProspects.length === 0) return null
+                  const open = openFolders.has(folder.id)
+                  return (
+                    <div key={folder.id}>
+                      <button onClick={()=>toggleFolder(folder.id)}
+                        className="w-full flex items-center gap-2 px-4 py-2.5 bg-[#1A365D] text-white rounded-lg text-sm font-semibold hover:bg-[#2B5FA0] transition">
+                        <Folder className="w-4 h-4" />
+                        {folder.label}
+                        <span className="ml-auto bg-white/20 px-2 py-0.5 rounded-full text-xs">{folderProspects.length}</span>
+                        {open ? <ChevronUp className="w-4 h-4"/> : <ChevronDown className="w-4 h-4"/>}
+                      </button>
+                      {open && (
+                        <div className="mt-1 space-y-2 pl-2">
+                          {folderProspects.map(prospect => renderCard(prospect))}
                         </div>
                       )}
                     </div>
-                  </Card>
-                ))}
+                  )
+                })}
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {sortedProspects.map(prospect => renderCard(prospect))}
               </div>
             )}
           </>
         )}
 
-        {/* ─── PIPELINE VIEW ─── */}
+        {/* ─── PIPELINE VIEW (DnD) ─── */}
         {activeView === 'pipeline' && (
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold">Sales Pipeline</h2>
+          <div className="space-y-3">
+            <h2 className="text-base font-semibold">Sales Pipeline — drag cards between stages</h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {OUTREACH_STATUSES.filter(s => !['won','lost','not_interested'].includes(s.value)).map(status => {
+              {OUTREACH_STATUSES.filter(s=>!['won','lost','not_interested'].includes(s.value)).map(status => {
                 const sp = prospects.filter(p => p.outreach_status === status.value)
                 return (
-                  <Card key={status.value} className="min-h-[200px]">
-                    <CardHeader className="pb-2 pt-4 px-4">
+                  <Card key={status.value}
+                    className={`min-h-[200px] transition-all ${dropTarget===status.value?'ring-2 ring-[#C9A432] bg-amber-50':''}`}
+                    onDragOver={e=>{e.preventDefault();setDropTarget(status.value)}}
+                    onDragLeave={()=>setDropTarget(null)}
+                    onDrop={()=>handleDrop(status.value)}>
+                    <CardHeader className="pb-2 pt-3 px-3">
                       <div className="flex items-center justify-between">
                         <Badge className={status.color}>{status.label}</Badge>
                         <span className="text-xs text-gray-400">{sp.length}</span>
                       </div>
                     </CardHeader>
-                    <CardContent className="px-3 pb-3">
-                      <div className="space-y-2">
-                        {sp.length === 0 ? <p className="text-xs text-gray-400 text-center py-4">Empty</p> :
+                    <CardContent className="px-2 pb-2">
+                      <div className="space-y-1.5">
+                        {sp.length === 0 ? <p className="text-xs text-gray-400 text-center py-4">Drop here</p> :
                           sp.map(p => (
-                            <div key={p.id} className="bg-white border rounded p-2 text-xs shadow-sm hover:shadow cursor-pointer"
+                            <div key={p.id}
+                              draggable
+                              onDragStart={()=>setDragId(p.id||null)}
+                              onDragEnd={()=>{setDragId(null);setDropTarget(null)}}
+                              className={`bg-white border rounded p-2 text-xs shadow-sm cursor-grab active:cursor-grabbing transition ${dragId===p.id?'opacity-50':''}`}
                               onClick={() => { setActiveView('list'); setExpandedId(p.id||null) }}>
                               <p className="font-medium truncate">{p.plant_name}</p>
                               <p className="text-gray-400 truncate">{p.company_name}</p>
+                              {p.contact_email && <p className="text-blue-500 truncate">{p.contact_email}</p>}
+                              {p.contact_phone && <p className="text-gray-500">{p.contact_phone}</p>}
                               {p.assigned_name && <p className="text-[#1A365D] font-medium">{p.assigned_name}</p>}
-                              {p.capacity_mwp && <p className="text-blue-500">{p.capacity_mwp} MWp</p>}
+                              {p.capacity_mwp && <p className="text-blue-400">{p.capacity_mwp} MWp</p>}
                             </div>
                           ))
                         }
@@ -952,71 +859,313 @@ export default function CrmPage() {
                 )
               })}
             </div>
+            {/* Won / Lost */}
+            <div className="grid md:grid-cols-2 gap-3 mt-4">
+              {(['won','lost'] as const).map(v => (
+                <Card key={v} className={v==='won'?'border-green-200':'border-red-200'}
+                  onDragOver={e=>{e.preventDefault();setDropTarget(v)}}
+                  onDragLeave={()=>setDropTarget(null)}
+                  onDrop={()=>handleDrop(v)}>
+                  <CardHeader className="pb-2"><CardTitle className={`text-sm flex items-center gap-2 ${v==='won'?'text-green-700':'text-red-700'}`}>
+                    {v==='won'?<CheckCircle className="w-4 h-4"/>:<XCircle className="w-4 h-4"/>}
+                    {v==='won'?'Won':'Lost'} ({stats.byStatus[v]||0})
+                  </CardTitle></CardHeader>
+                  <CardContent>
+                    {prospects.filter(p=>p.outreach_status===v).map(p=>
+                      <div key={p.id} className="text-xs py-0.5">{p.plant_name} — {p.company_name}</div>
+                    )}
+                    {!prospects.some(p=>p.outreach_status===v) && <p className="text-xs text-gray-400">None</p>}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         )}
 
-        {/* ─── DSO/TSO VIEW (unchanged) ─── */}
+        {/* ─── DSO / TSO ─── */}
         {activeView === 'grid_contacts' && (
-          <div className="space-y-6">
-            <h2 className="text-lg font-semibold">DSO / TSO / Regulatory Contacts</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card><CardHeader><CardTitle className="flex items-center gap-2"><Zap className="w-5 h-5 text-yellow-600" />EAC - DSO</CardTitle><CardDescription>Grid connections, metering, distribution</CardDescription></CardHeader>
-                <CardContent className="text-sm space-y-2">
-                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-gray-400" /><a href="tel:+35722201000" className="text-blue-600 hover:underline">+357 22 201000</a><span className="text-gray-400">| Emergency: 1800</span></p>
-                  <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-gray-400" /><a href="mailto:eac@eac.com.cy" className="text-blue-600 hover:underline">eac@eac.com.cy</a></p>
-                  <p className="flex items-center gap-2"><Globe className="w-4 h-4 text-gray-400" /><a href="https://www.eac.com.cy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.eac.com.cy</a></p>
-                </CardContent>
-              </Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2"><Zap className="w-5 h-5 text-blue-600" />TSOC - Transmission SO</CardTitle><CardDescription>Transmission grid, RES integration, ENTSO-E</CardDescription></CardHeader>
-                <CardContent className="text-sm space-y-2">
-                  <p className="flex items-center gap-2"><Users className="w-4 h-4 text-gray-400" /><strong>Director:</strong> Stavros Stavrinos</p>
-                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-gray-400" /><a href="tel:+35722277000" className="text-blue-600 hover:underline">+357 22 277000</a></p>
-                  <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-gray-400" /><a href="mailto:director@dsm.org.cy" className="text-blue-600 hover:underline">director@dsm.org.cy</a></p>
-                  <p className="flex items-center gap-2"><Globe className="w-4 h-4 text-gray-400" /><a href="https://www.tsoc.org.cy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.tsoc.org.cy</a></p>
-                </CardContent>
-              </Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2"><FileText className="w-5 h-5 text-green-600" />CERA</CardTitle><CardDescription>Licensing, regulation, producer archive</CardDescription></CardHeader>
-                <CardContent className="text-sm space-y-2">
-                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-gray-400" /><a href="tel:+35722666363" className="text-blue-600 hover:underline">+357 22 666363</a></p>
-                  <p className="flex items-center gap-2"><Globe className="w-4 h-4 text-gray-400" /><a href="https://www.cera.org.cy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.cera.org.cy</a></p>
-                  <p className="flex items-center gap-2"><ExternalLink className="w-4 h-4 text-gray-400" /><a href="https://www.cera.org.cy/en-gb/ilektrismos/1169/ilektrismos-paragwgoi1" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Producers & Licensing Archive</a></p>
-                </CardContent>
-              </Card>
-              <Card><CardHeader><CardTitle className="flex items-center gap-2"><BarChart3 className="w-5 h-5 text-purple-600" />CSE Energy Exchange</CardTitle><CardDescription>Day-Ahead Market operator</CardDescription></CardHeader>
-                <CardContent className="text-sm space-y-2">
-                  <p className="flex items-center gap-2"><Globe className="w-4 h-4 text-gray-400" /><a href="https://www.cse.com.cy/en-GB/AGORA-ELECTRISMOY/Home/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CSE Energy Market Portal</a></p>
-                </CardContent>
-              </Card>
+          <div className="space-y-4">
+            <h2 className="text-base font-semibold">DSO / TSO / Regulatory Contacts</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                { title:'EAC - DSO', desc:'Grid connections, metering', icon:'⚡', items:[
+                  {icon:<Phone className="w-4 h-4 text-gray-400"/>, val:<a href="tel:+35722201000" className="text-blue-600 hover:underline">+357 22 201 000</a>},
+                  {icon:<Mail className="w-4 h-4 text-gray-400"/>, val:<a href="mailto:eac@eac.com.cy" className="text-blue-600 hover:underline">eac@eac.com.cy</a>},
+                  {icon:<Globe className="w-4 h-4 text-gray-400"/>, val:<a href="https://www.eac.com.cy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.eac.com.cy</a>},
+                ]},
+                { title:'TSOC', desc:'Transmission grid, RES, ENTSO-E', icon:'🔌', items:[
+                  {icon:<Users className="w-4 h-4 text-gray-400"/>, val:<span><strong>Director:</strong> Stavros Stavrinos</span>},
+                  {icon:<Phone className="w-4 h-4 text-gray-400"/>, val:<a href="tel:+35722277000" className="text-blue-600 hover:underline">+357 22 277 000</a>},
+                  {icon:<Mail className="w-4 h-4 text-gray-400"/>, val:<a href="mailto:director@dsm.org.cy" className="text-blue-600 hover:underline">director@dsm.org.cy</a>},
+                ]},
+                { title:'CERA', desc:'Licensing, regulation, archive', icon:'📋', items:[
+                  {icon:<Phone className="w-4 h-4 text-gray-400"/>, val:<a href="tel:+35722666363" className="text-blue-600 hover:underline">+357 22 666 363</a>},
+                  {icon:<Globe className="w-4 h-4 text-gray-400"/>, val:<a href="https://www.cera.org.cy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.cera.org.cy</a>},
+                ]},
+                { title:'CSE Energy Exchange', desc:'Day-Ahead Market operator', icon:'📊', items:[
+                  {icon:<Globe className="w-4 h-4 text-gray-400"/>, val:<a href="https://www.cse.com.cy/en-GB/AGORA-ELECTRISMOY/Home/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CSE Energy Market</a>},
+                ]},
+              ].map(c=>(
+                <Card key={c.title}><CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2">
+                  <span>{c.icon}</span>{c.title}
+                </CardTitle><CardDescription className="text-xs">{c.desc}</CardDescription></CardHeader>
+                <CardContent className="space-y-1.5 text-sm">
+                  {c.items.map((item,i)=><p key={i} className="flex items-center gap-2">{item.icon}{item.val}</p>)}
+                </CardContent></Card>
+              ))}
             </div>
           </div>
         )}
 
-        {/* ─── DATA SOURCES VIEW ─── */}
+        {/* ─── DATA SOURCES ─── */}
         {activeView === 'data_sources' && (
-          <div className="space-y-6">
-            <h2 className="text-lg font-semibold">Research Data Sources</h2>
-            <div className="space-y-4">
-              <Card><CardHeader><CardTitle className="text-base">1. CERA Licensing Archive</CardTitle></CardHeader>
-                <CardContent className="text-sm"><a href="https://www.cera.org.cy/en-gb/ilektrismos/1169/ilektrismos-paragwgoi1" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CERA Producers Page →</a> — download the licensing archive for all licensed RES producers (capacity, location, company name, licence number).</CardContent>
-              </Card>
-              <Card><CardHeader><CardTitle className="text-base">2. Cyprus Company Register</CardTitle></CardHeader>
-                <CardContent className="text-sm"><a href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Department of Registrar →</a> — free search for directors, registered address, group structure. Our enrichment pipeline pulls this automatically.</CardContent>
-              </Card>
-              <Card><CardHeader><CardTitle className="text-base">3. LinkedIn</CardTitle></CardHeader>
-                <CardContent className="text-sm">Search director names from the register → find profiles → connect with personalised BESS/curtailment pitch.</CardContent>
-              </Card>
-              <Card><CardHeader><CardTitle className="text-base">4. Hunter.io (integrated)</CardTitle></CardHeader>
-                <CardContent className="text-sm">Our enrichment pipeline uses Hunter to find and verify developer email addresses automatically — run <code>npm run cyprus:full</code> locally.</CardContent>
-              </Card>
-            </div>
+          <div className="space-y-4">
+            <h2 className="text-base font-semibold">Research Data Sources</h2>
+            {[
+              { n:'1', title:'CERA Licensing Archive', body:<>Go to the <a href="https://www.cera.org.cy/en-gb/ilektrismos/1169/ilektrismos-paragwgoi1" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">CERA Producers Page</a> → download the licensing archive (capacity, location, company name, licence no).</> },
+              { n:'2', title:'Cyprus Company Register', body:<>Search on the <a href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Department of Registrar</a> — free directors, address, group structure. The enrichment pipeline runs this automatically.</> },
+              { n:'3', title:'LinkedIn', body:'Search director names from the register → find profiles → connect with a BESS / curtailment pitch.' },
+              { n:'4', title:'Hunter.io (integrated)', body:<>Run <code>npm run cyprus:full</code> locally to auto-verify director emails.</> },
+            ].map(s=>(
+              <Card key={s.n}><CardHeader className="pb-1"><CardTitle className="text-sm">{s.n}. {s.title}</CardTitle></CardHeader>
+              <CardContent className="text-sm text-gray-600">{s.body}</CardContent></Card>
+            ))}
           </div>
         )}
       </div>
 
-      {/* Footer */}
-      <div className="text-center py-6 text-xs text-gray-400">
+      <div className="text-center py-5 text-xs text-gray-400">
         Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy
       </div>
     </div>
   )
+
+  // ─── Card renderer (function component avoids JSX repetition) ──────────────
+  function renderCard(prospect: ProspectFull) {
+    const feed: ActivityEntry[] = (prospect.activity_feed || []) as ActivityEntry[]
+    const lastActivity = feed[0]?.ts || prospect.last_contact_date
+    return (
+      <Card key={prospect.id} className={`overflow-hidden transition-all ${expandedId===prospect.id?'ring-2 ring-[#1A365D]':''}`}>
+        <div className="p-4">
+          <div className="flex items-start gap-3">
+            <input type="checkbox" className="mt-1.5 h-4 w-4 shrink-0 accent-[#1A365D]"
+              checked={prospect.id?selectedIds.has(prospect.id):false}
+              onChange={()=>prospect.id&&toggleSelect(prospect.id)} title="Select" />
+            {prospect.roof_image_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={prospect.roof_image_url} alt="Roof" loading="lazy"
+                className="w-24 h-16 object-cover rounded border shrink-0 hidden sm:block" />
+            )}
+            <div className="flex-1 min-w-0">
+              {/* Title row */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="font-semibold text-gray-900 truncate text-sm">{prospect.plant_name}</h3>
+                {prospect.capacity_mwp && <span className="text-xs text-blue-600 font-medium">{prospect.capacity_mwp} MWp</span>}
+                <Badge className={getStatusColor(prospect.outreach_status||'new')}>
+                  {OUTREACH_STATUSES.find(s=>s.value===prospect.outreach_status)?.label||'New'}
+                </Badge>
+                <Badge className={getPriorityColor(prospect.priority||'medium')}>{prospect.priority||'medium'}</Badge>
+                {prospect.offer_type && <Badge variant="outline">{OFFER_TYPES.find(o=>o.value===prospect.offer_type)?.label||prospect.offer_type}</Badge>}
+                {prospect.assigned_name && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#1A365D] text-white flex items-center gap-1">
+                    <UserCheck className="w-3 h-3"/>{prospect.assigned_name}
+                  </span>
+                )}
+                {(prospect.tags||[]).some(t=>t.startsWith('intro_sent')) && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center gap-1">
+                    <MailCheck className="w-3 h-3"/>intro sent
+                  </span>
+                )}
+              </div>
+              {/* Company + contact row — email + phone as text */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
+                {prospect.company_name && <span className="flex items-center gap-1"><Building className="w-3 h-3"/>{prospect.company_name}</span>}
+                {prospect.parent_group && <span className="text-gray-400">({prospect.parent_group})</span>}
+                {prospect.district && <span className="flex items-center gap-1"><MapPin className="w-3 h-3"/>{prospect.district}</span>}
+                {prospect.contact_name && <span className="flex items-center gap-1"><Users className="w-3 h-3"/>{prospect.contact_name}</span>}
+                {prospect.contact_email && (
+                  <a href={`mailto:${prospect.contact_email}`} className="flex items-center gap-1 text-blue-600 hover:underline">
+                    <Mail className="w-3 h-3"/>{prospect.contact_email}
+                  </a>
+                )}
+                {prospect.contact_phone && (
+                  <a href={`tel:${prospect.contact_phone}`} className="flex items-center gap-1 text-gray-600 hover:text-green-600">
+                    <Phone className="w-3 h-3"/>{prospect.contact_phone}
+                  </a>
+                )}
+                {prospect.estimated_deal_value && (
+                  <span className="flex items-center gap-1 text-green-600 font-medium">
+                    <DollarSign className="w-3 h-3"/>{formatCurrency(prospect.estimated_deal_value)}
+                  </span>
+                )}
+                {prospect.next_follow_up && (
+                  <span className="flex items-center gap-1 text-orange-600">
+                    <Calendar className="w-3 h-3"/>Follow-up: {formatDate(prospect.next_follow_up)}
+                  </span>
+                )}
+              </div>
+              {/* Segment metrics */}
+              {segment === 'commercial' ? (
+                <div className="flex flex-wrap gap-3 mt-1 text-xs text-gray-500">
+                  {prospect.roof_area_m2 != null && <span>{Math.round(prospect.roof_area_m2).toLocaleString()} m²</span>}
+                  {prospect.capacity_mwp != null && <span>{(prospect.capacity_mwp*1000).toFixed(0)} kWp</span>}
+                  {prospect.annual_savings_eur != null && <span className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}/yr</span>}
+                  {prospect.payback_years != null && <span>{prospect.payback_years}-yr payback</span>}
+                  {prospect.has_existing_pv && <span className="text-amber-600">existing PV → BESS</span>}
+                  {lastActivity && <span className="text-gray-400 ml-auto">last activity {formatDate(lastActivity)}</span>}
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-3 mt-1 text-xs text-gray-500">
+                  {prospect.rtb_status && <span className="capitalize">RTB: {prospect.rtb_status.replace(/_/g,' ')}</span>}
+                  {prospect.operational_mwp ? <span>{prospect.operational_mwp.toFixed(1)} MWp op.</span> : null}
+                  {prospect.construction_mwp ? <span>{prospect.construction_mwp.toFixed(1)} MWp constr.</span> : null}
+                  {prospect.bess_potential_mwh ? <span className="text-[#1A365D]">{prospect.bess_potential_mwh.toFixed(1)} MWh BESS</span> : null}
+                  {prospect.satellite_check && prospect.satellite_check!=='unknown' && <span className="capitalize">{prospect.satellite_check.replace(/_/g,' ')}</span>}
+                  {lastActivity && <span className="text-gray-400 ml-auto">last activity {formatDate(lastActivity)}</span>}
+                </div>
+              )}
+            </div>
+
+            {/* Quick action icons */}
+            <div className="flex items-center gap-0.5 flex-shrink-0">
+              {prospect.contact_linkedin && <a href={prospect.contact_linkedin} target="_blank" rel="noopener noreferrer" className="p-1.5 text-gray-400 hover:text-blue-700"><Linkedin className="w-4 h-4"/></a>}
+              {prospect.company_website && <a href={prospect.company_website} target="_blank" rel="noopener noreferrer" className="p-1.5 text-gray-400 hover:text-purple-600"><Globe className="w-4 h-4"/></a>}
+              <button className="p-1.5 text-gray-400 hover:text-[#C9A432]" onClick={()=>prospect.id&&openPreview(prospect.id)} title="Preview email"><Eye className="w-4 h-4"/></button>
+              <button className="p-1.5 text-gray-400 hover:text-blue-600" title="Edit" onClick={()=>{setFormData(prospect);setEditingId(prospect.id||null);setShowForm(true)}}><Edit className="w-4 h-4"/></button>
+              <button className="p-1.5 text-gray-400 hover:text-red-600" title="Delete" onClick={()=>prospect.id&&deleteProspect(prospect.id)}><Trash2 className="w-4 h-4"/></button>
+              <button className="p-1.5 text-gray-400 hover:text-gray-600" onClick={()=>setExpandedId(expandedId===prospect.id?null:prospect.id||null)}>
+                {expandedId===prospect.id?<ChevronUp className="w-4 h-4"/>:<ChevronDown className="w-4 h-4"/>}
+              </button>
+            </div>
+          </div>
+
+          {/* ── Expanded panel ── */}
+          {expandedId === prospect.id && (
+            <div className="mt-4 pt-4 border-t space-y-5">
+              {/* Assign + status */}
+              <div className="flex flex-wrap gap-6">
+                <div className="flex-1 min-w-[200px]">
+                  <Label className="text-xs text-gray-500 flex items-center gap-1 mb-1"><UserCheck className="w-3 h-3"/>Assign to</Label>
+                  <select className="w-full border rounded-md px-2 py-2 text-sm"
+                    value={prospect.assigned_to||''}
+                    onChange={e=>prospect.id&&assignProspect(prospect.id,e.target.value)}>
+                    <option value="">Unassigned</option>
+                    {CRM_USERS.map(u=><option key={u.email} value={u.email}>{u.name} ({u.email})</option>)}
+                  </select>
+                </div>
+                <div className="flex-1 min-w-[260px]">
+                  <Label className="text-xs text-gray-500 mb-1">Quick status</Label>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {OUTREACH_STATUSES.map(s=>(
+                      <button key={s.value}
+                        className={`text-xs px-2 py-1 rounded-full transition ${prospect.outreach_status===s.value?s.color+' font-semibold ring-2 ring-offset-1':'bg-gray-50 text-gray-500 hover:bg-gray-100'}`}
+                        onClick={()=>prospect.id&&quickUpdateStatus(prospect.id,s.value)}>
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick log call/email */}
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" onClick={()=>prospect.id&&addNote(prospect.id,'call')}>
+                  <PhoneCall className="w-3 h-3 mr-1"/>Log call
+                </Button>
+                <Button size="sm" variant="outline" onClick={()=>prospect.id&&addNote(prospect.id,'email')}>
+                  <Mail className="w-3 h-3 mr-1"/>Log email
+                </Button>
+              </div>
+
+              {/* Details — inline editable */}
+              <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <h4 className="font-medium text-gray-700 mb-2">{segment==='commercial'?'Site & System':'Plant & RTB'}</h4>
+                  <dl className="space-y-2">
+                    {prospect.cera_license_no && <div><dt className="text-gray-400 text-xs">CERA License</dt><dd className="text-xs">{prospect.cera_license_no}</dd></div>}
+                    {prospect.technology && <div><dt className="text-gray-400 text-xs">Technology</dt><dd>{prospect.technology}</dd></div>}
+                    {segment==='developer' && prospect.rtb_status && <div><dt className="text-gray-400 text-xs">RTB stage</dt><dd className="capitalize">{prospect.rtb_status.replace(/_/g,' ')}</dd></div>}
+                    {prospect.operational_mwp ? <div><dt className="text-gray-400 text-xs">Operating</dt><dd>{prospect.operational_mwp.toFixed(1)} MWp</dd></div> : null}
+                    {prospect.construction_mwp ? <div><dt className="text-gray-400 text-xs">Construction</dt><dd>{prospect.construction_mwp.toFixed(1)} MWp</dd></div> : null}
+                    {prospect.bess_potential_mwh ? <div><dt className="text-gray-400 text-xs">BESS Potential</dt><dd className="text-green-600 font-medium">{prospect.bess_potential_mwh} MWh</dd></div> : null}
+                    {segment==='commercial' && prospect.roof_area_m2 != null && <div><dt className="text-gray-400 text-xs">Roof area</dt><dd>{Math.round(prospect.roof_area_m2).toLocaleString()} m²</dd></div>}
+                    {segment==='commercial' && prospect.annual_savings_eur != null && <div><dt className="text-gray-400 text-xs">Annual saving</dt><dd className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}</dd></div>}
+                    {segment==='commercial' && prospect.payback_years != null && <div><dt className="text-gray-400 text-xs">Payback</dt><dd>{prospect.payback_years} yrs</dd></div>}
+                    {prospect.location && <div><dt className="text-gray-400 text-xs">Location</dt><dd>{prospect.location}</dd></div>}
+                  </dl>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-700 mb-2">Company & Contact</h4>
+                  <dl className="space-y-2">
+                    {prospect.parent_group && <div><dt className="text-gray-400 text-xs">Developer group</dt><dd className="font-medium text-[#1A365D]">{prospect.parent_group}</dd></div>}
+                    <InlineEdit label="Contact name" value={prospect.contact_name} onSave={v=>prospect.id&&putRow(prospect.id,{contact_name:v})} />
+                    <InlineEdit label="Title" value={prospect.contact_title} onSave={v=>prospect.id&&putRow(prospect.id,{contact_title:v})} />
+                    <InlineEdit label="Email" value={prospect.contact_email} type="email"
+                      href={prospect.contact_email?`mailto:${prospect.contact_email}`:undefined}
+                      onSave={v=>prospect.id&&putRow(prospect.id,{contact_email:v})} />
+                    <InlineEdit label="Phone" value={prospect.contact_phone} type="tel"
+                      href={prospect.contact_phone?`tel:${prospect.contact_phone}`:undefined}
+                      onSave={v=>prospect.id&&putRow(prospect.id,{contact_phone:v})} />
+                    <InlineEdit label="LinkedIn" value={prospect.contact_linkedin}
+                      href={prospect.contact_linkedin}
+                      onSave={v=>prospect.id&&putRow(prospect.id,{contact_linkedin:v})} />
+                    <InlineEdit label="Website" value={prospect.company_website}
+                      href={prospect.company_website}
+                      onSave={v=>prospect.id&&putRow(prospect.id,{company_website:v})} />
+                    {prospect.company_reg_no && <div><dt className="text-gray-400 text-xs">Reg. No.</dt>
+                      <dd><a href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{prospect.company_reg_no}</a></dd></div>}
+                  </dl>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-700 mb-2">Permits & Timeline</h4>
+                  <dl className="space-y-2">
+                    {segment==='developer' && prospect.connection_terms_status && <div><dt className="text-gray-400 text-xs">Connection terms</dt><dd className="capitalize">{prospect.connection_terms_status.replace(/_/g,' ')}</dd></div>}
+                    {segment==='developer' && prospect.env_permit_status && <div><dt className="text-gray-400 text-xs">Env permit</dt><dd className="capitalize">{prospect.env_permit_status.replace(/_/g,' ')}</dd></div>}
+                    {segment==='developer' && prospect.building_permit_status && <div><dt className="text-gray-400 text-xs">Building permit</dt><dd className="capitalize">{prospect.building_permit_status.replace(/_/g,' ')}</dd></div>}
+                    {prospect.first_contact_date && <div><dt className="text-gray-400 text-xs">First contact</dt><dd>{formatDate(prospect.first_contact_date)}</dd></div>}
+                    {prospect.last_contact_date && <div><dt className="text-gray-400 text-xs">Last contact</dt><dd>{formatDate(prospect.last_contact_date)}</dd></div>}
+                    {prospect.outreach_channel && <div><dt className="text-gray-400 text-xs">Channel</dt><dd className="capitalize">{prospect.outreach_channel.replace('_',' ')}</dd></div>}
+                  </dl>
+                </div>
+              </div>
+
+              {/* Notes + add note */}
+              <div>
+                <h4 className="font-medium text-gray-700 text-sm mb-2 flex items-center gap-2"><MessageSquare className="w-4 h-4"/>Activity feed</h4>
+                <div className="flex gap-2 mb-3">
+                  <input type="text" placeholder="Add a note, call summary, next steps…"
+                    value={noteText[prospect.id||'']||''}
+                    onChange={e=>setNoteText(prev=>({...prev,[prospect.id||'']:e.target.value}))}
+                    onKeyDown={e=>e.key==='Enter'&&prospect.id&&addNote(prospect.id,'note')}
+                    className="flex-1 border rounded-md px-3 py-2 text-sm" />
+                  <Button size="sm" onClick={()=>prospect.id&&addNote(prospect.id,'note')}>
+                    <MessageSquare className="w-3 h-3 mr-1"/>Note
+                  </Button>
+                </div>
+                {feed.length > 0 ? (
+                  <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                    {feed.map((entry,i)=>(
+                      <div key={i} className="flex gap-2 text-xs">
+                        <div className="mt-0.5 text-gray-400">{activityIcon(entry.type)}</div>
+                        <div className="flex-1 bg-gray-50 rounded p-2">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="font-medium text-gray-700">{entry.author}</span>
+                            <span className="text-gray-400">{formatDateTime(entry.ts)}</span>
+                            <span className="capitalize text-gray-400 ml-auto">{entry.type}</span>
+                          </div>
+                          <p className="text-gray-600 whitespace-pre-wrap">{entry.body}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-gray-400 italic">No activity yet.</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </Card>
+    )
+  }
 }

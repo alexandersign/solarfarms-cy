@@ -41,12 +41,14 @@ export async function GET(request: NextRequest) {
     if (technology) query = query.eq('technology',       technology)
     if (hasBess === 'true')  query = query.gt('bess_potential_mwh', 0)
     if (hasBess === 'false') query = query.or('bess_potential_mwh.is.null,bess_potential_mwh.eq.0')
+    const industry = searchParams.get('industry')
+    if (industry)   query = query.eq('industry', industry)
     if (newDays) {
       const since = new Date(Date.now() - parseInt(newDays, 10) * 86400000).toISOString()
       query = query.gte('created_at', since)
     }
     if (search)     query = query.or(
-      `plant_name.ilike.%${search}%,company_name.ilike.%${search}%,contact_name.ilike.%${search}%,parent_group.ilike.%${search}%`
+      `plant_name.ilike.%${search}%,company_name.ilike.%${search}%,contact_name.ilike.%${search}%,parent_group.ilike.%${search}%,search_aliases.ilike.%${search}%`
     )
 
     const { data, error } = await query

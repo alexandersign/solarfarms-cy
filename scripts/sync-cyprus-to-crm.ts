@@ -18,6 +18,7 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { buildSearchAliases } from '../lib/greek-translit'
 import { supabase, type PvProspect } from '../lib/supabase'
 import { normalizeDisplayPhone } from '../lib/csv-utf8'
 import type { DeveloperGroup } from '../lib/cyprus-developer-groups'
@@ -217,6 +218,10 @@ async function main() {
       contact_linkedin: top.contact_linkedin || grp?.best_contact_linkedin,
       offer_type: top.primary_sales_target ? OFFER_TYPE_MAP[top.primary_sales_target] : undefined,
       priority: priorityOf(top) as PvProspect['priority'],
+      search_aliases: buildSearchAliases(
+        top.company_name, top.contact_director_1, top.contact_name,
+        grp?.directors?.join(' ')
+      ),
     }
   }
 

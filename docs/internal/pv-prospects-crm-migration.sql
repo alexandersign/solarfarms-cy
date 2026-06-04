@@ -34,9 +34,18 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_pv_prospects_place_id
 -- Outreach suppression + send-tracking are stored on the existing tags[] column
 -- ('unsubscribed', 'intro_sent:<date>', 'batch:<date>') — no extra tables needed.
 
+-- Phase 2: search aliases, activity feed, industry
+ALTER TABLE pv_prospects
+  ADD COLUMN IF NOT EXISTS search_aliases TEXT,                        -- transliterated names for EN search
+  ADD COLUMN IF NOT EXISTS activity_feed  JSONB DEFAULT '[]'::jsonb,  -- dated notes / events [{ts,author,type,body}]
+  ADD COLUMN IF NOT EXISTS industry       TEXT;                        -- commercial sector (warehouse, hotel, clinic…)
+
+CREATE INDEX IF NOT EXISTS idx_pv_prospects_industry ON pv_prospects(industry);
+
 -- Verify
 SELECT column_name, data_type
 FROM information_schema.columns
 WHERE table_name = 'pv_prospects'
   AND column_name IN ('assigned_to', 'segment', 'rtb_status', 'satellite_check',
-                      'place_id', 'roof_image_url', 'annual_savings_eur');
+                      'place_id', 'roof_image_url', 'annual_savings_eur',
+                      'search_aliases', 'activity_feed', 'industry');

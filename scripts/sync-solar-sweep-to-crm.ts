@@ -14,6 +14,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { supabase, type PvProspect } from '../lib/supabase'
+import { buildSearchAliases } from '../lib/greek-translit'
 import { normalizeDisplayPhone } from '../lib/csv-utf8'
 
 const SWEEP_DIR = path.join(process.cwd(), 'docs', 'solar-prospects')
@@ -74,6 +75,19 @@ function roofImageFor(name: string): string | null {
     if (hit) return path.join(SWEEP_DIR, hit)
   }
   return null
+}
+
+function guessIndustry(googleTypes: string): string {
+  const t = googleTypes.toLowerCase()
+  if (t.includes('lodging') || t.includes('hotel')) return 'Hotel / Hospitality'
+  if (t.includes('restaurant') || t.includes('cafe') || t.includes('food')) return 'Restaurant / Café'
+  if (t.includes('doctor') || t.includes('dentist') || t.includes('hospital') || t.includes('health')) return 'Clinic / Medical'
+  if (t.includes('supermarket') || t.includes('grocery') || t.includes('store')) return 'Supermarket / Retail'
+  if (t.includes('car_dealer')) return 'Car Dealership'
+  if (t.includes('gym') || t.includes('fitness') || t.includes('sport')) return 'Gym / Sports'
+  if (t.includes('warehouse') || t.includes('storage') || t.includes('moving')) return 'Warehouse / Logistics'
+  if (t.includes('factory') || t.includes('industrial') || t.includes('manufact')) return 'Factory / Manufacturing'
+  return 'Other'
 }
 
 function safeId(placeId: string, name: string): string {
@@ -169,6 +183,8 @@ async function main() {
       offer_type: 'rooftop_pv',
       data_source: 'google_places',
       priority,
+      search_aliases: buildSearchAliases(r.gmb_name || r.name, r.addr),
+      industry: guessIndustry(r.google_types || ''),
     }
 
     const existId = placeId ? existing.get(placeId) : undefined
