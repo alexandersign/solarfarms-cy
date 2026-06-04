@@ -5,10 +5,10 @@
  * default assumes the non-secure name and the wrong salt, so we set both
  * explicitly. Without this, valid sessions read as null -> redirect loops / 401s.
  */
-import { getToken } from 'next-auth/jwt'
+import { getToken, type JWT } from 'next-auth/jwt'
 import type { NextRequest } from 'next/server'
 
-export async function getCrmToken(req: NextRequest) {
+export async function getCrmToken(req: NextRequest): Promise<JWT | null> {
   const secure =
     (process.env.NEXTAUTH_URL || '').startsWith('https://') ||
     process.env.NODE_ENV === 'production'
@@ -16,12 +16,13 @@ export async function getCrmToken(req: NextRequest) {
     ? '__Secure-authjs.session-token'
     : 'authjs.session-token'
 
-  return getToken({
+  const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
     secureCookie: secure,
     salt: cookieName,
     cookieName,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any)
+  } as Parameters<typeof getToken>[0])
+
+  return (token as JWT | null) ?? null
 }
