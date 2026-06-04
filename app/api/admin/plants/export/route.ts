@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getCyprusPlants } from '@/lib/cyprus-plants-data'
+import { csvWithUtf8Bom, escCsvCell, normalizeDisplayPhone } from '@/lib/csv-utf8'
 
 export async function GET(request: NextRequest) {
   try {
@@ -48,12 +49,17 @@ export async function GET(request: NextRequest) {
       'Municipality',
       'EAC listed',
       'Match confidence',
+      'Developer group',
       'Director 1',
       'Director 2',
       'Secretary',
       'Contact email',
+      'Email confidence',
+      'Contact phone',
+      'LinkedIn',
       'Website',
       'Email source',
+      'Developer domain',
       'Registered address',
       'Priority score',
       'Outreach priority',
@@ -78,33 +84,31 @@ export async function GET(request: NextRequest) {
         p.municipality,
         p.eac_res_listed ? 'yes' : 'no',
         p.eac_match_confidence,
+        p.developer_group || '',
         p.contact_director_1,
         p.contact_director_2,
         p.contact_secretary,
         p.contact_email,
+        p.email_confidence ?? '',
+        normalizeDisplayPhone(p.contact_phone),
+        p.contact_linkedin,
         p.contact_website,
         p.contact_email_source,
+        p.developer_domain || '',
         p.registered_address,
         p.priority_score,
         p.outreach_priority,
         p.existing_client ? 'yes' : 'no',
       ]
-        .map((v) => {
-          if (v === null || v === undefined) return ''
-          const str = String(v)
-          if (str.includes(',') || str.includes('"') || str.includes('\n')) {
-            return `"${str.replace(/"/g, '""')}"`
-          }
-          return str
-        })
+        .map(escCsvCell)
         .join(',')
     )
 
-    const csv = [headers.join(','), ...rows].join('\n')
+    const csv = csvWithUtf8Bom([headers.join(','), ...rows].join('\n'))
     return new NextResponse(csv, {
       status: 200,
       headers: {
-        'Content-Type': 'text/csv',
+        'Content-Type': 'text/csv; charset=utf-8',
         'Content-Disposition': `attachment; filename="cyprus-sales-targets-${new Date().toISOString().split('T')[0]}.csv"`,
       },
     })

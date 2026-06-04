@@ -23,6 +23,10 @@ export interface EnrichedCyprusPlant extends CyprusEnergyPlant {
   contact_linkedin?: string
   contact_website?: string
   contact_email_source?: string
+  email_confidence?: number
+  contact_name?: string
+  developer_group?: string
+  developer_domain?: string
   registered_address?: string
   company_reg_no?: string
   eac_application_ref?: string

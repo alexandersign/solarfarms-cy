@@ -35,6 +35,16 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Protect /crm — session required, redirect to /crm/login
+  if (pathname.startsWith('/crm') && !pathname.startsWith('/crm/login')) {
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+    if (!token) {
+      const loginUrl = new URL('/crm/login', request.url)
+      loginUrl.searchParams.set('callbackUrl', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+  }
+
   // Protect service routes (tablet, manager, client portals)
   if (
     (pathname.startsWith('/tablet') || pathname.startsWith('/manager') || pathname.startsWith('/client')) &&
@@ -65,6 +75,7 @@ export const config = {
   matcher: [
     '/internal-docs/:path*',
     '/bess-project/:path*',
+    '/crm/:path*',
     '/tablet/:path*',
     '/manager/:path*',
     '/client/:path*',

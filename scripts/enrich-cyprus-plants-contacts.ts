@@ -10,7 +10,11 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
-import { discoverContactNoHunter } from '../lib/contact-discovery'
+import {
+  discoverContactNoHunter,
+  normalizePhoneE164,
+  websiteIsServiceFirm,
+} from '../lib/contact-discovery'
 import { applyCyprusContactOverrides } from '../lib/cyprus-contact-overrides'
 
 // Load .env.local / .env for GOOGLE_MAPS_KEY when run via npm
@@ -127,22 +131,17 @@ async function main() {
       googlePlacesKey: googleKey || undefined,
     })
 
-    const website = discovered.company_website || row.contact_website
-    const safeWebsite =
-      website &&
-      !['lighthief', 'solarfarms.cy'].some((b) => String(website).toLowerCase().includes(b))
-        ? website
-        : row.contact_website &&
-            !['lighthief', 'solarfarms.cy'].some((b) =>
-              String(row.contact_website).toLowerCase().includes(b)
-            )
+    const candidateWebsite = discovered.company_website || row.contact_website
+    const safeWebsite = !candidateWebsite
+      ? undefined
+      : !websiteIsServiceFirm(String(candidateWebsite))
+        ? candidateWebsite
+        : row.contact_website && !websiteIsServiceFirm(String(row.contact_website))
           ? row.contact_website
           : undefined
 
     const rawPhone = manual.contact_phone || discovered.contact_phone || row.contact_phone
-    const cleanPhone = rawPhone
-      ? decodeURIComponent(String(rawPhone).trim()).replace(/%20/g, ' ').trim()
-      : undefined
+    const cleanPhone = normalizePhoneE164(rawPhone) || undefined
 
     const patch: Partial<PlantRow> = {
       contact_email: manual.contact_email || discovered.contact_email || row.contact_email,

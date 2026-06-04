@@ -7,6 +7,11 @@ import * as cheerio from 'cheerio'
 import * as dns from 'dns/promises'
 import * as https from 'https'
 import * as http from 'http'
+import {
+  isServiceFirmDomain,
+  isServiceFirmEmail,
+  isServiceFirmPhone,
+} from './cyprus-service-firms'
 
 const SKIP_EMAIL_DOMAINS = new Set([
   'example.com',
@@ -60,6 +65,7 @@ const BLOCKED_EMAIL_DOMAINS = new Set([
 export function emailMatchesCompany(email: string, companyName: string): boolean {
   const domain = email.split('@')[1]?.toLowerCase() || ''
   if (!domain || BLOCKED_EMAIL_DOMAINS.has(domain)) return false
+  if (isServiceFirmEmail(email)) return false
   const candidates = domainCandidatesFromCompany(companyName)
   for (const c of candidates) {
     const cd = c.toLowerCase()
@@ -211,7 +217,7 @@ export async function discoverWebsiteForCompany(
   return null
 }
 
-async function googlePlacesTextSearch(
+export async function googlePlacesTextSearch(
   textQuery: string,
   apiKey: string
 ): Promise<{ website?: string; phone?: string; name?: string } | null> {
@@ -306,11 +312,12 @@ export async function discoverContactNoHunter(opts: {
     if (
       place?.phone &&
       placesMatch &&
-      !BLOCKED_PHONE_FRAGMENTS.some((f) => place.phone!.replace(/\D/g, '').includes(f))
+      !BLOCKED_PHONE_FRAGMENTS.some((f) => place.phone!.replace(/\D/g, '').includes(f)) &&
+      !isServiceFirmPhone(place.phone)
     ) {
       out.contact_phone = place.phone
     }
-    if (place?.website && !website && placesMatch) {
+    if (place?.website && !website && placesMatch && !websiteIsServiceFirm(place.website)) {
       website = place.website
       out.company_website = website
       if (!out.email_source) out.email_source = 'google_places'
@@ -338,7 +345,9 @@ export async function discoverContactNoHunter(opts: {
       out.email_source = 'website_scrape'
       out.email_verified = false
     }
-    if (scraped.phone && !out.contact_phone) out.contact_phone = scraped.phone
+    if (scraped.phone && !out.contact_phone && !isServiceFirmPhone(scraped.phone)) {
+      out.contact_phone = scraped.phone
+    }
     if (out.contact_email) return out
   }
 
@@ -349,7 +358,7 @@ export async function discoverContactNoHunter(opts: {
       )
     : domainCandidatesFromCompany(opts.companyName).find((d) => d.includes('.')) || ''
 
-  if (domain && opts.directorNames?.length) {
+  if (domain && !isServiceFirmDomain(domain) && opts.directorNames?.length) {
     for (const name of opts.directorNames) {
       const guesses = guessEmailsFromPersonName(name, domain)
       if (guesses.length) {
@@ -363,4 +372,62 @@ export async function discoverContactNoHunter(opts: {
   }
 
   return out
+}
+
+/**
+ * Normalize a Cyprus/foreign phone toward E.164-ish display form.
+ * Strips URL-encoding, spaces and punctuation; maps 00xxx -> +xxx and bare
+ * Cyprus 8-digit numbers -> +357. Returns '' for junk.
+ */
+export function normalizePhoneE164(phone?: string | null): string {
+  if (!phone) return ''
+  let p = decodeURIComponent(String(phone)).replace(/%20/gi, ' ').trim()
+  p = p.replace(/[()\[\]]/g, ' ').replace(/\s+/g, ' ').trim()
+  let digits = p.replace(/[^\d+]/g, '')
+  if (digits.startsWith('00')) digits = '+' + digits.slice(2)
+  if (!digits.startsWith('+')) {
+    const bare = digits.replace(/\D/g, '')
+    if (bare.length === 8) digits = '+357' + bare // Cyprus national number
+    else if (bare.length >= 10 && bare.startsWith('357')) digits = '+' + bare
+    else digits = bare ? '+' + bare : ''
+  }
+  const onlyDigits = digits.replace(/\D/g, '')
+  if (onlyDigits.length < 8 || onlyDigits.length > 15) return ''
+  return digits
+}
+
+/**
+ * Contact-source confidence ranking (higher = more trustworthy). Used to
+ * decide whether a newly-found contact should overwrite an existing one.
+ */
+export const CONTACT_SOURCE_RANK: Record<string, number> = {
+  hunter_email_finder: 95,
+  'hunter_email_finder+verified': 98,
+  hunter_domain_search: 80,
+  'hunter_domain_search+verified': 88,
+  manual_override: 100,
+  employer_public: 85,
+  website_scrape: 60,
+  google_places: 40,
+  pattern_guess: 20,
+}
+
+export function contactConfidence(source?: string, hunterScore?: number): number {
+  if (hunterScore != null && source?.startsWith('hunter')) return hunterScore
+  if (!source) return 0
+  return CONTACT_SOURCE_RANK[source] ?? 10
+}
+
+/** True when a website URL belongs to a known service firm / own company. */
+export function websiteIsServiceFirm(url?: string): boolean {
+  if (!url) return false
+  try {
+    const host = new URL(url.startsWith('http') ? url : `https://${url}`).hostname.replace(
+      /^www\./,
+      ''
+    )
+    return isServiceFirmDomain(host)
+  } catch {
+    return BLOCKED_WEBSITE_FRAGMENTS.some((f) => url.toLowerCase().includes(f))
+  }
 }

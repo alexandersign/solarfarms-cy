@@ -9,6 +9,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { normalizeDirectorKey } from '../lib/cyprus-company-register'
+import { escCsvCell, normalizeDisplayPhone, writeCsvUtf8 } from '../lib/csv-utf8'
 
 const PLANTS_JSON = path.join(process.cwd(), 'marketing', 'cyprus-energy-plants.json')
 const OUT_JSON = path.join(process.cwd(), 'marketing', 'cyprus-top-directors.json')
@@ -90,7 +91,8 @@ function main() {
       const d = p.district_en || p.district
       if (d && !agg.districts.includes(d)) agg.districts.push(d)
       if (!agg.contact_email && p.contact_email) agg.contact_email = p.contact_email
-      if (!agg.contact_phone && p.contact_phone) agg.contact_phone = p.contact_phone
+      if (!agg.contact_phone && p.contact_phone)
+        agg.contact_phone = normalizeDisplayPhone(p.contact_phone)
       if (!agg.contact_linkedin && p.contact_linkedin) agg.contact_linkedin = p.contact_linkedin
     }
   }
@@ -125,7 +127,7 @@ function main() {
     [
       d.display_name,
       d.contact_email || '',
-      d.contact_phone || '',
+      normalizeDisplayPhone(d.contact_phone),
       d.contact_linkedin || '',
       d.spv_count,
       d.licence_count,
@@ -135,13 +137,10 @@ function main() {
       d.districts.join('; '),
       d.companies.slice(0, 8).join('; '),
     ]
-      .map((v) => {
-        const s = String(v)
-        return s.includes(',') || s.includes('"') ? `"${s.replace(/"/g, '""')}"` : s
-      })
+      .map(escCsvCell)
       .join(',')
   )
-  fs.writeFileSync(OUT_CSV, [headers.join(','), ...csvRows].join('\n'), 'utf-8')
+  writeCsvUtf8(OUT_CSV, [headers.join(','), ...csvRows])
 
   console.log(`Top directors (≥${minSpvs} SPVs): ${ranked.length}`)
   ranked.slice(0, 15).forEach((d) => {

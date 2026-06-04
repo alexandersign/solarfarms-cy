@@ -11,19 +11,13 @@ import * as path from 'path'
 import { readCeraCsv, filterPvRows, rowsToPlantRecords } from '../lib/cyprus-cera-parse'
 import { matchPortfolioClient } from '../lib/cyprus-portfolio-clients'
 import { scorePlant } from '../lib/cyprus-prospect-scoring'
+import { escCsvCell, normalizeDisplayPhone, writeCsvUtf8 } from '../lib/csv-utf8'
+import type { DeveloperGroup } from '../lib/cyprus-developer-groups'
 
 const PLANTS_JSON = path.join(process.cwd(), 'marketing', 'cyprus-energy-plants.json')
 const MATCHES_JSON = path.join(process.cwd(), 'marketing', 'cyprus-plant-matches.json')
+const GROUPS_JSON = path.join(process.cwd(), 'marketing', 'cyprus-developer-groups.json')
 const OUT_CSV = path.join(process.cwd(), 'marketing', 'cyprus-sales-targets.csv')
-
-function esc(v: unknown): string {
-  if (v === null || v === undefined) return ''
-  const s = String(v)
-  if (s.includes(',') || s.includes('"') || s.includes('\n')) {
-    return `"${s.replace(/"/g, '""')}"`
-  }
-  return s
-}
 
 function main() {
   const minScore = parseInt(
@@ -63,6 +57,15 @@ function main() {
     })
   }
 
+  // developer-group lookup
+  const companyToGroup = new Map<string, DeveloperGroup>()
+  if (fs.existsSync(GROUPS_JSON)) {
+    const groups: DeveloperGroup[] = JSON.parse(fs.readFileSync(GROUPS_JSON, 'utf-8')).groups || []
+    for (const g of groups) {
+      for (const c of g.companies) companyToGroup.set(c.trim().toUpperCase(), g)
+    }
+  }
+
   const filtered = plants
     .filter((p) => (p.priority_score as number) >= minScore)
     .sort((a, b) => (b.priority_score as number) - (a.priority_score as number))
@@ -70,6 +73,7 @@ function main() {
   const headers = [
     'CERA licence',
     'SPV / Company',
+    'Developer group',
     'HE reg no',
     'Primary sales target',
     'Secondary targets',
@@ -88,20 +92,24 @@ function main() {
     'Director 2',
     'Secretary',
     'Contact email',
+    'Email confidence',
     'Contact phone',
     'LinkedIn',
     'Website',
     'Email source',
+    'Developer domain',
     'Registered address',
     'Priority score',
     'Outreach priority',
     'Portfolio client',
   ]
 
-  const rows = filtered.map((p) =>
-    [
+  const rows = filtered.map((p) => {
+    const grp = companyToGroup.get(String(p.company_name).trim().toUpperCase())
+    return [
       p.cera_license_no,
       p.company_name,
+      grp && grp.spv_count >= 2 ? grp.brand : '',
       p.company_reg_no,
       p.primary_sales_target,
       (p.secondary_sales_targets as string[] || []).join('; '),
@@ -120,19 +128,37 @@ function main() {
       p.contact_director_2,
       p.contact_secretary,
       p.contact_email,
-      p.contact_phone,
+      p.email_confidence ?? '',
+      normalizeDisplayPhone(p.contact_phone as string | undefined),
       p.contact_linkedin,
       p.contact_website,
       p.contact_email_source,
+      grp?.developer_domain || '',
       p.registered_address,
       p.priority_score,
       p.outreach_priority,
       p.existing_client ? 'yes' : 'no',
-    ].map(esc).join(',')
-  )
+    ].map(escCsvCell).join(',')
+  })
 
-  fs.writeFileSync(OUT_CSV, [headers.join(','), ...rows].join('\n'), 'utf-8')
-  console.log(`Wrote ${OUT_CSV} (${filtered.length} rows, min score ${minScore})`)
+  const lines = [headers.join(','), ...rows]
+  try {
+    writeCsvUtf8(OUT_CSV, lines)
+    console.log(`Wrote ${OUT_CSV} (${filtered.length} rows, min score ${minScore})`)
+  } catch (e) {
+    const err = e as NodeJS.ErrnoException
+    if (err.code === 'EBUSY') {
+      const alt = path.join(
+        process.cwd(),
+        'marketing',
+        'cyprus-sales-targets-refresh.csv'
+      )
+      writeCsvUtf8(alt, lines)
+      console.log(`Wrote ${alt} (${filtered.length} rows) — close Excel and re-run for main CSV`)
+    } else {
+      throw e
+    }
+  }
 }
 
 main()
