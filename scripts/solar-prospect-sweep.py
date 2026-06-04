@@ -47,6 +47,14 @@ import os
 import re
 import sys
 import time
+
+# Windows consoles default to cp1252 — Greek GMB names crash prints without UTF-8
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 import urllib.parse
 from datetime import date, datetime
 from pathlib import Path

@@ -11,7 +11,7 @@ const EXTRA_CLIENT_KEYWORDS = [
   'SPANERCOM',
   'TIMOTHEOS',
   'LAMPROS',
-  'AEOLIAN',
+  // AEOLIAN: quoted prospect only — not signed; synced via crm:sync-off-registry
   'ABIO',
   'FOTODROMOS',
   'AGM SUNFIELD',

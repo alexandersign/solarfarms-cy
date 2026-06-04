@@ -42,10 +42,17 @@ ALTER TABLE pv_prospects
 
 CREATE INDEX IF NOT EXISTS idx_pv_prospects_industry ON pv_prospects(industry);
 
+-- Directors (register + multi-director search)
+ALTER TABLE pv_prospects
+  ADD COLUMN IF NOT EXISTS contact_director_1 TEXT,
+  ADD COLUMN IF NOT EXISTS contact_director_2 TEXT,
+  ADD COLUMN IF NOT EXISTS all_directors      TEXT;  -- display: "Name1 · Name2 · …"
+
 -- Verify
 SELECT column_name, data_type
 FROM information_schema.columns
 WHERE table_name = 'pv_prospects'
   AND column_name IN ('assigned_to', 'segment', 'rtb_status', 'satellite_check',
                       'place_id', 'roof_image_url', 'annual_savings_eur',
-                      'search_aliases', 'activity_feed', 'industry');
+                      'search_aliases', 'activity_feed', 'industry',
+                      'contact_director_1', 'contact_director_2', 'all_directors');

@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
+import { CrmHeader } from '@/components/crm/crm-header'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +13,7 @@ import {
   Users, Search, Plus, RefreshCw, ExternalLink, Download, Filter,
   Building, MapPin, Phone, Mail, Linkedin, Globe, Calendar, DollarSign,
   Zap, Target, ChevronDown, ChevronUp, Edit, Trash2, CheckCircle, XCircle,
-  Clock, AlertCircle, BarChart3, FileText, Copy, UserCheck, LogOut,
+  Clock, AlertCircle, BarChart3, FileText, Copy, UserCheck,
   Send, Eye, MailCheck, MessageSquare, ArrowUpDown, Folder, PhoneCall,
   X, Save,
 } from 'lucide-react'
@@ -122,6 +123,7 @@ type ProspectFull = PvProspect & {
   roof_area_m2?: number; annual_kwh?: number; annual_savings_eur?: number
   payback_years?: number; has_existing_pv?: boolean; roof_image_url?: string
   industry?: string; activity_feed?: ActivityEntry[]; search_aliases?: string
+  all_directors?: string; contact_director_2?: string
   connection_terms_status?: string; env_permit_status?: string; building_permit_status?: string
 }
 
@@ -464,25 +466,7 @@ export default function CrmPage() {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* ── Sticky floating header ── */}
-      <div className="sticky top-0 z-50 shadow-md">
-        {/* Top bar */}
-        <div style={{ background: 'linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%)' }}>
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-xl font-bold" style={{ color: '#C9A432' }}>Lighthief CRM</span>
-              <span className="text-sm text-blue-200 hidden md:inline">Cyprus PV prospect tracker</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-blue-200">{myName || myEmail}</span>
-              <Button size="sm" variant="outline" className="text-white border-white/30 hover:bg-white/10"
-                onClick={() => signOut({ callbackUrl: '/crm/login' })}>
-                <LogOut className="w-3 h-3 mr-1" /> Sign out
-              </Button>
-            </div>
-          </div>
-        </div>
-
+      <CrmHeader activeNav="prospects">
         {/* Segment tabs + action buttons */}
         <div className="bg-[#1A365D] border-b border-blue-800">
           <div className="container mx-auto px-4 py-2 flex items-center justify-between flex-wrap gap-2">
@@ -540,7 +524,7 @@ export default function CrmPage() {
             ))}
           </div>
         </div>
-      </div>
+      </CrmHeader>
 
       <div className="container mx-auto px-4 py-5">
 
@@ -983,6 +967,11 @@ export default function CrmPage() {
                 {prospect.parent_group && <span className="text-gray-400">({prospect.parent_group})</span>}
                 {prospect.district && <span className="flex items-center gap-1"><MapPin className="w-3 h-3"/>{prospect.district}</span>}
                 {prospect.contact_name && <span className="flex items-center gap-1"><Users className="w-3 h-3"/>{prospect.contact_name}</span>}
+                {prospect.all_directors && prospect.all_directors !== prospect.contact_name && (
+                  <span className="flex items-center gap-1 text-gray-600" title="All directors (searchable)">
+                    <Users className="w-3 h-3 opacity-60"/>{prospect.all_directors}
+                  </span>
+                )}
                 {prospect.contact_email && (
                   <a href={`mailto:${prospect.contact_email}`} className="flex items-center gap-1 text-blue-600 hover:underline">
                     <Mail className="w-3 h-3"/>{prospect.contact_email}
@@ -1099,6 +1088,14 @@ export default function CrmPage() {
                   <dl className="space-y-2">
                     {prospect.parent_group && <div><dt className="text-gray-400 text-xs">Developer group</dt><dd className="font-medium text-[#1A365D]">{prospect.parent_group}</dd></div>}
                     <InlineEdit label="Contact name" value={prospect.contact_name} onSave={v=>prospect.id&&putRow(prospect.id,{contact_name:v})} />
+                    {prospect.all_directors && (
+                      <div>
+                        <dt className="text-gray-400 text-xs">All directors</dt>
+                        <dd className="text-sm text-gray-700">{prospect.all_directors}</dd>
+                      </div>
+                    )}
+                    <InlineEdit label="Secondary contact" value={prospect.secondary_contact_name}
+                      onSave={v=>prospect.id&&putRow(prospect.id,{secondary_contact_name:v})} />
                     <InlineEdit label="Title" value={prospect.contact_title} onSave={v=>prospect.id&&putRow(prospect.id,{contact_title:v})} />
                     <InlineEdit label="Email" value={prospect.contact_email} type="email"
                       href={prospect.contact_email?`mailto:${prospect.contact_email}`:undefined}

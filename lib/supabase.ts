@@ -255,6 +255,9 @@ export interface PvProspect {
   developer_domain?: string
   // Search + activity + industry
   search_aliases?: string
+  contact_director_1?: string
+  contact_director_2?: string
+  all_directors?: string
   activity_feed?: ActivityEntry[]
   industry?: string
   // Commercial (rooftop self-consumption) fields

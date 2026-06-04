@@ -6,6 +6,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase }                  from '@/lib/supabase'
 import { getCrmToken }               from '@/lib/crm-auth'
+import {
+  buildProspectSearchAliases,
+  formatAllDirectors,
+  uniqueDirectorNames,
+} from '@/lib/crm-search-aliases'
 
 async function requireSession(req: NextRequest) {
   return getCrmToken(req)
@@ -48,7 +53,19 @@ export async function GET(request: NextRequest) {
       query = query.gte('created_at', since)
     }
     if (search)     query = query.or(
-      `plant_name.ilike.%${search}%,company_name.ilike.%${search}%,contact_name.ilike.%${search}%,parent_group.ilike.%${search}%,search_aliases.ilike.%${search}%`
+      [
+        'plant_name',
+        'company_name',
+        'contact_name',
+        'secondary_contact_name',
+        'parent_group',
+        'search_aliases',
+        'all_directors',
+        'contact_director_1',
+        'contact_director_2',
+      ]
+        .map((col) => `${col}.ilike.%${search}%`)
+        .join(',')
     )
 
     const { data, error } = await query
@@ -99,6 +116,37 @@ export async function PUT(request: NextRequest) {
     const body = await request.json()
     const { id, ...updates } = body
     if (!id) return NextResponse.json({ success: false, message: 'id required' }, { status: 400 })
+
+    const ALIAS_FIELDS = [
+      'company_name',
+      'contact_name',
+      'contact_director_1',
+      'contact_director_2',
+      'secondary_contact_name',
+      'all_directors',
+      'parent_group',
+    ] as const
+    if (ALIAS_FIELDS.some((f) => f in updates)) {
+      const { data: existing } = await supabase
+        .from('pv_prospects')
+        .select(
+          'company_name, contact_name, contact_director_1, contact_director_2, secondary_contact_name, all_directors, parent_group'
+        )
+        .eq('id', id)
+        .single()
+      const merged = { ...(existing || {}), ...updates }
+      const names = uniqueDirectorNames(merged)
+      updates.search_aliases = buildProspectSearchAliases({
+        ...merged,
+        contact_director_1: names[0],
+        contact_director_2: names[1],
+      })
+      if (!('all_directors' in updates) && names.length) {
+        updates.all_directors = formatAllDirectors(names)
+      }
+      if (!('contact_director_1' in updates) && names[0]) updates.contact_director_1 = names[0]
+      if (!('contact_director_2' in updates) && names[1]) updates.contact_director_2 = names[1]
+    }
 
     const { data, error } = await supabase.from('pv_prospects').update(updates).eq('id', id).select().single()
     if (error) throw error

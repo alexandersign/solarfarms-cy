@@ -18,7 +18,7 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
-import { buildSearchAliases } from '../lib/greek-translit'
+import { directorFieldsFromPlants, collectDirectorsFromPlantRows } from '../lib/crm-search-aliases'
 import { supabase, type PvProspect } from '../lib/supabase'
 import { normalizeDisplayPhone } from '../lib/csv-utf8'
 import type { DeveloperGroup } from '../lib/cyprus-developer-groups'
@@ -49,6 +49,8 @@ interface PlantRow {
   outreach_priority?: string
   existing_client?: boolean
   contact_director_1?: string
+  contact_director_2?: string
+  contact_secretary?: string
   contact_name?: string
   contact_email?: string
   contact_phone?: string
@@ -188,6 +190,21 @@ async function main() {
     if (rtbStatus === 'operational' && !hasBess) bessAngle = 'retrofit'
     else if (hasBess) bessAngle = 'pre_sale'
 
+    const plantDirectors = collectDirectorsFromPlantRows(rows)
+    const primaryContact =
+      top.contact_name || grp?.best_contact_name || top.contact_director_1
+    const secondaryFromRegister =
+      plantDirectors.find(
+        (n) => n.toUpperCase() !== (primaryContact || '').toUpperCase()
+      ) || top.contact_director_2
+
+    const directorMeta = directorFieldsFromPlants(top.company_name, rows, {
+      parent_group: isMulti ? grp!.brand : undefined,
+      groupDirectors: grp?.directors,
+      contact_name: primaryContact,
+      secondary_contact_name: secondaryFromRegister,
+    })
+
     return {
       segment: 'developer',
       company_name: top.company_name,
@@ -212,16 +229,17 @@ async function main() {
       company_website: grp?.developer_domain
         ? `https://${grp.developer_domain}`
         : top.contact_website,
-      contact_name: top.contact_name || grp?.best_contact_name || top.contact_director_1,
+      contact_name: primaryContact,
+      secondary_contact_name: secondaryFromRegister,
+      contact_director_1: directorMeta.contact_director_1,
+      contact_director_2: directorMeta.contact_director_2,
+      all_directors: directorMeta.all_directors,
       contact_email: email,
       contact_phone: phone || undefined,
       contact_linkedin: top.contact_linkedin || grp?.best_contact_linkedin,
       offer_type: top.primary_sales_target ? OFFER_TYPE_MAP[top.primary_sales_target] : undefined,
       priority: priorityOf(top) as PvProspect['priority'],
-      search_aliases: buildSearchAliases(
-        top.company_name, top.contact_director_1, top.contact_name,
-        grp?.directors?.join(' ')
-      ),
+      search_aliases: directorMeta.search_aliases,
     }
   }
 

@@ -61,7 +61,10 @@ function latestSweepCsv(): string | null {
     .readdirSync(SWEEP_DIR)
     .filter((f) => f.startsWith('solar-sweep-') && f.endsWith('.csv'))
     .sort()
-  return files.length ? path.join(SWEEP_DIR, files[files.length - 1]) : null
+  if (!files.length) return null
+  const merged = files.filter((f) => f.includes('merged'))
+  const pick = merged.length ? merged[merged.length - 1] : files[files.length - 1]
+  return path.join(SWEEP_DIR, pick)
 }
 
 /** Reconstruct the roof image filename the sweep wrote (roof_<safe_name>.png). */
@@ -130,9 +133,19 @@ async function main() {
   console.log(`Reading ${csvPath}`)
   const rows = parseCsv(fs.readFileSync(csvPath, 'utf-8'))
 
-  // qualified: roof big enough + has a name
-  const qualified = rows.filter((r) => (num(r.roof_area_m2) || 0) >= minRoof && r.name)
-  console.log(`Rows: ${rows.length} · qualified (roof >= ${minRoof} m²): ${qualified.length}`)
+  const noPvOnly = !process.argv.includes('--include-has-pv')
+
+  // qualified: roof big enough + has a name; default skips sites with existing PV on roof
+  let qualified = rows.filter((r) => (num(r.roof_area_m2) || 0) >= minRoof && r.name)
+  if (noPvOnly) {
+    qualified = qualified.filter((r) => {
+      const s = (r.pv_status || '').toLowerCase()
+      return !['confirmed', 'likely', 'partial'].includes(s)
+    })
+  }
+  console.log(
+    `Rows: ${rows.length} · qualified (roof >= ${minRoof} m²${noPvOnly ? ', no existing PV' : ''}): ${qualified.length}`
+  )
 
   if (!dryRun) fs.mkdirSync(ROOFS_OUT, { recursive: true })
   const existing = await fetchExistingByPlaceId()

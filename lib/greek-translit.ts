@@ -52,6 +52,13 @@ export function buildSearchAliases(...names: (string | null | undefined)[]): str
     const translit = translitGreek(name)
     parts.add(stripped)
     parts.add(translit)
+    // Index surnames / given names (≥3 chars) for partial CRM search
+    for (const word of stripped.split(/\s+/)) {
+      if (word.length >= 3) {
+        parts.add(word)
+        parts.add(translitGreek(word))
+      }
+    }
   }
   return [...parts].join(' ')
 }
