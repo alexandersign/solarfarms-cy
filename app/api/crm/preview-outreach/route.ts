@@ -31,8 +31,9 @@ export async function GET(request: NextRequest) {
         company_name: data.company_name,
         contact_name: data.contact_name,
         contact_email: data.contact_email,
-        primary_target: data.primary_sales_target,
+        primary_target: data.primary_sales_target || data.offer_type,
         parent_group: data.parent_group,
+        bess_angle: data.bess_sales_angle,
       }
     }
   }

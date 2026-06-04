@@ -71,8 +71,22 @@ const OFFER_TYPES = [
   { value: 'acquisition',   label: 'Acquisition'    },
   { value: 'epc',           label: 'EPC Services'   },
   { value: 'o_and_m',       label: 'O&M Services'   },
+  { value: 'rooftop_pv',    label: 'Rooftop PV'     },
   { value: 'partnership',   label: 'Partnership'    },
   { value: 'consulting',    label: 'Consulting'     },
+]
+
+const RTB_STAGES = [
+  { value: 'operational',        label: 'Operational' },
+  { value: 'under_construction', label: 'Under construction / RTB' },
+  { value: 'mixed',              label: 'Mixed portfolio' },
+]
+
+const BUILT_STAGES = [
+  { value: 'built',           label: 'Built' },
+  { value: 'partially_built', label: 'Partially built' },
+  { value: 'not_built',       label: 'Not built' },
+  { value: 'unknown',         label: 'Unknown' },
 ]
 
 const DISTRICTS       = ['Nicosia', 'Limassol', 'Larnaca', 'Paphos', 'Famagusta']
@@ -155,6 +169,13 @@ export default function CrmPage() {
   const [filterAssigned, setFilterAssigned] = useState<'all'|'mine'>('all')
   const [filterNew, setFilterNew] = useState<'all'|'7'|'30'>('all')
 
+  // segment + segment-specific filters
+  const [segment, setSegment] = useState<'developer'|'commercial'>('developer')
+  const [filterRtb, setFilterRtb] = useState('all')
+  const [filterBuilt, setFilterBuilt] = useState('all')
+  const [filterTech, setFilterTech] = useState('all')
+  const [filterBess, setFilterBess] = useState('all')
+
   // outreach
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [sending, setSending] = useState(false)
@@ -178,6 +199,13 @@ export default function CrmPage() {
       if (searchQuery)               params.set('search',    searchQuery)
       if (filterAssigned === 'mine' && myEmail) params.set('assigned_to', myEmail)
       if (filterNew !== 'all')       params.set('new_days',  filterNew)
+      params.set('segment', segment)
+      if (segment === 'developer') {
+        if (filterRtb !== 'all')   params.set('rtb_status', filterRtb)
+        if (filterBuilt !== 'all') params.set('satellite_check', filterBuilt)
+        if (filterTech !== 'all')  params.set('technology', filterTech)
+        if (filterBess !== 'all')  params.set('has_bess', filterBess)
+      }
 
       const [pRes, fRes] = await Promise.all([
         fetch(`/api/crm/prospects?${params.toString()}`),
@@ -197,7 +225,7 @@ export default function CrmPage() {
     } finally {
       setLoading(false)
     }
-  }, [filterStatus, filterPriority, filterDistrict, filterOfferType, searchQuery, filterAssigned, filterNew, myEmail])
+  }, [filterStatus, filterPriority, filterDistrict, filterOfferType, searchQuery, filterAssigned, filterNew, segment, filterRtb, filterBuilt, filterTech, filterBess, myEmail])
 
   useEffect(() => { if (status === 'authenticated') fetchProspects() }, [fetchProspects, status])
 
@@ -268,12 +296,18 @@ export default function CrmPage() {
   }
 
   const currentFilter = () => {
-    const f: Record<string, string> = { segment: 'developer' }
+    const f: Record<string, string> = { segment }
     if (filterStatus !== 'all') f.status = filterStatus
     if (filterDistrict !== 'all') f.district = filterDistrict
     if (filterOfferType !== 'all') f.offer_type = filterOfferType
     if (searchQuery) f.search = searchQuery
     if (filterAssigned === 'mine' && myEmail) f.assigned_to = myEmail
+    if (segment === 'developer') {
+      if (filterRtb !== 'all') f.rtb_status = filterRtb
+      if (filterBuilt !== 'all') f.satellite_check = filterBuilt
+      if (filterTech !== 'all') f.technology = filterTech
+      if (filterBess !== 'all') f.has_bess = filterBess
+    }
     return f
   }
 
@@ -365,6 +399,24 @@ export default function CrmPage() {
                 <Plus className="w-4 h-4 mr-2" />Add Prospect
               </Button>
             </div>
+          </div>
+
+          {/* Segment tabs */}
+          <div className="flex gap-2 mt-4">
+            {([
+              { key: 'developer',  label: 'PV Parks & Developers', icon: Zap },
+              { key: 'commercial', label: 'Commercial Rooftop',    icon: Building },
+            ] as const).map(({ key, label, icon: Icon }) => (
+              <button
+                key={key}
+                onClick={() => { setSegment(key); setExpandedId(null); setSelectedIds(new Set()) }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition ${
+                  segment === key ? 'bg-[#C9A432] text-[#1A365D]' : 'bg-white/10 text-white hover:bg-white/20'
+                }`}
+              >
+                <Icon className="w-4 h-4" />{label}
+              </button>
+            ))}
           </div>
 
           {/* View tabs */}
@@ -619,6 +671,39 @@ export default function CrmPage() {
                       <option value="30">Last 30 days</option>
                     </select>
                   </div>
+                  {segment === 'developer' && (
+                    <>
+                      <div>
+                        <Label className="text-xs">RTB stage</Label>
+                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterRtb} onChange={e => setFilterRtb(e.target.value)}>
+                          <option value="all">All stages</option>
+                          {RTB_STAGES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <Label className="text-xs">Built</Label>
+                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterBuilt} onChange={e => setFilterBuilt(e.target.value)}>
+                          <option value="all">Any</option>
+                          {BUILT_STAGES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <Label className="text-xs">Technology</Label>
+                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterTech} onChange={e => setFilterTech(e.target.value)}>
+                          <option value="all">All</option>
+                          {TECHNOLOGIES.map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <Label className="text-xs">Has BESS</Label>
+                        <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterBess} onChange={e => setFilterBess(e.target.value)}>
+                          <option value="all">Any</option>
+                          <option value="true">With BESS</option>
+                          <option value="false">PV only</option>
+                        </select>
+                      </div>
+                    </>
+                  )}
                   <Button size="sm" onClick={fetchProspects}><Filter className="w-4 h-4 mr-1" />Apply</Button>
                 </div>
               </CardContent>
@@ -664,6 +749,15 @@ export default function CrmPage() {
                           onChange={() => prospect.id && toggleSelect(prospect.id)}
                           title="Select for outreach"
                         />
+                        {prospect.roof_image_url && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={prospect.roof_image_url}
+                            alt={`Roof of ${prospect.plant_name}`}
+                            className="w-28 h-20 object-cover rounded-md border shrink-0 hidden sm:block"
+                            loading="lazy"
+                          />
+                        )}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <h3 className="font-semibold text-gray-900 truncate">{prospect.plant_name}</h3>
@@ -695,6 +789,24 @@ export default function CrmPage() {
                             {prospect.estimated_deal_value && <span className="flex items-center gap-1 text-green-600 font-medium"><DollarSign className="w-3 h-3" />{formatCurrency(prospect.estimated_deal_value)}</span>}
                             {prospect.next_follow_up && <span className="flex items-center gap-1 text-orange-600"><Calendar className="w-3 h-3" />Follow-up: {formatDate(prospect.next_follow_up)}</span>}
                           </div>
+                          {/* Segment-specific metric line */}
+                          {segment === 'commercial' ? (
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
+                              {prospect.roof_area_m2 != null && <span>{Math.round(prospect.roof_area_m2).toLocaleString()} m² roof</span>}
+                              {prospect.capacity_mwp != null && <span>{(prospect.capacity_mwp * 1000).toFixed(0)} kWp</span>}
+                              {prospect.annual_savings_eur != null && <span className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}/yr saved</span>}
+                              {prospect.payback_years != null && <span>{prospect.payback_years}-yr payback</span>}
+                              {prospect.has_existing_pv && <span className="text-amber-600">existing PV → BESS</span>}
+                            </div>
+                          ) : (
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
+                              {prospect.rtb_status && <span className="capitalize">RTB: {prospect.rtb_status.replace(/_/g,' ')}</span>}
+                              {prospect.operational_mwp ? <span>{prospect.operational_mwp.toFixed(1)} MWp operating</span> : null}
+                              {prospect.construction_mwp ? <span>{prospect.construction_mwp.toFixed(1)} MWp construction</span> : null}
+                              {prospect.bess_potential_mwh ? <span className="text-[#1A365D]">{prospect.bess_potential_mwh.toFixed(1)} MWh BESS</span> : null}
+                              {prospect.satellite_check && prospect.satellite_check !== 'unknown' && <span className="capitalize">{prospect.satellite_check.replace(/_/g,' ')}</span>}
+                            </div>
+                          )}
                         </div>
 
                         {/* Quick actions */}
@@ -747,28 +859,46 @@ export default function CrmPage() {
                           {/* Details */}
                           <div className="grid md:grid-cols-3 gap-4 text-sm">
                             <div>
-                              <h4 className="font-medium text-gray-700 mb-2">Plant Details</h4>
+                              <h4 className="font-medium text-gray-700 mb-2">{segment === 'commercial' ? 'Site & System' : 'Plant & RTB'}</h4>
                               <dl className="space-y-1">
                                 {prospect.cera_license_no && <div><dt className="text-gray-400 text-xs">CERA License</dt><dd className="text-xs">{prospect.cera_license_no}</dd></div>}
                                 {prospect.technology      && <div><dt className="text-gray-400 text-xs">Technology</dt><dd>{prospect.technology}</dd></div>}
-                                {prospect.bess_potential_mwh && <div><dt className="text-gray-400 text-xs">BESS Potential</dt><dd className="text-green-600 font-medium">{prospect.bess_potential_mwh} MWh</dd></div>}
+                                {segment === 'developer' && prospect.rtb_status && <div><dt className="text-gray-400 text-xs">RTB stage</dt><dd className="capitalize">{prospect.rtb_status.replace(/_/g,' ')}</dd></div>}
+                                {segment === 'developer' && prospect.satellite_check && <div><dt className="text-gray-400 text-xs">Built status</dt><dd className="capitalize">{prospect.satellite_check.replace(/_/g,' ')}</dd></div>}
+                                {prospect.operational_mwp ? <div><dt className="text-gray-400 text-xs">Operating</dt><dd>{prospect.operational_mwp.toFixed(1)} MWp</dd></div> : null}
+                                {prospect.construction_mwp ? <div><dt className="text-gray-400 text-xs">Construction</dt><dd>{prospect.construction_mwp.toFixed(1)} MWp</dd></div> : null}
+                                {prospect.bess_potential_mwh ? <div><dt className="text-gray-400 text-xs">BESS Potential</dt><dd className="text-green-600 font-medium">{prospect.bess_potential_mwh} MWh</dd></div> : null}
+                                {prospect.bess_sales_angle && <div><dt className="text-gray-400 text-xs">BESS angle</dt><dd className="capitalize">{prospect.bess_sales_angle.replace(/_/g,' ')}</dd></div>}
+                                {segment === 'commercial' && prospect.roof_area_m2 != null && <div><dt className="text-gray-400 text-xs">Roof area</dt><dd>{Math.round(prospect.roof_area_m2).toLocaleString()} m²</dd></div>}
+                                {segment === 'commercial' && prospect.annual_savings_eur != null && <div><dt className="text-gray-400 text-xs">Annual saving</dt><dd className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}</dd></div>}
+                                {segment === 'commercial' && prospect.payback_years != null && <div><dt className="text-gray-400 text-xs">Payback</dt><dd>{prospect.payback_years} yrs</dd></div>}
                                 {prospect.location        && <div><dt className="text-gray-400 text-xs">Location</dt><dd>{prospect.location}</dd></div>}
                               </dl>
                             </div>
                             <div>
-                              <h4 className="font-medium text-gray-700 mb-2">Company</h4>
+                              <h4 className="font-medium text-gray-700 mb-2">Company & Contact</h4>
                               <dl className="space-y-1">
+                                {prospect.parent_group && <div><dt className="text-gray-400 text-xs">Developer group</dt><dd className="font-medium text-[#1A365D]">{prospect.parent_group}</dd></div>}
+                                {prospect.contact_name && <div><dt className="text-gray-400 text-xs">Director / contact</dt><dd>{prospect.contact_name}{prospect.contact_title ? ` (${prospect.contact_title})` : ''}</dd></div>}
+                                {prospect.contact_email && <div><dt className="text-gray-400 text-xs">Email</dt><dd><a href={`mailto:${prospect.contact_email}`} className="text-blue-600 hover:underline">{prospect.contact_email}</a></dd></div>}
+                                {prospect.contact_phone && <div><dt className="text-gray-400 text-xs">Phone</dt><dd><a href={`tel:${prospect.contact_phone}`} className="text-blue-600 hover:underline">{prospect.contact_phone}</a></dd></div>}
+                                {prospect.contact_linkedin && <div><dt className="text-gray-400 text-xs">LinkedIn</dt><dd><a href={prospect.contact_linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">profile</a></dd></div>}
                                 {prospect.company_reg_no && <div><dt className="text-gray-400 text-xs">Reg. No.</dt>
                                   <dd><a href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{prospect.company_reg_no}</a></dd></div>}
+                                {prospect.company_website && <div><dt className="text-gray-400 text-xs">Website</dt><dd><a href={prospect.company_website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{prospect.company_website.replace(/^https?:\/\/(www\.)?/, '')}</a></dd></div>}
                                 {prospect.registered_address && <div><dt className="text-gray-400 text-xs">Address</dt><dd>{prospect.registered_address}</dd></div>}
                               </dl>
                             </div>
                             <div>
-                              <h4 className="font-medium text-gray-700 mb-2">Outreach Timeline</h4>
+                              <h4 className="font-medium text-gray-700 mb-2">Permits & Outreach</h4>
                               <dl className="space-y-1">
+                                {segment === 'developer' && prospect.connection_terms_status && <div><dt className="text-gray-400 text-xs">Connection terms</dt><dd className="capitalize">{prospect.connection_terms_status.replace(/_/g,' ')}</dd></div>}
+                                {segment === 'developer' && prospect.env_permit_status && <div><dt className="text-gray-400 text-xs">Env permit</dt><dd className="capitalize">{prospect.env_permit_status.replace(/_/g,' ')}</dd></div>}
+                                {segment === 'developer' && prospect.building_permit_status && <div><dt className="text-gray-400 text-xs">Building permit</dt><dd className="capitalize">{prospect.building_permit_status.replace(/_/g,' ')}</dd></div>}
                                 {prospect.first_contact_date && <div><dt className="text-gray-400 text-xs">First Contact</dt><dd>{formatDate(prospect.first_contact_date)}</dd></div>}
                                 {prospect.last_contact_date  && <div><dt className="text-gray-400 text-xs">Last Contact</dt><dd>{formatDate(prospect.last_contact_date)}</dd></div>}
                                 {prospect.outreach_channel   && <div><dt className="text-gray-400 text-xs">Channel</dt><dd className="capitalize">{prospect.outreach_channel.replace('_',' ')}</dd></div>}
+                                {prospect.assigned_name && <div><dt className="text-gray-400 text-xs">Assigned</dt><dd>{prospect.assigned_name}</dd></div>}
                               </dl>
                             </div>
                           </div>

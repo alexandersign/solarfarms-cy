@@ -39,7 +39,7 @@ interface PlantRow {
   bess_kw?: number
   bess_kwh?: number
   plant_class?: string
-  license_status?: string
+  license_status?: 'operational' | 'under_construction' | string
   district_en?: string
   district?: string
   municipality?: string
@@ -162,22 +162,51 @@ async function main() {
     const grp = companyToGroup.get(companyKey(top.company_name))
     const isMulti = grp && grp.spv_count >= 2
     const totalPv = rows.reduce((s, r) => s + (r.pv_kw || 0) / 1000, 0)
+    const totalBessMw = rows.reduce((s, r) => s + (r.bess_kw || 0) / 1000, 0)
     const totalBessMwh = rows.reduce((s, r) => s + (r.bess_kwh || 0) / 1000, 0)
     const licences = rows.map((r) => r.cera_license_no!).filter(Boolean)
     const email = top.contact_email || grp?.best_contact_email
     const phone =
       normalizeDisplayPhone(top.contact_phone) || normalizeDisplayPhone(grp?.best_contact_phone)
+
+    // MWp split + RTB stage from per-licence status
+    const opMwp = rows
+      .filter((r) => r.license_status === 'operational')
+      .reduce((s, r) => s + (r.pv_kw || 0) / 1000, 0)
+    const conMwp = rows
+      .filter((r) => r.license_status === 'under_construction')
+      .reduce((s, r) => s + (r.pv_kw || 0) / 1000, 0)
+    let rtbStatus = 'mixed'
+    if (opMwp > 0 && conMwp === 0) rtbStatus = 'operational'
+    else if (conMwp > 0 && opMwp === 0) rtbStatus = 'under_construction'
+    const satellite = rtbStatus === 'operational' ? 'built' : 'unknown'
+
+    // BESS angle: operational PV without storage = retrofit; construction hybrid = pre_sale
+    const hasBess = totalBessMw > 0
+    let bessAngle: string | undefined
+    if (rtbStatus === 'operational' && !hasBess) bessAngle = 'retrofit'
+    else if (hasBess) bessAngle = 'pre_sale'
+
     return {
+      segment: 'developer',
       company_name: top.company_name,
       cera_license_no: licenceLabel(licences),
       capacity_mwp: totalPv || undefined,
       bess_potential_mwh: totalBessMwh || undefined,
+      construction_mwp: conMwp || undefined,
+      operational_mwp: opMwp || undefined,
+      rtb_status: rtbStatus,
+      satellite_check: satellite,
+      bess_sales_angle: bessAngle,
       technology: technologyOf(top.plant_class),
       plant_status: plantStatusOf(top.license_status),
       district: top.district_en || top.district,
       location: top.municipality,
       company_reg_no: top.company_reg_no,
       parent_group: isMulti ? grp!.brand : undefined,
+      developer_group: isMulti ? grp!.group_id : undefined,
+      developer_domain: grp?.developer_domain,
+      email_confidence: top.email_confidence,
       registered_address: top.registered_address,
       company_website: grp?.developer_domain
         ? `https://${grp.developer_domain}`

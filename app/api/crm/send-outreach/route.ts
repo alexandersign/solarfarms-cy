@@ -34,8 +34,9 @@ function toRecipient(row: Record<string, unknown>): OutreachRecipient {
     company_name: row.company_name as string,
     contact_name: row.contact_name as string,
     contact_email: row.contact_email as string,
-    primary_target: (row.primary_sales_target as string) || undefined,
+    primary_target: (row.primary_sales_target as string) || (row.offer_type as string) || undefined,
     parent_group: (row.parent_group as string) || undefined,
+    bess_angle: (row.bess_sales_angle as string) || undefined,
     tags: (row.tags as string[]) || [],
   }
 }

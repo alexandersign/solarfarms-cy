@@ -238,6 +238,21 @@ export interface PvProspect {
   bess_sales_angle?: string
   construction_mwp?: number
   operational_mwp?: number
+  // CRM segmentation + multi-user
+  segment?: 'developer' | 'commercial'
+  assigned_to?: string
+  assigned_name?: string
+  email_confidence?: number
+  developer_group?: string
+  developer_domain?: string
+  // Commercial (rooftop self-consumption) fields
+  place_id?: string
+  roof_area_m2?: number
+  annual_kwh?: number
+  annual_savings_eur?: number
+  payback_years?: number
+  has_existing_pv?: boolean
+  roof_image_url?: string
 }
 
 export interface GridOperatorContact {

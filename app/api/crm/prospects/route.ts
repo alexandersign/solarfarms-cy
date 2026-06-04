@@ -25,6 +25,10 @@ export async function GET(request: NextRequest) {
     const assignedTo = searchParams.get('assigned_to')
     const segment    = searchParams.get('segment')
     const newDays    = searchParams.get('new_days')
+    const rtb        = searchParams.get('rtb_status')
+    const built      = searchParams.get('satellite_check')
+    const technology = searchParams.get('technology')
+    const hasBess    = searchParams.get('has_bess')
 
     if (status)     query = query.eq('outreach_status', status)
     if (priority)   query = query.eq('priority',        priority)
@@ -32,6 +36,11 @@ export async function GET(request: NextRequest) {
     if (offerType)  query = query.eq('offer_type',      offerType)
     if (assignedTo) query = query.eq('assigned_to',     assignedTo)
     if (segment)    query = query.eq('segment',         segment)
+    if (rtb)        query = query.eq('rtb_status',       rtb)
+    if (built)      query = query.eq('satellite_check',  built)
+    if (technology) query = query.eq('technology',       technology)
+    if (hasBess === 'true')  query = query.gt('bess_potential_mwh', 0)
+    if (hasBess === 'false') query = query.or('bess_potential_mwh.is.null,bess_potential_mwh.eq.0')
     if (newDays) {
       const since = new Date(Date.now() - parseInt(newDays, 10) * 86400000).toISOString()
       query = query.gte('created_at', since)

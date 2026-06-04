@@ -15,22 +15,79 @@ const TEMPLATE_PATH = path.join(process.cwd(), 'lib', 'crm-intro-email.html')
 
 export const OUTREACH_FROM = 'Lighthief Cyprus <noreply@solarfarms.cy>'
 export const DEFAULT_REPLY_TO = 'alexander.papacosta@lighthief.com'
+export const HERO_IMAGE_URL =
+  'https://solarfarms.cy/images/linyang/container-cell-racks.jpeg'
 
 const OFFER_LINES: Record<string, string> = {
   'PV O&M':
-    'With your plant now operational, our O&M team can take over performance monitoring, preventive maintenance, and availability guarantees — and assess a BESS retrofit to capture curtailed energy.',
+    'With your plant now operational, our O&M team can take over performance monitoring, preventive maintenance and availability guarantees — and we can model a BESS retrofit to capture curtailed energy and add a new revenue stream.',
   'PV EPC':
     'As your project moves through construction, we can deliver the EPC turnkey — engineering, procurement, grid connection and commissioning — on a fixed, bankable basis.',
   'BESS EPC':
-    'We design and build grid-scale battery storage (BESS) turnkey, from sizing and procurement to commissioning and grid compliance.',
+    'We design and build grid-scale battery energy storage turnkey — sizing, procurement, commissioning and grid-code compliance — using Tier-1 LFP technology.',
   'Hybrid EPC (PV + BESS)':
-    'For your co-located PV + storage project we offer a single turnkey EPC package — solar and BESS engineered, built and commissioned together for the best economics.',
+    'For your co-located PV + storage project we offer a single turnkey EPC package — solar and BESS engineered, built and commissioned together for the best project economics.',
   'PV O&M + BESS O&M':
     'We provide combined O&M for your solar and storage assets — one accountable partner for availability, performance and warranty management.',
 }
 
 const DEFAULT_OFFER_LINE =
-  'Whether your project is in construction or already operating, we can support it with turnkey EPC, long-term O&M, or a BESS solution tailored to your site.'
+  'Whether your project is in construction or already operating, we can support it with turnkey EPC, long-term O&M, or a battery storage (BESS) solution tailored to your site.'
+
+/** True when the offer/angle warrants the BESS storage section. */
+function isBessRelevant(target?: string, angle?: string): boolean {
+  if (angle && angle !== 'none') return true
+  if (!target) return false
+  return /BESS|Hybrid/i.test(target)
+}
+
+/** BESS specs block (EVE / Linyang) — email-safe table row. */
+function storageBlock(): string {
+  return `
+    <tr><td style="padding:6px 28px 8px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F7F9FC;border:1px solid #e2e8f0;border-radius:8px;">
+        <tr><td style="padding:16px 18px;color:#222;font-size:14px;line-height:1.55;">
+          <p style="margin:0 0 8px;color:#1A365D;font-weight:bold;font-size:15px;">Bankable battery storage (BESS)</p>
+          <p style="margin:0 0 10px;">As exclusive EPC partner for <strong>Linyang Energy</strong> in Cyprus, we deliver containerised systems built on Tier-1 <strong>EVE 314Ah LFP cells</strong>:</p>
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;color:#333;">
+            <tr><td style="padding:3px 0;">&#8226; UL 9540A cells, zero thermal propagation; IEC 62619 / 63056 certified</td></tr>
+            <tr><td style="padding:3px 0;">&#8226; 7,000 cycles at 90% DoD, guaranteed to 70% end-of-life</td></tr>
+            <tr><td style="padding:3px 0;">&#8226; ~86% AC-AC round-trip efficiency · Kehua PCS · containerised, grid-ready</td></tr>
+            <tr><td style="padding:3px 0;">&#8226; Long-term O&amp;M with availability guarantee and capacity warranty</td></tr>
+          </table>
+        </td></tr>
+      </table>
+    </td></tr>`
+}
+
+/** Indicative pricing block — ranges only (no internal CIF / margins). */
+function pricingBlock(bess: boolean): string {
+  const rows = bess
+    ? `<tr><td style="padding:3px 0;">&#8226; BESS turnkey EPC — from <strong>EUR 100k–168k per MWh</strong> (scale-dependent)</td></tr>
+       <tr><td style="padding:3px 0;">&#8226; Long-term BESS O&amp;M — from <strong>EUR 1,740 per MWh / year</strong></td></tr>
+       <tr><td style="padding:3px 0;">&#8226; Solar EPC — from <strong>EUR 640k per MW</strong></td></tr>`
+    : `<tr><td style="padding:3px 0;">&#8226; Solar EPC turnkey — from <strong>EUR 640k per MW</strong></td></tr>
+       <tr><td style="padding:3px 0;">&#8226; Solar O&amp;M — competitive per-MWp annual rate with availability guarantee</td></tr>
+       <tr><td style="padding:3px 0;">&#8226; Optional BESS retrofit — from <strong>EUR 100k per MWh</strong></td></tr>`
+  return `
+    <tr><td style="padding:6px 28px 8px;color:#222;font-size:14px;line-height:1.55;">
+      <p style="margin:0 0 6px;color:#1A365D;font-weight:bold;font-size:15px;">Indicative pricing</p>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;color:#333;">
+        ${rows}
+      </table>
+      <p style="margin:8px 0 0;color:#7a869a;font-size:11px;">Indicative ranges only — final pricing depends on site, configuration and timeline.</p>
+    </td></tr>`
+}
+
+/** About Lighthief / Linyang / EVE block. */
+function aboutBlock(): string {
+  return `
+    <tr><td style="padding:6px 28px 12px;color:#444;font-size:12.5px;line-height:1.5;">
+      <p style="margin:0 0 6px;"><strong>Lighthief</strong> — European-Asian renewable energy contractor; exclusive EPC partner for utility-scale BESS in Cyprus, with O&amp;M operations across 11 countries.</p>
+      <p style="margin:0 0 6px;"><strong>Linyang Energy</strong> — SSE-listed battery OEM and system integrator (5 GWh+ annual capacity), supplying containerised LFP storage.</p>
+      <p style="margin:0;"><strong>EVE Energy</strong> — Tier-1 manufacturer of the 314Ah LFP cells at the heart of our systems (UL 9540A, CATL-grade).</p>
+    </td></tr>`
+}
 
 function esc(s: string): string {
   return String(s)
@@ -46,6 +103,7 @@ export interface OutreachRecipient {
   contact_email?: string
   primary_target?: string
   parent_group?: string
+  bess_angle?: string
   tags?: string[] | null
 }
 
@@ -77,6 +135,7 @@ export function renderIntroEmail(
     ? `As the team behind ${esc(group)}, you manage one of Cyprus's notable renewable portfolios.`
     : `I am reaching out regarding ${esc(company)} and your renewable energy project in Cyprus.`
   const offerLine = (p.primary_target && OFFER_LINES[p.primary_target]) || DEFAULT_OFFER_LINE
+  const bess = isBessRelevant(p.primary_target, p.bess_angle)
 
   const senderName  = opts.senderName  || 'Alexander Papacosta'
   const senderTitle = opts.senderTitle || 'Director'
@@ -84,10 +143,14 @@ export function renderIntroEmail(
   const senderPhone = opts.senderPhone || '+357 99 164 158'
 
   const html = tpl
+    .replace(/\{\{HERO_IMAGE_URL\}\}/g, HERO_IMAGE_URL)
     .replace(/\{\{CONTACT_NAME\}\}/g, esc(contactName))
     .replace(/\{\{COMPANY\}\}/g, esc(company))
     .replace(/\{\{GREETING_LINE\}\}/g, greeting)
     .replace(/\{\{OFFER_LINE\}\}/g, esc(offerLine))
+    .replace(/\{\{STORAGE_BLOCK\}\}/g, bess ? storageBlock() : '')
+    .replace(/\{\{PRICING_BLOCK\}\}/g, pricingBlock(bess))
+    .replace(/\{\{ABOUT_BLOCK\}\}/g, aboutBlock())
     .replace(/\{\{SENDER_NAME\}\}/g, esc(senderName))
     .replace(/\{\{SENDER_TITLE\}\}/g, esc(senderTitle))
     .replace(/\{\{SENDER_EMAIL\}\}/g, esc(senderEmail))
@@ -95,7 +158,9 @@ export function renderIntroEmail(
     .replace(/\{\{UNSUBSCRIBE_URL\}\}/g, p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : '#')
     .replace(/\{\{YEAR\}\}/g, String(new Date().getFullYear()))
 
-  const subject = `Lighthief — EPC, O&M & BESS for ${company}`
+  const subject = bess
+    ? `Lighthief — EPC, O&M & battery storage for ${company}`
+    : `Lighthief — solar EPC & O&M for ${company}`
   return { subject, html }
 }
 

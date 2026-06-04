@@ -4,25 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>Lighthief — Solar Park & BESS EPC / O&amp;M</title>
+<title>Lighthief — Solar Park EPC, O&amp;M &amp; BESS</title>
 <!--
   Lighthief CRM developer/SPV intro email (email-safe, table-based).
-  Variables injected by lib/crm-outreach.ts:
-    {{CONTACT_NAME}}      decision-maker name (falls back to "there")
-    {{COMPANY}}           SPV / company name
-    {{GREETING_LINE}}     "As the team behind <group> ..." (or generic)
-    {{OFFER_LINE}}        offer tailored to primary_sales_target
-    {{SENDER_NAME}}       sender full name
-    {{SENDER_TITLE}}      job title
-    {{SENDER_EMAIL}}      sender email
-    {{SENDER_PHONE}}      phone number
-    {{UNSUBSCRIBE_URL}}   one-click unsubscribe link
-    {{YEAR}}              current year
+  Tokens injected by lib/crm-outreach.ts:
+    {{HERO_IMAGE_URL}} {{CONTACT_NAME}} {{COMPANY}} {{GREETING_LINE}} {{OFFER_LINE}}
+    {{STORAGE_BLOCK}} {{PRICING_BLOCK}} {{ABOUT_BLOCK}}
+    {{SENDER_NAME}} {{SENDER_TITLE}} {{SENDER_EMAIL}} {{SENDER_PHONE}}
+    {{UNSUBSCRIBE_URL}} {{YEAR}}
 -->
 <style>
   body, table, td, p, a, h1, h2 { margin:0; padding:0; border:0; }
   body { background-color:#F0F4F8; font-family:Arial,Helvetica,sans-serif; -webkit-text-size-adjust:100%; }
-  table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  table { border-collapse:collapse; }
   img { display:block; border:0; outline:none; text-decoration:none; }
   a { color:#C9A432; }
 </style>
@@ -36,48 +30,56 @@
 
     <!-- Header -->
     <tr>
-      <td style="background-color:#1A365D;background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);padding:22px 28px;">
-        <span style="color:#C9A432;font-size:20px;font-weight:bold;letter-spacing:0.3px;">Lighthief Cyprus</span>
-        <span style="color:#ffffff;opacity:0.85;font-size:13px;"> &nbsp;·&nbsp; Solar Park &amp; BESS EPC / O&amp;M</span>
+      <td style="background-color:#1A365D;background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);padding:20px 28px;">
+        <span style="color:#C9A432;font-size:20px;font-weight:bold;">Lighthief Cyprus</span>
+        <span style="color:#ffffff;opacity:0.85;font-size:13px;"> &nbsp;·&nbsp; Solar Park EPC · O&amp;M · BESS</span>
+      </td>
+    </tr>
+
+    <!-- Hero image (BESS container) -->
+    <tr>
+      <td style="padding:0;line-height:0;font-size:0;background:#0d1f35;">
+        <img src="{{HERO_IMAGE_URL}}" alt="Lighthief / Linyang containerised battery energy storage system" width="620" style="width:100%;max-width:620px;height:auto;display:block;" />
       </td>
     </tr>
 
     <!-- Body -->
     <tr>
-      <td style="padding:28px;color:#222222;font-size:15px;line-height:1.55;">
+      <td style="padding:26px 28px 8px;color:#222222;font-size:15px;line-height:1.55;">
         <p style="margin-bottom:14px;">Dear {{CONTACT_NAME}},</p>
-
         <p style="margin-bottom:14px;">{{GREETING_LINE}}</p>
-
         <p style="margin-bottom:14px;">
           Lighthief is a Cyprus-based renewable energy contractor delivering
           <strong>turnkey EPC, long-term O&amp;M, and bankable battery energy storage (BESS)</strong>
-          for solar parks across the island. We work with developers and asset owners from
-          construction through to operation — grid connection, commissioning, performance
-          monitoring, and storage retrofits.
+          for solar parks across the island — from construction and grid connection through to
+          operation, performance monitoring and storage retrofits.
         </p>
+        <p style="margin-bottom:4px;">{{OFFER_LINE}}</p>
+      </td>
+    </tr>
 
-        <p style="margin-bottom:14px;">{{OFFER_LINE}}</p>
+    {{STORAGE_BLOCK}}
 
+    {{PRICING_BLOCK}}
+
+    {{ABOUT_BLOCK}}
+
+    <!-- CTA + signature -->
+    <tr>
+      <td style="padding:8px 28px 24px;color:#222;font-size:15px;line-height:1.55;">
         <p style="margin-bottom:18px;">
-          If it is useful, I would welcome a short introductory call to share how we support
-          projects like <strong>{{COMPANY}}</strong> — no obligation.
+          I would welcome a short introductory call to see how we can support
+          <strong>{{COMPANY}}</strong> — no obligation.
         </p>
-
-        <!-- CTA -->
         <table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 20px;">
-          <tr>
-            <td bgcolor="#1A365D" style="border-radius:6px;">
-              <a href="mailto:{{SENDER_EMAIL}}?subject=Re%3A%20Lighthief%20EPC%20%2F%20O%26M%20%2F%20BESS%20for%20{{COMPANY}}"
-                 style="display:inline-block;padding:12px 22px;color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;">
-                Arrange an introductory call
-              </a>
-            </td>
-          </tr>
+          <tr><td bgcolor="#1A365D" style="border-radius:6px;">
+            <a href="mailto:{{SENDER_EMAIL}}?subject=Re%3A%20Lighthief%20EPC%20%2F%20O%26M%20%2F%20BESS%20for%20{{COMPANY}}"
+               style="display:inline-block;padding:12px 22px;color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;">
+              Arrange an introductory call
+            </a>
+          </td></tr>
         </table>
-
-        <!-- Signature -->
-        <p style="margin-top:8px;color:#333333;font-size:14px;line-height:1.5;">
+        <p style="margin-top:8px;color:#333;font-size:14px;line-height:1.5;">
           Kind regards,<br />
           <strong>{{SENDER_NAME}}</strong><br />
           {{SENDER_TITLE}}, Lighthief Cyprus Ltd<br />

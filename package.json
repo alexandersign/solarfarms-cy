@@ -37,6 +37,7 @@
     "cyprus:hunter": "npx tsx scripts/enrich-cyprus-developers-hunter.ts --min-spvs 2",
     "cyprus:clean-contacts": "npx tsx scripts/clean-cyprus-contacts.ts",
     "cyprus:sync-crm": "npx tsx scripts/sync-cyprus-to-crm.ts --min-score 35",
+    "cyprus:sync-commercial": "npx tsx scripts/sync-solar-sweep-to-crm.ts --min-roof 200",
     "cyprus:dev-pipeline": "npm run cyprus:cluster && npm run cyprus:developer-domains && npm run cyprus:hunter && npm run cyprus:clean-contacts && npm run cyprus:cluster && npm run cyprus:sales-export && npm run cyprus:sales-html",
     "cyprus:full": "npm run cyprus:dev-pipeline && npm run cyprus:sync-crm",
     "cyprus:sales-export": "npx tsx scripts/export-cyprus-sales-targets.ts --min-score 35",
