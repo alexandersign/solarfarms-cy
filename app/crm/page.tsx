@@ -41,15 +41,7 @@ import {
   LogOut,
 } from 'lucide-react'
 import type { PvProspect } from '@/lib/supabase'
-
-// ─── Constants ───────────────────────────────────────────────────────────────
-
-const CRM_USERS = [
-  { email: 'zinovia@lighthief.com',              name: 'Zinovia' },
-  { email: 'alexander.papacosta@lighthief.com',  name: 'Alexander' },
-  { email: 'office@lighthief.com',               name: 'Office' },
-  { email: 'costas@lighthief.com',               name: 'Costas' },
-]
+import { CRM_USERS } from '@/lib/crm-users'
 
 const OUTREACH_STATUSES = [
   { value: 'new',           label: 'New',             color: 'bg-gray-100 text-gray-800'   },

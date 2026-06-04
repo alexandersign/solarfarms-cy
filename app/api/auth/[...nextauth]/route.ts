@@ -1,13 +1,6 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-
-// Lighthief CRM users — identity only; password is the shared CRM_PASSWORD env var
-export const CRM_USERS = [
-  { id: '1', name: 'Zinovia',   email: 'zinovia@lighthief.com' },
-  { id: '2', name: 'Alexander', email: 'alexander.papacosta@lighthief.com' },
-  { id: '3', name: 'Office',    email: 'office@lighthief.com' },
-  { id: '4', name: 'Costas',    email: 'costas@lighthief.com' },
-]
+import { CRM_USERS } from '@/lib/crm-users'
 
 const handler = NextAuth({
   providers: [
