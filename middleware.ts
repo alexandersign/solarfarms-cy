@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
+import { getCrmToken } from '@/lib/crm-auth';
 
 // Password for internal docs access (must match API route)
 const DOCS_PASSWORD = 'CyprusBess2026';
@@ -37,7 +38,7 @@ export async function middleware(request: NextRequest) {
 
   // Protect /crm — session required, redirect to /crm/login
   if (pathname.startsWith('/crm') && !pathname.startsWith('/crm/login')) {
-    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+    const token = await getCrmToken(request)
     if (!token) {
       const loginUrl = new URL('/crm/login', request.url)
       loginUrl.searchParams.set('callbackUrl', pathname)

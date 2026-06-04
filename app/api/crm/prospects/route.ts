@@ -4,12 +4,11 @@
  * GET accepts optional ?assigned_to=email filter.
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { getToken }                  from 'next-auth/jwt'
 import { supabase }                  from '@/lib/supabase'
+import { getCrmToken }               from '@/lib/crm-auth'
 
 async function requireSession(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
-  return token
+  return getCrmToken(req)
 }
 
 export async function GET(request: NextRequest) {
