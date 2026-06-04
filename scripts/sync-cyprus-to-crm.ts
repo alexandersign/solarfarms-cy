@@ -207,7 +207,9 @@ async function main() {
     } else {
       const top = rows[0]
       const grp = companyToGroup.get(companyKey(top.company_name))
+      const batchDate = new Date().toISOString().split('T')[0]
       const tags = [
+        `batch:${batchDate}`,
         grp && grp.spv_count >= 2 ? `dev:${grp.brand}` : '',
         top.email_confidence != null ? `email_conf:${top.email_confidence}` : '',
         top.contact_email_source ? `src:${top.contact_email_source}` : '',

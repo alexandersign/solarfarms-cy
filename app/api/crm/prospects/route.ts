@@ -24,12 +24,19 @@ export async function GET(request: NextRequest) {
     const offerType  = searchParams.get('offer_type')
     const search     = searchParams.get('search')
     const assignedTo = searchParams.get('assigned_to')
+    const segment    = searchParams.get('segment')
+    const newDays    = searchParams.get('new_days')
 
     if (status)     query = query.eq('outreach_status', status)
     if (priority)   query = query.eq('priority',        priority)
     if (district)   query = query.eq('district',        district)
     if (offerType)  query = query.eq('offer_type',      offerType)
     if (assignedTo) query = query.eq('assigned_to',     assignedTo)
+    if (segment)    query = query.eq('segment',         segment)
+    if (newDays) {
+      const since = new Date(Date.now() - parseInt(newDays, 10) * 86400000).toISOString()
+      query = query.gte('created_at', since)
+    }
     if (search)     query = query.or(
       `plant_name.ilike.%${search}%,company_name.ilike.%${search}%,contact_name.ilike.%${search}%,parent_group.ilike.%${search}%`
     )

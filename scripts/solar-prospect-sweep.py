@@ -1099,6 +1099,15 @@ def render_email(building: dict, solar: dict, image_b64: Optional[str],
 
     img_src = "cid:roof@lighthief"  # CID reference — image sent as inline attachment
 
+    # Text-only mode: strip the roof-image block entirely when no image is supplied
+    if not image_b64:
+        template = re.sub(
+            r"<!--ROOF_IMAGE_START-->.*?<!--ROOF_IMAGE_END-->",
+            "",
+            template,
+            flags=re.DOTALL,
+        )
+
     unsub_mailto = (
         f"mailto:{SENDER_EMAIL}"
         f"?subject=Unsubscribe%20-%20{urllib.parse.quote(building['name'])}"
@@ -1388,7 +1397,7 @@ def write_html_review(results: list[dict], html_path: Path, images_dir: Path):
 # ── Main Pipeline ─────────────────────────────────────────────────────────────
 
 def run_sweep(buildings: list[dict], limit: int, dry_run: bool,
-              test_email: str = "", skip: int = 0) -> list[dict]:
+              test_email: str = "", skip: int = 0, no_image: bool = False) -> list[dict]:
     results = []
     target = buildings[skip:skip + limit]
     total = len(target)
@@ -1433,9 +1442,12 @@ def run_sweep(buildings: list[dict], limit: int, dry_run: bool,
             else:
                 print(f"  GMB: no listing found | {gmaps_url}")
 
-        # Satellite image + PV detection
-        image_bytes, pv_info = build_roof_image(lat, lon, solar["panel_count"], name,
-                                                building.get("geom_nodes", []))
+        # Satellite image + PV detection (skipped in text-only --no-image mode)
+        if no_image:
+            image_bytes, pv_info = None, {}
+        else:
+            image_bytes, pv_info = build_roof_image(lat, lon, solar["panel_count"], name,
+                                                    building.get("geom_nodes", []))
         pv_status    = pv_info.get("pv_status", "none")
         pv_coverage  = pv_info.get("pv_coverage", 0.0)
         panels_drawn = pv_info.get("panels_drawn", solar["panel_count"])
@@ -1531,6 +1543,8 @@ def main():
     parser.add_argument("--min-roof",   type=float, default=MIN_ROOF_AREA_M2)
     parser.add_argument("--dry-run",    action="store_true")
     parser.add_argument("--test-email", type=str,   default="")
+    parser.add_argument("--no-image",   action="store_true",
+                        help="Text-only intro: skip satellite/panel drawing and image attachment")
     args = parser.parse_args()
 
     print("=" * 60)
@@ -1571,12 +1585,13 @@ def main():
                 "co2_tonnes":  float(r.get("co2_tonnes", 0)),
                 "system_cost": int(r.get("system_cost", 0)),
             }
-            # Reload roof image if it exists
+            # Reload roof image if it exists (skipped in text-only --no-image mode)
             image_bytes = None
-            safe_name = re.sub(r'[\\/:*?"<>|()\']+', '', building["name"])[:30].replace(' ', '_')
-            for png in OUTPUT_DIR.glob(f"roof_*_{safe_name}.png"):
-                image_bytes = png.read_bytes()
-                break
+            if not args.no_image:
+                safe_name = re.sub(r'[\\/:*?"<>|()\']+', '', building["name"])[:30].replace(' ', '_')
+                for png in OUTPUT_DIR.glob(f"roof_*_{safe_name}.png"):
+                    image_bytes = png.read_bytes()
+                    break
             ok = send_email(email, building, solar, image_bytes)
             if ok:
                 sent += 1
@@ -1650,7 +1665,8 @@ def main():
         buildings.sort(key=lambda b: b["roof_area_m2"], reverse=True)
 
         sector_results = run_sweep(buildings, limit_per_sector,
-                                   args.dry_run, args.test_email, args.skip)
+                                   args.dry_run, args.test_email, args.skip,
+                                   no_image=args.no_image)
 
         # Tag each result with its sector for the merged HTML
         for r in sector_results:

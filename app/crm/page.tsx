@@ -39,6 +39,9 @@ import {
   Copy,
   UserCheck,
   LogOut,
+  Send,
+  Eye,
+  MailCheck,
 } from 'lucide-react'
 import type { PvProspect } from '@/lib/supabase'
 import { CRM_USERS } from '@/lib/crm-users'
@@ -150,6 +153,11 @@ export default function CrmPage() {
   const [filterDistrict, setFilterDistrict] = useState('all')
   const [filterOfferType,setFilterOfferType]= useState('all')
   const [filterAssigned, setFilterAssigned] = useState<'all'|'mine'>('all')
+  const [filterNew, setFilterNew] = useState<'all'|'7'|'30'>('all')
+
+  // outreach
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [sending, setSending] = useState(false)
 
   const myEmail = session?.user?.email ?? ''
   const myName  = CRM_USERS.find(u => u.email === myEmail)?.name ?? ''
@@ -169,6 +177,7 @@ export default function CrmPage() {
       if (filterOfferType !== 'all') params.set('offer_type',filterOfferType)
       if (searchQuery)               params.set('search',    searchQuery)
       if (filterAssigned === 'mine' && myEmail) params.set('assigned_to', myEmail)
+      if (filterNew !== 'all')       params.set('new_days',  filterNew)
 
       const [pRes, fRes] = await Promise.all([
         fetch(`/api/crm/prospects?${params.toString()}`),
@@ -188,7 +197,7 @@ export default function CrmPage() {
     } finally {
       setLoading(false)
     }
-  }, [filterStatus, filterPriority, filterDistrict, filterOfferType, searchQuery, filterAssigned, myEmail])
+  }, [filterStatus, filterPriority, filterDistrict, filterOfferType, searchQuery, filterAssigned, filterNew, myEmail])
 
   useEffect(() => { if (status === 'authenticated') fetchProspects() }, [fetchProspects, status])
 
@@ -250,6 +259,48 @@ export default function CrmPage() {
     } catch { /* silent */ }
   }
 
+  const toggleSelect = (id: string) => {
+    setSelectedIds(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id); else next.add(id)
+      return next
+    })
+  }
+
+  const currentFilter = () => {
+    const f: Record<string, string> = { segment: 'developer' }
+    if (filterStatus !== 'all') f.status = filterStatus
+    if (filterDistrict !== 'all') f.district = filterDistrict
+    if (filterOfferType !== 'all') f.offer_type = filterOfferType
+    if (searchQuery) f.search = searchQuery
+    if (filterAssigned === 'mine' && myEmail) f.assigned_to = myEmail
+    return f
+  }
+
+  const runOutreach = async (payload: Record<string, unknown>, confirmMsg?: string) => {
+    if (confirmMsg && !confirm(confirmMsg)) return
+    setSending(true)
+    try {
+      const res = await fetch('/api/crm/send-outreach', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const result = await res.json()
+      setActionResult({ success: result.success, message: result.message })
+      if (result.success && !payload.test) { setSelectedIds(new Set()); fetchProspects() }
+    } catch {
+      setActionResult({ success: false, message: 'Outreach request failed' })
+    } finally {
+      setSending(false)
+    }
+  }
+
+  const sendTest        = () => runOutreach({ test: true, filter: currentFilter() })
+  const emailSelected   = () => runOutreach({ ids: [...selectedIds] }, `Send the intro email to ${selectedIds.size} selected prospect(s)?`)
+  const emailFiltered   = () => runOutreach({ all: true, filter: currentFilter() }, 'Send the intro email to ALL prospects matching the current filter (skips unsubscribed and already-emailed)?')
+  const openPreview     = (id?: string) => window.open(`/api/crm/preview-outreach${id ? `?id=${id}` : ''}`, '_blank')
+
   const exportCSV = () => window.open('/api/admin/plants/export', '_blank')
 
   const copyEmailList = () => {
@@ -303,6 +354,12 @@ export default function CrmPage() {
               </Button>
               <Button variant="outline" size="sm" onClick={copyEmailList}>
                 <Copy className="w-4 h-4 mr-2" />Copy Emails
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => openPreview()}>
+                <Eye className="w-4 h-4 mr-2" />Preview Intro
+              </Button>
+              <Button variant="outline" size="sm" onClick={sendTest} disabled={sending}>
+                <MailCheck className="w-4 h-4 mr-2" />Send Test
               </Button>
               <Button onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(!showForm) }}>
                 <Plus className="w-4 h-4 mr-2" />Add Prospect
@@ -554,10 +611,35 @@ export default function CrmPage() {
                       <option value="mine">Mine only</option>
                     </select>
                   </div>
+                  <div>
+                    <Label className="text-xs">Added</Label>
+                    <select className="w-full border rounded-md px-3 py-2 text-sm" value={filterNew} onChange={e => setFilterNew(e.target.value as 'all'|'7'|'30')}>
+                      <option value="all">Any time</option>
+                      <option value="7">Last 7 days</option>
+                      <option value="30">Last 30 days</option>
+                    </select>
+                  </div>
                   <Button size="sm" onClick={fetchProspects}><Filter className="w-4 h-4 mr-1" />Apply</Button>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Outreach action bar */}
+            <div className="flex flex-wrap items-center gap-3 mb-4 p-3 bg-white border rounded-lg">
+              <Send className="w-4 h-4 text-[#1A365D]" />
+              <span className="text-sm font-medium text-gray-700">Email outreach:</span>
+              <Button size="sm" variant="outline" onClick={emailSelected}
+                disabled={sending || selectedIds.size === 0}>
+                <Mail className="w-4 h-4 mr-2" />Email selected ({selectedIds.size})
+              </Button>
+              <Button size="sm" variant="outline" onClick={emailFiltered} disabled={sending}>
+                <Send className="w-4 h-4 mr-2" />Email all matching filter
+              </Button>
+              <span className="text-xs text-gray-400">
+                Sends the BESS/PV intro · skips unsubscribed &amp; already-emailed · replies go to you
+              </span>
+              {sending && <RefreshCw className="w-4 h-4 animate-spin text-[#1A365D]" />}
+            </div>
 
             {loading ? (
               <div className="text-center py-12 text-gray-500">Loading…</div>
@@ -575,9 +657,24 @@ export default function CrmPage() {
                   <Card key={prospect.id} className={`overflow-hidden transition-all ${expandedId===prospect.id?'ring-2 ring-blue-200':''}`}>
                     <div className="p-4">
                       <div className="flex items-start gap-4">
+                        <input
+                          type="checkbox"
+                          className="mt-1.5 h-4 w-4 shrink-0 accent-[#1A365D]"
+                          checked={prospect.id ? selectedIds.has(prospect.id) : false}
+                          onChange={() => prospect.id && toggleSelect(prospect.id)}
+                          title="Select for outreach"
+                        />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <h3 className="font-semibold text-gray-900 truncate">{prospect.plant_name}</h3>
+                            {(prospect.tags || []).some(t => t.startsWith('intro_sent')) && (
+                              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center gap-1">
+                                <MailCheck className="w-3 h-3" />intro sent
+                              </span>
+                            )}
+                            {(prospect.tags || []).includes('unsubscribed') && (
+                              <span className="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">unsubscribed</span>
+                            )}
                             {prospect.capacity_mwp && <span className="text-sm text-blue-600 font-medium">{prospect.capacity_mwp} MWp</span>}
                             <Badge className={getStatusColor(prospect.outreach_status||'new')}>
                               {OUTREACH_STATUSES.find(s=>s.value===prospect.outreach_status)?.label||'New'}
@@ -606,6 +703,7 @@ export default function CrmPage() {
                           {prospect.contact_phone && <a href={`tel:${prospect.contact_phone}`} className="p-2 text-gray-400 hover:text-green-600" title={prospect.contact_phone}><Phone className="w-4 h-4" /></a>}
                           {prospect.contact_linkedin && <a href={prospect.contact_linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-400 hover:text-blue-700"><Linkedin className="w-4 h-4" /></a>}
                           {prospect.company_website && <a href={prospect.company_website} target="_blank" rel="noopener noreferrer" className="p-2 text-gray-400 hover:text-purple-600"><Globe className="w-4 h-4" /></a>}
+                          <button className="p-2 text-gray-400 hover:text-[#C9A432]" onClick={() => prospect.id && openPreview(prospect.id)} title="Preview intro email"><Eye className="w-4 h-4" /></button>
                           <button className="p-2 text-gray-400 hover:text-blue-600" onClick={() => { setFormData(prospect); setEditingId(prospect.id||null); setShowForm(true); window.scrollTo({top:0,behavior:'smooth'}) }} title="Edit"><Edit className="w-4 h-4" /></button>
                           <button className="p-2 text-gray-400 hover:text-red-600" onClick={() => prospect.id && deleteProspect(prospect.id)} title="Delete"><Trash2 className="w-4 h-4" /></button>
                           <button className="p-2 text-gray-400 hover:text-gray-600" onClick={() => setExpandedId(expandedId===prospect.id?null:prospect.id||null)}>
