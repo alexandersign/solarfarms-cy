@@ -3,6 +3,7 @@ import Credentials from 'next-auth/providers/credentials'
 import { CRM_USERS } from './crm-users'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       id: 'credentials',
