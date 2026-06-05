@@ -47,7 +47,7 @@ async function main() {
         {
           cwd: process.cwd(),
           stdio: 'inherit',
-          shell: true,
+          shell: process.platform === 'win32' ? 'powershell.exe' : '/bin/sh',
           env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
         }
       )

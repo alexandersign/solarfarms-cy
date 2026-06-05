@@ -13,6 +13,7 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { inferCyprusDistrict } from '../lib/cyprus-district-infer'
 import { supabase, type PvProspect } from '../lib/supabase'
 import { buildSearchAliases } from '../lib/greek-translit'
 import { normalizeDisplayPhone } from '../lib/csv-utf8'
@@ -93,6 +94,24 @@ function guessIndustry(googleTypes: string): string {
   return 'Other'
 }
 
+/** Warehouse OSM sweep rows often lack Google types — default industrial category. */
+function resolveIndustry(row: Record<string, string>): string {
+  const fromGoogle = guessIndustry(row.google_types || '')
+  if (fromGoogle !== 'Other') return fromGoogle
+  const roof = num(row.roof_area_m2) || 0
+  if (roof >= 200) return 'Warehouse / Logistics'
+  return 'Other'
+}
+
+function findRoofImagePath(row: Record<string, string>): string | null {
+  for (const n of [row.gmb_name, row.name]) {
+    if (!n?.trim()) continue
+    const hit = roofImageFor(n.trim())
+    if (hit) return hit
+  }
+  return null
+}
+
 function safeId(placeId: string, name: string): string {
   const base = placeId || name
   return base.replace(/[^A-Za-z0-9_-]+/g, '').slice(0, 60) || `c${Date.now()}`
@@ -103,22 +122,32 @@ function num(v: string): number | undefined {
   return Number.isFinite(n) ? n : undefined
 }
 
-async function fetchExistingByPlaceId(): Promise<Map<string, string>> {
-  const map = new Map<string, string>()
+function companyKey(name: string): string {
+  return name.trim().toUpperCase().replace(/\s+/g, ' ')
+}
+
+async function fetchExistingCommercial(): Promise<{
+  byPlaceId: Map<string, string>
+  byCompany: Map<string, string>
+}> {
+  const byPlaceId = new Map<string, string>()
+  const byCompany = new Map<string, string>()
   for (let from = 0; ; from += 1000) {
     const { data, error } = await supabase
       .from('pv_prospects')
-      .select('id, place_id')
-      .not('place_id', 'is', null)
+      .select('id, place_id, company_name, plant_name')
+      .eq('segment', 'commercial')
       .range(from, from + 999)
     if (error) throw error
     if (!data || !data.length) break
-    for (const r of data as { id: string; place_id?: string }[]) {
-      if (r.place_id) map.set(r.place_id, r.id)
+    for (const r of data as { id: string; place_id?: string; company_name?: string; plant_name?: string }[]) {
+      if (r.place_id) byPlaceId.set(r.place_id, r.id)
+      const ck = companyKey(r.company_name || r.plant_name || '')
+      if (ck && !byCompany.has(ck)) byCompany.set(ck, r.id)
     }
     if (data.length < 1000) break
   }
-  return map
+  return { byPlaceId, byCompany }
 }
 
 async function main() {
@@ -148,7 +177,7 @@ async function main() {
   )
 
   if (!dryRun) fs.mkdirSync(ROOFS_OUT, { recursive: true })
-  const existing = await fetchExistingByPlaceId()
+  const existing = await fetchExistingCommercial()
 
   const toInsert: Partial<PvProspect>[] = []
   const toUpdate: { id: string; patch: Partial<PvProspect> }[] = []
@@ -162,7 +191,7 @@ async function main() {
 
     // copy roof image into public/
     let roofUrl: string | undefined
-    const src = roofImageFor(r.name)
+    const src = findRoofImagePath(r)
     if (src) {
       const dest = path.join(ROOFS_OUT, `${id}.png`)
       if (!dryRun) {
@@ -175,10 +204,19 @@ async function main() {
     const priority: PvProspect['priority'] =
       payback != null && payback < 5 ? 'high' : payback != null && payback < 7 ? 'medium' : 'low'
 
+    const lat = num(r.lat)
+    const lon = num(r.lon)
+    const district =
+      lat != null && lon != null ? inferCyprusDistrict(lat, lon) : undefined
+    const industry = resolveIndustry(r)
+    const displayName = r.gmb_name || r.name
+
     const intel: Partial<PvProspect> = {
       segment: 'commercial',
-      company_name: r.gmb_name || r.name,
-      location: r.addr || undefined,
+      company_name: displayName,
+      plant_name: displayName,
+      location: r.gmb_address || r.addr || undefined,
+      district,
       technology: 'PV',
       capacity_mwp: num(r.peak_kw) != null ? num(r.peak_kw)! / 1000 : undefined,
       roof_area_m2: num(r.roof_area_m2),
@@ -196,16 +234,25 @@ async function main() {
       offer_type: 'rooftop_pv',
       data_source: 'google_places',
       priority,
-      search_aliases: buildSearchAliases(r.gmb_name || r.name, r.addr),
-      industry: guessIndustry(r.google_types || ''),
+      search_aliases: buildSearchAliases(displayName, r.addr, r.gmb_address, industry, district),
+      industry,
     }
 
-    const existId = placeId ? existing.get(placeId) : undefined
+    const existId =
+      (placeId ? existing.byPlaceId.get(placeId) : undefined) ||
+      existing.byCompany.get(companyKey(displayName))
+    const tags = [
+      `batch:${batchDate}`,
+      'segment:commercial',
+      district ? `district:${district}` : '',
+      industry ? `industry:${industry.replace(/\s*\/\s*/g, '-')}` : '',
+      hasPv ? 'has_pv' : '',
+    ].filter(Boolean)
+
     if (existId) {
       toUpdate.push({ id: existId, patch: intel })
     } else {
-      const tags = [`batch:${batchDate}`, 'segment:commercial', hasPv ? 'has_pv' : ''].filter(Boolean)
-      toInsert.push({ ...intel, plant_name: r.gmb_name || r.name, outreach_status: 'new', tags })
+      toInsert.push({ ...intel, outreach_status: 'new', tags })
     }
   }
 

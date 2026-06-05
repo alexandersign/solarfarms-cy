@@ -59,10 +59,14 @@ export async function GET(request: NextRequest) {
         'contact_name',
         'secondary_contact_name',
         'parent_group',
+        'location',
+        'district',
+        'industry',
         'search_aliases',
         'all_directors',
         'contact_director_1',
         'contact_director_2',
+        'tags',
       ]
         .map((col) => `${col}.ilike.%${search}%`)
         .join(',')

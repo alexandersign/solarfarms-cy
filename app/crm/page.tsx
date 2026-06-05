@@ -669,14 +669,21 @@ export default function CrmPage() {
             <Card className="mb-4">
               <CardContent className="pt-3 pb-3">
                 <div className="flex flex-wrap items-end gap-3">
-                  <div className="flex-1 min-w-[180px]">
+                  <div className="flex-1 min-w-[200px]">
                     <Label className="text-xs">Search</Label>
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <Input className="pl-9 text-sm" placeholder="Name, company, Greek or English…"
+                      <Input className="pl-9 text-sm" placeholder={segment === 'commercial'
+                        ? 'Business name, address, district, industry…'
+                        : 'Company, director, SPV, Greek or English…'}
                         value={searchQuery} onChange={e=>setSearchQuery(e.target.value)}
                         onKeyDown={e=>e.key==='Enter'&&fetchProspects()} />
                     </div>
+                    <p className="text-[10px] text-gray-400 mt-1 leading-snug">
+                      {segment === 'commercial'
+                        ? 'Matches company, address, district, industry, and tags. Use District / Industry filters for exact lists.'
+                        : 'Matches company, plant, all directors (incl. Greek transliteration), parent group, and aliases.'}
+                    </p>
                   </div>
                   <div><Label className="text-xs">Status</Label>
                     <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterStatus} onChange={e=>setFilterStatus(e.target.value)}>
@@ -950,6 +957,9 @@ export default function CrmPage() {
                 </Badge>
                 <Badge className={getPriorityColor(prospect.priority||'medium')}>{prospect.priority||'medium'}</Badge>
                 {prospect.offer_type && <Badge variant="outline">{OFFER_TYPES.find(o=>o.value===prospect.offer_type)?.label||prospect.offer_type}</Badge>}
+                {segment === 'commercial' && prospect.industry && (
+                  <Badge variant="outline" className="border-[#C9A432] text-[#1A365D]">{prospect.industry}</Badge>
+                )}
                 {prospect.assigned_name && (
                   <span className="text-xs px-2 py-0.5 rounded-full bg-[#1A365D] text-white flex items-center gap-1">
                     <UserCheck className="w-3 h-3"/>{prospect.assigned_name}
