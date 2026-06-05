@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import type { PvProspect, ActivityEntry } from '@/lib/supabase'
 import { CRM_USERS } from '@/lib/crm-users'
+import { normalizeRoofImageUrl } from '@/lib/crm-prospect-search'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -681,7 +682,7 @@ export default function CrmPage() {
                     </div>
                     <p className="text-[10px] text-gray-400 mt-1 leading-snug">
                       {segment === 'commercial'
-                        ? 'Matches company, address, district, industry, and tags. Use District / Industry filters for exact lists.'
+                        ? 'Matches company, address, district, and industry. Use District / Industry filters for exact lists.'
                         : 'Matches company, plant, all directors (incl. Greek transliteration), parent group, and aliases.'}
                     </p>
                   </div>
@@ -935,6 +936,7 @@ export default function CrmPage() {
   function renderCard(prospect: ProspectFull) {
     const feed: ActivityEntry[] = (prospect.activity_feed || []) as ActivityEntry[]
     const lastActivity = feed[0]?.ts || prospect.last_contact_date
+    const roofSrc = normalizeRoofImageUrl(prospect.roof_image_url)
     return (
       <Card key={prospect.id} className={`overflow-hidden transition-all ${expandedId===prospect.id?'ring-2 ring-[#1A365D]':''}`}>
         <div className="p-4">
@@ -942,10 +944,11 @@ export default function CrmPage() {
             <input type="checkbox" className="mt-1.5 h-4 w-4 shrink-0 accent-[#1A365D]"
               checked={prospect.id?selectedIds.has(prospect.id):false}
               onChange={()=>prospect.id&&toggleSelect(prospect.id)} title="Select" />
-            {prospect.roof_image_url && (
+            {roofSrc && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={prospect.roof_image_url} alt="Roof" loading="lazy"
-                className="w-24 h-16 object-cover rounded border shrink-0 hidden sm:block" />
+              <img src={roofSrc} alt="Roof" loading="lazy"
+                className="w-24 h-16 object-cover rounded border shrink-0 hidden sm:block"
+                onError={(e) => { e.currentTarget.style.display = 'none' }} />
             )}
             <div className="flex-1 min-w-0">
               {/* Title row */}
