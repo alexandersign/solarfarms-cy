@@ -37,7 +37,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // Protect /crm — session required, redirect to /crm/login
-  if (pathname.startsWith('/crm') && !pathname.startsWith('/crm/login')) {
+  // Use /crm/ prefix (with slash) so /crm-roofs/ static assets are not intercepted.
+  if ((pathname === '/crm' || pathname.startsWith('/crm/')) && !pathname.startsWith('/crm/login')) {
     const token = await getCrmToken(request)
     if (!token) {
       const loginUrl = new URL('/crm/login', request.url)
