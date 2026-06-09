@@ -15,7 +15,7 @@ import {
   Zap, Target, ChevronDown, ChevronUp, Edit, Trash2, CheckCircle, XCircle,
   Clock, AlertCircle, BarChart3, FileText, Copy, UserCheck,
   Send, Eye, MailCheck, MessageSquare, ArrowUpDown, Folder, PhoneCall,
-  X, Save, ListTodo, Square, SquareCheck,
+  X, Save, ListTodo, Square, CheckSquare,
 } from 'lucide-react'
 import type { PvProspect, ActivityEntry, CrmTask, CrmTaskType } from '@/lib/supabase'
 import { CRM_USERS } from '@/lib/crm-users'
@@ -1199,7 +1199,7 @@ export default function CrmPage() {
                       <div key={task.id} className={`flex items-start gap-2 text-xs rounded-md px-2 py-1.5 ${task.done?'bg-gray-50 opacity-60':'bg-amber-50'}`}>
                         <button onClick={()=>prospect.id&&completeTask(prospect.id,task.id,!task.done)} className="mt-0.5 shrink-0">
                           {task.done
-                            ? <SquareCheck className="w-4 h-4 text-emerald-500"/>
+                            ? <CheckSquare className="w-4 h-4 text-emerald-500"/>
                             : <Square className="w-4 h-4 text-amber-500"/>}
                         </button>
                         <span className={`flex-1 ${task.done?'line-through text-gray-400':''}`}>{task.text}</span>

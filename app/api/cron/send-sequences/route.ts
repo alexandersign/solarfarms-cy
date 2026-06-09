@@ -54,7 +54,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'DB query failed', details: error.message }, { status: 500 })
   }
 
-  const rows = (data || []) as (OutreachRecipient & { sequence_step: number; outreach_status?: string })[]
+  type SequenceRow = OutreachRecipient & {
+    sequence_step: number
+    outreach_status?: string
+    offer_type?: string
+    bess_sales_angle?: string
+  }
+
+  const rows = (data || []) as SequenceRow[]
   const eligible = rows.filter((r) => !isSuppressed(r))
 
   let sent = 0, skipped = 0, failed = 0
@@ -65,7 +72,7 @@ export async function GET(request: NextRequest) {
     const step = r.sequence_step
 
     const result = await sendSequenceEmail(
-      { ...r, primary_target: r.offer_type },
+      { ...r, primary_target: r.offer_type, bess_angle: r.bess_sales_angle },
       { baseUrl: BASE_URL }
     )
 
