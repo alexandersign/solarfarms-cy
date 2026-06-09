@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
     .order('created_at', { ascending: false })
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  const all = (data || []) as {
+  const all = (data as unknown as {
     id: string
     company_name?: string
     outreach_status?: string
@@ -76,7 +76,7 @@ export async function GET(request: NextRequest) {
     activity_feed?: ActivityEntry[]
     segment?: string
     district?: string
-  }[]
+  }[]) || []
 
   // ─── A. Activity summary ──────────────────────────────────────────────────
   const activityMap: Record<string, {
