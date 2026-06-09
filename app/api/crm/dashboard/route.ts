@@ -11,6 +11,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { getCrmToken } from '@/lib/crm-auth'
+import { DAILY_CALL_TARGETS } from '@/lib/crm-targets'
 import type { ActivityEntry } from '@/lib/supabase'
 
 const ALEXANDER_EMAIL = 'alexander.papacosta@lighthief.com'
@@ -100,8 +101,22 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  // Build CRM user → email lookup for target resolution
+  // Author names in activity_feed match CRM_USERS.name, so we match by name key
+  const nameToEmail: Record<string, string> = {
+    'Alexander': 'alexander.papacosta@lighthief.com',
+    'Zinovia': 'zinovia@lighthief.com',
+    'Costas': 'costas@lighthief.com',
+    'Office': 'office@lighthief.com',
+  }
+
   const activitySummary = Object.entries(activityMap)
-    .map(([author, stats]) => ({ author, ...stats }))
+    .map(([author, stats]) => {
+      const email = nameToEmail[author] || author
+      const callTarget = DAILY_CALL_TARGETS[email] ?? 10
+      const callPct = Math.min(100, Math.round((stats.calls / callTarget) * 100))
+      return { author, ...stats, callTarget, callPct }
+    })
     .sort((a, b) => (b.calls + b.emails + b.notes) - (a.calls + a.emails + a.notes))
 
   // ─── B. Pipeline by stage ─────────────────────────────────────────────────

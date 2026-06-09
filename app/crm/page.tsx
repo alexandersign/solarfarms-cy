@@ -15,11 +15,12 @@ import {
   Zap, Target, ChevronDown, ChevronUp, Edit, Trash2, CheckCircle, XCircle,
   Clock, AlertCircle, BarChart3, FileText, Copy, UserCheck,
   Send, Eye, MailCheck, MessageSquare, ArrowUpDown, Folder, PhoneCall,
-  X, Save, ListTodo, Square, CheckSquare,
+  X, Save, ListTodo, Square, CheckSquare, Inbox,
 } from 'lucide-react'
 import type { PvProspect, ActivityEntry, CrmTask, CrmTaskType } from '@/lib/supabase'
 import { CRM_USERS } from '@/lib/crm-users'
 import { normalizeRoofImageUrl } from '@/lib/crm-prospect-search'
+import { getDailyCallTarget } from '@/lib/crm-targets'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -215,7 +216,13 @@ export default function CrmPage() {
     totalPipeline: number; totalCapacity: number; weightedPipeline?: number
   }>({ total: 0, byStatus: {}, byPriority: {}, totalPipeline: 0, totalCapacity: 0 })
   const [loading,      setLoading]      = useState(true)
-  const [activeView,   setActiveView]   = useState<'list'|'pipeline'|'grid_contacts'|'data_sources'>('list')
+  const [activeView,   setActiveView]   = useState<'list'|'pipeline'|'grid_contacts'|'data_sources'|'queue'>('list')
+  const [queue,        setQueue]        = useState<{
+    tasks: {prospectId:string;prospectName:string;taskId:string;taskType:string;taskText:string;due:string|null;daysSinceContact:number|null;assignedName?:string;priority:string}[]
+    followUps: {prospectId:string;prospectName:string;nextFollowUp:string;assignedName?:string;daysSinceContact:number|null}[]
+    stale: {prospectId:string;prospectName:string;outreachStatus:string;daysSinceContact:number;assignedName?:string;ruleText:string}[]
+    callsToday: number; emailsToday: number; callTarget: number; totalActionable: number
+  } | null>(null)
   const [showForm,     setShowForm]     = useState(false)
   const [editingId,    setEditingId]    = useState<string|null>(null)
   const [expandedId,   setExpandedId]   = useState<string|null>(null)
@@ -277,9 +284,10 @@ export default function CrmPage() {
       }
       if (segment === 'commercial' && filterIndustry !== 'all') params.set('industry', filterIndustry)
 
-      const [pRes, fRes] = await Promise.all([
+      const [pRes, fRes, qRes] = await Promise.all([
         fetch(`/api/crm/prospects?${params.toString()}`),
         fetch('/api/crm/prospects/follow-ups'),
+        fetch('/api/crm/prospects/queue'),
       ])
       if (pRes.ok) {
         const d = await pRes.json()
@@ -289,6 +297,10 @@ export default function CrmPage() {
       if (fRes.ok) {
         const d = await fRes.json()
         setFollowUps((d.data || []) as ProspectFull[])
+      }
+      if (qRes.ok) {
+        const d = await qRes.json()
+        setQueue(d)
       }
     } catch {
       setActionResult({ success: false, message: 'Failed to load prospects' })
@@ -578,6 +590,17 @@ export default function CrmPage() {
                 <Icon className="w-3.5 h-3.5" />{label}
               </button>
             ))}
+            <button onClick={() => setActiveView('queue')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-sm transition ${
+                activeView === 'queue' ? 'bg-[#1A365D] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+              <Inbox className="w-3.5 h-3.5" />Queue
+              {(queue?.totalActionable || 0) > 0 && (
+                <span className={`ml-1 text-xs font-bold px-1.5 py-0.5 rounded-full ${
+                  activeView === 'queue' ? 'bg-white text-[#1A365D]' : 'bg-red-500 text-white'}`}>
+                  {queue!.totalActionable}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </CrmHeader>
@@ -962,6 +985,160 @@ export default function CrmPage() {
                 </CardContent></Card>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* ─── QUEUE ─── */}
+        {activeView === 'queue' && (
+          <div className="space-y-5 max-w-3xl mx-auto">
+            {/* Call target progress bar */}
+            {queue && (() => {
+              const target = queue.callTarget || getDailyCallTarget(myEmail)
+              const calls = queue.callsToday || 0
+              const pct = Math.min(100, Math.round((calls / target) * 100))
+              const done = calls >= target
+              return (
+                <Card className={done ? 'border-emerald-300 bg-emerald-50' : ''}>
+                  <CardContent className="pt-4 pb-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-semibold text-sm flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-[#1A365D]"/>
+                        Calls today: {calls} / {target}
+                      </h3>
+                      <span className={`text-sm font-bold ${done ? 'text-emerald-600' : calls === 0 ? 'text-red-500' : 'text-[#1A365D]'}`}>
+                        {done ? 'Target reached!' : `${target - calls} to go`}
+                      </span>
+                    </div>
+                    <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                      <div className={`h-3 rounded-full transition-all ${done ? 'bg-emerald-500' : pct === 0 ? 'bg-red-400' : 'bg-[#1A365D]'}`}
+                        style={{ width: `${pct}%` }} />
+                    </div>
+                    <div className="flex gap-4 mt-2 text-xs text-gray-500">
+                      <span><Mail className="w-3 h-3 inline mr-0.5"/>{queue.emailsToday} emails</span>
+                      <span><MessageSquare className="w-3 h-3 inline mr-0.5"/>{queue.callsToday + queue.emailsToday} total contacts</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+            })()}
+
+            {/* Today's tasks */}
+            {(queue?.tasks?.length || 0) > 0 && (
+              <div>
+                <h3 className="font-semibold text-sm text-gray-700 mb-2 flex items-center gap-2">
+                  <ListTodo className="w-4 h-4 text-[#C9A432]"/>Tasks due today
+                  <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">{queue!.tasks.length}</span>
+                </h3>
+                <div className="space-y-2">
+                  {queue!.tasks.map(t => (
+                    <Card key={t.taskId} className="border-l-4" style={{ borderLeftColor: t.priority === 'urgent' ? '#ef4444' : t.priority === 'high' ? '#f97316' : '#94a3b8' }}>
+                      <CardContent className="pt-3 pb-3">
+                        <div className="flex items-start gap-3">
+                          <button
+                            className="mt-0.5 shrink-0"
+                            onClick={async () => {
+                              const r = await fetch('/api/crm/prospects/tasks', {
+                                method: 'PATCH',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ id: t.prospectId, taskId: t.taskId, done: true }),
+                              })
+                              if ((await r.json()).success) {
+                                setQueue(prev => prev ? {
+                                  ...prev,
+                                  tasks: prev.tasks.filter(x => x.taskId !== t.taskId),
+                                  totalActionable: prev.totalActionable - 1,
+                                } : prev)
+                              }
+                            }}>
+                            <Square className="w-5 h-5 text-amber-500 hover:text-emerald-500"/>
+                          </button>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-sm text-gray-800">{t.prospectName}</div>
+                            <div className="text-xs text-gray-500 mt-0.5">{t.taskText}</div>
+                          </div>
+                          <div className="text-right shrink-0">
+                            <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                              t.taskType === 'call' ? 'bg-blue-100 text-blue-700' :
+                              t.taskType === 'email' ? 'bg-emerald-100 text-emerald-700' :
+                              t.taskType === 'meeting' ? 'bg-purple-100 text-purple-700' :
+                              'bg-gray-100 text-gray-600'}`}>
+                              {t.taskType}
+                            </span>
+                            {t.daysSinceContact != null && (
+                              <div className="text-xs text-gray-400 mt-1">{t.daysSinceContact}d since contact</div>
+                            )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Overdue follow-ups */}
+            {(queue?.followUps?.length || 0) > 0 && (
+              <div>
+                <h3 className="font-semibold text-sm text-gray-700 mb-2 flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-orange-500"/>Overdue follow-ups
+                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">{queue!.followUps.length}</span>
+                </h3>
+                <div className="space-y-2">
+                  {queue!.followUps.map(f => (
+                    <Card key={f.prospectId} className="border-l-4 border-l-orange-400">
+                      <CardContent className="pt-3 pb-3 flex items-center gap-3">
+                        <Calendar className="w-4 h-4 text-orange-500 shrink-0"/>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-sm text-gray-800">{f.prospectName}</div>
+                          <div className="text-xs text-gray-500">Due {f.nextFollowUp}{f.assignedName ? ` · ${f.assignedName}` : ''}</div>
+                        </div>
+                        {f.daysSinceContact != null && (
+                          <span className="text-xs text-gray-400 shrink-0">{f.daysSinceContact}d since contact</span>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Stale prospects */}
+            {(queue?.stale?.length || 0) > 0 && (
+              <div>
+                <h3 className="font-semibold text-sm text-gray-700 mb-2 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-gray-400"/>Stale prospects needing attention
+                  <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{queue!.stale.length}</span>
+                </h3>
+                <div className="space-y-2">
+                  {queue!.stale.slice(0, 15).map(s => (
+                    <Card key={s.prospectId} className="border-l-4 border-l-gray-300">
+                      <CardContent className="pt-3 pb-3 flex items-center gap-3">
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-sm text-gray-800">{s.prospectName}</div>
+                          <div className="text-xs text-gray-500 mt-0.5">{s.ruleText}</div>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <span className="text-xs capitalize text-gray-400">{s.outreachStatus.replace(/_/g,' ')}</span>
+                          <div className={`text-xs font-medium ${s.daysSinceContact > 14 ? 'text-red-500' : 'text-amber-600'}`}>
+                            {s.daysSinceContact}d stale
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {queue && queue.totalActionable === 0 && (
+              <Card className="border-emerald-300 bg-emerald-50">
+                <CardContent className="pt-6 pb-6 text-center">
+                  <CheckCircle className="w-8 h-8 text-emerald-500 mx-auto mb-2"/>
+                  <p className="font-semibold text-emerald-700">All clear — no pending actions!</p>
+                  <p className="text-xs text-emerald-600 mt-1">Check back after logging more calls or when new prospects need attention.</p>
+                </CardContent>
+              </Card>
+            )}
           </div>
         )}
 

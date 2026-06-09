@@ -53,6 +53,8 @@ interface ActivityUser {
   notes: number
   statusChanges: number
   lastActive: string | null
+  callTarget?: number
+  callPct?: number
 }
 
 interface StageRow {
@@ -215,29 +217,45 @@ export default function CrmDashboardPage() {
                   <tr className="border-b">
                     <th className="text-left py-2 px-3 text-xs text-gray-500 font-medium">Salesperson</th>
                     <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium"><Phone className="w-3 h-3 inline mr-1"/>Calls</th>
+                    <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium">Target</th>
+                    <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium">Progress</th>
                     <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium"><Mail className="w-3 h-3 inline mr-1"/>Emails</th>
                     <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium"><MessageSquare className="w-3 h-3 inline mr-1"/>Notes</th>
-                    <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium"><ArrowUpDown className="w-3 h-3 inline mr-1"/>Status changes</th>
+                    <th className="text-center py-2 px-3 text-xs text-gray-500 font-medium"><ArrowUpDown className="w-3 h-3 inline mr-1"/>Status chg</th>
                     <th className="text-right py-2 px-3 text-xs text-gray-500 font-medium">Last active</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {activitySummary.map(u => (
-                    <tr key={u.author} className="border-b last:border-0 hover:bg-gray-50">
-                      <td className="py-2.5 px-3 font-medium text-gray-800">{u.author}</td>
-                      <td className="py-2.5 px-3 text-center">
-                        <span className={`font-semibold ${u.calls > 0 ? 'text-blue-600' : 'text-gray-300'}`}>{u.calls}</span>
-                      </td>
-                      <td className="py-2.5 px-3 text-center">
-                        <span className={`font-semibold ${u.emails > 0 ? 'text-emerald-600' : 'text-gray-300'}`}>{u.emails}</span>
-                      </td>
-                      <td className="py-2.5 px-3 text-center">
-                        <span className={`font-semibold ${u.notes > 0 ? 'text-amber-600' : 'text-gray-300'}`}>{u.notes}</span>
-                      </td>
-                      <td className="py-2.5 px-3 text-center text-gray-600">{u.statusChanges}</td>
-                      <td className="py-2.5 px-3 text-right text-gray-400 text-xs">{relativeTime(u.lastActive)}</td>
-                    </tr>
-                  ))}
+                  {activitySummary.map(u => {
+                    const target = u.callTarget ?? 10
+                    const pct = u.callPct ?? Math.min(100, Math.round((u.calls / target) * 100))
+                    const done = u.calls >= target
+                    return (
+                      <tr key={u.author} className="border-b last:border-0 hover:bg-gray-50">
+                        <td className="py-2.5 px-3 font-medium text-gray-800">{u.author}</td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span className={`font-semibold ${done ? 'text-emerald-600' : u.calls > 0 ? 'text-blue-600' : 'text-gray-300'}`}>{u.calls}</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-center text-gray-500">{target}</td>
+                        <td className="py-2.5 px-3">
+                          <div className="flex items-center gap-1.5">
+                            <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                              <div className={`h-2 rounded-full ${done ? 'bg-emerald-500' : 'bg-[#1A365D]'}`} style={{ width: `${pct}%` }}/>
+                            </div>
+                            <span className={`text-xs font-medium w-8 text-right ${done ? 'text-emerald-600' : 'text-gray-500'}`}>{pct}%</span>
+                          </div>
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span className={`font-semibold ${u.emails > 0 ? 'text-emerald-600' : 'text-gray-300'}`}>{u.emails}</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span className={`font-semibold ${u.notes > 0 ? 'text-amber-600' : 'text-gray-300'}`}>{u.notes}</span>
+                        </td>
+                        <td className="py-2.5 px-3 text-center text-gray-600">{u.statusChanges}</td>
+                        <td className="py-2.5 px-3 text-right text-gray-400 text-xs">{relativeTime(u.lastActive)}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             )}
