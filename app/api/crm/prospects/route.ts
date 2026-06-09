@@ -58,21 +58,31 @@ export async function GET(request: NextRequest) {
     const { data, error } = await query
     if (error) throw error
 
+    // Probability by stage for weighted pipeline (forecast value)
+    const STAGE_PROBABILITY: Record<string, number> = {
+      new: 0.05, researching: 0.10, contacted: 0.20, responded: 0.35,
+      meeting_set: 0.50, proposal_sent: 0.65, negotiating: 0.80,
+      won: 1.0, lost: 0, not_interested: 0,
+    }
+
     // stats
     const all = data || []
     const byStatus: Record<string,number>   = {}
     const byPriority: Record<string,number> = {}
-    let totalPipeline = 0, totalCapacity = 0
+    let totalPipeline = 0, totalCapacity = 0, weightedPipeline = 0
     for (const p of all) {
-      byStatus[p.outreach_status||'new']    = (byStatus[p.outreach_status||'new']    || 0) + 1
-      byPriority[p.priority||'medium']      = (byPriority[p.priority||'medium']      || 0) + 1
-      totalPipeline += Number(p.estimated_deal_value) || 0
-      totalCapacity += Number(p.capacity_mwp)         || 0
+      const st = p.outreach_status || 'new'
+      byStatus[st]                     = (byStatus[st]                        || 0) + 1
+      byPriority[p.priority||'medium'] = (byPriority[p.priority||'medium']   || 0) + 1
+      const deal = Number(p.estimated_deal_value) || 0
+      totalPipeline   += deal
+      totalCapacity   += Number(p.capacity_mwp) || 0
+      weightedPipeline += deal * (STAGE_PROBABILITY[st] ?? 0.1)
     }
 
     return NextResponse.json({
       success: true, data: all, count: all.length,
-      stats: { total: all.length, byStatus, byPriority, totalPipeline, totalCapacity },
+      stats: { total: all.length, byStatus, byPriority, totalPipeline, totalCapacity, weightedPipeline },
     })
   } catch (error) {
     return NextResponse.json(

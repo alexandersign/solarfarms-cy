@@ -225,3 +225,148 @@ export function withIntroSentTag(tags: string[] | null | undefined): string[] {
   const base = (tags || []).filter((t) => !t.startsWith('intro_sent'))
   return [...base, `intro_sent:${date}`]
 }
+
+// ─── Email sequence follow-ups ────────────────────────────────────────────────
+
+/** Render follow-up email step 1 ("circling back" — sent ~7 days after intro). */
+export function renderFollowUp1Email(
+  p: OutreachRecipient,
+  opts: {
+    baseUrl: string
+    senderName?: string
+    senderTitle?: string
+    senderEmail?: string
+    senderPhone?: string
+  }
+): RenderedEmail {
+  const contactName = p.contact_name?.trim() || 'there'
+  const company = p.company_name?.trim() || 'your company'
+  const bess = isBessRelevant(p.primary_target, p.bess_angle)
+
+  const senderName  = opts.senderName  || 'Alexander Papacosta'
+  const senderTitle = opts.senderTitle || 'Director'
+  const senderEmail = opts.senderEmail || DEFAULT_REPLY_TO
+  const senderPhone = opts.senderPhone || '+357 99 164 158'
+  const unsubUrl    = p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : '#'
+
+  const subject = bess
+    ? `Following up — BESS & O&M for ${company}`
+    : `Following up — solar EPC & O&M for ${company}`
+
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
+<body style="font-family:'Segoe UI',system-ui,sans-serif;color:#222;background:#f0f4f8;margin:0;padding:0;">
+<div style="max-width:620px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;margin-top:24px;">
+  <div style="background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);padding:28px 32px;">
+    <h1 style="color:#C9A432;margin:0;font-size:20px;">Lighthief Cyprus</h1>
+    <p style="color:#ccd8e8;margin:6px 0 0;font-size:13px;">Renewable Energy &amp; Storage</p>
+  </div>
+  <div style="padding:32px;">
+    <p style="font-size:15px;line-height:1.7;">Dear ${esc(contactName)},</p>
+    <p style="font-size:15px;line-height:1.7;">I wanted to follow up on my earlier message regarding <strong>${esc(company)}</strong>. I appreciate you are busy, and I'll keep this brief.</p>
+    <p style="font-size:15px;line-height:1.7;">We have been active in Cyprus renewable energy for several years and have recently completed BESS and O&amp;M contracts across the island. I believe there may be a straightforward fit between what we do and your current priorities — even a brief 15-minute call could clarify whether it makes sense to explore further.</p>
+    <p style="font-size:15px;line-height:1.7;">Would any slot this week or next suit you?</p>
+    <p style="font-size:15px;line-height:1.7;margin-top:28px;">Kind regards,<br>
+      <strong>${esc(senderName)}</strong><br>
+      <span style="color:#666;">${esc(senderTitle)}, Lighthief Cyprus Ltd</span><br>
+      <a href="mailto:${esc(senderEmail)}" style="color:#1A365D;">${esc(senderEmail)}</a> | ${esc(senderPhone)}
+    </p>
+  </div>
+  <div style="background:#f7f9fc;padding:16px 32px;font-size:11px;color:#9ca3af;text-align:center;">
+    Lighthief Cyprus Ltd — HE 477423 — solarfarms.cy<br>
+    <a href="${unsubUrl}" style="color:#9ca3af;">Unsubscribe</a>
+  </div>
+</div>
+</body></html>`
+
+  return { subject, html }
+}
+
+/** Render follow-up email step 2 ("final note" — sent ~7 days after follow-up 1). */
+export function renderFollowUp2Email(
+  p: OutreachRecipient,
+  opts: {
+    baseUrl: string
+    senderName?: string
+    senderTitle?: string
+    senderEmail?: string
+    senderPhone?: string
+  }
+): RenderedEmail {
+  const contactName = p.contact_name?.trim() || 'there'
+  const company = p.company_name?.trim() || 'your company'
+
+  const senderName  = opts.senderName  || 'Alexander Papacosta'
+  const senderTitle = opts.senderTitle || 'Director'
+  const senderEmail = opts.senderEmail || DEFAULT_REPLY_TO
+  const senderPhone = opts.senderPhone || '+357 99 164 158'
+  const unsubUrl    = p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : '#'
+
+  const subject = `Last note — Lighthief & ${company}`
+
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
+<body style="font-family:'Segoe UI',system-ui,sans-serif;color:#222;background:#f0f4f8;margin:0;padding:0;">
+<div style="max-width:620px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;margin-top:24px;">
+  <div style="background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);padding:28px 32px;">
+    <h1 style="color:#C9A432;margin:0;font-size:20px;">Lighthief Cyprus</h1>
+    <p style="color:#ccd8e8;margin:6px 0 0;font-size:13px;">Renewable Energy &amp; Storage</p>
+  </div>
+  <div style="padding:32px;">
+    <p style="font-size:15px;line-height:1.7;">Dear ${esc(contactName)},</p>
+    <p style="font-size:15px;line-height:1.7;">This is my final note regarding <strong>${esc(company)}</strong>. I won't trouble you further after this — I understand timing is everything in this business.</p>
+    <p style="font-size:15px;line-height:1.7;">If there is a better moment in the next quarter to revisit solar O&amp;M, BESS integration, or EPC services, please do reach out directly. We will be here.</p>
+    <p style="font-size:15px;line-height:1.7;margin-top:28px;">With kind regards,<br>
+      <strong>${esc(senderName)}</strong><br>
+      <span style="color:#666;">${esc(senderTitle)}, Lighthief Cyprus Ltd</span><br>
+      <a href="mailto:${esc(senderEmail)}" style="color:#1A365D;">${esc(senderEmail)}</a> | ${esc(senderPhone)}
+    </p>
+  </div>
+  <div style="background:#f7f9fc;padding:16px 32px;font-size:11px;color:#9ca3af;text-align:center;">
+    Lighthief Cyprus Ltd — HE 477423 — solarfarms.cy<br>
+    <a href="${unsubUrl}" style="color:#9ca3af;">Unsubscribe</a>
+  </div>
+</div>
+</body></html>`
+
+  return { subject, html }
+}
+
+/** Send a sequence follow-up email (step 1 or 2) via Resend. */
+export async function sendSequenceEmail(
+  p: OutreachRecipient & { sequence_step?: number },
+  opts: { baseUrl: string; replyTo?: string; senderName?: string; senderTitle?: string; senderEmail?: string; senderPhone?: string }
+): Promise<SendResult> {
+  const resend = getResend()
+  if (!resend) return { id: p.id, ok: false, error: 'RESEND_API_KEY not configured' }
+  if (!p.contact_email) return { id: p.id, ok: false, skipped: 'no_email' }
+
+  const rendered =
+    p.sequence_step === 2
+      ? renderFollowUp2Email(p, opts)
+      : renderFollowUp1Email(p, opts)
+
+  try {
+    const { error } = await resend.emails.send({
+      from: OUTREACH_FROM,
+      to: [p.contact_email],
+      replyTo: opts.replyTo || opts.senderEmail || DEFAULT_REPLY_TO,
+      subject: rendered.subject,
+      html: rendered.html,
+      headers: {
+        'List-Unsubscribe': `<${p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : ''}>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
+    })
+    if (error) return { id: p.id, email: p.contact_email, ok: false, error: String(error) }
+    return { id: p.id, email: p.contact_email, ok: true }
+  } catch (e) {
+    return { id: p.id, email: p.contact_email, ok: false, error: String(e) }
+  }
+}
+
+/** Tag for a sequence step send: `seq_step_1:<date>` or `seq_step_2:<date>`. */
+export function withSequenceStepTag(tags: string[] | null | undefined, step: number): string[] {
+  const date = new Date().toISOString().split('T')[0]
+  const key = `seq_step_${step}`
+  const base = (tags || []).filter((t) => !t.startsWith(key))
+  return [...base, `${key}:${date}`]
+}

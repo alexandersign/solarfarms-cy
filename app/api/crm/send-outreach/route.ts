@@ -124,10 +124,15 @@ export async function POST(request: NextRequest) {
       const res = await sendIntroEmail(r, { baseUrl, replyTo: senderEmail, senderName, senderEmail })
       if (res.ok) {
         sent++
+        const followUpDate = new Date(now)
+        followUpDate.setDate(followUpDate.getDate() + 7)
         const updates: Record<string, unknown> = {
           tags: withIntroSentTag(r.tags),
           last_contact_date: now,
           outreach_channel: 'email',
+          // Enrol in sequence: step 1 follow-up in 7 days
+          sequence_step: 1,
+          next_follow_up: followUpDate.toISOString().split('T')[0],
         }
         // advance pipeline + stamp first contact for brand-new prospects
         const { data: cur } = await supabase

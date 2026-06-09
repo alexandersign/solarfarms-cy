@@ -194,6 +194,18 @@ export interface ActivityEntry {
   body: string
 }
 
+export type CrmTaskType = 'call' | 'email' | 'meeting' | 'proposal' | 'research' | 'other'
+
+export interface CrmTask {
+  id: string
+  type: CrmTaskType
+  text: string
+  due?: string       // YYYY-MM-DD
+  done: boolean
+  author: string
+  created_at: string // ISO timestamp
+}
+
 // PV Prospects CRM Types
 export interface PvProspect {
   id?: string
@@ -268,6 +280,10 @@ export interface PvProspect {
   payback_years?: number
   has_existing_pv?: boolean
   roof_image_url?: string
+  // Email sequences
+  sequence_step?: number   // 0=not enrolled, 1=awaiting follow-up 1, 2=awaiting follow-up 2, 3=done
+  // Tasks queue
+  tasks?: CrmTask[]
 }
 
 export interface GridOperatorContact {

@@ -70,15 +70,22 @@ export type PlantDirectorRow = {
   contact_director_2?: string
   contact_secretary?: string
   contact_name?: string
+  /** All directors from the company register (full list, not capped at 2). */
+  directors_all?: string[]
 }
 
-/** Collect every director name seen across licence rows for one SPV. */
+/** Collect every director name seen across licence rows for one SPV.
+ *  Prefers directors_all (full register list) over the 2-slot contact_director_* fields. */
 export function collectDirectorsFromPlantRows(rows: PlantDirectorRow[]): string[] {
   const seen = new Set<string>()
   const names: string[] = []
   for (const r of rows) {
-    pushName(names, seen, r.contact_director_1)
-    pushName(names, seen, r.contact_director_2)
+    if (r.directors_all?.length) {
+      for (const n of r.directors_all) pushName(names, seen, n)
+    } else {
+      pushName(names, seen, r.contact_director_1)
+      pushName(names, seen, r.contact_director_2)
+    }
     pushName(names, seen, r.contact_secretary)
     pushName(names, seen, r.contact_name)
   }

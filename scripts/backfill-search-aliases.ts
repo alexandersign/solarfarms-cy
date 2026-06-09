@@ -20,7 +20,11 @@ const PLANTS_JSON = path.join(process.cwd(), 'marketing', 'cyprus-energy-plants.
 const GROUPS_JSON = path.join(process.cwd(), 'marketing', 'cyprus-developer-groups.json')
 
 function companyKey(name: string): string {
-  return name.trim().toUpperCase().replace(/\s+/g, ' ')
+  return name
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, ' ')
+    .replace(/\b(LIMITED|ΛΤΔ\.?|ΛΙΜΙΤΕΔ)\b/g, 'LTD')
 }
 
 function loadPlantDirectorMap(): Map<string, PlantDirectorRow[]> {
@@ -34,6 +38,7 @@ function loadPlantDirectorMap(): Map<string, PlantDirectorRow[]> {
     map.get(k)!.push({
       contact_director_1: p.contact_director_1,
       contact_director_2: p.contact_director_2,
+      directors_all: Array.isArray(p.directors_all) ? p.directors_all : undefined,
       contact_secretary: p.contact_secretary,
       contact_name: p.contact_name,
     })

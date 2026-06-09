@@ -50,6 +50,7 @@ interface PlantRow {
   existing_client?: boolean
   contact_director_1?: string
   contact_director_2?: string
+  directors_all?: string[]
   contact_secretary?: string
   contact_name?: string
   contact_email?: string
@@ -92,8 +93,14 @@ function priorityOf(p: PlantRow): string {
   return s >= 50 ? 'high' : s >= 35 ? 'medium' : 'low'
 }
 
+/** Canonical dedup key: collapses LTD/LIMITED variants so "Acme Solar Ltd" and
+ *  "Acme Solar Limited" map to the same key. */
 function companyKey(name: string): string {
-  return name.trim().toUpperCase().replace(/\s+/g, ' ')
+  return name
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, ' ')
+    .replace(/\b(LIMITED|ΛΤΔ\.?|ΛΙΜΙΤΕΔ)\b/g, 'LTD')
 }
 
 /** Map normalized company_name -> existing CRM row id (first match wins). */
@@ -203,6 +210,8 @@ async function main() {
       groupDirectors: grp?.directors,
       contact_name: primaryContact,
       secondary_contact_name: secondaryFromRegister,
+      // Pass the full register list so all directors end up in all_directors
+      all_directors: top.directors_all?.join(' · '),
     })
 
     return {

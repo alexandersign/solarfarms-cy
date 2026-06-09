@@ -52,6 +52,7 @@ interface PlantRow {
   company_reg_no?: string
   contact_director_1?: string
   contact_director_2?: string
+  directors_all?: string[]
   contact_secretary?: string
   registered_address?: string
   register_enriched_at?: string
@@ -122,6 +123,7 @@ async function main() {
         patch.registered_address = reg.registered_address
         patch.contact_director_1 = reg.directors[0]
         patch.contact_director_2 = reg.directors[1]
+        patch.directors_all = reg.directors  // full list — no 2-director cap
         patch.contact_secretary = reg.secretary || undefined
         patch.contact_title = 'Director'
         patch.register_matched_name = reg.matched_name

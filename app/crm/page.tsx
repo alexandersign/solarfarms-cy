@@ -15,9 +15,9 @@ import {
   Zap, Target, ChevronDown, ChevronUp, Edit, Trash2, CheckCircle, XCircle,
   Clock, AlertCircle, BarChart3, FileText, Copy, UserCheck,
   Send, Eye, MailCheck, MessageSquare, ArrowUpDown, Folder, PhoneCall,
-  X, Save,
+  X, Save, ListTodo, Square, SquareCheck,
 } from 'lucide-react'
-import type { PvProspect, ActivityEntry } from '@/lib/supabase'
+import type { PvProspect, ActivityEntry, CrmTask, CrmTaskType } from '@/lib/supabase'
 import { CRM_USERS } from '@/lib/crm-users'
 import { normalizeRoofImageUrl } from '@/lib/crm-prospect-search'
 
@@ -126,6 +126,7 @@ type ProspectFull = PvProspect & {
   industry?: string; activity_feed?: ActivityEntry[]; search_aliases?: string
   all_directors?: string; contact_director_2?: string
   connection_terms_status?: string; env_permit_status?: string; building_permit_status?: string
+  sequence_step?: number; tasks?: CrmTask[]
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -210,7 +211,7 @@ export default function CrmPage() {
   const [followUps,    setFollowUps]    = useState<ProspectFull[]>([])
   const [stats,        setStats]        = useState<{
     total: number; byStatus: Record<string,number>; byPriority: Record<string,number>;
-    totalPipeline: number; totalCapacity: number
+    totalPipeline: number; totalCapacity: number; weightedPipeline?: number
   }>({ total: 0, byStatus: {}, byPriority: {}, totalPipeline: 0, totalCapacity: 0 })
   const [loading,      setLoading]      = useState(true)
   const [activeView,   setActiveView]   = useState<'list'|'pipeline'|'grid_contacts'|'data_sources'>('list')
@@ -220,6 +221,7 @@ export default function CrmPage() {
   const [formData,     setFormData]     = useState<ProspectFull>(EMPTY_PROSPECT)
   const [actionResult, setActionResult] = useState<{success:boolean;message:string}|null>(null)
   const [noteText,     setNoteText]     = useState<Record<string,string>>({})
+  const [taskForm,     setTaskForm]     = useState<Record<string,{type:CrmTaskType;text:string;due:string}>>({})
   const [groupBy,      setGroupBy]      = useState(false)
   const [openFolders,  setOpenFolders]  = useState<Set<string>>(new Set(['pv_epc','pv_bess','pv_om','bess','other_dev','Other']))
   const [sortBy,       setSortBy]       = useState<'created_at'|'priority_score'|'capacity'|'last_activity'>('created_at')
@@ -386,6 +388,42 @@ export default function CrmPage() {
       setNoteText(prev => ({ ...prev, [id]: '' }))
       patchRow(id, { activity_feed: d.data.activity_feed, last_contact_date: d.data.last_contact_date })
     }
+  }
+
+  // ─── Tasks ────────────────────────────────────────────────────────────────
+  const addTask = async (id: string) => {
+    const f = taskForm[id]
+    if (!f?.text?.trim()) return
+    const res = await fetch('/api/crm/prospects/tasks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, type: f.type || 'other', text: f.text.trim(), due: f.due || undefined }),
+    })
+    const d = await res.json()
+    if (d.success) {
+      setTaskForm(prev => ({ ...prev, [id]: { type: 'call', text: '', due: '' } }))
+      patchRow(id, { tasks: d.data })
+    }
+  }
+
+  const completeTask = async (prospectId: string, taskId: string, done: boolean) => {
+    const res = await fetch('/api/crm/prospects/tasks', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: prospectId, taskId, done }),
+    })
+    const d = await res.json()
+    if (d.success) patchRow(prospectId, { tasks: d.data })
+  }
+
+  const deleteTask = async (prospectId: string, taskId: string) => {
+    const res = await fetch('/api/crm/prospects/tasks', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: prospectId, taskId }),
+    })
+    const d = await res.json()
+    if (d.success) patchRow(prospectId, { tasks: d.data })
   }
 
   // ─── DnD pipeline ─────────────────────────────────────────────────────────
@@ -570,6 +608,7 @@ export default function CrmPage() {
               { label: 'Total', val: stats.total, color: '' },
               { label: 'Active pipeline', val: ['contacted','responded','meeting_set','proposal_sent','negotiating'].reduce((s,k)=>s+(stats.byStatus[k]||0),0), color: 'text-green-600' },
               { label: 'Pipeline value', val: stats.totalPipeline>0 ? formatCurrency(stats.totalPipeline) : '—', color: 'text-blue-600' },
+              { label: 'Weighted forecast', val: (stats.weightedPipeline||0)>0 ? formatCurrency(stats.weightedPipeline!) : '—', color: 'text-indigo-600' },
               { label: 'Total capacity', val: stats.totalCapacity>0 ? `${stats.totalCapacity.toFixed(1)} MWp` : '—', color: 'text-purple-600' },
               { label: 'Won', val: stats.byStatus['won']||0, color: 'text-emerald-600' },
             ].map(({ label, val, color }) => (
@@ -973,6 +1012,17 @@ export default function CrmPage() {
                     <MailCheck className="w-3 h-3"/>intro sent
                   </span>
                 )}
+                {(prospect.sequence_step||0) > 0 && (prospect.sequence_step||0) < 3 && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 flex items-center gap-1"
+                    title={`Follow-up ${prospect.sequence_step} scheduled for ${prospect.next_follow_up||'…'}`}>
+                    <Send className="w-3 h-3"/>seq {prospect.sequence_step}/2
+                  </span>
+                )}
+                {(prospect.tasks||[]).filter(t=>!t.done).length > 0 && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 flex items-center gap-1">
+                    <ListTodo className="w-3 h-3"/>{(prospect.tasks||[]).filter(t=>!t.done).length} task{(prospect.tasks||[]).filter(t=>!t.done).length>1?'s':''}
+                  </span>
+                )}
               </div>
               {/* Company + contact row — email + phone as text */}
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
@@ -1136,6 +1186,50 @@ export default function CrmPage() {
                     {prospect.last_contact_date && <div><dt className="text-gray-400 text-xs">Last contact</dt><dd>{formatDate(prospect.last_contact_date)}</dd></div>}
                     {prospect.outreach_channel && <div><dt className="text-gray-400 text-xs">Channel</dt><dd className="capitalize">{prospect.outreach_channel.replace('_',' ')}</dd></div>}
                   </dl>
+                </div>
+              </div>
+
+              {/* Tasks */}
+              <div>
+                <h4 className="font-medium text-gray-700 text-sm mb-2 flex items-center gap-2"><ListTodo className="w-4 h-4"/>Tasks</h4>
+                {/* Pending tasks */}
+                {(prospect.tasks||[]).length > 0 && (
+                  <div className="space-y-1 mb-3">
+                    {(prospect.tasks as CrmTask[]).map(task=>(
+                      <div key={task.id} className={`flex items-start gap-2 text-xs rounded-md px-2 py-1.5 ${task.done?'bg-gray-50 opacity-60':'bg-amber-50'}`}>
+                        <button onClick={()=>prospect.id&&completeTask(prospect.id,task.id,!task.done)} className="mt-0.5 shrink-0">
+                          {task.done
+                            ? <SquareCheck className="w-4 h-4 text-emerald-500"/>
+                            : <Square className="w-4 h-4 text-amber-500"/>}
+                        </button>
+                        <span className={`flex-1 ${task.done?'line-through text-gray-400':''}`}>{task.text}</span>
+                        {task.due && <span className="text-gray-400 shrink-0">{task.due}</span>}
+                        <span className="text-gray-300 capitalize shrink-0">{task.type}</span>
+                        <button onClick={()=>prospect.id&&deleteTask(prospect.id,task.id)} className="text-gray-300 hover:text-red-400 shrink-0"><X className="w-3 h-3"/></button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {/* Add task form */}
+                <div className="flex gap-1.5 flex-wrap">
+                  <select className="border rounded px-2 py-1.5 text-xs"
+                    value={taskForm[prospect.id||'']?.type||'call'}
+                    onChange={e=>setTaskForm(prev=>({...prev,[prospect.id||'']:{...prev[prospect.id||''],type:e.target.value as CrmTaskType}}))}>
+                    {(['call','email','meeting','proposal','research','other'] as CrmTaskType[]).map(t=>(
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
+                  <input type="text" placeholder="Task description…"
+                    value={taskForm[prospect.id||'']?.text||''}
+                    onChange={e=>setTaskForm(prev=>({...prev,[prospect.id||'']:{...prev[prospect.id||''],text:e.target.value,type:prev[prospect.id||'']?.type||'call',due:prev[prospect.id||'']?.due||''}}))}
+                    onKeyDown={e=>e.key==='Enter'&&prospect.id&&addTask(prospect.id)}
+                    className="flex-1 min-w-[160px] border rounded px-2 py-1.5 text-xs"/>
+                  <input type="date" className="border rounded px-2 py-1.5 text-xs"
+                    value={taskForm[prospect.id||'']?.due||''}
+                    onChange={e=>setTaskForm(prev=>({...prev,[prospect.id||'']:{...prev[prospect.id||''],due:e.target.value,type:prev[prospect.id||'']?.type||'call',text:prev[prospect.id||'']?.text||''}}))}/>
+                  <Button size="sm" variant="outline" onClick={()=>prospect.id&&addTask(prospect.id)}>
+                    <Plus className="w-3 h-3 mr-1"/>Add
+                  </Button>
                 </div>
               </div>
 

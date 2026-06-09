@@ -32,10 +32,26 @@ export function escapeIlikeTerm(raw: string): string {
     .trim()
 }
 
+/** Strip trailing legal suffixes (LTD, LIMITED, ΛΤΔ, …) from a search term so
+ *  "Acme Solar Ltd" matches both "ACME SOLAR LTD" and "ACME SOLAR LIMITED" in the DB. */
+function stripLegalSuffix(raw: string): string {
+  return raw
+    .replace(/\s+(LTD\.?|LIMITED|ΛΤΔ\.?|ΛΙΜΙΤΕΔ|PLC|LLC)\s*$/i, '')
+    .trim()
+}
+
 export function buildProspectSearchFilter(search: string): string | null {
   const term = escapeIlikeTerm(search)
   if (!term) return null
-  return PROSPECT_ILIKE_COLUMNS.map((col) => `${col}.ilike.%${term}%`).join(',')
+
+  // For company_name, use the suffix-stripped form so "Ltd" also matches "Limited" rows.
+  const stripped = escapeIlikeTerm(stripLegalSuffix(search))
+  const useStripped = stripped.length > 0 && stripped.toUpperCase() !== term.toUpperCase()
+
+  return PROSPECT_ILIKE_COLUMNS.map((col) => {
+    const t = col === 'company_name' && useStripped ? stripped : term
+    return `${col}.ilike.%${t}%`
+  }).join(',')
 }
 
 export function formatSupabaseError(error: unknown): string {

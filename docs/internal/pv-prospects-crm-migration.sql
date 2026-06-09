@@ -48,11 +48,23 @@ ALTER TABLE pv_prospects
   ADD COLUMN IF NOT EXISTS contact_director_2 TEXT,
   ADD COLUMN IF NOT EXISTS all_directors      TEXT;  -- display: "Name1 · Name2 · …"
 
--- Verify
+CREATE INDEX IF NOT EXISTS idx_pv_prospects_director1 ON pv_prospects(contact_director_1);
+CREATE INDEX IF NOT EXISTS idx_pv_prospects_all_directors ON pv_prospects(all_directors);
+
+-- Phase 3: Email sequences + Tasks
+ALTER TABLE pv_prospects
+  ADD COLUMN IF NOT EXISTS sequence_step INT DEFAULT 0,   -- 0=not enrolled, 1=awaiting fu1, 2=awaiting fu2, 3=done
+  ADD COLUMN IF NOT EXISTS tasks JSONB DEFAULT '[]'::jsonb; -- [{id,type,text,due,done,author,created_at}]
+
+CREATE INDEX IF NOT EXISTS idx_pv_prospects_sequence ON pv_prospects(sequence_step)
+  WHERE sequence_step IN (1, 2);
+
+-- Verify all columns
 SELECT column_name, data_type
 FROM information_schema.columns
 WHERE table_name = 'pv_prospects'
   AND column_name IN ('assigned_to', 'segment', 'rtb_status', 'satellite_check',
                       'place_id', 'roof_image_url', 'annual_savings_eur',
                       'search_aliases', 'activity_feed', 'industry',
-                      'contact_director_1', 'contact_director_2', 'all_directors');
+                      'contact_director_1', 'contact_director_2', 'all_directors',
+                      'sequence_step', 'tasks');
