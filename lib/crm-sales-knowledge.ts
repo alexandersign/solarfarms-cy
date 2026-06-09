@@ -343,12 +343,22 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
     ],
     tables: [
       {
+        caption: 'CLIENT DATA — Esperia / Galascope actual curtailment (confirmed Jun 2026)',
+        headers: ['Period', 'Curtailment rate', 'Impact on 6.5 MW park', 'Revenue lost'],
+        rows: [
+          ['2025 annual average', '47%', '~3 MW wasted per curtailment day', '~€360/MWh-day at EAC tariff'],
+          ['2026 YTD (most days)', '~70%', '~4.5 MW wasted per curtailment day', '~€540/MWh-day lost'],
+          ['Trend', 'Sharply worsening', 'Grid saturation accelerating', 'BESS retrofit pays back in <5 years'],
+        ],
+      },
+      {
         caption: 'EAC system-wide curtailment statistics (official DSO data)',
         headers: ['Year', 'Events', 'Avg curtailment per event', 'Worst day', 'Peak month'],
         rows: [
           ['2022', '110', '11.1%', '38.5% (8 Oct 2022)', 'Apr & Nov (17–18 events)'],
           ['2023', '233', '18.8%', '67.5% (19 Feb 2023)', 'May (31 events)'],
-          ['Trend', '+112%', '+7.7 pp', 'Worsening', 'Year-round, no relief'],
+          ['2025 (client data)', '—', '47% avg', '~70% recent days', 'Every month'],
+          ['Trend', '+112% events 22→23', 'Still worsening', 'Grid saturation', 'Year-round, no relief'],
         ],
       },
       {
@@ -378,7 +388,7 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
         rows: [
           [
             '"We don\'t have that much curtailment"',
-            'EAC publishes daily curtailment reports. We can calculate your specific loss from your CERA generation data and EAC tariff records. Ask for their metering data.',
+            'Esperia/Galascope — our active client group with similar operational PV in Cyprus — reported 47% average curtailment in 2025, now reaching 70% in 2026. EAC publishes daily DSO reports confirming this is system-wide. We can calculate your specific loss from CERA generation data and EAC tariff records.',
           ],
           [
             '"The price of BESS is too high"',
