@@ -209,13 +209,26 @@ async function main() {
     const district =
       lat != null && lon != null ? inferCyprusDistrict(lat, lon) : undefined
     const industry = resolveIndustry(r)
-    const displayName = r.gmb_name || r.name
+    // GMB match: use real business name. No GMB: replace raw "Building at lat,lon"
+    // OSM coordinate names with a human-readable fallback.
+    const rawOsmName = r.name || ''
+    const osmIsBuildingCoords = /^Building\s+at\s+\d/.test(rawOsmName)
+    const displayName = r.gmb_name
+      || (osmIsBuildingCoords ? `Commercial Site — ${district || 'Cyprus'}` : rawOsmName)
+
+    // Location: full GMB address wins; OSM "Cyprus" placeholder replaced with district
+    const rawAddr = r.addr || ''
+    const addrIsPlaceholder = rawAddr.trim().toLowerCase() === 'cyprus'
+    const location: string | undefined =
+      r.gmb_address ||
+      (!addrIsPlaceholder ? rawAddr : undefined) ||
+      (district ? `${district} District, Cyprus` : undefined)
 
     const intel: Partial<PvProspect> = {
       segment: 'commercial',
       company_name: displayName,
       plant_name: displayName,
-      location: r.gmb_address || r.addr || undefined,
+      location,
       district,
       technology: 'PV',
       capacity_mwp: num(r.peak_kw) != null ? num(r.peak_kw)! / 1000 : undefined,
@@ -234,7 +247,7 @@ async function main() {
       offer_type: 'rooftop_pv',
       data_source: 'google_places',
       priority,
-      search_aliases: buildSearchAliases(displayName, r.addr, r.gmb_address, industry, district),
+      search_aliases: buildSearchAliases(displayName, location, industry, district),
       industry,
     }
 

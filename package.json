@@ -42,6 +42,8 @@
     "commercial:hunter": "npx tsx scripts/enrich-commercial-sweep-hunter.ts --limit 80",
     "commercial:sync-crm": "npx tsx scripts/sync-solar-sweep-to-crm.ts --min-roof 200",
     "commercial:pipeline": "npm run commercial:sweep && npm run commercial:hunter && npm run commercial:sync-crm",
+    "commercial:enrich-email": "npx tsx scripts/enrich-commercial-crm-hunter.ts --limit 50",
+    "commercial:enrich-register": "npx tsx scripts/enrich-commercial-crm-register.ts --limit 30",
     "crm:backfill-aliases": "npx tsx scripts/backfill-search-aliases.ts",
     "crm:sync-off-registry": "npx tsx scripts/sync-off-registry-to-crm.ts",
     "cyprus:dev-pipeline": "npm run cyprus:cluster && npm run cyprus:developer-domains && npm run cyprus:hunter && npm run cyprus:clean-contacts && npm run cyprus:cluster && npm run cyprus:sales-export && npm run cyprus:sales-html",

@@ -1174,6 +1174,21 @@ export default function CrmPage() {
                       onSave={v=>prospect.id&&putRow(prospect.id,{company_website:v})} />
                     {prospect.company_reg_no && <div><dt className="text-gray-400 text-xs">Reg. No.</dt>
                       <dd><a href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{prospect.company_reg_no}</a></dd></div>}
+                    {segment === 'commercial' && !prospect.contact_name && (
+                      <p className="text-xs text-gray-400 italic pt-1">
+                        Find contact:{' '}
+                        <a
+                          href={`https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(prospect.company_name || '')}`}
+                          target="_blank" rel="noopener noreferrer"
+                          className="text-blue-500 hover:underline">LinkedIn</a>
+                        {' · '}
+                        <a
+                          href="https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU"
+                          target="_blank" rel="noopener noreferrer"
+                          className="text-blue-500 hover:underline">Company Register</a>
+                        {' — then fill Contact name above'}
+                      </p>
+                    )}
                   </dl>
                 </div>
                 <div>
