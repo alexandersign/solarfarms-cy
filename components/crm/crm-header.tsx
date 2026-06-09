@@ -68,14 +68,12 @@ export function CrmHeader({
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-blue-200">{myName || myEmail}</span>
-            <Button
-              size="sm"
-              variant="outline"
-              className="text-white border-white/30 hover:bg-white/10"
+            <button
               onClick={() => signOut({ callbackUrl: '/crm/login' })}
+              className="flex items-center text-xs font-medium px-3 py-1.5 rounded border border-white/30 text-white bg-transparent hover:bg-white/10 transition"
             >
               <LogOut className="w-3 h-3 mr-1" /> Sign out
-            </Button>
+            </button>
           </div>
         </div>
       </div>

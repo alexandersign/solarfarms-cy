@@ -552,25 +552,23 @@ export default function CrmPage() {
               ))}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={fetchProspects} disabled={loading}>
-                <RefreshCw className={`w-3 h-3 mr-1 ${loading?'animate-spin':''}`} />Refresh
-              </Button>
-              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={exportCSV}>
-                <Download className="w-3 h-3 mr-1" />CSV
-              </Button>
-              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={copyEmailList}>
-                <Copy className="w-3 h-3 mr-1" />Emails
-              </Button>
-              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={() => openPreview()}>
-                <Eye className="w-3 h-3 mr-1" />Preview
-              </Button>
-              <Button variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10" onClick={() => runOutreach({ test: true, filter: currentFilter() })} disabled={sending}>
-                <MailCheck className="w-3 h-3 mr-1" />Test email
-              </Button>
-              <Button size="sm" className="bg-[#C9A432] text-[#1A365D] hover:bg-[#b8931f]"
-                onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(s => !s) }}>
+              {[
+                { label: 'Refresh', icon: <RefreshCw className={`w-3 h-3 mr-1 ${loading?'animate-spin':''}`}/>, onClick: fetchProspects, disabled: loading },
+                { label: 'CSV',     icon: <Download  className="w-3 h-3 mr-1"/>, onClick: exportCSV },
+                { label: 'Emails',  icon: <Copy      className="w-3 h-3 mr-1"/>, onClick: copyEmailList },
+                { label: 'Preview', icon: <Eye       className="w-3 h-3 mr-1"/>, onClick: () => openPreview() },
+                { label: 'Test email', icon: <MailCheck className="w-3 h-3 mr-1"/>, onClick: () => runOutreach({ test: true, filter: currentFilter() }), disabled: sending },
+              ].map(({ label, icon, onClick, disabled }) => (
+                <button key={label} onClick={onClick} disabled={disabled}
+                  className="flex items-center text-xs font-medium px-3 py-1.5 rounded border border-white/30 text-white bg-transparent hover:bg-white/10 disabled:opacity-50 transition">
+                  {icon}{label}
+                </button>
+              ))}
+              <button
+                onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(s => !s) }}
+                className="flex items-center text-xs font-medium px-3 py-1.5 rounded bg-[#C9A432] text-[#1A365D] hover:bg-[#b8931f] transition">
                 <Plus className="w-3 h-3 mr-1" />Add
-              </Button>
+              </button>
             </div>
           </div>
         </div>
