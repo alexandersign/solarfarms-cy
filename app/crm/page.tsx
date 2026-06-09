@@ -1028,7 +1028,19 @@ export default function CrmPage() {
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
                 {prospect.company_name && <span className="flex items-center gap-1"><Building className="w-3 h-3"/>{prospect.company_name}</span>}
                 {prospect.parent_group && <span className="text-gray-400">({prospect.parent_group})</span>}
-                {prospect.district && <span className="flex items-center gap-1"><MapPin className="w-3 h-3"/>{prospect.district}</span>}
+                {prospect.district && (
+                  <a
+                    href={
+                      prospect.place_id
+                        ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(prospect.place_id)}`
+                        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(prospect.location || prospect.district + ' Cyprus')}`
+                    }
+                    target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 hover:text-blue-600"
+                    title="Open in Google Maps">
+                    <MapPin className="w-3 h-3"/>{prospect.district}
+                  </a>
+                )}
                 {prospect.contact_name && <span className="flex items-center gap-1"><Users className="w-3 h-3"/>{prospect.contact_name}</span>}
                 {prospect.all_directors && prospect.all_directors !== prospect.contact_name && (
                   <span className="flex items-center gap-1 text-gray-600" title="All directors (searchable)">
@@ -1143,7 +1155,23 @@ export default function CrmPage() {
                     {segment==='commercial' && prospect.roof_area_m2 != null && <div><dt className="text-gray-400 text-xs">Roof area</dt><dd>{Math.round(prospect.roof_area_m2).toLocaleString()} m²</dd></div>}
                     {segment==='commercial' && prospect.annual_savings_eur != null && <div><dt className="text-gray-400 text-xs">Annual saving</dt><dd className="text-green-600 font-medium">€{Math.round(prospect.annual_savings_eur).toLocaleString()}</dd></div>}
                     {segment==='commercial' && prospect.payback_years != null && <div><dt className="text-gray-400 text-xs">Payback</dt><dd>{prospect.payback_years} yrs</dd></div>}
-                    {prospect.location && <div><dt className="text-gray-400 text-xs">Location</dt><dd>{prospect.location}</dd></div>}
+                    {prospect.location && (
+                      <div>
+                        <dt className="text-gray-400 text-xs">Location</dt>
+                        <dd className="flex items-center gap-2">
+                          <span>{prospect.location}</span>
+                          <a
+                            href={
+                              prospect.place_id
+                                ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(prospect.place_id)}`
+                                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(prospect.location)}`
+                            }
+                            target="_blank" rel="noopener noreferrer"
+                            className="text-[11px] text-blue-500 hover:text-blue-700 underline shrink-0"
+                            title="Open in Google Maps">Maps</a>
+                        </dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
                 <div>
