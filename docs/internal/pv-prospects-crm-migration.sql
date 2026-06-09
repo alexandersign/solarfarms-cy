@@ -51,6 +51,11 @@ ALTER TABLE pv_prospects
 CREATE INDEX IF NOT EXISTS idx_pv_prospects_director1 ON pv_prospects(contact_director_1);
 CREATE INDEX IF NOT EXISTS idx_pv_prospects_all_directors ON pv_prospects(all_directors);
 
+-- Phase 3b: Deal tracking — probability override + expected close date
+ALTER TABLE pv_prospects
+  ADD COLUMN IF NOT EXISTS close_probability  INT,   -- 0-100, manual override (null = use stage default)
+  ADD COLUMN IF NOT EXISTS expected_close_date TEXT; -- YYYY-MM-DD
+
 -- Phase 3: Email sequences + Tasks
 ALTER TABLE pv_prospects
   ADD COLUMN IF NOT EXISTS sequence_step INT DEFAULT 0,   -- 0=not enrolled, 1=awaiting fu1, 2=awaiting fu2, 3=done

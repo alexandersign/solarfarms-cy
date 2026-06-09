@@ -5,7 +5,8 @@ import { useSession, signOut } from 'next-auth/react'
 import { LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-type CrmNav = 'prospects' | 'knowledge'
+const ALEXANDER_EMAIL = 'alexander.papacosta@lighthief.com'
+type CrmNav = 'prospects' | 'knowledge' | 'dashboard'
 
 export function CrmHeader({
   activeNav,
@@ -17,6 +18,7 @@ export function CrmHeader({
   const { data: session } = useSession()
   const myEmail = session?.user?.email ?? ''
   const myName = session?.user?.name ?? ''
+  const isAlexander = myEmail === ALEXANDER_EMAIL
 
   return (
     <div className="sticky top-0 z-50 shadow-md">
@@ -50,6 +52,18 @@ export function CrmHeader({
               >
                 Knowledge
               </Link>
+              {isAlexander && (
+                <Link
+                  href="/crm/dashboard"
+                  className={`px-3 py-1 rounded text-sm font-semibold transition ${
+                    activeNav === 'dashboard'
+                      ? 'bg-[#C9A432] text-[#1A365D]'
+                      : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              )}
             </nav>
           </div>
           <div className="flex items-center gap-3">

@@ -127,6 +127,7 @@ type ProspectFull = PvProspect & {
   all_directors?: string; contact_director_2?: string
   connection_terms_status?: string; env_permit_status?: string; building_permit_status?: string
   sequence_step?: number; tasks?: CrmTask[]
+  close_probability?: number; expected_close_date?: string
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -221,6 +222,8 @@ export default function CrmPage() {
   const [formData,     setFormData]     = useState<ProspectFull>(EMPTY_PROSPECT)
   const [actionResult, setActionResult] = useState<{success:boolean;message:string}|null>(null)
   const [noteText,     setNoteText]     = useState<Record<string,string>>({})
+  const [logForm,      setLogForm]      = useState<Record<string,'call'|'email'|null>>({})
+  const [logText,      setLogText]      = useState<Record<string,string>>({})
   const [taskForm,     setTaskForm]     = useState<Record<string,{type:CrmTaskType;text:string;due:string}>>({})
   const [groupBy,      setGroupBy]      = useState(false)
   const [openFolders,  setOpenFolders]  = useState<Set<string>>(new Set(['pv_epc','pv_bess','pv_om','bess','other_dev','Other']))
@@ -388,6 +391,20 @@ export default function CrmPage() {
       setNoteText(prev => ({ ...prev, [id]: '' }))
       patchRow(id, { activity_feed: d.data.activity_feed, last_contact_date: d.data.last_contact_date })
     }
+  }
+
+  /** Submit a quick call/email log — always succeeds even with no text (uses default body). */
+  const submitLog = async (id: string, type: 'call' | 'email') => {
+    const text = (logText[id] || '').trim() || (type === 'call' ? 'Call logged' : 'Email logged')
+    setLogForm(prev => ({ ...prev, [id]: null }))
+    setLogText(prev => ({ ...prev, [id]: '' }))
+    const res = await fetch('/api/crm/prospects/activity', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, type, body: text }),
+    })
+    const d = await res.json()
+    if (d.success) patchRow(id, { activity_feed: d.data.activity_feed, last_contact_date: d.data.last_contact_date })
   }
 
   // ─── Tasks ────────────────────────────────────────────────────────────────
@@ -1132,13 +1149,40 @@ export default function CrmPage() {
               </div>
 
               {/* Quick log call/email */}
-              <div className="flex gap-2">
-                <Button size="sm" variant="outline" onClick={()=>prospect.id&&addNote(prospect.id,'call')}>
-                  <PhoneCall className="w-3 h-3 mr-1"/>Log call
-                </Button>
-                <Button size="sm" variant="outline" onClick={()=>prospect.id&&addNote(prospect.id,'email')}>
-                  <Mail className="w-3 h-3 mr-1"/>Log email
-                </Button>
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline"
+                    onClick={()=>setLogForm(prev=>({...prev,[prospect.id||'']:prev[prospect.id||'']===null||!prev[prospect.id||'']?'call':null}))}>
+                    <PhoneCall className="w-3 h-3 mr-1"/>Log call
+                  </Button>
+                  <Button size="sm" variant="outline"
+                    onClick={()=>setLogForm(prev=>({...prev,[prospect.id||'']:prev[prospect.id||'']===null||prev[prospect.id||'']!=='email'?'email':null}))}>
+                    <Mail className="w-3 h-3 mr-1"/>Log email
+                  </Button>
+                </div>
+                {logForm[prospect.id||''] && (
+                  <div className="flex gap-2 items-center">
+                    <input
+                      autoFocus
+                      type="text"
+                      placeholder={logForm[prospect.id||''] === 'call' ? 'Call summary… (Enter to save)' : 'Email summary… (Enter to save)'}
+                      value={logText[prospect.id||''] || ''}
+                      onChange={e => setLogText(prev => ({ ...prev, [prospect.id||'']: e.target.value }))}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' && prospect.id) submitLog(prospect.id, logForm[prospect.id||'']!)
+                        if (e.key === 'Escape') setLogForm(prev => ({ ...prev, [prospect.id||'']: null }))
+                      }}
+                      className="flex-1 border rounded-md px-3 py-1.5 text-sm"
+                    />
+                    <Button size="sm" onClick={()=>prospect.id&&submitLog(prospect.id,logForm[prospect.id||'']!)}>
+                      Save
+                    </Button>
+                    <button className="text-gray-400 hover:text-gray-600"
+                      onClick={()=>setLogForm(prev=>({...prev,[prospect.id||'']:null}))}>
+                      <X className="w-4 h-4"/>
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Details — inline editable */}

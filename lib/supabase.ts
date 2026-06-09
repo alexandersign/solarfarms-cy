@@ -284,6 +284,9 @@ export interface PvProspect {
   sequence_step?: number   // 0=not enrolled, 1=awaiting follow-up 1, 2=awaiting follow-up 2, 3=done
   // Tasks queue
   tasks?: CrmTask[]
+  // Deal tracking
+  close_probability?: number   // 0-100, manual override (null = stage default)
+  expected_close_date?: string // YYYY-MM-DD
 }
 
 export interface GridOperatorContact {
