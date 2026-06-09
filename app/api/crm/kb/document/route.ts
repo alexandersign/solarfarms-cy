@@ -25,7 +25,9 @@ export async function GET(request: NextRequest) {
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
         'X-Content-Type-Options': 'nosniff',
-        'Cache-Control': 'private, no-store',
+        'Cache-Control': 'private, no-store, no-cache, must-revalidate',
+        'X-Robots-Tag': 'noindex, nofollow, noarchive',
+        'Referrer-Policy': 'no-referrer',
       },
     })
   } catch {
