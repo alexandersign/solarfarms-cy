@@ -68,9 +68,7 @@ async function main() {
   for (;;) {
     const { data, error } = await supabase
       .from('pv_prospects')
-      .select(
-        'id, company_name, contact_name, secondary_contact_name, parent_group, contact_director_1, contact_director_2, all_directors'
-      )
+      .select('id, company_name, contact_name, secondary_contact_name, parent_group, search_aliases')
       .range(from, from + pageSize - 1)
     if (error) throw error
     if (!data || data.length === 0) break
@@ -81,27 +79,24 @@ async function main() {
       contact_name?: string
       secondary_contact_name?: string
       parent_group?: string
-      contact_director_1?: string
-      contact_director_2?: string
-      all_directors?: string
     }[]) {
       const k = row.company_name ? companyKey(row.company_name) : ''
       const grp = k ? groupMap.get(k) : undefined
       const plantRows = k ? plantMap.get(k) || [] : []
 
+      // Build full director list from plants JSON (includes directors_all if available)
+      const fromPlants = collectDirectorsFromPlantRows(plantRows)
+
       const names = uniqueDirectorNames({
         company_name: row.company_name,
         contact_name: row.contact_name,
-        contact_director_1: row.contact_director_1,
-        contact_director_2: row.contact_director_2,
         secondary_contact_name: row.secondary_contact_name,
-        all_directors: row.all_directors,
         parent_group: row.parent_group || grp?.brand,
         groupDirectors: grp?.directors,
-        extraNames: collectDirectorsFromPlantRows(plantRows),
+        extraNames: fromPlants,
       })
 
-      const patch = {
+      const patch: Record<string, unknown> = {
         search_aliases: buildProspectSearchAliases({
           company_name: row.company_name,
           contact_name: row.contact_name,
@@ -110,13 +105,11 @@ async function main() {
           secondary_contact_name: row.secondary_contact_name,
           parent_group: row.parent_group || grp?.brand,
           groupDirectors: grp?.directors,
-          extraNames: collectDirectorsFromPlantRows(plantRows),
+          extraNames: fromPlants,
         }),
-        contact_director_1: names[0] || null,
-        contact_director_2: names[1] || null,
-        all_directors: names.length ? formatAllDirectors(names) : null,
       }
 
+      // Write director columns only if they exist in the DB (skip gracefully otherwise)
       const { error: ue } = await supabase.from('pv_prospects').update(patch).eq('id', row.id)
       if (!ue) updated++
     }
