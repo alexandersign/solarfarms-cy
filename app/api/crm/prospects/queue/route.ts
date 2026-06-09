@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-  const all = (data || []) as {
+  const all = (data as unknown as {
     id: string
     plant_name?: string
     company_name?: string
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
     assigned_name?: string
     activity_feed?: ActivityEntry[]
     priority?: string
-  }[]
+  }[]) || []
 
   // ─── Compute today's call/email activity for this user ────────────────────
   let callsToday = 0

@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-  const prospects = (data || []) as {
+  const prospects = (data as unknown as {
     id: string
     company_name?: string
     outreach_status?: string
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
     tasks?: CrmTask[]
     assigned_to?: string
     assigned_name?: string
-  }[]
+  }[]) || []
 
   let created = 0
   let skipped = 0
