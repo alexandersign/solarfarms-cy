@@ -323,6 +323,85 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
       text: `${g.name}: ${g.signingNote}`,
     })),
   },
+  // ─── Client pain points (curtailment + DAM market intel) ──────────────────
+  {
+    id: 'client-pain-points',
+    title: 'Client pain points — curtailment & market context',
+    summary:
+      'Use this section to anchor BESS conversations. EAC publishes daily curtailment reports — the 2022–2023 data below is from official DSO records. DAM spreads are from real TSOC trading data (Oct 2025–Feb 2026).',
+    callouts: [
+      {
+        type: 'info',
+        text:
+          'Curtailment events more than doubled from 2022 to 2023 (110 → 233 events). The average curtailment per event rose from 11% to 19%. In February 2023 alone, one day saw 67.5% curtailed. This is the fastest-growing pain point for operational PV owners.',
+      },
+      {
+        type: 'warning',
+        text:
+          'BESS cannot buy from the DAM grid in Cyprus yet (regulatory restriction as of 2026). The revenue model for BESS is: arbitrage via contracted storage charging during solar generation + discharge into evening peak — not grid-to-charge.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'EAC system-wide curtailment statistics (official DSO data)',
+        headers: ['Year', 'Events', 'Avg curtailment per event', 'Worst day', 'Peak month'],
+        rows: [
+          ['2022', '110', '11.1%', '38.5% (8 Oct 2022)', 'Apr & Nov (17–18 events)'],
+          ['2023', '233', '18.8%', '67.5% (19 Feb 2023)', 'May (31 events)'],
+          ['Trend', '+112%', '+7.7 pp', 'Worsening', 'Year-round, no relief'],
+        ],
+      },
+      {
+        caption: 'Cyprus DAM price profile — real TSOC data Oct 2025–Feb 2026',
+        headers: ['Period', 'Avg price (€/MWh)', 'Key insight'],
+        rows: [
+          ['Midday solar (10:00–14:00)', '€101 / €77 trough at noon', 'Deep duck curve — worst revenue hours for PV'],
+          ['Evening peak (17:00–21:00)', '€183', 'BESS discharge window — best revenue'],
+          ['Off-peak night (22:00–05:00)', '€171', 'Charging window if needed'],
+          ['Peak–midday spread', '€82/MWh (up to €107 in Nov)', 'BESS arbitrage opportunity per cycle'],
+          ['Zero-price periods', '5.2% of all half-hours', 'Pure curtailment — no revenue at all'],
+        ],
+      },
+      {
+        caption: 'BESS revenue pitch — operational PV owner example (4 MW park)',
+        headers: ['Scenario', 'Annual impact'],
+        rows: [
+          ['Lost revenue from curtailment (11–19% avg, EAC tariff ~€110/MWh)', '€50k–€140k/year per MW curtailed'],
+          ['BESS captures 2h storage × 250 cycles/yr × 4 MW = 2,000 MWh/yr', 'Revenue at €183/MWh evening = €366k/yr'],
+          ['BESS avoids forced disconnection (Photovoltaic Disconnection Process — EAC)', 'Protects grid connection agreement'],
+          ['Net payback on 4 MWh BESS at €400k CAPEX (Lighthief pricing)', '~4–6 years with curtailment + arbitrage'],
+        ],
+      },
+      {
+        caption: 'Objection handling',
+        headers: ['Client objection', 'Response'],
+        rows: [
+          [
+            '"We don\'t have that much curtailment"',
+            'EAC publishes daily curtailment reports. We can calculate your specific loss from your CERA generation data and EAC tariff records. Ask for their metering data.',
+          ],
+          [
+            '"The price of BESS is too high"',
+            'Our Linyang/EVE LFP pricing is €100k–168k/MWh at scale — below EU market. The payback with curtailment + arbitrage is 4–6 years, after which storage revenue is pure upside.',
+          ],
+          [
+            '"We\'ll wait for the regulation to mature"',
+            'Every year without BESS is €50k–140k of curtailed energy per MW. The grid is getting worse — 233 curtailment events in 2023 vs 110 in 2022. First mover advantage on connection terms.',
+          ],
+          [
+            '"We don\'t want the complexity of operating a BESS"',
+            'Lighthief takes full LTSA responsibility — availability guarantee, remote monitoring, capacity warranty. One contract, one point of contact.',
+          ],
+        ],
+      },
+    ],
+    links: [
+      { label: 'EAC Curtailments page (official)', href: 'https://www.eac.com.cy/EN/RegulatedActivities/Distribution/DistributionSystemOperation/Pages/res-e_curtailments.aspx' },
+      { label: 'EAC Photovoltaic Disconnection Process PDF', href: 'https://www.eac.com.cy/EN/RegulatedActivities/Distribution/DistributionSystemOperation/Documents/Photovoltaic_Disconnection_Process_EN.pdf' },
+      { label: 'EAC RES Connection Terms (POS tables)', href: 'https://www.eac.com.cy/EN/RegulatedActivities/Distribution/renewableenergy/Pages/ressystems.aspx' },
+      { label: 'Cyprus TSOC Day-Ahead Market', href: 'https://www.tsoc.org.cy/en/electricity-market/day-ahead-market' },
+    ],
+  },
   {
     id: 'offers-sent',
     title: 'Offers sent',
