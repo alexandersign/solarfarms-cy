@@ -1,0 +1,54 @@
+{
+  "scraped_at": "2026-06-09T16:03:03.790490+00:00",
+  "note": "CERA BESS licensees. As of Jan 2026: 33+ private companies hold BESS licences representing >1,000 MW. CERA has licensed 482 MW/1,600 MWh standalone + 790 MW hybrid. The CERA licence archive (portal.cera.org.cy) requires JS rendering for full extraction. Run with --playwright flag or manually download from the CERA portal.",
+  "market_context": {
+    "private_bess_licence_holders": "33+",
+    "total_licensed_standalone_mw": 482,
+    "total_licensed_standalone_mwh": 1600,
+    "total_licensed_hybrid_mw": 790,
+    "source": "pv-magazine Jan 2026, energy-storage.news"
+  },
+  "known_licensees": [
+    {
+      "company_name": "TSOC (Cyprus Transmission System Operator)",
+      "licence_type": "standalone_bess",
+      "capacity_mw": 120,
+      "capacity_mwh": 400,
+      "location": "3 substations (Cyprus-wide)",
+      "status": "approved by CERA, target operational Jun 2026",
+      "source": "energy-storage.news",
+      "crm_prospect": false,
+      "sales_angle": null
+    }
+  ],
+  "companies_found_on_pages": [],
+  "storage_links_found": [
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/Licenses_fees.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/Genikes Adeies/List of General License Fees.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Table of License Fees.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/Genikes Adeies/Terms of General License.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/Eksaireseis/exemption-construction.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/Eksaireseis/exemption-operation.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Energy Storage System Installation License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Energy Storage System Operation License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/Electricity_Supply_License_Terms.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Electricity Supply to wholesale customers License application form.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Electricity Supply to wholesale customers License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Electricity Market Operator License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Balance Responsible Party License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Aggregator License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Interconnection Line Owner License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/licensing_EN/Interconnection Line Operator License (standard terms).pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/License_Application_Form.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/ aitiseis/15_ Πρότυποι όροι άδειας εγκατάστασης αποθήκευσης ενέργειας.pdf",
+    "https://www.cera.org.cy/Templates/00001/data/hlektrismos/adeiodotisi/ aitiseis/16_ Πρότυποι όροι άδειας λειτουργίας εγκατάστασης αποθήκευσης ενέργειας.pdf"
+  ],
+  "tables_found": [],
+  "instructions": [
+    "1. Visit https://portal.cera.org.cy and filter by \"Storage\" / \"BESS\" licence class",
+    "2. Download or copy the list of licence holders",
+    "3. Run sync-bess-licensees-to-crm.ts to push to Supabase pv_prospects",
+    "4. Or use Playwright: uncomment the playwright section below and re-run",
+    "5. Cross-reference with CERA annual report on data.gov.cy"
+  ]
+}

@@ -323,6 +323,249 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
       text: `${g.name}: ${g.signingNote}`,
     })),
   },
+  // ─── Cyprus market context ────────────────────────────────────────────────
+  {
+    id: 'cyprus-market-context',
+    title: 'Cyprus solar market — 2025/2026 context',
+    summary:
+      'Key market figures for anchoring BESS conversations. Source: TSOC, CERA, pv-magazine, EAC (all verified Q1–Q2 2026).',
+    callouts: [
+      {
+        type: 'info',
+        text:
+          'Jan 2026 regulation change: existing solar park owners can now co-locate BESS with their current plant without a new EAC connection application. This is the fastest path to market — no queue, no new POS needed. Lead with this for any operational prospect.',
+      },
+      {
+        type: 'info',
+        text:
+          '€40M EU Recovery & Resilience Fund (RRF) subsidy scheme launched Feb 2025 for 150 MW / 350 MWh of private storage. Clients who act now can still qualify. Creates real urgency.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'Cyprus PV market — installed capacity (TSOC official data)',
+        headers: ['End of year', 'Cumulative solar PV', 'Annual addition', 'Context'],
+        rows: [
+          ['2022', '~450 MW', '—', 'Pre-duck-curve era'],
+          ['2023', '~638 MW', '+188 MW', 'Curtailment starts appearing'],
+          ['2024', '797 MW', '+159 MW', '29% curtailment rate'],
+          ['2025 (est.)', '~957 MW', '+122 MW', '47% curtailment — record year'],
+          ['1 GW target', 'Exceeded', '—', 'National target met early; grid cannot cope'],
+        ],
+      },
+      {
+        caption: 'Cyprus curtailment crisis — national scale',
+        headers: ['Metric', 'Value', 'Source'],
+        rows: [
+          ['2025 annual curtailment rate', '47.44%', 'pv-magazine, Jan 2026'],
+          ['2025 total curtailed energy', '306,000 MWh', 'pv-magazine, Jan 2026'],
+          ['H1 2025 curtailment rate', '58%', 'CERA/EAC reports'],
+          ['March 2025 (worst month)', '38,155 MWh in one month', 'CERA data'],
+          ['Curtailment hitting commercial parks', '89% of total', 'CERA breakdown'],
+          ['2024 curtailment (comparison)', '166,997 MWh / 29%', 'EAC DSO'],
+          ['Year-on-year increase', '+83% in volume', '2024→2025'],
+        ],
+      },
+      {
+        caption: 'BESS market — private investment landscape',
+        headers: ['Metric', 'Value'],
+        rows: [
+          ['Private companies with BESS licences', '33+ companies', ],
+          ['Total potential storage licensed', '>1,000 MW', ],
+          ['CERA-licensed standalone storage', '482 MW / 1,600 MWh', ],
+          ['CERA-licensed hybrid (RES + storage)', '790 MW', ],
+          ['TSOC-owned BESS (3 substations)', '120 MW / 400 MWh — target operational Jun 2026', ],
+          ['€40M RRF subsidy target', '150 MW / 350 MWh of private storage', ],
+          ['NECP 2030 RES share target', '33.17% of gross final energy', ],
+        ],
+      },
+    ],
+    links: [
+      { label: 'pv-magazine: Cyprus curtailment hits 47% in 2025', href: 'https://www.pv-magazine.com/2026/01/13/cyprus-solar-curtailment-hits-47-in-2025/' },
+      { label: 'CERA production stats (monthly MWh by type)', href: 'https://www.cera.org.cy/en-gb/smv/sp-graph' },
+      { label: 'TSOC MMS reports (curtailment, DAM, balancing)', href: 'https://tsoc.org.cy/competitive-electricity-market/mms-reports/' },
+      { label: 'Cyprus NECP 2021–2030 (Dec 2024)', href: 'https://cdn.climatepolicyradar.org/navigator/CYP/2024/cyprus-updated-final-national-energy-and-climate-plan-necp-2021-2030_ed6636c45211f9fea8966557f855871c.pdf' },
+    ],
+  },
+
+  // ─── Regulatory landscape ─────────────────────────────────────────────────
+  {
+    id: 'regulatory-landscape',
+    title: 'Regulatory landscape — CERA, TSOC, EAC, MECI',
+    summary:
+      'Quick reference for who does what in Cyprus energy. Know this to answer client questions about licensing, grid connection, permits, and Guarantees of Origin.',
+    callouts: [
+      {
+        type: 'info',
+        text:
+          'Guarantees of Origin (GOOs): TSOC issues GOOs to registered RES producers. Clients with co-located BESS can generate GOOs during discharge — an additional revenue stream worth mentioning to larger commercial clients.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'Regulatory bodies — roles at a glance',
+        headers: ['Body', 'Role', 'Relevant to our sales', 'Website'],
+        rows: [
+          ['CERA', 'Energy regulator — licenses PV & BESS, sets tariffs, issues GOO frameworks, approves LTSA rates', 'Client BESS licence status; confirm LTSA tariff; check licence type before pricing', 'cera.org.cy'],
+          ['TSOC', 'Transmission operator — runs DAM, issues curtailment orders, registers GOOs, owns 120 MW BESS', 'DAM price data; curtailment orders; GOO registration for clients', 'tsoc.org.cy'],
+          ['EAC', 'Distribution operator — issues Preliminary Operating System (POS / connection terms), meters RES', 'Connection queue; POS acceptance date; EAC RES tables by district', 'eac.com.cy'],
+          ['MECI', 'Ministry — policy, One-Stop-Shop (OSS) for RES permits, RRF subsidies', 'Environmental + building permits (bfu.meci.gov.cy); subsidy eligibility', 'meci.gov.cy'],
+        ],
+      },
+      {
+        caption: 'BESS project licensing timeline — greenfield vs co-located retrofit',
+        headers: ['Step', 'Greenfield BESS', 'Co-located retrofit (post Jan 2026)'],
+        rows: [
+          ['1. CERA application', 'Exemption (<1 MW) or licence (>1 MW) — 2–4 months', 'Same — but EAC steps below may be skipped'],
+          ['2. EAC connection terms (POS)', '6–18 months — biggest bottleneck', 'SKIPPED — uses existing PV connection'],
+          ['3. Environmental permit (MECI OSS)', '2–6 months depending on MW', '2–6 months (same)'],
+          ['4. Building permit', '1–3 months (local authority)', '1–3 months (same)'],
+          ['5. Connection agreement & commissioning', '3–6 months', '3–6 months (same)'],
+          ['Total typical timeline', '14–37 months from application', '6–15 months — 2× faster'],
+        ],
+      },
+      {
+        caption: 'Key tariff reference points (2026)',
+        headers: ['Tariff / rate', 'Value', 'Source'],
+        rows: [
+          ['EAC purchase price (LV, basic + fuel adj.)', '~11.0 cent/kWh (€110/MWh)', 'EAC Jan 2026 monthly table'],
+          ['Cyprus DAM average (Oct 2025–Feb 2026)', '€158/MWh overall; €77/MWh midday trough', 'TSOC DAM data (our analysis)'],
+          ['DAM evening peak (17:00–21:00)', '€183/MWh', 'TSOC DAM data'],
+          ['Peak–midday arbitrage spread', '€82–107/MWh per cycle', 'TSOC DAM data (seasonal variation)'],
+          ['LTSA rate (CERA Tier C)', '€1,740/MWh/year', 'lib/portfolio-data.ts — internal SSOT'],
+        ],
+      },
+    ],
+    links: [
+      { label: 'CERA licence lists (producers + storage)', href: 'https://www.cera.org.cy/el-gr/ilektrismos/details/katalogoi' },
+      { label: 'EAC RES connection terms (4 districts)', href: 'https://www.eac.com.cy/EN/RegulatedActivities/Distribution/renewableenergy/Pages/ressystems.aspx' },
+      { label: 'MECI One-Stop-Shop RES licensing (Greek)', href: 'https://bfu.meci.gov.cy' },
+      { label: 'TSOC Guarantees of Origin', href: 'https://tsoc.org.cy/competitive-electricity-market/' },
+    ],
+  },
+
+  // ─── Commercial rooftop playbook ──────────────────────────────────────────
+  {
+    id: 'commercial-playbook',
+    title: 'Commercial rooftop PV — sales playbook',
+    summary:
+      'The commercial segment (warehouses, hotels, factories) is different from developer-BESS. ROI is cost avoidance (EAC tariff), not curtailment recovery. Pitch is simpler and faster.',
+    callouts: [
+      {
+        type: 'info',
+        text:
+          'Commercial rooftop does NOT use the curtailment angle — these are self-consumption systems. The pitch is entirely about reducing EAC electricity bills. Payback under 5 years makes it a straightforward financial decision.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'Qualifying criteria for commercial rooftop prospect',
+        headers: ['Criterion', 'Threshold', 'Why it matters'],
+        rows: [
+          ['Roof area', '>300 m²', 'Below this, system is too small to justify sales time'],
+          ['Payback period', '<7 years', 'Clients reject beyond 7yr; our sweet spot is 3.5–5yr'],
+          ['Annual savings', '>€7,000/year', 'Minimum meaningful revenue justification'],
+          ['Existing PV on roof', 'No / unknown', 'Confirmed existing PV = deprioritise (retrofit more complex)'],
+          ['Business type', 'Warehouse / hotel / clinic / factory', 'High daytime loads = best self-consumption match'],
+          ['Google Maps presence', 'GMB entry preferred', 'Gives us phone, website, address for outreach'],
+        ],
+      },
+      {
+        caption: 'Standard pitch sequence',
+        headers: ['Step', 'Action', 'Tool / resource'],
+        rows: [
+          ['1. Identify', 'Satellite roof scan → CRM commercial segment', 'Queue tab — commercial prospects with high/urgent priority'],
+          ['2. First call', 'Introduce: "We noticed your building qualifies for rooftop solar — annual saving of approx €X"', 'Use estimated_deal_value and annual_savings_eur from CRM card'],
+          ['3. Follow-up email', 'Send intro email with roof image and savings summary', 'CRM → "Email selected" → commercial intro template'],
+          ['4. Site visit', 'Confirm roof condition, meter, single-phase vs three-phase', 'Book with contact from CRM card'],
+          ['5. Proposal', 'kWp configuration, payback table, Lighthief scope', 'Use BESS commercial summary KB doc as base'],
+        ],
+      },
+      {
+        caption: 'Key numbers for Cyprus commercial rooftop (our sweep data)',
+        headers: ['Metric', 'Value', 'Notes'],
+        rows: [
+          ['Qualified prospects (current sweep)', '41 sites', '4-city OSM + Google Maps sweep, Jun 2026'],
+          ['Average payback', '3.9 years', 'Weighted across all 41 qualified sites'],
+          ['Average annual savings', '€7,400–€29,400/yr', 'Range by system size'],
+          ['Average roof area (qualified)', '>200 m²', 'Minimum qualifying threshold in sweep'],
+          ['Typical system size', '25–280 kWp', 'Drives the savings range above'],
+          ['EAC commercial tariff (self-consumption offset)', '~11 cent/kWh LV', 'Revenue per kWh not exported'],
+          ['Key industries targeted', 'Warehouse / Logistics (primary), Hotel, Clinic', 'From industry tag in CRM'],
+        ],
+      },
+      {
+        caption: 'Key difference: commercial vs developer BESS pitch',
+        headers: ['Dimension', 'Developer (BESS retrofit)', 'Commercial (rooftop PV)'],
+        rows: [
+          ['Core pitch', 'Stop losing curtailed revenue — 47% wasted', 'Cut your electricity bill by €X/year'],
+          ['Decision maker', 'Director / SPV owner (register lookup)', 'Building owner / ops manager (GMB)'],
+          ['Typical deal size', '€400k–€5M (BESS EPC)', '€20k–€200k (PV install)'],
+          ['Sales cycle', '3–18 months', '1–6 months'],
+          ['Key objection', '"Regulation is unclear"', '"Too expensive / disruption to operations"'],
+          ['Data source', 'CERA archive + company register', 'Google Maps / OSM sweep'],
+          ['Intro email', 'Curtailment pain point + BESS specs', 'Savings estimate + roof photo'],
+        ],
+      },
+    ],
+  },
+
+  // ─── Data sources & research tools ───────────────────────────────────────
+  {
+    id: 'data-sources',
+    title: 'Data sources & research tools (internal)',
+    summary:
+      'What data we collect, where it lives, and how to refresh it. Run enrichment pipelines from the project root on the local dev machine — not in production.',
+    callouts: [
+      {
+        type: 'warning',
+        text:
+          'Only 12.6% of 1,403 CERA plant entries have directors enriched from the Cyprus Company Register. Run `npm run enrich:register` periodically to improve coverage — especially before a targeted outreach batch.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'Prospect data sources',
+        headers: ['Source', 'What it gives', 'Records', 'How to refresh'],
+        rows: [
+          ['CERA licensing archive', '1,403 PV/wind/BESS plant licences — company name, MW, district, status', '1,403 plants', '`npm run import:cera` (monthly)'],
+          ['Cyprus Company Register (e-filing)', 'Directors, reg number, registered address for each SPV', '177 of 1,403 enriched (12.6%)', '`npm run enrich:register` (Playwright, slow)'],
+          ['Hunter.io', 'Verified contact emails + confidence score', '93 emails on file (6.6%)', '`npm run enrich:contacts`'],
+          ['EAC RES district tables (4 PDFs)', '227 rows with connection terms dates + application refs', 'marketing/research/eac-res-systems.json', '`python scripts/research/parse-all-eac-pdfs.py`'],
+          ['EAC curtailment reports (2022–2023)', '343 system-wide daily events — date, MWh, % curtailed', 'marketing/research/eac-curtailment-events.json', 'Download new PDFs, rerun parse script'],
+          ['CERA production stats', 'Monthly MWh by producer type (PV FIT, net-billing, wind, IPP)', 'marketing/research/cera-production-monthly.json', '`python scripts/research/scrape-cera-production-stats.py`'],
+          ['Commercial sweep (OSM + Google Maps)', '41 qualified commercial rooftop prospects', 'docs/solar-prospects/solar-sweep-merged-*.csv', '`npm run commercial:pipeline`'],
+          ['Cyprus developer groups', 'SPVs clustered by shared director / brand', '132 groups identified', '`npm run cluster:developers`'],
+        ],
+      },
+      {
+        caption: 'Key npm commands',
+        headers: ['Command', 'What it does'],
+        rows: [
+          ['`npm run cyprus:full`', 'Full developer pipeline: import CERA → cluster → Hunter → sync to CRM'],
+          ['`npm run commercial:pipeline`', 'Commercial sweep → Hunter → sync to CRM'],
+          ['`npm run enrich:register`', 'Cyprus company register Playwright scrape (directors + reg number)'],
+          ['`npm run enrich:contacts`', 'Hunter email verification on enriched plants'],
+          ['`npm run commercial:enrich-email`', 'Hunter for commercial CRM rows with website but no email'],
+          ['`npm run commercial:enrich-register`', 'Register lookup for commercial Ltd-named businesses'],
+          ['`npm run crm:backfill-aliases`', 'Rebuild search_aliases and all_directors for all CRM rows'],
+          ['`npm run docs:update`', 'Regenerate all templated docs from SSOT (portfolio-data.ts)'],
+        ],
+      },
+      {
+        caption: 'EAC & regulatory data links',
+        headers: ['Resource', 'URL', 'Notes'],
+        rows: [
+          ['CERA monthly production (MWh by type)', 'cera.org.cy/smv/sp-graph', 'HTML table — PV FIT, net-billing, wind, etc.'],
+          ['CERA licence lists', 'cera.org.cy/ilektrismos/details/katalogoi', 'All producer + storage licences'],
+          ['EAC RES systems tables (4 districts)', 'eac.com.cy RES systems page', 'PDF download per district'],
+          ['TSOC MMS reports (curtailment, DAM, balancing)', 'tsoc.org.cy/mms-reports', 'Full trading data archive'],
+          ['Cyprus company register', 'efiling.drcor.mcit.gov.cy', 'Directors, addresses, annual returns'],
+        ],
+      },
+    ],
+  },
+
   // ─── Client pain points (curtailment + DAM market intel) ──────────────────
   {
     id: 'client-pain-points',
@@ -333,7 +576,7 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
       {
         type: 'info',
         text:
-          'Curtailment events more than doubled from 2022 to 2023 (110 → 233 events). The average curtailment per event rose from 11% to 19%. In February 2023 alone, one day saw 67.5% curtailed. This is the fastest-growing pain point for operational PV owners.',
+          'VERIFIED 2025 full-year data (pv-magazine, Jan 2026): Cyprus curtailment hit 47.44% — 306,000 MWh wasted. This nearly doubled the 2024 figure (166,997 MWh / 29%). EAC DSO reports (2022–2023) show events growing from 110 → 233 per year. The trend is accelerating.',
       },
       {
         type: 'warning',

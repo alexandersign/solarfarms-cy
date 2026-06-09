@@ -775,6 +775,10 @@ export default function CrmPage() {
                     <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterDistrict} onChange={e=>setFilterDistrict(e.target.value)}>
                       <option value="all">All</option>{DISTRICTS.map(d=><option key={d}>{d}</option>)}
                     </select></div>
+                  <div><Label className="text-xs">Offer type</Label>
+                    <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterOfferType} onChange={e=>setFilterOfferType(e.target.value)}>
+                      <option value="all">All</option>{OFFER_TYPES.map(o=><option key={o.value} value={o.value}>{o.label}</option>)}
+                    </select></div>
                   <div><Label className="text-xs">Assigned</Label>
                     <select className="w-full border rounded-md px-2 py-2 text-sm" value={filterAssigned} onChange={e=>setFilterAssigned(e.target.value as 'all'|'mine')}>
                       <option value="all">All</option><option value="mine">Mine</option>
@@ -1276,6 +1280,16 @@ export default function CrmPage() {
                   {prospect.operational_mwp ? <span>{prospect.operational_mwp.toFixed(1)} MWp op.</span> : null}
                   {prospect.construction_mwp ? <span>{prospect.construction_mwp.toFixed(1)} MWp constr.</span> : null}
                   {prospect.bess_potential_mwh ? <span className="text-[#1A365D]">{prospect.bess_potential_mwh.toFixed(1)} MWh BESS</span> : null}
+                  {prospect.bess_sales_angle && (
+                    <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold capitalize ${
+                      prospect.bess_sales_angle === 'retrofit' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'
+                    }`}>{prospect.bess_sales_angle.replace(/_/g,' ')}</span>
+                  )}
+                  {prospect.curtailment_rate != null && (
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-red-100 text-red-700">
+                      {prospect.curtailment_rate}% curtailed
+                    </span>
+                  )}
                   {prospect.satellite_check && prospect.satellite_check!=='unknown' && <span className="capitalize">{prospect.satellite_check.replace(/_/g,' ')}</span>}
                   {lastActivity && <span className="text-gray-400 ml-auto">last activity {formatDate(lastActivity)}</span>}
                 </div>
@@ -1406,6 +1420,14 @@ export default function CrmPage() {
                     )}
                     <InlineEdit label="Secondary contact" value={prospect.secondary_contact_name}
                       onSave={v=>prospect.id&&putRow(prospect.id,{secondary_contact_name:v})} />
+                    {prospect.secondary_contact_email && (
+                      <div><dt className="text-gray-400 text-xs">Secondary email</dt>
+                        <dd><a href={`mailto:${prospect.secondary_contact_email}`} className="text-blue-600 hover:underline text-sm">{prospect.secondary_contact_email}</a></dd></div>
+                    )}
+                    {prospect.secondary_contact_phone && (
+                      <div><dt className="text-gray-400 text-xs">Secondary phone</dt>
+                        <dd><a href={`tel:${prospect.secondary_contact_phone}`} className="text-blue-600 hover:underline text-sm">{prospect.secondary_contact_phone}</a></dd></div>
+                    )}
                     <InlineEdit label="Title" value={prospect.contact_title} onSave={v=>prospect.id&&putRow(prospect.id,{contact_title:v})} />
                     <InlineEdit label="Email" value={prospect.contact_email} type="email"
                       href={prospect.contact_email?`mailto:${prospect.contact_email}`:undefined}
@@ -1528,6 +1550,20 @@ export default function CrmPage() {
                   <p className="text-xs text-gray-400 italic">No activity yet.</p>
                 )}
               </div>
+
+              {/* Tags viewer */}
+              {(prospect.tags||[]).length > 0 && (
+                <div>
+                  <h4 className="font-medium text-gray-700 text-sm mb-2">Data tags</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {(prospect.tags||[]).map((tag: string) => (
+                      <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
