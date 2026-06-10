@@ -54,15 +54,24 @@ export async function GET(request: NextRequest) {
   const userName = (token.name as string) || userEmail
   const today = new Date().toISOString().split('T')[0]
   const callTarget = getDailyCallTarget(userEmail)
+  const isManager = userEmail === 'alexander.papacosta@lighthief.com'
 
-  // Fetch all active prospects (not won/lost/not_interested)
-  const { data, error } = await supabase
+  // Fetch prospects for this operator only (or all for Alexander as manager)
+  // Each salesperson sees only prospects assigned to them.
+  let query = supabase
     .from('pv_prospects')
     .select(
       'id, plant_name, company_name, outreach_status, last_contact_date, created_at, ' +
       'next_follow_up, tasks, assigned_to, assigned_name, activity_feed, priority'
     )
     .not('outreach_status', 'in', '("won","lost","not_interested")')
+
+  if (!isManager) {
+    // Show prospects assigned to me, plus unassigned (anyone can action these)
+    query = query.or(`assigned_to.eq.${userEmail},assigned_to.is.null`)
+  }
+
+  const { data, error } = await query
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 

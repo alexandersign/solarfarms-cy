@@ -107,7 +107,8 @@ export async function GET(request: NextRequest) {
     'Alexander': 'alexander.papacosta@lighthief.com',
     'Zinovia': 'zinovia@lighthief.com',
     'Costas': 'costas@lighthief.com',
-    'Office': 'office@lighthief.com',
+    'Andreas': 'office@lighthief.com',
+    'Office': 'office@lighthief.com',  // legacy entries keep working
   }
 
   const activitySummary = Object.entries(activityMap)
