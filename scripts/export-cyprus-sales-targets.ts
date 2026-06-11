@@ -32,7 +32,7 @@ function main() {
   } else {
     plants = filterPvRows(readCeraCsv())
       .map((r) => rowsToPlantRecords([r])[0])
-      .filter((p) => p.pv_kw >= 100 || p.bess_kw >= 100)
+      .filter((p) => p.pv_kw >= 250 || p.bess_kw >= 250)  // 250 kW minimum — developer/BESS segment only
       .map((plant) => {
         const portfolio = matchPortfolioClient(plant.company_name)
         return { ...plant, ...scorePlant({ plant, eac_res_listed: false, eac_match_confidence: 0, existing_client: portfolio.existing_client }), ...portfolio }

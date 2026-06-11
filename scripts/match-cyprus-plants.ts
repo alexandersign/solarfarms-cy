@@ -148,7 +148,7 @@ function loadPlants(): CeraPlantRecord[] {
     return data.plants as CeraPlantRecord[]
   }
   const rows = filterPvRows(readCeraCsv())
-  return rowsToPlantRecords(rows).filter((p) => p.pv_kw >= 100 || p.bess_kw >= 100)
+  return rowsToPlantRecords(rows).filter((p) => p.pv_kw >= 250 || p.bess_kw >= 250)
 }
 
 async function main() {

@@ -32,7 +32,7 @@ function parseArgs() {
   const args = process.argv.slice(2)
   let dryRun = false
   let jsonOnly = false
-  let minKw = 100
+  let minKw = 250  // 250 kW minimum — below this are commercial rooftop installs, not utility parks
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--dry-run') dryRun = true
     if (args[i] === '--json-only') jsonOnly = true

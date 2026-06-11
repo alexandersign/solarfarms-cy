@@ -143,6 +143,7 @@ async function main() {
   const allPlants: PlantRow[] = (JSON.parse(fs.readFileSync(PLANTS_JSON, 'utf-8')).plants || [])
     .filter((p: PlantRow) => !p.existing_client && (p.priority_score || 0) >= minScore)
     .filter((p: PlantRow) => p.cera_license_no)
+    .filter((p: PlantRow) => (p.pv_kw || 0) >= 250)  // 250 kW minimum — smaller installations are commercial rooftop
 
   // developer-group lookup (parent_group, domain, best contact fallback)
   const companyToGroup = new Map<string, DeveloperGroup>()
