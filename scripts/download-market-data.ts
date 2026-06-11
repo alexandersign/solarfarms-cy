@@ -26,6 +26,11 @@ import {
   extractExcelLinksFromHtml,
   extractReportDateFromFilename,
 } from '../lib/tsoc-market-fetch'
+import {
+  detectTsocColumns,
+  resolveRecordVolume,
+  looksLikeEnergyVolume,
+} from '../lib/market/tsoc-excel-parse'
 
 const TSOC_BASE_URL = TSOC_BASE
 const TSOC_REPORTS_URL = TSOC_DAM_REPORTS_URL
@@ -191,82 +196,27 @@ async function parseAllExcelFiles(): Promise<void> {
         
         if (data.length < 2) continue
         
-        // Find header row - look for common column names
-        let headerRowIdx = -1
-        let priceColIdx = -1
-        let volumeColIdx = -1
-        let periodColIdx = -1
-        let dateColIdx = -1
-        let buyColIdx = -1
-        let sellColIdx = -1
-        
-        for (let i = 0; i < Math.min(data.length, 15); i++) {
-          const row = data[i]
-          if (!row) continue
-          
-          for (let j = 0; j < row.length; j++) {
-            const cell = String(row[j] || '').toLowerCase().trim()
-            
-            // Look for price column (MCP, price, clearing price, DAM Price)
-            if (cell.includes('price') || cell.includes('mcp') || cell === 'dam price' || 
-                cell.includes('clearing') || cell.includes('€/mwh') || cell.includes('eur/mwh')) {
-              priceColIdx = j
-              headerRowIdx = i
-            }
-            
-            // Look for volume column
-            if (cell.includes('volume') || cell.includes('mwh') || cell.includes('quantity') ||
-                cell.includes('matched')) {
-              if (cell.includes('buy') || cell.includes('demand')) {
-                buyColIdx = j
-              } else if (cell.includes('sell') || cell.includes('supply')) {
-                sellColIdx = j
-              } else if (volumeColIdx === -1) {
-                volumeColIdx = j
-              }
-              if (headerRowIdx === -1) headerRowIdx = i
-            }
-            
-            // Look for period/hour column
-            if (cell.includes('period') || cell.includes('hour') || cell.includes('mtu') ||
-                cell.includes('time') || cell.includes('interval') || cell.includes('market time')) {
-              periodColIdx = j
-              if (headerRowIdx === -1) headerRowIdx = i
-            }
-            
-            // Look for date column
-            if (cell.includes('date') || cell.includes('delivery')) {
-              dateColIdx = j
-              if (headerRowIdx === -1) headerRowIdx = i
-            }
-          }
-          
-          if (priceColIdx >= 0) break
-        }
-        
-        // If we couldn't find a price column, try alternative parsing
-        // Some files have a simpler structure with just hours and prices
+        let cols = detectTsocColumns(data)
+        let { headerRowIdx, priceColIdx, periodColIdx, dateColIdx } = cols
+        let { volumeColIdx, buyColIdx, sellColIdx } = cols
+
+        // Fallback: locate price column from numeric headers in row 0
         if (priceColIdx === -1) {
-          // Look for numeric data that looks like prices (typically 20-300 EUR/MWh)
           for (let i = 0; i < Math.min(data.length, 10); i++) {
             const row = data[i]
             if (!row) continue
             for (let j = 0; j < row.length; j++) {
-              const val = Number(row[j])
-              if (val >= 10 && val <= 500 && i > 0) {
-                // This might be a price - check if the column above has a header
-                const header = String(data[0]?.[j] || '').toLowerCase()
-                if (header.includes('price') || header.includes('€') || header.includes('eur')) {
-                  priceColIdx = j
-                  headerRowIdx = 0
-                  break
-                }
+              const header = String(row[j] ?? '').toLowerCase()
+              if (header.includes('price') || header.includes('mcp') || header.includes('eur')) {
+                priceColIdx = j
+                headerRowIdx = i
+                break
               }
             }
             if (priceColIdx >= 0) break
           }
         }
-        
+
         if (headerRowIdx === -1 || priceColIdx === -1) {
           // Last resort: assume first numeric column after period is price
           // Skip this sheet
@@ -379,10 +329,12 @@ async function parseAllExcelFiles(): Promise<void> {
             }
           }
           
-          const volume = volumeColIdx >= 0 ? Number(row[volumeColIdx]) || 0 : 0
-          const buyVolume = buyColIdx >= 0 ? Number(row[buyColIdx]) || 0 : 0
-          const sellVolume = sellColIdx >= 0 ? Number(row[sellColIdx]) || 0 : 0
-          
+          const { volume, buyVolume, sellVolume } = resolveRecordVolume(price, row, {
+            volumeColIdx,
+            buyColIdx,
+            sellColIdx,
+          })
+
           allRecords.push({
             date,
             hour: Math.min(Math.max(hour, 0), 23),
@@ -525,8 +477,10 @@ function generateStatistics(records: any[]): any {
       avgPrice: dayPrices.reduce((a: number, b: number) => a + b, 0) / dayPrices.length,
       minPrice: Math.min(...dayPrices),
       maxPrice: Math.max(...dayPrices),
-      avgVolume: dayRecords.reduce((a: number, r: any) => a + r.volume, 0) / dayRecords.length,
-      totalVolume: dayRecords.reduce((a: number, r: any) => a + r.volume, 0),
+      avgVolume:
+        dayRecords.reduce((a: number, r: any) => a + effectiveVolume(r), 0) /
+        dayRecords.length,
+      totalVolume: dayRecords.reduce((a: number, r: any) => a + effectiveVolume(r), 0),
       peakHourPrice: peakRecords.length > 0 
         ? peakRecords.reduce((a: number, r: any) => a + r.price, 0) / peakRecords.length : 0,
       offPeakAvgPrice: offPeakRecords.length > 0
@@ -538,15 +492,22 @@ function generateStatistics(records: any[]): any {
   daily.sort((a, b) => a.date.localeCompare(b.date))
   
   // Hourly averages across all days
-  const hourlyMap = new Map<number, number[]>()
+  const hourlyPriceMap = new Map<number, number[]>()
+  const hourlyVolMap = new Map<number, number[]>()
   for (const r of records) {
-    if (!hourlyMap.has(r.hour)) hourlyMap.set(r.hour, [])
-    hourlyMap.get(r.hour)!.push(r.price)
+    if (!hourlyPriceMap.has(r.hour)) hourlyPriceMap.set(r.hour, [])
+    hourlyPriceMap.get(r.hour)!.push(r.price)
+    const vol = r.buyVolume > 0 ? r.buyVolume : r.volume
+    if (vol > 0 && looksLikeEnergyVolume(vol, r.price)) {
+      if (!hourlyVolMap.has(r.hour)) hourlyVolMap.set(r.hour, [])
+      hourlyVolMap.get(r.hour)!.push(vol)
+    }
   }
-  
+
   const hourlyAvg: HourlyAvg[] = []
   for (let h = 0; h < 24; h++) {
-    const hPrices = hourlyMap.get(h) || []
+    const hPrices = hourlyPriceMap.get(h) || []
+    const hVols = hourlyVolMap.get(h) || []
     if (hPrices.length === 0) {
       hourlyAvg.push({ hour: h, avgPrice: 0, minPrice: 0, maxPrice: 0, avgVolume: 0, count: 0 })
     } else {
@@ -555,7 +516,8 @@ function generateStatistics(records: any[]): any {
         avgPrice: hPrices.reduce((a, b) => a + b, 0) / hPrices.length,
         minPrice: Math.min(...hPrices),
         maxPrice: Math.max(...hPrices),
-        avgVolume: 0, // Would need volume data
+        avgVolume:
+          hVols.length > 0 ? hVols.reduce((a, b) => a + b, 0) / hVols.length : 0,
         count: hPrices.length,
       })
     }
@@ -584,6 +546,11 @@ function getWeekStart(dateStr: string): string {
   const diff = d.getDate() - day + (day === 0 ? -6 : 1) // Monday
   d.setDate(diff)
   return d.toISOString().slice(0, 10)
+}
+
+function effectiveVolume(r: { price: number; volume: number; buyVolume: number }): number {
+  const v = r.buyVolume > 0 ? r.buyVolume : r.volume
+  return looksLikeEnergyVolume(v, r.price) ? v : 0
 }
 
 /**

@@ -94,6 +94,34 @@ interface BESSArbitrage {
   annualRevenuePerMWh: number
 }
 
+interface BessSaturationSummary {
+  inputs: {
+    avgDailyMWh: number
+    peakDemandMW: number
+    mustRunMW: number
+  }
+  windows: {
+    nonSolar16h: {
+      totalDemandMWh: number
+      mustRunMWh: number
+      addressableMWh: number
+    }
+    evening17to21: {
+      totalDemandMWh: number
+      addressableMWh: number
+    }
+  }
+  bessPools: {
+    ceraLicensedMWh: number
+    totalLicensedPlusTsoMWh: number
+    lighthiefPipelineMWh: number
+  }
+  saturation: {
+    licensedPlusTsoVs16hAddressablePct: number
+    gapMWhToSaturate16h: number
+  }
+}
+
 type TimeRange = '7d' | '30d' | '90d' | 'all'
 
 const PERIOD_MAX_FROM = '2025-11-01'
@@ -124,6 +152,7 @@ export function MarketDashboard() {
   const [latestRecords, setLatestRecords] = useState<LatestRecord[]>([])
   const [latestDate, setLatestDate] = useState('')
   const [bessData, setBessData] = useState<BESSArbitrage | null>(null)
+  const [saturation, setSaturation] = useState<BessSaturationSummary | null>(null)
   const [lastUpdated, setLastUpdated] = useState('')
   const [dateRange, setDateRange] = useState({ start: '', end: '' })
 
@@ -140,10 +169,11 @@ export function MarketDashboard() {
       }
       
       // Fetch all data in parallel
-      const [summaryRes, latestRes, bessRes] = await Promise.all([
+      const [summaryRes, latestRes, bessRes, saturationRes] = await Promise.all([
         fetch(`/api/market-data?view=summary`),
         fetch(`/api/market-data?view=latest`),
         fetch(`/api/market-data?view=bess`),
+        fetch(`/api/market-data?view=saturation`),
       ])
       
       if (!summaryRes.ok) throw new Error('Failed to fetch summary data')
@@ -151,6 +181,7 @@ export function MarketDashboard() {
       const summaryData = await summaryRes.json()
       const latestData = latestRes.ok ? await latestRes.json() : null
       const bessDataRes = bessRes.ok ? await bessRes.json() : null
+      const saturationData = saturationRes.ok ? await saturationRes.json() : null
       
       setIsDemo(summaryData.isDemo || false)
       setOverall(summaryData.statistics?.overall || null)
@@ -172,6 +203,10 @@ export function MarketDashboard() {
       
       if (bessDataRes) {
         setBessData(bessDataRes.bess || null)
+      }
+
+      if (saturationData?.saturation) {
+        setSaturation(saturationData.saturation)
       }
     } catch (err) {
       setError((err as Error).message)
@@ -714,6 +749,62 @@ export function MarketDashboard() {
             <p className="text-xs text-gray-500 mt-4 text-center">
               Based on 86.32% round-trip efficiency (full system AC-AC) &bull; 1 cycle/day &bull; 
               Charge during solar hours (06-18), discharge during peak (17-21)
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* BESS Market Absorption */}
+      {saturation && (
+        <Card className="border-cyan-200 bg-gradient-to-r from-cyan-50 to-slate-50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Activity className="w-5 h-5 text-cyan-700" />
+              BESS Market Absorption
+            </CardTitle>
+            <CardDescription>
+              Modeled 16h non-solar demand (18:00–09:00) minus {saturation.inputs.mustRunMW} MW must-run
+              thermal — vs CERA-licensed + TSOC BESS capacity
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                <p className="text-lg font-bold text-gray-900">
+                  {saturation.windows.nonSolar16h.addressableMWh.toLocaleString()}
+                </p>
+                <p className="text-xs text-gray-500">Addressable MWh/day</p>
+                <p className="text-xs text-gray-400">16h window</p>
+              </div>
+              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                <p className="text-lg font-bold text-gray-900">
+                  {saturation.windows.evening17to21.addressableMWh.toLocaleString()}
+                </p>
+                <p className="text-xs text-gray-500">Evening addressable</p>
+                <p className="text-xs text-gray-400">17:00–21:00</p>
+              </div>
+              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                <p className="text-lg font-bold text-cyan-800">
+                  {saturation.bessPools.totalLicensedPlusTsoMWh.toLocaleString()}
+                </p>
+                <p className="text-xs text-gray-500">Licensed + TSOC MWh</p>
+                <p className="text-xs text-gray-400">CERA registry</p>
+              </div>
+              <div className="text-center p-3 bg-cyan-100 rounded-lg shadow-sm border border-cyan-300">
+                <p className="text-lg font-bold text-cyan-900">
+                  {saturation.saturation.licensedPlusTsoVs16hAddressablePct}%
+                </p>
+                <p className="text-xs text-cyan-800 font-medium">Saturation</p>
+                <p className="text-xs text-cyan-700">vs 16h addressable</p>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 text-center">
+              Peak grid ~{saturation.inputs.peakDemandMW} MW &bull; DAM avg{' '}
+              {saturation.inputs.avgDailyMWh.toLocaleString()} MWh/day &bull; Must-run{' '}
+              {saturation.windows.nonSolar16h.mustRunMWh.toLocaleString()} MWh over 16h &bull;
+              {saturation.saturation.gapMWhToSaturate16h > 0
+                ? ` Gap: ${saturation.saturation.gapMWhToSaturate16h.toLocaleString()} MWh to saturate`
+                : ' Licensed capacity exceeds modeled addressable demand'}
             </p>
           </CardContent>
         </Card>

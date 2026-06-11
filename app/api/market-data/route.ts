@@ -3,7 +3,7 @@
  * 
  * GET /api/market-data
  *   Query params:
- *     - view: 'summary' | 'daily' | 'hourly' | 'records' | 'latest' | 'bess'
+ *     - view: 'summary' | 'daily' | 'hourly' | 'records' | 'latest' | 'bess' | 'saturation'
  *     - date: specific date (YYYY-MM-DD)
  *     - startDate: range start
  *     - endDate: range end
@@ -21,6 +21,7 @@ import {
   getDailyStatsLastNDays,
   calculateBESSArbitrage,
   generateDemoData,
+  getBessSaturation,
 } from '@/lib/market-data'
 
 export async function GET(request: Request) {
@@ -79,6 +80,11 @@ export async function GET(request: Request) {
             overall: demoData.statistics.overall,
             isDemo: true,
           })
+
+        case 'saturation': {
+          const saturation = getBessSaturation()
+          return NextResponse.json({ saturation, isDemo: true })
+        }
         
         case 'records': {
           if (date) {
@@ -136,6 +142,11 @@ export async function GET(request: Request) {
           bess: calculateBESSArbitrage(summaryBess),
           overall: summaryBess.statistics.overall,
         })
+      }
+
+      case 'saturation': {
+        const saturation = getBessSaturation()
+        return NextResponse.json({ saturation })
       }
       
       case 'records': {
