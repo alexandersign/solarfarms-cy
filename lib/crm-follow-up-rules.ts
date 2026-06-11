@@ -61,6 +61,22 @@ export const FOLLOW_UP_RULES: FollowUpRule[] = [
     text: 'Re-engage — no response in 7 days',
     priority: 'medium',
   },
+  {
+    id: 'researching-data-chase',
+    stages: ['researching'],
+    daysWithoutContact: 10,
+    taskType: 'email',
+    text: 'Chase for data / documents — still waiting after 10 days',
+    priority: 'medium',
+  },
+  {
+    id: 'new-first-contact',
+    stages: ['new'],
+    daysWithoutContact: 5,
+    taskType: 'call',
+    text: 'First contact overdue — prospect not yet reached',
+    priority: 'medium',
+  },
 ]
 
 /** Days since a date string (YYYY-MM-DD or ISO). Returns null if no date given. */
