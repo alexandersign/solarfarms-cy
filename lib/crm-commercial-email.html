@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Lighthief — Rooftop Solar for Your Business</title>
+<!--
+  Lighthief CRM commercial rooftop PV intro email (email-safe, table-based).
+  Tokens injected by lib/crm-outreach.ts:
+    {{CONTACT_NAME}} {{COMPANY}} {{ADDRESS}} {{DISTRICT}}
+    {{SYSTEM_KWP}} {{ANNUAL_SAVINGS_EUR}} {{PAYBACK_YEARS}} {{ROOF_AREA_M2}}
+    {{SAVINGS_BAR}} {{ROOF_IMAGE_BLOCK}}
+    {{SENDER_NAME}} {{SENDER_TITLE}} {{SENDER_EMAIL}} {{SENDER_PHONE}}
+    {{UNSUBSCRIBE_URL}} {{YEAR}}
+-->
+<style>
+  body, table, td, p, a, h1, h2 { margin:0; padding:0; border:0; }
+  body { background-color:#F0F4F8; font-family:Arial,Helvetica,sans-serif; -webkit-text-size-adjust:100%; }
+  table { border-collapse:collapse; }
+  img { display:block; border:0; outline:none; text-decoration:none; }
+  a { color:#1A365D; }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#F0F4F8;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F0F4F8;">
+<tr><td align="center" style="padding:24px 16px;">
+
+  <table width="620" cellpadding="0" cellspacing="0" border="0" style="width:620px;max-width:620px;background-color:#FFFFFF;border-radius:8px;overflow:hidden;">
+
+    <!-- Header -->
+    <tr>
+      <td style="background-color:#1A365D;background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);padding:20px 28px;">
+        <span style="color:#C9A432;font-size:20px;font-weight:bold;">Lighthief Cyprus</span>
+        <span style="color:#ffffff;opacity:0.85;font-size:13px;"> &nbsp;·&nbsp; Rooftop Solar &amp; Energy Savings</span>
+      </td>
+    </tr>
+
+    <!-- Roof image (prospect's own satellite roof photo if available, else stock) -->
+    {{ROOF_IMAGE_BLOCK}}
+
+    <!-- Headline -->
+    <tr>
+      <td style="padding:26px 28px 4px;">
+        <h1 style="color:#1A365D;font-size:20px;font-weight:bold;margin:0 0 6px;">
+          Cut your electricity costs with rooftop solar
+        </h1>
+        <p style="color:#7a869a;font-size:13px;margin:0;">
+          Free savings estimate for {{COMPANY}}{{ADDRESS_SUFFIX}}
+        </p>
+      </td>
+    </tr>
+
+    <!-- Body -->
+    <tr>
+      <td style="padding:16px 28px 8px;color:#222222;font-size:15px;line-height:1.6;">
+        <p style="margin-bottom:14px;">Dear {{CONTACT_NAME}},</p>
+        <p style="margin-bottom:14px;">
+          Based on a satellite analysis of your premises{{ADDRESS_LINE}}, we believe
+          a rooftop solar installation could significantly reduce your monthly
+          EAC electricity costs — with no upfront complexity and a clear payback timetable.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Savings highlight box -->
+    <tr>
+      <td style="padding:6px 28px 12px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+          style="background:linear-gradient(135deg,#f0f7ff 0%,#e8f4f0 100%);border:1px solid #c8ddf0;border-radius:8px;">
+          <tr>
+            <td style="padding:18px 20px;">
+              <p style="margin:0 0 12px;color:#1A365D;font-weight:bold;font-size:15px;">
+                Estimated benefits for {{COMPANY}}
+              </p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:14px;">
+                {{SAVINGS_ROWS}}
+              </table>
+              <p style="margin:10px 0 0;color:#7a869a;font-size:11px;">
+                Based on satellite roof assessment and current EAC commercial tariffs (~11 cent/kWh).
+                Final figures subject to on-site survey.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- What we handle -->
+    <tr>
+      <td style="padding:6px 28px 12px;color:#222;font-size:14px;line-height:1.6;">
+        <p style="margin:0 0 8px;color:#1A365D;font-weight:bold;font-size:15px;">We manage the entire process</p>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;color:#444;">
+          <tr><td style="padding:3px 0;">&#10003;&nbsp; Roof load assessment &amp; structural review</td></tr>
+          <tr><td style="padding:3px 0;">&#10003;&nbsp; All permits — building permit, EAC net billing application</td></tr>
+          <tr><td style="padding:3px 0;">&#10003;&nbsp; Supply, installation and commissioning</td></tr>
+          <tr><td style="padding:3px 0;">&#10003;&nbsp; EAC metering &amp; net billing connection</td></tr>
+          <tr><td style="padding:3px 0;">&#10003;&nbsp; Long-term O&amp;M with performance monitoring</td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- About Lighthief (brief) -->
+    <tr>
+      <td style="padding:6px 28px 8px;color:#444;font-size:12.5px;line-height:1.5;border-top:1px solid #eee;">
+        <p style="margin:8px 0 4px;">
+          <strong>Lighthief Cyprus</strong> — licensed EPC contractor operating across Cyprus and 10+ countries.
+          We have installed commercial and utility-scale solar for businesses, municipalities and energy developers.
+          One team, one contract, zero hassle.
+        </p>
+      </td>
+    </tr>
+
+    <!-- CTA -->
+    <tr>
+      <td style="padding:8px 28px 24px;color:#222;font-size:15px;line-height:1.55;">
+        <p style="margin-bottom:18px;">
+          I would be happy to prepare a <strong>free, no-obligation savings estimate</strong>
+          specific to your building — no commitment required.
+        </p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 20px;">
+          <tr><td bgcolor="#1A365D" style="border-radius:6px;">
+            <a href="mailto:{{SENDER_EMAIL}}?subject=Solar%20savings%20estimate%20for%20{{COMPANY_ENCODED}}"
+               style="display:inline-block;padding:12px 22px;color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;">
+              Get a free savings estimate
+            </a>
+          </td></tr>
+        </table>
+        <p style="margin-top:8px;color:#333;font-size:14px;line-height:1.5;">
+          Kind regards,<br />
+          <strong>{{SENDER_NAME}}</strong><br />
+          {{SENDER_TITLE}}, Lighthief Cyprus Ltd<br />
+          <a href="tel:{{SENDER_PHONE}}" style="color:#2B5FA0;text-decoration:none;">{{SENDER_PHONE}}</a> &nbsp;·&nbsp;
+          <a href="mailto:{{SENDER_EMAIL}}" style="color:#2B5FA0;text-decoration:none;">{{SENDER_EMAIL}}</a>
+        </p>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="background-color:#F0F4F8;padding:16px 28px;color:#7a869a;font-size:11px;line-height:1.5;">
+        Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1,
+        Office 201, 3035 Limassol, Cyprus · <a href="https://solarfarms.cy" style="color:#7a869a;">solarfarms.cy</a><br />
+        You received this email because your business may benefit from rooftop solar in Cyprus.
+        <a href="{{UNSUBSCRIBE_URL}}" style="color:#7a869a;text-decoration:underline;">Unsubscribe</a> · &copy; {{YEAR}} Lighthief Cyprus Ltd
+      </td>
+    </tr>
+
+  </table>
+</td></tr>
+</table>
+
+</body>
+</html>

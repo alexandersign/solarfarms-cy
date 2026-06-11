@@ -511,6 +511,135 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
   },
 
   // ─── Data sources & research tools ───────────────────────────────────────
+  // ─── SPIN qualifying questions ────────────────────────────────────────────
+  {
+    id: 'spin-qualifying',
+    title: 'SPIN qualifying questions — call guide',
+    summary:
+      'Use the Log call button in each prospect card to record SPIN phase, progress, and answers. The questions below guide what to ask in each phase. Log answers after the call — they automatically update the prospect record.',
+    callouts: [
+      {
+        type: 'info',
+        text:
+          'SPIN phases: S = Situation (understand their position), P = Problem (surface pain), I = Implication (deepen consequences of inaction), N = Need-payoff (get them to articulate the value). Always progress S → P → I → N across multiple calls before closing.',
+      },
+      {
+        type: 'warning',
+        text:
+          'Never pitch the solution during Situation or Problem phases — listen only. The prospect must first articulate the problem and its implications themselves. Move to pricing only after a clear Need-payoff is established.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'Developer / PV park — qualifying questions by SPIN phase',
+        headers: ['Phase', 'Question to ask', 'What you\'re learning', 'CRM field'],
+        rows: [
+          ['S', 'Is the park operational, under construction, or still in permitting?', 'Offer type: O&M / EPC / early pipeline', 'rtb_status'],
+          ['S', 'What is the total installed capacity (MWp)?', 'BESS sizing, O&M pricing tier', 'capacity_mwp'],
+          ['S', 'Do you have connection terms (POS) from EAC?', 'RTB status — if yes, fast-track to BESS scoping', 'connection_terms_status'],
+          ['S', 'Is the park under O&M contract and when does it expire?', 'Renewal opportunity window', '—'],
+          ['P', 'Is the park being curtailed by EAC? Approximately what %?', 'Opens BESS retrofit conversation', 'curtailment_rate'],
+          ['P', 'Have you had inverter failures or downtime in the last 12 months?', 'O&M pain — guaranteed uptime pitch', '—'],
+          ['P', 'Are you aware of the annual revenue lost to curtailment?', 'Quantifies the problem they may not have calculated', '—'],
+          ['I', 'Cyprus curtailment doubled 2024→2025 (now 47%). If it reaches 70%, how does that affect your lender covenants?', 'Forces financial consequence calculation', '—'],
+          ['I', 'If curtailment continues for 3 more years without action, what is the cumulative revenue loss?', 'Anchors the cost of inaction', '—'],
+          ['N', 'If a BESS paid back in 4–5 years and stopped the curtailment loss — would that justify a feasibility study?', 'Trial close — measure readiness', '—'],
+          ['N', 'Who else is involved in the decision — directors, lenders, bank?', 'Maps the decision unit for next steps', '—'],
+        ],
+      },
+      {
+        caption: 'Commercial rooftop — qualifying questions by SPIN phase',
+        headers: ['Phase', 'Question to ask', 'What you\'re learning', 'CRM field'],
+        rows: [
+          ['S', 'Do you own the building or lease?', 'CRITICAL: tenants need landlord consent — changes entire permitting path', '—'],
+          ['S', 'Approximately what is your monthly EAC electricity bill?', 'System sizing: €1k/month ≈ 15 kWp ≈ €3,500/yr saving', 'annual_savings_eur'],
+          ['S', 'Is the roof accessible and free of obstructions?', 'Affects usable area — determines whether site visit is worthwhile', '—'],
+          ['S', 'Do you have the title deed and building permit on file?', 'Permitting readiness — see document checklist section', '—'],
+          ['P', 'What % of your operating costs is electricity?', 'For warehouses/cold storage often 30–50% — compelling saving', '—'],
+          ['P', 'Does your business operate mainly during the day?', 'Daytime = highest self-consumption → best ROI without battery', '—'],
+          ['I', 'EAC commercial tariffs have risen ~25% in 3 years. What happens to your margins if they rise another 20%?', 'Urgency: rising energy costs vs fixed solar cost', '—'],
+          ['I', 'Are competitors in your sector starting to install solar to reduce costs?', 'Competitive pressure — works well in hospitality and logistics', '—'],
+          ['N', 'If we could save you €X/year with a sub-5-year payback — what would that mean for your business?', 'Let them articulate the value — much stronger than us stating it', '—'],
+          ['N', 'Would you be open to a free site visit to confirm the roof area and give a precise savings estimate?', 'Trial close — site visit is the natural next step', '—'],
+        ],
+      },
+      {
+        caption: 'Additional BESS-specific questions (for operational PV parks)',
+        headers: ['Phase', 'Question', 'What you\'re learning'],
+        rows: [
+          ['S', 'Do you have the existing SLD (Single Line Diagram) from EAC for the park?', 'Essential for BESS integration design'],
+          ['S', 'Has EAC confirmed the connection point can accept BESS discharge (evening)?', 'Some points only allow daytime PV export — need grid study'],
+          ['S', 'Has a geotechnical / soil study been done at the site?', 'Required for ground-mounted BESS foundations'],
+          ['S', 'Does CERA have a BESS construction licence issued for this site?', 'CERA licence must come BEFORE EAC PCC application'],
+          ['P', 'What is your average curtailment percentage? Do you have EAC curtailment data?', 'Exact data for BESS sizing and ROI model'],
+        ],
+      },
+    ],
+  },
+
+  // ─── Document checklists ──────────────────────────────────────────────────
+  {
+    id: 'document-checklists',
+    title: 'Document checklists — what to collect before permitting',
+    summary:
+      'Use this as a back-office and sales tracking guide. Check off documents as they are received. All three land registry documents must reference the same plot number — this is the most common cause of EAC application queries.',
+    callouts: [
+      {
+        type: 'warning',
+        text:
+          'THREE-DOCUMENT RULE: Title deed, building permit, and topographic plan must ALL reference the same plot number. If plot numbers have changed (land consolidation / re-parcelling), you need EITHER a new title deed with the updated number OR the old cadastral register map (αρχαίο κτηματολόγιο) proving the old plot = new plot. Without this chain, EAC will query the application.',
+      },
+      {
+        type: 'info',
+        text:
+          'Net Metering ended 31 Dec 2025 — all new applications are Net Billing. For existing Net Metering parks: adding BESS triggers reclassification to Net Billing terms. CERA licence must be obtained BEFORE submitting the EAC PCC (ΠΟΣ) application.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'Commercial / Residential rooftop PV — document checklist (≤500 kWp Net Billing)',
+        headers: ['Document', 'Who provides it', 'Critical notes', 'Status field in CRM'],
+        rows: [
+          ['Title deed (τίτλος ιδιοκτησίας)', 'Client', 'Must show current plot number — EAC cross-checks via GIS', 'documents_received.title_deed'],
+          ['Building permit (άδεια οικοδομής)', 'Client', 'Must reference the same plot number as title deed', 'documents_received.building_permit'],
+          ['Topographic / cadastral plan', 'Client / licensed surveyor', 'Must show same plot number; must identify the building on the plot', 'documents_received.topographic_plan'],
+          ['EAC energy statement (12 months)', 'Client via EAC portal', 'Downloads from eac.com.cy customer portal; shows meter number + kWh history', 'documents_received.eac_energy_statement'],
+          ['List of electrical appliances + operating hours', 'Client', 'Needed to calculate consumption profile and confirm self-consumption ratio', 'documents_received.appliance_list'],
+          ['E-ΔΔ-744 (electrical engineer\'s declaration)', 'Our electrical engineer', 'Signed by licensed ETEK electrical engineer; required for all sizes without exception', 'documents_received.e_dd_744'],
+          ['Structural / load study (roof)', 'Licensed civil engineer', 'Confirms roof slab can support panel weight (~15–20 kg/m²). Must state allowable load, current load, conclusion.', 'documents_received.load_study'],
+          ['Lease consent (if leasing)', 'Landlord', 'Required only if client does not own the building. Landlord must sign EAC application.', 'documents_received.lease_consent'],
+          ['CERA construction licence (>30 kWp)', 'CERA portal (cera.org.cy)', 'Required before EAC application for systems above 30 kWp. Apply first.', 'documents_received.cera_licence'],
+        ],
+      },
+      {
+        caption: 'PV park BESS retrofit — additional documents',
+        headers: ['Document', 'Who provides it', 'Critical notes'],
+        rows: [
+          ['Existing SLD (Single Line Diagram)', 'Client / EAC file', 'EAC holds the original on file; client or their engineer can request a copy'],
+          ['CERA BESS construction licence', 'CERA portal', 'Sequential with EAC — CERA first, then EAC PCC. Exemption applies for <1 MW.'],
+          ['Curtailment data (EAC DSO / TSOC)', 'EAC / TSOC MMS reports', 'Official documentation of curtailment %. Required for BESS sizing justification.'],
+          ['Geotechnical / soil study', 'Licensed geotechnical engineer', 'For ground-mounted containers with foundations. Confirms bearing capacity for 10–20 tonne containers.'],
+          ['Updated SLD including BESS', 'Our electrical engineer', 'Shows integration of inverter, battery modules, protection relays, and grid connection'],
+          ['Grid connection capacity confirmation', 'EAC / grid study', 'Confirms connection point can accept BESS discharge (not just PV injection)'],
+          ['EAC co-location exemption (if applicable)', 'EAC', 'For parks using the Jan 2026 co-location regulation — no new PCC required'],
+        ],
+      },
+      {
+        caption: 'Standalone BESS — document checklist',
+        headers: ['Document', 'Who provides it', 'Critical notes'],
+        rows: [
+          ['Title deed / land ownership', 'Client', 'Must confirm right to develop the land'],
+          ['CERA BESS licence (full)', 'CERA portal', 'Full licence required — exemption does not apply for standalone. Apply first.'],
+          ['EAC PCC / connection terms', 'EAC', '6–18 month process; submit after CERA licence in hand'],
+          ['Environmental permit (DoE / MECI)', 'MECI OSS portal', 'Required for any installation above minimum thresholds'],
+          ['Building permit (local authority)', 'Local authority', 'BESS containers with foundations are classified as structures'],
+          ['Geotechnical study', 'Licensed engineer', 'Mandatory for foundations. Confirms soil bearing for containers + substation.'],
+          ['Grid connection capacity study', 'Licensed engineer', 'Required by EAC for standalone storage'],
+        ],
+      },
+    ],
+  },
+
   {
     id: 'data-sources',
     title: 'Data sources & research tools (internal)',

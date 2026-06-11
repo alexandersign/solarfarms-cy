@@ -21,6 +21,11 @@ import type { PvProspect, ActivityEntry, CrmTask, CrmTaskType } from '@/lib/supa
 import { CRM_USERS } from '@/lib/crm-users'
 import { normalizeRoofImageUrl } from '@/lib/crm-prospect-search'
 import { getDailyCallTarget } from '@/lib/crm-targets'
+import {
+  getQualifyingQuestions, questionsByPhase,
+  SPIN_PHASE_LABELS, PROGRESS_LABELS,
+  type SpinPhase, type CallProgress, type SpinCallData,
+} from '@/lib/crm-qualifying-questions'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -231,6 +236,8 @@ export default function CrmPage() {
   const [noteText,     setNoteText]     = useState<Record<string,string>>({})
   const [logForm,      setLogForm]      = useState<Record<string,'call'|'email'|null>>({})
   const [logText,      setLogText]      = useState<Record<string,string>>({})
+  const [spinData,     setSpinData]     = useState<Record<string, Partial<SpinCallData>>>({})
+  const [showSpin,     setShowSpin]     = useState<Record<string,boolean>>({})
   const [taskForm,     setTaskForm]     = useState<Record<string,{type:CrmTaskType;text:string;due:string}>>({})
   const [groupBy,      setGroupBy]      = useState(false)
   const [openFolders,  setOpenFolders]  = useState<Set<string>>(new Set(['pv_epc','pv_bess','pv_om','bess','other_dev','Other']))
@@ -405,15 +412,32 @@ export default function CrmPage() {
     }
   }
 
-  /** Submit a quick call/email log — always succeeds even with no text (uses default body). */
+  /** Submit a quick call/email log — embeds SPIN data when phase is selected. */
   const submitLog = async (id: string, type: 'call' | 'email') => {
-    const text = (logText[id] || '').trim() || (type === 'call' ? 'Call logged' : 'Email logged')
+    const rawText = (logText[id] || '').trim() || (type === 'call' ? 'Call logged' : 'Email logged')
+    const spin = spinData[id]
+    // Build structured body when SPIN phase is set
+    let body: string
+    if (type === 'call' && spin?.spin_phase) {
+      const structured: SpinCallData = {
+        spin_phase: spin.spin_phase as SpinPhase,
+        progress:   (spin.progress as CallProgress) || 'hold',
+        summary:    rawText,
+        answers:    spin.answers || {},
+        next_action: spin.next_action,
+      }
+      body = JSON.stringify(structured)
+    } else {
+      body = rawText
+    }
     setLogForm(prev => ({ ...prev, [id]: null }))
     setLogText(prev => ({ ...prev, [id]: '' }))
+    setSpinData(prev => ({ ...prev, [id]: {} }))
+    setShowSpin(prev => ({ ...prev, [id]: false }))
     const res = await fetch('/api/crm/prospects/activity', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, type, body: text }),
+      body: JSON.stringify({ id, type, body }),
     })
     const d = await res.json()
     if (d.success) patchRow(id, { activity_feed: d.data.activity_feed, last_contact_date: d.data.last_contact_date })
@@ -1349,29 +1373,121 @@ export default function CrmPage() {
                     <Mail className="w-3 h-3 mr-1"/>Log email
                   </Button>
                 </div>
-                {logForm[prospect.id||''] && (
-                  <div className="flex gap-2 items-center">
-                    <input
-                      autoFocus
-                      type="text"
-                      placeholder={logForm[prospect.id||''] === 'call' ? 'Call summary… (Enter to save)' : 'Email summary… (Enter to save)'}
-                      value={logText[prospect.id||''] || ''}
-                      onChange={e => setLogText(prev => ({ ...prev, [prospect.id||'']: e.target.value }))}
-                      onKeyDown={e => {
-                        if (e.key === 'Enter' && prospect.id) submitLog(prospect.id, logForm[prospect.id||'']!)
-                        if (e.key === 'Escape') setLogForm(prev => ({ ...prev, [prospect.id||'']: null }))
-                      }}
-                      className="flex-1 border rounded-md px-3 py-1.5 text-sm"
-                    />
-                    <Button size="sm" onClick={()=>prospect.id&&submitLog(prospect.id,logForm[prospect.id||'']!)}>
-                      Save
-                    </Button>
-                    <button className="text-gray-400 hover:text-gray-600"
-                      onClick={()=>setLogForm(prev=>({...prev,[prospect.id||'']:null}))}>
-                      <X className="w-4 h-4"/>
-                    </button>
-                  </div>
-                )}
+                {logForm[prospect.id||''] && (() => {
+                  const pid = prospect.id || ''
+                  const sd = spinData[pid] || {}
+                  const isCall = logForm[pid] === 'call'
+                  const questions = isCall ? getQualifyingQuestions(segment, prospect.offer_type) : []
+                  const phaseQs = sd.spin_phase ? questionsByPhase(questions, sd.spin_phase as SpinPhase) : []
+                  return (
+                    <div className="space-y-2 border rounded-lg p-3 bg-gray-50">
+                      {/* Summary text */}
+                      <div className="flex gap-2 items-center">
+                        <input autoFocus type="text"
+                          placeholder={isCall ? 'Call summary… (Enter to save)' : 'Email summary… (Enter to save)'}
+                          value={logText[pid] || ''}
+                          onChange={e => setLogText(prev => ({ ...prev, [pid]: e.target.value }))}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter' && prospect.id) submitLog(prospect.id, logForm[pid]!)
+                            if (e.key === 'Escape') setLogForm(prev => ({ ...prev, [pid]: null }))
+                          }}
+                          className="flex-1 border rounded-md px-3 py-1.5 text-sm bg-white"/>
+                        <button className="text-gray-400 hover:text-gray-600"
+                          onClick={()=>setLogForm(prev=>({...prev,[pid]:null}))}>
+                          <X className="w-4 h-4"/>
+                        </button>
+                      </div>
+
+                      {/* SPIN toggle for calls */}
+                      {isCall && (
+                        <button className="text-xs text-blue-500 hover:text-blue-700 underline"
+                          onClick={()=>setShowSpin(prev=>({...prev,[pid]:!prev[pid]}))}>
+                          {showSpin[pid] ? 'Hide SPIN fields' : '+ Add SPIN qualification'}
+                        </button>
+                      )}
+
+                      {isCall && showSpin[pid] && (
+                        <div className="space-y-2">
+                          {/* SPIN phase */}
+                          <div>
+                            <p className="text-xs text-gray-500 mb-1">SPIN phase of this call</p>
+                            <div className="flex gap-1">
+                              {(Object.entries(SPIN_PHASE_LABELS) as [SpinPhase, typeof SPIN_PHASE_LABELS[SpinPhase]][]).map(([phase, meta]) => (
+                                <button key={phase}
+                                  onClick={()=>setSpinData(prev=>({...prev,[pid]:{...sd,spin_phase:phase}}))}
+                                  className={`px-3 py-1 rounded text-xs font-bold border transition ${sd.spin_phase===phase ? 'text-white border-transparent' : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'}`}
+                                  style={sd.spin_phase===phase ? {background:meta.color,borderColor:meta.color} : {}}>
+                                  {meta.short} — {meta.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Progress */}
+                          <div>
+                            <p className="text-xs text-gray-500 mb-1">Call outcome</p>
+                            <div className="flex gap-1">
+                              {(Object.entries(PROGRESS_LABELS) as [CallProgress, typeof PROGRESS_LABELS[CallProgress]][]).map(([prog, meta]) => (
+                                <button key={prog}
+                                  onClick={()=>setSpinData(prev=>({...prev,[pid]:{...sd,progress:prog}}))}
+                                  className={`px-3 py-1 rounded text-xs font-semibold border transition ${sd.progress===prog ? 'text-white border-transparent' : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'}`}
+                                  style={sd.progress===prog ? {background:meta.color,borderColor:meta.color} : {}}>
+                                  {meta.icon} {meta.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Qualifying questions for current phase */}
+                          {phaseQs.length > 0 && (
+                            <div className="space-y-1.5">
+                              <p className="text-xs text-gray-500">
+                                {SPIN_PHASE_LABELS[sd.spin_phase as SpinPhase]?.label} questions for {segment === 'commercial' ? 'commercial' : 'developer'} prospect:
+                              </p>
+                              {phaseQs.map(q => (
+                                <div key={q.id} className="flex items-start gap-2">
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-xs font-medium text-gray-700 leading-snug">{q.question}</p>
+                                    <p className="text-[10px] text-gray-400 mt-0.5 italic">{q.hint}</p>
+                                  </div>
+                                  {q.options ? (
+                                    <select className="text-xs border rounded px-1.5 py-1 bg-white shrink-0 max-w-[160px]"
+                                      value={(sd.answers || {})[q.id] || ''}
+                                      onChange={e => setSpinData(prev => ({
+                                        ...prev,
+                                        [pid]: { ...sd, answers: { ...(sd.answers || {}), [q.id]: e.target.value } }
+                                      }))}>
+                                      <option value="">— select —</option>
+                                      {q.options.map(o => <option key={o} value={o}>{o}</option>)}
+                                    </select>
+                                  ) : (
+                                    <input type="text" placeholder="Answer…"
+                                      className="text-xs border rounded px-1.5 py-1 bg-white shrink-0 w-36"
+                                      value={(sd.answers || {})[q.id] || ''}
+                                      onChange={e => setSpinData(prev => ({
+                                        ...prev,
+                                        [pid]: { ...sd, answers: { ...(sd.answers || {}), [q.id]: e.target.value } }
+                                      }))}/>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Next action */}
+                          <input type="text" placeholder="Next action from this call…"
+                            className="w-full text-xs border rounded-md px-2 py-1.5 bg-white"
+                            value={sd.next_action || ''}
+                            onChange={e => setSpinData(prev=>({...prev,[pid]:{...sd,next_action:e.target.value}}))}/>
+                        </div>
+                      )}
+
+                      <Button size="sm" onClick={()=>prospect.id&&submitLog(prospect.id,logForm[pid]!)}>
+                        Save
+                      </Button>
+                    </div>
+                  )
+                })()}
               </div>
 
               {/* Details — inline editable */}
@@ -1536,12 +1652,41 @@ export default function CrmPage() {
                       <div key={i} className="flex gap-2 text-xs">
                         <div className="mt-0.5 text-gray-400">{activityIcon(entry.type)}</div>
                         <div className="flex-1 bg-gray-50 rounded p-2">
-                          <div className="flex items-center gap-2 mb-0.5">
+                          <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                             <span className="font-medium text-gray-700">{entry.author}</span>
                             <span className="text-gray-400">{formatDateTime(entry.ts)}</span>
-                            <span className="capitalize text-gray-400 ml-auto">{entry.type}</span>
+                            {/* SPIN badges if body is structured JSON */}
+                            {(() => {
+                              try {
+                                const s: SpinCallData = JSON.parse(entry.body)
+                                if (!s.spin_phase) return <span className="capitalize text-gray-400 ml-auto">{entry.type}</span>
+                                const pm = SPIN_PHASE_LABELS[s.spin_phase]
+                                const prm = PROGRESS_LABELS[s.progress]
+                                return (
+                                  <div className="flex items-center gap-1 ml-auto">
+                                    {pm && <span className="text-[10px] px-1.5 py-0.5 rounded font-bold text-white" style={{background:pm.color}}>{pm.short} {pm.label}</span>}
+                                    {prm && <span className="text-[10px] px-1.5 py-0.5 rounded font-semibold text-white" style={{background:prm.color}}>{prm.icon} {prm.label}</span>}
+                                  </div>
+                                )
+                              } catch { return <span className="capitalize text-gray-400 ml-auto">{entry.type}</span> }
+                            })()}
                           </div>
-                          <p className="text-gray-600 whitespace-pre-wrap">{entry.body}</p>
+                          {/* Render SPIN or plain body */}
+                          {(() => {
+                            try {
+                              const s: SpinCallData = JSON.parse(entry.body)
+                              if (!s.spin_phase) throw new Error()
+                              return (
+                                <div className="text-xs text-gray-600 space-y-1">
+                                  {s.summary && <p className="whitespace-pre-wrap">{s.summary}</p>}
+                                  {Object.entries(s.answers || {}).map(([k, v]) => v ? (
+                                    <p key={k} className="text-gray-500"><span className="font-medium">{k.replace(/_/g,' ')}:</span> {String(v)}</p>
+                                  ) : null)}
+                                  {s.next_action && <p className="text-indigo-700 font-medium">Next: {s.next_action}</p>}
+                                </div>
+                              )
+                            } catch { return <p className="text-gray-600 whitespace-pre-wrap text-xs">{entry.body}</p> }
+                          })()}
                         </div>
                       </div>
                     ))}

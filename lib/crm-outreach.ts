@@ -11,7 +11,8 @@ import * as path from 'path'
 import { Resend } from 'resend'
 import type { PvProspect } from './supabase'
 
-const TEMPLATE_PATH = path.join(process.cwd(), 'lib', 'crm-intro-email.html')
+const TEMPLATE_PATH            = path.join(process.cwd(), 'lib', 'crm-intro-email.html')
+const COMMERCIAL_TEMPLATE_PATH = path.join(process.cwd(), 'lib', 'crm-commercial-email.html')
 
 export const OUTREACH_FROM = 'Lighthief Cyprus <noreply@solarfarms.cy>'
 export const DEFAULT_REPLY_TO = 'alexander.papacosta@lighthief.com'
@@ -107,6 +108,17 @@ export interface OutreachRecipient {
   tags?: string[] | null
 }
 
+export interface CommercialRecipient extends OutreachRecipient {
+  location?: string
+  district?: string
+  roof_area_m2?: number
+  annual_savings_eur?: number
+  payback_years?: number
+  capacity_mwp?: number     // stored in MW — converted to kWp in template
+  roof_image_url?: string
+  industry?: string
+}
+
 export interface RenderedEmail {
   subject: string
   html: string
@@ -162,6 +174,120 @@ export function renderIntroEmail(
     ? `Lighthief — EPC, O&M & battery storage for ${company}`
     : `Lighthief — solar EPC & O&M for ${company}`
   return { subject, html }
+}
+
+// ─── Commercial rooftop email renderer ───────────────────────────────────────
+
+function formatEur(n: number): string {
+  if (n >= 1000) return `€${(n / 1000).toFixed(1).replace(/\.0$/, '')}k`
+  return `€${Math.round(n).toLocaleString()}`
+}
+
+function savingsRows(p: CommercialRecipient): string {
+  const kWp   = p.capacity_mwp != null ? Math.round(p.capacity_mwp * 1000) : null
+  const saves = p.annual_savings_eur != null ? Math.round(p.annual_savings_eur) : null
+  const pb    = p.payback_years   != null ? p.payback_years : null
+  const roof  = p.roof_area_m2    != null ? Math.round(p.roof_area_m2) : null
+
+  const rows: [string, string][] = []
+  if (kWp)   rows.push(['Estimated system size', `<strong>${kWp} kWp</strong>`])
+  if (roof)  rows.push(['Available roof area',    `${roof.toLocaleString()} m²`])
+  if (saves) rows.push(['Estimated annual savings', `<strong style="color:#059669;">${formatEur(saves)} / year</strong>`])
+  if (pb)    rows.push(['Estimated payback period',  `<strong>${pb} years</strong>`])
+  if (!rows.length) rows.push(['Savings estimate', 'Available on request — contact us for a free assessment'])
+
+  return rows.map(([label, value]) => `
+    <tr>
+      <td style="padding:4px 0;color:#666;width:55%;">${label}</td>
+      <td style="padding:4px 0;">${value}</td>
+    </tr>`).join('')
+}
+
+function roofImageBlock(url?: string): string {
+  if (!url) return ''
+  // Ensure absolute URL
+  const src = url.startsWith('/') ? `https://solarfarms.cy${url}` : url
+  return `
+    <tr>
+      <td style="padding:0;line-height:0;font-size:0;background:#e8f0f7;">
+        <img src="${src}" alt="Satellite roof assessment — ${url}" width="620"
+          style="width:100%;max-width:620px;height:auto;max-height:220px;display:block;object-fit:cover;" />
+      </td>
+    </tr>`
+}
+
+export function renderCommercialEmail(
+  p: CommercialRecipient,
+  opts: {
+    baseUrl: string
+    senderName?: string
+    senderTitle?: string
+    senderEmail?: string
+    senderPhone?: string
+  }
+): RenderedEmail {
+  const tpl = fs.readFileSync(COMMERCIAL_TEMPLATE_PATH, 'utf-8')
+
+  const contactName = p.contact_name?.trim() || 'there'
+  const company     = p.company_name?.trim() || 'your business'
+  const address     = p.location?.trim() || ''
+  const addressSuffix = address ? ` in ${address}` : ''
+  const addressLine   = address ? ` at <strong>${esc(address)}</strong>` : ''
+
+  const senderName  = opts.senderName  || 'Alexander Papacosta'
+  const senderTitle = opts.senderTitle || 'Director'
+  const senderEmail = opts.senderEmail || DEFAULT_REPLY_TO
+  const senderPhone = opts.senderPhone || '+357 99 164 158'
+
+  const html = tpl
+    .replace(/\{\{CONTACT_NAME\}\}/g,    esc(contactName))
+    .replace(/\{\{COMPANY\}\}/g,         esc(company))
+    .replace(/\{\{COMPANY_ENCODED\}\}/g, encodeURIComponent(company))
+    .replace(/\{\{ADDRESS_SUFFIX\}\}/g,  esc(addressSuffix))
+    .replace(/\{\{ADDRESS_LINE\}\}/g,    addressLine)
+    .replace(/\{\{SAVINGS_ROWS\}\}/g,    savingsRows(p))
+    .replace(/\{\{ROOF_IMAGE_BLOCK\}\}/g, roofImageBlock(p.roof_image_url))
+    .replace(/\{\{SENDER_NAME\}\}/g,     esc(senderName))
+    .replace(/\{\{SENDER_TITLE\}\}/g,    esc(senderTitle))
+    .replace(/\{\{SENDER_EMAIL\}\}/g,    esc(senderEmail))
+    .replace(/\{\{SENDER_PHONE\}\}/g,    esc(senderPhone))
+    .replace(/\{\{UNSUBSCRIBE_URL\}\}/g, p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : '#')
+    .replace(/\{\{YEAR\}\}/g,            String(new Date().getFullYear()))
+
+  const industry = p.industry ? ` for your ${p.industry.toLowerCase()} business` : ''
+  const subject  = p.annual_savings_eur
+    ? `Save ${formatEur(p.annual_savings_eur)}/year on electricity${industry} — Lighthief Cyprus`
+    : `Free rooftop solar savings estimate${industry} — Lighthief Cyprus`
+
+  return { subject, html }
+}
+
+export async function sendCommercialEmail(
+  p: CommercialRecipient,
+  opts: { baseUrl: string; replyTo?: string; senderName?: string; senderTitle?: string; senderEmail?: string; senderPhone?: string }
+): Promise<SendResult> {
+  const resend = getResend()
+  if (!resend) return { id: p.id, ok: false, error: 'RESEND_API_KEY not configured' }
+  if (!p.contact_email) return { id: p.id, ok: false, skipped: 'no_email' }
+
+  const { subject, html } = renderCommercialEmail(p, opts)
+  try {
+    const { error } = await resend.emails.send({
+      from: OUTREACH_FROM,
+      to: [p.contact_email],
+      replyTo: opts.replyTo || opts.senderEmail || DEFAULT_REPLY_TO,
+      subject,
+      html,
+      headers: {
+        'List-Unsubscribe': `<${p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : ''}>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
+    })
+    if (error) return { id: p.id, email: p.contact_email, ok: false, error: String(error) }
+    return { id: p.id, email: p.contact_email, ok: true }
+  } catch (e) {
+    return { id: p.id, email: p.contact_email, ok: false, error: String(e) }
+  }
 }
 
 /** Suppression: skip if unsubscribed, no/invalid email. */

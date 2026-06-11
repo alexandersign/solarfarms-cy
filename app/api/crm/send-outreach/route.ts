@@ -15,10 +15,12 @@ import { supabase } from '@/lib/supabase'
 import { getCrmToken } from '@/lib/crm-auth'
 import {
   sendIntroEmail,
+  sendCommercialEmail,
   isSuppressed,
   alreadySent,
   withIntroSentTag,
   type OutreachRecipient,
+  type CommercialRecipient,
 } from '@/lib/crm-outreach'
 
 const MAX_PER_CALL = 150
@@ -28,16 +30,33 @@ function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms))
 }
 
-function toRecipient(row: Record<string, unknown>): OutreachRecipient {
+function toRecipient(row: Record<string, unknown>): OutreachRecipient & { segment?: string } {
   return {
-    id: row.id as string,
-    company_name: row.company_name as string,
-    contact_name: row.contact_name as string,
+    id:            row.id as string,
+    company_name:  row.company_name as string,
+    contact_name:  row.contact_name as string,
     contact_email: row.contact_email as string,
     primary_target: (row.primary_sales_target as string) || (row.offer_type as string) || undefined,
-    parent_group: (row.parent_group as string) || undefined,
-    bess_angle: (row.bess_sales_angle as string) || undefined,
-    tags: (row.tags as string[]) || [],
+    parent_group:  (row.parent_group as string) || undefined,
+    bess_angle:    (row.bess_sales_angle as string) || undefined,
+    tags:          (row.tags as string[]) || [],
+    // used to branch email template
+    segment:       (row.segment as string) || 'developer',
+  }
+}
+
+function toCommercialRecipient(row: Record<string, unknown>): CommercialRecipient {
+  const base = toRecipient(row)
+  return {
+    ...base,
+    location:          (row.location as string) || undefined,
+    district:          (row.district as string) || undefined,
+    roof_area_m2:      (row.roof_area_m2 as number) || undefined,
+    annual_savings_eur:(row.annual_savings_eur as number) || undefined,
+    payback_years:     (row.payback_years as number) || undefined,
+    capacity_mwp:      (row.capacity_mwp as number) || undefined,
+    roof_image_url:    (row.roof_image_url as string) || undefined,
+    industry:          (row.industry as string) || undefined,
   }
 }
 
@@ -79,16 +98,19 @@ export async function POST(request: NextRequest) {
       rows = data || []
     }
 
-    const recipients = rows.map(toRecipient).filter((r) => r.contact_email)
+    const recipients = rows
+      .map(r => (r.segment === 'commercial' ? toCommercialRecipient(r) : toRecipient(r)))
+      .filter((r) => r.contact_email)
 
     // TEST MODE — render the first eligible recipient, send only to the logged-in user
     if (test) {
       if (!senderEmail) return NextResponse.json({ success: false, message: 'No session email for test' }, { status: 400 })
-      const sample = recipients[0] || { company_name: 'Sample SPV Ltd', contact_name: 'Sample Director', primary_target: 'PV O&M' }
-      const res = await sendIntroEmail(
-        { ...sample, contact_email: senderEmail, id: undefined },
-        { baseUrl, replyTo: senderEmail, senderName, senderEmail }
-      )
+      const sample = recipients[0] || { company_name: 'Sample SPV Ltd', contact_name: 'Sample Director', primary_target: 'PV O&M', segment: 'developer' }
+      const isCommercial = (sample as { segment?: string }).segment === 'commercial'
+      const sender = { baseUrl, replyTo: senderEmail, senderName, senderEmail }
+      const res = isCommercial
+        ? await sendCommercialEmail({ ...sample as CommercialRecipient, contact_email: senderEmail, id: undefined }, sender)
+        : await sendIntroEmail({ ...sample, contact_email: senderEmail, id: undefined }, sender)
       return NextResponse.json({
         success: res.ok,
         message: res.ok ? `Test sent to ${senderEmail}` : `Test failed: ${res.error}`,
@@ -121,7 +143,11 @@ export async function POST(request: NextRequest) {
     const now = new Date().toISOString()
 
     for (const r of eligible) {
-      const res = await sendIntroEmail(r, { baseUrl, replyTo: senderEmail, senderName, senderEmail })
+      const isCommercial = (r as { segment?: string }).segment === 'commercial'
+      const sender = { baseUrl, replyTo: senderEmail, senderName, senderEmail }
+      const res = isCommercial
+        ? await sendCommercialEmail(r as CommercialRecipient, sender)
+        : await sendIntroEmail(r, sender)
       if (res.ok) {
         sent++
         const followUpDate = new Date(now)
