@@ -784,6 +784,47 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
       { label: 'Cyprus TSOC Day-Ahead Market', href: 'https://www.tsoc.org.cy/en/electricity-market/day-ahead-market' },
     ],
   },
+  // ─── CRM Development roadmap ──────────────────────────────────────────────
+  {
+    id: 'crm-roadmap',
+    title: 'CRM development roadmap (internal)',
+    summary:
+      'Planned integrations and improvements — for Alexander and dev reference only. Priority order listed below.',
+    callouts: [
+      {
+        type: 'info',
+        text:
+          'Priority 1 — OpenSolar integration (in progress): push qualified commercial prospects from CRM → OpenSolar for system design; pull completed design data (kWp, annual yield, price) back via webhook. Standard API Access tier is sufficient. See knowledge section for implementation plan.',
+      },
+      {
+        type: 'info',
+        text:
+          'Priority 2 — WhatsApp & email auto-logging (parked): allow each rep to connect their work email and WhatsApp so calls/messages are logged automatically without manual "Log call" entries. Two options evaluated: (A) BCC logger via Resend inbound parsing — simplest, any email client, 1 day build; (B) Gmail API OAuth polling — fully automatic, 3–4 days. WhatsApp: WATI/Respond.io for shared company number, or Evolution API for personal numbers. Decision pending after OpenSolar integration is live.',
+      },
+    ],
+    tables: [
+      {
+        caption: 'CRM integration priority list',
+        headers: ['Priority', 'Integration', 'Status', 'Effort', 'Cost', 'Notes'],
+        rows: [
+          ['1', 'OpenSolar — push prospects + pull designs', 'In progress', '3–5 days', 'Free (standard API)', 'Enable API Access in OpenSolar → get org_id + machine user token → add to Vercel env vars → build push button on commercial card + webhook to receive design completions'],
+          ['2', 'Email auto-logging — BCC logger', 'Parked', '1 day', 'Free', 'BCC log@solarfarms.cy when emailing clients → server parses → auto-logs to activity_feed. Simplest email integration, no OAuth needed.'],
+          ['3', 'Email auto-logging — Gmail API sync', 'Parked', '3–4 days', 'Free (Google Workspace)', 'Each rep connects @lighthief.com Google account via OAuth → polls Sent Mail every 15 min → matches contact_email → auto-logs. Zero friction for reps.'],
+          ['4', 'WhatsApp — shared company number (WATI/Respond.io)', 'Parked', '2 days + setup', '€50–150/month', 'Official Meta WhatsApp Business API. Team inbox. Webhook to /api/crm/webhooks/whatsapp matches phone → prospect → logs message.'],
+          ['5', 'WhatsApp — personal numbers (Evolution API)', 'Parked', '1–2 days + server', 'Server cost only', 'Each rep scans QR to connect personal WhatsApp. Unofficial but works for low-volume sales teams.'],
+          ['6', 'Document checklist tracking (documents_received JSONB)', 'Designed', '1 day', 'Free', 'Add documents_received column to pv_prospects. Show per-project checklist in expanded card (title deed, building permit, etc.). Needs Supabase migration.'],
+          ['7', 'SPIN analytics on dashboard', 'Designed', '1 day', 'Free', 'Aggregate spin_phase from structured call log entries. Show per-rep SPIN phase distribution and where deals stall.'],
+        ],
+      },
+    ],
+    links: [
+      { label: 'OpenSolar API documentation', href: 'https://developers.opensolar.com/' },
+      { label: 'OpenSolar — enable API Access in Settings → Integrations', href: 'https://app.opensolar.com' },
+      { label: 'WATI WhatsApp Business API', href: 'https://wati.io' },
+      { label: 'Evolution API (personal WhatsApp bridge)', href: 'https://evolution-api.com' },
+    ],
+  },
+
   {
     id: 'offers-sent',
     title: 'Offers sent',
