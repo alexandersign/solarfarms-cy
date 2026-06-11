@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payslip — Alexander Papacosta — May 2026</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        @page{size:A4;margin:15mm}
+        body{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;color:#111;padding:20px;max-width:800px;margin:0 auto}
+        .payslip{border:2px solid #1a3a5c;padding:25px}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1a3a5c;padding-bottom:15px;margin-bottom:15px}
+        .company{font-size:11px}
+        .company h1{font-size:18px;color:#1a3a5c;margin-bottom:4px;letter-spacing:1px}
+        .payslip-title{text-align:right}
+        .payslip-title h2{font-size:20px;color:#1a3a5c;text-transform:uppercase;letter-spacing:2px}
+        .payslip-title p{font-size:14px;font-weight:bold;margin-top:4px}
+        .info-grid{display:flex;gap:30px;margin-bottom:18px}
+        .info-block{flex:1}
+        .info-block h3{font-size:10px;text-transform:uppercase;color:#666;letter-spacing:1px;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:3px}
+        .info-block p{font-size:12px;margin-bottom:3px}
+        .info-block .label{color:#666;display:inline-block;width:130px}
+        table{width:100%;border-collapse:collapse;margin-bottom:18px}
+        th{background-color:#1a3a5c;color:#fff;text-align:left;padding:8px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+        td{padding:7px 10px;border-bottom:1px solid #e0e0e0;font-size:12px}
+        .amount{text-align:right;font-family:'Courier New',monospace}
+        .total-row td{border-top:2px solid #1a3a5c;font-weight:bold;font-size:13px;background-color:#f0f4f8}
+        .net-row td{border-top:3px double #1a3a5c;font-weight:bold;font-size:15px;background-color:#e8eef5;color:#1a3a5c}
+        .footer{margin-top:20px;padding-top:12px;border-top:1px solid #ddd;font-size:10px;color:#888;text-align:center}
+        .two-col{display:flex;gap:15px}
+        .two-col>div{flex:1}
+        @media print{
+            body{padding:0}
+            .payslip{border:2px solid #1a3a5c!important}
+            th{background-color:#1a3a5c!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+            .total-row td{background-color:#f0f4f8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+            .net-row td{background-color:#e8eef5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        }
+    </style>
+</head>
+<body>
+<div class="payslip">
+    <div class="header">
+        <div class="company">
+            <h1>LIGHTHIEF CYPRUS LTD</h1>
+            <p>28 October Ave 249, Lophitis Business Center 1, Office 201</p>
+            <p>3035 Limassol, Cyprus</p>
+            <p>Reg No: HE 477423 &nbsp;|&nbsp; TIN: 60187188Q</p>
+        </div>
+        <div class="payslip-title">
+            <h2>Payslip</h2>
+            <p>May 2026</p>
+        </div>
+    </div>
+    <div class="info-grid">
+        <div class="info-block">
+            <h3>Employee Details</h3>
+            <p><span class="label">Name:</span> Alexander Papacosta</p>
+            <p><span class="label">Position:</span> Director</p>
+            <p><span class="label">Employment Type:</span> Full-Time Employee</p>
+        </div>
+        <div class="info-block">
+            <h3>Pay Period</h3>
+            <p><span class="label">Period:</span> 1 May – 31 May 2026</p>
+            <p><span class="label">Pay Date:</span> 1 – 5 June 2026</p>
+            <p><span class="label">Working Days:</span> 20</p>
+            <p><span class="label">Start Date:</span> 1 July 2025</p>
+        </div>
+    </div>
+    <table>
+        <tr><th colspan="2">Earnings</th></tr>
+        <tr><td>Basic Salary</td><td class="amount">€2,375.00</td></tr>
+        <tr class="total-row"><td>Gross Pay</td><td class="amount">€2,375.00</td></tr>
+    </table>
+    <div class="two-col">
+        <div>
+            <table>
+                <tr><th colspan="2">Employee Deductions</th></tr>
+                <tr><td>Social Insurance (8.8%)</td><td class="amount">€209.00</td></tr>
+                <tr><td>GESY / GHS (2.65%)</td><td class="amount">€62.94</td></tr>
+                <tr><td>PAYE Income Tax</td><td class="amount">€102.63</td></tr>
+                <tr class="total-row"><td>Total Deductions</td><td class="amount">€374.57</td></tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <tr><th colspan="2">Employer Contributions</th></tr>
+                <tr><td>Social Insurance (8.8%)</td><td class="amount">€209.00</td></tr>
+                <tr><td>GESY / GHS (2.90%)</td><td class="amount">€68.88</td></tr>
+                <tr><td>Social Cohesion Fund (2%)</td><td class="amount">€47.50</td></tr>
+                <tr><td>Redundancy Fund (1.2%)</td><td class="amount">€28.50</td></tr>
+                <tr><td>Industrial Training (0.5%)</td><td class="amount">€11.88</td></tr>
+                <tr class="total-row"><td>Total Employer</td><td class="amount">€365.76</td></tr>
+            </table>
+        </div>
+    </div>
+    <table>
+        <tr class="net-row"><td>NET PAY</td><td class="amount">€2,000.43</td></tr>
+    </table>
+    <div class="footer">
+        <p>Lighthief Cyprus Ltd — HE 477423 — This is a computer-generated payslip and does not require a signature.</p>
+    </div>
+</div>
+</body>
+</html>
