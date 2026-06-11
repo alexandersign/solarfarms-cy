@@ -27,7 +27,7 @@
 
 ## 3. Declaration of interest
 
-**3.1** **Alexander Papacosta** declared his personal interest as **MD** and proposed beneficiary under the MD Equity Participation Side Letter (LCY-MD-EQ-2026-001), including Share Sale Participation Fee and fallback equity in the 25% pool.
+**3.1** **Alexander Papacosta** declared his personal interest as **MD** under the MD Equity Participation Side Letter (LCY-MD-EQ-2026-001), including **EPC milestone equity (10% + 10%)**, **Share Sale Participation Fee**, and **15% investor-path equity cap**.
 
 **3.2** The Chair noted that the Founder (Dr. Sybaris) would also sign the side letter in a separate capacity and that Third Party Investor disclosure is required before each Qualifying Equity Closing.
 

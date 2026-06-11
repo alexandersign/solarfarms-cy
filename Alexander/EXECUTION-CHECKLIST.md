@@ -1,6 +1,6 @@
 # Pre-execution checklist — Alexander legal pack
 
-**Pack version:** v7 (May 2026)  
+**Pack version:** v9 (May 2026)  
 **Use:** Internal — counsel + Alexander only. Do not send to founder with investor materials.
 
 ---
@@ -9,7 +9,7 @@
 
 | # | Item | Owner | Done |
 |---|------|-------|------|
-| 1 | **Open `Alexander-Legal-Pack-May2026-v7.docx`** — 17 parts incl. signing matrix + board minutes | Alexander | ☐ |
+| 1 | **Open `Alexander-Legal-Pack-May2026-v9.docx`** — includes LOIs + park register (R1/R2) + Parts 1–17 | Alexander | ☐ |
 | 2 | **§7.1(f)** states advice was **obtained** — Sybaris must actually take independent legal advice before signing; retain counsel letter on file | Sybaris / counsel | ☐ |
 | 3 | **Payroll reconciliation (Jul 2025 → execution):** payroll adviser confirms gross, PAYE, NIS for €2k net period; remediate arrears — ratification alone is insufficient | Payroll adviser | ☐ |
 | 4 | **Annex A / Annex B:** single signature block each (Sybaris for shareholder/guarantor — not Consultant) | Counsel review | ☐ |
@@ -27,7 +27,8 @@
 2. **Employment contract** + **Moi Ostrov consultancy deed** (Company + Moi Ostrov; Sybaris on Annex A/B)  
 3. **Equity side letter** — before first investor tranche  
 4. **D&O deed + LCY-SHR-DO-2026-001** — parallel with employment pack (before Galascope EPC preferred)  
-5. **Galascope EPC** — triggers €5k gross salary + investor longstop clock  
+5. **Galascope EPC** — EPC Milestone Grant A (**10%**) + €5k gross salary  
+6. **Esperia EPC** — EPC Milestone Grant B (**10%**) if investor 15% cap allows  
 
 ---
 

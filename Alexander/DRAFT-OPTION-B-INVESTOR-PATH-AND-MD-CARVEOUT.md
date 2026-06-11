@@ -6,7 +6,8 @@
 **Purpose:** Historical placeholder. The MD economic rights on investment are now defined in the **Equity Participation Side Letter**:
 
 - **30% Share Sale Participation Fee** on each Qualifying Equity Closing (not Net Margin).  
-- **Fallback equity** = **25% − sold %** to third parties.  
+- **EPC milestone equity** = **10%** Galascope + **10%** Esperia.  
+- **Investor path** = **30%** of subscription cash + **15%** MD equity cap.  
 - **Not** a duplicate of Moi Ostrov operating commission.
 
 Use this file only if counsel splits investor runway (§3 below) from the side letter.
@@ -36,7 +37,7 @@ Use this file only if counsel splits investor runway (§3 below) from the side l
 **Unified terms:** `DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md` Clauses 2–3.
 
 - **30%** of **Gross Subscription Amount** per tranche (e.g. €150k on €500k; €300k on €1M).  
-- **Fallback shares:** unsold portion of **25% pool** to MD.  
+- **Fallback equity:** EPC **10% + 10%** (max **20%**); investor path **15%** cap — see side letter.  
 - **Payor:** Founder / Lighthief International preferred over Company WC.
 
 *Legacy options B1–B3 below — do not use alongside Side Letter without counsel merge:*

@@ -4,7 +4,8 @@
 
 **Important — not legal advice:** These files are **templates and checklists** only. They are **not** substitute for advice from a **Cyprus-qualified lawyer** (and your accountant) on companies law, tax, employment, and any regulated lending. **Do not sign** final versions without professional review.
 
-| `LEGAL-PACK-NOTE-MAY2026.md` | **Start here** — pack overview, signing order, git notes |
+| `PACK-SUMMARY-PAGE.md` | **Page 1 of Word content** — executive summary (also in docx) |
+| `LEGAL-PACK-NOTE-MAY2026.md` | **Start here** (repo) — pack overview, signing order, git notes |
 | `commission-agreement-lighthief-moiostrov.html` | **Main agreement** — LCY ↔ Moi Ostrov (30% origination + 30% future ops). Ref: LCY-MOI-TOCA-2026-001 |
 | `COUNSEL-NEGOTIATION-BRIEF.md` | **One-page brief** for Cyprus counsel — enforceability priorities |
 | `CLAUSE-REDLINE-GUIDANCE.md` | **Clause-by-clause redline** — keep / soften / replace language |
@@ -15,14 +16,14 @@
 | `DRAFT-SIGNING-MATRIX-AND-GOVERNANCE.md` | **Who signs what** — Sybaris UBO / LI / personal hats |
 | `DRAFT-LCY-BOARD-MINUTES-PHASE1-2026-001.md` | **Board minutes** — founder alignment pack |
 | `DRAFT-LCY-BOARD-MINUTES-PHASE2-2026-002.md` | **Board minutes** — pre-investor / side letter |
-| `Alexander-Legal-Pack-May2026-v7.docx` | **Combined Word pack** (17 parts) — run `python scripts/generate-alexander-legal-pack.py` |
+| `Alexander-Legal-Pack-May2026-v9.docx` | **Full pack** — LOIs + park register + Parts 1–17 |
 | `DRAFT-MD-EMPLOYMENT-AGREEMENT.md` | **MD employment** — €2,000 **net**/mo from 1 Jul 2025 → €5,000 **gross** from Galascope EPC |
 | `DRAFT-SHAREHOLDER-RESOLUTION-MD-EMPLOYMENT.md` | **Sybaris resolution** — approve + ratify MD salary |
-| `DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md` | **30% share sale fee + fallback equity to 25% pool** — clause wording for counsel |
+| `DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md` | **10%+10% EPC equity**, **15% cap** if investor, **30%** sale fee |
 | `PROCESS-ADVICE-FOUNDER-AND-CLIENT-SIGNING.md` | Recommended sequence, governance, and risk controls |
 | `DRAFT-OPTION-A-FOUNDER-RUNWAY-AND-MD-TERMS.md` | Founder financing / runway / MD compensation — draft heads of terms |
 | `DRAFT-OPTION-B-INVESTOR-PATH-AND-MD-CARVEOUT.md` | Investor round pre-conditions / MD economics — draft heads of terms |
 
-**Version:** 1.6 — v7 pack: signing matrix + Phase 1/2 board minutes (Sybaris UBO structure).
+**Version:** 1.8 — v9 pack: park register, future-business note, Galascope + Esperia LOIs embedded.
 
 **Note:** `commission-agreement-lighthief-moiostrov.html` is listed in `.gitignore` (confidential). It remains on disk in this folder but is not committed to git.

@@ -82,70 +82,55 @@
 
 ## 7. Cross-reference — equity participation
 
-The MD equity participation package (30% share sale fee, fallback equity to 25% pool, dividend lock) is set out in the operative side letter **`DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md`** (ref LCY-MD-EQ-2026-001). Option A runway terms are independent of that instrument.
+The MD equity participation package (EPC **10% + 10%**, investor **15%** equity cap, **30%** share sale fee, dividend lock) is set out in **`DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md`** (ref LCY-MD-EQ-2026-001). Option A runway terms are independent.
 
 ---
 
-## 8. MD equity participation package (share sale fee + fallback up to 25%)
+## 8. MD equity participation package (EPC 10% + 10%, investor cap 15%)
 
-**Use when:** Founder has verbally agreed: **(i)** **30% of any third-party share sale** to MD, and **(ii)** any **unsold portion of a 25% equity pool** is granted to MD, with **(iii)** **no dividends for 3 years**.
+**Use when:** Founder has verbally agreed: **(i)** **10%** equity on **Galascope EPC** signing, **(ii)** another **10%** on **Esperia EPC** signing ( **20%** max on delivery path), **(iii)** if a **third-party investor** closes and subscription cash is shared with MD, **30% participation fee** on that cash but **MD equity capped at 15%** total, and **(iv)** **no dividends for 3 years**.
 
 **Full draft:** `DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md` — counsel converts to executable side letter + SHA amendment.
 
 **Separate from Moi Ostrov commission** (30% **Net Margin** on EPC). Both can coexist — different bases.
 
-### 8.1 Economics (single formula)
+### 8.1 Economics (founder proposal — May 2026)
 
-| **Equity Pool Cap** | **25%** of fully diluted LCY — max available to third parties + MD fallback |
-| **Share Sale Participation Fee** | **30% × Gross Subscription Amount** on each third-party closing, within **14 days** |
-| **Fallback Equity** | **25% − Cumulative Sold %** to MD (nil consideration — tax counsel) |
+| Track | Trigger | MD equity | MD cash |
+|-------|---------|-----------|---------|
+| **EPC — Galascope** | Galascope EPC signed & stamped | **10%** | — |
+| **EPC — Esperia** | Esperia EPC signed & stamped | **+10%** ( **20%** cumulative ) | — |
+| **Investor** | Qualifying Equity Closing | **≤15%** total (EPC grants count toward cap) | **30% × subscription cash** |
 
-**Examples:**
+**Replaces** prior “25% pool minus sold” / longstop fallback model.
 
-| Outcome | MD cash (30% fee) | MD shares |
-|---------|-------------------|-----------|
-| No investor by longstop | — | **25%** |
-| **Third party €500k / 12.5%** | **€150,000** | **12.5%** |
-| **Third party €1M / 25%** | **€300,000** | **0%** |
+### 8.2 Examples
 
-### 8.2 When it triggers
+| Outcome | MD shares | MD cash |
+|---------|-----------|---------|
+| Galascope EPC only | **10%** | — |
+| Galascope + Esperia EPC, no investor | **20%** | — |
+| Investor €500k / 12.5% (no EPC grants yet) | up to **15%** | **€150,000** |
+| Galascope (10%) then investor 12.5% | **15%** max (+5% not +10% Esperia) | **€150,000** |
+| Investor €1M / 25% | **≤15%** equity | **€300,000** fee |
 
-| Event | What fires |
-|-------|------------|
-| **Each Qualifying Equity Closing** | 30% fee on that tranche’s cash; optional immediate fallback grant of unsold % |
-| **Longstop** (e.g. Galascope EPC + 180 days) | Top-up: any **Unsold Pool %** still held by Founder → grant to MD within 30 days |
-| **No sale ever** | MD gets **25%** at longstop; no participation fee |
+### 8.3 Payor — investor fee
 
-**Qualifying Equity Closing** = third party (not MD/Founder/Group) pays cash to Company for shares, subscription agreement executed.
-
-### 8.3 Payor — structure for founder + investor acceptance
-
-**Preferred:** **Founder / Lighthief International** pays the 30% fee personally — investor’s €500k stays in Company for delivery.
-
-**If Company pays:** Must be **pre-disclosed** in the third-party investor term sheet as success fee; expect pushback — rebut with separate buckets (margin = ops, fee = capital raise / value creation).
+**Preferred:** **Founder / Lighthief International** pays the 30% fee — investor cash stays in Company for delivery.
 
 ### 8.4 Three-year dividend lock
 
-From first equity closing **or** first fallback grant: **no dividends** company-wide for **36 months**, with carve-outs for **Moi Ostrov fees**, payroll, project COGS, scheduled loan repayments — **not** discretionary upstream to Group.
+From first **EPC grant** or first **investor closing**: no dividends for **36 months** (carve-outs: Moi Ostrov fees, payroll, project COGS, scheduled loans).
 
-### 8.5 Partial sale = Option (b) locked in
-
-Founder’s verbal “if we don’t sell I give you shares” + “30% of sale” combines as:
-
-- **Sold portion** → MD gets **30% of cash**  
-- **Unsold portion of 25% pool** → MD gets **shares**  
-- **Fully sold 25%** → MD gets **fee only**, no shares  
-
-Do **not** grant fallback shares **in addition to** 25% sold (total MD stake would exceed pool).
-
-### 8.6 Signing sequence
+### 8.5 Signing sequence
 
 | When | Action |
 |------|--------|
-| Founder pack (now) | Heads in Option A + side letter draft for review |
-| Before first investor close | Executed side letter; Articles Protected Matter |
-| Each investor tranche | Fee payment + cap table update |
-| Longstop | Top-up fallback grant if needed |
+| Founder pack (now) | Heads in Option A + side letter draft |
+| **Galascope EPC** | EPC Milestone Grant A (**10%**) + €5k gross salary |
+| **Esperia EPC** | EPC Milestone Grant B (**10%**) if investor cap allows |
+| Before investor close | Executed side letter; disclose to investor under NDA |
+| Investor tranche | 30% fee; equity stays **≤15%** |
 
 ---
 

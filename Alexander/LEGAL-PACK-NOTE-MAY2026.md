@@ -2,7 +2,7 @@
 
 **Status:** DRAFT — for Cyprus counsel review only. **Not legal advice. Do not execute without qualified lawyer and payroll adviser sign-off.**
 
-**Current Word output:** `Alexander-Legal-Pack-May2026-v7.docx` (17 parts)  
+**Current Word output:** `Alexander-Legal-Pack-May2026-v9.docx` (Summary + R1/R2 + LOIs + Parts 1–17)  
 **Regenerate:** from repo root: `python scripts/generate-alexander-legal-pack.py`
 
 ---
@@ -15,7 +15,7 @@ Draft founder-alignment and MD protection documents for **Lighthief Cyprus Ltd**
 |--------|-----------|------------|
 | Origination | 30% Net Margin on Schedule 1 pipeline | LCY ↔ Moi Ostrov (Part A) |
 | Operations | 30% on future Cyprus BESS EPC/O&M via LCY | Part B (narrow scope) |
-| Capital | 30% of third-party subscription cash + unsold 25% pool | Equity side letter |
+| Capital | **10%** Galascope EPC + **10%** Esperia EPC (max **20%**); investor path: **30%** fee on subscription cash, **15%** equity cap | Equity side letter |
 | Employment | €2k **net**/mo from 1 Jul 2025 → €5k **gross** from Galascope EPC | Employment + SHR |
 | Officer protection | D&O insurance + Cap. 113 indemnity | LCY-DIR-IND-2026-001 |
 
@@ -35,17 +35,12 @@ Full matrix: `DRAFT-SIGNING-MATRIX-AND-GOVERNANCE.md` (Part 15 of Word pack).
 
 ---
 
-## Word pack contents (17 parts)
+## Word pack contents (17 parts + summary)
 
-| Part | Ref | Document |
+| Page | Ref | Document |
 |------|-----|----------|
-| 1–4 | LCY-MOI-TOCA-2026-001 | Consultancy agreement + schedules |
-| 5–7 | | Execution, Annex A (SHR), Annex B (UBO personal) |
-| 8–9 | LCY-EMP-AP / LCY-SHR-EMP | Employment + shareholder resolution |
-| 10–11 | LCY-MD-EQ / LCY-OPT-A | Equity side letter + Option A heads |
-| 12 | LCY-MOI-ADH | Group deed of adherence (template) |
-| 13–14 | LCY-DIR-IND / LCY-SHR-DO | D&O deed + shareholder resolution |
-| 15–17 | LCY-GOV-SIGN / LCY-BRD | Signing matrix + board minutes Phase 1 & 2 |
+| **1 (content)** | LCY-SUMMARY-2026 | **Executive Summary** — economics, signing, map |
+| 1–17 | See summary §6 | Full agreements, resolutions, minutes |
 
 ---
 
@@ -89,4 +84,4 @@ Do **not** attach `equity-offer-shapiro-may2026.html` or internal pushback notes
 
 ---
 
-*Last updated: May 2026 · v7*
+*Last updated: May 2026 · v8 — EPC 10%+10%, investor 15% cap*

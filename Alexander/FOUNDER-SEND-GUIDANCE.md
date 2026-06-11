@@ -224,19 +224,20 @@ Alexander
 
 ---
 
-## 10. MD equity participation (30% of sale + fallback to 25%)
+## 10. MD equity participation (EPC 10% + 10%, investor cap 15%)
 
-Founder verbal package — now unified in **`DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md`**:
+Founder verbal package (May 2026) — in **`DRAFT-EQUITY-PARTICIPATION-SIDE-LETTER.md`**:
 
-| Shapiro closes | MD gets |
-|----------------|---------|
-| **Nothing** by longstop | **25%** shares |
-| **12.5% / €500k** | **€150k** (30%) + **12.5%** shares |
-| **25% / €1M** | **€300k** (30%) + **no** shares |
+| Path | MD equity | MD cash |
+|------|-----------|---------|
+| **Galascope EPC** signed | **10%** | — |
+| **+ Esperia EPC** signed | **20%** | — |
+| **Investor** (e.g. 12.5% / €500k) | **≤15%** total | **€150k** (30% of subscription) |
+| Galascope **10%** then investor | **15%** cap (not full second EPC 10%) | **€150k** |
 
-**Separate from margin commission** — ops vs capital. **Pay 30% from Founder/International** if possible (investor optics).
+**Replaces** “25% pool minus sold” model. **Separate from margin commission** — ops vs capital. **Pay 30% from Founder/International** if possible (investor optics).
 
-**Shapiro Pushback #5:** Not double-dip if framed as (a) margin = EPC delivery, (b) 30% = capital-raise / value-creation on subscription cash only. Disclose fee in term sheet if Company pays.
+**Investor pushback:** Not double-dip if framed as (a) margin = EPC delivery, (b) EPC % = delivery alignment, (c) 30% = capital-raise on subscription cash only. Disclose fee in term sheet if Company pays.
 
 ---
 

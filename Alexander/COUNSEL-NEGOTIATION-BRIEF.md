@@ -13,7 +13,7 @@
 |--------|--------|------------|
 | **Origination** | 30% Net Margin on Schedule 1 / signed pipeline | LCY ↔ Moi Ostrov (Part A) |
 | **Operations** | Market-rate fee on future **Cyprus EPC through LCY** | Part B (narrow scope) |
-| **Capital** | 30% of third-party **subscription cash** + unsold **25% pool** to MD | Side letter (Founder payor) |
+| **Capital** | **10%** on Galascope EPC + **10%** on Esperia EPC (max **20%**); if investor: **30%** of subscription cash + **15%** MD equity cap | Side letter (Founder payor for fee) |
 | **Runway** | Documented shareholder loan / base salary | Option A |
 
 **Not asking counsel to bless maximalist language** — asking for the **strongest defensible version** of the above.
@@ -40,7 +40,7 @@ MD is director of **LCY** and **Moi Ostrov**; signs both sides. Sybaris must sig
 | 4 | **12.3** — joint liability of **non-party Group cos** | **Privity** | → Deemed receipt triggers **Company** fee + **Sybaris personal** (Annex B) + **deed of adherence** required before any group entity contracts Cyprus BESS |
 | 5 | **3.5 / Part B** — 30% on carry, AUM, "all revenue whatsoever" | **Unconscionable** / not arm's length | → Part B = **Cyprus BESS EPC/O&M margin only**; explicit **exclude** fund carry, AUM, capital events |
 | 6 | **12.2–12.5** — perpetual mandatory LCY contracting | Restraint of trade | → **Reasonable term** (Minimum Term + renewals) + **Schedule 1 + named pipeline**; consent not unreasonably withheld |
-| 7 | **Side letter** — 30% subscription + 25% fallback | Investor / stacking | → **Founder personal payor** (not LCY WC); fallback **disclosed** pre-close; consider **vesting** on fallback shares |
+| 7 | **Side letter** — EPC 10%+10%, investor **15%** equity cap, 30% subscription fee | Investor / stacking | → **Founder personal payor** for fee; counsel to sequence EPC grants vs investor close |
 
 ---
 
@@ -48,9 +48,9 @@ MD is director of **LCY** and **Moi Ostrov**; signs both sides. Sybaris must sig
 
 Three buckets — counsel to confirm wording keeps them separate:
 
-- **Margin 30%** = consideration for origination/delivery (Moi Ostrov invoice).  
-- **Subscription 30%** = Founder-funded success fee on **equity cash in** (not margin).  
-- **Fallback equity** = alignment on **unsold portion of 25% pool only** (0% if full 25% sold).
+- **EPC equity** = **10%** Galascope + **10%** Esperia (max **20%** on delivery path).  
+- **Subscription 30%** = Founder-funded fee on **equity cash in** (not margin).  
+- **Investor path** = MD equity **capped at 15%** (EPC grants count toward cap).
 
 ---
 

@@ -6,6 +6,7 @@ from __future__ import annotations
 import html as html_lib
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -20,7 +21,12 @@ from docx.shared import Cm, Pt, RGBColor
 ROOT = Path(__file__).resolve().parents[1]
 ALEXANDER = ROOT / "Alexander"
 OUT_FILE = ALEXANDER / "Alexander-Legal-Pack-May2026.docx"
-OUT_FILE_ALT = ALEXANDER / "Alexander-Legal-Pack-May2026-v7.docx"
+OUT_FILE_ALT = ALEXANDER / "Alexander-Legal-Pack-May2026-v10.docx"
+
+LOI_SEARCH_DIRS = [
+    ROOT / "docs" / "clients" / "group-order" / "Group2_Esperia_Energy" / "contracts",
+    ROOT / "docs" / "clients" / "group-order" / "Group2_Esperia_Energy",
+]
 
 NAVY = RGBColor(0x1A, 0x36, 0x5D)
 GOLD = RGBColor(0xC9, 0xA4, 0x32)
@@ -440,10 +446,22 @@ def add_cover_page(doc: Document, sections: list[tuple[str, str, str]]):
     )
 
     p = doc.add_paragraph()
+    add_run(
+        p,
+        "Page 1 of the legal content begins with the Executive Summary on the following page. "
+        "Each numbered Part thereafter starts on a new page with its own footer.",
+        size_pt=9,
+        color=GREY,
+    )
+    doc.add_paragraph()
+
+    p = doc.add_paragraph()
     add_run(p, "DOCUMENT INDEX", bold=True, size_pt=12, color=NAVY)
     doc.add_paragraph()
 
-    tbl = doc.add_table(rows=len(sections) + 1, cols=4)
+    index_rows = [("—", "LCY-SUMMARY-2026", "Executive Summary — economics, signing, document map")] + list(sections)
+
+    tbl = doc.add_table(rows=len(index_rows) + 1, cols=4)
     tbl.style = "Table Grid"
     headers = ("Part", "Reference", "Document", "Pagination")
     for ci, h in enumerate(headers):
@@ -452,9 +470,9 @@ def add_cover_page(doc: Document, sections: list[tuple[str, str, str]]):
         add_run(cell.paragraphs[0], h, bold=True, size_pt=9, color=WHITE)
         set_cell_bg(cell, NAVY_HEX)
 
-    for ri, (part, ref, title) in enumerate(sections, start=1):
+    for ri, (part, ref, title) in enumerate(index_rows, start=1):
         row = tbl.rows[ri]
-        vals = (part, ref, title, "Restarts at page 1")
+        vals = (part, ref, title, "See footer" if part == "—" else "Restarts at page 1")
         for ci, val in enumerate(vals):
             cell = row.cells[ci]
             cell.text = ""
@@ -473,8 +491,12 @@ def add_cover_page(doc: Document, sections: list[tuple[str, str, str]]):
 
 
 PACK_SECTIONS = [
+    ("R1", "LCY-PARK-REG-2026-001", "Park & Pipeline Register (51 + LOI parks)"),
+    ("R2", "LCY-FUTURE-BIZ-2026-001", "Future Business — Protection for Not-Yet-Existing Work"),
+    ("L1", "LCY-LOI-GAL-B1-2026-R15", "LOI — Galascope Ltd (G1 + G2)"),
+    ("L2", "LCY-LOI-ESP-PIPELINE-2026-R15", "LOI — Esperia Energy Pipeline (9 parks)"),
     ("1", "LCY-MOI-TOCA-2026-001", "Team Operational Consultancy Agreement — Main Agreement"),
-    ("2", "LCY-MOI-TOCA-2026-001 · Sch. 1", "Schedule 1 — Existing Project Parks"),
+    ("2", "LCY-MOI-TOCA-2026-001 · Sch. 1", "Schedule 1 & 1A — Existing + Pipeline LOI Parks"),
     ("3", "LCY-MOI-TOCA-2026-001 · Sch. 2", "Schedule 2 — Net Margin Calculation Example"),
     ("4", "LCY-MOI-TOCA-2026-001 · Sch. 3", "Schedule 3 — Scope of Operational Services"),
     ("5", "LCY-MOI-TOCA-2026-001 · Execution", "Execution — Consultancy Agreement Signatures"),
@@ -493,6 +515,42 @@ PACK_SECTIONS = [
 ]
 
 
+def ensure_loi_docx_generated():
+    """Regenerate Galascope + Esperia LOIs so pack embeds current quotes."""
+    for script in ("generate-loi-galascope.py", "generate-loi-esperia-pipeline.py"):
+        path = ROOT / "scripts" / script
+        if path.exists():
+            subprocess.run([sys.executable, str(path)], cwd=ROOT, check=False)
+
+
+def resolve_loi_docx(filename: str) -> Path | None:
+    candidates = [filename, filename.replace(".docx", "-UPDATED.docx")]
+    for directory in LOI_SEARCH_DIRS:
+        for name in candidates:
+            p = directory / name
+            if p.exists():
+                return p
+    return None
+
+
+def append_docx_document(target: Document, source_path: Path | None, missing_hint: str):
+    """Append all body elements from a source .docx (LOI) into target."""
+    if source_path is None or not source_path.exists():
+        p = target.add_paragraph()
+        add_run(
+            p,
+            f"[Missing: {missing_hint}. Run: python scripts/generate-loi-galascope.py "
+            f"and python scripts/generate-loi-esperia-pipeline.py]",
+            italic=True,
+            size_pt=10,
+            color=GREY,
+        )
+        return
+    src = Document(str(source_path))
+    for element in src.element.body:
+        target.element.body.append(element)
+
+
 def build():
     doc = Document()
     setup_document_margins(doc)
@@ -502,9 +560,39 @@ def build():
     footer_p = doc.sections[0].footer.paragraphs[0]
     footer_p.clear()
     footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    add_run(footer_p, "Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy · DRAFT v7 — May 2026", size_pt=8, color=GREY)
+    add_run(footer_p, "Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy · DRAFT v10 — May 2026", size_pt=8, color=GREY)
+
+    ensure_loi_docx_generated()
 
     add_cover_page(doc, [(p, r, t) for p, r, t in PACK_SECTIONS])
+
+    # Executive Summary — page 1 of legal content
+    start_new_section(doc, "Executive Summary")
+    render_markdown(doc, ALEXANDER / "PACK-SUMMARY-PAGE.md")
+
+    # Part R1 — Park register
+    start_new_section(doc, "Part R1 · LCY-PARK-REG · Park & Pipeline Register")
+    render_markdown(doc, ALEXANDER / "SCHEDULE-1-AND-LOI-PARK-REGISTER.md")
+
+    # Part R2 — Future business protection
+    start_new_section(doc, "Part R2 · LCY-FUTURE-BIZ · Future Business Protection")
+    render_markdown(doc, ALEXANDER / "FUTURE-BUSINESS-PROTECTION-NOTE.md")
+
+    # Part L1 — Galascope LOI
+    start_new_section(doc, "Part L1 · LCY-LOI-GAL-B1-2026-R15 · LOI Galascope Ltd")
+    append_docx_document(
+        doc,
+        resolve_loi_docx("LOI-Galascope-Ltd-batch1-may2026.docx"),
+        "LOI-Galascope-Ltd-batch1-may2026.docx",
+    )
+
+    # Part L2 — Esperia pipeline LOI
+    start_new_section(doc, "Part L2 · LCY-LOI-ESP-PIPELINE · LOI Esperia Pipeline")
+    append_docx_document(
+        doc,
+        resolve_loi_docx("LOI-Esperia-Energy-pipeline-may2026.docx"),
+        "LOI-Esperia-Energy-pipeline-may2026.docx",
+    )
 
     commission_path = ALEXANDER / "commission-agreement-lighthief-moiostrov.html"
     chunks = split_commission_html(commission_path)
@@ -515,7 +603,7 @@ def build():
 
     # Part 2-4 — Schedules
     for idx, key, footer in (
-        ("2", "schedule1", "Part 2 · LCY-MOI-TOCA-2026-001 · Schedule 1"),
+        ("2", "schedule1", "Part 2 · LCY-MOI-TOCA-2026-001 · Schedule 1 & 1A"),
         ("3", "schedule2", "Part 3 · LCY-MOI-TOCA-2026-001 · Schedule 2"),
         ("4", "schedule3", "Part 4 · LCY-MOI-TOCA-2026-001 · Schedule 3"),
     ):
