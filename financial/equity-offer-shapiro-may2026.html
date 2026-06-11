@@ -70,12 +70,23 @@
   .tag-quoted { background: #e9ecef; color: #495057; }
 
   .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 24px; }
+  .offer-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .offer-grid.compact { gap: 10px; margin: 10px 0 16px; }
+  .offer-grid.compact .offer-head { padding: 12px 10px; }
+  .offer-grid.compact .offer-head .opct { font-size: 20pt; }
+  .offer-grid.compact .offer-body { padding: 12px 10px; font-size: 8pt; }
+  .offer-grid.compact .ok-row .ok-val { font-size: 9pt; }
   .offer-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
   .offer-card.primary { border: 2px solid var(--accent); }
   .offer-head { padding: 16px 14px; background: var(--primary); color: #fff; text-align: center; }
   .offer-head.alt { background: linear-gradient(160deg, var(--primary-light) 0%, var(--primary) 100%); }
   .offer-head .opct { font-size: 28pt; font-weight: 900; line-height: 1; color: var(--accent); }
+  .offer-head .oamt { font-size: 14pt; font-weight: 800; color: #fff; margin-top: 6px; letter-spacing: 0.3px; }
   .offer-head .olbl { font-size: 8pt; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.9; margin-top: 4px; }
+  .entry-banner { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; border-radius: 10px; padding: 18px 22px; margin: 0 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; box-shadow: 0 2px 10px rgba(26,54,93,0.25); }
+  .entry-banner .eb-main { font-size: 22pt; font-weight: 900; color: var(--accent); line-height: 1.1; }
+  .entry-banner .eb-sub { font-size: 9pt; opacity: 0.95; margin-top: 4px; max-width: 420px; line-height: 1.45; }
+  .entry-banner .eb-tag { background: var(--accent); color: var(--primary); font-size: 7pt; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 6px; }
   .offer-body { padding: 16px 14px; }
   .ok-row { margin-bottom: 10px; }
   .ok-row .ok-lbl { font-size: 7pt; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; font-weight: 700; }
@@ -118,16 +129,16 @@
     <div class="header-doc-ref">
       Document: LCY-EQ-SHA-2026-001<br>
       Date: 27 May 2026<br>
-      Version: 1.1 — For Discussion
+      Version: 1.2.1 — Investment Menu
     </div>
   </div>
   <h1>Equity Investment Proposal</h1>
-  <div class="subtitle">Prepared exclusively for Michael Shapiro — 25% Shareholding</div>
+  <div class="subtitle">Prepared exclusively for Michael Shapiro — from €300,000 (7.5%) entry</div>
   <div class="meta">
     <span><strong>Issuing Entity:</strong> Lighthief Cyprus Ltd (HE 477423)</span>
     <span><strong>Sector:</strong> BESS / Renewable Energy EPC</span>
-    <span><strong>Offer:</strong> €1,000,000 for 25%</span>
-    <span><strong>Implied Valuation:</strong> €4.0M post-money</span>
+    <span><strong>Ticket Range:</strong> €300,000 – €5,000,000</span>
+    <span><strong>Reference Valuation:</strong> €4.0M post-money (Offers 0–1)</span>
   </div>
 </div>
 
@@ -157,83 +168,263 @@
     </div>
   </div>
 
-  <!-- EXECUTIVE SUMMARY -->
-  <h2 class="sec">Executive Summary</h2>
-  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:12px;">
-    Lighthief Cyprus Ltd is a Battery Energy Storage System (BESS) EPC contractor operating in Cyprus, with a quoted order book of approximately <strong>€65.5 million</strong> in client revenue and an estimated <strong>€7.6 million</strong> in gross profit across 546 MWh of quoted projects (plus a further 120 MWh standalone opportunity under study). The company is the appointed EPC for <strong>Galascope Ltd</strong> and <strong>Esperia Energy Group</strong> — two of Cyprus's largest BESS programmes — plus a growing portfolio of standalone and group-order clients.
-  </p>
-  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:12px;">
-    This proposal offers <strong>Michael Shapiro</strong> a <strong>25% equity stake</strong> in Lighthief Cyprus Ltd for an investment of <strong>€1,000,000</strong>, implying a post-money valuation of <strong>€4.0 million</strong>. The offer takes effect and share transfer is triggered only upon the <strong>Galascope Ltd EPC being signed and stamped</strong> by both <strong>Lighthief Cyprus Ltd</strong> and <strong>Galascope Ltd</strong> — expected within approximately <strong>10 days</strong> following completion of client legal review.
-  </p>
-  <p style="font-size:9pt; color:#343a40; line-height:1.6;">
-    An optional staged structure is also available: <strong>12.5% for €500,000</strong> on Galascope EPC signing and stamping (both parties), with a call option to acquire a further <strong>12.5% for €500,000</strong> upon signing of the first Esperia pipeline EPC. Detailed commercial terms are set out below; formal subscription and shareholder agreements to be prepared by Cyprus counsel.
-  </p>
+  <!-- ENTRY HIGHLIGHT -->
+  <div class="entry-banner">
+    <div>
+      <div class="eb-tag">Minimum entry — Offer 0</div>
+      <div class="eb-main">€300,000 → 7.5%</div>
+      <div class="eb-sub">Direct equity at €4.0M post-money on Galascope EPC signed &amp; stamped. Alternative: <strong>Offer 0L</strong> — same €300k as 8% p.a. loan converting to 7.5%.</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:8pt;opacity:0.85;text-transform:uppercase;letter-spacing:1px;">Also available</div>
+      <div style="font-size:11pt;font-weight:800;color:var(--accent);margin-top:4px;">€500k · €1.5M · €3–5M</div>
+      <div style="font-size:8pt;opacity:0.85;margin-top:2px;">12.5% · 18% · 24–28%</div>
+    </div>
+  </div>
 
-  <!-- INVESTMENT TERMS -->
-  <h2 class="sec">Investment Structures</h2>
+  <!-- INVESTMENT MENU -->
+  <h2 class="sec">Investment Menu — Five Structures</h2>
 
-  <div class="offer-grid">
+  <div class="offer-grid three compact">
 
     <div class="offer-card primary">
       <div class="offer-head">
-        <div class="opct">25%</div>
-        <div class="olbl">Structure A — Single Closing</div>
+        <div class="opct">7.5%</div>
+        <div class="oamt">€300,000</div>
+        <div class="olbl">Offer 0 — Entry equity</div>
       </div>
       <div class="offer-body">
         <div class="ok-row">
-          <div class="ok-lbl">Investment Amount</div>
-          <div class="ok-val">€1,000,000</div>
+          <div class="ok-lbl">Investment</div>
+          <div class="ok-val">€300,000</div>
         </div>
         <div class="ok-row">
-          <div class="ok-lbl">Equity Stake</div>
-          <div class="ok-val">25% post-money</div>
-        </div>
-        <div class="ok-row">
-          <div class="ok-lbl">Implied Company Valuation</div>
+          <div class="ok-lbl">Implied post-money</div>
           <div class="ok-val">€4,000,000</div>
         </div>
         <div class="ok-row">
-          <div class="ok-lbl">Closing Trigger</div>
-          <div class="ok-val" style="font-size:8.5pt;">Galascope EPC signed &amp; stamped by Lighthief Cyprus and Galascope — expected ~10 days</div>
+          <div class="ok-lbl">Close</div>
+          <div class="ok-val" style="font-size:8pt;">Galascope EPC signed &amp; stamped</div>
         </div>
         <div class="ok-row">
-          <div class="ok-lbl">Mechanism</div>
-          <div class="ok-val" style="font-size:8.5pt;">Share subscription / transfer on Galascope EPC Effective Date (both parties signed &amp; stamped)</div>
+          <div class="ok-lbl">Governance</div>
+          <div class="ok-val" style="font-size:8pt;">Information rights; no board seat</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Use of proceeds</div>
+          <div class="ok-val" style="font-size:8pt;">Galascope WC (import VAT timing, Linyang, adders)</div>
         </div>
       </div>
     </div>
 
     <div class="offer-card">
       <div class="offer-head alt">
-        <div class="opct">12.5% + 12.5%</div>
-        <div class="olbl">Structure B — Staged Entry (Optional)</div>
+        <div class="opct">Loan → 7.5%</div>
+        <div class="olbl">Offer 0L — Equity-linked loan</div>
       </div>
       <div class="offer-body">
         <div class="ok-row">
-          <div class="ok-lbl">Tranche 1</div>
-          <div class="ok-val">€500,000 → 12.5%</div>
-          <div style="font-size:7.5pt;color:#6c757d;margin-top:2px;">Trigger: Galascope EPC signed &amp; stamped (both parties)</div>
+          <div class="ok-lbl">Principal</div>
+          <div class="ok-val">€300,000</div>
         </div>
         <div class="ok-row">
-          <div class="ok-lbl">Tranche 2 (Call Option)</div>
-          <div class="ok-val">€500,000 → +12.5%</div>
-          <div style="font-size:7.5pt;color:#6c757d;margin-top:2px;">Trigger: First Esperia pipeline EPC signed</div>
+          <div class="ok-lbl">Interest</div>
+          <div class="ok-val">8% p.a. (simple)</div>
         </div>
         <div class="ok-row">
-          <div class="ok-lbl">Total if Exercised</div>
-          <div class="ok-val">€1,000,000 → 25%</div>
+          <div class="ok-lbl">Conversion</div>
+          <div class="ok-val" style="font-size:8pt;">→ 7.5% ordinary on Galascope EPC (same €4M post-money cap)</div>
         </div>
         <div class="ok-row">
-          <div class="ok-lbl">Valuation</div>
-          <div class="ok-val" style="font-size:8.5pt;">Same €4.0M implied post-money on full exercise</div>
+          <div class="ok-lbl">Security</div>
+          <div class="ok-val" style="font-size:8pt;">Charge on Galascope receivables + VAT refund assignment (cap principal + interest)</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Alternative</div>
+          <div class="ok-val" style="font-size:8pt;">Repay principal + accrued interest from Galascope distributable cash by 9 months from draw if no conversion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-head">
+        <div class="opct">12.5%</div>
+        <div class="oamt">€500,000</div>
+        <div class="olbl">Offer 1 — Secured project equity</div>
+      </div>
+      <div class="offer-body">
+        <div class="ok-row">
+          <div class="ok-lbl">Investment</div>
+          <div class="ok-val">€500,000</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Post-money</div>
+          <div class="ok-val">€4,000,000</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Security</div>
+          <div class="ok-val" style="font-size:8pt;">Galascope receivables (cap €500k)</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Cash sweep</div>
+          <div class="ok-val" style="font-size:8pt;">Galascope post-pool margin until €540k returned (capital + 8% simple on project cash)</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Governance</div>
+          <div class="ok-val" style="font-size:8pt;">Board observer</div>
         </div>
       </div>
     </div>
 
   </div>
 
+  <div class="offer-grid compact">
+
+    <div class="offer-card">
+      <div class="offer-head alt">
+        <div class="opct">18%</div>
+        <div class="olbl">Offer 2 — Dividend covenant equity</div>
+      </div>
+      <div class="offer-body">
+        <div class="ok-row">
+          <div class="ok-lbl">Investment</div>
+          <div class="ok-val">€1,500,000</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Post-money</div>
+          <div class="ok-val">€6,833,333</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Distribution covenant</div>
+          <div class="ok-val" style="font-size:8pt;">≥50% of distributable project cash (Galascope + Esperia Sch. 1) to shareholders quarterly, 5 years</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Top-up option</div>
+          <div class="ok-val" style="font-size:8pt;">+€500k → +4% (22% total) on first Esperia pipeline EPC, same pre-money</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Governance</div>
+          <div class="ok-val" style="font-size:8pt;">Board seat; reserved matters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-head">
+        <div class="opct">24–28%</div>
+        <div class="olbl">Offer 3 — Platform strategic minority</div>
+      </div>
+      <div class="offer-body">
+        <div class="ok-row">
+          <div class="ok-lbl">Investment</div>
+          <div class="ok-val">€3M → 24% · €5M → 28%</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Post-money</div>
+          <div class="ok-val">€12.5M / €17.9M</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Distributions</div>
+          <div class="ok-val" style="font-size:8pt;">Reinvestment — no mandatory dividend; full backlog upside</div>
+        </div>
+        <div class="ok-row">
+          <div class="ok-lbl">Governance</div>
+          <div class="ok-val" style="font-size:8pt;">Board seat; tag-along; LCY/Poland firewall; nominate one ops executive (outside origination pool)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="sec">Menu at a glance</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Offer</th>
+        <th class="r">Ticket</th>
+        <th class="c">Stake</th>
+        <th class="r">Post-money</th>
+        <th>Instrument</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="b">0 — Entry equity</td><td class="r mono">€300,000</td><td class="c">7.5%</td><td class="r mono">€4.0M</td><td>Ordinary shares</td></tr>
+      <tr><td class="b">0L — Equity-linked loan</td><td class="r mono">€300,000</td><td class="c">7.5% on conversion</td><td class="r mono">€4.0M cap</td><td>8% p.a. loan → converts or repays</td></tr>
+      <tr><td class="b">1 — Secured project</td><td class="r mono">€500,000</td><td class="c">12.5%</td><td class="r mono">€4.0M</td><td>Ordinary + receivable charge + sweep</td></tr>
+      <tr><td class="b">2 — Dividend covenant</td><td class="r mono">€1,500,000</td><td class="c">18%</td><td class="r mono">€6.8M</td><td>Ordinary + distribution policy</td></tr>
+      <tr><td class="b">3 — Platform</td><td class="r mono">€3–5M</td><td class="c">24–28%</td><td class="r mono">€12.5–17.9M</td><td>Ordinary + full governance</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec">Illustrative returns (management estimates, ex VAT)</h3>
+  <p style="font-size:8pt; color:#6c757d; margin-bottom:8px;">Post-pool shareholder margin only. Origination pool (existing pipeline team, up to 30% of net margin) paid from project cash — not from equity proceeds. Not a forecast or guarantee.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Scenario</th>
+        <th class="r">Company post-pool margin</th>
+        <th class="c">7.5% (€300k)</th>
+        <th class="c">12.5% (€500k)</th>
+        <th class="c">18% (€1.5M)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Galascope Batch 1 only (~€175k post-pool)</td>
+        <td class="r mono">€175,000</td>
+        <td class="c mono">€13,125</td>
+        <td class="c mono">€21,875</td>
+        <td class="c mono">€31,500</td>
+      </tr>
+      <tr>
+        <td class="b">40% of quoted backlog converts (~€2.1M post-pool, cumulative)</td>
+        <td class="r mono">€2,100,000</td>
+        <td class="c mono">€157,500</td>
+        <td class="c mono">€262,500</td>
+        <td class="c mono">€378,000</td>
+      </tr>
+      <tr>
+        <td class="b">Offer 0L — interest if held 9 months then repaid (no conversion)</td>
+        <td class="r mono">—</td>
+        <td class="c mono" colspan="3">€318,000 total (€300k + €18k @ 8% p.a. simple) — ~6.0% cash return on principal; no equity upside</td>
+      </tr>
+      <tr>
+        <td class="b">Offer 0L — convert at EPC (typical)</td>
+        <td class="r mono">—</td>
+        <td class="c mono" colspan="3">Same 7.5% equity as Offer 0; accrued interest payable at conversion or from first Galascope distributable cash</td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b">Implied cash-on-cost — Galascope only (Offer 0)</td>
+        <td class="r">—</td>
+        <td class="c">~4.4%</td>
+        <td class="c">~4.4%</td>
+        <td class="c">~2.1%</td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b">Implied cash-on-cost — 40% backlog (Offer 0)</td>
+        <td class="r">—</td>
+        <td class="c">~52.5%</td>
+        <td class="c">~52.5%</td>
+        <td class="c">~25.2%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:7.5pt; color:#6c757d;">Cash-on-cost = illustrative distributable post-pool margin ÷ investment (undiscounted, before exit multiple). Platform value at Offer 3 post-money €12.5–17.9M vs €65.5M quoted revenue backlog — entry at discount to contracted pipeline if conversion executes.</p>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <h2 class="sec">Executive Summary</h2>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:12px;">
+    Lighthief Cyprus Ltd is a Battery Energy Storage System (BESS) EPC contractor operating in Cyprus, with a quoted order book of approximately <strong>€65.5 million</strong> in client revenue and an estimated <strong>€7.6 million</strong> in gross profit across 546 MWh of quoted projects (plus a further 120 MWh standalone opportunity under study). The company is the appointed EPC for <strong>Galascope Ltd</strong> and <strong>Esperia Energy Group</strong> — two of Cyprus's largest BESS programmes — plus a growing portfolio of standalone and group-order clients.
+  </p>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6; margin-bottom:12px;">
+    This menu offers <strong>Michael Shapiro</strong> a choice of five structures in <strong>Lighthief Cyprus Ltd</strong>, from <strong>€300,000 for 7.5%</strong> (Offer 0) through <strong>€5,000,000</strong> platform participation (Offer 3). All equity closes on the <strong>Galascope Ltd EPC signed and stamped</strong> by Lighthief Cyprus Ltd and Galascope Ltd (not LOI alone). <strong>Offer 0L</strong> is an optional <strong>€300,000</strong> equity-linked loan at <strong>8% p.a.</strong> converting to the same 7.5% stake.
+  </p>
+  <p style="font-size:9pt; color:#343a40; line-height:1.6;">
+    Galascope Batch 1 alone: <strong>€3.44M</strong> ex VAT / <strong>~€251k</strong> estimated net margin (~€175k post-pool to shareholders). Illustrative returns in the menu above; formal subscription and SHA by Cyprus counsel.
+  </p>
+
   <div class="note gold-note">
-    <strong>Closing trigger:</strong> Under both structures, the initial share transfer occurs only when the <strong>Galascope Ltd EPC</strong> (LCY-EPC-GAL-B1-2026) is <strong>signed and stamped by both Lighthief Cyprus Ltd and Galascope Ltd</strong>. Until that date, this proposal remains conditional — it does not take effect on LOI alone. The full EPC v5.1 pack — including LTSA, EMS addendum, and OEM warranty undertaking — has been submitted to Esperia's counsel and is in final legal review; signing and stamping is expected within approximately <strong>10 days</strong>. Under Structure B, the second tranche is triggered separately upon execution of the first <strong>Esperia pipeline</strong> EPC (LOI Schedule 1 — distinct from the Galascope carve-out).
+    <strong>Closing trigger (all offers):</strong> Initial closing when the <strong>Galascope Ltd EPC</strong> (LCY-EPC-GAL-B1-2026) is <strong>signed and stamped by both Lighthief Cyprus Ltd and Galascope Ltd</strong>. Offer 0L may <strong>draw on signing</strong> for project working capital; conversion to 7.5% equity on the same EPC Effective Date unless investor elects repayment. This proposal does not take effect on LOI alone.
   </div>
 
   <!-- WHY INVEST -->
@@ -542,7 +733,7 @@
       </tr>
       <tr>
         <td class="b">Closing Trigger</td>
-        <td>Structure A: full 25% when Galascope EPC is signed and stamped by Lighthief Cyprus Ltd and Galascope Ltd. Structure B: 12.5% on same Galascope EPC trigger; optional +12.5% on first Esperia pipeline EPC.</td>
+        <td>All equity offers: Galascope EPC signed and stamped by Lighthief Cyprus Ltd and Galascope Ltd. Offer 0L may draw on EPC signing; converts to 7.5% on same date unless repayment elected. Offer 2 top-up (+4%) on first Esperia pipeline EPC.</td>
       </tr>
       <tr>
         <td class="b">Origination pool</td>
@@ -554,7 +745,7 @@
       </tr>
       <tr>
         <td class="b">Governance</td>
-        <td>Commercial terms only at this stage. Board observer / information rights and reserved matters to be agreed in shareholder agreement.</td>
+        <td>Varies by offer: Offer 0 — information rights; Offer 1 — board observer; Offer 2 — board seat + reserved matters; Offer 3 — full strategic minority protections. Detail in shareholder agreement.</td>
       </tr>
       <tr>
         <td class="b">Due Diligence</td>
@@ -583,7 +774,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td class="c">1</td><td>Indicate preferred structure (A or B) and sign NDA</td><td class="c">Michael Shapiro</td><td class="c">Within 7 days</td></tr>
+      <tr><td class="c">1</td><td>Indicate preferred offer (0, 0L, 1, 2, or 3) and sign NDA</td><td class="c">Michael Shapiro</td><td class="c">Within 7 days</td></tr>
       <tr><td class="c">2</td><td>Management presentation and data room access</td><td class="c">Lighthief</td><td class="c">Upon NDA</td></tr>
       <tr><td class="c">3</td><td>Galascope EPC signed &amp; stamped by Lighthief Cyprus and Galascope (closing trigger)</td><td class="c">Lighthief / Galascope</td><td class="c">~10 days</td></tr>
       <tr><td class="c">4</td><td>Term sheet and subscription agreement</td><td class="c">Counsel</td><td class="c">Concurrent with EPC</td></tr>
@@ -598,7 +789,7 @@
 
   <div class="faq-item">
     <div class="faq-q">Why €4M valuation against a €65M quoted backlog?</div>
-    <div class="faq-a">Early entry before first EPC cashflow. Most of the table is LOI or quoted, not signed EPC — we haircut accordingly. €4M prices the <em>platform at first contract execution</em>, not full backlog conversion. Structure B (€500k / 12.5%) available if you prefer less capital at Galascope close.</div>
+    <div class="faq-a">Early entry before first EPC cashflow. Most of the table is LOI or quoted, not signed EPC — we haircut accordingly. €4M prices the <em>platform at first contract execution</em>, not full backlog conversion. Offers 0 and 0L (€300k / 7.5%) and Offer 1 (€500k / 12.5%) provide lower entry if you prefer less capital at Galascope close.</div>
   </div>
 
   <div class="faq-item">
@@ -617,13 +808,18 @@
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">What governance do I get at 25%?</div>
-    <div class="faq-a">Term sheet and SHA to define board observer (or seat), information rights, reserved matters (related-party spend, new debt, dividends, group entities), and standard pre-emption. Not finalised in this proposal — expect a one-page heads of terms with counsel.</div>
+    <div class="faq-q">What is Offer 0L — equity-linked loan vs Offer 0 equity?</div>
+    <div class="faq-a">Same economic outcome if you convert: <strong>7.5%</strong> at <strong>€4M post-money</strong>. The loan pays <strong>8% p.a. simple</strong> from draw, secured on Galascope receivables and VAT refund. On Galascope EPC signing you convert to ordinary shares (accrued interest settled at conversion or from first distributable project cash). If you do not convert, principal plus interest is repaid from Galascope cash within 9 months of draw — debt return only, no equity upside. Use 0L if you want WC deployed before close with a defined debt floor; use Offer 0 for straight equity.</div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">Where does the €1M go?</div>
-    <div class="faq-a">Primarily Galascope working capital (OEM deposit, adders, delivery) and company runway — not the origination pool. Pool is funded from project margin on client payments. Use-of-proceeds schedule in subscription agreement.</div>
+    <div class="faq-q">What governance do I get at each ticket size?</div>
+    <div class="faq-a">Offer 0 / 0L (7.5%): information rights, no board seat. Offer 1 (12.5%): board observer. Offer 2 (18%): board seat and reserved matters on material spend, debt, and dividends. Offer 3 (24–28%): full strategic minority package including tag-along and LCY/Poland firewall. Term sheet and SHA to formalise — expect heads of terms with counsel.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where does investment capital go?</div>
+    <div class="faq-a">Primarily Galascope working capital — OEM deposit, adders, import VAT timing, delivery — and company runway. Not the origination pool (funded from project margin on client payments). Offer 0L draw schedule tied to Galascope milestones. Use-of-proceeds schedule in subscription agreement.</div>
   </div>
 
   <div class="faq-item">
@@ -654,7 +850,7 @@
 
   <div class="footer">
     <div>Dr. Arkadius Sybaris · Founder &amp; CEO · Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy</div>
-    <div>Document LCY-EQ-SHA-2026-001 · 27 May 2026 · v1.1 · Strictly Private &amp; Confidential</div>
+    <div>Document LCY-EQ-SHA-2026-001 · 27 May 2026 · v1.2.1 · Strictly Private &amp; Confidential</div>
   </div>
 
 </div>
