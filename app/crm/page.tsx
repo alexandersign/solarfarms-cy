@@ -369,9 +369,18 @@ export default function CrmPage() {
   const quickUpdateStatus = useCallback(async (id: string, outreach_status: string) => {
     const now = new Date().toISOString()
     const updates: Partial<ProspectFull> = { outreach_status: outreach_status as PvProspect['outreach_status'] }
-    if (outreach_status === 'contacted' || outreach_status === 'responded') updates.last_contact_date = now
+    // Stamp last_contact_date on any active-engagement status change
+    if (['contacted','responded','meeting_set','proposal_sent','negotiating'].includes(outreach_status)) {
+      updates.last_contact_date = now
+    }
     const existing = prospects.find(p => p.id === id)
     if (!existing?.first_contact_date && outreach_status === 'contacted') updates.first_contact_date = now
+    // Set next_follow_up when proposal is sent (5-day chase rule)
+    if (outreach_status === 'proposal_sent' && !existing?.next_follow_up) {
+      const fivedays = new Date(now)
+      fivedays.setDate(fivedays.getDate() + 5)
+      updates.next_follow_up = fivedays.toISOString().split('T')[0]
+    }
     await putRow(id, updates)
     // log activity
     fetch('/api/crm/prospects/activity', {
