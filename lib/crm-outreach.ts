@@ -42,7 +42,139 @@ function isBessRelevant(target?: string, angle?: string): boolean {
   return /BESS|Hybrid/i.test(target)
 }
 
-/** BESS specs block (EVE / Linyang) — email-safe table row. */
+/** Curtailment pain section — always shown for BESS developer prospects. */
+function curtailmentBlock(): string {
+  return `
+    <tr><td style="padding:14px 28px 6px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background:#FFF5F5;border-left:4px solid #C53030;border-radius:4px;">
+        <tr><td style="padding:16px 20px;color:#222;font-size:14px;line-height:1.65;">
+          <p style="margin:0 0 10px;color:#C53030;font-weight:bold;font-size:16px;">
+            47% of Cyprus solar energy was wasted in 2025
+          </p>
+          <p style="margin:0 0 10px;">
+            Curtailment hit <strong>47.44%</strong> last year — 306,000 MWh of generated solar power
+            forced off the grid. Energy you paid to produce, handed back for free.
+            For a 1 MW park, that translates to roughly
+            <strong>€20,000–€35,000 in lost revenue every year.</strong>
+          </p>
+          <p style="margin:0;">
+            The grid cannot absorb peak midday solar without storage. Every curtailment event
+            is not a grid failure — it is a revenue leak with a known fix.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>`
+}
+
+/** Revenue models block — arbitrage, FFR, FCR in plain business language. */
+function revenueModelsBlock(): string {
+  return `
+    <tr><td style="padding:6px 28px 6px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background:#F7F9FC;border:1px solid #e2e8f0;border-radius:8px;">
+        <tr><td style="padding:18px 20px;color:#222;font-size:14px;line-height:1.65;">
+          <p style="margin:0 0 12px;color:#C9A432;font-weight:bold;font-size:15px;">
+            A battery earns in 3 ways — most park owners know none of them
+          </p>
+
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:14px;color:#333;margin-bottom:4px;">
+            <tr valign="top">
+              <td style="padding:6px 14px 6px 0;width:22px;color:#1A365D;font-weight:bold;font-size:16px;">1.</td>
+              <td style="padding:6px 0;">
+                <strong>Curtailment recovery</strong> — instead of wasting your peak generation,
+                charge the battery midday and export it when the grid can take it.
+                Recover the 47% you are currently giving away.
+              </td>
+            </tr>
+            <tr valign="top">
+              <td style="padding:6px 14px 6px 0;width:22px;color:#1A365D;font-weight:bold;font-size:16px;">2.</td>
+              <td style="padding:6px 0;">
+                <strong>Price arbitrage</strong> — charge when wholesale prices are low
+                (midday solar glut, ~€77/MWh), discharge into the evening peak
+                (~€183/MWh). That <strong>€106/MWh spread</strong> is pure margin,
+                every single day.
+              </td>
+            </tr>
+            <tr valign="top">
+              <td style="padding:6px 14px 6px 0;width:22px;color:#1A365D;font-weight:bold;font-size:16px;">3.</td>
+              <td style="padding:6px 0;">
+                <strong>Ancillary services (FFR &amp; FCR)</strong> — TSOC pays battery
+                owners to hold capacity on standby. FFR (Frequency Fast Response) is
+                available now; FCR (Frequency Containment Reserve) is coming as the
+                Cyprus grid matures. These are recurring payments for doing almost nothing —
+                your battery sits ready and earns a retainer.
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+      </table>
+    </td></tr>`
+}
+
+/** "We size it for you" block — removes the technical barrier for park owners. */
+function bessSizingBlock(): string {
+  return `
+    <tr><td style="padding:6px 28px 6px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);border-radius:8px;">
+        <tr><td style="padding:18px 20px;color:#ffffff;font-size:14px;line-height:1.65;">
+          <p style="margin:0 0 10px;color:#C9A432;font-weight:bold;font-size:15px;">
+            "How big a battery do I need?" — We answer that for you
+          </p>
+          <p style="margin:0 0 10px;">
+            Most park owners stall here. BESS sizing is genuinely complex — it depends on
+            your curtailment profile, grid connection capacity, DSO constraints, and your
+            target revenue model. The wrong size leaves money on the table; the right size
+            pays for itself in 4–6 years.
+          </p>
+          <p style="margin:0 0 10px;">
+            We run a full curtailment analysis using <strong>EAC metering data</strong> and
+            our grid expertise — the same approach we use for our O&amp;M parks across
+            Famagusta, Limassol and Nicosia districts.
+            <strong>We bring the data; you make the decision.</strong>
+          </p>
+          <p style="margin:0;font-size:13px;color:#ccd8e8;">
+            No cost. No obligation. Just a clear picture of what your park could earn with storage.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>`
+}
+
+/** EVE + Kehua equipment block — plain business language, no spec-sheet jargon. */
+function equipmentBlock(): string {
+  return `
+    <tr><td style="padding:6px 28px 8px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background:#F7F9FC;border:1px solid #e2e8f0;border-radius:8px;">
+        <tr><td style="padding:18px 20px;color:#222;font-size:14px;line-height:1.65;">
+          <p style="margin:0 0 12px;color:#1A365D;font-weight:bold;font-size:15px;">
+            Equipment that lasts — in plain English
+          </p>
+
+          <p style="margin:0 0 6px;"><strong style="color:#1A365D;">EVE Energy cells (314Ah LFP) — the cells inside the box</strong></p>
+          <p style="margin:0 0 12px;">
+            EVE is a Tier-1 manufacturer — the same LFP cells used inside the world&#39;s
+            leading grid-scale storage systems. In plain terms: <strong>7,000 charge cycles at
+            90% depth of discharge, with a 15-year capacity warranty.</strong>
+            UL 9540A certified with zero thermal propagation — no fire risk, no chain reaction.
+            Your cells will still be working and warrantied when your grandchildren inherit the park.
+          </p>
+
+          <p style="margin:0 0 6px;"><strong style="color:#1A365D;">Kehua PCS — the brain that talks to the grid</strong></p>
+          <p style="margin:0;">
+            Kehua&#39;s Power Conversion System is a leading grid-forming inverter.
+            Grid-forming capability means the BESS does not just absorb power — it actively
+            stabilises the local grid <em>during</em> curtailment events. That qualifies your
+            system for premium ancillary service contracts with TSOC, not just basic curtailment relief.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>`
+}
+
+/** Legacy BESS specs block (EVE / Linyang) — kept for non-BESS angle emails. */
 function storageBlock(): string {
   return `
     <tr><td style="padding:6px 28px 8px;">
@@ -160,7 +292,11 @@ export function renderIntroEmail(
     .replace(/\{\{COMPANY\}\}/g, esc(company))
     .replace(/\{\{GREETING_LINE\}\}/g, greeting)
     .replace(/\{\{OFFER_LINE\}\}/g, esc(offerLine))
-    .replace(/\{\{STORAGE_BLOCK\}\}/g, bess ? storageBlock() : '')
+    .replace(/\{\{CURTAILMENT_BLOCK\}\}/g, bess ? curtailmentBlock() : '')
+    .replace(/\{\{REVENUE_MODELS_BLOCK\}\}/g, bess ? revenueModelsBlock() : '')
+    .replace(/\{\{BESS_SIZING_BLOCK\}\}/g, bess ? bessSizingBlock() : '')
+    .replace(/\{\{EQUIPMENT_BLOCK\}\}/g, bess ? equipmentBlock() : '')
+    .replace(/\{\{STORAGE_BLOCK\}\}/g, bess ? '' : storageBlock())
     .replace(/\{\{PRICING_BLOCK\}\}/g, pricingBlock(bess))
     .replace(/\{\{ABOUT_BLOCK\}\}/g, aboutBlock())
     .replace(/\{\{SENDER_NAME\}\}/g, esc(senderName))
@@ -171,7 +307,7 @@ export function renderIntroEmail(
     .replace(/\{\{YEAR\}\}/g, String(new Date().getFullYear()))
 
   const subject = bess
-    ? `Lighthief — EPC, O&M & battery storage for ${company}`
+    ? `Your solar park is losing money to curtailment — here's how to recover it`
     : `Lighthief — solar EPC & O&M for ${company}`
   return { subject, html }
 }
@@ -183,24 +319,77 @@ function formatEur(n: number): string {
   return `€${Math.round(n).toLocaleString()}`
 }
 
-function savingsRows(p: CommercialRecipient): string {
-  const kWp   = p.capacity_mwp != null ? Math.round(p.capacity_mwp * 1000) : null
-  const saves = p.annual_savings_eur != null ? Math.round(p.annual_savings_eur) : null
-  const pb    = p.payback_years   != null ? p.payback_years : null
-  const roof  = p.roof_area_m2    != null ? Math.round(p.roof_area_m2) : null
+function formatEurFull(n: number): string {
+  return `€${Math.round(n).toLocaleString('en-CY')}`
+}
 
-  const rows: [string, string][] = []
-  if (kWp)   rows.push(['Estimated system size', `<strong>${kWp} kWp</strong>`])
-  if (roof)  rows.push(['Available roof area',    `${roof.toLocaleString()} m²`])
-  if (saves) rows.push(['Estimated annual savings', `<strong style="color:#059669;">${formatEur(saves)} / year</strong>`])
-  if (pb)    rows.push(['Estimated payback period',  `<strong>${pb} years</strong>`])
-  if (!rows.length) rows.push(['Savings estimate', 'Available on request — contact us for a free assessment'])
+/**
+ * Bold, visual savings numbers block — the centrepiece of the commercial email.
+ * Shows system size, year 1 savings, payback, 5-year savings, and the big 30-year number.
+ */
+function savingsNumbersBlock(p: CommercialRecipient): string {
+  const kWp     = p.capacity_mwp != null ? Math.round(p.capacity_mwp * 1000) : null
+  const saves   = p.annual_savings_eur != null ? Math.round(p.annual_savings_eur) : null
+  const pb      = p.payback_years != null ? p.payback_years : null
+  const saves5  = saves ? Math.round(saves * 5) : null
+  // 25 productive years beyond payback period (lifetime ~30yrs, conservative productive calc)
+  const lifetime = saves ? Math.round(saves * 25) : null
+  const roof    = p.roof_area_m2 != null ? Math.round(p.roof_area_m2) : null
 
-  return rows.map(([label, value]) => `
-    <tr>
-      <td style="padding:4px 0;color:#666;width:55%;">${label}</td>
-      <td style="padding:4px 0;">${value}</td>
-    </tr>`).join('')
+  if (!kWp && !saves) {
+    return `
+    <tr><td style="padding:6px 28px 12px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background:linear-gradient(135deg,#f0f7ff 0%,#e8f4f0 100%);border:1px solid #c8ddf0;border-radius:8px;">
+        <tr><td style="padding:20px 22px;">
+          <p style="margin:0 0 8px;color:#1A365D;font-weight:bold;font-size:15px;">Your personalised savings estimate</p>
+          <p style="margin:0;color:#555;font-size:14px;">Available on request — contact us for a free roof assessment and savings projection.</p>
+        </td></tr>
+      </table>
+    </td></tr>`
+  }
+
+  const bigNumber = lifetime
+    ? `<td style="padding:12px 0 12px 16px;text-align:center;border-left:2px solid #c8ddf0;">
+        <p style="margin:0 0 4px;color:#666;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;">Over 25 productive years</p>
+        <p style="margin:0;color:#059669;font-size:34px;font-weight:bold;line-height:1.1;">${formatEurFull(lifetime)}</p>
+        <p style="margin:4px 0 0;color:#059669;font-size:11px;font-weight:bold;">TOTAL LIFETIME SAVINGS</p>
+      </td>`
+    : ''
+
+  const metaRows: string[] = []
+  if (kWp)    metaRows.push(`<tr><td style="padding:5px 0;color:#666;font-size:14px;width:60%;">System size</td><td style="padding:5px 0;font-weight:bold;font-size:14px;">${kWp} kWp</td></tr>`)
+  if (roof)   metaRows.push(`<tr><td style="padding:5px 0;color:#666;font-size:14px;">Roof area assessed</td><td style="padding:5px 0;font-size:14px;">${roof.toLocaleString()} m²</td></tr>`)
+  if (saves)  metaRows.push(`<tr><td style="padding:5px 0;color:#666;font-size:14px;">Year 1 savings</td><td style="padding:5px 0;font-weight:bold;font-size:14px;color:#059669;">${formatEurFull(saves)}</td></tr>`)
+  if (pb)     metaRows.push(`<tr><td style="padding:5px 0;color:#666;font-size:14px;">Payback period</td><td style="padding:5px 0;font-weight:bold;font-size:14px;">${pb} years</td></tr>`)
+  if (saves5) metaRows.push(`<tr><td style="padding:5px 0;color:#666;font-size:14px;">Savings over 5 years</td><td style="padding:5px 0;font-weight:bold;font-size:14px;color:#059669;">${formatEurFull(saves5)}</td></tr>`)
+
+  return `
+    <tr><td style="padding:6px 28px 12px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"
+        style="background:linear-gradient(135deg,#f0f7ff 0%,#e8f4f0 100%);border:1px solid #c8ddf0;border-radius:8px;">
+        <tr><td style="padding:20px 22px;">
+          <p style="margin:0 0 14px;color:#1A365D;font-weight:bold;font-size:15px;">
+            We ran the numbers on your building{{COMPANY_SUFFIX}}
+          </p>
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr valign="top">
+              <td style="width:${lifetime ? '55%' : '100%'};">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  ${metaRows.join('')}
+                </table>
+              </td>
+              ${bigNumber}
+            </tr>
+          </table>
+          <p style="margin:12px 0 0;color:#7a869a;font-size:11px;">
+            Based on satellite roof assessment and current EAC commercial tariffs.
+            Solar systems carry a 30-year lifespan — lifetime savings use 25 productive years.
+            Final figures subject to on-site survey.
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>`
 }
 
 function roofImageBlock(url?: string): string {
@@ -239,25 +428,38 @@ export function renderCommercialEmail(
   const senderEmail = opts.senderEmail || DEFAULT_REPLY_TO
   const senderPhone = opts.senderPhone || '+357 99 164 158'
 
-  const html = tpl
-    .replace(/\{\{CONTACT_NAME\}\}/g,    esc(contactName))
-    .replace(/\{\{COMPANY\}\}/g,         esc(company))
-    .replace(/\{\{COMPANY_ENCODED\}\}/g, encodeURIComponent(company))
-    .replace(/\{\{ADDRESS_SUFFIX\}\}/g,  esc(addressSuffix))
-    .replace(/\{\{ADDRESS_LINE\}\}/g,    addressLine)
-    .replace(/\{\{SAVINGS_ROWS\}\}/g,    savingsRows(p))
-    .replace(/\{\{ROOF_IMAGE_BLOCK\}\}/g, roofImageBlock(p.roof_image_url))
-    .replace(/\{\{SENDER_NAME\}\}/g,     esc(senderName))
-    .replace(/\{\{SENDER_TITLE\}\}/g,    esc(senderTitle))
-    .replace(/\{\{SENDER_EMAIL\}\}/g,    esc(senderEmail))
-    .replace(/\{\{SENDER_PHONE\}\}/g,    esc(senderPhone))
-    .replace(/\{\{UNSUBSCRIBE_URL\}\}/g, p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : '#')
-    .replace(/\{\{YEAR\}\}/g,            String(new Date().getFullYear()))
+  // Computed savings figures
+  const annualSavings = p.annual_savings_eur != null ? Math.round(p.annual_savings_eur) : null
+  const savings5yr    = annualSavings ? Math.round(annualSavings * 5) : null
+  const lifetimeSavings = annualSavings ? Math.round(annualSavings * 25) : null
 
-  const industry = p.industry ? ` for your ${p.industry.toLowerCase()} business` : ''
-  const subject  = p.annual_savings_eur
-    ? `Save ${formatEur(p.annual_savings_eur)}/year on electricity${industry} — Lighthief Cyprus`
-    : `Free rooftop solar savings estimate${industry} — Lighthief Cyprus`
+  // Build the savings numbers block (renders {{COMPANY_SUFFIX}} internally)
+  const numbersBlock = savingsNumbersBlock(p)
+    .replace(/\{\{COMPANY_SUFFIX\}\}/g, company !== 'your business' ? ` — ${esc(company)}` : '')
+
+  const html = tpl
+    .replace(/\{\{CONTACT_NAME\}\}/g,         esc(contactName))
+    .replace(/\{\{COMPANY\}\}/g,              esc(company))
+    .replace(/\{\{COMPANY_ENCODED\}\}/g,      encodeURIComponent(company))
+    .replace(/\{\{ADDRESS_SUFFIX\}\}/g,       esc(addressSuffix))
+    .replace(/\{\{ADDRESS_LINE\}\}/g,         addressLine)
+    .replace(/\{\{ANNUAL_SAVINGS_EUR\}\}/g,   annualSavings ? formatEurFull(annualSavings) : '')
+    .replace(/\{\{SAVINGS_5YR_EUR\}\}/g,      savings5yr ? formatEurFull(savings5yr) : '')
+    .replace(/\{\{LIFETIME_SAVINGS_EUR\}\}/g, lifetimeSavings ? formatEurFull(lifetimeSavings) : '')
+    .replace(/\{\{SAVINGS_NUMBERS_BLOCK\}\}/g, numbersBlock)
+    .replace(/\{\{ROOF_IMAGE_BLOCK\}\}/g,     roofImageBlock(p.roof_image_url))
+    .replace(/\{\{SENDER_NAME\}\}/g,          esc(senderName))
+    .replace(/\{\{SENDER_TITLE\}\}/g,         esc(senderTitle))
+    .replace(/\{\{SENDER_EMAIL\}\}/g,         esc(senderEmail))
+    .replace(/\{\{SENDER_PHONE\}\}/g,         esc(senderPhone))
+    .replace(/\{\{UNSUBSCRIBE_URL\}\}/g,      p.id ? buildUnsubscribeUrl(opts.baseUrl, p.id) : '#')
+    .replace(/\{\{YEAR\}\}/g,                 String(new Date().getFullYear()))
+
+  const subject = company !== 'your business'
+    ? `${esc(company)}: we ran the numbers on your roof`
+    : p.annual_savings_eur
+      ? `Electricity doesn't have to be your biggest cost — Lighthief Cyprus`
+      : `Free rooftop solar savings estimate — Lighthief Cyprus`
 
   return { subject, html }
 }

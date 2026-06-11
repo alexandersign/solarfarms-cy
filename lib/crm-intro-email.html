@@ -9,6 +9,7 @@
   Lighthief CRM developer/SPV intro email (email-safe, table-based).
   Tokens injected by lib/crm-outreach.ts:
     {{HERO_IMAGE_URL}} {{CONTACT_NAME}} {{COMPANY}} {{GREETING_LINE}} {{OFFER_LINE}}
+    {{CURTAILMENT_BLOCK}} {{REVENUE_MODELS_BLOCK}} {{BESS_SIZING_BLOCK}} {{EQUIPMENT_BLOCK}}
     {{STORAGE_BLOCK}} {{PRICING_BLOCK}} {{ABOUT_BLOCK}}
     {{SENDER_NAME}} {{SENDER_TITLE}} {{SENDER_EMAIL}} {{SENDER_PHONE}}
     {{UNSUBSCRIBE_URL}} {{YEAR}}
@@ -43,20 +44,22 @@
       </td>
     </tr>
 
-    <!-- Body -->
+    <!-- Opening -->
     <tr>
       <td style="padding:26px 28px 8px;color:#222222;font-size:15px;line-height:1.55;">
         <p style="margin-bottom:14px;">Dear {{CONTACT_NAME}},</p>
         <p style="margin-bottom:14px;">{{GREETING_LINE}}</p>
-        <p style="margin-bottom:14px;">
-          Lighthief is a Cyprus-based renewable energy contractor delivering
-          <strong>turnkey EPC, long-term O&amp;M, and bankable battery energy storage (BESS)</strong>
-          for solar parks across the island — from construction and grid connection through to
-          operation, performance monitoring and storage retrofits.
-        </p>
         <p style="margin-bottom:4px;">{{OFFER_LINE}}</p>
       </td>
     </tr>
+
+    {{CURTAILMENT_BLOCK}}
+
+    {{REVENUE_MODELS_BLOCK}}
+
+    {{BESS_SIZING_BLOCK}}
+
+    {{EQUIPMENT_BLOCK}}
 
     {{STORAGE_BLOCK}}
 
@@ -66,16 +69,17 @@
 
     <!-- CTA + signature -->
     <tr>
-      <td style="padding:8px 28px 24px;color:#222;font-size:15px;line-height:1.55;">
+      <td style="padding:16px 28px 24px;color:#222;font-size:15px;line-height:1.55;">
         <p style="margin-bottom:18px;">
-          I would welcome a short introductory call to see how we can support
-          <strong>{{COMPANY}}</strong> — no obligation.
+          Would you be open to a <strong>20-minute call</strong> this week?
+          I can walk you through the curtailment data for your park and show you what the numbers
+          look like for a BESS retrofit — no obligation, no sales pitch, just the figures.
         </p>
         <table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 20px;">
           <tr><td bgcolor="#1A365D" style="border-radius:6px;">
-            <a href="mailto:{{SENDER_EMAIL}}?subject=Re%3A%20Lighthief%20EPC%20%2F%20O%26M%20%2F%20BESS%20for%20{{COMPANY}}"
+            <a href="mailto:{{SENDER_EMAIL}}?subject=Re%3A%20BESS%20curtailment%20recovery%20for%20{{COMPANY}}"
                style="display:inline-block;padding:12px 22px;color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;">
-              Arrange an introductory call
+              Let&#39;s talk curtailment recovery
             </a>
           </td></tr>
         </table>
