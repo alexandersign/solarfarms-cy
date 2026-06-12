@@ -32,6 +32,10 @@ export const metadata: Metadata = {
   creator: 'Lighthief Cyprus',
   publisher: 'Lighthief Cyprus',
   robots: 'index, follow',
+  icons: {
+    icon: '/images/solarfarms-favicon.png',
+    apple: '/images/solarfarms-favicon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
