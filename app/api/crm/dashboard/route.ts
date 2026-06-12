@@ -102,7 +102,6 @@ export async function GET(request: NextRequest) {
   }
 
   // Build CRM user → email lookup for target resolution
-  // Author names in activity_feed match CRM_USERS.name, so we match by name key
   const nameToEmail: Record<string, string> = {
     'Alexander': 'alexander.papacosta@lighthief.com',
     'Zinovia': 'zinovia@lighthief.com',
@@ -111,14 +110,28 @@ export async function GET(request: NextRequest) {
     'Office': 'office@lighthief.com',  // legacy entries keep working
   }
 
+  // Seed the map with all active CRM users so they always appear even with 0 activity
+  const CRM_USER_NAMES = ['Alexander', 'Zinovia', 'Costas', 'Andreas']
+  for (const name of CRM_USER_NAMES) {
+    if (!activityMap[name]) {
+      activityMap[name] = { calls: 0, emails: 0, notes: 0, statusChanges: 0, lastActive: null }
+    }
+  }
+
+  // Only show real CRM team members — exclude system/automated entries
+  const HUMAN_AUTHORS = new Set([...CRM_USER_NAMES, 'Office'])
   const activitySummary = Object.entries(activityMap)
+    .filter(([author]) => HUMAN_AUTHORS.has(author))
     .map(([author, stats]) => {
       const email = nameToEmail[author] || author
       const callTarget = DAILY_CALL_TARGETS[email] ?? 10
       const callPct = Math.min(100, Math.round((stats.calls / callTarget) * 100))
       return { author, ...stats, callTarget, callPct }
     })
-    .sort((a, b) => (b.calls + b.emails + b.notes) - (a.calls + a.emails + a.notes))
+    .sort((a, b) => {
+      // Sort by total activity descending, but always show all users
+      return (b.calls + b.emails + b.notes) - (a.calls + a.emails + a.notes)
+    })
 
   // ─── B. Pipeline by stage ─────────────────────────────────────────────────
   const stageMap: Record<string, { count: number; totalDealValue: number; weightedValue: number }> = {}
