@@ -473,11 +473,13 @@ export async function sendCommercialEmail(
   if (!p.contact_email) return { id: p.id, ok: false, skipped: 'no_email' }
 
   const { subject, html } = renderCommercialEmail(p, opts)
+  const bccSender = opts.senderEmail && opts.senderEmail !== DEFAULT_REPLY_TO ? [opts.senderEmail] : undefined
   try {
     const { error } = await resend.emails.send({
       from: OUTREACH_FROM,
       to: [p.contact_email],
       replyTo: opts.replyTo || opts.senderEmail || DEFAULT_REPLY_TO,
+      bcc: bccSender,    // copy to sending rep
       subject,
       html,
       headers: {
@@ -528,11 +530,13 @@ export async function sendIntroEmail(
   if (!p.contact_email) return { id: p.id, ok: false, skipped: 'no_email' }
 
   const { subject, html } = renderIntroEmail(p, opts)
+  const bccSender = opts.senderEmail && opts.senderEmail !== DEFAULT_REPLY_TO ? [opts.senderEmail] : undefined
   try {
     const { error } = await resend.emails.send({
       from: OUTREACH_FROM,
       to: [p.contact_email],
       replyTo: opts.replyTo || opts.senderEmail || DEFAULT_REPLY_TO,
+      bcc: bccSender,    // copy to sending rep
       subject,
       html,
       headers: {
@@ -677,6 +681,7 @@ export async function sendSequenceEmail(
       from: OUTREACH_FROM,
       to: [p.contact_email],
       replyTo: opts.replyTo || opts.senderEmail || DEFAULT_REPLY_TO,
+      bcc: opts.senderEmail ? [opts.senderEmail] : undefined,  // copy to sending rep
       subject: rendered.subject,
       html: rendered.html,
       headers: {

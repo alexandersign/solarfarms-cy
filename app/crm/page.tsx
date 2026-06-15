@@ -590,7 +590,7 @@ export default function CrmPage() {
                 { label: 'CSV',     icon: <Download  className="w-3 h-3 mr-1"/>, onClick: exportCSV },
                 { label: 'Emails',  icon: <Copy      className="w-3 h-3 mr-1"/>, onClick: copyEmailList },
                 { label: 'Preview', icon: <Eye       className="w-3 h-3 mr-1"/>, onClick: () => openPreview() },
-                { label: 'Test email', icon: <MailCheck className="w-3 h-3 mr-1"/>, onClick: () => runOutreach({ test: true, filter: currentFilter() }), disabled: sending },
+                { label: 'Test email', icon: <MailCheck className="w-3 h-3 mr-1"/>, onClick: () => runOutreach(selectedIds.size > 0 ? { test: true, ids: [...selectedIds] } : { test: true, filter: currentFilter() }), disabled: sending },
               ].map(({ label, icon, onClick, disabled }) => (
                 <button key={label} onClick={onClick} disabled={disabled}
                   className="flex items-center text-xs font-medium px-3 py-1.5 rounded border border-white/30 text-white bg-transparent hover:bg-white/10 disabled:opacity-50 transition">
