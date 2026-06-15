@@ -1,8 +1,5 @@
 import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { ROICalculator } from '@/components/calculators/ROICalculator'
+import { LazyROICalculator } from '@/components/calculators/LazyROICalculator'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { Testimonials } from '@/components/sections/Testimonials'
 import { StructuredData, organizationSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
@@ -67,7 +64,7 @@ export default function HomePage() {
             </div>
             
             {/* Interactive ROI Calculator */}
-            <ROICalculator />
+            <LazyROICalculator />
           </div>
         </section>
 

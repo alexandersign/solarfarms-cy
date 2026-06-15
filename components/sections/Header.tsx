@@ -22,7 +22,6 @@ export function Header() {
               width={36}
               height={36}
               className="rounded-lg"
-              priority
             />
             <div className="font-heading font-bold text-xl">
               <span className="gradient-text">SolarFarms</span>

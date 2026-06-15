@@ -5,8 +5,7 @@ import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
 import { GoogleAnalytics, ConsentBanner } from '@/components/analytics/GoogleAnalytics'
 import { MetaPixel } from '@/components/analytics/MetaPixel'
-import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
-import { ChatWidget } from '@/components/ui/ChatWidget'
+import { DeferredWidgets } from '@/components/ui/DeferredWidgets'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -68,9 +67,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://vercel.live" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -82,8 +80,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <WhatsAppButton />
-        <ChatWidget />
+        <DeferredWidgets />
       </body>
     </html>
   )

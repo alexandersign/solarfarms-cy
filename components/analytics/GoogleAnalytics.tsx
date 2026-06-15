@@ -17,7 +17,7 @@ export function GoogleAnalytics({ gaId = GA_ID }: GoogleAnalyticsProps) {
       {/* Google Consent Mode - Load early */}
       <Script
         id="google-consent-mode"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -49,12 +49,12 @@ export function GoogleAnalytics({ gaId = GA_ID }: GoogleAnalyticsProps) {
       
       {/* Google Analytics */}
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
       />
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             gtag('js', new Date());
