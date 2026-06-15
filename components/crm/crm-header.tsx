@@ -6,7 +6,7 @@ import { LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const ALEXANDER_EMAIL = 'alexander.papacosta@lighthief.com'
-type CrmNav = 'prospects' | 'knowledge' | 'dashboard'
+type CrmNav = 'prospects' | 'knowledge' | 'dashboard' | 'hr'
 
 export function CrmHeader({
   activeNav,
@@ -64,6 +64,16 @@ export function CrmHeader({
                   Dashboard
                 </Link>
               )}
+              <Link
+                href="/crm/hr"
+                className={`px-3 py-1 rounded text-sm font-semibold transition ${
+                  activeNav === 'hr'
+                    ? 'bg-[#C9A432] text-[#1A365D]'
+                    : 'bg-white/10 text-white hover:bg-white/20'
+                }`}
+              >
+                HR
+              </Link>
             </nav>
           </div>
           <div className="flex items-center gap-3">
