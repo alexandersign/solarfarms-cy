@@ -103,15 +103,20 @@ export async function GET(request: NextRequest) {
 
   // Build CRM user → email lookup for target resolution
   const nameToEmail: Record<string, string> = {
+    'Alexander Papacosta':  'alexander.papacosta@lighthief.com',
+    'Zinovia Efesopoulou':  'zinovia@lighthief.com',
+    'Costas Hadjikyriacou': 'costas@lighthief.com',
+    'Andreas Christoforou': 'office@lighthief.com',
+    // legacy short-name entries keep working for old activity_feed records
     'Alexander': 'alexander.papacosta@lighthief.com',
-    'Zinovia': 'zinovia@lighthief.com',
-    'Costas': 'costas@lighthief.com',
-    'Andreas': 'office@lighthief.com',
-    'Office': 'office@lighthief.com',  // legacy entries keep working
+    'Zinovia':   'zinovia@lighthief.com',
+    'Costas':    'costas@lighthief.com',
+    'Andreas':   'office@lighthief.com',
+    'Office':    'office@lighthief.com',
   }
 
   // Seed the map with all active CRM users so they always appear even with 0 activity
-  const CRM_USER_NAMES = ['Alexander', 'Zinovia', 'Costas', 'Andreas']
+  const CRM_USER_NAMES = ['Alexander Papacosta', 'Zinovia Efesopoulou', 'Costas Hadjikyriacou', 'Andreas Christoforou']
   for (const name of CRM_USER_NAMES) {
     if (!activityMap[name]) {
       activityMap[name] = { calls: 0, emails: 0, notes: 0, statusChanges: 0, lastActive: null }
@@ -119,7 +124,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Only show real CRM team members — exclude system/automated entries
-  const HUMAN_AUTHORS = new Set([...CRM_USER_NAMES, 'Office'])
+  const HUMAN_AUTHORS = new Set([...CRM_USER_NAMES, 'Office', 'Alexander', 'Zinovia', 'Costas', 'Andreas'])
   const activitySummary = Object.entries(activityMap)
     .filter(([author]) => HUMAN_AUTHORS.has(author))
     .map(([author, stats]) => {
