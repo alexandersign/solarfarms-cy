@@ -1,5 +1,7 @@
 # Linyang APG + Performance — revised changes & financial structure (Jun 2026)
 
+> **CORRECTION (15 Jun):** Linyang payment is **25 / 50 / 20 / 5** (FINAL), not 30%. The APG = **100% of the 25% advance = 25% of the Linyang CIF supply value** (margin-confidential, **below** the €846,951 figure used earlier in this memo). All "€846,951 / 30%" references below are **superseded** — see `galascope-epc-anastasios-review-and-payment-map-jun2026.md` §4 for the corrected chains and the **margin-visibility flag** (Galascope-as-beneficiary reveals OEM cost).
+
 ---
 
 ## 0. UPDATE 11 Jun — DIRECT BENEFICIARY now possible (supersedes back-to-back/escrow)

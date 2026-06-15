@@ -72,21 +72,27 @@ ADVANCE ──────────► DELIVERY ─────────�
 
 | Milestone | % | Amount | Equipment vs EPC | APG-secured? | Trigger |
 |-----------|---|--------|------------------|--------------|---------|
-| **Advance** | 30% | **1,033,290** | Equipment **846,951** + EPC services **186,339** | **Equipment part YES** (APG) · services no (client accepted) | 30 days after later of Effective Date / Connection Terms / **APG delivery** |
+| **Advance** | 30% | **1,033,290** | Equipment portion + EPC services (unsecured, accepted) | Equipment advance **secured by APG up to 25% of Linyang CIF value** (confidential, < €846,951) | 30 days after later of Effective Date / Connection Terms / **APG delivery** |
 | **Pre-shipment** | 55% | 1,894,365 | Mostly **equipment** (paid before goods leave factory) | n/a (post-FAT) | FAT pass + Linyang written confirmation |
 | **PAC** | 10% | 344,430 | **EPC** (commissioning) | n/a | PAC issued |
 | **Retention** | 5% | 172,215 | **EPC** (defects security) | n/a | Released at end of DLP (3 mo after PAC) |
 
-### 4B. Lighthief → Linyang (Sales Contract milestones — equipment / Component A leg)
+### 4B. Lighthief → Linyang (Sales Contract — FINAL, confirmed 15 Jun)
+
+Payment split **25 / 50 / 20 / 5** of the **Linyang CIF supply value** (per blended Sales-LTSA §7.1):
 
 | Milestone | % | Relates to | Trigger |
 |-----------|---|-----------|---------|
-| **Advance** | 30% | Equipment | After **APG issued** (CP); 7 days |
-| **Ex-Works** | 50% | Equipment | Ready for shipment, within 3 days of FAT + photo evidence |
-| **CIF arrival** | 10% | Equipment | Arrival at Limassol |
-| **PAC / holdback** | 10% | Equipment acceptance | SAT/PAC or 90 days after shipment, whichever first |
+| **Advance** | **25%** | Equipment | T/T within 7 days of contract effectiveness / PO signing; APG issued (CP) |
+| **Ex-Works** | **50%** | Equipment | Products ready for shipment from factory (after FAT + photo evidence) |
+| **DAP arrival** | **20%** | Equipment | Products arrive on Site |
+| **Holdback** | **5%** | Equipment acceptance | SAT completion + Provisional Acceptance |
 
-*(Linyang shown as % only — internal pricing not exposed. The APG secures the equipment advance; its natural expiry is at the CIF/delivery point — which is exactly Linyang's ask in §1.)*
+*(Linyang shown as % only — the actual CIF price and the resulting amounts are **margin-confidential**.)*
+
+**APG amount = 100% of the 25% advance = 25% of the Linyang CIF supply value (confidential figure — to confirm).** This is **lower** than 25% of EPC Component A, because Linyang's price is below the Component A figure (the difference is Lighthief's margin).
+
+> ⚠️ **Margin-visibility flag (open decision):** if **Galascope is named beneficiary**, the APG face amount (25% of Linyang's real price) is visible to the client, who can back-calculate the OEM cost and Lighthief's margin. Decision pending: (a) keep APG **Lighthief-beneficiary** + give Galascope a separate Cyprus advance guarantee at 30% of **Contract Price** (no margin shown); or (b) accept margin visibility with Galascope as beneficiary.
 
 ### What to make explicit to Anastasios
 

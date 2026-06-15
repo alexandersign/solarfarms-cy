@@ -26,11 +26,11 @@ GOLD = RGBColor(0xC9, 0xA4, 0x32)
 GREY = RGBColor(0x40, 0x40, 0x40)
 OUT = Path(__file__).resolve().parent
 
-# SSOT amounts
-G1_COMP_A = 1_848_712.43
-G2_COMP_A = 974_457.00
-TOTAL_COMP_A = G1_COMP_A + G2_COMP_A
-APG_AMOUNT = round(TOTAL_COMP_A * 0.30)  # 846,951 — advance on Component A (equipment) only
+# APG amount = 100% of the 25% advance under the Linyang Sales Contract (FINAL split 25/50/20/5).
+# This equals 25% of the LINYANG CIF supply value, which is margin-confidential and BELOW
+# 25% of EPC Component A. Left as a placeholder until the confidential figure is confirmed AND
+# the margin-visibility decision (Galascope vs Lighthief beneficiary) is made.
+APG_AMOUNT_PLACEHOLDER = "EUR [\u25cf]  (25% advance under the Sales Contract)"
 
 
 def fmt_eur(n: int) -> str:
@@ -126,14 +126,22 @@ def build():
     clause(
         doc, "2",
         f"We irrevocably guarantee to pay you, on first written demand, any sum up to a maximum "
-        f"aggregate amount of {fmt_eur(APG_AMOUNT)} (say: [\u25cf] only) (the \u201cGuaranteed Amount\u201d), "
+        f"aggregate amount of {APG_AMOUNT_PLACEHOLDER} (say: [\u25cf] only) (the \u201cGuaranteed Amount\u201d), "
         f"being one hundred percent (100%) of the advance payment made in respect of the equipment "
-        f"(Component A) under the Sales Contract.",
+        f"under the Sales Contract.",
     )
     note(
         doc,
-        f"Guaranteed Amount = {fmt_eur(APG_AMOUNT)} (advance on Component A / equipment only). EPC "
-        "services (Component B) are outside this guarantee \u2014 the Beneficiary has accepted this.",
+        "Guaranteed Amount = 100% of the 25% advance under the Sales Contract (final split "
+        "25/50/20/5). EPC services are outside this guarantee \u2014 the Beneficiary has accepted this. "
+        " amount to be inserted on confirmation.",
+    )
+    note(
+        doc,
+        "MARGIN FLAG (internal \u2014 remove before sending): the advance amount equals 25% of the "
+        "Linyang CIF supply price. If the Beneficiary (Galascope) is named on the instrument, this "
+        "figure reveals the OEM equipment cost and therefore Lighthief's margin. Resolve the "
+        "beneficiary decision before issuing the amount.",
     )
 
     clause(
