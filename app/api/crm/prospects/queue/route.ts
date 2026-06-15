@@ -67,8 +67,8 @@ export async function GET(request: NextRequest) {
     .not('outreach_status', 'in', '("won","lost","not_interested")')
 
   if (!isManager) {
-    // Show prospects assigned to me, plus unassigned (anyone can action these)
-    query = query.or(`assigned_to.eq.${userEmail},assigned_to.is.null`)
+    // Show ONLY prospects assigned to this salesperson — personalised queue
+    query = query.eq('assigned_to', userEmail)
   }
 
   const { data, error } = await query
