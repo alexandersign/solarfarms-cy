@@ -1,52 +1,46 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Linkedin, BarChart3 } from 'lucide-react'
+import { BrandMark } from '@/components/ui/BrandMark'
 import { NAVIGATION, COMPANY_DATA } from '@/lib/constants'
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-brand-navy text-white">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Company Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-3">
-              <Image
-                src="/logo/lighthief-logo.png"
-                alt="Lighthief Energy"
-                width={36}
-                height={36}
-                className="rounded-lg"
-              />
-              <div className="font-heading font-bold text-xl">
-                <span className="gradient-text">SolarFarms</span>
-                <span className="text-gray-300">.cy</span>
-              </div>
-            </Link>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Premium solar farm investments in Cyprus with 8-13% IRR. 
+            <BrandMark variant="footer" />
+            <p className="text-white/70 text-sm leading-relaxed">
+              Premium solar farm investments in Cyprus with 8-13% IRR.
               Full lifecycle support from development to recycling.
             </p>
-            <div className="mt-3 pt-3 border-t border-gray-700">
-              <p className="text-xs text-gray-400">Powered by <strong className="text-solar-400">Lighthief</strong></p>
-              <p className="text-xs text-gray-500">100s MW managed across 11 countries</p>
+            <div className="mt-3 pt-3 border-t border-white/10">
+              <p className="text-xs text-white/50">
+                Powered by <strong className="text-brand-gold">Lighthief</strong>
+              </p>
+              <p className="text-xs text-white/40">100s MW managed across 11 countries</p>
             </div>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/lighthiefcyprus/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-solar-400 transition-colors" aria-label="Follow us on LinkedIn">
+              <a
+                href="https://www.linkedin.com/company/lighthiefcyprus/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-brand-gold transition-colors"
+                aria-label="Follow us on LinkedIn"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
 
-          {/* Navigation */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Navigation</h3>
+            <h3 className="font-semibold text-lg text-brand-gold">Navigation</h3>
             <nav className="flex flex-col space-y-2">
               {NAVIGATION.main.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-solar-400 transition-colors text-sm"
+                  className="text-white/70 hover:text-brand-gold transition-colors text-sm"
                 >
                   {item.name}
                 </Link>
@@ -54,15 +48,14 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Crypto */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Crypto Investments</h3>
+            <h3 className="font-semibold text-lg text-brand-gold">Crypto Investments</h3>
             <nav className="flex flex-col space-y-2">
               {NAVIGATION.crypto.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-solar-400 transition-colors text-sm"
+                  className="text-white/70 hover:text-brand-gold transition-colors text-sm"
                 >
                   {item.name}
                 </Link>
@@ -70,63 +63,59 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Services */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Services</h3>
+            <h3 className="font-semibold text-lg text-brand-gold">Services</h3>
             <nav className="flex flex-col space-y-2">
               {NAVIGATION.services.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-solar-400 transition-colors text-sm"
+                  className="text-white/70 hover:text-brand-gold transition-colors text-sm"
                 >
                   {item.name}
                 </Link>
               ))}
             </nav>
-            
-            {/* Market Data highlight */}
-            <div className="pt-3 mt-3 border-t border-gray-700">
+
+            <div className="pt-3 mt-3 border-t border-white/10">
               <Link
                 href="/market"
-                className="inline-flex items-center gap-2 text-sm font-medium text-cyprus-300 hover:text-solar-400 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-brand-gold transition-colors"
               >
                 <BarChart3 className="w-4 h-4" />
                 Cyprus Market Pricing
               </Link>
-              <p className="text-xs text-gray-500 mt-1">Live DAM price data &amp; BESS analysis</p>
+              <p className="text-xs text-white/40 mt-1">Live DAM price data &amp; BESS analysis</p>
             </div>
           </div>
 
-          {/* Contact */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Contact</h3>
+            <h3 className="font-semibold text-lg text-brand-gold">Contact</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-solar-400" />
-                <span className="text-gray-300 text-sm">{COMPANY_DATA.email}</span>
+                <Mail className="w-4 h-4 text-brand-gold shrink-0" />
+                <span className="text-white/70 text-sm">{COMPANY_DATA.email}</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-solar-400" />
-                <span className="text-gray-300 text-sm">{COMPANY_DATA.phone}</span>
+                <Phone className="w-4 h-4 text-brand-gold shrink-0" />
+                <span className="text-white/70 text-sm">{COMPANY_DATA.phone}</span>
               </div>
               <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-solar-400 mt-0.5" />
-                <span className="text-gray-300 text-sm">
+                <MapPin className="w-4 h-4 text-brand-gold mt-0.5 shrink-0" />
+                <span className="text-white/70 text-sm">
                   {COMPANY_DATA.address.office.full}
                 </span>
               </div>
-              <div className="text-xs text-gray-400 mt-2">
+              <div className="text-xs text-white/40 mt-2">
                 Company Registration: {COMPANY_DATA.registration.companyNumber} | TIN: {COMPANY_DATA.registration.tin}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
+        <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
+            <div className="text-white/50 text-sm">
               © {new Date().getFullYear()} {COMPANY_DATA.name}. All rights reserved.
             </div>
             <div className="flex space-x-6">
@@ -134,7 +123,7 @@ export function Footer() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-400 hover:text-solar-400 transition-colors text-sm"
+                  className="text-white/50 hover:text-brand-gold transition-colors text-sm"
                 >
                   {item.name}
                 </Link>

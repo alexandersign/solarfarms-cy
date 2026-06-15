@@ -78,6 +78,11 @@ module.exports = {
           800: '#075985',
           900: '#0c4a6e',
         },
+        brand: {
+          navy: '#1A365D',
+          gold: '#C9A432',
+          'gold-dark': '#9C7D22',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
