@@ -271,6 +271,13 @@ export default function CrmPage() {
     if (status === 'unauthenticated') router.push('/crm/login')
   }, [status, router])
 
+  // Auto-filter to "Mine" for non-manager users so each rep sees only their pipeline
+  useEffect(() => {
+    if (status !== 'authenticated') return
+    const isManager = myEmail === 'alexander.papacosta@lighthief.com'
+    if (!isManager && myEmail) setFilterAssigned('mine')
+  }, [status, myEmail])
+
   const fetchProspects = useCallback(async () => {
     setLoading(true)
     try {
