@@ -84,11 +84,21 @@ export async function GET(request: NextRequest) {
     lastActive: string | null
   }> = {}
 
+  // Normalise legacy short names → full names so they merge into one row
+  const SHORT_TO_FULL: Record<string, string> = {
+    'Alexander': 'Alexander Papacosta',
+    'Zinovia':   'Zinovia Efesopoulou',
+    'Costas':    'Costas Hadjikyriacou',
+    'Andreas':   'Andreas Christoforou',
+    'Office':    'Andreas Christoforou',
+  }
+
   for (const p of all) {
     const feed = (p.activity_feed || []) as ActivityEntry[]
     for (const e of feed) {
       if (e.ts < since) continue
-      const author = e.author || 'Unknown'
+      const rawAuthor = e.author || 'Unknown'
+      const author = SHORT_TO_FULL[rawAuthor] ?? rawAuthor  // normalise to full name
       if (!activityMap[author]) {
         activityMap[author] = { calls: 0, emails: 0, notes: 0, statusChanges: 0, lastActive: null }
       }
