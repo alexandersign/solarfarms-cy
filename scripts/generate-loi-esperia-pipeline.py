@@ -54,7 +54,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
 
-REF = "Ref: LCY-LOI-ESP-PIPELINE-2026-R13"
+REF = "Ref: LCY-LOI-ESP-PIPELINE-2026-R15"
 N_PARKS = 9
 
 PIPELINE_ONLY = PIPELINE["phase1"] + PIPELINE["phase2"] + PIPELINE["phase3"]
@@ -258,7 +258,7 @@ def build():
     add_run(
         nbp,
         "Non-binding except Clauses 1.3, 7, and 8. Nine (9) pipeline parks only. "
-        "Galascope Ltd: LCY-LOI-GAL-B1-2026-R13. Binding price and payment terms are in each EPC.",
+        "Galascope Ltd: LCY-LOI-GAL-B1-2026-R15. Binding price and payment terms are in each EPC.",
         size_pt=9,
         color=AMBER_TXT,
     )

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
+import { getCrmToken } from '@/lib/crm-auth';
 
 // Password for internal docs access (must match API route)
 const DOCS_PASSWORD = 'CyprusBess2026';
@@ -35,6 +36,17 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Protect /crm — session required, redirect to /crm/login
+  // Use /crm/ prefix (with slash) so /crm-roofs/ static assets are not intercepted.
+  if ((pathname === '/crm' || pathname.startsWith('/crm/')) && !pathname.startsWith('/crm/login')) {
+    const token = await getCrmToken(request)
+    if (!token) {
+      const loginUrl = new URL('/crm/login', request.url)
+      loginUrl.searchParams.set('callbackUrl', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+  }
+
   // Protect service routes (tablet, manager, client portals)
   if (
     (pathname.startsWith('/tablet') || pathname.startsWith('/manager') || pathname.startsWith('/client')) &&
@@ -65,6 +77,7 @@ export const config = {
   matcher: [
     '/internal-docs/:path*',
     '/bess-project/:path*',
+    '/crm/:path*',
     '/tablet/:path*',
     '/manager/:path*',
     '/client/:path*',

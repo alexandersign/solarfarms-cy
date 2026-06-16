@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFI — Uganda 2×20 MW Solar PV (AGOGA &amp; MISOZI) | Lighthief Cyprus</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+    }
+    * { box-sizing: border-box; }
+    @page { size: A4; margin: 15mm; }
+    @media print {
+      body { background: #fff; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .wrap { box-shadow: none; max-width: 100%; border-radius: 0; }
+      .page-break { page-break-before: always; }
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--grey-text);
+      background: var(--body-bg);
+      margin: 0;
+      padding: 28px 20px 40px;
+    }
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 28px 32px 36px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(26, 54, 93, 0.08);
+    }
+    .hdr {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 22px 24px;
+      border-radius: 8px;
+      margin: -28px -32px 22px -32px;
+    }
+    .hdr h1 { color: var(--accent); font-size: 1.3rem; margin: 0 0 6px 0; font-weight: 700; }
+    .hdr .sub { font-size: 12px; opacity: 0.95; }
+    .hdr-meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.95;
+    }
+    .hdr-meta strong { color: var(--accent); }
+    h2 {
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin: 26px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary);
+      font-weight: 700;
+    }
+    h2:first-of-type { margin-top: 0; }
+    h3 { color: var(--primary); font-size: 0.95rem; margin: 16px 0 8px 0; font-weight: 600; }
+    p { margin: 0 0 10px 0; }
+    ul, ol { margin: 8px 0 12px 0; padding-left: 22px; }
+    li { margin-bottom: 5px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--primary); color: var(--white); font-weight: 600; font-size: 11px; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .section-label {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .tag-critical { background: #fde8e8; color: #9b1c1c; }
+    .tag-needed { background: #fef3cd; color: #856404; }
+    .note {
+      background: #e8f0fa;
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      margin: 14px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+    }
+    .note strong { color: var(--primary); }
+    .warn {
+      background: #fdf6e3;
+      border-left: 4px solid var(--accent);
+      padding: 10px 14px;
+      margin: 14px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+    }
+    .warn strong { color: #7a6318; }
+    .baseline {
+      background: #f0f4f8;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 12px;
+    }
+    .baseline strong { color: var(--primary); }
+    .response-box {
+      border: 1px dashed #cbd5e1;
+      background: #fafbfc;
+      min-height: 36px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      margin-bottom: 10px;
+      padding-left: 32px;
+      position: relative;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--primary);
+      color: var(--white);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 22px;
+    }
+    .signature { margin-top: 28px; line-height: 1.65; }
+    .signature strong { color: var(--primary); }
+    .footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 2px solid var(--primary);
+      font-size: 11px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <h1>Request for Information</h1>
+    <div class="sub">Uganda 2×20 MW Solar PV — AGOGA &amp; MISOZI</div>
+    <div class="hdr-meta">
+      <div>
+        <strong>To:</strong> Developer / Project Sponsor (TBC)<br>
+        <strong>From:</strong> Alexander Papacosta, Lighthief Cyprus Ltd<br>
+        <strong>Date:</strong> 10 June 2026
+      </div>
+      <div style="text-align: right;">
+        <strong>Ref:</strong> LH-RFI-UGANDA-20MW-2026-06<br>
+        <strong>Re:</strong> Technical Specification Review<br>
+        <strong>Priority:</strong> Section A required before indicative quotation
+      </div>
+    </div>
+  </div>
+
+  <p>Dear Sir/Madam,</p>
+
+  <p>Thank you for sharing the technical specification for the <strong>2×20 MW</strong> grid-connected solar PV projects at <strong>AGOGA</strong> and <strong>MISOZI</strong>, Uganda. We have completed an initial review and are interested in exploring an EPC role, subject to clarification of several commercial, permitting, and technical items.</p>
+
+  <p>We have grouped our questions by priority. Your responses will allow us to prepare an indicative budgetary proposal and, if appropriate, a formal EPC offer.</p>
+
+  <div class="baseline">
+    <strong>Specification received — key parameters noted:</strong><br>
+    &bull; Capacity: 2×20 MW grid-connected solar PV<br>
+    &bull; Sites: AGOGA (~60 ac / 24.3 ha, UTM 36N) and MISOZI (boundary data incomplete in spec)<br>
+    &bull; Evacuation: 33 kV AC, metering at plant boundary<br>
+    &bull; Scope stated: EPC + commissioning + performance guarantee + comprehensive O&amp;M (11 months post-COD)<br>
+    &bull; Equipment: Fixed-tilt structures, crystalline modules, 33 kV switchyard, SCADA, CCTV, weather station
+  </div>
+
+  <div class="warn">
+    <strong>Initial observation:</strong> The specification references several Indian standards and practices (IS/BIS codes, DISCOM/ABT metering, rooftop loading limits). For a Uganda ground-mount utility project we propose aligning to <strong>IEC standards and Uganda grid requirements</strong>. Please confirm acceptance in Section B1.
+  </div>
+
+  <!-- SECTION A -->
+  <h2><span class="section-label">A</span> Critical — Required Before Any Indicative Quotation</h2>
+
+  <h3>A1. Project Sponsor &amp; Mandate</h3>
+  <p>Please provide:</p>
+  <ul>
+    <li>Legal name of the <strong>developer / SPV</strong> (registration number and country of incorporation)</li>
+    <li>Names and contact details of <strong>authorised decision-makers</strong></li>
+    <li>Whether you require a <strong>Letter of Intent (LOI)</strong> or exclusivity before detailed engineering</li>
+    <li>Copy of any <strong>mandate letter</strong> authorising Lighthief (or confirming competitive tender status)</li>
+  </ul>
+  <div class="response-box"></div>
+
+  <h3>A2. Project Structure</h3>
+  <p>The document title refers to <strong>2×20 MW</strong> (AGOGA and MISOZI) but the body text describes a single 20 MW plant. Please confirm:</p>
+  <ol type="a">
+    <li>Are these <strong>two independent 20 MW projects</strong> with separate grid connections?</li>
+    <li>Should we quote <strong>one site, both sites, or a phased approach</strong>?</li>
+    <li>Target <strong>Commercial Operation Date (COD)</strong> for each site</li>
+    <li>Is <strong>BESS / energy storage</strong> part of current or future scope?</li>
+  </ol>
+  <div class="response-box"></div>
+
+  <h3>A3. Grid Connection &amp; Off-Take</h3>
+  <table>
+    <tr><th style="width:32%">Item</th><th>Information Required</th><th style="width:12%">Response</th></tr>
+    <tr>
+      <td><strong>Grid operator</strong></td>
+      <td>UETCL / Umeme / other — please confirm</td>
+      <td><span class="tag tag-critical">Required</span></td>
+    </tr>
+    <tr>
+      <td><strong>Evacuation voltage</strong></td>
+      <td>Spec states 33 kV — is this confirmed by utility?</td>
+      <td><span class="tag tag-critical">Required</span></td>
+    </tr>
+    <tr>
+      <td><strong>Grid connection offer</strong></td>
+      <td>Copy of approved connection agreement or offer letter (export capacity, POC location, distance)</td>
+      <td><span class="tag tag-critical">Required</span></td>
+    </tr>
+    <tr>
+      <td><strong>Grid code</strong></td>
+      <td>Applicable Uganda grid code / interconnection standards</td>
+      <td><span class="tag tag-critical">Required</span></td>
+    </tr>
+    <tr>
+      <td><strong>PPA / off-take</strong></td>
+      <td>Counterparty, tariff structure, currency, tenor, signed or draft status</td>
+      <td><span class="tag tag-critical">Required</span></td>
+    </tr>
+    <tr>
+      <td><strong>Metering</strong></td>
+      <td>Utility-approved metering specification for Uganda</td>
+      <td><span class="tag tag-needed">Needed</span></td>
+    </tr>
+  </table>
+
+  <h3>A4. Land &amp; Permitting</h3>
+  <table>
+    <tr><th style="width:32%">Item</th><th>Information Required</th></tr>
+    <tr><td><strong>Land tenure</strong></td><td>Certified title deed or lease for AGOGA (60 ac) and MISOZI (area not stated in spec)</td></tr>
+    <tr><td><strong>Land lessor / owner</strong></td><td>Identity and consents for construction</td></tr>
+    <tr><td><strong>Environmental status</strong></td><td>EIA / ESIA approval status</td></tr>
+    <tr><td><strong>Generation licence</strong></td><td>ERA licence status or application timeline</td></tr>
+    <tr><td><strong>Import / tax</strong></td><td>VAT, import duty, withholding tax on equipment and services</td></tr>
+  </table>
+
+  <h3>A5. Scope of Supply</h3>
+  <p>Please confirm which items are in <strong>EPC contractor scope</strong> vs <strong>developer / utility scope</strong>:</p>
+  <table>
+    <tr><th>Item</th><th style="width:18%">EPC Scope?</th></tr>
+    <tr><td>PV modules, structures, inverters</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>33 kV step-up transformer &amp; switchyard</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>Grid extension beyond plant boundary</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>SCADA / remote monitoring (fibre, 4G, or satellite)</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>CCTV &amp; weather station</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>Commissioning &amp; grid compliance testing</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td><strong>Comprehensive O&amp;M</strong> (spec §9.18 — 11 months post-COD)</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>Long-term O&amp;M / LTSA beyond 11 months</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+    <tr><td>Spare parts inventory</td><td><span class="tag tag-needed">Confirm</span></td></tr>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION B -->
+  <h2><span class="section-label">B</span> Important — Required for Detailed Engineering &amp; Pricing</h2>
+
+  <h3>B1. Technical Clarifications</h3>
+  <p>For a Uganda ground-mount utility project we propose the following. <strong>Please confirm acceptance:</strong></p>
+  <ul>
+    <li><strong>String inverters</strong> (or multiple central inverters) rather than a single central inverter per 20 MW</li>
+    <li><strong>Optimal tilt for equatorial site</strong> (~5–15° fixed tilt) rather than 28–45° "south-facing" configuration</li>
+    <li><strong>IEC/IEEE</strong> grid interconnection standards applicable in Uganda</li>
+    <li>Target <strong>DC capacity (MWp)</strong> and <strong>AC capacity (MWac)</strong> for each site</li>
+  </ul>
+  <div class="response-box"></div>
+
+  <h3>B2. Performance Guarantees</h3>
+  <table>
+    <tr><th style="width:36%">Parameter</th><th>Your Requirement</th></tr>
+    <tr><td><strong>Performance Ratio (PR)</strong></td><td>% at COD</td></tr>
+    <tr><td><strong>Annual energy yield</strong></td><td>kWh/kWp or MWh/year</td></tr>
+    <tr><td><strong>Plant availability</strong></td><td>%</td></tr>
+    <tr><td><strong>Module degradation</strong></td><td>Beyond manufacturer warranty</td></tr>
+    <tr><td><strong>Liquidated damages</strong></td><td>For shortfall — rate and cap</td></tr>
+  </table>
+
+  <h3>B3. Site Conditions</h3>
+  <table>
+    <tr><th style="width:36%">Parameter</th><th>Information Needed</th></tr>
+    <tr><td><strong>Geotechnical survey</strong></td><td>Soil bearing capacity, groundwater, corrosion risk</td></tr>
+    <tr><td><strong>Topographic survey</strong></td><td>Contours, cut/fill volumes</td></tr>
+    <tr><td><strong>Ambient temperature range</strong></td><td>Design min/max</td></tr>
+    <tr><td><strong>Flood / drainage</strong></td><td>Historical flooding, storm return period</td></tr>
+    <tr><td><strong>Security</strong></td><td>Site fencing, guard requirements</td></tr>
+    <tr><td><strong>MISOZI site boundary</strong></td><td>Complete coordinate set and total area (current polygon in spec is incomplete)</td></tr>
+  </table>
+
+  <h3>B4. Logistics</h3>
+  <ul>
+    <li>Preferred <strong>port of entry</strong> (Mombasa, Dar es Salaam, or other)</li>
+    <li><strong>Road access</strong> from port to each site (distance, bridge/weight limits)</li>
+    <li><strong>Site access roads</strong> — existing or to be constructed</li>
+    <li>Any <strong>local content</strong> or employment quota requirements</li>
+  </ul>
+  <div class="response-box"></div>
+
+  <!-- SECTION C -->
+  <h2><span class="section-label">C</span> Commercial — Required Before Binding Offer</h2>
+
+  <h3>C1. Contract &amp; Payment</h3>
+  <ul>
+    <li>Preferred contract form (FIDIC Yellow/Silver, EPC turnkey, or local standard)</li>
+    <li><strong>Payment schedule</strong> (advance, milestone, retention)</li>
+    <li><strong>Performance bond</strong> and <strong>warranty bond</strong> requirements</li>
+    <li><strong>Defects liability period</strong> (spec mentions 5-year workmanship — confirm)</li>
+    <li><strong>Insurance</strong> requirements (CAR, TPL, delay in startup)</li>
+    <li><strong>Currency</strong> of contract (USD, EUR, UGX)</li>
+  </ul>
+  <div class="response-box"></div>
+
+  <h3>C2. O&amp;M Commercial Terms</h3>
+  <p>Spec §9.18 requires comprehensive O&amp;M for <strong>11 months</strong> after commissioning including on-site engineers and <strong>weekly module cleaning</strong>. Please confirm:</p>
+  <ol type="a">
+    <li>O&amp;M bundled in EPC price or separate annual contract?</li>
+    <li>Duration after month 11 — multi-year LTSA?</li>
+    <li>KPIs, reporting frequency, and penalty regime</li>
+    <li>Spares and consumables — included or rechargeable?</li>
+  </ol>
+  <div class="response-box"></div>
+
+  <!-- SECTION D -->
+  <h2><span class="section-label">D</span> Documents Requested (If Available)</h2>
+
+  <table>
+    <tr><th style="width:38%">Document</th><th>Purpose</th></tr>
+    <tr><td>Single-line diagram (SLD)</td><td>Electrical architecture</td></tr>
+    <tr><td>Preliminary layout / array design</td><td>DC capacity, land use check</td></tr>
+    <tr><td>Grid connection approval letter</td><td>POC and export limits</td></tr>
+    <tr><td>PPA (draft or executed)</td><td>Revenue certainty</td></tr>
+    <tr><td>Geotechnical report</td><td>Foundation design</td></tr>
+    <tr><td>Topo survey</td><td>Civil quantities</td></tr>
+    <tr><td>EIA / ESIA approval</td><td>Permitting confirmation</td></tr>
+    <tr><td>Company profile &amp; project track record</td><td>Sponsor credibility</td></tr>
+    <tr><td><strong>Signed LOI</strong> or tender invitation letter</td><td>Mandate to proceed</td></tr>
+  </table>
+
+  <!-- SECTION E -->
+  <h2><span class="section-label">E</span> Proposed Next Steps</h2>
+
+  <ol class="steps">
+    <li>You complete Sections A–C above (or provide equivalent project data room access).</li>
+    <li>We issue an <strong>indicative budgetary EPC range</strong> within 10 business days of receiving Section A.</li>
+    <li>Subject to LOI / shortlist confirmation, we conduct <strong>detailed engineering</strong> and submit a <strong>firm EPC proposal</strong> with schedule and payment terms.</li>
+    <li>Optional: <strong>site visit</strong> by Lighthief or appointed subcontractor after grid and land documents are verified.</li>
+  </ol>
+
+  <div class="note">
+    <strong>Financial backing:</strong> For EPC turnkey engagements we will require confirmation of project financing or proof of funds before committing manufacturing and subcontractor capacity. This is standard practice and will be addressed in the firm proposal stage.
+  </div>
+
+  <p>We look forward to your clarifications.</p>
+
+  <div class="signature">
+    <p>With kind regards,</p>
+    <p>
+      <strong>Alexander Papacosta</strong><br>
+      Cyprus Director<br>
+      Lighthief Cyprus Ltd<br>
+      <a href="mailto:office@lighthief.com">office@lighthief.com</a> · +357 99 164 158<br>
+      <a href="https://solarfarms.cy">solarfarms.cy</a>
+    </p>
+  </div>
+
+  <div class="footer">
+    Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus · solarfarms.cy<br>
+    Document ref: LH-RFI-UGANDA-20MW-2026-06 · Confidential — for intended recipient only
+  </div>
+
+</div>
+</body>
+</html>

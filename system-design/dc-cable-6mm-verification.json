@@ -1,0 +1,161 @@
+{
+  "project": "56 kWp REC400 + Deye SUN-50K Cyprus",
+  "cable": "6mm2 H1Z2Z2-K (EN50618)",
+  "design_rules": {
+    "isc_factor": 1.25,
+    "max_vdrop_pct": 2.0,
+    "note": "Length is one-way; round-trip (+/-) included in drop calc"
+  },
+  "strings": [
+    {
+      "string": "14 panels/string (recommended layout)",
+      "panels": 14,
+      "string_count": 10,
+      "vmpp_stc_v": 683.2,
+      "vmpp_hot70_v": 609.4,
+      "voc_cold_v": 893.9,
+      "impp_a": 8.2,
+      "isc_design_a": 11.0,
+      "cable_mm2": 6.0,
+      "ampacity_ok_55a": true,
+      "ampacity_ok_42a": true,
+      "runs": [
+        {
+          "length_m_one_way": 10,
+          "vdrop_pct_20c": 0.07,
+          "vdrop_pct_70c": 0.08,
+          "vdrop_v_70c": 0.6,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 20,
+          "vdrop_pct_20c": 0.14,
+          "vdrop_pct_70c": 0.17,
+          "vdrop_v_70c": 1.1,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 30,
+          "vdrop_pct_20c": 0.21,
+          "vdrop_pct_70c": 0.25,
+          "vdrop_v_70c": 1.7,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 40,
+          "vdrop_pct_20c": 0.28,
+          "vdrop_pct_70c": 0.34,
+          "vdrop_v_70c": 2.3,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 50,
+          "vdrop_pct_20c": 0.34,
+          "vdrop_pct_70c": 0.42,
+          "vdrop_v_70c": 2.9,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 60,
+          "vdrop_pct_20c": 0.41,
+          "vdrop_pct_70c": 0.5,
+          "vdrop_v_70c": 3.4,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 80,
+          "vdrop_pct_20c": 0.55,
+          "vdrop_pct_70c": 0.67,
+          "vdrop_v_70c": 4.6,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 100,
+          "vdrop_pct_20c": 0.69,
+          "vdrop_pct_70c": 0.84,
+          "vdrop_v_70c": 5.7,
+          "ok_2pct_70c": true
+        }
+      ],
+      "max_length_m_one_way_2pct_70c": 238.0,
+      "max_length_m_one_way_2pct_20c": 290.0,
+      "combiner_3strings_impp_a": 24.6,
+      "combiner_3strings_isc_design_a": 33.0
+    },
+    {
+      "string": "13 panels/string (strict Voc)",
+      "panels": 13,
+      "string_count": 10,
+      "vmpp_stc_v": 634.4,
+      "vmpp_hot70_v": 565.9,
+      "voc_cold_v": 830.0,
+      "impp_a": 8.2,
+      "isc_design_a": 11.0,
+      "cable_mm2": 6.0,
+      "ampacity_ok_55a": true,
+      "ampacity_ok_42a": true,
+      "runs": [
+        {
+          "length_m_one_way": 10,
+          "vdrop_pct_20c": 0.07,
+          "vdrop_pct_70c": 0.09,
+          "vdrop_v_70c": 0.6,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 20,
+          "vdrop_pct_20c": 0.15,
+          "vdrop_pct_70c": 0.18,
+          "vdrop_v_70c": 1.1,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 30,
+          "vdrop_pct_20c": 0.22,
+          "vdrop_pct_70c": 0.27,
+          "vdrop_v_70c": 1.7,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 40,
+          "vdrop_pct_20c": 0.3,
+          "vdrop_pct_70c": 0.36,
+          "vdrop_v_70c": 2.3,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 50,
+          "vdrop_pct_20c": 0.37,
+          "vdrop_pct_70c": 0.45,
+          "vdrop_v_70c": 2.9,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 60,
+          "vdrop_pct_20c": 0.45,
+          "vdrop_pct_70c": 0.54,
+          "vdrop_v_70c": 3.4,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 80,
+          "vdrop_pct_20c": 0.59,
+          "vdrop_pct_70c": 0.72,
+          "vdrop_v_70c": 4.6,
+          "ok_2pct_70c": true
+        },
+        {
+          "length_m_one_way": 100,
+          "vdrop_pct_20c": 0.74,
+          "vdrop_pct_70c": 0.9,
+          "vdrop_v_70c": 5.7,
+          "ok_2pct_70c": true
+        }
+      ],
+      "max_length_m_one_way_2pct_70c": 221.0,
+      "max_length_m_one_way_2pct_20c": 269.3,
+      "combiner_3strings_impp_a": 24.6,
+      "combiner_3strings_isc_design_a": 33.0
+    }
+  ]
+}

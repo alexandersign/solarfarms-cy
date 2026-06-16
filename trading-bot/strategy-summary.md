@@ -4,7 +4,8 @@
 
 **Last updated:** May 2026  
 **Asset:** BTCUSDT Perpetual (Binance USDⓈ-M Futures)  
-**Existing backtest code:** `scripts/stochrsi_*.py`
+**Existing backtest code:** `scripts/stochrsi_*.py`  
+**Expected bot performance (summary doc):** [expected-performance.md](./expected-performance.md)
 
 ---
 

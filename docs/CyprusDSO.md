@@ -11,6 +11,8 @@
 
 > **Source**: EAC Technical Guide for Storage Systems - Edition 2026 (April 2026) — supersedes Edition 2025.1 draft
 
+> **Project-specific TSO ΠΟΣ**: HESS Psevdas 59 MWp/120 MWh (ref. 320.7.11, Apr 2025) — [`docs/dso/hess-tso-connection-terms-apr2025.md`](dso/hess-tso-connection-terms-apr2025.md)
+
 ---
 
 ## 1. REGULATORY FRAMEWORK

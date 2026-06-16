@@ -1,6 +1,10 @@
-"""Stochastic RSI — shared with scripts/stochrsi_backtest.py."""
+"""StochRSI(14,14,3,3) — TradingView-compatible."""
 
 from __future__ import annotations
+
+import json
+import urllib.request
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
@@ -32,31 +36,36 @@ def stoch_rsi(
     return k, d
 
 
-def cross_down(prev_k: float, curr_k: float, level: float) -> bool:
-    return prev_k > level >= curr_k
+def fetch_futures_klines(
+    base_url: str,
+    symbol: str,
+    interval: str,
+    limit: int = 100,
+) -> pd.DataFrame:
+    url = f"{base_url}/fapi/v1/klines?symbol={symbol}&interval={interval}&limit={limit}"
+    req = urllib.request.Request(url, headers={"User-Agent": "stochrsi-bot/0.1"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        rows = json.loads(resp.read())
+    df = pd.DataFrame(
+        rows,
+        columns=[
+            "open_time", "open", "high", "low", "close", "volume",
+            "close_time", "quote_vol", "trades", "taker_buy_base",
+            "taker_buy_quote", "ignore",
+        ],
+    )
+    df["timestamp"] = pd.to_datetime(df["open_time"], unit="ms", utc=True)
+    df["close_time"] = pd.to_datetime(df["close_time"], unit="ms", utc=True)
+    for c in ("open", "high", "low", "close"):
+        df[c] = df[c].astype(float)
+    return df.set_index("timestamp").sort_index()
 
 
-def cross_up(prev_k: float, curr_k: float, level: float) -> bool:
-    return prev_k < level <= curr_k
-
-
-def was_overbought(kv: np.ndarray, i: int, lookback: int, level: float) -> bool:
-    window = kv[max(0, i - lookback) : i]
-    return bool(np.nanmax(window) >= level)
-
-
-def was_oversold(kv: np.ndarray, i: int, lookback: int, level: float) -> bool:
-    window = kv[max(0, i - lookback) : i]
-    return bool(np.nanmin(window) <= level)
-
-
-def bars_since_level(kv: np.ndarray, i: int, level: float, above: bool = True) -> int | None:
-    """Bars since K last touched level (searching backward from i-1)."""
-    for j in range(i - 1, -1, -1):
-        if np.isnan(kv[j]):
-            continue
-        if above and kv[j] >= level:
-            return i - 1 - j
-        if not above and kv[j] <= level:
-            return i - 1 - j
-    return None
+def closed_daily_bars(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop the still-forming daily candle."""
+    now = pd.Timestamp.now(tz="UTC")
+    if len(df) == 0:
+        return df
+    if df["close_time"].iloc[-1] > now:
+        return df.iloc[:-1]
+    return df

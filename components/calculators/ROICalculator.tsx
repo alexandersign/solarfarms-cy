@@ -345,7 +345,7 @@ export function ROICalculator() {
           {/* Advanced Parameters */}
           <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold">Electricity Rate (€/kWh)</h3>
+              <h3 id="roi-electricity-rate" className="text-xl font-semibold">Electricity Rate (€/kWh)</h3>
               <div className="space-y-4">
                 <Slider
                   value={electricityRate}
@@ -354,7 +354,7 @@ export function ROICalculator() {
                   min={0.10}
                   step={0.01}
                   className="w-full"
-                  aria-label="Electricity rate slider"
+                  aria-labelledby="roi-electricity-rate"
                 />
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>€0.10</span>
@@ -365,7 +365,7 @@ export function ROICalculator() {
             </div>
 
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold">Operating Costs (% of Revenue)</h3>
+              <h3 id="roi-operating-costs" className="text-xl font-semibold">Operating Costs (% of Revenue)</h3>
               <div className="space-y-4">
                 <Slider
                   value={operatingCosts}
@@ -374,7 +374,7 @@ export function ROICalculator() {
                   min={5}
                   step={0.5}
                   className="w-full"
-                  aria-label="Operating costs percentage slider"
+                  aria-labelledby="roi-operating-costs"
                 />
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>5%</span>
@@ -482,7 +482,7 @@ export function ROICalculator() {
                 <CardContent>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-4">
-                      <h4 className="font-semibold text-gray-900 mb-3">Investment Structure</h4>
+                      <p className="font-semibold text-gray-900 mb-3">Investment Structure</p>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Total Project Cost</span>
                         <span className="font-semibold">{formatCurrency(results.investment)}</span>
@@ -510,7 +510,7 @@ export function ROICalculator() {
                     </div>
                     
                     <div className="space-y-4">
-                      <h4 className="font-semibold text-gray-900 mb-3">Financial Performance</h4>
+                      <p className="font-semibold text-gray-900 mb-3">Financial Performance</p>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Annual Revenue</span>
                         <span className="font-semibold">{formatCurrency(results.annualRevenue)}</span>

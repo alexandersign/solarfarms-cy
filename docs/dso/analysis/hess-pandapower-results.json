@@ -1,0 +1,77 @@
+{
+  "project": "HESS \u2014 Power On BESS, Psevdas Larnaca (Hybrid Energy Storage Systems Ltd)",
+  "source": "scripts/hess-pandapower-protection.py",
+  "assumptions": {
+    "grid_fault_132_kv_ka": 31.5,
+    "grid_fault_source": "TSOC Transmission Rules T1.8.6(a) \u2014 provisional until ISM bus study",
+    "132_kv_bus_note": "POS SLD: 63 MVA step-up at BESS plant (above DSMK boundary). UGC terminates at Psevdas TS (existing wind-farm substation, red bay). Sectionalised 132 kV bus interconnects Alambra, Paragogos, F.I.Z., T3 (40 MVA). Ik at BESS connection bay requires ISM study before fixing 132 kV CT ALF.",
+    "33_kv_bus_note": "33 kV fault at BESS plant only: transformer-limited + PCS. T3 22 kV network is at remote source substation (below DSMK boundary) \u2014 not coupled to BESS 33 kV MV bus.",
+    "transformer": "63.0 MVA 132.0/33.0 kV YNd11",
+    "uk_pct_requirements": 21.0,
+    "uk_pct_rfp_brief": 20,
+    "design_power_factor": 0.9,
+    "voltage_regulation_pct_design_0p9pf": 11.3,
+    "voltage_regulation_pct_unity_pf": 2.4,
+    "voltage_regulation_pct_full_reactive": 21.0,
+    "uk_producer_questions": "uk=21% is high but firmly specified (Requirements item 17, 75\u00b0C CMR, HV base). At the specified 0.9 PF lag (item 1b) regulation is ~11.3% at full load (~2.4% at unity PF); the wide OLTC (+12.5/-18.75%) is sized for this. Confirm 21% is the intended design value.",
+    "33_kv_fault_basis": "Combined: grid-through-transformer (~5.0 kA @ uk=21%) + BESS PCS current-limited infeed (~0.9 kA @ 50 MW POC, 1.0 pu)",
+    "33_kv_fault_ka_design": 5.91,
+    "33_kv_fault_breakdown": {
+      "transformer_grid_ka": 5.04,
+      "bess_pcs_ka": 0.87,
+      "combined_ka": 5.91,
+      "uk_impedance_volts_pct": 21.0,
+      "voltage_regulation_pct_design_0p9pf": 11.3,
+      "voltage_regulation_pct_unity_pf": 2.4,
+      "voltage_regulation_pct_full_reactive": 21.0,
+      "bess_fault_basis_mw": 50.0
+    },
+    "ugc_cable": "0.1 km, 300 mm\u00b2 XLPE 3\u00d71c",
+    "site_altitude_m": 264,
+    "site_coordinates": "34.960\u00b0N, 33.495\u00b0E (plot 26 Psevdas)",
+    "seismic": "CYS EN 1998-1 Zone II, agR = 0.23 g (Zone I/II boundary \u2014 confirm with EPS civil)",
+    "pollution": "Heavy (IEC 60815 Class III); composite insulators \u226535 mm/kV"
+  },
+  "uk_sensitivity_33kv_combined_ka": {
+    "12": 9.44,
+    "14": 8.28,
+    "16": 7.41,
+    "18": 6.71,
+    "20": 6.15,
+    "21": 5.91
+  },
+  "short_circuit": {
+    "132_kv_design_ka": 31.5,
+    "33_kv_combined_ka": 5.91,
+    "33_kv_transformer_only_ka": 5.04,
+    "33_kv_bess_pcs_ka": 0.87,
+    "pandapower_crosscheck": {
+      "note": "pandapower YNd11 cross-check skipped (model error)"
+    }
+  },
+  "protection_indicative": {
+    "hv_132": {
+      "in_a": 275.6,
+      "ikss_ka": 31.5,
+      "51_i_pickup_a": 331.0,
+      "50_i_instant_a": 2204.0,
+      "ct_ratio": "400/1",
+      "ct_cores": "Core 1: 0.2, 30 VA (metering); Core 2: 5P20, 20 VA (protection)"
+    },
+    "lv_33": {
+      "in_a": 1102.2,
+      "ikss_ka": 5.91,
+      "51_i_pickup_a": 1323.0,
+      "50_i_instant_a": 5024.0,
+      "ct_ratio": "1600/1",
+      "ct_cores": "Core 1: 0.2, 30 VA (metering); Core 2: 5P20, 20 VA (protection)"
+    }
+  },
+  "protection_notes": "CT polarity must follow EPS connection-bay protection (PQR, boundary CTs) \u2014 fault direction reverses with BESS import/export. 132 kV CT ALF depends on ISM fault study at BESS UGC bay, Psevdas TS (Alambra + Paragogos + F.I.Z. + T3 on sectionalised wind-farm substation bus).",
+  "surge_arresters_on_transformer": false,
+  "surge_arrester_note": "Arresters in KYEA 132/33 kV AIS scope per TSOC POS",
+  "surge_arrester_mcov_kv": {
+    "132_kv": 102,
+    "33_kv": 27
+  }
+}

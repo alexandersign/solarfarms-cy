@@ -1,0 +1,162 @@
+/**
+ * CRM prospects API — session-authenticated (next-auth JWT).
+ * Accepts + saves assigned_to / assigned_name on all writes.
+ * GET accepts optional ?assigned_to=email filter.
+ */
+import { NextRequest, NextResponse } from 'next/server'
+import { supabase }                  from '@/lib/supabase'
+import { getCrmToken }               from '@/lib/crm-auth'
+import { buildProspectSearchAliases } from '@/lib/crm-search-aliases'
+import {
+  buildProspectSearchFilter,
+  formatSupabaseError,
+} from '@/lib/crm-prospect-search'
+
+async function requireSession(req: NextRequest) {
+  return getCrmToken(req)
+}
+
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+
+    let query = supabase.from('pv_prospects').select('*').order('created_at', { ascending: false })
+
+    const status     = searchParams.get('status')
+    const priority   = searchParams.get('priority')
+    const district   = searchParams.get('district')
+    const offerType  = searchParams.get('offer_type')
+    const search     = searchParams.get('search')
+    const assignedTo = searchParams.get('assigned_to')
+    const segment    = searchParams.get('segment')
+    const newDays    = searchParams.get('new_days')
+    const rtb        = searchParams.get('rtb_status')
+    const built      = searchParams.get('satellite_check')
+    const technology = searchParams.get('technology')
+    const hasBess    = searchParams.get('has_bess')
+
+    if (status)     query = query.eq('outreach_status', status)
+    if (priority)   query = query.eq('priority',        priority)
+    if (district)   query = query.eq('district',        district)
+    if (offerType)  query = query.eq('offer_type',      offerType)
+    if (assignedTo) query = query.eq('assigned_to',     assignedTo)
+    if (segment)    query = query.eq('segment',         segment)
+    if (rtb)        query = query.eq('rtb_status',       rtb)
+    if (built)      query = query.eq('satellite_check',  built)
+    if (technology) query = query.eq('technology',       technology)
+    if (hasBess === 'true')  query = query.gt('bess_potential_mwh', 0)
+    if (hasBess === 'false') query = query.or('bess_potential_mwh.is.null,bess_potential_mwh.eq.0')
+    const industry = searchParams.get('industry')
+    if (industry)   query = query.eq('industry', industry)
+    if (newDays) {
+      const since = new Date(Date.now() - parseInt(newDays, 10) * 86400000).toISOString()
+      query = query.gte('created_at', since)
+    }
+    const searchFilter = search ? buildProspectSearchFilter(search) : null
+    if (searchFilter) query = query.or(searchFilter)
+
+    const { data, error } = await query
+    if (error) throw error
+
+    // Probability by stage for weighted pipeline (forecast value)
+    const STAGE_PROBABILITY: Record<string, number> = {
+      new: 0.05, researching: 0.10, contacted: 0.20, responded: 0.35,
+      meeting_set: 0.50, proposal_sent: 0.65, negotiating: 0.80,
+      won: 1.0, lost: 0, not_interested: 0,
+    }
+
+    // stats
+    const all = data || []
+    const byStatus: Record<string,number>   = {}
+    const byPriority: Record<string,number> = {}
+    let totalPipeline = 0, totalCapacity = 0, weightedPipeline = 0
+    for (const p of all) {
+      const st = p.outreach_status || 'new'
+      byStatus[st]                     = (byStatus[st]                        || 0) + 1
+      byPriority[p.priority||'medium'] = (byPriority[p.priority||'medium']   || 0) + 1
+      const deal = Number(p.estimated_deal_value) || 0
+      totalPipeline   += deal
+      totalCapacity   += Number(p.capacity_mwp) || 0
+      weightedPipeline += deal * (STAGE_PROBABILITY[st] ?? 0.1)
+    }
+
+    return NextResponse.json({
+      success: true, data: all, count: all.length,
+      stats: { total: all.length, byStatus, byPriority, totalPipeline, totalCapacity, weightedPipeline },
+    })
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, data: [], message: formatSupabaseError(error) },
+      { status: 500 }
+    )
+  }
+}
+
+export async function POST(request: NextRequest) {
+  const token = await requireSession(request)
+  if (!token) return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+
+  try {
+    const body = await request.json()
+    if (!body.plant_name) return NextResponse.json({ success: false, message: 'plant_name required' }, { status: 400 })
+
+    const { data, error } = await supabase.from('pv_prospects').insert(body).select().single()
+    if (error) throw error
+    return NextResponse.json({ success: true, data, message: 'Prospect created' })
+  } catch (error) {
+    return NextResponse.json({ success: false, message: String(error) }, { status: 500 })
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  const token = await requireSession(request)
+  if (!token) return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+
+  try {
+    const body = await request.json()
+    const { id, ...updates } = body
+    if (!id) return NextResponse.json({ success: false, message: 'id required' }, { status: 400 })
+
+    const ALIAS_FIELDS = [
+      'company_name',
+      'contact_name',
+      'secondary_contact_name',
+      'parent_group',
+    ] as const
+    if (ALIAS_FIELDS.some((f) => f in updates)) {
+      const { data: existing } = await supabase
+        .from('pv_prospects')
+        .select('company_name, contact_name, secondary_contact_name, parent_group, search_aliases')
+        .eq('id', id)
+        .single()
+      const merged = { ...(existing || {}), ...updates }
+      updates.search_aliases = buildProspectSearchAliases(merged)
+    }
+    // Director columns require pv-prospects-crm-migration.sql — omit until applied.
+    delete updates.contact_director_1
+    delete updates.contact_director_2
+    delete updates.all_directors
+
+    const { data, error } = await supabase.from('pv_prospects').update(updates).eq('id', id).select().single()
+    if (error) throw error
+    return NextResponse.json({ success: true, data, message: 'Updated' })
+  } catch (error) {
+    return NextResponse.json({ success: false, message: String(error) }, { status: 500 })
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  const token = await requireSession(request)
+  if (!token) return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+
+  try {
+    const id = new URL(request.url).searchParams.get('id')
+    if (!id) return NextResponse.json({ success: false, message: 'id required' }, { status: 400 })
+
+    const { error } = await supabase.from('pv_prospects').delete().eq('id', id)
+    if (error) throw error
+    return NextResponse.json({ success: true, message: 'Deleted' })
+  } catch (error) {
+    return NextResponse.json({ success: false, message: String(error) }, { status: 500 })
+  }
+}

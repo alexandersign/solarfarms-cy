@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How We Protect Your Solar During Curtailment | Lighthief Cyprus</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+      --border: #D0DAE4;
+      --ok-bg: #E8F5E9;
+      --warn-bg: #FFF3E0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #111;
+      background: var(--body-bg);
+    }
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 2px 24px rgba(26,54,93,0.12);
+    }
+    @media print {
+      body { background: #fff; font-size: 11.5pt; }
+      .page { box-shadow: none; max-width: none; }
+      .no-print { display: none !important; }
+      h2 { page-break-after: avoid; }
+      .benefit, .compare, .steps { page-break-inside: avoid; }
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 32px 40px 28px;
+    }
+    header .brand { font-size: 22px; font-weight: 700; letter-spacing: 2px; }
+    header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 16px 0 10px;
+      line-height: 1.3;
+      max-width: 520px;
+    }
+    header .subtitle { font-size: 15px; opacity: 0.95; max-width: 480px; }
+    header .meta { font-size: 11px; margin-top: 18px; opacity: 0.85; }
+    main { padding: 32px 40px 40px; }
+    h2 {
+      font-size: 18px;
+      color: var(--accent);
+      margin: 32px 0 14px;
+    }
+    h2:first-of-type { margin-top: 0; }
+    p { margin-bottom: 12px; }
+    .hero-box {
+      background: var(--ok-bg);
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 24px;
+      border: 1px solid #A5D6A7;
+    }
+    .hero-box p { margin: 0; font-size: 15px; }
+    .hero-box strong { color: var(--primary); }
+    .benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .benefit {
+      background: var(--body-bg);
+      border-radius: 10px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+    }
+    .benefit .icon { font-size: 22px; margin-bottom: 6px; }
+    .benefit h3 { font-size: 14px; color: var(--primary); margin-bottom: 6px; }
+    .benefit p { font-size: 13px; margin: 0; color: var(--grey-text); }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .compare-card {
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .compare-card.bad {
+      background: #FFEBEE;
+      border: 1px solid #EF9A9A;
+    }
+    .compare-card.good {
+      background: var(--ok-bg);
+      border: 1px solid #81C784;
+    }
+    .compare-card h3 {
+      font-size: 14px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .compare-card.bad h3 { color: #C62828; }
+    .compare-card.good h3 { color: #2E7D32; }
+    .compare-card ul { margin: 0 0 0 18px; font-size: 13px; }
+    .compare-card li { margin-bottom: 6px; }
+    .plain-list {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+    }
+    .plain-list li {
+      padding: 10px 0 10px 36px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .plain-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 8px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .steps { counter-reset: step; margin: 16px 0; }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .step-body h3 { font-size: 14px; color: var(--primary); margin-bottom: 4px; }
+    .step-body p { margin: 0; font-size: 13px; color: var(--grey-text); }
+    .note {
+      background: var(--warn-bg);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      margin: 20px 0;
+      border-left: 4px solid var(--accent);
+    }
+    .you-us {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .you-us div {
+      background: var(--body-bg);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .you-us h3 { font-size: 13px; color: var(--primary); margin-bottom: 10px; }
+    .you-us ul { margin: 0 0 0 18px; font-size: 13px; }
+    .you-us li { margin-bottom: 5px; }
+    footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 2px solid var(--primary);
+      font-size: 12px;
+      color: var(--grey-text);
+    }
+    footer .cta {
+      background: var(--primary);
+      color: var(--white);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    footer .cta strong { color: var(--accent); font-size: 15px; }
+    footer .cta p { margin: 6px 0 0; color: #E8EDF3; }
+    .print-hint {
+      text-align: center;
+      padding: 10px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 12px;
+    }
+    .print-hint button {
+      margin-left: 10px;
+      padding: 5px 14px;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .benefits, .compare, .you-us { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <p class="print-hint no-print">Save as PDF: <strong>Ctrl+P</strong> → Save as PDF · <button type="button" onclick="window.print()">Print now</button></p>
+
+  <div class="page">
+    <header>
+      <div class="brand">LIGHTHIEF</div>
+      <h1>How we protect your solar when the grid asks you to stop exporting</h1>
+      <p class="subtitle">A short guide for commercial &amp; industrial clients in Cyprus</p>
+      <p class="meta">Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy · May 2026</p>
+    </header>
+
+    <main>
+      <div class="hero-box">
+        <p><strong>Your solar investment should keep working for your business</strong> — even when EAC (the electricity network operator) limits how much power you can send to the grid. We design and commission every system so you stay <strong>legal, safe, and saving money</strong> during those periods.</p>
+      </div>
+
+      <h2>What is curtailment?</h2>
+      <p>Sometimes the Cyprus electricity network is under pressure — usually on sunny days when many solar systems export at once. EAC can send a signal to your site to <strong>stop feeding power into the grid</strong> for a while.</p>
+      <p>On most commercial buildings, a small device (installed by EAC) receives that signal. Many older systems react by <strong>turning solar off completely</strong>. That means you lose the benefit of free daytime power for your factory, offices, cold rooms, or pumps.</p>
+      <p><strong>Curtailment is normal and legal.</strong> The question is how your system responds — and that is where we help.</p>
+
+      <h2>What we do for you</h2>
+      <p>On Lighthief projects we use a <strong>smart zero-export</strong> setup (typically with a <strong>Deye</strong> inverter, the same brand many commercial sites trust worldwide). Instead of shutting down when EAC signals curtailment:</p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="icon">☀️</div>
+          <h3>Solar keeps running</h3>
+          <p>Panels stay on and produce power for <strong>your building first</strong>.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">🔌</div>
+          <h3>Nothing goes to the grid</h3>
+          <p>Export is held at <strong>zero</strong> while curtailment is active — exactly what EAC requires.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">💶</div>
+          <h3>You still save</h3>
+          <p>Every kWh used on site is a kWh you did not buy from the grid at retail rates.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">✅</div>
+          <h3>You stay compliant</h3>
+          <p>No risky workarounds. Your connection agreement and inspections remain in order.</p>
+        </div>
+      </div>
+
+      <h2>Without protection vs with Lighthief</h2>
+      <div class="compare">
+        <div class="compare-card bad">
+          <h3>Basic setup (what we avoid)</h3>
+          <ul>
+            <li>EAC signal → inverter switches <strong>off</strong></li>
+            <li>No solar for your business during curtailment</li>
+            <li>You buy more from the grid at full price</li>
+            <li>Lost savings on every curtailed sunny hour</li>
+          </ul>
+        </div>
+        <div class="compare-card good">
+          <h3>Lighthief zero-export protection</h3>
+          <ul>
+            <li>EAC signal → export stops, <strong>solar continues</strong></li>
+            <li>Power goes to <strong>your loads</strong> only</li>
+            <li>Lower electricity bills during those hours</li>
+            <li>Designed, tested, and documented for EAC approval</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>How it works — in simple terms</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <h3>We measure what leaves your site</h3>
+            <p>Sensors on your main supply tell the inverter how much power is going to or from the grid.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <h3>When EAC asks for curtailment</h3>
+            <p>The inverter automatically limits export to zero — it does not need someone on site to change settings.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <h3>Solar serves your business first</h3>
+            <p>Offices, machinery, cooling, and other loads use the power. Only what you need and cannot use stays off the grid.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">4</span>
+          <div class="step-body">
+            <h3>When the signal ends</h3>
+            <p>Normal operation resumes — including export to the grid if you are on net billing and have surplus power.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>What this means for your electricity bill</h2>
+      <p>If you are on <strong>net billing</strong> with EAC Supply, your meter still records import and export each month.</p>
+      <ul class="plain-list">
+        <li>During curtailment you will not earn export credits for those hours — because you are not exporting.</li>
+        <li>You <strong>will</strong> still cut your import from the grid by using your own solar on site.</li>
+        <li>That on-site saving is the main financial benefit of our protection — especially for businesses with daytime consumption.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Important:</strong> Bypassing EAC’s curtailment equipment or trying to export anyway can put your connection at risk. Our approach is the approved way to maximise your savings while respecting grid rules.
+      </div>
+
+      <h2>What we take care of — and what you do</h2>
+      <div class="you-us">
+        <div>
+          <h3>Lighthief (design &amp; delivery)</h3>
+          <ul>
+            <li>Specify inverter and protection suited to your site</li>
+            <li>Design zero-export control into the system from day one</li>
+            <li>Coordinate with your licensed electrician for installation</li>
+            <li>Test that curtailment behaves correctly before handover</li>
+            <li>Provide documentation for EAC inspection where required</li>
+          </ul>
+        </div>
+        <div>
+          <h3>You (site owner)</h3>
+          <ul>
+            <li>Do not modify or bypass EAC’s curtailment device</li>
+            <li>Keep normal maintenance and monitoring in place</li>
+            <li>Contact us if alarms or export behaviour look unusual</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Who this is for</h2>
+      <p>This protection is especially valuable for <strong>shops, warehouses, factories, hotels, and offices</strong> with net billing or self-consumption — anywhere daytime use is high and curtailment would otherwise waste sunny hours.</p>
+      <p>Larger solar parks (typically above 120 kWp) use a different remote-control path; we apply the same principle — <strong>limit export, protect production</strong> — with equipment matched to the scale of the project.</p>
+
+      <footer>
+        <div class="cta">
+          <strong>Questions about curtailment on your site?</strong>
+          <p>Alexander Papacosta · Cyprus Director · +357 99 164 158 · office@lighthief.com</p>
+        </div>
+        <p>Lighthief Cyprus Ltd · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol</p>
+        <p style="margin-top:8px;">HE 477423 · solarfarms.cy</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

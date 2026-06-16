@@ -11,6 +11,12 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { looksLikeEnergyVolume } from '@/lib/market/tsoc-excel-parse'
+import {
+  computeBessSaturation,
+  type BessSaturationResult,
+  CYPRUS_GRID,
+} from '@/lib/market/cyprus-demand-model'
 
 const DATA_FILE = path.join(process.cwd(), 'market', 'data', 'market-data.json')
 
@@ -111,6 +117,23 @@ export function hasMarketData(): boolean {
 }
 
 /**
+ * Strip corrupted volume values where parser mistakenly copied price into volume.
+ */
+export function sanitizeHourlyRecord(record: HourlyRecord): HourlyRecord {
+  const volumeOk = looksLikeEnergyVolume(record.volume, record.price)
+  const buyOk = record.buyVolume > 0 && looksLikeEnergyVolume(record.buyVolume, record.price)
+  return {
+    ...record,
+    volume: volumeOk ? record.volume : 0,
+    buyVolume: buyOk ? record.buyVolume : 0,
+    sellVolume:
+      record.sellVolume > 0 && looksLikeEnergyVolume(record.sellVolume, record.price)
+        ? record.sellVolume
+        : 0,
+  }
+}
+
+/**
  * Get the full market data (including all records)
  */
 export function getMarketDataFull(): MarketDataFull | null {
@@ -118,7 +141,11 @@ export function getMarketDataFull(): MarketDataFull | null {
   
   try {
     const raw = fs.readFileSync(DATA_FILE, 'utf-8')
-    return JSON.parse(raw) as MarketDataFull
+    const data = JSON.parse(raw) as MarketDataFull
+    if (data.records?.length) {
+      data.records = data.records.map(sanitizeHourlyRecord)
+    }
+    return data
   } catch {
     return null
   }
@@ -530,3 +557,14 @@ function computeStatistics(records: HourlyRecord[]) {
   
   return { overall, daily, hourlyAvg, weekly }
 }
+
+/** BESS market saturation vs modeled 16h addressable demand (must-run deducted). */
+export function getBessSaturation() {
+  return computeBessSaturation()
+}
+
+export {
+  computeBessSaturation,
+  type BessSaturationResult,
+  CYPRUS_GRID,
+} from '@/lib/market/cyprus-demand-model'

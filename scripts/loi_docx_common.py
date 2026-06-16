@@ -22,6 +22,10 @@ REF_LITHIUM_CNY = (
     "155,000 CNY/tonne (Mysteel China battery-grade spot, January 2026 monthly average)"
 )
 REF_EUR_CNY = "8.18 CNY per EUR (January 2026 average)"
+# EPC §6.1 bands: lithium >10% from ref; EUR/CNY >8% from ref (Jan 2026 baseline).
+# May 2026 market (internal — disclosed in LOI §4.4): lithium ~183k CNY/t (~+18% vs Jan);
+# EUR/CNY ~7.88 (ECB 22 May 2026, within 8% band). Linyang lock if LOI+EPC by 29 May 2026.
+PRICE_LOCK_DEADLINE = "29 May 2026"
 
 # Same authorised representative (Galascope Ltd + Esperia Energy Group)
 CLIENT_REP_NAME = "Ntinos Konstantinos"
@@ -627,7 +631,7 @@ def add_clause_7_exclusivity(doc, *, carveout_galascope=False):
     if carveout_galascope:
         body(
             doc,
-            "7.4  Applies to the nine (9) pipeline parks only — not Galascope Ltd (LCY-LOI-GAL-B1-2026-R13).",
+            "7.4  Applies to the nine (9) pipeline parks only — not Galascope Ltd (LCY-LOI-GAL-B1-2026-R15).",
         )
 
 
@@ -636,7 +640,7 @@ SCHEDULE_TABLE_RC = {2, 3, 4}
 
 
 def add_price_mechanism_section(doc, *, schedule_a_note=""):
-    """Short commercial summary — two-way Indicative/Confirmed; detail in executed EPC."""
+    """Indicative/Confirmed two-way pricing + May 2026 Linyang price-lock window."""
     h1(doc, "4.   COMMERCIAL SUMMARY")
     body(
         doc,
@@ -649,19 +653,37 @@ def add_price_mechanism_section(doc, *, schedule_a_note=""):
     body(
         doc,
         "4.2  Schedule 1 indicatives are valid for ninety (90) days from this LOI for planning. "
-        "The Confirmed Contract Price for each park or batch is set in the EPC within fourteen "
-        "(14) days after the Client receives grid Connection Terms for that park or batch.",
+        "The Confirmed Contract Price for each park or batch is set when Lighthief issues the "
+        "Confirmed Price Certificate under Clause 4.3.",
     )
     body(
         doc,
-        "4.3  (Two-way adjustment) The Confirmed Price equals the Indicative Price unless the "
-        "battery raw-material index (Mysteel lithium carbonate) or EUR/CNY moves beyond the "
-        "thresholds in EPC §6.1 from the January 2026 reference values. Where a threshold is "
-        "exceeded, the Confirmed Price adjusts upward or downward to reflect verified movement "
-        "on the equipment cost base; any downward adjustment is passed through to the Client on "
-        "milestones not yet invoiced. Any upward adjustment is capped at five percent (5%) of "
-        "the Indicative Price; if the calculated upward adjustment would exceed five percent (5%), "
-        "either Party may terminate that EPC without penalty. Lighthief will issue a Price Basis "
-        "Certificate at EPC signing and at equipment delivery showing the reference indices and "
-        "calculation.",
+        "4.3  (Two-way price commitment) Each EPC will state an Indicative Price (as in Schedule 1 "
+        "or updated in writing before signing). Within fourteen (14) days after the Client receives "
+        "grid Connection Terms for that park or batch, Lighthief will issue a Confirmed Price "
+        "Certificate fixing the Contract Price. The Confirmed Price equals the Indicative Price "
+        "unless the battery raw-material index (Mysteel lithium carbonate) or EUR/CNY moves beyond "
+        "the thresholds in EPC §6.1 from the January 2026 reference values ("
+        f"{REF_LITHIUM_CNY}; {REF_EUR_CNY}). Where a threshold is exceeded, the Confirmed Price "
+        "adjusts to reflect verified movement on the equipment cost base: downward adjustments "
+        "are passed through to the Client on milestones not yet invoiced; upward adjustments are "
+        "capped at five percent (5%) of the Indicative Price. If the calculated upward adjustment "
+        "would exceed five percent (5%), either Party may decline to proceed with that EPC without "
+        "penalty. Lighthief will provide a Price Basis Certificate at EPC signing (and at equipment "
+        "delivery where applicable) showing the reference indices and calculation so the Client can "
+        "verify how the price follows the market.",
+    )
+    body(
+        doc,
+        f"4.4  (Price lock — signature by {PRICE_LOCK_DEADLINE}) The Parties acknowledge that, as of "
+        "the date of this LOI, the Mysteel lithium carbonate index has moved materially above the "
+        "January 2026 reference in Clause 4.3, while EUR/CNY remains within the EPC FX threshold. "
+        "Schedule 1 therefore reflects pricing locked with Linyang on the January 2026 quotation "
+        "basis, not today's spot index. Linyang has confirmed that where this LOI and the relevant "
+        f"park or batch EPC are executed on or before {PRICE_LOCK_DEADLINE}, the Indicative Price "
+        "(as in Schedule 1 or updated in writing before signing) shall be the Confirmed Price for "
+        "equipment cost purposes, without upward raw-material or FX adjustment for index movement "
+        "occurring before that EPC Effective Date. Clause 4.3 two-way adjustments apply after "
+        "signing only to verified movement from the indices stated in the Price Basis Certificate "
+        "at EPC signing.",
     )

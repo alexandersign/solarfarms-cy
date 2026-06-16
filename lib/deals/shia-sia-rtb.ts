@@ -4,7 +4,8 @@
  *
  * Technical basis: DD package (May 2026) — CERA E3511, Town Planning issued May 2025.
  * EAC grid connection in progress (FL4145 sublease pending).
- * BESS sized at 2.5 MW / 10 MWh (4h) — optimal for 50% curtailment profile.
+ * BESS sized at 2.5 MW / 7.5 MWh (3h) — E-W layout reduces midday curtailment vs south-facing;
+ * 45% curtailment base (vs 50% portfolio default for flat south profiles).
  * SPV/seller details NOT included — location-level anonymisation only.
  *
  * Align with: parks-for-sale/novikov/SHIA DD package/
@@ -20,11 +21,12 @@ import {
 } from './rtb-deal-types'
 
 const solarMWp = 3.2
-const bessMWh = 10
+const bessMWh = 7.5
 const bessPowerMW = 2.5
-/** Bifacial 645W panels, fixed tilt, Nicosia district — conservative 1,700 kWh/kWp */
-const specificYield = 1_700
-const curtailmentPct = 0.50   // Confirmed from EAC curtailment signals analysis
+/** Jinko 645W bifacial, east–west 10° — PVGIS E-W model 15 Jun 2026: 1,487 kWh/kWp (+5% bifacial); use 1,480 */
+const specificYield = 1_480
+/** E-W flatter midday profile — lower curtailment than south-facing 50% baseline */
+const curtailmentPct = 0.45
 const landLease = 18_000       // Executed lease on file; indicative annual estimate
 
 const rev = computeRevenueModel({ solarMWp, specificYieldKwhPerKwp: specificYield, curtailmentPct, bessCapacityMWh: bessMWh })
@@ -37,8 +39,14 @@ const capex = computeCapex({
   rtbCost: RTB_COSTS.withConnectionTerms,
   connectionTerms: 83_842,  // EAC grid infrastructure works — PRELIMINARY estimate (not binding). Final cost set after EAC Techno-Economic Study post-permit.
 })
-const finance = computeFinance(capex, rev.grossRevY1EUR, '~12–15%')
-const opex = computeOpex({ solarMWp, bessCapacityMWh: bessMWh, capexTotal: capex.total, landLeasePerYear: landLease })
+const finance = computeFinance(capex, rev.grossRevY1EUR, '~9–11%')
+const opex = computeOpex({
+  solarMWp,
+  bessCapacityMWh: bessMWh,
+  capexTotal: capex.total,
+  landLeasePerYear: landLease,
+  pvOmPerMWPerYear: 8_000,  // Shia-Sia scoped rate — €8k/MWp/yr (not portfolio default €15k)
+})
 
 export const SHIA_SIA_RTB: RtbDeal = {
   slug: 'shia-sia-nicosia',
@@ -57,12 +65,12 @@ export const SHIA_SIA_RTB: RtbDeal = {
   solarMWp,
   specificYieldKwhPerKwp: specificYield,
   annualProductionMWh: Math.round(solarMWp * specificYield),
-  technologySolar: '645W bifacial LFP module, fixed tilt, Nicosia District',
+  technologySolar: 'Jinko 645W bifacial, east–west 10° tilt, Larnaca District',
 
   bessPowerMW,
   bessMWh,
-  bessDurationHours: 4,
-  technologyBess: 'LFP, Tier-1 OEM, 4-hour duration, EN 50549-2 (TÜV certified)',
+  bessDurationHours: 3,
+  technologyBess: 'LFP, Tier-1 OEM, 3-hour duration, EN 50549-2 (TÜV certified)',
 
   capex,
   revenueModel: rev,
@@ -72,6 +80,6 @@ export const SHIA_SIA_RTB: RtbDeal = {
   _meta: {
     date: '2026-05-09',
     confidential: true,
-    note: 'BESS sized for 50% curtailment profile (2-5h daily block curtailment, EAC signals 30–100%). Figures based on Lighthief EPC pricing and TSOC DAM sample (Oct 2025 – Feb 2026).',
+    note: 'BESS 2.5 MW / 7.5 MWh (3h) sized for E-W 10° curtailment profile (~45% base vs 50% south). PV yield from PVGIS E-W model (scripts/pvgis-park-yield.py, Jun 2026). Figures based on Lighthief EPC pricing and TSOC DAM sample (Oct 2025 – Feb 2026).',
   },
 }

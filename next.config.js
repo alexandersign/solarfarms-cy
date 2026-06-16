@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Bundle private HTML documents into the kb/document API route's serverless function.
+  // Without this, Vercel strips these files from the deployment and readFile fails.
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/crm/kb/document': [
+        './docs/clients/**/*.html',
+        './pv-om/**/*.html',
+      ],
+    },
+  },
   images: {
     domains: ['cdn.sanity.io', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],

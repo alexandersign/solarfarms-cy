@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Lighthief — Solar Park EPC, O&amp;M &amp; BESS</title>
+<!--
+  Lighthief CRM developer/SPV intro email (email-safe, table-based).
+  Tokens injected by lib/crm-outreach.ts:
+    {{HERO_IMAGE_URL}} {{CONTACT_NAME}} {{COMPANY}} {{GREETING_LINE}} {{OFFER_LINE}}
+    {{CURTAILMENT_BLOCK}} {{REVENUE_MODELS_BLOCK}} {{BESS_SIZING_BLOCK}} {{EQUIPMENT_BLOCK}}
+    {{STORAGE_BLOCK}} {{PRICING_BLOCK}} {{ABOUT_BLOCK}}
+    {{SENDER_NAME}} {{SENDER_TITLE}} {{SENDER_EMAIL}} {{SENDER_PHONE}}
+    {{UNSUBSCRIBE_URL}} {{YEAR}}
+-->
+<style>
+  body, table, td, p, a, h1, h2 { margin:0; padding:0; border:0; }
+  body { background-color:#F0F4F8; font-family:Arial,Helvetica,sans-serif; -webkit-text-size-adjust:100%; }
+  table { border-collapse:collapse; }
+  img { display:block; border:0; outline:none; text-decoration:none; }
+  a { color:#C9A432; }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#F0F4F8;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F0F4F8;">
+<tr><td align="center" style="padding:24px 16px;">
+
+  <table width="620" cellpadding="0" cellspacing="0" border="0" style="width:620px;max-width:620px;background-color:#FFFFFF;border-radius:8px;overflow:hidden;">
+
+    <!-- Header -->
+    <tr>
+      <td style="background-color:#1A365D;background:linear-gradient(135deg,#1A365D 0%,#2B5FA0 100%);padding:20px 28px;">
+        <span style="color:#C9A432;font-size:20px;font-weight:bold;">Lighthief Cyprus</span>
+        <span style="color:#ffffff;opacity:0.85;font-size:13px;"> &nbsp;·&nbsp; Solar Park EPC · O&amp;M · BESS</span>
+      </td>
+    </tr>
+
+    <!-- Hero image (BESS container) -->
+    <tr>
+      <td style="padding:0;line-height:0;font-size:0;background:#0d1f35;">
+        <img src="{{HERO_IMAGE_URL}}" alt="Lighthief / Linyang containerised battery energy storage system" width="620" style="width:100%;max-width:620px;height:auto;display:block;" />
+      </td>
+    </tr>
+
+    <!-- Opening -->
+    <tr>
+      <td style="padding:26px 28px 8px;color:#222222;font-size:15px;line-height:1.55;">
+        <p style="margin-bottom:14px;">Dear {{CONTACT_NAME}},</p>
+        <p style="margin-bottom:14px;">{{GREETING_LINE}}</p>
+        <p style="margin-bottom:4px;">{{OFFER_LINE}}</p>
+      </td>
+    </tr>
+
+    {{CURTAILMENT_BLOCK}}
+
+    {{REVENUE_MODELS_BLOCK}}
+
+    {{BESS_SIZING_BLOCK}}
+
+    {{EQUIPMENT_BLOCK}}
+
+    {{STORAGE_BLOCK}}
+
+    {{PRICING_BLOCK}}
+
+    {{ABOUT_BLOCK}}
+
+    <!-- CTA + signature -->
+    <tr>
+      <td style="padding:16px 28px 24px;color:#222;font-size:15px;line-height:1.55;">
+        <p style="margin-bottom:18px;">
+          Would you be open to a <strong>20-minute call</strong> this week?
+          I can walk you through the curtailment data for your park and show you what the numbers
+          look like for a BESS retrofit — no obligation, no sales pitch, just the figures.
+        </p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin:0 0 20px;">
+          <tr><td bgcolor="#1A365D" style="border-radius:6px;">
+            <a href="mailto:{{SENDER_EMAIL}}?subject=Re%3A%20BESS%20curtailment%20recovery%20for%20{{COMPANY}}"
+               style="display:inline-block;padding:12px 22px;color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;">
+              Let&#39;s talk curtailment recovery
+            </a>
+          </td></tr>
+        </table>
+        <p style="margin-top:8px;color:#333;font-size:14px;line-height:1.5;">
+          Kind regards,<br />
+          <strong>{{SENDER_NAME}}</strong><br />
+          {{SENDER_TITLE}}, Lighthief Cyprus Ltd<br />
+          <a href="tel:{{SENDER_PHONE}}" style="color:#2B5FA0;text-decoration:none;">{{SENDER_PHONE}}</a> &nbsp;·&nbsp;
+          <a href="mailto:{{SENDER_EMAIL}}" style="color:#2B5FA0;text-decoration:none;">{{SENDER_EMAIL}}</a>
+        </p>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td style="background-color:#F0F4F8;padding:16px 28px;color:#7a869a;font-size:11px;line-height:1.5;">
+        Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1,
+        Office 201, 3035 Limassol, Cyprus · <a href="https://solarfarms.cy" style="color:#7a869a;">solarfarms.cy</a><br />
+        You received this email because your company holds a Cyprus energy licence relevant to our services.
+        <a href="{{UNSUBSCRIBE_URL}}" style="color:#7a869a;text-decoration:underline;">Unsubscribe</a> · &copy; {{YEAR}} Lighthief Cyprus Ltd
+      </td>
+    </tr>
+
+  </table>
+</td></tr>
+</table>
+
+</body>
+</html>

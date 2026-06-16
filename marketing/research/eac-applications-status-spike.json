@@ -1,0 +1,164 @@
+{
+  "generatedAt": "2026-05-28T10:58:41.419945+00:00",
+  "conclusion": "No public per-applicant connection queue found in this spike. Use EAC RES System Tables (POS acceptance dates) as proxy for preliminary connection terms progress; use rtb-enrichment-template.csv for final_issued.",
+  "recommendation": "Do not automate applicant portal without credentials.",
+  "probes": [
+    {
+      "url": "https://www.eac.com.cy/el/",
+      "ok": true,
+      "status_code": 200,
+      "links": [
+        {
+          "text": "Σύνδεση / Εγγραφή",
+          "url": "javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(\"ctl00$welcomeControl$btnSignIn\", \"\", true, \"\", \"\", false, true))"
+        },
+        {
+          "text": "Σύνδεση Χρηστών Δικτύου",
+          "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/ElectricitySupplyInformation/Pages/default.aspx"
+        },
+        {
+          "text": "Παρακολούθηση Αιτήσεων Διανομής",
+          "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+        },
+        {
+          "text": "Έντυπα αιτήσεων",
+          "url": "https://www.eac.com.cy/EL/RegulatedActivities/Supply/ApplicationForms/Pages/default.aspx"
+        },
+        {
+          "text": "",
+          "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+        },
+        {
+          "text": "Όροι & Προϋποθέσεις Χρήσης Ιστοσελίδας ΑΗΚ",
+          "url": "https://www.eac.com.cy/Terms and Conditions/Όροι και Προϋποθέσεις Χρήσης Ιστοσελίδας.pdf"
+        }
+      ],
+      "has_login_form": false,
+      "snippet": "ΑΗΚ - Κεντρική σελίδα Ίσως προσπαθείτε να μεταβείτε σε αυτή την τοποθεσία από ένα ασφαλές πρόγραμμα περιήγησης στο διακομιστή. Ενεργοποιήστε τις δέσμες ενεργειών και φορτώστε ξανά αυτήν τη σελίδα. Σύνδεση / Εγγραφή Ελ En ΑΠΟΤΕΛΕΣΜΑΤΑ ΑΝΑΖΗΤΗΣΗΣ Toggle navigation Η ΑΗΚ Η ΑΗΚ Γενικά Ο Οργανισμός Όραμα/Αποστολή/Αξίες Ιστορική Αναδρομή Πιστοποίηση της ΑΗΚ ως Εργοδότης Ισότητας Εξωτερικοί Σύμβουλοι Λειτουργικός Διαχωρισμός Διευθυντική Οργανική Δομή ΑΗΚ Διοικητικό Συμβούλιο Επιχειρηματικές Μονάδες Νομ"
+    },
+    {
+      "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/Pages/default.aspx",
+      "ok": true,
+      "status_code": 200,
+      "links": [
+        {
+          "text": "Σύνδεση / Εγγραφή",
+          "url": "javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(\"ctl00$welcomeControl$btnSignIn\", \"\", true, \"\", \"\", false, true))"
+        },
+        {
+          "text": "Σύνδεση Χρηστών Δικτύου",
+          "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/ElectricitySupplyInformation/Pages/default.aspx"
+        },
+        {
+          "text": "Παρακολούθηση Αιτήσεων Διανομής",
+          "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+        },
+        {
+          "text": "Έντυπα αιτήσεων",
+          "url": "https://www.eac.com.cy/EL/RegulatedActivities/Supply/ApplicationForms/Pages/default.aspx"
+        },
+        {
+          "text": "Σύνδεση Χρηστών Δικτύου",
+          "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/ElectricitySupplyInformation/Pages/default.aspx"
+        },
+        {
+          "text": "Παρακολούθηση Αιτήσεων Διανομής",
+          "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+        },
+        {
+          "text": "Όροι & Προϋποθέσεις Χρήσης Ιστοσελίδας ΑΗΚ",
+          "url": "https://www.eac.com.cy/Terms and Conditions/Όροι και Προϋποθέσεις Χρήσης Ιστοσελίδας.pdf"
+        }
+      ],
+      "has_login_form": false,
+      "snippet": "ΑΗΚ - Διανομή Ίσως προσπαθείτε να μεταβείτε σε αυτή την τοποθεσία από ένα ασφαλές πρόγραμμα περιήγησης στο διακομιστή. Ενεργοποιήστε τις δέσμες ενεργειών και φορτώστε ξανά αυτήν τη σελίδα. Σύνδεση / Εγγραφή Ελ En ΑΠΟΤΕΛΕΣΜΑΤΑ ΑΝΑΖΗΤΗΣΗΣ Toggle navigation Η ΑΗΚ Η ΑΗΚ Γενικά Ο Οργανισμός Όραμα/Αποστολή/Αξίες Ιστορική Αναδρομή Πιστοποίηση της ΑΗΚ ως Εργοδότης Ισότητας Εξωτερικοί Σύμβουλοι Λειτουργικός Διαχωρισμός Διευθυντική Οργανική Δομή ΑΗΚ Διοικητικό Συμβούλιο Επιχειρηματικές Μονάδες Νομοθεσία/Κ"
+    },
+    {
+      "url": "https://www.eac.com.cy/EN/RegulatedActivities/Distribution/Pages/default.aspx",
+      "ok": true,
+      "status_code": 200,
+      "links": [
+        {
+          "text": "Network Applications Status",
+          "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EN"
+        },
+        {
+          "text": "Application Forms",
+          "url": "https://www.eac.com.cy/EN/RegulatedActivities/Supply/ApplicationForms/Pages/default.aspx"
+        },
+        {
+          "text": "Network Application Status",
+          "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EN"
+        }
+      ],
+      "has_login_form": false,
+      "snippet": "EAC - Distribution You may be trying to access this site from a secured browser on the server. Please enable scripts and reload this page. Sign in / Register En Ελ SEARCH RESULTS Toggle navigation EAC EAC About EAC Our Organization Certification of EAC as an Equality Employer External Bodies Vision/ Mission/ Values History Operational Unbundling Business Units Board of Directors Organizational Management Structure Legislation/Rules National Legislation European Legislation Activities Generation "
+    }
+  ],
+  "application_related_links": [
+    {
+      "text": "Σύνδεση / Εγγραφή",
+      "url": "javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(\"ctl00$welcomeControl$btnSignIn\", \"\", true, \"\", \"\", false, true))"
+    },
+    {
+      "text": "Σύνδεση Χρηστών Δικτύου",
+      "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/ElectricitySupplyInformation/Pages/default.aspx"
+    },
+    {
+      "text": "Παρακολούθηση Αιτήσεων Διανομής",
+      "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+    },
+    {
+      "text": "Έντυπα αιτήσεων",
+      "url": "https://www.eac.com.cy/EL/RegulatedActivities/Supply/ApplicationForms/Pages/default.aspx"
+    },
+    {
+      "text": "",
+      "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+    },
+    {
+      "text": "Όροι & Προϋποθέσεις Χρήσης Ιστοσελίδας ΑΗΚ",
+      "url": "https://www.eac.com.cy/Terms and Conditions/Όροι και Προϋποθέσεις Χρήσης Ιστοσελίδας.pdf"
+    },
+    {
+      "text": "Σύνδεση / Εγγραφή",
+      "url": "javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(\"ctl00$welcomeControl$btnSignIn\", \"\", true, \"\", \"\", false, true))"
+    },
+    {
+      "text": "Σύνδεση Χρηστών Δικτύου",
+      "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/ElectricitySupplyInformation/Pages/default.aspx"
+    },
+    {
+      "text": "Παρακολούθηση Αιτήσεων Διανομής",
+      "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+    },
+    {
+      "text": "Έντυπα αιτήσεων",
+      "url": "https://www.eac.com.cy/EL/RegulatedActivities/Supply/ApplicationForms/Pages/default.aspx"
+    },
+    {
+      "text": "Σύνδεση Χρηστών Δικτύου",
+      "url": "https://www.eac.com.cy/EL/RegulatedActivities/Distribution/ElectricitySupplyInformation/Pages/default.aspx"
+    },
+    {
+      "text": "Παρακολούθηση Αιτήσεων Διανομής",
+      "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EL"
+    },
+    {
+      "text": "Όροι & Προϋποθέσεις Χρήσης Ιστοσελίδας ΑΗΚ",
+      "url": "https://www.eac.com.cy/Terms and Conditions/Όροι και Προϋποθέσεις Χρήσης Ιστοσελίδας.pdf"
+    },
+    {
+      "text": "Network Applications Status",
+      "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EN"
+    },
+    {
+      "text": "Application Forms",
+      "url": "https://www.eac.com.cy/EN/RegulatedActivities/Supply/ApplicationForms/Pages/default.aspx"
+    },
+    {
+      "text": "Network Application Status",
+      "url": "https://ess.eac.com.cy/sap/bc/ui5_ui5/sap/zprgapplication/index.html?sap-language=EN"
+    }
+  ]
+}
