@@ -77,7 +77,10 @@ export function CrmHeader({
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-blue-200">{myName || myEmail}</span>
+            <div className="text-right hidden sm:block">
+              <p className="text-[10px] text-blue-300 leading-none mb-0.5">Logged in as</p>
+              <p className="text-sm font-semibold text-white leading-none">{myName || myEmail}</p>
+            </div>
             <button
               onClick={() => signOut({ callbackUrl: '/crm/login' })}
               className="flex items-center text-xs font-medium px-3 py-1.5 rounded border border-white/30 text-white bg-transparent hover:bg-white/10 transition"

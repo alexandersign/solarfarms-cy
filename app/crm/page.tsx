@@ -227,6 +227,7 @@ export default function CrmPage() {
   }>({ total: 0, byStatus: {}, byPriority: {}, totalPipeline: 0, totalCapacity: 0 })
   const [loading,      setLoading]      = useState(true)
   const [activeView,   setActiveView]   = useState<'list'|'pipeline'|'grid_contacts'|'data_sources'|'queue'>('list')
+  // Default to 'mine' — manager useEffect below overrides to 'all' for Alexander
   const [queue,        setQueue]        = useState<{
     tasks: {prospectId:string;prospectName:string;taskId:string;taskType:string;taskText:string;due:string|null;daysSinceContact:number|null;assignedName?:string;priority:string}[]
     followUps: {prospectId:string;prospectName:string;nextFollowUp:string;assignedName?:string;daysSinceContact:number|null}[]
@@ -256,7 +257,7 @@ export default function CrmPage() {
   const [filterPriority,  setFilterPriority]  = useState('all')
   const [filterDistrict,  setFilterDistrict]  = useState('all')
   const [filterOfferType, setFilterOfferType] = useState('all')
-  const [filterAssigned,  setFilterAssigned]  = useState<'all'|'mine'>('all')
+  const [filterAssigned,  setFilterAssigned]  = useState<'all'|'mine'>('mine')
   const [filterNew,       setFilterNew]       = useState<'all'|'7'|'30'>('all')
   const [segment,         setSegment]         = useState<'developer'|'commercial'>('developer')
   const [filterRtb,       setFilterRtb]       = useState('all')
@@ -276,11 +277,12 @@ export default function CrmPage() {
     if (status === 'unauthenticated') router.push('/crm/login')
   }, [status, router])
 
-  // Auto-filter to "Mine" for non-manager users so each rep sees only their pipeline
+  // Alexander (manager) sees all by default; everyone else stays on 'mine'
   useEffect(() => {
-    if (status !== 'authenticated') return
+    if (status !== 'authenticated' || !myEmail) return
     const isManager = myEmail === 'alexander.papacosta@lighthief.com'
-    if (!isManager && myEmail) setFilterAssigned('mine')
+    if (isManager) setFilterAssigned('all')
+    // Non-managers already initialised to 'mine' — no change needed
   }, [status, myEmail])
 
   const fetchProspects = useCallback(async () => {
@@ -1409,8 +1411,15 @@ export default function CrmPage() {
                   const isCall = logForm[pid] === 'call'
                   const questions = isCall ? getQualifyingQuestions(segment, prospect.offer_type) : []
                   const phaseQs = sd.spin_phase ? questionsByPhase(questions, sd.spin_phase as SpinPhase) : []
+                  const wrongAccount = prospect.assigned_to && prospect.assigned_to !== myEmail
                   return (
                     <div className="space-y-2 border rounded-lg p-3 bg-gray-50">
+                      {wrongAccount && (
+                        <div className="text-xs bg-amber-50 border border-amber-200 text-amber-800 rounded px-2 py-1.5 flex items-center gap-1.5">
+                          <AlertCircle className="w-3 h-3 shrink-0"/>
+                          Assigned to <strong>{prospect.assigned_name || prospect.assigned_to}</strong> — this log will be recorded under <strong>{myName}</strong>
+                        </div>
+                      )}
                       {/* Summary text */}
                       <div className="flex gap-2 items-center">
                         <input autoFocus type="text"

@@ -90,6 +90,15 @@ export async function GET(request: NextRequest) {
     priority?: string
   }[]) || []
 
+  // Normalise legacy short names to full names (same map as dashboard)
+  const AUTHOR_TO_FULL: Record<string, string> = {
+    'Alexander': 'Alexander Papacosta',
+    'Zinovia':   'Zinovia Efesopoulou',
+    'Costas':    'Costas Hadjikyriacou',
+    'Andreas':   'Andreas Christoforou',
+    'Office':    'Andreas Christoforou',
+  }
+
   // ─── Compute today's call/email activity for this user ────────────────────
   let callsToday = 0
   let emailsToday = 0
@@ -98,10 +107,11 @@ export async function GET(request: NextRequest) {
   for (const p of all) {
     const feed = (p.activity_feed || []) as ActivityEntry[]
     for (const e of feed) {
-      // Match entries authored by this user today
       const entryDate = e.ts.split('T')[0]
       if (entryDate !== today) continue
-      const isMe = e.author === userName || e.author === userEmail
+      // Normalise author to full name before comparing
+      const normalisedAuthor = AUTHOR_TO_FULL[e.author] ?? e.author
+      const isMe = normalisedAuthor === userName || e.author === userEmail
       if (!isMe) continue
       totalToday++
       if (e.type === 'call') callsToday++
