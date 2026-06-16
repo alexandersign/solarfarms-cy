@@ -84,14 +84,18 @@ PARKS = [
         "grid_cls":    "green",
         "timeline":    "Target COD Q3–Q4 2027",
         "solar_mwp":   3.2,
-        "bess_mwh":    10,
+        "bess_mwh":    7.5,
         "bess_mw":     2.5,
+        "curtailment_pct": 0.45,
         "rtb_cost":    1_600_000,   # Novikov's actual embedded development cost
         "rtb_label":   "Project licences & development",
         "pv_epc_mwp":  PV_EPC_PER_MWP,   # €720k/MWp standard
         "bess_epc_mwh": BESS_EPC_PER_MWH,
         "grid_works":  83_842,            # EAC preliminary — not binding
         "land_lease":  18_000,
+        "pv_om_per_mwp": 8_000,
+        "yield_kwh_kwp": 1_480,
+        "yield_note":  "1,480 kWh/kWp (bifacial E-W 10 deg, PVGIS Jun 2026)",
         "note":        "EAC grid infrastructure cost €83,842 is a preliminary estimate — not binding; final confirmed after EAC Techno-Economic Study.",
     },
     {
@@ -244,10 +248,14 @@ def calc(p):
     total_capex = p["rtb_cost"] + pv_epc + bess_epc + p["grid_works"]
 
     # Revenue
-    annual_mwh   = solar_mwp * YIELD_KWH_KWP
-    uncurtailed  = round(annual_mwh * (1 - CURTAILMENT))
-    curtailed    = round(annual_mwh * CURTAILMENT)
-    bess_charged = round(curtailed * CAPTURE_RATE)
+    yield_kwp = p.get("yield_kwh_kwp", YIELD_KWH_KWP)
+    curtailment = p.get("curtailment_pct", CURTAILMENT)
+    annual_mwh   = solar_mwp * yield_kwp
+    uncurtailed  = round(annual_mwh * (1 - curtailment))
+    curtailed    = round(annual_mwh * curtailment)
+    ideal_charge = round(curtailed * CAPTURE_RATE)
+    max_charge   = round(bess_mwh * 280)  # energy-limited days/yr
+    bess_charged = min(ideal_charge, max_charge)
     bess_out     = round(bess_charged * RTE)
     solar_rev    = round(uncurtailed * SOLAR_RATE)
     bess_rev     = round(bess_out * DISCHARGE_PRICE)
@@ -256,7 +264,7 @@ def calc(p):
     # P&L
     aggregator = round(gross_rev * AGGREGATOR)
     net_rev    = gross_rev - aggregator
-    pv_om      = round(solar_mwp * PV_OM_PER_MWP)
+    pv_om      = round(solar_mwp * p.get("pv_om_per_mwp", PV_OM_PER_MWP))
     bess_ltsa  = round(bess_mwh * BESS_LTSA_MWH)
     insurance  = round(total_capex * INS_PCT)
     admin      = 10_000
@@ -462,7 +470,7 @@ def render(p, c):
       <table>
         <thead><tr><th>Item</th><th class="r">&euro;/yr</th></tr></thead>
         <tbody>
-          <tr><td>PV O&amp;M (&euro;15k/MWp)</td><td class="r">{eur(c['pv_om'])}</td></tr>
+          <tr><td>PV O&amp;M (&euro;{p.get('pv_om_per_mwp', PV_OM_PER_MWP) // 1000}k/MWp)</td><td class="r">{eur(c['pv_om'])}</td></tr>
           <tr><td>BESS LTSA Tier C (&euro;1,740/MWh)</td><td class="r">{eur(c['bess_ltsa'])}</td></tr>
           <tr><td>SCADA / EMS</td><td class="r">{eur(SCADA_PA)}</td></tr>
           <tr><td>Land lease</td><td class="r">{eur(c['land']) if c['land'] else '&mdash; (freehold)'}</td></tr>
@@ -477,7 +485,7 @@ def render(p, c):
       <ul class="bullets">
         <li>{p['permits']}</li>
         <li>BESS: {p['bess_mw']} MW / {p['bess_mwh']} MWh &mdash; 4-hour duration</li>
-        <li>PV yield: 1,700 kWh/kWp (bifacial, fixed tilt)</li>
+        <li>PV yield: {p.get('yield_note', '1,700 kWh/kWp (bifacial, fixed tilt)')}</li>
         <li>Lighthief Cyprus as EPC contractor (upon NDA)</li>
         <li>{p['timeline']}</li>
       </ul>
@@ -520,7 +528,7 @@ def write_park(p):
     (out_public / fname).write_text(html)
     (out_docs   / fname).write_text(html)
 
-    print(f"  ✓ {p['ref']}  |  {p['solar_mwp']} MWp + {p['bess_mwh']} MWh  |  "
+    print(f"  OK {p['ref']}  |  {p['solar_mwp']} MWp + {p['bess_mwh']} MWh  |  "
           f"CAPEX {eur(c['total_capex'])}  |  Y1 FCF {eur(c['fcf_y1'])}  |  "
           f"Yield {c['cash_yield']*100:.1f}%  |  Payback {c['payback']}yr")
 

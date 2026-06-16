@@ -1,0 +1,33 @@
+{
+  "date": "2026-06-15",
+  "park": "Sia Solar Park (Shia-Sia / Novikov)",
+  "coords": {
+    "lat": 34.957,
+    "lon": 33.377
+  },
+  "recommended_kwh_kwp": 1480,
+  "results": [
+    {
+      "method": "PVGIS",
+      "layout": "east-west",
+      "tilt_deg": 10,
+      "mwp": 3.2,
+      "loss_pct": 14,
+      "annual_kwh": 4758656,
+      "specific_yield_kwh_kwp": 1487,
+      "bifacial_gain_pct": 5.0,
+      "notes": "PVGIS E-W split: 50% @ aspect -90\u00b0 + 50% @ aspect +90\u00b0, tilt 10\u00b0; +5.0% bifacial rear-gain uplift"
+    },
+    {
+      "method": "PVGIS",
+      "layout": "south",
+      "tilt_deg": 15,
+      "mwp": 3.2,
+      "loss_pct": 14,
+      "annual_kwh": 5224271,
+      "specific_yield_kwh_kwp": 1633,
+      "bifacial_gain_pct": 5.0,
+      "notes": "PVGIS fixed south, tilt 15\u00b0, aspect 0\u00b0; +5.0% bifacial rear-gain uplift"
+    }
+  ]
+}

@@ -185,8 +185,10 @@ export const BESS_DEFAULTS = {
   capturePct: 0.874,        // % of curtailed energy captured (87.4% — Galascope real model with overflow constraints)
   curtailmentPct: 0.50,     // Cyprus 2027 baseline (50% — operator-reported, consistent with Galascope seasonal peaks)
   dischargePriceEURPerMWh: 195, // Blended evening peak discharge price (above DAM avg €184, below Apr 2026 peak €340)
-  durationHours: 4,         // All teasers use 4h duration
+  durationHours: 4,         // Default teaser duration; per-deal override common
   omPerMWhPerYear: 2_470,   // €/MWh/year BESS O&M basic
+  /** Days/year BESS can fully cycle on curtailed solar (~280 curtailment-active days in Cyprus) */
+  fullCycleDaysPerYear: 280,
 } as const
 
 /** RTB acquisition costs (flat per project, user-defined) */
@@ -214,11 +216,14 @@ export function computeRevenueModel(params: {
   curtailmentPct: number
   bessCapacityMWh: number
 }): RtbDealRevenue {
-  const { solarMWp, specificYieldKwhPerKwp, curtailmentPct, bessCapacityMWh: _bess } = params
+  const { solarMWp, specificYieldKwhPerKwp, curtailmentPct, bessCapacityMWh } = params
   const annualMWh = solarMWp * specificYieldKwhPerKwp
   const uncurtailedMWh = Math.round(annualMWh * (1 - curtailmentPct))
   const curtailedMWh = Math.round(annualMWh * curtailmentPct)
-  const bessCharged = Math.round(curtailedMWh * BESS_DEFAULTS.capturePct)
+  const idealChargeMWh = Math.round(curtailedMWh * BESS_DEFAULTS.capturePct)
+  const maxChargeMWh = Math.round(bessCapacityMWh * BESS_DEFAULTS.fullCycleDaysPerYear)
+  const bessCharged = Math.min(idealChargeMWh, maxChargeMWh)
+  const effectiveCapturePct = curtailedMWh > 0 ? bessCharged / curtailedMWh : 0
   const bessDischargedMWh = Math.round(bessCharged * BESS_DEFAULTS.rteAcAc)
   const solarRate = DAM.daytimeEURPerMWh
   const bessRate = BESS_DEFAULTS.dischargePriceEURPerMWh
@@ -226,7 +231,7 @@ export function computeRevenueModel(params: {
   const bessRev = Math.round(bessDischargedMWh * bessRate)
   return {
     curtailmentPct,
-    bessCapturePct: BESS_DEFAULTS.capturePct,
+    bessCapturePct: effectiveCapturePct,
     uncurtailedSolarMWh: uncurtailedMWh,
     uncurtailedSolarRateEURPerMWh: solarRate,
     uncurtailedSolarRevY1EUR: solarRev,
@@ -289,9 +294,12 @@ export function computeOpex(params: {
   bessCapacityMWh: number
   capexTotal: number
   landLeasePerYear: number
+  /** Override portfolio default (€15k/MW/yr) per park */
+  pvOmPerMWPerYear?: number
 }): RtbDealOpex {
+  const pvOmRate = params.pvOmPerMWPerYear ?? PV_DEFAULTS.omPerMWPerYear
   return {
-    pvOm: Math.round(params.solarMWp * PV_DEFAULTS.omPerMWPerYear),
+    pvOm: Math.round(params.solarMWp * pvOmRate),
     bessOm: Math.round(params.bessCapacityMWh * BESS_DEFAULTS.omPerMWhPerYear),
     landLease: params.landLeasePerYear,
     other: Math.round(params.capexTotal * 0.005) + 15_000, // insurance 0.5% CAPEX + admin
