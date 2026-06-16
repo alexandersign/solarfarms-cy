@@ -106,19 +106,24 @@ const COMMERCIAL_INDUSTRIES = [
   'Factory / Manufacturing','Car Dealership','Gym / Sports','Restaurant / Café','Other',
 ]
 
-const EMPTY_PROSPECT: PvProspect = {
-  plant_name: '', cera_license_no: '', capacity_mwp: undefined,
-  technology: 'PV', plant_status: 'operational', location: '', district: '',
-  grid_connection_point: '', commissioning_date: '', curtailment_rate: undefined,
-  company_name: '', company_reg_no: '', parent_group: '', registered_address: '',
-  company_website: '', contact_name: '', contact_title: '', contact_email: '',
-  contact_phone: '', contact_linkedin: '', secondary_contact_name: '',
-  secondary_contact_title: '', secondary_contact_email: '', secondary_contact_phone: '',
-  secondary_contact_linkedin: '', outreach_status: 'new', outreach_channel: '',
-  first_contact_date: '', last_contact_date: '', next_follow_up: '', offer_type: '',
-  estimated_deal_value: undefined, bess_potential_mwh: undefined, notes: '',
-  data_source: '', tags: [], priority: 'medium',
+// EMPTY_PROSPECT is a factory — segment and assigned_to are filled at runtime
+function makeEmptyProspect(segment: 'developer' | 'commercial', assignedTo: string, assignedName: string): ProspectFull {
+  return {
+    plant_name: '', cera_license_no: '', capacity_mwp: undefined,
+    technology: 'PV', plant_status: 'operational', location: '', district: '',
+    grid_connection_point: '', commissioning_date: '', curtailment_rate: undefined,
+    company_name: '', company_reg_no: '', parent_group: '', registered_address: '',
+    company_website: '', contact_name: '', contact_title: '', contact_email: '',
+    contact_phone: '', contact_linkedin: '', secondary_contact_name: '',
+    secondary_contact_title: '', secondary_contact_email: '', secondary_contact_phone: '',
+    secondary_contact_linkedin: '', outreach_status: 'new', outreach_channel: '',
+    first_contact_date: '', last_contact_date: '', next_follow_up: '', offer_type: '',
+    estimated_deal_value: undefined, bess_potential_mwh: undefined, notes: '',
+    data_source: 'manual', tags: [], priority: 'medium',
+    segment, assigned_to: assignedTo, assigned_name: assignedName,
+  }
 }
+const EMPTY_PROSPECT: ProspectFull = makeEmptyProspect('developer', '', '')
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -353,7 +358,7 @@ export default function CrmPage() {
       const result = await res.json()
       setActionResult({ success: result.success, message: result.message })
       if (result.success) {
-        setShowForm(false); setEditingId(null); setFormData(EMPTY_PROSPECT)
+        setShowForm(false); setEditingId(null); setFormData(makeEmptyProspect(segment, myEmail, myName))
         if (editingId) {
           patchRow(editingId, formData)
         } else {
@@ -605,7 +610,7 @@ export default function CrmPage() {
                 </button>
               ))}
               <button
-                onClick={() => { setFormData(EMPTY_PROSPECT); setEditingId(null); setShowForm(s => !s) }}
+                onClick={() => { setFormData(makeEmptyProspect(segment, myEmail, myName)); setEditingId(null); setShowForm(s => !s) }}
                 className="flex items-center text-xs font-medium px-3 py-1.5 rounded bg-[#C9A432] text-[#1A365D] hover:bg-[#b8931f] transition">
                 <Plus className="w-3 h-3 mr-1" />Add
               </button>
@@ -750,6 +755,15 @@ export default function CrmPage() {
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-1"><Target className="w-4 h-4"/>Outreach</h3>
                   <div className="grid md:grid-cols-3 gap-3">
+                    <div><Label className="text-xs">Assign to</Label>
+                      <select className="w-full border rounded-md px-3 py-2 text-sm" value={(formData as ProspectFull).assigned_to||''}
+                        onChange={e=>{
+                          const u = CRM_USERS.find(u=>u.email===e.target.value)
+                          setFormData({...formData, assigned_to: e.target.value||undefined, assigned_name: u?.name||undefined} as ProspectFull)
+                        }}>
+                        <option value="">Unassigned</option>
+                        {CRM_USERS.map(u=><option key={u.email} value={u.email}>{u.name}</option>)}
+                      </select></div>
                     <div><Label className="text-xs">Status</Label>
                       <select className="w-full border rounded-md px-3 py-2 text-sm" value={formData.outreach_status||'new'} onChange={e=>setFormData({...formData,outreach_status:e.target.value as PvProspect['outreach_status']})}>
                         {OUTREACH_STATUSES.map(s=><option key={s.value} value={s.value}>{s.label}</option>)}
@@ -773,7 +787,7 @@ export default function CrmPage() {
                 </div>
                 <div className="flex gap-3 pt-3 border-t">
                   <Button onClick={saveProspect}><CheckCircle className="w-4 h-4 mr-2"/>{editingId?'Update':'Save'}</Button>
-                  <Button variant="outline" onClick={() => { setShowForm(false); setEditingId(null); setFormData(EMPTY_PROSPECT) }}>Cancel</Button>
+                  <Button variant="outline" onClick={() => { setShowForm(false); setEditingId(null); setFormData(makeEmptyProspect(segment, myEmail, myName)) }}>Cancel</Button>
                 </div>
               </div>
             </CardContent>
@@ -888,7 +902,7 @@ export default function CrmPage() {
               <Card><CardContent className="py-12 text-center">
                 <Users className="w-12 h-12 mx-auto mb-3 text-gray-300" />
                 <h3 className="font-semibold mb-2">No prospects</h3>
-                <Button onClick={() => { setFormData(EMPTY_PROSPECT); setShowForm(true) }}>
+                <Button onClick={() => { setFormData(makeEmptyProspect(segment, myEmail, myName)); setShowForm(true) }}>
                   <Plus className="w-4 h-4 mr-2"/>Add First
                 </Button>
               </CardContent></Card>
