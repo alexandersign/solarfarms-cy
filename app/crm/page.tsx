@@ -117,7 +117,7 @@ function makeEmptyProspect(segment: 'developer' | 'commercial' | 'investor', ass
     contact_phone: '', contact_linkedin: '', secondary_contact_name: '',
     secondary_contact_title: '', secondary_contact_email: '', secondary_contact_phone: '',
     secondary_contact_linkedin: '', outreach_status: 'new', outreach_channel: '',
-    first_contact_date: '', last_contact_date: '', next_follow_up: '', offer_type: '',
+    first_contact_date: '', last_contact_date: '', next_follow_up: '',
     estimated_deal_value: undefined, bess_potential_mwh: undefined, notes: '',
     data_source: 'manual', tags: [], priority: 'medium',
     segment, assigned_to: assignedTo, assigned_name: assignedName,
