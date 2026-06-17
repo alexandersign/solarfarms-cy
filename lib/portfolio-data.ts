@@ -4,10 +4,11 @@
 // When an RFI response or updated quotation arrives, update HERE ONLY
 // then run: npm run docs:generate && npm run docs:validate
 //
-// Last updated: 18 May 2026
+// Last updated: 17 Jun 2026
 // Source: Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx + Disperon SHA v5
 // ABIO REMOVED: Chose another supplier (CATL at €124K/MWh flat). Mar 2026.
 // Spanercom (Anarita 2×5/20, €119k/MWh client offer) — high probability.
+// Galascope civil: Kouklis bases €98,420 (16 Jun 2026); trenches client-paid (Galascope only). Margin B1 → 6.16%.
 // Galascope resized: G1 15→20 MWh (CIF €1,848,712), G2 8→10 MWh (CIF €974,457).
 //   CIF sourced from same-config park quotations (LY202601271 Jan 2026).
 // Aeolian Dynamics added: 6.5 MW / 20 MWh wind hybrid, Larnaca. Final offer €2,660,000.
@@ -60,17 +61,17 @@ export const FINANCIALS = {
   cifTotal: 48_255_355,       // Corrected: Galascope +€359,844 AND Spanercom -€548,173 → net -€188,329 vs prior
   cifAvgPerMWh: 97_185,       // 48,255,355 / 496.5 MWh
 
-  physicalAdders: 4_200_000,  // Budget estimate; ADDERS.* totals are stale 51-park figures — see notes
+  physicalAdders: 4_238_420,  // +€38,420 Galascope Kouklis concrete bases (Jun 2026)
   emsScadaTotal: 2_158_730,   // Corrected: Disperon v3 pricing, 28 parks, flat €15K SCADA Local all parks
 
-  installedCost: 54_614_085,  // cifTotal + physicalAdders + emsScadaTotal (group order only)
-  installedCostAvgPerMWh: 110_000,
+  installedCost: 54_652_505,  // cifTotal + physicalAdders + emsScadaTotal (group order only)
+  installedCostAvgPerMWh: 110_075,
 
   clientRevenue: 61_370_295,  // Galascope 1 negotiated rate €111,900/MWh (10 May 2026): -€20,900
   clientRevenueAvgPerMWh: 123_607,
 
-  netMargin: 6_756_210,       // Revenue − installedCost. -€20,900 vs prior (Galascope 1 negotiation)
-  netMarginPct: 11.01,
+  netMargin: 6_717_790,       // Revenue − installedCost. Galascope Kouklis civil −€38,420 vs prior
+  netMarginPct: 10.95,
   netMarginRounded: 11.0,
 
   // STANDALONE (Aeolian Dynamics — not in group order):
@@ -108,7 +109,8 @@ export const ADDERS = {
                       },
   dehnLpsSpdEarthing: { total: 446_384.61,   status: 'quoted' as DataStatus,    supplier: 'DEHN + StrikeRA' },
   dehnInstallLabour:  { total: 81_600.00,    status: 'confirmed' as DataStatus, rate: '€1,600 per park', supplier: 'StrikeRA' },
-  civilWorks:         { total: 1_763_560.00, status: 'confirmed' as DataStatus, rate: '€2,000 per MWh', supplier: 'Lighthief subcontractors' },
+  civilWorks:         { total: 1_801_980.00, status: 'confirmed' as DataStatus, rate: '€2,000 per MWh (portfolio); Galascope Kouklis quoted', supplier: 'D. Kouklis Constructions (Galascope) + subcontractors',
+                        note: 'Galascope 1+2: €98,420 ex VAT concrete bases (Kouklis 16 Jun 2026). Trenches client-paid (Galascope only). Other parks remain €2,000/MWh budget until quoted.' },
   insurance:          { total: 644_729.40,   status: 'pending' as DataStatus, rate: '0.75% of CIF budget', note: 'EPC construction insurance (CAR/EAR, TPL, PI). Marine cargo NOT needed — Linyang CIF. Budget: 0.75% of CIF. Marsh (Aris Samaras, 20 Mar 2026): approached CHUBB, AXIS, GARD, AGCS (all A-rated). AXIS + GARD rough non-binding indications only — CAR 0.24–0.29% of sum insured (+tax); DSU 0.34–0.36% of sum insured (+tax). Deductibles: EQ 2% VARTOL; other Nat CAT incl theft 5% min €50K; thermal runaway €150K–€200K; DSU waiting period 30 days (45 for thermal runaway & EQ); other losses €50K. CHUBB/AGCS pending. Linyang AXA CGL — Absolute Pollution / PFL / Cyber gaps; env liability strategy unchanged.' },
   docsCompliance:     { total: 357_000.00,   status: 'estimated' as DataStatus, rate: '€7,000 per park' },
   // Joha Cable — per-park quoted supply (DC/LV/MV cable material). v4 Excel column "LV MV DC AC Cables (joha)".
@@ -158,7 +160,22 @@ export const CLIENT_PAID = {
   protectionTesting: { rate: '€1,250 per container', estimated: 313_750, status: 'client-paid' as DataStatus, note: 'Per Dino confirmation Feb 2026' },
   electricalDrawings: { rate: '€5,000–€15,000 per site', status: 'client-paid' as DataStatus, note: 'Licensed engineer drawings for EAC/building permit' },
   externalLps:       { status: 'client-paid' as DataStatus, note: 'DEHN quoted per site, coordinated by Lighthief' },
+  civilTrenches:     { status: 'client-paid' as DataStatus, parks: ['Galascope 1', 'Galascope 2'] as const, note: 'Cable trenches / levelling — client scope on Galascope only (Jun 2026). Lighthief: Kouklis concrete bases only.' },
   vat:               { rate: '19% of EPC price', status: 'client-paid' as DataStatus },
+} as const;
+
+/** D. Kouklis Constructions — concrete bases quote 16 Jun 2026. Galascope only until superseded. */
+export const GALASCOPE_CIVIL = {
+  supplier: 'D. Kouklis Constructions',
+  quoteDate: '2026-06-16',
+  quoteDoc: 'docs/quotations/concrete-bases/',
+  base20ft: 10_995,   // Base 2 — BESS + T2 MV (≤2.5 MW PCS)
+  base40ft: 21_455,   // Base 1 — T4 MV skid (5 MW)
+  g1: { platforms: 65_435, breakdown: '4×20ft + 1×40ft' },
+  g2: { platforms: 32_985, breakdown: '3×20ft (2 BESS + T2 MV)' },
+  totalPlatforms: 98_420,
+  trenchesBy: 'client' as const,
+  status: 'quoted' as DataStatus,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -193,10 +210,10 @@ export const GROUPS: GroupData[] = [
     parks: 11, mw: 79.5, mwh: 315.50,
     // CIF corrected 8 May 2026: Galascope G1 €1,848,712 (was €1,592,018) + G2 €974,457 (was €871,308) → +€359,844
     cif: 29_162_802,
-    installedCost: 32_574_613,  // prior installedCost + €359,844 CIF delta (approx; full recalc pending)
+    installedCost: 32_613_033,  // +€38,420 Galascope Kouklis bases vs €2K/MWh civil budget
     revenue: 36_391_912,        // Galascope 1 negotiated 10 May 2026: -€20,900 (€2,258,900 → €2,238,000)
-    margin: 3_817_299,          // revenue − installedCost (Galascope 1 price reduction)
-    marginPct: 10.49,
+    margin: 3_778_879,          // revenue − installedCost
+    marginPct: 10.38,
     signingStatus: 'confirmed',
     signingProbabilityPct: 100,
     signingNote: 'Galascope Ltd — full EPC v5.1 + LTSA + EMS addendum + OEM DWU + updated pipeline LOI emailed to Dino (Esperia) 10 May 2026; awaiting client legal review. G1 €111,900/MWh; G2 €120,630/MWh.',
@@ -270,13 +287,14 @@ export const BATCHES = [
     parks: 2, mw: 7.5, mwh: 30.0, containers: 8,
     // Galascope 1: 4 BESS + 1 MV = 5 units; Galascope 2: 2 BESS + 1 MV = 3 units
     cif: 2_823_169,       // G1 €1,848,712 + G2 €974,457 (CIF corrected 8 May 2026)
-    installed: 3_193_707, // CIF + physical adders + EMS (proportional, Disperon v3 pricing)
+    installed: 3_232_127, // CIF + physical adders + EMS; civil Kouklis €98,420 (Galascope, ex VAT)
     revenue: 3_444_300,   // G1 €2,238,000 (€111,900/MWh, negotiated 10 May 2026) + G2 €1,206,300
-    margin: 250_593, marginPct: 7.28,
+    margin: 212_173, marginPct: 6.16,
+    civilWorks: 98_420,   // Kouklis bases only — trenches client-paid
     productionStart: '2026-05-01', productionEnd: '2026-07-31',
     fatDate: '2026-07-31', shipDate: '2026-08-01',
     cifDate: '2026-09-15', pacDate: '2027-01-31',
-    _meta: { source: 'Galascope package emailed to Dino 10 May 2026 — awaiting review. Galascope resized: G1 20MWh (€1,848,712 CIF), G2 10MWh (€974,457 CIF). EPC v5.1.', date: '2026-05-10' } as MetaInfo,
+    _meta: { source: 'Galascope EPC v5.1 + Kouklis civil quote 16 Jun 2026 (€98,420 bases; client trenches).', date: '2026-06-17' } as MetaInfo,
   },
   {
     id: 2, name: 'Batch 1 Extension — Conditional (50-85% probability)',
@@ -349,21 +367,23 @@ export const BATCH1_PARKS_CONFIRMED = [
     name: 'Galascope 1', group: 'Galascope', mw: 5.0, mwh: 20, containers: 5, district: 'Famagusta',
     // 5 units = 4 BESS (5.015 MWh each) + 1 T4 MV Skid (4×1.25 MW = 5 MW)
     cif: 1_848_712,         // CIF LY202601271 — same config as Esperia Famagusta 2 (5 MW/20 MWh)
-    physAdders: 158_222,    // corrected (civil +€10K, duty +€6.8K, vs old 15 MWh)
+    physAdders: 183_657,    // Kouklis bases €65,435 (was €40K civil incl. €20K client trenches)
     emsAllocated: 66_935,   // Disperon v3 proportional: €46,718 EMS + €15,000 SCADA Local + €5,217 SCADA Global (20/230 MWh share)
-    installedCost: 2_073_869,
+    civilPlatforms: 65_435, // Kouklis: 4×20ft + 1×40ft T4
+    installedCost: 2_099_304,
     revenue: 2_238_000,     // Negotiated 10 May 2026: €111,900/MWh × 20 MWh (was €112,945/MWh = €2,258,900)
-    margin: 164_131, marginPct: 7.33,
+    margin: 138_696, marginPct: 6.20,
   },
   {
     name: 'Galascope 2', group: 'Galascope', mw: 2.5, mwh: 10, containers: 3, district: 'Famagusta',
-    // 3 units = 2 BESS + 1 T2 MV Skid (2×1.25 MW = 2.5 MW)
+    // 3 units = 2 BESS + 1 T2 MV Skid (2×1.25 MW = 2.5 MW) — all 20ft bases
     cif: 974_457,           // CIF LY202601271 — same config as Dianary 1 (2.5 MW/10 MWh)
-    physAdders: 96_030,     // corrected (civil +€4K, vs old 8 MWh)
+    physAdders: 109_015,    // Kouklis bases €32,985 (was €20K civil incl. €10K client trenches)
     emsAllocated: 49_351,   // Disperon v3 proportional: €31,742 EMS + €15,000 SCADA Local + €2,609 SCADA Global (10/230 MWh share)
-    installedCost: 1_119_838,
+    civilPlatforms: 32_985, // Kouklis: 3×20ft (2 BESS + T2 MV)
+    installedCost: 1_132_823,
     revenue: 1_206_300,
-    margin: 86_462, marginPct: 7.17,
+    margin: 73_477, marginPct: 6.09,
   },
 ] as const;
 
@@ -470,9 +490,9 @@ export const AEOLIAN = {
 export const GROUP_ORDER_REMAINING = {
   clientRevenue: 61_391_195,
   cifTotal: 48_443_684,
-  installedCost: 54_763_066,
-  netMargin: 6_628_129,
-  netMarginPct: 10.80,
+  installedCost: 54_801_486,  // +€38,420 Galascope Kouklis civil
+  netMargin: 6_589_709,
+  netMarginPct: 10.73,
   parks: 28,
   mwh: 496.50,
   _meta: { source: 'portfolio-data.ts', date: '2026-03-24', note: 'ABIO removed Mar 2026; Spanercom 2×5/20 Mar 2026' } as MetaInfo,
@@ -836,7 +856,7 @@ export const RFI_STATUS = {
   sohGuarantees:        { status: 'confirmed' as DataStatus, version: 'V3',  date: '2026-02-15', doc: 'rfi-linyang-final-feb2026' },
   gridCodeCert:         { status: 'confirmed' as DataStatus, version: 'V1',  date: '2026-02-10', doc: 'TÜV cert D 115067 0077' },
   voltusEmsPricing:     { status: 'confirmed' as DataStatus, version: 'V2',  date: '2026-02-16', doc: 'rfi-voltus-ems-update-feb2026' },
-  civilWorksPricing:    { status: 'confirmed' as DataStatus, version: 'V1',  date: '2026-02-13', doc: 'civil-works-estimate.md' },
+  civilWorksPricing:    { status: 'quoted' as DataStatus, version: 'V2-Galascope', date: '2026-06-16', doc: 'docs/quotations/concrete-bases/ (D. Kouklis). Galascope €98,420 bases; client trenches. Other parks €2K/MWh budget until quoted.' },
   dehnPricing:          { status: 'quoted' as DataStatus,    version: 'V1',  date: '2026-01-28', doc: 'rfq-dehn-lightning-protection-jan2026' },
   johaCablingPricing:   { status: 'quoted' as DataStatus,    version: 'V1',  date: '2026-02-16', doc: 'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx (column: LV MV DC AC Cables (joha))', note: 'Per-park cable supply quotes from Joha Cable. 29-park portfolio total ≈ €223,660. v5 generator script still uses €1,400/BESS + €3,500/MV formula until Joha column imported into generate-adders-v5.py.' },
   transportPricing:     { status: 'confirmed' as DataStatus,  version: 'V3',  date: '2026-03-17', doc: 'docs/quotations/asoulis/A Soulis Proposal .pdf', note: '€2,500/container flat rate (all routes, all types). 160T crane proposed (10m footprint). Fleet: 6 trucks + 6 cranes. Port: 10 days storage. Permits: 15 days lead, 30 days valid. Insurance: €440K GIT (adequate — max container CIF ~€338K), €5M PL. Open: positioning/levelling may be extra, payment & cancellation terms TBC.' },
@@ -1057,11 +1077,11 @@ export function getTemplateVars(): Record<string, string> {
     'COMMISSION.totalPortfolioK': String(Math.round(EXPECTED_COMMISSION.totalPortfolio / 1000)),
     'COMMISSION.batch1': EXPECTED_COMMISSION.batch1.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'COMMISSION.batch1K': String(Math.round(EXPECTED_COMMISSION.batch1 / 1000)),
-    // Batch 1 civil works (concrete platforms + trenches): €2,000/MWh (ADDERS.civilWorks), due by June. All costs ex-VAT; subcons charge VAT — input VAT offsets output VAT (e.g. advance) in same quarter.
-    'BATCH1.civilWorks': Math.round(BATCHES[0].mwh * 2000).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    // Batch 1 civil — Kouklis concrete bases €98,420 (Galascope); trenches client-paid. Ex-VAT; input VAT offsets output VAT same quarter.
+    'BATCH1.civilWorks': GALASCOPE_CIVIL.totalPlatforms.toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     'BATCH1.civilWorksDue': 'By June 2026',
-    'BATCH1.civilWorksVatK': String(Math.round((BATCHES[0].mwh * 2000 * (FINANCIALS.vatRate / 100)) / 1000)),
-    'BATCH1.civilWorksVat': Math.round(BATCHES[0].mwh * 2000 * (FINANCIALS.vatRate / 100)).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
+    'BATCH1.civilWorksVatK': String(Math.round((GALASCOPE_CIVIL.totalPlatforms * (FINANCIALS.vatRate / 100)) / 1000)),
+    'BATCH1.civilWorksVat': Math.round(GALASCOPE_CIVIL.totalPlatforms * (FINANCIALS.vatRate / 100)).toLocaleString('en-IE', { maximumFractionDigits: 0 }),
     // VAT refund urgent procedure (confirmed with VAT office Limassol — Sofia): upload return + supporting docs, request urgent refund
     'VAT_REFUND.claimDate': VAT_REFUND_PROCEDURE.claimDate,
     'VAT_REFUND.claimDateFmt': fmtDate(VAT_REFUND_PROCEDURE.claimDate),
