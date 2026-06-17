@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const email = token.email as string
 
   // Fetch balance for current year (upsert a default row if missing)
-  let { data: balance, error: balErr } = await supabase
+  const { data: balance, error: balErr } = await supabase
     .from('hr_leave_balances')
     .select('*')
     .eq('employee_email', email)
