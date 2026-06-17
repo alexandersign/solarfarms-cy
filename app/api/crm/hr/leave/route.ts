@@ -15,12 +15,14 @@ export async function GET(request: NextRequest) {
   const email = token.email as string
 
   // Fetch balance for current year (upsert a default row if missing)
-  const { data: balance, error: balErr } = await supabase
+  const balResult = await supabase
     .from('hr_leave_balances')
     .select('*')
     .eq('employee_email', email)
     .eq('year', CURRENT_YEAR)
     .single()
+  let balance = balResult.data
+  const balErr = balResult.error
 
   if (balErr && balErr.code === 'PGRST116') {
     // Row doesn't exist — create default
