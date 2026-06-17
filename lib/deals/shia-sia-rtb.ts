@@ -20,7 +20,7 @@ import {
   RTB_COSTS,
 } from './rtb-deal-types'
 
-const solarMWp = 3.2
+const solarMWp = 3.32
 const bessMWh = 7.5
 const bessPowerMW = 2.5
 /** Jinko 645W bifacial, east–west 10° — PVGIS E-W model 15 Jun 2026: 1,487 kWh/kWp (+5% bifacial); use 1,480 */

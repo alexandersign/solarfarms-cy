@@ -23,6 +23,7 @@
     "yield:shia-sia": "python scripts/pvgis-park-yield.py --park shia-sia --compare-south --out parks-for-sale/novikov/pvgis-yield-shia-sia.json",
     "teaser:rtb": "npx tsx scripts/generate-rtb-teasers.ts",
     "pack:shia-sia": "npx tsx scripts/generate-shia-sia-investor-pack.ts",
+    "validate:shia-sia": "npx tsx scripts/validate-shia-sia-site.ts",
     "rtb:segments": "npx tsx scripts/import-cera-prospects.ts --dry-run --min-mwp 1",
     "rtb:report": "npx tsx scripts/generate-rtb-intelligence-report.ts",
     "cyprus:plants": "npx tsx scripts/import-cera-plants.ts --json-only --min-mwp 0.1",

@@ -48,7 +48,7 @@ export const PERMITS = {
   ceraIssued: '2025-04',
   townPlanningMWp: 3.32,
   townPlanningIssued: '2025-05-05',
-  landPlot: 'Plot 316, Sheet XXXIX/47, Sia, Larnaca District',
+  landPlot: 'Plot 316, Sheet 39/47, Sia, Larnaca District',
   landLeaseExecuted: '2025-05',
   environmentalForm: 'ΛΕΥ-542-2023 (Feb 2025)',
 } as const
@@ -67,7 +67,23 @@ export const SELLER_COMMERCIAL = {
   novikovNote: 'Seller model — south-facing yield, levered; not Lighthief base case',
 } as const
 
-/** PV yield — PVGIS run 15 Jun 2026 (parks-for-sale/novikov/pvgis-yield-shia-sia.json) */
+/** PV site — permit vs Lighthief design (Dec 2024 drawings = south 15° in DD index) */
+export const PV_SITE = {
+  panelModel: 'Jinko Tiger Neo 645W bifacial',
+  panelW: 645,
+  designLayout: 'Bifacial east–west 10°',
+  permitLayoutNote: 'DD index: fixed tilt 15° south, 0.5 m pile — superseded by E–W 10° design (confirm permit amendment if required)',
+  modelMWp: 3.32,
+  permitMWp: 3.32,
+  eacLicensedMWp: 3.0,
+  acExportMW: 2.7,
+  moduleCountAtPermit: Math.round((3.32 * 1e6) / 645), // 5147
+  rowSpacingVerified: false,
+  rowSpacingNote: 'Town planning layout PDF not in repo — row pitch / GCR unverified',
+  coordsStatus: 'approximate',
+  coordsSource: 'Sia village centroid pending topographic plan OCR',
+} as const
+
 export const PV_YIELD = {
   method: 'PVGIS API v5.2',
   layout: 'Bifacial east–west 10° (50% aspect −90° + 50% aspect +90°)',
