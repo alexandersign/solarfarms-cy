@@ -25,6 +25,7 @@ import {
   LH_PRICING,
   OPEX_SOURCES,
   PERMITS,
+  PV_SITE,
   PV_YIELD,
   SELLER_COMMERCIAL,
   SHIA_SIA_INVESTOR_PACK,
@@ -342,7 +343,7 @@ function renderTeaser(): string {
   </div>
 
   <h1>Sia Solar Park with Battery Storage</h1>
-  <div class="sub">${D.locationLine} · Plot 316 · ${D.solarMWp} MWp / ${D.bessMWh} MWh BESS (${D.bessDurationHours}h) · 100% equity</div>
+  <div class="sub">${D.locationLine} · ${PERMITS.landPlot} · ${D.solarMWp} MWp / ${D.bessMWh} MWh BESS (${D.bessDurationHours}h) · 100% equity</div>
 
   <div class="metrics">
     <div class="metric"><div class="v">${eur(C.total)}</div><div class="l">Total CAPEX ex VAT</div></div>
@@ -359,6 +360,8 @@ function renderTeaser(): string {
         <tr><td>CERA generation licence</td><td>${PERMITS.ceraLicence} — issued ${PERMITS.ceraIssued}</td></tr>
         <tr><td>Town planning</td><td>${PERMITS.townPlanningMWp} MWp — ${PERMITS.townPlanningIssued}</td></tr>
         <tr><td>Land</td><td>${PERMITS.landPlot}</td></tr>
+        <tr><td>Modules (645W)</td><td>~${PV_SITE.moduleCountAtPermit} (at ${D.solarMWp} MWp)</td></tr>
+        <tr><td>AC export limit</td><td>${EAC_CONNECTION.acExportLimitMW} MW (DC:AC ${(D.solarMWp / EAC_CONNECTION.acExportLimitMW).toFixed(2)})</td></tr>
         <tr><td>Environmental</td><td>${PERMITS.environmentalForm}</td></tr>
       </table>
 
@@ -382,7 +385,7 @@ function renderTeaser(): string {
         <tr><th>Parameter</th><th class="r">Value</th></tr>
         <tr><td>PV layout</td><td class="r">Bifacial E–W 10°</td></tr>
         <tr><td>Yield (PVGIS ${PV_YIELD.runDate})</td><td class="r"><strong>${PV_YIELD.modelKwhKwp} kWh/kWp</strong></td></tr>
-        <tr class="src"><td colspan="2">PVGIS E–W split + ${PV_YIELD.bifacialGainPct}% bifacial uplift; coords ${PV_YIELD.coords.lat}, ${PV_YIELD.coords.lon}</td></tr>
+        <tr class="src"><td colspan="2">${PV_SITE.rowSpacingNote}. Coords ${PV_YIELD.coords.lat}, ${PV_YIELD.coords.lon} (${PV_SITE.coordsStatus}).</td></tr>
         <tr><td>South 15° reference (PVGIS)</td><td class="r">${PV_YIELD.southReferenceKwhKwp} kWh/kWp</td></tr>
         <tr><td>Curtailment base case</td><td class="r">${Math.round(R.curtailmentPct * 100)}%</td></tr>
         <tr class="src"><td colspan="2">E–W flatter midday export vs 50% portfolio south-facing baseline</td></tr>

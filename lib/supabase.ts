@@ -259,7 +259,7 @@ export interface PvProspect {
   construction_mwp?: number
   operational_mwp?: number
   // CRM segmentation + multi-user
-  segment?: 'developer' | 'commercial'
+  segment?: 'developer' | 'commercial' | 'investor'
   assigned_to?: string
   assigned_name?: string
   email_confidence?: number

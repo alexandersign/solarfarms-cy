@@ -1,6 +1,6 @@
 # Shia-Sia Investor Pack — Document Sources
 
-> PARK-RTB-SIA-2026 · Generated 2026-06-15
+> PARK-RTB-SIA-2026 · Generated 2026-06-17
 
 ## DD package (Novikov, received 9 May 2026)
 

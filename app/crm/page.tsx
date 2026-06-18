@@ -107,7 +107,7 @@ const COMMERCIAL_INDUSTRIES = [
 ]
 
 // EMPTY_PROSPECT is a factory — segment and assigned_to are filled at runtime
-function makeEmptyProspect(segment: 'developer' | 'commercial', assignedTo: string, assignedName: string): ProspectFull {
+function makeEmptyProspect(segment: 'developer' | 'commercial' | 'investor', assignedTo: string, assignedName: string): ProspectFull {
   return {
     plant_name: '', cera_license_no: '', capacity_mwp: undefined,
     technology: 'PV', plant_status: 'operational', location: '', district: '',
@@ -117,10 +117,11 @@ function makeEmptyProspect(segment: 'developer' | 'commercial', assignedTo: stri
     contact_phone: '', contact_linkedin: '', secondary_contact_name: '',
     secondary_contact_title: '', secondary_contact_email: '', secondary_contact_phone: '',
     secondary_contact_linkedin: '', outreach_status: 'new', outreach_channel: '',
-    first_contact_date: '', last_contact_date: '', next_follow_up: '', offer_type: '',
+    first_contact_date: '', last_contact_date: '', next_follow_up: '',
     estimated_deal_value: undefined, bess_potential_mwh: undefined, notes: '',
     data_source: 'manual', tags: [], priority: 'medium',
     segment, assigned_to: assignedTo, assigned_name: assignedName,
+    offer_type: segment === 'investor' ? 'acquisition' : '',
   }
 }
 const EMPTY_PROSPECT: ProspectFull = makeEmptyProspect('developer', '', '')
@@ -259,7 +260,7 @@ export default function CrmPage() {
   const [filterOfferType, setFilterOfferType] = useState('all')
   const [filterAssigned,  setFilterAssigned]  = useState<'all'|'mine'>('mine')
   const [filterNew,       setFilterNew]       = useState<'all'|'7'|'30'>('all')
-  const [segment,         setSegment]         = useState<'developer'|'commercial'>('developer')
+  const [segment,         setSegment]         = useState<'developer'|'commercial'|'investor'>('developer')
   const [filterRtb,       setFilterRtb]       = useState('all')
   const [filterBuilt,     setFilterBuilt]     = useState('all')
   const [filterTech,      setFilterTech]      = useState('all')
@@ -587,11 +588,12 @@ export default function CrmPage() {
           <div className="container mx-auto px-4 py-2 flex items-center justify-between flex-wrap gap-2">
             <div className="flex gap-2">
               {([
-                { key: 'developer',  label: 'PV Parks & Developers', icon: Zap     },
-                { key: 'commercial', label: 'Commercial Rooftop',    icon: Building },
+                { key: 'developer',  label: 'PV Parks & BESS',       icon: Zap          },
+                { key: 'commercial', label: 'Commercial Rooftop',    icon: Building     },
+                { key: 'investor',   label: 'Investors',             icon: DollarSign   },
               ] as const).map(({ key, label, icon: Icon }) => (
                 <button key={key}
-                  onClick={() => { setSegment(key); setExpandedId(null); setSelectedIds(new Set()) }}
+                  onClick={() => { setSegment(key as 'developer'|'commercial'|'investor'); setExpandedId(null); setSelectedIds(new Set()) }}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded text-sm font-semibold transition ${
                     segment === key ? 'bg-[#C9A432] text-[#1A365D]' : 'bg-white/10 text-white hover:bg-white/20'}`}>
                   <Icon className="w-4 h-4" />{label}
@@ -1321,7 +1323,13 @@ export default function CrmPage() {
                 )}
               </div>
               {/* Segment metrics */}
-              {segment === 'commercial' ? (
+              {segment === 'investor' ? (
+                <div className="flex flex-wrap gap-3 mt-1 text-xs text-gray-500">
+                  {prospect.estimated_deal_value && <span className="text-indigo-700 font-semibold">Budget: {formatCurrency(prospect.estimated_deal_value)}</span>}
+                  {prospect.notes && <span className="text-gray-500 truncate max-w-xs">{prospect.notes.slice(0,80)}{prospect.notes.length>80?'…':''}</span>}
+                  {lastActivity && <span className="text-gray-400 ml-auto">last activity {formatDate(lastActivity)}</span>}
+                </div>
+              ) : segment === 'commercial' ? (
                 <div className="flex flex-wrap gap-3 mt-1 text-xs text-gray-500">
                   {prospect.roof_area_m2 != null && <span>{Math.round(prospect.roof_area_m2).toLocaleString()} m²</span>}
                   {prospect.capacity_mwp != null && <span>{(prospect.capacity_mwp*1000).toFixed(0)} kWp</span>}

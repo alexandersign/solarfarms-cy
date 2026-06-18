@@ -130,7 +130,7 @@ export interface RtbDeal {
 
   bessPowerMW: number
   bessMWh: number
-  bessDurationHours: 4
+  bessDurationHours: number
   technologyBess: string
 
   // ── Economics ────────────────────────────────────────────────────────────
@@ -215,6 +215,8 @@ export function computeRevenueModel(params: {
   specificYieldKwhPerKwp: number
   curtailmentPct: number
   bessCapacityMWh: number
+  /** Override BESS discharge €/MWh (default: BESS_DEFAULTS.dischargePriceEURPerMWh) */
+  bessDischargePriceEURPerMWh?: number
 }): RtbDealRevenue {
   const { solarMWp, specificYieldKwhPerKwp, curtailmentPct, bessCapacityMWh } = params
   const annualMWh = solarMWp * specificYieldKwhPerKwp
@@ -226,7 +228,7 @@ export function computeRevenueModel(params: {
   const effectiveCapturePct = curtailedMWh > 0 ? bessCharged / curtailedMWh : 0
   const bessDischargedMWh = Math.round(bessCharged * BESS_DEFAULTS.rteAcAc)
   const solarRate = DAM.daytimeEURPerMWh
-  const bessRate = BESS_DEFAULTS.dischargePriceEURPerMWh
+  const bessRate = params.bessDischargePriceEURPerMWh ?? BESS_DEFAULTS.dischargePriceEURPerMWh
   const solarRev = Math.round(uncurtailedMWh * solarRate)
   const bessRev = Math.round(bessDischargedMWh * bessRate)
   return {

@@ -93,13 +93,22 @@ SPD_AUX           = 163.74
 SPD_COMMS         = 134.37
 EARTH_PER_STR     = 793.59   # per BESS+MV structure (= per park approx)
 INSTALL_LABOR     = 1_600    # €/park (StrikeRA)
-CIVIL_PER_MWH     = 2_000    # €/MWh (Kamil confirmed)
+CIVIL_PER_MWH     = 2_000    # €/MWh default (non-Galascope parks until quoted)
+
+# D. Kouklis Constructions — concrete bases 16 Jun 2026 (Galascope only; trenches client-paid)
+KOUKLIS_BASE_20FT = 10_995   # Base 2 — BESS + T2 MV (≤2.5 MW PCS)
+KOUKLIS_BASE_40FT = 21_455   # Base 1 — T4 MV skid (5 MW)
+GALASCOPE_CIVIL = {
+    'Galascope 1': 65_435,   # 4×20ft + 1×40ft
+    'Galascope 2': 32_985,   # 3×20ft (2 BESS + T2 MV)
+}
+GALASCOPE_CLIENT_TRENCHES = {'Galascope 1', 'Galascope 2'}
 INSURANCE_PCT     = 0.0075   # 0.75% of CIF (EPC CAR/EAR budget)
 DOCS_COMPL        = 7_000    # €/park
 
 # ─── CLIENT PRICING ──────────────────────────────────────────────────────────
 CLIENT_PRICE = {
-    'Galascope 1':          2_258_900,
+    'Galascope 1':          2_238_000,
     'Galascope 2':          1_206_300,
     'Esperia Famagusta':    2_500_334,
     'Esperia Famagusta 2':  2_258_900,
@@ -165,6 +174,11 @@ GROUPS = {
     'Aeolian Dynamics':     ('Aeolian (standalone)', 'AEO', 9, 'Larnaca', 'high-80%'),
 }
 
+def calc_civil(park, mwh):
+    if park in GALASCOPE_CIVIL:
+        return GALASCOPE_CIVIL[park]
+    return mwh * CIVIL_PER_MWH
+
 def calc_adders(park, mw, mwh, bess, mv, cnt, cif):
     d = round(cif * IMPORT_DUTY_PCT, 2)
     port = cnt * PORT_LANDING
@@ -180,7 +194,7 @@ def calc_adders(park, mw, mwh, bess, mv, cnt, cif):
     spd = round(bess * SPD_DC_BESS + mv * (SPD_LV_MV + SPD_MV_MV) + SPD_AUX + SPD_COMMS, 2)
     earth = round(EARTH_PER_STR, 2)   # 1 structure per park
     labor = INSTALL_LABOR
-    civil = mwh * CIVIL_PER_MWH
+    civil = calc_civil(park, mwh)
     ins = round(cif * INSURANCE_PCT, 2)
     docs = DOCS_COMPL
     phys_total = d+port+cust+crane+lv+mv_c+mv_t+prot+rt+ups+lps+spd+earth+labor+civil+ins+docs
@@ -469,7 +483,7 @@ ref_rows = [
     ('Install Labour (StrikeRA)','€1,600 / park flat','StrikeRA','CONFIRMED'),
     ('','','',''),
     ('CIVIL WORKS','','',''),
-    ('All civil (platforms, trenches, fencing)','€2,000 / MWh all-in  (Kamil confirmed Feb 2026)','Kamil / subcontractors','CONFIRMED'),
+    ('All civil (platforms, trenches, fencing)','€2,000 / MWh default; Galascope Kouklis €98,420 bases (16 Jun 2026); Galascope trenches client-paid','Kouklis / subcontractors','QUOTED-GALASCOPE'),
     ('','','',''),
     ('INSURANCE & COMPLIANCE','','',''),
     ('EPC CAR/EAR Insurance budget','0.75% of CIF  [NOTE: was labelled "Marine" in v4 — corrected]','Marsh (budget)','PENDING PLACEMENT'),

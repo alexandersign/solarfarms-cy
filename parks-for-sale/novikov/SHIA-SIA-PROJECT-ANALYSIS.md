@@ -11,10 +11,11 @@
 | Field | Value |
 |---|---|
 | **Location** | Plot 316, Sheet 39/47, Sia (SIA), **Larnaca District** (near Nicosia border) |
-| **PV capacity** | 3.2 MWp (inverter limited to 2.7 MW AC) |
-| **BESS (planned)** | 2.5 MW / 10 MWh (4h) — recommended sizing for 50% curtailment |
-| **Panel spec** | Jinko 645W bifacial, fixed tilt 15°, 0.5m pile height |
-| **Inverters** | Huawei SUN2000-150K (3 × 330kW) → 2.7 MW AC |
+| **PV capacity** | 3.32 MWp (town planning May 2025); **3.2 MWp** in EAC quick ref — model uses **3.32 MWp** |
+| **Layout (Lighthief design)** | Jinko 645W bifacial **east–west 10°** (PVGIS yield 1,480 kWh/kWp) |
+| **Layout (DD drawings index)** | South fixed tilt 15°, 0.5 m pile — **superseded**; confirm permit amendment |
+| **BESS (Lighthief model)** | 2.5 MW / 7.5 MWh (3h) — E–W layout, 45% curtailment base |
+| **Inverters** | Huawei SUN2000-150K → 2.7 MW AC export limit |
 | **RTB status** | Permit-Ready — CERA + Town Planning issued; EAC preliminary accepted + deposit paid |
 | **COD (realistic)** | Q3 2027 (upon EAC final terms + PPA + EPC) |
 | **Asking price** | Not stated — for sale / seeking EPC partner |

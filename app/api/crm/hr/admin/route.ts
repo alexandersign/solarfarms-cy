@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
           .eq('year', year)
           .single()
 
-        const current = bal ? (bal as Record<string, number>)[field] ?? 0 : 0
+        const current = bal ? (bal as unknown as Record<string, number>)[field] ?? 0 : 0
 
         await supabase
           .from('hr_leave_balances')
