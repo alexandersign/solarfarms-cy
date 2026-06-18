@@ -127,7 +127,7 @@ export const ADDERS = {
   upsAuxiliary:       { total: 102_000.00,   status: 'estimated' as DataStatus, rate: '€2,000 per park',
                         note: 'Site-level UPS for protection relays and RTU. Linyang container has its own internal UPS (BAMS). This is the external site-level supply.' },
 
-  // EMS / SCADA — Disperon brand (Lighthief EUBESS Ltd / Voltus JV)
+  // EMS / SCADA — DISPERON brand; contracting entity R&D Innovations Sp. z o.o. (NIP 9492265995), under Lighthief International Ltd (Voltus JV provides the software)
   // Source: Voltus v3 pricing CSV (voltusv3pricing) — flat rates, container-count-based
   // SHA v5: Exhibit C rates BLANK — to be agreed within 14 days of execution (BLOCKER for project brief submission)
   // Upfront structure: EMS hardware+install (per container config) + SCADA Local €15K/park + SCADA Global €60K/first park per group
@@ -511,7 +511,7 @@ export const VAT_REFUND_PROCEDURE = {
 
 export const PAYMENT_TERMS = {
   client: {
-    advance:     { pct: 30, trigger: 'On or after 1 April 2026 (no invoice/payment before April 1 — clean Q1 VAT)' },
+    advance:     { pct: 30, trigger: 'Due 30 days after the later of EPC Effective Date and receipt of grid Connection Terms (conditional on APG + signed DWU + performance guarantee presented)' },
     preShipment: { pct: 55, trigger: 'Equipment ready, factory inspection passed' },
     pac:         { pct: 10, trigger: 'System commissioned & grid-connected' },
     retention:   { pct: 5,  trigger: 'Released after 3-month DLP (post-PAC, no FAC)' },

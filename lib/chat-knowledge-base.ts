@@ -41,6 +41,7 @@ export const SITE_LINKS = {
     euroasia: '/blog/euroasia-interconnector-bess-cyprus',
     bankability: '/blog/bess-bankability-choosing-right-service-partner',
     qualityRisks: '/blog/bess-installation-quality-workmanship-risks',
+    gridFormingVsFollowing: '/blog/grid-forming-vs-grid-following-bess',
   },
 } as const
 

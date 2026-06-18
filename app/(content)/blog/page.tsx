@@ -34,6 +34,16 @@ interface Article {
 
 const articles: Article[] = [
   {
+    slug: 'grid-forming-vs-grid-following-bess',
+    title: 'Follow the Grid, or Become the Grid? The Battery Choice That Future-Proofs Your Revenue',
+    description: 'Most battery inverters just follow the grid. Grid-forming systems can become the grid — providing inertia, black-start, and access to every future ancillary-services revenue stream on Cyprus’s island grid.',
+    category: 'Technology',
+    categoryColor: 'bg-amber-100 text-amber-800',
+    author: 'Alexander Papacosta',
+    date: 'Jun 17, 2026',
+    gradient: 'from-amber-100 to-orange-100',
+  },
+  {
     slug: 'bess-installation-quality-workmanship-risks',
     title: 'Why BESS Projects Fail in Year One: Installation Quality on Solar Farms',
     description: 'More than 50% of BESS failures happen in the first 2 years. That is not ageing — it is construction. We examine the workmanship gaps that hide between responsibilities.',

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid-Forming vs Grid-Following PCS — Technical Reference</title>
+<style>
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --white: #FFFFFF;
+    --grey-text: #404040;
+    --body-bg: #F0F4F8;
+    --gfl: #64748b;
+    --gfm: #1A365D;
+    --ok: #3C8C5A;
+    --warn: #C9A432;
+    --risk: #B45309;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--grey-text);
+    background: var(--body-bg);
+    padding: 24px;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 24px 32px;
+  }
+  .header h1 { font-size: 21px; color: var(--accent); font-weight: 700; }
+  .header .sub { font-size: 12.5px; opacity: .92; margin-top: 6px; }
+  .header .ref { font-size: 11px; opacity: .75; margin-top: 8px; }
+  .body { padding: 28px 32px 32px; }
+  h2 {
+    color: var(--accent);
+    font-size: 15px;
+    margin: 28px 0 12px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 5px;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { color: var(--primary); font-size: 13px; margin: 16px 0 8px; }
+  p { margin-bottom: 10px; }
+  .lead { font-size: 13px; margin-bottom: 18px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 12px 0 18px;
+  }
+  th {
+    background: var(--primary);
+    color: #fff;
+    text-align: left;
+    padding: 8px 10px;
+    font-weight: 600;
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e8edf3;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f7fafd; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .tag-gfm { background: var(--gfm); }
+  .tag-gfl { background: var(--gfl); }
+  .tag-ok { background: var(--ok); }
+  .tag-warn { background: var(--warn); color: #3a2f06; }
+  .note {
+    background: #FEF3C7;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 12px;
+    margin: 14px 0;
+    color: #78350F;
+    line-height: 1.5;
+  }
+  .note.info {
+    background: #EFF6FF;
+    border-color: var(--primary-light);
+    color: var(--primary);
+  }
+  .note.action {
+    background: #F0FDF4;
+    border-color: var(--ok);
+    color: #14532D;
+  }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  @media (max-width: 700px) { .cols { grid-template-columns: 1fr; } }
+  .card {
+    border: 1px solid #d8e0ea;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background: #fafcfe;
+  }
+  .card h3 { margin-top: 0; }
+  .card.gfm { border-left: 4px solid var(--primary); }
+  .card.gfl { border-left: 4px solid var(--gfl); }
+  blockquote {
+    border-left: 4px solid var(--accent);
+    padding: 10px 16px;
+    margin: 14px 0;
+    background: #faf8f0;
+    font-size: 12.5px;
+    color: #334155;
+  }
+  blockquote strong { color: var(--primary); }
+  ul, ol { margin: 8px 0 12px 22px; }
+  li { margin-bottom: 5px; }
+  code {
+    background: #eef2f7;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11.5px;
+    color: var(--primary);
+  }
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li {
+    padding: 6px 0 6px 26px;
+    position: relative;
+    border-bottom: 1px solid #eef2f7;
+  }
+  .checklist li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .footer {
+    padding: 16px 32px;
+    border-top: 2px solid var(--primary);
+    font-size: 10.5px;
+    color: #7a8aa0;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .toc {
+    background: #f5f8fc;
+    border: 1px solid #d8e0ea;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    font-size: 12px;
+  }
+  .toc ol { margin-bottom: 0; }
+  .toc a { color: var(--primary-light); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Grid-Forming vs Grid-Following PCS</h1>
+    <div class="sub">Technical reference for grid connection &amp; commissioning — Kehua C-HUD PCS / Linyang BESS</div>
+    <div class="ref">Lighthief Cyprus Ltd · Ref. LCY-TECH-GFM-2026 · June 2026</div>
+  </div>
+
+  <div class="body">
+
+    <nav class="toc">
+      <strong>Contents</strong>
+      <ol>
+        <li><a href="#overview">Core difference — GFL vs GFM</a></li>
+        <li><a href="#components">MV skid / PCS — what actually differs</a></li>
+        <li><a href="#glossary">Abbreviation glossary</a></li>
+        <li><a href="#verify">Documentation &amp; compliance evidence</a></li>
+        <li><a href="#kehua">Kehua C-series configuration</a></li>
+        <li><a href="#firmware">Operating modes &amp; commissioning sequence</a></li>
+        <li><a href="#vsg">VSG &amp; black start</a></li>
+        <li><a href="#ancillary">FCR &amp; aFRR</a></li>
+        <li><a href="#manufacturers">Proven GFM manufacturers in Europe</a></li>
+        <li><a href="#dso">DSO briefing — what to show &amp; how to explain</a></li>
+        <li><a href="#summary">Summary</a></li>
+      </ol>
+    </nav>
+
+    <p class="lead">
+      Grid-forming (GFM) and grid-following (GFL) are primarily <strong>control-architecture differences</strong>, not different transformers or battery containers.
+      On the Kehua <code>BCS-C-HUD</code> platform supplied by Lighthief, both capabilities exist in the same PCS firmware — the operational mode (PQ vs VSG) is selected at commissioning or via the EMS.
+    </p>
+
+    <!-- 1. OVERVIEW -->
+    <h2 id="overview">1. Core difference — GFL vs GFM</h2>
+
+    <div class="cols">
+      <div class="card gfl">
+        <h3><span class="tag tag-gfl">GFL</span> Grid-following</h3>
+        <ul>
+          <li>Locks onto existing grid V/f via <strong>PLL</strong> (phase-locked loop)</li>
+          <li>Injects current based on <strong>P/Q setpoints</strong></li>
+          <li>Needs a live, stable grid to synchronise</li>
+          <li>Cannot provide synthetic inertia</li>
+          <li>Typical mode: <strong>PQ</strong></li>
+        </ul>
+      </div>
+      <div class="card gfm">
+        <h3><span class="tag tag-gfm">GFM</span> Grid-forming</h3>
+        <ul>
+          <li>Creates its own voltage/frequency reference</li>
+          <li>Behaves like a synchronous generator</li>
+          <li>Can energise dead grid sections (<strong>black start</strong>)</li>
+          <li>Provides <strong>synthetic inertia</strong> via VSG</li>
+          <li>Typical modes: <strong>VSG</strong>, <strong>VF</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Aspect</th><th>Grid-following (GFL)</th><th>Grid-forming (GFM)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Analogy for DSOs</td><td>Follows the conductor — needs the orchestra playing</td><td>Can be the conductor — establishes tempo and pitch</td></tr>
+        <tr><td>Grid must exist?</td><td>Yes</td><td>No (with black-start)</td></tr>
+        <tr><td>Hardware difference</td><td colspan="2" style="text-align:center">Usually <strong>none</strong> on C-series — firmware &amp; mode selection</td></tr>
+        <tr><td>Island grid relevance (Cyprus)</td><td>Standard storage operation</td><td>Synthetic inertia as synchronous plant retires</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 2. COMPONENTS -->
+    <h2 id="components">2. MV skid / PCS — what actually differs</h2>
+
+    <h3>Same on both (typical Linyang turnkey skid)</h3>
+    <ul>
+      <li>Oil-immersed MV transformer (690 V → 6–33 kV, skid-integrated)</li>
+      <li>LV AC bus: 690 Vac 3P3W+PE</li>
+      <li>DC input from Linyang 5.015 MWh containers (1,060–1,500 Vdc)</li>
+      <li>Protection relays, metering, MV switchgear</li>
+      <li>Comms: RS485, CAN, Ethernet — Modbus / IEC 61850 / IEC 104</li>
+      <li>Skid models T1 / T2 / T4 / T8 — packaging only; GFM capability is in the <strong>C-HUD PCS units inside</strong></li>
+    </ul>
+
+    <h3>What separates GFM from GFL — verify these</h3>
+    <table>
+      <thead>
+        <tr><th>Item</th><th>Grid-following</th><th>Grid-forming</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>PCS model line</td><td>B-series or generic storage inverter</td><td><strong>C-series</strong> — e.g. BCS1250K-C-HUD</td></tr>
+        <tr><td>Control modes in datasheet</td><td>PQ / grid-tied only</td><td><strong>VSG, VF, Black-Start, PQ</strong></td></tr>
+        <tr><td>Off-grid AC output spec</td><td>Often absent</td><td>690 Vac ±1%, THDu ≤3%</td></tr>
+        <tr><td>Frequency droop (P–f)</td><td>Fixed P from EMS</td><td>Configurable droop (2%, 5%, 12% tested)</td></tr>
+        <tr><td>Virtual inertia (H)</td><td>N/A</td><td>Configurable in VSG</td></tr>
+        <tr><td>Black-start</td><td>Not available</td><td>Documented multi-unit sequence</td></tr>
+        <tr><td>Parallel without grid</td><td>No</td><td>Master/slave or droop-based</td></tr>
+        <tr><td>Grid code cert</td><td>EN 50549-2 Type B</td><td>Same + droop / FRT / island evidence</td></tr>
+        <tr><td>External CIPS</td><td>Required at MV POC</td><td>Required at MV POC (per TÜV type test)</td></tr>
+        <tr><td>EMS</td><td>Charge/discharge schedule</td><td>Mode switching PQ ↔ VSG; AGC for aFRR</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note info">
+      <strong>Key point:</strong> The MV skid (transformer + switchgear) does not make a plant grid-forming.
+      The <strong>Kehua C-HUD PCS firmware</strong> does. Skid size (T1 vs T4) only affects MW count.
+    </div>
+
+    <!-- 3. GLOSSARY -->
+    <h2 id="glossary">3. Abbreviation glossary</h2>
+
+    <table>
+      <thead>
+        <tr><th>Abbr.</th><th>Full name</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>PCS</strong></td><td>Power Conversion System</td><td>DC ↔ AC inverter for BESS</td></tr>
+        <tr><td><strong>MV</strong></td><td>Medium Voltage</td><td>Typically 6–33 kV connection</td></tr>
+        <tr><td><strong>GFL / GFM</strong></td><td>Grid-following / Grid-forming</td><td>Sync to grid vs create V/f reference</td></tr>
+        <tr><td><strong>VSG</strong></td><td>Virtual Synchronous Generator</td><td>Software emulating a spinning generator — synthetic inertia &amp; damping</td></tr>
+        <tr><td><strong>VF</strong></td><td>Voltage-Frequency mode</td><td>Off-grid / island — PCS sets V and f</td></tr>
+        <tr><td><strong>PQ</strong></td><td>Active/Reactive Power mode</td><td>Grid-following — set P and Q, follow grid</td></tr>
+        <tr><td><strong>Black start</strong></td><td>—</td><td>Energise a dead grid from BESS without external power</td></tr>
+        <tr><td><strong>FCR</strong></td><td>Frequency Containment Reserve</td><td>Fast (~30 s) automatic response to frequency deviation — ENTSO-E primary balancing</td></tr>
+        <tr><td><strong>aFRR</strong></td><td>automatic Frequency Restoration Reserve</td><td>Slower (~5 min) restoration to 50.0 Hz — ENTSO-E secondary balancing</td></tr>
+        <tr><td><strong>mFRR</strong></td><td>manual Frequency Restoration Reserve</td><td>Tertiary balancing, manually dispatched</td></tr>
+        <tr><td><strong>LVRT / HVRT</strong></td><td>Low / High Voltage Ride-Through</td><td>Stay connected through voltage dips/swells</td></tr>
+        <tr><td><strong>FRT</strong></td><td>Fault Ride-Through</td><td>Remain online through grid faults</td></tr>
+        <tr><td><strong>ROCOF</strong></td><td>Rate of Change of Frequency</td><td>df/dt — how fast frequency is changing</td></tr>
+        <tr><td><strong>CIPS</strong></td><td>Central Interface Protection System</td><td>External protection at grid connection point (EN 50549-2)</td></tr>
+        <tr><td><strong>RfG</strong></td><td>Requirements for Generators</td><td>EU Regulation 2016/631</td></tr>
+        <tr><td><strong>PPC</strong></td><td>Plant / Power Controller</td><td>Site-level controller coordinating PCS units &amp; grid services</td></tr>
+        <tr><td><strong>EMS</strong></td><td>Energy Management System</td><td>Dispatch, mode management, market signals</td></tr>
+        <tr><td><strong>PLL</strong></td><td>Phase-Locked Loop</td><td>Grid-following synchronisation mechanism</td></tr>
+        <tr><td><strong>POC</strong></td><td>Point of Connection</td><td>Where plant meets DSO network</td></tr>
+        <tr><td><strong>AGC</strong></td><td>Automatic Generation Control</td><td>TSO signal for power adjustment (aFRR)</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 4. VERIFY -->
+    <h2 id="verify">4. Documentation &amp; compliance evidence</h2>
+
+    <p>The following documents are available to support the grid connection application and demonstrate grid-forming capability:</p>
+
+    <ul class="checklist">
+      <li><strong>Datasheet</strong> — Kehua C-HUD listing VSG, VF, Black-Start and PQ modes with off-grid voltage specification</li>
+      <li><strong>Type-test report</strong> — EN 50549-2:2019+A1:2023 + EN 50549-10:2022 (TÜV report 64.290.25.30339.02, Type B generating plant)</li>
+      <li><strong>Droop test results</strong> — P–f droop at 2%, 5% and 12% settings (per type test)</li>
+      <li><strong>FRT / LVRT / HVRT curves</strong> — fault ride-through without trip</li>
+      <li><strong>P-Q capability curves</strong> — single and parallel PCS, across temperature range</li>
+      <li><strong>EMS integration specification</strong> — PQ ↔ VSG mode switching; AGC interface for frequency services</li>
+      <li><strong>CIPS specification</strong> — Central Interface Protection at MV point of connection (external, between transformer output and POC)</li>
+      <li><strong>Commissioning test protocol</strong> — energisation, droop, ride-through and resynchronisation tests</li>
+      <li><strong>Compliance certificates</strong> — IEC 62477-1, IEC 61000-6-2, IEC 62116, IEC 61727, EN 55011</li>
+    </ul>
+
+    <!-- 5. KEHUA -->
+    <h2 id="kehua">5. Kehua C-series — system configuration</h2>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Models</td><td>BCS1000K-C-HUD · BCS1250K-C-HUD · BCS1500K-C-HUD</td></tr>
+        <tr><td>Model letter "C"</td><td>Grid-forming product line (vs B-series = typically GFL only)</td></tr>
+        <tr><td>"HUD"</td><td>Container / skid-integrated variant (T1/T2/T4/T8)</td></tr>
+        <tr><td>GFM modes</td><td>VSG · VF · Black-Start · PQ — switchable</td></tr>
+        <tr><td>Rated AC (on-grid)</td><td>690 Vac 3P3W+PE · 1,000 / 1,250 kW</td></tr>
+        <tr><td>Off-grid output</td><td>690 Vac ±1% · 50/60 Hz · THDu ≤3%</td></tr>
+        <tr><td>Max efficiency</td><td>≥99%</td></tr>
+        <tr><td>Hardware note</td><td>BCS1000K and BCS1250K share same PCB &amp; software — 1 MW is power-limited in software (per TÜV)</td></tr>
+        <tr><td>Grid code cert</td><td>EN 50549-2/10 · IEC 62116 · IEC 61727 — TÜV certified</td></tr>
+        <tr><td>Comms</td><td>Modbus-RTU/TCP · IEC 61850 · IEC 104 · RS485/CAN/Ethernet</td></tr>
+        <tr><td>Reactive power modes (grid code)</td><td>Q setpoint · Q(U) · cos φ setpoint · cos φ(P) · Q(P)</td></tr>
+        <tr><td>Droop tested (P–f)</td><td>Settings (a) 5% · (b) 2% · (c) 12% — per EN 50549 type test</td></tr>
+        <tr><td>External requirement</td><td>CIPS at MV POC — not integrated in skid</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 6. MODES -->
+    <h2 id="firmware">6. Operating modes &amp; commissioning sequence</h2>
+
+    <p>The Kehua C-HUD PCS supports grid-forming and grid-following capability in the same unit. The operating mode (PQ vs VSG) is selected during commissioning and can be managed by the EMS — <strong>no hardware change is required</strong> to move between modes.</p>
+
+    <h3>Phased commissioning — grid-following first, grid-forming when required</h3>
+    <p>The plant can be energised in grid-following (PQ) mode for the initial DSO connection, and switched to grid-forming (VSG) mode when the connection terms or grid services require it.</p>
+
+    <table>
+      <thead>
+        <tr><th>Phase</th><th>Mode</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Initial commissioning</td>
+          <td><span class="tag tag-gfl">PQ</span> Grid-following</td>
+          <td>Synchronise to grid, prove protection, export/import, pass DSO connection tests</td>
+        </tr>
+        <tr>
+          <td>Operational (default)</td>
+          <td><span class="tag tag-gfl">PQ</span></td>
+          <td>Standard arbitrage / curtailment recovery — typical at energisation</td>
+        </tr>
+        <tr>
+          <td>When required</td>
+          <td><span class="tag tag-gfm">VSG</span> Grid-forming</td>
+          <td>Enabled via EMS / PCS settings — adds synthetic inertia and droop response</td>
+        </tr>
+        <tr>
+          <td>Future services</td>
+          <td><span class="tag tag-gfm">VSG</span> + EMS</td>
+          <td>FCR / aFRR participation when TSOC ancillary markets open (~2027–2030)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Mode switch (PQ → VSG):</strong> performed via the PCS interface / Modbus / EMS — no hardware change.<br>
+    <strong>Note:</strong> Where a DSO connection agreement specifies a particular operating mode, any change to grid-forming operation will be coordinated with and approved by the DSO.</p>
+
+    <!-- 7. VSG -->
+    <h2 id="vsg">7. VSG &amp; black start</h2>
+
+    <div class="cols">
+      <div class="card gfm">
+        <h3>VSG — Virtual Synchronous Generator</h3>
+        <p>The inverter control loop emulates a spinning generator:</p>
+        <ul>
+          <li>Frequency drops → automatic power increase (P–f droop)</li>
+          <li>Voltage drops → reactive power adjustment (Q–V droop)</li>
+          <li>Provides <strong>synthetic inertia</strong> — resists rapid df/dt</li>
+          <li>Configurable inertia constant <strong>H</strong> (seconds)</li>
+        </ul>
+      </div>
+      <div class="card gfm">
+        <h3>Black start</h3>
+        <ol>
+          <li>Start from fully dead grid</li>
+          <li>Battery DC → PCS creates AC in VF/VSG mode</li>
+          <li>Energise local MV network via transformer</li>
+          <li>Bring additional units online in parallel</li>
+          <li>Resynchronise to main grid when it returns</li>
+        </ol>
+      </div>
+    </div>
+
+    <p>On Cyprus's isolated island grid, GFM matters as synchronous generation retires and solar penetration rises — the grid needs inertia sources, not just power injection.</p>
+
+    <!-- 8. ANCILLARY -->
+    <h2 id="ancillary">8. FCR &amp; aFRR — PCS requirements</h2>
+
+    <table>
+      <thead>
+        <tr><th>Service</th><th>Response</th><th>PCS requirement</th><th>GFL enough?</th><th>GFM advantage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>FCR</strong></td><td>~30 seconds</td><td>Fast P adjustment ∝ Δf</td><td>Yes, if fast enough</td><td>Native droop in VSG</td></tr>
+        <tr><td><strong>aFRR</strong></td><td>~5 minutes</td><td>Follow AGC setpoint via EMS</td><td>Yes (PQ + EMS)</td><td>Works in either mode</td></tr>
+        <tr><td><strong>Synthetic inertia</strong></td><td>Milliseconds</td><td>Resist df/dt</td><td><strong>No</strong></td><td><strong>VSG only</strong></td></tr>
+        <tr><td><strong>Black start</strong></td><td>Minutes</td><td>Establish grid</td><td><strong>No</strong></td><td><strong>VF/VSG only</strong></td></tr>
+        <tr><td><strong>Weak-grid voltage support</strong></td><td>Continuous</td><td>Hold voltage at POC</td><td>Limited</td><td><strong>GFM</strong></td></tr>
+      </tbody>
+    </table>
+
+  <p>Cyprus FCR/aFRR markets not yet open (TSOC roadmap ~2027–2030). Specifying GFM now future-proofs the asset.</p>
+
+    <!-- 9. MANUFACTURERS -->
+    <h2 id="manufacturers">9. Proven grid-forming PCS manufacturers in Europe</h2>
+
+    <table>
+      <thead>
+        <tr><th>Manufacturer</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>SMA</strong></td><td>Sunny Highpower / grid.form — DE, UK, IE deployments</td></tr>
+        <tr><td><strong>Power Electronics</strong></td><td>HVS series — major EU BESS (ES, UK)</td></tr>
+        <tr><td><strong>Ingeteam</strong></td><td>INGECON Sun Storage Power — ES, UK</td></tr>
+        <tr><td><strong>Sungrow</strong></td><td>PowerTitan GFM PCS — large EU pipeline</td></tr>
+        <tr><td><strong>Hitachi Energy</strong></td><td>UK National Grid ESO GFM trials</td></tr>
+        <tr><td><strong>Gamesa Electric</strong></td><td>Wind + storage hybrids</td></tr>
+        <tr><td><strong>Wärtsilä</strong></td><td>GEMS + GFM-capable inverter partners</td></tr>
+        <tr><td><strong>Kehua</strong></td><td>C-HUD — EN 50549 TÜV, Polish grid code cert; newer in EU but type-test certified</td></tr>
+        <tr><td><strong>NR Electric</strong></td><td>Growing EU presence</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 10. DSO -->
+    <h2 id="dso">10. DSO briefing — what to show &amp; how to explain</h2>
+
+    <h3>Documents to present</h3>
+    <ol>
+      <li>EN 50549-2/10 type-test report (TÜV) — Type B generating plant</li>
+      <li>Kehua C-HUD datasheet — VSG, VF, Black-Start, off-grid spec</li>
+      <li>SLD showing CIPS at MV point of connection</li>
+      <li>FRT / LVRT / HVRT curves</li>
+      <li>P–f droop test evidence (2%, 5%, 12%)</li>
+      <li>EMS architecture — mode management &amp; AGC interface</li>
+      <li>Commissioning test protocol (PQ energisation; VSG/island tests when applicable)</li>
+    </ol>
+
+    <h3>This plant is grid-forming because it has:</h3>
+    <ul>
+      <li>Type B certification under <strong>EN 50549-2/10</strong></li>
+      <li><strong>VSG-capable PCS</strong> with configurable P–f and Q–V droop</li>
+      <li><strong>Off-grid capability</strong> — 690 V ±1% (proves it can form a grid, not only follow one)</li>
+      <li><strong>Black-start</strong> documented procedure</li>
+      <li><strong>External CIPS</strong> at MV POC</li>
+      <li><strong>EMS</strong> with PQ ↔ VSG mode management</li>
+    </ul>
+
+    <h3>This plant is grid-following only if:</h3>
+    <ul>
+      <li>PCS runs exclusively in <strong>PQ mode</strong></li>
+      <li>Requires live grid to synchronise — cannot establish voltage alone</li>
+      <li>No VSG, no black-start, no off-grid specification</li>
+    </ul>
+
+    <blockquote>
+      <strong>30-second DSO explanation:</strong><br>
+      "Most battery inverters are grid-following — they need the grid to exist and push power into it.
+      Our PCS is grid-forming: it behaves like a conventional generator, creates voltage and frequency reference,
+      provides synthetic inertia through VSG control, and can black-start a dead network section.
+      Physically it is the same transformer and switchgear — the difference is inverter control software,
+      certified under EN 50549-2 as a Type B generating plant, with central interface protection at the connection point."
+    </blockquote>
+
+    <blockquote>
+      <strong>Technical DSO meeting:</strong><br>
+      "At the MV skid the hardware is standard: 690 V PCS, transformer to 22/33 kV, protection and metering.
+      Grid-forming sits in the Kehua C-series firmware — VSG mode with P–f droop (TÜV evidence at 2%, 5%, 12%),
+      Q–V control, and black-start. In normal operation the plant runs PQ mode like any grid-following asset.
+      When commanded, it switches to VSG and provides synthetic inertia — which a standard GFL BESS cannot do."
+    </blockquote>
+
+    <!-- 11. SUMMARY -->
+    <h2 id="summary">11. Summary</h2>
+
+    <div class="note action">
+      The Lighthief BESS configuration uses Kehua <strong>BCS-C-HUD</strong> grid-forming power conversion systems, type-tested to
+      <strong>EN 50549-2/10</strong> as Type B generating plant. The plant can be commissioned in grid-following (PQ) mode for the
+      initial connection and operated in grid-forming (VSG) mode — providing synthetic inertia and black-start capability — when the
+      DSO connection terms or future ancillary-service markets require it. All compliance documentation is available to support the
+      grid connection application.
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+  office@lighthief.com · +357 77 77 00 50 · solarfarms.cy<br>
+  Technical contact: Alexander Papacosta · +357 99 164 158 · office@lighthief.com
+  </div>
+
+</div>
+</body>
+</html>
