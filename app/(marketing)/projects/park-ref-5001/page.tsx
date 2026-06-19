@@ -30,7 +30,7 @@ const PARK_DATA = {
   sizeMW: 5.01,
   sizeDC: 5.01,
   sizeAC: 4.62,
-  askingPrice: 9600000,
+  askingPrice: 9000000,
 
   // Equipment
   equipment: {
