@@ -415,12 +415,12 @@ export const ANALYTICS_EVENTS = {
 // Future: DAM arbitrage will add €72/MWh net per cycle when legislation enables it
 //
 export const CYPRUS_MARKET_DEFAULTS = {
-  // Revenue rates (VERIFIED Feb 2026 from 134-day complete TSOC DAM dataset)
-  daytimeSellingRate: 0.141,      // €/kWh - Solar hours avg €140.88/MWh (06:00-17:00)
-  middayRate: 0.101,              // €/kWh - Midday avg €101.13/MWh (10:00-14:00, deep solar dip)
-  nightDischargeRate: 0.183,      // €/kWh - Evening peak avg €182.99/MWh (BESS discharge price)
+  // Revenue rates (VERIFIED Jul 2026 from 283-day complete TSOC DAM dataset, Oct 2025–Jul 2026)
+  daytimeSellingRate: 0.138,      // €/kWh - Solar hours avg €137.59/MWh (06:00-17:00)
+  middayRate: 0.084,              // €/kWh - Midday avg €84.36/MWh (10:00-14:00, deep solar dip)
+  nightDischargeRate: 0.203,      // €/kWh - Evening peak avg €203.43/MWh (BESS discharge price)
   ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
-  wholesaleAvgRate: 0.158,        // €/kWh - Overall avg MCP €158.19/MWh
+  wholesaleAvgRate: 0.170,        // €/kWh - Overall avg MCP €170.22/MWh
   
   // Curtailment (based on real 2024-2025 data, may decrease with new market mechanisms)
   curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average (pre-open market)

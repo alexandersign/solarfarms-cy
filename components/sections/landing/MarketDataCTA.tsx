@@ -23,8 +23,8 @@ export function MarketDataCTA() {
                     <span className="block gradient-text">Market Pricing</span>
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Verified day-ahead data from a 134-day TSOC sample (Oct 2025 – Feb 2026).
-                    Evening peaks near €183/MWh versus midday around €77/MWh create a strong
+                    Verified day-ahead data from a 283-day TSOC dataset (Oct 2025 – Jul 2026).
+                    Evening peaks at €203/MWh versus midday around €84/MWh create a strong
                     spread for BESS — peak shifting and merchant dispatch, not only curtailment recovery.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
