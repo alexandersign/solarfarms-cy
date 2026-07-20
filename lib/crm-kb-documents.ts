@@ -186,12 +186,26 @@ export const CRM_KB_DOCUMENTS: Record<
   },
 
   // ─── TOTALCON / Qiu (Konia) ───────────────────────────────────────────────
-  'totalcon-qiu-epc': {
-    path: 'docs/clients/Individual_Qiu_Konia/epc-qiu-1mw-konia-proposal-jun2026.html',
-    title: 'TOTALCON LTD — 1 MW PV EPC Proposal, Konia (Paphos)',
+  'totalcon-qiu-epc-fixed': {
+    path: 'docs/clients/TOTALCON/Lighthief-PV-EPC-Proposal-TOTALCON-Konia-FixedTilt-Jul2026.docx',
+    title: 'TOTALCON LTD — PV EPC Fixed-Price Offer, Option A Fixed-Tilt 825 kWp, Konia (€550k)',
     client: 'TOTALCON LTD / Mr. Qiu',
-    date: 'Jun 2026',
-    type: 'PV EPC offer',
+    date: 'Jul 2026',
+    type: 'PV EPC offer (one-pager)',
+  },
+  'totalcon-qiu-epc-tracker': {
+    path: 'docs/clients/TOTALCON/Lighthief-PV-EPC-Proposal-TOTALCON-Konia-Trackers-Jul2026.docx',
+    title: 'TOTALCON LTD — PV EPC Fixed-Price Offer, Option B Trackers 809 kWp, Konia (€615k)',
+    client: 'TOTALCON LTD / Mr. Qiu',
+    date: 'Jul 2026',
+    type: 'PV EPC offer (one-pager)',
+  },
+  'totalcon-qiu-epc-contract': {
+    path: 'docs/clients/TOTALCON/Lighthief-PV-EPC-Contract-SAMPLE-TOTALCON-Konia-Jul2026.docx',
+    title: 'TOTALCON LTD — 1 MW PV EPC Contract (SAMPLE/DRAFT), Konia (Paphos)',
+    client: 'TOTALCON LTD / Mr. Qiu',
+    date: 'Jul 2026',
+    type: 'PV EPC contract (draft)',
   },
 
   // ─── Habanay / Trozena Wellness ───────────────────────────────────────────
