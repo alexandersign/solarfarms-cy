@@ -448,38 +448,64 @@ export const AEOLIAN = {
   key: 'aeolian',
   location: 'Agia Anna, Larnaca',
   windFarmMw: 10.8,               // 6 × Vestas V100-1.8 MW turbines
-  // BESS configuration (final offer 24 Mar 2026):
-  parks: 1, mw: 6.5, mwh: 20,
-  bessContainers: 4,              // 4 × 5.015 MWh battery containers
-  mvSkids: 2,                     // T4 skid (5 MW) + T1 skid (1.25 MW) = 6.25 MW
-  totalUnits: 6,
+  // BESS configuration (updated Jun 2026 — single T8 MV Skid, 3-hour system):
+  // Previous offer (24 Mar 2026) used T4 + T1 skids = 6.25 MW / 20 MWh.
+  // Updated to a single T8 MV Skid = ONE container housing 8 × BCS1000K PCS (1.0 MW each) = 8 MW
+  // hardware, EMS-limited to 6.68 MW. The 8 PCS are all inside the one T8 skid (NOT distributed
+  // across the battery containers). 4 battery containers (5.015 MWh each) = 20.06 MWh storage.
+  // 20.06 MWh ÷ 6.68 MW = exactly 3.0 h duration.
+  parks: 1, mw: 6.68, mwh: 20.06,
+  bessContainers: 4,              // 4 × 5.015 MWh battery containers (storage)
+  mvSkids: 1,                     // 1 × T8 MV Skid — one container housing 8 × BCS1000K = 8 MW hardware
+  pcsInSkid: 8,                   // 8 × BCS1000K (1.0 MW each) inside the one T8 MV skid = 8 MW hardware
+  totalUnits: 5,                  // 4 BESS containers + 1 T8 MV Skid
   district: 'Larnaca',
-  // Pricing:
-  revenue: 2_660_000,             // Final offer 24 Mar 2026 (ex VAT). Turnkey EPC.
-  cif: 1_951_711,                 // CIF LY202601271 — same 6.5 MW / 20 MWh config as Esperia Famagusta
-  physAdders: 177_000,            // Estimated: duty €51.9K + port €3.6K + crane €15K + civil €40K + electrical €28K + DEHN €17K + insurance €14.6K + docs €7K
-  emsUpfront: 129_206,            // Disperon v3: 6 containers ~€54,206 EMS + €15,000 SCADA Local + €60,000 SCADA Global (new standalone group)
-  installedCost: 2_257_917,
-  margin: 402_083, marginPct: 15.12,
+  // Pricing (updated Jun 2026 — Linyang price inputs pending formal quotation):
+  revenue: 2_660_000,             // Contract price held. Final offer 24 Mar 2026 (ex VAT).
+  cifBess: 1_564_680,             // 20.06 MWh × €78,000/MWh (estimated — confirm with Linyang)
+  cifSkid: 450_000,               // T8 MV Skid flat (estimated — confirm with Linyang)
+  cif: 2_014_680,                 // cifBess + cifSkid. ⚠️ Pending formal Linyang T8 quotation.
+  // ── Physical adders (updated Jun 2026 with actual Cyprus quotations) ──
+  // Civil: D.Kouklis Constructions quote 16 Jun 2026 (Base 1 = 4×20ft+1×40ft = €21,455)
+  //   replaces Kamil Poland estimate (€40,000) — Cyprus contractor is meaningfully different scope
+  // EMS/SCADA: Voltus 24 Feb 2026 quote for 5-unit/20MWh park (ESP-F1 equivalent):
+  //   System+Hardware €23,119 + Remote config €14,232 + On-site install+training €10,162 = €47,513 upfront
+  //   SCADA Local €30,000 + SCADA Global €60,000 (standalone group, first park) = €90,000
+  //   vs old Disperon v3 estimate (€54,206 EMS + €15,000 SCADA Local + €60,000 SCADA Global = €129,206)
+  //   Note: Voltus quote uses different SCADA Local rate (€30K not €15K) for 5-unit park
+  physAdders: 160_255,            // Duty €53,590 (2.66% CIF) + port €3,600 + crane €15,000
+                                  // + civil €21,455 (Kouklis Cyprus quote, Base 1, Jun 2026)
+                                  // + electrical €28,000 (estimate — Joha quote needed for Aeolian site)
+                                  // + DEHN €6,510 (quoted, 4 BESS + 1 MV skid)
+                                  // + insurance €15,110 (0.75% CIF, Marsh budget)
+                                  // + docs €7,000 (estimate) + install labour €1,600 (StrikeRA confirmed)
+                                  // + RTU/comms €3,000 + UPS/aux €2,000 + MV terminations €2,000 + customs €85 + protection €1,305
+  emsUpfront: 137_513,            // Voltus 24 Feb 2026 quote (5-unit / 20 MWh park):
+                                  // EMS hardware+install €47,513 + SCADA Local €30,000 + SCADA Global €60,000
+  installedCost: 2_312_448,       // cif €2,014,680 + physAdders €160,255 + emsUpfront €137,513
+  margin: 347_552, marginPct: 13.07,
   // Signing:
   signingStatus: 'high' as const,
   signingProbabilityPct: 80,
   // Timeline:
   tenderDeadline: 'Q2 2026 (grant scheme)',
   orderDate: 'Q3 2026 (estimated on EPC signing)',
-  pacDate: '~Q2 2027',
+  pacDate: 'confirmed at order release',
   // Special considerations:
   notes: [
     'Grant scheme participant (Θ.Α.ΛΕ.Ι.Α 2021-2027 Just Transition Fund) — tender compliance required.',
     'Army firing range access: Agia Anna site requires coordinated access windows with military authority.',
-    'Wind + BESS export: EMS enforces combined export limit on 22 kV line to PSEUDAS S/S (5.17 km).',
-    'Tender requirement: ≥5.4 MW BESS, ≥16.2 MWh at POC. Config: 6.25 MW / 20 MWh = compliant (+16% headroom).',
+    'Wind + BESS export: EMS enforces combined export limit on 22 kV line to PSEUDAS S/S (5.17 km). BESS limited to 6.68 MW.',
+    'T8 MV Skid config: one MV skid housing 8 × BCS1000K (1.0 MW each) = 8 MW hardware, EMS-limited to 6.68 MW; separate from the 4 battery containers (storage).',
+    'Tender requirement: ≥5.4 MW BESS, ≥16.2 MWh at POC. Config: 6.68 MW / 20.06 MWh = compliant (+24% MW headroom).',
     'Year-10 capacity: 20 MWh × 80% SOH = 16.0 MWh (within tolerance of 16.2 MWh requirement).',
+    'Duration: 20.06 MWh ÷ 6.68 MW = exactly 3.0 hours at full rated export power.',
+    '⚠️ CIF is estimated pending formal Linyang T8 MV Skid quotation. Margin will move if skid price changes.',
     'Standalone client — not part of group order. Separate EPC contract and LTSA.',
-    'Aeolian counted separately from 28-park group order portfolio.',
-    'Previous proposals on file: 5.4 MW/16.2 MWh (Mar), 6 MW/20 MWh (Mar), 6.5 MW/20 MWh final (24 Mar 2026).',
+    'Previous proposals: 5.4 MW/16.2 MWh (Mar), 6 MW/20 MWh (Mar), 6.5 MW/20 MWh T4+T1 (24 Mar 2026), T8 6.68 MW (Jun 2026).',
+    'HE registration: HE 168239 (T.P. Aeolian Dynamics Ltd). Registered: Karaiskaki 13, 3032 Limassol.',
   ],
-  _meta: { source: 'bess-aeolian-dynamics-final-offer-6.5mw-20mwh-24mar2026.html + technical-rfi-aeolian-dynamics-mar2026.md', date: '2026-03-24' },
+  _meta: { source: 'bess-aeolian-dynamics-final-offer-6.5mw-20mwh-24mar2026.html + T8 config update Jun 2026', date: '2026-06-30' },
 } as const;
 
 // ─────────────────────────────────────────────
