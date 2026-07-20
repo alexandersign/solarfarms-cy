@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Financial Summary | Lighthief International Ltd</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --accent-dark: #9C7D22;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+      --border: #CBD5E0;
+      --positive: #276749;
+      --negative: #C53030;
+      --muted: #718096;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #000;
+      background: var(--body-bg);
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 14mm 16mm;
+    }
+
+    .doc-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 20px 24px;
+      margin: -14mm -16mm 20px;
+      border-bottom: 4px solid var(--accent);
+    }
+    .doc-header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .doc-header .subtitle { font-size: 13px; opacity: 0.95; }
+    .doc-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      margin-top: 14px;
+      font-size: 12px;
+    }
+    .doc-meta dt { opacity: 0.8; font-weight: 600; }
+    .doc-meta dd { margin: 0; }
+
+    h2 {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      margin: 22px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--primary);
+    }
+    h3 {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      margin: 14px 0 8px;
+    }
+
+    p, .note, li {
+      margin-bottom: 8px;
+      color: var(--grey-text);
+      font-size: 12px;
+    }
+    ul { margin: 0 0 12px 20px; }
+    .note strong { color: #000; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0 18px;
+    }
+    .kpi {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--primary);
+      padding: 12px 14px;
+      border-radius: 4px;
+      background: #F7FAFC;
+    }
+    .kpi .label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .kpi .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 4px 0 2px;
+    }
+    .kpi .sub { font-size: 10px; color: var(--grey-text); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+    }
+    thead th {
+      background: var(--primary);
+      color: var(--white);
+      text-align: left;
+      padding: 8px 10px;
+      font-weight: 600;
+    }
+    tbody td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #F7FAFC; }
+    td.num, th.num { text-align: right; white-space: nowrap; }
+    .highlight-row { background: #EBF4FF !important; font-weight: 600; }
+    .dormant { color: var(--muted); font-style: italic; }
+    .pos { color: var(--positive); font-weight: 600; }
+    .neg { color: var(--negative); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #EBF4FF;
+      color: var(--primary);
+    }
+    .tag.holding { background: #FFFAEB; color: var(--accent-dark); }
+    .tag.operating { background: #E6FFFA; color: #234E52; }
+    .tag.dormant { background: #EDF2F7; color: var(--muted); }
+
+    .org-chart {
+      margin: 14px 0 18px;
+      padding: 16px;
+      background: #F7FAFC;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .org-chart .chain {
+      font-family: ui-monospace, 'Cascadia Code', monospace;
+      white-space: pre;
+      color: var(--primary);
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+      color: var(--grey-text);
+      text-align: center;
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 100;
+    }
+    .print-btn:hover { background: var(--primary-light); }
+
+    @media print {
+      body { background: white; }
+      .page { max-width: none; margin: 0; padding: 10mm 12mm; }
+      .doc-header {
+        margin: -10mm -12mm 16px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      thead th, .doc-header, .kpi, tbody tr:nth-child(even) {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print { display: none; }
+      h2 { page-break-after: avoid; }
+      table { page-break-inside: avoid; }
+    }
+    @page { size: A4; margin: 0; }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
+
+<div class="page">
+
+  <header class="doc-header">
+    <h1>Group Financial Summary</h1>
+    <p class="subtitle">Lighthief International Ltd · Cyprus holding group &amp; Poland operating companies</p>
+    <dl class="doc-meta">
+      <dt>Document ref</dt><dd>LI-FIN-SUMMARY-2026-001</dd>
+      <dt>Date</dt><dd>30 June 2026</dd>
+      <dt>Prepared for</dt><dd>Internal / investor &amp; bank diligence</dd>
+      <dt>Reporting currency</dt><dd>PLN (Poland) · EUR (Cyprus)</dd>
+    </dl>
+  </header>
+
+  <h2>1. Executive Summary</h2>
+  <p>The Lighthief group is structured as a <strong>Cyprus holding chain</strong> (BSH → Lighthief International → Lighthief Cyprus) with an active <strong>Polish operating company</strong> (Lighthief Sp. z o.o.) and several dormant or pre-revenue SPVs. Substantive revenue and balance-sheet scale sit in <strong>Poland</strong>; Cyprus entities serve as holding, contracting, and BESS/solar EPC platform.</p>
+
+  <div class="summary-grid">
+    <div class="kpi">
+      <div class="label">Poland revenue (2024)</div>
+      <div class="value">3.52M PLN</div>
+      <div class="sub">≈ €818k · Lighthief Sp. z o.o.</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Poland net profit (2024)</div>
+      <div class="value">563k PLN</div>
+      <div class="sub">≈ €131k · after strong recovery vs 2023</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Poland total assets (2024)</div>
+      <div class="value">6.33M PLN</div>
+      <div class="sub">≈ €1.47M · equity €395k · leverage elevated</div>
+    </div>
+  </div>
+
+  <p class="note"><strong>Group performance in one line:</strong> Poland delivers the economics (electrical contracting / solar); Cyprus (Lighthief Cyprus Ltd) is ramping BESS and PV EPC activity with visible trade payables and customer invoicing; holding companies (BSH, LI) carry no operating P&amp;L in filed accounts reviewed here.</p>
+
+  <h2>2. Group Structure &amp; Financial Role</h2>
+  <div class="org-chart">
+    <div class="chain">Dr. Arkadiusz Sybaris (UBO)
+        │ 100%
+        ▼
+Bretwald Sybaris Holding Ltd (HE 466251)          ← holding · no operating revenue
+        │ 100%
+        ▼
+Lighthief International Ltd (HE 464727)         ← holding · 24% of Polish opco
+        │ 90%                              Alexander Papacosta ── 10%
+        ▼                                              │
+Lighthief Cyprus Ltd (HE 477423) ◄─────────────────────┘   ← Cyprus EPC / BESS / LTSA
+        │
+        └── (parallel) Lighthief Sp. z o.o. (KRS 0000498790) ← main operating P&amp;L
+                 ├── Lighthief Infrastruktura (dormant)
+                 ├── Lighthief Farmy Fotowoltaiczne (dormant SPV)
+                 └── Lt Solar 1 / 2 / 3 (new SPVs, Aug 2025)</div>
+  </div>
+
+  <h2>3. Entity Performance Overview</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Entity</th>
+        <th>Jurisdiction</th>
+        <th>Role</th>
+        <th>Latest financials</th>
+        <th>Performance snapshot</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td><strong>Lighthief Cyprus Ltd</strong><br><span style="font-size:10px;color:var(--muted)">HE 477423</span></td>
+        <td>Cyprus</td>
+        <td><span class="tag operating">Operating</span> BESS / solar EPC</td>
+        <td>No statutory accounts in data room; trade data Q4 2025 – Q1 2026</td>
+        <td>Active supplier &amp; customer flows (e.g. Trikkis Energy AP ~€13.6k at 31 Mar 2026); BESS portfolio pipeline via EPC contracts. Revenue not yet consolidated in this report.</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>Lighthief Sp. z o.o.</strong><br><span style="font-size:10px;color:var(--muted)">KRS 0000498790</span></td>
+        <td>Poland</td>
+        <td><span class="tag operating">Operating</span> Electrical / solar contracting</td>
+        <td>FY 2024 e-Sprawozdanie (filed)</td>
+        <td class="pos">Revenue 3.52M PLN · Net profit 563k PLN · Assets 6.33M PLN. Primary earnings engine of group.</td>
+      </tr>
+      <tr>
+        <td><strong>Lighthief International Ltd</strong><br><span style="font-size:10px;color:var(--muted)">HE 464727</span></td>
+        <td>Cyprus</td>
+        <td><span class="tag holding">Holding</span> 90% of LCY · 24% of PL opco</td>
+        <td>Not in data room</td>
+        <td>Pass-through ownership; economic exposure via LCY (90%) and Poland (24%).</td>
+      </tr>
+      <tr>
+        <td><strong>Bretwald Sybaris Holding Ltd</strong><br><span style="font-size:10px;color:var(--muted)">HE 466251</span></td>
+        <td>Cyprus</td>
+        <td><span class="tag holding">Holding</span> Top co. · 100% LI</td>
+        <td>Not in data room</td>
+        <td>UBO vehicle (Dr. Sybaris 100%). Expected minimal balance-sheet activity.</td>
+      </tr>
+      <tr>
+        <td>Lighthief Infrastruktura Sp. z o.o.<br><span style="font-size:10px;color:var(--muted)">KRS 0001001011</span></td>
+        <td>Poland</td>
+        <td><span class="tag dormant">SPV</span> Infrastructure</td>
+        <td>FY 2024</td>
+        <td class="dormant">Dormant — 0 PLN revenue · ~50k PLN assets · nominal loss.</td>
+      </tr>
+      <tr>
+        <td>Lighthief Farmy Fotowoltaiczne Sp. z o.o.<br><span style="font-size:10px;color:var(--muted)">KRS 0000974442</span></td>
+        <td>Poland</td>
+        <td><span class="tag dormant">SPV</span> PV farms</td>
+        <td>FY 2024</td>
+        <td class="dormant">Pre-revenue — 0 PLN revenue · ~99k PLN assets (share capital + cash).</td>
+      </tr>
+      <tr>
+        <td>Lt Solar 1 / 2 / 3 Sp. z o.o.</td>
+        <td>Poland</td>
+        <td><span class="tag dormant">SPV</span> Solar projects</td>
+        <td>Registered Aug 2025</td>
+        <td class="dormant">No filed financials yet — project vehicles for pipeline.</td>
+      </tr>
+      <tr>
+        <td>Sybaris Capital Investments Ltd<br><span style="font-size:10px;color:var(--muted)">HE 321056</span></td>
+        <td>Cyprus</td>
+        <td><span class="tag holding">Sister co.</span></td>
+        <td>Not in data room</td>
+        <td>Outside LCY ownership chain; Sybaris investment vehicle.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Lighthief Cyprus Ltd — Operating Company</h2>
+  <table>
+    <tbody>
+      <tr><td style="width:32%"><strong>Legal name</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+      <tr><td><strong>Reg. no. / TIN</strong></td><td>HE 477423 · 60187188Q</td></tr>
+      <tr><td><strong>Business</strong></td><td>Battery energy storage (BESS) EPC, solar PV EPC, long-term service agreements (LTSA)</td></tr>
+      <tr><td><strong>Ownership</strong></td><td>Lighthief International Ltd 90% · Alexander Papacosta 10%</td></tr>
+      <tr><td><strong>Statutory accounts</strong></td><td>Not included in this data room — Cyprus annual return / audited accounts to be attached when available</td></tr>
+      <tr><td><strong>Trade activity indicator</strong></td><td>Trikkis Energy supplier statement (Nov 2025 – Mar 2026): active purchase ledger, balance ~€13,646 at 31 Mar 2026; ongoing sales invoicing to residential/commercial customers in Cyprus</td></tr>
+      <tr><td><strong>Strategic position</strong></td><td>Primary contracting entity for Cyprus BESS portfolio (881+ MWh pipeline per internal SSOT); revenue expected to scale with batch deliveries from 2026</td></tr>
+    </tbody>
+  </table>
+  <p class="note"><strong>Assessment:</strong> Lighthief Cyprus is transitioning from PV distribution/residential sales toward utility-scale BESS EPC. Current trade data reflects established solar supply relationships; full P&amp;L impact of BESS contracts will materialise as projects reach COD.</p>
+
+  <h2>5. Poland Operating Company — Lighthief Sp. z o.o.</h2>
+  <p>Source: Polish e-Sprawozdania finansowe (KRS 0000498790), signed reports 2022–2024. EUR equivalents at <strong>4.30 PLN/EUR</strong> (indicative).</p>
+
+  <h3>Profit &amp; loss trend</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th class="num">2022</th>
+        <th class="num">2023</th>
+        <th class="num">2024</th>
+        <th class="num">2024 (EUR approx.)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Revenue (net sales)</td>
+        <td class="num">7,037,656</td>
+        <td class="num">2,106,713</td>
+        <td class="num">3,516,838</td>
+        <td class="num">≈ 817,869</td>
+      </tr>
+      <tr>
+        <td>Profit from sales</td>
+        <td class="num">1,267,006</td>
+        <td class="num">16,672</td>
+        <td class="num">571,922</td>
+        <td class="num">≈ 133,005</td>
+      </tr>
+      <tr>
+        <td>Profit before tax</td>
+        <td class="num">1,153,768</td>
+        <td class="num">17,172</td>
+        <td class="num">668,765</td>
+        <td class="num">≈ 155,527</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>Net profit</strong></td>
+        <td class="num pos">1,047,759</td>
+        <td class="num">168</td>
+        <td class="num pos">562,529</td>
+        <td class="num">≈ 130,821</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">All amounts in PLN unless stated. 2023 was a contraction year (revenue −70% vs 2022); 2024 shows recovery with net margin ~16% on revenue.</p>
+
+  <h3>Balance sheet (31 Dec 2024)</h3>
+  <table>
+    <thead>
+      <tr><th>Metric</th><th class="num">PLN</th><th class="num">EUR approx.</th><th>Comment</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Total assets</td><td class="num">6,331,185</td><td class="num">≈ 1,472,369</td><td>+285% vs 2023 — fixed assets / WIP growth</td></tr>
+      <tr><td>Equity</td><td class="num">1,699,988</td><td class="num">≈ 395,346</td><td>Retained earnings rebuilt after weak 2023</td></tr>
+      <tr><td>Liabilities</td><td class="num">4,631,197</td><td class="num">≈ 1,077,023</td><td>High leverage — project finance / trade creditors</td></tr>
+      <tr><td>Debt-to-equity</td><td class="num">2.7×</td><td class="num">—</td><td>Monitor for covenant / working-capital risk</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Shareholding (Polish opco — separate from LCY cap table)</h3>
+  <table>
+    <thead><tr><th>Shareholder</th><th class="num">Approx. stake</th></tr></thead>
+    <tbody>
+      <tr><td>Lighthief International Ltd</td><td class="num">24%</td></tr>
+      <tr><td>Bretwald Ltd</td><td class="num">24%</td></tr>
+      <tr><td>Sybaris HF B.V.</td><td class="num">24%</td></tr>
+      <tr><td>Marko Hernaiz</td><td class="num">10%</td></tr>
+      <tr><td>Maciąg / Sybaris / Mirowski (natural persons)</td><td class="num">18% combined</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Lighthief International’s economic interest in Poland is <strong>24% of opco profit</strong>, while its interest in Lighthief Cyprus is <strong>90%</strong>. Group reporting should not conflate the two cap tables.</p>
+
+  <h2>6. Polish SPVs — Dormant / Pre-Revenue</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Entity</th>
+        <th class="num">2024 revenue</th>
+        <th class="num">2024 net profit</th>
+        <th class="num">2024 assets</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lighthief Infrastruktura Sp. z o.o.</td>
+        <td class="num">0</td>
+        <td class="num neg">−54</td>
+        <td class="num">49,525</td>
+        <td class="dormant">Shell / infra SPV — nominal activity</td>
+      </tr>
+      <tr>
+        <td>Lighthief Farmy Fotowoltaiczne Sp. z o.o.</td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td class="num">98,600</td>
+        <td class="dormant">PV farm SPV — capitalised, pre-revenue</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>7. Cyprus Holding Companies</h2>
+  <table>
+    <thead><tr><th>Entity</th><th>Reg. no.</th><th>Expected financial profile</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Lighthief International Ltd</strong></td>
+        <td>HE 464727</td>
+        <td>Holding company — dividends, inter-company loans, and investment in LCY / Poland. No material operating revenue expected. Consolidates 90% of LCY and 24% of Poland opco at group level.</td>
+      </tr>
+      <tr>
+        <td><strong>Bretwald Sybaris Holding Ltd</strong></td>
+        <td>HE 466251</td>
+        <td>Top holding — 100% owned by Dr. Arkadiusz Sybaris. Pass-through to LI. Typical profile: shareholding in LI only, minimal headcount.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Cyprus holding company statutory accounts were not available in the data room at the date of this report. For bank or investor packs, attach latest HE32-filed annual returns when issued.</p>
+
+  <h2>8. Consolidated Group View (Qualitative)</h2>
+  <table>
+    <thead><tr><th>Dimension</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Revenue engine</strong></td><td>Poland (Lighthief Sp. z o.o.) — proven contractor with €818k revenue in 2024</td></tr>
+      <tr><td><strong>Growth engine</strong></td><td>Cyprus (Lighthief Cyprus Ltd) — BESS EPC pipeline; revenue inflection expected 2026+</td></tr>
+      <tr><td><strong>Profitability</strong></td><td>Poland returned to strong margins in 2024; Cyprus profitability tied to project milestones</td></tr>
+      <tr><td><strong>Balance sheet</strong></td><td>Poland assets scaled to 6.3M PLN with elevated liabilities — working capital and project debt require monitoring</td></tr>
+      <tr><td><strong>SPV layer</strong></td><td>Minimal P&amp;L impact today; Lt Solar entities may absorb future project assets</td></tr>
+      <tr><td><strong>UBO exposure</strong></td><td>Dr. Sybaris — 90% effective in LCY via BSH → LI; plus direct/minority stakes in Poland structure</td></tr>
+    </tbody>
+  </table>
+
+  <h2>9. Data Sources &amp; Limitations</h2>
+  <ul>
+    <li><strong>Poland:</strong> e-Sprawozdania XML/PDF — <code>lighthief-poland/financials/</code> (FY 2022–2024 for opco; FY 2023–2024 for Infrastruktura; FY 2024 for Farmy)</li>
+    <li><strong>Cyprus (LCY):</strong> Trikkis Energy statement of account Nov 2025 – Mar 2026; registrar certificates in <code>lighthief-cyprus/reg docs/</code></li>
+    <li><strong>Cyprus (BSH, LI):</strong> No statutory financial statements in data room — structure from registrar certificates (Jun 2026)</li>
+    <li><strong>FX:</strong> PLN/EUR at 4.30 used for indicative conversion only</li>
+    <li><strong>Scope:</strong> This is a management summary, not audited consolidated accounts. Inter-company eliminations not performed.</li>
+  </ul>
+
+  <footer class="footer">
+    Lighthief International Ltd · HE 464727 · Prepared 30 June 2026 · LI-FIN-SUMMARY-2026-001<br>
+    Internal use — not statutory financial statements · office@lighthief.com · solarfarms.cy
+  </footer>
+
+</div>
+
+</body>
+</html>
