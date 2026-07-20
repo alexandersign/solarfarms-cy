@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Ownership Structure — Bank KYC | Lighthief Cyprus Ltd</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --accent-dark: #9C7D22;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+      --border: #CBD5E0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #000;
+      background: var(--body-bg);
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 14mm 16mm;
+    }
+
+    /* Header */
+    .doc-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 20px 24px;
+      margin: -14mm -16mm 20px;
+      border-bottom: 4px solid var(--accent);
+    }
+    .doc-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .doc-header .subtitle {
+      font-size: 13px;
+      opacity: 0.95;
+    }
+    .doc-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      margin-top: 14px;
+      font-size: 12px;
+    }
+    .doc-meta dt { opacity: 0.8; font-weight: 600; }
+    .doc-meta dd { margin: 0; }
+
+    h2 {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      margin: 22px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--primary);
+    }
+    h3 {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      margin: 14px 0 8px;
+    }
+
+    p, .note {
+      margin-bottom: 10px;
+      color: var(--grey-text);
+      font-size: 12px;
+    }
+    .note strong { color: #000; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+    }
+    thead th {
+      background: var(--primary);
+      color: var(--white);
+      text-align: left;
+      padding: 8px 10px;
+      font-weight: 600;
+    }
+    tbody td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #F7FAFC; }
+    td.num, th.num { text-align: right; }
+    .highlight-row { background: #EBF4FF !important; font-weight: 600; }
+    .ubo-row { background: #FFFAEB !important; }
+
+    /* Ownership chart */
+    .org-chart {
+      margin: 16px 0 20px;
+      padding: 20px 16px;
+      background: #F7FAFC;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .org-level {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .org-connector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 28px;
+      position: relative;
+    }
+    .org-connector .line {
+      width: 2px;
+      height: 100%;
+      background: var(--primary);
+    }
+    .org-connector .label {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary);
+      border-radius: 3px;
+    }
+    .org-box {
+      border: 2px solid var(--primary);
+      border-radius: 4px;
+      padding: 10px 14px;
+      text-align: center;
+      min-width: 200px;
+      max-width: 280px;
+      background: var(--white);
+    }
+    .org-box.ubo {
+      border-color: var(--accent);
+      border-width: 3px;
+      background: #FFFAEB;
+    }
+    .org-box.applicant {
+      border-color: var(--primary);
+      border-width: 3px;
+      background: #EBF4FF;
+    }
+    .org-box .tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 4px;
+    }
+    .org-box .name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+    .org-box .detail {
+      font-size: 10px;
+      color: var(--grey-text);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+    .org-split {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      position: relative;
+    }
+    .org-split::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: var(--primary);
+    }
+    .org-branch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+      position: relative;
+    }
+    .org-branch::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 14px;
+      background: var(--primary);
+    }
+    .org-branch .pct-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    /* Declaration */
+    .declaration {
+      margin-top: 20px;
+      padding: 16px;
+      border: 2px solid var(--primary);
+      border-radius: 4px;
+    }
+    .declaration ol {
+      margin: 10px 0 16px 20px;
+      font-size: 12px;
+    }
+    .declaration ol li { margin-bottom: 4px; }
+    .sig-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .sig-line {
+      border-bottom: 1px solid #000;
+      height: 28px;
+      margin-bottom: 4px;
+    }
+    .sig-label { font-size: 11px; color: var(--grey-text); }
+
+    .footer {
+      margin-top: 24px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+      color: var(--grey-text);
+      text-align: center;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .checklist td:last-child {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .status-ok { color: #276749 !important; }
+    .status-optional { color: var(--grey-text) !important; }
+    .status-action { color: #C05621 !important; }
+
+    /* Print */
+    @media print {
+      body { background: white; }
+      .page {
+        max-width: none;
+        margin: 0;
+        padding: 10mm 12mm;
+      }
+      .doc-header {
+        margin: -10mm -12mm 16px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      thead th, .doc-header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .org-chart, .org-box.ubo, .org-box.applicant, tbody tr:nth-child(even) {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      h2 { page-break-after: avoid; }
+      table, .org-chart, .declaration { page-break-inside: avoid; }
+      .no-print { display: none; }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 100;
+    }
+    .print-btn:hover { background: var(--primary-light); }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
+
+<div class="page">
+
+  <header class="doc-header">
+    <h1>Corporate Group Structure &amp; UBO Declaration</h1>
+    <p class="subtitle">Bank KYC — Revolut Business · Bank of Cyprus</p>
+    <dl class="doc-meta">
+      <dt>Document ref</dt><dd>LCY-KYC-STRUCT-2026-001</dd>
+      <dt>Date</dt><dd>30 June 2026</dd>
+      <dt>Account applicant</dt><dd>Lighthief Cyprus Ltd (HE 477423)</dd>
+      <dt>TIN</dt><dd>60187188Q</dd>
+    </dl>
+  </header>
+
+  <h2>1. Ownership Structure Chart</h2>
+  <p>Ultimate beneficial owner (UBO) at top. Percentages show effective ownership of <strong>Lighthief Cyprus Ltd</strong>.</p>
+
+  <div class="org-chart">
+    <div class="org-level">
+      <div class="org-box ubo">
+        <div class="tag">Ultimate Beneficial Owner</div>
+        <div class="name">Dr. Arkadiusz Sybaris</div>
+        <div class="detail">Natural person · 100% shareholder of Bretwald Sybaris Holding Ltd</div>
+      </div>
+    </div>
+    <div class="org-connector"><div class="line"></div><span class="label">100%</span></div>
+    <div class="org-level">
+      <div class="org-box">
+        <div class="name">Bretwald Sybaris Holding Ltd</div>
+        <div class="detail">HE 466251 · Cyprus · Top holding company</div>
+      </div>
+    </div>
+    <div class="org-connector"><div class="line"></div><span class="label">100%</span></div>
+    <div class="org-level">
+      <div class="org-box">
+        <div class="name">Lighthief International Ltd</div>
+        <div class="detail">HE 464727 · Cyprus · Intermediate holding company</div>
+      </div>
+    </div>
+    <div class="org-split">
+      <div class="org-branch">
+        <div class="pct-label">90% · 900 shares</div>
+        <div class="org-box applicant">
+          <div class="tag">Account Applicant</div>
+          <div class="name">Lighthief Cyprus Ltd</div>
+          <div class="detail">HE 477423 · TIN 60187188Q<br>Battery storage EPC / solar PV</div>
+        </div>
+      </div>
+      <div class="org-branch">
+        <div class="pct-label">10% · 100 shares</div>
+        <div class="org-box">
+          <div class="tag">Direct Shareholder</div>
+          <div class="name">Alexander Papacosta</div>
+          <div class="detail">Natural person · Director &amp; Secretary<br>Not UBO of group</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Effective Ownership of Lighthief Cyprus Ltd</h3>
+  <table>
+    <thead>
+      <tr><th>Person / Entity</th><th>Ownership Route</th><th class="num">Effective %</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ubo-row">
+        <td><strong>Dr. Arkadiusz Sybaris</strong> (UBO)</td>
+        <td>100% BSH → 100% LI → 90% LCY</td>
+        <td class="num"><strong>90%</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Alexander Papacosta</strong></td>
+        <td>Direct shareholder (100 shares)</td>
+        <td class="num"><strong>10%</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="note"><strong>UBO declaration:</strong> Dr. Arkadiusz Sybaris is the ultimate beneficial owner of Lighthief Cyprus Ltd through his 100% ownership of Bretwald Sybaris Holding Ltd, which owns 100% of Lighthief International Ltd, which owns 90% of Lighthief Cyprus Ltd. Alexander Papacosta holds 10% directly and serves as director and secretary but is not the UBO of the group.</p>
+
+  <h2>2. Entity Register (Cyprus)</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Entity Name</th><th>Reg. No.</th><th>Jurisdiction</th><th>Role</th><th>Owned By</th><th class="num">Ownership</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ubo-row">
+        <td>—</td>
+        <td><strong>Dr. Arkadiusz Sybaris</strong></td>
+        <td>—</td>
+        <td>Natural person</td>
+        <td><strong>UBO</strong></td>
+        <td>—</td>
+        <td class="num">100% of BSH</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Bretwald Sybaris Holding Ltd</td>
+        <td>HE 466251</td>
+        <td>Cyprus</td>
+        <td>Top holding company</td>
+        <td>Dr. Arkadiusz Sybaris</td>
+        <td class="num">100%</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Lighthief International Ltd</td>
+        <td>HE 464727</td>
+        <td>Cyprus</td>
+        <td>Intermediate holding; 90% shareholder of LCY</td>
+        <td>Bretwald Sybaris Holding Ltd</td>
+        <td class="num">100%</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>3</td>
+        <td><strong>Lighthief Cyprus Ltd</strong></td>
+        <td><strong>HE 477423</strong></td>
+        <td>Cyprus</td>
+        <td><strong>Operating company / bank account holder</strong></td>
+        <td>LI 90% · A. Papacosta 10%</td>
+        <td class="num">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. Account Applicant — Lighthief Cyprus Ltd</h2>
+  <div class="two-col">
+    <table>
+      <tbody>
+        <tr><td><strong>Legal name</strong></td><td>Lighthief Cyprus Ltd</td></tr>
+        <tr><td><strong>Company number</strong></td><td>HE 477423</td></tr>
+        <tr><td><strong>TIN</strong></td><td>60187188Q</td></tr>
+        <tr><td><strong>Share capital</strong></td><td>1,000 ordinary shares</td></tr>
+        <tr><td><strong>Website</strong></td><td>solarfarms.cy</td></tr>
+        <tr><td><strong>Email</strong></td><td>office@lighthief.com</td></tr>
+        <tr><td><strong>Phone</strong></td><td>+357 77 77 00 50</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr><td><strong>Registered office</strong></td><td>Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus</td></tr>
+        <tr><td><strong>Operating address</strong></td><td>28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</td></tr>
+        <tr><td><strong>Business activity</strong></td><td>EPC contractor for battery energy storage systems (BESS) and solar PV; operations &amp; maintenance (LTSA)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Share Register</h3>
+  <table>
+    <thead><tr><th>Shareholder</th><th class="num">Shares</th><th class="num">%</th><th>Type</th></tr></thead>
+    <tbody>
+      <tr><td>Lighthief International Ltd (HE 464727)</td><td class="num">900</td><td class="num">90%</td><td>Legal entity</td></tr>
+      <tr><td>Alexander Papacosta</td><td class="num">100</td><td class="num">10%</td><td>Natural person</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Directors &amp; Secretary</h3>
+  <table>
+    <thead><tr><th>Name</th><th>Role</th><th>Appointed</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Alexander Papacosta</strong></td><td>Director</td><td>29 June 2026</td></tr>
+      <tr><td><strong>Alexander Papacosta</strong></td><td>Company Secretary</td><td>29 June 2026</td></tr>
+      <tr><td>Lighthief International Ltd</td><td>Corporate director (if on register)</td><td>Represented by Dr. Arkadiusz Sybaris</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. UBO — Natural Person</h2>
+  <table>
+    <tbody>
+      <tr><td style="width:35%"><strong>Full name</strong></td><td>Dr. Arkadiusz Sybaris</td></tr>
+      <tr><td><strong>Capacity</strong></td><td>Ultimate beneficial owner</td></tr>
+      <tr><td><strong>Basis of UBO status</strong></td><td>100% shareholder of Bretwald Sybaris Holding Ltd</td></tr>
+      <tr><td><strong>Effective interest in LCY</strong></td><td><strong>90%</strong> (indirect via BSH → LI → LCY)</td></tr>
+      <tr><td><strong>Also</strong></td><td>Director of Sybaris Capital Investments Ltd (HE 321056); authorised signatory for Lighthief International Ltd</td></tr>
+    </tbody>
+  </table>
+  <p class="note"><em>Attach with bank application: passport / ID, proof of address.</em></p>
+
+  <h2>5. Other Disclosed Person (Not UBO)</h2>
+  <table>
+    <tbody>
+      <tr><td style="width:35%"><strong>Full name</strong></td><td>Alexander Papacosta</td></tr>
+      <tr><td><strong>Capacity</strong></td><td>10% shareholder; Director &amp; Secretary of Lighthief Cyprus Ltd</td></tr>
+      <tr><td><strong>Contact</strong></td><td>office@lighthief.com · +357 99 164 158</td></tr>
+      <tr><td><strong>UBO?</strong></td><td>No — below 25% UBO threshold; disclosed as direct shareholder and executive director</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6. Related Group Entities (Disclosure Only)</h2>
+  <table>
+    <thead><tr><th>Entity</th><th>Reg. No.</th><th>Relationship</th></tr></thead>
+    <tbody>
+      <tr><td>Sybaris Capital Investments Ltd</td><td>HE 321056</td><td>Sybaris investment vehicle — not in LCY ownership chain</td></tr>
+      <tr><td>Lighthief Sp. z o.o.</td><td>KRS 0000498790</td><td>Poland operating company — Lighthief International Ltd holds 24%</td></tr>
+      <tr><td>Bretwald Ltd</td><td>—</td><td>Separate entity — 24% shareholder of Polish opco</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Supporting Documents Checklist</h2>
+  <p class="note">Cyprus Registrar certificates confirm the full ownership chain. ROC search extracts are <strong>not required</strong> where shareholder and director certificates are on file. PDFs stored in <code>lighthief-cyprus/reg docs/</code>.</p>
+
+  <h3>Bretwald Sybaris Holding Ltd (HE 466251)</h3>
+  <table class="checklist">
+    <thead><tr><th>Document</th><th>Detail</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Certificate of shareholders</td><td>Dr. Arkadiusz Sybaris — 1,000 ordinary shares (100%)</td><td class="status-ok">Available — 26 Jun 2026</td></tr>
+      <tr><td>Certificate of directors &amp; secretary</td><td>As per registrar certificate on file</td><td class="status-ok">Available — 26 Jun 2026</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Lighthief International Ltd (HE 464727)</h3>
+  <table class="checklist">
+    <thead><tr><th>Document</th><th>Detail</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Certificate of shareholders</td><td>Bretwald Sybaris Holding Ltd — 1,000 ordinary shares (100%)</td><td class="status-ok">Available — 26 Jun 2026</td></tr>
+      <tr><td>Certificate of directors &amp; secretary</td><td>BSH (corp.), M. Krzyżanowski, Dr. A. Sybaris (dirs.); Dr. A. Sybaris (sec.)</td><td class="status-ok">Available — 26 Jun 2026</td></tr>
+      <tr><td>HE32 — director changes</td><td>Christodoulou resignation; Sybaris &amp; Papacosta appointments</td><td class="status-ok">Available — 29 Jun 2026 · <code>reg docs/doc127956_002–003.pdf</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Lighthief Cyprus Ltd (HE 477423) — account applicant</h3>
+  <table class="checklist">
+    <thead><tr><th>Document</th><th>Detail</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Certificate of shareholders</td><td>LI 900 shares (90%) · A. Papacosta 100 shares (10%)</td><td class="status-ok">Available — 16 Jun 2026 · <code>reg docs/doc12710520260616075738.pdf</code></td></tr>
+      <tr><td>Certificate of directors &amp; secretary</td><td>A. Papacosta — sole director &amp; secretary</td><td class="status-ok">Available — 29 Jun 2026 · <code>reg docs/Director Certificate…doc121735…pdf</code></td></tr>
+      <tr><td>HE32 — director/secretary changes</td><td>Christodoulou resignation; Papacosta appointment</td><td class="status-ok">Available — 29 Jun 2026 · <code>reg docs/doc127956_001 &amp; _004.pdf</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Additional bank requirements</h3>
+  <table class="checklist">
+    <thead><tr><th>Document</th><th>Entity</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>ROC search extract</td><td>BSH, LI, LCY</td><td class="status-optional">Not required — registrar certificates on file</td></tr>
+      <tr><td>Register of members</td><td>BSH, LI, LCY</td><td class="status-optional">Not required — shareholder certificates on file</td></tr>
+      <tr><td>TIN certificate</td><td>LCY 60187188Q</td><td class="status-optional">Obtain only if bank requests</td></tr>
+      <tr><td>Proof of operating address</td><td>28 October Ave 249, Limassol</td><td class="status-action">Utility bill / lease</td></tr>
+      <tr><td>Board resolution — bank account opening</td><td>LCY</td><td class="status-action">Board to adopt</td></tr>
+      <tr><td>UBO declaration form</td><td>Per bank template</td><td class="status-action">Signed by director</td></tr>
+      <tr><td>UBO ID &amp; proof of address</td><td>Dr. Arkadiusz Sybaris</td><td class="status-action">Attach with application</td></tr>
+    </tbody>
+  </table>
+
+  <div class="declaration">
+    <h2 style="margin-top:0;border:none;">8. Director Certification</h2>
+    <p>I certify that the ownership structure described in this document reflects the beneficial ownership position of <strong>Lighthief Cyprus Ltd</strong> as confirmed on <strong>30 June 2026</strong>:</p>
+    <ol>
+      <li><strong>Dr. Arkadiusz Sybaris</strong> — 100% shareholder of <strong>Bretwald Sybaris Holding Ltd</strong></li>
+      <li><strong>Bretwald Sybaris Holding Ltd</strong> — 100% shareholder of <strong>Lighthief International Ltd</strong></li>
+      <li><strong>Lighthief International Ltd</strong> — 900 shares (<strong>90%</strong>) of <strong>Lighthief Cyprus Ltd</strong></li>
+      <li><strong>Alexander Papacosta</strong> — 100 shares (<strong>10%</strong>) of <strong>Lighthief Cyprus Ltd</strong></li>
+    </ol>
+    <div class="sig-block">
+      <div>
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Alexander Papacosta</strong><br>Director &amp; Secretary<br>Lighthief Cyprus Ltd (HE 477423)</div>
+      </div>
+      <div>
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Date</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Lighthief Cyprus Ltd · HE 477423 · office@lighthief.com · solarfarms.cy<br>
+    Document LCY-KYC-STRUCT-2026-001 · Registrar certificates on file — reg docs/ folder
+  </footer>
+
+</div>
+
+</body>
+</html>

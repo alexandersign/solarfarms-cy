@@ -3,13 +3,14 @@
 **Status:** TEMPLATE — Cyprus legal review required  
 **Ref:** LCY-SHR-DO-2026-001  
 **Company:** Lighthief Cyprus Ltd (HE 477423)  
-**Shareholder:** Lighthief International Ltd (sole shareholder)
+**Shareholder (90%):** Lighthief International Ltd (900 shares)  
+**Shareholder (10%):** Alexander Papacosta (100 shares)
 
 ---
 
 ## Resolution
 
-**THE SOLE SHAREHOLDER** resolves:
+**THE SHAREHOLDER(S)** resolve (Lighthief International Ltd **90%**; Alexander Papacosta **10%**):
 
 **1. D&O insurance.** The Company is **directed and authorised** to procure and maintain directors’ and officers’ liability insurance naming **Alexander Papacosta** (director and company secretary) and each **authorised representative** of Lighthief International Ltd acting as corporate director, on terms no less favourable than the heads set out in the Director & Officer Protections deed (LCY-DIR-IND-2026-001), including minimum limit **€[1,000,000]** and retroactive coverage from **1 July 2025** where available.
 
@@ -25,16 +26,30 @@
 
 ---
 
-## Signature — Sole Shareholder
+## Signatures — Shareholders
 
-**For and on behalf of LIGHTHIEF INTERNATIONAL LTD**
+**For and on behalf of LIGHTHIEF INTERNATIONAL LTD**  
+(900 shares — 90%)
+
+&nbsp;
 
 ______________________________  
 **Dr. Arkadiusz Sybaris**  
-Director / authorised signatory  
+Authorised signatory  
+
+---
+
+**Alexander Papacosta**  
+(100 shares — 10%)  
+*If unanimous consent required:*
+
+&nbsp;
+
+______________________________  
+**Alexander Papacosta**
 
 Date: ______________________
 
 ---
 
-*End of draft — Sybaris signature; not the Beneficiary signing for shareholder.*
+*End of draft — counsel to confirm whether Alexander’s signature is required in addition to LI’s 90% block.*

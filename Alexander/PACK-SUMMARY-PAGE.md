@@ -51,13 +51,13 @@ This pack aligns **Managing Director** compensation, **Moi Ostrov** introducer f
 
 | Person / entity | Role | Signs |
 |-----------------|------|-------|
-| **Lighthief International Ltd** | Sole shareholder (100%); corporate director | Shareholder resolutions **only** |
-| **Dr. Arkadiusz Sybaris** | UBO of LI | **For LI:** Annex A, SHR-EMP, SHR-DO · **Personal:** Annex B · **Founder:** side letter, Option A · **Board:** chairs minutes |
-| **Alexander Papacosta** | LCY director + secretary; Moi Ostrov director; MD | LCY ↔ Moi Ostrov deed, employment, D&O beneficiary · **Never** shareholder resolutions |
+| **Dr. Arkadiusz Sybaris** | **UBO** — 100% Bretwald Sybaris Holding Ltd → 100% LI → 90% LCY effective | **For LI:** Annex A, SHR-EMP, SHR-DO · **Personal:** Annex B · **Founder:** side letter, Option A · **Board:** chairs minutes |
+| **Lighthief International Ltd** | 90% shareholder of LCY; 100% owned by BSH; corporate director | Shareholder resolutions **for 90% block** |
+| **Alexander Papacosta** | 10% shareholder; LCY director + secretary; Moi Ostrov director; MD | LCY ↔ Moi Ostrov deed, employment, D&O beneficiary · Shareholder resolutions **only if unanimous / SHA requires** |
 
-**Golden rule:** Shareholder approvals = **Sybaris for LI**. UBO undertaking = **Sybaris personal**. Company contracts = **Alexander for LCY** (where board + SHR authorise).
+**Golden rule:** LI block = **Sybaris for LI**. Alexander signs SHRs when **unanimous consent or 10% block** required. UBO undertaking = **Sybaris personal**. Company contracts = **Alexander for LCY** (where board + SHR authorise).
 
-Full matrix: **Part 15** (LCY-GOV-SIGN-2026-001).
+Full matrix: **Part 15** (LCY-GOV-SIGN-2026-003). Bank KYC chart: `lighthief-cyprus/company-structure/KYC-GROUP-STRUCTURE-BANKS.md`.
 
 ---
 

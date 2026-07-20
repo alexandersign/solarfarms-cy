@@ -27,11 +27,11 @@ Internal analysis (`FOUNDER-SEND-GUIDANCE.md`, `COMMISSION-AGREEMENT-RISK-ANALYS
 
 | Person / entity | Role |
 |-----------------|------|
-| **Lighthief International Ltd** | Sole shareholder (100%); corporate director of LCY |
-| **Dr. Arkadiusz Sybaris** | UBO of LI — signs **shareholder resolutions for LI**, **Annex B personally**, **Founder** on side letter, **chairs board** as LI rep |
-| **Alexander Papacosta** | LCY director + secretary + MD; Moi Ostrov director — signs **LCY and Moi Ostrov contracts**, **never shareholder resolutions** |
+| **Dr. Arkadiusz Sybaris** | **UBO** — 100% Bretwald Sybaris Holding Ltd → 100% Lighthief International Ltd → 90% effective in LCY |
+| **Lighthief International Ltd** | 90% shareholder of LCY; corporate director |
+| **Alexander Papacosta** | 10% shareholder; LCY director + secretary + MD; Moi Ostrov director |
 
-Full matrix: `DRAFT-SIGNING-MATRIX-AND-GOVERNANCE.md` (Part 15 of Word pack).
+Full matrix: `DRAFT-SIGNING-MATRIX-AND-GOVERNANCE.md` (LCY-GOV-SIGN-2026-003). Bank KYC: `lighthief-cyprus/company-structure/KYC-GROUP-STRUCTURE-BANKS.md`.
 
 ---
 

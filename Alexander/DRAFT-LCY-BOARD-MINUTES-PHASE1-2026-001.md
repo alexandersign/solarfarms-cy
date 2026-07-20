@@ -15,9 +15,16 @@
 | Name | Capacity |
 |------|----------|
 | **Alexander Papacosta** | Director (natural person); Company Secretary |
-| **Dr. Arkadiusz Sybaris** | Representing **Lighthief International Ltd** (corporate director); Ultimate Beneficial Owner of Lighthief International Ltd |
+| **Dr. Arkadiusz Sybaris** | Representing **Lighthief International Ltd** (corporate director); **UBO** — 100% of Bretwald Sybaris Holding Ltd (100% owner of LI) |
 
-**Sole shareholder (not present as separate attendee):** Lighthief International Ltd (100% of issued share capital). UBO: Dr. Arkadiusz Sybaris.
+**Shareholders (not present as separate attendees):**
+
+| Shareholder | Shares | % |
+|-------------|-------:|--:|
+| Lighthief International Ltd | 900 | 90% |
+| Alexander Papacosta | 100 | 10% |
+
+Shareholder resolutions for LI’s block: signed by **Dr. Arkadiusz Sybaris** as authorised signatory. **UBO:** Dr. Arkadiusz Sybaris owns **100%** of Bretwald Sybaris Holding Ltd, which owns **100%** of Lighthief International Ltd.
 
 **In attendance (optional):** ______________________ (Counsel / advisers — not directors)
 
@@ -39,7 +46,7 @@
 
 **3.3** **Alexander Papacosta** declared that he is a **Beneficiary** under the proposed Director & Officer Protections deed (LCY-DIR-IND-2026-001).
 
-**3.4** The Chair noted that **Dr. Arkadiusz Sybaris** is the ultimate beneficial owner of Lighthief International Ltd (sole shareholder) and that shareholder resolutions in respect of the above transactions would be passed separately by Lighthief International Ltd, signed by Dr. Sybaris as authorised signatory.
+**3.4** The Chair noted that **Lighthief International Ltd** holds **90%** and **Alexander Papacosta** holds **10%** of the Company’s issued share capital. Shareholder resolutions in respect of the above transactions would be passed by **Lighthief International Ltd** (signed by Dr. Sybaris as authorised signatory) and, where required by the articles or counsel, by **Alexander Papacosta** as 10% shareholder.
 
 ---
 
@@ -97,7 +104,7 @@
 
 ## 7. Shareholder resolutions — note
 
-**7.1** The Board noted that the following written resolutions of **Lighthief International Ltd** as sole shareholder are to be passed ** separately** and signed by **Dr. Arkadiusz Sybaris** as authorised signatory (not by Alexander Papacosta):
+**7.1** The Board noted that the following written shareholder resolutions are to be passed **separately** — **Lighthief International Ltd** (90%) signed by **Dr. Arkadiusz Sybaris** as authorised signatory; **Alexander Papacosta** (10%) to sign where counsel or the articles require unanimous consent or his signature as affected shareholder:
 
 | Resolution | Ref |
 |------------|-----|

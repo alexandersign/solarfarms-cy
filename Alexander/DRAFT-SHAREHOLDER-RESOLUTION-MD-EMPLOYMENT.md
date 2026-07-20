@@ -3,8 +3,10 @@
 **Status:** TEMPLATE — Cyprus legal review required  
 **Ref:** LCY-SHR-EMP-2026-001  
 **Company:** Lighthief Cyprus Ltd (HE 477423)  
-**Shareholder:** Lighthief International Ltd (sole shareholder)  
-**UBO:** Dr. Arkadiusz Sybaris  
+**Shareholder (90%):** Lighthief International Ltd (900 shares)  
+**Shareholder (10%):** Alexander Papacosta (100 shares)  
+**Authorised signatory (LI):** Dr. Arkadiusz Sybaris  
+**UBO:** Dr. Arkadiusz Sybaris — 100% shareholder of Bretwald Sybaris Holding Ltd (100% owner of LI)
 
 Passed in accordance with Section 135, Cyprus Companies Law, Cap. 113.
 
@@ -12,7 +14,7 @@ Passed in accordance with Section 135, Cyprus Companies Law, Cap. 113.
 
 ## Resolution
 
-**THE SOLE SHAREHOLDER** of Lighthief Cyprus Ltd (the “**Company**”) hereby resolves:
+**THE SHAREHOLDER(S)** of Lighthief Cyprus Ltd (the “**Company**”) hereby resolve (Lighthief International Ltd holding **90%** of issued share capital; Alexander Papacosta holding **10%**):
 
 **1. Approval of employment.** The Contract of Employment between the Company and **Alexander Papacosta** (Cyprus ID: 1241318) as **Managing Director**, reference **LCY-EMP-AP-2026-001** (the “**Employment Agreement**”), is **approved and ratified** in its entirety.
 
@@ -37,20 +39,30 @@ Passed in accordance with Section 135, Cyprus Companies Law, Cap. 113.
 
 ---
 
-## Signature — Sole Shareholder
+## Signatures — Shareholders
 
 **For and on behalf of LIGHTHIEF INTERNATIONAL LTD**  
-(Sole shareholder of Lighthief Cyprus Ltd)
+(900 shares — 90% of Lighthief Cyprus Ltd)
 
 &nbsp;
 
 ______________________________  
 **Dr. Arkadiusz Sybaris**  
-Director / authorised signatory  
-Ultimate Beneficial Owner  
+Authorised signatory  
+
+---
+
+**Alexander Papacosta**  
+(100 shares — 10% of Lighthief Cyprus Ltd)  
+*Sign below if counsel or the articles require unanimous shareholder consent or your signature as affected shareholder:*
+
+&nbsp;
+
+______________________________  
+**Alexander Papacosta**
 
 Date: ______________________
 
 ---
 
-*End of draft — Sybaris signature required; not the Employee signing for shareholder.*
+*End of draft — LI block signed by Sybaris; Alexander signs only if counsel requires (affected shareholder / unanimous consent).*

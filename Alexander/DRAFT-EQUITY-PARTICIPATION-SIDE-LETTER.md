@@ -21,7 +21,7 @@ WHEREAS:
 
 (a) The MD has originated and manages the Company’s Cyprus BESS pipeline (including Galascope, Esperia, and the wider portfolio), such that execution of major EPC contracts is predominantly attributable to MD-led origination and delivery;
 
-(b) The Founder, through Lighthief International Ltd, has provided initial shareholder support and holds 100% of the Company prior to any MD equity grants or Qualifying Equity Closing;
+(b) The Founder group (Dr. Arkadiusz Sybaris, as UBO of Bretwald Sybaris Holding Ltd, which owns 100% of Lighthief International Ltd) holds **90%** of the Company through Lighthief International Ltd (900 shares), and Alexander Papacosta holds **10%** (100 shares), prior to any further MD equity grants or Qualifying Equity Closing;
 
 (c) The Founder has indicated that, on signing key EPC contracts, the MD shall receive **at least 10%** equity alignment per major client execution, and the Parties wish to record **10% on Galascope EPC** and **10% on Esperia EPC**, subject to the **Investor Path Cap** in Clause 4;
 

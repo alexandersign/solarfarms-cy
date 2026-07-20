@@ -15,7 +15,7 @@
 | Name | Capacity |
 |------|----------|
 | **Alexander Papacosta** | Director; Company Secretary |
-| **Dr. Arkadiusz Sybaris** | Representing **Lighthief International Ltd** (corporate director); UBO of Lighthief International Ltd |
+| **Dr. Arkadiusz Sybaris** | Representing **Lighthief International Ltd** (corporate director); **UBO** — 100% of Bretwald Sybaris Holding Ltd |
 
 ---
 
