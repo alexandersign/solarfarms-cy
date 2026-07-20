@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Due Diligence Data Room — Lighthief Cyprus Ltd — Prepared for Michael Shapiro — July 2026</title>
+<style>
+  @page { size: A4 portrait; margin: 14mm 14mm 18mm 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --white: #FFFFFF;
+    --grey-text: #404040;
+    --body-bg: #F0F4F8;
+  }
+  body { font-family: 'Segoe UI', Calibri, -apple-system, Arial, sans-serif; font-size: 9.5pt; line-height: 1.5; color: #1a1a2e; background: var(--body-bg); }
+
+  .conf-bar { background: #8B0000; color: #fff; text-align: center; font-size: 7pt; font-weight: 800; padding: 5px; letter-spacing: 2.5px; }
+
+  .header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; padding: 30px 36px 24px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header-logo { font-size: 10pt; font-weight: 800; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; }
+  .header-doc-ref { font-size: 7.5pt; color: #d4e4f7; text-align: right; line-height: 1.6; }
+  .header h1 { font-size: 21pt; font-weight: 900; letter-spacing: -0.5px; margin-top: 14px; color: var(--accent); }
+  .header .subtitle { font-size: 11pt; color: #fff; font-weight: 500; margin-top: 5px; }
+  .header .meta { display: flex; gap: 28px; margin-top: 14px; font-size: 8pt; color: #c8d9ec; flex-wrap: wrap; }
+  .header .meta strong { color: #fff; }
+
+  .toc { background: #fff; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 24px 0 8px; font-size: 8.5pt; }
+  .toc-title { font-size: 9pt; font-weight: 800; color: var(--primary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .toc ol { padding-left: 18px; }
+  .toc li { margin: 4px 0; color: var(--primary); font-weight: 600; }
+  .toc li span { font-weight: 400; color: var(--grey-text); }
+
+  .page { max-width: 940px; margin: 0 auto; padding: 24px 36px 48px; }
+
+  h2.sec { font-size: 12.5pt; font-weight: 800; color: var(--accent); border-bottom: 2.5px solid var(--primary); padding-bottom: 4px; margin: 36px 0 14px; text-transform: uppercase; letter-spacing: 0.3px; }
+  h3.sec { font-size: 10pt; font-weight: 700; color: var(--primary); margin: 18px 0 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 18px; font-size: 8.5pt; }
+  th { background: var(--primary); color: #fff; padding: 7px 9px; text-align: left; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; }
+  th.c, td.c { text-align: center; }
+  th.r, td.r { text-align: right; }
+  td { padding: 6px 9px; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .total-row td { background: #e8eef5 !important; font-weight: 800; border-top: 2px solid var(--primary-light); color: var(--primary); }
+  .grand-row td { background: var(--primary) !important; color: #fff; font-weight: 800; font-size: 9pt; }
+  .sub-row td { background: #f0f4f8 !important; font-weight: 700; font-style: italic; color: var(--primary); }
+  .b { font-weight: 700; }
+  .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 8pt; }
+  .small { font-size: 7.5pt; color: var(--grey-text); }
+
+  .tag { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 7pt; font-weight: 800; letter-spacing: 0.3px; white-space: nowrap; }
+  .tag-green  { background: #d4edda; color: #155724; }
+  .tag-amber  { background: #fff3cd; color: #856404; }
+  .tag-blue   { background: #cce5ff; color: #004085; }
+  .tag-grey   { background: #e9ecef; color: #495057; }
+  .tag-red    { background: #f8d7da; color: #721c24; }
+  .tag-navy   { background: var(--primary); color: #fff; }
+  .tag-loi-epc { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+  .tag-executed { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+  .tag-rfi    { background: #e2e3e5; color: #383d41; border: 1px dashed #6c757d; }
+  .tag-quoted { background: #e9ecef; color: #495057; }
+  .tag-confirm { background: #fff3cd; color: #856404; border: 1px dashed #ffc107; }
+
+  .note { background: #fff; border-left: 4px solid var(--primary-light); padding: 11px 14px; border-radius: 0 6px 6px 0; margin: 14px 0; font-size: 8.5pt; color: #343a40; line-height: 1.5; }
+  .note strong { color: var(--primary); }
+  .note.gold-note { border-left-color: var(--accent); }
+  .note.red-note { border-left-color: #dc3545; }
+  .note.red-note strong { color: #dc3545; }
+
+  .section-intro { font-size: 8.5pt; color: var(--grey-text); line-height: 1.6; margin-bottom: 12px; }
+
+  .contact-box { background: var(--primary); color: #fff; border-radius: 8px; padding: 16px 20px; margin-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .contact-box .ct-name { font-size: 11pt; font-weight: 800; color: var(--accent); }
+  .contact-box .ct-detail { font-size: 8.5pt; line-height: 1.6; }
+
+  .footer { margin-top: 32px; border-top: 1px solid #dee2e6; padding-top: 12px; font-size: 7pt; color: #6c757d; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; }
+    .page-break { page-break-before: always; }
+  }
+  .page-break { margin-top: 40px; padding-top: 8px; border-top: 3px solid var(--primary); }
+
+  .loi-ref-block { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 10px 14px; margin: 8px 0 16px; font-size: 8pt; }
+  .loi-ref-block strong { color: var(--primary); }
+  .loi-ref-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .loi-ref-item { font-family: 'Consolas', 'Courier New', monospace; font-size: 7.5pt; color: var(--grey-text); background: #e9ecef; padding: 2px 6px; border-radius: 3px; }
+
+  .si-key { background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 10px 14px; margin: 8px 0 14px; font-size: 8pt; line-height: 1.7; }
+  .si-key strong { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<div class="conf-bar">STRICTLY PRIVATE &amp; CONFIDENTIAL — PREPARED UNDER NDA FOR MICHAEL SHAPIRO — NOT FOR FURTHER DISTRIBUTION</div>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">Lighthief Cyprus Ltd</div>
+    <div class="header-doc-ref">
+      Document: LCY-DD-SHA-2026-001<br>
+      Date: 14 July 2026<br>
+      Version: 1.0 — Investor Due Diligence<br>
+      Prepared by: Alexander Papacosta, Cyprus Director
+    </div>
+  </div>
+  <h1>Due Diligence Data Room</h1>
+  <div class="subtitle">Prepared exclusively for Michael Shapiro — Equity subscription reference: LCY-EQ-SHA-2026-001</div>
+  <div class="meta">
+    <span><strong>Entity:</strong> Lighthief Cyprus Ltd (HE 477423)</span>
+    <span><strong>Sector:</strong> BESS EPC / Renewable Energy</span>
+    <span><strong>Scope:</strong> Agreements, Leases &amp; Employment</span>
+    <span><strong>Governing Law:</strong> Cyprus</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li>Customer Agreements <span>— EPC contracts, LOIs and quoted proposals</span></li>
+      <li>Supplier Agreements <span>— OEM supply, EMS/SCADA, logistics, insurance and specialist vendors</span></li>
+      <li>Commercial Lease Agreements <span>— Office and vehicle fleet</span></li>
+      <li>Employment &amp; Payroll <span>— Salary recipients including Social Insurance and employer cost</span></li>
+    </ol>
+  </div>
+
+  <div class="note gold-note" style="margin-top:18px;">
+    <strong>Data room note:</strong> This pack summarises the contractual, lease and employment base of Lighthief Cyprus Ltd as at 14 July 2026. Originals of all signed instruments (EPC contracts, LOIs, supply agreements, lease agreements) are available in the secure data room upon request under the existing NDA. Figures are management representations and unaudited unless otherwise stated.
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION 1 — CUSTOMER AGREEMENTS                        -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <h2 class="sec">1. Customer Agreements</h2>
+
+  <p class="section-intro">
+    The table below sets out all current customer commercial arrangements — signed EPC contracts, executed Letters of Intent (LOIs), and active quoted proposals — as at the date of this pack. All figures are ex VAT and represent management estimates unless supported by a signed instrument.
+  </p>
+
+  <div class="loi-ref-block">
+    <strong>Signed / executed instruments in this section:</strong>
+    <div class="loi-ref-row">
+      <span class="loi-ref-item">LCY-LOI-GAL-B1-2026-R15 — Galascope Batch 1 LOI</span>
+      <span class="loi-ref-item">LCY-EPC-GAL-B1-2026 — Galascope EPC (in final legal review)</span>
+      <span class="loi-ref-item">LCY-LOI-ESP-PIPELINE-2026 — Esperia Pipeline LOI (9 parks)</span>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Counterparty</th>
+        <th>Project / Site</th>
+        <th class="c">Parks</th>
+        <th class="c">MWh</th>
+        <th class="r">Contract Value (€ ex VAT)</th>
+        <th class="c">Instrument</th>
+        <th>Reference / Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- GALASCOPE -->
+      <tr>
+        <td class="b" rowspan="2">Galascope Ltd</td>
+        <td>Galascope 1 — Famagusta (5 MW / 20 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,238,000</td>
+        <td class="c"><span class="tag tag-loi-epc">LOI + EPC</span></td>
+        <td class="small">LCY-LOI-GAL-B1-2026-R15<br>EPC: LCY-EPC-GAL-B1-2026<br>EPC in final legal review; equity closes on signed &amp; stamped EPC</td>
+      </tr>
+      <tr>
+        <td>Galascope 2 — Famagusta (2.5 MW / 10 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">10</td>
+        <td class="r mono">1,206,300</td>
+        <td class="c"><span class="tag tag-loi-epc">LOI + EPC</span></td>
+        <td class="small">Same LOI / EPC instrument as above (Batch 1)</td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b" colspan="2">Galascope Batch 1 sub-total</td>
+        <td class="c">2</td>
+        <td class="c">30</td>
+        <td class="r mono">3,444,300</td>
+        <td class="c">—</td>
+        <td>Linyang supply agreement executed 17 Mar 2026</td>
+      </tr>
+
+      <!-- ESPERIA -->
+      <tr>
+        <td class="b" rowspan="9">Esperia Energy Group</td>
+        <td>Esperia Energy — Tseri (25 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,073,225</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026<br>Schedule 1 — Batch 2026</td>
+      </tr>
+      <tr>
+        <td>Esperia Energy — Tseri 2-A (10 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">10</td>
+        <td class="r mono">1,206,300</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2026</td>
+      </tr>
+      <tr>
+        <td>Esperia Energy — Tseri 3 (20 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,238,000</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2026</td>
+      </tr>
+      <tr>
+        <td>Esperia Energy — Famagusta (20 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,374,920</td>
+        <td class="c"><span class="tag tag-blue">LOI 2026</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2026</td>
+      </tr>
+      <tr>
+        <td>Esperia Green Energy — Limassol (60 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">60</td>
+        <td class="r mono">5,644,044</td>
+        <td class="c"><span class="tag tag-navy">LOI 2027</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2027</td>
+      </tr>
+      <tr>
+        <td>Esperia Energy — Tseri 2-B (30 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">30</td>
+        <td class="r mono">3,687,870</td>
+        <td class="c"><span class="tag tag-navy">LOI 2027</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2027</td>
+      </tr>
+      <tr>
+        <td>Esperia Energy — Tseri 2-C (25 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,073,225</td>
+        <td class="c"><span class="tag tag-navy">LOI 2027</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2027</td>
+      </tr>
+      <tr>
+        <td>Esperia Energy — Frenaros (100 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">100</td>
+        <td class="r mono">10,088,014</td>
+        <td class="c"><span class="tag tag-grey">LOI 2028</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2028</td>
+      </tr>
+      <tr>
+        <td>Esperia Green Energy — Famagusta 2 (25 MWh)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,073,225</td>
+        <td class="c"><span class="tag tag-grey">LOI 2028</span></td>
+        <td class="small">LCY-LOI-ESP-PIPELINE-2026 · Batch 2028</td>
+      </tr>
+      <tr class="sub-row">
+        <td class="b" colspan="2">Esperia Pipeline sub-total (9 parks)</td>
+        <td class="c">9</td>
+        <td class="c">315</td>
+        <td class="r mono">34,458,823</td>
+        <td class="c">—</td>
+        <td>EPC contracts to follow park-by-park as licensing satisfied</td>
+      </tr>
+
+      <!-- OTHER QUOTED CLIENTS -->
+      <tr>
+        <td class="b">Spanercom Ltd (Anarita)</td>
+        <td>ANA — Anarita (2 parks × 20 MWh)</td>
+        <td class="c">2</td>
+        <td class="c">40</td>
+        <td class="r mono">4,760,000</td>
+        <td class="c"><span class="tag tag-amber">Quoted (85% prob.)</span></td>
+        <td class="small">Revised proposal issued; high conversion probability</td>
+      </tr>
+      <tr>
+        <td class="b">Timotheos Timotheou</td>
+        <td>TIM — 9 parks / 81 MWh (re-quoted at 12.5%)</td>
+        <td class="c">9</td>
+        <td class="c">81</td>
+        <td class="r mono">11,818,919</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+        <td class="small">Missed group-order pricing window; re-quoted on standard terms</td>
+      </tr>
+      <tr>
+        <td class="b">Lampros Andreadis</td>
+        <td>LAM — 2 parks / 15 MWh (re-quoted at 12.5%)</td>
+        <td class="c">2</td>
+        <td class="c">15</td>
+        <td class="r mono">2,117,420</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+        <td class="small">Missed group-order pricing window; re-quoted on standard terms</td>
+      </tr>
+      <tr>
+        <td class="b">A. Kerasi</td>
+        <td>KER — 3 parks / 20 MWh (re-quoted at 12.5%)</td>
+        <td class="c">3</td>
+        <td class="c">20</td>
+        <td class="r mono">3,061,370</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+        <td class="small">Missed group-order pricing window; re-quoted on standard terms</td>
+      </tr>
+      <tr>
+        <td class="b">Ioannis Karis</td>
+        <td>KAR — 1 park / 25 MWh (re-quoted at 12.5%)</td>
+        <td class="c">1</td>
+        <td class="c">25</td>
+        <td class="r mono">3,220,675</td>
+        <td class="c"><span class="tag tag-quoted">Quoted</span></td>
+        <td class="small">Missed group-order pricing window; re-quoted on standard terms</td>
+      </tr>
+      <tr>
+        <td class="b">TP Aeolian Dynamics</td>
+        <td>AEO — 1 park / 20 MWh wind-hybrid</td>
+        <td class="c">1</td>
+        <td class="c">20</td>
+        <td class="r mono">2,660,000</td>
+        <td class="c"><span class="tag tag-amber">Quoted (80% prob.)</span></td>
+        <td class="small">Wind-hybrid BESS; high conversion probability</td>
+      </tr>
+
+      <!-- GRAND TOTAL -->
+      <tr class="grand-row">
+        <td class="b" colspan="2">TOTAL QUOTED / LOI / EPC BACKLOG</td>
+        <td class="c">30</td>
+        <td class="c">546</td>
+        <td class="r mono">65,541,507</td>
+        <td class="c">—</td>
+        <td>Excl. HESS study (120 MWh indicative, not yet quoted)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:7.5pt; color:#6c757d; margin-top:-10px; margin-bottom:14px;">
+    All figures ex VAT, management estimates. Galascope: LOI in place; equity close tied to EPC signed &amp; stamped. Esperia: LOI covers 9 parks / 315 MWh; individual EPCs to follow per batch. Quoted clients (TIM/LAM/KER/KAR/AEO/ANA) have no signed LOI — proposals only. HESS (120 MWh standalone study) excluded from totals. Signed LOI and EPC originals available in data room under NDA.
+  </p>
+
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION 2 — SUPPLIER AGREEMENTS                        -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="page-break"></div>
+  <h2 class="sec">2. Supplier Agreements</h2>
+
+  <p class="section-intro">
+    The table below lists all active and pending supplier relationships for the Cyprus BESS EPC programme. Status reflects the current stage of commercial engagement as at 14 July 2026.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Supplier</th>
+        <th>Category</th>
+        <th>Scope of supply / services</th>
+        <th>Primary contact</th>
+        <th class="c">Agreement status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Linyang Energy Storage Technology</td>
+        <td>OEM — BESS equipment</td>
+        <td>Battery containers, PCS units, MV skids, cabinet systems — full BESS hardware supply for Cyprus portfolio</td>
+        <td class="small">Kamil Tyburski (Project Coordinator)<br>Nanjing, Jiangsu, China</td>
+        <td class="c"><span class="tag tag-executed">Supply agreement<br>executed 17 Mar 2026</span></td>
+        <td class="small">Primary OEM. Agreement covers Galascope Batch 1 supply; subsequent batches subject to order releases under framework</td>
+      </tr>
+      <tr>
+        <td class="b">Voltus Energy</td>
+        <td>EMS / SCADA</td>
+        <td>Battery Management System integration, EMS/SCADA platform, curtailment signal interface, remote monitoring</td>
+        <td class="small">A. Lechowicz (Sales)<br>+48 696 043 508<br>Gogolin, Poland</td>
+        <td class="c"><span class="tag tag-rfi">RFI / RFP issued<br>— contract pending</span></td>
+        <td class="small">RFIs issued Feb 2026 (EMS update, BMS monitoring, SCADA curtailment); RFP issued Jan 2026. Contract to be placed on EPC award</td>
+      </tr>
+      <tr>
+        <td class="b">A. Soulis Crane &amp; Transport</td>
+        <td>Logistics — crane &amp; transport</td>
+        <td>Container crane operations and heavy transport on-site (Cyprus)</td>
+        <td class="small">Stephanos Soulis (GM)<br>+357 99 522 736<br>stephanos@souliscranes.com</td>
+        <td class="c"><span class="tag tag-rfi">RFQ issued<br>— contract pending</span></td>
+        <td class="small">RFQ issued Jan 2026. Rates agreed; contract to be placed on Galascope EPC sign</td>
+      </tr>
+      <tr>
+        <td class="b">Interfreight Logistics</td>
+        <td>Logistics — freight &amp; port</td>
+        <td>International freight forwarding, customs clearance, CIF delivery Cyprus port</td>
+        <td class="small">Vasilis N. Markides (Director)<br>+357 99 464 613<br>Limassol, Cyprus</td>
+        <td class="c"><span class="tag tag-rfi">Quote received<br>— contract pending</span></td>
+        <td class="small">Logistics quotation received Jan 2026. Contract to follow on first shipment order</td>
+      </tr>
+      <tr>
+        <td class="b">ECTL — Eurogate Container Terminal Limassol</td>
+        <td>Logistics — port handling</td>
+        <td>Port landing and container handling, Limassol port</td>
+        <td class="small">ECTL Port Operations<br>Limassol port, Cyprus</td>
+        <td class="c"><span class="tag tag-rfi">No agreement<br>— port tariff applies</span></td>
+        <td class="small">Standard port tariff arrangement; no dedicated supply agreement required</td>
+      </tr>
+      <tr>
+        <td class="b">DEHN Cyprus / StrikeRA</td>
+        <td>Lightning protection</td>
+        <td>SPD / LPS lightning protection system supply and design for BESS sites</td>
+        <td class="small">DEHN Representative<br>(contact to be confirmed)</td>
+        <td class="c"><span class="tag tag-rfi">RFQ / RFP issued<br>— contract pending</span></td>
+        <td class="small">RFQ and earthing/grounding RFP issued Jan 2026. Contract pending site-level award</td>
+      </tr>
+      <tr>
+        <td class="b">Marsh Specialty</td>
+        <td>Insurance</td>
+        <td>Construction All Risks (CAR), Erection All Risks, project-specific BESS insurance</td>
+        <td class="small">Jan-Willem Hoogenboezem (Europe)<br>+31 6 211 30 976<br>jack.wieland@marsh.com</td>
+        <td class="c"><span class="tag tag-rfi">RFP issued<br>— quote / policy pending</span></td>
+        <td class="small">RFPs issued Feb 2026 (BESS project insurance, comprehensive, CAR timeline). Policy to be placed on Galascope EPC sign</td>
+      </tr>
+      <tr>
+        <td class="b">Inteso Engineering</td>
+        <td>Consulting — electrical design</td>
+        <td>Electrical design, CT consultation, MV/LV engineering for BESS sites</td>
+        <td class="small">Inteso Contact<br>(contact to be confirmed)</td>
+        <td class="c"><span class="tag tag-rfi">RFP issued<br>— engagement pending</span></td>
+        <td class="small">Electrical design RFP issued Feb 2026. Engagement contract to follow on project kick-off</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Data room note:</strong> The executed Linyang supply agreement (17 March 2026) is available in full in the data room. For vendors at RFI/RFP stage, the relevant request documents are archived in the internal document repository. All contracts for vendors at "pending" status will be placed on or before Galascope EPC execution.
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION 3 — COMMERCIAL LEASE AGREEMENTS                -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="page-break"></div>
+  <h2 class="sec">3. Commercial Lease Agreements</h2>
+
+  <p class="section-intro">
+    Active commercial leases as at 14 July 2026, covering the company's registered and operating office premises and vehicle fleet. Monthly costs are stated exclusive of VAT unless noted.
+  </p>
+
+  <h3 class="sec">3a. Office Premises</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Premises</th>
+        <th>Address</th>
+        <th>Type</th>
+        <th class="r">Monthly Rent (€)</th>
+        <th>Tenant</th>
+        <th>Landlord / Counterparty</th>
+        <th class="c">Term / Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Main operating office — Limassol</td>
+        <td class="small">Limassol, Cyprus<br><span class="tag tag-confirm">Address to confirm</span></td>
+        <td>Commercial office lease</td>
+        <td class="r mono b">4,500</td>
+        <td>Lighthief Cyprus Ltd</td>
+        <td><span class="tag tag-confirm">Landlord to confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">Term / start date<br>to confirm</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note gold-note">
+    <strong>Note:</strong> The registered office address at 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus (serviced office) remains the company's registered address for legal / HE purposes. The above EUR 4,500/month lease is the new operating office. Signed lease agreement to be provided to the data room. Please confirm landlord name, lease start date, and term.
+  </div>
+
+
+  <h3 class="sec">3b. Vehicle Fleet</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>Make / Model</th>
+        <th>Registration</th>
+        <th>Type</th>
+        <th class="r">Monthly Cost (€)</th>
+        <th>Counterparty / Dealer</th>
+        <th class="c">Ownership / Lease type</th>
+        <th class="c">Term</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Vehicle 1</td>
+        <td>KIA <span class="tag tag-confirm">Model to confirm</span></td>
+        <td><span class="tag tag-confirm">Plate to confirm</span></td>
+        <td>Passenger / SUV</td>
+        <td class="r mono"><span class="tag tag-confirm">To confirm</span></td>
+        <td><span class="tag tag-confirm">Dealer / lessor to confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">Lease / owned<br>to confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">To confirm</span></td>
+      </tr>
+      <tr>
+        <td class="b">Vehicle 2</td>
+        <td>Mitsubishi L200 <span class="tag tag-confirm">Variant to confirm</span></td>
+        <td><span class="tag tag-confirm">Plate to confirm</span></td>
+        <td>Pick-up / site vehicle</td>
+        <td class="r mono"><span class="tag tag-confirm">To confirm</span></td>
+        <td><span class="tag tag-confirm">Dealer / lessor to confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">Lease / owned<br>to confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">To confirm</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Action required:</strong> For each vehicle please confirm: (a) exact model / variant, (b) registration plate, (c) whether the arrangement is an operating lease, finance lease, or outright purchase, (d) counterparty / dealer / finance house, (e) monthly payment or annualised cost, and (f) lease start date and end date. Insurance documentation for both vehicles is held separately — refer to Marsh Specialty arrangement in Section 2.
+  </div>
+
+  <h3 class="sec">3c. Commercial Lease Summary</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Asset</th>
+        <th class="r">Monthly Cost (€)</th>
+        <th class="c">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Office premises</td>
+        <td>Operating office — Limassol</td>
+        <td class="r mono">4,500</td>
+        <td class="c"><span class="tag tag-green">Confirmed</span></td>
+      </tr>
+      <tr>
+        <td>Vehicle fleet</td>
+        <td>KIA (model TBC)</td>
+        <td class="r mono"><span class="tag tag-confirm">To confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">Pending</span></td>
+      </tr>
+      <tr>
+        <td>Vehicle fleet</td>
+        <td>Mitsubishi L200</td>
+        <td class="r mono"><span class="tag tag-confirm">To confirm</span></td>
+        <td class="c"><span class="tag tag-confirm">Pending</span></td>
+      </tr>
+      <tr class="total-row">
+        <td class="b" colspan="2">Total confirmed monthly lease cost</td>
+        <td class="r mono">4,500</td>
+        <td class="c">+ vehicle costs TBC</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION 4 — EMPLOYMENT & PAYROLL                       -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="page-break"></div>
+  <h2 class="sec">4. Employment &amp; Payroll</h2>
+
+  <p class="section-intro">
+    The table below sets out the salary register for Lighthief Cyprus Ltd, structured per a standard Cyprus payroll disclosure: gross monthly salary, employee deductions (Social Insurance, GHS), employer contributions (Social Insurance, Social Cohesion Fund, GHS), and total employer monthly cost (gross + employer contributions). Cyprus Social Insurance and GHS rates applied are the 2026 statutory rates.
+  </p>
+
+  <div class="si-key">
+    <strong>Cyprus 2026 statutory rates (for reference):</strong><br>
+    <strong>Employee deductions:</strong> Social Insurance 8.8% · GHS (GESY) 2.65% · Total employee deductions ~11.45% of gross (before income tax)<br>
+    <strong>Employer contributions:</strong> Social Insurance 8.8% · Social Cohesion Fund 2.0% · GHS (GESY) 2.90% · Redundancy Fund 1.2% · Human Resource Development Authority (HRDA) 0.5% · Total employer on-cost ~15.4% of gross<br>
+    <span style="font-size:7.5pt; color:#6c757d;">Rates sourced from Social Insurance Services Cyprus (2026). Confirm with payroll adviser before filing.</span>
+  </div>
+
+  <div class="note red-note">
+    <strong>Pre-execution blocker — payroll reconciliation required:</strong> Ratification of historic director remuneration payments alone is not sufficient for Cyprus tax compliance. Before the investment subscription completes, the company's payroll adviser must provide a written reconciliation of all managing director and employee remuneration from 1 July 2025 to the execution date — covering gross amounts, PAYE, Social Insurance, GHS, and any arrears. Any underpayment must be remedied through corrected payroll filings before Galascope EPC signing where practicable. See draft MD Employment Agreement (LCY-MD-EMP-2026-001 §2.1A) and Shareholder Resolution (LCY-SHR-RES-2026-001).
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Role / Employee</th>
+        <th class="c">Start date</th>
+        <th class="r">Gross monthly (€)</th>
+        <th class="r">Employee SI<br><span style="font-size:6.5pt;font-weight:400;">(8.8% of gross)</span></th>
+        <th class="r">Employee GHS<br><span style="font-size:6.5pt;font-weight:400;">(2.65%)</span></th>
+        <th class="r">Net to employee<br><span style="font-size:6.5pt;font-weight:400;">(before income tax)</span></th>
+        <th class="r">Employer SI<br><span style="font-size:6.5pt;font-weight:400;">(8.8%)</span></th>
+        <th class="r">Employer Social<br>Cohesion + other<br><span style="font-size:6.5pt;font-weight:400;">(6.6%)</span></th>
+        <th class="r">Total employer<br>monthly cost (€)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="b">Managing Director / Cyprus Director<br><span class="small">Alexander Papacosta — see note below</span></td>
+        <td class="c"><span class="tag tag-confirm">See note</span></td>
+        <td class="r mono"><span class="tag tag-confirm">See note</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+      </tr>
+      <tr>
+        <td class="b">Electrical Engineer (ETEK)<br><span class="small">Costas Hadjikyriacou</span></td>
+        <td class="c"><span class="tag tag-confirm">To confirm</span></td>
+        <td class="r mono"><span class="tag tag-confirm">To confirm</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+      </tr>
+      <tr>
+        <td class="b">[Additional employee / consultant]</td>
+        <td class="c"><span class="tag tag-confirm">To confirm</span></td>
+        <td class="r mono"><span class="tag tag-confirm">To confirm</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+      </tr>
+      <tr class="total-row">
+        <td class="b" colspan="2">TOTAL payroll cost (monthly)</td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono">—</td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+        <td class="r mono"><span class="tag tag-confirm">TBC</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note gold-note">
+    <strong>MD salary structure (for reference):</strong> Per the draft MD Employment Agreement and Shareholder Resolution, the Managing Director's remuneration is structured as: (i) €2,000 net/month for the period 1 July 2025 to the Galascope EPC Effective Date (with PAYE/Social Insurance on the gross equivalent to be confirmed by payroll adviser); and (ii) €5,000 gross/month from the Galascope EPC Effective Date. Gross equivalent of the €2,000 net period and all historic PAYE/NIS to be confirmed and reconciled by Cyprus-licensed payroll adviser before subscription close.
+  </div>
+
+  <div class="note">
+    <strong>Action required:</strong> Please provide the complete payroll register from your Cyprus-licensed payroll adviser, including: full name, role, employment start date, current gross monthly salary, and confirmation of Social Insurance registration numbers. This register, together with the payroll reconciliation for Jul 2025 to date, must be made available in the data room before subscription completion.
+  </div>
+
+
+  <!-- CONTACT -->
+  <div class="contact-box">
+    <div>
+      <div class="ct-name">Alexander Papacosta</div>
+      <div class="ct-detail">Cyprus Director · Lighthief Cyprus Ltd</div>
+    </div>
+    <div class="ct-detail">
+      <strong style="color:var(--accent);">office@lighthief.com</strong><br>
+      +357 99 164 158 (direct) &nbsp;·&nbsp; +357 77 77 00 50 (office)
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Lighthief Cyprus Ltd · Company No. HE 477423 · solarfarms.cy</div>
+    <div>Document LCY-DD-SHA-2026-001 · 14 July 2026 · v1.0 · Strictly Private &amp; Confidential — Under NDA</div>
+  </div>
+
+</div>
+</body>
+</html>
