@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Centre Solar + Storage Microgrid — Cyprus | Lighthief Cyprus</title>
+<style>
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --gray-50: #F0F4F8;
+    --gray-200: #e2e8f0;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --grey-text: #404040;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--gray-800); line-height: 1.6; background: #fff; font-size: 13px; }
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+  .export-bar { position: fixed; top: 0; left: 0; right: 0; background: var(--primary); color: #fff; padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+  .export-bar span { font-size: 13px; opacity: .85; }
+  .export-btn { background: var(--accent); color: var(--primary); border: none; padding: 8px 24px; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .header-logo-bar { background: #fff; padding: 14px 32px; border-bottom: 3px solid var(--accent); margin-top: 48px; }
+  .wordmark { font-size: 22px; font-weight: 800; letter-spacing: 1px; color: var(--primary); }
+  .wordmark span { color: var(--accent); }
+  .header { background: var(--primary); color: #fff; padding: 44px 0 40px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { font-size: 18px; opacity: .92; margin-bottom: 20px; }
+  .header-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; opacity: .85; }
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: -28px 0 32px; position: relative; z-index: 2; }
+  .kpi-card { background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; border-top: 3px solid var(--accent); }
+  .kpi-card .value { font-size: 22px; font-weight: 800; color: var(--primary); }
+  .kpi-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-500); margin-top: 2px; }
+  .section { margin: 36px 0; page-break-inside: avoid; }
+  .section h2 { font-size: 20px; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--primary); padding-bottom: 6px; margin-bottom: 16px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: var(--primary); margin: 20px 0 10px; }
+  .section p { margin-bottom: 12px; color: var(--gray-700); }
+  .lead { font-size: 15px; color: var(--gray-800); }
+  .callout { background: var(--gray-50); border-left: 4px solid var(--primary-light); padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; font-size: 13px; }
+  .callout.gold { border-left-color: var(--accent); }
+  .callout strong { color: var(--gray-800); }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13px; }
+  thead th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; }
+  thead th.r, tbody td.r { text-align: right; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); }
+  tbody tr:nth-child(even) { background: var(--gray-50); }
+  tbody tr.highlight { background: #fbf7e8; font-weight: 600; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  .card { border-radius: 10px; padding: 20px; border: 1px solid var(--gray-200); }
+  .card h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .card .big { font-size: 22px; font-weight: 800; color: var(--accent-dark); margin: 6px 0 10px; }
+  ul, ol { margin: 8px 0 12px 24px; }
+  li { margin-bottom: 4px; color: var(--gray-700); }
+  .contact-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 10px; padding: 20px; margin-top: 20px; }
+  .contact-box h3 { margin-top: 0; }
+  .footer { background: var(--primary); color: #fff; padding: 28px 0; margin-top: 48px; font-size: 12px; text-align: center; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footnote { font-size: 11px; color: var(--grey-text); margin-top: 6px; }
+  @media print { .export-bar { display: none !important; } .header-logo-bar { margin-top: 0; } .kpi-card { box-shadow: none; border: 1px solid var(--gray-200); } @page { margin: 1.5cm; size: A4; } }
+</style>
+</head>
+<body>
+
+<div class="export-bar">
+  <span>Data Centre Solar + Storage Microgrid — Cyprus | Confidential Teaser — July 2026</span>
+  <button class="export-btn" onclick="window.print()">Export as PDF</button>
+</div>
+
+<div class="header-logo-bar">
+  <div class="container">
+    <div class="wordmark">LIGHT<span>HIEF</span></div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="container">
+    <h1>Green Power for Data Centres in Cyprus</h1>
+    <div class="subtitle">Solar + Battery Storage Microgrid, engineered for the Cyprus climate</div>
+    <div class="header-meta">
+      <span>Prepared by <strong>Lighthief Cyprus Ltd</strong></span>
+      <span>Turnkey EPC — solar, storage, microgrid controls &amp; cooling integration</span>
+      <span>July 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="kpi-strip">
+    <div class="kpi-card"><div class="value">~3 years</div><div class="label">Microgrid payback</div></div>
+    <div class="kpi-card"><div class="value">Up to 45%</div><div class="label">Load met on-site, clean</div></div>
+    <div class="kpi-card"><div class="value">~40%</div><div class="label">Lower annual power bill</div></div>
+    <div class="kpi-card"><div class="value">PUE 1.08</div><div class="label">Achievable with immersion</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <h2>1. The Opportunity</h2>
+    <p class="lead">Cyprus is one of the most expensive places in Europe to buy grid electricity — and the sunniest. For a data centre, that combination is the entire investment case for on-site generation.</p>
+    <p>Grid power for large consumers runs at roughly <strong>€0.22–0.24 per kWh</strong> (among the highest in the EU), while Cyprus enjoys the region's best solar resource at <strong>~1,750 kWh per kWp per year</strong>. On-site solar delivers energy at a fraction of the grid price. Lighthief packages solar PV, battery storage and intelligent microgrid controls into a single turnkey system that takes a large slice of your energy bill off the grid — and hedges it for 25+ years.</p>
+    <div class="callout gold"><strong>The headline:</strong> a behind-the-meter solar + storage microgrid for a Cyprus data centre typically pays for itself in about <strong>three years</strong>, then delivers two decades of low-cost, price-stable power.</div>
+  </div>
+
+  <div class="section">
+    <h2>2. What Lighthief Delivers</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h4>Solar PV generation</h4>
+        <p>Ground-mount, rooftop and carport arrays sized to your load. Tier-1 modules, CE/IEC certified, full warranty documentation.</p>
+      </div>
+      <div class="card">
+        <h4>Battery energy storage (BESS)</h4>
+        <p>Containerised LFP storage to shift midday solar into evening and night, and to provide seamless backup and grid-independence.</p>
+      </div>
+      <div class="card">
+        <h4>Microgrid controls</h4>
+        <p>EMS/SCADA orchestration of solar, storage, grid and load — maximising self-consumption and managing peak demand automatically.</p>
+      </div>
+      <div class="card">
+        <h4>Cooling integration</h4>
+        <p>Design and integration for hot-climate cooling (air, liquid direct-to-chip or immersion) so generation and the largest load work together.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Cooling — the Cyprus Swing Factor</h2>
+    <p>In a 35–40°C climate, cooling is the single biggest driver of a data centre's total energy. It sets your <strong>PUE</strong> (the ratio of total facility power to IT power), your <strong>water demand</strong> on a water-scarce island, and how dense — and therefore how AI-ready — your racks can be. Lighthief designs the microgrid and the cooling strategy together.</p>
+    <table>
+      <thead>
+        <tr><th>Cooling method</th><th class="r">Typical PUE</th><th class="r">Water use</th><th>Max rack density</th><th>Best for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Air (evaporative)</td><td class="r">~1.45</td><td class="r">High</td><td>≤ 15 kW/rack</td><td>Lowest capex; least efficient in Cyprus heat</td></tr>
+        <tr class="highlight"><td>Liquid — direct-to-chip</td><td class="r">~1.25</td><td class="r">Moderate</td><td>≤ 80 kW/rack</td><td>Strong PUE gain; handles AI density</td></tr>
+        <tr><td>Immersion (single-phase)</td><td class="r">~1.08</td><td class="r">Minimal</td><td>≤ 200 kW/rack</td><td>Best PUE &amp; near-zero water; ideal for hot climate + AI</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>A free efficiency win:</strong> cooling demand peaks at midday — exactly when solar output peaks. The array feeds the chillers directly during the hottest hours, so an efficient cooling design both cuts total energy and raises the share of load your solar can cover.</div>
+  </div>
+
+  <div class="section">
+    <h2>4. Illustrative Economics</h2>
+    <p>The figures below illustrate a <strong>10 MW IT-load</strong> facility with an efficient (liquid-cooled) design and a right-sized solar + storage microgrid. The model scales linearly from small edge sites (~5 MW) to larger campuses (40 MW+).</p>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th class="r">Grid only</th><th class="r">With Lighthief microgrid</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Annual electricity bill</td><td class="r">~€22 million/yr</td><td class="r">~€13 million/yr</td></tr>
+        <tr><td>Share of load supplied on-site (clean)</td><td class="r">0%</td><td class="r">~45%</td></tr>
+        <tr class="highlight"><td>Annual saving</td><td class="r">—</td><td class="r">~€9 million/yr</td></tr>
+        <tr><td>Microgrid payback</td><td class="r">—</td><td class="r">~3 years</td></tr>
+        <tr><td>Solar array / storage</td><td class="r">—</td><td class="r">~30 MWp PV + ~40 MWh BESS</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">Illustrative, planning-grade figures for orientation only; not a quotation. Actual results depend on final load profile, cooling design, tariff and site conditions. A site-specific feasibility study is provided as the next step.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Why Cyprus Beats Other Markets</h2>
+    <p>The same microgrid pays back fastest in Cyprus because it uniquely combines a top-tier electricity price with the best solar resource in Europe.</p>
+    <table>
+      <thead>
+        <tr><th>Country</th><th class="r">Solar yield (kWh/kWp)</th><th class="r">Industrial power (€/kWh)</th><th class="r">Microgrid payback</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight"><td>Cyprus</td><td class="r">1,750</td><td class="r">0.22</td><td class="r">~3 yrs</td></tr>
+        <tr><td>Italy</td><td class="r">1,450</td><td class="r">0.18</td><td class="r">~5 yrs</td></tr>
+        <tr><td>Ireland</td><td class="r">950</td><td class="r">0.26</td><td class="r">~5 yrs</td></tr>
+        <tr><td>Germany</td><td class="r">1,050</td><td class="r">0.23</td><td class="r">~5 yrs</td></tr>
+        <tr><td>Spain</td><td class="r">1,650</td><td class="r">0.13</td><td class="r">~6 yrs</td></tr>
+        <tr><td>Sweden</td><td class="r">950</td><td class="r">0.10</td><td class="r">~16 yrs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>6. Challenges We Solve</h2>
+    <ul>
+      <li><strong>Expensive grid power</strong> — we replace up to ~45% of it with low-cost on-site solar, hedged for 25+ years.</li>
+      <li><strong>Grid connection &amp; capacity</strong> — a self-consuming microgrid reduces your dependence on scarce grid capacity and eases connection.</li>
+      <li><strong>Renewable curtailment</strong> — behind-the-meter consumption avoids curtailment losses; your data centre absorbs the solar on-site.</li>
+      <li><strong>Heat &amp; water</strong> — cooling designed for 40°C summers, with low-water liquid or immersion options for a water-scarce island.</li>
+      <li><strong>Resilience</strong> — battery storage provides seamless ride-through and backup, improving uptime.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>7. Plot Requirements</h2>
+    <table>
+      <tbody>
+        <tr><td><strong>Total plot</strong></td><td>~30–35 ha (~75–85 acres) when co-locating solar; ~2–3 ha for the building alone</td></tr>
+        <tr><td><strong>Zoning</strong></td><td>Industrial / logistics-zoned land with development permit</td></tr>
+        <tr><td><strong>Grid access</strong></td><td>Adjacent to a 66/132 kV substation; firm connection agreement</td></tr>
+        <tr><td><strong>Connectivity</strong></td><td>Dual-path backbone fibre (near Limassol / Larnaca landing preferred)</td></tr>
+        <tr><td><strong>Site</strong></td><td>Flat, low seismic risk, south-facing for solar, minimal shading</td></tr>
+        <tr><td><strong>Water</strong></td><td>Water/greywater access, or a closed-loop / immersion cooling design</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>8. Next Steps</h2>
+    <p>Lighthief will prepare a <strong>site-specific feasibility study</strong> — load and cooling assessment, solar + storage sizing, energy-bill reduction, payback and a phased delivery plan — on your instruction.</p>
+    <div class="contact-box">
+      <h3>Contact</h3>
+      <p style="margin-bottom:6px;"><strong>Alexander Papacosta</strong> — Cyprus Director</p>
+      <p style="margin-bottom:6px;">Phone: <strong>+357 99 164 158</strong> &nbsp;|&nbsp; Office: <strong>+357 77 77 00 50</strong></p>
+      <p style="margin-bottom:0;">Email: <strong>office@lighthief.com</strong> &nbsp;|&nbsp; Web: <strong>solarfarms.cy</strong></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div><strong>Lighthief Cyprus Ltd</strong> — Company No. HE 477423 — <a href="https://solarfarms.cy">solarfarms.cy</a></div>
+    <div style="margin-top:6px;opacity:.8;">28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus</div>
+    <div class="footnote" style="color:#cbd5e1;margin-top:10px;">This document is a confidential teaser for discussion purposes. Figures are illustrative, planning-grade estimates and do not constitute a quotation or offer.</div>
+  </div>
+</div>
+
+</body>
+</html>
