@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Carport PV Proposal — Limassol Tennis Center, Parekklisia | Lighthief Cyprus</title>
+<style>
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --green: #059669;
+    --amber: #d97706;
+    --gray-50: #F0F4F8;
+    --gray-200: #e2e8f0;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --grey-text: #404040;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--gray-800); line-height: 1.6; background: #fff; font-size: 13px; }
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+  .export-bar { position: fixed; top: 0; left: 0; right: 0; background: var(--primary); color: #fff; padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  .export-bar span { font-size: 13px; opacity: .85; }
+  .export-btn { background: var(--accent); color: var(--primary); border: none; padding: 8px 24px; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; padding: 48px 0 40px; margin-top: 48px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { font-size: 18px; opacity: .9; margin-bottom: 20px; }
+  .header-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; opacity: .85; }
+  .logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .logo-dot { width: 40px; height: 40px; border-radius: 8px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: var(--primary); }
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: -28px 0 32px; position: relative; z-index: 2; }
+  .kpi-card { background: #fff; border-radius: 10px; padding: 18px; box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; border-top: 3px solid var(--accent); }
+  .kpi-card .value { font-size: 22px; font-weight: 800; color: var(--primary); }
+  .kpi-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-500); margin-top: 2px; }
+  .section { margin: 36px 0; page-break-inside: avoid; }
+  .section h2 { font-size: 20px; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--primary); padding-bottom: 6px; margin-bottom: 16px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: var(--primary); margin: 20px 0 10px; }
+  .section p { margin-bottom: 12px; color: var(--gray-700); }
+  .callout { background: var(--gray-50); border-left: 4px solid var(--primary-light); padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; font-size: 13px; }
+  .callout.warn { border-left-color: var(--amber); background: #fffbeb; }
+  .callout.success { border-left-color: var(--green); background: #ecfdf5; }
+  .callout strong { color: var(--gray-800); }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13px; }
+  thead th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; }
+  thead th.r, tbody td.r { text-align: right; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); }
+  tbody tr:nth-child(even) { background: var(--gray-50); }
+  tbody tr.highlight { background: #eff6ff; font-weight: 600; }
+  tbody tr.total { background: var(--primary); color: #fff; font-weight: 700; }
+  tbody tr.total td { border: none; }
+  tbody tr.sub { background: var(--gray-50); font-weight: 600; }
+  tbody tr.excluded td { color: var(--gray-500); }
+  .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  .option-card { border-radius: 10px; padding: 20px; border: 2px solid var(--gray-200); }
+  .option-card.recommended { border-color: var(--accent); box-shadow: 0 4px 12px rgba(201,164,50,.2); }
+  .option-card h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .option-card .cap { font-size: 22px; font-weight: 800; color: var(--accent-dark); margin: 6px 0 10px; }
+  .badge { display: inline-block; background: var(--accent); color: var(--primary); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 8px; }
+  ul, ol { margin: 8px 0 12px 24px; }
+  li { margin-bottom: 4px; color: var(--gray-700); }
+  .contact-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 10px; padding: 20px; margin-top: 20px; }
+  .footer { background: var(--primary); color: #fff; padding: 28px 0; margin-top: 48px; font-size: 12px; text-align: center; }
+  .footnote { font-size: 11px; color: var(--grey-text); margin-top: 6px; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 120px; margin: 16px 0 8px; padding: 0 4px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar { width: 100%; background: linear-gradient(180deg, var(--primary-light) 0%, var(--primary) 100%); border-radius: 3px 3px 0 0; min-height: 4px; }
+  .bar-label { font-size: 9px; color: var(--gray-500); }
+  .bar-val { font-size: 9px; color: var(--gray-700); font-weight: 600; }
+  @media print { .export-bar { display: none !important; } .header { margin-top: 0; } .kpi-card { box-shadow: none; border: 1px solid var(--gray-200); } @page { margin: 1.5cm; size: A4; } }
+  @media (max-width: 768px) { .kpi-strip, .option-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="export-bar">
+  <span>Solar Carport PV — Limassol Tennis Center, Parekklisia — June 2026</span>
+  <button class="export-btn" onclick="window.print()">Export as PDF</button>
+</div>
+
+<div class="header">
+  <div class="container">
+    <div class="logo-row">
+      <div class="logo-dot">LH</div>
+      <div>
+        <div style="font-weight:700;font-size:16px;">Lighthief Cyprus Ltd</div>
+        <div style="font-size:12px;opacity:.75;">Commercial Solar — Design, Supply &amp; Installation</div>
+      </div>
+    </div>
+    <h1>Solar Carport PV — Proposal</h1>
+    <div class="subtitle">Limassol Tennis Center · Parekklisia · 30-Bay Carport · Net Billing</div>
+    <div class="header-meta">
+      <span>Prepared for: <strong>Mr Evgeny</strong>, Limassol Tennis Center</span>
+      <span>Contact: <strong>+357 99 620 618</strong></span>
+      <span>June 2026</span>
+      <span>Ref: LCY-PV-LTC-PAREKKLISIA-2026-06</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="kpi-strip">
+    <div class="kpi-card"><div class="value">84.96 kWp</div><div class="label">144 × 590 W bifacial</div></div>
+    <div class="kpi-card"><div class="value">~137 MWh/yr</div><div class="label">PVGIS Parekklisia</div></div>
+    <div class="kpi-card"><div class="value">264 kWh</div><div class="label">Battery (~4 h storage)</div></div>
+    <div class="kpi-card"><div class="value">~€39k/yr</div><div class="label">Solar value @ €0.28/kWh</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <h2>1. Executive Summary</h2>
+    <p>Lighthief Cyprus Ltd proposes a <strong>turnkey solar carport system</strong> at <strong>Limassol Tennis Center, Parekklisia</strong>: three carport sections over the main parking area (30 bays), with bifacial PV on pre-fabricated steel frames.</p>
+    <p>The club operates until <strong>22:00</strong> with significant evening load (floodlighting, clubhouse, pumps). We recommend <strong>Option B — PV + 264 kWh battery storage</strong>, sized to store approximately <strong>4 hours of peak summer production</strong> and discharge into the evening session.</p>
+    <p>Estimated annual solar output is <strong>~137 MWh</strong>. At an assessed electricity value of <strong>€0.28/kWh</strong>, the system can deliver up to <strong>~€39,400/year</strong> in bill offset from solar generation (subject to load profile confirmation once EAC billing is available).</p>
+  </div>
+
+  <div class="section">
+    <h2>2. System Design</h2>
+    <table>
+      <tbody>
+        <tr><td><strong>Site</strong></td><td>Limassol Tennis Center, Parekklisia, Limassol District</td></tr>
+        <tr><td><strong>Layout</strong></td><td>3 carport sections × 10 parking bays (30 bays) along main parking curve</td></tr>
+        <tr><td><strong>Foundations</strong></td><td>18 structural bases (6 per section) — excavated ~1.5 m deep</td></tr>
+        <tr><td><strong>PV capacity</strong></td><td>144 modules × 590 W = <strong>84.96 kWp</strong></td></tr>
+        <tr><td><strong>Module type</strong></td><td>Bifacial crystalline silicon, Tier-1, CE/IEC certified</td></tr>
+        <tr><td><strong>Structure</strong></td><td>Pre-fabricated galvanised steel carport frames with integrated module mounts (shipped ready from Greece)</td></tr>
+        <tr><td><strong>Orientation</strong></td><td>West-facing, 10° tilt</td></tr>
+        <tr><td><strong>Inverters</strong></td><td>2 × Deye 50 kW three-phase (100 kW AC total)</td></tr>
+        <tr><td><strong>Battery (Option B)</strong></td><td><strong>264 kWh</strong> LFP storage — ~4 hours of peak summer production capacity</td></tr>
+        <tr><td><strong>Operating hours modelled</strong></td><td>07:00 – 22:00 daily (club operations until 10 pm)</td></tr>
+        <tr><td><strong>Grid scheme</strong></td><td>Net billing — self-consumption offset + surplus export to EAC</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <strong>West 10° + evening operations:</strong> West-facing panels produce strongly through the afternoon (13:00–18:00), aligning with daytime court use. The 264 kWh battery captures mid-afternoon surplus on high-production days and supports the <strong>17:00–22:00</strong> peak load window.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Scope of Supply</h2>
+    <h3>3.1 Included in Lighthief turnkey price</h3>
+    <table>
+      <thead><tr><th>Package</th><th>Scope</th></tr></thead>
+      <tbody>
+        <tr><td>Carport structure</td><td>3 pre-fabricated steel sections with integrated module mounts (Greece), sea freight + port landing, inland haul &amp; offload to site</td></tr>
+        <tr><td>PV modules</td><td>144 × 590 W bifacial modules</td></tr>
+        <tr><td>Inverters &amp; BOS</td><td>2 × 50 kW Deye inverters, DC/AC cabling, protection, earthing, net-billing meter interface</td></tr>
+        <tr><td>Foundations (18 bases)</td><td>Excavation ~1.5 m deep per base, <strong>2.5 m³ reinforced concrete</strong> footing with steel anchor cage per base (45 m³ total)</td></tr>
+        <tr><td>Mechanical install</td><td>Carport assembly on 3 sections, module mounting</td></tr>
+        <tr><td>Electrical works</td><td>DC stringing, AC tie-in to main DB, testing</td></tr>
+        <tr><td>Battery (Option B)</td><td>264 kWh LFP battery system, hybrid integration, commissioning</td></tr>
+        <tr><td>Engineering</td><td>ETEK-certified design, SLD, E-ΔΔ-744 declaration</td></tr>
+        <tr><td>Permitting support</td><td>CERA construction licence (≥30 kWp), EAC net-billing (ΠΟΣ) application</td></tr>
+        <tr><td>Commissioning</td><td>Pre-commissioning, energisation support, handover documentation</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Excluded — paid separately by client</h3>
+    <table>
+      <thead><tr><th>Item</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="excluded"><td>EAC connection &amp; metering fees</td><td>Typically €3,000–€10,000 — paid to EAC on connection terms</td></tr>
+        <tr class="excluded"><td>CERA licence fee</td><td>Authority fee on application</td></tr>
+        <tr class="excluded"><td>Building permit</td><td>Local municipality — carport structures</td></tr>
+        <tr class="excluded"><td>Main DB upgrade</td><td>If existing LV supply is insufficient — confirmed at site survey</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>4. Pricing</h2>
+    <p>All prices <strong>exclude VAT (19%)</strong>. Valid 60 days, subject to site survey.</p>
+
+    <div class="option-grid">
+      <div class="option-card">
+        <h4>Option A — PV Carport Only</h4>
+        <div class="cap">€174,945</div>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:8px;">ex VAT · €208,185 inc VAT</p>
+        <ul>
+          <li>84.96 kWp + 18 foundations</li>
+          <li>Net billing ready</li>
+          <li>~€36,000/yr solar value</li>
+          <li>Payback ~4.9 years</li>
+        </ul>
+      </div>
+      <div class="option-card recommended">
+        <span class="badge">Recommended</span>
+        <h4>Option B — PV + 264 kWh BESS</h4>
+        <div class="cap">€218,695</div>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:8px;">ex VAT · €260,247 inc VAT</p>
+        <ul>
+          <li>Everything in Option A, plus</li>
+          <li>264 kWh LFP battery</li>
+          <li>Evening load shifting (until 22:00)</li>
+          <li>~€39,400/yr solar value</li>
+          <li>Payback ~5.6 years</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>4.1 Price summary</h3>
+    <table>
+      <thead><tr><th>Option</th><th class="r">Ex VAT (€)</th><th class="r">VAT 19%</th><th class="r">Inc VAT (€)</th></tr></thead>
+      <tbody>
+        <tr><td>A — PV carport turnkey (incl. foundations &amp; logistics)</td><td class="r">174,945</td><td class="r">33,340</td><td class="r">208,185</td></tr>
+        <tr class="highlight"><td><strong>B — PV + 264 kWh BESS</strong></td><td class="r"><strong>218,695</strong></td><td class="r">41,552</td><td class="r"><strong>260,247</strong></td></tr>
+        <tr><td>BESS add-on over Option A</td><td class="r">43,750</td><td class="r">8,313</td><td class="r">52,063</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.2 Payment terms</h3>
+    <table>
+      <thead><tr><th>Milestone</th><th class="r">%</th></tr></thead>
+      <tbody>
+        <tr><td>On contract signature</td><td class="r">30%</td></tr>
+        <tr><td>On structure, modules &amp; battery delivery</td><td class="r">40%</td></tr>
+        <tr><td>On mechanical &amp; electrical completion</td><td class="r">20%</td></tr>
+        <tr><td>On commissioning &amp; handover</td><td class="r">10%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>5. Energy Production — PVGIS Simulation</h2>
+    <p>Modelled for <strong>Parekklisia, Limassol</strong> (34.74°N, 33.01°E) · west aspect 90° · 10° tilt · 14% system losses · +8% bifacial uplift (carport over asphalt).</p>
+
+    <table>
+      <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Specific yield</td><td class="r"><strong>~1,617 kWh/kWp·year</strong></td></tr>
+        <tr><td>Annual generation</td><td class="r"><strong>~137,000 kWh (~137 MWh)</strong></td></tr>
+        <tr><td>Daily average</td><td class="r">~376 kWh</td></tr>
+        <tr><td>Summer peak day (indicative)</td><td class="r">~650 kWh</td></tr>
+        <tr><td>4-hour afternoon block (13:00–16:00, summer)</td><td class="r">~290 kWh → <strong>264 kWh battery ≈ 4 h storage</strong></td></tr>
+        <tr><td>AC inverter limit</td><td class="r">100 kW</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.1 Monthly production (kWh)</h3>
+    <div class="bar-chart" aria-label="Monthly production">
+      <div class="bar-col"><div class="bar-val">5.8k</div><div class="bar" style="height:33%"></div><div class="bar-label">Jan</div></div>
+      <div class="bar-col"><div class="bar-val">7.5k</div><div class="bar" style="height:43%"></div><div class="bar-label">Feb</div></div>
+      <div class="bar-col"><div class="bar-val">10.8k</div><div class="bar" style="height:62%"></div><div class="bar-label">Mar</div></div>
+      <div class="bar-col"><div class="bar-val">13.9k</div><div class="bar" style="height:79%"></div><div class="bar-label">Apr</div></div>
+      <div class="bar-col"><div class="bar-val">16.9k</div><div class="bar" style="height:96%"></div><div class="bar-label">May</div></div>
+      <div class="bar-col"><div class="bar-val">17.6k</div><div class="bar" style="height:100%"></div><div class="bar-label">Jun</div></div>
+      <div class="bar-col"><div class="bar-val">17.6k</div><div class="bar" style="height:100%"></div><div class="bar-label">Jul</div></div>
+      <div class="bar-col"><div class="bar-val">15.9k</div><div class="bar" style="height:90%"></div><div class="bar-label">Aug</div></div>
+      <div class="bar-col"><div class="bar-val">12.8k</div><div class="bar" style="height:73%"></div><div class="bar-label">Sep</div></div>
+      <div class="bar-col"><div class="bar-val">10.0k</div><div class="bar" style="height:57%"></div><div class="bar-label">Oct</div></div>
+      <div class="bar-col"><div class="bar-val">6.2k</div><div class="bar" style="height:35%"></div><div class="bar-label">Nov</div></div>
+      <div class="bar-col"><div class="bar-val">5.8k</div><div class="bar" style="height:33%"></div><div class="bar-label">Dec</div></div>
+    </div>
+
+    <h3>5.2 Typical daily profile (west 10°, average day)</h3>
+    <table>
+      <thead><tr><th>Period</th><th>Generation</th><th>Club load (modelled)</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>07:00 – 09:00</td><td>Rising (4 → 11 kWh/h)</td><td>Moderate</td><td>Staff / early sessions</td></tr>
+        <tr><td>09:00 – 16:00</td><td>Peak (23 → 53 kWh/h)</td><td>High daytime</td><td>Main solar window — direct self-use</td></tr>
+        <tr><td>17:00 – 22:00</td><td>Declining → zero</td><td><strong>Peak (81 kWh/h)</strong></td><td>Floodlights &amp; evening ops — battery discharge</td></tr>
+        <tr><td>22:00 – 07:00</td><td>None</td><td>Minimal</td><td>Grid supply</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">Hourly profile derived from PVGIS monthly data + west-orientation shape factor. Refine once 12-month EAC consumption data is available.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. Financial Estimate — €0.28/kWh</h2>
+    <p>Assessment uses <strong>€0.28/kWh</strong> as the value of each kWh offset against EAC imports. No historical EAC bills are available yet — model assumes club operations until <strong>22:00</strong> with high evening load during floodlit sessions.</p>
+
+    <div class="callout warn">
+      <strong>Important:</strong> This estimate covers the <em>solar generation value only</em>. Evening grid imports for floodlighting (17:00–22:00) will remain significant. The battery improves capture of afternoon surplus on high-production days but cannot fully cover all evening demand year-round. Final economics will be confirmed from EAC billing data.
+    </div>
+
+    <h3>6.1 Option A — PV only</h3>
+    <table>
+      <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Annual generation</td><td class="r">137,000 kWh</td></tr>
+        <tr><td>Self-consumed on-site</td><td class="r">~87% (~119,000 kWh)</td></tr>
+        <tr><td>Exported surplus</td><td class="r">~13% (~18,000 kWh)</td></tr>
+        <tr><td><strong>Annual solar value @ €0.28/kWh</strong></td><td class="r"><strong>~€36,000</strong></td></tr>
+        <tr><td>Simple payback (€174,945)</td><td class="r"><strong>~4.9 years</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.2 Option B — PV + 264 kWh BESS (recommended)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Annual generation</td><td class="r">137,000 kWh</td></tr>
+        <tr><td>Self-consumed (direct + battery shift)</td><td class="r"><strong>~100%</strong></td></tr>
+        <tr><td>Battery energy shifted annually</td><td class="r">~18,000 kWh (afternoon → evening)</td></tr>
+        <tr><td><strong>Annual solar value @ €0.28/kWh</strong></td><td class="r"><strong>~€39,400</strong></td></tr>
+        <tr><td>Incremental value vs Option A</td><td class="r">+€3,400/year</td></tr>
+        <tr><td>Simple payback (€218,695)</td><td class="r"><strong>~5.6 years</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.3 Comparison</h3>
+    <table>
+      <thead><tr><th></th><th class="r">Option A — PV</th><th class="r">Option B — PV + BESS</th></tr></thead>
+      <tbody>
+        <tr><td>Investment (ex VAT)</td><td class="r">€174,945</td><td class="r">€218,695</td></tr>
+        <tr><td>Annual solar value @ €0.28/kWh</td><td class="r">~€36,000</td><td class="r">~€39,400</td></tr>
+        <tr><td>Self-consumption of solar</td><td class="r">~87%</td><td class="r">~100%</td></tr>
+        <tr><td>Payback</td><td class="r">~4.9 yr</td><td class="r">~5.6 yr</td></tr>
+        <tr><td>Best for</td><td class="r">Lowest capex</td><td class="r">Operations until 22:00, evening peak shaving</td></tr>
+      </tbody>
+    </table>
+    <div class="callout success">
+      <strong>Recommendation:</strong> Given operations until 22:00 and no billing history yet, Option B (264 kWh) is recommended. The battery is sized to store ~4 hours of peak summer production and maximises the €0.28/kWh value of every kWh generated rather than exporting surplus at lower net-billing rates.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. Programme &amp; Next Steps</h2>
+    <table>
+      <thead><tr><th>Phase</th><th>Duration</th><th>Activity</th></tr></thead>
+      <tbody>
+        <tr><td>1. Site survey</td><td>1 week</td><td>Confirm parking layout, 18 base positions, DB capacity, cable routes</td></tr>
+        <tr><td>2. Engineering &amp; permits</td><td>6–10 weeks</td><td>CERA licence, EAC net-billing, foundation design</td></tr>
+        <tr><td>3. Procurement</td><td>4–6 weeks</td><td>Carport structure, modules, inverters, 264 kWh BESS</td></tr>
+        <tr><td>4. Civil &amp; install</td><td>2–3 weeks</td><td>18 foundation excavations, carport assembly, electrical</td></tr>
+        <tr><td>5. Commissioning</td><td>1 week</td><td>Testing, EAC witness, handover</td></tr>
+        <tr class="sub"><td><strong>Total</strong></td><td><strong>14–20 weeks</strong></td><td>From contract to energisation</td></tr>
+      </tbody>
+    </table>
+    <h3>To proceed:</h3>
+    <ol>
+      <li>Site visit to confirm carport positions on parking layout plan</li>
+      <li>Title deed / lease for parking area</li>
+      <li>EAC energy statement when available (to refine €0.28/kWh model)</li>
+      <li>Preferred option confirmation (A or B)</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>8. Warranty &amp; O&amp;M</h2>
+    <table>
+      <thead><tr><th>Component</th><th>Warranty</th></tr></thead>
+      <tbody>
+        <tr><td>PV modules</td><td>12 years product · 25–30 years linear power output</td></tr>
+        <tr><td>Inverters</td><td>5–10 years (per manufacturer)</td></tr>
+        <tr><td>Battery (Option B)</td><td>10 years / 6,000 cycles (per manufacturer)</td></tr>
+        <tr><td>Carport structure</td><td>10 years structural</td></tr>
+        <tr><td>Lighthief workmanship</td><td>2 years from commissioning</td></tr>
+      </tbody>
+    </table>
+    <p>Optional O&amp;M: <strong>€1,400/year</strong> (PV + battery monitoring, inverter checks, annual report).</p>
+  </div>
+
+  <div class="contact-box">
+    <h3 style="color:var(--primary);margin-bottom:12px;">Your Lighthief contact</h3>
+    <p><strong>Alexander Papacosta</strong> · Cyprus Director<br>
+    Tel: <strong>+357 99 164 158</strong> · Email: <strong>office@lighthief.com</strong><br>
+    Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy</p>
+    <p style="margin-top:12px;font-size:12px;color:var(--gray-500);">Prepared for Mr Evgeny · Limassol Tennis Center, Parekklisia · +357 99 620 618</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="container">
+    Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol · solarfarms.cy · office@lighthief.com
+  </div>
+</div>
+
+</body>
+</html>

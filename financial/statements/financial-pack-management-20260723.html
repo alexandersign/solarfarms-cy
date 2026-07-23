@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief Cyprus Ltd — Management Financial Pack | 23 Jul 2026</title>
+<style>
+:root {
+  --primary: #1A365D;
+  --primary-light: #2B5FA0;
+  --accent: #C9A432;
+  --accent-dark: #9C7D22;
+  --white: #FFFFFF;
+  --grey-text: #404040;
+  --body-bg: #F0F4F8;
+  --border: #D0D8E0;
+  --green: #166534;
+  --red: #991B1B;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--body-bg);
+  color: #000;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff;
+  padding: 28px 32px;
+  border-radius: 8px 8px 0 0;
+}
+.header h1 { color: var(--accent); font-size: 1.55rem; margin-bottom: 4px; }
+.header .sub { color: rgba(255,255,255,.85); font-size: .92rem; }
+.header .meta { margin-top: 14px; font-size: .8rem; color: rgba(255,255,255,.7); }
+.badge {
+  display: inline-block; background: rgba(201,164,50,.25); color: var(--accent);
+  border: 1px solid var(--accent); padding: 2px 10px; border-radius: 4px;
+  font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card {
+  background: #fff; border: 1px solid var(--border); border-top: none;
+  padding: 28px 32px;
+}
+.card + .card { border-top: 1px solid var(--border); margin-top: 0; }
+h2 { color: var(--accent); font-size: 1.15rem; margin: 0 0 8px; }
+h3 { color: var(--primary); font-size: .98rem; margin: 20px 0 8px; }
+p.desc { color: var(--grey-text); margin-bottom: 16px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 18px 0; }
+.kpi { background: var(--body-bg); border: 1px solid var(--border); padding: 14px 16px; border-radius: 6px; }
+.kpi .l { font-size: .68rem; text-transform: uppercase; letter-spacing: .04em; color: var(--grey-text); }
+.kpi .v { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-top: 2px; }
+.kpi .v.gold { color: var(--accent-dark); }
+.kpi .v.neg { color: var(--red); }
+.kpi .v.pos { color: var(--green); }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; }
+th { background: var(--primary); color: #fff; text-align: left; padding: 8px 10px; font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--border); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.num.pos { color: var(--green); font-weight: 600; }
+td.num.neg { color: var(--red); font-weight: 600; }
+tr.total td { font-weight: 700; background: #EEF2F7; border-top: 2px solid var(--primary); }
+tr.section td { background: #F7F9FC; font-weight: 600; color: var(--primary); }
+.warn {
+  background: #FFF8E7; border-left: 4px solid var(--accent); padding: 12px 14px;
+  margin: 14px 0; color: var(--grey-text); font-size: .88rem;
+}
+.gap {
+  background: #FEF2F2; border-left: 4px solid var(--red); padding: 12px 14px;
+  margin: 14px 0; color: var(--grey-text); font-size: .88rem;
+}
+.ok {
+  background: #F0FDF4; border-left: 4px solid var(--green); padding: 12px 14px;
+  margin: 14px 0; color: var(--grey-text); font-size: .88rem;
+}
+ul { margin: 8px 0 12px 18px; color: var(--grey-text); }
+li { margin-bottom: 4px; }
+.footer {
+  background: var(--primary); color: rgba(255,255,255,.75); padding: 16px 32px;
+  border-radius: 0 0 8px 8px; font-size: .75rem;
+}
+.footer strong { color: var(--accent); }
+@media print {
+  body { background: #fff; }
+  .wrap { max-width: 100%; padding: 0; }
+  .card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="badge">Management pack · Not audited</div>
+    <h1>Lighthief Cyprus Ltd — Financial Information Pack</h1>
+    <div class="sub">Trial Balance / Balance Sheet / P&amp;L proxies · Bank accounts &amp; loans · Response pack for information request</div>
+    <div class="meta">Generated 23 July 2026 · Bank source: BOC a/c 357044102353 · Period 22 Aug 2025 – 22 Jul 2026 · Ref: LH-FIN-PACK-20260723</div>
+  </div>
+
+  <div class="card">
+    <h2>0. Cover note — scope &amp; limitations</h2>
+    <p class="desc">Lighthief Cyprus Ltd was incorporated in Cyprus on <strong>1 July 2025</strong> (HE 477423). No audited financial statements exist yet. This pack is prepared from Bank of Cyprus transaction history and internal accrual cashflow worksheets.</p>
+    <div class="ok"><strong>Included from bank / management books:</strong> Cash-basis P&amp;L 2025 &amp; 2026 YTD · Accrual management P&amp;L · Simplified balance-sheet proxy · Active bank accounts · Shareholder loans schedule</div>
+    <div class="gap"><strong>Not available in company systems (require accountant / TFA portal / QuickBooks export):</strong>
+      <ul>
+        <li>Formal Trial Balance / Chart of Accounts export</li>
+        <li>Statutory Balance Sheet &amp; Profit &amp; Loss (audited or accountant-signed)</li>
+        <li>Confirmation that Temporary Tax assessments for 2025 were submitted and paid</li>
+        <li>Latest filed VAT return PDF (Q3 2025 pack exists on Drive; later quarters need confirmation)</li>
+      </ul>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="l">BOC balance</div><div class="v gold">€2,889.86</div><div class="l">22 Jul 2026</div></div>
+      <div class="kpi"><div class="l">2025 client receipts (cash)</div><div class="v">€60,528.62</div></div>
+      <div class="kpi"><div class="l">2026 YTD client receipts</div><div class="v">€133,100.92</div></div>
+      <div class="kpi"><div class="l">SH loans outstanding</div><div class="v">€74,009.53</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Profit &amp; Loss — Cash basis (Bank of Cyprus)</h2>
+    <p class="desc">Derived from BOC statement 22 Aug 2025 – 22 Jul 2026. Operating inflows = client receipts + cash deposits. Shareholder loans and Revolut top-ups treated as financing, not trading profit.</p>
+
+    <h3>1.1 Financial year 2025 (22 Aug – 31 Dec)</h3>
+    <table>
+      <thead><tr><th>Item</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody>
+        <tr class="section"><td colspan="2">Operating income</td></tr>
+        <tr><td>Client receipts</td><td class="num">€60,528.62</td></tr>
+        <tr><td>Cash deposits</td><td class="num">€5,470.00</td></tr>
+        <tr class="total"><td>Total operating inflows</td><td class="num">€65,998.62</td></tr>
+        <tr class="section"><td colspan="2">Operating outflows</td></tr>
+        <tr><td>COGS — Trikkis / kit</td><td class='num'>€10,991.62</td></tr>
+<tr><td>Payroll & commissions</td><td class='num'>€11,169.00</td></tr>
+<tr><td>Marketing (Meta/Google)</td><td class='num'>€8,471.90</td></tr>
+<tr><td>Software / SaaS</td><td class='num'>€366.34</td></tr>
+<tr><td>Materials / site (Kafkas etc.)</td><td class='num'>€49.99</td></tr>
+<tr><td>Fuel</td><td class='num'>€571.82</td></tr>
+<tr><td>Card purchases (misc)</td><td class='num'>€5,401.72</td></tr>
+<tr><td>ATM cash</td><td class='num'>€20.00</td></tr>
+<tr><td>Bank fees</td><td class='num'>€108.00</td></tr>
+<tr><td>Other transfers (uncategorised)</td><td class='num'>€27,220.40</td></tr>
+        <tr class="total"><td>Total operating outflows</td><td class="num">€64,370.79</td></tr>
+        <tr class="total"><td>Net operating cash</td><td class="num pos">€1,627.83</td></tr>
+        <tr class="section"><td colspan="2">Financing</td></tr>
+        <tr><td>Shareholder loans received</td><td class="num">€5,500.00</td></tr>
+        <tr><td>Revolut top-ups (loan drawdown)</td><td class="num neg">(€5,203.57)</td></tr>
+        <tr class="total"><td>Net bank cash movement (all)</td><td class="num pos">€1,924.26</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.2 Financial year 2026 YTD (1 Jan – 22 Jul)</h3>
+    <table>
+      <thead><tr><th>Item</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody>
+        <tr class="section"><td colspan="2">Operating income</td></tr>
+        <tr><td>Client receipts</td><td class="num">€133,100.92</td></tr>
+        <tr><td>Cash deposits</td><td class="num">€8,120.00</td></tr>
+        <tr class="total"><td>Total operating inflows</td><td class="num">€141,220.92</td></tr>
+        <tr class="section"><td colspan="2">Operating outflows</td></tr>
+        <tr><td>COGS — Trikkis / kit</td><td class='num'>€46,369.28</td></tr>
+<tr><td>Payroll & commissions</td><td class='num'>€57,887.67</td></tr>
+<tr><td>Social insurance</td><td class='num'>€6,578.11</td></tr>
+<tr><td>Marketing (Meta/Google)</td><td class='num'>€9,457.29</td></tr>
+<tr><td>Software / SaaS</td><td class='num'>€3,851.08</td></tr>
+<tr><td>Materials / site (Kafkas etc.)</td><td class='num'>€3,584.62</td></tr>
+<tr><td>Other suppliers (7Sun, Galascope, etc.)</td><td class='num'>€12,641.81</td></tr>
+<tr><td>Fuel</td><td class='num'>€1,200.53</td></tr>
+<tr><td>Card purchases (misc)</td><td class='num'>€17,441.07</td></tr>
+<tr><td>ATM cash</td><td class='num'>€2,490.00</td></tr>
+<tr><td>Bank fees</td><td class='num'>€92.00</td></tr>
+<tr><td>Other transfers (uncategorised)</td><td class='num'>€52,374.96</td></tr>
+        <tr class="total"><td>Total operating outflows</td><td class="num">€213,968.42</td></tr>
+        <tr class="total"><td>Net operating cash</td><td class="num neg">(€72,747.50)</td></tr>
+        <tr class="section"><td colspan="2">Financing</td></tr>
+        <tr><td>Shareholder loans received</td><td class="num">€85,000.00</td></tr>
+        <tr><td>Revolut top-ups (loan drawdown)</td><td class="num neg">(€11,286.90)</td></tr>
+        <tr class="total"><td>Net bank cash movement (all)</td><td class="num pos">€965.60</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">2026 figures are <strong>year-to-date through 22 July</strong>, not full-year. Revolut account activity outside BOC card top-ups is not included.</div>
+  </div>
+
+  <div class="card">
+    <h2>2. Profit &amp; Loss — Accrual management (internal worksheets)</h2>
+    <p class="desc">From Lighthief Cashflow Accrual CSVs. Useful as management P&amp;L; <strong>not</strong> a statutory income statement.</p>
+
+    <h3>2.1 FY 2025 accrual</h3>
+    <table>
+      <thead><tr><th>Item</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody>
+        <tr><td>System sales (billed)</td><td class="num">€218,183.00</td></tr>
+        <tr><td>Subcontractors (Trikkis etc.)</td><td class="num">€147,789.00</td></tr>
+        <tr><td>Sales commissions</td><td class="num">€17,746.39</td></tr>
+        <tr><td>Advertising</td><td class="num">€16,500.00</td></tr>
+        <tr><td>Payroll + social (sheet)</td><td class="num">€34,385.65</td></tr>
+        <tr><td>Other opex (cars, travel, accountant, Meta mgr)</td><td class="num">€10,177.45</td></tr>
+        <tr class="total"><td>Total expenses</td><td class="num">€226,598.49</td></tr>
+        <tr class="total"><td>Gross margin (sheet)</td><td class="num neg">(€8,415.49)</td></tr>
+        <tr class="total"><td>Net margin (sheet)</td><td class="num neg">(€7,071.84)</td></tr>
+        <tr><td>VAT (sheet)</td><td class="num">€9,555.86</td></tr>
+      </tbody>
+    </table>
+    <p class="desc">Accrual Jul–Dec 2025 (trading started Aug 2025). Source: Lighthief Cashflow 2025 Accrual CSV.</p>
+
+    <h3>2.2 FY 2026 accrual budget / forecast</h3>
+    <table>
+      <thead><tr><th>Item</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Total income (sheet — primarily system/BESS pipeline)</td><td class="num">€2,291,564.00</td></tr>
+        <tr><td>Bess sales (memo)</td><td class="num">€357,000.00</td></tr>
+        <tr><td>Bess O&amp;M (memo)</td><td class="num">€45,000.00</td></tr>
+        <tr class="total"><td>Total expenses</td><td class="num">€2,220,042.22</td></tr>
+        <tr class="total"><td>Gross margin</td><td class="num pos">€71,521.78</td></tr>
+        <tr class="total"><td>Net margin</td><td class="num pos">€60,102.34</td></tr>
+        <tr><td>VAT (sheet)</td><td class="num">€43,436.17</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">Full-year 2026 BUDGET/forecast accrual — not YTD actual. Includes large Jun/Jul BESS pipeline months. Bess Sales €357k and Bess OM €45k are memo lines on the sheet.</div>
+  </div>
+
+  <div class="card">
+    <h2>3. Balance Sheet proxy (management)</h2>
+    <p class="desc">Simplified position from known cash and labelled shareholder loans. <strong>Not a statutory balance sheet</strong> — excludes receivables, payables, inventory, fixed assets, VAT debtor/creditor, Revolut cash, and unpaid Trikkis balances.</p>
+    <table>
+      <thead><tr><th>As at 22 July 2026</th><th style="text-align:right">EUR</th></tr></thead>
+      <tbody>
+        <tr class="section"><td colspan="2">Assets</td></tr>
+        <tr><td>Cash at bank — Bank of Cyprus 357044102353</td><td class="num">€2,889.86</td></tr>
+        <tr><td>Cash — Revolut (not in this export)</td><td class="num">TBC</td></tr>
+        <tr><td>Trade receivables / other assets</td><td class="num">TBC (accountant)</td></tr>
+        <tr class="total"><td>Total assets (known cash only)</td><td class="num">€2,889.86</td></tr>
+        <tr class="section"><td colspan="2">Liabilities</td></tr>
+        <tr><td>Shareholder loans (Arkadiusz Sybaris) — outstanding</td><td class="num">€74,009.53</td></tr>
+        <tr><td>Bank loans / overdrafts</td><td class="num">€0.00</td></tr>
+        <tr><td>Trade payables / VAT / tax</td><td class="num">TBC (accountant)</td></tr>
+        <tr class="total"><td>Total liabilities (known loans only)</td><td class="num">€74,009.53</td></tr>
+        <tr class="section"><td colspan="2">Equity (plug)</td></tr>
+        <tr><td>Net assets known cash − known SH loans</td><td class="num neg">(€71,119.67)</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">Opening cash at first BOC activity ≈ €2,317.90. Year-end 2025 BOC balance ≈ €1,930.26.</div>
+  </div>
+
+  <div class="card">
+    <h2>4. Trial Balance</h2>
+    <div class="gap">No Chart of Accounts / Trial Balance export is available in company repositories. QuickBooks Online is in use (card charges visible on BOC). Please request TB as at 31 Dec 2025 and as at latest month-end from the chartered accountant / QuickBooks administrator.</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Temporary Tax assessments 2025</h2>
+    <div class="gap"><strong>Status: not confirmed from available records.</strong> No Temporary Tax (προσωρινή φορολογία) assessment or payment receipt for 2025 was found in the solinvest workspace or indexed Drive accounting folders. Confirm with the Cyprus chartered accountant / TFA portal whether assessments were filed and paid for the 2025 stub year (incorporation 1 Jul 2025).</div>
+  </div>
+
+  <div class="card">
+    <h2>6. VAT returns &amp; payments</h2>
+    <p class="desc">Company is VAT-registered. Evidence on Google Drive <code>Lighthief Cyprus\ACCOUNTING\VAT\</code>:</p>
+    <table>
+      <thead><tr><th>Period</th><th>Return PDF</th><th>Payment evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Jul–Sep 2025 (Q3)</td><td>VAT JUL AUG SEP 2025.pdf — filed pack</td><td>VAT Payment.pdf</td></tr>
+        <tr><td>Oct–Dec 2025 (Q4)</td><td>Supporting docs; full return PDF TBC</td><td>Payment receipt Feb 2026</td></tr>
+        <tr><td>Jan–Mar 2026 (Q1)</td><td>Supporting docs; full return PDF TBC</td><td>Payment receipt May 2026</td></tr>
+        <tr><td>Apr–Jun 2026 (Q2)</td><td>Supporting invoices/statements</td><td>TBC</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">Accrual sheet VAT markers: 2025 ≈ €9,555.86 · 2026 budget ≈ €43,436.17. These are worksheet estimates, not filed amounts.</div>
+  </div>
+
+  <div class="card">
+    <h2>7. Active bank accounts &amp; loans</h2>
+    <h3>7.1 Bank accounts</h3>
+    <table>
+      <thead><tr><th>Institution</th><th>Account</th><th>Currency</th><th>Status / balance</th></tr></thead>
+      <tbody>
+        <tr><td>Bank of Cyprus</td><td>357044102353 (current)</td><td>EUR</td><td>Active — €2,889.86 as at 22 Jul 2026</td></tr>
+        <tr><td>Revolut Business</td><td>IBAN on file (confirmation PDF in Drive SALES)</td><td>EUR</td><td>Active — balance not in this BOC export</td></tr>
+      </tbody>
+    </table>
+
+    <h3>7.2 Loans</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Lender</th><th>Drawn (labelled)</th><th>Drawdowns (Revolut)</th><th>Outstanding (est.)</th></tr></thead>
+      <tbody>
+        <tr><td>Shareholder loan</td><td>Arkadiusz Sybaris</td><td class="num">€90,500.00</td><td class="num">€16,490.47</td><td class="num">€74,009.53</td></tr>
+        <tr><td>Bank loan / facility</td><td>—</td><td class="num">€0.00</td><td class="num">—</td><td class="num">€0.00</td></tr>
+        <tr class="total"><td colspan="4">Total interest-bearing bank debt</td><td class="num">€0.00</td></tr>
+      </tbody>
+    </table>
+
+    <h3>7.3 Shareholder loan drawdowns (labelled)</h3>
+    <table>
+      <thead><tr><th>Date</th><th style="text-align:right">Amount</th><th>Narrative</th></tr></thead>
+      <tbody>
+        <tr><td>22 Aug 2025</td><td class='num'>€500.00</td><td>TIPS INWARD 102965264 by ARKADIUSZ SYBARIS>Shareholders loan</td></tr>
+<tr><td>08 Sep 2025</td><td class='num'>€5,000.00</td><td>TIPS INWARD 103182692 by ARKADIUSZ SYBARIS>Shareholders loan to the company</td></tr>
+<tr><td>15 Jan 2026</td><td class='num'>€8,000.00</td><td>TIPS INWARD 105833763 by ARKADIUSZ SYBARIS>Shareholders loan to the company</td></tr>
+<tr><td>10 Feb 2026</td><td class='num'>€4,000.00</td><td>TIPS INWARD 106473845 by ARKADIUSZ SYBARIS>Shareholders loan to the company</td></tr>
+<tr><td>18 Feb 2026</td><td class='num'>€10,000.00</td><td>TIPS INWARD 106608829 by ARKADIUSZ SYBARIS>Shareholders loan to the company</td></tr>
+<tr><td>02 Jul 2026</td><td class='num'>€60,000.00</td><td>TIPS INWARD 110434620 by ARKADIUSZ SYBARIS>Shareholders loan to the company</td></tr>
+<tr><td>09 Jul 2026</td><td class='num'>€3,000.00</td><td>TIPS INWARD 110648241 by ARKADIUSZ SYBARIS>Shareholders loan to the company</td></tr>
+        <tr class="total"><td>Total</td><td class="num">€90,500.00</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="ok">No Bank of Cyprus loan, overdraft facility, or external bank borrowing appears in the 12-month statement.</div>
+  </div>
+
+  <div class="card">
+    <h2>8. Monthly cash summary (BOC)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th><th style="text-align:right">Client IN</th>
+          <th style="text-align:right">SH loan IN</th>
+          <th style="text-align:right">Total IN</th>
+          <th style="text-align:right">Total OUT</th>
+          <th style="text-align:right">Net</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>2025-08</td><td class='num'>€4,242.87</td><td class='num'>€500.00</td><td class='num'>€4,742.87</td><td class='num'>€1,462.68</td><td class='num pos'>€3,280.19</td></tr>
+<tr><td>2025-09</td><td class='num'>€11,075.99</td><td class='num'>€5,000.00</td><td class='num'>€16,075.99</td><td class='num'>€11,749.75</td><td class='num pos'>€4,326.24</td></tr>
+<tr><td>2025-10</td><td class='num'>€11,832.13</td><td class='num'>€0.00</td><td class='num'>€11,832.13</td><td class='num'>€8,611.08</td><td class='num pos'>€3,221.05</td></tr>
+<tr><td>2025-11</td><td class='num'>€15,021.44</td><td class='num'>€0.00</td><td class='num'>€18,021.44</td><td class='num'>€22,519.72</td><td class='num neg'>(€4,498.28)</td></tr>
+<tr><td>2025-12</td><td class='num'>€18,356.19</td><td class='num'>€0.00</td><td class='num'>€20,826.19</td><td class='num'>€25,231.13</td><td class='num neg'>(€4,404.94)</td></tr>
+<tr><td>2026-01</td><td class='num'>€9,811.11</td><td class='num'>€8,000.00</td><td class='num'>€20,261.11</td><td class='num'>€12,777.46</td><td class='num pos'>€7,483.65</td></tr>
+<tr><td>2026-02</td><td class='num'>€24,627.63</td><td class='num'>€14,000.00</td><td class='num'>€38,627.63</td><td class='num'>€34,475.71</td><td class='num pos'>€4,151.92</td></tr>
+<tr><td>2026-03</td><td class='num'>€17,400.16</td><td class='num'>€0.00</td><td class='num'>€18,420.16</td><td class='num'>€20,602.68</td><td class='num neg'>(€2,182.52)</td></tr>
+<tr><td>2026-04</td><td class='num'>€11,001.60</td><td class='num'>€0.00</td><td class='num'>€12,651.60</td><td class='num'>€23,926.41</td><td class='num neg'>(€11,274.81)</td></tr>
+<tr><td>2026-05</td><td class='num'>€39,816.32</td><td class='num'>€0.00</td><td class='num'>€39,816.32</td><td class='num'>€22,562.96</td><td class='num pos'>€17,253.36</td></tr>
+<tr><td>2026-06</td><td class='num'>€14,775.60</td><td class='num'>€0.00</td><td class='num'>€17,775.60</td><td class='num'>€34,398.87</td><td class='num neg'>(€16,623.27)</td></tr>
+<tr><td>2026-07</td><td class='num'>€15,668.50</td><td class='num'>€63,000.00</td><td class='num'>€78,668.50</td><td class='num'>€76,511.23</td><td class='num pos'>€2,157.27</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Source files</h2>
+    <ul>
+      <li><code>financial/statements/TransactionHistory_12m_20260723.csv</code> — BOC 12-month export</li>
+      <li><code>financial/statements/TransactionHistory_master_boc.csv</code> — deduped master</li>
+      <li><code>financial/statements/bank-validation-20260723.md</code> — validation vs Apr report</li>
+      <li><code>lighthief-cyprus/cashflow/Lighthief Cashflow 2025 - Accural 2025.csv</code></li>
+      <li><code>financial/Lighthief Cashflow  - Accural 2026.csv</code></li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <strong>Lighthief Cyprus Ltd</strong> · HE 477423 · solarfarms.cy<br>
+    28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+    office@lighthief.com · +357 77 77 00 50 · Cyprus Director: Alexander Papacosta +357 99 164 158<br>
+    This document is a management information pack and does not constitute audited financial statements.
+  </div>
+</div>
+</body>
+</html>

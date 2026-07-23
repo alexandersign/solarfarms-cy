@@ -2,7 +2,7 @@ import csv, re
 from collections import defaultdict
 from datetime import datetime
 
-path = r"c:\Users\alexa\code\solinvest\financial\statements\TransactionHistory_1778844425612.csv"
+path = r"c:\Users\alexa\code\solinvest\financial\statements\TransactionHistory_master_boc.csv"
 
 def parse_amount(s):
     if not s or not str(s).strip(): return 0.0

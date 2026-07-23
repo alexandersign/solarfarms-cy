@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-path = r"c:\Users\alexa\code\solinvest\financial\statements\TransactionHistory_1778844425612.csv"
+path = r"c:\Users\alexa\code\solinvest\financial\statements\TransactionHistory_master_boc.csv"
 
 def parse_amount(s):
     if not s or not str(s).strip():
@@ -51,7 +51,7 @@ def categorize(desc, tx_type):
     if "REVOLUT" in d:
         if "CARDTXNADMIN" in d:
             return "Bank & card fees"
-        return "Founder draw (Revolut top-up)"
+        return "Founder draw (loan return via Revolut)"
 
     # Marketing
     if "FACEBK" in d or "GOOGLE ADS" in d:

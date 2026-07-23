@@ -67,19 +67,23 @@ export const SELLER_COMMERCIAL = {
   novikovNote: 'Seller model — south-facing yield, levered; not Lighthief base case',
 } as const
 
-/** PV site — permit vs Lighthief design (Dec 2024 drawings = south 15° in DD index) */
+/** PV site — Lighthief E–W design (civil engineer confirmed Jun 2026) */
 export const PV_SITE = {
   panelModel: 'Jinko Tiger Neo 645W bifacial',
   panelW: 645,
   designLayout: 'Bifacial east–west 10°',
-  permitLayoutNote: 'DD index: fixed tilt 15° south, 0.5 m pile — superseded by E–W 10° design (confirm permit amendment if required)',
-  modelMWp: 3.32,
+  rowSpacingM: 1.0,
+  civilEngineerConfirmed: true,
+  civilEngineerConfirmedDate: '2026-06',
+  civilEngineerNote: '3.2 MWp doable on Plot 316 with E–W 10° and 1 m inter-row spacing (Lighthief civil)',
+  modelMWp: 3.2,
   permitMWp: 3.32,
   eacLicensedMWp: 3.0,
   acExportMW: 2.7,
-  moduleCountAtPermit: Math.round((3.32 * 1e6) / 645), // 5147
-  rowSpacingVerified: false,
-  rowSpacingNote: 'Town planning layout PDF not in repo — row pitch / GCR unverified',
+  moduleCountAtModel: Math.round((3.2 * 1e6) / 645), // 4961
+  rowSpacingVerified: true,
+  rowSpacingNote: '1 m inter-row spacing — confirmed by Lighthief civil engineer (Jun 2026)',
+  permitLayoutNote: 'DD AutoCAD/PDF show south 15° reference layout; E–W 10° is build design',
   coordsStatus: 'approximate',
   coordsSource: 'Sia village centroid pending topographic plan OCR',
 } as const
@@ -101,8 +105,9 @@ export const PV_YIELD = {
 export const LH_PRICING = {
   pvEURPerMWp: 720_000,
   bessEURPerMWh: 127_000,
-  rtbWithConnectionTermsEUR: 600_000,
-  source: 'lib/deals/rtb-deal-types.ts LH_EPC + RTB_COSTS; Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx',
+  rtbPerMWpEUR: 550_000,
+  rtbWithConnectionTermsEUR: 550_000 * 3.2, // €550k/MWp × 3.2 MWp = €1.76M
+  source: 'lib/deals/rtb-deal-types.ts LH_EPC; Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx',
 } as const
 
 /** OPEX lines with source tags */

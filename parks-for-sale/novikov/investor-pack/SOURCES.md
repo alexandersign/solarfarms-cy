@@ -27,7 +27,7 @@
 | Item | Value | Source |
 |------|-------|--------|
 | Solar sell | €140.88/MWh | TSOC DAM daytime 06–17h |
-| BESS discharge | €195/MWh model | vs €182.99 measured evening avg |
+| BESS discharge | €182.99/MWh | TSOC evening avg 17–21h (134 TSOC day-ahead days (1 Oct 2025 – 11 Feb 2026), 6,432 half-hourly prints) |
 | Sample | 134 days | 1 Oct 2025 – 11 Feb 2026 |
 
 ## Yield

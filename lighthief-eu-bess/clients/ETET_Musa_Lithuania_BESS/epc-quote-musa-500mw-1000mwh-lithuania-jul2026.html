@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighthief — EPC Quotation — Mūša 500 MW / 1,000 MWh BESS, Lithuania</title>
+<style>
+  :root {
+    --primary: #1A365D;      /* NAVY — structure, headers, table heads */
+    --primary-light: #2B5FA0;/* lighter navy — gradients, hover */
+    --accent: #C9A432;       /* GOLD — headings, reference numbers */
+    --accent-dark: #9C7D22;
+    --accent-bg: #F5EFD9;
+    --success: #1f7a4d;
+    --success-bg: #e3f3ea;
+    --bg: #fff;
+    --bg-alt: #F0F4F8;
+    --text: #1a1a1a;
+    --muted: #5b6b7f;
+    --border: #d9e1ea;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height:1.65; }
+
+  .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color:white; padding:4rem 2rem 3.4rem; text-align:center; position:relative; }
+  .hero::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:50px; background:var(--bg); clip-path:ellipse(55% 100% at 50% 100%); }
+  .hero .brand { font-size:0.95rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:0.9rem; }
+  .hero h1 { font-size:2rem; font-weight:800; margin-bottom:0.5rem; }
+  .hero .sub { font-size:1.05rem; opacity:0.9; max-width:720px; margin:0 auto; }
+  .hero .to { margin-top:1.6rem; font-size:0.85rem; opacity:0.75; }
+
+  .container { max-width:940px; margin:0 auto; padding:0 1.5rem; }
+  section { padding:2.5rem 0; }
+  section + section { border-top:1px solid var(--border); }
+  h2 { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:0.6rem; }
+  h2 .num { color:var(--primary); }
+  .section-lead { color:var(--muted); margin-bottom:1.4rem; font-size:0.95rem; }
+  h3 { font-size:1rem; color:var(--primary); margin:1.3rem 0 0.5rem; font-weight:700; }
+
+  table { width:100%; border-collapse:collapse; margin:0.6rem 0 1.2rem; font-size:0.88rem; }
+  th { background:var(--primary); color:white; padding:10px 14px; text-align:left; font-weight:600; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.4px; }
+  td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tr:nth-child(even) { background:var(--bg-alt); }
+  td.num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  th.num { text-align:right; }
+  .highlight td { background:var(--accent-bg); font-weight:600; }
+  .total td { background:var(--primary); color:#fff; font-weight:700; font-size:0.95rem; border-bottom:none; }
+
+  .card { background:var(--bg-alt); border:1px solid var(--border); border-radius:10px; padding:1.4rem; margin-bottom:1rem; }
+  .card.accent { border-color:var(--accent); background:var(--accent-bg); }
+  .card.green { border-color:var(--success); background:var(--success-bg); }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  @media (max-width:700px) { .grid-2,.grid-3 { grid-template-columns:1fr; } }
+
+  .stat { background:var(--bg-alt); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:8px; padding:1rem 1.1rem; }
+  .stat .v { font-size:1.5rem; font-weight:800; color:var(--primary); }
+  .stat .l { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; }
+
+  ul { margin:0.3rem 0 0.8rem 1.4rem; font-size:0.9rem; }
+  li { margin-bottom:0.25rem; }
+  .sn { display:inline-block; width:26px; height:26px; line-height:26px; text-align:center; background:var(--accent); color:var(--primary); border-radius:50%; font-size:0.78rem; font-weight:800; margin-right:8px; vertical-align:middle; }
+  .site-img { width:100%; border:1px solid var(--border); border-radius:10px; margin:0.6rem 0; }
+  .cap { font-size:0.78rem; color:var(--muted); margin-bottom:1rem; }
+  .note { font-size:0.82rem; color:var(--muted); }
+
+  .footer { background:var(--primary); color:rgba(255,255,255,0.75); text-align:center; padding:2rem; margin-top:2rem; font-size:0.8rem; }
+  .footer strong { color:var(--accent); }
+  .footer a { color:#fff; text-decoration:none; }
+
+  .print-btn { position:fixed; top:12px; right:12px; background:var(--accent); color:var(--primary); border:none; padding:8px 18px; border-radius:8px; cursor:pointer; font-size:0.82rem; font-weight:700; }
+  @media print { .print-btn{display:none;} .hero{padding:2rem;} .hero::after{display:none;} section{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / PDF</button>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <div class="brand">Lighthief</div>
+  <h1>EPC Quotation — Grid-Scale BESS</h1>
+  <div class="sub">Mūša Battery Energy Storage System · 500 MW / 1,000 MWh (2-hour)<br>Litgrid 330 kV connection, Lithuania</div>
+  <div class="to">Prepared for: ETET Engineering GmbH (Germany)<br>Ref: LTH-ETET-MUSA-EPC-JUL2026 · 6 July 2026 · Validity: 60 days</div>
+</div>
+
+<div class="container">
+
+<!-- ═══════ 1. EXECUTIVE SUMMARY ═══════ -->
+<section>
+  <h2><span class="num">1.</span> Executive Summary</h2>
+  <div class="card accent">
+    <p style="font-size:0.92rem;">Lighthief is pleased to submit this turnkey EPC quotation for the <strong>Mūša 500 MW / 1,000 MWh</strong> battery energy storage project in Lithuania, in response to your project requirement checklist (rev. 2026.04.08) and preliminary site plan. The plant comprises a 200 MW block and a 300 MW block of containerised LFP storage, connected via two new producer step-up stations to the existing Mūša 330 kV Litgrid substation.</p>
+    <p style="font-size:0.92rem; margin-top:0.6rem;">Our scope delivers a complete, grid-code-compliant BESS on a <strong>DDP project-site</strong> basis, engineered for the ENTSO-E Continental Europe synchronous area and the full Lithuanian revenue stack (FCR, aFRR, mFRR, day-ahead, intraday and the capacity market). The design meets the specified −25&nbsp;°C to +60&nbsp;°C ambient range, C5 anti-corrosion class and IEEE&nbsp;693-2018 (moderate) seismic level, targeting <strong>COD in Q4 2028 / Q1 2029</strong>.</p>
+    <p style="font-size:0.92rem; margin-top:0.6rem;">Lighthief operates 11 offices and a 150+ engineer team across 11 European countries, with our EU headquarters and a 3,500&nbsp;m² spare-parts warehouse in Poland — enabling delivery and long-term service in Lithuania without cross-border mobilisation delays.</p>
+  </div>
+
+  <div class="grid-3" style="margin-top:1.2rem;">
+    <div class="stat"><div class="v">500 MW</div><div class="l">Rated Power (AC)</div></div>
+    <div class="stat"><div class="v">1,000 MWh</div><div class="l">Usable Energy @ POC (BoL)</div></div>
+    <div class="stat"><div class="v">2 h</div><div class="l">Duration @ 0.5C</div></div>
+    <div class="stat"><div class="v">330 kV</div><div class="l">Litgrid Connection</div></div>
+    <div class="stat"><div class="v">15 yr</div><div class="l">Design Life / 8,000 cycles</div></div>
+    <div class="stat"><div class="v">≥ 97%</div><div class="l">Guaranteed Availability</div></div>
+  </div>
+</section>
+
+<!-- ═══════ 2. PROJECT UNDERSTANDING ═══════ -->
+<section>
+  <h2><span class="num">2.</span> Project Understanding</h2>
+  <p class="section-lead">Requirements as captured from the ETET / Mūša project requirement checklist and preliminary layout (Elektros Tinklų Projektai).</p>
+
+  <table>
+    <tr><th style="width:38%;">Parameter</th><th>Requirement</th></tr>
+    <tr><td>Project</td><td>Mūša BESS — 200 MW block + 300 MW block (500 MW aggregate)</td></tr>
+    <tr><td>Location</td><td>Greenfield agricultural land adjacent to existing Mūša 330 kV Litgrid substation · 56°07′29.6″N 23°30′25.2″E</td></tr>
+    <tr><td>Rated power / energy</td><td>500 MW AC / 1,000 MWh DC — configured per nameplate capacity</td></tr>
+    <tr><td>Usable energy</td><td>1,000 MWh @ POC (BoL); 700 MWh @ EoL (70% SoH after 15 yr / 8,000 cycles)</td></tr>
+    <tr><td>C-rate / cycling</td><td>0.5C usable; up to 1.7 full cycles/day (typical 1.0–1.5)</td></tr>
+    <tr><td>Applications</td><td>Frequency regulation (FCR, aFRR, mFRR), energy arbitrage (day-ahead / intraday), capacity market, reactive power / voltage support</td></tr>
+    <tr><td>Grid connection</td><td>330 kV / 50 Hz to Litgrid TSO (ENTSO-E Continental Europe); full grid injection permitted; ±0.95 PF capability per Litgrid grid code</td></tr>
+    <tr><td>Environment</td><td>Ambient −25 °C to +60 °C · C5 anti-corrosion (ISO 12944) · IEEE 693-2018 (moderate) seismic · outdoor containerised</td></tr>
+    <tr><td>Delivery / Incoterms</td><td>DDP project site, Lithuania (final Incoterms to be confirmed)</td></tr>
+    <tr><td>Schedule</td><td>Delivery Q2 2028 · COD Q4 2028 / Q1 2029</td></tr>
+    <tr><td>Client</td><td>ETET Engineering GmbH (Germany)</td></tr>
+  </table>
+
+  <h3>Preliminary Site Layout</h3>
+  <img class="site-img" src="site-plan-musa.png" alt="Mūša BESS preliminary situation plan showing 200 MW and 300 MW storage blocks and two producer step-up stations connecting to the existing Mūša 330 kV substation">
+  <p class="cap">Preliminary situation plan (source: RFP, Elektros Tinklų Projektai). Two storage blocks (200 MW + 300 MW) with dedicated producer step-up stations tie into the existing Mūša 330 kV substation. Final arrangement subject to detailed design and geotechnical survey.</p>
+</section>
+
+<!-- ═══════ 3. TECHNICAL SOLUTION ═══════ -->
+<section>
+  <h2><span class="num">3.</span> Technical Solution</h2>
+  <p class="section-lead">Containerised LFP DC blocks with bidirectional PCS and integrated MV step-up, controlled by a grid-code-compliant EMS/SCADA.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="margin-top:0;">DC Battery System</h3>
+      <ul>
+        <li>Outdoor liquid-cooled LFP containers (~5 MWh class, ~200 units) — packs, racks, BMS, DC cabling & internal comms</li>
+        <li>Integrated thermal management (HVAC / liquid cooling) rated for −25 °C to +60 °C</li>
+        <li>4-level fire safety per NFPA 855: smoke detection, H₂ off-gas detection, aerosol suppression and water sprinkler/deluge readiness</li>
+        <li>C5 anti-corrosion coating (ISO 12944) for coastal / moderate-industrial exposure</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Power Conversion &amp; MV</h3>
+      <ul>
+        <li>Bidirectional PCS totalling 500 MW with integrated MV step-up transformers (MV-skid)</li>
+        <li>33 kV MV collection network, switchgear, RMUs and auxiliary transformers</li>
+        <li>Grid-connected switchgear provided within EPC scope</li>
+        <li>Reactive power / voltage regulation and LVRT per Litgrid grid code (VDE-AR-N 4120 as reference)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">EMS / SCADA</h3>
+      <ul>
+        <li>Plant controller and energy management system with market-ready dispatch (FCR / aFRR / mFRR / arbitrage)</li>
+        <li>BMS↔PCS↔EMS integration; Modbus TCP / IEC 61850 / IEC 60870-5-104 to TSO</li>
+        <li>Real-time SoC/SoH monitoring, alarm handling and reporting</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Balance of Plant &amp; Civil</h3>
+      <ul>
+        <li>Foundations, internal roads, drainage, earthing and lightning protection</li>
+        <li>Perimeter fencing, CCTV, access control and site lighting</li>
+        <li>Control / auxiliary building; cable trenching and containment</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Key Performance Guarantees</h3>
+  <table>
+    <tr><th>Item</th><th>Guarantee</th></tr>
+    <tr><td>Usable energy at POC (BoL)</td><td>1,000 MWh, verified by capacity test at PAC</td></tr>
+    <tr><td>Capacity retention</td><td>≥ 70% SoH at 15 years / 8,000 equivalent full cycles</td></tr>
+    <tr><td>AC–AC round-trip efficiency</td><td>≥ 86% at POC (auxiliary consumption included), verified at commissioning</td></tr>
+    <tr><td>System availability</td><td>≥ 97% annual (under LTSA)</td></tr>
+    <tr><td>Response time (FCR)</td><td>Full activation within grid-code limits (&lt; 1 s controller response)</td></tr>
+  </table>
+</section>
+
+<!-- ═══════ 4. SCOPE OF SUPPLY ═══════ -->
+<section>
+  <h2><span class="num">4.</span> Scope of Supply</h2>
+
+  <div class="grid-2">
+    <div class="card green">
+      <h3 style="margin-top:0;">Included (Scope A — Battery System EPC to POC)</h3>
+      <ul>
+        <li>Complete DC battery system (packs, racks, BMS, cabinets, DC & comms cabling)</li>
+        <li>Containers &amp; auxiliaries (fire fighting, HVAC, lighting, aux power distribution, ventilation)</li>
+        <li>PCS and MV step-up skids (500 MW)</li>
+        <li>33 kV MV collection, switchgear and grid-connected switchgear</li>
+        <li>EMS / SCADA / plant controller</li>
+        <li>Civil, structural and BoP works within the storage compounds</li>
+        <li>Transport (DDP site), installation, testing, commissioning and grid compliance</li>
+        <li>Construction insurance (CAR/EAR/TPL) and performance security</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Optional / Separate (Scope B &amp; services)</h3>
+      <ul>
+        <li>330 kV producer step-up stations (200 MW + 300 MW GSU) — <em>priced option §5.2</em></li>
+        <li>330 kV interconnection to the existing Mūša Litgrid substation — <em>priced option §5.2</em></li>
+        <li>15-year LTSA / O&amp;M with availability guarantee — <em>indicative §5.3</em></li>
+        <li>Ready-to-build (RTB) development rights, land and permitting — <em>by Client / developer</em></li>
+        <li>Litgrid connection charges (BKZ) and DSO/TSO fees — <em>by Client</em></li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Client-provided (unless otherwise agreed): secured site with legal access, ready-to-build permits and environmental consents, grid connection agreement and reserved capacity, geotechnical and topographic survey, and utilities to the site boundary.</p>
+</section>
+
+<!-- ═══════ 5. COMMERCIAL PROPOSAL ═══════ -->
+<section>
+  <h2><span class="num">5.</span> Commercial Proposal</h2>
+  <p class="section-lead">All prices in EUR, excluding VAT. DDP project site, Lithuania. Valid 60 days from date of issue.</p>
+
+  <h3>5.1 — Scope A: Battery System EPC (Turnkey to Point of Connection)</h3>
+  <table>
+    <tr><th style="width:64%;">Work package</th><th class="num">Price (EUR)</th></tr>
+    <tr><td>DC battery system — 1,000 MWh LFP (containers, BMS, racks, DC cabling, integrated fire &amp; thermal)</td><td class="num">70,200,000</td></tr>
+    <tr><td>Power conversion system — 500 MW PCS + integrated MV step-up skids</td><td class="num">19,000,000</td></tr>
+    <tr><td>EMS / SCADA / plant controller (grid-code &amp; market-ready)</td><td class="num">2,800,000</td></tr>
+    <tr><td>Balance of plant — MV (33 kV collection, switchgear, RMU, aux transformers, earthing)</td><td class="num">9,200,000</td></tr>
+    <tr><td>Civil &amp; structural works (foundations, roads, drainage, fencing, security, control building)</td><td class="num">10,800,000</td></tr>
+    <tr><td>Installation, mechanical &amp; electrical erection</td><td class="num">6,200,000</td></tr>
+    <tr><td>Engineering, design, permitting support &amp; project management</td><td class="num">4,300,000</td></tr>
+    <tr><td>Logistics (DDP site), packaging &amp; on-site handling</td><td class="num">3,200,000</td></tr>
+    <tr><td>Testing, commissioning, grid compliance &amp; performance test</td><td class="num">2,600,000</td></tr>
+    <tr><td>Construction insurance (CAR/EAR/TPL), bonds &amp; risk contingency</td><td class="num">1,700,000</td></tr>
+    <tr class="total"><td>Scope A — Battery System EPC total</td><td class="num">130,000,000</td></tr>
+  </table>
+  <p class="note">Equivalent to €130/kWh usable and €260,000/MW installed — competitive for a fully containerised, grid-code-compliant 2-hour system delivered DDP to Lithuania.</p>
+
+  <h3>5.2 — Scope B (Option): 330 kV Grid Infrastructure</h3>
+  <table>
+    <tr><th style="width:64%;">Work package</th><th class="num">Price (EUR)</th></tr>
+    <tr><td>Producer step-up stations (200 MW + 300 MW) — 33/330 kV GSU transformers &amp; 330 kV bays</td><td class="num">31,000,000</td></tr>
+    <tr><td>330 kV interconnection to existing Mūša Litgrid substation (protection, metering, TSO SCADA)</td><td class="num">12,500,000</td></tr>
+    <tr><td>Substation civil, control building &amp; auxiliaries</td><td class="num">6,000,000</td></tr>
+    <tr class="total"><td>Scope B — 330 kV grid infrastructure total</td><td class="num">49,500,000</td></tr>
+  </table>
+
+  <table style="margin-top:1rem;">
+    <tr class="highlight"><td style="width:64%;">Turnkey EPC (Scope A + Scope B)</td><td class="num" style="text-align:right; font-weight:700;">EUR 179,500,000</td></tr>
+  </table>
+
+  <h3>5.3 — Long-Term Service (Option, indicative)</h3>
+  <p class="note">15-year LTSA / O&amp;M with ≥ 97% availability guarantee, preventive &amp; corrective maintenance, spare-parts pool (Poland EU warehouse), capacity-test verification, and EMS-driven market optimisation — indicative <strong>€5.5–7.0 M / year</strong> (escalated annually to Eurostat HICP, capped at 4%). Firm pricing on scope confirmation. Extended battery capacity warranty (years 6–15) available via the OEM.</p>
+</section>
+
+<!-- ═══════ 6. PAYMENT & COMMERCIAL TERMS ═══════ -->
+<section>
+  <h2><span class="num">6.</span> Payment &amp; Commercial Terms</h2>
+  <h3>Milestone Payment Schedule (Scope A)</h3>
+  <table>
+    <tr><th>Milestone</th><th class="num">%</th></tr>
+    <tr><td>Advance on Purchase Order / contract signing (against advance payment guarantee)</td><td class="num">10%</td></tr>
+    <tr><td>Detailed design approval &amp; procurement release</td><td class="num">20%</td></tr>
+    <tr><td>Delivery to site (DDP)</td><td class="num">40%</td></tr>
+    <tr><td>Mechanical &amp; electrical installation complete</td><td class="num">20%</td></tr>
+    <tr><td>Provisional Acceptance (PAC) / COD &amp; performance test passed</td><td class="num">5%</td></tr>
+    <tr><td>Final Acceptance (FAC), 12 months after PAC (released against warranty security)</td><td class="num">5%</td></tr>
+  </table>
+
+  <table>
+    <tr><td style="width:38%;">Warranty — workmanship</td><td>24 months from PAC</td></tr>
+    <tr><td>Warranty — product</td><td>5 years base (extendable to 15 years via LTSA / OEM)</td></tr>
+    <tr><td>Capacity guarantee</td><td>≥ 70% SoH at 15 yr / 8,000 cycles, annual capacity-test verification</td></tr>
+    <tr><td>Performance security</td><td>Advance payment guarantee + performance bond (5–10% of contract), bank guarantee</td></tr>
+    <tr><td>Liquidated damages</td><td>For delay and performance shortfall, per EPC contract (industry-standard caps)</td></tr>
+    <tr><td>Governing terms</td><td>To be defined in EPC contract; FIDIC-style turnkey structure proposed</td></tr>
+    <tr><td>Contracting entity</td><td>Lighthief Cyprus Ltd (HE 477423), EU delivery from Poland HQ</td></tr>
+  </table>
+</section>
+
+<!-- ═══════ 7. SCHEDULE ═══════ -->
+<section>
+  <h2><span class="num">7.</span> Indicative Schedule</h2>
+  <p class="section-lead">Targeting delivery in Q2 2028 and COD in Q4 2028 / Q1 2029, subject to notice-to-proceed and grid connection readiness.</p>
+  <table>
+    <tr><th>Phase</th><th>Period</th></tr>
+    <tr><td>Contract signing / Notice to Proceed</td><td>Q3 2026</td></tr>
+    <tr><td>Detailed design, grid studies &amp; permitting support</td><td>Q3 2026 – Q1 2027</td></tr>
+    <tr><td>Manufacturing &amp; factory acceptance testing (FAT)</td><td>Q2 2027 – Q1 2028</td></tr>
+    <tr><td>Delivery to site (DDP)</td><td>Q2 2028</td></tr>
+    <tr><td>Installation, mechanical &amp; electrical erection</td><td>Q2 – Q3 2028</td></tr>
+    <tr><td>Commissioning, grid compliance &amp; performance test</td><td>Q3 – Q4 2028</td></tr>
+    <tr><td>Provisional Acceptance (PAC) / COD</td><td>Q4 2028 / Q1 2029</td></tr>
+  </table>
+</section>
+
+<!-- ═══════ 8. COMPLIANCE ═══════ -->
+<section>
+  <h2><span class="num">8.</span> Standards &amp; Certification</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="margin-top:0;">Battery System</h3>
+      <ul>
+        <li>EU Battery Regulation 2023/1542</li>
+        <li>IEC 62933 (grid-connected EES systems)</li>
+        <li>UN 38.3 · UL 1973 · IEC 62619</li>
+        <li>NFPA 855 (4-level fire safety)</li>
+        <li>Lithuanian Grid Code (Litgrid)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">PCS &amp; Electrical</h3>
+      <ul>
+        <li>IEC 62271-200 / -212 (switchgear)</li>
+        <li>IEC 60076 (transformers)</li>
+        <li>VDE-AR-N 4120 (HV grid code reference)</li>
+        <li>CE marking · IEC 61000 (EMC)</li>
+        <li>ISO 12944 C5 (corrosion) · IEEE 693-2018 (seismic)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 9. WHY LIGHTHIEF ═══════ -->
+<section>
+  <h2><span class="num">9.</span> Why Lighthief</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="margin-top:0;">EU Delivery Base</h3>
+      <p style="font-size:0.88rem;">EU headquarters and 3,500 m² spare-parts warehouse in Poland — a short logistics route to Lithuania with no cross-border mobilisation delays for delivery or long-term service.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">BESS &amp; HV Expertise</h3>
+      <p style="font-size:0.88rem;">Deployed BESS portfolio and HV/MV substation O&amp;M experience, protection engineering and grid-code compliance across multiple EU markets.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Turnkey Single Point</h3>
+      <p style="font-size:0.88rem;">Battery system, PCS, MV, EMS, civil, grid connection and commissioning under one EPC wrap — with a 15-year LTSA option backed by availability guarantees.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">150+ Engineers, 11 Countries</h3>
+      <p style="font-size:0.88rem;">Europe-wide team with 24/7 NOC monitoring and surge capacity for installation and commissioning of utility-scale projects.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 10. CONTACT ═══════ -->
+<section>
+  <h2><span class="num">10.</span> Contact</h2>
+  <table>
+    <tr><td style="width:38%;">Commercial lead</td><td>Alexander Papacosta · Cyprus Director · +357 99 164 158 · office@lighthief.com</td></tr>
+    <tr><td>EU delivery (Poland HQ)</td><td>Lighthief — Częstochowa, Poland</td></tr>
+    <tr><td>General enquiries</td><td>office@lighthief.com · +357 77 77 00 50</td></tr>
+    <tr><td>Website</td><td>lighthief.com · solarfarms.cy</td></tr>
+  </table>
+</section>
+
+</div>
+
+<div class="footer">
+  <strong>Lighthief — European BESS Services</strong><br>
+  Lighthief Cyprus Ltd · Company No. HE 477423 · solarfarms.cy<br>
+  EPC Quotation Ref: LTH-ETET-MUSA-EPC-JUL2026 · Prepared for ETET Engineering GmbH<br>
+  <a href="mailto:office@lighthief.com">office@lighthief.com</a> · +357 77 77 00 50<br>
+  <span style="font-size:0.7rem; opacity:0.6;">Indicative and non-binding. Prices exclude VAT, subject to final scope, due diligence, geotechnical survey and EPC contract. Confidential — intended solely for the named recipient. Valid 60 days from date of issue.</span>
+</div>
+
+</body>
+</html>

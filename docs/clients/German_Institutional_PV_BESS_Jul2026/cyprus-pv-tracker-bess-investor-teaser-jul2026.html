@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyprus PV Trackers + 4h BESS — Investor Teaser | July 2026</title>
+<style>
+:root {
+  --primary: #1A365D;
+  --primary-light: #2B5FA0;
+  --accent: #C9A432;
+  --accent-dark: #9C7D22;
+  --white: #FFFFFF;
+  --grey-text: #404040;
+  --body-bg: #F0F4F8;
+  --border: #D0DDEF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--grey-text);
+  background: var(--body-bg);
+  padding: 24px;
+  line-height: 1.55;
+}
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 28px 32px 36px;
+  border: 1px solid var(--border);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff;
+  padding: 18px 20px;
+  margin: -28px -32px 22px;
+}
+.brand { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: .04em; }
+.brand small { display:block; font-size: 11px; color: #A8B8CC; font-weight: 400; margin-top: 4px; }
+.doc-meta { text-align: right; font-size: 11px; color: #A8B8CC; line-height: 1.6; }
+.doc-meta strong { color: #fff; }
+h1 { color: var(--accent); font-size: 22px; margin: 8px 0 6px; }
+.lead { color: var(--primary); font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.badge {
+  display: inline-block;
+  background: #FFF8E6;
+  color: var(--accent-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 4px 10px;
+  margin-bottom: 8px;
+}
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 16px 0 20px;
+}
+.kpi {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 10px;
+  text-align: center;
+}
+.kpi .v { font-size: 18px; font-weight: 700; color: var(--accent); }
+.kpi .l { font-size: 9px; text-transform: uppercase; letter-spacing: .05em; color: #A8B8CC; margin-top: 4px; }
+h2 {
+  color: var(--accent);
+  font-size: 15px;
+  margin: 22px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--primary);
+  display: inline-block;
+}
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
+.box { border: 1px solid var(--border); padding: 12px 14px; }
+.box h3 { color: var(--primary); font-size: 12px; margin-bottom: 6px; }
+.box ul { margin-left: 16px; }
+.box li { margin-bottom: 3px; }
+table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin: 8px 0 14px; }
+th { background: var(--primary); color: #fff; padding: 7px 8px; text-align: left; font-weight: 600; }
+th.r, td.r { text-align: right; }
+td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
+tr:nth-child(even) td { background: #F8FAFC; }
+tr.total td { background: var(--primary) !important; color: #fff; font-weight: 700; }
+tr.hi td { background: #EEF6EE !important; font-weight: 700; color: var(--primary); }
+tr.sec td { background: #EEF3FB !important; color: var(--primary); font-weight: 700; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; }
+.callout {
+  background: #FFF8E6;
+  border-left: 4px solid var(--accent);
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 12px;
+}
+.note { font-size: 10px; color: #6B7C8F; margin: 6px 0; }
+.footer {
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: var(--primary);
+  color: #A8B8CC;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.footer strong { color: #fff; }
+.footer a { color: var(--accent); text-decoration: none; }
+.print-btn {
+  position: fixed; top: 14px; right: 14px;
+  background: var(--primary); color: #fff; border: none;
+  padding: 10px 16px; cursor: pointer; font-size: 12px; z-index: 10;
+}
+@media print {
+  .print-btn { display: none; }
+  body { background: #fff; padding: 0; }
+  .page { border: none; max-width: none; }
+}
+@media (max-width: 720px) {
+  .kpis, .two { grid-template-columns: 1fr 1fr; }
+  .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+<button class="print-btn" type="button" onclick="window.print()">Print / PDF</button>
+<div class="page">
+  <div class="header">
+    <div>
+      <div class="brand">LIGHTHIEF<small>Cyprus Ltd · HE 477423 · solarfarms.cy</small></div>
+    </div>
+    <div class="doc-meta">
+      <strong>INVESTMENT TEASER</strong><br>
+      Ref: LH-CY-PVBESS-TRK-JUL2026<br>
+      July 2026 · Strictly Confidential<br>
+      Prepared for: German Institutional Investor (generic)
+    </div>
+  </div>
+
+  <div class="badge">CYPRUS RTB · SINGLE-AXIS TRACKERS · 4-HOUR BESS HYBRID</div>
+  <h1>Cyprus PV + Battery Storage Investment</h1>
+  <p class="lead">1 / 5 / 10 MWp single-axis tracker PV with 4-hour LFP BESS — merchant DAM + curtailment capture</p>
+  <p class="note">Indicative economics for Cyprus-sited Ready-to-Build parks. Not a binding offer. Figures ex-VAT; site-specific grid and land terms subject to diligence.</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">2,400</div><div class="l">kWh/kWp yield<br>trackers · 700 Wp bifacial · white albedo</div></div>
+    <div class="kpi"><div class="v">50–65%</div><div class="l">Curtailment cases<br>Cyprus 2027 operating range</div></div>
+    <div class="kpi"><div class="v">€183</div><div class="l">DAM evening €/MWh<br>TSOC sample Oct 2025–Feb 2026</div></div>
+    <div class="kpi"><div class="v">86.32%</div><div class="l">BESS AC–AC RTE<br>Linyang LFP full system</div></div>
+  </div>
+
+  <h2>Investment thesis</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Why Cyprus</h3>
+      <ul>
+        <li>Island balancing zone with liquid TSOC day-ahead market</li>
+        <li>Persistent evening vs daytime price spread (~€183 vs ~€141/MWh)</li>
+        <li>High solar resource; tracker + bifacial + white albedo at 2,400 kWh/kWp</li>
+        <li>Eurozone · EU rule of law · 15% CIT (from 1 Jan 2026)</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Why this configuration</h3>
+      <ul>
+        <li>4-hour BESS sized 4 MWh per MWp — matches hybrid curtailment capture</li>
+        <li>Daytime uncurtailed solar sold at DAM; curtailed energy shifted to evening peak</li>
+        <li>Turnkey EPC (PV trackers + BESS) with RTB ticket + EAC connection priced separately</li>
+        <li>Editable Excel accompanies this teaser for sensitivity work</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Technology.</strong> 700 Wp N-type TOPCon bifacial modules on single-axis trackers over white ground (albedo ~0.70).
+    BESS: Linyang LFP, ~5.015 MWh containers, AC–AC RTE 86.32%, LTSA €1,740/MWh/year (97% availability target).
+    Revenue model applies a 87.4% curtailment-capture factor and a 280 full-cycle-day capacity constraint (Galascope-calibrated).
+  </div>
+
+  <h2>Capital expenditure (ex-VAT)</h2>
+  <table>
+    <thead>
+      <tr><th>Component</th><th>1 MWp + 4 MWh</th><th>5 MWp + 20 MWh</th><th>10 MWp + 40 MWh</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PV EPC (client fixed-tilt + €100k/MW tracker)</td><td class="r">€830,077</td><td class="r">€3,700,385</td><td class="r">€7,100,770</td></tr>
+<tr><td>BESS EPC — Linyang LFP 4h turnkey</td><td class="r">€674,336 (€169k/MWh)</td><td class="r">€2,238,000 (€112k/MWh)</td><td class="r">€4,391,880 (€110k/MWh)</td></tr>
+<tr><td>RTB acquisition (€550k/MW)</td><td class="r">€550,000</td><td class="r">€2,750,000</td><td class="r">€5,500,000</td></tr>
+<tr><td>EAC grid connection (€80k/MW)</td><td class="r">€80,000</td><td class="r">€400,000</td><td class="r">€800,000</td></tr>
+<tr><td>Permitting + MV cable (illustrative)</td><td class="r">€55,000</td><td class="r">€55,000</td><td class="r">€55,000</td></tr>
+<tr class="total"><td>Total CAPEX (ex-VAT)</td><td class="r">€2,189,413</td><td class="r">€9,143,385</td><td class="r">€17,847,650</td></tr>
+
+    </tbody>
+  </table>
+  <p class="note">PV EPC = solarpark client fixed-tilt schedule + €100k/MW tracker premium (market mid of €80–120k/MW). BESS: 4 MWh @ €168.6k/MWh; 20 MWh @ €111.9k/MWh (confirmed); 40 MWh @ €109.8k/MWh. RTB €550k/MW + EAC connection €80k/MW.</p>
+
+  <h2>Year-1 operations &amp; returns</h2>
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>1 MWp + 4 MWh</th><th>5 MWp + 20 MWh</th><th>10 MWp + 40 MWh</th></tr>
+    </thead>
+    <tbody>
+      <tr class="sec"><td colspan="4">Case A — 50% curtailment (base)</td></tr>
+<tr><td>Gross PV production (2,400 kWh/kWp)</td><td class="r">2,400 MWh</td><td class="r">12,000 MWh</td><td class="r">24,000 MWh</td></tr>
+<tr><td>Uncurtailed solar → DAM day (€140.88/MWh)</td><td class="r">€169,056</td><td class="r">€845,280</td><td class="r">€1,690,560</td></tr>
+<tr><td>BESS discharge → DAM evening (€182.99/MWh)</td><td class="r">€165,665</td><td class="r">€828,326</td><td class="r">€1,656,653</td></tr>
+<tr><td>Gross energy revenue</td><td class="r">€334,721</td><td class="r">€1,673,606</td><td class="r">€3,347,213</td></tr>
+<tr><td>Net revenue (after 10% aggregator)</td><td class="r">€301,249</td><td class="r">€1,506,246</td><td class="r">€3,012,491</td></tr>
+<tr><td>OPEX (PV O&M + BESS LTSA + land + insurance)</td><td class="r">€52,907</td><td class="r">€195,517</td><td class="r">€373,838</td></tr>
+<tr class="hi"><td>EBITDA</td><td class="r">€248,342</td><td class="r">€1,310,729</td><td class="r">€2,638,653</td></tr>
+<tr><td>Unlevered payback</td><td class="r">8.8 yr</td><td class="r">7.0 yr</td><td class="r">6.8 yr</td></tr>
+<tr><td>Equity (35%) / Debt (65% @ 5.5% · 12y)</td><td class="r">€766k / €1.42M</td><td class="r">€3.20M / €5.94M</td><td class="r">€6.25M / €11.60M</td></tr>
+<tr><td>DSCR</td><td class="r">1.50×</td><td class="r">1.90×</td><td class="r">1.96×</td></tr>
+<tr><td>Net cash to equity (post 15% CIT)</td><td class="r">€83,219</td><td class="r">€596,548</td><td class="r">€1,232,568</td></tr>
+<tr class="hi"><td>Equity cash yield / equity payback</td><td class="r">10.9% · 9.2 yr</td><td class="r">18.6% · 5.4 yr</td><td class="r">19.7% · 5.1 yr</td></tr>
+
+      <tr class="sec"><td colspan="4">Case B — 65% curtailment (stress)</td></tr>
+<tr><td>Gross PV production (2,400 kWh/kWp)</td><td class="r">2,400 MWh</td><td class="r">12,000 MWh</td><td class="r">24,000 MWh</td></tr>
+<tr><td>Uncurtailed solar → DAM day (€140.88/MWh)</td><td class="r">€118,339</td><td class="r">€591,696</td><td class="r">€1,183,392</td></tr>
+<tr><td>BESS discharge → DAM evening (€182.99/MWh)</td><td class="r">€176,912</td><td class="r">€884,559</td><td class="r">€1,769,118</td></tr>
+<tr><td>Gross energy revenue</td><td class="r">€295,251</td><td class="r">€1,476,255</td><td class="r">€2,952,510</td></tr>
+<tr><td>Net revenue (after 10% aggregator)</td><td class="r">€265,726</td><td class="r">€1,328,630</td><td class="r">€2,657,259</td></tr>
+<tr><td>OPEX (PV O&M + BESS LTSA + land + insurance)</td><td class="r">€52,907</td><td class="r">€195,517</td><td class="r">€373,838</td></tr>
+<tr class="hi"><td>EBITDA</td><td class="r">€212,819</td><td class="r">€1,133,113</td><td class="r">€2,283,421</td></tr>
+<tr><td>Unlevered payback</td><td class="r">10.3 yr</td><td class="r">8.1 yr</td><td class="r">7.8 yr</td></tr>
+<tr><td>Equity (35%) / Debt (65% @ 5.5% · 12y)</td><td class="r">€766k / €1.42M</td><td class="r">€3.20M / €5.94M</td><td class="r">€6.25M / €11.60M</td></tr>
+<tr><td>DSCR</td><td class="r">1.29×</td><td class="r">1.64×</td><td class="r">1.70×</td></tr>
+<tr><td>Net cash to equity (post 15% CIT)</td><td class="r">€47,695</td><td class="r">€443,528</td><td class="r">€930,621</td></tr>
+<tr class="hi"><td>Equity cash yield / equity payback</td><td class="r">6.2% · 16.1 yr</td><td class="r">13.9% · 7.2 yr</td><td class="r">14.9% · 6.7 yr</td></tr>
+
+    </tbody>
+  </table>
+
+  <h2>Indicative timeline</h2>
+  <table>
+    <thead><tr><th>Step</th><th>Timing</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>RTB + EPC contract</td><td>Month 0</td><td>SPV acquisition / EPC award</td></tr>
+      <tr><td>OEM production</td><td>+90 days</td><td>Modules / BESS manufacturing</td></tr>
+      <tr><td>CIF Limassol</td><td>+~50 days</td><td>Ocean freight</td></tr>
+      <tr><td>Install &amp; commission</td><td>+60–90 days</td><td>Civil, MV, commissioning</td></tr>
+      <tr><td>PAC / COD</td><td>~Month 9–11</td><td>Subject to grid readiness</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key risks &amp; diligence items</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Market / operations</h3>
+      <ul>
+        <li>Curtailment trajectory (modelled 50% base / 65% stress)</li>
+        <li>DAM evening price persistence vs sample window</li>
+        <li>Aggregator / offtake fee (modelled 10%)</li>
+        <li>BESS cycle-day utilisation vs weather / grid events</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Project / delivery</h3>
+      <ul>
+        <li>Final EAC connection cost vs €80k/MW placeholder</li>
+        <li>Land lease / title inside or outside RTB ticket</li>
+        <li>MV distance (cable line is illustrative €20k)</li>
+        <li>Debt terms (model assumes 65% LTV · 5.5% · 12 years)</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="note">Companion workbook: <strong>cyprus-pv-tracker-bess-investor-model-jul2026.xlsx</strong> — yellow cells are inputs; green cells are formulas. Change curtailment, yield, prices, or CapEx unit rates and all returns recalculate.</p>
+
+  <div class="footer">
+    <div>
+      <strong>Alexander Papacosta</strong> · Cyprus Director<br>
+      Phone: <a href="tel:+35799164158">+357 99 164 158</a><br>
+      Email: <a href="mailto:office@lighthief.com">office@lighthief.com</a><br>
+      Office: +357 77 77 00 50
+    </div>
+    <div style="text-align:right">
+      Lighthief Cyprus Ltd · HE 477423<br>
+      28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+      3035 Limassol, Cyprus · <a href="https://solarfarms.cy">solarfarms.cy</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 # Lighthief Cyprus — Financial Report
 **Period:** August 2025 – April 2026 | **Generated:** 17 April 2026
 
+> **BANK UPDATE (23 Jul 2026):** Full 12-month BOC export imported. Cash estimates below are **stale** — use `financial/statements/bank-validation-20260723.md` and `TransactionHistory_master_boc.csv`. Key corrections: opening bal 1 Jan was **€1,924** (not ~€14k); Jan–Apr shareholder loans were **€22,000** (not ~€5.5k); Jul 2026 adds **€63,000** new SH loans + **€45,000** Trikkis payment. Latest BOC bal **€2,889.86** (22 Jul). Outstanding SH loan (after Revolut drawdowns) **~€74,010**.
+
 ---
 
 ## 1. EXECUTIVE SUMMARY
