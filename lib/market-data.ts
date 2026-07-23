@@ -241,22 +241,22 @@ export function getDailyStatsLastNDays(n: number): DailyStats[] {
  * ⚠️ REGULATORY NOTE (Feb 2026): BESS cannot buy from the DAM grid in Cyprus yet.
  * Grid arbitrage (buy low / sell high) is NOT legal as of Feb 2026.
  * 
- * COMPLETE DATASET (134 days, Oct 2025 – Feb 2026):
- *   Midday avg (10-14): €101.13/MWh
- *   Peak evening (17-21): €182.99/MWh
- *   Peak-Midday spread: €81.86/MWh
- *   Zero-price periods: 336 (5.2%)
- *   Deep curtailment (≤€10, 09-15): 463 periods
+ * COMPLETE DATASET (283 days, Oct 2025 – Jul 2026):
+ *   Midday avg (10-14): €84.36/MWh
+ *   Peak evening (17-21): €203.43/MWh
+ *   Peak-Midday spread: €119.07/MWh
+ *   Solar hours avg (06-17): €137.59/MWh
+ *   Overall avg MCP: €170.22/MWh
  * 
  * CURRENT revenue model: Curtailment recovery
  *   → Charge cost = €0 (storing otherwise-curtailed solar energy)
- *   → Discharge at peak evening prices (€183/MWh avg)
- *   → Revenue per MWh discharged = €183 × 86.32% RTE = €157.94/MWh
- *   → Annual: €146,608 (2.5 MWh/day) to €222,844 (3.8 MWh/day)
+ *   → Discharge at peak evening prices (€203/MWh avg)
+ *   → Revenue per MWh discharged = €203 × 86.32% RTE = €175.23/MWh
+ *   → Annual: €162,702 (2.5 MWh/day) to €247,472 (3.8 MWh/day)
  * 
  * FUTURE revenue (when legislation enables BESS market participation):
- *   → Grid arbitrage: buy at midday (€101/MWh), sell at peak (€183/MWh)
- *   → Net: €81.86 spread × 86.32% RTE = €70.66/MWh per cycle
+ *   → Grid arbitrage: buy at midday (€84/MWh), sell at peak (€203/MWh)
+ *   → Net: €119.07 spread × 86.32% RTE = €102.78/MWh per cycle
  */
 export function calculateBESSArbitrage(data: MarketDataSummary): {
   avgDailySpread: number
@@ -311,34 +311,21 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
 /**
  * Generate demo data for when no real data is available
  * 
- * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 1, 2025 – Feb 11, 2026):
- * Source: 134 TSOC DAM Excel files, 6,432 half-hourly records, every trading day
+ * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 1, 2025 – Jul 11, 2026):
+ * Source: 283 TSOC DAM reports, 44,696 half-hourly records, every trading day
  * 
  * VERIFIED complete dataset:
- * - Overall avg MCP: €158.19/MWh
- * - Midday (10-14):  €101.13/MWh  ← deep solar suppression (duck curve)
- * - Solar hours (06-17): €140.88/MWh
- * - Peak evening (17-21): €182.99/MWh
- * - Off-peak (22-05): €171.49/MWh
- * - Peak-Midday Spread: €81.86/MWh ← BESS opportunity
- * - Range: €0 to €500/MWh (rare spikes)
- * - Zero-price periods: 336 (5.2% of all half-hours)
- * - Low-price (≤€10): 467 (7.3%)
- * - Midday curtailment (≤€50, 09-15): 29.4% of periods
- * - Solar volume: 19.8% of daytime generation
+ * - Overall avg MCP: €170.22/MWh
+ * - Midday (10-14):  €84.36/MWh  ← deep solar suppression (duck curve)
+ * - Solar hours (06-17): €137.59/MWh
+ * - Peak evening (17-21): €203.43/MWh
+ * - Off-peak (22-05): €195.91/MWh
+ * - Peak-Midday Spread: €119.07/MWh ← BESS opportunity
+ * - Arbitrage spread (peak-solar): €65.83/MWh
+ * - Range: €1 to €500/MWh
  * 
- * Hourly profile (key hours):
- * - 00:00: €173 | 06:00: €174 | 08:00: €167
- * - 10:00: €102 | 11:00: €80  | 12:00: €77  ← solar trough
- * - 14:00: €142 | 16:00: €175 | 18:00: €185
- * - 19:00: €186 ← daily peak | 22:00: €176
- * 
- * Monthly trend (complete):
- * - Oct 2025: avg €147.23, peak-midday spread €98.80
- * - Nov 2025: avg €155.49, spread €103.27 (deepest curtailment)
- * - Dec 2025: avg €158.76, spread €67.43
- * - Jan 2026: avg €169.22, spread €49.72 (winter, less solar)
- * - Feb 2026: avg €163.73, spread €106.98 (solar returning)
+ * Last 30 days (Jun–Jul 2026):
+ * - Overall: €190.81/MWh | Solar: €170.80/MWh | Peak: €211.14/MWh
  */
 export function generateDemoData(): MarketDataFull {
   const records: HourlyRecord[] = []
@@ -357,7 +344,7 @@ export function generateDemoData(): MarketDataFull {
     185, 200, 195, 188, 175, 162,   // 18:00-23:00 (evening peak - AC + fossil)
   ]
   
-  // WINTER (Nov-Feb): REAL DATA from 134-day dataset - deep midday dip even in winter
+  // WINTER (Nov-Feb): REAL DATA from 283-day dataset - deep midday dip even in winter
   const winterProfile = [
     173, 170, 169, 169, 169, 171,   // 00:00-05:00 (night - heating demand)
     174, 174, 167, 146, 102, 80,    // 06:00-11:00 (solar suppresses midday heavily)
