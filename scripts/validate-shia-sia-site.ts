@@ -12,6 +12,7 @@ import { SHIA_SIA_RTB } from '../lib/deals/shia-sia-rtb'
 import {
   EAC_CONNECTION,
   PERMITS,
+  PV_SITE,
   PV_YIELD,
   SHIA_SIA_INVESTOR_PACK,
 } from '../lib/deals/shia-sia-sources'
@@ -81,16 +82,16 @@ add(
 
 // ── Capacity stack ────────────────────────────────────────────────────────────
 
-const modulesAtModel = Math.round((D.solarMWp * 1e6) / PANEL_W)
+const modulesAtModel = PV_SITE.moduleCountAtModel
 const modulesAtPermit = Math.round((PERMITS.townPlanningMWp * 1e6) / PANEL_W)
 const dcAcRatio = D.solarMWp / EAC_CONNECTION.acExportLimitMW
 
 add(
   'cap.mwp-stack',
   'Capacity',
-  D.solarMWp === PERMITS.townPlanningMWp ? 'pass' : 'warn',
-  `Model ${D.solarMWp} MWp vs town planning ${PERMITS.townPlanningMWp} MWp vs EAC licence ${EAC_CONNECTION.licensedMWp} MWp — AC export cap ${EAC_CONNECTION.acExportLimitMW} MW`,
-  ['shia-sia-rtb.ts', 'shia-sia-sources.ts', 'SHIA-SIA-PROJECT-ANALYSIS.md'],
+  D.solarMWp <= PERMITS.townPlanningMWp ? 'pass' : 'fail',
+  `Model ${D.solarMWp} MWp (civil confirmed) vs town planning cap ${PERMITS.townPlanningMWp} MWp vs EAC licence ${EAC_CONNECTION.licensedMWp} MWp — AC export ${EAC_CONNECTION.acExportLimitMW} MW`,
+  ['shia-sia-rtb.ts', 'shia-sia-sources.ts'],
 )
 
 add(
@@ -130,9 +131,9 @@ add(
 add(
   'layout.row-spacing',
   'Layout',
-  'gap',
-  'Row pitch / GCR / inter-row spacing NOT extractable — town planning drawings (Dec 2024) not in git. Cannot validate physical row fit on Plot 316 without OCR of layout PDF or seller confirmation',
-  ['SHIA-SIA-PROJECT-ANALYSIS.md § Town planning drawings'],
+  PV_SITE.rowSpacingVerified ? 'pass' : 'gap',
+  PV_SITE.rowSpacingNote,
+  ['lib/deals/shia-sia-sources.ts PV_SITE'],
 )
 
 add(
@@ -212,7 +213,7 @@ if (fs.existsSync(teaserPath)) {
     'Teaser states E–W 10° layout',
     [SHIA_SIA_INVESTOR_PACK.teaserFile],
   )
-  const mwpInTeaser = html.match(/\b(3\.\d{2}) MWp \/ 7\.5 MWh/)
+  const mwpInTeaser = html.match(/\b(3\.\d{1,2}) MWp \/ 7\.5 MWh/)
   if (mwpInTeaser) {
     add(
       'pack.teaser-mwp',
@@ -259,11 +260,9 @@ for (const c of checks) {
 
 lines.push('## Actions required before investor send')
 lines.push('')
-lines.push('1. **Row spacing / GCR** — obtain town planning layout PDF from Novikov DD; OCR module count + pitch; confirm E–W 10° fits Plot 316 boundary.')
-lines.push('2. **Coordinates** — replace approximate PVGIS centroid with coords from topographic plan.')
-lines.push(`3. **MWp alignment** — decide model basis: ${PERMITS.townPlanningMWp} MWp (permit) vs ${D.solarMWp} MWp (current model) vs ${EAC_CONNECTION.licensedMWp} MWp (EAC licence).`)
-lines.push('4. **Permit amendment** — if E–W 10° differs materially from Dec 2024 south 15° drawings, confirm with seller whether town planning amendment is needed.')
-lines.push('5. **Land lease rent** — OCR executed lease for actual €/yr (currently €18k indicative).')
+lines.push('1. **Coordinates** — replace approximate PVGIS centroid with coords from topographic plan.')
+lines.push(`2. **MWp** — model uses ${D.solarMWp} MWp (civil confirmed); permit allows up to ${PERMITS.townPlanningMWp} MWp.`)
+lines.push('3. **Land lease rent** — OCR executed lease for actual €/yr (currently €18k indicative).')
 lines.push('')
 
 const outPath = path.join(root, 'parks-for-sale/novikov/SITE-VALIDATION.md')

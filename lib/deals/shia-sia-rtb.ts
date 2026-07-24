@@ -17,29 +17,38 @@ import {
   computeCapex,
   computeFinance,
   computeOpex,
-  RTB_COSTS,
+  DAM,
 } from './rtb-deal-types'
 
-const solarMWp = 3.32
+const solarMWp = 3.2
 const bessMWh = 7.5
 const bessPowerMW = 2.5
+/** RTB acquisition rate — €550k/MWp (ready-to-build incl. EAC connection terms issued) */
+const rtbPerMWp = 550_000
+const rtbAcquisition = Math.round(rtbPerMWp * solarMWp)
 /** Jinko 645W bifacial, east–west 10° — PVGIS E-W model 15 Jun 2026: 1,487 kWh/kWp (+5% bifacial); use 1,480 */
 const specificYield = 1_480
 /** E-W flatter midday profile — lower curtailment than south-facing 50% baseline */
 const curtailmentPct = 0.45
 const landLease = 18_000       // Executed lease on file; indicative annual estimate
 
-const rev = computeRevenueModel({ solarMWp, specificYieldKwhPerKwp: specificYield, curtailmentPct, bessCapacityMWh: bessMWh })
+const rev = computeRevenueModel({
+  solarMWp,
+  specificYieldKwhPerKwp: specificYield,
+  curtailmentPct,
+  bessCapacityMWh: bessMWh,
+  bessDischargePriceEURPerMWh: DAM.peakEveningEURPerMWh, // TSOC measured evening avg — base case
+})
 // Preliminary connection terms issued 07/02/2023; acceptance + 5% deposit (€4,988.61 incl. VAT) paid 22/02/2023.
 // Preliminary EAC grid infrastructure cost: ~€83,842 ex VAT (from OCR of 498000141 terms document).
 // Final binding terms pending substation building permit + sublease agreement → RTB = withConnectionTerms
 const capex = computeCapex({
   solarMWp,
   bessCapacityMWh: bessMWh,
-  rtbCost: RTB_COSTS.withConnectionTerms,
+  rtbCost: rtbAcquisition,  // €550k/MWp × 3.2 MWp
   connectionTerms: 83_842,  // EAC grid infrastructure works — PRELIMINARY estimate (not binding). Final cost set after EAC Techno-Economic Study post-permit.
 })
-const finance = computeFinance(capex, rev.grossRevY1EUR, '~9–11%')
+const finance = computeFinance(capex, rev.grossRevY1EUR, '~9–10%')
 const opex = computeOpex({
   solarMWp,
   bessCapacityMWh: bessMWh,
@@ -65,7 +74,7 @@ export const SHIA_SIA_RTB: RtbDeal = {
   solarMWp,
   specificYieldKwhPerKwp: specificYield,
   annualProductionMWh: Math.round(solarMWp * specificYield),
-  technologySolar: 'Jinko 645W bifacial, east–west 10° tilt, Larnaca District',
+  technologySolar: 'Jinko 645W bifacial, east–west 10° tilt, 1 m row spacing, Larnaca District',
 
   bessPowerMW,
   bessMWh,

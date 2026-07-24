@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder Letter — Moi Ostrov Consultancy Before MOU | LCY-MOI-TOCA-2026-001</title>
+<style>
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --white: #FFFFFF;
+    --grey-text: #404040;
+    --body-bg: #F0F4F8;
+  }
+  @page { size: A4; margin: 18mm 16mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: var(--body-bg);
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 24px 32px 40px;
+  }
+  .doc {
+    background: var(--white);
+    padding: 32px 36px 40px;
+    box-shadow: 0 2px 12px rgba(26, 54, 93, 0.08);
+    border-radius: 4px;
+  }
+  .header-bar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    padding: 18px 22px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .header-bar h1 { font-size: 13pt; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .header-bar .sub { font-size: 9.5pt; opacity: 0.92; }
+  .confidential {
+    background: #ffe0e0;
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-size: 8.5pt;
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #990000;
+  }
+  .draft-badge {
+    background: #fff8e1;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-size: 9pt;
+    text-align: center;
+    margin-bottom: 18px;
+    color: var(--grey-text);
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    font-size: 9.5pt;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .meta-grid .label { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.4px; color: var(--grey-text); margin-bottom: 2px; }
+  .meta-grid .value { font-weight: 600; color: #1a1a1a; }
+  .subject-line {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 18px 0 16px;
+    padding: 10px 14px;
+    background: #f0f4f8;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  h2 {
+    font-size: 11pt;
+    color: var(--accent);
+    margin: 22px 0 8px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ddd;
+  }
+  p { margin-bottom: 10px; text-align: justify; }
+  p.salutation { text-align: left; margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 22px; }
+  li { margin-bottom: 5px; text-align: justify; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 14px;
+    font-size: 9.5pt;
+  }
+  th {
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding: 8px 10px;
+    border: 1px solid var(--primary);
+    text-align: left;
+  }
+  td {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f9fafb; }
+  .callout {
+    background: #fff8f0;
+    border: 1px solid #e6a817;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 5px 5px 0;
+    padding: 12px 14px;
+    margin: 14px 0;
+    font-size: 9.5pt;
+  }
+  .callout strong { color: var(--primary); }
+  .callout-warn {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    border-left-color: #dc2626;
+  }
+  .closing { margin-top: 28px; }
+  .sig-block { margin-top: 36px; max-width: 320px; }
+  .sig-line { border-top: 1px solid #333; margin-top: 48px; padding-top: 6px; }
+  .sig-name { font-weight: 700; font-size: 10.5pt; }
+  .sig-detail { font-size: 9pt; color: var(--grey-text); margin-top: 2px; }
+  .footer {
+    margin-top: 32px;
+    padding-top: 12px;
+    border-top: 2px solid var(--primary);
+    font-size: 8pt;
+    color: var(--grey-text);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .footer strong { color: var(--primary); }
+  .legal-note {
+    margin-top: 16px;
+    font-size: 8pt;
+    font-style: italic;
+    color: #888;
+    text-align: center;
+  }
+  .print-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 9px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10pt;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .print-btn:hover { background: var(--primary-light); }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .doc { box-shadow: none; padding: 0; }
+    .no-print { display: none; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Save as PDF</button>
+
+<div class="doc">
+
+  <div class="confidential">STRICTLY CONFIDENTIAL — LEGALLY PRIVILEGED — DRAFT FOR COUNSEL REVIEW</div>
+
+  <div class="header-bar">
+    <h1>Lighthief Cyprus Ltd</h1>
+    <div class="sub">Founder Letter — Consultancy Agreement Before Shareholder Memorandum</div>
+  </div>
+
+  <div class="draft-badge">
+    <strong>Status:</strong> DRAFT — for Cyprus corporate counsel review before sending
+  </div>
+
+  <div class="meta-grid">
+    <div>
+      <div class="label">From</div>
+      <div class="value">Alexander Papacosta, Director<br>Lighthief Cyprus Ltd</div>
+    </div>
+    <div>
+      <div class="label">To</div>
+      <div class="value">Dr. Arkadiusz Sybaris<br>Founder / UBO, Lighthief International Ltd</div>
+    </div>
+    <div>
+      <div class="label">Reference</div>
+      <div class="value">LCY-MOI-TOCA-2026-001</div>
+    </div>
+    <div>
+      <div class="label">Date</div>
+      <div class="value">______________________ 2026</div>
+    </div>
+  </div>
+
+  <div class="subject-line">
+    Subject: LCY — execute Moi Ostrov consultancy package <em>before</em> any Ben-Haim / investor memorandum or share transfer
+  </div>
+
+  <p class="salutation">Arkadiusz,</p>
+
+  <p>I am writing to confirm the <strong>order of execution</strong> for the Cyprus BESS portfolio and any proposed restructuring involving a new shareholder or memorandum of understanding (including the Ben-Haim / Miro Holdings proposal).</p>
+
+  <p>Before Lighthief Cyprus Ltd signs further major client contracts (including <strong>Galascope EPC</strong>), we need the <strong>Moi Ostrov consultancy arrangement</strong> on paper in a form that is <strong>binding on the Company today</strong> and <strong>binding on any future shareholder</strong> without renegotiation.</p>
+
+  <h2>1. What is being formalised</h2>
+
+  <p>The <strong>Team Operational Consultancy Agreement</strong> between <strong>Lighthief Cyprus Ltd</strong> and <strong>Moi Ostrov Ltd</strong> (reference <strong>LCY-MOI-TOCA-2026-001</strong>) records:</p>
+
+  <ul>
+    <li><strong>Part A — Origination Fee:</strong> <strong>30% of Net Margin</strong> on the <strong>Schedule 1</strong> BESS portfolio (the 51-park Cyprus book I originated and structured).</li>
+    <li><strong>Part B — Team Operations Fee:</strong> <strong>30% of Net Margin</strong> on future <strong>Cyprus BESS business conducted through LCY</strong>, as defined in the agreement.</li>
+    <li>Fees are payable <strong>pro-rata when clients pay</strong> the Company (not from founder capital or investor equity).</li>
+  </ul>
+
+  <p>This is <strong>operational and origination compensation through Moi Ostrov Ltd</strong>. It is <strong>not</strong> a fee on any shareholder injection, equity subscription, or external investment proceeds.</p>
+
+  <h2>2. Why this must be signed before any memorandum or share transfer</h2>
+
+  <p>The consultancy agreement is drafted as a <strong>pre-existing obligation</strong> of the Company. If it is <strong>fully executed first</strong>, any later memorandum, cap-table change, or share issue is subject to explicit protections in the deed:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Provision</th>
+        <th>Effect</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Clause 5.3(b)</strong></td>
+        <td>The agreement is a <strong>Protected Matter</strong> — it cannot be amended, terminated, or overridden without <strong>unanimous written consent of all shareholders</strong> (including my 10% if issued).</td>
+      </tr>
+      <tr>
+        <td><strong>Clause 6.3</strong></td>
+        <td><strong>No shares</strong> may be issued, transferred, or allotted to <strong>any new shareholder</strong> unless, as a <strong>condition precedent</strong>, that person has executed a <strong>deed of acknowledgement</strong> confirming the agreement is a pre-existing obligation and that they will not challenge or seek to vary it.</td>
+      </tr>
+      <tr>
+        <td><strong>Clause 6.8</strong></td>
+        <td>The <strong>Articles of Association</strong> must be amended <strong>before</strong> any transfer to a new shareholder to embed Protected Matter status and the Clause 6.3 acknowledgement requirement.</td>
+      </tr>
+      <tr>
+        <td><strong>Clause 6.7</strong></td>
+        <td>The Company must <strong>notify Moi Ostrov immediately</strong> of any proposed share transfer, new investor, or articles change.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <strong>If a memorandum or share transfer is signed or completed before this package is closed,</strong> the new partner may refuse the Clause 6.3 deed — and we will be in a commercial dispute instead of a clean execution path.
+  </div>
+
+  <p>Signing the consultancy <strong>after</strong> a memorandum gives any incoming shareholder leverage to demand a fee cut or removal as a condition of closing. <strong>The correct sequence is: consultancy closing package first; memorandum / share transfer second.</strong></p>
+
+  <h2>3. Closing package required (same signing round)</h2>
+
+  <p>The main deed alone is <strong>not sufficient</strong>. The following must be executed <strong>together</strong>, <strong>before</strong> any Ben-Haim MOU completion, share transfer, or third-party subscription:</p>
+
+  <ol>
+    <li><strong>Team Operational Consultancy Agreement</strong> (LCY ↔ Moi Ostrov) — executed as a deed.</li>
+    <li><strong>Annex A — Shareholder Resolution</strong> — signed by <strong>you</strong> (or authorised signatory) <strong>for Lighthief International Ltd</strong>, approving and ratifying the agreement and instructing Articles amendment.</li>
+    <li><strong>Annex B — UBO Personal Undertaking</strong> — signed by <strong>you personally</strong>, including your undertaking to procure the Clause 6.3 deed from any transferee and to vote against any action that would prejudice the agreement.</li>
+    <li><strong>Articles of Association amendment</strong> — filed at the Registrar to record Protected Matter status and the new-shareholder acknowledgement requirement (<strong>Clause 6.8</strong>).</li>
+    <li><strong>Board minutes</strong> — related-party approval documented (I will recuse conflict items; you chair as Lighthief International Ltd director).</li>
+    <li><strong>Schedule 1</strong> — locked to the current park register (all groups, including Galascope).</li>
+  </ol>
+
+  <div class="callout">
+    Without <strong>Annex A, Annex B, and the Articles change</strong>, the agreement exists only as a contract between the Company and Moi Ostrov. It does <strong>not</strong> have the shareholder-level lock or personal UBO backstop the draft is designed to provide.
+  </div>
+
+  <h2>4. Interaction with the Ben-Haim / investor memorandum</h2>
+
+  <p>For clarity:</p>
+
+  <ul>
+    <li>A memorandum proposing <strong>45% / 45% / 10%</strong> or any change to my shareholding <strong>does not</strong>, by itself, cancel or reduce the Moi Ostrov fee — <strong>provided</strong> the consultancy package above is executed <strong>first</strong> and any new 45% holder executes the <strong>Clause 6.3 deed</strong> as a <strong>condition precedent</strong> to receiving shares.</li>
+    <li>Any proposal that my 10% carries <strong>no vote or no dividend</strong> is a <strong>separate shareholder matter</strong>. It <strong>does not</strong> replace or satisfy the Company's contractual obligation to Moi Ostrov under LCY-MOI-TOCA-2026-001.</li>
+    <li>You must <strong>not</strong> complete, sign, or implement any share transfer, allotment, or binding SHA under the Ben-Haim proposal <strong>until</strong> items 1–6 above are complete.</li>
+    <li>If you intend to proceed with Ben-Haim, <strong>you</strong> must procure that the incoming shareholder executes the <strong>deed of acknowledgement</strong> under <strong>Clause 6.3(b)</strong> <strong>before</strong> any shares move. That deed is not optional and is not subject to side negotiation after closing.</li>
+  </ul>
+
+  <h2>5. What I will not do until this is aligned</h2>
+
+  <p>Until the closing package in section 3 is executed (or we agree a written alternative with counsel):</p>
+
+  <ul>
+    <li>I will <strong>not</strong> recommend or execute <strong>Galascope EPC</strong> or other major portfolio contracts on behalf of LCY.</li>
+    <li>I will <strong>not</strong> treat verbal assurances on commission or MD terms as sufficient for bank, client, or execution purposes.</li>
+    <li>I will <strong>treat any share transfer or memorandum completion without the Clause 6.3 deed</strong> as a breach of the Company's pre-existing obligations once the consultancy is signed, and Moi Ostrov Ltd will rely on its contractual, shareholder, and personal undertaking rights accordingly.</li>
+  </ul>
+
+  <p>This is not a threat to the pipeline — it is the minimum governance required for me to continue executing as MD and for any third party to rely on clean corporate authority.</p>
+
+  <h2>6. Requested response</h2>
+
+  <p>Please confirm in writing within <strong>14 days</strong> of this letter:</p>
+
+  <ol>
+    <li><strong>Agreement in principle</strong> to execute the full closing package (sections 1–6) <strong>before</strong> any Ben-Haim memorandum or share transfer.</li>
+    <li><strong>Your availability</strong> to sign <strong>Annex A</strong> (for Lighthief International Ltd) and <strong>Annex B</strong> (personal) on a date we fix with counsel.</li>
+    <li><strong>Instruction</strong> to our corporate secretary / lawyer to prepare and file the <strong>Articles amendment</strong> under Clause 6.8.</li>
+    <li><strong>Confirmation</strong> that no share transfer, allotment, or binding investor SHA will be signed until the above is complete.</li>
+  </ol>
+
+  <p>If you prefer to discuss on a call, I am available. The attached deed and annexes are ready for your lawyer's review. I will take independent advice before execution; <strong>Clause 7.1(f)</strong> of the deed expects you to do the same.</p>
+
+  <h2>7. Attachments (to accompany this letter)</h2>
+
+  <ol>
+    <li>Team Operational Consultancy Agreement — <em>legal/commission-agreement-lighthief-moiostrov.html</em> (LCY-MOI-TOCA-2026-001)</li>
+    <li>Board minutes — Phase 1 (<em>DRAFT-LCY-BOARD-MINUTES-PHASE1-2026-001.md</em>)</li>
+    <li>Signing matrix — who signs what (<em>DRAFT-SIGNING-MATRIX-AND-GOVERNANCE.md</em>)</li>
+    <li>Schedule 1 park register (<em>SCHEDULE-1-AND-LOI-PARK-REGISTER.md</em>) — counsel to verify against live data</li>
+  </ol>
+
+  <div class="closing">
+    <p>Yours sincerely,</p>
+    <div class="sig-block">
+      <div class="sig-line">
+        <div class="sig-name">Alexander Papacosta</div>
+        <div class="sig-detail">Director, Lighthief Cyprus Ltd</div>
+        <div class="sig-detail">Cyprus ID: 1241318</div>
+        <div class="sig-detail">office@lighthief.com · +357 99 164 158</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>Lighthief Cyprus Ltd</strong> · HE 477423 · solarfarms.cy<br>
+    28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus
+  </div>
+
+  <p class="legal-note">This letter is a draft for legal review only and does not constitute legal advice. Counsel should review before sending.</p>
+
+</div>
+
+</body>
+</html>

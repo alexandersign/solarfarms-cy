@@ -32,7 +32,7 @@ PARK_PRESETS: dict[str, dict] = {
         "name": "Sia Solar Park (Shia-Sia / Novikov)",
         "lat": 34.957,
         "lon": 33.377,
-        "mwp": 3.32,
+        "mwp": 3.2,
         "layout": "east-west",
         "tilt_deg": 10,
         "loss_pct": 14,

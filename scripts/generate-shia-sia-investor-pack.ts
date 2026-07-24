@@ -92,9 +92,12 @@ function buildCover(): XLSX.WorkSheet {
     [`${D.referenceCode} | ${CONTACT.companyName} | ${new Date().toISOString().slice(0, 10)}`],
     [],
     ['ABOUT THIS MODEL'],
-    ['Indicative 100% equity economics. All cited figures trace to Novikov DD package (May 2026),'],
-    ['EAC connection OCR (ref 498000141), PVGIS yield run (Jun 2026), Lighthief EPC v4 pricing,'],
-    ['and TSOC DAM sample (Oct 2025 – Feb 2026). Not an offer to sell securities.'],
+    ['Indicative 100% equity economics. This pack separates two domains:'],
+    ['  PART A — SELLER PACKAGE (Novikov DD, May 2026): permits, EAC terms, land, seller PPA & FM.'],
+    ['  PART B — LIGHTHIEF ANALYSIS: our E-W yield, BESS sizing, EPC pricing, merchant DAM revenue.'],
+    ['  PART C — Seller financial model shown for comparison only (NOT the Lighthief stack).'],
+    ['Sources: EAC OCR (498000141), PVGIS (Jun 2026), Lighthief EPC v4, TSOC DAM (Oct 2025–Feb 2026).'],
+    ['Not an offer to sell securities.'],
     [],
     ['SHEETS'],
     ['• Document_Sources — assumption registry with DD / market references'],
@@ -118,6 +121,7 @@ function buildCover(): XLSX.WorkSheet {
 function buildDocumentSources(): XLSX.WorkSheet {
   const rows: (string | number)[][] = [
     ['Parameter', 'Value', 'Source document / method'],
+    ['── PART A · SELLER-PROVIDED (Novikov DD, as received) ──', '', ''],
     ['CERA licence', PERMITS.ceraLicence, 'DD package — CERA E3511 Apr 2025'],
     ['Town planning', `${PERMITS.townPlanningMWp} MWp`, `Issued ${PERMITS.townPlanningIssued}`],
     ['Land', PERMITS.landPlot, `Lease executed ${PERMITS.landLeaseExecuted}`],
@@ -127,24 +131,28 @@ function buildDocumentSources(): XLSX.WorkSheet {
     ['EAC annual telecom', EAC_CONNECTION.annualTelecomEUR, 'Connection terms OCR'],
     ['EAC substation sublease', EAC_CONNECTION.annualSubleaseEUR, 'Connection terms OCR'],
     ['AC export limit', `${EAC_CONNECTION.acExportLimitMW} MW`, EAC_CONNECTION.inverterNote],
+    ['Seller PPA (not in LH base)', `$${SELLER_COMMERCIAL.ppaRateUSDPerKwhY1}/kWh`, `${SELLER_COMMERCIAL.ppaStatus}`],
+    ['Seller FM total CAPEX', SELLER_COMMERCIAL.novikovTotalCapexEUR, `${SELLER_COMMERCIAL.novikovFmFile} — comparison only`],
+    ['Seller equity IRR', `${SELLER_COMMERCIAL.novikovEquityIrrPct}%`, 'Seller model — south-facing, levered'],
+    ['── PART B · LIGHTHIEF ANALYSIS (our EPC + merchant model) ──', '', ''],
     ['PV layout', PV_YIELD.layout, `${PV_YIELD.method} ${PV_YIELD.runDate}`],
     ['PV yield (model)', PV_YIELD.modelKwhKwp, PV_YIELD.script],
+    ['South 15° reference (not used)', PV_YIELD.southReferenceKwhKwp, 'Permit layout comparison only'],
     ['Curtailment base', `${R.curtailmentPct * 100}%`, 'E-W flatter profile vs 50% south baseline'],
     ['BESS size', `${D.bessPowerMW} MW / ${D.bessMWh} MWh`, `${D.bessDurationHours}h — energy cap 280 cycle days/yr`],
     ['Solar DAM price', DAM.daytimeEURPerMWh, CYPRUS_TSOC_DAM_SAMPLE.sampleNote],
-    ['BESS discharge price', BESS_DEFAULTS.dischargePriceEURPerMWh, `Measured evening avg €${DAM.peakEveningEURPerMWh}; blended conservative`],
+    ['BESS discharge price', R.bessDischargeRateEURPerMWh, `TSOC evening avg 17–21h — ${CYPRUS_TSOC_DAM_SAMPLE.sampleNote}`],
     ['BESS RTE', BESS_DEFAULTS.rteAcAc, 'Galascope 2.5 MW 2025 actual'],
     ['BESS capture', `${(R.bessCapturePct * 100).toFixed(1)}%`, 'Curtailed energy × cap at MWh×280 days'],
     ['PV EPC rate', LH_PRICING.pvEURPerMWp, LH_PRICING.source],
     ['BESS EPC rate', LH_PRICING.bessEURPerMWh, LH_PRICING.source],
-    ['RTB acquisition', LH_PRICING.rtbWithConnectionTermsEUR, 'RTB_COSTS.withConnectionTerms'],
+    ['RTB acquisition', C.rtbAcquisition, `€${LH_PRICING.rtbPerMWpEUR / 1000}k/MWp × ${D.solarMWp} MWp (RTB incl. connection terms)`],
     ['PV O&M', OPEX_SOURCES.pvOmEURPerMWp, OPEX_SOURCES.pvOmNote],
     ['Land lease', OPEX_SOURCES.landLeaseEUR, OPEX_SOURCES.landLeaseNote],
-    ['Seller PPA (not in base)', `$${SELLER_COMMERCIAL.ppaRateUSDPerKwhY1}/kWh`, `${SELLER_COMMERCIAL.ppaStatus}`],
-    ['Seller FM total CAPEX', SELLER_COMMERCIAL.novikovTotalCapexEUR, `${SELLER_COMMERCIAL.novikovFmFile} — comparison only`],
+    ['LH total CAPEX', C.total, 'Lighthief EPC stack (ex VAT)'],
   ]
   const ws = XLSX.utils.aoa_to_sheet(rows)
-  ws['!cols'] = [{ wch: 28 }, { wch: 22 }, { wch: 55 }]
+  ws['!cols'] = [{ wch: 30 }, { wch: 22 }, { wch: 55 }]
   return ws
 }
 
@@ -157,7 +165,7 @@ function buildAssumptions(): XLSX.WorkSheet {
     ['BESS MWh', D.bessMWh],
     ['BESS power MW', D.bessPowerMW],
     ['Solar sell €/MWh', DAM.daytimeEURPerMWh],
-    ['BESS discharge €/MWh', BESS_DEFAULTS.dischargePriceEURPerMWh],
+    ['BESS discharge €/MWh', R.bessDischargeRateEURPerMWh],
     ['Aggregator fee %', D.finance.aggregatorFeePct],
     ['CIT %', D.finance.citPct],
     ['RTB acquisition €', C.rtbAcquisition],
@@ -191,7 +199,7 @@ function buildRevenueModel(): XLSX.WorkSheet {
     ['Gross generation', annual, '', ''],
     ['Curtailed', curt, '0 (stored)', 0],
     ['Uncurtailed solar export', uncurt, DAM.daytimeEURPerMWh, R.uncurtailedSolarRevY1EUR],
-    ['BESS discharged', R.bessDischargedMWh, BESS_DEFAULTS.dischargePriceEURPerMWh, R.bessRevY1EUR],
+    ['BESS discharged', R.bessDischargedMWh, R.bessDischargeRateEURPerMWh, R.bessRevY1EUR],
     ['Gross revenue Y1', '', '', R.grossRevY1EUR],
     ['BESS capture %', '', '', R.bessCapturePct],
   ]
@@ -203,13 +211,14 @@ function buildRevenueModel(): XLSX.WorkSheet {
 function buildCapex(): XLSX.WorkSheet {
   const rows = [
     ['Item', 'Qty', 'Unit', 'Unit rate €', 'Total €', 'Source'],
-    ['RTB acquisition (incl. connection terms issued)', 1, 'lump sum', C.rtbAcquisition, C.rtbAcquisition, 'RTB_COSTS.withConnectionTerms — DD May 2026'],
+    ['RTB acquisition (incl. connection terms issued)', D.solarMWp, 'MWp', LH_PRICING.rtbPerMWpEUR, C.rtbAcquisition, `€${LH_PRICING.rtbPerMWpEUR / 1000}k/MWp ready-to-build`],
     ['EAC grid infrastructure works', 1, 'lump sum', C.connectionTerms, C.connectionTerms, `OCR ${EAC_CONNECTION.reference} — ${EAC_CONNECTION.preliminaryDisclaimer}`],
     ['PV EPC', D.solarMWp, 'MWp', LH_EPC.pvPerMWp, C.pvEpc, LH_EPC.pvUnitNote],
     ['BESS EPC', D.bessMWh, 'MWh', LH_EPC.bessPerMWh, C.bessEpc, LH_EPC.bessUnitNote],
-    ['Total project CAPEX', '', '', '', C.total, 'Sum — ex VAT'],
+    ['Total project CAPEX (LIGHTHIEF stack)', '', '', '', C.total, 'Sum — ex VAT'],
     ['', '', '', '', '', ''],
-    ['Seller comparison (NOT in Lighthief stack)', '', '', '', SELLER_COMMERCIAL.novikovTotalCapexEUR, SELLER_COMMERCIAL.novikovFmFile],
+    ['── SELLER MODEL (comparison only, NOT Lighthief) ──', '', '', '', '', ''],
+    ['Seller total CAPEX', '', '', '', SELLER_COMMERCIAL.novikovTotalCapexEUR, SELLER_COMMERCIAL.novikovFmFile],
     ['  of which seller dev/licence', '', '', '', SELLER_COMMERCIAL.novikovDevCostEUR, 'Novikov embedded development'],
   ]
   const ws = XLSX.utils.aoa_to_sheet(rows)
@@ -236,8 +245,8 @@ function buildOpex(): XLSX.WorkSheet {
 function buildDamSensitivity(): XLSX.WorkSheet {
   const scenarios = [
     ['Scenario', 'Solar €/MWh', 'BESS €/MWh', 'Gross Y1', 'FCF Y1', 'Cash yield', 'Payback yr'],
-    ['Base (model)', DAM.daytimeEURPerMWh, BESS_DEFAULTS.dischargePriceEURPerMWh, R.grossRevY1EUR, fcfY1, cashYield, payback],
-    ['TSOC measured BESS only', DAM.daytimeEURPerMWh, DAM.peakEveningEURPerMWh, 0, 0, 0, 0],
+    ['Base (TSOC evening avg)', DAM.daytimeEURPerMWh, R.bessDischargeRateEURPerMWh, R.grossRevY1EUR, fcfY1, cashYield, payback],
+    ['Upside blended €195 BESS', DAM.daytimeEURPerMWh, BESS_DEFAULTS.dischargePriceEURPerMWh, 0, 0, 0, 0],
     ['Conservative', 120, 165, 0, 0, 0, 0],
     ['Stress', 100, 150, 0, 0, 0, 0],
     ['PPA solar €148 + cautious BESS', 148, 165, 0, 0, 0, 0],
@@ -318,6 +327,22 @@ tr.src td{font-size:6.5pt;color:var(--muted)}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .box{background:var(--bg);border-left:3px solid var(--gold);padding:6px 8px;font-size:7pt;margin:6px 0}
 .foot{font-size:6pt;color:var(--muted);margin-top:8px;border-top:1px solid var(--border);padding-top:6px}
+.band{display:flex;justify-content:space-between;align-items:center;padding:5px 9px;border-radius:4px;margin:10px 0 6px;font-size:8.5pt;font-weight:700}
+.band .tag{font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:1px 6px;border-radius:8px}
+.band-seller{background:#EDF1F5;color:#475569;border:1px solid #CBD5E1}
+.band-seller .tag{background:#475569;color:#fff}
+.band-lh{background:var(--navy);color:#fff}
+.band-lh .tag{background:var(--gold);color:#1A365D}
+.seller-zone{border:1px solid #CBD5E1;border-radius:5px;padding:0 9px 7px;background:#FAFBFC}
+.lh-zone{border:1px solid var(--navy);border-radius:5px;padding:0 9px 7px;background:#fff}
+.seller-zone h2{color:#475569;border-bottom-color:#CBD5E1}
+.lh-zone h2{color:var(--navy)}
+.seller-zone th{background:#64748B}
+.legend{display:flex;gap:14px;font-size:6.5pt;color:var(--muted);margin:4px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:4px}
+.dot{width:8px;height:8px;border-radius:2px;display:inline-block}
+.dot-seller{background:#64748B}
+.dot-lh{background:var(--navy);border:1px solid var(--gold)}
 @media print{body{background:#fff;padding:0}.page{box-shadow:none;margin:0}.page2{page-break-before:always}}
 `
 
@@ -326,10 +351,9 @@ function eur(n: number) {
 }
 
 function renderTeaser(): string {
-  const damBase = damScenario(DAM.daytimeEURPerMWh, BESS_DEFAULTS.dischargePriceEURPerMWh)
-  const damMeas = damScenario(DAM.daytimeEURPerMWh, DAM.peakEveningEURPerMWh)
+  const damUpside = damScenario(DAM.daytimeEURPerMWh, BESS_DEFAULTS.dischargePriceEURPerMWh)
   const damCons = damScenario(120, 165)
-  const ppaEur = Math.round(SELLER_COMMERCIAL.ppaRateUSDPerKwhY1 * 100 * 0.93) // ~$0.16 → €/MWh indicative
+  const ppaEur = Math.round(SELLER_COMMERCIAL.ppaRateUSDPerKwhY1 * 1000 * 0.93) // $0.16/kWh → ~€149/MWh
 
   return `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
@@ -344,27 +368,33 @@ function renderTeaser(): string {
 
   <h1>Sia Solar Park with Battery Storage</h1>
   <div class="sub">${D.locationLine} · ${PERMITS.landPlot} · ${D.solarMWp} MWp / ${D.bessMWh} MWh BESS (${D.bessDurationHours}h) · 100% equity</div>
-
-  <div class="metrics">
-    <div class="metric"><div class="v">${eur(C.total)}</div><div class="l">Total CAPEX ex VAT</div></div>
-    <div class="metric"><div class="v">${eur(R.grossRevY1EUR)}</div><div class="l">Gross Y1 revenue</div></div>
-    <div class="metric"><div class="v">${(cashYield * 100).toFixed(1)}%</div><div class="l">Y1 cash-on-cash</div></div>
-    <div class="metric"><div class="v">${payback.toFixed(1)} yr</div><div class="l">Simple payback</div></div>
+  <div class="legend">
+    <span><span class="dot dot-seller"></span> Seller package (Novikov DD, as received — verified facts)</span>
+    <span><span class="dot dot-lh"></span> Lighthief independent EPC &amp; merchant analysis (our work)</span>
   </div>
 
+  <div class="metrics">
+    <div class="metric"><div class="v">${eur(C.total)}</div><div class="l">Total CAPEX ex VAT (LH)</div></div>
+    <div class="metric"><div class="v">${eur(R.grossRevY1EUR)}</div><div class="l">Gross Y1 revenue (LH)</div></div>
+    <div class="metric"><div class="v">${(cashYield * 100).toFixed(1)}%</div><div class="l">Y1 cash-on-cash (LH)</div></div>
+    <div class="metric"><div class="v">${payback.toFixed(1)} yr</div><div class="l">Simple payback (LH)</div></div>
+  </div>
+
+  <div class="band band-seller"><span>PART A · Seller package — Novikov due-diligence (received 9 May 2026)</span><span class="tag">Verified facts</span></div>
+  <div class="seller-zone">
   <div class="two-col">
     <div>
-      <h2>Permits &amp; site (DD package May 2026)</h2>
+      <h2>Permits &amp; land (as licensed)</h2>
       <table>
         <tr><th>Item</th><th>Status / ref</th></tr>
         <tr><td>CERA generation licence</td><td>${PERMITS.ceraLicence} — issued ${PERMITS.ceraIssued}</td></tr>
         <tr><td>Town planning</td><td>${PERMITS.townPlanningMWp} MWp — ${PERMITS.townPlanningIssued}</td></tr>
         <tr><td>Land</td><td>${PERMITS.landPlot}</td></tr>
-        <tr><td>Modules (645W)</td><td>~${PV_SITE.moduleCountAtPermit} (at ${D.solarMWp} MWp)</td></tr>
-        <tr><td>AC export limit</td><td>${EAC_CONNECTION.acExportLimitMW} MW (DC:AC ${(D.solarMWp / EAC_CONNECTION.acExportLimitMW).toFixed(2)})</td></tr>
+        <tr><td>Land lease</td><td>Executed ${PERMITS.landLeaseExecuted}</td></tr>
         <tr><td>Environmental</td><td>${PERMITS.environmentalForm}</td></tr>
       </table>
-
+    </div>
+    <div>
       <h2>EAC grid connection (ref ${EAC_CONNECTION.reference})</h2>
       <table>
         <tr><th>Parameter</th><th class="r">Value</th></tr>
@@ -372,38 +402,43 @@ function renderTeaser(): string {
         <tr><td>Acceptance + 5% deposit paid</td><td class="r">${EAC_CONNECTION.depositPaidDate}</td></tr>
         <tr><td>Deposit (incl. 19% VAT)</td><td class="r">€${EAC_CONNECTION.depositInclVATEUR.toLocaleString('en')}</td></tr>
         <tr><td>Grid infrastructure (prelim.)</td><td class="r"><strong>€${EAC_CONNECTION.preliminaryGridWorksRoundedEUR.toLocaleString('en')}</strong></td></tr>
+        <tr><td>Voltage / licensed / AC export</td><td class="r">${EAC_CONNECTION.voltageKv} kV / ${EAC_CONNECTION.licensedMWp} MWp / ${EAC_CONNECTION.acExportLimitMW} MW</td></tr>
+        <tr><td>Annual EAC fees (telecom + sublease)</td><td class="r">€${eacFees}/yr</td></tr>
         <tr class="src"><td colspan="2">${EAC_CONNECTION.preliminaryDisclaimer}</td></tr>
-        <tr><td>Connection voltage / licence</td><td class="r">${EAC_CONNECTION.voltageKv} kV / ${EAC_CONNECTION.licensedMWp} MWp</td></tr>
-        <tr><td>AC export limit</td><td class="r">${EAC_CONNECTION.acExportLimitMW} MW</td></tr>
-        <tr><td>Annual EAC telecom fee</td><td class="r">€${EAC_CONNECTION.annualTelecomEUR}/yr</td></tr>
-        <tr><td>Annual substation sublease</td><td class="r">€${EAC_CONNECTION.annualSubleaseEUR}/yr</td></tr>
+      </table>
+    </div>
+  </div>
+  </div>
+
+  <div class="band band-lh"><span>PART B · Lighthief independent analysis — technology &amp; build cost</span><span class="tag">Our EPC</span></div>
+  <div class="lh-zone">
+  <div class="two-col">
+    <div>
+      <h2>Technology &amp; yield (Lighthief design)</h2>
+      <table>
+        <tr><th>Parameter</th><th class="r">Value</th></tr>
+        <tr><td>PV layout (build design)</td><td class="r"><strong>Bifacial E–W 10°</strong></td></tr>
+        <tr><td>Modules (645W) / row spacing</td><td class="r">~${PV_SITE.moduleCountAtModel} / ${PV_SITE.rowSpacingM} m</td></tr>
+        <tr><td>Yield used (PVGIS ${PV_YIELD.runDate})</td><td class="r"><strong>${PV_YIELD.modelKwhKwp} kWh/kWp</strong></td></tr>
+        <tr><td>Curtailment base case</td><td class="r">${Math.round(R.curtailmentPct * 100)}%</td></tr>
+        <tr><td>BESS (Lighthief sizing)</td><td class="r">${D.bessPowerMW} MW / ${D.bessMWh} MWh (${D.bessDurationHours}h)</td></tr>
+        <tr><td>Annual generation</td><td class="r">${D.annualProductionMWh.toLocaleString('en')} MWh</td></tr>
+        <tr class="src"><td colspan="2">${PV_SITE.rowSpacingNote}. South 15° permit layout = ${PV_YIELD.southReferenceKwhKwp} kWh/kWp (not used — comparison only).</td></tr>
       </table>
     </div>
     <div>
-      <h2>Technology &amp; yield justification</h2>
-      <table>
-        <tr><th>Parameter</th><th class="r">Value</th></tr>
-        <tr><td>PV layout</td><td class="r">Bifacial E–W 10°</td></tr>
-        <tr><td>Yield (PVGIS ${PV_YIELD.runDate})</td><td class="r"><strong>${PV_YIELD.modelKwhKwp} kWh/kWp</strong></td></tr>
-        <tr class="src"><td colspan="2">${PV_SITE.rowSpacingNote}. Coords ${PV_YIELD.coords.lat}, ${PV_YIELD.coords.lon} (${PV_SITE.coordsStatus}).</td></tr>
-        <tr><td>South 15° reference (PVGIS)</td><td class="r">${PV_YIELD.southReferenceKwhKwp} kWh/kWp</td></tr>
-        <tr><td>Curtailment base case</td><td class="r">${Math.round(R.curtailmentPct * 100)}%</td></tr>
-        <tr class="src"><td colspan="2">E–W flatter midday export vs 50% portfolio south-facing baseline</td></tr>
-        <tr><td>BESS</td><td class="r">${D.bessPowerMW} MW / ${D.bessMWh} MWh (${D.bessDurationHours}h)</td></tr>
-        <tr><td>Annual generation</td><td class="r">${D.annualProductionMWh.toLocaleString('en')} MWh</td></tr>
-      </table>
-
-      <h2>CAPEX — quoted rates (ex VAT)</h2>
+      <h2>CAPEX — Lighthief quoted rates (ex VAT)</h2>
       <table>
         <tr><th>Item</th><th class="r">EUR</th></tr>
-        <tr><td>RTB acquisition</td><td class="r">${C.rtbAcquisition.toLocaleString('en')}</td></tr>
-        <tr><td>EAC grid works (prelim.)</td><td class="r">${C.connectionTerms.toLocaleString('en')}</td></tr>
+        <tr><td>RTB acquisition (${D.solarMWp} × €${(LH_PRICING.rtbPerMWpEUR / 1000).toFixed(0)}k/MWp)</td><td class="r">${C.rtbAcquisition.toLocaleString('en')}</td></tr>
+        <tr><td>EAC grid works (seller prelim.)</td><td class="r">${C.connectionTerms.toLocaleString('en')}</td></tr>
         <tr><td>PV EPC (${D.solarMWp} × €${(LH_EPC.pvPerMWp / 1000).toFixed(0)}k/MWp)</td><td class="r">${C.pvEpc.toLocaleString('en')}</td></tr>
         <tr><td>BESS EPC (${D.bessMWh} × €${(LH_EPC.bessPerMWh / 1000).toFixed(0)}k/MWh)</td><td class="r">${C.bessEpc.toLocaleString('en')}</td></tr>
-        <tr class="total"><td><strong>Total</strong></td><td class="r"><strong>${C.total.toLocaleString('en')}</strong></td></tr>
-        <tr class="src"><td colspan="2">Lighthief EPC v4 Feb 2026 · EAC €83,842.14 from OCR 498000141</td></tr>
+        <tr class="total"><td><strong>Total (Lighthief stack)</strong></td><td class="r"><strong>${C.total.toLocaleString('en')}</strong></td></tr>
+        <tr class="src"><td colspan="2">Lighthief EPC v4 Feb 2026. Seller's own model: €${(SELLER_COMMERCIAL.novikovTotalCapexEUR / 1e6).toFixed(2)}M incl. €${(SELLER_COMMERCIAL.novikovDevCostEUR / 1e6).toFixed(1)}M dev (see Part C).</td></tr>
       </table>
     </div>
+  </div>
   </div>
   <div class="foot">${CONTACT.companyName} (${CONTACT.companyNumber}) · Page 1 of 2 · ${D.referenceCode}</div>
 </div>
@@ -414,6 +449,8 @@ function renderTeaser(): string {
     <div class="sub" style="text-align:right">Revenue, DAM &amp; returns · ${D.referenceCode}</div>
   </div>
 
+  <div class="band band-lh"><span>PART B · Lighthief independent analysis — merchant revenue &amp; returns</span><span class="tag">Our model</span></div>
+  <div class="lh-zone">
   <div class="two-col">
     <div>
       <h2>Revenue model Y1 (merchant DAM base case)</h2>
@@ -423,15 +460,14 @@ function renderTeaser(): string {
         <tr><td>BESS discharge</td><td class="r">${R.bessDischargedMWh.toLocaleString('en')}</td><td class="r">${R.bessDischargeRateEURPerMWh}</td><td class="r">${R.bessRevY1EUR.toLocaleString('en')}</td></tr>
         <tr class="total"><td><strong>Gross Y1</strong></td><td class="r"></td><td class="r"></td><td class="r"><strong>${R.grossRevY1EUR.toLocaleString('en')}</strong></td></tr>
       </table>
-      <div class="box">Solar price = TSOC DAM daytime avg (${CYPRUS_TSOC_DAM_SAMPLE.sampleNote}). BESS €${BESS_DEFAULTS.dischargePriceEURPerMWh}/MWh vs measured evening avg €${DAM.peakEveningEURPerMWh}. RTE ${(BESS_DEFAULTS.rteAcAc * 100).toFixed(2)}% (Galascope 2025).</div>
+      <div class="box">Solar price = TSOC DAM daytime avg (${CYPRUS_TSOC_DAM_SAMPLE.sampleNote}). BESS discharge = TSOC measured evening avg €${R.bessDischargeRateEURPerMWh}/MWh (17–21h). RTE ${(BESS_DEFAULTS.rteAcAc * 100).toFixed(2)}% (Galascope 2025).</div>
 
       <h2>DAM price sensitivity</h2>
       <table>
         <tr><th>Scenario</th><th class="r">Gross</th><th class="r">FCF</th><th class="r">Yield</th><th class="r">Payback</th></tr>
-        <tr class="total"><td><strong>Base</strong></td><td class="r">${eur(damBase.gross)}</td><td class="r">${eur(damBase.fcf)}</td><td class="r">${(damBase.yield * 100).toFixed(1)}%</td><td class="r">${damBase.payback.toFixed(1)} yr</td></tr>
-        <tr><td>TSOC evening avg (€${DAM.peakEveningEURPerMWh})</td><td class="r">${eur(damMeas.gross)}</td><td class="r">${eur(damMeas.fcf)}</td><td class="r">${(damMeas.yield * 100).toFixed(1)}%</td><td class="r">${damMeas.payback.toFixed(1)} yr</td></tr>
+        <tr class="total"><td><strong>Base (TSOC evening avg)</strong></td><td class="r">${eur(R.grossRevY1EUR)}</td><td class="r">${eur(fcfY1)}</td><td class="r">${(cashYield * 100).toFixed(1)}%</td><td class="r">${payback.toFixed(1)} yr</td></tr>
+        <tr><td>Upside €195 BESS discharge</td><td class="r">${eur(damUpside.gross)}</td><td class="r">${eur(damUpside.fcf)}</td><td class="r">${(damUpside.yield * 100).toFixed(1)}%</td><td class="r">${damUpside.payback.toFixed(1)} yr</td></tr>
         <tr><td>Conservative €120 / €165</td><td class="r">${eur(damCons.gross)}</td><td class="r">${eur(damCons.fcf)}</td><td class="r">${(damCons.yield * 100).toFixed(1)}%</td><td class="r">${damCons.payback.toFixed(1)} yr</td></tr>
-        <tr class="src"><td colspan="5">Seller draft PPA Synenergia $${SELLER_COMMERCIAL.ppaRateUSDPerKwhY1}/kWh (~€${ppaEur}/MWh) — ${SELLER_COMMERCIAL.ppaStatus}; not in merchant base case</td></tr>
       </table>
     </div>
     <div>
@@ -446,10 +482,10 @@ function renderTeaser(): string {
         <tr class="total"><td><strong>Free cash flow Y1</strong></td><td class="r"><strong>${Math.round(fcfY1).toLocaleString('en')}</strong></td></tr>
       </table>
 
-      <h2>OPEX detail</h2>
+      <h2>OPEX detail (Lighthief)</h2>
       <table>
         <tr><th>Item</th><th class="r">€/yr</th><th>Source</th></tr>
-        <tr><td>PV O&M (€${OPEX_SOURCES.pvOmEURPerMWp / 1000}k/MWp)</td><td class="r">${O.pvOm.toLocaleString('en')}</td><td>Pack assumption</td></tr>
+        <tr><td>PV O&M (€${OPEX_SOURCES.pvOmEURPerMWp / 1000}k/MWp)</td><td class="r">${O.pvOm.toLocaleString('en')}</td><td>LH assumption</td></tr>
         <tr><td>BESS O&M</td><td class="r">${O.bessOm.toLocaleString('en')}</td><td>€${OPEX_SOURCES.bessOmEURPerMWh}/MWh</td></tr>
         <tr><td>Land lease</td><td class="r">${O.landLease.toLocaleString('en')}</td><td>INDICATIVE — deed not OCR'd</td></tr>
         <tr><td>EAC fees</td><td class="r">${eacFees}</td><td>498000141 OCR</td></tr>
@@ -457,10 +493,21 @@ function renderTeaser(): string {
       </table>
     </div>
   </div>
+  </div>
 
-  <div class="box" style="margin-top:8px">
-    <strong>Excel model included:</strong> ${SHIA_SIA_INVESTOR_PACK.modelFile} — Document_Sources sheet lists every assumption with DD reference.
-    Seller FM (${SELLER_COMMERCIAL.novikovFmFile}) shows €${(SELLER_COMMERCIAL.novikovTotalCapexEUR / 1e6).toFixed(2)}M incl. €${(SELLER_COMMERCIAL.novikovDevCostEUR / 1e6).toFixed(1)}M dev — comparison only; not Lighthief stack.
+  <div class="band band-seller"><span>PART C · Seller's own financial model — for comparison only (NOT Lighthief)</span><span class="tag">Seller claim</span></div>
+  <div class="seller-zone">
+  <table>
+    <tr><th>Seller metric (${SELLER_COMMERCIAL.novikovFmFile})</th><th class="r">Value</th><th>Lighthief note</th></tr>
+    <tr><td>Total CAPEX</td><td class="r">€${(SELLER_COMMERCIAL.novikovTotalCapexEUR / 1e6).toFixed(2)}M</td><td>incl. €${(SELLER_COMMERCIAL.novikovDevCostEUR / 1e6).toFixed(1)}M development; LH EPC stack = €${(C.total / 1e6).toFixed(2)}M</td></tr>
+    <tr><td>Offtake basis</td><td class="r">PPA $${SELLER_COMMERCIAL.ppaRateUSDPerKwhY1}/kWh (~€${ppaEur}/MWh)</td><td>Synenergia ${SELLER_COMMERCIAL.ppaStatus}; LH base = merchant DAM</td></tr>
+    <tr><td>Equity IRR (levered, 30yr)</td><td class="r">${SELLER_COMMERCIAL.novikovEquityIrrPct}%</td><td>seller south-facing + leverage; LH base = ${(cashYield * 100).toFixed(1)}% cash yield, 100% equity</td></tr>
+    <tr class="src"><td colspan="3">${SELLER_COMMERCIAL.novikovNote}. Shown so the investor can see seller assumptions vs Lighthief's conservative independent analysis.</td></tr>
+  </table>
+  </div>
+
+  <div class="box" style="margin-top:6px">
+    <strong>Excel model included:</strong> ${SHIA_SIA_INVESTOR_PACK.modelFile} — the <em>Document_Sources</em> sheet separates SELLER-PROVIDED (Novikov DD) inputs from LIGHTHIEF ANALYSIS line by line.
   </div>
 
   <div class="foot">
@@ -501,7 +548,7 @@ function writeSourcesMd(outPath: string) {
 | Item | Value | Source |
 |------|-------|--------|
 | Solar sell | €140.88/MWh | TSOC DAM daytime 06–17h |
-| BESS discharge | €195/MWh model | vs €182.99 measured evening avg |
+| BESS discharge | €${DAM.peakEveningEURPerMWh}/MWh | TSOC evening avg 17–21h (${CYPRUS_TSOC_DAM_SAMPLE.sampleNote}) |
 | Sample | 134 days | 1 Oct 2025 – 11 Feb 2026 |
 
 ## Yield
@@ -522,19 +569,31 @@ function main() {
   const teaserPath = path.join(publicDir, SHIA_SIA_INVESTOR_PACK.teaserFile)
   const sourcesPath = path.join(internalDir, SHIA_SIA_INVESTOR_PACK.sourcesFile)
 
-  writeWorkbook(modelPath)
+  // HTML + sources first so a locked workbook never blocks the rest
   fs.writeFileSync(teaserPath, renderTeaser(), 'utf8')
   writeSourcesMd(sourcesPath)
-
-  // Mirror to internal pack folder
-  fs.copyFileSync(modelPath, path.join(internalDir, SHIA_SIA_INVESTOR_PACK.modelFile))
   fs.copyFileSync(teaserPath, path.join(internalDir, SHIA_SIA_INVESTOR_PACK.teaserFile))
+
+  let xlsxOk = true
+  try {
+    writeWorkbook(modelPath)
+    fs.copyFileSync(modelPath, path.join(internalDir, SHIA_SIA_INVESTOR_PACK.modelFile))
+  } catch (e: unknown) {
+    const err = e as NodeJS.ErrnoException
+    if (err.code === 'EBUSY' || err.code === 'EPERM') {
+      xlsxOk = false
+      console.warn(`\n  ⚠ Excel workbook is OPEN/locked — skipped: ${modelPath}`)
+      console.warn(`    Close the file in Excel and re-run "npm run pack:shia-sia" to refresh the model.`)
+    } else {
+      throw e
+    }
+  }
 
   console.log(`\nShia-Sia investor pack generated`)
   console.log(`  CAPEX ${eur(C.total)} | Gross Y1 ${eur(R.grossRevY1EUR)} | FCF Y1 ${eur(fcfY1)} | ${(cashYield * 100).toFixed(1)}% yield | ${payback.toFixed(1)} yr payback`)
-  console.log(`  → ${modelPath}`)
   console.log(`  → ${teaserPath}`)
-  console.log(`  → ${sourcesPath}\n`)
+  console.log(`  → ${sourcesPath}`)
+  console.log(`  → ${modelPath}${xlsxOk ? '' : '  (SKIPPED — file locked)'}\n`)
 }
 
 main()
