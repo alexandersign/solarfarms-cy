@@ -1,9 +1,32 @@
 Date,Amount_EUR,Counterparty,Narrative,Source,Year
-2025-08-22,500.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan,bank,2025
-2025-09-08,5000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,bank,2025
-2026-01-15,8000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,bank,2026
-2026-02-10,4000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,bank,2026
-2026-02-18,10000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,bank,2026
-2026-05 (memo),15000.00,Alexander Papacosta (vs shares),Share-backed advance / liquidity — confirm draw,cash-assessment-pv-trikkis-runway-may2026.md,2026
+,,,,SECTION A — BOC BANK STATEMENT (LABELLED SHAREHOLDER LOANS),
+2025-08-22,500.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan,BOC bank,2025
+2025-09-08,5000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,BOC bank,2025
+2026-01-15,8000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,BOC bank,2026
+2026-02-10,4000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,BOC bank,2026
+2026-02-18,10000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,BOC bank,2026
+2026-07-02,60000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company (€45k same-day to Trikkis),BOC bank,2026
+2026-07-09,3000.00,Arkadiusz Sybaris,Arkadiusz Sybaris — Shareholders loan to the company,BOC bank,2026
+SUBTOTAL-A,90500.00,,Gross BOC-labelled shareholder loans,,
+,,,,SECTION B — REVOLUT DRAWDOWNS (reduce liability — confirm with accountant),
 2025 Revolut (memo),-5203.57,Founder / related,Revolut card top-ups — Apr report: founder loan returns,BOC bank,2025
 2026 Revolut YTD (memo),-4987.37,Founder / related,Revolut card top-ups — treat as loan repayment or opex per accountant,BOC bank,2026
+SUBTOTAL-B,-10190.97,,Revolut drawdowns (netted),,
+NET-A-PLUS-B,80309.03,,Net BOC-labelled loans after Revolut netting,,
+,,,,SECTION C — ALEXANDER PAPACOSTA,
+2026-05 (memo),0.00,Alexander Papacosta,Share-backed advance — NEVER DRAWN / REMOVED 1 Aug 2026,cash-assessment-pv-trikkis-runway-may2026.md — planning scenario only,2026
+SUBTOTAL-C,0.00,,Not drawn — remove from liability schedule,,
+,,,,SECTION D — ARKADIUSZ SYBARIS DIRECTOR-FUNDED EXPENSES (PAID OUTSIDE LCY BANK ACCOUNT),
+,,,"[VERIFY AREK — all figures below are management estimates stated by Arkadiusz Sybaris. Require receipts / invoices / bank statements from Arek to verify each line before including in statutory accounts.]",,
+2025-03 to 2026-08 (est),126000.00,Arkadiusz Sybaris,[VERIFY AREK] Office rent — 18 months × €7000/mo (Mar 2025 → Aug 2026) — paid directly by Arek outside LCY BOC account,Arek verbal — verify receipts,2025/2026
+various 2025,TBD,Arkadiusz Sybaris,[VERIFY AREK] Initial salaries — pre-Jul 2025 staff funded directly by Arek (exact headcount / months / amounts TBC),Arek verbal — verify payroll records,2025
+various 2025-2026,TBD,Arkadiusz Sybaris,[VERIFY AREK] Marketing expenses — paid directly by Arek (Meta / Google / other — outside BOC card spend; overlap with BOC card charges TBD),Arek verbal — verify invoices,2025/2026
+various 2025-2026,TBD,Arkadiusz Sybaris,[VERIFY AREK] Car wrapping — KIA + L200 branding (amount TBC),Arek verbal — verify invoices,2025/2026
+various 2025-2026,TBD,Arkadiusz Sybaris,[VERIFY AREK] Two cars — KIA (model TBC) and Mitsubishi L200 — purchase price or finance payments (amount TBC; owned or financed TBC),Arek verbal — verify V5/logbook + finance agreements,2025/2026
+various 2025-2026,TBD,Arkadiusz Sybaris,"[VERIFY AREK] Phones and internet — company lines and broadband (est. ~€200–400/mo × 18 months; amount TBC, overlap with BOC card utility payments TBC)",Arek verbal — verify invoices,2025/2026
+SUBTOTAL-D-CONFIRMED,126000.00,,Office rent only (confirmed amount — pending receipts),Arek verbal,
+SUBTOTAL-D-TBD,TBD,,All other Section D items — require verification,,
+TOTAL-D-AREK-STATED,~309500.00,,Arek off-bank only (400k total minus 90.5k BOC loans) — [VERIFY AREK — unaudited],Arek verbal,
+,,,,SECTION E — GRAND TOTAL,
+GRAND-TOTAL-AREK-ALL-IN,~400000.00,,"Arkadiusz Sybaris total director funding stated at ≈€400k ALL-IN — this includes Section A BOC loans (€90.5k) + Section D off-bank expenses (~€309.5k). NOT additive. [VERIFY AREK]",
+GRAND-TOTAL-NET-BOC-ONLY,80309.03,,Net BOC-labelled only (A minus B) — conservative position for statutory accounts until Arek verification,

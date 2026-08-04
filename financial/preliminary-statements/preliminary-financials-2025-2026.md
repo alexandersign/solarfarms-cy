@@ -96,11 +96,13 @@ Accrual model people (**€61k**) > payslip slips (incomplete headcount months /
 
 ---
 
-## 3. Shareholder loans (corrected schedule)
+## 3. Shareholder loans (corrected schedule — Rev 3, 1 Aug 2026)
 
 *File: `shareholder-loans-schedule.csv`*
 
-### 3.1 Bank-identified draws (Arkadiusz Sybaris)
+> **Rev 3 update:** Arkadiusz Sybaris has verbally stated that total director-funded company expenses paid outside the LCY BOC bank account amount to approximately **€400,000**. Section D below itemises the known categories. **All Section D figures are unverified — marked [VERIFY AREK] pending receipts, invoices and Arek's own bank/card statements.**
+
+### 3.1 Section A — BOC bank-labelled shareholder loans (confirmed)
 
 | Date | Amount € | Narrative |
 |------|--------:|-----------|
@@ -110,27 +112,51 @@ Accrual model people (**€61k**) > payslip slips (incomplete headcount months /
 | 15 Jan 2026 | 8,000 | Shareholders loan to the company |
 | 10 Feb 2026 | 4,000 | Shareholders loan to the company |
 | 18 Feb 2026 | 10,000 | Shareholders loan to the company |
-| **2026 YTD subtotal** | **22,000** | |
-| **Cumulative bank draws** | **27,500** | |
+| **02 Jul 2026** | **60,000** | Shareholders loan (€45k same-day to Trikkis) |
+| **09 Jul 2026** | **3,000** | Shareholders loan |
+| **Gross BOC loans** | **90,500** | |
 
-Apr report / cash tracker only showed **€5,500** in Jan 2026 and **€0** for 2025 months — **missing €22,000**.
-
-### 3.2 Additional / related-party (confirm treatment)
+### 3.2 Section B — Revolut drawdowns (netted)
 
 | Item | Amount € | Treatment |
 |------|--------:|-----------|
-| Share-backed advance (May assessment) | **15,000** | Loan / advance against shares — **confirm if drawn** |
-| Revolut card top-ups 2025 | 5,204 | Apr report: **founder loan returns** (reduces liability if repayment) |
-| Revolut card top-ups 2026 YTD | 4,987 | Same — accountant to classify repayment vs opex |
+| Revolut top-ups 2025 | (5,204) | Loan returns — reduce liability |
+| Revolut top-ups 2026 YTD | (4,987) | Same — accountant to classify |
+| **Net BOC loans (A minus B)** | **80,309** | Per management pack §3 |
 
-| Scenario | SH loan liability |
-|----------|------------------:|
-| Gross bank draws only | **27,500** |
-| Gross − Revolut as repayment | **17,309** |
-| Gross + €15k share advance drawn | **42,500** |
-| Net of Revolut + €15k drawn | **32,309** |
+### 3.3 Section C — Alexander Papacosta share-backed advance
 
-**TB base case below uses gross bank draws €27,500** (does not assume €15k drawn until confirmed).
+| Item | Amount € | Status |
+|------|--------:|--------|
+| May 2026 advance vs shares | 15,000 | **Confirm if drawn** |
+
+### 3.4 Section D — Arek director-funded expenses (OFF-BANK) — [VERIFY AREK]
+
+> All figures below stated by Arkadiusz Sybaris verbally. **Require receipts / invoices / Arek's own bank statements before booking in statutory accounts or disclosing as verified to investors.**
+
+| Category | Est. period | Est. amount € | Notes |
+|----------|------------|--:|-------|
+| **Office rent** | Mar 2025 → Aug 2026 (18 months) | **126,000** | 18 × €7,000/mo — amount confirmed; receipts to verify |
+| **Initial salaries** | Pre-Jul 2025 | **[TBC]** | Staff funded directly by Arek before LCY payroll started; headcount / months / amounts to confirm |
+| **Marketing expenses** | 2025–2026 | **[TBC]** | Paid directly by Arek outside BOC card; overlap with BOC Meta/Google card spend to be reconciled |
+| **Car wrapping** | 2025–2026 | **[TBC]** | KIA + L200 branding; receipts from wrap supplier |
+| **Two cars** | 2025–2026 | **[TBC]** | KIA (model TBC) + Mitsubishi L200 — purchase price or finance payments; V5/logbook + finance agreement to provide |
+| **Phones & internet** | 2025–2026 | **[TBC]** | ~€200–400/mo est. × 18 months; overlap with BOC utility card spend to reconcile |
+| **Section D total (Arek stated)** | | **≈ 400,000** | [VERIFY AREK — unaudited — stated total only] |
+| **Section D confirmed** | | **126,000** | Office rent (amount confirmed, receipts pending) |
+| **Section D unverified balance** | | **≈ 274,000** | All remaining items — unverified |
+
+### 3.5 Director funding summary
+
+| Scenario | Total director exposure € | Status |
+|----------|--:|-------|
+| BOC net (Section A − B) | 80,309 | Bank-confirmed — included within Arek's stated total |
+| + Section C (AP advance) | 95,309 | If drawn — to confirm; also within stated total |
+| **Arek total stated (all-in)** | **~400,000** | **Sections A + B + C + D combined — [VERIFY AREK]** |
+| Of which BOC-labelled (Section A gross) | 90,500 | Bank-confirmed subset |
+| Of which off-bank (Section D) | ~309,500 | Rent €126k confirmed + TBC items |
+
+**Implication for Gonen DD response:** The €74k in the July management pack is the net BOC-labelled balance only. Arkadiusz Sybaris states **total** director funding of **≈€400,000** — this figure includes the BOC bank loans (€90,500) plus all off-bank expenses paid directly. Off-bank component ≈€309,500 (of which €126,000 office rent is confirmed in amount; remainder requires receipts). Total director exposure is ~€400k all-in, not €490k.
 
 ---
 
