@@ -1,0 +1,1923 @@
+  ◯ LIGHTHIEF                                      O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+OPERATIONAL PLAN | LTSA LCY-LTSA-GAL-2026
+
+
+OPERATIONS AND MAINTENANCE PLAN (O&M)
+BESS SYSTEM - GALASCOPE 1 AND GALASCOPE 2
+Implementation document for Tier C services: 24/7 monitoring, preventive and corrective maintenance,
+incident response, availability guarantee and preservation of OEM warranty rights.
+
+    Field                                          Value                                      Field                                      Value
+
+    Project                  Galascope 1 / Galascope 2                                       Status             REV.2 - DRAFT FOR REVIEW
+
+    BESS Capacity            20 MWh + 10 MWh = 30 MWh                                   BESS AC Power           5.0 MW + 2.5 MW = 7.5 MW
+
+    Technology               Linyang Power Atlantic 5 MWh, LFP                            EMS/SCADA                                   DISPERON
+
+    Service Level            Tier C (default from PAC)                                 O&M Contractor           Lighthief Cyprus Ltd
+
+    Client                                     Galascope Ltd                            Document Type                                 Plan O&M
+
+                                                                                      Governing LTSA
+    Base Document            LTSA v6.5 / Annex LT-2                                                                                     English
+                                                                                      Language
+
+
+
+    DOCUMENT STATUS: Working version following investor review. The Plan becomes a controlled document once the pre-PAC
+    conditions have been closed, the duty roster has been approved and the Parties have signed it. The final controlled version
+    for the Client shall be issued in English. In the event of conflict, the LTSA shall prevail and, within the LTSA, Annex LT-2 shall
+    prevail.
+
+
+
+Document Control Table
+
+    Revision           Change Description                                                                           Prepared by                   Approved by
+
+    Rev.0              Initial project plan based on LTSA v6.5 and the Lighthief draft                                 Lighthief              [TO BE COMPLETED]
+
+                       EOA data, BESS capacities, locations, permits, site obligations and named
+    Rev.1                                                                                                              Lighthief              [TO BE COMPLETED]
+                       list of responsible persons
+
+                       Investor review: SLA, PAC conditions, availability, spares, SOH/RTE and
+    Rev.2                                                                                                              Lighthief              [TO BE COMPLETED]
+                       stop-clock
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                               Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                         www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                               Page 1
+  ◯ LIGHTHIEF                                 O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+Contents and Document Map
+     Section                                                                          Scope
+
+     1                 Status, Purpose, Basis and Document Hierarchy
+
+     2                 Project Data and System Boundaries
+
+     3                 Tier C Service Scope and Exclusions
+
+     4                 Responsible Persons, RACI and Communication
+
+     5                 Pre-PAC Mobilisation and Operational Readiness
+
+     6                 24/7 Monitoring, SCADA/EMS and Operational Control
+
+     7                 Alarms, SLA, Escalation and Incident Management
+
+     8                 Preventive Maintenance Programme
+
+     9                 Corrective Maintenance and Work Control
+
+     10                HSE, Fire Safety, Environment and Emergency Response
+
+     11                Spare Parts, Warehouse and Obsolescence
+
+     12                Availability, SOH, RTE and Warranty Management
+
+     13                Reporting, Data and Cybersecurity
+
+     14                Regulatory Compliance, DSO and Competence
+
+     15                Quality, Audits and Improvement
+
+     16                Service Completion and Handover
+
+     A-D               Schedules, checklists, matrices and source registers
+
+
+
+
+1.           Status, Purpose, Basis and Document Hierarchy
+
+1.1 Purpose of the Plan
+This O&M Plan translates the LTSA provisions into a practical operating system for the two BESS Parks,
+covering monitoring, on-call organisation, maintenance planning, alarm response, work records, warranty
+management, spare parts and regulatory compliance. It applies to Lighthief personnel, subcontractors and all
+persons performing activities within the O&M system boundaries.
+
+1.2 Document Basis and Order of Precedence
+     • LTSA LCY-LTSA-GAL-2026, version v6.5, together with Schedules 1-5.
+
+     • Annex LT-2 - Agreed Technical & Service Amendments; where it conflicts with the main body, Annex LT-2
+           shall prevail.
+
+
+
+Lighthief Cyprus Ltd                                                                                                          Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                    www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                          Page 2
+  ◯ LIGHTHIEF                                     O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    • EPC Agreement LCY-EPC-GAL-B1-2026, OEM Direct Warranty Undertaking, OEM Warranty Terms,
+          Technical Agreements, EMS Subscription Agreement and the approved Linyang OEM instructions.
+
+    • EOA Submission Documents package dated 07.08.2026: designer declarations, BESS site plans dated
+          April 2026, approval certificates, building permits and conditions, CERA/RAEK exemptions, lease
+          agreements, title deeds, cadastral plans and powers of attorney for plots 71/73 and 471/520.
+
+    • Current site procedures: Emergency Response Plan, LOTO, permits to work, fire protection plan,
+          cybersecurity procedures and DSO/EAC requirements.
+
+    CONTROL PRINCIPLE: Any change to OEM instructions, BMS/PCS/EMS/SCADA configuration, DSO requirements or warranty
+    conditions triggers a review of this Plan and the relevant checklists. No activity outside the OEM instructions may be
+    performed without prior OEM authorisation.
+
+
+
+
+1.3 Controlled Status and Reviews
+    Event                                                                                    Required Action
+
+    Before PAC                          Complete all open fields, the asset register, contacts, spare-parts list and HSE documents.
+
+    At least annually                   Review of the Plan by the O&M Manager, discipline leads and the Client representative.
+
+    After a major incident              Update following RCA, closure of corrective actions and approval of changes by the Parties.
+
+    After a
+    technical/regulatory                Assess the impact on warranty, safety, SCADA, DSO and the PM schedule.
+    change
+
+    After a permit/site-layout          Update the Permit Register, site plan, roads, drainage, fencing, security measures and environmental
+    change                              obligations.
+
+    After a contractual change          Issue a new revision with a change log and formal approval.
+
+
+
+
+1.4 Operational Definitions
+    Term                                  Operational Meaning
+
+    PAC                                   Provisional Acceptance Certificate; commencement of Tier C service for the relevant Park.
+
+                                          Galascope 1: 5.0 MW / 20 MWh BESS adjacent to a 5.0 MWp PV plant, plots 71/73; Galascope 2: 2.5 MW
+    Park
+                                          / 10 MWh BESS adjacent to a 2.5 MWp PV plant, plots 471/520.
+
+                                          District Local Government Organisation of Famagusta - the competent building/local authority for the
+    EOA
+                                          documentation covered by this Plan.
+
+    CERA / RAEK                           Cyprus Energy Regulatory Authority / Ρυθμιστική Αρχή Ενέργειας Κύπρου.
+
+    Restoration Time                      Time from detection to restoration of safe operating capability, including partial capability.
+
+    Resolution Time                       Time from detection to permanent repair/replacement, recommissioning and incident closure.
+
+    Critical / Major / Minor Alert        Alarm class determined by the impact on safety, availability, performance and warranty.
+
+    SOH / SOC / RTE                       Battery state of health / state of charge / round-trip efficiency.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                              Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                        www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                              Page 3
+  ◯ LIGHTHIEF                                   O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+     Term                               Operational Meaning
+
+     Unavailable Hours                  Time during which the BESS cannot operate at rated power for reasons included under the LTSA.
+
+     Warranty-Preservation File         A complete, auditable set of warranty-preservation evidence for each Park.
+
+
+
+
+2.            Project Data and System Boundaries
+
+2.1 Baseline Configuration
+     Item                                     Galascope 1                             Galascope 2                                          Remarks
+
+     Capacity                                  20 MWh                                   10 MWh                                       Total 30 MWh
+
+                                                                                                                   Confirmed in CERA/RAEK exemptions
+     Reference PV Plant                        5.0 MWp                                 2.5 MWp
+                                                                                                                   E2674/2020 and E2673/2020
+
+                                                                                                                   In accordance with the 5 MW and 2.5 MW
+                                                                                                                   project designations in the EOA package;
+     BESS AC Power                              5.0 MW                                     2.5 MW
+                                                                                                                   confirm PCS ratings in the as-built
+                                                                                                                   documentation
+
+                                                                                                                   Exact GPS coordinates and distance from the
+     Location                      Foinitzi, Avgorou, Famagusta           Kerimis, Avgorou, Famagusta
+                                                                                                                   sea to be completed
+
+                                   71 and 73 / 2-278-381 and 2-278-                                                In accordance with title deeds, powers of
+     Plots / plan / section                                               471 and 520 / 2-278-381 / 03
+                                   382 / 12                                                                        attorney and EOA certificates
+
+                                                                                                                   Registered plot areas; these do not represent
+     Plot Area                     60,093 m² + 59,159 m²                  13,500 m² + 26,775 m²
+                                                                                                                   the entire area occupied by the BESS
+
+                                                                                                                   Configuration derived from 20/10 MWh; tags
+     Battery Containers            4 × Linyang Power Atlantic 5 MWh       2 × Linyang Power Atlantic 5 MWh
+                                                                                                                   and serial numbers from the asset register
+
+     Chemistry / Parameters        LFP, 5,015 kWh/container               LFP, 5,015 kWh/container                 12P416S; 45 kW liquid cooling
+
+     PCS / Transformer / MVS             [TO BE COMPLETED]                       [TO BE COMPLETED]                 Models, ratings, settings and serial numbers
+
+     EMS/SCADA                                 DISPERON                                DISPERON                    Local and global access, DSO interface
+
+     CERA/RAEK Exemption for       E2674/2020; 14.04.2020-                E2673/2020; 14.04.2020-                  Modification/expansion of the plant requires
+     PV                            13.04.2050                             13.04.2050                               the applicable regulatory procedure
+
+     PAC / Warranty Start                [TO BE COMPLETED]                       [TO BE COMPLETED]                 Separately for each Park
+
+
+
+
+2.2 Locations and Site Infrastructure
+     Element                    Galascope 1 - plots 71/73                                           Galascope 2 - plots 471/520
+
+                                Old Larnaca-Famagusta road; 4 m and 6 m entrance gates;             Public and internal road; 4 m gates; designated parking and
+     Access
+                                internal roads and unpaved sections.                                access to the EAC room.
+
+                                                                                                    2.10 m fencing, CCTV, lighting, laser barriers and lightning-
+     Fencing / Security         2.10 m fencing, CCTV, lighting and laser-barrier points.
+                                                                                                    protection points.
+
+                                Registered stream No. 303 between the plots; 4 m × 0.30 m
+                                                                                                    Maintain effective stormwater drainage and protect the road
+     Water / Drainage           channels and cable trenches - no interference with the
+                                                                                                    reserve and access to EAC infrastructure.
+                                stream.
+
+     Surroundings               Agricultural Zone G2; approximately 2 km from Vrysoulles            Kerimis location in Avgorou; control public access at the site
+
+
+
+Lighthief Cyprus Ltd                                                                                                            Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                      www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                            Page 4
+  ◯ LIGHTHIEF                                   O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    Element                     Galascope 1 - plots 71/73                                           Galascope 2 - plots 471/520
+
+                                and approximately 200 m from the Monastery of Agios
+                                                                                                    boundary.
+                                Kendeas.
+
+                                Plots 71/73 plan, April 2026; C35 foundations, B420C                Plots 471/520 plan, April 2026; C35 foundations, B420C
+    BESS Plans
+                                reinforcing steel.                                                  reinforcing steel.
+
+
+
+
+    BESS EOA STATUS: The package contains designer declarations and BESS plans dated April 2026 prepared for the Special
+    Exemption Order 2026 procedure, but it does not contain final confirmation of EOA acceptance/approval for the BESS scope.
+    Before work starts and before PAC, this item shall be closed in the Permit Register and an approved set of stamped
+    drawings/as-built documentation shall be obtained.
+
+
+
+
+2.3 Technical Boundaries and Interface Responsibility
+The O&M scope covers the BESS, BMS, PCS, MV/MVS switchgear, transformers within the contractual scope,
+auxiliary systems, HVAC/liquid cooling, fire detection and suppression systems, SCADA gateway, EMS, DSO
+telemetry and all interconnections and control functions between these systems.
+
+Lighthief is responsible for end-to-end BMS-PCS-SCADA-EMS compatibility, communications, command
+execution and data integrity throughout the service period. Failure of an affiliate, DISPERON or a
+subcontractor does not release Lighthief from this responsibility towards the Client.
+
+    EXTERNAL BOUNDARY: Grid issues beyond the point of connection, unagreed civil works and third-party equipment may be
+    excluded from the calculation only to the extent that they directly caused the relevant consequences. Monitoring, diagnosis,
+    safe disconnection, impact mitigation, documentation and warranty-claim support remain required.
+
+
+
+
+2.4 Asset and Configuration Register
+    • Asset register per Park: tag, manufacturer, model, serial number, firmware version, warranty date,
+         location and spare part reference.
+
+    • Single-line electrical diagram, communication architecture, point list, Modbus / IEC 61850 / IEC 60870-5-
+         104 maps and approved protection settings.
+
+    • List of user accounts, permissions and remote access rights, including the owner of each account and the
+         review date.
+
+    • Post-PAC baseline: SOC/SOH, usable AC capacity, RTE, thermal condition, cell imbalance, alarms,
+         software versions and C5 coating condition.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                            Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                      www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                            Page 5
+  ◯ LIGHTHIEF                                 O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+3.            Tier C Service Scope and Exclusions
+
+3.1 Services Covered by the Plan
+     Area                                                                                  Execution Scope
+
+     Monitoring 24/7/365                Data collection, alarming, classification, initial diagnosis, notifications and technical on-call duty.
+
+                                        Monthly remote checks, quarterly on-site visits, quarterly health checks and semi-annual and annual
+     Preventive Maintenance
+                                        tests.
+
+                                        Diagnosis, labour, travel within Cyprus, dismantling/reassembly, configuration restoration, testing and
+     Corrective Maintenance
+                                        documentation.
+
+     PCS and MVS                        Service and fault handling for the Tier B scope included in Tier C.
+
+     Emergency Response                 Priority response times, isolation, dispatch, restoration and incident reporting.
+
+     Availability                       97% annual group-level guarantee for G1+G2, with each Park tracked in parallel.
+
+     Spare Parts                        Local stock of critical components in Cyprus, with replenishment and storage-condition control.
+
+     OEM Warranty                       Preservation of warranty conditions, evidence files, claims management and annual performance tests.
+
+     Reports and Data                   Monthly, quarterly and annual reports, raw-data export, incident registers and availability calculations.
+
+     Compliance                         DSO/EAC testing, fire safety, environment, cybersecurity and audit documentation.
+
+                                        Routine inspection of access roads, gates, fencing, fauna passages, drainage, the stream, security
+     Site Infrastructure
+                                        systems and housekeeping; non-routine civil repairs require a separate order.
+
+
+
+
+3.2 Exclusions and Classification Rules
+     • Customisation and non-standard expansion of the EMS beyond the standard configuration.
+
+     • Third-party equipment outside the EPC scope and grid issues beyond the point of connection.
+
+     • Damage directly caused by Force Majeure, the Client, vandalism or an unauthorised modification.
+
+     • Civil, structural and site infrastructure works beyond routine maintenance.
+
+     • Replacement of major components outside warranty/SOH coverage - subject to separate quotation.
+
+Each exclusion must be supported by causal evidence identifying the event, extent of impact, period, technical
+evidence and classification rationale. The Client may reasonably challenge the classification. An exclusion does
+not limit the duty to take immediate protective action and minimise damage.
+
+
+4.            Responsible Persons, RACI and Communication
+
+4.1 Named List of Responsible Persons
+     Person                                          Role                        Responsibility under the O&M Plan
+
+                                                                                 Overall service delivery, Client interface, operational safety, escalations, PM
+     Marcin Niedośpiał                        O&M Site Manager
+                                                                                 schedule, permit/lease register and report approval.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                          Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                    www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                           Page 6
+  ◯ LIGHTHIEF                                     O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    Person                                               Role                        Responsibility under the O&M Plan
+
+                                                                                     Organisation of 24/7 monitoring, duty rosters, alarms, KPIs, platform
+    Taras Rybak                         Remote Monitoring Manager
+                                                                                     continuity and shift escalations.
+
+                                                                                     Continuous monitoring, alarm acknowledgement, authorised commands, shift
+    Mateusz Kasprzyk                    SCADA System Operator
+                                                                                     log, telemetry quality and local dispatch.
+
+                                                                                     EMS logic, BMS-PCS-SCADA-DSO integration, operating schedules, command
+    Andrzej Lechowicz                               EMS Engineer
+                                                                                     diagnostics and configuration change control.
+
+                                                                                     Electrical supervision, MV/LV, LOTO/PTW, protection, measurements,
+    Wojciech Czyż                       O&M Electrical Manager
+                                                                                     thermography, DSO/EAC and acceptance of electrical work.
+
+                                                                                     Field work, PM/CM, measurements, connection inspections, fault rectification
+    Kacper Góral                                      Electrician
+                                                                                     and work records.
+
+                                                                                     Liquid cooling/HVAC, thermal performance, filters, fans, alarms and the
+    Maciej Lachowski                                HVAC Manager
+                                                                                     auxiliary-equipment repair plan.
+
+                                                                                     Containers, locks, seals, fixings, corrosion, mechanical components and
+    Zbigniew Janik                      Mechanical Engineer
+                                                                                     support for heavy replacements.
+
+                                                                                     Foundations, roads, drainage, the stream, fencing, fauna passages and site-
+    Mateusz Kozieł                                   Civil Engineer
+                                                                                     layout compliance with EOA plans.
+
+                                                                                     Design support, settings and technical/DSO coordination within the formally
+    Dimos                               External Electrical Designer
+                                                                                     commissioned scope.
+
+
+
+The table above identifies responsible persons and does not constitute the full shift roster. Telephone
+numbers, e-mail addresses, deputies, emergency numbers and availability periods shall be finalised in the
+controlled contact and duty roster before PAC. Official reports and notices to the Client shall be issued in
+English unless the Parties agree otherwise in writing; English remains the governing language of the LTSA.
+
+4.2 Key Responsibilities
+    Area                           Responsible Persons                                                                         Scope
+
+                                                                                             Single point of contact, operational decisions, escalations,
+    Management and HSE                              Marcin Niedośpiał
+                                                                                             emergency plan, HSE coordination and action closure.
+
+                                   Taras Rybak, Mateusz Kasprzyk, Andrzej                    24/7 alarms, safe control, data integrity, EMS/SCADA and shift
+    Monitoring / SCADA / EMS
+                                   Lechowicz                                                 handover.
+
+                                                                                             MV/LV, PTW/LOTO, protection, measurements, DSO, works and
+    Electrical                     Wojciech Czyż, Kacper Góral, Dimos
+                                                                                             post-repair testing.
+
+                                                                                             Thermal performance, cooling, containers and mechanical
+    HVAC / Mechanical              Maciej Lachowski, Zbigniew Janik
+                                                                                             components.
+
+                                                                                             Foundations, drainage, roads, fencing, the stream and site
+    Site / Civil / EOA                                Mateusz Kozieł
+                                                                                             compliance with permit conditions.
+
+                                                                                             Safe access, site documents, internet connectivity, compliant
+    Client                         Person appointed by Galascope Ltd                         operation, no unauthorised modifications and required
+                                                                                             insurance.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                              Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                        www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                              Page 7
+  ◯ LIGHTHIEF                                       O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+4.3 RACI Matrix
+     Process                                                      A                                 R                                   C                        I
+
+                                                                                                                          Andrzej Lechowicz / Marcin
+     Monitoring and Alarm Classification                     Taras Rybak                   Mateusz Kasprzyk                                                   Client
+                                                                                                                          Niedośpiał
+
+     PM Plan and Visits                                   Marcin Niedośpiał        Relevant Discipline Leads                          OEM                     Client
+
+                                                                                                                          OEM / DSO / emergency           Client /
+     Critical Incident                                    Marcin Niedośpiał        Mateusz Kasprzyk + relevant lead
+                                                                                                                          services                        Lender's IE
+
+     Warranty Claim                                       Marcin Niedośpiał        Relevant Technical Lead                        OEM / Client               Lender IE
+
+     Monthly Report                                       Marcin Niedośpiał        Taras Rybak / Mateusz Kasprzyk               Discipline Leads              Client
+
+                                                                                   Andrzej Lechowicz / Mateusz            Wojciech Czyż / Dimos / DSO
+     EMS/SCADA/Settings Change                            Marcin Niedośpiał                                                                                   Client
+                                                                                   Kasprzyk                               / OEM
+
+     Site / EOA Compliance                                Marcin Niedośpiał                  Mateusz Kozieł               Wojciech Czyż / designer            Client
+
+     Spare-Parts Warehouse                                Marcin Niedośpiał        Relevant Technical Lead                            OEM                     Client
+
+
+
+
+A - Accountable, R - Responsible, C - Consulted, I - Informed.
+
+
+5.             Pre-PAC Mobilisation and Operational Readiness
+O&M readiness is a condition for the safe takeover of each Park. Each Park shall pass a separate readiness
+gate. An open item blocks takeover unless the Client accepts in writing an interim plan identifying the owner,
+deadline and risk controls.
+
+     Gate                        Acceptance Criterion                                                                                          Owner             Status
+
+                                 Final acceptance of the BESS scope, stamped drawings, authority conditions and no
+     EOA / Permits                                                                                                                      O&M Manager                  []
+                                 unresolved deviations.
+
+     As-Built                    GPS, SLD, communication diagrams, datasheets, instructions, settings, certificates and
+                                                                                                                                        O&M Manager                  []
+     Documentation               FAT/SAT/PAC protocols.
+
+     Asset register              Complete asset list, serial numbers, firmware, warranties, locations and photographs.                      Back Office              []
+
+                                 SCADA/EMS/BMS/PCS online, time synchronisation, point-to-point testing, alarms,
+     Monitoring                                                                                                                                SCADA                 []
+                                 redundant channels and notification test.
+
+                                 MFA, RBAC, named accounts, VPN, logs, configuration backups and emergency-access
+     Cybersecurity                                                                                                                          SCADA / IT               []
+                                 procedure.
+
+                                 Site-specific ERP, LOTO, PTW, PPE, SDS, 6 m fire-access roads, isolation maps and an
+     HSE / ERP                                                                                                                                  HSE                  []
+                                 emergency-services drill.
+
+                                 Duty roster, deputies, Cypriot qualifications, Linyang training, EMS/SCADA and fire-safety
+     Local Team                                                                                                                         O&M Manager                  []
+                                 training.
+
+     Spare-Parts                 Signed min/max list, part numbers, ownership, compatibility, storage, replenishment and
+                                                                                                                                            Back Office              []
+     Warehouse                   evidence of availability.
+
+                                 Approved major-component failure strategy: stock, OEM pool, replacement unit or
+     PCS / Transformer                                                                                                                  O&M Manager                  []
+                                 binding lead time.
+
+                                 98.5% SOH at COD (LTSA reference), AC capacity, RTE, thermal performance, cell
+     Baseline                                                                                                                               OEM / O&M                []
+                                 imbalance and C5 condition.
+
+     SOH/RTE Protocol            Signed protocol: AC measurement point, auxiliary energy, temperature, C-rate, rest                         OEM / O&M                []
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                                Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                          www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                                 Page 8
+  ◯ LIGHTHIEF                                     O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+     Gate                    Acceptance Criterion                                                                                            Owner             Status
+
+                             period, data and validity criteria.
+
+     External Contacts       Client, DSO/EAC, Fire Service, security, OEM, DISPERON, transport and crane provider.                    O&M Manager                []
+
+                             Folder structure, report templates, required photographs/measurements and 15+5-year
+     Warranty File                                                                                                                      Back Office              []
+                             retention method.
+
+
+
+
+     PRE-PAC CLOSURE CONDITIONS: Closure evidence is the document identified in the controlled PAC Readiness Register and
+     accepted by the relevant owner and the Client. Absence of evidence means the item remains open. The critical-spares list,
+     SOH/RTE protocol, final EOA/as-built documents, ERP readiness and PCS/transformer strategy shall be closed before PAC or
+     covered by a written, accepted interim plan.
+
+
+
+
+6.            24/7 Monitoring, SCADA/EMS and Operational Control
+
+6.1 Monitored Parameters
+     Group                                                                                  Minimum Scope
+
+                                    Cell voltage and temperature; string and container SOC/SOH; current; power limits; cell imbalance; BMS
+     Battery
+                                    alarms.
+
+     PCS / MVS / Transformer        Status, trips, P/Q, efficiency, voltage, current, temperature, protection and availability.
+
+     Thermal Systems                HVAC/liquid cooling, temperatures, flow/status, filters, fans and alarms.
+
+     Safety                         Fire and gas detection, suppression readiness, E-stop, door interlock and auxiliary power.
+
+     Communications                 BMS-PCS-EMS-SCADA, gateway, internet, time synchronisation, data loss and telemetry quality.
+
+     EMS / Dispatch                 Command execution, power limits, schedules, zero-export (if applicable) and integration errors.
+
+     DSO / EAC                      P, Q, V, I, f, SOC, SOH, remote commands, IEC 60870-5-104, PQDIF and COMTRADE.
+
+     Environment /
+                                    Ambient temperature, humidity, access events, configuration changes and firmware integrity.
+     Cybersecurity
+
+
+
+
+6.2 Monitoring Centre Operating Routine
+     • Continuous monitoring of dashboards and the alarm queue; each alarm shall have a source timestamp.
+
+     • Acknowledge and classify in accordance with Section 7; failure to acknowledge triggers automatic
+         escalation.
+
+     • Remote response shall be performed only by authorised persons and in accordance with the approved
+         procedure.
+
+     • The shift log shall include active alarms, power limitations, open work orders, spare-part status and
+         required follow-up actions.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                              Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                        www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                              Page 9
+  ◯ LIGHTHIEF                                      O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+     • Shift handover requires acknowledgement by the incoming person; Critical and Major alarms shall also
+          be handed over verbally.
+
+     • A monitoring platform failure is a Major Alert and becomes a Critical Alert if it affects safety.
+
+6.3 Warranty Protection Thresholds
+     Parameter / Condition                    Operating Threshold                                                       Action
+
+     Cell Voltage - Pre-Alarm                           < 2.9 V                Automatic alarm; immediate trend assessment and safe recharge plan.
+
+     Cell Voltage - Warranty Void                  < 2.8 V for 120 h           Prevent occurrence; Critical escalation and SOC restoration plan.
+
+     Under-Voltage - Warranty Void            ≤ 2.5 V, any occurrence          Immediate isolation/protection, OEM notification and incident report.
+
+     SOC During Standstill                               > 5%                  Maintain above the threshold; low-SOC alarm.
+
+     Long-Term Standstill                            30-50% SOC                Set before a long shutdown in accordance with OEM instructions.
+
+     Charging Temperature                             0 to +55°C               Pre-alarm 5°C from the limit; derate/stop in accordance with BMS/OEM.
+
+     Discharging Temperature                         -20 to +55°C              Pre-alarm 5°C from the limit; derate/stop in accordance with BMS/OEM.
+
+                                              > 90% RH alarm; max.
+     Humidity                                                                  Check sealing, condensation and HVAC; do not open in adverse weather.
+                                              95% RH
+
+
+
+
+6.4 Command and Configuration Change Control
+     • Start/stop, P-set, Q-set and zero-export commands shall be positively confirmed and recorded in the log.
+
+     • Any change to protection settings requires designer/DSO approval and a four-eyes check.
+
+     • Firmware/software updates require OEM authorisation, a backup, rollback plan, service window and
+          functional test.
+
+     • Every change shall be entered in the configuration register, identifying who, when, reason, version
+          before/after, test result and approval.
+
+     • Remote control functionality and telemetry completeness shall be tested monthly.
+
+
+7.              Alarms, SLA, Escalation and Incident Management
+
+7.1 Alarm Classification
+     Class                                           Criterion                                                                 Examples
+
+                            Immediate risk to people, the environment or warranty, or           Fire/thermal event, gas, E-stop, ≤2.5 V, full Park outage, safety-
+     Critical
+                            total/material loss of safe operation.                              related loss of monitoring.
+
+                            Material impact on performance or reliability without an            PCS trip, HVAC fault, communication loss, partial outage,
+     Major
+                            immediate safety threat.                                            monitoring platform unavailable.
+
+                                                                                                Minor sensor anomaly or punch-list item with no impact on
+     Minor                  Non-critical fault that can be handled on a planned basis.
+                                                                                                operation.
+
+     Informational          Event for trend analysis with no intervention required.             Status change, operating record or diagnostic alert.
+
+
+
+Lighthief Cyprus Ltd                                                                                                               Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                         www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                             Page 10
+  ◯ LIGHTHIEF                                    O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+7.2 Operational SLA Target Matrix
+The matrix separates notification time, remote response, on-site attendance, safe restoration and permanent
+resolution. These are operational targets used to organise the O&M service. Liability thresholds, service credits
+and legal remedies remain exclusively governed by the LTSA and Annex LT-2 unless the Parties expressly agree
+otherwise in writing.
+
+    Stage                                            Critical                                           Major                                     Minor
+
+    Client Notification         Telephone + e-mail ≤30 min                                           E-mail ≤2 h                               Next Report
+
+    Acknowledgement /                                                                                                                Remote response ≤12 h during
+                                Ack ≤30 min; immediate isolation if required         Remote response ≤4 h
+    Remote Response                                                                                                                  working hours
+
+    On-Site Attendance          ≤4 h if required; safety-critical 24/7                             ≤6 h if required                  Next visit or ≤5 business days
+
+    Restoration Plan                                   ≤4 h                                       ≤1 business day                           In the work order
+
+    Safe Restoration            ≤24 h where technically feasible                                  ≤5 business days                              Next visit
+
+                                ≤5 business days unless OEM parts are
+    Permanent Resolution                                                                         ≤15 business days                   Next visit or ≤30 days
+                                required
+
+    Status Updates              At least every 2 h until stabilisation               In accordance with the repair plan              In the report / work order
+
+
+
+
+    SLA AND STOP-CLOCK RULES: The Critical on-site attendance target of ≤4 h is an enhanced operational target under this
+    Plan. For Major events, the ≤6 h attendance target does not amend the service-credit threshold in LTSA §8.5. Stop-clock or
+    excluded hours may be applied only to the extent of direct causation, supported by timestamps, correspondence and other
+    evidence, following prompt notification and Client acceptance. Unilateral reclassification of time is not permitted. If a
+    restoration or resolution target cannot be met, a written recovery plan shall be issued stating the reason, revised deadline
+    and risk-mitigation actions.
+
+
+
+
+7.3 Incident Handling Workflow
+    1. Detect and retain the alarm source timestamp.
+
+    2. Acknowledge and classify the event and assess the risk to people, warranty and availability.
+
+    3. Apply safe isolation or shutdown where required and authorised.
+
+    4. Notify the Client and the relevant persons in the escalation matrix.
+
+    5. Perform remote diagnosis, secure the logs and open a work order.
+
+    6. Initiate local/OEM/DSO/emergency-services dispatch and confirm site access.
+
+    7. Restore safe partial or full operating capability and document any limitations.
+
+    8. Complete the permanent repair, recommissioning and functional test.
+
+    9. Determine the root cause and define corrective and preventive actions.
+
+    10. Close the incident after evidence acceptance, register updates and submission of the Client report.
+
+
+Lighthief Cyprus Ltd                                                                                                             Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                       www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                              Page 11
+  ◯ LIGHTHIEF                                  O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+7.4 Major Incident
+The Major Incident Procedure applies to fire/thermal events, repeated trips, forced outages exceeding 24
+hours, cyber incidents, grid-code breaches, warranty-threatening events or unavailable capacity exceeding
+10% of a Park.
+
+     • Client notification - immediately.
+
+     • Initial incident report - within 24 hours.
+
+     • Secure logs, photographs, alarms, configurations and witness information.
+
+     • RCA after stabilisation; the deadline, owner and action plan shall be stated in the initial report.
+
+     • Provide updates until closure and assess the impact on Availability, SOH, warranty, DSO and insurance.
+
+
+8.          Preventive Maintenance Programme
+
+8.1 Planning Principles
+     • Four quarterly visits per year for each Park, at intervals of approximately three months.
+
+     • Plan at least 30 days in advance; the preferred low-dispatch window is 04:00-08:00 local time.
+
+     • Total Scheduled Downtime shall not exceed 48 h per Park per year; exceeding 48 consecutive hours
+         requires the Client's prior written consent, except in a safety emergency.
+
+     • Container doors shall not be opened during rain, snow, fog, high humidity or excessive wind.
+
+     • The scope of each activity shall follow the current OEM instructions; stricter requirements shall prevail.
+
+     • A visit not completed because of weather shall be promptly rescheduled and recorded, without
+         interruption to monitoring continuity.
+
+8.2 Baseline Frequencies
+     Frequency                                                               Scope                                                              Owner
+
+     Continuous / Each Shift       Alarms, communications, dispatch, limitations, safety status and handover log.                         SCADA / Duty Tech
+
+                                   Container status, BMS backup, run-data/parameter/log capture, software review,
+     Monthly - Remote                                                                                                                           SCADA
+                                   telemetry and command test.
+
+                                   SOH trend, degradation, thermal performance, cell imbalance, communications,
+     Quarterly - Remote                                                                                                             SCADA + Electrical
+                                   data integrity and recommendations.
+
+                                   Inspection of BESS/PCS/MVS/transformer, thermography, balancing, HVAC, fire
+     Quarterly - On Site                                                                                                                     Local Team
+                                   systems, connections, relays, sensors, alarms and C5 protection.
+
+     Every 6 Months                Cable screens, SPDs, fuses, copper busbars and connections.                                                Electrical
+
+                                   Earthing ≤4 Ω, insulation >1 MΩ, protection, SCADA, fire systems, E-stop,
+     Annually                                                                                                                       Discipline Leads + OEM
+                                   SOH/capacity/RTE and cyber-access review.
+
+                                   Alarm, OEM recommendation, serial defect, recall, firmware/regulatory change or
+     Event-Driven                                                                                                                          O&M Manager
+                                   trend result.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                           Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                     www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                           Page 12
+  ◯ LIGHTHIEF                                  O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+8.3 Scope of the Quarterly Visit
+     • Visual inspection of enclosures, structures, foundations, connections, seals, moisture and
+         contamination.
+
+     • Thermal imaging of electrical connections and switchgear under an appropriate load condition.
+
+     • Verification of module balancing, BMS and cell voltages and temperatures.
+
+     • Inspection and cleaning of cooling systems: filters, fans, intake/outlet, sensors and abnormal noise.
+
+     • Check readiness of detection/suppression, E-stop, interlocks, signage and fire-service access.
+
+     • Check cable terminations and tightening torques against OEM values.
+
+     • Functional test of protection, relays, sensors, meters and communications.
+
+     • Review of alarms, firmware and OEM-approved updates.
+
+     • C5 protection: coatings, salt deposits, grilles, seals, drains, surfaces, hinges and fasteners, with
+         photographs.
+
+     • Restore configuration, complete post-work testing, close doors and confirm monitoring.
+
+8.4 PM Completion Evidence
+A work order is considered complete only after attaching the checklist, before/after photographs,
+measurements, thermograms, tightening torques, test results, parts/consumables list, names and
+qualifications of personnel, downtime, deviations, recommendations and the verifier's signature.
+
+
+9.           Corrective Maintenance and Work Control
+
+9.1 CM Scope
+Under Tier C, Corrective Maintenance includes diagnosis, labour, travel within Cyprus, safe dismantling and
+reassembly, configuration restoration, testing, recommissioning and incident documentation for the BESS,
+PCS, BMS, MVS, SCADA gateway and associated control systems. Parts costs are governed by the warranty,
+spares and LTSA exclusion provisions.
+
+9.2 Work-Order Control
+     Stage                     Minimum Data / Gate
+
+     Opening                   Number, Park/tag, alarm source, timestamp, class and impact on safety/availability/warranty.
+
+     Work Plan                 Scope, method, risks, LOTO/PTW, PPE, parts, personnel, OEM/DSO approval and rollback plan.
+
+     Execution                 Times, measurements, photographs, parts, serial numbers, configurations before/after and deviations.
+
+     Post-Repair Test          Protection/interlocks, communications, commands, thermal stability and no active alarms.
+
+     Restoration               Safe partial/full operation, limitations, post-work monitoring and Client notification.
+
+     Closure                   Cause, CAPA, warranty status, availability coding and updates to the asset/spares/configuration registers.
+
+
+
+Lighthief Cyprus Ltd                                                                                                           Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                     www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                         Page 13
+  ◯ LIGHTHIEF                            O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+9.3 Permit to Work and LOTO
+    • Before work: risk assessment, PTW, identification of energy sources and confirmation of competence
+         and weather conditions.
+
+    • Before work on a rack, disconnect all MSDs; release locking mechanisms before disconnecting the pack
+         plug.
+
+    • Each person shall apply their own lock; the de-energised state shall be verified using the appropriate
+         instrument and procedure.
+
+    • Work near hazardous energy shall be performed only by authorised personnel wearing the required PPE
+         and with a safety observer where required by the risk assessment.
+
+    • After work: check tools and foreign objects, reconnect MSDs, test interlocks, close doors and have lock
+         owners remove their LOTO devices.
+
+
+10.         HSE, Fire Safety, Environment and Emergency Response
+
+10.1        Overriding Safety Rules
+    STOP WORK: Every person has the right and duty to stop work in the event of uncontrolled energy, a fire/gas alarm, signs of
+    thermal runaway, inadequate PTW/LOTO/PPE, adverse weather or unclear configuration. Work may resume only after
+    reassessment and authorisation.
+
+
+
+    • Access is restricted to authorised persons; maintain entry/exit records and key control.
+
+    • Maintain current SDS, OEM instructions, evacuation plan, assembly points and 112/Fire Service contact
+         numbers.
+
+    • Keep fire-access roads clear, with a minimum width of 6 m.
+
+    • Keep extinguishers and detection/suppression systems ready and within their inspection dates.
+
+    • Do not attempt firefighting or open a container during a thermal event except within roles and
+         procedures approved by the OEM and emergency services.
+
+10.2        Response to Fire Alarm / Thermal Event
+    1. Do not approach the container or open the doors; warn persons nearby.
+
+    2. Initiate the alarm, evacuation and emergency-services call in accordance with the ERP.
+
+    3. Apply remote E-stop/isolation only where safe and provided for by the procedure.
+
+    4. Provide emergency services with the location, LFP chemistry, SDS, diagram, stored energy, suppression
+         status and possible adjacent hazards.
+
+
+
+Lighthief Cyprus Ltd                                                                                                     Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                               www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                   Page 14
+  ◯ LIGHTHIEF                                   O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    5. Secure the zone and 6 m access; do not permit re-entry without approval from the incident
+          commander/HSE.
+
+    6. Preserve logs, monitoring, images and communications; initiate the Major Incident Procedure.
+
+10.3        Environment
+    • Prevent uncontrolled leaks and emissions; respond to spills in accordance with the site plan.
+
+    • Maintain cooling systems in accordance with F-gas requirements where applicable.
+
+    • Record and secure damaged batteries, electrical/electronic waste and other hazardous waste and
+          transfer them only to licensed recipients.
+
+    • Maintain vegetation and remove dry biomass to reduce fire risk without affecting protected areas or
+          environmental conditions.
+
+    • On plots 71/73, do not interfere with registered stream No. 303; monitor its flow, erosion and signs of
+          contamination and promptly escalate deviations.
+
+    • Maintain fencing and fauna passages in accordance with approved plans; for plots 471/520, inspect 50 ×
+          25 cm openings spaced every 70-100 m and ensure there are no sharp edges.
+
+    • Maintain drainage, roads and the site to minimise flooding, corrosion, dust and unauthorised access; do
+          not store materials outside designated areas.
+
+
+11.         Spare Parts, Warehouse and Obsolescence
+
+11.1        Local Tier C Warehouse
+The Cyprus warehouse shall maintain the agreed minimum stock of critical components sufficient to remedy
+typical faults within 24 hours. For each item, record the part number, compatibility, application, min/max
+quantity, condition, location, storage conditions, expiry date, lead time and replenishment deadline.
+
+    Parts Group                                               Minimum Scope                                                                Control
+
+                                                                                                                      ESD, firmware/compatibility, test after
+    BMS / Communications        BMS controllers, communication modules, gateway and sensors.
+                                                                                                                      issue
+
+    Cooling                     Fans, filters, sensors and agreed liquid-cooling components.                          Storage conditions, sealing and dates
+
+    Electrical                  Fuses, contactors, SPDs, protection components and minor connections.                 Rating, certificates and shelf life
+
+    PCS                         Control boards and agreed power modules.                                              Model/version and OEM approval
+
+    Battery                     Balancing equipment and OEM-approved parts.                                           SOC/storage and traceability
+
+    PM Materials                Filters, cleaning agents, fasteners and protective C5 lubricants.                     Min/max and consumption per visit
+
+
+
+The minimum critical-spares list requires written acceptance before PAC and shall identify, for each item, the
+owner, location, min/max quantity, replenishment deadline and periodic verification method. Full PCS units
+and transformers need not be stocked unless separately agreed, but the failure strategy shall identify stock, an
+
+
+Lighthief Cyprus Ltd                                                                                                            Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                      www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                            Page 15
+  ◯ LIGHTHIEF                                    O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+OEM pool, a replacement unit or a binding lead time. A declared four-week OEM delivery period shall qualify
+as mitigation only upon presentation of written, binding OEM confirmation. Failure to maintain the agreed
+stock or critical strategy constitutes Service Provider default, and the resulting downtime shall be classified as
+Unavailable.
+
+11.2        Replenishment, Warranty Parts and Obsolescence
+    • Issue of a part automatically generates a replenishment reservation/purchase and updates the stock
+         ledger.
+
+    • A removed part shall be labelled with the fault tag, retained pending the OEM decision and linked to the
+         warranty claim.
+
+    • Warranty components shall be supplied at no additional cost in accordance with OEM terms; Lighthief
+         shall manage the claim and evidence.
+
+    • Replacement of major components outside warranty/SOH coverage is subject to a separate quotation.
+
+    • For at least 15 years, support the availability of compatible parts and firmware; replacements shall be
+         equivalent or better without loss of warranty, certification or grid-code compliance.
+
+
+12.         Availability, SOH, RTE and Warranty Management
+
+12.1        Availability
+The contractual Availability guarantee remains as stated in the LTSA: 97% per year at G1+G2 group level. For
+investor transparency, each Park is also reported separately together with an additional non-binding capacity-
+weighted group indicator. The additional indicators do not increase the Service Provider's guarantee or liability
+without a written LTSA amendment.
+
+    LTSA CONTRACTUAL FORMULA: Group Availability [%] = SUM(Available Hours per Park) / SUM(Total Hours per Park) × 100.
+    Total Hours are counted for each Park from its PAC: 8,760 h per year or 8,784 h in a leap year, pro rata in the first year.
+
+
+
+    Indicator                                   Calculation Method / Status
+
+    Availability G1                             Reported separately for Galascope 1; diagnostic KPI and basis for remediation.
+
+    Availability G2                             Reported separately for Galascope 2; diagnostic KPI and basis for remediation.
+
+    Group Availability LTSA                     Contractual hourly indicator calculated in accordance with the LTSA; annual target ≥97%.
+
+                                                100 × [1 - SUM(Unavailable MW × h) / SUM(Rated MW × Total h)]; reporting indicator without separate
+    Capacity-weighted Availability
+                                                service credits.
+
+
+
+    Time Category                                                                                   Rule
+
+                                        Inability to operate at rated power due to equipment failure, Service Provider-caused downtime, waiting for
+    Unavailable
+                                        parts/repair or a culpable SCADA/EMS interface fault.
+
+    Scheduled Downtime                  Previously agreed shutdown; operational limit of 48 h per Park/year.
+
+
+
+Lighthief Cyprus Ltd                                                                                                             Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                       www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                           Page 16
+  ◯ LIGHTHIEF                                    O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    Time Category                                                                                   Rule
+
+    Grid / Curtailment                  Excluded where directly caused by a grid/operator instruction and properly documented.
+
+    Client / Third Party / Force
+                                        Excluded only to the extent of direct causation; the clock is stopped for the documented period.
+    Majeure
+
+    No Dispatch                         Does not constitute unavailability if the BESS remains technically capable of operation.
+
+                                        Included where the cause is attributable to Lighthief/DISPERON, configuration, integration, gateway, firmware or
+    EMS/SCADA
+                                        cyber controls and prevents dispatch/monitoring/DSO operation.
+
+
+
+Each time exclusion from the calculation requires event identification, start and end timestamps, the direct
+cause, source evidence and Client acceptance. Disputed items remain included until agreed. The monthly
+report shall list all adjustments, and the annual report shall include joint agreement of the final calculation.
+
+If the Availability of either Park falls below 95% in a year, below 97% for two consecutive years, or at least
+three Critical SLA breaches occur in a 12-month period, the O&M Manager shall initiate a remediation plan,
+independent technical audit and review of additional stock.
+
+12.2        SOH and Performance Testing
+    Year                   Minimum SOH - 1 Cycle/Day                                                              Condition
+
+    COD                                    98,50%                                                              Initial Reference
+
+    1                                      94,62%                        OEM curve / operating conditions
+
+    2                                      91,77%                        OEM curve / operating conditions
+
+    3                                      89,91%                        OEM curve / operating conditions
+
+    4                                      88,00%                        OEM curve / operating conditions
+
+    5                                      86,78%                                                               Base warranty
+
+    10                                     79,58%                        Only if the Years 6-10 extension is selected and paid for
+
+    15                                     73,61%                        Only if the Years 11-15 extension is selected and paid for
+
+
+
+SOH, usable AC capacity and RTE shall be measured at least annually in accordance with the OEM/EPC
+protocol signed before PAC. The protocol shall unambiguously define the AC measurement point, treatment of
+auxiliary energy, temperature and tolerance, C-rate, initial and final SOC, rest period, meter calibration,
+complete required data set, validity criteria and repeat-test rules. The Client and the Lender's Independent
+Engineer may witness the test. The result shall be delivered as an SOH Certificate and the performance report
+within 10 business days after the test.
+
+    • LTSA reference conditions: 20-25°C, full charge/discharge cycle at C/3 and 2 h rest between charge and
+          discharge - to be confirmed against the current OEM protocol before testing.
+
+    • If the result deviates from the curve, preserve raw data, cycle history, temperatures, power limits,
+          firmware and events that may affect warranty coverage.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                             Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                       www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                           Page 17
+  ◯ LIGHTHIEF                                   O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    • The remedy includes parts, labour, installation, recommissioning, testing, documentation and data
+         updates; Lighthief shall actively manage and document the OEM claim.
+
+    • Annual confirmation of the validity of the OEM warranty reserve, extended warranty, parts availability
+         and support shall form part of the Annual Review.
+
+    • Any OEM dispute, insolvency risk, supply restriction, recall, safety notice or firmware issue affecting the
+         project shall be reported to the Client within 5 business days.
+
+12.3        Warranty-Preservation File
+    • PM/CM checklists and work orders
+
+    • photographs and C5 coating condition
+
+    • torque records
+
+    • thermograms
+
+    • earthing and insulation measurements
+
+    • firmware and configuration register
+
+    • alarms, SOC and logs
+
+    • environmental data
+
+    • fire-system and E-stop tests
+
+    • parts and traceability
+
+    • OEM correspondence/claim
+
+    • SOH/RTE/capacity certificates
+
+    • personnel qualification evidence
+
+    • Client/DSO notification evidence
+
+
+13.         Reporting, Data and Cybersecurity
+
+13.1        Reporting Package
+    Document                            Deadline / Frequency                                                     Minimum Content
+
+                                                                                 Alarms, limitations, work orders, actions, parts and persons responsible for
+    Shift Handover Log                              Each Shift
+                                                                                 follow-up.
+
+    Critical/Major Notification                   ≤30 min / ≤2 h                 Event, impact, protective actions, ETA and owner.
+
+    Initial Major Incident Report                      ≤24 h                     Timeline, safety condition, downtime, data, preliminary cause and RCA plan.
+
+                                                                                 Throughput, G1/G2 Availability, group and capacity-weighted indicators,
+    Monthly Performance Report          ≤10 business days after month-end
+                                                                                 SOC/SOH, KPIs, alarms, PM/CM, parts and downtime.
+
+                                        ≤15 business days after quarter-         Degradation, thermal performance, cell imbalance, firmware,
+    Quarterly Health Report
+                                        end                                      recommendations and warranty risks.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                            Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                      www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                          Page 18
+  ◯ LIGHTHIEF                                         O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    Document                                  Deadline / Frequency                                                     Minimum Content
+
+                                                                                       Checklist, results, photographs, measurements, post-work test, punch list and
+    PM / CM Report                            After Each Work Activity
+                                                                                       parts.
+
+                                              Annually; ≤10 business days after
+    SOH / Performance Report                                                           SOH, usable AC capacity, RTE, protocol, conditions and certificate.
+                                              the test
+
+                                                                                       Per Park, LTSA group and capacity-weighted indicators; included/excluded
+    Annual Availability Calculation           ≤15 business days after year-end
+                                                                                       hours, evidence and LD basis.
+
+                                                                                       Benchmark, maintenance, warranties, cybersecurity, spares, regulations and
+    Annual Review Report                      ≤30 days after the PAC anniversary
+                                                                                       next-year plan.
+
+
+
+Monthly, quarterly and annual reports shall also include raw-data extracts, the incident log, justification of
+excluded hours, Availability per Park and in aggregate, SOH trend, cell imbalance, thermal deviation,
+firmware/software versions, open punch items, parts consumption, warranty notices, cyber/security events
+and recommendations.
+
+13.2        Data Ownership, Access and Retention
+    • The Client owns all operational, technical, market, dispatch, SCADA/BMS/PCS, SOH and Availability data.
+
+    • The Client shall have continuous secure access to current and historical data and the right to export it at
+         no additional charge.
+
+    • Retention: at least 15 years from the Commissioning Date and 5 years after termination of the LTSA, in
+         formats accepted by Linyang and the competent authorities.
+
+    • Client-identifiable data shall not be used for benchmarking, training, product development or third
+         parties without prior written consent.
+
+    • Documentation shall be delivered in editable format where reasonably available, including settings files,
+         point lists, protocol maps, firmware and certificates.
+
+13.3        ICS Cybersecurity
+    Control                                                                                     Requirement
+
+    Identity                          MFA, named accounts, RBAC, least privilege and no shared passwords except for the break-glass account.
+
+    Remote Access                     Encrypted VPN/secure access, approved devices, time-bound access and session logging.
+
+    Data                              Encryption in transit and at rest, configuration backup, restoration testing and integrity control.
+
+    Changes                           Change request, approval, backup, firmware integrity, testing and rollback.
+
+    Monitoring                        Audit logs, access alerts, telemetry loss, anomaly review and retention.
+
+    Vulnerability
+                                      Vulnerability register, impact assessment, OEM patches, implementation plan and risk exceptions.
+    Management
+
+    Review                            Access review at least annually and after each personnel change/incident.
+
+    Incident                          Isolation, evidence preservation, Client notification, RCA and controlled recovery.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                                  Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                            www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                                Page 19
+  ◯ LIGHTHIEF                                      O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+The control framework should align with IEC 62443 principles; the formal scope of IEC 62443 / NIS2
+certification shall be confirmed with DISPERON and the ICS suppliers before controlled Rev.2 is issued.
+
+
+14.         Regulatory Compliance, DSO and Competence
+
+14.1        Permit, Licence and Lease Register
+    Document / Condition       Galascope 1 - 5.0 MWp                          Galascope 2 - 2.5 MWp                                           O&M Control
+
+    CERA/RAEK operating                                                                                                     Annual review; apply for extension at least 3
+                               E2674/2020; 14.04.2020-13.04.2050              E2673/2020; 14.04.2020-13.04.2050
+    exemption                                                                                                               months before expiry.
+
+                                                                              P1 139841 dated 25.02.2026; PV                Protect the approved configuration;
+                               P1 139876 dated 25.02.2026; certificate
+    EOA approval certificate                                                  completion confirmed in accordance with       maintain a register of deviations and
+                               noting a container on plot 73.
+                                                                              the permits.                                  approvals.
+
+                               Designer declaration and plots 71/73           Designer declaration and plots 471/520        Obtain final EOA approval/acceptance and
+    BESS submission 2026
+                               plans dated April 2026.                        plans dated April 2026.                       stamped drawings; update after any change.
+
+                               Lease from 01.11.2018 to 2039; right to        Leases from 01.11.2018 to 2039; renewal       Annual review; alerts 24/12/6 months
+    Lease / land right
+                               two five-year extensions.                      rights in accordance with the agreements.     before the required action date.
+
+                               Remove the installation at end of life; the    Remove the installation and reinstate the
+                                                                                                                            Maintain a current decommissioning plan,
+    Decommissioning            fencing remains with the owner; permit         site; the permit specifies a deadline of 6
+                                                                                                                            cost estimate and materials/waste register.
+                               conditions require site reinstatement.         months after PV operation ceases.
+
+
+
+
+    REGULATORY CHANGE CONTROL: Modification of the plant requires the applicable permit/licence amendment; expansion
+    requires a new building/regulatory procedure. A change of ownership requires an application to CERA/RAEK at least 3
+    months in advance. Disposal of or creation of security over a material asset with replacement value above EUR 200,000
+    requires at least one month's prior notice and the applicable consent/no objection. A planned closure shall be notified at
+    least 12 months in advance where circumstances permit.
+
+
+
+
+14.2        Site Obligations from EOA Documentation
+    Area                       Control Requirement                                                                                 Frequency / Evidence
+
+                               Keep roads, gates, parking, access strips and routes to EAC rooms/substations clear                 Each visit; photographs and work
+    Access and EAC
+                               throughout the year.                                                                                orders for defects.
+
+                               Maintain the 2.10 m fence free of damage; keep fauna passages clear, without sharp
+    Fencing / Fauna                                                                                                                Quarterly and after storms/events.
+                               edges or trapping hazards.
+
+                               Keep drains and channels clear; no erosion, ponding or contamination; no interference
+    Drainage / Stream                                                                                                              Quarterly and after heavy rain.
+                               with stream No. 303.
+
+                               Remove dry biomass, keep fire-access roads clear, maintain extinguishers and systems                Monthly during the dry season;
+    Fire Safety / Vegetation
+                               ready and cooperate with the Fire Service.                                                          each visit.
+
+                               Transfer WEEE, batteries, oils/coolants and other waste only to licensed entities;                  For each consignment; quarterly
+    Waste
+                               maintain a complete transfer record.                                                                report.
+
+                               Maintain CCTV, laser barriers, lighting, locks and lightning protection operational; no             Monthly remotely / quarterly on
+    Site Security
+                               unauthorised structures.                                                                            site.
+
+                               Containers, foundations, roads and equipment located in accordance with stamped                     After changes and during the
+    Approved Configuration
+                               drawings/as-built documentation.                                                                    annual audit.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                               Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                         www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                               Page 20
+  ◯ LIGHTHIEF                                    O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+14.3         Testing and Operational Obligations
+    Area                                                                Activity                                              Frequency / Deadline
+
+    Protection                  Test all protection-relay functions.                                                                         Annually
+
+    Earthing                    Measure resistance; result ≤4 Ω.                                                                             Annually
+
+    Insulation                  Measure insulation resistance; result >1 MΩ.                                                                 Annually
+
+    SCADA                       Verify P, Q, V, I, f, SOC and SOH signals and the IEC 60870-5-104 link.                       Annually + continuous monitoring
+
+    Control                     Test P-set, Q-set, start/stop and zero-export, if applicable.                                                 Monthly
+
+    Power quality               Availability of PQDIF and COMTRADE data.                                                      Continuous / after an event
+
+    Fire Safety                 Detection, suppression, pressure, E-stop and extinguishers.                                   Each visit / as required by law
+
+                                Status of EOA/CERA approvals, conditions, leases, designer insurance and
+    Permit / Lease Register                                                                                                   Quarterly + deadline alerts
+                                renewal dates.
+
+                                Access, gates, fencing, fauna passages, drainage, stream, CCTV/lighting and
+    Site                                                                                                                      Each visit / after an event
+                                waste.
+
+    DSO Planned Outage          Notification of the planned outage.                                                           At least 7 days in advance
+
+                                Fault report within 24-48 h; emergency outage notified immediately by
+    DSO Fault                                                                                                                               Event-Driven
+                                telephone + e-mail.
+
+    Authority Inspection        Provide personnel and documents within 5 business days and close findings.                                  On request
+
+
+
+The regulatory basis has been adopted in accordance with the LTSA: the laws of Cyprus, EAC Technical Guide
+for Storage 2025, EAC Universal Technical Guide for RES 2025 and fire-safety and environmental requirements.
+Before controlled Rev.2 is issued, confirm that all legal and technical references are current and applicable.
+
+14.4         Qualifications and Training
+    • Current Cypriot electrical authorisations/competence appropriate to the work scope.
+
+    • Linyang OEM training on the BESS, BMS, warranty limitations and maintenance manual.
+
+    • Training on PCS/MVS, EMS/SCADA, IEC 60870-5-104 and approved settings.
+
+    • HSE: HV/LV safety, LOTO/PTW, arc flash/PPE according to the risk assessment, work near batteries and
+           first aid.
+
+    • Fire and emergency response, including drills with the local Fire Service and knowledge of SDS.
+
+    • Cybersecurity and secure remote access; refresher training after a system change/incident.
+
+
+15.          Quality, Audits and Improvement
+
+15.1         Management KPIs
+    KPI                                                            Control Method                                                      Target / Trigger
+
+    Group Availability LTSA             Monthly and annually; G1+G2 weighted by hours.                                  ≥97% annually - contractual guarantee
+
+
+
+Lighthief Cyprus Ltd                                                                                                             Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                       www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                            Page 21
+  ◯ LIGHTHIEF                                     O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+    KPI                                                             Control Method                                                      Target / Trigger
+
+    Park Availability                   G1 and G2 separately; monthly and rolling 12 months.                             <95%/year triggers remediation
+
+    Capacity-weighted                                                                                                    Reporting only; no separate service
+                                        1 - SUM(Unavailable MW × h) / SUM(Rated MW × total h).
+    Availability                                                                                                         credits
+
+    Critical acknowledgement            From alert timestamp to acknowledgement.                                                             ≤30 min
+
+    SLA restoration/resolution          Clock with documented stop-clock periods.                                        100% or an accepted deviation plan
+
+    PM completion                       Completed on time / planned.                                                     100% of OEM-required tasks
+
+    Overdue actions                     Open CAPA/punch/warranty items.                                                  0 overdue Critical/Major items
+
+    Warranty evidence                   Completeness of the Warranty File.                                               100% of work orders with evidence
+
+    Spare stock compliance              Items at or above minimum stock and within storage conditions.                   100%; replenishment by the deadline
+
+    Cyber access review                 Accounts, permissions and sessions.                                              At least annually and after a change
+
+    Safety                              Incidents, near misses and actions.                                              Zero recordable incidents; 100% closure
+
+
+
+
+15.2         Audits and CAPA
+    • Quarterly review of data quality, downtime classification, work orders and evidence completeness.
+
+    • Annual audit of compliance with OEM requirements, warranty, spares, cybersecurity, qualifications, DSO
+          requirements and documentation.
+
+    • Each Critical incident, repeated service failure or warranty non-compliance triggers RCA and CAPA.
+
+    • Each CAPA shall have an owner, deadline, effectiveness evidence and closure approval.
+
+    • The Client and the Lender's Independent Engineer shall have access to agreed evidence and may witness
+          tests.
+
+
+16.          Service Completion and Handover
+Upon LTSA expiry or termination, Lighthief shall provide up to 90 days of transition assistance at agreed rates
+to preserve safe operation, warranties and full knowledge transfer.
+
+    • Export all data and logs in the agreed format.
+
+    • Transfer passwords and access credentials through a secure channel; rotate them after receipt.
+
+    • Configuration files, point lists, register maps and firmware versions.
+
+    • PM/CM registers, measurements, thermograms, certificates, photographs and Warranty Files.
+
+    • Open incidents, CAPA, punch items, restrictions and schedules.
+
+    • Parts list, stock ledger, storage conditions and open purchase orders.
+
+    • Warranty claims, OEM correspondence and extended-warranty status.
+
+    • Joint handover review and Client-approved handover record.
+
+Lighthief Cyprus Ltd                                                                                                              Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                        www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                            Page 22
+  ◯ LIGHTHIEF                                O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+Appendix A - Annual Maintenance Matrix
+The matrix is the minimum schedule. Current OEM instructions, monitoring results, regulations and warranty
+conditions may require more frequent or broader activities.
+
+                                                                                                                                                        Event-
+    Activity                                                                    Cont.        Monthly       Quarterly       6 Months         Year
+                                                                                                                                                        Driven
+
+    Alarms / Telemetry / Connectivity                                             X              X              X                            X             X
+
+
+    BMS backup / logs / parameters                                                               X              X                            X             X
+
+
+    Remote command verification                                                                  X                                           X             X
+
+
+    SOH / cell imbalance / thermal trend                                          X              X              X                            X             X
+
+
+    Container / seals / moisture / C5                                                                           X                            X             X
+
+
+    HVAC / liquid cooling / filters                                               X              X              X                            X             X
+
+
+    Thermal imaging                                                                                             X                            X             X
+
+
+    Cable shielding / SPD / fuses / busbar                                                                                     X             X             X
+
+
+    Torque verification                                                                                         X                            X             X
+
+
+    Grounding ≤4 Ω / bonding                                                                                                                 X             X
+
+
+    Insulation resistance >1 MΩ                                                                                                              X             X
+
+
+    Protection relays / switchgear                                                                              X                            X             X
+
+
+    Fire detection / suppression / E-stop                                         X                             X                            X             X
+
+
+    SCADA signal / IEC 104 / PQ data                                              X              X              X                            X             X
+
+
+    SOH / AC capacity / RTE test                                                                                                             X             X
+
+
+    Cyber access / backup restore review                                          X              X              X                            X             X
+
+
+    Spares stock / shelf life                                                                    X              X                            X             X
+
+
+    Vegetation / drainage / access roads                                                                        X                            X             X
+
+
+    Fence / fauna passages / gates                                                                              X                            X             X
+
+
+    CCTV / laser barriers / lighting                                              X              X              X                            X             X
+
+
+    Registered stream no. 303 - G1                                                                              X                            X             X
+
+
+    Permit / licence / lease register                                                                           X                            X             X
+
+
+    Waste transfer records                                                                                      X                            X             X
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                         Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                   www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                       Page 23
+  ◯ LIGHTHIEF                                    O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+Appendix B - Quarterly On-Site Visit Checklist
+For each item, enter the result: OK / NOK / N/A, evidence and work-order number. Absence of evidence
+means completion is not confirmed.
+
+    Area                                                              Inspection Point                                              Result         Evidence / WO
+
+                                Acceptable weather; PTW/LOTO/PPE; safe opening; MSD and pack plug in accordance
+    Safety
+                                with OEM instructions.
+
+    Container                   No damage, corrosion, deformation, combustible materials, moisture or foreign objects.
+
+
+    Foundation / Doors          Fixings free of corrosion, lock operational, seals intact and doors closing correctly.
+
+
+    Airflow                     Intakes, outlets and ventilation paths clear.
+
+
+    Cables                      No damage, correct routing, sealed entries, no looseness or short-circuit risk.
+
+                                Torque to OEM values; terminal insulation, screens, busbars, SPDs and fuses in correct
+    Connections
+                                condition.
+
+    Switchgear / Relays         Switchgear operation, settings, interlocks and protection test.
+
+
+    Thermography                Connections, switchgear, PCS, busbars and anomalies documented.
+
+
+    Earthing                    Connections and bonding correct; annual measurement ≤4 Ω.
+
+
+    Battery                     Visual inspection of modules, cell V/T, balancing, BMS communications and SOH.
+
+
+    Thermal Systems             HVAC/liquid cooling, fans, filters, noise, sensors and performance.
+
+
+    Fire Safety                 Suppression ready/pressure OK, detectors, E-stop, interlocks, ventilation and signage.
+
+                                BMS/run/parameters/logs saved; firmware, update, communications and monitoring
+    Data
+                                verified.
+
+    C5 / Coastal Environment    Coatings, salt, grilles, seals, drains, surfaces, hinges and fasteners; photographs.
+
+                                Roads, parking, 4 m/6 m gates and access for EAC/emergency services clear; no
+    Access / Gates
+                                obstructions or damage.
+
+                                2.10 m fencing complete; fauna passages clear, with no sharp edges or signs of trapped
+    Fencing / Fauna
+                                animals.
+
+                                Drains and channels clear; no erosion or ponding; at G1 no interference with or
+    Drainage / Stream
+                                contamination of stream No. 303.
+
+                                CCTV, laser barriers, lighting, locks and lightning protection operational; test and
+    Security
+                                evidence.
+
+                                Dry biomass removed; no uncontrolled waste; transfer documents for a licensed
+    Vegetation / Waste
+                                recipient.
+
+                                No new structures or location changes outside the approved plan; every difference
+    EOA / as-built
+                                entered in the Permit Register.
+
+    After Work                  MSDs connected, tools removed, system operational and doors/seals/locks checked.
+
+                                Log, photographs, measurements, parts, recommendations, punch list and report
+    Documentation
+                                complete.
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                             Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                       www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                           Page 24
+  ◯ LIGHTHIEF                                       O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+Appendix C - Alarm and Escalation Matrix
+    Event                                              Class             Initial Action / Escalation                                                     Client
+
+    Fire / Gas / Thermal Event                        Critical           Isolation, evacuation, 112, Client, HSE, OEM                                 Immediately
+
+    Cell voltage ≤2,5 V                               Critical           Protection/isolation, Client, OEM, warranty incident                         Immediately
+
+                                               Critical if warranty-
+    Cell voltage <2,9 V / low SOC                                        Recharge plan, Client, OEM if the condition worsens                            ≤30 min
+                                               threatening
+
+    Full Park Outage                                  Critical           Diagnosis, dispatch, plan ≤4 h, update every ≤2 h                              ≤30 min
+
+                                               Major / Major
+    PCS trip / >10% unavailable capacity                                 Client, Electrical Lead, OEM; report ≤24 h if >10%                               ≤2 h
+                                               Incident
+
+                                               Major or Critical
+    HVAC/liquid cooling fault                  depending on              Operating limitation, HVAC dispatch, thermal monitoring                     ≤2 h / ≤30 min
+                                               temperature
+
+                                               Major; Critical if
+    Monitoring platform failure                                          Backup channel, SCADA/IT dispatch, Client                                   ≤2 h / ≤30 min
+                                               safety-related
+
+    Communication / DSO Telemetry Loss                 Major             Gateway/EMS/SCADA, DSO if required, availability coding                          ≤2 h
+
+                                               Critical / Major
+    Cyber Incident                                                       Logical isolation, Client, evidence preservation, recovery                   Immediately
+                                               Incident
+
+    Minor Sensor / Cosmetic Defect                     Minor             WO; next visit or ≤30 days                                                   Next Report
+
+
+
+
+Appendix D - Minimum Fields for Registers and Reports
+    Register                                                                                    Minimum Fields
+
+                                           ID, Park/tag, alarm, class, timestamp, owner, scope, LOTO/PTW, parts, times, results, test, downtime coding and
+    Work Order
+                                           closure.
+
+                                           Timeline, severity, notifications, safety state, unavailable capacity, evidence, RCA/CAPA,
+    Incident Log
+                                           warranty/DSO/insurance impact.
+
+                                           Start/stop, Park, affected MW/MWh, included/excluded, causal evidence, stop-clock, reviewer and Client
+    Downtime Log
+                                           challenge.
+
+    Spares Ledger                          Part number, compatibility, serial/lot, min/max, stock, location, storage, shelf life, issue/return, reorder deadline.
+
+    Configuration Register                 System/tag, setting/version before/after, approver, backup, test, rollback, DSO/OEM reference.
+
+    Warranty Register                      OEM, scope, start/end, extension, claim, evidence, status, deadlines, reserve/support confirmation.
+
+    Training Matrix                        Person, role, qualification, OEM/HSE/SCADA/cyber training, validity and refresher due date.
+
+    Contact Matrix                         Role, person, telephone/e-mail, deputy, coverage, escalation level, language and contact test.
+
+    Permit & Lease Register                Park, document, number, authority/party, scope, issue/expiry, conditions, alert, owner, status and evidence.
+
+    Environmental & Waste
+                                           Event/waste, code and quantity, location, recipient/licence, transfer record, spill, actions and photographs.
+    Register
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                                Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                          www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                              Page 25
+  ◯ LIGHTHIEF                                   O&M Services | PV Plant Construction | BESS Systems | Due Diligence | PV Panel Recycling
+
+
+
+
+EOA Documents and Land-Rights Register
+The following section supplements Appendix D and describes the source package provided on 07.08.2026. The
+Greek-language originals remain the governing documents; the summaries in this Plan are intended for
+operational control of obligations.
+
+    ID                     Asset                           Document                                         Key Data                                  O&M Status
+
+                                        Designer declaration for the BESS/data-centre     Andreas Papaiacovou Architects L.L.C.; policy     Open - confirm validity and EOA
+    G1-01      5.0 MWp / 71 and 73
+                                        procedure - Special Exemption Order 2026          dated 28.04.2026                                  acceptance
+
+                                                                                                                                            To be replaced with
+    G1-02      5.0 MWp / 71 and 73      BESS Site-Layout and Foundation Plans             April 2026; scale 1:2000; C35/B420C               stamped/as-built drawings after
+                                                                                                                                            approval
+
+    G1-03      5.0 MWp / 71 and 73      EOA Certificate of Approval with Notes            P1 139876 dated 25.02.2026                        Note: container on plot 73
+
+                                                                                          02.11.2018; initial term to 2039; 2 × 5-year
+    G1-04      5.0 MWp / 71 and 73      Long-Term Lease Agreement                                                                           Active - monitor deadlines
+                                                                                          renewals
+
+                                                                                          Permit 052161; environmental
+    G1-05      5.0 MWp / 71 and 73      Building Permit and Environmental Conditions                                                        Conditions included in checklists
+                                                                                          documentation and EOA conditions
+
+    G1-06      5.0 MWp / 71 and 73      CERA/RAEK operating exemption                     E2674/2020; 14.04.2020-13.04.2050                 Active - 5.0 MWp PV
+
+    G1-07      5.0 MWp / 71 and 73                       Property Titles                  0/3190 and 0/3189; Foinitzi, Avgorou              Source of plot data
+
+                                                                                                                                            Source of boundaries and
+    G1-08      5.0 MWp / 71 and 73                       Cadastral Plan                   Plans 2-278-381 and 2-278-382; section 12
+                                                                                                                                            stream data
+
+                                                                                                                                            Historical document for the PV
+    G1-09      5.0 MWp / 71 and 73                     Power of Attorney                  02.11.2018; N.S.P.S. Plantations Limited
+                                                                                                                                            procedure
+
+                                        Designer declaration for the BESS/data-centre     Andreas Papaiacovou Architects L.L.C.; policy     Open - confirm validity and EOA
+    G2-01      2.5 MWp / 471 and 520
+                                        procedure - Special Exemption Order 2026          dated 28.04.2026                                  acceptance
+
+                                                                                                                                            To be replaced with
+    G2-02      2.5 MWp / 471 and 520    BESS Site-Layout and Foundation Plans             April 2026; scale 1:1000; C35/B420C               stamped/as-built drawings after
+                                                                                                                                            approval
+
+                                                                                                                                            PV completed in accordance
+    G2-03      2.5 MWp / 471 and 520    EOA Certificate of Approval                       P1 139841 dated 25.02.2026
+                                                                                                                                            with the permits
+
+                                                                                          Agreements/registers from 01.11.2018 to
+    G2-04      2.5 MWp / 471 and 520                   Long-Term Leases                                                                     Active - monitor deadlines
+                                                                                          2039
+
+                                                                                                                                            Road, drainage, fencing and EAC
+    G2-05      2.5 MWp / 471 and 520    Building Permit and Conditions                    Permit 052065; file B80/2015
+                                                                                                                                            conditions
+
+    G2-06      2.5 MWp / 471 and 520    CERA/RAEK operating exemption                     E2673/2020; 14.04.2020-13.04.2050                 Active - 2.5 MWp PV
+
+    G2-07      2.5 MWp / 471 and 520    Property/Lease Titles                             0/7249 and 0/7864; Kerimis, Avgorou               Source of plot data
+
+                                                                                                                                            Source of boundaries and
+    G2-08      2.5 MWp / 471 and 520                    Cadastral Plans                   Plan 2-278-381; section 03
+                                                                                                                                            access data
+
+                                                                                                                                            Historical document for the PV
+    G2-09              2.5 MWp / 471                   Power of Attorney                  02.11.2018; Dinos Konstantinou
+                                                                                                                                            procedure
+
+
+
+
+END OF DOCUMENT
+
+
+
+
+Lighthief Cyprus Ltd                                                                                                                 Plan O&M - Galascope 1 / Galascope 2
+Company No. HE 477423 | TIN 60187188Q                                                                                           www.lighthief.energy | www.lighthief.com
+
+Limassol, Cyprus                                                                                                                                                  Page 26
+

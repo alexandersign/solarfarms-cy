@@ -180,7 +180,7 @@ ANNEX = [
      "per Section 6.1; (e) the LTSA (LCY-LTSA-GAL-2026), executed and delivered per Section 1A.5A; "
      "(f) the Technical Agreement(s) for Galascope 1 and Galascope 2, signed off by both Parties "
      "confirming the frozen technical specification (Schedule A); and (g) the EMS Subscription "
-     "Addendum, executed by the Client and the EMS provider (R&D Innovations Sp. z o.o., trading as "
+     "Addendum, executed by the Client and the EMS provider (Disperon Sp. z o.o., trading as "
      "DISPERON)."),
     ("1A.5B  Pre-Shipment Payment \u2014 Condition Precedent.",
      "The pre-shipment payment (Section 7.1(b)) shall not become due until: (a) the equipment has "
@@ -439,7 +439,7 @@ ANNEX = [
      "the OEM Direct Warranty Undertaking provided to the Client."),
     ("4.4 / 3.1  EMS provider (replaces references to the EMS integration affiliate).",
      "EMS integration, SCADA commissioning and the DISPERON software subscription are provided by "
-     "R&D Innovations Sp. z o.o. (NIP 9492265995; trading as DISPERON), a company under Lighthief "
+     "Disperon Sp. z o.o. (NIP 9492265995; trading as DISPERON), a company under Lighthief "
      "International Ltd, under a separate EMS Integration Agreement and EMS Subscription Addendum. "
      "The Contractor guarantees that provider's performance of its obligations under those documents."),
     ("4.4B  End-to-end interface responsibility.",
@@ -451,7 +451,7 @@ ANNEX = [
      "The warranty-voiding conditions set out in Section 10.5 shall not be invoked by the "
      "Contractor, and shall not restrict the Client's rights under the OEM Direct Warranty "
      "Undertaking or the LTSA availability guarantee, where the condition was caused by or "
-     "attributable to: (a) DISPERON (R&D Innovations Sp. z o.o.) in its capacity as EMS provider; "
+     "attributable to: (a) DISPERON (Disperon Sp. z o.o.) in its capacity as EMS provider; "
      "(b) any other entity within the Lighthief group of companies acting in connection with the "
      "Project; or (c) the Contractor's own monitoring failure or failure to issue a timely alert "
      "that would have enabled the Client to prevent the condition."),
@@ -1028,11 +1028,11 @@ def build_epc_v6():
             "before signing, or flag if they prefer a more conservative floor; not a blocker to signing "
             "the EPC.")
 
-    # EMS provider entity change: Lighthief EU BESS Ltd -> R&D Innovations Sp. z o.o.
+    # EMS provider entity change: Lighthief EU BESS Ltd -> Disperon Sp. z o.o.
     for p in doc.paragraphs:
         _replace_in_paragraph(
             p, "Lighthief EU BESS Ltd",
-            "R&D Innovations Sp. z o.o. (trading as DISPERON, under Lighthief International Ltd)")
+            "Disperon Sp. z o.o. (trading as DISPERON, under Lighthief International Ltd)")
         # §11 reframe — remove the "SEPARATION / not in this Agreement" wording the client objects to,
         # while keeping availability's remedy/cap anchored to the LTSA (protects the liability ring-fence).
         _replace_in_paragraph(p, "11. LTSA SEPARATION",
@@ -1945,7 +1945,7 @@ def copy_attachments():
                  "\u20ac1,000\u20131,250/MWh."),
                 # Schedule 1 — EMS party is DISPERON (not a generic third party)
                 ("| EMS | [Third Party \u2013 specify] |",
-                 "| EMS | DISPERON (R&D Innovations Sp. z o.o.) |"),
+                 "| EMS | DISPERON (Disperon Sp. z o.o.) |"),
                 # FINAL SWEEP: Timotheos \u00a75.5 asked to include Client (or Client representatives)
                 # training on the Monitoring Platform \u2014 never captured in the response matrix or
                 # drafted. Low-cost, easy accept.
@@ -1975,7 +1975,7 @@ def copy_attachments():
                 # ACCEPT: EMS-affiliate carve-out in LTSA §9.3(e) (mirrors EPC 10.5A) — Anastasios #4
                 ("(e) Downtime caused by EMS or third-party system failures;",
                  "(e) Downtime caused by EMS or third-party system failures — except that this exclusion shall "
-                 "not apply where the EMS failure is attributable to DISPERON (R&D Innovations Sp. z o.o.) or "
+                 "not apply where the EMS failure is attributable to DISPERON (Disperon Sp. z o.o.) or "
                  "any other entity within the Lighthief group of companies, or is caused by the Service "
                  "Provider's configuration, monitoring, integration or cyber-security controls;"),
                 # CONFIRMED via direct PDF read of Linyang's "Power Atlantic 5MWh Degradation Curve"

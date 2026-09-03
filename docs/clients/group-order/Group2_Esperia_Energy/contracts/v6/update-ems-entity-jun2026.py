@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Update the Galascope EMS Subscription Addendum: change the EMS provider entity
-from 'Lighthief EU BESS Ltd' to 'R&D Innovations Sp. z o.o.' (trading as DISPERON),
+from 'Lighthief EU BESS Ltd' to 'Disperon Sp. z o.o.' (trading as DISPERON),
 NIP 9492265995, under Lighthief International Ltd.
 
 KRS and registered office left as [●] placeholders pending confirmation.
@@ -12,7 +12,7 @@ from docx import Document
 SRC = Path(__file__).resolve().parent.parent / "EMS-Subscription-Galascope-may2026.docx"
 
 OLD = "Lighthief EU BESS Ltd"
-NEW = "R&D Innovations Sp. z o.o."
+NEW = "Disperon Sp. z o.o."
 
 
 def replace_runs(p, old, new):
@@ -44,7 +44,7 @@ def main():
     # Body paragraphs
     for p in d.paragraphs:
         replace_runs(p, "Lighthief EU BESS Ltd (trading as DISPERON)",
-                     "R&D Innovations Sp. z o.o. (trading as DISPERON, under Lighthief International Ltd)")
+                     "Disperon Sp. z o.o. (trading as DISPERON, under Lighthief International Ltd)")
         replace_runs(p, OLD, NEW)
         replace_runs(p, "Cyprus Managing Director", "Director")
         replace_runs(p, "Authorised Representative", "Director")
@@ -60,7 +60,7 @@ def main():
                     # full party block cell -> rebuild for the Polish entity
                     set_cell_lines(cell, [
                         "Service Provider:",
-                        "R\u0026D Innovations Sp. z o.o.",
+                        "Disperon Sp. z o.o.",
                         "(trading as DISPERON)",
                         "NIP 9492265995 \u00b7 KRS [\u25cf]",
                         "Registered office: [\u25cf], Poland",
@@ -69,15 +69,15 @@ def main():
                     continue
                 for p in cell.paragraphs:
                     replace_runs(p, "Lighthief EU BESS Ltd (trading as DISPERON)",
-                                 "R&D Innovations Sp. z o.o. (trading as DISPERON), under Lighthief International Ltd")
+                                 "Disperon Sp. z o.o. (trading as DISPERON), under Lighthief International Ltd")
                     replace_runs(p, "For Lighthief EU BESS Ltd (DISPERON)",
-                                 "For R&D Innovations Sp. z o.o. (DISPERON)")
+                                 "For Disperon Sp. z o.o. (DISPERON)")
                     replace_runs(p, OLD, NEW)
                     replace_runs(p, "Cyprus Managing Director", "Director")
                     replace_runs(p, "Authorised Representative", "Director")
 
     d.save(str(SRC))
-    print(f"Updated EMS entity in {SRC.name} -> R&D Innovations Sp. z o.o. (DISPERON)")
+    print(f"Updated EMS entity in {SRC.name} -> Disperon Sp. z o.o. (DISPERON)")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ Topology (Rev E — skid-RMU direct connection):
     ├── Existing PV feeders (JZ1–JZ3) — parallel, unchanged
     └── Repurposed existing SwS bay (no new SM6 cubicle)
           → MV cable (~30 m G2 / ~25 m G1)
-          → T2/T4 skid RMU (Schneider RM AirSeT, CIF)
+          → T2/T4 skid RMU (Mingyang 24kV SF6-free, CIF)
           → BESS MV/LV transformer (Kehua SL-3000 / SL-5000)
           → 690 V LV → PCS / BESS containers
 
@@ -41,7 +41,7 @@ def create_galascope_2_revE():
     net = pp.create_empty_network(name="Galascope 2 Rev E — 2.5 MW / 10 MWh")
 
     b_sws = pp.create_bus(net, vn_kv=22.0, name="Customer SwS 22 kV bus (existing)")
-    b_skid = pp.create_bus(net, vn_kv=22.0, name="T2 Skid RMU 22 kV (RM AirSeT)")
+    b_skid = pp.create_bus(net, vn_kv=22.0, name="T2 Skid RMU 22 kV (Mingyang)")
     b_lv = pp.create_bus(net, vn_kv=0.690, name="T2 LV Bus 690 V")
 
     pp.create_ext_grid(
@@ -96,7 +96,7 @@ def create_galascope_1_revE():
     net = pp.create_empty_network(name="Galascope 1 Rev E — 5 MW / 20 MWh")
 
     b_sws = pp.create_bus(net, vn_kv=22.0, name="Customer SwS 22 kV bus (existing)")
-    b_skid = pp.create_bus(net, vn_kv=22.0, name="T4 Skid RMU 22 kV (RM AirSeT)")
+    b_skid = pp.create_bus(net, vn_kv=22.0, name="T4 Skid RMU 22 kV (Mingyang)")
     b_lv = pp.create_bus(net, vn_kv=0.690, name="T4 LV Bus 690 V")
 
     pp.create_ext_grid(

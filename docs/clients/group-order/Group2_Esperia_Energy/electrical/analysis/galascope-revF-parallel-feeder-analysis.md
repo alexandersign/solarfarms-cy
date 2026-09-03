@@ -146,7 +146,7 @@ Combined **JZ2** feeder after merge (G1): carries **both** trafos at full PV out
 | PV combined feeder | Existing **JZ2 relay** may need **overcurrent / thermal** revision for 131 A; check CT ratio |
 | Second PV relay | **JZ3 relay** re-assigned to BESS — new **7SJ82** settings |
 | Parallel transformers | EAC may require **restricted parallel** or **separate protection** with **HV coupling** only — confirm with MCTS |
-| Skid RMU | Unchanged from Rev E — **Schneider RM AirSeT** in Linyang CIF |
+| Skid RMU | Unchanged from Rev E — **Mingyang** 24kV SF6-free in Linyang CIF (brand confirmed Aug 2026, supersedes earlier Schneider RM AirSeT assumption) |
 
 ---
 

@@ -299,7 +299,7 @@ def draw_cypriot(cfg):
       layer="RMU", lw=25, lt="DASHED2")
     T(msp, skid_label, skid_cx, Y_rmu_top+6, h="sm", layer="RMU",
       align=TextEntityAlignment.MIDDLE_CENTER)
-    T(msp, "RM AirSeT RMU (CIF)", skid_cx, Y_rmu_top+1, h="xs", layer="DIM",
+    T(msp, "Mingyang RMU (CIF)", skid_cx, Y_rmu_top+1, h="xs", layer="DIM",
       align=TextEntityAlignment.MIDDLE_CENTER)
 
     L(msp, skid_cx, Y_mvbus, skid_cx, Y_rmu_top-2, layer="MV", lw=50)
@@ -492,7 +492,7 @@ def draw_iec(cfg):
     R(msp, skid_cx-28, Y_bess_b-4, 56, Y_jz_top-Y_bess_b+8, layer="SYM", lw=25, lt="DASHED2")
     T(msp, skid_label, skid_cx, Y_jz_top+4, h="sm", layer="ANN",
       align=TextEntityAlignment.MIDDLE_CENTER)
-    T(msp, "Schneider RM AirSeT RMU (CIF)", skid_cx, Y_jz_top, h="xs", layer="DIM",
+    T(msp, "Mingyang RMU 24kV SF6-free (CIF)", skid_cx, Y_jz_top, h="xs", layer="DIM",
       align=TextEntityAlignment.MIDDLE_CENTER)
     T(msp, f"Ikss MV={cfg.get('ikss_mv', cfg['ikss']):.1f}kA",
       skid_cx+30, Y_jz_top, h="xs", layer="DIM")
@@ -612,13 +612,13 @@ for cfg in CONFIGS:
     cfg["drwno"] = f"LC-G{g_label}-SLD-001-G"
     cfg["date"] = "18/05/2026"
     doc_cy = draw_cypriot(cfg)
-    path_cy = f"{OUTPUT_DIR}\\LC-G{g_label}-SLD-001-G_Cypriot.dxf"
+    path_cy = f"{OUTPUT_DIR}/LC-G{g_label}-SLD-001-G_Cypriot.dxf"
     doc_cy.saveas(path_cy)
     print(f"  Saved: {path_cy}")
 
     cfg["drwno"] = f"LC-G{g_label}-SLD-001-G-IEC"
     doc_iec = draw_iec(cfg)
-    path_iec = f"{OUTPUT_DIR}\\LC-G{g_label}-SLD-001-G-IEC.dxf"
+    path_iec = f"{OUTPUT_DIR}/LC-G{g_label}-SLD-001-G-IEC.dxf"
     doc_iec.saveas(path_iec)
     print(f"  Saved: {path_iec}")
 

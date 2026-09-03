@@ -129,7 +129,7 @@ export const ADDERS = {
   upsAuxiliary:       { total: 102_000.00,   status: 'estimated' as DataStatus, rate: '€2,000 per park',
                         note: 'Site-level UPS for protection relays and RTU. Linyang container has its own internal UPS (BAMS). This is the external site-level supply.' },
 
-  // EMS / SCADA — DISPERON brand; contracting entity R&D Innovations Sp. z o.o. (NIP 9492265995), under Lighthief International Ltd (Voltus JV provides the software)
+  // EMS / SCADA — DISPERON brand; contracting entity Disperon Sp. z o.o. (NIP 9492265995), under Lighthief International Ltd (Voltus JV provides the software)
   // Source: Voltus v3 pricing CSV (voltusv3pricing) — flat rates, container-count-based
   // SHA v5: Exhibit C rates BLANK — to be agreed within 14 days of execution (BLOCKER for project brief submission)
   // Upfront structure: EMS hardware+install (per container config) + SCADA Local €15K/park + SCADA Global €60K/first park per group
@@ -159,7 +159,7 @@ export const ADDERS = {
 export const CLIENT_PAID = {
   protectionTesting: { rate: '€1,250 per container', estimated: 313_750, status: 'client-paid' as DataStatus, note: 'Per Dino confirmation Feb 2026' },
   electricalDrawings: { rate: '€5,000–€15,000 per site', status: 'client-paid' as DataStatus, note: 'Licensed engineer drawings for EAC/building permit' },
-  externalLps:       { status: 'client-paid' as DataStatus, note: 'DEHN quoted per site, coordinated by Lighthief' },
+  externalLps:       { status: 'client-paid' as DataStatus, note: 'DEHN quoted per site, coordinated by Lighthief. EXCEPTION — Galascope 1 & 2 (Esperia Energy Group): pushed into Contractor scope per Aug 2026 decision — EPC §4.6B now confirms external/site-level LPS is included in the Contract Price alongside SPD/earthing, no client-paid carve-out for those two parks. Other parks remain client-paid per this default until the same decision is made for them.' },
   civilTrenches:     { status: 'client-paid' as DataStatus, parks: ['Galascope 1', 'Galascope 2'] as const, note: 'Cable trenches / levelling — client scope on Galascope only (Jun 2026). Lighthief: Kouklis concrete bases only.' },
   vat:               { rate: '19% of EPC price', status: 'client-paid' as DataStatus },
 } as const;
@@ -288,13 +288,13 @@ export const BATCHES = [
     // Galascope 1: 4 BESS + 1 MV = 5 units; Galascope 2: 2 BESS + 1 MV = 3 units
     cif: 2_823_169,       // G1 €1,848,712 + G2 €974,457 (CIF corrected 8 May 2026)
     installed: 3_232_127, // CIF + physical adders + EMS; civil Kouklis €98,420 (Galascope, ex VAT)
-    revenue: 3_444_300,   // G1 €2,238,000 (€111,900/MWh, negotiated 10 May 2026) + G2 €1,206,300
-    margin: 212_173, marginPct: 6.16,
+    revenue: 3_462_849,   // G1 €2,256,549 + G2 €1,206,300
+    margin: 230_722, marginPct: 6.66,
     civilWorks: 98_420,   // Kouklis bases only — trenches client-paid
     productionStart: '2026-05-01', productionEnd: '2026-07-31',
     fatDate: '2026-07-31', shipDate: '2026-08-01',
     cifDate: '2026-09-15', pacDate: '2027-01-31',
-    _meta: { source: 'Galascope EPC v5.1 + Kouklis civil quote 16 Jun 2026 (€98,420 bases; client trenches).', date: '2026-06-17' } as MetaInfo,
+    _meta: { source: 'Galascope EPC v6.3 (Jul 2026). CONFIRMED FIGURES: CIF = LY202601271 (May 2026). Civil = D.Kouklis quote 16 Jun 2026 (€98,420 bases; trenches client-paid). EMS = Disperon v3 confirmed. Revenue = negotiated 10 May 2026. NOTE: Lighthief-EPC-Confirmed-Adders-v5-June2026-FINAL.xlsx (v4.0 internal header) uses older estimates — civil G1 €12k/G2 €6k (pre-Kouklis), EMS G1 €40k/G2 €20k (pre-Disperon-v3), revenue G1 €2,264,774 (pre-negotiation) — do NOT use CSV for Galascope cost/margin; use this file. CSV contingency (G1 €40k/G2 €20k) converted to named variation items §4.6A of EPC v6.3.', date: '2026-07-29' } as MetaInfo,
   },
   {
     id: 2, name: 'Batch 1 Extension — Conditional (50-85% probability)',
@@ -366,21 +366,21 @@ export const BATCH1_PARKS_CONFIRMED = [
   {
     name: 'Galascope 1', group: 'Galascope', mw: 5.0, mwh: 20, containers: 5, district: 'Famagusta',
     // 5 units = 4 BESS (5.015 MWh each) + 1 T4 MV Skid (4×1.25 MW = 5 MW)
-    cif: 1_848_712,         // CIF LY202601271 — same config as Esperia Famagusta 2 (5 MW/20 MWh)
-    physAdders: 183_657,    // Kouklis bases €65,435 (was €40K civil incl. €20K client trenches)
-    emsAllocated: 66_935,   // Disperon v3 proportional: €46,718 EMS + €15,000 SCADA Local + €5,217 SCADA Global (20/230 MWh share)
-    civilPlatforms: 65_435, // Kouklis: 4×20ft + 1×40ft T4
+    cif: 1_848_712,         // CONFIRMED: CIF LY202601271 (May 2026). CSV v5-June2026-FINAL = same ✓
+    physAdders: 183_657,    // CONFIRMED: Kouklis bases €65,435 + other adders. CSV shows €12,000 (old estimate) — use Kouklis.
+    emsAllocated: 66_935,   // CONFIRMED: Disperon v3: €46,718 EMS + €15,000 SCADA Local + €5,217 SCADA Global. CSV shows €40,000 (pre-Disperon-v3 estimate) — use Disperon v3.
+    civilPlatforms: 65_435, // CONFIRMED: Kouklis quote 16 Jun 2026 — 4×20ft + 1×40ft T4 bases
     installedCost: 2_099_304,
-    revenue: 2_238_000,     // Negotiated 10 May 2026: €111,900/MWh × 20 MWh (was €112,945/MWh = €2,258,900)
-    margin: 138_696, marginPct: 6.20,
+    revenue: 2_256_549,     // €112,490/MWh × 20.06 MWh installed
+    margin: 157_245, marginPct: 6.97,
   },
   {
     name: 'Galascope 2', group: 'Galascope', mw: 2.5, mwh: 10, containers: 3, district: 'Famagusta',
     // 3 units = 2 BESS + 1 T2 MV Skid (2×1.25 MW = 2.5 MW) — all 20ft bases
-    cif: 974_457,           // CIF LY202601271 — same config as Dianary 1 (2.5 MW/10 MWh)
-    physAdders: 109_015,    // Kouklis bases €32,985 (was €20K civil incl. €10K client trenches)
-    emsAllocated: 49_351,   // Disperon v3 proportional: €31,742 EMS + €15,000 SCADA Local + €2,609 SCADA Global (10/230 MWh share)
-    civilPlatforms: 32_985, // Kouklis: 3×20ft (2 BESS + T2 MV)
+    cif: 974_457,           // CONFIRMED: CIF LY202601271. CSV shows €974,000 (rounding diff €457 — use confirmed quote).
+    physAdders: 109_015,    // CONFIRMED: Kouklis bases €32,985 + other adders. CSV shows €6,000 (old estimate) — use Kouklis.
+    emsAllocated: 49_351,   // CONFIRMED: Disperon v3: €31,742 EMS + €15,000 SCADA Local + €2,609 SCADA Global. CSV shows €20,000 (pre-Disperon-v3) — use Disperon v3.
+    civilPlatforms: 32_985, // CONFIRMED: Kouklis quote 16 Jun 2026 — 3×20ft (2 BESS + T2 MV)
     installedCost: 1_132_823,
     revenue: 1_206_300,
     margin: 73_477, marginPct: 6.09,
@@ -805,6 +805,8 @@ export const OEM = {
   cells: 'EVE (LFP)',
   containerCapacity: 5.015,
   rte: 86.32, // Full system AC-AC round trip incl. cabling. Linyang PCS-level calc = 87.8% (excludes cabling losses).
+  rmu: { brand: 'Mingyang', spec: '24 kV, SF6-free, 630 A', status: 'confirmed' as DataStatus,
+         note: 'Confirmed Aug 2026 (Linyang/Costas). Supersedes earlier "Schneider RM AirSeT (CIF)" label carried in Galascope SLD Rev E/F/G — those SLD/DXF files still say Schneider and need a separate electrical-drawing update, not yet done.' },
   gridCodeCert: 'EN 50549-2 (TÜV cert D 115067 0077)',
   incoterms: 'CIF Limassol',
   productionLeadDays: 90,
@@ -820,7 +822,7 @@ export const COMPANY = {
   legalName: 'LIGHTHIEF CYPRUS LTD',
   regNumber: 'HE 477423',
   tin: '60187188Q',
-  address: '28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus',
+  address: '15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus',
   email: 'office@lighthief.com',
   phone: '+357 77 77 00 50',
   website: 'https://solarfarms.cy',
