@@ -111,7 +111,9 @@ This spec includes **33 kV switchyard, transformer, SCADA, CCTV, weather station
 
 | File | Description |
 |---|---|
-| `solar-plant-20mw-technical-spec-uganda.pdf` | Incoming technical specification (source) |
+| `solar-plant-20mw-technical-spec-uganda.pdf` | Incoming technical specification (AGOGA / MISOZI, June 2026) |
 | `technical-notes-uganda-africa-20mw-jun2026.md` | Internal analysis (not for client) |
-| `rfi-uganda-africa-20mw-jun2026.html` | **Branded client-facing RFI** (send this) |
+| `rfi-uganda-africa-20mw-jun2026.html` | Branded RFI — AGOGA / MISOZI (June 2026) |
 | `rfi-uganda-africa-20mw-jun2026.md` | RFI source (markdown) |
+| `rfi-nipc-busunju-pader-20mw-aug2026.html` | **Send this** — NIPC RFP Busunju / Pader: questions + indicative range |
+| `rfi-nipc-busunju-pader-20mw-aug2026.md` | NIPC reply source (markdown) |

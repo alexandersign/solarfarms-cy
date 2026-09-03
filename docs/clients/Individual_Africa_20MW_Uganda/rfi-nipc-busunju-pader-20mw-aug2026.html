@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indicative EPC Range — NIPC 2×20 MW Busunju &amp; Pader | Lighthief Cyprus</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+    }
+    * { box-sizing: border-box; }
+    @page { size: A4; margin: 15mm; }
+    @media print {
+      body { background: #fff; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .wrap { box-shadow: none; max-width: 100%; border-radius: 0; }
+      .page-break { page-break-before: always; }
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--grey-text);
+      background: var(--body-bg);
+      margin: 0;
+      padding: 28px 20px 40px;
+    }
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 28px 32px 36px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(26, 54, 93, 0.08);
+    }
+    .hdr {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      padding: 22px 24px;
+      border-radius: 8px;
+      margin: -28px -32px 22px -32px;
+    }
+    .hdr h1 { color: var(--accent); font-size: 1.3rem; margin: 0 0 6px 0; font-weight: 700; }
+    .hdr .sub { font-size: 12px; opacity: 0.95; }
+    .hdr-meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.95;
+    }
+    .hdr-meta strong { color: var(--accent); }
+    h2 {
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin: 26px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary);
+      font-weight: 700;
+    }
+    h3 { color: var(--primary); font-size: 0.95rem; margin: 16px 0 8px 0; font-weight: 600; }
+    p { margin: 0 0 10px 0; }
+    ul, ol { margin: 8px 0 12px 0; padding-left: 22px; }
+    li { margin-bottom: 5px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--primary); color: var(--white); font-weight: 600; font-size: 11px; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .price td:last-child { font-weight: 700; color: var(--primary); white-space: nowrap; }
+    .price tr.total td { background: #1A365D; color: #fff; font-weight: 700; }
+    .price tr.total td:last-child { color: #C9A432; }
+    .note {
+      background: #e8f0fa;
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      margin: 14px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+    }
+    .note strong { color: var(--primary); }
+    .warn {
+      background: #fdf6e3;
+      border-left: 4px solid var(--accent);
+      padding: 10px 14px;
+      margin: 14px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+    }
+    .warn strong { color: #7a6318; }
+    .baseline {
+      background: #f0f4f8;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 12px;
+    }
+    .baseline strong { color: var(--primary); }
+    .steps { counter-reset: step; list-style: none; padding-left: 0; }
+    .steps li {
+      counter-increment: step;
+      margin-bottom: 10px;
+      padding-left: 32px;
+      position: relative;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--primary);
+      color: var(--white);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 22px;
+    }
+    .signature { margin-top: 28px; line-height: 1.65; }
+    .signature strong { color: var(--primary); }
+    .footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 2px solid var(--primary);
+      font-size: 11px;
+      color: #64748b;
+    }
+    a { color: var(--primary-light); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <h1>Indicative EPC Range and Clarifications</h1>
+    <div class="sub">2×20 MWAC Solar PV — Busunju and Pader District, Uganda</div>
+    <div class="hdr-meta">
+      <div>
+        <strong>To:</strong> National Infrastructure and Procurement Commission<br>
+        <strong>From:</strong> Alexander Papacosta, Lighthief Cyprus Ltd<br>
+        <strong>Date:</strong> 25 August 2026
+      </div>
+      <div style="text-align: right;">
+        <strong>Ref:</strong> LH-RFI-NIPC-UG-20MW-2026-08<br>
+        <strong>RFP:</strong> NIPC/UG/SUPLS/DHG0249<br>
+        <strong>Status:</strong> Budgetary — not an offer
+      </div>
+    </div>
+  </div>
+
+  <p>Dear Sir/Madam,</p>
+
+  <p>Thank you for the Request for Proposal dated July 2026 for a lump-sum turnkey EPC of <strong>two 20 MWAC</strong> grid-connected solar PV plants at <strong>Busunju</strong> and <strong>Pader</strong>.</p>
+
+  <p>We have reviewed the document. It is sufficient for a <strong>budgetary indication</strong> only. Several items in the RFP conflict with one another (DC capacity, mounting type, module rating, BESS, permits). Those items move the price materially, so the figures below are <strong>indicative, non-binding, and not an offer</strong>. A firm EPC quotation requires the clarifications in Sections 2–4.</p>
+
+  <h2>1. Indicative EPC Range</h2>
+  <p>Quoted in <strong>USD</strong>, lump-sum turnkey, both plants, <strong>excluding VAT and import duties</strong>.</p>
+
+  <table class="price">
+    <tr><th>Item</th><th>Indicative range</th></tr>
+    <tr class="total"><td>Full EPC — both plants (40 MWAC)</td><td>USD 22,000,000 – 28,000,000</td></tr>
+    <tr><td>Per MWAC</td><td>USD 550,000 – 700,000</td></tr>
+    <tr><td>Per 20 MWAC plant</td><td>USD 11,000,000 – 14,000,000</td></tr>
+    <tr><td>Optional O&amp;M (both plants, per year)</td><td>USD 480,000 – 720,000</td></tr>
+    <tr><td>Optional O&amp;M — 2 years</td><td>USD 1,000,000 – 1,400,000</td></tr>
+    <tr><td>Optional O&amp;M — 5 years</td><td>USD 2,400,000 – 3,600,000</td></tr>
+    <tr><td>BESS</td><td>Not included — please specify MWh and duration</td></tr>
+    <tr><td>Single-axis trackers (if confirmed instead of fixed tilt)</td><td>Add approximately 15% to the EPC range</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Validity:</strong> 30 days from the date of this letter.<br>
+    <strong>Status:</strong> Budgetary indication only. Not a commercial offer and not capable of acceptance.
+  </div>
+
+  <h3>Pricing basis (please confirm or correct)</h3>
+  <ul>
+    <li>Two independent plants: <strong>2 × 20 MWAC</strong>, Busunju and Pader</li>
+    <li><strong>Fixed-tilt</strong> ground mount (not trackers)</li>
+    <li>DC/AC ratio <strong>1.30</strong> → about <strong>26 MWp per plant / 52 MWp total</strong></li>
+    <li>String inverters, 33 kV step-up and switchyard <strong>at the plant boundary</strong></li>
+    <li>Modules, mounting, DC/AC electrical, transformers, SCADA, weather stations, fencing, CCTV, earthing, lightning protection, civil works inside the fence, testing, commissioning, Taking-Over</li>
+    <li>Design life 25 years; target PR ≥ 75%; availability ≥ 98% (subject to final energy model)</li>
+    <li>Completion <strong>24 months</strong> from an agreed Effective Date</li>
+    <li>Defects liability <strong>12 months</strong></li>
+    <li>Currency <strong>USD</strong></li>
+  </ul>
+
+  <h3>Excluded from the range</h3>
+  <ul>
+    <li>Land, land rights, resettlement, tree cutting, forest clearance</li>
+    <li>Transmission line, loop-in/loop-out, and <strong>Right of Way</strong> beyond the plant fence</li>
+    <li>Grid upgrades on the utility side of the point of interconnection</li>
+    <li>Interconnection, railway, road-crossing, and other <strong>Employer / authority permits</strong> listed as exclusions in the RFP</li>
+    <li><strong>BESS</strong> (listed in the make-list but not specified)</li>
+    <li>Import duty, VAT, withholding tax, and any other Ugandan taxes</li>
+    <li>Performance and delay liquidated damages (rates not stated in the RFP)</li>
+    <li>Geotechnical surprises, piling beyond 1.5 m, flood works, or rock</li>
+    <li>Advance Payment Guarantee, performance bond, and other securities (priced once terms are agreed)</li>
+  </ul>
+
+  <div class="warn">
+    <strong>Payment:</strong> The RFP split of 55% / 30% / 10% / 5% is noted. This indication assumes a conventional milestone schedule with a modest advance against an Advance Payment Guarantee. A 55% advance would need confirmed project funding and matching security, and is <strong>not</strong> assumed in the numbers above.
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>2. Clarifications that change the price</h2>
+  <p>Please confirm the following. Where the RFP gives two answers, we have used the <strong>bold</strong> assumption.</p>
+
+  <ol>
+    <li><strong>Capacity.</strong> The design basis states DC 22–26 MWp; the BoQ states <strong>52 MWp</strong> (1.30 DC/AC). We have priced 52 MWp. Which is correct?</li>
+    <li><strong>Mounting.</strong> The RFP states fixed tilt <em>or</em> tracker, then specifies single-axis trackers (Nextracker / Arctech), then the BoQ is <strong>fixed tilt</strong>. We have priced fixed tilt. Please confirm.</li>
+    <li><strong>Modules.</strong> The make-list states Trina 570 Wp; the BoQ assumes 620 W. We have allowed a <strong>620 W-class</strong> bifacial monocrystalline module from the approved list (or equivalent). Please confirm acceptable makes and wattage.</li>
+    <li><strong>BESS.</strong> A Sungrow BESS plant is in the equipment list, with no MWh, duration, or use case. <strong>Is BESS in current scope?</strong> If yes: power (MW), energy (MWh), hours, and application (smoothing / shifting / grid code).</li>
+    <li><strong>Grid voltage.</strong> Technical text allows 33 kV / 66 kV; the BoQ is <strong>33 kV</strong>. We have priced 33 kV at the plant boundary. Please confirm voltage, point of interconnection, distance, and the grid operator (UETCL / UEDCL / other).</li>
+    <li><strong>Transmission line.</strong> RoW and access-route survey are excluded. What is the <strong>line length</strong> from each plant to the POI, and who designs, procures, and builds it?</li>
+    <li><strong>Two sites or one contract.</strong> Are Busunju and Pader two separate grid connections and two Taking-Over Certificates, under one EPC contract?</li>
+    <li><strong>Land.</strong> Please provide coordinates, cadastral, title/lease, and confirmed acreage for each site. The RFP range of 80–150 acres is too wide to fix civil quantities.</li>
+    <li><strong>Wind and lighting.</strong> Wind is given as ≥150 km/h and as 180–190 km/h. Periphery lights are “No”, then 80 lights per plant. Which governs?</li>
+    <li><strong>Permits.</strong> Construction permits are in EPC scope; interconnection and development permits are excluded. Please issue a <strong>permit matrix</strong> (Employer vs Contractor) including ERA generation licence, ESIA, and grid connection offer.</li>
+    <li><strong>Performance LDs.</strong> Please state delay LD rate and cap, and performance LD rate and cap, plus the guaranteed annual energy (MWh/year per plant). “~30–60 GWh” is not a number we can guarantee.</li>
+    <li><strong>Taxes and currency.</strong> Contract currency (USD / EUR / UGX)? Is the EPC exempt from import duty and VAT on solar equipment, or must tax be added to the price?</li>
+    <li><strong>Contract form.</strong> FIDIC Yellow Book, Silver Book, or Employer draft? Please share the draft EPC agreement.</li>
+    <li><strong>Effective Date.</strong> What are the conditions precedent (land, grid offer, notice to proceed, first payment)? The 24-month clock cannot start on RFP issue.</li>
+    <li><strong>Local content.</strong> Any Ugandan content, employment, or nominated-subcontractor requirements?</li>
+  </ol>
+
+  <h2>3. Documents requested</h2>
+  <table>
+    <tr><th style="width:48%">Document</th><th>Why it is needed</th></tr>
+    <tr><td>Legal status of the Employer (enabling statute / certificate of incorporation) and authorised signatory</td><td>Confirm contracting party</td></tr>
+    <tr><td>PPDA / e-GP tender reference, or written single-source authorisation</td><td>Confirm procurement path</td></tr>
+    <tr><td>ERA generation licence status (or application)</td><td>Confirm the plant can be built</td></tr>
+    <tr><td>Land title or lease for Busunju and Pader</td><td>Confirm sites exist and are available</td></tr>
+    <tr><td>UETCL / UEDCL interconnection offer (capacity, POI, voltage, distance)</td><td>Price the grid interface</td></tr>
+    <tr><td>PPA or off-take (counterparty, tariff, tenor) — even in draft</td><td>Confirm the plant has a buyer</td></tr>
+    <tr><td>Coordinates, topo, and geotech (if any)</td><td>Civil and foundation design</td></tr>
+    <tr><td>Single-line diagram and preliminary layout</td><td>Electrical architecture</td></tr>
+    <tr><td>Permit matrix and ESIA status</td><td>Scope split</td></tr>
+    <tr><td>Draft EPC contract, LD schedule, and payment security requirements</td><td>Commercial close</td></tr>
+  </table>
+
+  <h2>4. Next steps</h2>
+  <ol class="steps">
+    <li>You return the confirmations in Section 2 and the documents in Section 3 (or a data-room link).</li>
+    <li>We convert this indication into a <strong>firm EPC proposal</strong> with a locked scope, schedule, and payment terms.</li>
+    <li>A <strong>site visit</strong> can follow once land title and a grid offer are on file.</li>
+  </ol>
+
+  <div class="baseline">
+    We are ready to engage on a turnkey EPC once the plant definition is locked. For correspondence on this RFP please use the contacts below.
+  </div>
+
+  <div class="signature">
+    <p>With kind regards,</p>
+    <p>
+      <strong>Alexander Papacosta</strong><br>
+      Cyprus Director<br>
+      Lighthief Cyprus Ltd (HE 477423)<br>
+      <a href="mailto:office@lighthief.com">office@lighthief.com</a> · +357 99 164 158<br>
+      <a href="https://solarfarms.cy">solarfarms.cy</a>
+    </p>
+  </div>
+
+  <div class="footer">
+    Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus · solarfarms.cy<br>
+    Document ref: LH-RFI-NIPC-UG-20MW-2026-08 · Confidential — for the intended recipient only. This letter does not constitute an offer.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sotira PV — Investor Teaser | Prepared for M2 Ventures | Lighthief Cyprus</title>
+<style>
+  @page { size: A4; margin: 12mm 12mm 14mm 12mm; }
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --white: #FFFFFF;
+    --grey-text: #404040;
+    --rule: #D5DEE8;
+    --soft: #F4F7FA;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 10.5pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.38;
+  }
+  .page {
+    width: 186mm;
+    margin: 0 auto;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .mast {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 11px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .mast img { height: 28px; width: auto; display: block; }
+  .mast .ref { text-align: right; font-size: 8pt; color: #d6e0ee; line-height: 1.35; }
+  .mast .ref strong { color: var(--accent); font-size: 9pt; display: block; letter-spacing: 0.04em; }
+
+  h1 {
+    color: var(--accent);
+    font-size: 16.5pt;
+    margin: 13px 16px 2px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .lede { margin: 0 16px 8px; color: var(--grey-text); font-size: 10pt; }
+  h2 {
+    color: var(--accent);
+    font-size: 11.5pt;
+    margin: 10px 0 5px;
+    font-weight: 700;
+  }
+
+  .pad { padding: 0 16px 4px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 0 16px 11px; }
+  .kpi {
+    background: var(--primary);
+    color: #fff;
+    padding: 9px 10px 8px;
+  }
+  .kpi .v { font-size: 15pt; font-weight: 700; color: var(--accent); line-height: 1.1; }
+  .kpi .l { font-size: 7.5pt; color: #d6e0ee; margin-top: 3px; letter-spacing: 0.02em; }
+
+  .tofrom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 16px 11px;
+    font-size: 9pt;
+    color: var(--grey-text);
+  }
+  .tofrom .box { background: var(--soft); padding: 8px 10px; border-left: 3px solid var(--accent); }
+  .tofrom .k { color: var(--primary); font-weight: 700; font-size: 7.5pt; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .badge {
+    display: inline-block;
+    background: #fef9c3;
+    color: #92400e;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    margin: 0 16px 8px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+  th {
+    background: var(--primary);
+    color: #fff;
+    text-align: left;
+    padding: 5px 7px;
+    font-weight: 600;
+    font-size: 8.5pt;
+  }
+  td { padding: 4px 7px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--soft); }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  td.hl { font-weight: 700; color: var(--primary); }
+
+  .bars { display: flex; align-items: flex-end; gap: 4px; height: 48px; margin: 6px 0 2px; }
+  .bar { flex: 1; background: var(--primary); min-height: 4px; }
+  .bar.peak { background: var(--accent); }
+  .barcap { display: flex; gap: 4px; font-size: 6.5pt; color: var(--grey-text); }
+  .barcap span { flex: 1; text-align: center; }
+
+  .note {
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 7px 10px;
+    color: var(--grey-text);
+    font-size: 8.5pt;
+    margin-top: 8px;
+  }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .muted { color: var(--grey-text); font-size: 8pt; margin: 4px 0 0; }
+  ul.hl { margin: 4px 0 0; padding: 0 0 0 16px; font-size: 9.5pt; color: #000; }
+  ul.hl li { margin: 0 0 4px; }
+
+  .foot {
+    background: var(--primary);
+    color: #d6e0ee;
+    font-size: 7.5pt;
+    padding: 7px 16px;
+    line-height: 1.4;
+    margin-top: 10px;
+  }
+  .foot a { color: var(--accent); text-decoration: none; }
+  .pnum { float: right; color: var(--accent); }
+
+  .print-btn {
+    position: fixed; top: 12px; right: 12px;
+    background: var(--primary); color: #fff; border: none;
+    padding: 8px 14px; border-radius: 4px; cursor: pointer; z-index: 100; font-size: 12px;
+  }
+
+  @media screen {
+    body { background: #c5cdd6; padding: 16px 0 32px; }
+    .page {
+      background: #fff;
+      box-shadow: 0 1px 8px rgba(26,54,93,0.18);
+      margin-bottom: 16px;
+      min-height: 277mm;
+    }
+  }
+  @media print {
+    .print-btn { display: none; }
+    body { background: #fff; }
+    .page { width: auto; min-height: auto; box-shadow: none; margin: 0; }
+    .foot { position: static; }
+  }
+</style>
+</head>
+<body>
+<button class="print-btn" type="button" onclick="window.print()">Print / PDF</button>
+
+<!-- PAGE 1 -->
+<section class="page">
+  <header class="mast">
+    <img src="lighthief-logo.png" alt="Lighthief" />
+    <div class="ref">
+      <strong>LT-CY-M2-SOTIRA-2026-09</strong>
+      Investor teaser · Prepared for M2 Ventures · 3 September 2026
+    </div>
+  </header>
+
+  <h1>Sotira PV — Famagusta</h1>
+  <p class="lede">6.534 MWp east–west bifacial · 11.80 GWh independent yield · Cyprus (EU)</p>
+  <div class="badge">Town planning layout submitted · Not RTB</div>
+
+  <div class="tofrom">
+    <div class="box">
+      <div class="k">Prepared for</div>
+      M2 Ventures<br />
+      Confidential · non-binding · indicative
+    </div>
+    <div class="box">
+      <div class="k">Prepared by</div>
+      Alexander Papacosta · Cyprus Director<br />
+      Lighthief Cyprus Ltd · +357 99 164 158
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">6.534 MWp</div><div class="l">DC · 6.60 MW AC · DC/AC 0.99</div></div>
+    <div class="kpi"><div class="v">11.80 GWh</div><div class="l">Annual AC with bifacial</div></div>
+    <div class="kpi"><div class="v">1,806</div><div class="l">kWh / kWp · year</div></div>
+    <div class="kpi"><div class="v">&euro;4.18M</div><div class="l">Indicative PV EPC · ex VAT</div></div>
+  </div>
+
+  <div class="pad">
+    <p style="margin:0 0 8px;color:#404040;font-size:9.5pt;">
+      A packed east–west bifacial plant at Sotira, Famagusta District, sized to the
+      <strong>6,534 kW</strong> town-planning layout (Poleodomia). Independent check with
+      JRC PVGIS 5.3 (SARAH3, 2005–2023) at 35.01084°N, 33.94224°E, plus a 2D rear-side
+      model: <strong>11,803 MWh/year</strong> AC, <strong>1,806 kWh/kWp</strong>. Lighthief Cyprus
+      can deliver EPC on this geometry. Not a bankable PVsyst P50/P90 and not a permitted RTB pack.
+    </p>
+
+    <div class="cols">
+      <div>
+        <h2>Investment highlights</h2>
+        <ul class="hl">
+          <li><strong>Site-fit DC.</strong> 10,052 × 650 W modules, 359 strings of 28 — sized to the 6,534 kW Poleodomia layout.</li>
+          <li><strong>No inverter clipping.</strong> 20 × Huawei 330 kW; DC/AC 0.99.</li>
+          <li><strong>Measured resource, not a brochure yield.</strong> Front 1,743 kWh/kWp; +3.6% bifacial at albedo 0.25.</li>
+          <li><strong>EU jurisdiction.</strong> Cyprus CIT 12.5%; wholesale DAM in operation.</li>
+          <li><strong>Clear next work.</strong> Bankable PVsyst, grid application, EPC contract. Town planning is in process, not complete.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Monthly AC (with bifacial)</h2>
+        <div class="bars" title="Monthly AC with bifacial, relative to July">
+          <div class="bar" style="height:36%"></div>
+          <div class="bar" style="height:44%"></div>
+          <div class="bar" style="height:66%"></div>
+          <div class="bar" style="height:79%"></div>
+          <div class="bar" style="height:93%"></div>
+          <div class="bar" style="height:98%"></div>
+          <div class="bar peak" style="height:100%"></div>
+          <div class="bar" style="height:91%"></div>
+          <div class="bar" style="height:75%"></div>
+          <div class="bar" style="height:57%"></div>
+          <div class="bar" style="height:41%"></div>
+          <div class="bar" style="height:33%"></div>
+        </div>
+        <div class="barcap">
+          <span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span>
+          <span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span>
+        </div>
+        <table style="margin-top:8px;">
+          <thead>
+            <tr><th>Season</th><th class="num">MWh</th><th class="num">Share</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Q1 (Jan–Mar)</td><td class="num">2,115</td><td class="num">18%</td></tr>
+            <tr><td>Q2 (Apr–Jun)</td><td class="num">3,928</td><td class="num">33%</td></tr>
+            <tr><td class="hl">Q3 (Jul–Sep)</td><td class="num hl">3,852</td><td class="num hl">33%</td></tr>
+            <tr><td>Q4 (Oct–Dec)</td><td class="num">1,910</td><td class="num">16%</td></tr>
+            <tr><td class="hl">Year</td><td class="num hl">11,803</td><td class="num hl">100%</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">July peak 1,452 MWh · December 484 MWh. Capacity factor 20.6%.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    Lighthief Cyprus Ltd · HE 477423 · 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol · solarfarms.cy
+    <span class="pnum">1 / 2</span>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <header class="mast">
+    <img src="lighthief-logo.png" alt="Lighthief" />
+    <div class="ref">
+      <strong>LT-CY-M2-SOTIRA-2026-09</strong>
+      Sotira PV · 6.534 MWp · prepared for M2 Ventures · page 2 of 2
+    </div>
+  </header>
+
+  <div class="pad" style="padding-top:12px;">
+    <div class="cols">
+      <div>
+        <h2>Plant as modelled</h2>
+        <table>
+          <thead><tr><th>Item</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Location</td><td>Sotira, Famagusta · 35.010841°N, 33.942242°E · 64 m</td></tr>
+            <tr><td>Module</td><td>Jinko 650 W n-type bifacial (JKM650N-66QL6-BDV) · φ 0.85</td></tr>
+            <tr><td>Inverters</td><td>20 × Huawei SUN2000-330KTL-H1 · 6.60 MW AC</td></tr>
+            <tr><td>Geometry</td><td>East–west 12.5° · 1,250 mm low edge · tent pitch 10.603 m</td></tr>
+            <tr><td>Strings</td><td>359 × 28 modules = 10,052 pcs = 6.534 MWp</td></tr>
+            <tr><td>Land GCR</td><td>~88% (1.23 m aisle) — why bifacial gain is 3.6%, not 8–10%</td></tr>
+            <tr><td>Storage on layout</td><td>2 MWh unit shown on Poleodomia drawing — not a 4-hour hybrid</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>Independent yield</h2>
+        <table>
+          <thead>
+            <tr><th>Case</th><th class="num">MWh/y</th><th class="num">kWh/kWp</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Front only (PVGIS)</td><td class="num">11,390</td><td class="num">1,743</td></tr>
+            <tr><td>Albedo 0.20</td><td class="num">11,727</td><td class="num">1,795</td></tr>
+            <tr><td class="hl">Design albedo 0.25</td><td class="num hl">11,803</td><td class="num hl">1,806</td></tr>
+            <tr><td>Albedo 0.30</td><td class="num">11,879</td><td class="num">1,818</td></tr>
+            <tr><td>Same DC, south 12° (front)</td><td class="num">12,529</td><td class="num">1,917</td></tr>
+            <tr><td>PVGIS south optimum 31°</td><td class="num">13,109</td><td class="num">2,006</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">PVGIS 5.3 PVcalc + pvlib 0.15 infinite sheds on SARAH3 TMY. East–west is the site-fit choice, not the energy-maximising tilt.</p>
+      </div>
+    </div>
+
+    <h2>Indicative commercial — PV EPC only</h2>
+    <table>
+      <thead>
+        <tr><th>Item</th><th class="num">Basis</th><th class="num">Amount</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PV EPC (development, client price)</td>
+          <td class="num">6.534 MWp × €640,000/MWp</td>
+          <td class="num hl">€4.18 million</td>
+        </tr>
+        <tr>
+          <td>Gross energy (design bifacial)</td>
+          <td class="num">11,803 MWh/year</td>
+          <td class="num">11.80 GWh</td>
+        </tr>
+        <tr>
+          <td>Illustrative uncurtailed DAM</td>
+          <td class="num">11,803 MWh × €141/MWh</td>
+          <td class="num">€1.66 million</td>
+        </tr>
+        <tr>
+          <td>Illustrative 50% curtailment case</td>
+          <td class="num">5,902 MWh × €141/MWh</td>
+          <td class="num">€832 thousand</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted">
+      EPC is Lighthief’s Cyprus development rate, ex VAT, excluding land, RTB, grid works, interconnection, and storage.
+      €141/MWh is the Cyprus DAM daytime reference used in Lighthief investor materials — not a PPA and not a forecast.
+      Site offtake, curtailment, and a larger BESS are not modelled. No IRR is stated until those are fixed.
+    </p>
+
+    <h2>Status and next steps</h2>
+    <table>
+      <thead><tr><th>Item</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Town planning (Poleodomia)</td><td>Layout submitted — park titled 6,534 kW + 2 MWh BESS. Permit not issued.</td></tr>
+        <tr><td>CERA production licence / building permit / grid</td><td>Not claimed in this teaser. To be confirmed in diligence.</td></tr>
+        <tr><td>Energy yield</td><td>Independent PVGIS + bifacial check complete. PVsyst P50/P90 still required for lenders.</td></tr>
+        <tr><td>EPC</td><td>Lighthief Cyprus can contract the 12.5° / 1,250 mm geometry as modelled.</td></tr>
+        <tr><td>Storage</td><td>2 MWh on the planning drawing only. A curtailment-capture BESS would be a separate specification.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      This document is strictly confidential, prepared solely for M2 Ventures, and is not an offer to sell securities or a commitment to transact.
+      Figures are indicative. Cable ohmic losses were not in the source loss list (~118 MWh/year per extra 1%).
+      Bankable file remains PVsyst with the manufacturer PAN/OND. Contact: Alexander Papacosta, Cyprus Director · +357 99 164 158 · office@lighthief.com.
+    </div>
+  </div>
+  <div class="foot">
+    Lighthief Cyprus Ltd · HE 477423 · office@lighthief.com · +357 77 77 00 50 · solarfarms.cy
+    <span class="pnum">2 / 2</span>
+  </div>
+</section>
+
+</body>
+</html>
