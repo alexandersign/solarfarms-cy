@@ -162,7 +162,9 @@ export function investorPackForDeal(deal: RtbDeal): RtbInvestorPack {
 
 // ── Shared financial constants ────────────────────────────────────────────
 
-/** TSOC DAM sample (Oct 2025 – Feb 2026) */
+/** TSOC DAM underwriting sample used in deal models (Oct 2025 – Feb 2026).
+ *  Live website stats: `lib/market/cyprus-tsoc-dam-sample.ts` (339 days to 4 Sep 2026).
+ *  Do not retune investor models from the live file without regenerating packs. */
 export const DAM = {
   avgEURPerMWh: 158.19,
   peakEveningEURPerMWh: 182.99,

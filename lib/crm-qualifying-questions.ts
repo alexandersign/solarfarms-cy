@@ -96,7 +96,7 @@ export const DEVELOPER_QUESTIONS: QualifyingQuestion[] = [
     id: 'opportunity_cost',
     spin: 'implication',
     question: 'If you could capture the curtailed energy with BESS and sell it in the evening peak — what would that mean for the park\'s return over the next 5 years?',
-    hint: 'Pivots to positive framing. Evening peak rate ~€183/MWh vs midday floor ~€77/MWh.',
+    hint: 'Pivots to positive framing. Evening peak rate ~€203/MWh vs midday ~€84/MWh in the Oct 2025–Jul 2026 TSOC sample (seasonal).',
   },
   // ─── Need-payoff ──────────────────────────────────────────────────────────
   {

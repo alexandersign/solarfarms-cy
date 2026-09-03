@@ -17,11 +17,12 @@ import {
   Battery,
   Scale,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: 'The Real Cost of NOT Adding BESS: A 10-Year Financial Model for Solar Parks',
   description:
-    'We model PV-only vs PV+BESS over 10 years using real Cyprus data — 47% curtailment, €77-186/MWh pricing spreads, and confirmed BESS CAPEX. The crossover point might surprise you.',
+    `We model PV-only vs PV+BESS over 10 years using Cyprus data — 47% curtailment, ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}–${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh pricing spreads, and confirmed BESS CAPEX. The crossover point might surprise you.`,
   keywords: [
     'BESS financial model',
     'solar farm with without BESS',
@@ -39,9 +40,9 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'The Real Cost of NOT Adding BESS: A 10-Year Financial Model for Solar Parks',
   description:
-    'We model PV-only vs PV+BESS over 10 years using real Cyprus data — 47% curtailment, €77-186/MWh pricing spreads, and confirmed BESS CAPEX. The crossover point might surprise you.',
+    `We model PV-only vs PV+BESS over 10 years using Cyprus data — 47% curtailment, ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}–${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh pricing spreads, and confirmed BESS CAPEX. The crossover point might surprise you.`,
   datePublished: '2025-10-21',
-  dateModified: '2025-10-21',
+  dateModified: '2026-08-27',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -234,11 +235,11 @@ export default function CostOfNotAddingBESSArticle() {
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Midday price (2026)</span>
-                        <span className="font-semibold">&euro;101/MWh</span>
+                        <span className="font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Evening peak (2026)</span>
-                        <span className="font-semibold text-emerald-600">&euro;183/MWh</span>
+                        <span className="font-semibold text-emerald-600">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh</span>
                       </div>
                       <div className="border-t pt-2 flex justify-between">
                         <span className="text-gray-600">Price escalation</span>

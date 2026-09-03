@@ -1,17 +1,20 @@
 'use client'
 
 import Script from 'next/script'
+import { usePathname } from 'next/navigation'
+import { isInternalToolPath } from '@/components/analytics/GoogleAnalytics'
 
-// Meta Pixel ID from environment or hardcoded
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '1339065790896028'
 
 export function MetaPixel() {
+  const pathname = usePathname()
+  if (isInternalToolPath(pathname)) return null
+
   return (
     <>
-      {/* Meta Pixel Base Code */}
       <Script
         id="meta-pixel"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
@@ -28,7 +31,6 @@ export function MetaPixel() {
           `,
         }}
       />
-      {/* Meta Pixel NoScript Fallback */}
       <noscript>
         <img
           height="1"

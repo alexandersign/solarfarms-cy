@@ -17,6 +17,7 @@ import {
   CheckCircle,
   Cpu,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: 'Curtailed Energy Is Not Lost Energy: Revenue Recovery Strategies for Cyprus PV Parks',
@@ -250,8 +251,8 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                       </div>
                       <h4 className="font-semibold mb-2">17:00 – 21:00</h4>
                       <p className="text-sm text-gray-700">
-                        Discharge at <strong>€183/MWh</strong> evening peak. After 86.32% round-trip
-                        efficiency, net revenue is <strong>~€158/MWh</strong>.
+                        Discharge at <strong>{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh</strong> evening peak. After 86.32% round-trip
+                        efficiency, net revenue is <strong>~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh</strong>.
                       </p>
                     </div>
                   </div>
@@ -282,7 +283,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Evening peak price:</span>
-                      <span className="font-semibold">€183/MWh</span>
+                      <span className="font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh</span>
                     </div>
                     <div className="flex justify-between border-t pt-2 font-bold text-green-700">
                       <span>Net BESS revenue:</span>
@@ -290,7 +291,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Effective revenue/MWh:</span>
-                      <span className="font-semibold text-green-600">~€158/MWh</span>
+                      <span className="font-semibold text-green-600">~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -582,7 +583,7 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
                         </div>
                         <p className="text-sm text-gray-700 mb-2">
                           Captures ~2,350 MWh of curtailed energy, dispatches ~2,029 MWh at evening peak.
-                          Highest €/MWh value at ~€158/MWh net.
+                          Highest €/MWh value at ~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh net.
                         </p>
                         <div className="w-full bg-gray-200 rounded-full h-3">
                           <div className="bg-green-500 h-3 rounded-full" style={{ width: '50%' }} />

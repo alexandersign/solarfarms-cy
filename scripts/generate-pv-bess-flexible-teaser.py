@@ -695,8 +695,8 @@ def make_docx(results_a, results_b):
     p_fr.paragraph_format.space_before = Twips(50)
     p_fr.paragraph_format.space_after  = Twips(50)
     rl2 = p_fr.add_run("Lighthief Cyprus Ltd · HE 477423\n"
-                        "28 October Ave 249, Lophitis Business Center, Office 201\n"
-                        "3035 Limassol, Cyprus")
+                        "15 Agaritsis, Nektaria Court, Office 201\n"
+                        "3045 Zakaki, Limassol, Cyprus")
     rl2.font.size = Pt(8); rl2.font.color.rgb = RGBColor(0x66, 0x77, 0x88)
 
     doc.save(str(DOCX_OUT))

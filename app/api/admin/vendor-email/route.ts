@@ -190,7 +190,7 @@ function buildEmail(data: {
     ` : ''}
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
-      28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
+      15 Agaritsis, Nektaria Court, Office 201 · 3045 Zakaki, Limassol, Cyprus<br>
       office@lighthief.com · +357 99 164 158 · solarfarms.cy<br><br>
       <em>This email and any attachments are confidential. If you are not the intended recipient, please delete and notify the sender.</em>
     </div>

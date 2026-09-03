@@ -9,6 +9,8 @@ import { BESSShowcase } from '@/components/sections/landing/BESSShowcase'
 import { InvestmentTiers } from '@/components/sections/landing/InvestmentTiers'
 import { MarketDataCTA } from '@/components/sections/landing/MarketDataCTA'
 import { LandownerCTA } from '@/components/sections/landing/LandownerCTA'
+import { JournalStrip } from '@/components/marketing/JournalStrip'
+import { BESS_JOURNAL_POSTS } from '@/lib/marketing/journal-posts'
 
 export const metadata: Metadata = {
   title: 'SolarFarms.cy — Cyprus Solar & BESS Investments',
@@ -79,6 +81,12 @@ export default function HomePage() {
 
         {/* Market Data CTA Section */}
         <MarketDataCTA />
+
+        <JournalStrip
+          title="From our journal"
+          subtitle="Project economics, BESS, and Cyprus market analysis — the pages that already hold attention."
+          posts={BESS_JOURNAL_POSTS}
+        />
 
         {/* Landowner CTA */}
         <LandownerCTA />

@@ -86,6 +86,8 @@ export function BessInquiryForm() {
       }
 
       setIsSuccess(true)
+      const { trackLeadCapture } = await import('@/components/analytics/GoogleAnalytics')
+      trackLeadCapture('bess_inquiry_form', 250)
     } catch {
       setError('Failed to submit your inquiry. Please try again or contact us directly.')
     } finally {

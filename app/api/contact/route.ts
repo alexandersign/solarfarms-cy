@@ -205,7 +205,7 @@ async function sendAutoresponder(data: any) {
     The Lighthief Cyprus Team
     
     LIGHTHIEF CYPRUS LTD
-    28 October Ave 249, Lophitis Business Center 1, Office 201
+    15 Agaritsis, Nektaria Court, Office 201
     3035 Limassol, Cyprus
     
     General Inquiries: office@lighthief.com | +357 77 77 00 50

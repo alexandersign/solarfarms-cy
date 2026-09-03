@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -21,7 +21,8 @@ import {
   Zap,
   AlertTriangle,
   CheckCircle,
-  HelpCircle
+  HelpCircle,
+  Lock,
 } from 'lucide-react'
 import { formatCurrency, formatPercentage } from '@/lib/utils'
 import { 
@@ -34,7 +35,7 @@ import {
   COMPANY_DATA,
   FINANCING_OPTIONS
 } from '@/lib/constants'
-import { trackEvent } from '@/components/analytics/GoogleAnalytics'
+import { trackEvent, trackLeadCapture } from '@/components/analytics/GoogleAnalytics'
 
 // Tooltip component for help text
 function Tooltip({ text }: { text: string }) {
@@ -267,6 +268,9 @@ export function AdvancedProjectCalculator() {
 
   const [results, setResults] = useState<CalculationResults | null>(null)
   const [activeSection, setActiveSection] = useState('project')
+  const [reportUnlocked, setReportUnlocked] = useState(false)
+  const [showEmailGate, setShowEmailGate] = useState(false)
+  const reportUnlockedRef = useRef(false)
 
   // Update a single input
   const updateInput = useCallback(<K extends keyof ProjectInputs>(
@@ -529,9 +533,13 @@ export function AdvancedProjectCalculator() {
     calculateResults()
   }, [calculateResults])
 
-  // Generate and download report
+  // Generate and download report (email-gated)
   const generateReport = () => {
     if (!results) return
+    if (!reportUnlockedRef.current) {
+      setShowEmailGate(true)
+      return
+    }
 
     trackEvent('advanced_calculator_report', 'Calculator', inputs.projectName || 'Unnamed', results.totalCapex)
 
@@ -1518,11 +1526,13 @@ export function AdvancedProjectCalculator() {
                           size="lg"
                         >
                           <Download className="w-4 h-4 mr-2" />
-                          Download Investment Report
+                          {reportUnlocked ? 'Download Investment Report' : 'Get Investment Report'}
                         </Button>
 
                         <p className="text-xs text-gray-500 text-center">
-                          Opens printable report • Save as PDF from browser
+                          {reportUnlocked
+                            ? 'Opens printable report • Save as PDF from browser'
+                            : 'Enter email to download the printable report — on-screen results stay free'}
                         </p>
                       </>
                     )}
@@ -1533,6 +1543,65 @@ export function AdvancedProjectCalculator() {
           </div>
         </CardContent>
       </Card>
+
+      {showEmailGate && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <Lock className="w-6 h-6 text-blue-600" />
+              </div>
+              <CardTitle>Download Your Investment Report</CardTitle>
+              <CardDescription>
+                Enter your email to receive the printable report. On-screen calculator results stay free.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form
+                className="space-y-4"
+                onSubmit={async (e) => {
+                  e.preventDefault()
+                  const form = e.currentTarget
+                  const email = (form.elements.namedItem('report-email') as HTMLInputElement)?.value
+                  if (!email) return
+                  trackLeadCapture('advanced_calculator_report', 150)
+                  try {
+                    await fetch('/api/bess-calculator/unlock-pdf', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        email,
+                        projectName: inputs.projectName || 'Solar Project',
+                        bessCapacity: 0,
+                        mode: 'advanced-report',
+                      }),
+                    })
+                  } catch {
+                    /* non-blocking */
+                  }
+                  reportUnlockedRef.current = true
+                  setReportUnlocked(true)
+                  setShowEmailGate(false)
+                  setTimeout(generateReport, 80)
+                }}
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="report-email">Email Address</Label>
+                  <Input id="report-email" name="report-email" type="email" placeholder="name@company.com" required />
+                </div>
+                <div className="flex gap-3">
+                  <Button type="button" variant="outline" className="flex-1" onClick={() => setShowEmailGate(false)}>
+                    Cancel
+                  </Button>
+                  <Button type="submit" variant="gradient" className="flex-1">
+                    Get Report
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }

@@ -273,7 +273,7 @@ def page_header() -> str:
 
 def page_footer(client_name: str) -> str:
     return f"""<div class="bom-footer">
-  <strong>Lighthief Cyprus Ltd</strong> &middot; HE 477423 &middot; 28 October Ave 249, Lophitis Business Center I, Office 201, 3035 Limassol<br>
+  <strong>Lighthief Cyprus Ltd</strong> &middot; HE 477423 &middot; 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol<br>
   Prepared for {client_name} &middot; Confidential &mdash; equipment specifications constitute proprietary information of Linyang Energy.
 </div>"""
 

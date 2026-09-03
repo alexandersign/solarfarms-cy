@@ -18,10 +18,11 @@ import {
   CheckCircle,
   Shield,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: 'Peak Shaving vs Energy Arbitrage: Which BESS Revenue Model Works in Cyprus?',
-  description: 'Two revenue models, one grid. We compare peak shaving and energy arbitrage using real Cyprus day-ahead pricing — €77/MWh midday vs €186/MWh evening — to show which strategy maximises BESS returns.',
+  description: `Two revenue models, one grid. We compare peak shaving and energy arbitrage using Cyprus day-ahead pricing — ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh midday vs ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening — to show which strategy maximises BESS returns.`,
   keywords: [
     'BESS revenue model',
     'peak shaving vs arbitrage solar',
@@ -38,9 +39,9 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'Peak Shaving vs Energy Arbitrage: Which BESS Revenue Model Works in Cyprus?',
-  description: 'Two revenue models, one grid. We compare peak shaving and energy arbitrage using real Cyprus day-ahead pricing — €77/MWh midday vs €186/MWh evening — to show which strategy maximises BESS returns.',
+  description: `Two revenue models, one grid. We compare peak shaving and energy arbitrage using Cyprus day-ahead pricing — ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh midday vs ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening — to show which strategy maximises BESS returns.`,
   datePublished: '2025-12-29',
-  dateModified: '2025-12-29',
+  dateModified: '2026-08-27',
   author: {
     '@type': 'Person',
     name: 'Alexander Papacosta',
@@ -165,7 +166,7 @@ export default function PeakShavingVsArbitrageArticle() {
                   You store otherwise-wasted solar energy during curtailment periods and discharge
                   it during the evening demand peak. This is effectively a hybrid of both models
                   &mdash; you&apos;re shaving the midday solar peak while arbitraging the price
-                  difference between free curtailed energy and &euro;183/MWh evening prices.
+                  difference between free curtailed energy and {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening prices.
                   Understanding this distinction is critical for modelling returns accurately.
                 </p>
               </div>
@@ -176,8 +177,8 @@ export default function PeakShavingVsArbitrageArticle() {
               <h2 className="text-3xl font-heading font-bold mb-4">The Cyprus Pricing Landscape</h2>
               <p className="text-lg text-gray-700 mb-4">
                 Revenue from any BESS strategy depends entirely on the price spread between
-                charging and discharging hours. We analysed 134 days of Cyprus day-ahead market
-                data from October 2025 through February 2026 to establish the structural pricing
+                charging and discharging hours. We analysed {CYPRUS_TSOC_DAM_SAMPLE.tradingDays} days of Cyprus day-ahead market
+                data from {CYPRUS_TSOC_DAM_SAMPLE.dateFromLabel} through {CYPRUS_TSOC_DAM_SAMPLE.dateToLabel} to establish the structural pricing
                 patterns that define BESS economics on the island.
               </p>
 
@@ -188,8 +189,8 @@ export default function PeakShavingVsArbitrageArticle() {
                       <Sun className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-sm text-gray-500 mb-1 font-semibold uppercase tracking-wide">Midday Average (10:00&ndash;14:00)</p>
-                    <p className="text-4xl font-bold text-yellow-600 mb-1">&euro;101<span className="text-lg">/MWh</span></p>
-                    <p className="text-sm text-gray-500">Daily low at noon: &euro;77/MWh</p>
+                    <p className="text-4xl font-bold text-yellow-600 mb-1">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}<span className="text-lg">/MWh</span></p>
+                    <p className="text-sm text-gray-500">{CYPRUS_TSOC_DAM_SAMPLE.daysWithZeroMiddayPrints} days with a €0 midday print</p>
                   </CardContent>
                 </Card>
 
@@ -199,8 +200,8 @@ export default function PeakShavingVsArbitrageArticle() {
                       <BarChart3 className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-sm text-gray-500 mb-1 font-semibold uppercase tracking-wide">Daily Average</p>
-                    <p className="text-4xl font-bold text-gray-600 mb-1">&euro;134<span className="text-lg">/MWh</span></p>
-                    <p className="text-sm text-gray-500">Average spread: &euro;82/MWh</p>
+                    <p className="text-4xl font-bold text-gray-600 mb-1">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.avgEURPerMWh)}<span className="text-lg">/MWh</span></p>
+                    <p className="text-sm text-gray-500">Average spread: {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh</p>
                   </CardContent>
                 </Card>
 
@@ -210,26 +211,26 @@ export default function PeakShavingVsArbitrageArticle() {
                       <Moon className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-sm text-gray-500 mb-1 font-semibold uppercase tracking-wide">Evening Peak (17:00&ndash;21:00)</p>
-                    <p className="text-4xl font-bold text-indigo-600 mb-1">&euro;183<span className="text-lg">/MWh</span></p>
-                    <p className="text-sm text-gray-500">Daily high at 19:00: &euro;186/MWh</p>
+                    <p className="text-4xl font-bold text-indigo-600 mb-1">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}<span className="text-lg">/MWh</span></p>
+                    <p className="text-sm text-gray-500">{CYPRUS_TSOC_DAM_SAMPLE.sampleNote}</p>
                   </CardContent>
                 </Card>
               </div>
 
               <div className="bg-white rounded-xl border p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Spread Reliability (134-Day Dataset)</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Spread Reliability ({CYPRUS_TSOC_DAM_SAMPLE.tradingDays}-Day Dataset)</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center p-4 bg-green-50 rounded-lg">
                     <p className="text-3xl font-bold text-green-600">100%</p>
                     <p className="text-sm text-gray-600">of days show positive spread</p>
                   </div>
                   <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <p className="text-3xl font-bold text-green-600">78%</p>
-                    <p className="text-sm text-gray-600">of days with spread &gt;&euro;20/MWh</p>
+                    <p className="text-3xl font-bold text-green-600">{CYPRUS_TSOC_DAM_SAMPLE.daysWithZeroMiddayPrints}</p>
+                    <p className="text-sm text-gray-600">days with a €0 midday print</p>
                   </div>
                   <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <p className="text-3xl font-bold text-green-600">61%</p>
-                    <p className="text-sm text-gray-600">of days with spread &gt;&euro;40/MWh</p>
+                    <p className="text-3xl font-bold text-green-600">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}</p>
+                    <p className="text-sm text-gray-600">average peak–midday spread</p>
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 mt-4 text-center">
@@ -286,10 +287,10 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="text-white font-bold text-sm">2</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Discharge during evening peak at &euro;183/MWh average</p>
+                        <p className="font-semibold text-gray-900">Discharge during evening peak at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh average</p>
                         <p className="text-sm text-gray-600">
-                          The Cyprus day-ahead market peaks between 17:00&ndash;21:00, with prices
-                          regularly hitting &euro;183&ndash;186/MWh. This is when you sell your
+                          The Cyprus day-ahead market peaks between 17:00&ndash;21:00, averaging{' '}
+                          {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh in the TSOC sample. This is when you sell your
                           stored energy at maximum value.
                         </p>
                       </div>
@@ -299,10 +300,10 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="text-white font-bold text-sm">3</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Net revenue after RTE losses: ~&euro;158/MWh per cycle</p>
+                        <p className="font-semibold text-gray-900">Net revenue after RTE losses: ~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh per cycle</p>
                         <p className="text-sm text-gray-600">
                           After accounting for 86.32% round-trip efficiency (RTE) losses, each
-                          MWh discharged nets approximately &euro;158/MWh &mdash; pure margin since
+                          MWh discharged nets approximately {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh &mdash; pure margin since
                           your input cost was zero.
                         </p>
                       </div>
@@ -416,10 +417,10 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="text-white font-bold text-sm">1</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Charge from grid at midday: &euro;101/MWh average</p>
+                        <p className="font-semibold text-gray-900">Charge from grid at midday: {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh average</p>
                         <p className="text-sm text-gray-600">
                           Between 10:00&ndash;14:00, solar oversupply drives DAM prices to their
-                          daily lows. At &euro;77&ndash;101/MWh, grid energy is cheap &mdash; but
+                          daily lows. At {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh average, grid energy is cheap &mdash; but
                           unlike curtailment recovery, it&apos;s not free.
                         </p>
                       </div>
@@ -429,7 +430,7 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="text-white font-bold text-sm">2</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Discharge during evening: &euro;183/MWh average</p>
+                        <p className="font-semibold text-gray-900">Discharge during evening: {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh average</p>
                         <p className="text-sm text-gray-600">
                           The 17:00&ndash;21:00 demand peak creates a reliable sell window. Air
                           conditioning load, commercial activity, and residential demand converge
@@ -442,11 +443,11 @@ export default function PeakShavingVsArbitrageArticle() {
                         <span className="text-white font-bold text-sm">3</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900">Gross spread: ~&euro;82/MWh average</p>
+                        <p className="font-semibold text-gray-900">Gross spread: ~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh average</p>
                         <p className="text-sm text-gray-600">
-                          The difference between average buy (&euro;101/MWh) and sell (&euro;183/MWh)
-                          creates a gross spread of &euro;82/MWh. After 86.32% RTE and the charging
-                          cost, net revenue is approximately &euro;60/MWh per cycle.
+                          The difference between average buy ({damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh) and sell ({damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh)
+                          creates a gross spread of {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh. After 86.32% RTE, net capture
+                          is lower — and grid charging for arbitrage is not yet legal in Cyprus.
                         </p>
                       </div>
                     </div>
@@ -461,7 +462,7 @@ export default function PeakShavingVsArbitrageArticle() {
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-white rounded-xl p-5 shadow-sm text-center">
                     <div className="text-sm text-gray-500 mb-1">Gross Spread</div>
-                    <div className="text-3xl font-bold text-blue-600">~&euro;82</div>
+                    <div className="text-3xl font-bold text-blue-600">~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}</div>
                     <div className="text-xs text-gray-400">per MWh per cycle</div>
                   </div>
                   <div className="bg-white rounded-xl p-5 shadow-sm text-center">
@@ -656,7 +657,7 @@ export default function PeakShavingVsArbitrageArticle() {
                         </div>
                         <p className="text-gray-700 mb-3">
                           Charge from curtailed solar at &euro;0/MWh, discharge during evening
-                          peak at &euro;183/MWh. The only model available under current legislation
+                          peak at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh. The only model available under current legislation
                           &mdash; but already the most profitable per-MWh strategy.
                         </p>
                         <div className="bg-green-50 rounded-lg p-4">

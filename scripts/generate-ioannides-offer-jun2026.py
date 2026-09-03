@@ -121,7 +121,7 @@ table.spec-tbl {{ width:100%; border-collapse:collapse; margin-bottom:10px; font
 <div class="spec-title">Technical &amp; Commercial Offer</div>
 
 <div class="supplier-info">
-  <strong>Lighthief Cyprus Ltd</strong> &nbsp;|&nbsp; HE 477423 &nbsp;|&nbsp; 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol<br>
+  <strong>Lighthief Cyprus Ltd</strong> &nbsp;|&nbsp; HE 477423 &nbsp;|&nbsp; 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol<br>
   <strong>Prepared by:</strong> Alexander Papacosta, Cyprus Director &nbsp;|&nbsp; office@lighthief.com &nbsp;|&nbsp; +357 99 164 158
 </div>
 <div class="project-meta">
@@ -370,7 +370,7 @@ table.spec-tbl {{ width:100%; border-collapse:collapse; margin-bottom:10px; font
 
 <div class="pg-footer" style="margin-top:20px;">
   <strong>Lighthief Cyprus Ltd</strong> &nbsp;|&nbsp; HE 477423<br>
-  28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+  15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus<br>
   <strong>Contact:</strong> Alexander Papacosta &nbsp;|&nbsp; office@lighthief.com &nbsp;|&nbsp; +357 99 164 158 &nbsp;|&nbsp; solarfarms.cy<br>
   Page 3 of 3 &nbsp;|&nbsp; Ref: LCY-IND-IOANNIDES-2026-06
 </div>

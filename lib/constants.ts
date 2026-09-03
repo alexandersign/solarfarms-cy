@@ -181,12 +181,12 @@ export const COMPANY_DATA = {
   },
   address: {
     office: {
-      street: "28 October Ave 249",
-      building: "Lophitis Business Center 1, Office 201",
+      street: "15 Agaritsis",
+      building: "Nektaria Court, Office 201",
       city: "Limassol",
-      postalCode: "3035",
+      postalCode: "3045",
       country: "Cyprus",
-      full: "28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus"
+      full: "15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus"
     },
     registered: {
       street: "Agiou Andreou 241",
@@ -390,37 +390,38 @@ export const ANALYTICS_EVENTS = {
   CONSULTATION_REQUESTED: "consultation_requested",
   NEWSLETTER_SUBSCRIBED: "newsletter_subscribed",
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
+  GENERATE_LEAD: "generate_lead",
+  BESS_CALCULATOR_PDF_UNLOCK: "bess_calculator_pdf_unlock",
 } as const
 
-// Cyprus Market Defaults — COMPLETE DATASET (Oct 1, 2025 – Feb 11, 2026)
-// Source: 134 TSOC DAM Excel files, 6,432 half-hourly records, every trading day
-// VERIFIED from: https://tsoc.org.cy/competitive-electricity-market/mms-reports/
+// Cyprus Market Defaults — COMPLETE DATASET (Oct 1, 2025 – Sep 4, 2026)
+// Source: 339 TSOC DAM Excel files, 62,670 half-hourly records
+// VERIFIED from: https://tsoc.org.cy/competitive-electricity-market/mms-reports/day-ahead-market-daily-activity-reports-en/
+// Live SSOT: lib/market/cyprus-tsoc-dam-sample.ts
 //
-// KEY METRICS (134 days):
-//   Overall avg MCP:    €158.19/MWh
-//   Midday (10-14):     €101.13/MWh  ← deep solar suppression
-//   Peak evening (17-21): €182.99/MWh
-//   Peak-Midday Spread: €81.86/MWh  ← BESS opportunity
-//   Zero-price periods: 336 (5.2% of all half-hours)
-//   Low-price (≤€10):   467 (7.3%)
-//   Curtailment midday (≤€50, 09-15): 29.4% of periods
+// KEY METRICS (339 days):
+//   Overall avg MCP:    €200.23/MWh (half-hourly mean, zeros excluded)
+//   Midday (10-14):     €104.55/MWh  ← deep in Apr–May; summer 2026 much higher
+//   Peak evening (17-21): €212.42/MWh
+//   Peak-Midday Spread: €107.88/MWh  ← BESS opportunity
+//   Solar hours (06-17): €151.38/MWh
 //
-// ⚠️ REGULATORY NOTE (Feb 2026): BESS CANNOT buy electricity from the DAM grid yet.
+// Seasonal: Apr–May 2026 midday often near zero; Jul–early Sep 2026 duck curve flattened.
+//
+// ⚠️ REGULATORY NOTE: BESS CANNOT buy electricity from the DAM grid yet.
 // DAM arbitrage (buy at solar hours, sell at peak) is NOT YET legal in Cyprus.
 // Current BESS revenue model: CURTAILMENT RECOVERY ONLY
 //   → Store otherwise-curtailed solar energy (charge cost = €0)
-//   → Discharge at evening peak prices (€183/MWh)
-//   → Revenue per MWh discharged: €157.94/MWh (at 86.32% RTE)
-//   → Annual: €146k–223k per MWh BESS (at 2.5–3.8 MWh daily throughput)
-// Future: DAM arbitrage will add €72/MWh net per cycle when legislation enables it
+//   → Discharge at evening peak prices (€212/MWh)
+//   → Revenue per MWh discharged: €183.40/MWh (at 86.32% RTE)
 //
 export const CYPRUS_MARKET_DEFAULTS = {
-  // Revenue rates (VERIFIED Jul 2026 from 283-day complete TSOC DAM dataset, Oct 2025–Jul 2026)
-  daytimeSellingRate: 0.138,      // €/kWh - Solar hours avg €137.59/MWh (06:00-17:00)
-  middayRate: 0.084,              // €/kWh - Midday avg €84.36/MWh (10:00-14:00, deep solar dip)
-  nightDischargeRate: 0.203,      // €/kWh - Evening peak avg €203.43/MWh (BESS discharge price)
+  // Revenue rates (VERIFIED Sep 2026 from 339-day complete TSOC DAM dataset, Oct 2025–Sep 2026)
+  daytimeSellingRate: 0.151,      // €/kWh - Solar hours avg €151.38/MWh (06:00-17:00)
+  middayRate: 0.105,              // €/kWh - Midday avg €104.55/MWh (10:00-14:00)
+  nightDischargeRate: 0.212,      // €/kWh - Evening peak avg €212.42/MWh (BESS discharge price)
   ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
-  wholesaleAvgRate: 0.170,        // €/kWh - Overall avg MCP €170.22/MWh
+  wholesaleAvgRate: 0.200,        // €/kWh - Overall avg MCP €200.23/MWh
   
   // Curtailment (based on real 2024-2025 data, may decrease with new market mechanisms)
   curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average (pre-open market)

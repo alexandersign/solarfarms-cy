@@ -104,15 +104,8 @@ export function ContactForm() {
       const result = await response.json()
 
       if (result.success) {
-        // Track Google Analytics event
-        if (typeof window !== 'undefined' && window.gtag) {
-          window.gtag('event', 'form_submit', {
-            event_category: 'engagement',
-            event_label: 'contact_form',
-            value: 150
-          })
-        }
-        
+        const { trackLeadCapture } = await import('@/components/analytics/GoogleAnalytics')
+        trackLeadCapture('contact_form', 150)
         setIsSubmitted(true)
       } else {
         throw new Error(result.message || 'Submission failed')
@@ -202,7 +195,7 @@ export function ContactForm() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Location</h3>
-              <p className="text-gray-600">28 October Ave 249<br />Lophitis Business Center 1<br />3035 Limassol, Cyprus</p>
+              <p className="text-gray-600">15 Agaritsis<br />Nektaria Court, Office 201<br />3045 Zakaki, Limassol, Cyprus</p>
             </div>
           </div>
 

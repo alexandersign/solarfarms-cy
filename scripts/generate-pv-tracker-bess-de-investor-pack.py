@@ -478,8 +478,8 @@ tr.sec td {{ background: #EEF3FB !important; color: var(--primary); font-weight:
     </div>
     <div style="text-align:right">
       Lighthief Cyprus Ltd · HE 477423<br>
-      28 October Ave 249, Lophitis Business Center 1, Office 201<br>
-      3035 Limassol, Cyprus · <a href="https://solarfarms.cy">solarfarms.cy</a>
+      15 Agaritsis, Nektaria Court, Office 201<br>
+      3045 Zakaki, Limassol, Cyprus · <a href="https://solarfarms.cy">solarfarms.cy</a>
     </div>
   </div>
 </div>

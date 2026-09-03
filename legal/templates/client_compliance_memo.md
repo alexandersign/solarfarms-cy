@@ -150,9 +150,9 @@ The following documents are available upon request:
 For any questions regarding this compliance memo:
 
 **Lighthief Cyprus Ltd**
-28 October Avenue 249
-Lophitis Business Center 1, Office 201
-3035 Limassol, Cyprus
+15 Agaritsis
+Nektaria Court, Office 201
+3045 Zakaki, Limassol, Cyprus
 
 ---
 

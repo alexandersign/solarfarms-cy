@@ -475,7 +475,7 @@ def add_parties_table(doc, client_block, client_label="Client"):
             (
                 "Contractor",
                 "Lighthief Cyprus Ltd\nRegistration No. HE 477423\n"
-                "28 October Ave 249, Lophitis Business Center 1,\n"
+                "15 Agaritsis, Nektaria Court, Office 201,\n"
                 "Office 201, 3035 Limassol, Cyprus\n"
                 "office@lighthief.com | +357 77 77 00 50\n"
                 "(hereinafter \"Lighthief\" or the \"Contractor\")",
@@ -534,7 +534,7 @@ def add_footer(doc, ref_line):
     fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
     add_run(
         fp,
-        "Lighthief Cyprus Ltd  |  HE 477423  |  28 October Ave 249, Lophitis Business Center 1, "
+        "Lighthief Cyprus Ltd  |  HE 477423  |  15 Agaritsis, Nektaria Court, Office 201, "
         "Office 201, 3035 Limassol, Cyprus\n"
         "office@lighthief.com  |  +357 77 77 00 50  |  solarfarms.cy  |  "
         + ref_line,

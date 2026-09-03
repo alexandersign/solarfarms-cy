@@ -16,7 +16,7 @@ Jiangsu Linyang Energy Storage Technology Co., Ltd,
  (“Seller”);
 and
 Lighthief Cyprus Ltd,
- a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company Registration Number HE 477423, TIN 60187188Q
+ a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus, Company Registration Number HE 477423, TIN 60187188Q
  (“Buyer”).
 Seller and Buyer are referred to individually as a “Party” and collectively as the “Parties.”
 

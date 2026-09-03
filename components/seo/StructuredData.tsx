@@ -24,9 +24,9 @@ export const organizationSchema = {
   "description": "Premium Cyprus solar farm investments with guaranteed 15-20% ROI. Full lifecycle support from development to recycling.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "28 October Ave 249, Lophitis Business Center 1, Office 201",
+    "streetAddress": "15 Agaritsis, Nektaria Court, Office 201",
     "addressLocality": "Limassol",
-    "postalCode": "3035",
+    "postalCode": "3045",
     "addressCountry": "CY"
   },
   "contactPoint": [

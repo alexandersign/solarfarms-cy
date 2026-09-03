@@ -15,6 +15,7 @@ import {
   BarChart3,
   Scale,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: 'BESS Sizing for Solar Farms: How to Match Storage to Your Park\'s Revenue Potential',
@@ -346,7 +347,7 @@ export default function BESSSizingSolarFarmsArticle() {
                     <p className="text-sm text-gray-700">
                       Captures 76% of curtailment with 33% more revenue than the 2-hour system, for a
                       near-identical 4.3-year payback. Covers most of the evening peak (17:00&ndash;20:00) when
-                      prices average &euro;183/MWh. Strong balance of capital outlay and energy recovery.
+                      prices average {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh. Strong balance of capital outlay and energy recovery.
                     </p>
                   </CardContent>
                 </Card>
@@ -466,7 +467,7 @@ export default function BESSSizingSolarFarmsArticle() {
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Grid buy price:</span>
-                          <span className="font-semibold">&euro;77&ndash;&euro;101/MWh</span>
+                          <span className="font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh avg</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Charge duration:</span>
@@ -483,7 +484,7 @@ export default function BESSSizingSolarFarmsArticle() {
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Grid sell price:</span>
-                          <span className="font-semibold">&euro;183&ndash;&euro;186/MWh</span>
+                          <span className="font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh avg</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Usable discharge:</span>

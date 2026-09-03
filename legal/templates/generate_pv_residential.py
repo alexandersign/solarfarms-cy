@@ -436,7 +436,7 @@ def build():
         ("Company",       "LIGHTHIEF CYPRUS LTD"),
         ("Reg. No.",      "HE 477423"),
         ("TIN",           "60187188Q"),
-        ("Address",       "28 October Ave 249, Lophitis Business Center 1,\nOffice 201, 3035 Limassol, Cyprus"),
+        ("Address",       "15 Agaritsis, Nektaria Court, Office 201,\nOffice 201, 3035 Limassol, Cyprus"),
         ("Email",         "office@lighthief.com"),
         ("Tel",           "+357 77 77 00 50"),
         ("Representative","Alexander Papacosta, Director"),
@@ -1031,8 +1031,8 @@ def build():
         "(Complete and return this form only if you wish to withdraw from the Contract)"
     ))
     add_notice_box(doc, (
-        "TO: Lighthief Cyprus Ltd, 28 October Ave 249, Lophitis Business Center 1, Office 201, "
-        "3035 Limassol, Cyprus\n"
+        "TO: Lighthief Cyprus Ltd, 15 Agaritsis, Nektaria Court, Office 201, "
+        "3045 Zakaki, Limassol, Cyprus\n"
         "Email: office@lighthief.com\n\n"
         "I / We (*) hereby give notice that I / We (*) withdraw from my / our (*) contract for "
         "the supply and installation of the following:\n\n"

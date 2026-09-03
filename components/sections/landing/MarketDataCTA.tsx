@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { BarChart3, TrendingUp, Battery, Zap } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export function MarketDataCTA() {
   return (
@@ -23,8 +24,10 @@ export function MarketDataCTA() {
                     <span className="block gradient-text">Market Pricing</span>
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Verified day-ahead data from a 283-day TSOC dataset (Oct 2025 – Jul 2026).
-                    Evening peaks at €203/MWh versus midday around €84/MWh create a strong
+                    Verified day-ahead data from a {CYPRUS_TSOC_DAM_SAMPLE.tradingDays}-day TSOC dataset
+                    ({CYPRUS_TSOC_DAM_SAMPLE.dateFromLabel} – {CYPRUS_TSOC_DAM_SAMPLE.dateToLabel}).
+                    Evening peaks at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh versus midday around{' '}
+                    {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh create a strong
                     spread for BESS — peak shifting and merchant dispatch, not only curtailment recovery.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
@@ -61,7 +64,7 @@ export function MarketDataCTA() {
                       </div>
                       <div>
                         <p className="font-semibold text-sm">Peak shifting &amp; merchant upside</p>
-                        <p className="text-xs text-cyprus-200">Charge when prices are low, discharge into the evening peak — indicative €150+ /MWh spread value</p>
+                        <p className="text-xs text-cyprus-200">Charge when prices are low, discharge into the evening peak — {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh average peak–midday spread</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">

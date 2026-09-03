@@ -212,7 +212,7 @@ def footer_block(doc):
     r.font.color.rgb = NAVY
     p2 = doc.add_paragraph()
     p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r2 = p2.add_run("28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus")
+    r2 = p2.add_run("15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus")
     r2.font.size = Pt(8.5)
     r2.font.color.rgb = GREY
 
@@ -276,7 +276,7 @@ def build_one_pager(v):
     para(doc, "")
     para(doc, "Lighthief Cyprus Ltd — EPC", bold=True, color=NAVY)
     para(doc, "Alexander Papacosta — Cyprus Director   |   Tel: +357 99 164 158   |   office@lighthief.com")
-    para(doc, "28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol")
+    para(doc, "15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol")
 
     footer_block(doc)
     para(doc, "Confidential — prepared for TOTALCON LTD. Fixed price ex VAT, valid 60 days.", italic=True, size=8.5, color=GREY)
@@ -360,7 +360,7 @@ def build_contract():
     h2(doc, "1. Parties")
     para(doc, 'This Engineering, Procurement and Construction Agreement (the "Agreement") is made as of [*] 2026 (the "Effective Date")')
     para(doc, "BETWEEN:", bold=True)
-    para(doc, "Lighthief Cyprus Ltd, a company incorporated under the laws of the Republic of Cyprus, registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company No. HE 477423 (the \u201cContractor\u201d);")
+    para(doc, "Lighthief Cyprus Ltd, a company incorporated under the laws of the Republic of Cyprus, registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, operational address at 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus, Company No. HE 477423 (the \u201cContractor\u201d);")
     para(doc, "and", bold=True)
     para(doc, 'TOTALCON LTD, a company incorporated under the laws of the Republic of Cyprus, Company No. HE 458896, with registered office at [*] (the "Client").')
     para(doc, 'The Contractor and the Client are referred to individually as a "Party" and collectively as the "Parties".')

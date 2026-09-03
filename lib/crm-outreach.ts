@@ -91,9 +91,9 @@ function revenueModelsBlock(): string {
               <td style="padding:6px 14px 6px 0;width:22px;color:#1A365D;font-weight:bold;font-size:16px;">2.</td>
               <td style="padding:6px 0;">
                 <strong>Price arbitrage</strong> — charge when wholesale prices are low
-                (midday solar glut, ~€77/MWh), discharge into the evening peak
-                (~€183/MWh). That <strong>€106/MWh spread</strong> is pure margin,
-                every single day.
+                (midday solar glut, ~€84/MWh average), discharge into the evening peak
+                (~€203/MWh). That <strong>€119/MWh average spread</strong> is the BESS case —
+                it is seasonal (wider in spring, flatter in some summer weeks).
               </td>
             </tr>
             <tr valign="top">

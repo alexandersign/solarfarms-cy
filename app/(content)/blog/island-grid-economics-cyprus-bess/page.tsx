@@ -17,6 +17,7 @@ import {
   Moon,
   Network,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: "Island Grid Economics: Why BESS on Cyprus's Isolated Grid Is Different from Mainland Europe",
@@ -303,12 +304,12 @@ export default function IslandGridEconomicsArticle() {
               </p>
               <p className="text-lg text-gray-700 mb-4">
                 Cyprus has no smoothing mechanism whatsoever. When solar floods the grid at midday, prices
-                collapse to &euro;77&ndash;101/MWh because there is no export route to relieve the oversupply.
-                When the sun sets and thermal generation must ramp to meet evening demand, prices spike to
-                &euro;183&ndash;186/MWh because there is no imported electricity to moderate the surge.
+                collapse toward {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh (and often to €0) because there is no export route to relieve the oversupply.
+                When the sun sets and thermal generation must ramp to meet evening demand, prices average
+                {' '}{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh because there is no imported electricity to moderate the surge.
               </p>
               <p className="text-lg text-gray-700 mb-6">
-                The resulting average spread of &euro;82/MWh between peak evening and midday prices is
+                The resulting average spread of {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh between peak evening and midday prices is
                 significantly higher than most mainland European markets &mdash; and this spread is the
                 foundation of BESS arbitrage economics.
               </p>
@@ -319,7 +320,7 @@ export default function IslandGridEconomicsArticle() {
                     <Sun className="w-10 h-10 text-amber-500 mx-auto mb-3" />
                     <div className="text-center">
                       <div className="text-sm font-semibold text-amber-800 mb-1">Midday (10:00&ndash;14:00)</div>
-                      <div className="text-4xl font-bold text-amber-700">&euro;77&ndash;101</div>
+                      <div className="text-4xl font-bold text-amber-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}</div>
                       <div className="text-sm text-amber-600">/MWh average</div>
                       <p className="text-xs text-gray-500 mt-3">
                         Solar oversupply crashes prices &mdash; no export route to absorb excess
@@ -333,7 +334,7 @@ export default function IslandGridEconomicsArticle() {
                     <Moon className="w-10 h-10 text-blue-600 mx-auto mb-3" />
                     <div className="text-center">
                       <div className="text-sm font-semibold text-blue-800 mb-1">Evening Peak (17:00&ndash;21:00)</div>
-                      <div className="text-4xl font-bold text-blue-700">&euro;183&ndash;186</div>
+                      <div className="text-4xl font-bold text-blue-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}</div>
                       <div className="text-sm text-blue-600">/MWh average</div>
                       <p className="text-xs text-gray-500 mt-3">
                         Thermal generation needed after sunset &mdash; no imports to dampen prices
@@ -544,8 +545,8 @@ export default function IslandGridEconomicsArticle() {
                     <tr className="border-b bg-gray-50">
                       <td className="p-4 font-semibold text-gray-700">Arbitrage Spread</td>
                       <td className="text-center p-4">
-                        <span className="text-green-700 font-bold">&euro;82/MWh avg</span>
-                        <div className="text-xs text-gray-500">Midday &euro;77&ndash;101 &rarr; Evening &euro;183&ndash;186</div>
+                        <span className="text-green-700 font-bold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh avg</span>
+                        <div className="text-xs text-gray-500">Midday {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)} &rarr; Evening {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}</div>
                       </td>
                       <td className="text-center p-4">
                         <span className="text-blue-700 font-bold">&euro;20&ndash;40/MWh avg</span>

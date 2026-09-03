@@ -241,22 +241,22 @@ export function getDailyStatsLastNDays(n: number): DailyStats[] {
  * ⚠️ REGULATORY NOTE (Feb 2026): BESS cannot buy from the DAM grid in Cyprus yet.
  * Grid arbitrage (buy low / sell high) is NOT legal as of Feb 2026.
  * 
- * COMPLETE DATASET (283 days, Oct 2025 – Jul 2026):
- *   Midday avg (10-14): €84.36/MWh
- *   Peak evening (17-21): €203.43/MWh
- *   Peak-Midday spread: €119.07/MWh
- *   Solar hours avg (06-17): €137.59/MWh
- *   Overall avg MCP: €170.22/MWh
+ * COMPLETE DATASET (339 days, Oct 2025 – Sep 2026):
+ *   Midday avg (10-14): €104.55/MWh
+ *   Peak evening (17-21): €212.42/MWh
+ *   Peak-Midday spread: €107.88/MWh
+ *   Solar hours avg (06-17): €151.38/MWh
+ *   Overall avg MCP: €200.23/MWh
  * 
  * CURRENT revenue model: Curtailment recovery
  *   → Charge cost = €0 (storing otherwise-curtailed solar energy)
- *   → Discharge at peak evening prices (€203/MWh avg)
- *   → Revenue per MWh discharged = €203 × 86.32% RTE = €175.23/MWh
- *   → Annual: €162,702 (2.5 MWh/day) to €247,472 (3.8 MWh/day)
+ *   → Discharge at peak evening prices (€212/MWh avg)
+ *   → Revenue per MWh discharged = €212.42 × 86.32% RTE = €183.40/MWh
+ *   → Annual: €167,353 (2.5 MWh/day) to €254,376 (3.8 MWh/day)
  * 
  * FUTURE revenue (when legislation enables BESS market participation):
- *   → Grid arbitrage: buy at midday (€84/MWh), sell at peak (€203/MWh)
- *   → Net: €119.07 spread × 86.32% RTE = €102.78/MWh per cycle
+ *   → Grid arbitrage: buy at midday (€105/MWh), sell at peak (€212/MWh)
+ *   → Net: €107.88 spread × 86.32% RTE = €93.12/MWh per cycle
  */
 export function calculateBESSArbitrage(data: MarketDataSummary): {
   avgDailySpread: number
@@ -311,21 +311,17 @@ export function calculateBESSArbitrage(data: MarketDataSummary): {
 /**
  * Generate demo data for when no real data is available
  * 
- * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 1, 2025 – Jul 11, 2026):
- * Source: 283 TSOC DAM reports, 44,696 half-hourly records, every trading day
+ * Based on ACTUAL Cyprus Day-Ahead Market data (Oct 1, 2025 – Sep 4, 2026):
+ * Source: 339 TSOC DAM reports, 62,670 half-hourly records, every trading day
+ * Live SSOT: lib/market/cyprus-tsoc-dam-sample.ts
  * 
  * VERIFIED complete dataset:
- * - Overall avg MCP: €170.22/MWh
- * - Midday (10-14):  €84.36/MWh  ← deep solar suppression (duck curve)
- * - Solar hours (06-17): €137.59/MWh
- * - Peak evening (17-21): €203.43/MWh
- * - Off-peak (22-05): €195.91/MWh
- * - Peak-Midday Spread: €119.07/MWh ← BESS opportunity
- * - Arbitrage spread (peak-solar): €65.83/MWh
- * - Range: €1 to €500/MWh
- * 
- * Last 30 days (Jun–Jul 2026):
- * - Overall: €190.81/MWh | Solar: €170.80/MWh | Peak: €211.14/MWh
+ * - Overall avg MCP: €200.23/MWh
+ * - Midday (10-14):  €104.55/MWh  ← deep in Apr–May; summer 2026 much higher
+ * - Solar hours (06-17): €151.38/MWh
+ * - Peak evening (17-21): €212.42/MWh
+ * - Peak-Midday Spread: €107.88/MWh ← BESS opportunity
+ * - Range: €0 to €500/MWh
  */
 export function generateDemoData(): MarketDataFull {
   const records: HourlyRecord[] = []
@@ -344,7 +340,7 @@ export function generateDemoData(): MarketDataFull {
     185, 200, 195, 188, 175, 162,   // 18:00-23:00 (evening peak - AC + fossil)
   ]
   
-  // WINTER (Nov-Feb): REAL DATA from 283-day dataset - deep midday dip even in winter
+  // WINTER (Nov-Feb): REAL DATA from 339-day dataset - deep midday dip even in winter
   const winterProfile = [
     173, 170, 169, 169, 169, 171,   // 00:00-05:00 (night - heating demand)
     174, 174, 167, 146, 102, 80,    // 06:00-11:00 (solar suppresses midday heavily)

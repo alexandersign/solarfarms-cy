@@ -104,7 +104,7 @@ SolarFarms.cy is Cyprus's solar and battery energy storage (BESS) investment pla
 - **Competitive Electricity Market (CEM)**: Since October 2025, Cyprus operates a competitive electricity market. New solar projects sell energy at pool prices through the Day-Ahead Market (DAM) at half-hourly clearing prices — there are no standard fixed-price PPAs for new sellers.
 - **Bilateral contracts (Forward Market)**: Licensed producers can sell energy through bilateral contracts to unregulated suppliers, but this market is still developing and there is no established bilateral PPA market for solar generators yet.
 - **Merchant exposure**: Most new solar projects in Cyprus are effectively merchant — their revenue depends on DAM pool prices. This makes revenue less predictable but current average DAM prices (~€170/MWh overall, ~€147/MWh during solar hours) are competitive.
-- **BESS as revenue stabiliser**: Adding BESS allows shifting output from low-price midday hours (~€80-100/MWh) to high-price evening peak hours (~€183-188/MWh), reducing merchant risk and improving revenue predictability.
+- **BESS as revenue stabiliser**: Adding BESS allows shifting output from low-price midday hours (~€84/MWh average, often near zero in spring) to high-price evening peak hours (~€203/MWh, Oct 2025–Jul 2026 TSOC sample), reducing merchant risk. Summer 2026 midday can be much higher.
 - **EU support scheme**: The European Commission approved a €300M renewable energy support scheme for Cyprus including 15-year feed-in tariff guarantees for qualifying projects — implementation is ongoing.
 
 ### Key Financial Metrics Explained
@@ -182,43 +182,44 @@ Grid-forming capability is particularly important for Cyprus as an isolated isla
 
 We track and publish real TSOC Day-Ahead Market data on our website at /market. This is based on official TSOC DAM activity reports updated daily.
 
-### Key DAM Price Statistics (from our TSOC dataset, Oct 2025 – Mar 2026)
-- **Overall average MCP (Market Clearing Price)**: ~€170/MWh
-- **Median MCP**: €174/MWh
-- **Minimum MCP**: €1/MWh (occurs during deep solar curtailment midday)
+### Key DAM Price Statistics (from our TSOC dataset, Oct 2025 – Sep 2026)
+- **Overall average MCP (Market Clearing Price)**: ~€200/MWh
+- **Median MCP**: €194/MWh
+- **Minimum MCP**: €0–1/MWh (occurs during deep solar curtailment midday)
 - **Maximum MCP**: €500/MWh (price cap, during peak evening demand)
 
 ### Hourly Price Profile (average €/MWh by hour of day)
-The Cyprus DAM shows a distinctive "solar duck curve" pattern:
-- **Night (00:00–05:00)**: €171–175/MWh — stable baseload pricing
-- **Morning (06:00–08:00)**: €167–177/MWh — morning ramp-up
-- **Midday solar dip (09:00–14:00)**: €80–142/MWh — prices crash as solar floods the grid
-  - Hour 11 (11:00): ~€82/MWh
-  - Hour 12 (12:00): ~€80/MWh (lowest average — peak solar generation)
-  - Hour 13 (13:00): ~€104/MWh
-- **Afternoon recovery (15:00–16:00)**: €166–176/MWh — solar output fading
-- **Evening peak (17:00–20:00)**: €183–188/MWh — highest prices, demand peaks as solar drops off
-  - Hour 19 (19:00): ~€188/MWh (highest average hour)
-- **Late evening (21:00–23:00)**: €175–181/MWh — declining demand
+The Cyprus DAM shows a distinctive "solar duck curve" pattern — very deep in spring, often flatter in high summer:
+- **Night (00:00–05:00)**: ~€204–209/MWh — stable baseload pricing
+- **Morning (06:00–08:00)**: ~€195–210/MWh — morning ramp, then solar arrives
+- **Midday solar dip (09:00–14:00)**: ~€94–149/MWh on average across the full sample
+  - Hour 11 (11:00): ~€99/MWh
+  - Hour 12 (12:00): ~€94/MWh (lowest average hour)
+  - Hour 13 (13:00): ~€109/MWh
+  - Apr–May 2026 midday averages were ~€10–21/MWh; Jul–Sep 2026 midday often €200+
+- **Afternoon recovery (15:00–16:00)**: ~€158–170/MWh — solar output fading
+- **Evening peak (17:00–21:00)**: ~€212/MWh average (Oct 2025–Sep 2026)
+  - Hour 19 (19:00): ~€220/MWh (highest average hour)
+- **Late evening (21:00–23:00)**: ~€208–214/MWh — declining demand
 
 ### BESS Arbitrage Opportunity
 The price spread between midday low and evening peak is the core BESS arbitrage opportunity:
-- **Average midday price (10:00–14:00)**: ~€101/MWh
-- **Average evening peak price (17:00–21:00)**: ~€183/MWh
-- **Average daily spread**: ~€82/MWh — this is the gross arbitrage margin per MWh cycled
-- **Net arbitrage per MWh** (after round-trip efficiency losses): ~€72/MWh
-- **Round-trip efficiency**: ~87.8% (AC-AC for Tier-1 LFP systems)
-- **Days with positive arbitrage spread**: 100% of days in the dataset
+- **Average midday price (10:00–14:00)**: ~€105/MWh
+- **Average evening peak price (17:00–21:00)**: ~€212/MWh (339-day TSOC sample to 4 Sep 2026)
+- **Average daily spread**: ~€108/MWh — this is the gross peak–midday spread per MWh
+- **Curtailment recovery per MWh** (peak × 86.32% RTE): ~€183/MWh
+- **Round-trip efficiency**: 86.32% AC-AC for Tier-1 LFP systems
+- **Days with positive peak–midday spread**: 100% of days in the dataset (339/339)
 
 ### Zero and Low Price Periods
-- **Zero-price periods**: 336 half-hours (5.2% of all periods) — when solar oversupply crashes prices
-- **Low-price periods (≤€10/MWh)**: 467 half-hours (7.3%)
-- **Midday curtailment-risk periods (≤€50, 09:00–15:00)**: ~29% of midday periods
+- **Zero-price periods**: 5,193 half-hours (8.3% of all periods) — when solar oversupply crashes prices
+- **Low-price periods (≤€10/MWh)**: 6,027 half-hours (9.6%)
+- **Midday curtailment-risk periods (≤€50, 09:00–15:00)**: ~35% of those hours
 - These low/zero-price periods represent both risk (for solar revenue) and opportunity (for BESS charging at minimal cost)
 
 ### Solar Revenue Impact
-- **Solar hours average (06:00–17:00)**: ~€147/MWh — this is what solar parks earn on average
-- **Overall wholesale average**: ~€170/MWh — solar parks earn below market average because they generate during the cheapest hours
+- **Solar hours average (06:00–17:00)**: ~€151/MWh — this is what solar parks earn on average
+- **Overall wholesale average**: ~€200/MWh — solar parks earn below market average because they generate during the cheapest hours
 - Solar parks with BESS can shift production to higher-priced hours, capturing the spread
 
 ### Important Note on BESS Market Participation

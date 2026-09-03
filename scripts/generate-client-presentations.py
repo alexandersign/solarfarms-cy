@@ -152,7 +152,7 @@ def page_lighthief_overview():
             <ul>
                 <li><strong>Registration:</strong> HE 477423 (Cyprus)</li>
                 <li><strong>TIN:</strong> 60187188Q</li>
-                <li><strong>Office:</strong> 28 October Ave 249, Lophitis Business Center I, Office 201, 3035 Limassol</li>
+                <li><strong>Office:</strong> 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol</li>
                 <li><strong>Director:</strong> Alexander Papacosta</li>
                 <li><strong>Role:</strong> Exclusive Linyang Energy distributor &amp; EPC contractor for Cyprus</li>
             </ul>
@@ -463,8 +463,8 @@ def page_next_steps(c):
             <ul>
                 <li><strong>Lighthief Cyprus Ltd</strong></li>
                 <li>HE 477423</li>
-                <li>28 October Ave 249, Lophitis Business Center I</li>
-                <li>Office 201, 3035 Limassol, Cyprus</li>
+                <li>15 Agaritsis, Nektaria Court, Office 201</li>
+                <li>3045 Zakaki, Limassol, Cyprus</li>
                 <li>Tel: +357 77 77 00 50</li>
                 <li>office@lighthief.com</li>
             </ul>

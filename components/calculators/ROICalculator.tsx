@@ -215,7 +215,7 @@ export function ROICalculator() {
         
         <div class="footer">
           <p><strong>LIGHTHIEF CYPRUS LTD</strong><br>
-          28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+          15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus<br>
           Email: office@lighthief.com | Phone: +357 77 77 00 50<br>
           www.solarfarms.cy</p>
           

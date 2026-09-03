@@ -16,6 +16,7 @@ import {
   Users,
   Globe,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: "The Investor's Guide to Battery Energy Storage | What Every PV Park Owner Needs to Know",
@@ -106,9 +107,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                     <p className="text-gray-700 text-sm">
                       A solar-only park sells electricity when the sun shines &mdash; regardless of
                       what the market is willing to pay. At midday in Cyprus, that means selling at
-                      &euro;77&ndash;&euro;101/MWh when every other solar park is dumping power into
+                      {' '}{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh on average when every other solar park is dumping power into
                       the same grid. With BESS, you <strong>choose when to sell</strong>. Store at
-                      midday, discharge during the &euro;183/MWh evening peak. You become a price-maker
+                      midday, discharge during the {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening peak. You become a price-maker
                       instead of a price-taker.
                     </p>
                   </CardContent>
@@ -127,7 +128,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       production is being ordered off the grid and wasted. With BESS, curtailed energy
                       is <strong>captured and stored</strong> rather than lost. Instead of watching
                       &euro;178,600 per MW per year evaporate, you convert that wasted energy into
-                      evening revenue at &euro;158/MWh net.
+                      evening revenue at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh net.
                     </p>
                   </CardContent>
                 </Card>
@@ -179,9 +180,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                 At 47% curtailment, a typical solar park in Cyprus produces roughly 2,000 MWh per MW
                 per year &mdash; but only sells about 1,060 MWh. The remaining ~940 MWh per MW is
                 curtailed: ordered off the grid by the TSO and wasted. BESS recovers a significant
-                portion of this curtailed energy and discharges it during the evening peak at
-                &euro;183/MWh. After accounting for 86.32% AC-AC round-trip efficiency, the net revenue per
-                recovered MWh is approximately <strong>&euro;158/MWh</strong>.
+                portion of this curtailed energy and discharges it during the evening peak at{' '}
+                {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh. After accounting for 86.32% AC-AC round-trip efficiency, the net revenue per
+                recovered MWh is approximately <strong>{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh</strong>.
               </p>
 
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 mb-8">
@@ -189,7 +190,7 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                   Revenue Impact by Park Size
                 </h3>
                 <p className="text-center text-gray-600 mb-6">
-                  Based on 47% curtailment, 50% BESS recovery rate, &euro;158/MWh net discharge revenue (86.32% RTE)
+                  Based on 47% curtailment, 50% BESS recovery rate, {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh net discharge revenue (86.32% RTE)
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6">
@@ -215,9 +216,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       </div>
                       <div className="flex justify-between font-bold border-t pt-2 text-green-700">
                         <span>Annual Revenue Recovered:</span>
-                        <span>~&euro;74,260</span>
+                        <span>~€{Math.round(470 * CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh).toLocaleString('en-IE')}</span>
                     </div>
-                      <div className="text-xs text-gray-500 text-right">at &euro;158/MWh net</div>
+                      <div className="text-xs text-gray-500 text-right">at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh net</div>
                     </CardContent>
                   </Card>
 
@@ -243,9 +244,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       </div>
                       <div className="flex justify-between font-bold border-t pt-2 text-green-700">
                         <span>Annual Revenue Recovered:</span>
-                        <span>~&euro;371,300</span>
+                        <span>~€{Math.round(2350 * CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh).toLocaleString('en-IE')}</span>
                       </div>
-                      <div className="text-xs text-gray-500 text-right">at &euro;158/MWh net</div>
+                      <div className="text-xs text-gray-500 text-right">at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh net</div>
                     </CardContent>
                   </Card>
 
@@ -271,9 +272,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
                       </div>
                       <div className="flex justify-between font-bold border-t pt-2 text-green-700">
                         <span>Annual Revenue Recovered:</span>
-                        <span>~&euro;742,600</span>
+                        <span>~€{Math.round(4700 * CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh).toLocaleString('en-IE')}</span>
                       </div>
-                      <div className="text-xs text-gray-500 text-right">at &euro;158/MWh net</div>
+                      <div className="text-xs text-gray-500 text-right">at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh net</div>
                     </CardContent>
                   </Card>
                 </div>
@@ -294,9 +295,9 @@ export default function InvestorsGuideBatteryEnergyStoragePage() {
 
               <p className="text-lg text-gray-700">
                 Beyond curtailment recovery, BESS also enables time-of-day arbitrage: shifting
-                non-curtailed energy from the &euro;101/MWh midday trough to the &euro;183/MWh evening
-                peak. Even on days with zero curtailment, BESS earns an additional ~&euro;60/MWh net
-                spread on every MWh shifted &mdash; a 59% premium over midday selling prices.
+                non-curtailed energy from the {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh midday trough to the {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening
+                peak. Even on days with zero curtailment, BESS can capture the {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh
+                peak–midday spread — though grid charging for arbitrage is not yet legal in Cyprus.
               </p>
             </div>
 

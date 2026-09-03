@@ -85,8 +85,8 @@ function generatePayslipHtml(d: PayslipData): string {
     <div class="header">
         <div class="company">
             <h1>LIGHTHIEF CYPRUS LTD</h1>
-            <p>28 October Ave 249, Lophitis Business Center 1, Office 201</p>
-            <p>3035 Limassol, Cyprus</p>
+            <p>15 Agaritsis, Nektaria Court, Office 201</p>
+            <p>3045 Zakaki, Limassol, Cyprus</p>
             <p>Reg No: HE 477423 &nbsp;|&nbsp; TIN: 60187188Q</p>
         </div>
         <div class="payslip-title">

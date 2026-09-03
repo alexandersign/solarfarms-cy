@@ -194,7 +194,7 @@ function rfiTemplate(data: Record<string, any>): string {
     </div>
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
-      28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
+      15 Agaritsis, Nektaria Court, Office 201 · 3045 Zakaki, Limassol, Cyprus<br>
       office@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
@@ -261,7 +261,7 @@ function rfpTemplate(data: Record<string, any>): string {
     </div>
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
-      28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
+      15 Agaritsis, Nektaria Court, Office 201 · 3045 Zakaki, Limassol, Cyprus<br>
       office@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
@@ -314,7 +314,7 @@ function followupTemplate(data: Record<string, any>): string {
     </div>
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
-      28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
+      15 Agaritsis, Nektaria Court, Office 201 · 3045 Zakaki, Limassol, Cyprus<br>
       office@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>
@@ -358,7 +358,7 @@ function reminderTemplate(data: Record<string, any>): string {
     </div>
     <div class="footer">
       <strong>LIGHTHIEF CYPRUS LTD</strong><br>
-      28 October Ave 249, Lophitis Business Center 1, Office 201 · 3035 Limassol, Cyprus<br>
+      15 Agaritsis, Nektaria Court, Office 201 · 3045 Zakaki, Limassol, Cyprus<br>
       office@lighthief.com · +357 99 164 158 · solarfarms.cy
     </div>
   </div>

@@ -59,7 +59,7 @@ JV with 7Sun (Europe) for consumer panels, inverters, and small-scale battery sa
 |--------|-------|
 | Legal Entity | Lighthief Cyprus Ltd |
 | Registration | HE 477423 / TIN: 60187188Q |
-| Address | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol |
+| Address | 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol |
 | Parent Group | Lighthief Group — 11 countries, 100s MW, 150+ staff |
 | Cyprus Director | Alexander Papacosta |
 | Websites | solarfarms.cy (investor) / lighthief.com (corporate) |
@@ -480,5 +480,5 @@ JV with 7Sun (Europe) for consumer panels, inverters, and small-scale battery sa
 ---
 
 *Lighthief Cyprus Ltd — HE 477423*  
-*28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus*  
+*15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus*  
 *Confidential — For Internal Use Only — Version 1.1*

@@ -75,7 +75,7 @@ const contactMethods = [
 const offices = [
   {
     city: "Cyprus (Headquarters)",
-    address: "28 October Ave 249\nLophitis Business Center 1, Office 201\n3035 Limassol, Cyprus",
+    address: "15 Agaritsis\nNektaria Court, Office 201\n3045 Zakaki, Limassol, Cyprus",
     phone: "+357 77 77 00 50",
     email: "office@lighthief.com",
     hours: "Mon-Fri 9AM-6PM CET",

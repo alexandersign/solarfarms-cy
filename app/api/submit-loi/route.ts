@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
           <p>Best regards,<br><strong>The Lighthief Cyprus Team</strong></p>
           <hr style="border: none; border-top: 2px solid #0ea5e9; margin: 20px 0;">
           <p style="color: #666; font-size: 11px;">
-            LIGHTHIEF CYPRUS LTD | HE 477423 | 28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+            LIGHTHIEF CYPRUS LTD | HE 477423 | 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus<br>
             <a href="https://solarfarms.cy" style="color: #0ea5e9;">solarfarms.cy</a>
           </p>
         </div>

@@ -342,7 +342,7 @@ def main() -> None:
 
 <div class="pg-footer">
   <strong>Lighthief Cyprus Ltd</strong> &nbsp;|&nbsp; HE 477423 &nbsp;|&nbsp; solarfarms.cy &nbsp;|&nbsp;
-  28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus<br>
+  15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus<br>
   Confidential &mdash; indicative commercial proposal for Ukrhydroenergo hybrid BESS programme. Not a binding offer until formal bid submission.
 </div>
 </body>

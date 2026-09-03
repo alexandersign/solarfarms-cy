@@ -79,7 +79,7 @@ CONTACT = {
     "company": "Lighthief Cyprus Ltd",
     "reg": "HE 477423",
     "website": "solarfarms.cy",
-    "address": "28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus",
+    "address": "15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus",
 }
 
 # Identical CSS to public/.../shia-sia-nicosia/shia-sia-nicosia-investor.html

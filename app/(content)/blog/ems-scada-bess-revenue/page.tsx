@@ -17,6 +17,7 @@ import {
   Shield,
   Network,
 } from 'lucide-react'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 
 export const metadata: Metadata = {
   title: 'EMS and SCADA for BESS: Why Your Energy Management System Determines Your Revenue',
@@ -266,17 +267,17 @@ export default function EMSSCADABESSRevenueArticle() {
                         <p className="text-gray-700 mb-3">
                           When Day-Ahead Market (DAM) access legislation arrives &mdash; enabling BESS
                           to charge from the grid, not just co-located solar &mdash; the EMS becomes a
-                          trading engine. It will buy electricity at midday lows (€77&ndash;101/MWh) and
-                          sell at evening peaks (€183+/MWh), capturing the spread automatically.
+                          trading engine. It will buy electricity at midday lows ({damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh average, often near zero in spring) and
+                          sell at evening peaks ({damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}+/MWh), capturing the spread automatically.
                         </p>
                         <div className="bg-white rounded-lg p-4">
                           <div className="flex justify-between text-sm mb-2">
                             <span className="text-gray-600">Midday buy price:</span>
-                            <span className="font-semibold text-amber-700">€77&ndash;101/MWh</span>
+                            <span className="font-semibold text-amber-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh avg</span>
                           </div>
                           <div className="flex justify-between text-sm mb-2">
                             <span className="text-gray-600">Evening sell price:</span>
-                            <span className="font-semibold text-blue-700">€183/MWh average</span>
+                            <span className="font-semibold text-blue-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh average</span>
                           </div>
                           <div className="flex justify-between text-sm border-t pt-2 font-bold text-green-700">
                             <span>Net arbitrage spread (after RTE):</span>

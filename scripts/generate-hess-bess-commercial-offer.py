@@ -346,7 +346,7 @@ HTML = r"""<!DOCTYPE html>
 
 <footer>
   <strong>Lighthief Cyprus Ltd</strong> &middot; Company No. HE&nbsp;477423 &middot;
-  28&nbsp;October&nbsp;Ave&nbsp;249, Lophitis Business Center&nbsp;1, Office&nbsp;201,
+  15&nbsp;Agaritsis, Nektaria Court, Office&nbsp;201,
   3035&nbsp;Limassol, Cyprus &middot; office@lighthief.com &middot; +357&nbsp;77&nbsp;77&nbsp;00&nbsp;50 &middot;
   <strong>solarfarms.cy</strong><br/>
   Confidential &mdash; prepared for H.E.S.S. Hybrid Energy Storage Systems Ltd.

@@ -12,7 +12,7 @@ Battery Energy Storage System (BESS)
 This Long-Term Service Agreement ("Agreement") is made as of [●] 2026 ("Effective Date")
 BETWEEN:
 Lighthief Cyprus Ltd,
- a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company No. HE 477423, TIN 60187188Q
+ a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus, Company No. HE 477423, TIN 60187188Q
  ("Service Provider");
 and
 [End Customer Legal Name],

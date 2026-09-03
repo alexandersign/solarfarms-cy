@@ -79,7 +79,7 @@ I am writing on behalf of Lighthief Cyprus Ltd (Company Registration: HE 477423)
 Company Information:
 - Name: Lighthief Cyprus Ltd
 - Registration: HE 477423
-- Address: 28 October Ave 249, Lophitis Business Center 1, 3035 Limassol, Cyprus
+- Address: 15 Agaritsis, Nektaria Court, Office 201, 3035 Limassol, Cyprus
 - Website: https://solarfarms.cy
 - Contact: office@lighthief.com | +357 77 77 00 50
 

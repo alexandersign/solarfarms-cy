@@ -58,7 +58,7 @@ doc.add_paragraph()
 
 para('COPY TO:', bold=True)
 para('Lighthief Cyprus Ltd')
-para('28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus')
+para('15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus')
 para('("Distributor")')
 doc.add_paragraph()
 

@@ -23,9 +23,11 @@ import {
   Moon,
 } from 'lucide-react'
 
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
+
 export const metadata: Metadata = {
   title: 'Why BESS Is No Longer Optional for RES Projects in Cyprus | 2026 Market Reality',
-  description: 'With curtailment at 47%, midday prices collapsing to €77/MWh, and annual revenue losses exceeding €800K per 5MW park, adding BESS to your renewable energy project in Cyprus is now a financial necessity — not an option.',
+  description: `With high curtailment, midday prices often collapsing, and evening peaks near ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh in the TSOC sample, adding BESS to a Cyprus RES project is now a financial necessity — not an option.`,
   keywords: [
     'BESS Cyprus 2026',
     'battery storage renewable energy',
@@ -351,7 +353,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
               <p className="text-lg text-gray-700 mb-6">
                 Even the energy that <em>isn&apos;t</em> curtailed faces a brutal economic reality. When every solar
                 park on the island generates at full capacity between 10:00-14:00, electricity prices collapse.
-                Verified data from 134 days of Cyprus Day-Ahead Market (DAM) trading (October 2025 – February 2026)
+                Verified data from {CYPRUS_TSOC_DAM_SAMPLE.tradingDays} days of Cyprus Day-Ahead Market (DAM) trading ({CYPRUS_TSOC_DAM_SAMPLE.dateFromLabel} – {CYPRUS_TSOC_DAM_SAMPLE.dateToLabel})
                 reveals a stark picture:
               </p>
 
@@ -366,10 +368,10 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <CardContent className="pt-6 text-center">
                       <Sun className="w-10 h-10 text-amber-500 mx-auto mb-3" />
                       <div className="text-sm font-semibold text-amber-800 mb-1">Midday Average (10:00-14:00)</div>
-                      <div className="text-4xl font-bold text-amber-700">€101</div>
+                      <div className="text-4xl font-bold text-amber-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}</div>
                       <div className="text-sm text-amber-600">/MWh</div>
                       <div className="mt-3 text-xs text-amber-700 bg-amber-200 rounded-full px-3 py-1 inline-block">
-                        Daily low: €77/MWh at 12:00
+                        {CYPRUS_TSOC_DAM_SAMPLE.daysWithZeroMiddayPrints} days with a €0 midday print
                       </div>
                     </CardContent>
                   </Card>
@@ -378,10 +380,10 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <CardContent className="pt-6 text-center">
                       <BarChart3 className="w-10 h-10 text-gray-500 mx-auto mb-3" />
                       <div className="text-sm font-semibold text-gray-700 mb-1">Daily Average</div>
-                      <div className="text-4xl font-bold text-gray-700">€158</div>
+                      <div className="text-4xl font-bold text-gray-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.avgEURPerMWh)}</div>
                       <div className="text-sm text-gray-600">/MWh</div>
                       <div className="mt-3 text-xs text-gray-700 bg-gray-200 rounded-full px-3 py-1 inline-block">
-                        134-day verified dataset
+                        {CYPRUS_TSOC_DAM_SAMPLE.tradingDays}-day TSOC sample
                       </div>
                     </CardContent>
                   </Card>
@@ -390,7 +392,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     <CardContent className="pt-6 text-center">
                       <Moon className="w-10 h-10 text-blue-600 mx-auto mb-3" />
                       <div className="text-sm font-semibold text-blue-800 mb-1">Peak Evening (17:00-21:00)</div>
-                      <div className="text-4xl font-bold text-blue-700">€183</div>
+                      <div className="text-4xl font-bold text-blue-700">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}</div>
                       <div className="text-sm text-blue-600">/MWh</div>
                       <div className="mt-3 text-xs text-blue-700 bg-blue-200 rounded-full px-3 py-1 inline-block">
                         Daily high: €186/MWh at 19:00
@@ -401,7 +403,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
 
                 <div className="bg-white rounded-xl p-6 shadow-md">
                   <div className="text-center mb-4">
-                    <div className="text-3xl font-bold text-green-600">€81.86/MWh</div>
+                    <div className="text-3xl font-bold text-green-600">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh</div>
                     <div className="text-sm text-gray-600 mt-1">Average Peak-to-Midday Spread</div>
                   </div>
                   <div className="grid grid-cols-3 gap-4 text-center text-sm">
@@ -431,8 +433,8 @@ export default function WhyBESSNoLongerOptionalArticle() {
               <p className="text-lg text-gray-700 mb-4">
                 A BESS changes this equation fundamentally. Instead of being forced to sell at rock-bottom midday
                 prices (or having your production curtailed entirely), you <strong>store energy at €0 cost</strong> (since
-                it would otherwise be wasted) and <strong>discharge during the €183/MWh evening peak</strong>.
-                Every MWh shifted from curtailment to evening dispatch nets you ~€158/MWh after accounting for
+                it would otherwise be wasted) and <strong>discharge during the {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening peak</strong>.
+                Every MWh shifted from curtailment to evening dispatch nets you ~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh after accounting for
                 86.32% AC-AC round-trip efficiency losses.
               </p>
             </div>
@@ -594,7 +596,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Discharge price:</span>
-                      <span className="font-semibold">€183/MWh (evening peak)</span>
+                      <span className="font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh (evening peak)</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Round-trip efficiency:</span>
@@ -602,7 +604,7 @@ export default function WhyBESSNoLongerOptionalArticle() {
                     </div>
                     <div className="flex justify-between border-t pt-2 font-bold text-green-700">
                       <span>Net revenue per MWh:</span>
-                      <span>~€158/MWh</span>
+                      <span>~{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.curtailmentRecoveryEURPerMWh)}/MWh</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
                       This is pure profit recovery — you&apos;re monetising energy that would otherwise
@@ -622,19 +624,19 @@ export default function WhyBESSNoLongerOptionalArticle() {
                   <CardContent className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Midday selling price:</span>
-                      <span className="text-amber-700 font-semibold">€101/MWh average</span>
+                      <span className="text-amber-700 font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.middayEURPerMWh)}/MWh average</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Evening selling price:</span>
-                      <span className="text-blue-700 font-semibold">€183/MWh average</span>
+                      <span className="text-blue-700 font-semibold">{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh average</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Spread after efficiency:</span>
-                      <span>~€60/MWh net</span>
+                      <span>{damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakMiddaySpreadEURPerMWh)}/MWh gross</span>
                     </div>
                     <div className="flex justify-between border-t pt-2 font-bold text-blue-700">
-                      <span>Arbitrage premium:</span>
-                      <span>+59% per MWh</span>
+                      <span>Peak vs midday:</span>
+                      <span>wide evening premium</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
                       Even non-curtailed energy earns 59% more when shifted to evening hours.

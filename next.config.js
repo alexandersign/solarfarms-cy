@@ -49,6 +49,25 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/solar-installation-in-cyprus',
+        destination: '/services/epc-services',
+        permanent: true,
+      },
+      {
+        source: '/contact-us',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/solar-farm-roi/:path*',
+        destination: '/calculator',
+        permanent: true,
+      },
+    ]
+  },
   async rewrites() {
     return [
       {

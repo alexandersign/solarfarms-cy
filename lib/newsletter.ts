@@ -244,7 +244,7 @@ function getNewParkEmailTemplate(park: NewParkNotification): string {
             
             <div class="footer">
                 <p><strong>LIGHTHIEF CYPRUS LTD</strong><br>
-                28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+                15 Agaritsis, Nektaria Court, Office 201<br>
                 3035 Limassol, Cyprus</p>
                 
                 <p style="margin-top: 15px;">

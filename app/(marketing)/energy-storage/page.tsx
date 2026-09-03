@@ -9,6 +9,7 @@ import { BessDeliveryProcess } from '@/components/energy-storage/BessDeliveryPro
 import { BessTeamSection } from '@/components/energy-storage/BessTeamSection'
 import { JournalStrip } from '@/components/marketing/JournalStrip'
 import { BESS_JOURNAL_POSTS } from '@/lib/marketing/journal-posts'
+import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
 import { 
   Battery, 
   Zap, 
@@ -29,7 +30,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Battery Energy Storage Systems Cyprus | Tier-1 BESS | Lighthief Official Distributor',
-  description: 'Utility-scale BESS in Cyprus. Tier-1 LFP from €100k/MWh. In-house Cyprus engineering team, turnkey delivery, and long-term O&M — backed by Lighthief Europe.',
+  description: `Utility-scale BESS for Cyprus solar parks. Recover curtailment and dispatch into the ${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening peak. From €100k/MWh — in-house Cyprus engineering.`,
   keywords: [
     'BESS Cyprus',
     'battery energy storage Cyprus',
@@ -133,7 +134,7 @@ const useCases = [
   },
   {
     title: 'Merchant & Spread Capture',
-    description: 'Store low-cost energy and sell into evening peaks (€183/MWh avg in our sample). Indicative €150+ /MWh spread value at 86.32% round-trip efficiency.',
+    description: `Store low-cost energy and sell into evening peaks (${damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh avg, Oct 2025–Jul 2026 TSOC sample). ${CYPRUS_TSOC_DAM_SAMPLE.seasonalNote}`,
     benefit: 'Revenue per discharge cycle',
     icon: TrendingUp
   },
@@ -176,12 +177,15 @@ export default function EnergyStoragePage() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-              Battery Energy Storage
-              <span className="block text-blue-300 mt-2">Systems for Cyprus</span>
+              Recover curtailed solar.
+              <span className="block text-blue-300 mt-2">Dispatch into the evening peak.</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-8">
-              Tier-1 LFP battery systems • From €100k/MWh • In-house Cyprus engineering with European EPC & O&M backing
+              Utility-scale BESS for Cyprus park owners and investors. Store midday oversupply,
+              discharge at {damEurMwhLabel(CYPRUS_TSOC_DAM_SAMPLE.peakEveningEURPerMWh)}/MWh evening average
+              (TSOC, {CYPRUS_TSOC_DAM_SAMPLE.dateFromLabel}–{CYPRUS_TSOC_DAM_SAMPLE.dateToLabel}).
+              From €100k/MWh — in-house Cyprus engineering.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-8">

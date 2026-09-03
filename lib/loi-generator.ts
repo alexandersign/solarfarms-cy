@@ -120,7 +120,7 @@ export function generateLOIHTML(data: LOIData): string {
 
         <div class="company-info">
             <strong>LIGHTHIEF CYPRUS LTD</strong><br>
-            28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+            15 Agaritsis, Nektaria Court, Office 201<br>
             3035 Limassol, Cyprus<br>
             Company Registration: HE 477423 | TIN: 60187188Q<br>
             Email: office@lighthief.com | Phone: +357 77 77 00 50
@@ -160,7 +160,7 @@ export function generateLOIHTML(data: LOIData): string {
             <p><strong>Project Advisor (The "Advisor"):</strong></p>
             <p>
                 Lighthief Cyprus Ltd, a company incorporated in Cyprus with registered office at 
-                28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus.
+                15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus.
             </p>
         </div>
 

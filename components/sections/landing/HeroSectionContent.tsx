@@ -51,6 +51,11 @@ export function HeroSectionContent() {
           </Link>
         </Button>
         <Button variant="outline" size="xl" asChild>
+          <Link href="/projects">
+            View Projects
+          </Link>
+        </Button>
+        <Button variant="outline" size="xl" asChild>
           <Link href="/energy-storage/calculator">
             <Play className="w-4 h-4 mr-2" />
             BESS Calculator

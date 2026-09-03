@@ -254,7 +254,7 @@ function getContactAutoresponderTemplate(data: ContactEmailData): string {
         
         <div class="footer">
             <p><strong>LIGHTHIEF CYPRUS LTD</strong></p>
-            <p>28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+            <p>15 Agaritsis, Nektaria Court, Office 201<br>
             3035 Limassol, Cyprus</p>
             
             <p><strong>Contact Information:</strong><br>
@@ -615,7 +615,7 @@ function getLandAssessmentAutoresponderTemplate(data: LandAssessmentEmailData): 
         
         <div class="footer">
             <p><strong>LIGHTHIEF CYPRUS LTD</strong></p>
-            <p>28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+            <p>15 Agaritsis, Nektaria Court, Office 201<br>
             3035 Limassol, Cyprus</p>
             
             <p>Land Development: a.sybaris@lighthief.com | +357 95 152 788<br>
@@ -692,7 +692,7 @@ function getNewsletterWelcomeTemplate(data: NewsletterEmailData): string {
         
         <div class="footer">
             <p><strong>LIGHTHIEF CYPRUS LTD</strong><br>
-            28 October Ave 249, Lophitis Business Center 1, Office 201<br>
+            15 Agaritsis, Nektaria Court, Office 201<br>
             3035 Limassol, Cyprus</p>
             
             <p>office@lighthief.com | +357 77 77 00 50<br>

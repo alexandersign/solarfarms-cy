@@ -201,7 +201,7 @@ function EmailGateModal({
               <Input
                 id="email"
                 type="email"
-                placeholder="your@email.com"
+                placeholder="name@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -533,7 +533,7 @@ function ScenarioSaveModal({
             <Label>Your Email</Label>
             <Input
               type="email"
-              placeholder="your@email.com"
+              placeholder="name@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -838,7 +838,8 @@ export function BESSFinanceCalculator() {
   }
 
   const handleEmailSubmit = async (email: string) => {
-    // Track lead
+    const { trackLeadCapture } = await import('@/components/analytics/GoogleAnalytics')
+    trackLeadCapture('bess_calculator_pdf_unlock', 150)
     trackEvent('bess_calculator_pdf_unlock', 'Lead', email)
     
     // Call API to record the unlock and send emails

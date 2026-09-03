@@ -502,7 +502,7 @@ All documents include consistent Force Majeure provisions covering:
 
 **Lighthief Cyprus Ltd**
 - Registered: Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus
-- Operational: 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus
+- Operational: 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus
 - Company No: HE 477423
 - TIN: 60187188Q
 

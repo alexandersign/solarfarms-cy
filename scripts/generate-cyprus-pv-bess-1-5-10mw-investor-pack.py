@@ -146,7 +146,7 @@ CONTACT = {
     "reg": "HE 477423",
     "website": "solarfarms.cy",
     "office_phone": "+357 77 77 00 50",
-    "address": "28 October Ave 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus",
+    "address": "15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus",
 }
 
 REF = "INV-CY-PVBESS-1-5-10-2026"
