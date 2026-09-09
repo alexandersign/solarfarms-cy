@@ -4,7 +4,7 @@
 // When onboarding or updating staff, update HERE ONLY
 // then run: npm run contracts:generate
 //
-// Last updated: March 2026
+// Last updated: September 2026
 // ===================================================================
 
 export type EmployeeRole = 'sales' | 'backoffice' | 'field' | 'director';
@@ -122,12 +122,12 @@ export const TEAM: Employee[] = [
     email: 'xristoforou.andreass@gmail.com',
     title: 'Business Development & Technical Sales Consultant',
     role: 'sales',
-    compensationType: 'employee',
-    startDate: '2 March 2026',
-    contractDate: '2 March 2026',
+    compensationType: 'subcontractor',
+    startDate: '1 March 2026',
+    contractDate: '1 March 2026',
     monthlyGross: 1_000,
-    salaryDisplay: 'EUR 1,000 + 18% commission',
-    status: 'active',
+    salaryDisplay: 'EUR 2,000/month (Mar–Apr 2026); EUR 1,000/month (May–Jul 2026)',
+    status: 'terminated',
     duties: [
       'Technical and commercial sales of BESS and PV systems.',
       'Preparation of proposals, quotations, ROI analyses, and client business cases.',
@@ -153,7 +153,7 @@ export const TEAM: Employee[] = [
     contractDate: '1 December 2025',
     monthlyGross: 1_400,
     salaryDisplay: 'EUR 1,400',
-    status: 'active',
+    status: 'terminated',
     duties: [
       'First point of contact for inbound residential, commercial, and BESS sales leads.',
       'Qualification of leads and collection of technical and commercial information.',
@@ -212,7 +212,7 @@ export const TEAM: Employee[] = [
     contractDate: '[DATE]',
     monthlyGross: 1_400,
     salaryDisplay: 'EUR 1,400',
-    status: 'active',
+    status: 'terminated',
     duties: [
       'On-site supervision and execution of BESS and PV civil installation works.',
       'Management and coordination of installation teams and subcontractors on site.',
