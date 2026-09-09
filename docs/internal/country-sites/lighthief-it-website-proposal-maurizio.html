@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lighthief.it — Website Proposal for Italy | Lighthief</title>
+  <style>
+    :root {
+      --primary: #1A365D;
+      --primary-light: #2B5FA0;
+      --accent: #C9A432;
+      --accent-dark: #9C7D22;
+      --white: #FFFFFF;
+      --grey-text: #404040;
+      --body-bg: #F0F4F8;
+      --border: #D6DEE8;
+      --muted: #6B7280;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--body-bg);
+      color: #111;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .bar {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--primary);
+      color: #fff;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 22px;
+    }
+    .bar strong { color: var(--accent); }
+    .bar button {
+      background: var(--accent); color: var(--primary); border: 0;
+      font-weight: 700; padding: 8px 16px; border-radius: 6px; cursor: pointer;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 18px 64px; }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      border-radius: 0 0 16px 16px;
+      padding: 42px 40px 36px;
+      margin: 0 -18px 28px;
+    }
+    .hero .kicker { color: var(--accent); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+    .hero h1 { color: var(--accent); font-size: 30px; line-height: 1.15; margin: 10px 0 10px; }
+    .hero p { color: #E8EEF6; max-width: 640px; font-size: 15px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 22px; }
+    .hero-meta span { display: block; color: #B8C5D6; font-size: 11px; }
+    .hero-meta strong { display: block; color: #fff; font-size: 14px; margin-top: 2px; }
+    .price-pill {
+      margin-top: 22px; display: inline-block;
+      background: rgba(201,164,50,.15); border: 1px solid var(--accent);
+      color: var(--accent); padding: 10px 18px; border-radius: 8px; font-size: 18px; font-weight: 800;
+    }
+    h2 { color: var(--accent); font-size: 20px; margin: 32px 0 10px; }
+    h3 { color: var(--primary); font-size: 15px; margin: 18px 0 8px; }
+    p { color: var(--grey-text); margin-bottom: 10px; }
+    .card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 20px; margin: 12px 0;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; background: #fff; }
+    th { background: var(--primary); color: #fff; text-align: left; padding: 9px 11px; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    td { padding: 8px 11px; border-bottom: 1px solid #EEF2F6; color: #222; vertical-align: top; }
+    tr:nth-child(even) td { background: #F7FAFC; }
+    .note {
+      border-left: 4px solid var(--accent);
+      background: #fff; padding: 12px 14px; margin: 14px 0;
+      color: var(--grey-text);
+    }
+    .browser {
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+      background: #fff; box-shadow: 0 8px 24px rgba(26,54,93,.08); margin: 14px 0 22px;
+    }
+    .chrome { background: #E8EDF3; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #C5CDD6; }
+    .url { flex: 1; background: #fff; border-radius: 6px; font-size: 11px; color: var(--muted); padding: 4px 10px; }
+    .site-nav {
+      background: var(--primary); color: #fff; display: flex; justify-content: space-between;
+      align-items: center; padding: 10px 16px; font-size: 12px;
+    }
+    .site-nav b { color: var(--accent); }
+    .site-nav span { opacity: .85; }
+    .site-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff; padding: 28px 20px 22px;
+    }
+    .site-hero small { color: var(--accent); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .site-hero h4 { color: #fff; font-size: 22px; margin: 6px 0 8px; }
+    .site-hero p { color: #D5DEEA; margin: 0; font-size: 12px; }
+    .cta {
+      display: inline-block; margin-top: 12px; background: var(--accent); color: var(--primary);
+      font-weight: 700; padding: 7px 14px; border-radius: 6px; font-size: 12px;
+    }
+    .svc { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 12px; }
+    .svc article { border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+    .svc strong { display: block; color: var(--primary); font-size: 12px; margin-bottom: 4px; }
+    .svc p { font-size: 11px; margin: 0; }
+    .proof { display: flex; gap: 0; background: var(--primary); color: #fff; }
+    .proof div { flex: 1; padding: 12px; text-align: center; border-right: 1px solid rgba(255,255,255,.12); }
+    .proof div:last-child { border: 0; }
+    .proof b { display: block; color: var(--accent); font-size: 16px; }
+    .proof span { font-size: 10px; opacity: .8; }
+    .cost {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff; border-radius: 14px; padding: 28px; text-align: center; margin: 18px 0;
+    }
+    .cost .num { color: var(--accent); font-size: 42px; font-weight: 800; line-height: 1; }
+    .cost .lbl { color: #C5D0DE; margin-top: 6px; }
+    ol { padding-left: 20px; color: var(--grey-text); }
+    ol li { margin: 6px 0; }
+    .footer {
+      margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 11px;
+    }
+    .lp { background: #fff; }
+    .lp-top {
+      background: #122844; color: #C9D4E2; font-size: 11px;
+      display: flex; justify-content: space-between; padding: 7px 22px;
+    }
+    .lp-top a { color: var(--accent); text-decoration: none; }
+    .lp-nav {
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px; height: 62px; gap: 16px;
+    }
+    .lp-brand { color: var(--accent); font-size: 18px; font-weight: 800; letter-spacing: .14em; text-decoration: none; }
+    .lp-menu { display: flex; gap: 18px; font-size: 13px; align-items: center; }
+    .lp-menu a { color: #E8EEF6; text-decoration: none; }
+    .lp-menu a:hover { color: var(--accent); }
+    .lp-langs { font-size: 11px; color: #9BB0C8; }
+    .lp-langs b { color: var(--accent); }
+    .lp-nav-cta {
+      background: var(--accent); color: var(--primary); font-weight: 700;
+      padding: 8px 14px; border-radius: 6px; font-size: 12px; text-decoration: none;
+    }
+    .lp-hero {
+      position: relative; min-height: 420px; color: #fff;
+      background: #0d2138 center/cover no-repeat;
+      display: flex; align-items: flex-end;
+    }
+    .lp-hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(18,32,54,.82) 0%, rgba(18,32,54,.35) 70%, rgba(18,32,54,.2) 100%);
+    }
+    .lp-hero-in { position: relative; z-index: 1; padding: 48px 28px 36px; max-width: 620px; }
+    .lp-hero-in small { color: var(--accent); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 11px; }
+    .lp-hero-in h4 { color: #fff; font-size: 34px; line-height: 1.15; margin: 8px 0 10px; font-weight: 800; }
+    .lp-hero-in p { color: #E4EAF2; font-size: 14px; margin: 0 0 16px; }
+    .lp-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .lp-btn {
+      background: var(--accent); color: var(--primary); font-weight: 700;
+      padding: 10px 16px; border-radius: 6px; font-size: 13px; text-decoration: none;
+    }
+    .lp-btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45); }
+    .lp-proof { display: flex; background: var(--primary); color: #fff; }
+    .lp-proof div { flex: 1; padding: 16px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,.1); }
+    .lp-proof div:last-child { border: 0; }
+    .lp-proof b { display: block; color: var(--accent); font-size: 18px; }
+    .lp-proof span { font-size: 11px; color: #C5D0DE; }
+    .lp-pad { padding: 28px 22px 10px; }
+    .lp-pad h5 { color: var(--primary); font-size: 20px; margin: 0 0 6px; }
+    .lp-pad .sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+    .lp-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 0 22px 22px; }
+    .lp-card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
+    .lp-card img { width: 100%; height: 132px; object-fit: cover; display: block; }
+    .lp-card .t { padding: 12px 12px 14px; }
+    .lp-card strong { display: block; color: var(--primary); font-size: 14px; margin-bottom: 4px; }
+    .lp-card p { font-size: 12px; margin: 0; color: var(--grey-text); }
+    .lp-split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; padding: 8px 22px 28px; align-items: center; }
+    .lp-split img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; }
+    .lp-cta-band {
+      margin: 0 22px 22px; border-radius: 12px; overflow: hidden;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .lp-cta-band h5 { color: #fff; font-size: 18px; margin: 0 0 4px; }
+    .lp-cta-band p { color: #D5DEEA; margin: 0; font-size: 13px; }
+    .lp-foot {
+      background: #122844; color: #9BB0C8; padding: 18px 22px; font-size: 11px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .lp-foot b { color: var(--accent); }
+    @media (max-width: 760px) {
+      .grid-2, .grid-3, .svc, .lp-cards, .lp-split, .lp-proof { grid-template-columns: 1fr; }
+      .lp-proof { flex-direction: column; }
+      .hero { padding: 28px 20px; }
+      .hero h1 { font-size: 24px; }
+      .lp-hero-in h4 { font-size: 24px; }
+      .lp-menu { display: none; }
+      .lp-cta-band { flex-direction: column; align-items: flex-start; }
+    }
+    @media print {
+      .bar { display: none; }
+      body { background: #fff; }
+      .hero { margin: 0 0 16px; border-radius: 0; }
+      .card, .browser { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <div>Lighthief · <strong>lighthief.it</strong> proposal · Italy Director</div>
+    <button onclick="window.print()">Print / PDF</button>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="kicker">Website proposal</div>
+      <h1>lighthief.it — Italy country site, based on lighthief.com</h1>
+      <p>Same Lighthief layout and group look. Italian first language, local services, your name on the door. Sales CRM and HR leave desk are optional extras — the same tools the Cyprus team uses on solarfarms.cy, added only if you want them.</p>
+      <div class="hero-meta">
+        <div><span>Prepared for</span><strong>Maurizio Ganis, Italy Director</strong></div>
+        <div><span>Prepared by</span><strong>Alexander Papacosta, Cyprus Director</strong></div>
+        <div><span>Date</span><strong>9 September 2026</strong></div>
+        <div><span>Domain</span><strong>lighthief.it</strong></div>
+      </div>
+      <div class="price-pill">Website €2,500 &nbsp;·&nbsp; CRM extra €1,000 &nbsp;·&nbsp; HR extra €1,000</div>
+    </div>
+
+    <h2>1. Why this, and why now</h2>
+    <p>lighthief.com already works as the group shop window: services up front, proof numbers, process, ask-an-expert form, and a live blog. Italy needs the same door — in Italian, with Italian offers and your contact — without waiting for a new WordPress site that will drift from Poland and Germany.</p>
+    <p>Germany launches on the same system. One design, two country doors first. Cyprus and Poland stay as they are until later. solarfarms.cy is not touched.</p>
+    <div class="note">You are not paying to invent a new brand. The €2,500 is the Italy front door and Italian content. CRM and HR are optional extras at €1,000 each.</div>
+
+    <h2>2. What we copy from lighthief.com</h2>
+    <p>The Poland site is the layout base. Italy keeps the same page types. Poland-only legal products (BDO, authorised representative) drop out. Italy energy products (BESS rules, GSE / Terna language) go in.</p>
+    <table>
+      <thead>
+        <tr><th>lighthief.com today</th><th>lighthief.it equivalent</th><th>On the Italy menu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Home — “How we help RES projects”</td><td>Home — Italy energy independence / EPC + O&amp;M</td><td>Yes</td></tr>
+        <tr><td>Solar farms — design, build, RTB, due diligence</td><td>Impianti fotovoltaici / EPC</td><td>Yes</td></tr>
+        <tr><td>O&amp;M subscription from 50 kW</td><td>O&amp;M / manutenzione</td><td>Yes</td></tr>
+        <tr><td>Panel recycling</td><td>Only if you want it later</td><td>Off at launch</td></tr>
+        <tr><td>Panel washing</td><td>Optional add-on</td><td>Off at launch</td></tr>
+        <tr><td>Authorised representative + BDO</td><td>Poland legal — not Italy</td><td>No</td></tr>
+        <tr><td>Drone / thermography / DD / service</td><td>Ispezioni, termografia, due diligence</td><td>Yes</td></tr>
+        <tr><td>Ask an expert form</td><td>Contact — email to you (or into CRM if you add that extra)</td><td>Yes</td></tr>
+        <tr><td>About + proof (MW, clients, washed parks)</td><td>Chi siamo + group proof + Trieste monitoring</td><td>Yes</td></tr>
+        <tr><td>Blog (storage, DD, O&amp;M)</td><td>Blog in IT / EN / DE, Italy market topics</td><td>Yes</td></tr>
+        <tr><td>—</td><td>Mercato — GSE, Terna, BESS metering rules</td><td>Yes (new)</td></tr>
+        <tr><td>—</td><td>Staff CRM at lighthief.it/crm</td><td>Optional extra · €1,000</td></tr>
+        <tr><td>—</td><td>HR leave + payslips at lighthief.it/crm/hr</td><td>Optional extra · €1,000</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. Example design — landing page</h2>
+    <p>This is how the live homepage at lighthief.it would look. Menu and cards match <strong>only the services Italy sells</strong>: EPC, O&amp;M, BESS, due diligence, and development. Poland products (recycling, washing, BDO, authorised representative) are not on this page. Italian is default; EN / DE sit in the header.</p>
+
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">https://lighthief.it</div></div>
+      <div class="lp">
+        <div class="lp-top">
+          <span>Centro monitoraggio · Trieste</span>
+          <span><a href="mailto:m.ganis@lighthief.com">m.ganis@lighthief.com</a> &nbsp;·&nbsp; Gruppo · office@lighthief.com</span>
+        </div>
+        <div class="lp-nav">
+          <a class="lp-brand" href="#">LIGHTHIEF</a>
+          <div class="lp-menu">
+            <a href="#">Servizi</a>
+            <a href="#">Progetti</a>
+            <a href="#">Mercato</a>
+            <a href="#">Blog</a>
+          </div>
+          <div class="lp-langs"><b>IT</b> &nbsp; EN &nbsp; DE</div>
+          <a class="lp-nav-cta" href="#">Contatti</a>
+        </div>
+        <div class="lp-hero" style="background-image:url('assets/it-hero-solar-farm.png')">
+          <div class="lp-hero-in">
+            <small>Italia · EPC · O&amp;M · Accumulo</small>
+            <h4>Partner per i vostri impianti rinnovabili</h4>
+            <p>Progettazione e costruzione di parchi fotovoltaici, O&amp;M, due diligence e sistemi di accumulo. Team Italia, rete europea Lighthief, monitoraggio da Trieste.</p>
+            <div class="lp-btns">
+              <a class="lp-btn" href="#">Parla con Maurizio Ganis</a>
+              <a class="lp-btn ghost" href="#">Vedi i servizi</a>
+            </div>
+          </div>
+        </div>
+        <div class="lp-proof">
+          <div><b>11</b><span>Paesi del gruppo</span></div>
+          <div><b>150+</b><span>Persone</span></div>
+          <div><b>Trieste</b><span>Centro di monitoraggio</span></div>
+          <div><b>NATO</b><span>Certified group</span></div>
+        </div>
+        <div class="lp-pad">
+          <h5>Servizi in Italia</h5>
+          <p class="sub">Stessa struttura di lighthief.com — solo ciò che l’Italia vende. Nessun riciclo, lavaggio o BDO in homepage.</p>
+        </div>
+        <div class="lp-cards">
+          <article class="lp-card">
+            <img src="assets/it-service-epc.png" alt="EPC — costruzione parco fotovoltaico">
+            <div class="t"><strong>EPC fotovoltaico</strong><p>Fattibilità, engineering, procurement e costruzione fino al commissioning. Parchi utility e C&amp;I.</p></div>
+          </article>
+          <article class="lp-card">
+            <img src="assets/it-service-om.png" alt="O&amp;M — ispezione e monitoraggio">
+            <div class="t"><strong>O&amp;M</strong><p>Monitoraggio 24/7 da Trieste, ispezioni, termografia, manutenzione preventiva e correttiva da 50 kW.</p></div>
+          </article>
+          <article class="lp-card">
+            <img src="assets/it-service-bess.png" alt="BESS — container di accumulo">
+            <div class="t"><strong>BESS / accumulo</strong><p>Co-locato o standalone. Metering e autorizzazione secondo il quadro italiano (GSE / Terna).</p></div>
+          </article>
+          <article class="lp-card">
+            <img src="assets/it-service-dd.png" alt="Due diligence in sito">
+            <div class="t"><strong>Due diligence</strong><p>Check tecnico, autorizzativo e documentale prima di un’acquisizione o di un finanziamento.</p></div>
+          </article>
+          <article class="lp-card">
+            <img src="assets/it-service-sviluppo.png" alt="Sviluppo sito e autorizzazioni">
+            <div class="t"><strong>Sviluppo</strong><p>Siti, iter autorizzativo, interfaccia DSO e Terna. Dal terreno al ready-to-build.</p></div>
+          </article>
+          <article class="lp-card">
+            <img src="assets/it-hero-solar-farm.png" alt="Mercato energetico italiano">
+            <div class="t"><strong>Mercato</strong><p>Quadro GSE, Terna e storage per developer e fondi — pagina informativa, non un prodotto PL.</p></div>
+          </article>
+        </div>
+        <div class="lp-split">
+          <div>
+            <h5 style="color:#1A365D;font-size:18px;margin:0 0 8px;">Perché Lighthief in Italia</h5>
+            <p>Non vendiamo solo un contratto. Entriamo nel processo di acquisto e di gestione dell’asset: EPC, O&amp;M e storage con lo stesso partner, backing del gruppo (150+ persone, R&amp;D in Polonia, NATO certified).</p>
+            <p style="margin:0;"><strong style="color:#1A365D;">Maurizio Ganis</strong> — Italy Director<br>Investitori istituzionali · developer · asset owner<br><a href="mailto:m.ganis@lighthief.com" style="color:#C9A432;">m.ganis@lighthief.com</a></p>
+          </div>
+          <img src="assets/it-service-bess.png" alt="Storage e FV Lighthief">
+        </div>
+        <div class="lp-cta-band">
+          <div>
+            <h5>Avete un parco, un sito o un’acquisizione in Italia?</h5>
+            <p>Il modulo arriva a te (email). Con l’extra CRM, i lead restano in pipeline Italia.</p>
+          </div>
+          <a class="lp-btn" href="#">Richiedi una consulenza</a>
+        </div>
+        <div class="lp-foot">
+          <span><b>Lighthief</b> · Italia · Monitoring Trieste</span>
+          <span>m.ganis@lighthief.com · Gruppo · solarfarms.cy</span>
+          <span>Privacy · Termini · IT | EN | DE</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Services page — same grid as lighthief.com “Nasze usługi”</h3>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">https://lighthief.it/servizi</div></div>
+      <div class="site-nav"><b>LIGHTHIEF</b><span>Servizi</span></div>
+      <div style="padding:16px 16px 6px;"><h4 style="color:#1A365D;margin:0 0 8px;">Servizi in Italia</h4>
+        <p style="margin:0 0 12px;font-size:12px;">Stessa struttura del sito polacco. Solo i servizi che l’Italia vende davvero.</p></div>
+      <table style="margin:0 12px 16px;width:calc(100% - 24px);">
+        <thead><tr><th>Servizio</th><th>Per chi</th><th>Esito</th></tr></thead>
+        <tbody>
+          <tr><td>EPC</td><td>Developer / investitore</td><td>Impianto costruito e connesso</td></tr>
+          <tr><td>O&amp;M</td><td>Asset owner da 50 kW</td><td>Contratto di gestione</td></tr>
+          <tr><td>BESS</td><td>FV esistente o nuovo</td><td>Studio + EPC storage</td></tr>
+          <tr><td>Due diligence</td><td>Acquirente / fondo</td><td>Report prima del closing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Optional extras — CRM and HR (not in the €2,500)</h3>
+    <p>Same desks the Cyprus team already uses. Italy only. You can take one, both, or neither. Add them at launch or later.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Sales CRM &nbsp; · &nbsp; €1,000</h3>
+        <p>Pipeline, notes, tasks, daily queue, outreach emails, knowledge. Contact form writes into your Italy pipeline. We load any Excel list you already have.</p>
+        <p>You see <strong>Italy only</strong>. Group leadership can switch country.</p>
+        <p style="margin:0;color:#1A365D;font-weight:700;">lighthief.it/crm</p>
+      </div>
+      <div class="card">
+        <h3>HR leave desk &nbsp; · &nbsp; €1,000</h3>
+        <p>Leave requests, balances, payslips. You approve Italy staff. Italian leave defaults (four weeks statutory; extra CCNL days if you tell us).</p>
+        <p>Payslips stay in the Italy folder. Cyprus staff never see them.</p>
+        <p style="margin:0;color:#1A365D;font-weight:700;">lighthief.it/crm/hr</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">https://lighthief.it/crm &nbsp; · &nbsp; optional extra</div></div>
+      <div class="site-nav"><b>LIGHTHIEF CRM</b><span>Italia · solo la tua pipeline</span></div>
+      <div class="svc" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+        <article><strong>Pipeline</strong><p>Parchi, rooftop, investitori. Stessi stadi usati a Cipro.</p></article>
+        <article><strong>Coda giornaliera</strong><p>Chiamate e follow-up del giorno.</p></article>
+        <article><strong>Modulo sito</strong><p>Ogni contatto da lighthief.it arriva qui, paese = Italia.</p></article>
+        <article><strong>HR (extra a parte)</strong><p>Ferie e buste paga del team Italia. Approvi tu.</p></article>
+      </div>
+    </div>
+
+    <h2>4. Price</h2>
+    <div class="cost">
+      <div class="num">€2,500</div>
+      <div class="lbl">Italy website · fixed · one invoice · no hourly surprise</div>
+    </div>
+    <table>
+      <thead><tr><th>Item</th><th>What you get</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Website (this proposal)</strong></td><td>Italy pages, IT / EN / DE, domain, SSL, contact form to your email, 60-minute walkthrough</td><td><strong>€2,500</strong></td></tr>
+        <tr><td>Optional — Sales CRM</td><td>Italy pipeline, form into CRM, first list import, logins</td><td>€1,000</td></tr>
+        <tr><td>Optional — HR desk</td><td>Leave, balances, payslips, you as approver</td><td>€1,000</td></tr>
+        <tr><td>Website + CRM + HR</td><td>All of the above</td><td>€4,500</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2">
+      <div class="card">
+        <h3>In the €2,500</h3>
+        <p>Home, Chi siamo, Servizi (only what you sell), Progetti, Mercato, Blog, Contatti, Privacy / Terms.</p>
+        <p>Three languages: <strong>Italian (default)</strong>, English, German.</p>
+        <p>Your name, email, and Trieste monitoring centre on every page footer.</p>
+        <p style="margin:0;">Contact form emails you. CRM is not required for the site to go live.</p>
+      </div>
+      <div class="card">
+        <h3>Not in any of these fees</h3>
+        <p>The shared group platform (already paid at group level). Ongoing blog writing. Paid company-register lookups. Custom photography. A separate WordPress. Germany or Poland sites.</p>
+      </div>
+    </div>
+    <p>After launch, a content change (new service line, new project) is a small edit on the shared system — not a new website. CRM or HR can be switched on later at the same €1,000 each.</p>
+
+    <h2>5. Development plan</h2>
+    <table>
+      <thead><tr><th>Week</th><th>What happens</th><th>What we need from you</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Approval of the €2,500 website. Say yes or no to CRM and/or HR extras.</td><td>Sign-off. Confirm services on the menu. Confirm lighthief.it is in our (or your) registrar login.</td></tr>
+        <tr><td>1</td><td>Italy site on the shared platform. English pages first if Italian copy is still moving.</td><td>Logo use, office address, phone, 4–6 project names if any are public.</td></tr>
+        <tr><td>2</td><td>Italian + German. Services and Mercato pages. Contact form to your email.</td><td>Review Italian wording. Confirm BESS / EPC claims you are happy to publish.</td></tr>
+        <tr><td>3</td><td>Preview link for full review. If extras are chosen: CRM/HR users and first list import.</td><td>Only if extras: who gets a login, who approves leave, any Excel of prospects.</td></tr>
+        <tr><td>Go-live</td><td>Point lighthief.it at the new system. www redirects to the main address. Email records stay as they are.</td><td>Approve the DNS flip. We do not touch mailboxes.</td></tr>
+      </tbody>
+    </table>
+    <div class="note">We test on a private preview first. The live domain changes only when you say so. One codebase — Italy and Germany share the shop; each address shows its own country.</div>
+
+    <h3>How the domain is pointed</h3>
+    <p>One hosting project. We add lighthief.it there. At the registrar we change only the website DNS. MX / email is left alone. SSL is automatic. Until then you use the preview link.</p>
+
+    <h2>6. Languages and local facts</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Italiano</h3><p>Default. Root of lighthief.it. No /it/ prefix.</p></div>
+      <div class="card"><h3>English</h3><p>For funds and cross-border clients. Path /en/.</p></div>
+      <div class="card"><h3>Deutsch</h3><p>North Italy / DACH investors. Path /de/.</p></div>
+    </div>
+    <p>Public pages use Italian market language (GSE, Terna, ritiro, FER). They never show internal group costs or margins. If you take the HR extra, leave rules follow Italian practice (statutory four weeks; extra CCNL days if you tell us the contract).</p>
+
+    <h2>7. What we need from you to start</h2>
+    <ol>
+      <li>Approve the website at <strong>€2,500</strong>.</li>
+      <li>Say whether you want the <strong>CRM extra (€1,000)</strong>, the <strong>HR extra (€1,000)</strong>, both, or neither.</li>
+      <li>Confirm the launch menu: EPC, O&amp;M, BESS, due diligence, development — add or remove.</li>
+      <li>Legal name, VAT, office address, and phone to print on the site.</li>
+      <li>Only if CRM/HR: who in Italy gets access, and any existing prospect list.</li>
+      <li>Confirmation that lighthief.it DNS can be edited when we go live.</li>
+    </ol>
+
+    <h2>8. Next step</h2>
+    <div class="card">
+      <p>Reply with approval of the €2,500 website and whether CRM and/or HR extras are in. We open the Italy preview in the first development week. Germany is built on the same system in parallel; it is not on this invoice.</p>
+      <p style="margin-bottom:0;"><strong>Alexander Papacosta</strong> · Cyprus Director<br>
+      +357 99 164 158 · office@lighthief.com<br>
+      15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol</p>
+    </div>
+
+    <div class="footer">
+      Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy · office@lighthief.com · +357 77 77 00 50<br>
+      Prepared for Maurizio Ganis, Italy Director · m.ganis@lighthief.com · Internal group proposal · 9 September 2026
+    </div>
+  </div>
+</body>
+</html>

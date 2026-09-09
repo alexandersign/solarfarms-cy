@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTSA Galascope G1 &amp; G2 — v5.0 Redline — Lighthief Cyprus Ltd</title>
+<style>
+  @page { size: A4 portrait; margin: 15mm 12mm 18mm 12mm; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --navy:#1A365D; --navy-lt:#2B5FA0; --gold:#C9A432;
+    --white:#FFFFFF; --body-bg:#F7F9FC;
+    --ins-bg:#d4f4dd; --ins-col:#155724;
+    --del-col:#8B0000;
+    --amber-bg:#fff8e1; --amber-col:#7a5500;
+    --neg-bg:#e3f0ff; --neg-col:#00306b;
+    --third-bg:#f3e8ff; --third-col:#4a0082;
+    --note-bg:#FFF3CD;
+  }
+  body { font-family:'Segoe UI',Calibri,Arial,sans-serif; font-size:9pt; line-height:1.55; color:#1a1a2e; background:var(--body-bg); }
+
+  /* ── page chrome ── */
+  .conf-bar { background:#8B0000; color:#fff; text-align:center; font-size:7pt; font-weight:800; padding:5px; letter-spacing:2px; }
+  .header { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%); color:#fff; padding:22px 32px 18px; }
+  .header-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .header-logo { font-size:9pt; font-weight:800; letter-spacing:3px; color:var(--gold); text-transform:uppercase; }
+  .header-ref  { font-size:7.5pt; color:#d4e4f7; text-align:right; line-height:1.7; }
+  .header h1   { font-size:18pt; font-weight:900; color:var(--gold); margin-top:12px; }
+  .header .sub { font-size:9.5pt; color:#fff; margin-top:4px; }
+  .header .meta{ display:flex; gap:20px; margin-top:12px; font-size:7.5pt; color:#c8d9ec; flex-wrap:wrap; }
+  .header .meta strong { color:#fff; }
+  .page { max-width:920px; margin:0 auto; padding:20px 28px 48px; }
+
+  /* ── legend ── */
+  .legend { background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:12px 16px; margin:20px 0 8px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .legend-title { font-size:8pt; font-weight:800; color:var(--navy); margin-right:6px; }
+  .leg-item { display:flex; align-items:center; gap:6px; font-size:7.5pt; }
+  .leg-swatch { display:inline-block; width:32px; height:14px; border-radius:3px; }
+  ins  { text-decoration:none; background:var(--ins-bg); color:var(--ins-col); font-weight:600; padding:0 2px; border-radius:2px; }
+  del  { text-decoration:line-through; color:var(--del-col); background:#fde8e8; padding:0 2px; border-radius:2px; }
+  .neg { background:var(--neg-bg); color:var(--neg-col); padding:0 2px; border-radius:2px; font-weight:600; }
+  .third-party { background:var(--third-bg); color:var(--third-col); padding:0 2px; border-radius:2px; font-weight:600; }
+
+  /* ── section structure ── */
+  h2.sec { font-size:11.5pt; font-weight:800; color:var(--gold); border-bottom:2.5px solid var(--navy); padding-bottom:4px; margin:28px 0 12px; text-transform:uppercase; letter-spacing:0.3px; }
+  h3.sec { font-size:10pt; font-weight:700; color:var(--navy); margin:16px 0 6px; }
+  h4.sec { font-size:9pt; font-weight:700; color:#404040; margin:12px 0 5px; }
+  p.clause { margin:5px 0 5px 0; }
+  ol.clause-list { margin:5px 0 5px 18px; }
+  ol.clause-list li { margin:4px 0; }
+  ul.clause-list { margin:5px 0 5px 18px; }
+  ul.clause-list li { margin:3px 0; }
+
+  /* ── change notes ── */
+  .change-note { background:var(--note-bg); border-left:4px solid var(--gold); border-radius:0 6px 6px 0; padding:8px 12px; margin:8px 0; font-size:8pt; color:#5a3e00; }
+  .change-note strong { color:var(--navy); }
+  .change-note.accept  { border-left-color:#28a745; background:#f0fff4; color:#155724; }
+  .change-note.accept strong { color:#155724; }
+  .change-note.neg     { border-left-color:#2B5FA0; background:var(--neg-bg); color:var(--neg-col); }
+  .change-note.neg strong { color:var(--neg-col); }
+  .change-note.third   { border-left-color:#9c27b0; background:var(--third-bg); color:var(--third-col); }
+  .change-note.decided { border-left-color:var(--navy); background:#e8eef5; }
+  .change-note.decided strong { color:var(--navy); }
+
+  .badge { display:inline-block; font-size:6.5pt; font-weight:800; padding:2px 6px; border-radius:3px; letter-spacing:0.5px; text-transform:uppercase; margin-left:4px; vertical-align:middle; }
+  .badge-accept  { background:#28a745; color:#fff; }
+  .badge-decided { background:var(--navy); color:#fff; }
+  .badge-neg     { background:var(--navy-lt); color:#fff; }
+  .badge-third   { background:#9c27b0; color:#fff; }
+  .badge-open    { background:#fd7e14; color:#fff; }
+
+  /* ── tables ── */
+  table { width:100%; border-collapse:collapse; margin:8px 0 14px; font-size:8.5pt; }
+  th { background:var(--navy); color:#fff; padding:6px 8px; text-align:left; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.3px; font-weight:600; }
+  td { padding:5px 8px; border-bottom:1px solid #e9ecef; vertical-align:top; }
+  tr:nth-child(even) td { background:#f8f9fa; }
+  .total-row td { background:#e8eef5 !important; font-weight:700; border-top:2px solid var(--navy-lt); color:var(--navy); }
+
+  /* ── version history ── */
+  .ver-box { background:#fff; border:1px solid #dee2e6; border-radius:6px; padding:10px 14px; margin:14px 0 6px; font-size:8pt; }
+  .ver-box strong { color:var(--navy); }
+
+  .contact-box { background:var(--navy); color:#fff; border-radius:8px; padding:14px 18px; margin-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .contact-box .ct-name { font-size:10pt; font-weight:800; color:var(--gold); }
+  .contact-box .ct-detail { font-size:8pt; line-height:1.6; }
+  .footer { margin-top:24px; border-top:1px solid #dee2e6; padding-top:10px; font-size:7pt; color:#6c757d; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
+
+  @media print { body{background:#fff;} .page{padding:0;} .pg{page-break-before:always;} }
+  .pg { margin-top:36px; padding-top:8px; border-top:3px solid var(--navy); }
+
+  .schedule-box { background:#fff; border:1px solid #dee2e6; border-radius:6px; margin:10px 0; overflow:hidden; }
+  .schedule-box .sch-head { background:var(--navy); color:#fff; padding:8px 14px; font-size:9pt; font-weight:700; }
+  .schedule-box .sch-body { padding:12px 14px; font-size:8.5pt; }
+</style>
+</head>
+<body>
+
+<div class="conf-bar">STRICTLY PRIVATE &amp; CONFIDENTIAL — INTERNAL REDLINE — NOT FOR DISTRIBUTION — LCY-LTSA-GAL-2026 v5.0</div>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">Lighthief Cyprus Ltd</div>
+    <div class="header-ref">
+      Document: LCY-LTSA-GAL-2026<br>
+      Version: <strong style="color:var(--gold);">5.0 — REDLINE</strong><br>
+      Date: 4 August 2026<br>
+      Supersedes: v4.0 (17 Mar 2026)<br>
+      <strong style="color:var(--gold);">TARGET SIGNING: 12 August 2026</strong>
+    </div>
+  </div>
+  <h1>Long-Term Service Agreement — Redline v5.0</h1>
+  <div class="sub">Galascope Ltd — G1 (5 MW / 20 MWh) &amp; G2 (2.5 MW / 10 MWh) · Famagusta, Cyprus</div>
+  <div class="meta">
+    <span><strong>Service Provider:</strong> Lighthief Cyprus Ltd (HE 477423)</span>
+    <span><strong>Client:</strong> Galascope Ltd (HE 303759)</span>
+    <span><strong>EPC Ref:</strong> LCY-EPC-GAL-B1-2026 v6.3</span>
+    <span><strong>Total BESS:</strong> 30 MWh (two parks)</span>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="legend-title">Redline key:</span>
+  <div class="leg-item"><ins>Green text</ins> <span>= inserted / new wording</span></div>
+  <div class="leg-item"><del>Red strikethrough</del> <span>= deleted text</span></div>
+  <div class="leg-item"><span class="neg">Blue text</span> <span>= counter-proposal / negotiate</span></div>
+  <div class="leg-item"><span class="third-party">Purple text</span> <span>= third-party dependency (Linyang / bank / DISPERON)</span></div>
+  <div class="leg-item"><span class="badge badge-decided">Decided</span> <span>= confirmed in negotiation log 22 Jul 2026</span></div>
+  <div class="leg-item"><span class="badge badge-accept">Accept</span> <span>= Lighthief accepts client request</span></div>
+  <div class="leg-item"><span class="badge badge-neg">Counter</span> <span>= Lighthief counter-position</span></div>
+  <div class="leg-item"><span class="badge badge-open">Open</span> <span>= still outstanding</span></div>
+</div>
+
+<!-- VERSION HISTORY -->
+<div class="ver-box">
+  <strong>Version history:</strong> v1.0 Oct 2025 (initial) · v2.0 Jan 2026 (Linyang confirmed rates) · v2.4 Feb 2026 (pricing, LD rate) · v3.0 22 Feb 2026 (group availability, tier structure) · v4.0 17 Mar 2026 (Tier D removed, numbering fixed, 15yr guarantee, lender assignment) ·
+  <strong>v5.0 4 Aug 2026 (this version): incorporates Dino/Anastasios and Stelios Constantinou redline triage (Jul 2026); all agreed changes from EPC v6.3 negotiations reflected; references updated from EPC v4.0 → v6.3.</strong>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">1. Parties</h2>
+
+<p class="clause">This Long-Term Service Agreement (<strong>"Agreement"</strong>) is made as of <strong>[●] 2026</strong> (<strong>"Effective Date"</strong>) BETWEEN:</p>
+
+<p class="clause"><strong>Lighthief Cyprus Ltd</strong>, a company incorporated under the laws of the Republic of Cyprus, with registered office at Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus, and operational address at 28 October Avenue 249, Lophitis Business Center 1, Office 201, 3035 Limassol, Cyprus, Company No. HE 477423, TIN 60187188Q (<strong>"Service Provider"</strong>); <strong>AND</strong></p>
+
+<p class="clause"><strong>Galascope Ltd</strong>, a company incorporated under the laws of the Republic of Cyprus, with registered office at Karaiskaki 6, City House, 3032 Limassol, Cyprus, Registration No. HE 303759 (<strong>"Client"</strong>).</p>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">2. Background</h2>
+
+<p class="clause">2.1 The Client has procured a battery energy storage system (<strong>"BESS"</strong>) pursuant to an Engineering, Procurement and Construction Agreement (<strong>"EPC Agreement"</strong>) with the Service Provider <ins>(LCY-EPC-GAL-B1-2026, version 6.3)</ins>.</p>
+
+<p class="clause">2.2 The Parties wish to establish a long-term arrangement for the monitoring and preventive maintenance of the BESS to ensure optimal performance, reliability, and longevity.</p>
+
+<p class="clause">2.3 This Agreement sets out the terms under which the Service Provider shall provide monitoring and maintenance services for the BESS.</p>
+
+<p class="clause ins">2.4 <strong>Integrated Project Document Suite.</strong> This Agreement, the EPC Agreement (LCY-EPC-GAL-B1-2026 v6.3), the Technical Agreements for Galascope 1 and Galascope 2, the OEM Direct Warranty Undertakings (G1 and G2), and the EMS Subscription Addendum shall be read as an integrated suite of project documents, all executed simultaneously on the Effective Date. In the event of any inconsistency or conflict between them, the interpretation most favourable to the Client shall govern. The Parties confirm that all companion documents in this suite are in force from the Effective Date; no further triggering event is required to bring any of them into effect (save that the advance payment under the EPC remains subject to the conditions precedent in EPC §1A.3 and §1A.5).</p>
+
+<div class="change-note decided"><span class="badge badge-decided">Decided — 4 Aug 2026</span> <strong>§2.4:</strong> Co-execution structure — all 6 instruments signed simultaneously on the Effective Date. Integrated suite, most-favourable-to-Client interpretation. Advance payment CP language preserved in EPC §1A.3/§1A.5 (APG + Connection Terms). EPC reference v6.3 throughout.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">3. Definitions and Interpretation</h2>
+
+<p class="clause">Unless otherwise defined herein, capitalised terms shall have the meanings given to them in the EPC Agreement. For the purposes of this Agreement, the following additional definitions apply:</p>
+
+<p class="clause"><em>[Existing definitions retained — abbreviated here; full text unchanged except additions below.]</em></p>
+
+<p class="clause ins"><strong>"Restoration Time"</strong> means the time from initial remote response to the BESS returning to full rated operational capability following a Critical or Major Alert, as recorded in the Monitoring Platform.</p>
+
+<p class="clause ins"><strong>"Resolution Time"</strong> means the time from initial remote response to permanent closure of a fault record, including completion of any root-cause investigation, parts replacement, and sign-off by the Client's designated representative.</p>
+
+<p class="clause ins"><strong>"Park"</strong> means each individual BESS installation forming part of this Agreement (G1: Galascope 1, 20 MWh; G2: Galascope 2, 10 MWh), as identified in Schedule 1.</p>
+
+<p class="clause ins"><strong>"Major Incident"</strong> means any fire, thermal runaway event, forced outage exceeding twenty-four (24) hours, confirmed cyber security incident, or grid-code breach attributable to the BESS.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§3 new definitions:</strong> "Restoration Time", "Resolution Time", "Park", "Major Incident" — from LTSA triage Part B and SLA discussion. "Park" is needed to support the per-Park availability and LD structure below.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">4. Service Scope and Service Tiers</h2>
+
+<h3 class="sec">4.1 Service Tier Overview</h3>
+
+<p class="clause">TIER A – BASIC MONITORING AND MAINTENANCE: (a) 24/7 remote monitoring; (b) Quarterly preventive maintenance; (c) Technical support; (d) Monthly and quarterly reporting.</p>
+<p class="clause">TIER B – COMPREHENSIVE O&amp;M: As Tier A plus: (a) Corrective maintenance and fault rectification; (b) PCS and MV Switchgear maintenance; (c) Emergency response.</p>
+<p class="clause">TIER C – FULL SERVICE WITH AVAILABILITY GUARANTEE <ins>(Default tier for Galascope — Schedule 2)</ins>: As Tier B plus: (a) <del>97% annual Availability Guarantee</del> <ins>97% annual Availability Guarantee, measured per Park</ins>; (b) Local service team; (c) Local spare parts warehouse (critical sub-components); (d) Availability Liquidated Damages per Schedule 4.</p>
+<p class="clause"><em>Note: Tier D is not currently offered. SOH guarantees are OEM-backed under EPC §10.6.</em></p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§4.1:</strong> Tier C designated as default for Galascope (Schedule 2 to be completed with Dino). Availability measurement changed to per-Park — see §9 below.</div>
+
+<h3 class="sec">4.2 Core Services (All Tiers)</h3>
+<p class="clause">Unchanged: remote monitoring, preventive maintenance, technical support, reporting.</p>
+
+<h3 class="sec">4.3 Corrective Maintenance (Tiers B and C)</h3>
+<p class="clause">Where Tier B or C is selected, the Service Provider shall perform Corrective Maintenance including: <ins>(a) Full diagnosis, fault isolation and root-cause analysis; (b) All labour, travel within Cyprus, and subsistence costs; (c) Removal, replacement, and re-installation of faulty components; (d) Recommissioning and functional testing following repair; (e) Configuration restoration (firmware, parameters, protection settings); (f) Full system testing to confirm return to rated performance; (g) Incident documentation and closure report to the Client within five (5) Business Days of restoration.</ins></p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§4.3A new:</strong> Explicit corrective maintenance scope covering full turnkey repair cycle — from LTSA triage Part B. No new cost not already implied in Tier C.</div>
+
+<h3 class="sec">4.4 Exclusions (All Tiers)</h3>
+<p class="clause">Unless agreed in writing: (a) EMS software (but see §4.4A below); (b) Third-party equipment not in EPC scope; (c) Force Majeure, Client misuse, or unauthorised modifications; (d) Grid issues beyond interconnection point; (e) Civil works or structural repairs; (f) Third-party vandalism; (g) Battery degradation beyond Guaranteed SOH.</p>
+
+<p class="clause ins">4.4A <strong>EMS / DISPERON Carve-Out.</strong> Notwithstanding Section 4.4(a), the EMS operated by DISPERON (a Lighthief group entity) is within the Service Provider's scope of responsibility for the purposes of: (i) end-to-end BMS/PCS/SCADA/EMS interface compatibility; (ii) command execution accuracy; (iii) data integrity at PAC and through the Term. The Availability exclusion in Section 9.3(e) <del>(Downtime caused by EMS or third-party system failures)</del> <ins>does <strong>not</strong> apply where the failure is attributable to DISPERON or any other Lighthief group entity.</ins> The Service Provider cannot invoke its own affiliate's failure to excuse an outage.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§4.4A new:</strong> EMS/DISPERON carve-out — mirrors EPC §10.5A (from Dino triage A1 and Stelios triage #13). The client's lawyer is correct: Lighthief cannot hide behind its own affiliate. Also amends §9.3(e) availability exclusion accordingly.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">5. Remote Monitoring Services</h2>
+
+<h3 class="sec">5.1 – 5.5 Unchanged</h3>
+<p class="clause"><em>(24/7 monitoring, monitored parameters, alert classification, alert notification, client portal access — text unchanged.)</em></p>
+
+<h3 class="sec">5.6 Reporting</h3>
+<p class="clause">Monthly, Quarterly and Annual reports as before, plus the following enhancements: <ins>(d) Raw performance data extract available for Client download in CSV format, per-Park, within five (5) Business Days of each month end; (e) Per-Park availability figure included in each Monthly Performance Report; (f) SOH trend graph (actual vs guaranteed degradation curve) included in each Quarterly Health Report; (g) Cell imbalance and thermal deviation summary per monthly cycle included in Quarterly Health Report; (h) Firmware version log and pending updates included in Quarterly Health Report; (i) Open punch-item register (outstanding faults, planned works, parts on order) included in Monthly Performance Report; (j) Spare-parts usage log and current warehouse inventory summary included in Annual Review Report.</ins></p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§5.6 enhanced:</strong> Richer reporting package — from LTSA triage Part B (§5.6A). No incremental platform cost.</div>
+
+<h3 class="sec">5.5 Client Training on Monitoring Platform (NEW)</h3>
+<p class="clause ins"><strong>5.5 Client Training.</strong> Within thirty (30) days of the Commissioning Date, the Service Provider shall provide the Client's designated personnel (up to three (3) persons) with training on the Monitoring Platform covering: (a) navigation and use of the real-time dashboard; (b) interpretation of SOC, SOH, temperature, and alarm displays; (c) manual alert acknowledgement and escalation procedures; (d) downloading and interpreting performance reports; (e) setting and adjusting alert notification preferences. Training shall be conducted on-site or via video conference at the Service Provider's election; written user-guide documentation shall be provided. Additional training sessions may be requested at the Service Provider's then-current training rate.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§5.5 new:</strong> Client monitoring platform training — added per EPC v6.3 final sweep (Timotheos ask not previously drafted in LTSA). No additional cost for initial training within 30 days of PAC.</div>
+
+<h3 class="sec">5.7 Data Retention</h3>
+<p class="clause">Unchanged: five (5) years minimum.</p>
+
+<h3 class="sec">5.8 Data Ownership</h3>
+<p class="clause"><del>The Service Provider shall have a licence to use such data for the purposes of providing services under this Agreement and for anonymised benchmarking and product improvement.</del></p>
+<p class="clause ins">The Service Provider shall have a licence to use Performance Data solely for the purposes of providing services under this Agreement. <strong>The Service Provider shall not use identifiable Client performance data for benchmarking, product development, marketing, or sharing with third parties without the Client's prior written consent.</strong> Anonymised, aggregated industry data from which the Client cannot be identified may be used for Service Provider's internal product improvement only.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§5.8 amended:</strong> Client data ownership strengthened — GDPR-aligned, no benchmarking without consent. From LTSA triage Part B (§5.8A).</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">6. Preventive Maintenance</h2>
+
+<h3 class="sec">6.1 OEM Compliance</h3>
+<p class="clause">All maintenance activities shall be performed in accordance with the Linyang OEM Maintenance Manual and applicable OEM guidelines.</p>
+<p class="clause ins"><strong>6.1A Warranty Preservation Obligation.</strong> The Service Provider shall perform all maintenance activities required to preserve the validity of: (i) the OEM product warranty and Direct Warranty Undertaking (DWU); (ii) the SOH Guarantee under Section 10; (iii) the OEM anti-corrosion (C5) coating warranty; (iv) the fire protection system warranty; (v) the PCS and MV equipment warranty; and (vi) the property and erection insurance. Failure by the Service Provider to perform any such maintenance activity shall constitute a material breach of this Agreement and the Service Provider may not invoke any OEM warranty exclusion arising from such failure.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§6.1A new:</strong> Warranty preservation obligation — from LTSA triage Part B. This protects the Client's warranty chain and prevents the Service Provider from citing an OEM exclusion caused by its own maintenance failure.</div>
+
+<h3 class="sec">6.2 Maintenance Schedule</h3>
+<p class="clause">Monthly remote checks; quarterly on-site visits (4 per year, OEM-mandated); quarterly remote health checks; annual grounding test. <em>[Unchanged from v4.0 — already reflects quarterly frequency per update-ltsa-sla-jun2026.py.]</em></p>
+
+<h3 class="sec">6.3 OEM-Mandated Maintenance Items</h3>
+<p class="clause">Monthly, six-monthly and annual OEM items unchanged.</p>
+<p class="clause ins"><strong>6.3A Warranty-Preservation File.</strong> The Service Provider shall maintain, per Park, a dedicated warranty-preservation file containing: (a) Completed OEM maintenance checklists with sign-off, dated and version-referenced; (b) Photographic records of each maintenance visit (components, connections, C5 coating condition); (c) Torque verification records for all bolted connections; (d) Thermal imaging reports from each quarterly visit; (e) Ground resistance test certificates (annual, must not exceed 4Ω); (f) Firmware version log and update records; (g) Alarm, fault, and SOC log exports (monthly); (h) Cell voltage imbalance records; (i) OEM-format reports where required by the OEM maintenance manual. This file shall be provided to the Client in digital format within fifteen (15) Business Days of each annual review and upon reasonable request at any time.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§6.3A new:</strong> Warranty-preservation file per Park — from LTSA triage Part B. Essential for Linyang warranty claims and for the DWU direct-enforcement right to remain valid.</div>
+
+<h3 class="sec">6.5 Quarterly Maintenance Visit Scope</h3>
+<p class="clause"><em>[Full scope unchanged — visual inspection, thermal imaging, BMS calibration, cooling, fire suppression, cables, firmware, protection testing, sensors, alarms, C5 coastal protection items (l)–(r).]</em></p>
+
+<h3 class="sec">6.8 Maintenance Scheduling</h3>
+<p class="clause">(a) Quarterly visits scheduled 30 days in advance; (b) Scheduling in low-dispatch windows;</p>
+<p class="clause">(c) <del>Total Scheduled Downtime shall not exceed ten (10) days per calendar year</del> <ins>Total Scheduled Downtime shall not exceed <strong>four (4) days (96 hours)</strong> per calendar year</ins>, distributed across quarterly preventive maintenance visits, OEM service windows, and system health checks. <ins>Visits shall be pre-scheduled and conducted in low-dispatch periods to minimise impact on Client dispatch revenue. Where the Service Provider requires more than four (4) days in any calendar year due to OEM-mandated requirements or safety-driven maintenance, the Service Provider shall obtain the Client's prior written consent, which shall not be unreasonably withheld.</ins></p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§6.8(c):</strong> Scheduled downtime — Client requested 2 days (48h); Service Provider counter: <strong>4 days (96h)</strong>. Rationale: 4 visits × ~2h each = 8h minimum OEM mandatory; annual grounding test + firmware windows require additional time. 4 days is the practical minimum. Further reduction below 4 days not operationally safe to commit.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">7. Service Fees and Payment</h2>
+
+<h3 class="sec">7.1 Annual Service Fee</h3>
+<p class="clause">The Client shall pay the annual Service Fee as set out in Schedule 2.</p>
+<p class="clause ins"><strong>EMS subscription included:</strong> The Tier C Service Fee of €1,740/MWh/yr is an all-in rate that includes the DISPERON EMS subscription fee (€400/MWh/yr). The EMS subscription is <strong>not</strong> billed separately in addition to the LTSA Service Fee.</p>
+
+<div class="change-note decided"><span class="badge badge-decided">Decided</span> <strong>§7.1:</strong> EMS included in all-in rate — from negotiation log item #7. €1,740/MWh/yr is the all-in Tier C rate matching the competitor price the client understood. DISPERON EMS not billed on top.</div>
+
+<h3 class="sec">7.3 Fee Adjustment</h3>
+<p class="clause">(a) <del>The Service Fee may be adjusted annually by an amount not exceeding the Cyprus CPI increase plus two percent (2%).</del> <ins>The Service Fee may be adjusted annually on each anniversary of the Effective Date by an amount not exceeding the <strong>Cyprus Consumer Price Index (CPI) increase</strong> for the preceding twelve (12) months (no additional uplift above CPI), capped at a maximum annual increase of <strong>three percent (3%)</strong> regardless of actual CPI. In years where CPI is negative, the Service Fee shall decrease accordingly.</ins></p>
+<p class="clause">(b) Any fee adjustment shall be notified at least sixty (60) days prior to the anniversary date.</p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§7.3:</strong> Fee escalation — Client requested flat freeze for 15 years (rejected). Service Provider counter: CPI-only, no +2%, hard cap at 3% per year. A 15-year flat freeze is not viable for a service contract.</div>
+
+<h3 class="sec">7.5 Late Payment</h3>
+<p class="clause">Late payments shall bear interest at <del>ECB main refinancing rate plus eight percent (8%) per annum</del> <ins>ECB main refinancing rate plus <strong>three percent (3%) per annum</strong></ins>, calculated on a simple interest basis, until paid in full.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§7.5:</strong> Late payment interest reduced from ECB+8% to ECB+3% — from Stelios triage #7. Below statutory default but accepted as negotiated rate.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">8. Response Times and Service Levels</h2>
+
+<h3 class="sec">8.1 24/7 Monitoring Capability</h3>
+<p class="clause">Automated alerts, multi-channel notifications unchanged. Duty roster, escalation protocol as before with acknowledgement within <del>thirty (30)</del> <ins>one (1)</ins> hour. Plus:</p>
+<p class="clause ins"><strong>8.1A Redundant Monitoring.</strong> The Monitoring Platform shall provide: (a) redundant monitoring channels with automatic failover; (b) automatic alerts for: low SOC (&lt;5%), low cell voltage (&lt;2.9V), temperature exceedance, HVAC fault, fire/gas detection trigger, PCS trip, communication loss &gt;15 minutes. Alert configuration shall comply with OEM warranty-preservation thresholds.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§8.1A new:</strong> Redundant monitoring channels and automatic alert thresholds — from LTSA triage Part B. Aligns with warranty-voiding threshold monitoring (Schedule 5).</div>
+
+<h3 class="sec">8.2 Response Time Commitments</h3>
+<p class="clause"><em>[Reflects update-ltsa-sla-jun2026.py — already incorporated in v4.0 base:]</em></p>
+<p class="clause">(a) <strong>Critical Alerts:</strong> Initial remote response within four (4) hours; <del>on-site attendance by the end of the next Business Day</del> <ins>on-site attendance by the end of the next <strong>calendar day</strong></ins>. For any safety risk the Service Provider shall apply immediate remote isolation or safe-shutdown.</p>
+<p class="clause">(b) <strong>Major Alerts:</strong> Initial remote response within one (1) Business Day; on-site attendance within five (5) Business Days.</p>
+<p class="clause">(c) <strong>Minor Alerts:</strong> Initial remote response within forty-eight (48) hours; on-site attendance at next scheduled maintenance or within five (5) Business Days, whichever is sooner.</p>
+<p class="clause">(d) Response Time is measured from the alert timestamp in the Monitoring Platform.</p>
+<p class="clause ins">(e) <strong>Clarification — Response vs Resolution Time.</strong> Response Times apply to initial response and on-site attendance. Restoration Time and Resolution Time depend on fault severity, parts availability, and OEM support, and are not subject to the Response Time SLA. The Service Provider shall provide the Client with regular status updates (minimum every two hours for Critical Alerts) until Resolution.</p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§8.2(a):</strong> On-site for Critical changed from "next Business Day" to "next <strong>calendar day</strong>" — counter to client's request for "2 hours on-site" (operationally unsafe for a small team). Calendar day is more protective than Business Day but achievable. Remote isolation available immediately for safety events.</div>
+
+<h3 class="sec">8.5 Service Level Credits</h3>
+<p class="clause">(a) Critical Alert breach: €100 per Business Day delay, max €1,000/incident.</p>
+<p class="clause">(b) Major Alert breach: €50 per Business Day delay, max €500/incident.</p>
+<p class="clause">(c) Quarterly cap: 10% of quarterly Service Fee.</p>
+<p class="clause">(d) Remediation plan trigger: 3+ breaches in any quarter.</p>
+<p class="clause">(e) <del>Sole Remedy: The Service Level Credits shall be the Client's sole and exclusive remedy for Response Time failures.</del> <ins>The Service Level Credits are the Client's sole and exclusive remedy for ordinary Response Time failures. <strong>This sole-remedy limitation does not apply to: (i) wilful default by the Service Provider; (ii) gross negligence; or (iii) any Response Time failure that directly causes or contributes to a safety incident, fire, or thermal runaway event.</strong></ins></p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§8.5(e):</strong> Sole-remedy carve-outs for wilful default, gross negligence, and safety incidents — from Dino triage NEGOTIATE item.</div>
+
+<h3 class="sec">8.6 Escalation Protocol</h3>
+<p class="clause">Acknowledgement within 1 hour; auto-escalation to backup + ops manager; client status updates every 2 hours.</p>
+<p class="clause ins"><strong>8.6A Major Incident Procedure.</strong> For any Major Incident (as defined in §3), the Service Provider shall: (a) notify the Client by telephone within one (1) hour of detection; (b) provide written incident notification by email within two (2) hours; (c) designate a named incident manager who is the Client's single point of contact until resolution; (d) provide status updates at minimum every four (4) hours; (e) deliver a preliminary root-cause analysis within five (5) Business Days; (f) deliver a full RCA report and corrective action plan within fifteen (15) Business Days; (g) notify the DSO and any regulatory authority as required by applicable law; (h) notify the insurer (Marsh or successor) as required by the CAR / erection / operational insurance policy.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§8.6A new:</strong> Major Incident Procedure — from LTSA triage Part B. Aligns with regulatory reporting and insurance notification obligations.</div>
+
+<h3 class="sec">8.7 Coverage Hours</h3>
+<p class="clause">Remote monitoring and remote response 24/7/365. On-site for Critical: <del>next Business Day</del> <ins>next calendar day (including weekends and public holidays — reasonable endeavours basis for non-working days; immediate remote isolation always available)</ins>. Minor Alerts: business hours only.</p>
+
+<div class="change-note decided"><span class="badge badge-decided">Decided</span> <strong>§8.7:</strong> Coverage aligned with §8.2 — calendar day for Critical on-site (not just Business Day). Remote isolation/safe-shutdown always available as the primary safety protection.</div>
+
+<!-- ════════════════════════════════════════ -->
+<div class="pg"></div>
+<h2 class="sec">9. Availability Guarantee (Tier C)</h2>
+
+<h3 class="sec">9.1 Availability Commitment</h3>
+<p class="clause"><del>Where the Client has selected Tier C services, the Service Provider guarantees that the BESS portfolio covered under this Agreement shall achieve a minimum annual Availability of ninety-seven percent (97%), calculated at the Group Level in accordance with Schedule 4.</del></p>
+<p class="clause ins"><strong>Where the Client has selected Tier C services, the Service Provider guarantees that <em>each Park individually</em> shall achieve a minimum annual Availability of ninety-seven percent (97%), calculated per Park in accordance with Schedule 4. A shortfall in availability at one Park is not offset by outperformance at another Park.</strong></p>
+
+<div class="change-note accepted"><span class="badge badge-accept">Accept</span> <strong>§9.1:</strong> Availability changed from Group-level to <strong>per-Park</strong> — from Dino triage. Group-level is not defensible for a two-park client with separately contracted parks. Aeolian LTSA already uses per-site basis. Schedule 4 updated accordingly.</div>
+
+<h3 class="sec">9.2 Calculation of Availability</h3>
+<p class="clause"><del>Availability shall be calculated on a Group Aggregate basis across all parks… Group Availability (%) = [SUM(Available Hours per Park) / SUM(Total Hours per Park)] × 100</del></p>
+<p class="clause ins"><strong>Availability shall be calculated separately for each Park as follows:</strong></p>
+<p class="clause ins">Park Availability (%) = [(Total Hours − Unavailable Hours for that Park) / Total Hours] × 100</p>
+<p class="clause ins">where Total Hours = 8,760 per year (8,784 leap year) from PAC date for that Park, and Unavailable Hours = hours when that Park's BESS cannot operate at its rated capacity due to equipment fault, failure, or Service Provider-caused downtime.</p>
+
+<p class="clause ins"><strong>9.2B Aggregate Reporting.</strong> In addition to per-Park availability, the Service Provider shall also calculate and report <em>aggregate availability</em> across all active Parks as a portfolio metric (for Client's information only; the 97% guarantee and associated LDs apply per Park, not at aggregate level).</p>
+
+<h3 class="sec">9.2A Group-Level Rationale</h3>
+<p class="clause"><del>The 97% Availability Guarantee applies at the group portfolio level, not per individual park. This means that an isolated park outage does not constitute a breach of the guarantee provided the weighted average availability across all active parks exceeds 97%...</del></p>
+<p class="clause ins"><em>[Section 9.2A deleted — per-Park measurement replaces group-level calculation. The group-level rationale paragraph is no longer applicable.]</em></p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§9.2A deleted:</strong> The group-level rationale para (which was the basis for the old structure) is removed. Per-Park calculation in §9.2 and §9.2B replaces it.</div>
+
+<h3 class="sec">9.3 Exclusions from Unavailable Hours</h3>
+<p class="clause">(a) Scheduled Downtime — <del>maximum 240 hours / 10 days</del> <ins>maximum 96 hours / 4 days</ins> per year per Park;</p>
+<p class="clause">(b) Grid unavailability or curtailment;</p>
+<p class="clause">(c) Force Majeure;</p>
+<p class="clause">(d) Client actions, third parties, or unauthorised modifications;</p>
+<p class="clause"><del>(e) Downtime caused by EMS or third-party system failures;</del> <ins>(e) Downtime caused by third-party EMS or systems not operated by or affiliated with the Service Provider. <strong>Downtime attributable to DISPERON or any other Lighthief group entity is not excluded and counts as Unavailable Hours (see §4.4A).</strong></ins></p>
+<p class="clause">(f) Periods when BESS is not dispatched by the Client or market operator.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§9.3(a) and (e):</strong> Scheduled downtime cap updated to 4 days (96h) per Park; EMS/DISPERON exclusion carve-out applied consistently.</div>
+
+<h3 class="sec">9.4 Availability Liquidated Damages</h3>
+<p class="clause">Per-Park LD tiers — <em>[LD percentage tiers unchanged: 5%/10%/15%/20% of annual Service Fee for that Park at &lt;97%/&lt;95%/&lt;93%/&lt;90% availability respectively]</em></p>
+
+<h3 class="sec">9.5 Cap on Availability Liquidated Damages</h3>
+<p class="clause"><del>The maximum Availability Liquidated Damages payable in any year shall not exceed twenty percent (20%) of the annual Service Fee.</del></p>
+<p class="clause ins">The maximum Availability Liquidated Damages payable in respect of any one Park in any contract year shall not exceed <strong>one hundred percent (100%) of the annual Service Fee attributable to that Park</strong>. For the avoidance of doubt, this cap applies per Park, not across the portfolio.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§9.5:</strong> Availability LD cap raised from 20% to 100% of annual Service Fee per Park — from Dino triage. The current 20% cap (≈€13k/yr) is very low. 100% of the annual Park fee (≈€44k/yr on Tier C at €1,740/MWh/yr × 25.2 MWh effective) is modest but reasonable. Cost is one annual fee, not more.</div>
+
+<h3 class="sec">9.6 Sole Remedy</h3>
+<p class="clause"><del>The Availability Liquidated Damages shall be the Client's sole and exclusive remedy for failure to achieve the Availability Guarantee.</del></p>
+<p class="clause ins">The Availability Liquidated Damages are the Client's sole and exclusive remedy for ordinary availability shortfalls. <strong>This sole-remedy limitation does not apply to: (a) wilful default; (b) gross negligence; or (c) safety incidents caused or contributed to by the Service Provider.</strong></p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§9.6:</strong> Sole-remedy carve-outs for wilful default, gross negligence, and safety incidents — consistent with §8.5(e).</div>
+
+<h3 class="sec">9.8 Chronic Underperformance</h3>
+<p class="clause ins"><strong>9.8 Chronic Underperformance.</strong> Where any Park achieves availability below ninety-five percent (95%) in any contract year, or below ninety-seven percent (97%) for two (2) consecutive contract years, the Service Provider shall within thirty (30) days: (a) prepare and deliver a written root-cause analysis and remediation plan to the Client; (b) at the Client's election, procure an independent technical audit of that Park at the Service Provider's cost; (c) implement agreed remediation measures within the timeline set out in the plan. Failure to deliver the remediation plan or implement agreed measures within the agreed timeline shall constitute a material breach of this Agreement.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§9.8 new:</strong> Chronic underperformance trigger — from LTSA triage Part B. Below-95% in one year or below-97% for two consecutive years triggers mandatory independent audit and remediation plan.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">10. State of Health (SOH) and Performance Warranty</h2>
+
+<h3 class="sec">10.1 SOH Guarantee — OEM Pass-Through</h3>
+<p class="clause">Unchanged: OEM-backed pass-through; SP facilitates; no double liability with §14.5.</p>
+
+<h3 class="sec">10.2 Guaranteed SOH Levels</h3>
+<p class="clause">For 1 cycle/day operation:</p>
+<table>
+  <thead><tr><th>End of Year</th><th>Current v4.0 (§10.2)</th><th>Stelios / Galascope request</th><th>Lighthief position (v5.0)</th></tr></thead>
+  <tbody>
+    <tr><td>Y1</td><td>98%</td><td>—</td><td>98% (unchanged)</td></tr>
+    <tr><td>Y2</td><td>96%</td><td>—</td><td>96% (unchanged)</td></tr>
+    <tr><td>Y3</td><td>94%</td><td>—</td><td>94% (unchanged)</td></tr>
+    <tr><td>Y4</td><td>92%</td><td>—</td><td>92% (unchanged)</td></tr>
+    <tr><td>Y5</td><td>85%</td><td><strong>86.78%</strong></td><td><ins><strong>86.78%</strong> ✓ confirmed from Linyang 0.25P source PDF (4 Aug 2026)</ins></td></tr>
+    <tr><td>Y10</td><td>79.58%</td><td>—</td><td>79.58% (unchanged)</td></tr>
+    <tr><td>Y15</td><td>70%</td><td><strong>73.61%</strong></td><td><ins><strong>73.61%</strong> ✓ confirmed from Linyang 0.25P source PDF — extended warranty required (LTSA Schedule 2)</ins></td></tr>
+  </tbody>
+</table>
+
+  <div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§10.2 SOH — CLOSED.</strong> Linyang Power Atlantic 5MWh Degradation Curve source PDF confirmed (4 Aug 2026): G1 and G2 are ~4-hour systems (0.25P operating condition). The 0.25P, 1-cycle/day curve gives Y5 = <strong>86.78%</strong> and Y15 = <strong>73.61%</strong> — matching Stelios's original request exactly. This is an OEM-data correction, not a new commercial concession. Y5 86.78% / Y15 73.61% are now the guaranteed figures. Schedule 5 updated accordingly. Open item CLOSED.</div>
+
+<h3 class="sec">10.3 SOH Measurement</h3>
+<p class="clause">Annual OEM-approved testing; written SOH certificate within 10 Business Days.</p>
+<p class="clause ins"><strong>10.3A Testing Protocol.</strong> SOH and RTE testing shall follow a pre-agreed written protocol, copies of which shall be provided to the Client at least thirty (30) days before each annual test. Tests shall be witnessed by the Client's representative (or its appointed Independent Engineer) if the Client so elects on seven (7) Business Days' notice. Test results shall be mutually signed as the reference values for the relevant contract year. If the Parties dispute a test result, the dispute procedure in §20.5 (independent technical expert) shall apply.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§10.3A new:</strong> Pre-agreed, witnessed testing protocol — from LTSA triage Part B. Reduces disputes at annual SOH measurement.</div>
+
+<h3 class="sec">10.4 Remedies for SOH Underperformance</h3>
+<p class="clause">(a) Isolated module failures — threshold: <del>less than 5%</del> <ins>less than <strong>3%</strong></ins> of total capacity: module replacement at SP cost within 60 days.</p>
+<p class="clause">(b) Systemic underperformance — threshold: <del>5% or more</del> <ins><strong>3% or more</strong></ins> of total capacity: augmentation or Liquidated Damages at SP's election. Augmentation within 120 days. SP bears all costs including:</p>
+<p class="clause ins"><strong>10.4A Full Remedy Scope.</strong> Where augmentation is the chosen remedy, the Service Provider shall bear all costs associated with restoring the guaranteed capacity including: (a) replacement cells / battery modules; (b) all labour and technical personnel costs; (c) international and domestic shipping and logistics; (d) <del>customs duties and import taxes are at OEM's cost for warranty returns;</del> <ins>customs clearance costs (with the Parties to agree a fair apportionment where customs costs arise on an OEM warranty return vs. a non-warranty augmentation);</ins> (e) craneage, lifting equipment, and site access; (f) installation, integration, and BMS configuration; (g) commissioning, testing, and sign-off.</p>
+
+<div class="change-note decided"><span class="badge badge-decided">Decided</span> <strong>§10.4:</strong> SOH systemic trigger lowered from 5% to <strong>3%</strong> of capacity — from negotiation log item #5. Full remedy scope (§10.4A) accepted for parts/labour/recommissioning; customs cost apportionment to be agreed for OEM warranty returns.</div>
+
+<h3 class="sec">10.5 SOH Liquidated Damages</h3>
+<p class="clause"><del>The maximum SOH Liquidated Damages payable over the Term shall not exceed fifty percent (50%) of the total Service Fees paid.</del></p>
+<p class="clause ins">Where the Service Provider elects to pay Liquidated Damages in lieu of augmentation, the LD shall equal the <strong>full cost of restoring the guaranteed capacity</strong> (whether by augmentation, equivalent replacement modules, or a combination), calculated at the prevailing market rate for equivalent battery modules at the time of claim. The maximum SOH Liquidated Damages payable over the Term shall not exceed the <strong>total aggregate Service Fees paid by the Client under Tier C and any warranty-extension services</strong> from the Commissioning Date to the date of the claim.</p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§10.5:</strong> SOH LD cap — Client wanted "full market lost income" (revenue guarantee — rejected). Lighthief counter: LD = full restoration cost (augmentation equivalent), capped at total Service Fees paid. This is better than the old 50% cap but not an open-ended revenue guarantee.</div>
+
+<h3 class="sec">10.6 OEM Warranty Reserve</h3>
+<p class="clause">SP ensures adequate OEM warranty provisions are maintained.</p>
+<p class="clause ins"><strong>10.6A Annual OEM Warranty Validity Evidence.</strong> The Service Provider shall, on each anniversary of the Commissioning Date, provide the Client with written confirmation that: (a) the OEM product warranty, DWU, and SOH guarantee remain valid and in full force; (b) there are no outstanding disputes between the Service Provider and the OEM that could affect warranty cover. The Service Provider shall notify the Client within five (5) Business Days of becoming aware of any OEM dispute, warranty withdrawal, OEM insolvency, or material change in OEM warranty terms.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§10.6A new:</strong> Annual OEM warranty validity evidence — from LTSA triage Part B. Ensures Client's warranty chain remains visible and uninterrupted.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">11. Spare Parts and Consumables</h2>
+
+<h3 class="sec">11.3 Spare Parts — Tier C (Local Warehouse)</h3>
+<p class="clause">(a) Local spare parts warehouse in Cyprus maintained; (b) Critical sub-components stocked for 24-hour response; (c) Warehouse cost included in Tier C fee.</p>
+<p class="clause">Critical spare parts include <em>at minimum</em>: BMS controllers and comms modules; cooling components (fans, filters, sensors); fuses, contactors, protection devices; PCS control boards and power modules; battery module balancing equipment.</p>
+<p class="clause ins"><strong>Note on full PCS units and transformers:</strong> Full PCS units (1,000/1,250 kVA) and MV transformers are capital items exceeding €100,000 each. Maintaining complete spare units in Cyprus is not included in the Tier C fee. The Service Provider commits to: (a) maintaining an OEM supply lead-time commitment of four (4) weeks for full PCS replacement from Linyang; (b) maintaining a network of logistics partners to expedite delivery if required; (c) sourcing equivalent specifications in the event of OEM discontinuation using commercially reasonable efforts.</p>
+<p class="clause ins"><strong>15-year obsolescence commitment:</strong> The Service Provider shall use commercially reasonable efforts to ensure that spare parts, firmware updates, and equivalent replacement components remain available throughout the 15-year Term. Where any critical component becomes commercially unavailable, the Service Provider shall notify the Client as soon as practicable and propose an approved equivalent solution.</p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§11.3:</strong> Spare parts — Client wanted full PCS units and transformers stocked locally. Counter: sub-components only in local warehouse; full PCS/transformer on 4-week OEM supply commitment. Full units are >€100k capital items — stocking cost is not in the Tier C fee. 15-year obsolescence accepted on reasonable-efforts basis.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">12. Client Obligations</h2>
+
+<h3 class="sec">12.5 Operational Compliance</h3>
+<p class="clause">Operate within OEM parameters; no modifications without written SP approval; maintain monitoring thresholds; no prolonged low-SOC conditions; maintain site security.</p>
+<p class="clause ins">(f) Cross-reference to LTSA §4.4A and EPC §10.5A: For as long as this Agreement is in force, the Client acknowledges that the BESS is operated under the continuous monitoring and O&amp;M responsibility of the Service Provider, and that the primary remedies for park performance issues are set out in this Agreement. EPC §13.2 liability caps are retained.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§12.5(f):</strong> Reflects Stelios triage #13 — EPC acknowledges LTSA responsibility; LTSA primary remedy regime while Agreement is in force. EPC liability cap retained.</div>
+
+<h3 class="sec">12.7 Consequences of Client Breach</h3>
+<p class="clause">(a) Non-payment: interest, 14-day suspension notice, 60-day termination right — unchanged.</p>
+<p class="clause">(b) Access denial: SP not liable for missed visit issues — unchanged.</p>
+<p class="clause">(c) Operational non-compliance: <del>The Service Provider shall have no liability for any resulting equipment damage or performance degradation; such damage shall be excluded from Availability and SOH calculations; the Client shall indemnify the Service Provider.</del> <ins>Where the Service Provider alleges that a Client operational non-compliance directly caused or contributed to a performance shortfall, the burden of proof shall rest on the <strong>Service Provider</strong> for ordinary maintenance failures. For Client operational non-compliance (including operation outside OEM parameters, low SOC conditions, connectivity denial, or access denial), the burden shall shift to the <strong>Client</strong> to demonstrate that it complied with its obligations under this Section 12.</ins></p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§12.7(c):</strong> Burden of proof modification — from LTSA triage A3. The original clause effectively placed the entire burden on the Service Provider to disprove client misconduct. The revised version: SP bears burden for ordinary maintenance; burden shifts to Client for its own operational breaches.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">13. Term and Termination</h2>
+
+<h3 class="sec">13.1 Initial Term</h3>
+<p class="clause">Five (5) years from Commissioning Date — unchanged.</p>
+
+<h3 class="sec">13.2 Renewal</h3>
+<p class="clause">Auto-renewal for successive one-year periods; 90 days' notice of non-renewal — unchanged.</p>
+
+<h3 class="sec">13.4 Termination for Convenience</h3>
+<p class="clause"><del>Either Party may terminate this Agreement for convenience by providing one hundred eighty (180) days' written notice.</del></p>
+<p class="clause ins"><strong>Client termination for convenience:</strong> The Client may terminate this Agreement for convenience at any time after the Initial Term by providing <strong>ninety (90) days'</strong> written notice. During the Initial Term the Client may terminate for convenience only on payment of the remaining Service Fees due for the Initial Term.</p>
+<p class="clause ins"><strong>Service Provider termination for convenience:</strong> The Service Provider may terminate this Agreement for convenience only after the Initial Term, by providing <strong>twelve (12) months'</strong> written notice.</p>
+<p class="clause ins">On termination by either Party: (a) all Performance Data, maintenance records, configuration files, SCADA/Modbus register maps, firmware records, and OEM warranty documentation shall be delivered to the Client within thirty (30) days of the termination date; (b) the Service Provider's data-access rights shall continue for thirty (30) days after termination solely to facilitate data export and transition; (c) Section 13.6 (transition assistance) applies.</p>
+
+<div class="change-note decided"><span class="badge badge-decided">Decided</span> <strong>§13.4:</strong> Asymmetric termination — from negotiation log item #4. Client 90 days; Service Provider 12 months (post-Initial-Term only). Warranty and data obligations on termination preserved. Reasonable asymmetry for project-finance context.</div>
+
+<h3 class="sec">13.6 Transition Assistance (NEW)</h3>
+<p class="clause ins"><strong>13.6 Transition Assistance.</strong> For a period of ninety (90) days following termination or expiry of this Agreement (the "Transition Period"), the Service Provider shall: (a) provide all Performance Data in the Client's requested format (CSV, JSON, or equivalent); (b) export and deliver all configuration data, SCADA point lists, IEC 60870-5-104 register maps, Modbus maps, firmware versions, protection settings, and relay configuration records; (c) provide user account credentials and access to the Monitoring Platform; (d) make qualified personnel available for up to two (2) knowledge-transfer sessions with the Client's incoming O&amp;M provider; (e) provide a handover technical report summarising current Park status, outstanding issues, open warranty claims, and OEM contact information. The Transition Period services shall be provided at no additional charge where termination is at the Client's election or due to expiry of the Initial Term; where termination is for SP convenience, Transition Period services are also at no additional charge.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§13.6 new:</strong> 90-day transition assistance — from LTSA triage Part B. Industry standard; ensures continuity of Client operations on exit.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">14. Limitation of Liability</h2>
+
+<h3 class="sec">14.2 Liability Cap</h3>
+<p class="clause"><del>The Service Provider's total aggregate liability under this Agreement shall not exceed the total Service Fees paid by the Client in the twelve (12) months preceding the claim.</del></p>
+<p class="clause ins">The Service Provider's total aggregate liability under this Agreement shall not exceed the total Service Fees paid by the Client in the <strong>twenty-four (24) months</strong> preceding the claim giving rise to liability.</p>
+
+<div class="change-note neg"><span class="badge badge-neg">Counter</span> <strong>§14.2:</strong> Liability cap raised from 12 months to <strong>24 months</strong> — Lighthief counter to Client's request for 200% of total contract value. A 15-year relationship and a €3.4M system warrants more than 12 months. 24 months is reasonable.</div>
+
+<h3 class="sec">14.3 Carve-Outs</h3>
+<p class="clause">Carve-outs from liability limitations — unchanged: wilful misconduct, gross negligence, confidentiality breach, indemnification obligations.</p>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">15 – 19. General Provisions</h2>
+
+<h3 class="sec">15 Confidentiality — unchanged</h3>
+<h3 class="sec">16 Force Majeure — unchanged</h3>
+<h3 class="sec">17 Compliance and Anti-Bribery — unchanged</h3>
+<h3 class="sec">18 Data Protection (GDPR) — unchanged</h3>
+<h3 class="sec">19 Regulatory Compliance — unchanged</h3>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">20. Governing Law and Dispute Resolution</h2>
+
+<h3 class="sec">20.1 – 20.4 Unchanged</h3>
+<p class="clause">Governing law: Cyprus. Jurisdiction: Cyprus courts. 30-day amicable resolution. English language prevails.</p>
+
+<h3 class="sec">20.5 Independent Technical Expert (NEW)</h3>
+<p class="clause ins"><strong>20.5 Independent Technical Expert.</strong> Where any technical dispute arises regarding Availability calculation, SOH measurement, RTE testing, root-cause determination, or any other technical matter under this Agreement, either Party may refer the dispute to an independent technical expert (the "Expert") with relevant BESS expertise, agreed between the Parties within ten (10) Business Days of a written referral request (failing agreement, appointed by the Cyprus Scientific and Technical Chamber (ETEK) on request of either Party). The Expert's determination shall be final and binding on both Parties save in cases of manifest error. The costs of the Expert shall be borne by the losing Party, or as the Expert directs. Use of the Expert procedure does not prejudice either Party's right to pursue legal proceedings for non-technical claims.</p>
+
+<div class="change-note accept"><span class="badge badge-accept">Accept</span> <strong>§20.5 new:</strong> Independent technical expert for technical disputes — from LTSA triage Part B. Reduces arbitration costs for Availability/SOH disputes; ETEK as appointing authority is appropriate for Cyprus BESS context.</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">21. Miscellaneous</h2>
+
+<h3 class="sec">21.3A Assignment for Security</h3>
+<p class="clause">Client may assign rights to project finance lender without SP consent; lender to assume payment obligations on enforcement — unchanged.</p>
+
+<h3 class="sec">21.3B Lender Step-in Rights</h3>
+<p class="clause ins">Where a project finance lender notifies the Service Provider that it is exercising step-in rights under the Client's financing documents, the Service Provider shall: (a) recognise the lender (or its nominee) as the Client for the purposes of this Agreement; (b) continue to provide all services without interruption during the step-in period; (c) not terminate this Agreement for Client default during a step-in period of up to ninety (90) days without the lender's prior written consent. The Service Provider shall provide the lender with copies of all default notices simultaneously with delivery to the Client.</p>
+
+<div class="change-note third"><span class="badge badge-third">Third Party</span> <strong>§21.3B:</strong> Lender step-in rights — <span class="third-party">Alpha Bank and Anastasios to confirm the step-in structure required by the project financing</span>. Draft clause provided as starting point.</div>
+
+<h3 class="sec">Companion Documents</h3>
+<p class="clause"><del>This LTSA is intended to be executed alongside and read in conjunction with: (a) EPC Agreement (LCY-EPC-GAL-B1-2026 v4.0)…</del></p>
+<p class="clause ins"><strong>All companion documents are co-executed on the same date (Effective Date = Order Date = signing date).</strong> This Agreement is executed simultaneously with the following instruments, all of which are in force from the same Effective Date:</p>
+<ol class="clause-list">
+  <li><ins>EPC Agreement — <strong>LCY-EPC-GAL-B1-2026 v6.3</strong> (Lighthief Cyprus Ltd / Galascope Ltd)</ins></li>
+  <li><ins>Technical Agreement — Galascope 1 (5 MW / 20 MWh) — signed off by both Parties, confirming frozen specification (Schedule A)</ins></li>
+  <li><ins>Technical Agreement — Galascope 2 (2.5 MW / 10 MWh) — same</ins></li>
+  <li><ins>OEM Direct Warranty Undertaking G1 — LCY-OEM-DWU-G1-001 (Linyang Energy — <span class="third-party">signed and sealed by Linyang on signing day</span>)</ins></li>
+  <li><ins>OEM Direct Warranty Undertaking G2 — LCY-OEM-DWU-G2-001 (Linyang Energy — same)</ins></li>
+  <li><ins>EMS Subscription Addendum — DISPERON / R&amp;D Innovations Sp. z o.o. (€400/MWh/yr from PAC; included in LTSA Tier C all-in rate of €1,740/MWh/yr while LTSA is in force)</ins></li>
+</ol>
+<p class="clause ins">The advance payment under EPC §7.1(a) falls due <strong>on receipt of Connection Terms</strong> (EPC §1A.3), not on signing. The following remain as conditions precedent to the advance (cannot be co-signed — issued by third parties after signing):</p>
+<ul class="clause-list">
+  <li><ins>Advance Payment Guarantee No. 1 — Bank of Communications, naming Galascope Ltd as beneficiary (issued after bank receives both signed EPC and signed Linyang Sales Contract)</ins></li>
+  <li><ins>OEM 5% Performance Guarantee — Linyang (issued at order placement)</ins></li>
+  <li><ins>Confirmed Price Certificate — Lighthief Cyprus Ltd (issued within 14 days of Connection Terms)</ins></li>
+</ul>
+
+<div class="change-note decided"><span class="badge badge-decided">Decided — 4 Aug 2026</span> <strong>Co-execution structure:</strong> All 6 instruments (EPC · LTSA · TA G1 · TA G2 · DWU G1 · DWU G2 · EMS Addendum) signed on the same day. Order Date = Effective Date = signing date. Advance payment remains conditional on Connection Terms + APG (EPC §1A.3/§1A.5). EPC §1A.4 "no payment obligation at signing" to be revised by Arek — the document package is now complete at signing; the financial trigger is Connection Terms. §1A.8 (Documents Long-Stop) is no longer needed.</div>
+
+<!-- ════════════════════════════════════════ -->
+<div class="pg"></div>
+<h2 class="sec">Schedule 1 – Site Details</h2>
+
+<div class="schedule-box">
+  <div class="sch-head">Schedule 1 — Parks Covered</div>
+  <div class="sch-body">
+    <table>
+      <thead><tr><th>Park</th><th>Ref</th><th>Location</th><th>BESS Capacity</th><th>PAC Date</th></tr></thead>
+      <tbody>
+        <tr><td><strong>G1 — Galascope 1</strong></td><td>GAL-G1</td><td>Famagusta, Cyprus</td><td>5 MW / 20 MWh</td><td>[●] per EPC §1A.5</td></tr>
+        <tr><td><strong>G2 — Galascope 2</strong></td><td>GAL-G2</td><td>Famagusta, Cyprus</td><td>2.5 MW / 10 MWh</td><td>[●] per EPC §1A.5</td></tr>
+        <tr class="total-row"><td><strong>Total</strong></td><td>—</td><td>—</td><td><strong>7.5 MW / 30 MWh</strong></td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:8pt; color:#6c757d;">OEM: Linyang Energy Storage Technology Co. Ltd · Container model: Atlantic 5 MWh / Atlantic 2.5 MWh · Cell chemistry: LFP (EVE 314A) · PCS: Kehua BCS series · EMS: DISPERON</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">Schedule 2 – Service Fees</h2>
+
+<div class="schedule-box">
+  <div class="sch-head">Schedule 2 — Annual Service Fee (Tier C — default for Galascope)</div>
+  <div class="sch-body">
+    <table>
+      <thead><tr><th>Park</th><th>Effective MWh</th><th>Tier C all-in rate (incl. EMS)</th><th>Annual Service Fee (€)</th><th>Escalation</th></tr></thead>
+      <tbody>
+        <tr><td>G1 — Galascope 1</td><td>20.06 MWh</td><td><del>€400/MWh/yr (EMS only)</del> <ins>€1,740/MWh/yr all-in</ins></td><td><ins>€34,904</ins></td><td rowspan="2"><ins>CPI only, max 3%/yr</ins></td></tr>
+        <tr><td>G2 — Galascope 2</td><td>10.03 MWh</td><td><ins>€1,740/MWh/yr all-in</ins></td><td><ins>€17,452</ins></td></tr>
+        <tr class="total-row"><td><strong>Total annual (both parks)</strong></td><td><strong>30.09 MWh</strong></td><td>—</td><td><strong>€52,357/yr</strong></td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:8pt; color:#6c757d; margin-top:6px;">All-in Tier C rate of €1,740/MWh/yr includes: 24/7 monitoring, quarterly on-site visits (4/yr OEM-mandated), all corrective maintenance, local spare parts warehouse (sub-components), per-Park 97% Availability Guarantee, SOH guarantee facilitation, and DISPERON EMS subscription (€400/MWh/yr). No separate EMS billing. Base warranty covers Years 1–5. VAT: Cyprus reverse-charge mechanism applies (Article 11B, VAT Law L. 95(I)/2000). Fees are exclusive of VAT.</p>
+
+    <h4 class="sec" style="margin-top:14px;">Optional BESS Extended Warranty (Client election — not in base rate)</h4>
+    <table>
+      <thead><tr><th>Period</th><th>Scope</th><th>Rate (€/MWh/yr)</th><th>Annual cost (30 MWh)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Base warranty Years 1–5</td><td>BESS + PCS + MVS</td><td>Included in €1,740/MWh/yr</td><td>—</td><td><span class="badge badge-accept" style="background:#28a745;">Included</span></td></tr>
+        <tr><td><ins>Optional: Years 6–10</ins></td><td><ins>BESS only (cells, modules, BMS)</ins></td><td><ins>€913.92/MWh/yr</ins></td><td><ins>€27,417.60/yr</ins></td><td><ins>Client election — not selected by default</ins></td></tr>
+        <tr><td><ins>Optional: Years 11–15</ins></td><td><ins>BESS only (cells, modules, BMS)</ins></td><td><ins>€1,157.62/MWh/yr</ins></td><td><ins>€34,728.60/yr</ins></td><td><ins>Client election — not selected by default<br>SOH Y15 guarantee requires this to be elected</ins></td></tr>
+        <tr><td>PCS extended warranty (Years 6–10)</td><td>PCS / MVS</td><td>€747.76/MWh/yr</td><td>€22,432.80/yr</td><td><span class="badge" style="background:#6c757d;color:#fff;">Not offered per Client instruction</span></td></tr>
+        <tr><td>PCS extended warranty (Years 11–15)</td><td>PCS / MVS</td><td>€926.10/MWh/yr</td><td>€27,783.00/yr</td><td><span class="badge" style="background:#6c757d;color:#fff;">Not offered per Client instruction</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:7.5pt; color:#6c757d;">Extended warranty rates are official Linyang Cyprus pricing for this Project (EUR/MWh/yr excl. VAT). Rates administered via this LTSA (Schedule 2) if elected. Neither extension is selected or included in the base Service Fee. Decision to extend is with the Client; SOH guarantee at Year 10 and Year 15 is conditional on the corresponding extension having been elected and paid.</p>
+
+    <div class="change-note decided" style="margin-top:8px;"><span class="badge badge-decided">Decided</span> EMS included in all-in rate · CPI-only escalation (max 3%) · Per-Park billing basis · Cyprus reverse-charge VAT confirmed · Extended warranty rows added per EPC §10.6-EXT · PCS/MVS extended warranty not offered per Client instruction</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">Schedule 3 – Maintenance Checklist</h2>
+<p class="clause"><em>[Unchanged from v4.0 — quarterly visit checklist, OEM-mandated items, C5 coastal protection items.]</em></p>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">Schedule 4 – Availability Calculation (Revised: Per-Park)</h2>
+
+<div class="schedule-box">
+  <div class="sch-head">Schedule 4 — Availability Formula (v5.0 — Per-Park)</div>
+  <div class="sch-body">
+    <p style="font-size:8.5pt; margin-bottom:8px;"><del>Group Availability (%) = [SUM(Available Hours per Park) / SUM(Total Hours per Park)] × 100</del></p>
+    <p style="font-size:8.5pt; margin-bottom:8px;"><ins><strong>Per-Park Availability (%) = [(Total Hours − Unavailable Hours for that Park) / Total Hours] × 100</strong></ins></p>
+    <p style="font-size:8.5pt; margin-bottom:8px;">Where Total Hours = 8,760/yr (8,784 leap year) from PAC date. Unavailable Hours excludes: scheduled downtime (max 96h/4 days per Park per year), grid curtailment, Force Majeure, Client actions, non-Lighthief EMS failures, non-dispatch periods.</p>
+    <table>
+      <thead><tr><th>Achieved Availability (per Park)</th><th>LD (% of annual Service Fee for that Park)</th><th>Cap</th></tr></thead>
+      <tbody>
+        <tr><td>95% to &lt;97%</td><td>5%</td><td rowspan="4"><ins>100% of annual Service Fee for that Park</ins> <del>(was 20%)</del></td></tr>
+        <tr><td>93% to &lt;95%</td><td>10%</td></tr>
+        <tr><td>90% to &lt;93%</td><td>15%</td></tr>
+        <tr><td>Below 90%</td><td>20%</td></tr>
+      </tbody>
+    </table>
+    <div class="change-note accept" style="margin-top:6px;"><span class="badge badge-accept">Accept</span> Per-Park measurement · Scheduled downtime cap 4 days (96h) per Park per year · LD cap raised to 100% of annual Park fee</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">Schedule 5 – SOH Degradation Curve</h2>
+
+<div class="schedule-box">
+  <div class="sch-head">Schedule 5 — SOH Guarantee (v5.0)</div>
+  <div class="sch-body">
+    <p style="font-size:8pt; margin-bottom:8px;"><strong>Initial SOH at PAC (COD):</strong> 98.5% · <strong>Operating condition:</strong> 0.25P, 1 cycle/day (confirmed — G1 and G2 are ~4-hour systems) · <strong>Source:</strong> Linyang Power Atlantic 5MWh Degradation Curve document (SA-05), confirmed 4 Aug 2026</p>
+    <p style="font-size:8pt; margin-bottom:8px;"><strong>Systemic underperformance threshold:</strong> <del>5%</del> <ins><strong>3%</strong></ins> of total Park capacity · <strong>Cycle life:</strong> <del>7,000</del> <ins><strong>8,000</strong></ins> cycles at 0.25P, 90% DoD, to 70% EOL</p>
+    <table>
+      <thead><tr><th>End of Year</th><th>v4.0 SOH</th><th>v5.0 Confirmed SOH<br>(0.25P, 1 cycle/day — Linyang source PDF)</th><th>Extended warranty<br>required?</th></tr></thead>
+      <tbody>
+        <tr><td>Y0 (COD)</td><td>98%</td><td><ins>98.5%</ins></td><td>Base</td></tr>
+        <tr><td>Y1</td><td>98%</td><td><ins><strong>94.62%</strong></ins></td><td>Base</td></tr>
+        <tr><td>Y2</td><td>96%</td><td><ins><strong>91.77%</strong></ins></td><td>Base</td></tr>
+        <tr><td>Y3</td><td>94%</td><td><ins><strong>89.91%</strong></ins></td><td>Base</td></tr>
+        <tr><td>Y4</td><td>92%</td><td><ins><strong>88.00%</strong></ins></td><td>Base</td></tr>
+        <tr><td>Y5</td><td>85%</td><td><ins><strong>86.78%</strong> ✓ confirmed</ins></td><td>Base</td></tr>
+        <tr><td>Y6</td><td>83%</td><td><ins><strong>84.97%</strong></ins></td><td>Extended Yr 6–10</td></tr>
+        <tr><td>Y7</td><td>81%</td><td><ins><strong>83.83%</strong></ins></td><td>Extended Yr 6–10</td></tr>
+        <tr><td>Y8</td><td>79%</td><td><ins><strong>82.25%</strong></ins></td><td>Extended Yr 6–10</td></tr>
+        <tr><td>Y9</td><td>80%</td><td><ins><strong>81.06%</strong></ins></td><td>Extended Yr 6–10</td></tr>
+        <tr><td>Y10</td><td>79.58%</td><td><ins><strong>79.58%</strong></ins></td><td>Extended Yr 6–10</td></tr>
+        <tr><td>Y15</td><td>70%</td><td><ins><strong>73.61%</strong> ✓ confirmed</ins></td><td>Extended Yr 11–15</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:7.5pt; color:#6c757d; margin-top:6px;">All values from Linyang Power Atlantic 5MWh Degradation Curve document, 0.25P operating condition. Y10 and Y15 guarantees conditional on corresponding extended warranty (Schedule 2) being elected and paid. Category A (&lt;3% capacity): module replacement within 60 days. Category B (≥3% capacity): augmentation within 120 days or LD = full restoration cost (capped at total Tier C fees paid). Warranty-voiding conditions: cell voltage &lt;2.8V for 120 consecutive hours; SOC = 0% for 120 consecutive hours; cell voltage ≤2.5V (any occurrence); SOC &lt;5% for &gt;7 consecutive days. These conditions do not void warranty where caused by grid fault, EMS malfunction, Force Majeure, or Contractor monitoring failure (EPC §10.5/§10.5A mirrored in LTSA §4.4A).</p>
+    <div class="change-note accept" style="margin-top:6px;"><span class="badge badge-accept">Accept</span> <strong>All SOH values confirmed (4 Aug 2026)</strong> from Linyang source PDF. Full annual curve added. Cycle life corrected to 8,000 cycles. Extended warranty conditional values (Y6–Y15) linked to Schedule 2 election. Open item CLOSED.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<h2 class="sec">Pre-Signature Checklist — Target: <ins style="color:var(--gold);font-size:13pt;">12 August 2026</ins></h2>
+
+<div class="change-note decided" style="margin-bottom:10px;">
+  <span class="badge badge-decided">Decided — 4 Aug 2026</span>
+  <strong> All 6 instruments co-signed on 12 August 2026</strong> (8 days from today) — EPC v6.3 · LTSA v5.0 · Technical Agreement G1 · Technical Agreement G2 · DWU G1 · DWU G2 · EMS Addendum. Effective Date = Order Date = 12 August 2026. Advance payment falls due at Connection Terms receipt (EPC §1A.3), not on signing.
+</div>
+
+<table>
+  <thead><tr><th>#</th><th>Item</th><th>Owner</th><th>Must be done by</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Arek reviews EPC → confirms ORDER DATE = Effective Date, §1A.4 rewrite, §1A.8 drop</td><td>Arkadiusz Sybaris</td><td><strong style="color:#dc3545;">5 Aug</strong></td><td><span class="badge badge-open">Waiting</span></td></tr>
+    <tr><td>2</td><td>EPC v6.3 final — updated with Arek's feedback</td><td>Alexander</td><td>6 Aug</td><td><span class="badge badge-open">Pending #1</span></td></tr>
+    <tr><td>3</td><td>Technical Agreements G1 + G2 — all TBCs closed, BOP loss allowance [X.X]% set by Costas</td><td>Costas</td><td><strong style="color:#dc3545;">6 Aug</strong></td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>4</td><td>Linyang (Kamil / Conor) confirms DWU G1 + G2 signed/sealed by 12 Aug</td><td>Alexander</td><td><strong style="color:#dc3545;">5 Aug</strong></td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>5</td><td>DWU G1 + G2 final text agreed — SOH updated to 0.25P curve (86.78% / 73.61%)</td><td><span class="third-party">Linyang / Alexander</span></td><td>7 Aug</td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>6</td><td>SOH Y5 86.78% / Y15 73.61% — confirmed from Linyang 0.25P source PDF</td><td>Lighthief</td><td>Done ✓</td><td><span class="badge badge-accept" style="background:#28a745;">CLOSED ✓</span></td></tr>
+    <tr><td>7</td><td>EMS Addendum final — DISPERON / R&amp;D Innovations ready to sign</td><td>Alexander</td><td>7 Aug</td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>8</td><td>LTSA Schedule 2 completed — Dino confirms Tier C and fee schedule (€52,357/yr total)</td><td>Dino / Galascope</td><td><strong style="color:#dc3545;">7 Aug</strong></td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>9</td><td>Scheduled downtime 4 days + liability cap 24 months — Galascope confirms or proposes final position</td><td>Dino / Anastasios</td><td>8 Aug</td><td><span class="badge badge-open">Pending response</span></td></tr>
+    <tr><td>10</td><td>Alpha Bank lender step-in §21.3B — structure confirmed</td><td><span class="third-party">Alpha Bank / Anastasios</span></td><td>8 Aug</td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>11</td><td>Linyang performance guarantee (5% × Comp A = €141,158) — signed/sealed</td><td><span class="third-party">Linyang</span></td><td>12 Aug</td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>12</td><td>Lighthief International confirmation letter — signed by Dr. Arkadiusz Sybaris (§16.3B)</td><td>Arkadiusz Sybaris</td><td>10 Aug</td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr><td>13</td><td>Full 6-document package cross-checked for consistency</td><td>Alexander + Costas</td><td>10 Aug</td><td><span class="badge badge-open">Pending above</span></td></tr>
+    <tr><td>14</td><td>Final package sent to Anastasios (Galascope lawyer) for pre-signing clearance</td><td>Alexander</td><td>10 Aug</td><td><span class="badge badge-open">Pending #13</span></td></tr>
+    <tr><td>15</td><td>Signing logistics confirmed — venue / e-sign / Linyang DWU delivery method</td><td>Alexander + Dino</td><td>10 Aug</td><td><span class="badge badge-open">Open</span></td></tr>
+    <tr style="background:#d4f4dd!important;"><td><strong>★</strong></td><td><strong>ALL 6 DOCUMENTS SIGNED — Effective Date 12 August 2026</strong></td><td><strong>Both Parties + Linyang + DISPERON</strong></td><td><strong style="color:#155724;">12 Aug 2026</strong></td><td><span class="badge badge-decided">TARGET</span></td></tr>
+  </tbody>
+</table>
+
+<div class="note gold-note" style="margin-top:8px; font-size:8pt;">
+  <strong>Advance payment (€833,728) is NOT due on signing.</strong> It falls due 30 days after the later of: (i) Effective Date (12 Aug 2026); and (ii) receipt of Connection Terms from EAC/DSO — per EPC §1A.3. The Bank of Communications cannot issue the APG until after signing (the bank needs both the signed EPC and the signed Linyang Sales Contract). APG + Performance Guarantee remain as conditions precedent to the advance, not to the signing.
+</div>
+
+<!-- CONTACT -->
+<div class="contact-box">
+  <div>
+    <div class="ct-name">Alexander Papacosta</div>
+    <div class="ct-detail">Cyprus Director · Lighthief Cyprus Ltd</div>
+  </div>
+  <div class="ct-detail">
+    <strong style="color:var(--gold);">office@lighthief.com</strong><br>
+    +357 99 164 158 (direct) · +357 77 77 00 50 (office)
+  </div>
+</div>
+
+<div class="footer">
+  <div>Lighthief Cyprus Ltd · HE 477423 · solarfarms.cy</div>
+  <div>LCY-LTSA-GAL-2026 v5.0 · 4 August 2026 · INTERNAL REDLINE — Not for distribution without redaction</div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
