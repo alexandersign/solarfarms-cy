@@ -204,6 +204,7 @@ def main():
             'plant_name':   place['name'],
             'tags': ['google_places_enriched', 'source:osm', 'segment:commercial'],
         }
+        if place.get('place_id'):   patch['place_id']        = place['place_id']
         if address and generic_loc: patch['location']        = address
         if detail.get('phone'):     patch['contact_phone']   = detail['phone']
         if detail.get('website'):   patch['company_website'] = detail['website']

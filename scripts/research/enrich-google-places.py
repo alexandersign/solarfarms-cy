@@ -230,16 +230,16 @@ def main():
         patch = {
             'company_name': place['name'],
             'plant_name':   place['name'],
+            'tags': ['google_places_enriched', 'source:osm', 'segment:commercial'],
         }
+        if place.get('place_id'):   patch['place_id']        = place['place_id']
         if address:
             existing_loc = rec.get('location') or ''
             if not existing_loc or 'District, Cyprus' in existing_loc:
                 patch['location'] = address
         if detail.get('phone'):   patch['contact_phone']   = detail['phone']
         if detail.get('website'): patch['company_website'] = detail['website']
-        if industry:              patch['industry']         = industry
-        # Remove needs_enrichment tag, add google_places_enriched
-        patch['tags'] = ['google_places_enriched', 'source:osm', 'segment:commercial']
+        if industry:              patch['industry']        = industry
 
         named += 1
         if DRY:
