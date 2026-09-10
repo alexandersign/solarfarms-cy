@@ -1287,7 +1287,7 @@ export default function CrmPage() {
                     href={
                       prospect.place_id
                         ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(prospect.place_id)}`
-                        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(prospect.location || prospect.district + ' Cyprus')}`
+                        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([prospect.plant_name, prospect.location || (prospect.district + ', Cyprus')].filter(Boolean).join(', '))}`
                     }
                     target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-1 hover:text-blue-600"
@@ -1560,7 +1560,7 @@ export default function CrmPage() {
                             href={
                               prospect.place_id
                                 ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(prospect.place_id)}`
-                                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(prospect.location)}`
+                                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([prospect.plant_name, prospect.location].filter(Boolean).join(', '))}`
                             }
                             target="_blank" rel="noopener noreferrer"
                             className="text-[11px] text-blue-500 hover:text-blue-700 underline shrink-0"
