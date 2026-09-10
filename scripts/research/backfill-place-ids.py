@@ -50,8 +50,15 @@ def sb_fetch(offset=0, page=500):
 
 def sb_patch(rid, patch):
     body = json.dumps(patch).encode()
-    urllib.request.urlopen(urllib.request.Request(
-        f'{SB_URL}?id=eq.{rid}', data=body, headers=SB_W, method='PATCH'), timeout=15)
+    req = urllib.request.Request(
+        f'{SB_URL}?id=eq.{rid}', data=body, headers=SB_W, method='PATCH')
+    try:
+        urllib.request.urlopen(req, timeout=15)
+        return True
+    except urllib.error.HTTPError as e:
+        if e.code == 409:
+            return False   # duplicate place_id — skip silently
+        raise
 
 def osm_centroid(way_id):
     try:
@@ -122,8 +129,11 @@ def main():
                 print(f'  [{idx+1}] {name[:45]:45} → {pid}')
             else:
                 try:
-                    sb_patch(rec['id'], {'place_id': pid})
-                    updated += 1
+                    ok = sb_patch(rec['id'], {'place_id': pid})
+                    if ok:
+                        updated += 1
+                    else:
+                        skipped += 1   # 409 duplicate — already assigned to another record
                 except Exception as e:
                     print(f'  PATCH error: {e}')
         else:
