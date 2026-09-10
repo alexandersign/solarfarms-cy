@@ -37,7 +37,7 @@ SB_R = {'apikey': SB_KEY, 'Authorization': f'Bearer {SB_KEY}'}
 SB_W = {**SB_R, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'}
 NOW  = datetime.now(timezone.utc).isoformat()
 
-OV   = 'https://overpass-api.de/api/interpreter'
+OSM_API = 'https://api.openstreetmap.org/api/0.6'
 GP_N = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
 GP_D = 'https://maps.googleapis.com/maps/api/place/details/json'
 
@@ -63,34 +63,23 @@ def sb_patch(rid, patch):
 
 # ─── Overpass: tiny batches (10 ways) ────────────────────────────────────────
 
-def poly_centroid(coords):
-    if not coords: return None, None
-    return sum(c[0] for c in coords)/len(coords), sum(c[1] for c in coords)/len(coords)
-
-def overpass_centroids(way_ids: list[int]) -> dict:
-    """Returns {way_id: (lat, lon)}. Tiny batch = fast and reliable."""
-    q   = f'[out:json][timeout:20];way(id:{",".join(str(i) for i in way_ids)});out center;'
-    url = OV + '?data=' + urllib.parse.quote(q)
+def osm_way_centroid(way_id: int) -> tuple | None:
+    """
+    Get centroid of an OSM way via the official REST API /way/{id}/full.json
+    Returns (lat, lon) or None. Fast, reliable, no rate limit for read access.
+    """
+    url = f'{OSM_API}/way/{way_id}/full.json'
     req = urllib.request.Request(url, headers={'User-Agent': 'LighthiefCRM/2.0'})
-    for attempt in range(4):
-        try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                elements = json.loads(resp.read()).get('elements', [])
-            result = {}
-            for el in elements:
-                if el.get('type') == 'way':
-                    c = el.get('center', {})
-                    if c.get('lat') and c.get('lon'):
-                        result[el['id']] = (c['lat'], c['lon'])
-            return result
-        except urllib.error.HTTPError as e:
-            wait = 3 * (attempt + 1)
-            print(f'  Overpass HTTP {e.code} — retry in {wait}s', flush=True)
-            time.sleep(wait)
-        except Exception as e:
-            print(f'  Overpass error: {e} — retry in 3s', flush=True)
-            time.sleep(3)
-    return {}
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            elements = json.loads(resp.read()).get('elements', [])
+        nodes = [(e['lat'], e['lon']) for e in elements if e.get('type') == 'node']
+        if not nodes:
+            return None
+        return (sum(n[0] for n in nodes) / len(nodes),
+                sum(n[1] for n in nodes) / len(nodes))
+    except Exception:
+        return None
 
 
 # ─── Google Places ────────────────────────────────────────────────────────────
@@ -168,21 +157,16 @@ def main():
            for r in records if (r.get('place_id') or '').startswith('osm:')]
     print(f'  {len(records)} anonymous | {len(osm)} with OSM IDs\n', flush=True)
 
-    # Overpass centroids — 10 ways per query
-    BATCH = 10
+    # Get centroids via OSM REST API (one call per way — reliable, no rate limit)
     coords = {}
-    total_batches = (len(osm) + BATCH - 1) // BATCH
-    print(f'Getting centroids via Overpass ({total_batches} batches of {BATCH})...',
-          flush=True)
-    for i in range(0, len(osm), BATCH):
-        chunk   = osm[i:i+BATCH]
-        way_ids = [wid for _, wid in chunk]
-        res     = overpass_centroids(way_ids)
-        coords.update(res)
-        time.sleep(0.6)
-        if (i // BATCH + 1) % 20 == 0:
-            print(f'  Overpass {i//BATCH+1}/{total_batches} — '
-                  f'{len(coords)} coords so far', flush=True)
+    print(f'Getting centroids via OSM REST API ({len(osm)} ways)...', flush=True)
+    for i, (rec, wid) in enumerate(osm):
+        c = osm_way_centroid(wid)
+        if c:
+            coords[wid] = c
+        time.sleep(0.05)   # polite: 20 req/sec max
+        if (i+1) % 100 == 0:
+            print(f'  OSM API {i+1}/{len(osm)} — {len(coords)} coords so far', flush=True)
 
     print(f'  Got {len(coords)} coordinates for {len(osm)} records\n', flush=True)
 
