@@ -57,8 +57,18 @@ def sb_fetch(offset=0, page=500):
 
 def sb_patch(rid, patch):
     body = json.dumps(patch).encode()
-    urllib.request.urlopen(urllib.request.Request(
-        f'{SB_URL}?id=eq.{rid}', data=body, headers=SB_W, method='PATCH'), timeout=15)
+    req  = urllib.request.Request(f'{SB_URL}?id=eq.{rid}', data=body, headers=SB_W, method='PATCH')
+    try:
+        urllib.request.urlopen(req, timeout=15)
+    except urllib.error.HTTPError as e:
+        if e.code == 409 and 'place_id' in patch:
+            # Duplicate place_id — retry without it so name/address still saves
+            patch2 = {k: v for k, v in patch.items() if k != 'place_id'}
+            body2  = json.dumps(patch2).encode()
+            req2   = urllib.request.Request(f'{SB_URL}?id=eq.{rid}', data=body2, headers=SB_W, method='PATCH')
+            urllib.request.urlopen(req2, timeout=15)
+        else:
+            raise
 
 
 # ─── Overpass: tiny batches (10 ways) ────────────────────────────────────────
