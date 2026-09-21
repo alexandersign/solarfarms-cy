@@ -57,8 +57,7 @@ export async function GET(request: NextRequest) {
 
     // Supabase has a max_rows setting (default 1,000). Fetch all pages in batches.
     const PAGE = 1000
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let allData: any[] = []
+    let allData: any[] = [] // batched pages
     let from = 0
     while (true) {
       const { data: page, error } = await query.range(from, from + PAGE - 1)
