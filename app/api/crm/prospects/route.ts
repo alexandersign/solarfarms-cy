@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
     const searchFilter = search ? buildProspectSearchFilter(search) : null
     if (searchFilter) query = query.or(searchFilter)
 
-    const { data, error } = await query
+    const { data, error } = await query.range(0, 9999)
     if (error) throw error
 
     // Probability by stage for weighted pipeline (forecast value)
