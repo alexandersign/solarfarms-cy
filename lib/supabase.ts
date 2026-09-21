@@ -1,9 +1,27 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://iipbxwyvlzxthlblayvw.supabase.co'
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpcGJ4d3l2bHp4dGhsYmxheXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM5MjUsImV4cCI6MjA3NDM2OTkyNX0.-hfq9twwZxILD4mIW4Flgngryaxaw34hN1qzY6rBDdE'
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://iipbxwyvlzxthlblayvw.supabase.co'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+/**
+ * Server routes must use the service role. The anon key is public, and after
+ * RLS is enabled it cannot read or write leads/CRM/HR tables.
+ * Never import this client into a Client Component.
+ */
+function resolveSupabaseKey(): string {
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (typeof window === 'undefined' && serviceKey) {
+    return serviceKey
+  }
+  return (
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpcGJ4d3l2bHp4dGhsYmxheXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTM5MjUsImV4cCI6MjA3NDM2OTkyNX0.-hfq9twwZxILD4mIW4Flgngryaxaw34hN1qzY6rBDdE'
+  )
+}
+
+export const supabase = createClient(supabaseUrl, resolveSupabaseKey(), {
+  auth: { persistSession: false, autoRefreshToken: false },
+})
 
 // Database Types
 export interface Contact {

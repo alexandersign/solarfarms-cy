@@ -13,6 +13,8 @@
 | Role | Director |
 | Phone | +357 99 164 158 |
 | Email | office@lighthief.com |
+| Cyprus ID / TIC | 01241318W |
+| Social Insurance | 983901 |
 | Bank | [BANK NAME] |
 | IBAN | [IBAN] |
 | BIC/SWIFT | [BIC] |

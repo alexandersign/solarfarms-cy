@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { pvProspectsService } from '@/lib/supabase'
+import { unauthorizedUnlessAdmin } from '@/lib/require-admin-key'
 
 // GET - Fetch prospects with due follow-ups
 export async function GET(request: NextRequest) {
+  const denied = unauthorizedUnlessAdmin(request)
+  if (denied) return denied
+
   try {
     const followUps = await pvProspectsService.getDueFollowUps()
 

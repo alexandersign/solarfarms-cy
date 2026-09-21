@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Access Residences — Panel Orientation Diagrams</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; margin: 0; padding: 20px; }
+  h1 { color: #1A365D; font-size: 18px; margin-bottom: 4px; }
+  .subtitle { color: #718096; font-size: 12px; margin-bottom: 24px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .5px; color: #1A365D; margin-bottom: 4px; }
+  .card p { font-size: 11px; color: #718096; margin-bottom: 12px; }
+  svg text { font-family: 'Segoe UI', sans-serif; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; font-size: 11px; color: #404040; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 16px; height: 10px; border-radius: 2px; }
+  .full { grid-column: 1 / -1; }
+  .note { font-size: 10.5px; color: #718096; margin-top: 8px; padding: 8px; background: #f7fafc; border-radius: 6px; border-left: 3px solid #C9A432; }
+</style>
+</head>
+<body>
+<div style="max-width:1100px;margin:0 auto">
+<h1>The Access Residences — PV Orientation Analysis</h1>
+<p class="subtitle">Blocks A1 &amp; A2, Limassol · Based on roof drawing north point (N25°E building axis) · Lighthief Cyprus LCY-PV-ACC-001</p>
+
+<div class="grid">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CARD 1 — PLAN VIEW: Building orientation + panel rows
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="card full">
+  <h2>Plan View — Building Orientation & South-Facing Panel Layout</h2>
+  <p>Buildings run N25°E. Flat-roof panel rows run E–W (perpendicular to south). Mount triangles point south regardless of building rotation.</p>
+  <svg viewBox="-20 -20 680 480" width="100%" style="max-height:440px">
+    <defs>
+      <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#1A365D"/>
+      </marker>
+      <marker id="arrow-south" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#C9A432"/>
+      </marker>
+      <marker id="arrow-red" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#e53e3e"/>
+      </marker>
+    </defs>
+
+    <!-- Background grid (faint) -->
+    <g stroke="#e2e8f0" stroke-width="0.5">
+      <line x1="0" y1="0" x2="0" y2="440"/>
+      <line x1="80" y1="0" x2="80" y2="440"/>
+      <line x1="160" y1="0" x2="160" y2="440"/>
+      <line x1="240" y1="0" x2="240" y2="440"/>
+      <line x1="320" y1="0" x2="320" y2="440"/>
+      <line x1="400" y1="0" x2="400" y2="440"/>
+      <line x1="480" y1="0" x2="480" y2="440"/>
+      <line x1="560" y1="0" x2="560" y2="440"/>
+      <line x1="0" y1="0" x2="660" y2="0"/>
+      <line x1="0" y1="80" x2="660" y2="80"/>
+      <line x1="0" y1="160" x2="660" y2="160"/>
+      <line x1="0" y1="240" x2="660" y2="240"/>
+      <line x1="0" y1="320" x2="660" y2="320"/>
+      <line x1="0" y1="400" x2="660" y2="400"/>
+    </g>
+
+    <!-- Cardinal directions label (faint) -->
+    <text x="320" y="-8" text-anchor="middle" fill="#cbd5e0" font-size="9">DRAWING NORTH ↑</text>
+    <text x="652" y="224" text-anchor="middle" fill="#cbd5e0" font-size="9" transform="rotate(90,652,224)">DRAWING EAST →</text>
+
+    <!-- ── TRUE NORTH ARROW ── -->
+    <!-- N25°E means true north is 25° clockwise from drawing vertical -->
+    <!-- Arrow from (580,380) toward (580+sin25°×70, 380-cos25°×70) -->
+    <g transform="translate(580,370)">
+      <!-- Compass circle -->
+      <circle cx="0" cy="0" r="38" fill="#f7fafc" stroke="#1A365D" stroke-width="1.5"/>
+      <!-- N arrow -->
+      <line x1="0" y1="0" x2="16.3" y2="-63.3" stroke="#1A365D" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- S stub -->
+      <line x1="0" y1="0" x2="-8.5" y2="33" stroke="#718096" stroke-width="1" stroke-dasharray="3,2"/>
+      <!-- E stub -->
+      <line x1="0" y1="0" x2="35" y2="8.2" stroke="#718096" stroke-width="1" stroke-dasharray="3,2"/>
+      <!-- W stub -->
+      <line x1="0" y1="0" x2="-35" y2="-8.2" stroke="#718096" stroke-width="1" stroke-dasharray="3,2"/>
+      <!-- N label -->
+      <text x="20" y="-67" fill="#1A365D" font-size="11" font-weight="700">N</text>
+      <text x="-12" y="45" fill="#718096" font-size="8">S</text>
+      <text x="39" y="12" fill="#718096" font-size="8">E</text>
+      <text x="-50" y="-4" fill="#718096" font-size="8">W</text>
+      <!-- Angle annotation -->
+      <path d="M0,-30 A30,30 0 0,1 12.7,-27.2" fill="none" stroke="#C9A432" stroke-width="1.2"/>
+      <text x="18" y="-22" fill="#C9A432" font-size="8" font-weight="600">25°</text>
+      <!-- Drawing up reference -->
+      <line x1="0" y1="0" x2="0" y2="-35" stroke="#C9A432" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="3" y="-37" fill="#C9A432" font-size="7">↑ drawing up</text>
+    </g>
+
+    <!-- ── SOUTH DIRECTION ARROW ── -->
+    <!-- True south = 180° = direction 25° west of drawing down = drawing down + 25° left -->
+    <!-- From centre (320,220): south = (320 + sin(180+25°)×80, 220 - cos(180+25°)×80) -->
+    <!-- = (320 - sin25°×80, 220 + cos25°×80) = (286,293) -->
+    <line x1="320" y1="220" x2="286" y2="299" stroke="#C9A432" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-south)"/>
+    <text x="272" y="315" fill="#C9A432" font-size="10" font-weight="700">TRUE SOUTH</text>
+    <text x="275" y="326" fill="#C9A432" font-size="9">180° azimuth</text>
+
+    <!-- ── BLOCK A2 — oriented N25°E ── -->
+    <!-- Building long axis at 25° from drawing vertical -->
+    <!-- Block A2: ~45m long × 18m wide. Scale: 1m = 3.5px -->
+    <!-- Centre around (480, 120), rotated 25° -->
+    <g transform="translate(490,130) rotate(25)">
+      <!-- Building footprint -->
+      <rect x="-78.75" y="-31.5" width="157.5" height="63" fill="#EBF8FF" stroke="#1A365D" stroke-width="2" rx="2"/>
+      <!-- Panel rows (E-W rows = horizontal lines in the ROTATED frame... 
+           Wait: E-W rows in WORLD coordinates, when building is rotated 25°, 
+           appear at -25° in the building frame) -->
+      <!-- Panel group: face south = in world coords these rows run E-W -->
+      <!-- In building frame (rotated 25°), E-W world direction = -25° from building width axis -->
+      <!-- Show 3 columns of panels, each 3 deep, facing south -->
+      <!-- Panel cols: each col = 3 panels stacked, 0.85×2.8 px in plan (3×0.95m wide × 0.5m footprint at 25° tilt) -->
+      <!-- Panel height in plan (at 25° tilt, portrait 2.28m): horizontal footprint = 2.28×cos25° = 2.07m × 3 panels = 6.2m -->
+      <!-- Panel width = 1.13m -->
+      <!-- Tile 11 columns × 3 rows, but rows run E-W in world coords -->
+      <!-- E-W in world = rotated -25° in building frame: draw panel rectangles tilted -25° in this frame -->
+      
+      <!-- Row of panel groups (simplified: show as hatched rectangle) -->
+      <!-- 3 panels deep (N-S world = rotated 25° in building) × 11 wide (E-W world) -->
+      <!-- Panel area: 11×1.13 = 12.43m wide (E-W), 3×2.28×cos25°=6.19m deep (N-S) -->
+      <!-- Scale: 1m = 3.5px -->
+      <!-- In building frame, the E-W direction is at -25° from the building width (horizontal in frame) -->
+      <!-- Let's just draw them as a shaded area with arrow showing south face -->
+      
+      <!-- Panel block 1 (north part of roof = top panel block) -->
+      <g transform="rotate(-25)">
+        <!-- Row 1: 11 cols × 3 deep panels, facing south, no spacing between rows -->
+        <!-- Only 1 super-row needed per block for 33 panels at 3-deep -->
+        <!-- Position: centred on roof, slightly toward north half -->
+        <rect x="-21.75" y="-10.8" width="43.5" height="21.6" 
+              fill="#1A365D" fill-opacity="0.15" stroke="#1A365D" stroke-width="0.8" rx="1"/>
+        <!-- Panel cell lines (simplified) -->
+        <g stroke="#1A365D" stroke-width="0.3" stroke-opacity="0.5">
+          <line x1="-17.8" y1="-10.8" x2="-17.8" y2="10.8"/>
+          <line x1="-13.8" y1="-10.8" x2="-13.8" y2="10.8"/>
+          <line x1="-9.8" y1="-10.8" x2="-9.8" y2="10.8"/>
+          <line x1="-5.8" y1="-10.8" x2="-5.8" y2="10.8"/>
+          <line x1="-1.8" y1="-10.8" x2="-1.8" y2="10.8"/>
+          <line x1="2.2" y1="-10.8" x2="2.2" y2="10.8"/>
+          <line x1="6.2" y1="-10.8" x2="6.2" y2="10.8"/>
+          <line x1="10.2" y1="-10.8" x2="10.2" y2="10.8"/>
+          <line x1="14.2" y1="-10.8" x2="14.2" y2="10.8"/>
+          <line x1="18.2" y1="-10.8" x2="18.2" y2="10.8"/>
+          <!-- Panel row dividers (3 rows deep) -->
+          <line x1="-21.75" y1="-3.6" x2="21.75" y2="-3.6"/>
+          <line x1="-21.75" y1="3.6" x2="21.75" y2="3.6"/>
+        </g>
+        <!-- South face arrow -->
+        <line x1="0" y1="10.8" x2="0" y2="17" stroke="#C9A432" stroke-width="1.5" marker-end="url(#arrow-south)"/>
+        <text x="2" y="21" fill="#C9A432" font-size="6" font-weight="700">S</text>
+      </g>
+      
+      <!-- Block label -->
+      <text x="0" y="-37" text-anchor="middle" fill="#1A365D" font-size="8" font-weight="700">BLOCK A2</text>
+      <text x="0" y="-28" text-anchor="middle" fill="#718096" font-size="7">33 panels · 19.47 kWp</text>
+      
+      <!-- Dimension: long axis -->
+      <line x1="-78.75" y1="38" x2="78.75" y2="38" stroke="#1A365D" stroke-width="0.8"/>
+      <line x1="-78.75" y1="35" x2="-78.75" y2="41" stroke="#1A365D" stroke-width="0.8"/>
+      <line x1="78.75" y1="35" x2="78.75" y2="41" stroke="#1A365D" stroke-width="0.8"/>
+      <text x="0" y="47" text-anchor="middle" fill="#718096" font-size="7">~45 m (est.)</text>
+      
+      <!-- Building axis indicator -->
+      <line x1="-85" y1="0" x2="85" y2="0" stroke="#e53e3e" stroke-width="0.6" stroke-dasharray="4,3" opacity="0.7"/>
+      <text x="88" y="3" fill="#e53e3e" font-size="6">N25°E axis</text>
+    </g>
+
+    <!-- ── BLOCK A1 — same orientation, lower ── -->
+    <g transform="translate(310,310) rotate(25)">
+      <rect x="-105" y="-31.5" width="210" height="63" fill="#EBF8FF" stroke="#1A365D" stroke-width="2" rx="2"/>
+      
+      <!-- Panel groups — 2 groups of 33 panels (or one continuous row of 66) -->
+      <!-- Here we show 2 sub-groups side by side, each 33 panels -->
+      <g transform="rotate(-25)">
+        <!-- Left panel group (Block A1 - south half, 33 panels) -->
+        <rect x="-47.25" y="-10.8" width="43.5" height="21.6" 
+              fill="#1A365D" fill-opacity="0.15" stroke="#1A365D" stroke-width="0.8" rx="1"/>
+        <!-- Right panel group -->
+        <rect x="3.75" y="-10.8" width="43.5" height="21.6" 
+              fill="#1A365D" fill-opacity="0.15" stroke="#1A365D" stroke-width="0.8" rx="1"/>
+        <!-- Cell lines left -->
+        <g stroke="#1A365D" stroke-width="0.3" stroke-opacity="0.5">
+          <line x1="-47.25" y1="-3.6" x2="-3.75" y2="-3.6"/>
+          <line x1="-47.25" y1="3.6" x2="-3.75" y2="3.6"/>
+          <line x1="3.75" y1="-3.6" x2="47.25" y2="-3.6"/>
+          <line x1="3.75" y1="3.6" x2="47.25" y2="3.6"/>
+        </g>
+        <!-- South arrows -->
+        <line x1="-25.5" y1="10.8" x2="-25.5" y2="17" stroke="#C9A432" stroke-width="1.5" marker-end="url(#arrow-south)"/>
+        <line x1="25.5" y1="10.8" x2="25.5" y2="17" stroke="#C9A432" stroke-width="1.5" marker-end="url(#arrow-south)"/>
+        <text x="-23.5" y="21" fill="#C9A432" font-size="6" font-weight="700">S</text>
+        <text x="27.5" y="21" fill="#C9A432" font-size="6" font-weight="700">S</text>
+      </g>
+      
+      <text x="0" y="-37" text-anchor="middle" fill="#1A365D" font-size="8" font-weight="700">BLOCK A1</text>
+      <text x="0" y="-28" text-anchor="middle" fill="#718096" font-size="7">66 panels total · 38.94 kWp (both blocks combined)</text>
+      
+      <!-- Dimension -->
+      <line x1="-105" y1="38" x2="105" y2="38" stroke="#1A365D" stroke-width="0.8"/>
+      <line x1="-105" y1="35" x2="-105" y2="41" stroke="#1A365D" stroke-width="0.8"/>
+      <line x1="105" y1="35" x2="105" y2="41" stroke="#1A365D" stroke-width="0.8"/>
+      <text x="0" y="47" text-anchor="middle" fill="#718096" font-size="7">~60 m (est.)</text>
+      
+      <line x1="-112" y1="0" x2="112" y2="0" stroke="#e53e3e" stroke-width="0.6" stroke-dasharray="4,3" opacity="0.7"/>
+    </g>
+
+    <!-- Annotation: panel rows run E-W -->
+    <!-- E-W in drawing: at angle 25° west from drawing horizontal -->
+    <!-- Draw an E-W world arrow from a clear point -->
+    <g transform="translate(80,390)">
+      <!-- E-W arrow in world coords (25° from drawing horizontal, tilted) -->
+      <line x1="-50" y1="11.4" x2="50" y2="-11.4" stroke="#38a169" stroke-width="1.5"/>
+      <text x="54" y="-13" fill="#38a169" font-size="8" font-weight="600">E</text>
+      <text x="-62" y="16" fill="#38a169" font-size="8" font-weight="600">W</text>
+      <text x="-10" y="-16" fill="#38a169" font-size="8">← panel rows run this way</text>
+    </g>
+
+    <!-- Scale bar -->
+    <g transform="translate(20,440)">
+      <line x1="0" y1="0" x2="35" y2="0" stroke="#404040" stroke-width="1.5"/>
+      <line x1="0" y1="-3" x2="0" y2="3" stroke="#404040" stroke-width="1.5"/>
+      <line x1="35" y1="-3" x2="35" y2="3" stroke="#404040" stroke-width="1.5"/>
+      <text x="17.5" y="-5" text-anchor="middle" fill="#404040" font-size="8">10 m</text>
+    </g>
+
+    <!-- Note text -->
+    <text x="10" y="452" fill="#718096" font-size="7.5">Scale approx. Building sizes estimated from drawing. Panel area per block: 12.4m × 6.2m = 77 m² (3 panels/col, 25° tilt, zero spacing).</text>
+  </svg>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#1A365D;opacity:.15;border:1px solid #1A365D"></div> Panel arrays (dark blue hatch)</div>
+    <div class="legend-item"><svg width="16" height="10"><line x1="0" y1="5" x2="16" y2="5" stroke="#C9A432" stroke-width="2"/><polygon points="12,2 16,5 12,8" fill="#C9A432"/></svg> Faces south (180°)</div>
+    <div class="legend-item"><svg width="16" height="10"><line x1="0" y1="5" x2="16" y2="5" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,2"/></svg> Building N25°E axis</div>
+    <div class="legend-item"><svg width="16" height="10"><line x1="0" y1="5" x2="16" y2="5" stroke="#38a169" stroke-width="1.5"/></svg> E–W panel rows</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CARD 2 — SECTION: 1 panel/col 28° vs 3 panels/col 25°
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <h2>Cross-Section — Row Spacing Comparison</h2>
+  <p>Looking from the east. Buildings run left (north) → right (south) in section.</p>
+  <svg viewBox="0 0 460 280" width="100%" style="max-height:260px">
+    <defs>
+      <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="4" stroke="#1A365D" stroke-width="1" opacity="0.3"/>
+      </pattern>
+    </defs>
+
+    <!-- Roof surface -->
+    <rect x="0" y="230" width="460" height="18" fill="#e2e8f0"/>
+    <text x="230" y="254" text-anchor="middle" fill="#718096" font-size="9">flat roof (white membrane · albedo 0.45)</text>
+    
+    <!-- Sun angle lines -->
+    <!-- At 10am Dec 21, solar altitude = 25°, sun is in S direction -->
+    <!-- Sun rays come from upper-right (south side) at 25° above horizon -->
+    <g opacity="0.3">
+      <line x1="430" y1="50" x2="350" y2="230" stroke="#C9A432" stroke-width="0.8"/>
+      <line x1="400" y1="30" x2="320" y2="210" stroke="#C9A432" stroke-width="0.8"/>
+      <line x1="460" y1="70" x2="380" y2="250" stroke="#C9A432" stroke-width="0.8"/>
+    </g>
+    <text x="440" y="45" fill="#C9A432" font-size="8">☀ 25°</text>
+    <text x="425" y="55" fill="#C9A432" font-size="7">10am Dec 21</text>
+    
+    <!-- N / S labels -->
+    <text x="10" y="222" fill="#1A365D" font-size="9" font-weight="600">← N</text>
+    <text x="430" y="222" fill="#1A365D" font-size="9" font-weight="600">S →</text>
+
+    <!-- ── LEFT HALF: Option A — 1 panel @ 28°, with spacing ── -->
+    <text x="115" y="15" text-anchor="middle" fill="#e53e3e" font-size="10" font-weight="700">Option A: 1 panel/col · 28°</text>
+    <text x="115" y="27" text-anchor="middle" fill="#718096" font-size="8">row pitch 4.31m · gap 2.30m</text>
+
+    <!-- Panel 1 (further north = left) at 28° tilt, south-facing -->
+    <!-- Base at (30, 230), tilt 28° toward right (south) -->
+    <!-- 1 panel = 2.28m long, scale 1m=35px -->
+    <!-- top point: (30 + 2.28*cos28°*35, 230 - 2.28*sin28°*35) = (30+70.3, 230-37.5) = (100.3, 192.5) -->
+    <polygon points="30,230 100.3,230 100.3,192.5" fill="none" stroke="none"/>
+    <!-- Panel face -->
+    <line x1="30" y1="230" x2="100.3" y2="192.5" stroke="#1A365D" stroke-width="3"/>
+    <rect x="29" y="229" width="72.3" height="3" fill="#1A365D" opacity="0.2"/>
+    <!-- Panel fill -->
+    <polygon points="30,230 100.3,230 101.3,191.5 31,229" fill="#1A365D" fill-opacity="0.12" stroke="#1A365D" stroke-width="1"/>
+    
+    <!-- Shadow line from top of panel 1 at 25° solar altitude -->
+    <!-- Shadow end: x = 100.3 + 37.5/tan(25°) = 100.3 + 37.5/0.466 = 100.3 + 80.5 = 180.8 -->
+    <line x1="100.3" y1="192.5" x2="180.8" y2="230" stroke="#C9A432" stroke-width="1" stroke-dasharray="3,2" opacity="0.8"/>
+    
+    <!-- GAP dimension -->
+    <!-- Gap = 2.30m = 2.30×35 = 80.5px between end of panel footprint (100.3) and next panel base -->
+    <!-- Gap arrow -->
+    <line x1="100.3" y1="245" x2="180.8" y2="245" stroke="#e53e3e" stroke-width="1"/>
+    <line x1="100.3" y1="242" x2="100.3" y2="248" stroke="#e53e3e" stroke-width="1"/>
+    <line x1="180.8" y1="242" x2="180.8" y2="248" stroke="#e53e3e" stroke-width="1"/>
+    <text x="140.5" y="258" text-anchor="middle" fill="#e53e3e" font-size="8" font-weight="600">gap 2.30m</text>
+    
+    <!-- Panel 2 (further south = right) -->
+    <polygon points="180.8,230 251.1,230 252.1,191.5 181.8,229" fill="#1A365D" fill-opacity="0.12" stroke="#1A365D" stroke-width="1"/>
+    <line x1="180.8" y1="230" x2="251.1" y2="192.5" stroke="#1A365D" stroke-width="3"/>
+    
+    <!-- Total row pitch -->
+    <line x1="30" y1="268" x2="180.8" y2="268" stroke="#404040" stroke-width="1"/>
+    <line x1="30" y1="265" x2="30" y2="271" stroke="#404040" stroke-width="1"/>
+    <line x1="180.8" y1="265" x2="180.8" y2="271" stroke="#404040" stroke-width="1"/>
+    <text x="105.4" y="278" text-anchor="middle" fill="#404040" font-size="8">row pitch 4.31m</text>
+    
+    <!-- Footprint annotation -->
+    <line x1="30" y1="235" x2="100.3" y2="235" stroke="#718096" stroke-width="0.8"/>
+    <text x="65" y="244" text-anchor="middle" fill="#718096" font-size="7">footprint 2.01m</text>
+
+    <!-- Divider -->
+    <line x1="255" y1="0" x2="255" y2="275" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <!-- ── RIGHT HALF: Option B — 3 panels @ 25°, zero spacing ── -->
+    <text x="370" y="15" text-anchor="middle" fill="#38a169" font-size="10" font-weight="700">Option B: 3 panels/col · 25°</text>
+    <text x="370" y="27" text-anchor="middle" fill="#718096" font-size="8">row pitch = footprint 6.19m · gap ZERO ✓</text>
+
+    <!-- 3-panel column at 25° tilt -->
+    <!-- Base at (265, 230), panel inclined length = 3×2.28 = 6.84m -->
+    <!-- Horizontal footprint: 6.84×cos25°×35 = 216.9px -->
+    <!-- Vertical height: 6.84×sin25°×35 = 101.1px -->
+    <!-- Top point: (265 + 216.9, 230 - 101.1) = (481.9, 128.9) — too wide, scale down -->
+    <!-- Use scale 28px per meter for this section -->
+    <!-- footprint: 6.84×cos25°×28 = 173.6px, height: 6.84×sin25°×28 = 80.9px -->
+    <polygon points="265,230 438.6,230 439.6,149.1 266,229" fill="#1A365D" fill-opacity="0.12" stroke="#1A365D" stroke-width="1"/>
+    <line x1="265" y1="230" x2="438.6" y2="149.1" stroke="#1A365D" stroke-width="3"/>
+    
+    <!-- Panel dividers (3 panels in column) -->
+    <!-- Each panel = 2.28m = 2.28×28=63.8px inclined -->
+    <!-- Along inclined line: 1/3 and 2/3 marks -->
+    <!-- 1/3: x=265+173.6/3=265+57.9=322.9, y=230-80.9/3=230-27.0=203.0 -->
+    <!-- 2/3: x=265+173.6×2/3=265+115.7=380.7, y=230-80.9×2/3=230-53.9=176.1 -->
+    <line x1="265" y1="230" x2="322.9" y2="203.0" stroke="#fff" stroke-width="0.8" opacity="0.6"/>
+    <line x1="322.9" y1="203.0" x2="380.7" y2="176.1" stroke="#fff" stroke-width="0.8" opacity="0.6"/>
+    <line x1="380.7" y1="176.1" x2="438.6" y2="149.1" stroke="#fff" stroke-width="0.8" opacity="0.6"/>
+    <!-- Panel labels -->
+    <text x="285" y="220" fill="#1A365D" font-size="7" font-weight="600">P1</text>
+    <text x="340" y="194" fill="#1A365D" font-size="7" font-weight="600">P2</text>
+    <text x="398" y="166" fill="#1A365D" font-size="7" font-weight="600">P3</text>
+    
+    <!-- Shadow from top (at 25° solar altitude) -->
+    <!-- Shadow end: 438.6 + 80.9/tan(25°)×... wait -->
+    <!-- Shadow length = vertical height / tan(solar_alt) = 80.9/tan(25°)  in px -->
+    <!-- = 80.9/0.466 = 173.6px — exactly equals footprint! -->
+    <!-- Shadow end x = 438.6 + (173.6 - 173.6) = 438.6 — lands exactly at base of next panel! -->
+    <line x1="438.6" y1="149.1" x2="438.6" y2="230" stroke="#C9A432" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.9"/>
+    
+    <!-- ZERO GAP indicator -->
+    <circle cx="438.6" cy="230" r="5" fill="#38a169" opacity="0.8"/>
+    <text x="438.6" y="244" text-anchor="middle" fill="#38a169" font-size="8" font-weight="700">0 gap</text>
+    <text x="438.6" y="254" text-anchor="middle" fill="#38a169" font-size="7">shadow lands exactly here</text>
+    
+    <!-- Footprint dimension -->
+    <line x1="265" y1="268" x2="438.6" y2="268" stroke="#38a169" stroke-width="1.5"/>
+    <line x1="265" y1="265" x2="265" y2="271" stroke="#38a169" stroke-width="1.5"/>
+    <line x1="438.6" y1="265" x2="438.6" y2="271" stroke="#38a169" stroke-width="1.5"/>
+    <text x="351.8" y="278" text-anchor="middle" fill="#38a169" font-size="8" font-weight="600">footprint = row pitch = 6.19m</text>
+    
+    <!-- Height annotation -->
+    <line x1="448" y1="149.1" x2="448" y2="230" stroke="#718096" stroke-width="0.8"/>
+    <line x1="445" y1="149.1" x2="451" y2="149.1" stroke="#718096" stroke-width="0.8"/>
+    <line x1="445" y1="230" x2="451" y2="230" stroke="#718096" stroke-width="0.8"/>
+    <text x="456" y="195" fill="#718096" font-size="7">2.89m</text>
+  </svg>
+  <p class="note">At 25° tilt, the shadow from the top of a 3-panel column (6.84m inclined, 2.89m tall) lands exactly at the base of the next column at 10am Dec 21. tan(25°) = tan(solar altitude) — mathematically perfect zero-gap condition.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CARD 3 — YIELD TABLE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <h2>Yield &amp; Footprint Summary (PVGIS-SARAH3 + 7% bifacial)</h2>
+  <p>38.94 kWp, Limassol, south-facing, 14% system losses</p>
+  <svg viewBox="0 0 430 190" width="100%" style="max-height:190px">
+    <!-- Bar chart: specific yield at each tilt -->
+    <!-- Max yield: 1832 kWh/kWp (28°) — bar width proportional, max width 280px -->
+    <!-- Y positions: title row at y=15, then rows at y=35,60,85,110,135,160 -->
+
+    <text x="0" y="12" fill="#1A365D" font-size="8" font-weight="700">Tilt</text>
+    <text x="38" y="12" fill="#1A365D" font-size="8" font-weight="700">Config</text>
+    <text x="105" y="12" fill="#1A365D" font-size="8" font-weight="700">Footprint/block</text>
+    <text x="185" y="12" fill="#1A365D" font-size="8" font-weight="700">kWh/kWp/yr (w/ bifacial)</text>
+    <text x="320" y="12" fill="#1A365D" font-size="8" font-weight="700">Annual (kWh)</text>
+    <text x="395" y="12" fill="#1A365D" font-size="8" font-weight="700">vs 28°</text>
+
+    <!-- Row data -->
+    <!-- Format: tilt, config, footprint, kWh/kWp, annual, vs28 -->
+    <g font-size="8.5">
+      <!-- Row: flat baseline -->
+      <rect x="0" y="18" width="430" height="19" fill="#f7fafc" rx="2"/>
+      <text x="3" y="30" fill="#718096">0° flat</text>
+      <text x="38" y="30" fill="#718096">1/col</text>
+      <text x="105" y="30" fill="#718096">170 m²</text>
+      <rect x="185" y="21" width="137" height="9" fill="#e2e8f0" rx="2"/>
+      <text x="328" y="30" fill="#718096">1,627</text>
+      <text x="385" y="30" fill="#718096">63,344</text>
+      <text x="408" y="30" fill="#e53e3e">−13%</text>
+
+      <!-- Row: 15° 3/col -->
+      <rect x="0" y="40" width="430" height="19" fill="#fff" rx="2"/>
+      <text x="3" y="52" fill="#404040">15°</text>
+      <text x="38" y="52" fill="#404040">3/col · 0 gap ✓</text>
+      <text x="105" y="52" fill="#404040">82 m²</text>
+      <rect x="185" y="43" width="155" height="9" fill="#BEE3F8" rx="2"/>
+      <text x="328" y="52" fill="#404040">1,777</text>
+      <text x="385" y="52" fill="#404040">69,203</text>
+      <text x="408" y="52" fill="#e53e3e">−3.0%</text>
+
+      <!-- Row: 20° 3/col -->
+      <rect x="0" y="62" width="430" height="19" fill="#f7fafc" rx="2"/>
+      <text x="3" y="74" fill="#404040">20°</text>
+      <text x="38" y="74" fill="#404040">3/col · 0 gap ✓</text>
+      <text x="105" y="74" fill="#404040">80 m²</text>
+      <rect x="185" y="65" width="161" height="9" fill="#90CDF4" rx="2"/>
+      <text x="328" y="74" fill="#404040">1,806</text>
+      <text x="385" y="74" fill="#404040">70,326</text>
+      <text x="408" y="74" fill="#e53e3e">−1.4%</text>
+
+      <!-- Row: 25° 3/col — HIGHLIGHT -->
+      <rect x="0" y="84" width="430" height="19" fill="#F0FFF4" rx="2" stroke="#38a169" stroke-width="0.8"/>
+      <text x="3" y="96" fill="#276749" font-weight="700">25° ★</text>
+      <text x="38" y="96" fill="#276749" font-weight="700">3/col · 0 gap ✓</text>
+      <text x="105" y="96" fill="#276749" font-weight="700">77 m²</text>
+      <rect x="185" y="87" width="169" height="9" fill="#48BB78" rx="2"/>
+      <text x="328" y="96" fill="#276749" font-weight="700">1,825</text>
+      <text x="385" y="96" fill="#276749" font-weight="700">71,066</text>
+      <text x="408" y="96" fill="#276749" font-weight="700">−0.4%</text>
+
+      <!-- Row: 28° 1/col -->
+      <rect x="0" y="106" width="430" height="19" fill="#FFF5F5" rx="2" stroke="#FC8181" stroke-width="0.8"/>
+      <text x="3" y="118" fill="#9B2335">28°</text>
+      <text x="38" y="118" fill="#9B2335">1/col · 2.30m gap ✗</text>
+      <text x="105" y="118" fill="#9B2335">161 m²</text>
+      <rect x="185" y="109" width="171" height="9" fill="#FC8181" rx="2"/>
+      <text x="328" y="118" fill="#9B2335">1,832</text>
+      <text x="385" y="118" fill="#9B2335">71,329</text>
+      <text x="408" y="118" fill="#9B2335">—</text>
+
+      <!-- Row: 28° 3/col -->
+      <rect x="0" y="128" width="430" height="19" fill="#fff" rx="2"/>
+      <text x="3" y="140" fill="#404040">28°</text>
+      <text x="38" y="140" fill="#404040">3/col · 0.85m gap</text>
+      <text x="105" y="140" fill="#404040">86 m²</text>
+      <rect x="185" y="131" width="171" height="9" fill="#FC8181" rx="2" opacity="0.6"/>
+      <text x="328" y="140" fill="#404040">1,832</text>
+      <text x="385" y="140" fill="#404040">71,329</text>
+      <text x="408" y="140" fill="#404040">—</text>
+    </g>
+    
+    <!-- Legend note -->
+    <text x="0" y="165" fill="#C9A432" font-size="7.5">★ Recommended: 25° tilt, 3 panels/col, zero gap — 0.4% yield below theoretical max, half the roof footprint</text>
+    <text x="0" y="176" fill="#718096" font-size="7">Bifacial gain: +7% (Jinko BF=80%, white flat roof albedo 0.45). PVGIS-SARAH3, 2005-2023 avg, 14% system losses.</text>
+    <text x="0" y="187" fill="#718096" font-size="7">Footprint per block for 33 panels (one super-row: 11 cols × 3 panels deep). Red = likely won't fit on available roof area.</text>
+  </svg>
+</div>
+
+</div><!-- /grid -->
+</div>
+</body>
+</html>

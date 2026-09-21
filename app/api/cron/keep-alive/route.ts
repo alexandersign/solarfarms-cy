@@ -5,9 +5,10 @@ import { supabase } from '@/lib/supabase'
 // Free tier Supabase pauses after 7 days of inactivity
 
 export async function GET(request: NextRequest) {
-  // Verify the request is from Vercel Cron (optional but recommended)
   const authHeader = request.headers.get('authorization')
-  const isAuthorized = authHeader === `Bearer ${process.env.CRON_SECRET}`
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+  }
 
   try {
     // Simple query to keep the database active
@@ -26,7 +27,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Database keep-alive successful',
-      authorized: isAuthorized,
       timestamp: new Date().toISOString()
     })
   } catch {

@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getCyprusPlants } from '@/lib/cyprus-plants-data'
+import { unauthorizedUnlessAdmin } from '@/lib/require-admin-key'
 
 export async function GET(request: NextRequest) {
+  const denied = unauthorizedUnlessAdmin(request)
+  if (denied) return denied
+
   try {
     const { searchParams } = new URL(request.url)
     const minConf = searchParams.get('min_match_confidence')

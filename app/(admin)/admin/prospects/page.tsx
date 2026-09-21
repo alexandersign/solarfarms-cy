@@ -169,9 +169,11 @@ export default function ProspectsPage() {
       if (filterOfferType !== 'all') params.set('offer_type', filterOfferType)
       if (searchQuery) params.set('search', searchQuery)
 
+      const key = adminKey || (typeof window !== 'undefined' ? localStorage.getItem('adminKey') : '') || ''
+      const adminHeaders = { 'x-admin-key': key }
       const [prospectsRes, followUpsRes] = await Promise.all([
-        fetch(`/api/admin/prospects?${params.toString()}`),
-        fetch('/api/admin/prospects/follow-ups')
+        fetch(`/api/admin/prospects?${params.toString()}`, { headers: adminHeaders }),
+        fetch('/api/admin/prospects/follow-ups', { headers: adminHeaders })
       ])
 
       if (prospectsRes.ok) {

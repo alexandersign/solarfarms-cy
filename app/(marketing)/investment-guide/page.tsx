@@ -35,6 +35,10 @@ import {
 } from 'lucide-react'
 
 import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
+import {
+  AGIOS_THEODOROS_RTB as AGIOS,
+  formatAgiosEurCompact,
+} from '@/lib/deals/agios-theodoros-rtb'
 
 const DAM = CYPRUS_TSOC_DAM_SAMPLE
 const annualRecoveryLow = Math.round(2.5 * 365 * DAM.curtailmentRecoveryEURPerMWh)
@@ -677,27 +681,27 @@ export default function InvestmentGuidePage() {
           <section className="page-break mb-12">
             <SectionHeader number={6} title="Featured Investment Projects" />
 
-            {/* Project 1 */}
+            {/* Project 1 — Agios Theodoros RTB (SSOT: lib/deals/agios-theodoros-rtb.ts) */}
             <div className="avoid-break border border-gray-200 rounded-lg p-6 mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold text-gray-900">Agios Theodoros Solar Park + BESS</h3>
                 <Badge className="bg-green-100 text-green-800 border-green-300">Ready to Build</Badge>
               </div>
-              <p className="text-gray-600 mb-4">Agios Theodoros, Larnaca District | Target Q4 2026</p>
+              <p className="text-gray-600 mb-4">{AGIOS.locationLine} | {AGIOS.timelineHeadline}</p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                <MiniStat icon={<Sun className="w-4 h-4" />} label="Capacity" value="2.64 MW" />
-                <MiniStat icon={<Battery className="w-4 h-4" />} label="BESS" value="10.56 MWh" />
-                <MiniStat icon={<Euro className="w-4 h-4" />} label="Investment" value="€4.24M" />
-                <MiniStat icon={<TrendingUp className="w-4 h-4" />} label="Leveraged IRR" value="~30%" />
+                <MiniStat icon={<Sun className="w-4 h-4" />} label="Capacity" value={`${AGIOS.solarMWp} MWp`} />
+                <MiniStat icon={<Battery className="w-4 h-4" />} label="BESS" value={`${AGIOS.bessMWh} MWh`} />
+                <MiniStat icon={<Euro className="w-4 h-4" />} label="Equity sought" value={formatAgiosEurCompact(AGIOS.finance.equityEUR)} />
+                <MiniStat icon={<TrendingUp className="w-4 h-4" />} label="Leveraged IRR" value={AGIOS.finance.leveredEquityIrrIndicative} />
               </div>
 
               <ul className="space-y-1 text-gray-700 text-sm">
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Integrated 10.56 MWh BESS &mdash; 4-hour duration (€127k/MWh)</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Bifacial TopCon modules &mdash; 1,800 kWh/kWp yield</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Zero curtailment risk with battery arbitrage</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Single operator: Lighthief EPC + O&M</li>
-                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Annual revenue estimated at €1.05M</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Integrated {AGIOS.bessMWh} MWh BESS &mdash; {AGIOS.bessDurationHours}-hour duration ({AGIOS.capexStackEUR.bessUnitNote})</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />{AGIOS.panelSpec.wattage}W bifacial TopCon &mdash; {AGIOS.specificYieldKwhPerKwp.toLocaleString()} kWh/kWp specific yield</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />BESS captures {Math.round(AGIOS.revenueModel.curtailmentPct * 100)}% curtailed solar for evening-peak dispatch ({Math.round(AGIOS.revenueModel.bessDischargedMWh / 1000 * 10) / 10}k MWh/yr indicative)</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Single operator: Lighthief EPC + long-term O&M</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Y1 gross energy revenue ~{formatAgiosEurCompact(AGIOS.finance.grossEnergyRevenueY1EUR)} &mdash; full derivation in Excel model</li>
               </ul>
             </div>
 

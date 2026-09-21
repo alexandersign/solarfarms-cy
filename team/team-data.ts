@@ -230,8 +230,8 @@ export const TEAM: Employee[] = [
   {
     id: 'alexander-papacosta',
     fullName: 'Alexander Papacosta',
-    cyprusId: '',
-    socialInsurance: '',
+    cyprusId: '01241318W',
+    socialInsurance: '983901',
     title: 'Director',
     role: 'director',
     compensationType: 'employee',

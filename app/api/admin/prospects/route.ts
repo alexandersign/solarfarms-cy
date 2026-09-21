@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { pvProspectsService } from '@/lib/supabase'
+import { unauthorizedUnlessAdmin } from '@/lib/require-admin-key'
 
 // GET - Fetch all prospects with optional filters
 export async function GET(request: NextRequest) {
+  const denied = unauthorizedUnlessAdmin(request)
+  if (denied) return denied
+
   try {
     const { searchParams } = new URL(request.url)
     const filters = {

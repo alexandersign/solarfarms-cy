@@ -80,7 +80,11 @@ export const AGIOS_THEODOROS_RTB = {
     uncurtailedSolarRevY1EUR: 279_872,
     bessRevY1EUR: 553_628,
     grossRevY1EUR: 833_500,
-    _note: 'Both rates from lib/market/cyprus-tsoc-dam-sample.ts TSOC DAM sample (Oct 2025 – Feb 2026)',
+    _note:
+      'Underwriting rates frozen at the 134-day Feb 2026 analysis (analysis-summary.json, 1 Oct 2025–11 Feb 2026). ' +
+      'Current 339-day sample to 4 Sep 2026 (lib/market/cyprus-tsoc-dam-sample.ts) shows higher prices: ' +
+      'daytime €151/MWh (+7%), evening peak €212/MWh (+16%) — upside case vs underwriting. ' +
+      'Do not silently retune these frozen rates without explicit sign-off.',
   },
 
   finance: {
@@ -90,8 +94,21 @@ export const AGIOS_THEODOROS_RTB = {
     aggregatorFeePct: 0.1,
     citPct: 0.15,
     citNote: '15% from 1 Jan 2026',
-    seniorDebtEUR: 2_270_000,
-    equityEUR: 2_320_000,
+    /**
+     * Project debt structure — indicative model only. No debt currently on SPV.
+     * Banks typically lend ~80% against the bankable EPC cost (PV EPC + BESS EPC).
+     * RTB acquisition (€1.0M) and development costs (€0.35M) are NOT bankable —
+     * they sit entirely in equity. Debt capacity illustrated:
+     *   Bankable EPC: €1.9M + €1.34M = €3.24M
+     *   80% LTV:      €3.24M × 0.80  = €2.592M  ← senior debt
+     *   Equity:        €4.59M − €2.592M           = €1.998M  ← equity sought
+     */
+    seniorDebtEUR: 2_592_000,
+    equityEUR: 1_998_000,
+    debtNote:
+      'Indicative model only — no debt currently on SPV. ' +
+      'Banks typically lend ~80% of bankable EPC (PV + BESS = €3.24M). ' +
+      'RTB acquisition (€1M) and development (€0.35M) are equity-only items.',
     loanNominalRate: 0.05,
     loanTermYears: 15,
     /** Real dispatch model with 65% curtailment; upside from rising DAM prices and lower curtailment */
@@ -117,12 +134,17 @@ export const AGIOS_THEODOROS_RTB = {
   /** TSOC DAM — reconciled sample; shared with Cyprus market teaser */
   marketDAM: CYPRUS_TSOC_DAM_SAMPLE,
 
-  /** Indicative equity tickets — cash to equity Y1 approx.; full economics in xlsx */
+  /**
+   * Indicative equity tickets at 80% LTV on EPC.
+   * Equity total = €1,998,000 (CAPEX €4,590,000 − debt €2,592,000).
+   * indicativeAnnualCashEUR = levered FCFE Y1, pro-rata:
+   *   EBIT €628k − debt service €250k − CIT 15% ≈ €322k at 100%; full model in xlsx.
+   */
   equityTiers: [
-    { pct: 25, equityEUR: 580_000, indicativeAnnualCashEUR: '~€184k' },
-    { pct: 50, equityEUR: 1_160_000, indicativeAnnualCashEUR: '~€367k' },
-    { pct: 75, equityEUR: 1_740_000, indicativeAnnualCashEUR: '~€551k' },
-    { pct: 100, equityEUR: 2_320_000, indicativeAnnualCashEUR: '~€735k', featured: true },
+    { pct: 25, equityEUR: 499_500, indicativeAnnualCashEUR: '~€80k' },
+    { pct: 50, equityEUR: 999_000, indicativeAnnualCashEUR: '~€161k' },
+    { pct: 75, equityEUR: 1_498_500, indicativeAnnualCashEUR: '~€241k' },
+    { pct: 100, equityEUR: 1_998_000, indicativeAnnualCashEUR: '~€322k', featured: true },
   ] as const,
 
   timelineHeadline: 'Target Q4 2026',
@@ -130,8 +152,11 @@ export const AGIOS_THEODOROS_RTB = {
   _meta: {
     source:
       'Lighthief-EPC-Confirmed-Adders-v4-Feb2026.xlsx; investor model Assumptions (Mar 2026)',
-    date: '2026-03-31',
-    note: 'Figures aligned across solarfarms.cy, one-page teaser, and agios-theodoros-rtb-investor-model xlsx.',
+    date: '2026-09-17',
+    note:
+      'Figures aligned across solarfarms.cy, one-page teaser, and agios-theodoros-rtb-investor-model xlsx. ' +
+      'DAM reference object (marketDAM) updated to 339-day Sep 2026 sample via lib/market/cyprus-tsoc-dam-sample.ts. ' +
+      'Revenue model underwriting rates remain frozen at the Feb 2026 analysis (conservative base case).',
   },
 } as const
 

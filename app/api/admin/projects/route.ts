@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabase } from '@/lib/supabase'
+import { unauthorizedUnlessAdmin } from '@/lib/require-admin-key'
 
 // Project schema for validation
 const projectSchema = z.object({
@@ -39,7 +40,10 @@ const projectSchema = z.object({
 })
 
 // GET - Fetch all projects
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const denied = unauthorizedUnlessAdmin(request)
+  if (denied) return denied
+
   try {
     const { data, error } = await supabase
       .from('projects')

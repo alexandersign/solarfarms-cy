@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avdellero 45 MW PV + BESS — Equity Investment Model | Lighthief Cyprus</title>
+<style>
+:root {
+  --primary:       #1A365D;
+  --primary-light: #2B5FA0;
+  --accent:        #C9A432;
+  --accent-dark:   #9C7D22;
+  --white:         #FFFFFF;
+  --grey-text:     #404040;
+  --body-bg:       #F0F4F8;
+  --card-bg:       #FFFFFF;
+  --border:        #D1D9E0;
+  --success:       #1A6B3C;
+  --warning:       #7A5200;
+  --warn-bg:       #FFF8E6;
+  --info-bg:       #EBF2FB;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--body-bg); color: var(--grey-text); font-size: 13px; }
+a { color: var(--primary); }
+
+/* Page header */
+.page-header { background: var(--primary); color: var(--white); padding: 28px 40px; }
+.page-header h1 { color: var(--accent); font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.page-header .subtitle { font-size: 13px; opacity: 0.85; }
+
+.wrapper { max-width: 1280px; margin: 0 auto; padding: 28px 40px 48px; }
+
+/* Section headings */
+h2 { color: var(--accent); font-size: 15px; font-weight: 700; margin: 28px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+h3 { color: var(--primary); font-size: 13px; font-weight: 700; margin: 16px 0 8px; }
+
+/* Stat grid */
+.stat-grid { display: grid; gap: 14px; margin-bottom: 20px; }
+.stat-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.stat-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.stat-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
+.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; }
+.stat-card .label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+.stat-card .value { font-size: 20px; font-weight: 700; color: var(--primary); }
+.stat-card .value.success { color: var(--success); }
+.stat-card .value.warn    { color: var(--warning); }
+.stat-card .value.accent  { color: var(--accent-dark); }
+
+/* Two-column grid */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+
+/* Card */
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.card-header { background: var(--primary); color: var(--white); padding: 10px 16px; font-size: 12px; font-weight: 600; }
+.card-body { padding: 16px; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px; }
+thead tr { background: var(--primary); color: var(--white); }
+thead th { padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; }
+tbody tr:nth-child(even) { background: #F5F7FA; }
+tbody tr:hover { background: #EBF0F7; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--border); }
+td.r { text-align: right; }
+td.c { text-align: center; }
+tr.highlight { background: #E8F5EE; font-weight: 600; }
+tr.warn-row  { background: #FFF8E6; }
+tr.info-row  { background: #EBF2FB; }
+tr.total-row { background: var(--primary); color: var(--white); font-weight: 700; }
+tr.total-row td { border-color: var(--primary-light); }
+
+/* Callouts */
+.callout { border-left: 3px solid; padding: 10px 14px; margin-bottom: 12px; border-radius: 0 4px 4px 0; font-size: 12px; }
+.callout.warning { border-color: #B8860B; background: var(--warn-bg); }
+.callout.info    { border-color: var(--primary-light); background: var(--info-bg); }
+.callout strong  { font-weight: 700; }
+
+/* CAPEX bar */
+.capex-bar-wrap { background: #E2E8F0; border-radius: 4px; height: 22px; display: flex; overflow: hidden; margin: 10px 0; }
+.capex-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 600; white-space: nowrap; overflow: hidden; }
+
+/* Scenario pills */
+.scenario-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+.pill { display: inline-block; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); font-size: 12px; cursor: pointer; background: var(--card-bg); }
+.pill.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.scenario-label { font-size: 12px; color: #666; font-style: italic; }
+
+/* Notes */
+.note { font-size: 11px; color: #666; margin-top: 8px; }
+
+/* Footer */
+footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: #888; }
+
+@media (max-width: 900px) {
+  .two-col, .stat-grid.cols-6, .stat-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+  .stat-grid.cols-3 { grid-template-columns: 1fr; }
+  .wrapper { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Avdellero 45 MW Solar PV + BESS — Equity Investment Model</h1>
+  <div class="subtitle">
+    All 11 sub-projects &bull; 45.21 MW Solar PV &bull; ~195.6 MWh BESS (4-hour Linyang) &bull;
+    Larnaca District, Cyprus &bull; KPMG Factsheet Apr 2024 &bull; Model date: Sep 2026
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- ASSUMPTIONS NOTICE -->
+  <div class="callout info" style="margin-top:0;">
+    <strong>Model parameters:</strong> RTB €450K/MW &bull; PV self-perform €0.50/Wp &bull;
+    4-hour Linyang BESS (exact confirmed CIF) &bull; 50% curtailment &bull; Alpha Bank: Euribor 3M 2.62% + 1.5% = <strong>4.12%</strong> &bull;
+    Equity partner: €25M for 25% SPV &bull; CIT 15% (Cyprus 2026).
+  </div>
+
+  <!-- HERO STATS — CURRENT DAM SCENARIO -->
+  <h2>Key Metrics — Current DAM Scenario (Oct 2025–Sep 2026 sample)</h2>
+  <div class="stat-grid cols-6">
+    <div class="stat-card"><div class="label">Total CAPEX</div><div class="value">€64.2M</div></div>
+    <div class="stat-card"><div class="label">Net Revenue Y1</div><div class="value">€12.6M</div></div>
+    <div class="stat-card"><div class="label">EBITDA Y1</div><div class="value">€11.3M</div></div>
+    <div class="stat-card"><div class="label">Partner IRR</div><div class="value success">~6.5%</div></div>
+    <div class="stat-card"><div class="label">Partner Payback</div><div class="value">~Year 15</div></div>
+    <div class="stat-card"><div class="label">Your IRR (75%)</div><div class="value success">200%+</div></div>
+  </div>
+
+  <h2>Scenario Comparison</h2>
+  <table>
+    <thead><tr>
+      <th>Metric</th>
+      <th>Conservative (frozen Feb 2026 underwriting)</th>
+      <th>Current DAM (Oct 2025–Sep 2026, €200/MWh avg)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>DAM solar rate (06–17h)</td><td class="r">€140.88/MWh</td><td class="r">€151.38/MWh</td></tr>
+      <tr><td>DAM evening peak rate (17–21h)</td><td class="r">€182.99/MWh</td><td class="r">€212.42/MWh</td></tr>
+      <tr><td>Gross revenue Y1</td><td class="r">€12.36M</td><td class="r">€13.98M</td></tr>
+      <tr><td>Net revenue Y1 (after 10% aggregator)</td><td class="r">€11.12M</td><td class="r">€12.58M</td></tr>
+      <tr><td>EBITDA Y1</td><td class="r">€9.79M</td><td class="r">€11.25M</td></tr>
+      <tr><td>FCFE Y1 (total)</td><td class="r">€6.02M</td><td class="r">€7.30M</td></tr>
+      <tr><td>Partner cash Y1 (25%)</td><td class="r">€1.51M</td><td class="r">€1.83M</td></tr>
+      <tr><td>Partner cash-on-cash Y1</td><td class="r">6.0%</td><td class="r">7.3%</td></tr>
+      <tr class="highlight"><td>Partner IRR (25-yr)</td><td class="r">~4.5%</td><td class="r">~6.5%</td></tr>
+      <tr class="highlight"><td>Partner payback</td><td class="r">~Year 18</td><td class="r">~Year 15</td></tr>
+      <tr><td>Your cash Y1 (75%)</td><td class="r">€4.52M</td><td class="r">€5.48M</td></tr>
+      <tr><td>Your cash-on-cash Y1</td><td class="r">65%</td><td class="r">79%</td></tr>
+    </tbody>
+  </table>
+
+  <!-- BESS CONFIGURATION -->
+  <h2>Linyang BESS Configuration — Exact Pricing (Quotation LY202601271)</h2>
+  <p class="note">CIF "confirmed" = executed quote LY202601271 (Galascope/Anarita); "derived" = decomposed from confirmed configs (3 × €391,170 BESS container + €284,032 T4 skid). T4* = T4 derated to sub-rated MW. EMS/SCADA adders per Disperon v3 confirmed pricing.</p>
+  <table>
+    <thead><tr>
+      <th>Sub-project</th><th>Type</th><th class="r">MW</th>
+      <th class="r">BESS units</th><th class="c">Skid</th>
+      <th class="r">MWh installed</th><th class="c">Duration</th>
+      <th class="r">Linyang CIF (€)</th><th class="r">Installed incl. adders</th><th class="c">Source</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Avdellero 1</td><td>Solar PV</td><td class="r">5.00</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">4.0h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr class="warn-row"><td>Avdellero 2</td><td>Agri-PV</td><td class="r">3.30</td><td class="r">3 BESS</td><td class="c">T4</td><td class="r">15.045</td><td class="c">4.6h</td><td class="r">€1,457,542</td><td class="r">€1,630,770</td><td class="c">derived</td></tr>
+      <tr><td>Avdellero 3</td><td>Agri-PV</td><td class="r">4.90</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">4.1h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr><td>Avdellero 4</td><td>Solar PV</td><td class="r">5.00</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">4.0h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr><td>Avdellero 5</td><td>Solar PV</td><td class="r">4.91</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">4.1h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr class="warn-row"><td>Avdellero 6</td><td>Solar PV</td><td class="r">2.79</td><td class="r">3 BESS</td><td class="c">T4*</td><td class="r">15.045</td><td class="c">5.4h</td><td class="r">€1,457,542</td><td class="r">€1,630,770</td><td class="c">derived</td></tr>
+      <tr><td>Avdellero 7</td><td>Solar PV</td><td class="r">4.05</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">5.0h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr class="warn-row"><td>Avdellero 8</td><td>Agri-PV</td><td class="r">2.90</td><td class="r">3 BESS</td><td class="c">T4*</td><td class="r">15.045</td><td class="c">5.2h</td><td class="r">€1,457,542</td><td class="r">€1,630,770</td><td class="c">derived</td></tr>
+      <tr><td>Avdellero 9</td><td>Solar PV</td><td class="r">4.78</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">4.2h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr><td>Avdellero 10</td><td>Solar PV</td><td class="r">5.00</td><td class="r">4 BESS</td><td class="c">T4</td><td class="r">20.060</td><td class="c">4.0h</td><td class="r">€1,848,712</td><td class="r">€2,079,480</td><td class="c">confirmed</td></tr>
+      <tr><td>Avdellero 11</td><td>Agri-PV</td><td class="r">2.60</td><td class="r">2 BESS</td><td class="c">T2</td><td class="r">10.030</td><td class="c">3.9h</td><td class="r">€974,457</td><td class="r">€1,089,883</td><td class="c">confirmed</td></tr>
+      <tr class="total-row">
+        <td><strong>TOTAL — 11 parks</strong></td><td></td><td class="r"><strong>45.21 MW</strong></td>
+        <td class="r"><strong>39 BESS + 11 skids</strong></td><td class="c"></td>
+        <td class="r"><strong>195.59 MWh</strong></td><td class="c"></td>
+        <td class="r"><strong>€18,288,067</strong></td><td class="r"><strong>€20,517,533</strong></td><td class="c"></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Orange rows = derived CIF. Adder stack: import duty 2.66% + port €600/unit + crane €2,500/unit + civil €2,000/MWh + DEHN + EMS/SCADA (Disperon v3) + cables + docs. 50 total shipping containers.</p>
+
+  <!-- CAPEX -->
+  <h2>Total CAPEX Stack</h2>
+  <div class="capex-bar-wrap">
+    <div class="capex-seg" style="width:31.7%;background:#1A365D;" title="RTB €20.3M">RTB 32%</div>
+    <div class="capex-seg" style="width:35.2%;background:#2B5FA0;" title="PV EPC €22.6M">PV EPC 35%</div>
+    <div class="capex-seg" style="width:28.5%;background:#C9A432;" title="BESS €18.3M CIF + €2.3M adders">BESS 32%</div>
+    <div class="capex-seg" style="width:1.2%;background:#9C7D22;" title="Dev €0.75M">D</div>
+    <div class="capex-seg" style="width:3.4%;background:#D1D9E0;color:#444;" title="Remaining">—</div>
+  </div>
+  <table>
+    <thead><tr><th>Item</th><th class="r">Amount</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>RTB acquisition</td><td class="r">€20,344,500</td><td>45.21 MW × €450,000/MW</td></tr>
+      <tr><td>PV self-perform EPC</td><td class="r">€22,605,000</td><td>45,210 kWp × €0.50/Wp (panels + mount + inverters + cables + install)</td></tr>
+      <tr><td>BESS — Linyang CIF (confirmed)</td><td class="r">€18,288,067</td><td>7 × 4-container/T4 + 3 × 3-container/T4 + 1 × 2-container/T2</td></tr>
+      <tr><td>BESS — adders (duty, port, crane, civil, EMS/SCADA, cables)</td><td class="r">€2,254,625</td><td>€11,528/MWh × 195.59 MWh (confirmed Lighthief cost stack)</td></tr>
+      <tr><td>Development / planning / legal</td><td class="r">€750,000</td><td>Permits, design, legal</td></tr>
+      <tr class="highlight"><td><strong>TOTAL CAPEX</strong></td><td class="r"><strong>€64,242,192</strong></td><td>Excl. EAC substation (€7.2M — status TBC)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- FINANCING -->
+  <h2>Financing Structure &amp; Alpha Bank Rate</h2>
+  <div class="two-col">
+    <div>
+      <table>
+        <thead><tr><th>Source</th><th class="r">Amount</th><th class="r">% CAPEX</th><th>Terms</th></tr></thead>
+        <tbody>
+          <tr><td>Alpha Bank (RES loan)</td><td class="r">€32,267,000</td><td class="r">50.2%</td><td>4.12% · 15-yr annuity · 75% of bankable EPC</td></tr>
+          <tr><td>Equity partner (25% SPV)</td><td class="r">€25,000,000</td><td class="r">38.9%</td><td>€25M for 25% of SPV equity</td></tr>
+          <tr><td>Your equity (75% SPV)</td><td class="r">€6,975,192</td><td class="r">10.9%</td><td>75% ownership, ~11% of total CAPEX</td></tr>
+          <tr class="highlight"><td><strong>TOTAL</strong></td><td class="r"><strong>€64,242,192</strong></td><td class="r"><strong>100%</strong></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <strong>Alpha Bank rate:</strong> Euribor 3M 2.620% (Sep 18, 2026) + 1.5% margin = <strong>4.12%</strong>.
+        Confirmed by Dino (Alpha Bank) specifically for RES projects.
+        Annual debt payment: <strong>€2,934,000/yr</strong> (Y1–15).
+        RTB (€20.3M) and development (€0.75M) are equity-only — not bankable.
+      </div>
+    </div>
+    <div>
+      <h3>Annual Debt Service Detail</h3>
+      <table>
+        <thead><tr><th>Item</th><th class="r">Y1</th><th class="r">Y10</th><th class="r">Y15 (last)</th></tr></thead>
+        <tbody>
+          <tr><td>Outstanding balance (start)</td><td class="r">€32.3M</td><td class="r">€15.2M</td><td class="r">€2.9M</td></tr>
+          <tr><td>Interest payment</td><td class="r">€1,331K</td><td class="r">€627K</td><td class="r">€118K</td></tr>
+          <tr><td>Principal repayment</td><td class="r">€1,603K</td><td class="r">€2,307K</td><td class="r">€2,816K</td></tr>
+          <tr class="highlight"><td>Total annual payment</td><td class="r">€2,934K</td><td class="r">€2,934K</td><td class="r">€2,934K</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Y16: Alpha Bank loan fully repaid. New BESS replacement loan starts (€13.7M @ 4.12%, 10yr = €1,687K/yr).</p>
+    </div>
+  </div>
+
+  <!-- REVENUE MODEL -->
+  <h2>Revenue Model — TSOC Cyprus DAM Dispatch</h2>
+  <div class="stat-grid cols-4" style="margin-bottom:14px;">
+    <div class="stat-card"><div class="label">Annual PV output Y1</div><div class="value">85,899 MWh</div></div>
+    <div class="stat-card"><div class="label">Sold direct (50% uncurtailed)</div><div class="value">42,950 MWh</div></div>
+    <div class="stat-card"><div class="label">BESS discharged Y1</div><div class="value">35,201 MWh</div></div>
+    <div class="stat-card"><div class="label">Net revenue Y1 (current DAM)</div><div class="value accent">€12.58M</div></div>
+  </div>
+  <table>
+    <thead><tr><th>Revenue stream</th><th class="r">Volume MWh/yr</th><th class="r">Rate €/MWh (current)</th><th class="r">Rate €/MWh (conservative)</th><th class="r">Gross revenue</th></tr></thead>
+    <tbody>
+      <tr><td>Uncurtailed solar → DAM (06:00–17:00 daytime avg)</td><td class="r">42,950</td><td class="r">€151.38</td><td class="r">€140.88</td><td class="r">€6.5M / €6.1M</td></tr>
+      <tr><td>BESS discharge → DAM (17:00–21:00 evening peak avg)</td><td class="r">35,201</td><td class="r">€212.42</td><td class="r">€182.99</td><td class="r">€7.5M / €6.4M</td></tr>
+      <tr><td>Less: aggregator / grid management fee (10%)</td><td class="r">—</td><td class="r">−10%</td><td class="r">−10%</td><td class="r">−€1.4M / −€1.2M</td></tr>
+      <tr class="highlight"><td><strong>Net revenue Y1</strong></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"><strong>€12.6M / €11.1M</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Yield: 1,900 kWh/kWp · 50% curtailment · RTE 86.32% AC-AC (Linyang confirmed) · BESS always captures 100% of curtailed energy (daily curtailed ~118 MWh &lt; BESS capacity 195.6 MWh) ·
+  Revenue degrades 0.5%/yr (PV degradation only — BESS SOH degradation does not constrain capture). DAM: TSOC 339-day sample Oct 2025–Sep 2026.</p>
+
+  <!-- OPEX -->
+  <h2>Annual OPEX</h2>
+  <table>
+    <thead><tr><th>Cost item</th><th class="r">Y1 amount</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>PV O&amp;M (operation and maintenance)</td><td class="r">€361,680</td><td>€8,000/MWp/yr × 45.21 MWp</td></tr>
+      <tr><td>BESS LTSA (Lighthief internal O&amp;M)</td><td class="r">€285,000</td><td>11 parks, 195.6 MWh fleet (internal cost)</td></tr>
+      <tr><td>Insurance (all-risk, CAR/EAR)</td><td class="r">€300,000</td><td>Annual premium for PV + BESS combined</td></tr>
+      <tr><td>Land lease (government — 33-yr lease)</td><td class="r">€120,000</td><td>€80K/yr PV (signed) + €40K/yr Agri-PV (estimate)</td></tr>
+      <tr><td>SCADA / EMS annual maintenance</td><td class="r">€45,000</td><td>Disperon v3: €3K/park × 11 + €12K group</td></tr>
+      <tr><td>Admin / legal / accounting / misc</td><td class="r">€220,000</td><td>SPV overhead, audit, compliance</td></tr>
+      <tr class="highlight"><td><strong>Total OPEX Y1</strong></td><td class="r"><strong>€1,331,680</strong></td><td>Inflated +2%/yr in model</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 25-YEAR CASH FLOW -->
+  <h2>25-Year Cash Flow Summary (Current DAM Scenario)</h2>
+  <table>
+    <thead><tr>
+      <th>Year</th><th class="r">Net Rev €K</th><th class="r">EBITDA €K</th><th class="r">Tax €K</th>
+      <th class="r">Debt svc €K</th><th class="r">FCFE €K</th><th class="r">Partner 25% €K</th><th class="r">Cum. partner €K</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="r">12,583</td><td class="r">11,251</td><td class="r">1,014</td><td class="r">2,934</td><td class="r">7,303</td><td class="r">1,826</td><td class="r">-23,174</td></tr>
+      <tr><td>3</td><td class="r">12,457</td><td class="r">11,052</td><td class="r">990</td><td class="r">2,934</td><td class="r">7,128</td><td class="r">1,782</td><td class="r">-20,070</td></tr>
+      <tr><td>5</td><td class="r">12,336</td><td class="r">10,894</td><td class="r">972</td><td class="r">2,934</td><td class="r">6,988</td><td class="r">1,747</td><td class="r">-17,120</td></tr>
+      <tr><td>8</td><td class="r">12,152</td><td class="r">10,620</td><td class="r">940</td><td class="r">2,934</td><td class="r">6,746</td><td class="r">1,687</td><td class="r">-12,570</td></tr>
+      <tr><td>10</td><td class="r">12,029</td><td class="r">10,438</td><td class="r">920</td><td class="r">2,934</td><td class="r">6,584</td><td class="r">1,646</td><td class="r">-9,600</td></tr>
+      <tr><td>12</td><td class="r">11,909</td><td class="r">10,263</td><td class="r">902</td><td class="r">2,934</td><td class="r">6,427</td><td class="r">1,607</td><td class="r">-6,710</td></tr>
+      <tr><td>14</td><td class="r">11,791</td><td class="r">10,091</td><td class="r">885</td><td class="r">2,934</td><td class="r">6,272</td><td class="r">1,568</td><td class="r">-3,890</td></tr>
+      <tr><td>15</td><td class="r">11,733</td><td class="r">10,007</td><td class="r">876</td><td class="r">2,934</td><td class="r">6,197</td><td class="r">1,549</td><td class="r">-2,341</td></tr>
+      <tr class="info-row"><td><strong>16 ★</strong></td><td class="r">11,668</td><td class="r">9,875</td><td class="r">922</td><td class="r">1,688</td><td class="r">7,265</td><td class="r">1,816</td><td class="r">-525</td></tr>
+      <tr class="highlight"><td><strong>17 ★</strong></td><td class="r">11,610</td><td class="r">9,757</td><td class="r">907</td><td class="r">1,688</td><td class="r">7,162</td><td class="r">1,791</td><td class="r">1,266</td></tr>
+      <tr><td>20</td><td class="r">11,437</td><td class="r">9,466</td><td class="r">872</td><td class="r">1,688</td><td class="r">6,906</td><td class="r">1,727</td><td class="r">6,570</td></tr>
+      <tr><td>25</td><td class="r">11,155</td><td class="r">9,012</td><td class="r">820</td><td class="r">0</td><td class="r">8,192</td><td class="r">2,048</td><td class="r">18,200</td></tr>
+    </tbody>
+  </table>
+  <p class="note">★ Y16: BESS replaced (€13.7M debt at 4.12% / 10yr = €1,688K/yr — replaces paid-off Alpha Bank loan). Revenue resets to PV-degraded baseline. Green rows = partner has fully recovered €25M investment (cumulative ≥ 0).</p>
+
+  <!-- EQUITY RETURNS -->
+  <h2>Equity Partner vs. Your Returns</h2>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header">EQUITY PARTNER — 25% SPV · €25M invested</div>
+      <div class="card-body">
+        <div class="stat-grid cols-3">
+          <div class="stat-card"><div class="label">Investment</div><div class="value">€25.0M</div></div>
+          <div class="stat-card"><div class="label">SPV equity stake</div><div class="value">25%</div></div>
+          <div class="stat-card"><div class="label">Cash Y1</div><div class="value">€1.83M</div></div>
+          <div class="stat-card"><div class="label">Cash-on-cash Y1</div><div class="value success">7.3%/yr</div></div>
+          <div class="stat-card"><div class="label">IRR (25-yr, current DAM)</div><div class="value success">~6.5%</div></div>
+          <div class="stat-card"><div class="label">IRR (25-yr, conservative)</div><div class="value warn">~4.5%</div></div>
+          <div class="stat-card"><div class="label">Break-even / Payback</div><div class="value">Year 15–17</div></div>
+          <div class="stat-card"><div class="label">Total 25-yr cash (current)</div><div class="value">~€43M</div></div>
+          <div class="stat-card"><div class="label">Equity contribution (% pool)</div><div class="value warn">78%</div></div>
+        </div>
+        <div class="callout info" style="margin-top:12px;">
+          <strong>Structure note:</strong> Partner contributes 78% of equity pool (€25M / €32M) but owns only 25% of the SPV.
+          This "bonus equity" is the agreed incentive for bringing in €25M anchor capital.
+          Partner IRR is moderate (4.5–6.5%) but the investment is senior in capital contribution.
+          Post-payback cash (Y17–25): ~€16M incremental at current DAM.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">YOUR POSITION — 75% SPV · €7.0M invested</div>
+      <div class="card-body">
+        <div class="stat-grid cols-3">
+          <div class="stat-card"><div class="label">Your equity</div><div class="value">€7.0M</div></div>
+          <div class="stat-card"><div class="label">SPV equity stake</div><div class="value">75%</div></div>
+          <div class="stat-card"><div class="label">Cash Y1</div><div class="value success">€5.5M</div></div>
+          <div class="stat-card"><div class="label">Cash-on-cash Y1</div><div class="value success">79%/yr</div></div>
+          <div class="stat-card"><div class="label">IRR (25-yr)</div><div class="value success">200%+</div></div>
+          <div class="stat-card"><div class="label">Payback</div><div class="value success">&lt; 1.3 years</div></div>
+          <div class="stat-card"><div class="label">% of CAPEX contributed</div><div class="value">10.9%</div></div>
+          <div class="stat-card"><div class="label">Control / management</div><div class="value">100%</div></div>
+          <div class="stat-card"><div class="label">Total 25-yr cash (current)</div><div class="value success">~€130M</div></div>
+        </div>
+        <div class="callout info" style="margin-top:12px;">
+          <strong>Leverage story:</strong> You own 75% of a €64M project for €7M of your capital (11% of CAPEX).
+          Alpha Bank funds 50% with cheap RES debt, and the equity partner's €25M funds the bulk of equity.
+          Y1 cash return of €5.5M is 79% of your entire equity investment — extraordinary leverage ratio.
+          Over 25 years, 75% of a project generating €11M+/yr EBITDA is extremely valuable.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RISKS -->
+  <h2>Key Risks and Open Items</h2>
+  <div class="two-col">
+    <div>
+      <div class="callout warning">
+        <strong>EAC substation (€7.2M) — UNCONFIRMED:</strong> KPMG factsheet states EAC will build a
+        new transmission substation in the area. Confirm with seller (K. Ellinas / G.P. Rodik Services Ltd)
+        whether this €7.2M is in the SPV CAPEX. If yes, total CAPEX rises to €71.4M.
+      </div>
+      <div class="callout warning">
+        <strong>Agri-PV planning permits (13.7 MW):</strong> Avdellero 2, 3, 8, 11 are pending town planning
+        permits. All 4 have CERA licence + environmental approval. No building permit applications submitted yet.
+        Consider phased construction: build the 31.5 MW Solar PV first, then add Agri-PV when permits arrive.
+      </div>
+      <div class="callout info">
+        <strong>Land leases — Agri-PV not signed:</strong> Annual rental cost €40K/yr for Agri-PV sub-projects
+        is estimated (PV at €80K/yr is signed and paid). Lease negotiation ongoing.
+      </div>
+    </div>
+    <div>
+      <div class="callout info">
+        <strong>BESS CIF — 3 parks derived:</strong> Avdellero 2, 6, 8 use a decomposed price
+        (3 BESS containers + T4 skid). Variance ±5% vs formal Linyang quotation for these specific configs.
+        Request formal quote from Linyang before signing term sheet.
+      </div>
+      <div class="callout info">
+        <strong>DAM price sensitivity:</strong> Conservative scenario (4.5% partner IRR) uses frozen
+        Feb 2026 rates. Current DAM (Sep 2026 avg ~€200/MWh) gives 6.5% partner IRR.
+        5-year average DAM price will be the real determinant. Consider PPA hedging.
+      </div>
+      <div class="callout info">
+        <strong>BESS replacement at Y15:</strong> Assumed €13.7M at technology-reduced future cost (~€70K/MWh).
+        Actual replacement cost will depend on battery market in 2041. New debt at then-prevailing rates.
+      </div>
+    </div>
+  </div>
+
+  <h2>Key Questions for Seller (K. Ellinas / G.P. Rodik Services Ltd)</h2>
+  <ol style="padding-left:20px;line-height:2;">
+    <li>Is the €7.2M EAC substation in the SPV CAPEX or EAC's own cost?</li>
+    <li>Are they offering share acquisition or turn-key construction? (Turn-key includes substation)</li>
+    <li>What is the expected timeline for Agri-PV planning permits?</li>
+    <li>What are the remaining building permit application timelines for the 5 MW pending?</li>
+    <li>Are there any grid connection agreements or ATC (advance connection terms) already agreed?</li>
+    <li>What is the total annual land lease cost once all 11 sub-leases are active?</li>
+  </ol>
+
+</div>
+
+<footer class="wrapper">
+  Lighthief Cyprus Ltd &bull; HE 477423 &bull; solarfarms.cy &bull; office@lighthief.com &bull; +357 77 77 00 50<br>
+  Contact: Alexander Papacosta (Cyprus Director) &bull; +357 99 164 158 &bull; office@lighthief.com<br>
+  Internal document — confidential. Not for distribution. Model date: September 2026.
+</footer>
+
+</body>
+</html>

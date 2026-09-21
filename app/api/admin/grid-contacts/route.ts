@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { gridOperatorService } from '@/lib/supabase'
+import { unauthorizedUnlessAdmin } from '@/lib/require-admin-key'
 
 // GET - Fetch all grid operator contacts (DSO, TSO, CERA)
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const denied = unauthorizedUnlessAdmin(request)
+  if (denied) return denied
+
   try {
     const contacts = await gridOperatorService.getAll()
 

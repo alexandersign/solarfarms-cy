@@ -96,13 +96,13 @@ export default function AdminDashboard() {
     setError(null)
     
     try {
+      const key = adminKey || (typeof window !== 'undefined' ? localStorage.getItem('adminKey') : '') || ''
+      const adminHeaders = { 'x-admin-key': key }
       const [contactsRes, landRes, projectsRes, subscribersRes] = await Promise.all([
-        fetch('/api/admin/contacts'),
-        fetch('/api/admin/land-assessments'),
-        fetch('/api/admin/projects'),
-        fetch('/api/admin/subscribers', {
-          headers: { 'x-admin-key': adminKey || localStorage.getItem('adminKey') || '' }
-        })
+        fetch('/api/admin/contacts', { headers: adminHeaders }),
+        fetch('/api/admin/land-assessments', { headers: adminHeaders }),
+        fetch('/api/admin/projects', { headers: adminHeaders }),
+        fetch('/api/admin/subscribers', { headers: adminHeaders })
       ])
       
       if (contactsRes.ok) {
@@ -430,7 +430,7 @@ export default function AdminDashboard() {
               <Button onClick={saveAdminKey}>Save Key</Button>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              Required for sending newsletters and managing projects. Set ADMIN_SECRET_KEY in Vercel env vars.
+              Required to view leads and for sending newsletters. Set ADMIN_SECRET_KEY in Vercel env vars.
             </p>
           </CardContent>
         </Card>

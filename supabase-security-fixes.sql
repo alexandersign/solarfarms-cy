@@ -1,3 +1,7 @@
+-- SUPERSEDED for table access control.
+-- Do not re-apply the public INSERT/SELECT policies below.
+-- Use supabase/enable-rls-all-public.sql and SUPABASE_SERVICE_ROLE_KEY.
+
 -- =====================================================
 -- SUPABASE SECURITY FIXES
 -- Run these in Supabase SQL Editor to fix linter warnings

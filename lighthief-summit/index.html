@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyprus Energy Summit 2026 — Lighthief</title>
+  <meta name="description" content="Where the leaders of Eastern Mediterranean energy meet. 26–27 November 2026 · St. Raphael Resort & Marina, Limassol, Cyprus. Organised by Lighthief Cyprus Ltd." />
+  <meta property="og:title" content="Cyprus Energy Summit 2026" />
+  <meta property="og:description" content="26–27 November 2026 · St. Raphael Resort & Marina, Limassol, Cyprus" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg:           #09180D;
+      --bg-alt:       #0C1F12;
+      --bg-card:      #112016;
+      --bg-card-2:    #0E1A11;
+      --bg-nav:       rgba(9, 24, 13, 0.97);
+      --gold:         #C9A432;
+      --gold-light:   #E0B840;
+      --gold-dim:     rgba(201, 164, 50, 0.18);
+      --gold-border:  rgba(201, 164, 50, 0.35);
+      --olive:        #4A7840;
+      --olive-dim:    rgba(74, 120, 64, 0.2);
+      --sea:          #1E6B78;
+      --text:         #EFE9D5;
+      --text-2:       #B4C4A4;
+      --text-3:       #6A8060;
+      --border:       #1C321C;
+      --border-2:     #243C24;
+      --max-w:        1160px;
+      --nav-h:        68px;
+      --section-pad:  100px 24px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      padding: 0 32px;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    #nav.scrolled {
+      background: var(--bg-nav);
+      border-bottom-color: var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-logo {
+      display: flex; flex-direction: column; line-height: 1;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo-top {
+      font-size: 9px; font-weight: 600; letter-spacing: 0.14em;
+      color: var(--gold); text-transform: uppercase;
+    }
+    .nav-logo-main {
+      font-size: 15px; font-weight: 700; letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .nav-logo-main span { color: var(--gold); }
+    .nav-links {
+      display: flex; align-items: center; gap: 24px;
+      list-style: none; margin-left: auto;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+      color: var(--text-2); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .btn-nav {
+      display: inline-block; padding: 9px 22px;
+      background: var(--gold); color: #09180D;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-nav:hover { background: var(--gold-light); }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    #mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99;
+      background: var(--bg-nav); border-bottom: 1px solid var(--border);
+      padding: 20px 32px 28px;
+    }
+    #mobile-menu.open { display: block; }
+    #mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+    #mobile-menu a { color: var(--text-2); text-decoration: none; font-size: 15px; font-weight: 500; }
+
+    @media (max-width: 820px) {
+      .nav-links, .btn-nav { display: none; }
+      .nav-hamburger { display: flex; margin-left: auto; }
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: calc(var(--nav-h) + 60px) 24px 80px;
+      position: relative; overflow: hidden;
+      background: var(--bg);
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(201,164,50,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,164,50,0.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(74,120,64,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; text-align: center; max-width: 860px;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .hero-label::before, .hero-label::after {
+      content: '—'; margin: 0 10px; opacity: 0.5;
+    }
+    .hero-title {
+      font-size: clamp(42px, 7vw, 84px);
+      font-weight: 900; letter-spacing: -0.02em; line-height: 1.0;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 22px); font-weight: 300; font-style: italic;
+      color: var(--text-2); margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: inline-flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+      font-size: 14px; font-weight: 500; color: var(--text-2);
+      border: 1px solid var(--gold-border); padding: 12px 28px; margin-bottom: 52px;
+    }
+    .hero-meta-sep { color: var(--gold); opacity: 0.4; }
+
+    /* Countdown */
+    .countdown {
+      display: flex; gap: 16px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .cd-block {
+      display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border-2);
+      padding: 16px 22px; min-width: 80px;
+    }
+    .cd-num {
+      font-size: 40px; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--text); line-height: 1;
+    }
+    .cd-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-top: 6px;
+    }
+
+    .hero-cta {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block; padding: 16px 40px;
+      background: var(--gold); color: #09180D;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-ghost {
+      display: inline-block; padding: 15px 36px;
+      background: transparent; color: var(--text-2);
+      font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid var(--border-2); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .btn-ghost:hover { border-color: var(--gold-border); color: var(--text); }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3);
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    /* ─── SECTION COMMON ────────────────────────────────────── */
+    section { padding: var(--section-pad); }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em;
+      color: var(--text); line-height: 1.1; margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 16px; color: var(--text-2); line-height: 1.75;
+      max-width: 720px;
+    }
+    .gold-line {
+      width: 48px; height: 2px; background: var(--gold); margin-bottom: 28px;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────────────── */
+    #about { background: var(--bg-alt); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .about-text p { font-size: 15px; color: var(--text-2); line-height: 1.8; margin-bottom: 20px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-features { display: flex; flex-direction: column; gap: 28px; }
+    .feature-item {
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .feature-num {
+      flex-shrink: 0; width: 36px; height: 36px;
+      border: 1px solid var(--gold-border); color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+    }
+    .feature-item h4 {
+      font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+    }
+    .feature-item p { font-size: 13px; color: var(--text-3); line-height: 1.6; }
+
+    @media (max-width: 760px) {
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ─── NUMBERS ───────────────────────────────────────────── */
+    #numbers { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 70px 24px; }
+    .numbers-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0;
+    }
+    .stat-block {
+      text-align: center; padding: 32px 20px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-num {
+      font-size: 52px; font-weight: 900; letter-spacing: -0.03em;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-plus { font-size: 32px; }
+    .stat-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-3); margin-top: 8px;
+    }
+    @media (max-width: 640px) {
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:nth-child(2) { border-right: none; }
+      .stat-block { border-bottom: 1px solid var(--border); }
+      .stat-block:last-child, .stat-block:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+    }
+
+    /* ─── SPEAKERS ──────────────────────────────────────────── */
+    #speakers { background: var(--bg-alt); }
+    .speakers-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px;
+      margin-top: 48px;
+    }
+    .speaker-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 28px 20px; text-align: center;
+      transition: border-color 0.2s;
+    }
+    .speaker-card:hover { border-color: var(--gold-border); }
+    .speaker-photo {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--bg-card-2); border: 2px solid var(--border-2);
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 700; color: var(--text-3); letter-spacing: 0.04em;
+    }
+    .speaker-card.confirmed .speaker-photo { border-color: var(--gold-border); }
+    .speaker-badge {
+      display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 3px 10px; margin-bottom: 12px;
+      color: var(--gold); border: 1px solid var(--gold-border);
+    }
+    .speaker-badge.invited { color: var(--text-3); border-color: var(--border-2); }
+    .speaker-name {
+      font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px;
+    }
+    .speaker-title {
+      font-size: 12px; color: var(--text-3); line-height: 1.5;
+    }
+    .speaker-org {
+      font-size: 11px; font-weight: 600; color: var(--gold); margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+    .speakers-cta {
+      margin-top: 40px; text-align: center;
+    }
+
+    /* ─── PROGRAMME ─────────────────────────────────────────── */
+    #programme { background: var(--bg); }
+    .programme-table { width: 100%; margin-top: 48px; border-collapse: collapse; }
+    .programme-table thead th {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-3); padding: 12px 16px; text-align: left;
+      border-bottom: 1px solid var(--border-2);
+    }
+    .programme-row {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .programme-row:hover { background: rgba(255,255,255,0.02); }
+    .programme-row.break-row { background: rgba(0,0,0,0.2); }
+    .programme-row.vip-row { background: var(--gold-dim); }
+    .programme-row td { padding: 16px 16px; vertical-align: top; }
+    .prog-time {
+      font-size: 13px; font-weight: 600; color: var(--gold);
+      font-variant-numeric: tabular-nums; white-space: nowrap; width: 72px;
+    }
+    .prog-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .prog-speaker { font-size: 12px; color: var(--text-3); margin-top: 3px; }
+    .prog-type-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 2px;
+    }
+    .tag-keynote { background: var(--gold-dim); color: var(--gold-light); border: 1px solid var(--gold-border); }
+    .tag-panel { background: var(--olive-dim); color: #88b870; border: 1px solid rgba(74,120,64,0.4); }
+    .tag-presentation { background: rgba(30,107,120,0.15); color: #6bb8c8; border: 1px solid rgba(30,107,120,0.4); }
+    .tag-break { background: rgba(255,255,255,0.05); color: var(--text-3); border: 1px solid var(--border); }
+    .tag-vip { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+    .tag-address { background: rgba(30,107,120,0.1); color: #6ba8c8; border: 1px solid rgba(30,107,120,0.3); }
+
+    @media (max-width: 640px) {
+      .prog-type-col { display: none; }
+      .programme-row td { padding: 12px 10px; }
+    }
+
+    /* ─── TOPICS ─────────────────────────────────────────────── */
+    #topics { background: var(--bg-alt); }
+    .topics-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px;
+      margin-top: 48px;
+    }
+    .topic-tile {
+      background: var(--bg-card); padding: 32px 28px;
+      border-left: 3px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .topic-tile:hover { border-left-color: var(--gold); background: var(--bg-card-2); }
+    .topic-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .topic-tile h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .topic-tile p { font-size: 13px; color: var(--text-3); line-height: 1.6; }
+
+    /* ─── SPONSORS ──────────────────────────────────────────── */
+    #sponsors { background: var(--bg); }
+    .sponsor-tier { margin-bottom: 48px; }
+    .sponsor-tier-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-3); margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sponsor-logos {
+      display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    }
+    .sponsor-logo-box {
+      width: 160px; height: 60px; background: var(--bg-card);
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600; color: var(--text-3); letter-spacing: 0.06em;
+      text-align: center; padding: 8px; transition: border-color 0.2s;
+    }
+    .sponsor-logo-box.media { width: 200px; height: 72px; font-size: 11px; }
+    .sponsor-logo-box:hover { border-color: var(--gold-border); }
+    .sponsor-cta-strip {
+      background: var(--gold); padding: 48px 24px; text-align: center; margin-top: 16px;
+    }
+    .sponsor-cta-strip h3 {
+      font-size: 24px; font-weight: 800; color: #09180D; margin-bottom: 8px;
+    }
+    .sponsor-cta-strip p {
+      font-size: 15px; color: rgba(9,24,13,0.7); margin-bottom: 24px;
+    }
+    .btn-dark {
+      display: inline-block; padding: 14px 36px;
+      background: #09180D; color: var(--gold);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #1B3A1B; }
+
+    /* ─── VENUE ─────────────────────────────────────────────── */
+    #venue { background: var(--bg-alt); }
+    .venue-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      margin-top: 48px;
+    }
+    .venue-visual {
+      background: var(--bg-card); border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; color: var(--text-3); font-size: 13px; text-align: center; padding: 24px;
+      position: relative; overflow: hidden;
+    }
+    .venue-visual-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 4px;
+    }
+    .venue-visual-name {
+      font-size: 22px; font-weight: 700; color: var(--text);
+    }
+    .venue-visual-loc {
+      font-size: 13px; color: var(--text-2);
+    }
+    .venue-decoration {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold);
+    }
+    .venue-info h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+    .venue-info p { font-size: 14px; color: var(--text-2); line-height: 1.8; margin-bottom: 20px; }
+    .venue-detail-row {
+      display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px;
+    }
+    .venue-detail-icon {
+      flex-shrink: 0; width: 28px; height: 28px;
+      border: 1px solid var(--border-2); color: var(--gold);
+      display: flex; align-items: center; justify-content: center; font-size: 12px;
+    }
+    .venue-detail-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .venue-detail-text strong { color: var(--text); font-weight: 600; }
+    @media (max-width: 760px) {
+      .venue-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ─── CONTACT ───────────────────────────────────────────── */
+    #contact { background: var(--bg); }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px;
+      margin-top: 48px;
+    }
+    .contact-card {
+      background: var(--bg-card); border: 1px solid var(--border); padding: 28px;
+    }
+    .contact-photo {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--bg-card-2); border: 2px solid var(--border-2);
+      margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700; color: var(--text-3);
+    }
+    .contact-name { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .contact-title { font-size: 12px; color: var(--text-3); margin-bottom: 16px; line-height: 1.4; }
+    .contact-item { font-size: 13px; color: var(--text-2); margin-bottom: 8px; }
+    .contact-item a { color: var(--gold); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-alt); border-top: 1px solid var(--border);
+      padding: 60px 24px 32px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand p {
+      font-size: 13px; color: var(--text-3); line-height: 1.7; max-width: 300px; margin-top: 16px;
+    }
+    .footer-brand-name {
+      font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em;
+    }
+    .footer-brand-name span { color: var(--gold); }
+    .footer-brand-sub {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-3); margin-top: 2px;
+    }
+    .footer-col h4 {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-divider { border-color: var(--border); margin-bottom: 24px; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-legal { font-size: 12px; color: var(--text-3); }
+    .footer-social { display: flex; gap: 14px; }
+    .footer-social a {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-3); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--gold); }
+
+    @media (max-width: 760px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 480px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-top">Lighthief Cyprus Ltd</span>
+      <span class="nav-logo-main">Cyprus Energy <span>Summit</span> 2026</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="#venue">Venue</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:office@lighthief.com?subject=Invitation%20Request%20–%20Cyprus%20Energy%20Summit%202026" class="btn-nav">Request Invitation</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu">
+  <ul>
+    <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+    <li><a href="#speakers" onclick="closeMobileMenu()">Speakers</a></li>
+    <li><a href="#programme" onclick="closeMobileMenu()">Programme</a></li>
+    <li><a href="#sponsors" onclick="closeMobileMenu()">Sponsors</a></li>
+    <li><a href="#venue" onclick="closeMobileMenu()">Venue</a></li>
+    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+  </ul>
+  <a href="mailto:office@lighthief.com?subject=Invitation%20Request" class="btn-nav" style="display:inline-block;">Request Invitation</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-label">Lighthief Cyprus Ltd Presents</div>
+    <h1 class="hero-title">Cyprus<br><span>Energy</span><br>Summit 2026</h1>
+    <p class="hero-sub">Where the leaders of Eastern Mediterranean energy meet</p>
+    <div class="hero-meta">
+      <span>26–27 November 2026</span>
+      <span class="hero-meta-sep">·</span>
+      <span>St. Raphael Resort &amp; Marina</span>
+      <span class="hero-meta-sep">·</span>
+      <span>Limassol, Cyprus</span>
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hours</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Minutes</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Seconds</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:office@lighthief.com?subject=Invitation%20Request%20–%20Cyprus%20Energy%20Summit%202026" class="btn-primary">Request Invitation</a>
+      <a href="mailto:office@lighthief.com?subject=Sponsorship%20Enquiry%20–%20Cyprus%20Energy%20Summit%202026" class="btn-ghost">Become Sponsor</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <p class="section-eyebrow">About the Summit</p>
+        <h2 class="section-title">The premier energy summit for the Eastern Mediterranean</h2>
+        <div class="gold-line"></div>
+        <div class="about-text">
+          <p>The Cyprus Energy Summit 2026 is a high-level, invite-only conference bringing together energy ministers, policymakers, investors, and leading industry professionals to shape the energy transition across Cyprus, Greece, and the broader Eastern Mediterranean.</p>
+          <p>Organised by Lighthief Cyprus Ltd — an EPC and BESS specialist with an active 249 MW portfolio — the summit provides a unique platform for decision-makers to exchange intelligence, forge partnerships, and drive investment in renewable energy and grid infrastructure.</p>
+          <p>With Cyprus at the crossroads of EU policy ambitions and regional geopolitics, and the EuroAsia Interconnector poised to transform the island's energy landscape, 2026 is the defining year for Eastern Mediterranean energy.</p>
+        </div>
+      </div>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div>
+            <h4>Invite-Only Format</h4>
+            <p>A curated guest list ensuring every delegate is a genuine decision-maker. No open registration — quality over quantity.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div>
+            <h4>Ministerial Keynotes</h4>
+            <p>Keynote addresses from the Cyprus and Greece Energy Ministers alongside confirmed diplomatic representation from Poland.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div>
+            <h4>Closed Investor Roundtable</h4>
+            <p>An exclusive afternoon session for senior investors, fund managers, and developers — closed to general attendees.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div>
+            <h4>Evening Cocktail Reception</h4>
+            <p>Sunset terrace reception at St. Raphael Resort — the ideal environment for deals, partnerships, and connections.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="section-inner">
+    <div class="numbers-grid">
+      <div class="stat-block">
+        <div class="stat-num">120<span class="stat-plus">+</span></div>
+        <div class="stat-label">Invited Delegates</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">12<span class="stat-plus">+</span></div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">20<span class="stat-plus">+</span></div>
+        <div class="stat-label">Speakers</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Days · Nov 26–27</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">496</div>
+        <div class="stat-label">MWh BESS Pipeline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section id="speakers">
+  <div class="section-inner">
+    <p class="section-eyebrow">Confirmed &amp; Invited</p>
+    <h2 class="section-title">Speakers on #CES2026</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">Keynote speakers, panel moderators, and ministerial addresses from the leaders of energy transition in the Eastern Mediterranean and beyond.</p>
+
+    <div class="speakers-grid">
+      <div class="speaker-card confirmed">
+        <div class="speaker-photo">KT</div>
+        <span class="speaker-badge">Confirmed</span>
+        <div class="speaker-name">Kamil Talar</div>
+        <div class="speaker-title">European Representative</div>
+        <div class="speaker-org">Linyang Energy</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">AP</div>
+        <span class="speaker-badge">Host</span>
+        <div class="speaker-name">Alexander Papacosta</div>
+        <div class="speaker-title">Cyprus Director</div>
+        <div class="speaker-org">Lighthief Cyprus Ltd</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">MD</div>
+        <span class="speaker-badge invited">Invited</span>
+        <div class="speaker-name">Michael Damianos</div>
+        <div class="speaker-title">Minister of Energy, Commerce &amp; Industry</div>
+        <div class="speaker-org">Republic of Cyprus</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">SP</div>
+        <span class="speaker-badge invited">Invited</span>
+        <div class="speaker-name">Stavros Papastavrou</div>
+        <div class="speaker-title">Minister of Environment &amp; Energy</div>
+        <div class="speaker-org">Hellenic Republic</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">TP</div>
+        <span class="speaker-badge invited">Invited</span>
+        <div class="speaker-name">Tilemachos Panagiotidis</div>
+        <div class="speaker-title">Executive Director</div>
+        <div class="speaker-org">Great Sea Interconnector / IPTO</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">PL</div>
+        <span class="speaker-badge invited">Invited</span>
+        <div class="speaker-name">Polyvios Lemonaris</div>
+        <div class="speaker-title">Chairman</div>
+        <div class="speaker-org">CERA — Cyprus Energy Reg. Authority</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">FI</div>
+        <span class="speaker-badge invited">Invited</span>
+        <div class="speaker-name">Financial Institution</div>
+        <div class="speaker-title">Head of Project Finance / Green Bonds</div>
+        <div class="speaker-org">TBD — Major Regional Bank</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-photo">+</div>
+        <span class="speaker-badge invited">More TBA</span>
+        <div class="speaker-name">Additional Speakers</div>
+        <div class="speaker-title">Announcements coming soon</div>
+        <div class="speaker-org">—</div>
+      </div>
+    </div>
+
+    <div class="speakers-cta">
+      <a href="mailto:office@lighthief.com?subject=Speaker%20Expression%20of%20Interest%20–%20CES2026" class="btn-ghost">Participate as a Speaker</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME -->
+<section id="programme">
+  <div class="section-inner">
+    <p class="section-eyebrow">Two-Day Summit · 26–27 November 2026</p>
+    <h2 class="section-title">Programme</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">A two-day summit combining ministerial keynotes, technology deep-dives, and investor panels — with a closed VIP Roundtable on Day 2 and evening receptions on both days at St. Raphael Resort.</p>
+
+    <h3 style="font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:40px 0 12px;">Day 1 — Thursday, 26 November 2026</h3>
+    <table class="programme-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+          <th class="prog-type-col">Format</th>
+          <th>Speaker</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="programme-row break-row">
+          <td class="prog-time">09:00</td>
+          <td><div class="prog-title">Registration &amp; Welcome Coffee</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Arrival</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">09:30</td>
+          <td><div class="prog-title">Welcome Address — Lighthief Vision for Cyprus</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-keynote">Keynote</span></td>
+          <td class="prog-speaker">Alexander Papacosta, Cyprus Director — Lighthief</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">09:50</td>
+          <td><div class="prog-title">Cyprus Energy Transition: Road to 2030 &amp; Beyond</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-keynote">Keynote</span></td>
+          <td class="prog-speaker">Michael Damianos, Minister of Energy, Commerce &amp; Industry</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">10:20</td>
+          <td><div class="prog-title">Linyang Atlantic BESS: Technology &amp; Cyprus Deployment</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-presentation">Presentation</span></td>
+          <td class="prog-speaker">Kamil Talar, European Representative — Linyang Energy</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">10:50</td>
+          <td><div class="prog-title">Great Sea Interconnector: Project Status &amp; Investment Opportunities</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-panel">Panel</span></td>
+          <td class="prog-speaker">Tilemachos Panagiotidis, Executive Director — Great Sea Interconnector / IPTO</td>
+        </tr>
+        <tr class="programme-row break-row">
+          <td class="prog-time">11:30</td>
+          <td><div class="prog-title">Networking Break &amp; Coffee</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Break</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">11:50</td>
+          <td><div class="prog-title">Permitting &amp; Grid Connection in Cyprus: Regulatory Update</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-presentation">Presentation</span></td>
+          <td class="prog-speaker">Polyvios Lemonaris, Chairman — CERA</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">12:20</td>
+          <td><div class="prog-title">RES Investment Climate: Cyprus &amp; Greece Developer Panel</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-panel">Panel</span></td>
+          <td class="prog-speaker">3 panelists TBD · Moderator TBD</td>
+        </tr>
+        <tr class="programme-row break-row">
+          <td class="prog-time">13:00</td>
+          <td><div class="prog-title">Networking Lunch</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Lunch</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">14:30</td>
+          <td><div class="prog-title">BESS EPC Case Studies: Lighthief 28-Park Cyprus Pipeline</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-presentation">Presentation</span></td>
+          <td class="prog-speaker">Costas Hadjikyriacou, Electrical Engineer — Lighthief</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">15:00</td>
+          <td><div class="prog-title">Open Networking &amp; Exhibition</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Networking</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row break-row">
+          <td class="prog-time">19:00</td>
+          <td><div class="prog-title">Gala Dinner &amp; Evening Reception — Marina Terrace</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Reception</span></td>
+          <td class="prog-speaker">All Day 1 delegates — St. Raphael Resort</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:40px 0 12px;">Day 2 — Friday, 27 November 2026</h3>
+    <table class="programme-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+          <th class="prog-type-col">Format</th>
+          <th>Speaker</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="programme-row break-row">
+          <td class="prog-time">09:00</td>
+          <td><div class="prog-title">Morning Registration &amp; Coffee</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Arrival</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">09:30</td>
+          <td><div class="prog-title">Greece Energy Transition: EU Council Presidency Priorities</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-keynote">Keynote</span></td>
+          <td class="prog-speaker">Stavros Papastavrou, Minister of Environment &amp; Energy — Greece</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">10:00</td>
+          <td><div class="prog-title">Financing the Green Transition: Project Finance &amp; Green Bonds</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-presentation">Presentation</span></td>
+          <td class="prog-speaker">Invited financial institution — TBD</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">10:30</td>
+          <td><div class="prog-title">Eastern Mediterranean Hydrogen: Pathways &amp; Investment Cases</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-panel">Panel</span></td>
+          <td class="prog-speaker">4 panelists TBD · Moderator TBD</td>
+        </tr>
+        <tr class="programme-row break-row">
+          <td class="prog-time">11:15</td>
+          <td><div class="prog-title">Networking Break &amp; Coffee</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Break</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">11:35</td>
+          <td><div class="prog-title">EU Energy Policy &amp; Island Grid Challenges</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-panel">Panel</span></td>
+          <td class="prog-speaker">3 panelists TBD · Moderator TBD</td>
+        </tr>
+        <tr class="programme-row break-row">
+          <td class="prog-time">12:20</td>
+          <td><div class="prog-title">Networking Lunch</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Lunch</span></td>
+          <td class="prog-speaker"></td>
+        </tr>
+        <tr class="programme-row vip-row">
+          <td class="prog-time">13:45</td>
+          <td><div class="prog-title">Closed Investor Roundtable <small style="font-weight:400;font-size:12px;opacity:0.8">— VIP attendees only</small></div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-vip">VIP</span></td>
+          <td class="prog-speaker">Facilitated by Lighthief — ministers, investors, fund managers</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">15:00</td>
+          <td><div class="prog-title">Summit Conclusions &amp; Joint Policy Statement</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-address">Address</span></td>
+          <td class="prog-speaker">Alexander Papacosta + Ministers</td>
+        </tr>
+        <tr class="programme-row">
+          <td class="prog-time">15:30</td>
+          <td><div class="prog-title">Closing Remarks</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-address">Closing</span></td>
+          <td class="prog-speaker">Alexander Papacosta, Lighthief Cyprus Ltd</td>
+        </tr>
+        <tr class="programme-row break-row">
+          <td class="prog-time">16:00</td>
+          <td><div class="prog-title">Farewell Cocktail Reception</div></td>
+          <td class="prog-type-col"><span class="prog-type-tag tag-break">Reception</span></td>
+          <td class="prog-speaker">All delegates — St. Raphael Resort</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="section-inner">
+    <p class="section-eyebrow">Key Themes</p>
+    <h2 class="section-title">Discussion Topics</h2>
+    <div class="gold-line"></div>
+    <div class="topics-grid">
+      <div class="topic-tile">
+        <div class="topic-num">01</div>
+        <h3>BESS &amp; Grid-Scale Storage</h3>
+        <p>Battery energy storage as the enabling technology for island grid stability, RES curtailment reduction, and frequency regulation.</p>
+      </div>
+      <div class="topic-tile">
+        <div class="topic-num">02</div>
+        <h3>EuroAsia Interconnector</h3>
+        <p>The strategic undersea cable linking Cyprus, Greece, and Israel — timeline, investment implications, and regional power market integration.</p>
+      </div>
+      <div class="topic-tile">
+        <div class="topic-num">03</div>
+        <h3>RES Policy &amp; Permitting</h3>
+        <p>Regulatory developments in Cyprus and Greece: grid connection queues, permitting acceleration, and NECP compliance pathways.</p>
+      </div>
+      <div class="topic-tile">
+        <div class="topic-num">04</div>
+        <h3>Green Finance &amp; Investment</h3>
+        <p>EU taxonomy, green bonds, project finance structures, and the role of development banks in accelerating Eastern Mediterranean decarbonisation.</p>
+      </div>
+      <div class="topic-tile">
+        <div class="topic-num">05</div>
+        <h3>Hydrogen &amp; New Technologies</h3>
+        <p>Hydrogen production and export potential for Cyprus; electrolysers, offtake agreements, and the EU Hydrogen Bank framework.</p>
+      </div>
+      <div class="topic-tile">
+        <div class="topic-num">06</div>
+        <h3>Poland–Cyprus Investment Corridor</h3>
+        <p>Bilateral investment flows, diplomatic energy partnerships, and the role of European funds in cross-border RES project development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section id="sponsors">
+  <div class="section-inner">
+    <p class="section-eyebrow">Partnership Opportunities</p>
+    <h2 class="section-title">Sponsors &amp; Partners</h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">Proud to cooperate with the leaders of the energy transition in the Eastern Mediterranean. Sponsorship packages are available for Platinum, Gold, Media Partner, and Silver tiers.</p>
+
+    <div class="sponsor-tier" style="margin-top:48px;">
+      <div class="sponsor-tier-label">Platinum Sponsor</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo-box" style="width:200px;height:80px;font-size:14px;color:var(--gold);border-color:var(--gold-border);">
+          Your Brand Here<br><small style="font-size:10px;color:var(--text-3)">Platinum Sponsor</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="sponsor-tier">
+      <div class="sponsor-tier-label">Gold Sponsors</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo-box">Your Brand</div>
+        <div class="sponsor-logo-box">Your Brand</div>
+      </div>
+    </div>
+
+    <div class="sponsor-tier">
+      <div class="sponsor-tier-label">Media Partner</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo-box media">Megapanel Cyprus<br><small style="font-size:10px;color:var(--text-3)">Media Partner — Outdoor</small></div>
+      </div>
+    </div>
+
+    <div class="sponsor-tier">
+      <div class="sponsor-tier-label">Silver Sponsors</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo-box">Your Brand</div>
+        <div class="sponsor-logo-box">Your Brand</div>
+        <div class="sponsor-logo-box">Your Brand</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sponsor-cta-strip">
+    <div class="section-inner">
+      <h3>Become a Sponsor</h3>
+      <p>Join the leaders of Eastern Mediterranean energy. Four sponsorship tiers — from Platinum co-host to Media Partner. Limited availability.</p>
+      <a href="mailto:office@lighthief.com?subject=Sponsorship%20Enquiry%20–%20Cyprus%20Energy%20Summit%202026" class="btn-dark">Request Sponsorship Pack</a>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section id="venue">
+  <div class="section-inner">
+    <p class="section-eyebrow">Event Venue</p>
+    <h2 class="section-title">St. Raphael Resort &amp; Marina</h2>
+    <div class="gold-line"></div>
+    <div class="venue-grid">
+      <div class="venue-visual">
+        <div class="venue-visual-label">5-Star · Seafront</div>
+        <div class="venue-visual-name">St. Raphael<br>Resort &amp; Marina</div>
+        <div class="venue-visual-loc">Limassol, Cyprus</div>
+        <div class="venue-decoration"></div>
+      </div>
+      <div class="venue-info">
+        <h3>An iconic address for a landmark event</h3>
+        <p>The St. Raphael Resort &amp; Marina is one of Cyprus's most prestigious venues — a five-star beachfront property on the Limassol seafront with outstanding conference facilities, full AV capability, and on-site catering.</p>
+        <p>The property's terrace and marina setting provide the perfect backdrop for both structured sessions and the evening cocktail reception, reinforcing Cyprus's identity as a Mediterranean business hub.</p>
+        <div class="venue-detail-row">
+          <div class="venue-detail-icon">◈</div>
+          <div class="venue-detail-text"><strong>Address:</strong> St. Raphael Resort &amp; Marina, Limassol, 4533, Cyprus</div>
+        </div>
+        <div class="venue-detail-row">
+          <div class="venue-detail-icon">◈</div>
+          <div class="venue-detail-text"><strong>Date:</strong> 26–27 November 2026 · Day 1 from 09:00, Day 2 from 09:00 — with evening receptions both nights</div>
+        </div>
+        <div class="venue-detail-row">
+          <div class="venue-detail-icon">◈</div>
+          <div class="venue-detail-text"><strong>Capacity:</strong> 120 delegates · Conference room + VIP breakout + terrace reception</div>
+        </div>
+        <div class="venue-detail-row">
+          <div class="venue-detail-icon">◈</div>
+          <div class="venue-detail-text"><strong>Getting there:</strong> 12 km from Larnaka International Airport · 3 km from Limassol city centre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-eyebrow">Organisers</p>
+    <h2 class="section-title">Our team at your service</h2>
+    <div class="gold-line"></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-photo">AP</div>
+        <div class="contact-name">Alexander Papacosta</div>
+        <div class="contact-title">Cyprus Director<br>Lighthief Cyprus Ltd</div>
+        <div class="contact-item">Delegate &amp; speaker enquiries</div>
+        <div class="contact-item"><a href="tel:+35799164158">+357 99 164 158</a></div>
+        <div class="contact-item"><a href="mailto:office@lighthief.com">office@lighthief.com</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-photo">LH</div>
+        <div class="contact-name">Lighthief Cyprus Ltd</div>
+        <div class="contact-title">Office &amp; Sponsorship<br>solarfarms.cy</div>
+        <div class="contact-item">Sponsorship &amp; partnership enquiries</div>
+        <div class="contact-item"><a href="tel:+35777770050">+357 77 77 00 50</a></div>
+        <div class="contact-item"><a href="mailto:office@lighthief.com">office@lighthief.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Cyprus Energy <span>Summit</span> 2026</div>
+        <div class="footer-brand-sub">Organised by Lighthief Cyprus Ltd</div>
+        <p>An invite-only summit for leaders of the energy transition in Cyprus and the Eastern Mediterranean. 26–27 November 2026 · St. Raphael Resort &amp; Marina · Limassol, Cyprus.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#programme">Programme</a></li>
+          <li><a href="#topics">Topics</a></li>
+          <li><a href="#sponsors">Sponsors</a></li>
+          <li><a href="#venue">Venue</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:office@lighthief.com">office@lighthief.com</a></li>
+          <li><a href="tel:+35777770050">+357 77 77 00 50</a></li>
+          <li><a href="tel:+35799164158">+357 99 164 158</a></li>
+          <li><a href="https://solarfarms.cy" target="_blank" rel="noopener">solarfarms.cy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Lighthief</h4>
+        <ul>
+          <li><a href="mailto:office@lighthief.com?subject=Invitation%20Request">Request Invitation</a></li>
+          <li><a href="mailto:office@lighthief.com?subject=Sponsorship%20Enquiry">Become Sponsor</a></li>
+          <li><a href="mailto:office@lighthief.com?subject=Speaker%20Interest">Speak at CES2026</a></li>
+          <li><a href="https://solarfarms.cy" target="_blank" rel="noopener">About Lighthief</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        &copy; 2026 Lighthief Cyprus Ltd · Company No. HE 477423 · 15 Agaritsis, Nektaria Court, 3045 Zakaki, Limassol, Cyprus · <a href="https://solarfarms.cy" style="color:var(--text-3);text-decoration:none;">solarfarms.cy</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/company/lighthief" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Countdown to 20 Nov 2026 09:00 EET (UTC+2)
+  function updateCountdown() {
+    const target = new Date('2026-11-26T09:00:00+02:00').getTime();
+    const now = Date.now();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div class="cd-block"><span style="font-size:20px;color:var(--gold)">The Summit is Live!</span></div>';
+      return;
+    }
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('cd-days').textContent  = String(d).padStart(2, '0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2, '0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

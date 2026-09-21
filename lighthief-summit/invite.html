@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation — Cyprus Energy Summit 2026</title>
+  <!--
+    ╔══════════════════════════════════════════════════════════════════════╗
+    ║  LIGHTHIEF — CYPRUS ENERGY SUMMIT 2026                              ║
+    ║  VIP Invitation Email Template                                       ║
+    ║                                                                      ║
+    ║  Usage:                                                              ║
+    ║   • Replace [RECIPIENT_NAME] with the full name                     ║
+    ║   • Replace [RECIPIENT_TITLE] with role (e.g. "Your Excellency")    ║
+    ║   • Replace [RSVP_DEADLINE] with the confirmation deadline date     ║
+    ║   • This file is the visual preview; for actual sending, convert    ║
+    ║     to inline-styled HTML using a tool like Mailchimp / Litmus /    ║
+    ║     or run through juice (npm i -g juice)                           ║
+    ╚══════════════════════════════════════════════════════════════════════╝
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0C140F; font-family: 'Inter', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Email client reset */
+    table { border-collapse: collapse; }
+    td { vertical-align: top; }
+    a { text-decoration: none; }
+
+    /* Preview text (hidden in body, shown in email previews) */
+    .preview-text {
+      display: none; max-height: 0; overflow: hidden;
+      mso-hide: all; font-size: 1px; line-height: 1px; color: transparent;
+    }
+
+    /* Outer wrapper */
+    .email-wrapper {
+      background: #0C140F; padding: 40px 20px;
+    }
+    .email-outer {
+      max-width: 620px; margin: 0 auto;
+    }
+
+    /* Header banner */
+    .email-header {
+      background: #09180D; border: 1px solid #1C321C;
+      border-bottom: 3px solid #C9A432;
+      padding: 36px 40px 28px;
+    }
+    .header-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #C9A432; margin-bottom: 12px;
+    }
+    .header-title {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.1;
+      color: #EFE9D5;
+    }
+    .header-title span { color: #C9A432; }
+    .header-meta {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;
+    }
+    .header-meta-item {
+      font-size: 12px; font-weight: 500; color: #B4C4A4;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .meta-dot { color: #C9A432; font-size: 14px; }
+
+    /* Body */
+    .email-body {
+      background: #111D12; border: 1px solid #1C321C; border-top: none;
+      padding: 40px 40px 32px;
+    }
+
+    /* Salutation box */
+    .salutation-box {
+      border-left: 3px solid #C9A432; padding: 0 0 0 16px; margin-bottom: 28px;
+    }
+    .salutation-name {
+      font-size: 16px; font-weight: 700; color: #EFE9D5; margin-bottom: 2px;
+    }
+    .salutation-greeting {
+      font-size: 13px; color: #6A8060;
+    }
+
+    /* Body paragraphs */
+    .email-body p {
+      font-size: 15px; color: #B4C4A4; line-height: 1.8; margin-bottom: 20px;
+    }
+    .email-body p strong { color: #EFE9D5; font-weight: 600; }
+    .email-body p .gold { color: #C9A432; font-weight: 600; }
+
+    /* Event details box */
+    .event-details {
+      background: #09180D; border: 1px solid rgba(201,164,50,0.3);
+      padding: 24px 28px; margin: 28px 0;
+    }
+    .event-details-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #C9A432; margin-bottom: 18px;
+    }
+    .detail-row {
+      display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
+    }
+    .detail-row:last-child { margin-bottom: 0; }
+    .detail-icon {
+      flex-shrink: 0; width: 6px; height: 6px;
+      background: #C9A432; margin-top: 6px;
+    }
+    .detail-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #6A8060; min-width: 90px;
+    }
+    .detail-value {
+      font-size: 13px; color: #EFE9D5; font-weight: 500;
+    }
+
+    /* Programme preview */
+    .programme-preview {
+      margin: 28px 0;
+    }
+    .programme-preview-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #C9A432; margin-bottom: 16px;
+    }
+    .programme-item {
+      display: flex; gap: 16px; padding: 10px 0; border-bottom: 1px solid #1C321C;
+      align-items: flex-start;
+    }
+    .programme-item:last-child { border-bottom: none; }
+    .prog-time { font-size: 12px; font-weight: 700; color: #C9A432; min-width: 44px; }
+    .prog-session { font-size: 13px; color: #B4C4A4; line-height: 1.4; }
+
+    /* CTA section */
+    .cta-section {
+      background: #09180D; border: 1px solid #1C321C;
+      padding: 28px; text-align: center; margin: 32px 0;
+    }
+    .cta-section p {
+      font-size: 14px; color: #B4C4A4; margin-bottom: 20px; text-align: center;
+    }
+    .cta-buttons {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-accept {
+      display: inline-block; padding: 14px 32px;
+      background: #C9A432; color: #09180D;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .btn-decline {
+      display: inline-block; padding: 13px 28px;
+      background: transparent; color: #6A8060;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      border: 1px solid #1C321C;
+    }
+
+    /* RSVP deadline */
+    .rsvp-note {
+      font-size: 12px !important; color: #6A8060 !important; text-align: center;
+      margin-top: -12px !important; margin-bottom: 28px !important;
+    }
+
+    /* Signature */
+    .signature {
+      border-top: 1px solid #1C321C; padding-top: 24px; margin-top: 8px;
+    }
+    .sig-name {
+      font-size: 15px; font-weight: 700; color: #EFE9D5; margin-bottom: 2px;
+    }
+    .sig-title { font-size: 13px; color: #6A8060; margin-bottom: 12px; }
+    .sig-contact { font-size: 13px; color: #B4C4A4; line-height: 2; }
+    .sig-contact a { color: #C9A432; }
+
+    /* Footer */
+    .email-footer {
+      background: #09180D; border: 1px solid #1C321C; border-top: none;
+      padding: 24px 40px;
+    }
+    .email-footer-inner {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-brand-small {
+      font-size: 12px; color: #6A8060; line-height: 1.5;
+    }
+    .footer-brand-small strong { color: #B4C4A4; }
+    .footer-legal {
+      font-size: 11px; color: #3A5A3A; text-align: right; line-height: 1.6;
+    }
+    .footer-legal a { color: #4A7040; }
+
+    @media (max-width: 500px) {
+      .email-header, .email-body, .email-footer { padding-left: 24px; padding-right: 24px; }
+      .header-title { font-size: 22px; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .detail-label { min-width: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hidden preview text (visible in email clients as preview snippet) -->
+<div class="preview-text">
+  Lighthief Cyprus Ltd cordially invites you to the Cyprus Energy Summit 2026 — 20 November 2026, St. Raphael Resort & Marina, Limassol.
+</div>
+
+<div class="email-wrapper">
+  <div class="email-outer">
+
+    <!-- HEADER -->
+    <div class="email-header">
+      <div class="header-eyebrow">Lighthief Cyprus Ltd — Private Invitation</div>
+      <div class="header-title">Cyprus Energy<br><span>Summit</span> 2026</div>
+      <div class="header-meta">
+        <div class="header-meta-item">
+          <span class="meta-dot">◆</span>
+          <span>26–27 November 2026</span>
+        </div>
+        <div class="header-meta-item">
+          <span class="meta-dot">◆</span>
+          <span>St. Raphael Resort &amp; Marina, Limassol</span>
+        </div>
+        <div class="header-meta-item">
+          <span class="meta-dot">◆</span>
+          <span>Invite-Only</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="email-body">
+
+      <!-- Salutation -->
+      <div class="salutation-box">
+        <div class="salutation-name">[RECIPIENT_TITLE] [RECIPIENT_NAME],</div>
+        <div class="salutation-greeting">Personal invitation from Lighthief Cyprus Ltd</div>
+      </div>
+
+      <!-- Opening -->
+      <p>On behalf of <strong>Lighthief Cyprus Ltd</strong>, it is my honour to extend to you a personal invitation to the inaugural <span class="gold">Cyprus Energy Summit 2026</span> — a high-level, invite-only gathering of energy ministers, policymakers, investors, and industry leaders shaping the future of Eastern Mediterranean energy.</p>
+
+      <p>The Summit will take place on <strong>26–27 November 2026</strong> at the <strong>St. Raphael Resort &amp; Marina, Limassol, Cyprus</strong>. The two-day event brings together senior decision-makers from Cyprus, Greece, Poland, and across the European Union in a focused, curated environment — with no open registration and a guest list limited to 120 delegates.</p>
+
+      <p>You have been personally selected for this invitation in recognition of your leadership and the role you play in advancing energy transition in the Eastern Mediterranean region. Your presence and contribution to the programme would be invaluable.</p>
+
+      <!-- Event details box -->
+      <div class="event-details">
+        <div class="event-details-title">Event Details</div>
+        <div class="detail-row">
+          <div class="detail-icon"></div>
+          <div>
+            <div class="detail-label">Date</div>
+            <div class="detail-value">Thursday–Friday, 26–27 November 2026</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon"></div>
+          <div>
+            <div class="detail-label">Time</div>
+            <div class="detail-value">Day 1: 09:00 – Gala Dinner · Day 2: 09:00 – Farewell Cocktail</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon"></div>
+          <div>
+            <div class="detail-label">Venue</div>
+            <div class="detail-value">St. Raphael Resort &amp; Marina, Limassol, Cyprus</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon"></div>
+          <div>
+            <div class="detail-label">Format</div>
+            <div class="detail-value">Two days · Keynotes · Panels · Technology presentations · Closed VIP roundtable · Gala dinner (Day 1) · Farewell reception (Day 2)</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon"></div>
+          <div>
+            <div class="detail-label">Language</div>
+            <div class="detail-value">English</div>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon"></div>
+          <div>
+            <div class="detail-label">Hosted by</div>
+            <div class="detail-value">Lighthief Cyprus Ltd — EPC &amp; BESS specialists, 249 MW portfolio</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programme preview -->
+      <div class="programme-preview">
+        <div class="programme-preview-title">Programme Highlights</div>
+        <div class="programme-item">
+          <div class="prog-time">Day 1</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Cyprus Energy Transition: Road to 2030</strong> — Ministerial Keynote, Michael Damianos</div>
+        </div>
+        <div class="programme-item">
+          <div class="prog-time">Day 1</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Linyang Atlantic BESS: Technology &amp; Cyprus Deployment</strong> — Kamil Talar, Linyang Energy (confirmed)</div>
+        </div>
+        <div class="programme-item">
+          <div class="prog-time">Day 1</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Great Sea Interconnector</strong> — Tilemachos Panagiotidis, Executive Director GSI/IPTO</div>
+        </div>
+        <div class="programme-item">
+          <div class="prog-time">Day 1</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Evening Gala Dinner &amp; Reception</strong> — Marina Terrace, St. Raphael Resort</div>
+        </div>
+        <div class="programme-item">
+          <div class="prog-time">Day 2</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Greece Energy Transition: EU Council Presidency Priorities</strong> — Stavros Papastavrou, Greece Energy Minister</div>
+        </div>
+        <div class="programme-item">
+          <div class="prog-time">Day 2</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Eastern Mediterranean Hydrogen &amp; New Technologies</strong> — Panel</div>
+        </div>
+        <div class="programme-item">
+          <div class="prog-time">Day 2</div>
+          <div class="prog-session"><strong style="color:#EFE9D5;">Closed Investor Roundtable</strong> — VIP attendees only</div>
+        </div>
+      </div>
+
+      <p>I would be grateful if you could confirm your attendance at your earliest convenience. Places are limited and allocations are on a priority basis for invited guests.</p>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <p>Please confirm your attendance by <strong style="color:#EFE9D5;">[RSVP_DEADLINE]</strong></p>
+        <div class="cta-buttons">
+          <a href="mailto:office@lighthief.com?subject=RSVP%20–%20Accept%20–%20Cyprus%20Energy%20Summit%202026&body=I%20confirm%20my%20attendance%20at%20the%20Cyprus%20Energy%20Summit%202026%20on%2020%20November%202026." class="btn-accept">
+            Accept Invitation
+          </a>
+          <a href="mailto:office@lighthief.com?subject=RSVP%20–%20Decline%20–%20Cyprus%20Energy%20Summit%202026" class="btn-decline">
+            Regrettably Decline
+          </a>
+        </div>
+      </div>
+      <p class="rsvp-note">For questions or delegation requests, please contact office@lighthief.com or call +357 99 164 158</p>
+
+      <p>I look forward to welcoming you to Limassol in November and to a productive day of dialogue that I am confident will make a lasting contribution to the energy future of our region.</p>
+
+      <p>Yours sincerely,</p>
+
+      <!-- Signature -->
+      <div class="signature">
+        <div class="sig-name">Alexander Papacosta</div>
+        <div class="sig-title">Cyprus Director, Lighthief Cyprus Ltd</div>
+        <div class="sig-contact">
+          <div><a href="tel:+35799164158">+357 99 164 158</a></div>
+          <div><a href="mailto:office@lighthief.com">office@lighthief.com</a></div>
+          <div style="color:#3A5A3A;"><a href="https://solarfarms.cy" style="color:#4A7040;">solarfarms.cy</a></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="email-footer">
+      <div class="email-footer-inner">
+        <div class="footer-brand-small">
+          <strong>Lighthief Cyprus Ltd</strong><br>
+          Company No. HE 477423<br>
+          15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus
+        </div>
+        <div class="footer-legal">
+          This is a personal invitation.<br>
+          Not for public distribution.<br>
+          <a href="mailto:office@lighthief.com">Unsubscribe</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /email-outer -->
+</div><!-- /email-wrapper -->
+
+</body>
+</html>

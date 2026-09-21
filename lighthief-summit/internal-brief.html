@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal Brief — Cyprus Energy Summit 2026 — Lighthief CONFIDENTIAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #F4F0E8;
+      color: #1A1A1A;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    :root {
+      --navy:   #1A365D;
+      --gold:   #C9A432;
+      --white:  #FFFFFF;
+      --black:  #000000;
+      --grey:   #404040;
+      --bg:     #F4F0E8;
+      --border: #D0C8B0;
+      --max-w:  960px;
+    }
+
+    /* ─── PRINT ──────────────────────────────── */
+    @media print {
+      body { background: white; font-size: 12px; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      section { break-inside: avoid; }
+    }
+
+    /* ─── DOC HEADER ─────────────────────────── */
+    .doc-header {
+      background: var(--navy); color: white;
+      padding: 0;
+    }
+    .doc-header-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 36px 40px 28px;
+    }
+    .doc-confidential {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(201,164,50,0.4);
+      padding: 4px 12px; margin-bottom: 16px;
+    }
+    .doc-title {
+      font-size: 30px; font-weight: 800; letter-spacing: -0.01em; color: white;
+      margin-bottom: 4px;
+    }
+    .doc-title span { color: var(--gold); }
+    .doc-subtitle {
+      font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 20px;
+    }
+    .doc-meta-bar {
+      display: flex; flex-wrap: wrap; gap: 24px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .doc-meta-item { font-size: 12px; }
+    .doc-meta-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); margin-bottom: 2px;
+    }
+    .doc-meta-value { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    /* ─── LAYOUT ─────────────────────────────── */
+    .doc-body { max-width: var(--max-w); margin: 0 auto; padding: 40px 40px 80px; }
+
+    /* ─── STATUS BANNER ──────────────────────── */
+    .status-banner {
+      background: rgba(201,164,50,0.12); border: 1px solid rgba(201,164,50,0.4);
+      border-left: 4px solid var(--gold); padding: 14px 18px; margin-bottom: 40px;
+      font-size: 13px; color: var(--grey); line-height: 1.6;
+    }
+    .status-banner strong { color: var(--black); }
+
+    /* ─── SECTIONS ───────────────────────────── */
+    .section { margin-bottom: 52px; }
+    .section-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+      padding-bottom: 10px; border-bottom: 2px solid var(--navy);
+    }
+    .section-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--gold); background: var(--navy);
+      padding: 4px 10px; white-space: nowrap;
+    }
+    .section-title {
+      font-size: 18px; font-weight: 700; color: var(--navy);
+    }
+
+    /* ─── INFO TABLE ─────────────────────────── */
+    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .info-table td {
+      padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .info-table td:first-child {
+      font-weight: 600; color: var(--navy); width: 180px;
+      background: rgba(26,54,93,0.04); white-space: nowrap;
+    }
+    .info-table td:last-child { color: var(--grey); }
+    .badge-confirmed {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 2px 8px;
+      background: rgba(201,164,50,0.15); color: #8B6B10;
+      border: 1px solid rgba(201,164,50,0.4);
+    }
+    .badge-pending {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 2px 8px;
+      background: rgba(26,54,93,0.08); color: var(--navy);
+      border: 1px solid rgba(26,54,93,0.2);
+    }
+    .badge-action {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 2px 8px;
+      background: rgba(180,40,40,0.08); color: #8B1010;
+      border: 1px solid rgba(180,40,40,0.25);
+    }
+
+    /* ─── PROGRAMME TABLE ────────────────────── */
+    .prog-table { width: 100%; border-collapse: collapse; }
+    .prog-table thead th {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--navy); color: white; padding: 10px 14px; text-align: left;
+    }
+    .prog-table tbody tr { border-bottom: 1px solid var(--border); }
+    .prog-table tbody tr:hover { background: rgba(26,54,93,0.03); }
+    .prog-table td { padding: 11px 14px; font-size: 13px; vertical-align: top; }
+    .prog-table td.time { font-weight: 700; color: var(--gold); width: 64px; white-space: nowrap; }
+    .prog-table td.type { width: 100px; }
+    .prog-table .session-title { font-weight: 600; color: var(--black); }
+    .prog-table .session-speaker { font-size: 12px; color: var(--grey); margin-top: 2px; }
+    .type-pill {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 8px;
+    }
+    .tp-keynote { background: rgba(201,164,50,0.12); color: #8B6B10; }
+    .tp-panel { background: rgba(26,54,93,0.12); color: var(--navy); }
+    .tp-break { background: rgba(64,64,64,0.08); color: var(--grey); }
+    .tp-vip { background: rgba(201,164,50,0.2); color: #7A5A0A; font-weight: 800; }
+    .tp-addr { background: rgba(30,80,140,0.1); color: #1E4A8C; }
+    .tp-pres { background: rgba(40,100,60,0.1); color: #2A6040; }
+
+    /* ─── CONTACTS ───────────────────────────── */
+    .contacts-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;
+    }
+    .contact-card {
+      background: white; border: 1px solid var(--border); padding: 18px;
+    }
+    .contact-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .contact-card .contact-role { font-size: 12px; color: var(--grey); margin-bottom: 12px; }
+    .contact-detail { font-size: 13px; color: var(--grey); margin-bottom: 5px; }
+    .contact-detail a { color: var(--navy); }
+    .contact-card .note { font-size: 11px; color: #888; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); line-height: 1.5; }
+
+    /* ─── MARKETING ──────────────────────────── */
+    .marketing-channel {
+      background: white; border: 1px solid var(--border); border-left: 3px solid var(--gold);
+      padding: 16px 18px; margin-bottom: 12px;
+    }
+    .mkt-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .mkt-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .mkt-budget { font-size: 12px; font-weight: 600; color: var(--gold); white-space: nowrap; }
+    .mkt-body { font-size: 13px; color: var(--grey); margin-top: 8px; line-height: 1.6; }
+    .mkt-timeline { font-size: 11px; color: #888; margin-top: 6px; }
+
+    /* ─── BUDGET ─────────────────────────────── */
+    .budget-table { width: 100%; border-collapse: collapse; }
+    .budget-table thead th {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--navy); color: white; padding: 10px 14px; text-align: left;
+    }
+    .budget-table thead th:last-child { text-align: right; }
+    .budget-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--border); }
+    .budget-table td.amount { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .budget-table .subtotal td { background: rgba(26,54,93,0.06); font-weight: 700; }
+    .budget-table .income td { color: #1A6B3C; }
+    .budget-table .net td { background: rgba(201,164,50,0.12); font-weight: 700; color: var(--navy); }
+    .budget-table .net td.amount { color: var(--gold); font-size: 15px; }
+
+    /* ─── ACTIONS ────────────────────────────── */
+    .action-list { list-style: none; }
+    .action-item {
+      display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .action-item:last-child { border-bottom: none; }
+    .action-num {
+      flex-shrink: 0; min-width: 28px; height: 28px;
+      background: var(--navy); color: white;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .action-content h4 { font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 3px; }
+    .action-content p { font-size: 12px; color: var(--grey); }
+    .action-owner {
+      margin-left: auto; flex-shrink: 0;
+      font-size: 11px; font-weight: 600; color: var(--navy);
+      white-space: nowrap;
+    }
+
+    /* ─── SPONSORSHIP TIERS ──────────────────── */
+    .sponsor-tiers { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .sponsor-tier-card {
+      background: white; border: 1px solid var(--border); padding: 18px;
+    }
+    .tier-name {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+    }
+    .tier-price { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+    .tier-benefit { font-size: 12px; color: var(--grey); line-height: 1.6; }
+
+    /* ─── UTILITY ────────────────────────────── */
+    .note-box {
+      background: white; border: 1px solid var(--border); border-left: 3px solid var(--navy);
+      padding: 14px 18px; font-size: 13px; color: var(--grey); margin-bottom: 20px; line-height: 1.6;
+    }
+    .note-box strong { color: var(--navy); }
+    .toc { background: white; border: 1px solid var(--border); padding: 20px 24px; margin-bottom: 40px; }
+    .toc h3 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { font-size: 13px; color: var(--navy); margin-bottom: 7px; }
+    .toc a { color: var(--navy); text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    @media (max-width: 620px) {
+      .doc-body { padding: 24px 20px 60px; }
+      .doc-header-inner { padding: 24px 20px; }
+      .info-table td:first-child { width: 120px; }
+      .contacts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- DOCUMENT HEADER -->
+<div class="doc-header">
+  <div class="doc-header-inner">
+    <div class="doc-confidential">Confidential — Internal Use Only</div>
+    <div class="doc-title">Cyprus Energy <span>Summit</span> 2026</div>
+    <div class="doc-subtitle">Lighthief Cyprus Ltd — Internal Planning &amp; Operations Brief</div>
+    <div class="doc-meta-bar">
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Event Date</div>
+        <div class="doc-meta-value">Thursday–Friday, 26–27 November 2026</div>
+      </div>
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Venue</div>
+        <div class="doc-meta-value">St. Raphael Resort &amp; Marina, Limassol</div>
+      </div>
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Document Status</div>
+        <div class="doc-meta-value">DRAFT — Awaiting Final Approvals</div>
+      </div>
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Prepared By</div>
+        <div class="doc-meta-value">Lighthief Cyprus Ltd</div>
+      </div>
+      <div class="doc-meta-item">
+        <div class="doc-meta-label">Last Updated</div>
+        <div class="doc-meta-value">September 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-body">
+
+  <!-- STATUS BANNER -->
+    <div class="status-banner">
+      <strong>Status:</strong> Venue (St. Raphael) quote pending · Date confirmed as 26–27 Nov 2026 subject to venue availability · Kamil Talar (Linyang Energy) attendance confirmed · Michael Damianos (Cyprus) and Stavros Papastavrou (Greece) to be formally invited · Megapanel media partnership approach pending · Budget target: &lt;€20,000 net to Lighthief
+    </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#s1">Event Overview</a></li>
+      <li><a href="#s2">Programme / Run-of-Show</a></li>
+      <li><a href="#s3">Speakers &amp; VIP Delegate List</a></li>
+      <li><a href="#s4">Venue Brief</a></li>
+      <li><a href="#s5">Marketing Campaign</a></li>
+      <li><a href="#s6">Sponsorship Programme</a></li>
+      <li><a href="#s7">Budget Summary</a></li>
+      <li><a href="#s8">Key Contacts</a></li>
+      <li><a href="#s9">Action Items</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. EVENT OVERVIEW -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Event Overview</span>
+    </div>
+    <table class="info-table">
+      <tr><td>Event Name</td><td><strong>Cyprus Energy Summit 2026 (#CES2026)</strong></td></tr>
+      <tr><td>Organiser</td><td>Lighthief Cyprus Ltd — Company No. HE 477423</td></tr>
+      <tr><td>Date</td><td>Thursday–Friday, 26–27 November 2026 (subject to venue confirmation)</td></tr>
+      <tr><td>Time</td><td>Day 1: 09:00 – Gala Dinner · Day 2: 09:00 – Farewell Cocktail</td></tr>
+      <tr><td>Venue</td><td>St. Raphael Resort &amp; Marina, Limassol, Cyprus <span class="badge-action">Quote Pending</span></td></tr>
+      <tr><td>Format</td><td>Two-day invite-only summit + gala dinner (Day 1) + closed VIP Investor Roundtable (Day 2) + farewell reception</td></tr>
+      <tr><td>Language</td><td>English only</td></tr>
+      <tr><td>Access</td><td>Invite-only — no open registration. Guest list capped at 120 delegates.</td></tr>
+      <tr><td>Budget Target</td><td>Under €20,000 net to Lighthief (sponsors to cover gap)</td></tr>
+      <tr><td>Hashtag / Handle</td><td>#CES2026 · Instagram + LinkedIn</td></tr>
+      <tr><td>Website</td><td>lighthief-summit/index.html (internal preview) · domain TBC</td></tr>
+    </table>
+
+    <div class="note-box">
+      <strong>Date risk:</strong> COP31 is expected in Australia in November 2026 — confirm that Nov 19–20 does not conflict with COP travel for the Cyprus/Greece Energy Ministers. Check Ministry calendars before issuing formal invitations.
+    </div>
+  </div>
+
+  <!-- 2. PROGRAMME -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Programme / Run-of-Show</span>
+    </div>
+    <p style="font-size:13px;color:var(--grey);margin-bottom:16px;">All times EET (UTC+2). Duration estimates include Q&amp;A where applicable.</p>
+
+    <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin:20px 0 10px;">Day 1 — Thursday 26 November 2026</p>
+    <table class="prog-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+          <th>Type</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time">09:00</td>
+          <td><div class="session-title">Registration &amp; Welcome Coffee</div></td>
+          <td class="type"><span class="type-pill tp-break">Arrival</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">09:30</td>
+          <td>
+            <div class="session-title">Welcome Address — Lighthief Vision for Cyprus</div>
+            <div class="session-speaker">Alexander Papacosta, Cyprus Director, Lighthief Cyprus Ltd</div>
+          </td>
+          <td class="type"><span class="type-pill tp-keynote">Keynote</span></td>
+          <td style="font-size:12px;color:var(--grey);">20 min</td>
+        </tr>
+        <tr>
+          <td class="time">09:50</td>
+          <td>
+            <div class="session-title">Cyprus Energy Transition: Road to 2030 &amp; Beyond</div>
+            <div class="session-speaker">Michael Damianos, Minister of Energy, Commerce &amp; Industry, Republic of Cyprus <span class="badge-action">Invite Pending</span></div>
+          </td>
+          <td class="type"><span class="type-pill tp-keynote">Keynote</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">10:20</td>
+          <td>
+            <div class="session-title">Linyang Atlantic BESS: Technology &amp; Cyprus Deployment</div>
+            <div class="session-speaker">Kamil Talar, European Representative — Linyang Energy <span class="badge-confirmed">CONFIRMED</span></div>
+          </td>
+          <td class="type"><span class="type-pill tp-pres">Presentation</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">10:50</td>
+          <td>
+            <div class="session-title">Great Sea Interconnector: Project Status &amp; Investment Opportunities</div>
+            <div class="session-speaker">Tilemachos Panagiotidis, Executive Director — Great Sea Interconnector / IPTO <span class="badge-action">To Invite</span></div>
+          </td>
+          <td class="type"><span class="type-pill tp-panel">Panel</span></td>
+          <td style="font-size:12px;color:var(--grey);">40 min</td>
+        </tr>
+        <tr>
+          <td class="time">11:30</td>
+          <td><div class="session-title">Networking Break &amp; Coffee</div></td>
+          <td class="type"><span class="type-pill tp-break">Break</span></td>
+          <td style="font-size:12px;color:var(--grey);">20 min</td>
+        </tr>
+        <tr>
+          <td class="time">11:50</td>
+          <td>
+            <div class="session-title">Permitting &amp; Grid Connection in Cyprus: Regulatory Update</div>
+            <div class="session-speaker">Polyvios Lemonaris, Chairman — CERA <span class="badge-action">To Invite</span></div>
+          </td>
+          <td class="type"><span class="type-pill tp-pres">Presentation</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">12:20</td>
+          <td>
+            <div class="session-title">RES Investment Climate: Cyprus &amp; Greece Developer Panel</div>
+            <div class="session-speaker">3 panelists TBD · Moderator TBD</div>
+          </td>
+          <td class="type"><span class="type-pill tp-panel">Panel</span></td>
+          <td style="font-size:12px;color:var(--grey);">40 min</td>
+        </tr>
+        <tr>
+          <td class="time">13:00</td>
+          <td><div class="session-title">Networking Lunch</div></td>
+          <td class="type"><span class="type-pill tp-break">Lunch</span></td>
+          <td style="font-size:12px;color:var(--grey);">90 min</td>
+        </tr>
+        <tr>
+          <td class="time">14:30</td>
+          <td>
+            <div class="session-title">BESS EPC Case Studies: Lighthief 28-Park Cyprus Pipeline</div>
+            <div class="session-speaker">Costas Hadjikyriacou, Electrical Engineer (ETEK) — Lighthief</div>
+          </td>
+          <td class="type"><span class="type-pill tp-pres">Presentation</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">15:00</td>
+          <td><div class="session-title">Open Networking &amp; Exhibition</div></td>
+          <td class="type"><span class="type-pill tp-break">Networking</span></td>
+          <td style="font-size:12px;color:var(--grey);">Open</td>
+        </tr>
+        <tr style="background:rgba(201,164,50,0.04);">
+          <td class="time">19:00</td>
+          <td>
+            <div class="session-title">Gala Dinner &amp; Evening Reception — Marina Terrace</div>
+            <div class="session-speaker">All Day 1 delegates · St. Raphael Resort waterfront · Seated dinner + open bar</div>
+          </td>
+          <td class="type"><span class="type-pill tp-break">Gala</span></td>
+          <td style="font-size:12px;color:var(--grey);">~3 hrs</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin:28px 0 10px;">Day 2 — Friday 27 November 2026</p>
+    <table class="prog-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+          <th>Type</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time">09:00</td>
+          <td><div class="session-title">Morning Registration &amp; Coffee</div></td>
+          <td class="type"><span class="type-pill tp-break">Arrival</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">09:30</td>
+          <td>
+            <div class="session-title">Greece Energy Transition: EU Council Presidency Priorities</div>
+            <div class="session-speaker">Stavros Papastavrou, Minister of Environment &amp; Energy — Hellenic Republic <span class="badge-action">Invite Pending</span></div>
+          </td>
+          <td class="type"><span class="type-pill tp-keynote">Keynote</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">10:00</td>
+          <td>
+            <div class="session-title">Financing the Green Transition: Project Finance &amp; Green Bonds</div>
+            <div class="session-speaker">Invited financial institution — TBD (Piraeus / Alpha / NBG)</div>
+          </td>
+          <td class="type"><span class="type-pill tp-pres">Presentation</span></td>
+          <td style="font-size:12px;color:var(--grey);">30 min</td>
+        </tr>
+        <tr>
+          <td class="time">10:30</td>
+          <td>
+            <div class="session-title">Eastern Mediterranean Hydrogen: Pathways &amp; Investment Cases</div>
+            <div class="session-speaker">4 panelists TBD · Moderator TBD</div>
+          </td>
+          <td class="type"><span class="type-pill tp-panel">Panel</span></td>
+          <td style="font-size:12px;color:var(--grey);">45 min</td>
+        </tr>
+        <tr>
+          <td class="time">11:15</td>
+          <td><div class="session-title">Networking Break &amp; Coffee</div></td>
+          <td class="type"><span class="type-pill tp-break">Break</span></td>
+          <td style="font-size:12px;color:var(--grey);">20 min</td>
+        </tr>
+        <tr>
+          <td class="time">11:35</td>
+          <td>
+            <div class="session-title">EU Energy Policy &amp; Island Grid Challenges</div>
+            <div class="session-speaker">3 panelists TBD · Moderator TBD</div>
+          </td>
+          <td class="type"><span class="type-pill tp-panel">Panel</span></td>
+          <td style="font-size:12px;color:var(--grey);">45 min</td>
+        </tr>
+        <tr>
+          <td class="time">12:20</td>
+          <td><div class="session-title">Networking Lunch</div></td>
+          <td class="type"><span class="type-pill tp-break">Lunch</span></td>
+          <td style="font-size:12px;color:var(--grey);">85 min</td>
+        </tr>
+        <tr style="background:rgba(201,164,50,0.06);">
+          <td class="time">13:45</td>
+          <td>
+            <div class="session-title">Closed Investor Roundtable</div>
+            <div class="session-speaker">Facilitated by Lighthief — ministers, investors, fund managers · Separate breakout room</div>
+          </td>
+          <td class="type"><span class="type-pill tp-vip">VIP Only</span></td>
+          <td style="font-size:12px;color:var(--grey);">75 min</td>
+        </tr>
+        <tr>
+          <td class="time">15:00</td>
+          <td>
+            <div class="session-title">Summit Conclusions &amp; Joint Policy Statement</div>
+            <div class="session-speaker">Alexander Papacosta + Ministers — co-delivered</div>
+          </td>
+          <td class="type"><span class="type-pill tp-addr">Closing</span></td>
+          <td style="font-size:12px;color:var(--grey);">20 min</td>
+        </tr>
+        <tr>
+          <td class="time">15:20</td>
+          <td>
+            <div class="session-title">Closing Remarks</div>
+            <div class="session-speaker">Alexander Papacosta, Lighthief Cyprus Ltd</div>
+          </td>
+          <td class="type"><span class="type-pill tp-addr">Closing</span></td>
+          <td style="font-size:12px;color:var(--grey);">10 min</td>
+        </tr>
+        <tr style="background:rgba(201,164,50,0.04);">
+          <td class="time">15:30</td>
+          <td>
+            <div class="session-title">Farewell Cocktail Reception</div>
+            <div class="session-speaker">All delegates · St. Raphael Resort · Open bar, canapés</div>
+          </td>
+          <td class="type"><span class="type-pill tp-break">Reception</span></td>
+          <td style="font-size:12px;color:var(--grey);">~2 hrs</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:16px;">
+      <strong>AV Note:</strong> Each session requires: screen + projector/LED wall, lavalier microphone for speaker, panel table with 4× desktop mics, laptop input with clicker. VIP Roundtable breakout room: round table for 12–16, no screen required.
+    </div>
+  </div>
+
+  <!-- 3. SPEAKERS -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Speakers &amp; VIP Delegate List</span>
+    </div>
+    <table class="info-table">
+      <tr>
+        <td>Kamil Talar</td>
+        <td>European Representative, Linyang Energy · BESS technology presentation Day 1 <span class="badge-confirmed">CONFIRMED</span></td>
+      </tr>
+      <tr>
+        <td>Alexander Papacosta</td>
+        <td>Cyprus Director, Lighthief Cyprus Ltd · Host / Welcome + Closing <span class="badge-confirmed">INTERNAL</span></td>
+      </tr>
+      <tr>
+        <td>Dr. Arkadius Sybaris</td>
+        <td>Founder &amp; CEO, Lighthief Cyprus Ltd · Attendee / panelist <span class="badge-confirmed">INTERNAL</span></td>
+      </tr>
+      <tr>
+        <td>Costas Hadjikyriacou</td>
+        <td>Electrical Engineer (ETEK), Lighthief — BESS EPC case studies presentation Day 1 <span class="badge-confirmed">INTERNAL</span></td>
+      </tr>
+      <tr>
+        <td>Michael Damianos</td>
+        <td>Minister of Energy, Commerce &amp; Industry, Republic of Cyprus · Keynote Day 1 09:50 <span class="badge-action">INVITE PENDING</span></td>
+      </tr>
+      <tr>
+        <td>Stavros Papastavrou</td>
+        <td>Minister of Environment &amp; Energy, Hellenic Republic · Keynote Day 2 09:30 <span class="badge-action">INVITE PENDING</span></td>
+      </tr>
+      <tr>
+        <td>Tilemachos Panagiotidis</td>
+        <td>Executive Director, Great Sea Interconnector / IPTO · Panel Day 1 10:50 <span class="badge-action">TO INVITE</span></td>
+      </tr>
+      <tr>
+        <td>Polyvios Lemonaris</td>
+        <td>Chairman, CERA (Cyprus Energy Regulatory Authority) · Presentation Day 1 11:50 <span class="badge-action">TO INVITE</span></td>
+      </tr>
+      <tr>
+        <td>Financial Institution</td>
+        <td>Head of Project Finance / Green Bonds — Piraeus / Alpha / NBG (TBC) · Day 2 10:00 <span class="badge-pending">TO IDENTIFY</span></td>
+      </tr>
+      <tr>
+        <td>Panel slots (7× TBD)</td>
+        <td>Day 1 RES Developer Panel (3 panelists) + Day 2 Hydrogen Panel (4 panelists) + Day 2 EU Policy Panel (3 panelists) <span class="badge-pending">TO IDENTIFY</span></td>
+      </tr>
+    </table>
+    <div class="note-box">
+      <strong>Delegate targets by category:</strong> Energy ministers / government: 5–10 · Diplomatic corps: 5–8 · Financial institutions / investors: 15–25 · EPC &amp; RES developers: 15–20 · Media (vetted only): 5 · Lighthief team &amp; sponsors: 10–15 · <strong>Total: 70–83 named delegates + open allocations to ~120.</strong>
+    </div>
+  </div>
+
+  <!-- 4. VENUE -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Venue Brief — St. Raphael Resort &amp; Marina</span>
+    </div>
+    <table class="info-table">
+      <tr><td>Property</td><td>St. Raphael Resort &amp; Marina, Limassol, Cyprus 4533</td></tr>
+      <tr><td>Category</td><td>5-star seafront resort · Established conference venue</td></tr>
+      <tr><td>Status</td><td><span class="badge-action">Quote Pending — contact events team immediately</span></td></tr>
+      <tr><td>Capacity Needed</td><td>Main conference room: 120 delegates theatre-style · VIP breakout room: 12–16 round · Dining for 120 · Terrace for cocktail reception</td></tr>
+      <tr><td>Day Package</td><td>Request: full day-delegate package including room hire, 2× coffee breaks, seated working lunch, AV, and cocktail reception on terrace</td></tr>
+      <tr><td>Fallback #1</td><td>Amara Hotel, Limassol (5-star, modern, similar capacity)</td></tr>
+      <tr><td>Fallback #2</td><td>Ararat — confirm configuration before quoting</td></tr>
+      <tr><td>Airport</td><td>Larnaka International Airport — 12 km, ~15 min drive</td></tr>
+    </table>
+    <div class="note-box">
+      <strong>Ask St. Raphael for:</strong> Day-delegate rate per head (minimum 80 pax) · Room dimensions + seating configurations · AV specs (screen, projector, PA, mics) · Cocktail reception options (terrace capacity, menu, pricing) · Special rate for Lighthief if repeat booking possible
+    </div>
+  </div>
+
+  <!-- 5. MARKETING -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Marketing Campaign</span>
+    </div>
+    <div class="marketing-channel">
+      <div class="mkt-header">
+        <div class="mkt-name">Instagram</div>
+        <div class="mkt-budget">€500–800 ad spend</div>
+      </div>
+      <div class="mkt-body">Event countdown series (10 posts, 4-week runway before event), speaker spotlight reels, venue reveal teaser, day-of live coverage stories, post-event recap reel. Use Lighthief brand palette. Hashtag: #CES2026 #CyprusEnergySummit.</div>
+      <div class="mkt-timeline">Timeline: 8 weeks out → event day → 1 week post-event</div>
+    </div>
+    <div class="marketing-channel">
+      <div class="mkt-header">
+        <div class="mkt-name">LinkedIn (Boosted)</div>
+        <div class="mkt-budget">€800–1,500 ad spend</div>
+      </div>
+      <div class="mkt-body">Sponsored posts targeting: job title = [Energy Manager, Investment Director, Minister, Director, CEO, Head of Project Finance, Renewable Energy], location = Cyprus / Greece / Poland / EU. Company page posts + personal posts from Alexander Papacosta and Dr. Sybaris. 3–4 posts per week from 6 weeks out.</div>
+      <div class="mkt-timeline">Timeline: 6 weeks out → event day</div>
+    </div>
+    <div class="marketing-channel" style="border-left-color:var(--navy);">
+      <div class="mkt-header">
+        <div class="mkt-name">Megapanel — Outdoor OOH</div>
+        <div class="mkt-budget">In-kind (media partner) or negotiate paid rate</div>
+      </div>
+      <div class="mkt-body"><strong>Strategy:</strong> Approach Megapanel Cyprus first as Media Partner — offer Platinum branding (all materials + 4 invitations + social feature) in exchange for 2–4 seaside billboard panels in Limassol (seafront strip) + Nicosia (arterial) for 4 weeks pre-event. If they prefer cash, negotiate 50% reduction vs. rate card in exchange for co-branding.</div>
+      <div class="mkt-timeline">Timeline: Contact Megapanel 10+ weeks out · Panels live 4 weeks pre-event</div>
+    </div>
+    <div class="marketing-channel" style="border-left-color:#404040;">
+      <div class="mkt-header">
+        <div class="mkt-name">Press &amp; PR</div>
+        <div class="mkt-budget">Staff time only</div>
+      </div>
+      <div class="mkt-body">Press release to: In-Business Cyprus, Gold Magazine, Cyprus Mail, Stockwatch, OffSite, Kathimerini Cyprus. Pitch exclusive briefing to 1–2 business journalists. Post-event coverage of key outcomes and announcements.</div>
+      <div class="mkt-timeline">Timeline: Press release 4 weeks out · Media invite letters 5 weeks out</div>
+    </div>
+  </div>
+
+  <!-- 6. SPONSORSHIP -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Sponsorship Programme</span>
+    </div>
+    <div class="sponsor-tiers">
+      <div class="sponsor-tier-card">
+        <div class="tier-name">Platinum</div>
+        <div class="tier-price">€8k–12k</div>
+        <div class="tier-benefit">Named co-host · 10-min speaking slot · 10-seat priority table · Logo on all print &amp; digital · Megapanel credit · VIP dinner seat · Social spotlight feature</div>
+      </div>
+      <div class="sponsor-tier-card">
+        <div class="tier-name">Gold</div>
+        <div class="tier-price">€4k–6k</div>
+        <div class="tier-benefit">Panel speaking seat · 8-seat table · Logo on programme + backdrops · Dedicated pre-event social post</div>
+      </div>
+      <div class="sponsor-tier-card">
+        <div class="tier-name">Media Partner</div>
+        <div class="tier-price">In-Kind</div>
+        <div class="tier-benefit">2–4 Megapanel billboard panels for 4-week campaign · Logo on all digital materials · Social credit · 4 summit invitations. <em>Target: Megapanel Cyprus.</em></div>
+      </div>
+      <div class="sponsor-tier-card">
+        <div class="tier-name">Silver</div>
+        <div class="tier-price">€2k–3k</div>
+        <div class="tier-benefit">5-seat table · Logo on event programme · Social mention</div>
+      </div>
+    </div>
+    <div class="note-box" style="margin-top:16px;">
+      <strong>Priority:</strong> Lock in 1 Platinum sponsor before event marketing goes live — their logo anchors all materials. Target: EPC company, international energy fund, or large EPC contractor active in CY/GR.
+    </div>
+  </div>
+
+  <!-- 7. BUDGET -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Budget Summary</span>
+    </div>
+    <p style="font-size:13px;color:var(--grey);margin-bottom:16px;">All figures are estimates pending St. Raphael quote. Target: net cost to Lighthief under €20,000.</p>
+    <table class="budget-table">
+      <thead>
+        <tr><th>Item</th><th style="text-align:right;">Estimate (€)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>St. Raphael — day delegate package (80 pax, room + catering + AV)</td><td class="amount">8,000–14,000</td></tr>
+        <tr><td>Evening cocktail reception (80 pax, terrace)</td><td class="amount">2,500–4,000</td></tr>
+        <tr><td>Event production (branding, banners, print, name badges, lanyards)</td><td class="amount">1,500–2,500</td></tr>
+        <tr><td>LinkedIn paid boost (6-week campaign)</td><td class="amount">800–1,200</td></tr>
+        <tr><td>Instagram content production + Story ads</td><td class="amount">500–800</td></tr>
+        <tr><td>Photography / videography (day-of coverage)</td><td class="amount">600–1,200</td></tr>
+        <tr><td>Miscellaneous &amp; contingency (10%)</td><td class="amount">1,400–2,370</td></tr>
+        <tr class="subtotal">
+          <td>Total Gross Cost</td>
+          <td class="amount">15,300–26,070</td>
+        </tr>
+        <tr class="income">
+          <td>1× Platinum sponsor</td><td class="amount">−8,000–12,000</td>
+        </tr>
+        <tr class="income">
+          <td>1× Gold sponsor</td><td class="amount">−4,000–6,000</td>
+        </tr>
+        <tr class="income">
+          <td>Megapanel (media partner — replaces OOH cost)</td><td class="amount">€0 cash outlay</td>
+        </tr>
+        <tr class="net">
+          <td><strong>Net Cost to Lighthief (with 1 Plat + 1 Gold)</strong></td>
+          <td class="amount">€3,300–8,070</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:#888;margin-top:10px;">Figures are indicative only. St. Raphael quote will establish the floor. No ticket revenue (invite-only format).</p>
+  </div>
+
+  <!-- 8. CONTACTS -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">Key Contacts</span>
+    </div>
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <h4>Alexander Papacosta</h4>
+        <div class="contact-role">Cyprus Director, Lighthief Cyprus Ltd<br>Event Host &amp; Primary Contact</div>
+        <div class="contact-detail"><a href="tel:+35799164158">+357 99 164 158</a></div>
+        <div class="contact-detail"><a href="mailto:office@lighthief.com">office@lighthief.com</a></div>
+        <div class="note">Delegate &amp; speaker enquiries, ministerial contacts, sponsor negotiations</div>
+      </div>
+      <div class="contact-card">
+        <h4>Dr. Arkadius Sybaris</h4>
+        <div class="contact-role">Founder &amp; CEO, Lighthief Cyprus Ltd</div>
+        <div class="contact-detail"><a href="mailto:a.sybaris@lighthief.com">a.sybaris@lighthief.com</a></div>
+        <div class="note">Strategic relationships, investor roundtable facilitation, key speaker introductions</div>
+      </div>
+      <div class="contact-card">
+        <h4>Costas Hadjikyriacou</h4>
+        <div class="contact-role">Electrical Engineer (ETEK), Lighthief</div>
+        <div class="contact-detail"><a href="mailto:costas@lighthief.com">costas@lighthief.com</a></div>
+        <div class="note">BESS technical presentation preparation, AV requirements, technical Q&amp;A support</div>
+      </div>
+      <div class="contact-card">
+        <h4>Lighthief Office</h4>
+        <div class="contact-role">General &amp; Office Contact</div>
+        <div class="contact-detail"><a href="tel:+35777770050">+357 77 77 00 50</a></div>
+        <div class="contact-detail"><a href="mailto:office@lighthief.com">office@lighthief.com</a></div>
+        <div class="contact-detail">15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol</div>
+        <div class="note">Sponsorship packs, general enquiries, media relations</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. ACTION ITEMS -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">Action Items</span>
+    </div>
+    <ul class="action-list">
+      <li class="action-item">
+        <div class="action-num">1</div>
+        <div class="action-content">
+          <h4>Contact St. Raphael Resort — venue quote</h4>
+          <p>Call events team with provisional date 20 Nov 2026. Request full day-delegate package quote for 80–120 pax including room, catering, AV, and cocktail reception. Ask for availability + hold date.</p>
+        </div>
+        <div class="action-owner">AP — URGENT</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">2</div>
+        <div class="action-content">
+          <h4>Check Cyprus Energy Ministry calendar — COP31 conflict</h4>
+          <p>Confirm that Nov 19–20 does not conflict with ministerial travel to COP31 in Australia. Call the Ministry's external relations office or a contact within MECI.</p>
+        </div>
+        <div class="action-owner">AP — URGENT</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">3</div>
+        <div class="action-content">
+          <h4>Approach Megapanel Cyprus — media partner proposal</h4>
+          <p>Draft a 1-page media partner proposal offering Platinum-level branding in exchange for 2–4 seaside/arterial billboard panels for 4 weeks. Send to Megapanel Cyprus marketing/commercial team.</p>
+        </div>
+        <div class="action-owner">AP</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">4</div>
+        <div class="action-content">
+          <h4>Issue formal invitation letters — Cyprus &amp; Greece Energy Ministers</h4>
+          <p>Once date is confirmed, send formal invitation letters on Lighthief letterhead to both ministries. Allow 8–10 weeks minimum for ministerial diary acceptance. CC diplomatic protocol office.</p>
+        </div>
+        <div class="action-owner">AP + AS</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">5</div>
+        <div class="action-content">
+          <h4>Identify and approach 1 Platinum sponsor</h4>
+          <p>Target: major EPC company, international energy fund, or large developer active in CY/GR. Prepare sponsorship pack and approach by phone before sending pack. Lock Platinum before marketing launch.</p>
+        </div>
+        <div class="action-owner">AP + AS</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">6</div>
+        <div class="action-content">
+          <h4>Confirm Kamil Talar slot details</h4>
+          <p>Send formal confirmation of the 12:10 address slot to Ambassador Talar. Provide programme outline, AV requirements, and suggested speaking topic ("Poland–Cyprus Energy Investment Corridor").</p>
+        </div>
+        <div class="action-owner">AP</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">7</div>
+        <div class="action-content">
+          <h4>Commission event branding</h4>
+          <p>Create "Cyprus Energy Summit 2026" logo lockup using Lighthief brand palette. Required for: website, invitation, all printed materials, social media, Megapanel billboard artwork.</p>
+        </div>
+        <div class="action-owner">AP</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">8</div>
+        <div class="action-content">
+          <h4>Set up Instagram &amp; LinkedIn content calendar</h4>
+          <p>8-week content plan: week 1–2 announcement, week 3–4 speaker spotlights, week 5–6 topic teasers, week 7 programme reveal, week 8 final countdown. Assign content owner.</p>
+        </div>
+        <div class="action-owner">AP</div>
+      </li>
+      <li class="action-item">
+        <div class="action-num">9</div>
+        <div class="action-content">
+          <h4>Build VIP invite list — 80 named delegates</h4>
+          <p>Populate invite list from: Ministry contacts, EuroAsia Interconnector, CERA, financial institutions, EPC/developer contacts, investment funds, diplomatic corps (CY/GR/PL/EU). Target 80 named + 40 reserve.</p>
+        </div>
+        <div class="action-owner">AP + AS</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer note -->
+  <div style="border-top:2px solid var(--navy);padding-top:24px;margin-top:8px;">
+    <p style="font-size:12px;color:#888;line-height:1.8;">
+      <strong style="color:var(--navy);">Lighthief Cyprus Ltd</strong> · Company No. HE 477423 · 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus ·
+      Registered: Agiou Andreou 241, AG TRIAS COURT, Flat/Office 31, 3036 Limassol, Cyprus ·
+      <a href="https://solarfarms.cy" style="color:var(--navy);">solarfarms.cy</a> · +357 77 77 00 50 · office@lighthief.com<br>
+      <em>This document is confidential and prepared for internal use by Lighthief Cyprus Ltd only. Not for distribution.</em>
+    </p>
+  </div>
+
+</div><!-- /doc-body -->
+</body>
+</html>

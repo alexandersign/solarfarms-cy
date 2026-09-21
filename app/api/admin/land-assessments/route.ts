@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { landAssessmentsService } from '@/lib/supabase'
+import { unauthorizedUnlessAdmin } from '@/lib/require-admin-key'
 
 export async function GET(request: NextRequest) {
+  const denied = unauthorizedUnlessAdmin(request)
+  if (denied) return denied
+
   try {
     const assessments = await landAssessmentsService.getAll()
     

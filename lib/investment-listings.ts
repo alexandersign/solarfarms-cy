@@ -177,7 +177,7 @@ const MANUAL_LISTINGS: InvestmentListing[] = [
       '2.64 MWp bifacial solar + 10.56 MWh BESS — permits in place; confirm grid connection terms in diligence. Merchant DAM exposure with integrated storage.',
     capacityMW: AGIOS.solarMWp,
     investmentEUR: AGIOS.capexStackEUR.total,
-    roiPercent: 30,
+    roiPercent: undefined,
     annualRevenueEUR: AGIOS.finance.grossEnergyRevenueY1EUR,
     statusLabel: 'Connection terms pending',
     statusColor: 'yellow',

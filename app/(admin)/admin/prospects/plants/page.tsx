@@ -78,7 +78,10 @@ export default function CyprusPlantsPage() {
       if (hideClients) params.set('existing_client', 'false')
       if (searchQuery) params.set('search', searchQuery)
 
-      const res = await fetch(`/api/admin/plants?${params.toString()}`)
+      const key = adminKey || (typeof window !== 'undefined' ? localStorage.getItem('adminKey') : '') || ''
+      const res = await fetch(`/api/admin/plants?${params.toString()}`, {
+        headers: { 'x-admin-key': key },
+      })
       if (res.ok) {
         const data = await res.json()
         setPlants(data.data || [])

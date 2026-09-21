@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Access Residences — PV System Quotation | Lighthief Cyprus</title>
+<style>
+  :root {
+    --primary: #1A365D;
+    --primary-light: #2B5FA0;
+    --accent: #C9A432;
+    --accent-dark: #9C7D22;
+    --white: #FFFFFF;
+    --grey-text: #404040;
+    --body-bg: #F0F4F8;
+    --line: #e2e8f0;
+    --gray-50: #f7fafc;
+    --gray-100: #edf2f7;
+    --gray-200: #e2e8f0;
+    --gray-500: #718096;
+    --gray-700: #2d3748;
+    --gray-800: #1a202c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--gray-800); line-height: 1.65; background: #fff; font-size: 14px; }
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  .export-bar { position: fixed; top: 0; left: 0; right: 0; background: var(--primary); color: #fff; padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  .export-bar span { font-size: 13px; opacity: .8; }
+  .export-btn { background: var(--accent); color: #fff; border: none; padding: 8px 24px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .export-btn:hover { background: var(--accent-dark); }
+
+  .header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; padding: 52px 0 44px; margin-top: 48px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; color: var(--accent); }
+  .header .subtitle { font-size: 17px; opacity: .90; margin-bottom: 20px; }
+  .header-meta { display: flex; flex-wrap: wrap; gap: 28px; font-size: 13px; opacity: .80; }
+  .header-meta a { color: #fff; text-decoration: underline; }
+  .logo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .logo-dot { width: 44px; height: 44px; border-radius: 10px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 19px; color: #fff; letter-spacing: -1px; }
+  .logo-text { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; }
+
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: -28px 0 36px; position: relative; z-index: 2; }
+  .kpi-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; }
+  .kpi-card .value { font-size: 26px; font-weight: 800; color: var(--primary); }
+  .kpi-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-500); margin-top: 2px; }
+  .kpi-card.accent .value { color: var(--accent-dark); }
+  .kpi-card.green .value { color: #276749; }
+
+  .section { margin: 36px 0; }
+  .section h2 { font-size: 19px; font-weight: 700; color: var(--accent); border-bottom: 3px solid var(--primary); padding-bottom: 6px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .section h3 { font-size: 15px; font-weight: 600; color: var(--primary); margin: 20px 0 10px; }
+  .section p, .section li { margin-bottom: 10px; color: var(--grey-text); }
+  ul, ol { margin: 8px 0 12px 24px; }
+  li { margin-bottom: 4px; }
+
+  .callout { background: var(--gray-50); border-left: 4px solid var(--primary-light); padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 13px; color: var(--grey-text); }
+  .callout.success { border-left-color: #38a169; background: #f0fff4; }
+  .callout.warn { border-left-color: var(--accent); background: #fffdf0; }
+  .callout strong { color: var(--gray-800); }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 13px; }
+  thead th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+  thead th.num { text-align: right; }
+  tbody td { padding: 9px 12px; border-bottom: 1px solid var(--gray-200); color: var(--grey-text); }
+  tbody td.num { text-align: right; }
+  tbody tr:nth-child(even) { background: var(--gray-50); }
+  tbody tr.subtotal td { background: var(--gray-100); font-weight: 600; color: var(--primary); border-top: 2px solid var(--primary-light); }
+  tbody tr.vat td { background: var(--gray-100); font-weight: 500; color: var(--grey-text); }
+  tbody tr.grand td { background: var(--primary); color: #fff; font-weight: 800; font-size: 15px; padding: 12px; }
+  tbody tr.grand td.num { text-align: right; }
+
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 18px 0; }
+  .spec-card { border-radius: 10px; padding: 22px; border: 2px solid var(--gray-200); background: #fff; }
+  .spec-card h4 { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .spec-card .spec-sub { font-size: 11px; color: var(--gray-500); margin-bottom: 14px; letter-spacing: .3px; text-transform: uppercase; }
+  .spec-card .spec-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12.5px; border-bottom: 1px solid var(--gray-100); }
+  .spec-card .spec-row:last-child { border-bottom: none; }
+  .spec-card .spec-row .spec-label { color: var(--gray-500); }
+  .spec-card .spec-row .spec-val { font-weight: 600; color: var(--gray-800); }
+  .spec-card.featured { border-color: var(--primary); box-shadow: 0 2px 12px rgba(26,54,93,.10); }
+
+  .layout-diagram { background: var(--gray-50); border: 2px solid var(--gray-200); border-radius: 10px; padding: 24px 28px; margin: 18px 0; font-family: 'Courier New', monospace; font-size: 11.5px; line-height: 1.55; white-space: pre; overflow-x: auto; color: var(--grey-text); }
+
+  .block-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 18px 0; }
+  .block-card { border-radius: 10px; padding: 20px; border: 2px solid var(--primary); background: #f0f4f8; }
+  .block-card h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+  .block-card .block-kpi { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+  .block-kpi-item { background: #fff; border-radius: 6px; padding: 8px 12px; text-align: center; min-width: 80px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .block-kpi-item .bk-val { font-size: 16px; font-weight: 800; color: var(--primary); }
+  .block-kpi-item .bk-lab { font-size: 10px; text-transform: uppercase; color: var(--gray-500); letter-spacing: .3px; }
+  .block-card ul { font-size: 12.5px; color: var(--grey-text); }
+
+  .timeline { display: flex; gap: 0; margin: 18px 0; }
+  .tl-step { flex: 1; text-align: center; position: relative; }
+  .tl-step::after { content: '→'; position: absolute; right: -10px; top: 18px; font-size: 18px; color: var(--accent); }
+  .tl-step:last-child::after { display: none; }
+  .tl-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+  .tl-label { font-size: 11px; color: var(--grey-text); line-height: 1.3; }
+
+  .warranty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+  .warranty-card { border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); background: #fff; text-align: center; }
+  .warranty-card .w-years { font-size: 28px; font-weight: 800; color: var(--accent-dark); line-height: 1; margin-bottom: 4px; }
+  .warranty-card .w-label { font-size: 11px; text-transform: uppercase; letter-spacing: .4px; color: var(--gray-500); margin-bottom: 6px; }
+  .warranty-card .w-desc { font-size: 12px; color: var(--grey-text); }
+
+  .terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+  .terms-card { border-radius: 8px; padding: 16px 20px; border: 1px solid var(--gray-200); background: var(--gray-50); }
+  .terms-card h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--primary); font-weight: 700; margin-bottom: 8px; }
+  .terms-card ul { font-size: 12.5px; color: var(--grey-text); margin-left: 14px; }
+
+  .footer-strip { background: var(--primary); color: #fff; padding: 32px 0; margin-top: 52px; }
+  .footer-inner { max-width: 1040px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+  .footer-col h5 { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; opacity: .6; margin-bottom: 8px; }
+  .footer-col p, .footer-col a { font-size: 12px; color: rgba(255,255,255,.85); text-decoration: none; margin-bottom: 3px; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-conf { max-width: 1040px; margin: 0 auto; padding: 12px 32px 0; font-size: 10px; opacity: .5; color: #fff; border-top: 1px solid rgba(255,255,255,.1); margin-top: 20px; }
+
+  @media print {
+    .export-bar { display: none !important; }
+    .header { margin-top: 0; padding: 36px 0 30px; }
+    .kpi-strip { margin-top: -20px; }
+    .kpi-card { box-shadow: none; border: 1px solid var(--gray-200); }
+    body { font-size: 11.5px; }
+    .section { page-break-inside: avoid; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    .spec-grid, .block-grid, .warranty-grid, .terms-grid { page-break-inside: avoid; }
+    .footer-strip { background: #fff; color: var(--grey-text); border-top: 1px solid var(--gray-200); }
+    .footer-col h5 { color: var(--primary); opacity: 1; }
+    .footer-col p, .footer-col a { color: var(--grey-text); }
+    .footer-conf { color: var(--grey-text); border-top-color: var(--gray-200); }
+    @page { margin: 1.5cm 1.2cm; size: A4; }
+  }
+  @media (max-width: 700px) {
+    .kpi-strip, .spec-grid, .block-grid, .warranty-grid, .terms-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="export-bar">
+  <span>The Access Residences — PV Quotation — Ref: LCY-PV-ACC-001 — September 2026</span>
+  <button class="export-btn" onclick="window.print()">Export as PDF</button>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="container">
+      <div class="logo-row">
+      <img src="lighthief-logo.png" alt="Lighthief" style="height:44px;width:auto;display:block">
+      <span class="logo-text">CYPRUS</span>
+    </div>
+    <h1>The Access Residences — Blocks A1 &amp; A2</h1>
+    <div class="subtitle">Rooftop Photovoltaic System — Design, Supply, Installation &amp; Commissioning</div>
+    <div class="header-meta">
+      <span>Prepared for: <strong>Vasos Saouris</strong></span>
+      <span><a href="mailto:vasos.saouris@gmail.com">vasos.saouris@gmail.com</a></span>
+      <span>+357 99 482 181</span>
+      <span>Ref: <strong>LCY-PV-ACC-001</strong></span>
+      <span>Date: <strong>September 2026</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- KPI STRIP -->
+<div class="container">
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="value">38.94 kWp</div>
+      <div class="label">Installed PV Capacity</div>
+    </div>
+    <div class="kpi-card accent">
+      <div class="value">170 m²</div>
+      <div class="label">Panel Area (EPC Met)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="value">~71,300 kWh</div>
+      <div class="label">Est. Annual Yield</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="value">~2.1 yrs</div>
+      <div class="label">Est. Payback Period</div>
+    </div>
+  </div>
+
+  <!-- 1. PROJECT UNDERSTANDING -->
+  <div class="section">
+    <h2>1. Project Understanding</h2>
+    <p>Lighthief Cyprus Ltd is pleased to submit this technical and commercial proposal for the photovoltaic system at <strong>The Access Residences</strong>, Limassol — comprising <strong>Blocks A1 and A2</strong>.</p>
+    <p>The system is required to satisfy the project's <strong>Energy Performance Certificate (EPC)</strong>, which specifies a minimum installed PV capacity of <strong>38.5 kWp</strong>, based on a reference area of 255 m² at 15% module efficiency. Using modern high-efficiency N-Type modules (≥ 22.9% cell efficiency), the corresponding required panel area is <strong>approximately 170 m²</strong>.</p>
+    <div class="callout success">
+      <strong>EPC Compliance Achieved:</strong> Our proposed 66-panel array occupies exactly <strong>170.0 m²</strong> of roof area (66 × 2.28 m × 1.13 m), delivering <strong>38.94 kWp</strong> — meeting and marginally exceeding the 38.5 kWp EPC threshold.
+    </div>
+    <p>The currently allocated roof area across both blocks is approximately <strong>120 m²</strong>. To reach the required 170 m², we propose utilising additional available roof surfaces including <strong>staircase roof areas</strong> and <strong>roofs above enclosed roof-garden structures</strong>, as indicated in the updated roof drawings. Our preliminary panel layout demonstrates how this can be achieved while maintaining adequate access and maintenance clearances.</p>
+  </div>
+
+  <!-- 2. PROPOSED SYSTEM -->
+  <div class="section">
+    <h2>2. Proposed System</h2>
+    <div class="block-grid">
+      <div class="block-card">
+        <h4>Block A1 — 19.47 kWp</h4>
+        <div class="block-kpi">
+          <div class="block-kpi-item"><div class="bk-val">33</div><div class="bk-lab">Panels</div></div>
+          <div class="block-kpi-item"><div class="bk-val">19.47</div><div class="bk-lab">kWp</div></div>
+          <div class="block-kpi-item"><div class="bk-val">85 m²</div><div class="bk-lab">Panel Area</div></div>
+        </div>
+        <ul>
+          <li>33 × Jinko Tiger Neo N-Type 590 W panels</li>
+          <li>1 × Deye SUN-20K-SG01HP3 (20 kW hybrid)</li>
+          <li>Installation across main flat roof + staircase roof</li>
+          <li>25° south-facing tilt, zero inter-row spacing</li>
+          <li>DC/AC ratio: 0.97 — optimal for Cyprus irradiance</li>
+        </ul>
+      </div>
+      <div class="block-card">
+        <h4>Block A2 — 19.47 kWp</h4>
+        <div class="block-kpi">
+          <div class="block-kpi-item"><div class="bk-val">33</div><div class="bk-lab">Panels</div></div>
+          <div class="block-kpi-item"><div class="bk-val">19.47</div><div class="bk-lab">kWp</div></div>
+          <div class="block-kpi-item"><div class="bk-val">85 m²</div><div class="bk-lab">Panel Area</div></div>
+        </div>
+        <ul>
+          <li>33 × Jinko Tiger Neo N-Type 590 W panels</li>
+          <li>1 × Deye SUN-20K-SG01HP3 (20 kW hybrid)</li>
+          <li>Installation across available flat roof + enclosed structure roofs</li>
+          <li>25° south-facing tilt, zero inter-row spacing</li>
+          <li>DC/AC ratio: 0.97 — optimal for Cyprus irradiance</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>System Architecture</h3>
+    <div class="layout-diagram">
+   BLOCK A1 ROOF                          BLOCK A2 ROOF
+   ─────────────────────────────────────────────────────
+
+   [33 × Jinko 590W panels]               [33 × Jinko 590W panels]
+   Portrait, 25° tilt, south-facing        Portrait, 25° tilt, south-facing
+   + staircase roof area                  + enclosed structure roofs
+
+          │ DC strings                           │ DC strings
+          │ (4mm² solar cable)                   │ (4mm² solar cable)
+          ▼                                       ▼
+
+   ┌─────────────────────┐          ┌─────────────────────┐
+   │  Deye SUN-20K       │          │  Deye SUN-20K       │
+   │  SG01HP3            │          │  SG01HP3            │
+   │  20 kW Hybrid       │          │  20 kW Hybrid       │
+   │  IP65 / HV-ESS      │          │  IP65 / HV-ESS      │
+   │  Battery-Ready      │          │  Battery-Ready      │
+   └──────────┬──────────┘          └──────────┬──────────┘
+              │ AC 3-phase 400V                 │ AC 3-phase 400V
+              ▼                                 ▼
+
+   ┌──────────────────────────────────────────────────────┐
+   │             EAC METERING &amp; MAIN LV DISTRIBUTION       │
+   │    (Block A1 + Block A2 supply boards)               │
+   │    Net Billing — EAC / RAAEK connection applied      │
+   └──────────────────────────────────────────────────────┘
+
+   Monitoring: Deye SolarmanPro cloud platform (per block)
+   Battery Storage: Future upgrade via Deye HV ESS (inverters battery-ready)</div>
+
+    <div class="callout">
+      <strong>Battery-Ready Architecture:</strong> Both Deye SUN-20K-SG01HP3 inverters support high-voltage battery storage (150–850 V HV ESS). Battery units can be retrofitted at any time without inverter replacement — this future-proofs the installation for potential storage requirements.
+    </div>
+  </div>
+
+  <!-- 3. KEY EQUIPMENT -->
+  <div class="section">
+    <h2>3. Key Equipment Specifications</h2>
+    <div class="spec-grid">
+      <div class="spec-card featured">
+        <h4>Jinko Tiger Neo N-Type 590 W</h4>
+        <div class="spec-sub">PV Module — N-Type TOPCon</div>
+        <div class="spec-row"><span class="spec-label">Technology</span><span class="spec-val">N-Type TOPCon Bifacial</span></div>
+        <div class="spec-row"><span class="spec-label">Power (STC)</span><span class="spec-val">590 Wp</span></div>
+        <div class="spec-row"><span class="spec-label">Module Efficiency</span><span class="spec-val">22.9%</span></div>
+        <div class="spec-row"><span class="spec-label">Dimensions</span><span class="spec-val">2278 × 1134 × 30 mm</span></div>
+        <div class="spec-row"><span class="spec-label">Impp / Isc</span><span class="spec-val">13.36 A / 14.07 A</span></div>
+        <div class="spec-row"><span class="spec-label">Vmpp / Voc</span><span class="spec-val">44.17 V / 52.90 V</span></div>
+        <div class="spec-row"><span class="spec-label">Product Warranty</span><span class="spec-val">12 years</span></div>
+        <div class="spec-row"><span class="spec-label">Performance Warranty</span><span class="spec-val">30 years linear</span></div>
+      </div>
+      <div class="spec-card featured">
+        <h4>Deye SUN-20K-SG01HP3</h4>
+        <div class="spec-sub">3-Phase Hybrid Inverter 20 kW</div>
+        <div class="spec-row"><span class="spec-label">Rated AC Output</span><span class="spec-val">20 kW / 3-phase 400 V</span></div>
+        <div class="spec-row"><span class="spec-label">Max DC Input</span><span class="spec-val">24 kW (DC oversizing OK)</span></div>
+        <div class="spec-row"><span class="spec-label">MPPT Voltage Range</span><span class="spec-val">150 – 850 V</span></div>
+        <div class="spec-row"><span class="spec-label">Number of MPPTs</span><span class="spec-val">2 independent MPPTs</span></div>
+        <div class="spec-row"><span class="spec-label">Max PV Input Current</span><span class="spec-val">20 A per MPPT</span></div>
+        <div class="spec-row"><span class="spec-label">Battery Type</span><span class="spec-val">HV ESS (150–850 V)</span></div>
+        <div class="spec-row"><span class="spec-label">Functions</span><span class="spec-val">Hybrid / Off-Grid / Asymmetric</span></div>
+        <div class="spec-row"><span class="spec-label">Protection / Comms</span><span class="spec-val">IP65 / WLAN-FE / Load Meter</span></div>
+        <div class="spec-row"><span class="spec-label">Product Warranty</span><span class="spec-val">10 years</span></div>
+      </div>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <h4>Helios Aluminum Flat-Roof Mounting System</h4>
+        <div class="spec-sub">Portrait orientation — 25° tilt, south-facing (180°), zero inter-row spacing (3 rows × 1 panel deep per block). Back height per row: 0.96m.</div>
+        <div class="spec-row"><span class="spec-label">Rail system</span><span class="spec-val">Helios T-bolt aluminum rail</span></div>
+        <div class="spec-row"><span class="spec-label">Triangles/supports</span><span class="spec-val">Helios 1P, 5°–28° adjustable</span></div>
+        <div class="spec-row"><span class="spec-label">Clamps</span><span class="spec-val">Helios mid + end clamps, 35 mm</span></div>
+        <div class="spec-row"><span class="spec-label">Material</span><span class="spec-val">Anodised aluminium, stainless steel fixings</span></div>
+        <div class="spec-row"><span class="spec-label">Roof type</span><span class="spec-val">Flat roof (concrete / screed)</span></div>
+        <div class="spec-row"><span class="spec-label">Load bearing</span><span class="spec-val">Designed to EN 1991 wind/snow</span></div>
+      </div>
+      <div class="spec-card">
+        <h4>DC / AC Protection &amp; BOS</h4>
+        <div class="spec-sub">Balance of System — per IEC 60364 &amp; BS 7671</div>
+        <div class="spec-row"><span class="spec-label">DC solar cable</span><span class="spec-val">4 mm² halogen-free, 1500 V DC</span></div>
+        <div class="spec-row"><span class="spec-label">MC4 connectors</span><span class="spec-val">IP67, 30 A rated</span></div>
+        <div class="spec-row"><span class="spec-label">DC MCBs</span><span class="spec-val">Helios DC 500 V, per string</span></div>
+        <div class="spec-row"><span class="spec-label">DC surge protection</span><span class="spec-val">Type II SPD, per inverter</span></div>
+        <div class="spec-row"><span class="spec-label">AC protection</span><span class="spec-val">RCBO Type-A, AC SPD Type II</span></div>
+        <div class="spec-row"><span class="spec-label">Smart meters</span><span class="spec-val">3-phase CT energy meter × 2</span></div>
+        <div class="spec-row"><span class="spec-label">Conduit / trays</span><span class="spec-val">Metal tracking, IP-rated boxes</span></div>
+        <div class="spec-row"><span class="spec-label">Earthing</span><span class="spec-val">Earth rods, bonding per IEC 60364</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PRELIMINARY PANEL LAYOUT -->
+  <div class="section">
+    <h2>4. Preliminary Panel Layout</h2>
+    <p>The following layout is based on the architectural roof drawings provided. Panel rows run <strong>E–W</strong> (perpendicular to the building's N25°E long axis), with panels tilted at 25° facing due south. The configuration uses <strong>3 rows × 1 panel deep</strong> per row in each block, with zero inter-row spacing.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Description</th>
+          <th class="num">Panels</th>
+          <th class="num">Area (m²)</th>
+          <th class="num">Capacity (kWp)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Block A2 — Main flat roof (NE portion)</strong></td>
+          <td>11 panels wide (E–W) × 3 rows deep (N–S), south-facing, 25° tilt. Positioned on the upper flat section of Block A2 as indicated in the architectural drawing, clear of staircase and MEP equipment.</td>
+          <td class="num">33</td>
+          <td class="num">77</td>
+          <td class="num">19.47</td>
+        </tr>
+        <tr>
+          <td><strong>Block A1 — Main flat roof (NW portion)</strong></td>
+          <td>11 panels wide (E–W) × 3 rows deep (N–S), south-facing, 25° tilt. Positioned in the upper flat section of Block A1 as indicated in the architectural drawing, clear of the staircase enclosure and roof access.</td>
+          <td class="num">33</td>
+          <td class="num">77</td>
+          <td class="num">19.47</td>
+        </tr>
+        <tr class="subtotal">
+          <td colspan="2"><strong>Total — Blocks A1 + A2 Combined</strong></td>
+          <td class="num"><strong>66</strong></td>
+          <td class="num"><strong>154 m²</strong></td>
+          <td class="num"><strong>38.94 kWp</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout warn">
+      <strong>Layout method — 3 rows × 1 panel deep @ 25° tilt, zero inter-row spacing:</strong> Each of the 3 rows is a single panel deep (2.28m inclined), tilted at 25° facing south. Back height per row = 0.96m (within the 1.20m architectural constraint). Shadow from the top of each row lands exactly at the base of the next row at 10am on 21 December — the mathematical zero-gap condition. No inter-row spacing required. Total N–S footprint per block: 3 × (2.28 × cos 25°) = <strong>6.19m</strong>. Total E–W footprint: 11 × 1.13m = <strong>12.43m</strong>. Total footprint per block: <strong>77 m²</strong> — comfortably within the main flat roof areas indicated in the architectural drawing.
+    </div>
+    <div class="callout success">
+      <strong>Confirmed on architectural drawing:</strong> Panel array positions match the zones allocated for PV on the roof drawings provided by the Architect (Roof Block A1 and Roof Block A2). Final exact positions, row offsets from parapets and MEP clearances to be confirmed at site survey. A panel layout drawing to be issued by Lighthief Cyprus's ETEK Electrical Engineer (Costas Hadjikyriacou) as part of the EAC application.
+    </div>
+  </div>
+
+  <!-- 5. PRICE SCHEDULE -->
+  <div class="section">
+    <h2>5. Price Schedule (Excl. VAT)</h2>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <h4>Equipment Included</h4>
+        <div class="spec-sub">Supply of all materials</div>
+        <ul style="font-size:12.5px;color:var(--grey-text);margin-left:14px;margin-top:8px">
+          <li>66 × Jinko Tiger Neo N-Type 590 W bifacial PV modules (38.94 kWp)</li>
+          <li>2 × Deye SUN-20K-SG01HP3 3-phase hybrid inverter, 20 kW (1 per block)</li>
+          <li>2 × 3-phase smart energy meters with CT clamp sets</li>
+          <li>Aluminum flat-roof mounting system — adjustable tilt triangles, rails, clamps, SS hardware for 66 panels</li>
+          <li>DC solar cabling, MC4 connectors, string protection (DC MCBs, SPD Type II)</li>
+          <li>AC protection boards (RCBO, SPD Type II per block), cable trays, conduit, junction boxes, earth rods, labelling</li>
+        </ul>
+      </div>
+      <div class="spec-card">
+        <h4>Services Included</h4>
+        <div class="spec-sub">Turnkey design, installation &amp; permitting</div>
+        <ul style="font-size:12.5px;color:var(--grey-text);margin-left:14px;margin-top:8px">
+          <li>Electrical system design — SLD, string layout, protection coordination (ETEK licensed engineer)</li>
+          <li>EAC / RAAEK net billing application — Block A1 (Parts A + B + inspection)</li>
+          <li>EAC / RAAEK net billing application — Block A2 (Parts A + B + inspection)</li>
+          <li>Supply, delivery to site and full installation of all equipment</li>
+          <li>Commissioning, testing, CT verification, zero-export setup</li>
+          <li>Deye SolarmanPro cloud monitoring platform setup (both blocks)</li>
+          <li>Project documentation, warranty registration &amp; handover package</li>
+        </ul>
+      </div>
+    </div>
+
+    <table>
+      <tbody>
+        <tr class="subtotal">
+          <td><strong>Equipment supply (all panels, inverters, mounting &amp; BOS)</strong></td>
+          <td class="num"><strong>18,970.00</strong></td>
+        </tr>
+        <tr class="subtotal">
+          <td><strong>Design, installation, commissioning &amp; permitting</strong></td>
+          <td class="num"><strong>8,100.00</strong></td>
+        </tr>
+        <tr class="vat">
+          <td><strong>Total excl. VAT</strong></td>
+          <td class="num"><strong>27,070.00</strong></td>
+        </tr>
+        <tr class="vat">
+          <td>VAT @ 19%</td>
+          <td class="num">5,143.30</td>
+        </tr>
+        <tr class="grand">
+          <td><strong>TOTAL (Incl. VAT)</strong></td>
+          <td class="num"><strong>€ 32,213.30</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Turnkey price per kWp (excl. VAT):</strong> €27,070 / 38.94 kWp = <strong>€695/kWp</strong> — fully installed, designed, permitted and commissioned including dual EAC grid connection for both blocks.
+    </div>
+  </div>
+
+  <!-- 6. ENERGY YIELD & FINANCIAL SUMMARY -->
+  <div class="section">
+    <h2>6. Energy Yield &amp; Financial Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th class="num">Value</th>
+          <th>Basis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Installed capacity</td>
+          <td class="num">38.94 kWp</td>
+          <td>66 × Jinko 590 W STC</td>
+        </tr>
+        <tr>
+          <td>Estimated specific yield (Limassol, 25° south-facing, monofacial, PR 0.80)</td>
+          <td class="num">1,712 kWh/kWp/yr</td>
+          <td>PVGIS-SARAH3 database, ERA5 meteo, 2005–2023 average, 14% system losses</td>
+        </tr>
+        <tr>
+          <td>Bifacial rear-side gain — white flat roof, albedo 0.45, bifaciality 80%</td>
+          <td class="num">+7% ≈ +120 kWh/kWp/yr</td>
+          <td>Conservative estimate; Jinko BDV bifaciality factor 80±5% per datasheet</td>
+        </tr>
+        <tr>
+          <td>Effective specific yield (monofacial + bifacial)</td>
+          <td class="num">1,832 kWh/kWp/yr</td>
+          <td>25° south-facing, bifacial on white membrane roof</td>
+        </tr>
+        <tr>
+          <td>Estimated annual generation</td>
+          <td class="num">~71,300 kWh/yr</td>
+          <td>38.94 kWp × 1,832 kWh/kWp</td>
+        </tr>
+        <tr>
+          <td>Self-consumption (common areas — lifts, lighting, pumps, EV charging)</td>
+          <td class="num">~49,900 kWh/yr</td>
+          <td>70% self-use assumption — to be confirmed against building load profile</td>
+        </tr>
+        <tr>
+          <td>Net billing export to EAC grid</td>
+          <td class="num">~21,400 kWh/yr</td>
+          <td>30% monthly-period surplus at wholesale rate</td>
+        </tr>
+        <tr>
+          <td>Annual savings — self-consumed @ €0.22/kWh</td>
+          <td class="num">~€10,985/yr</td>
+          <td>Avoided EAC electricity purchase</td>
+        </tr>
+        <tr>
+          <td>Annual revenue — export @ €0.095/kWh (RAAEK net billing rate)</td>
+          <td class="num">~€2,033/yr</td>
+          <td>EAC net billing monetary credit on net surplus</td>
+        </tr>
+        <tr class="subtotal">
+          <td><strong>Total annual financial benefit</strong></td>
+          <td class="num"><strong>~€13,018/yr</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Simple payback period</strong> (on total excl. VAT)</td>
+          <td class="num"><strong>~2.1 years</strong></td>
+          <td>€27,070 / €13,018</td>
+        </tr>
+        <tr>
+          <td><strong>25-year lifetime generation</strong></td>
+          <td class="num"><strong>~1,700 MWh</strong></td>
+          <td>0.4% annual degradation (Jinko N-type linear warranty)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--gray-500);margin-top:-10px">Yield based on PVGIS-SARAH3 irradiance data for Limassol (34.68°N, 33.04°E), 25° south-facing tilt as per architectural drawings, Jinko Tiger Neo N-Type 590 W modules, Deye SUN-20K-SG01HP3 inverters, performance ratio 0.80. Financial figures exclude VAT. Actual self-consumption depends on the building's common-area load profile; battery storage would increase self-consumption and reduce payback further.</p>
+  </div>
+
+  <!-- 7. SCOPE INCLUSIONS & EXCLUSIONS -->
+  <div class="section">
+    <h2>7. Scope — Inclusions &amp; Exclusions</h2>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <h4>✓ Included in This Quotation</h4>
+        <div class="spec-sub">Full turnkey scope</div>
+        <ul style="font-size:12.5px;color:var(--grey-text);margin-left:14px;margin-top:8px;">
+          <li>Supply of all PV panels, inverters, mounting, cabling and protection equipment</li>
+          <li>Roof survey and final panel layout design</li>
+          <li>Electrical system design (SLD) by ETEK licensed engineer</li>
+          <li>All installation labour — panels, inverters, wiring, earthing</li>
+          <li>EAC / RAAEK Net Billing application for both blocks (Parts A + B + inspection)</li>
+          <li>Commissioning, testing and yield verification</li>
+          <li>Deye SolarmanPro monitoring platform setup</li>
+          <li>Project documentation and system handover</li>
+          <li>Equipment datasheets and warranty certificates</li>
+          <li>2-year Lighthief installation workmanship warranty</li>
+        </ul>
+      </div>
+      <div class="spec-card">
+        <h4>✗ Not Included / Exclusions</h4>
+        <div class="spec-sub">To be separately agreed or provided by others</div>
+        <ul style="font-size:12.5px;color:var(--grey-text);margin-left:14px;margin-top:8px;">
+          <li>VAT (19% applicable on all sums above)</li>
+          <li>Structural assessment / engineer's certificate for roof loading (by structural engineer if required)</li>
+          <li>Battery storage units (inverters are battery-ready; batteries are optional future addition)</li>
+          <li>Internal consumer unit / distribution board modifications within apartments</li>
+          <li>Metering arrangement between common areas and individual units (to be coordinated with project consultants per client's instruction)</li>
+          <li>Crane hire or scaffold if required beyond standard access equipment</li>
+          <li>Any civil or waterproofing works on roof</li>
+          <li>EAC smart meter upgrade (if required by EAC at connection)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. WARRANTIES -->
+  <div class="section">
+    <h2>8. Warranties</h2>
+    <div class="warranty-grid">
+      <div class="warranty-card">
+        <div class="w-years">30</div>
+        <div class="w-label">Year Linear Performance</div>
+        <div class="w-desc">Jinko Tiger Neo panels — ≥ 87.4% power output guaranteed at year 25, linear degradation schedule</div>
+      </div>
+      <div class="warranty-card">
+        <div class="w-years">12</div>
+        <div class="w-label">Year Product Warranty</div>
+        <div class="w-desc">Jinko Tiger Neo panels — materials and workmanship; Deye inverters: 10 years product warranty</div>
+      </div>
+      <div class="warranty-card">
+        <div class="w-years">10</div>
+        <div class="w-label">Year Inverter Warranty</div>
+        <div class="w-desc">Deye SUN-20K-SG01HP3 — full manufacturer's product warranty, both units</div>
+      </div>
+      <div class="warranty-card">
+        <div class="w-years">2</div>
+        <div class="w-label">Year Installation Warranty</div>
+        <div class="w-desc">Lighthief Cyprus — workmanship warranty on all installation work, cabling and mounting</div>
+      </div>
+      <div class="warranty-card">
+        <div class="w-years">25</div>
+        <div class="w-label">Year Mounting Warranty</div>
+        <div class="w-desc">Helios aluminum mounting system — structural integrity of aluminium rails and support frames</div>
+      </div>
+      <div class="warranty-card">
+        <div class="w-years">∞</div>
+        <div class="w-label">Remote Monitoring</div>
+        <div class="w-desc">Deye SolarmanPro — lifetime cloud monitoring platform included with inverter purchase</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. EAC PROCESS & TIMELINE -->
+  <div class="section">
+    <h2>9. EAC Net Billing Application &amp; Delivery Timeline</h2>
+
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-dot">1</div>
+        <div class="tl-label">Contract &amp;<br>50% Deposit<br><em>Week 1</em></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">2</div>
+        <div class="tl-label">Design &amp;<br>EAC Part A<br><em>Weeks 1–3</em></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">3</div>
+        <div class="tl-label">Equipment<br>Procurement<br><em>Weeks 2–4</em></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">4</div>
+        <div class="tl-label">Installation<br>on Site<br><em>Weeks 4–6</em></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">5</div>
+        <div class="tl-label">EAC Part B +<br>Inspection<br><em>Weeks 6–10</em></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">6</div>
+        <div class="tl-label">Grid Connection<br>&amp; Handover<br><em>Weeks 10–12</em></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>EAC Application Timeline Note:</strong> EAC Part A (conditions of connection) typically takes 3–6 weeks; Part B and inspection a further 4–8 weeks. Total timeline from contract to grid-connected operation is estimated at <strong>10–14 weeks</strong>, subject to EAC processing times which are outside Lighthief's control. Installation can proceed ahead of grid connection, with the system energised on EAC confirmation.
+    </div>
+  </div>
+
+  <!-- 10. COMMERCIAL TERMS -->
+  <div class="section">
+    <h2>10. Commercial Terms</h2>
+    <div class="terms-grid">
+      <div class="terms-card">
+        <h4>Payment Schedule</h4>
+        <ul>
+          <li><strong>50%</strong> — with signed contract &amp; order placement (€13,535.00)</li>
+          <li><strong>40%</strong> — upon delivery of equipment to site (€10,828.00)</li>
+          <li><strong>10%</strong> — upon commissioning and system handover (€2,707.00)</li>
+          <li>All amounts <strong>exclude VAT</strong> at 19%</li>
+        </ul>
+      </div>
+      <div class="terms-card">
+        <h4>Pricing &amp; Validity</h4>
+        <ul>
+          <li>Prices valid for <strong>30 days</strong> from date of issue</li>
+          <li>Equipment prices subject to confirmation at order placement</li>
+          <li>Applicable currency: <strong>Euro (€)</strong></li>
+        </ul>
+      </div>
+      <div class="terms-card">
+        <h4>Delivery &amp; Installation</h4>
+        <ul>
+          <li>Equipment delivery: approximately <strong>2–3 weeks</strong> from order</li>
+          <li>Installation duration: approximately <strong>3–4 working days</strong> on site</li>
+          <li>Client to ensure clear roof access and parking for installation team</li>
+          <li>Site coordination with main contractor / architect where required</li>
+        </ul>
+      </div>
+      <div class="terms-card">
+        <h4>General Conditions</h4>
+        <ul>
+          <li>Binding offer subject to written contract and equipment stock confirmation</li>
+          <li>Final metering/billing arrangement between common areas and individual units to be coordinated with project consultants — not included in this scope</li>
+          <li>Structural roof assessment (if required) is client's responsibility</li>
+          <li>Lighthief Cyprus Ltd — HE 477423</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. CONTACT -->
+  <div class="section">
+    <h2>11. Next Steps</h2>
+    <p>To proceed, please confirm your acceptance of this proposal in writing. We will then issue a formal contract for signature and coordinate a brief site visit to finalise the panel layout before procurement.</p>
+    <p>For any questions regarding this proposal, please contact our Cyprus Director directly:</p>
+    <div class="callout success">
+      <strong>Alexander Papacosta</strong> — Cyprus Director, Lighthief Cyprus Ltd<br>
+      Phone: <strong>+357 99 164 158</strong> &nbsp;|&nbsp; Email: <strong>office@lighthief.com</strong> &nbsp;|&nbsp; Website: <strong>solarfarms.cy</strong>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer-strip">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Lighthief Cyprus Ltd</h5>
+      <p>Company No. HE 477423</p>
+      <p>15 Agaritsis, Nektaria Court, Office 201</p>
+      <p>3045 Zakaki, Limassol, Cyprus</p>
+      <p><a href="https://solarfarms.cy">solarfarms.cy</a></p>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <p>Alexander Papacosta — Cyprus Director</p>
+      <p>+357 99 164 158</p>
+      <a href="mailto:office@lighthief.com">office@lighthief.com</a>
+    </div>
+    <div class="footer-col">
+      <h5>Document</h5>
+      <p>Ref: LCY-PV-ACC-001</p>
+      <p>Version: 1.0 — September 2026</p>
+      <p>Prepared by: Lighthief Cyprus Ltd</p>
+      <p>For: Vasos Saouris / The Access Residences</p>
+    </div>
+    <div class="footer-col">
+      <h5>Electrical Engineer</h5>
+      <p>Costas Hadjikyriacou</p>
+      <p>Electrical Engineer (ETEK)</p>
+      <a href="mailto:costas@lighthief.com">costas@lighthief.com</a>
+    </div>
+  </div>
+  <div class="footer-conf">
+    Confidential — prepared exclusively for Vasos Saouris / The Access Residences. Binding offer subject to written contract, equipment availability confirmation and final engineering sign-off. Energy yield estimates are indicative only and do not constitute a guaranteed performance undertaking. Lighthief Cyprus Ltd — HE 477423 — solarfarms.cy
+  </div>
+</div>
+
+</body>
+</html>
