@@ -55,8 +55,18 @@ export async function GET(request: NextRequest) {
     const searchFilter = search ? buildProspectSearchFilter(search) : null
     if (searchFilter) query = query.or(searchFilter)
 
-    const { data, error } = await query.range(0, 9999)
-    if (error) throw error
+    // Supabase has a max_rows setting (default 1,000). Fetch all pages in batches.
+    const PAGE = 1000
+    let allData: Record<string, unknown>[] = []
+    let from = 0
+    while (true) {
+      const { data: page, error } = await query.range(from, from + PAGE - 1)
+      if (error) throw error
+      allData = allData.concat(page || [])
+      if ((page || []).length < PAGE) break
+      from += PAGE
+    }
+    const data = allData
 
     // Probability by stage for weighted pipeline (forecast value)
     const STAGE_PROBABILITY: Record<string, number> = {
