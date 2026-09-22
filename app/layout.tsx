@@ -1,11 +1,8 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
-import { Header } from '@/components/sections/Header'
-import { Footer } from '@/components/sections/Footer'
 import { GoogleAnalytics, ConsentBanner } from '@/components/analytics/GoogleAnalytics'
 import { MetaPixel } from '@/components/analytics/MetaPixel'
-import { DeferredWidgets } from '@/components/ui/DeferredWidgets'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -22,9 +19,17 @@ const poppins = Poppins({
   preload: true,
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://solarfarms.cy'),
-  title: 'SolarFarms.cy — Cyprus Solar & BESS Investment Platform',
+  title: {
+    default: 'SolarFarms.cy — Cyprus Solar & BESS Investment Platform',
+    template: '%s | SolarFarms.cy',
+  },
   description: 'Invest in Cyprus solar farms and BESS with 8-12% equity IRR. Turnkey EPC, O&M, and bankable energy storage by Lighthief.',
   keywords: ['Cyprus solar investment', 'solar farm ROI', 'renewable energy investment', 'solar PV Cyprus'],
   authors: [{ name: 'Lighthief Cyprus' }],
@@ -77,10 +82,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <MetaPixel />
         <ConsentBanner />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <DeferredWidgets />
+        {children}
       </body>
     </html>
   )

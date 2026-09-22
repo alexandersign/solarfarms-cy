@@ -3,6 +3,30 @@ import Image from 'next/image'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { StructuredData, faqSchema } from '@/components/seo/StructuredData'
+
+const CONTACT_FAQS = [
+  {
+    question: "What is the expected return on a Cyprus solar farm investment?",
+    answer: "Cyprus solar farm investments with Lighthief typically deliver 8–12% equity IRR depending on the project, financing structure, and market conditions. Returns are not guaranteed.",
+  },
+  {
+    question: "How do I start investing in a solar farm in Cyprus?",
+    answer: "Contact us at office@lighthief.com or call +357 77 77 00 50. Alexander Papacosta, our Cyprus Director, will walk you through available projects, financing options, and next steps.",
+  },
+  {
+    question: "What services does Lighthief Cyprus provide?",
+    answer: "We offer end-to-end solar and BESS services: development, EPC (Engineering, Procurement, Construction), O&M (Operations & Maintenance), asset optimisation, and investor support.",
+  },
+  {
+    question: "Does Lighthief handle BESS (battery storage) installations?",
+    answer: "Yes. We are a turnkey BESS EPC contractor in Cyprus and EU markets. We handle procurement, container delivery, grid connection, commissioning, and ongoing maintenance.",
+  },
+  {
+    question: "Where is Lighthief Cyprus located?",
+    answer: "Our Cyprus office is at 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus. Registered company number HE 477423.",
+  },
+]
 import { Button } from '@/components/ui/button'
 import { 
   Mail, 
@@ -35,7 +59,7 @@ const contactMethods = [
     title: "Phone Consultation",
     description: "Speak directly with our investment experts",
     contact: "+357 77 77 00 50",
-    availability: "Mon-Fri 9AM-6PM CET",
+    availability: "Mon-Fri 9AM-6PM EET/EEST",
     action: "Call Now",
     href: "tel:+35777770050",
     color: "solar"
@@ -78,7 +102,7 @@ const offices = [
     address: "15 Agaritsis\nNektaria Court, Office 201\n3045 Zakaki, Limassol, Cyprus",
     phone: "+357 77 77 00 50",
     email: "office@lighthief.com",
-    hours: "Mon-Fri 9AM-6PM CET",
+    hours: "Mon-Fri 9AM-6PM EET/EEST",
     primary: true
   },
   {
@@ -86,7 +110,7 @@ const offices = [
     address: "Alexander Papacosta\nCyprus Director",
     phone: "+357 99 164 158", 
     email: "office@lighthief.com",
-    hours: "Mon-Fri 9AM-6PM CET",
+    hours: "Mon-Fri 9AM-6PM EET/EEST",
     primary: false
   },
   {
@@ -94,7 +118,7 @@ const offices = [
     address: "Investment & Partnership Inquiries",
     phone: "+357 95 152 788",
     email: "a.sybaris@lighthief.com", 
-    hours: "Mon-Fri 9AM-6PM CET",
+    hours: "Mon-Fri 9AM-6PM EET/EEST",
     primary: false
   }
 ]
@@ -121,6 +145,7 @@ const faqs = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={faqSchema(CONTACT_FAQS)} />
       {/* Hero Section */}
       <section className="relative section-padding bg-gradient-to-br from-cyprus-50 via-white to-solar-50 overflow-hidden">
         <div className="absolute inset-0 z-0">

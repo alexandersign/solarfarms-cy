@@ -10,19 +10,19 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 213 56% 23%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
+    --accent: 43 61% 49%;
     --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 213 56% 23%;
     --radius: 0.5rem;
   }
 
@@ -85,7 +85,7 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-solar-600 to-cyprus-700 bg-clip-text text-transparent font-bold;
+    @apply text-brand-gold font-bold;
   }
   
   .solar-gradient {
@@ -105,11 +105,11 @@
   }
   
   .btn-primary {
-    @apply bg-solar-500 hover:bg-solar-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-lg;
+    @apply bg-brand-navy hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200;
   }
   
   .btn-secondary {
-    @apply bg-cyprus-500 hover:bg-cyprus-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-lg;
+    @apply bg-transparent border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200;
   }
   
   .btn-outline-on-dark {

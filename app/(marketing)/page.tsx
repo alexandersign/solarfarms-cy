@@ -2,13 +2,14 @@ import { Metadata } from 'next'
 import { LazyROICalculator } from '@/components/calculators/LazyROICalculator'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { Testimonials } from '@/components/sections/Testimonials'
-import { StructuredData, organizationSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
+import { StructuredData, organizationSchema, localBusinessSchema, websiteSchema, serviceSchema } from '@/components/seo/StructuredData'
 import { HeroSection } from '@/components/sections/landing/HeroSection'
 import { WhyLighthief } from '@/components/sections/landing/WhyLighthief'
 import { BESSShowcase } from '@/components/sections/landing/BESSShowcase'
 import { InvestmentTiers } from '@/components/sections/landing/InvestmentTiers'
 import { MarketDataCTA } from '@/components/sections/landing/MarketDataCTA'
 import { LandownerCTA } from '@/components/sections/landing/LandownerCTA'
+import { CiShowcase } from '@/components/sections/landing/CiShowcase'
 import { JournalStrip } from '@/components/marketing/JournalStrip'
 import { BESS_JOURNAL_POSTS } from '@/lib/marketing/journal-posts'
 
@@ -43,6 +44,7 @@ export default function HomePage() {
     <>
       {/* Structured Data for SEO */}
       <StructuredData data={organizationSchema} />
+      <StructuredData data={localBusinessSchema} />
       <StructuredData data={websiteSchema} />
       <StructuredData data={serviceSchema} />
       
@@ -72,6 +74,8 @@ export default function HomePage() {
 
         {/* BESS / Energy Storage Showcase */}
         <BESSShowcase />
+
+        <CiShowcase />
 
         {/* Investment Opportunities */}
         <InvestmentTiers />

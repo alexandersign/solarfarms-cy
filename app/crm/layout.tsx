@@ -1,7 +1,10 @@
-'use client'
+import type { Metadata } from 'next'
+import { CrmSessionProvider } from './crm-session-provider'
 
-import { SessionProvider } from 'next-auth/react'
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+}
 
 export default function CrmLayout({ children }: { children: React.ReactNode }) {
-  return <SessionProvider>{children}</SessionProvider>
+  return <CrmSessionProvider>{children}</CrmSessionProvider>
 }

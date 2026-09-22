@@ -7,8 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { INVESTMENT_OPTIONS, TIMELINE_OPTIONS } from '@/lib/constants'
-import { Mail, Phone, MapPin, Clock } from 'lucide-react'
-import { trackLeadPixel, getMetaCookies, generateEventId } from '@/components/analytics/MetaPixel'
+import { Mail, Phone, MapPin } from 'lucide-react'
+import { getMetaCookies, generateEventId } from '@/components/analytics/MetaPixel'
 
 interface FormData {
   name: string
@@ -18,6 +18,19 @@ interface FormData {
   investmentSize: string
   timeline: string
   message: string
+}
+
+type FormErrors = Partial<Record<keyof FormData, string>>
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+function validate(data: FormData): FormErrors {
+  const errors: FormErrors = {}
+  if (!data.name || data.name.trim().length < 2) errors.name = 'Please enter your full name (at least 2 characters).'
+  if (!data.email || !EMAIL_RE.test(data.email)) errors.email = 'Please enter a valid email address.'
+  if (!data.investmentSize) errors.investmentSize = 'Please select an investment size.'
+  if (!data.timeline) errors.timeline = 'Please select a timeline.'
+  return errors
 }
 
 export function ContactForm() {
@@ -30,80 +43,51 @@ export function ContactForm() {
     timeline: '',
     message: '',
   })
-  // File upload removed for investor contact form
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [submitError, setSubmitError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleInputChange = (field: keyof FormData) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: e.target.value
-    }))
+    setFormData(prev => ({ ...prev, [field]: e.target.value }))
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }))
   }
 
   const handleSelectChange = (field: keyof FormData) => (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }))
+    setFormData(prev => ({ ...prev, [field]: value }))
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }))
   }
-
-  // File upload functionality removed for investor contact form
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    // Client-side validation
-    if (!formData.name || formData.name.length < 2) {
-      alert('Please enter your name (at least 2 characters)')
+    setSubmitError('')
+
+    const validationErrors = validate(formData)
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
       return
     }
-    if (!formData.email || !formData.email.includes('@')) {
-      alert('Please enter a valid email address')
-      return
-    }
-    if (!formData.investmentSize) {
-      alert('Please select an investment size')
-      return
-    }
-    if (!formData.timeline) {
-      alert('Please select a timeline')
-      return
-    }
-    
+
     setIsSubmitting(true)
 
     try {
-      // Generate event ID for Meta deduplication
       const eventId = generateEventId()
-      
-      // Fire browser pixel first (with same eventID for deduplication)
-      // Lead value: €150 for general investor inquiry
-      trackLeadPixel(150, 'EUR', eventId)
-      
-      // Get Meta cookies for better matching
       const { fbp, fbc } = getMetaCookies()
 
-      // Send as JSON for investor contact form (no file uploads)
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          // Include Meta tracking data for server-side CAPI
-          fbp,
-          fbc,
-          eventId,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, fbp, fbc, eventId }),
       })
 
       const result = await response.json()
 
       if (result.success) {
+        // Fire pixel only after confirmed API success
+        const { trackLeadPixel } = await import('@/components/analytics/MetaPixel')
+        trackLeadPixel(150, 'EUR', eventId)
         const { trackLeadCapture } = await import('@/components/analytics/GoogleAnalytics')
         trackLeadCapture('contact_form', 150)
         setIsSubmitted(true)
@@ -111,8 +95,9 @@ export function ContactForm() {
         throw new Error(result.message || 'Submission failed')
       }
     } catch (error) {
-      // Form submission error
-      alert(`Form submission failed: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again or contact us directly.`)
+      setSubmitError(
+        error instanceof Error ? error.message : 'Submission failed. Please try again or contact us directly at office@lighthief.com.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -123,26 +108,19 @@ export function ContactForm() {
       <Card className="max-w-2xl mx-auto">
         <CardContent className="pt-6">
           <div className="text-center space-y-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-              <Mail className="w-8 h-8 text-green-600" />
+            <div className="w-16 h-16 bg-brand-navy/10 rounded-full flex items-center justify-center mx-auto">
+              <Mail className="w-8 h-8 text-brand-navy" />
             </div>
             <h3 className="text-2xl font-semibold text-gray-900">Thank You!</h3>
             <p className="text-gray-600">
               We've received your inquiry and will get back to you within 24 hours.
-              Our team will prepare a customized investment proposal based on your requirements.
+              Our team will prepare a customised investment proposal based on your requirements.
             </p>
-            <Button 
+            <Button
               onClick={() => {
                 setIsSubmitted(false)
-                setFormData({
-                  name: '',
-                  email: '',
-                  phone: '',
-                  company: '',
-                  investmentSize: '',
-                  timeline: '',
-                  message: '',
-                })
+                setFormData({ name: '', email: '', phone: '', company: '', investmentSize: '', timeline: '', message: '' })
+                setErrors({})
               }}
               variant="outline"
             >
@@ -164,14 +142,14 @@ export function ContactForm() {
           </h2>
           <p className="text-lg text-gray-600 mb-8">
             Schedule a free consultation to discuss your solar farm investment goals.
-            Our experts will prepare a customized proposal within 24 hours.
+            Our experts will prepare a customised proposal within 24 hours.
           </p>
         </div>
 
         <div className="space-y-6">
           <div className="flex items-start space-x-4">
-            <div className="flex items-center justify-center w-10 h-10 bg-solar-100 rounded-lg">
-              <Mail className="w-5 h-5 text-solar-600" />
+            <div className="flex items-center justify-center w-10 h-10 bg-brand-navy/10 rounded-lg">
+              <Mail className="w-5 h-5 text-brand-navy" />
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Email</h3>
@@ -180,8 +158,8 @@ export function ContactForm() {
           </div>
 
           <div className="flex items-start space-x-4">
-            <div className="flex items-center justify-center w-10 h-10 bg-cyprus-100 rounded-lg">
-              <Phone className="w-5 h-5 text-cyprus-600" />
+            <div className="flex items-center justify-center w-10 h-10 bg-brand-navy/10 rounded-lg">
+              <Phone className="w-5 h-5 text-brand-navy" />
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Phone</h3>
@@ -190,22 +168,15 @@ export function ContactForm() {
           </div>
 
           <div className="flex items-start space-x-4">
-            <div className="flex items-center justify-center w-10 h-10 bg-green-100 rounded-lg">
-              <MapPin className="w-5 h-5 text-green-600" />
+            <div className="flex items-center justify-center w-10 h-10 bg-brand-navy/10 rounded-lg">
+              <MapPin className="w-5 h-5 text-brand-navy" />
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Location</h3>
-              <p className="text-gray-600">15 Agaritsis<br />Nektaria Court, Office 201<br />3045 Zakaki, Limassol, Cyprus</p>
-            </div>
-          </div>
-
-          <div className="flex items-start space-x-4">
-            <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-lg">
-              <Clock className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900">Response Time</h3>
-              <p className="text-gray-600">Within 24 hours<br />Free consultation</p>
+              <p className="text-gray-600">
+                15 Agaritsis, Nektaria Court, Office 201<br />
+                3045 Zakaki, Limassol, Cyprus
+              </p>
             </div>
           </div>
         </div>
@@ -216,12 +187,20 @@ export function ContactForm() {
         <CardHeader>
           <CardTitle>Schedule Your Consultation</CardTitle>
           <CardDescription>
-            Fill out the form below and we'll prepare a customized investment proposal
+            Fill out the form below and we'll prepare a customised investment proposal.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+
+            {/* Global submit error */}
+            {submitError && (
+              <div role="alert" aria-live="assertive" className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
+                {submitError}
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                   Full Name *
@@ -231,9 +210,13 @@ export function ContactForm() {
                   type="text"
                   value={formData.name}
                   onChange={handleInputChange('name')}
-                  required
                   placeholder="John Smith"
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
                 />
+                {errors.name && (
+                  <p id="name-error" role="alert" className="mt-1 text-xs text-red-600">{errors.name}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -244,13 +227,17 @@ export function ContactForm() {
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange('email')}
-                  required
                   placeholder="john@example.com"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
+                {errors.email && (
+                  <p id="email-error" role="alert" className="mt-1 text-xs text-red-600">{errors.email}</p>
+                )}
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                   Phone Number
@@ -277,40 +264,58 @@ export function ContactForm() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="investmentSize" className="block text-sm font-medium text-gray-700 mb-2">
                   Investment Size *
                 </label>
-                <Select value={formData.investmentSize} onValueChange={handleSelectChange('investmentSize')} required>
-                  <SelectTrigger aria-label="Select investment range">
+                <Select
+                  value={formData.investmentSize}
+                  onValueChange={handleSelectChange('investmentSize')}
+                >
+                  <SelectTrigger
+                    id="investmentSize"
+                    aria-label="Select investment range"
+                    aria-invalid={!!errors.investmentSize}
+                    aria-describedby={errors.investmentSize ? 'investmentSize-error' : undefined}
+                  >
                     <SelectValue placeholder="Select investment range" />
                   </SelectTrigger>
                   <SelectContent>
                     {INVESTMENT_OPTIONS.map((option) => (
-                      <SelectItem key={option} value={option}>
-                        {option}
-                      </SelectItem>
+                      <SelectItem key={option} value={option}>{option}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+                {errors.investmentSize && (
+                  <p id="investmentSize-error" role="alert" className="mt-1 text-xs text-red-600">{errors.investmentSize}</p>
+                )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-2">
                   Timeline *
                 </label>
-                <Select value={formData.timeline} onValueChange={handleSelectChange('timeline')} required>
-                  <SelectTrigger aria-label="Select timeline">
+                <Select
+                  value={formData.timeline}
+                  onValueChange={handleSelectChange('timeline')}
+                >
+                  <SelectTrigger
+                    id="timeline"
+                    aria-label="Select timeline"
+                    aria-invalid={!!errors.timeline}
+                    aria-describedby={errors.timeline ? 'timeline-error' : undefined}
+                  >
                     <SelectValue placeholder="Select timeline" />
                   </SelectTrigger>
                   <SelectContent>
                     {TIMELINE_OPTIONS.map((option) => (
-                      <SelectItem key={option} value={option}>
-                        {option}
-                      </SelectItem>
+                      <SelectItem key={option} value={option}>{option}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+                {errors.timeline && (
+                  <p id="timeline-error" role="alert" className="mt-1 text-xs text-red-600">{errors.timeline}</p>
+                )}
               </div>
             </div>
 
@@ -327,12 +332,8 @@ export function ContactForm() {
               />
             </div>
 
-            {/* File upload removed for investor contact form */}
-
             <Button
               type="submit"
-              variant="gradient"
-              size="lg"
               className="w-full"
               disabled={isSubmitting}
             >
@@ -340,7 +341,7 @@ export function ContactForm() {
             </Button>
 
             <p className="text-xs text-gray-500 text-center">
-              By submitting this form, you agree to our Privacy Policy. 
+              By submitting this form, you agree to our Privacy Policy.
               We'll never share your information with third parties.
             </p>
           </form>

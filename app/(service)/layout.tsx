@@ -12,6 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Lighthief Field Service',
   description: 'Field Service Management System - Lighthief Cyprus',
+  robots: { index: false, follow: false },
   manifest: '/service-manifest.json',
   appleWebApp: {
     capable: true,

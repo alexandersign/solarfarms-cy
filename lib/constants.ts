@@ -257,7 +257,7 @@ export const SEO_CONFIG = {
   siteName: "SolarFarms.cy",
   siteUrl: "https://solarfarms.cy",
   defaultTitle: "SolarFarms.cy - Premium Cyprus Solar Investment Platform",
-  defaultDescription: "Invest in Cyprus solar farms with 15-20% ROI. Premium returns in Europe's sunniest climate with Lighthief Cyprus.",
+  defaultDescription: "Invest in Cyprus solar farms and BESS with 8-12% equity IRR. Turnkey EPC, O&M, and bankable energy storage by Lighthief.",
   defaultKeywords: [
     "Cyprus solar investment",
     "solar farm ROI Cyprus",
@@ -311,6 +311,7 @@ export const NAVIGATION = {
   main: [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "C&I Solar", href: "/commercial" },
     { name: "Energy Storage", href: "/energy-storage" },
     { name: "Market Data", href: "/market" },
     { name: "Projects", href: "/projects" },
@@ -333,6 +334,7 @@ export const NAVIGATION = {
   ],
   services: [
     { name: "EPC Services", href: "/services/epc-services" },
+    { name: "C&I Solar", href: "/commercial" },
     { name: "O&M Management", href: "/services/om-management" },
     { name: "Energy Storage", href: "/energy-storage" },
     { name: "Asset Optimization", href: "/services/asset-optimization" },

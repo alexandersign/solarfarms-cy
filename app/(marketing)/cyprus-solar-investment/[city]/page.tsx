@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   }
 
   return {
-    title: `${city.name} Solar Farm Investment | 15-20% ROI in Cyprus`,
-    description: `Invest in ${city.name} solar farms with guaranteed 15-20% ROI. ${city.description}. Premium returns with Lighthief Cyprus.`,
+    title: `${city.name} Solar Farm Investment | 8-12% Equity IRR in Cyprus`,
+    description: `Invest in ${city.name} solar farms with 8-12% equity IRR. ${city.description}. Full lifecycle support from Lighthief Cyprus.`,
     keywords: [
       `${city.name} solar investment`,
       `${city.name} solar farm`,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
     ],
     openGraph: {
       title: `${city.name} Solar Farm Investment | SolarFarms.cy`,
-      description: `Invest in ${city.name} solar farms with guaranteed 15-20% ROI. ${city.description}.`,
+      description: `Invest in ${city.name} solar farms with 8-12% equity IRR. ${city.description}.`,
       type: 'website',
     },
   }
@@ -58,11 +58,11 @@ export default function CityPage({ params }: CityPageProps) {
 
   const cityData = {
     ...city,
-    // City-specific solar data (in real implementation, this would come from a database)
-    solarIrradiation: CYPRUS_SOLAR_DATA.solarIrradiation + Math.floor(Math.random() * 200) - 100, // Slight variation
-    averageROI: 17.5 + (Math.random() * 2 - 1), // 16.5-18.5%
-    projectsAvailable: Math.floor(Math.random() * 5) + 3, // 3-7 projects
-    electricityRate: CYPRUS_SOLAR_DATA.commercialElectricityRate + (Math.random() * 0.05 - 0.025), // Slight variation
+    // Fixed solar data — Cyprus average with ±0 variation until city-specific DB data is added
+    solarIrradiation: CYPRUS_SOLAR_DATA.solarIrradiation,
+    averageROI: 10, // midpoint of approved 8-12% equity IRR range
+    projectsAvailable: 4,
+    electricityRate: CYPRUS_SOLAR_DATA.commercialElectricityRate,
   }
 
   return (
@@ -99,17 +99,17 @@ export default function CityPage({ params }: CityPageProps) {
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-600 mb-8">
-                {city.description}. Invest in premium solar farms with guaranteed 15-20% ROI 
+                {city.description}. Invest in premium solar farms with 8–12% equity IRR 
                 and full lifecycle support from Lighthief Cyprus.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-                <button className="btn-primary text-lg px-8 py-4">
+                <a href="/projects" className="btn-primary text-lg px-8 py-4 text-center">
                   View {city.name} Projects
-                </button>
-                <button className="btn-secondary text-lg px-8 py-4">
+                </a>
+                <a href="/contact" className="btn-secondary text-lg px-8 py-4 text-center">
                   Schedule Site Visit
-                </button>
+                </a>
               </div>
             </div>
             

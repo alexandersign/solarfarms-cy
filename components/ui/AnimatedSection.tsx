@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { type ReactNode } from 'react'
 
@@ -33,6 +33,11 @@ const animations: Record<AnimationType, Variants> = {
   },
 }
 
+const noAnimation: Variants = {
+  hidden: { opacity: 1, y: 0, x: 0, scale: 1 },
+  visible: { opacity: 1, y: 0, x: 0, scale: 1 },
+}
+
 interface AnimatedSectionProps {
   children: ReactNode
   animation?: AnimationType
@@ -50,18 +55,22 @@ export function AnimatedSection({
   className = '',
   once = true,
 }: AnimatedSectionProps) {
+  const shouldReduceMotion = useReducedMotion()
   const { ref, inView } = useInView({
     triggerOnce: once,
     threshold: 0.1,
   })
 
+  const variants = shouldReduceMotion ? noAnimation : animations[animation]
+  const transition = shouldReduceMotion ? { duration: 0 } : { duration, delay, ease: [0.25, 0.1, 0.25, 1] as const }
+
   return (
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-      variants={animations[animation]}
-      transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      animate={inView || shouldReduceMotion ? 'visible' : 'hidden'}
+      variants={variants}
+      transition={transition}
       className={className}
     >
       {children}
@@ -82,6 +91,7 @@ export function StaggerContainer({
   staggerDelay = 0.1,
   once = true,
 }: StaggerContainerProps) {
+  const shouldReduceMotion = useReducedMotion()
   const { ref, inView } = useInView({
     triggerOnce: once,
     threshold: 0.1,
@@ -91,10 +101,10 @@ export function StaggerContainer({
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      animate={inView || shouldReduceMotion ? 'visible' : 'hidden'}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: staggerDelay } },
+        visible: { transition: { staggerChildren: shouldReduceMotion ? 0 : staggerDelay } },
       }}
       className={className}
     >
@@ -110,10 +120,11 @@ export function StaggerItem({
   children: ReactNode
   className?: string
 }) {
+  const shouldReduceMotion = useReducedMotion()
   return (
     <motion.div
-      variants={animations.stagger}
-      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      variants={shouldReduceMotion ? noAnimation : animations.stagger}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       className={className}
     >
       {children}
@@ -129,15 +140,16 @@ interface CountUpProps {
 }
 
 export function CountUp({ end, suffix = '', prefix = '', className = '' }: CountUpProps) {
+  const shouldReduceMotion = useReducedMotion()
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 })
 
   return (
     <motion.span
       ref={ref}
       className={className}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
+      animate={inView || shouldReduceMotion ? { opacity: 1 } : {}}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
     >
       {prefix}{end.toLocaleString()}{suffix}
     </motion.span>

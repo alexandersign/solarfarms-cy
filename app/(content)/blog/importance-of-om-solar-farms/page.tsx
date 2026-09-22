@@ -331,7 +331,7 @@ export default function OMImportanceArticle() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button variant="solar" asChild>
-                    <Link href="/services/om">
+                    <Link href="/services/om-management">
                       Explore O&M Services
                     </Link>
                   </Button>

@@ -11,14 +11,14 @@ export function Footer() {
           <div className="space-y-4">
             <BrandMark variant="footer" />
             <p className="text-white/70 text-sm leading-relaxed">
-              Premium solar farm investments in Cyprus with 8-13% IRR.
+              Premium solar farm investments in Cyprus with 8–12% equity IRR.
               Full lifecycle support from development to recycling.
             </p>
             <div className="mt-3 pt-3 border-t border-white/10">
-              <p className="text-xs text-white/50">
+              <p className="text-xs text-white/70">
                 Powered by <strong className="text-brand-gold">Lighthief</strong>
               </p>
-              <p className="text-xs text-white/40">100s MW managed across 11 countries</p>
+              <p className="text-xs text-white/60">100s MW managed across 11 countries</p>
             </div>
             <div className="flex space-x-4">
               <a
@@ -85,7 +85,7 @@ export function Footer() {
                 <BarChart3 className="w-4 h-4" />
                 Cyprus Market Pricing
               </Link>
-              <p className="text-xs text-white/40 mt-1">Live DAM price data &amp; BESS analysis</p>
+              <p className="text-xs text-white/60 mt-1">Live DAM price data &amp; BESS analysis</p>
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export function Footer() {
                   {COMPANY_DATA.address.office.full}
                 </span>
               </div>
-              <div className="text-xs text-white/40 mt-2">
+              <div className="text-xs text-white/60 mt-2">
                 Company Registration: {COMPANY_DATA.registration.companyNumber} | TIN: {COMPANY_DATA.registration.tin}
               </div>
             </div>
@@ -115,7 +115,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-white/50 text-sm">
+            <div className="text-white/70 text-sm">
               © {new Date().getFullYear()} {COMPANY_DATA.name}. All rights reserved.
             </div>
             <div className="flex space-x-6">
@@ -123,7 +123,7 @@ export function Footer() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white/50 hover:text-brand-gold transition-colors text-sm"
+                  className="text-white/70 hover:text-brand-gold transition-colors text-sm"
                 >
                   {item.name}
                 </Link>

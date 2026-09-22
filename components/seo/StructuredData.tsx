@@ -1,5 +1,5 @@
 interface StructuredDataProps {
-  data: Record<string, any>
+  data: Record<string, unknown>
 }
 
 export function StructuredData({ data }: StructuredDataProps) {
@@ -13,15 +13,26 @@ export function StructuredData({ data }: StructuredDataProps) {
   )
 }
 
-// Predefined structured data generators
+const APPROVED_DESCRIPTION =
+  "Cyprus solar farm and BESS investment services with 8–12% equity IRR. " +
+  "Turnkey EPC, O&M, and bankable energy storage by Lighthief Cyprus Ltd (HE 477423)."
+
+// Canonical LinkedIn URL — must match footer
+const LINKEDIN_URL = "https://www.linkedin.com/company/lighthiefcyprus/"
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "LIGHTHIEF CYPRUS LTD",
+  "name": "Lighthief Cyprus Ltd",
   "alternateName": "SolarFarms.cy",
   "url": "https://solarfarms.cy",
-  "logo": "https://solarfarms.cy/images/logo.png",
-  "description": "Premium Cyprus solar farm investments with guaranteed 15-20% ROI. Full lifecycle support from development to recycling.",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://solarfarms.cy/images/logo/lighthief-logo.png",
+    "width": 200,
+    "height": 50
+  },
+  "description": APPROVED_DESCRIPTION,
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "15 Agaritsis, Nektaria Court, Office 201",
@@ -38,17 +49,11 @@ export const organizationSchema = {
       "availableLanguage": ["English", "Greek"]
     },
     {
-      "@type": "ContactPoint", 
+      "@type": "ContactPoint",
       "telephone": "+357-99-164-158",
       "contactType": "sales",
       "email": "office@lighthief.com",
-      "availableLanguage": ["English", "Greek"]
-    },
-    {
-      "@type": "ContactPoint",
-      "telephone": "+357-95-152-788", 
-      "contactType": "investor relations",
-      "email": "a.sybaris@lighthief.com",
+      "contactOption": "TollFree",
       "availableLanguage": ["English", "Greek"]
     }
   ],
@@ -58,11 +63,8 @@ export const organizationSchema = {
     "value": "HE 477423"
   },
   "taxID": "60187188Q",
-  "sameAs": [
-    "https://linkedin.com/company/lighthief-cyprus"
-  ],
+  "sameAs": [LINKEDIN_URL],
   "foundingDate": "2020",
-  "numberOfEmployees": "150+",
   "industry": "Renewable Energy",
   "areaServed": {
     "@type": "Country",
@@ -70,20 +72,44 @@ export const organizationSchema = {
   }
 }
 
+export const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Lighthief Cyprus Ltd",
+  "alternateName": "SolarFarms.cy",
+  "url": "https://solarfarms.cy",
+  "telephone": "+357-77-77-00-50",
+  "email": "office@lighthief.com",
+  "description": APPROVED_DESCRIPTION,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "15 Agaritsis, Nektaria Court, Office 201",
+    "addressLocality": "Limassol",
+    "postalCode": "3045",
+    "addressCountry": "CY"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "priceRange": "€€€",
+  "sameAs": [LINKEDIN_URL]
+}
+
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "SolarFarms.cy",
   "url": "https://solarfarms.cy",
-  "description": "Premium Cyprus solar farm investments with guaranteed 15-20% ROI",
+  "description": APPROVED_DESCRIPTION,
   "publisher": {
     "@type": "Organization",
     "name": "Lighthief Cyprus Ltd"
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://solarfarms.cy/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
   }
 }
 
@@ -95,7 +121,7 @@ export const serviceSchema = {
     "@type": "Organization",
     "name": "Lighthief Cyprus Ltd"
   },
-  "description": "Complete solar farm investment services including EPC, O&M, and asset management",
+  "description": "Complete solar farm investment services including EPC, O&M, and BESS asset management in Cyprus",
   "areaServed": {
     "@type": "Country",
     "name": "Cyprus"
@@ -115,7 +141,7 @@ export const serviceSchema = {
         "priceCurrency": "EUR"
       },
       {
-        "@type": "Offer", 
+        "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": "5MW Solar Farm Investment",
@@ -127,7 +153,7 @@ export const serviceSchema = {
       {
         "@type": "Offer",
         "itemOffered": {
-          "@type": "Service", 
+          "@type": "Service",
           "name": "10MW Solar Farm Investment",
           "description": "Complete 10MW solar farm with BESS development and management"
         },

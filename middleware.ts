@@ -3,12 +3,11 @@ import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { getCrmToken } from '@/lib/crm-auth';
 
-// Password for internal docs access (must match API route)
-const DOCS_PASSWORD = 'CyprusBess2026';
+// Passwords are loaded from environment variables — never hardcode them here.
+const DOCS_PASSWORD = process.env.DOCS_PASSWORD ?? '';
 const AUTH_TOKEN = Buffer.from(`docs-auth-${DOCS_PASSWORD}-valid`).toString('base64');
 
-// Password for BESS project timeline access
-const BESS_PASSWORD = 'BessCyprus2026';
+const BESS_PASSWORD = process.env.BESS_PASSWORD ?? '';
 const BESS_AUTH_TOKEN = Buffer.from(`bess-project-auth-${BESS_PASSWORD}-valid`).toString('base64');
 
 export async function middleware(request: NextRequest) {

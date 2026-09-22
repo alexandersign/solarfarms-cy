@@ -13,7 +13,6 @@ const BLOG_SLUGS = [
   'bess-warranties-guarantees-checklist',
   'cost-of-not-adding-bess-financial-model',
   'curtailed-energy-revenue-recovery-cyprus',
-  'cyprus-bess-regulations-vs-europe',
   'cyprus-bess-regulatory-framework-europe',
   'cyprus-curtailment-crisis-bess-solution',
   'cyprus-energy-storage-roadmap-2027-2030',
@@ -44,6 +43,12 @@ export async function GET() {
     '',
     '/about',
     '/services',
+    '/services/epc-services',
+    '/services/om-management',
+    '/services/development',
+    '/services/licensing',
+    '/services/asset-optimization',
+    '/services/lifecycle-support',
     '/projects',
     '/landowners',
     '/calculator',
@@ -51,11 +56,15 @@ export async function GET() {
     '/blog',
     '/energy-storage',
     '/energy-storage/calculator',
+    '/commercial',
     '/market',
     '/investment-guide',
+    '/resources',
     '/crypto',
     '/crypto/solar-mining',
     '/crypto/ai-mining',
+    '/privacy',
+    '/terms',
   ]
 
   const cityPages = CYPRUS_CITIES.map((city) => `/cyprus-solar-investment/${city.slug}`)
@@ -64,6 +73,9 @@ export async function GET() {
 
   const allPages = [...staticPages, ...cityPages, ...projectPages, ...postPages]
 
+  // Use a static build date rather than request time so lastmod is stable
+  const lastmod = '2026-09-22'
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allPages
@@ -71,7 +83,7 @@ ${allPages
     (page) => `
   <url>
     <loc>${baseUrl}${page}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${getChangeFreq(page)}</changefreq>
     <priority>${getPriority(page)}</priority>
   </url>`
@@ -98,9 +110,11 @@ function getChangeFreq(page: string): string {
 
 function getPriority(page: string): string {
   if (page === '') return '1.0'
-  if (page.includes('/calculator') || page === '/energy-storage' || page === '/market') return '0.9'
-  if (page.includes('/cyprus-solar-investment') || page === '/investment-guide') return '0.8'
+  if (page === '/commercial' || page.includes('/calculator') || page === '/energy-storage' || page === '/market') return '0.9'
+  if (page === '/investment-guide') return '0.8'
   if (['/about', '/services', '/projects', '/contact'].includes(page)) return '0.8'
+  if (page.startsWith('/services/')) return '0.8'
+  if (page.includes('/cyprus-solar-investment')) return '0.5'
   if (page.startsWith('/blog/')) return '0.6'
   return '0.6'
 }

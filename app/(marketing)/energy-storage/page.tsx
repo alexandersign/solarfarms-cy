@@ -3,6 +3,30 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { StructuredData, faqSchema } from '@/components/seo/StructuredData'
+
+const BESS_FAQS = [
+  {
+    question: "Is BESS (battery storage) mandatory for solar farms in Cyprus?",
+    answer: "Since 2024, TSOC (the Cyprus grid operator) requires curtailment management for new solar licenses. BESS is the most effective technical solution, making it effectively mandatory for grid-connected projects.",
+  },
+  {
+    question: "What battery chemistry does Lighthief use for BESS installations?",
+    answer: "We use LFP (Lithium Iron Phosphate) chemistry for utility-scale deployments due to its superior cycle life, thermal stability, and lower fire risk compared to NMC.",
+  },
+  {
+    question: "How long does a BESS installation take in Cyprus?",
+    answer: "From contract signing to energisation, a containerised BESS system typically takes 4–8 months depending on grid connection queue and container lead time.",
+  },
+  {
+    question: "What warranty do BESS systems come with?",
+    answer: "We offer 10-year product warranties and performance guarantees on capacity retention, backed by the OEM and Lighthief LTSA (Long-Term Service Agreement).",
+  },
+  {
+    question: "Can BESS generate revenue through energy arbitrage in Cyprus?",
+    answer: "Yes. Cyprus electricity prices vary by time-of-day. BESS can charge during low-price periods and discharge during peak hours, generating arbitrage revenue alongside curtailment management.",
+  },
+]
 import { Button } from '@/components/ui/button'
 import { BessInquiryForm } from '@/components/forms/BessInquiryForm'
 import { BessDeliveryProcess } from '@/components/energy-storage/BessDeliveryProcess'
@@ -155,6 +179,7 @@ const useCases = [
 export default function EnergyStoragePage() {
   return (
     <div className="min-h-screen">
+      <StructuredData data={faqSchema(BESS_FAQS)} />
       {/* Hero Section */}
       <section className="relative section-padding bg-gradient-to-br from-blue-900 via-cyprus-800 to-blue-900 text-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
