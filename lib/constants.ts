@@ -319,6 +319,13 @@ export const NAVIGATION = {
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
+  desktop: [
+    { name: "C&I", href: "/commercial" },
+    { name: "BESS", href: "/energy-storage" },
+    { name: "Projects", href: "/projects" },
+    { name: "Land", href: "/landowners" },
+    { name: "Blog", href: "/blog" },
+  ],
   crypto: [
     { name: "Crypto Investments", href: "/crypto" },
     { name: "Solar BTC Mining", href: "/crypto/solar-mining" },
