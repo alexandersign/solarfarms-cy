@@ -247,13 +247,6 @@ export const COMPANY_DATA = {
       email: "leon.volkerink@lighthief.com",
       markets: ["Netherlands", "Germany", "Cyprus"],
       description: "Compliance, KYC, NATO certification"
-    },
-    spainDirector: {
-      name: "Marko Hernaiz",
-      title: "Spain / Poland Director",
-      email: "m.hernaiz@lighthief.com",
-      markets: ["Spain", "Poland"],
-      description: "Spanish market development"
     }
   },
   monitoringCenters: ["Częstochowa (Poland)", "Hannover (Germany)", "Trieste (Italy)", "Malaga (Spain)"]

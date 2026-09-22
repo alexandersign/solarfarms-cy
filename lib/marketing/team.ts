@@ -36,7 +36,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
     email: 'a.sybaris@lighthief.com',
     linkedin: true,
-    image: '/images/team/arkadius.jpg',
+    image: '/images/solar-park-field-unsplash.jpg',
   },
   {
     name: COMPANY_DATA.contacts.cyprusDirector.name,
@@ -112,21 +112,6 @@ export const TEAM_MEMBERS: TeamMember[] = [
     email: 'leon.volkerink@lighthief.com',
     linkedin: true,
     image: '/images/team/leon.jpg',
-  },
-  {
-    name: 'Marko Hernaiz',
-    position: 'Spain / Poland Director',
-    countries: ['ES', 'PL'],
-    bio: "One of Lighthief's founding members alongside Arkadius, helping build the company from its earliest days. Today, he oversees Spanish market development, leveraging his unique dual heritage—half Polish, half Spanish—to bridge cultural and business practices across our European operations. His expertise in people management and team building has been invaluable to Lighthief's growth.",
-    credentials: [
-      'Co-Founder, Lighthief',
-      'Spain Market Director',
-      'Team Building Expert',
-      'Circular Economy Specialist',
-    ],
-    email: 'm.hernaiz@lighthief.com',
-    linkedin: true,
-    image: '/images/team/marko.jpg',
   },
 ]
 

@@ -73,7 +73,6 @@ JV with 7Sun (Europe) for consumer panels, inverters, and small-scale battery sa
 | Maciej Krzyzanowski | Poland Operations | Poland |
 | Maurizio Ganis | Italy Operations | Italy |
 | Leon Volkerink | CCO | Netherlands |
-| Marko Hernaiz | Spain/Poland Operations | Spain |
 
 ### Group Assets
 - **23 ha R&D Centre** — Czestochowa, Poland: 2x 8 MW PV, 1 MW biogas, BESS
