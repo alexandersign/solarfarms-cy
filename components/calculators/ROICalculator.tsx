@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
-import { INVESTMENT_SIZES, CYPRUS_SOLAR_DATA, FINANCING_OPTIONS } from '@/lib/constants'
-import { calculateROI, calculateNPV, formatCurrency, formatPercentage } from '@/lib/utils'
+import { INVESTMENT_SIZES, FINANCING_OPTIONS } from '@/lib/constants'
+import { publicHybridCase, type PublicHybridMw } from '@/lib/public-hybrid-ssot'
+import { calculateNPV, formatCurrency, formatPercentage } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Slider } from '@/components/ui/slider'
@@ -31,8 +32,8 @@ interface CalculatorResults {
 export function ROICalculator() {
   const [selectedSize, setSelectedSize] = useState<InvestmentSize>('5MW')
   const [customInvestment, setCustomInvestment] = useState(0)
-  const [electricityRate, setElectricityRate] = useState([0.15])
-  const [operatingCosts, setOperatingCosts] = useState([8]) // Percentage of revenue
+  const [electricityRate, setElectricityRate] = useState([0.151])
+  const [operatingCosts, setOperatingCosts] = useState([100]) // % of model OPEX
   const [financingOption, setFinancingOption] = useState('CASH')
   const [results, setResults] = useState<CalculatorResults | null>(null)
   const [showResults, setShowResults] = useState(false)
@@ -40,14 +41,13 @@ export function ROICalculator() {
   const sizeData = INVESTMENT_SIZES[selectedSize]
 
   const calculateResults = useCallback(() => {
-    const totalInvestment = customInvestment > 0 ? customInvestment : 
-      (sizeData.minInvestment + sizeData.maxInvestment) / 2
+    const totalInvestment = customInvestment > 0 ? customInvestment : sizeData.minInvestment
     
     // Track calculator usage
     trackEvent('calculator_calculation', 'ROI Calculator', selectedSize, totalInvestment)
 
-    // Calculate capacity first (needed for financing calculations)
-    const capacityMW = selectedSize === '1MW' ? 1 : selectedSize === '5MW' ? 5 : 10
+    const capacityMW: PublicHybridMw = selectedSize === '1MW' ? 1 : selectedSize === '5MW' ? 5 : 10
+    const hybrid = publicHybridCase(capacityMW, 'fixed')
 
     // Get financing details
     const financing = FINANCING_OPTIONS[financingOption as keyof typeof FINANCING_OPTIONS]
@@ -74,15 +74,9 @@ export function ROICalculator() {
       loanAmount = 0
     }
     
-    // Calculate annual energy production (MW * capacity factor * hours per year)
-    const capacityFactor = 0.22 // Cyprus average capacity factor
-    const annualEnergyMWh = capacityMW * capacityFactor * 8760 // hours per year
-    
-    // Calculate revenue
-    const annualRevenue = annualEnergyMWh * electricityRate[0] * 1000 // Convert to €
-
-    // Calculate operating costs
-    const annualOperatingCosts = annualRevenue * (operatingCosts[0] / 100)
+    const damScale = electricityRate[0] / 0.15138
+    const annualRevenue = hybrid.netRev * damScale
+    const annualOperatingCosts = hybrid.opex * (operatingCosts[0] / 100)
     
     // Calculate loan payments (if financed)
     let annualLoanPayment = 0
@@ -365,21 +359,21 @@ export function ROICalculator() {
             </div>
 
             <div className="space-y-6">
-              <h3 id="roi-operating-costs" className="text-xl font-semibold">Operating Costs (% of Revenue)</h3>
+              <h3 id="roi-operating-costs" className="text-xl font-semibold">OPEX vs model (%)</h3>
               <div className="space-y-4">
                 <Slider
                   value={operatingCosts}
                   onValueChange={setOperatingCosts}
-                  max={20}
-                  min={5}
-                  step={0.5}
+                  max={150}
+                  min={50}
+                  step={5}
                   className="w-full"
                   aria-labelledby="roi-operating-costs"
                 />
                 <div className="flex justify-between text-sm text-gray-600">
-                  <span>5%</span>
-                  <span className="font-semibold">{operatingCosts[0]}%</span>
-                  <span>20%</span>
+                  <span>50%</span>
+                  <span className="font-semibold">{operatingCosts[0]}% of model OPEX</span>
+                  <span>150%</span>
                 </div>
               </div>
             </div>

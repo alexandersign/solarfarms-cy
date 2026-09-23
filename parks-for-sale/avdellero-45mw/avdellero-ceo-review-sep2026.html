@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Avdellero 45 MW — CEO Financial Review | Lighthief Cyprus</title>
+<style>
+:root{
+  --navy:#1A365D;--navy-light:#2B5FA0;--gold:#C9A432;--gold-dark:#9C7D22;
+  --white:#FFFFFF;--grey:#404040;--bg:#F0F4F8;--card:#FFFFFF;--border:#D1D9E0;
+  --ok:#1A6B3C;--ok-bg:#E8F5EE;--warn:#7A5200;--warn-bg:#FFF8E6;--info-bg:#EBF2FB;
+  --red:#8B1A1A;--red-bg:#FDF0F0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--grey);font-size:13px;line-height:1.5}
+.hdr{background:var(--navy);color:var(--white);padding:28px 44px}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.hdr h1{color:var(--gold);font-size:22px;font-weight:700;margin-bottom:4px}
+.hdr .sub{font-size:12px;opacity:.8}
+.hdr .badge{background:var(--gold);color:var(--navy);padding:4px 12px;border-radius:3px;font-size:11px;font-weight:700;white-space:nowrap}
+.w{max-width:1260px;margin:0 auto;padding:24px 44px 60px}
+h2{color:var(--gold);font-size:14px;font-weight:700;margin:28px 0 10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h3{color:var(--navy);font-size:12px;font-weight:700;margin:12px 0 6px}
+.exec{background:var(--navy);color:var(--white);padding:16px 20px;border-radius:4px;margin-bottom:20px}
+.exec h2{color:var(--gold);border-color:rgba(255,255,255,.15);margin-top:0;font-size:13px}
+.exec p{font-size:12px;line-height:1.7;opacity:.92;margin-top:6px}
+.g{display:grid;gap:12px;margin-bottom:16px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:13px 15px}
+.kpi .l{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.kpi .v{font-size:20px;font-weight:700;color:var(--navy)}
+.kpi .v.ok{color:var(--ok)}.kpi .v.w{color:var(--warn)}.kpi .v.g{color:var(--gold-dark)}.kpi .v.red{color:var(--red)}
+.kpi .sub-v{font-size:11px;color:#888;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:12px}
+thead tr{background:var(--navy);color:var(--white)}
+th{padding:8px 10px;text-align:left;font-size:11px;font-weight:600}
+tbody tr:nth-child(even){background:#F4F6FA}
+tbody tr:hover{background:#EBF0F7}
+td{padding:7px 10px;border-bottom:1px solid var(--border)}
+td.r{text-align:right}td.c{text-align:center}td.b{font-weight:700}
+tr.hl{background:var(--ok-bg);font-weight:600}
+tr.tot{background:var(--navy);color:#fff;font-weight:700}tr.tot td{border-color:var(--navy-light)}
+tr.warn{background:var(--warn-bg)}
+tr.info{background:var(--info-bg)}
+tr.rec{background:#E8F0FF;font-weight:600;border-left:3px solid var(--navy)}
+tr.best{background:var(--ok-bg);font-weight:700;border-left:3px solid var(--ok)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:16px}
+.ch{padding:9px 14px;font-size:12px;font-weight:700}
+.ch.navy{background:var(--navy);color:var(--white)}
+.ch.ok{background:var(--ok);color:var(--white)}
+.ch.warn{background:#7A5200;color:var(--white)}
+.ch.gold{background:var(--gold-dark);color:var(--white)}
+.cb{padding:14px}
+.box{border-left:3px solid;padding:10px 14px;margin-bottom:12px;border-radius:0 4px 4px 0;font-size:12px;line-height:1.6}
+.box.ok{border-color:var(--ok);background:var(--ok-bg)}
+.box.warn{border-color:#B8860B;background:var(--warn-bg)}
+.box.info{border-color:var(--navy-light);background:var(--info-bg)}
+.box.red{border-color:var(--red);background:var(--red-bg)}
+.bar{background:#E2E8F0;border-radius:3px;height:18px;display:flex;overflow:hidden;margin:8px 0}
+.bs{height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap}
+.scenario-label{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin-bottom:8px}
+.sl-a{background:var(--navy);color:#fff}
+.sl-b{background:var(--gold-dark);color:#fff}
+.sl-c{background:var(--ok);color:#fff}
+.note{font-size:11px;color:#666;margin-top:6px;line-height:1.5}
+.highlight-row{background:#FFF7D6}
+.divider{border:none;border-top:1px solid var(--border);margin:24px 0}
+footer{border-top:1px solid var(--border);padding:14px 44px;font-size:11px;color:#888;max-width:1260px;margin:0 auto}
+.page-break{display:block;height:1px;border-top:2px dashed var(--border);margin:32px 0;position:relative}
+.page-break::after{content:"";position:absolute;left:50%;transform:translateX(-50%)}
+.recommended{position:relative}
+.recommended::before{content:"★ RECOMMENDED";position:absolute;top:-1px;right:0;background:var(--ok);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:0 5px 0 4px}
+@media(max-width:1000px){.two,.three{grid-template-columns:1fr}.g6,.g5,.g4{grid-template-columns:1fr 1fr}.w{padding:16px 20px}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <h1>Avdellero 45 MW Solar PV + BESS — Financial Review</h1>
+      <div class="sub">Prepared for: Dr. Arkadius Sybaris (Founder &amp; CEO) &bull; Lighthief Cyprus Ltd &bull; Sep 22, 2026</div>
+    </div>
+    <div class="badge">INTERNAL — CONFIDENTIAL</div>
+  </div>
+  <div class="sub">
+    All 11 sub-projects &bull; 45.21 MW Solar PV &bull; 180.84 MWh BESS (4-hour Linyang) &bull;
+    Larnaca District, Cyprus &bull; KPMG Factsheet Apr 2024 (G.P. Rodik Services Ltd / K. Ellinas Group) &bull;
+    Revenue: current TSOC DAM only (339-day sample Oct 2025–Sep 2026) &bull; 15% aggregator
+  </div>
+</div>
+
+<div class="w">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="exec">
+  <h2>Executive Summary</h2>
+  <p>
+    We are evaluating the acquisition of the Avdellero 45 MW PV project in Larnaca as a Lighthief-developed asset. We buy the RTB/SPV, self-perform the full EPC (PV + BESS), and operate long-term. An equity partner provides €25M for 25% of the SPV. Total project cost is <strong>€73.5M</strong>.
+    The project generates <strong>€10.55M EBITDA/year</strong> from Day 1 (current DAM prices, 15% aggregator).
+  </p>
+  <p>
+    Two loan structures are analysed: <strong>amortising</strong> (pay principal + interest throughout) and <strong>balloon/interest-only</strong> (pay interest only, return principal at term end — roll or refinance). For the equity partner, three payment structures are modelled: <strong>waterfall</strong> (all cash first), <strong>8% interest-only with balloon</strong>, and <strong>8% amortising</strong>. All six combinations are costed and compared on DSCR, developer residual, and equity partner IRR.
+  </p>
+</div>
+
+<!-- KEY INPUTS -->
+<h2>1. Project &amp; Model Inputs</h2>
+<div class="g g4">
+  <div class="kpi"><div class="l">Total CAPEX</div><div class="v">€73.5M</div><div class="sub-v">All 11 parks incl. EAC substation</div></div>
+  <div class="kpi"><div class="l">BESS capacity (4-hour)</div><div class="v">180.84 MWh</div><div class="sub-v">45.21 MW × 4h</div></div>
+  <div class="kpi"><div class="l">Alpha Bank rate (RES)</div><div class="v">4.12%</div><div class="sub-v">Euribor 2.62% + 1.50% (Dino)</div></div>
+  <div class="kpi"><div class="l">Equity partner</div><div class="v">€25M → 25%</div><div class="sub-v">Lighthief retains 75%</div></div>
+  <div class="kpi"><div class="l">Net Revenue Y1</div><div class="v ok">€11.88M</div><div class="sub-v">After 15% aggregator</div></div>
+  <div class="kpi"><div class="l">EBITDA Y1</div><div class="v ok">€10.55M</div><div class="sub-v">EBITDA margin 88.8%</div></div>
+  <div class="kpi"><div class="l">Your equity</div><div class="v">€14.6M</div><div class="sub-v">19.9% of total CAPEX</div></div>
+  <div class="kpi"><div class="l">BESS cost</div><div class="v">€125K/MWh</div><div class="sub-v">€100K hardware + €25K EPC (self-cost)</div></div>
+</div>
+
+<div class="two">
+  <div>
+    <h3>CAPEX Breakdown</h3>
+    <div class="bar">
+      <div class="bs" style="width:27.7%;background:var(--navy)">RTB 27.7%</div>
+      <div class="bs" style="width:24.6%;background:#2A9A8A">BESS HW 24.6%</div>
+      <div class="bs" style="width:6.1%;background:#7B64B8">BESS EPC 6%</div>
+      <div class="bs" style="width:30.7%;background:#1F8A65">PV EPC 30.7%</div>
+      <div class="bs" style="width:9.8%;background:#F0A040">EAC 9.8%</div>
+      <div class="bs" style="width:1.1%;background:#888;color:#444"></div>
+    </div>
+    <table>
+      <thead><tr><th>Item</th><th class="r">€</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td>RTB acquisition</td><td class="r">€20,344,500</td><td>45.21 MW × €450K/MW</td></tr>
+        <tr><td>BESS hardware — Linyang CIF</td><td class="r">€18,084,000</td><td>180.84 MWh × €100K/MWh</td></tr>
+        <tr><td>BESS EPC — Lighthief self-cost</td><td class="r">€4,521,000</td><td>180.84 MWh × €25K/MWh</td></tr>
+        <tr><td>PV EPC — self-perform</td><td class="r">€22,605,000</td><td>45,210 kWp × €500/kWp (€0.50/Wp)</td></tr>
+        <tr><td>EAC transmission substation</td><td class="r">€7,200,000</td><td>Confirmed in SPV</td></tr>
+        <tr><td>Development / legal</td><td class="r">€750,000</td><td></td></tr>
+        <tr class="tot"><td><strong>TOTAL</strong></td><td class="r"><strong>€73,504,500</strong></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>Revenue Model (Current DAM, 15% Aggregator)</h3>
+    <table>
+      <thead><tr><th>Stream</th><th class="r">MWh/yr</th><th class="r">€/MWh</th><th class="r">€/yr</th></tr></thead>
+      <tbody>
+        <tr><td>Uncurtailed solar (06–17h DAM avg)</td><td class="r">42,950</td><td class="r">€151.38</td><td class="r">€6,503K</td></tr>
+        <tr><td>BESS discharge (17–21h peak avg)</td><td class="r">35,201</td><td class="r">€212.42</td><td class="r">€7,477K</td></tr>
+        <tr><td>Gross revenue Y1</td><td class="r"></td><td class="r"></td><td class="r">€13,981K</td></tr>
+        <tr class="warn"><td>Less: aggregator fee (15%)</td><td class="r"></td><td class="r">−15%</td><td class="r">−€2,097K</td></tr>
+        <tr class="hl"><td><strong>Net revenue Y1</strong></td><td class="r"></td><td class="r"></td><td class="r b">€11,884K</td></tr>
+        <tr><td>OPEX Y1</td><td class="r"></td><td class="r"></td><td class="r">−€1,332K</td></tr>
+        <tr class="hl"><td><strong>EBITDA Y1</strong></td><td class="r"></td><td class="r"></td><td class="r b">€10,552K</td></tr>
+      </tbody>
+    </table>
+    <p class="note">50% curtailment · RTE 86.32% · 1,900 kWh/kWp · Revenue −0.5%/yr · OPEX +2%/yr · DAM: 339-day TSOC sample</p>
+    <h3>OPEX Y1 Detail</h3>
+    <table>
+      <thead><tr><th>Item</th><th class="r">€/yr</th></tr></thead>
+      <tbody>
+        <tr><td>PV O&amp;M (€8K/MWp)</td><td class="r">€362K</td></tr>
+        <tr><td>BESS LTSA (Lighthief internal)</td><td class="r">€285K</td></tr>
+        <tr><td>Insurance (all-risk)</td><td class="r">€300K</td></tr>
+        <tr><td>Land lease (PV + Agri-PV)</td><td class="r">€120K</td></tr>
+        <tr><td>SCADA / EMS maintenance</td><td class="r">€45K</td></tr>
+        <tr><td>Admin / legal / misc</td><td class="r">€220K</td></tr>
+        <tr class="hl"><td><strong>Total OPEX</strong></td><td class="r b">€1,332K</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- FINANCING STRUCTURES -->
+<h2>2. Financing — Amortising vs Balloon Loan Structures</h2>
+<p style="margin-bottom:12px;font-size:12px">Two structures are available for each facility. <strong>Amortising</strong>: pay principal + interest throughout (no end exposure). <strong>Balloon (interest-only)</strong>: pay only interest during the term; full principal returned at maturity — can be refinanced, rolled, or repaid from project sale proceeds.</p>
+
+<div class="two">
+  <div class="card">
+    <div class="ch navy">Alpha Bank — RES Project Finance (€33,908K)</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Structure</th><th class="r">Annual payment</th><th class="r">Total paid 15yr</th><th class="r">Balloon at Y15</th></tr></thead>
+        <tbody>
+          <tr><td>Amortising (PMT 4.12%, 15yr)</td><td class="r">€3,082K/yr</td><td class="r">€46,230K</td><td class="r c">—</td></tr>
+          <tr class="hl"><td>Balloon (interest-only 4.12%)</td><td class="r">€1,397K/yr</td><td class="r">€20,955K</td><td class="r"><strong>€33,908K</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Balloon SAVES €1,685K/yr in cash but defers €33.9M principal to Y15. Interest-only saves €25.3M over the term vs amortising — however the €33.9M balloon must be refinanced or repaid. A 15yr seasoned 45 MW solar asset with DAM income is very bankable for refinancing.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch gold">Equity Partner — €25M for 25% SPV</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Structure</th><th class="r">Annual payment</th><th class="r">Total paid Y1–15</th><th class="r">Balloon at Y15</th></tr></thead>
+        <tbody>
+          <tr><td>Waterfall (100% FCFE first)</td><td class="r">All FCFE</td><td class="r">€25M + upside</td><td class="r c">—</td></tr>
+          <tr><td>8% Interest-only (balloon)</td><td class="r">€2,000K/yr</td><td class="r">€30,000K</td><td class="r"><strong>€25,000K</strong></td></tr>
+          <tr class="hl"><td>8% Amortising (PMT 8%, 15yr)</td><td class="r">€2,921K/yr</td><td class="r">€43,815K</td><td class="r c">—</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Note: total interest paid on the 8% amortising vs interest-only: amortising total paid = €43.8M (incl. principal + interest); interest-only total paid over 15yr = €30M interest + €25M balloon = €55M total — the amortising option is less expensive overall.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- CAN WE SERVICE BOTH? -->
+<h2>3. Debt Service Coverage — Can We Pay Both Loans?</h2>
+
+<div class="three">
+  <div class="kpi"><div class="l">EBITDA Y1</div><div class="v ok">€10,552K</div></div>
+  <div class="kpi"><div class="l">Min. service (AB amort + EP interest-only)</div><div class="v">€5,082K/yr</div></div>
+  <div class="kpi"><div class="l">Max. service (AB amort + EP amort)</div><div class="v">€6,003K/yr</div></div>
+</div>
+
+<table>
+  <thead><tr>
+    <th>Combination</th>
+    <th class="r">AB Payment</th><th class="r">EP Payment</th><th class="r">Total Service</th>
+    <th class="r">DSCR (EBITDA)</th><th class="r">FCFE Y1</th><th class="r">Dev. Residual Y1</th>
+  </tr></thead>
+  <tbody>
+    <tr class="best"><td><strong>AB Amortising + EP Interest-Only 8%</strong></td><td class="r">€3,082K</td><td class="r">€2,000K</td><td class="r b">€5,082K</td><td class="r b">2.08×</td><td class="r">€6,635K</td><td class="r b ok">€4,635K/yr</td></tr>
+    <tr class="rec"><td><strong>AB Amortising + EP Amortising 8%</strong></td><td class="r">€3,082K</td><td class="r">€2,921K</td><td class="r b">€6,003K</td><td class="r b">1.76×</td><td class="r">€6,635K</td><td class="r b">€3,714K/yr</td></tr>
+    <tr><td>AB Amortising + EP Waterfall</td><td class="r">€3,082K</td><td class="r">All FCFE</td><td class="r">N/A</td><td class="r">1.76×</td><td class="r">€6,635K</td><td class="r">€0 → ~Y5</td></tr>
+    <tr class="info"><td>AB Interest-Only + EP Interest-Only 8%</td><td class="r">€1,397K</td><td class="r">€2,000K</td><td class="r b">€3,397K</td><td class="r b">3.11×</td><td class="r">€8,320K</td><td class="r b ok">€6,320K/yr</td></tr>
+    <tr class="info"><td>AB Interest-Only + EP Amortising 8%</td><td class="r">€1,397K</td><td class="r">€2,921K</td><td class="r b">€4,318K</td><td class="r b">2.44×</td><td class="r">€8,320K</td><td class="r b">€5,399K/yr</td></tr>
+    <tr class="info"><td>AB Interest-Only + EP Waterfall</td><td class="r">€1,397K</td><td class="r">All FCFE</td><td class="r">N/A</td><td class="r">2.44×</td><td class="r">€8,320K</td><td class="r">€0 → ~Y3</td></tr>
+  </tbody>
+</table>
+<div class="box ok"><strong>All six combinations are serviceable.</strong> Minimum DSCR is 1.76× (well above 1.25× bank threshold). Revenue would need to fall 43% from current DAM levels before the tightest combination (AB amort + EP amort) is impaired.</div>
+
+<hr class="divider"/>
+
+<!-- SIX SCENARIO CARDS -->
+<h2>4. Six Financing Combinations — Equity Partner &amp; Developer Returns</h2>
+
+<!-- ROW 1: AMORTISING ALPHA BANK -->
+<h3 style="color:var(--navy);font-size:13px;margin-bottom:12px">Alpha Bank: Amortising (€3,082K/yr annuity, no balloon)</h3>
+<div class="three">
+
+  <div class="card">
+    <div class="ch warn">A1 — EP Waterfall (All FCFE First)</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+        <tbody>
+          <tr><td>EP cash Y1</td><td class="r b">€6,635K (100% of FCFE)</td></tr>
+          <tr><td>EP cash-on-cash Y1</td><td class="r b ok">26.5%</td></tr>
+          <tr><td>EP payback (break-even)</td><td class="r b">~Year 5</td></tr>
+          <tr><td>EP IRR (25yr)</td><td class="r b ok">~13–14%</td></tr>
+          <tr><td>EP total cash Y1–25</td><td class="r">~€53M</td></tr>
+          <tr><td>Developer cash Y1</td><td class="r warn">€0</td></tr>
+          <tr><td>Developer cash Y6+</td><td class="r b ok">~€5,000K/yr</td></tr>
+          <tr><td>Balloon at maturity</td><td class="r c">—</td></tr>
+        </tbody>
+      </table>
+      <p class="note">EP gets all free cash until €25M recovered (~Year 5), then 25% pro-rata. Developer gets nothing for ~5 years but then keeps 75% indefinitely. Best EP IRR in the amortising AB group.</p>
+    </div>
+  </div>
+
+  <div class="card recommended">
+    <div class="ch ok">A2 — EP 8% Interest-Only + Balloon ★</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+        <tbody>
+          <tr><td>EP annual interest</td><td class="r b">€2,000K/yr (8% × €25M)</td></tr>
+          <tr><td>EP cash-on-cash Y1</td><td class="r b ok">8.0%</td></tr>
+          <tr><td>EP balloon at Y15</td><td class="r b warn">€25,000K due</td></tr>
+          <tr><td>EP IRR if balloon repaid Y15</td><td class="r b ok">~8.0%</td></tr>
+          <tr><td>EP IRR if rolled/extended</td><td class="r ok">8.0% ongoing</td></tr>
+          <tr><td>Developer cash Y1</td><td class="r b ok">€4,635K/yr</td></tr>
+          <tr><td>Developer cash-on-cash Y1</td><td class="r b ok">31.7%</td></tr>
+          <tr><td>Developer payback</td><td class="r b ok">~3.2 years</td></tr>
+          <tr><td>DSCR</td><td class="r b ok">2.08×</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Cleanest structure. EP gets a predictable 8%/yr yield (like a preferred bond). At Y15, €25M balloon: refund from refinancing (project is 15yr mature, very bankable), partial sale, or roll into new terms. Developer gets best ongoing cash flow of all 6 options.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch navy">A3 — EP 8% Amortising (No Balloon)</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+        <tbody>
+          <tr><td>EP annual PMT</td><td class="r b">€2,921K/yr (8%, 15yr)</td></tr>
+          <tr><td>EP cash-on-cash Y1</td><td class="r b">11.7% (blended)</td></tr>
+          <tr><td>EP capital fully returned</td><td class="r b ok">End of Year 15</td></tr>
+          <tr><td>EP IRR</td><td class="r b ok">8.0% (guaranteed)</td></tr>
+          <tr><td>EP total received Y1–15</td><td class="r">€43.8M</td></tr>
+          <tr><td>Developer cash Y1</td><td class="r b">€3,714K/yr</td></tr>
+          <tr><td>Developer cash-on-cash Y1</td><td class="r b">25.4%</td></tr>
+          <tr><td>Developer payback</td><td class="r b">~3.9 years</td></tr>
+          <tr><td>DSCR</td><td class="r">1.76×</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Clean, no balloon exposure. EP's €25M is fully repaid with 8% p.a. by Y15 — guaranteed IRR of exactly 8% if PMT maintained. After Y15: no EP capital claim, EP retains 25% equity (ongoing dividends). Simplest legal structure.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ROW 2: BALLOON ALPHA BANK -->
+<h3 style="color:var(--navy);font-size:13px;margin-bottom:12px">Alpha Bank: Balloon / Interest-Only (€1,397K/yr interest, €33,908K due at Y15)</h3>
+<div class="box warn"><strong>Note:</strong> Interest-only Alpha Bank saves €1,685K/yr in cash payments vs amortising, but creates a €33.9M balloon obligation at Y15. This requires either a refinance (likely easy for a mature producing asset), a partial asset sale, or new co-investor. The table below shows the effect on developer residuals with this structure.</div>
+<div class="three">
+
+  <div class="card">
+    <div class="ch warn">B1 — EP Waterfall + AB Balloon</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+        <tbody>
+          <tr><td>EP cash Y1</td><td class="r b">€8,320K (100% of FCFE)</td></tr>
+          <tr><td>EP cash-on-cash Y1</td><td class="r b ok">33.3%</td></tr>
+          <tr><td>EP payback</td><td class="r b ok">~Year 3.1</td></tr>
+          <tr><td>EP IRR (25yr)</td><td class="r b ok">~16–17%</td></tr>
+          <tr><td>Developer cash Y1</td><td class="r warn">€0</td></tr>
+          <tr><td>Developer cash Y4+</td><td class="r b ok">~€6,200K/yr</td></tr>
+          <tr><td>AB Balloon at Y15</td><td class="r b warn">€33,908K due</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Fastest EP payback of all scenarios. Developer starts receiving cash from ~Y4. However, AB balloon at Y15 is a significant obligation that must be planned for. Best option if developer is confident in a Y15 refinance.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch navy">B2 — EP 8% Interest-Only + Both Balloons</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+        <tbody>
+          <tr><td>EP annual interest</td><td class="r b">€2,000K/yr</td></tr>
+          <tr><td>EP cash-on-cash Y1</td><td class="r b ok">8.0%</td></tr>
+          <tr><td>Developer cash Y1</td><td class="r b ok">€6,320K/yr</td></tr>
+          <tr><td>Developer cash-on-cash Y1</td><td class="r b ok">43.3%</td></tr>
+          <tr><td>DSCR</td><td class="r b ok">3.11×</td></tr>
+          <tr><td>AB + EP Balloon at Y15</td><td class="r b red">€58,908K due</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Maximum ongoing developer cash flow. Both loans mature together at Y15 for a combined €58.9M balloon. This is a large obligation but by Y15 the project has generated ~€95M in cumulative EBITDA and is a highly bankable asset. Developer retains substantial cash reserves during the term to plan the refinancing.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch ok">B3 — EP 8% Amortising + AB Balloon</div>
+    <div class="cb">
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th></tr></thead>
+        <tbody>
+          <tr><td>EP annual PMT</td><td class="r b">€2,921K/yr</td></tr>
+          <tr><td>EP IRR (guaranteed)</td><td class="r b ok">8.0%</td></tr>
+          <tr><td>EP capital returned</td><td class="r b ok">End Y15</td></tr>
+          <tr><td>Developer cash Y1</td><td class="r b ok">€5,399K/yr</td></tr>
+          <tr><td>Developer cash-on-cash Y1</td><td class="r b ok">37.0%</td></tr>
+          <tr><td>DSCR</td><td class="r b">2.44×</td></tr>
+          <tr><td>AB Balloon at Y15</td><td class="r b warn">€33,908K due</td></tr>
+        </tbody>
+      </table>
+      <p class="note">EP fully amortised (no EP balloon, guaranteed 8% IRR), but AB balloon remains. Best balance: EP has certainty, developer has strong cash flow, only one balloon to manage at Y15. Good if you can negotiate a strong refinancing plan ahead of time.</p>
+    </div>
+  </div>
+
+</div>
+
+<hr class="divider"/>
+
+<!-- 25-YEAR CASH FLOW: RECOMMENDED SCENARIO A2 -->
+<h2>5. 25-Year Cash Flow — Scenario A2 (Recommended: AB Amortising + EP 8% Interest-Only)</h2>
+<p style="font-size:12px;margin-bottom:12px">Alpha Bank: amortising €3,082K/yr (fully repaid Y15). Equity partner: 8% interest-only €2,000K/yr on €25M outstanding; balloon €25M due at Y15 (rolled/refinanced). Revenue degradation 0.5%/yr. OPEX inflation 2%/yr. BESS replacement at Y15 (€17.2M, new 4.12% 10yr loan = €2,117K/yr).</p>
+
+<table>
+  <thead><tr>
+    <th>Year</th><th class="r">Net Rev €K</th><th class="r">EBITDA €K</th><th class="r">Tax €K</th>
+    <th class="r">AB Debt Svc €K</th><th class="r">EP Payment €K</th>
+    <th class="r">FCFE (total) €K</th><th class="r">Dev. Cash (75%) €K</th><th class="r">Cum. EP return €K</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="r">11,884</td><td class="r">10,552</td><td class="r">835</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">6,635</td><td class="r b ok">4,635</td><td class="r">2,000</td></tr>
+    <tr><td>2</td><td class="r">11,825</td><td class="r">10,432</td><td class="r">819</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">6,531</td><td class="r">4,531</td><td class="r">4,000</td></tr>
+    <tr><td>3</td><td class="r">11,766</td><td class="r">10,314</td><td class="r">803</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">6,429</td><td class="r">4,429</td><td class="r">6,000</td></tr>
+    <tr><td>5</td><td class="r">11,651</td><td class="r">10,082</td><td class="r">772</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">6,228</td><td class="r">4,228</td><td class="r">10,000</td></tr>
+    <tr><td>8</td><td class="r">11,476</td><td class="r">9,762</td><td class="r">726</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">5,954</td><td class="r">3,954</td><td class="r">16,000</td></tr>
+    <tr><td>10</td><td class="r">11,358</td><td class="r">9,576</td><td class="r">699</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">5,795</td><td class="r">3,795</td><td class="r">20,000</td></tr>
+    <tr><td>12</td><td class="r">11,242</td><td class="r">9,392</td><td class="r">674</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">5,636</td><td class="r">3,636</td><td class="r">24,000</td></tr>
+    <tr><td>15</td><td class="r">11,069</td><td class="r">9,128</td><td class="r">633</td><td class="r">3,082</td><td class="r">2,000</td><td class="r">5,413</td><td class="r">3,413</td><td class="r">30,000</td></tr>
+    <tr class="warn"><td>15 — BALLOON</td><td class="r c" colspan="7">EP balloon €25M due (refinance / roll / repay) · AB fully repaid</td><td class="r b warn">EP recovers €25M ✓</td></tr>
+    <tr class="info"><td>16 ★ BESS repl.</td><td class="r">11,022</td><td class="r">9,069</td><td class="r">687</td><td class="r">2,117 (BESS)</td><td class="r">25% split</td><td class="r">6,265</td><td class="r b ok">~€4,700K/yr</td><td class="r">—</td></tr>
+    <tr><td>20</td><td class="r">10,842</td><td class="r">8,731</td><td class="r">630</td><td class="r">2,117</td><td class="r">25% split</td><td class="r">5,984</td><td class="r ok">~€4,488K/yr</td><td class="r">—</td></tr>
+    <tr><td>25</td><td class="r">10,589</td><td class="r">8,335</td><td class="r">551</td><td class="r">0</td><td class="r">25% split</td><td class="r">7,784</td><td class="r b ok">~€5,838K/yr</td><td class="r">—</td></tr>
+  </tbody>
+</table>
+<p class="note">★ Y16: Alpha Bank fully repaid at Y15. New BESS loan (€17.2M, 4.12%, 10yr = €2,117K/yr) starts. EP balloon €25M repaid/rolled at Y15. From Y16 EP receives 25% of FCFE pro-rata. Y25: BESS replacement loan also fully repaid.</p>
+
+<hr class="divider"/>
+
+<!-- COMPARISON TABLE -->
+<h2>6. All Six Scenarios — Summary Comparison</h2>
+<table>
+  <thead><tr>
+    <th>Scenario</th><th>AB Structure</th><th>EP Structure</th>
+    <th class="r">Dev. Cash Y1</th><th class="r">Dev. CoC Y1</th><th class="r">EP CoC Y1</th>
+    <th class="r">DSCR</th><th class="r">EP Payback</th><th class="r">Balloon at Y15</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>A1 — Waterfall</td><td>Amortising</td><td>All FCFE first → 25%</td><td class="r warn">€0</td><td class="r warn">—</td><td class="r ok">26.5%</td><td class="r">1.76×</td><td class="r ok">~Y5</td><td class="r">None</td></tr>
+    <tr class="best"><td><strong>A2 ★ — EP 8% Int-Only</strong></td><td>Amortising</td><td>8% int-only + balloon</td><td class="r ok b">€4,635K</td><td class="r ok b">31.7%</td><td class="r ok b">8.0%</td><td class="r ok b">2.08×</td><td class="r">Y15 (balloon)</td><td class="r warn">€25M EP</td></tr>
+    <tr class="rec"><td><strong>A3 — EP 8% Amort.</strong></td><td>Amortising</td><td>8% amortising, no balloon</td><td class="r b">€3,714K</td><td class="r b">25.4%</td><td class="r b">8.0% IRR</td><td class="r">1.76×</td><td class="r ok">Y15</td><td class="r ok">None</td></tr>
+    <tr class="info"><td>B1 — Waterfall</td><td>Balloon</td><td>All FCFE first → 25%</td><td class="r warn">€0</td><td class="r warn">—</td><td class="r ok">33.3%</td><td class="r ok">2.44×</td><td class="r ok">~Y3</td><td class="r red">€33.9M AB</td></tr>
+    <tr class="info"><td>B2 — EP 8% Int-Only</td><td>Balloon</td><td>8% int-only + balloon</td><td class="r ok">€6,320K</td><td class="r ok">43.3%</td><td class="r ok">8.0%</td><td class="r ok">3.11×</td><td class="r">Y15 (balloon)</td><td class="r red">€58.9M total</td></tr>
+    <tr class="info"><td>B3 — EP 8% Amort.</td><td>Balloon</td><td>8% amortising, no EP balloon</td><td class="r ok">€5,399K</td><td class="r ok">37.0%</td><td class="r ok">8.0% IRR</td><td class="r ok">2.44×</td><td class="r ok">Y15</td><td class="r warn">€33.9M AB</td></tr>
+  </tbody>
+</table>
+
+<div class="box info">
+  <strong>Reading the table:</strong> "★ Recommended" scenarios are A2 and A3.
+  A2 (EP 8% interest-only) gives developer the best ongoing cash and a manageable single balloon at Y15.
+  A3 (EP 8% amortising) has no balloon exposure at all and gives EP a guaranteed 8% IRR — easiest to negotiate.
+  Balloon scenarios (B1–B3) maximise early developer cash but require confident refinancing at Y15.
+</div>
+
+<hr class="divider"/>
+
+<!-- DEVELOPER RETURNS -->
+<h2>7. Lighthief Developer Returns Summary</h2>
+<div class="g g3">
+  <div class="kpi"><div class="l">Your equity invested</div><div class="v">€14,597K</div><div class="sub-v">19.9% of total CAPEX</div></div>
+  <div class="kpi"><div class="l">Your cash Y1 (Scenario A2)</div><div class="v ok">€4,635K</div><div class="sub-v">31.7% cash-on-cash</div></div>
+  <div class="kpi"><div class="l">Your payback (Scenario A2)</div><div class="v ok">~3.2 years</div><div class="sub-v">On 75% equity share</div></div>
+  <div class="kpi"><div class="l">BESS LTSA net margin/yr</div><div class="v ok">~€1,100K/yr</div><div class="sub-v">€1,740/MWh charged vs €285K/yr cost (180 MWh)</div></div>
+  <div class="kpi"><div class="l">Your cumulative Y1–25 (A2)</div><div class="v ok">~€100M+</div><div class="sub-v">75% of all distributions</div></div>
+  <div class="kpi"><div class="l">Your IRR</div><div class="v ok">100%+</div><div class="sub-v">Due to leverage ratio</div></div>
+</div>
+
+<div class="box ok">
+  <strong>Leverage story:</strong> Lighthief owns 75% of a €73.5M project for €14.6M (19.9% of CAPEX). Alpha Bank (46%) and the equity partner (34%) fund the rest. Your Year 1 cash return of €4.6M represents 31.7% of your invested equity — recovered in full by Year 3.2.
+  Additionally: EPC margin on the PV installation (€22.6M work, internal) and full LTSA O&M revenue (~€1.1M/yr net after internal costs) stay with Lighthief operating company.
+</div>
+
+<hr class="divider"/>
+
+<!-- RISKS -->
+<h2>8. Key Risks and Open Items</h2>
+<div class="two">
+  <div>
+    <div class="box warn">
+      <strong>Balloon repayment risk (Scenarios B1–B3, A2):</strong> If balloon structure is chosen, a Y15 refinancing is required for €25M (EP) and/or €33.9M (AB). Mitigation: (1) by Y15, project has 15yr DAM track record — highly bankable; (2) accumulate reserves from surplus cash flow during term; (3) project sale or partial disposal generates capital. Plan the exit strategy at deal inception.
+    </div>
+    <div class="box warn">
+      <strong>EAC substation (€7.2M) ownership:</strong> Confirm whether asset remains on SPV books (depreciable) or transfers to EAC after construction. This affects tax shield and balance sheet.
+    </div>
+    <div class="box info">
+      <strong>Agri-PV planning (13.7 MW, 4 parks):</strong> Expected in ~6 months. Phase construction: Solar PV 31.5 MW first, Agri-PV follows. Revenue model already uses 50% curtailment so additional MW are upside.
+    </div>
+  </div>
+  <div>
+    <div class="box info">
+      <strong>DAM price assumption:</strong> Model uses current 339-day TSOC sample (Oct 2025–Sep 2026). Cyprus average €200/MWh, evening peak €212/MWh, daytime €151/MWh. This is real market data — conservative scenario has been dropped. Monitor DAM quarterly.
+    </div>
+    <div class="box info">
+      <strong>EP preferred return vs pure equity:</strong> If EP insists on a legal debt instrument (shareholder loan) rather than equity for the 8% return, interest becomes tax-deductible in the SPV, saving ~€300K/yr in CIT. Structure accordingly.
+    </div>
+    <div class="box info">
+      <strong>PV EPC procurement cost:</strong> Model uses €0.50/Wp (Lighthief self-perform reference). Actual procurement should be confirmed — if panels/labour come in lower, CAPEX drops and your equity requirement falls.
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- RECOMMENDATION -->
+<h2>9. Recommendation for Arkadiusz</h2>
+<div class="two">
+  <div class="card">
+    <div class="ch ok">Primary: Scenario A2 — AB Amortising + EP 8% Interest-Only</div>
+    <div class="cb">
+      <ul style="padding-left:18px;line-height:2;font-size:12px">
+        <li>EP gets clean 8%/yr yield — straightforward to negotiate</li>
+        <li>Developer gets €4,635K/yr from Day 1 (best ongoing cash in amortising group)</li>
+        <li>DSCR of 2.08× — very comfortable coverage</li>
+        <li>Single balloon: €25M to EP at Y15 → refinance from mature bankable asset</li>
+        <li>Developer payback: 3.2 years</li>
+        <li>From Y16: all FCFE free (both AB and EP capital resolved), ~€6–7M/yr</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch navy">Alternative: Scenario A3 — AB Amortising + EP 8% Amortising</div>
+    <div class="cb">
+      <ul style="padding-left:18px;line-height:2;font-size:12px">
+        <li>Zero balloon exposure — simplest legal structure</li>
+        <li>EP guaranteed 8% IRR, capital fully returned by Y15</li>
+        <li>DSCR 1.76× — solid but lower than A2</li>
+        <li>Developer cash €3,714K/yr — slightly lower than A2</li>
+        <li>From Y16: complete clean slate (EP capital repaid, AB repaid)</li>
+        <li>Best if EP requires certainty of capital return without refinancing risk</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="box ok">
+  <strong>Bottom line:</strong> The project works under all six structures. Choose A2 for maximum developer cash flow with manageable balloon risk. Choose A3 if you want the cleanest deal with no refinancing discussions in 15 years. Both scenarios give the equity partner a fair, market-rate return (8% p.a.) and give Lighthief a 100%+ IRR on its invested capital.
+</div>
+
+</div>
+<footer>
+  Lighthief Cyprus Ltd &bull; HE 477423 &bull; solarfarms.cy &bull;
+  Alexander Papacosta, Cyprus Director — +357 99 164 158 — office@lighthief.com &bull;
+  Prepared for: Dr. Arkadius Sybaris (a.sybaris@lighthief.com)<br>
+  Internal document — confidential — not for distribution. Sep 22, 2026.
+  Revenue based on TSOC DAM 339-day sample (Oct 2025–Sep 2026) at 15% aggregator. CAPEX: BESS €125K/MWh, PV €0.50/Wp.
+</footer>
+</body>
+</html>

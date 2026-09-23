@@ -1174,7 +1174,7 @@ export function BESSFinanceCalculator() {
                           />
                         </FormField>
 
-                        <FormField label="Annual Yield (kWh/kWp)" tooltip="Specific yield - Cyprus avg: 1,650">
+                        <FormField label="Annual Yield (kWh/kWp)" tooltip="Specific yield — Cyprus fixed bifacial: 1,800; 2P tracker: 2,200">
                           <Input
                             type="number"
                             value={inputs.solar.annualYieldKwhKwp}

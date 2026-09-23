@@ -1,0 +1,17 @@
+---
+description: All new public website copy must be added to every locale catalog
+globs: app/(marketing)/**/*.tsx,app/(content)/**/*.tsx,app/(legal)/**/*.tsx,components/sections/**/*.tsx,components/forms/**/*.tsx,components/marketing/**/*.tsx,messages/**/*.json
+alwaysApply: true
+---
+
+# Public site i18n
+
+SolarFarms.cy is English, Greek (`el`), and Russian (`ru`).
+
+- Put every new user-visible string in `messages/en.json` first.
+- Add the same key to `messages/el.json` and `messages/ru.json` in the same commit.
+- Render with `useTranslations()` (client) or `getTranslations()` (server). Do not hardcode public copy.
+- Link with `LocaleLink` so `/el` and `/ru` prefixes are kept.
+- Run `npm run i18n:check` — catalogs must have identical keys.
+- Do not translate CRM, tablet, admin, or other internal tools.
+- Keep proper nouns (Lighthief, SolarFarms.cy, TSOC, EAC, BESS, EPC, O&M) and figures unchanged.

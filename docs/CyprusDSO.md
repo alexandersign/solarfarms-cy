@@ -43,7 +43,7 @@
 
 ### 2.0 Net Billing commercial terms (EAC Supply)
 
-> **Separate from grid-connection rules.** Billing, export credit price, invoicing, and annual surplus forfeiture are governed by the **EAC Supply Net Billing Agreement** (Σύμβαση Συμψηφισμού Λογαριασμών), currently **V6 (23 Mar 2026)**.  
+> **Separate from grid-connection rules.** Billing, export credit price, invoicing, and annual surplus forfeiture are governed by the **EAC Supply Net Billing Agreement** (Σύμβαση Συμψηφισμού Λογαριασμών), currently **V6 (10 Aug 2026)**, and the **Virtual Net Billing Agreement** (Σύμβαση Εικονικού Συμψηφισμού Λογαριασμών), currently **V.4 (22 Jul 2026)**.  
 > Full summary: [`docs/dso/net-billing-terms-2026.md`](dso/net-billing-terms-2026.md)
 
 ### 2.1 Category A: Self-Consumption RES with Integrated BESS
@@ -960,6 +960,7 @@ For connection applications above certain thresholds (triggered by DSO), the app
 | 2026-01-23 | 1.4 | **Added Κ.Δ.Π. 15/2026 and Κ.Δ.Π. 17/2026** (Official Gazette 5992, 16 Jan 2026): Building/Planning permit exemptions for BESS in RES stations. 33 conditions covering general, fire, environment, and labour requirements. Replaces Κ.Δ.Π. 215/2025. | AI Assistant |
 | 2026-04-28 | 1.5 | **Updated to EAC Technical Guide Edition 2026 (April 2026).** Added: Category C formally open for standalone BESS (no RES required); ΔΕΑΗ (Storage Manager) legal role; Island Mode Operation (Annex V); IT Grounding retrofit (Annex IV); NBIoT remote control; explicit DSO charge/discharge dispatch rights; permanent vs. occasional zero-injection mode definitions; DIgSILENT PowerFactory modelling requirement; April 2024 connection process fees. | Lighthief |
 | 2026-05-19 | 1.6 | Cross-link to new net-billing commercial terms README (EAC Supply Agreement V6, Mar 2026). | Lighthief |
+| 2026-09-23 | 1.7 | Net-billing cross-link updated to NB V6 (10 Aug 2026) and VNB V.4 (22 Jul 2026). | Lighthief |
 
 ---
 

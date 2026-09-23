@@ -35,6 +35,7 @@ import {
   COMPANY_DATA,
   FINANCING_OPTIONS
 } from '@/lib/constants'
+import { publicPvSidePerMW } from '@/lib/public-hybrid-ssot'
 import { trackEvent, trackLeadCapture } from '@/components/analytics/GoogleAnalytics'
 
 // Tooltip component for help text
@@ -224,10 +225,10 @@ export function AdvancedProjectCalculator() {
     projectStage: 'RTB',
     capacityDC: 5.0,
     capacityAC: 4.6,
-    technology: 'TRACKER',
+    technology: 'FIXED',
     
-    askingPrice: 7500000,
-    capexMode: 'rtb-new',
+    askingPrice: 5 * publicPvSidePerMW('fixed'),
+    capexMode: 'rtb-old',
     
     annualYield: CYPRUS_MARKET_DEFAULTS.annualYield,
     capacityFactor: CYPRUS_MARKET_DEFAULTS.capacityFactor * 100,
@@ -243,9 +244,9 @@ export function AdvancedProjectCalculator() {
     curtailedEnergyRate: CYPRUS_MARKET_DEFAULTS.curtailedEnergyRate,
     curtailmentCompensation: CYPRUS_MARKET_DEFAULTS.curtailmentCompensation * 100,
     
-    includeBESS: false,
+    includeBESS: true,
     bessDuration: BESS_DEFAULTS.defaultDuration,
-    bessCostPerKwh: BESS_DEFAULTS.pricing.medium.costPerMWh / 1000, // €135/kWh from medium tier
+    bessCostPerKwh: 125,
     bessRTE: BESS_DEFAULTS.roundTripEfficiency * 100,
     dailyCycles: BESS_DEFAULTS.dailyCycles,
     curtailmentRecoveryRate: BESS_DEFAULTS.curtailmentRecoveryRate * 100,
@@ -256,7 +257,7 @@ export function AdvancedProjectCalculator() {
     landLease: CYPRUS_MARKET_DEFAULTS.landLease,
     administration: CYPRUS_MARKET_DEFAULTS.administration,
     otherCosts: CYPRUS_MARKET_DEFAULTS.otherCosts,
-    bessOmPct: 2, // 2% of BESS CAPEX per year
+    bessOmPct: 1.76, // €2,200/MWh on €125k/MWh capex
     
     // Flexible financing defaults
     ltvPercent: 0, // Default to cash (0% LTV)
@@ -1054,7 +1055,7 @@ export function AdvancedProjectCalculator() {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-                    <FormField label="Annual Yield (kWh/kWp)" tooltip="Expected energy production per kWp installed (Cyprus avg: 1,500-1,800)">
+                    <FormField label="Annual Yield (kWh/kWp)" tooltip="Fixed bifacial 1,800 kWh/kWp; tracker applies the technology multiplier (2,200)">
                       <Input
                         type="number"
                         value={inputs.annualYield}

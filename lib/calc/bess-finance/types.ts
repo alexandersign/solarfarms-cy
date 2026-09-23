@@ -876,7 +876,7 @@ const DEFAULT_SOLAR_PHASE: SolarPhaseConfig = {
   name: 'Phase 1',
   enabled: true,
   capacityKWp: 500,
-  solarYieldKWhKWp: 1350,
+  solarYieldKWhKWp: 1800,
   efficiencyFactor: 100,
   capacityDecline: 0.5,
   startMonth: 7,
@@ -922,9 +922,9 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
   // 'price_arbitrage' = grid buying/selling (NOT yet legal in Cyprus — future revenue potential)
   battery: {
     useMode: 'excess_production',
-    capacityMWh: 10,
+    capacityMWh: 20,
     durationHours: 4,
-    powerMW: 2.5,
+    powerMW: 5,
     chemistry: 'LFP',
     roundTripEfficiency: 86.32, // Full system AC-AC RTE incl. cabling (PCS-level = 87.8%)
     maxDoD: 90,
@@ -950,14 +950,14 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
     enabled: false,
     pvCapacityMWp: 5,
     pvCapacityMWac: 4.6,
-    annualYieldKwhKwp: 1650,
+    annualYieldKwhKwp: 1800,
     pvDegradation: 0.5,
-    capacityFactor: 22,
-    technologyType: 'tracker',
-    technologyMultiplier: 1.15,
-    curtailmentRate: 25.8,
+    capacityFactor: 20.5,
+    technologyType: 'fixed',
+    technologyMultiplier: 1.0,
+    curtailmentRate: 50,
     curtailmentCompensation: 0,
-    curtailmentRecoveryRate: 50,
+    curtailmentRecoveryRate: 95,
     multiPhaseEnabled: false,
     phases: [
       { ...DEFAULT_SOLAR_PHASE, id: 'phase-1', name: 'Phase 1' },
@@ -979,10 +979,10 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
   // At 25.8% curtailment + €182 peak price → ~€16,500/MWh BESS/year (curtailment only)
   // At 38% curtailment (Anarita real data) → ~€28,000/MWh BESS/year
   revenue: {
-    dayPrice: 150,       // €150/MWh — solar hours DAM avg (reference only, BESS cannot buy from grid yet)
-    nightPrice: 182,     // €182/MWh — peak hours avg, used for curtailment recovery discharge value
-    arbitrageSpread: 32, // €32/MWh — DAM spread (FUTURE revenue only, not legal yet in Cyprus)
-    solarSellingRate: 0.15, // €0.15/kWh — wholesale rate for uncurtailed solar sold to grid
+    dayPrice: 151.38,
+    nightPrice: 212.42,
+    arbitrageSpread: 61,
+    solarSellingRate: 0.151,
     curtailedEnergyRate: 0,
     frequencyRegulation: 0,
     spinningReserve: 0,
@@ -1048,19 +1048,16 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
     // BESS Client Pricing: ~€135/kWh (Non-Group) or ~€111-121/kWh (Group)
     // Includes: CIF + EPC adders + 15% CIF margin + 15% EPC margin + public markup (12%)
     // See docs/internal/solarpark-epc.md for detailed breakdown
-    bessCostPerMWh: 135000,
-    bessSystemCost: 1370000,
+    bessCostPerMWh: 125000,
+    bessSystemCost: 2500000,
     pcsAndBos: 0,
-    // PV Client Pricing: Self-cost + €100k/MW flat markup
-    // At 5MWp: €540k self-cost + €100k markup = €640k/MWp client
-    // At 10MWp: €510k self-cost + €100k markup = €610k/MWp client
-    pvCostPerMWp: 640000, // Client price for ~5MWp scale
+    pvCostPerMWp: 600000,
     pvSystemCost: 0,
     fixtures: 0,
     inverters: 0,
     transportInstallation: 0,
-    gridConnection: 50000,
-    development: 0,
+    gridConnection: 750000,
+    development: 2250000,
     engineering: 0,
     contingency: 5,
     receivablesDays: 30,
@@ -1069,11 +1066,11 @@ export const BESS_CALCULATOR_DEFAULTS: BESSCalculatorInputs = {
   },
   
   opex: {
-    bessOmBasic: 2470,
+    bessOmBasic: 2200,
     bessOmPcs: 0,
-    bessOmAvailability: 2200,
-    bessOmTotal: 2470,
-    pvOmPerMW: 15000,
+    bessOmAvailability: 0,
+    bessOmTotal: 2200,
+    pvOmPerMW: 9000,
     insurance: 0.5,
     landLease: 10000,
     administration: 10000,

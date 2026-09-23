@@ -15,6 +15,7 @@ import {
   AEOLIAN,
 } from './portfolio-data'
 import { BESS_DEFAULTS, CAPEX_MODES, COMPANY_DATA } from './constants'
+import { PUBLIC_HYBRID } from './public-hybrid-ssot'
 import {
   POLAND_PACKAGES,
   POLAND_CALLOUT,
@@ -106,7 +107,7 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
       `PV O&M: Poland packages from ~${formatEur(4_230)}/MW/yr (ECO) to ~${formatEur(11_256)}/MW/yr (GOLD); Cyprus custom typically €5,200–5,640/MW (see Spanercom benchmark).`,
       `BESS turnkey EPC: Client price = equipment + adders with +${BESS_DEFAULTS.epcMarkup.cifMarginPercent}% on CIF and +${BESS_DEFAULTS.epcMarkup.epcCostsMarginPercent}% on EPC costs. Use CLIENT_PRICING examples below — confirm live quote in Excel before sending.`,
       `BESS O&M (LTSA Tier C): ${formatEur(LTSA.tierC.ratePerMWh)}/MWh/yr, ${LTSA.tierC.availabilityTarget}% availability target, 15-year term.`,
-      `PV EPC: ${formatEur(CAPEX_MODES['epc-dev'].pricePerMW)}/MW client price (${formatEur(CAPEX_MODES['epc-dev'].epcMarkupPerMW)}/MW flat markup on self-cost).`,
+      `PV EPC: public ${formatEur(CAPEX_MODES['epc-dev'].pricePerMW)}/MW fixed and ${formatEur(PUBLIC_HYBRID.pvEpcPublicTrackerPerMW)}/MW tracker (20% on self-cost).`,
     ],
     callouts: [
       {
@@ -197,10 +198,11 @@ export const CRM_KB_SECTIONS: CrmKbSection[] = [
       {
         headers: ['Item', 'Value'],
         rows: [
-          ['Client price (5 MW example)', formatEur(CAPEX_MODES['epc-dev'].pricePerMW) + '/MW'],
-          ['Self-cost reference', formatEur(CAPEX_MODES['epc-dev'].selfCostPerMW) + '/MW'],
-          ['EPC markup', formatEur(CAPEX_MODES['epc-dev'].epcMarkupPerMW) + '/MW flat'],
-          ['5 MW illustrative total', formatEur(CAPEX_MODES['epc-dev'].pricePerMW * 5)],
+          ['Client price — fixed', formatEur(PUBLIC_HYBRID.pvEpcPublicFixedPerMW) + '/MW'],
+          ['Client price — tracker', formatEur(PUBLIC_HYBRID.pvEpcPublicTrackerPerMW) + '/MW'],
+          ['Self-cost reference', `${formatEur(PUBLIC_HYBRID.pvEpcSelfFixedPerMW)} / ${formatEur(PUBLIC_HYBRID.pvEpcSelfTrackerPerMW)}`],
+          ['EPC markup', '20% on self-cost'],
+          ['5 MW fixed PV EPC', formatEur(PUBLIC_HYBRID.pvEpcPublicFixedPerMW * 5)],
         ],
       },
     ],

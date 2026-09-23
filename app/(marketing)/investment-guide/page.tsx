@@ -34,7 +34,7 @@ import {
   PenTool,
 } from 'lucide-react'
 
-import { CYPRUS_TSOC_DAM_SAMPLE, damEurMwhLabel } from '@/lib/market/cyprus-tsoc-dam-sample'
+import { publicHybridCase } from '@/lib/public-hybrid-ssot'
 import {
   AGIOS_THEODOROS_RTB as AGIOS,
   formatAgiosEurCompact,
@@ -44,6 +44,18 @@ const DAM = CYPRUS_TSOC_DAM_SAMPLE
 const annualRecoveryLow = Math.round(2.5 * 365 * DAM.curtailmentRecoveryEURPerMWh)
 const annualRecoveryHigh = Math.round(3.8 * 365 * DAM.curtailmentRecoveryEURPerMWh)
 const fmtEur = (n: number) => `€${n.toLocaleString('en-IE')}`
+const publicSizeRows = ([1, 5, 10] as const).map((mw) => {
+  const f = publicHybridCase(mw, 'fixed')
+  const t = publicHybridCase(mw, 'tracker')
+  return [
+    `${mw} MW + ${mw * 4} MWh`,
+    `${fmtEur(f.capex)} – ${fmtEur(t.capex)}`,
+    `${fmtEur(f.pvEpc)} – ${fmtEur(t.pvEpc)}`,
+    fmtEur(f.bessEpc),
+    fmtEur(f.rtb + f.connection),
+    `${(f.cashYield * 100).toFixed(1)}–${(t.cashYield * 100).toFixed(1)}%`,
+  ]
+})
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface MarketStats {
@@ -406,8 +418,8 @@ export default function InvestmentGuidePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <StatCard value="3,300+" label="Annual Sun Hours" />
               <StatCard value="1,800+" label="kWh/m²/yr Irradiation" />
-              <StatCard value="1,650" label="kWh/kWp Typical Yield" />
-              <StatCard value="22%" label="Capacity Factor" />
+              <StatCard value="1,800" label="kWh/kWp Fixed Bifacial" />
+              <StatCard value="20.5%" label="Capacity Factor" />
             </div>
 
             <h3 className="text-xl font-semibold text-gray-800 mb-4">2.2 The Curtailment Challenge (Critical 2025 Trend)</h3>
@@ -463,10 +475,10 @@ export default function InvestmentGuidePage() {
               <DataTable
                 headers={['Project Type', 'Cost per MW', 'Description']}
                 rows={[
-                  ['EPC Development', '€640,000', 'Greenfield development from scratch'],
-                  ['Turnkey New Build', '€1,090,000', 'Complete construction-ready project'],
-                  ['RTB Park (Fixed-Tilt)', '€1,090,000', 'Older energized parks'],
-                  ['RTB Park (Tracking)', '€1,200,000', 'Premium parks with single-axis tracking'],
+                  ['EPC — fixed bifacial', '€600,000', 'Public turnkey PV EPC'],
+                  ['EPC — 2P tracker', '€780,000', 'Public turnkey PV EPC'],
+                  ['Turnkey PV + RTB + connection (fixed)', '€1,200,000', 'Excludes 4-hour BESS'],
+                  ['Turnkey PV + RTB + connection (tracker)', '€1,380,000', 'Excludes 4-hour BESS'],
                 ]}
               />
             </div>
@@ -474,18 +486,16 @@ export default function InvestmentGuidePage() {
             <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-8">3.2 Typical Investment Sizes</h3>
             <div className="avoid-break">
               <DataTable
-                headers={['Size', 'Total Investment', 'PV Cost', 'BESS Cost', 'RTB Cost', 'Target ROI']}
-                rows={[
-                  ['1 MW + 4 MWh', '€1,744,000', '€730,000', '€664,000', '€350,000', '8–13%'],
-                  ['5 MW + 20 MWh', '€7,370,000', '€3,200,000', '€2,420,000', '€1,750,000', '8–13%'],
-                  ['10 MW + 40 MWh', '€14,041,000', '€6,101,000', '€4,440,000', '€3,500,000', '8–13%'],
-                ]}
+                headers={['Size', 'Total (fixed–tracker)', 'PV EPC', 'BESS 4h', 'RTB + connection', 'Y1 cash yield']}
+                rows={publicSizeRows}
               />
             </div>
 
             <InfoBox>
-              <strong>Note:</strong> All investment figures are complete client pricing inclusive of EPC costs.
-              RTB (Ready-to-Build) premium is €350,000/MW. Prices are exclusive of land lease costs.
+              <strong>Note:</strong> Figures are public turnkey prices for a co-located 4-hour BESS hybrid
+              (fixed bifacial 1,800 kWh/kWp or 2P tracker 2,200 kWh/kWp). RTB is €450,000/MW and EAC connection
+              is €150,000/MW indicative. PV O&amp;M €9,000/MW/yr and BESS LTSA €2,200/MWh/yr. Exclusive of VAT
+              and site-specific land lease.
             </InfoBox>
           </section>
 
@@ -793,8 +803,8 @@ export default function InvestmentGuidePage() {
 
             <h3 className="text-xl font-semibold text-gray-800 mb-4">8.1 Energy Production</h3>
             <ul className="text-gray-700 space-y-1 mb-6 list-disc pl-6">
-              <li><strong>Capacity Factor:</strong> 20&ndash;22% (Cyprus average)</li>
-              <li><strong>Annual Yield:</strong> 1,650&ndash;1,850 kWh/kWp (monofacial to bifacial TopCon)</li>
+              <li><strong>Capacity Factor:</strong> ~20.5% at 1,800 kWh/kWp (fixed bifacial)</li>
+              <li><strong>Annual Yield:</strong> 1,800 kWh/kWp fixed bifacial; 2,200 kWh/kWp 2P tracker bifacial</li>
               <li><strong>Degradation:</strong> 0.5% per year (Tier-1 panels)</li>
               <li><strong>System Availability:</strong> 99%</li>
             </ul>
@@ -828,9 +838,9 @@ export default function InvestmentGuidePage() {
 
             <h3 className="text-xl font-semibold text-gray-800 mb-4">8.3 Return Expectations</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              <StatCard value="8–13%" label="Equity IRR Range" />
-              <StatCard value="7–10 yrs" label="Payback Period" />
-              <StatCard value="20%+" label="Leveraged IRR (BESS)" />
+              <StatCard value="8–11%" label="20-yr IRR (100% equity)" />
+              <StatCard value="7.6–8.7 yrs" label="Simple payback" />
+              <StatCard value="12–14%" label="Y1 cash yield" />
               <StatCard value="25 yrs" label="Project Lifetime" />
             </div>
           </section>
@@ -990,7 +1000,7 @@ export default function InvestmentGuidePage() {
               <div>
                 <h3 className="font-semibold text-gray-800 mb-3">Services</h3>
                 <ul className="text-gray-700 text-sm space-y-1.5">
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />EPC Development: €640k/MW</li>
+                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />EPC: €600k/MW fixed · €780k/MW tracker</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />O&M Management: 24/7 monitoring</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />BESS Integration: Tier-1 OEM systems</li>
                   <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />Asset Optimization &amp; Performance</li>

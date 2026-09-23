@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Avdellero Solar + BESS — Equity Investment Opportunity</title>
+<style>
+:root{
+  --navy:#1A365D;--navy-light:#2B5FA0;--gold:#C9A432;--gold-light:#E8C45A;
+  --white:#FFFFFF;--grey:#404040;--light:#F8F9FB;--border:#E0E6EE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0}
+body{
+  font-family:'Segoe UI',system-ui,sans-serif;
+  background:var(--white);color:var(--grey);font-size:12px;line-height:1.5;
+  width:210mm;min-height:297mm;margin:0 auto;
+}
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{
+  background:var(--navy);
+  padding:22px 32px 18px;
+  display:grid;grid-template-columns:1fr auto;align-items:start;gap:16px;
+}
+.header-left h1{
+  color:var(--gold);font-size:20px;font-weight:700;line-height:1.2;margin-bottom:4px;
+}
+.header-left p{color:rgba(255,255,255,.80);font-size:11.5px}
+.header-badge{
+  background:var(--gold);color:var(--navy);
+  padding:5px 14px;border-radius:3px;font-size:10px;font-weight:800;
+  white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;
+}
+
+/* ── HERO STRIP ──────────────────────────────────────────── */
+.hero{
+  background:var(--light);border-bottom:2px solid var(--border);
+  padding:14px 32px;display:flex;gap:0;
+}
+.hero-kpi{
+  flex:1;text-align:center;border-right:1px solid var(--border);padding:0 16px;
+}
+.hero-kpi:last-child{border-right:none}
+.hero-kpi .lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;color:#888;margin-bottom:3px}
+.hero-kpi .val{font-size:22px;font-weight:800;color:var(--navy);line-height:1}
+.hero-kpi .sub{font-size:10px;color:#666;margin-top:2px}
+
+/* ── BODY ────────────────────────────────────────────────── */
+.body{padding:16px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.full{grid-column:1/-1}
+
+/* ── SECTION HEADS ───────────────────────────────────────── */
+.sh{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
+    color:var(--navy);border-bottom:1.5px solid var(--gold);padding-bottom:3px;margin-bottom:8px}
+
+/* ── PROJECT FACTS ───────────────────────────────────────── */
+.facts li{
+  display:flex;gap:6px;align-items:baseline;padding:3px 0;
+  border-bottom:1px solid var(--border);font-size:11.5px;line-height:1.4;
+}
+.facts li:last-child{border-bottom:none}
+.facts .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+  flex-shrink:0;margin-top:4px;
+}
+.facts strong{color:var(--navy);font-weight:700}
+
+/* ── RETURN CARDS ────────────────────────────────────────── */
+.return-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rc{
+  border:1.5px solid var(--border);border-radius:5px;overflow:hidden;
+}
+.rc.preferred{border-color:var(--navy)}
+.rc.waterfall{border-color:var(--gold)}
+.rc-head{
+  padding:7px 12px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;
+}
+.rc.preferred .rc-head{background:var(--navy);color:var(--white)}
+.rc.waterfall .rc-head{background:var(--gold);color:var(--navy)}
+.rc-body{padding:10px 12px}
+.rc-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:3px 0;border-bottom:1px solid var(--border);font-size:11px;
+}
+.rc-row:last-child{border-bottom:none}
+.rc-row .metric{color:#666}
+.rc-row .figure{font-weight:700;color:var(--navy);font-size:12px}
+.rc-row .figure.gold{color:var(--gold-light)}
+.rc-row .figure.ok{color:#1A6B3C}
+
+/* ── CASHFLOW VISUAL ─────────────────────────────────────── */
+.cf-chart{margin-top:4px}
+.cf-year{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.cf-label{font-size:9.5px;width:28px;color:#888;text-align:right;flex-shrink:0}
+.cf-bar-wrap{flex:1;background:#EEF1F6;border-radius:2px;height:12px;overflow:hidden}
+.cf-bar{height:100%;border-radius:2px;display:flex;align-items:center;padding-left:4px}
+.cf-bar-val{font-size:8.5px;color:#fff;font-weight:700;white-space:nowrap}
+.cf-bar.partner{background:var(--navy)}
+.cf-bar.post{background:var(--gold)}
+.cf-legend{display:flex;gap:14px;margin-top:4px}
+.cf-leg{display:flex;align-items:center;gap:4px;font-size:9.5px;color:#666}
+.cf-leg-dot{width:8px;height:8px;border-radius:1px;flex-shrink:0}
+
+/* ── DAM MARKET ──────────────────────────────────────────── */
+.market-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ms{background:var(--navy);color:var(--white);border-radius:4px;padding:8px 10px;text-align:center}
+.ms .mv{font-size:18px;font-weight:800;color:var(--gold)}
+.ms .ml{font-size:9px;opacity:.75;margin-top:1px}
+
+/* ── STRUCTURE TIMELINE ──────────────────────────────────── */
+.timeline{display:flex;gap:0;margin-top:6px}
+.tl-step{flex:1;text-align:center;position:relative}
+.tl-step:not(:last-child)::after{
+  content:'→';position:absolute;right:-8px;top:10px;
+  color:var(--gold);font-weight:700;font-size:13px;
+}
+.tl-circle{
+  width:28px;height:28px;border-radius:50%;background:var(--navy);
+  color:var(--white);font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 4px;
+}
+.tl-text{font-size:9px;color:#666;line-height:1.3}
+.tl-text strong{color:var(--navy);font-size:10px;display:block}
+
+/* ── SECURITY / HIGHLIGHTS ───────────────────────────────── */
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:0}
+.hl{
+  background:var(--light);border-left:3px solid var(--navy);
+  padding:6px 10px;border-radius:0 3px 3px 0;font-size:10.5px;line-height:1.4;
+}
+.hl strong{color:var(--navy);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:1px}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer{
+  background:var(--navy);margin-top:16px;
+  padding:10px 32px;display:flex;justify-content:space-between;align-items:center;
+}
+.footer-left{color:rgba(255,255,255,.7);font-size:9px;line-height:1.7}
+.footer-left strong{color:var(--gold)}
+.footer-right{text-align:right;color:rgba(255,255,255,.7);font-size:9px;line-height:1.7}
+.footer-right strong{color:var(--white)}
+.disclaimer{
+  padding:6px 32px;font-size:8.5px;color:#aaa;line-height:1.5;
+  border-top:1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>Avdellero Solar + BESS<br>Equity Investment Opportunity</h1>
+    <p>45.21 MW Solar PV &bull; 180.84 MWh Battery Storage (4-hour) &bull; Larnaca District, Cyprus</p>
+  </div>
+  <div>
+    <div class="header-badge">Equity Sought: €25M</div>
+  </div>
+</div>
+
+<!-- HERO STRIP -->
+<div class="hero">
+  <div class="hero-kpi">
+    <div class="lbl">Project size</div>
+    <div class="val">45.21</div>
+    <div class="sub">MW Solar PV</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="lbl">Battery storage</div>
+    <div class="val">180.84</div>
+    <div class="sub">MWh · 4-hour BESS</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="lbl">Project EBITDA</div>
+    <div class="val">€8.10M</div>
+    <div class="sub">per year (Year 1)</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="lbl">Equity offered</div>
+    <div class="val">25%</div>
+    <div class="sub">of SPV ownership</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="lbl">Partner IRR</div>
+    <div class="val">8–15%</div>
+    <div class="sub">with / without bank</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="lbl">Land tenure</div>
+    <div class="val">33yr</div>
+    <div class="sub">Government lease · signed</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- LEFT COL -->
+  <div>
+    <!-- PROJECT OVERVIEW -->
+    <div class="sh">The Project</div>
+    <ul class="facts" style="list-style:none">
+      <li><span class="dot"></span><span><strong>45.21 MW</strong> across 11 sub-projects in Avdellero, Larnaca — 7 projects (31.5 MW) ready to build immediately, 4 Agri-PV projects (13.7 MW) permitted in ~3 months</span></li>
+      <li><span class="dot"></span><span><strong>Fully licensed:</strong> All 11 sub-projects hold valid CERA generation licences and environmental approvals. Building permit applications submitted for Solar PV parks.</span></li>
+      <li><span class="dot"></span><span><strong>Grid connection secured:</strong> Preliminary connection terms agreed and deposit paid with EAC. New dedicated transmission substation confirmed (€7.2M, included in project cost).</span></li>
+      <li><span class="dot"></span><span><strong>180.84 MWh battery storage</strong> (4-hour Linyang LFP system) stores curtailed solar for peak evening dispatch — maximising revenue through Cyprus DAM price spread.</span></li>
+      <li><span class="dot"></span><span><strong>Government land lease</strong> at €120,000/yr — 33 years, already signed and 3 years pre-paid. No land acquisition risk.</span></li>
+      <li><span class="dot"></span><span><strong>Developed by Lighthief Cyprus Ltd</strong> — Cyprus-based solar + BESS developer and EPC contractor. Retains 75% of SPV and manages all construction and operations.</span></li>
+    </ul>
+
+    <div style="margin-top:12px">
+      <div class="sh">Cyprus DAM — Price by Dispatch Window (€/MWh)</div>
+      <svg viewBox="0 0 280 118" width="100%" style="display:block;overflow:visible">
+        <!-- grid lines -->
+        <line x1="36" y1="10" x2="36" y2="88" stroke="#E0E6EE" stroke-width="1"/>
+        <line x1="36" y1="88" x2="274" y2="88" stroke="#E0E6EE" stroke-width="1"/>
+        <line x1="36" y1="10" x2="274" y2="10" stroke="#E0E6EE" stroke-width=".5" stroke-dasharray="3,2"/>
+        <line x1="36" y1="34.8" x2="274" y2="34.8" stroke="#E0E6EE" stroke-width=".5" stroke-dasharray="3,2"/>
+        <line x1="36" y1="59.6" x2="274" y2="59.6" stroke="#E0E6EE" stroke-width=".5" stroke-dasharray="3,2"/>
+        <!-- y-axis labels -->
+        <text x="32" y="13" font-size="8" fill="#aaa" text-anchor="end">€250</text>
+        <text x="32" y="37" font-size="8" fill="#aaa" text-anchor="end">€175</text>
+        <text x="32" y="62" font-size="8" fill="#aaa" text-anchor="end">€100</text>
+        <text x="32" y="90" font-size="8" fill="#aaa" text-anchor="end">€0</text>
+        <!-- bar: System avg €200 → height = (200/250)*78 = 62.4px, y = 88-62.4=25.6 -->
+        <rect x="46" y="25.6" width="42" height="62.4" fill="#2B5FA0" rx="2"/>
+        <text x="67" y="22.6" font-size="9" fill="#2B5FA0" text-anchor="middle" font-weight="700">€200</text>
+        <!-- bar: Daytime 06-17h €151 → height = (151/250)*78 = 47.1px, y = 88-47.1=40.9 -->
+        <rect x="102" y="40.9" width="42" height="47.1" fill="#1A365D" rx="2"/>
+        <text x="123" y="37.9" font-size="9" fill="#1A365D" text-anchor="middle" font-weight="700">€151</text>
+        <!-- bar: Evening peak €212 → height = (212/250)*78 = 66.1px, y = 88-66.1=21.9 -->
+        <rect x="158" y="21.9" width="42" height="66.1" fill="#C9A432" rx="2"/>
+        <text x="179" y="18.9" font-size="9" fill="#9C7D22" text-anchor="middle" font-weight="700">€212</text>
+        <!-- bar: Model rate €147 → height = (147/250)*78 = 45.9px, y = 88-45.9=42.1 -->
+        <rect x="214" y="42.1" width="42" height="45.9" fill="#E0E6EE" stroke="#aaa" stroke-width=".5" rx="2"/>
+        <text x="235" y="39.1" font-size="9" fill="#888" text-anchor="middle" font-weight="700">€147</text>
+        <!-- x-axis labels -->
+        <text x="67"  y="101" font-size="8.5" fill="#666" text-anchor="middle">System avg</text>
+        <text x="67"  y="110" font-size="8"   fill="#888" text-anchor="middle">(all hours)</text>
+        <text x="123" y="101" font-size="8.5" fill="#666" text-anchor="middle">Solar hours</text>
+        <text x="123" y="110" font-size="8"   fill="#888" text-anchor="middle">06:00–17:00</text>
+        <text x="179" y="101" font-size="8.5" fill="#666" text-anchor="middle">Evening peak</text>
+        <text x="179" y="110" font-size="8"   fill="#888" text-anchor="middle">17:00–21:00</text>
+        <text x="235" y="101" font-size="8.5" fill="#666" text-anchor="middle">Model rate</text>
+        <text x="235" y="110" font-size="8"   fill="#888" text-anchor="middle">(conservative)</text>
+      </svg>
+      <p style="font-size:9px;color:#aaa;margin-top:0">TSOC Cyprus DAM — 339 trading days Oct 2025–Sep 2026</p>
+    </div>
+
+    <div style="margin-top:12px">
+      <div class="sh">Why Cyprus, Why Now</div>
+      <div class="highlights">
+        <div class="hl"><strong>Island grid dynamics</strong>Isolated grid creates strong evening peak prices — DAM spread of €108/MWh between midday and peak (solar curtailment = BESS opportunity)</div>
+        <div class="hl"><strong>No merchant risk on grid</strong>Cyprus is an EU member — robust regulatory framework. DAM market fully operational since 2014.</div>
+        <div class="hl"><strong>Highest irradiance in EU</strong>1,700+ kWh/kWp annual yield. 300+ sun days per year. Equipment degradation is predictable and slow.</div>
+        <div class="hl"><strong>Government-backed land</strong>33-year lease direct from Republic of Cyprus. No private landlord risk. Annual rent locked at €120K.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COL -->
+  <div>
+    <div class="sh">Investment Returns — Two Structures</div>
+    <div class="return-cards">
+
+      <div class="rc preferred">
+        <div class="rc-head">Option A — Preferred Yield</div>
+        <div class="rc-body">
+          <div class="rc-row"><span class="metric">Annual cash</span><span class="figure ok">€2,000,000</span></div>
+          <div class="rc-row"><span class="metric">Yield on capital</span><span class="figure ok">8.0% p.a.</span></div>
+          <div class="rc-row"><span class="metric">Structure</span><span class="figure" style="font-size:10px">Interest-only, balloon Y15</span></div>
+          <div class="rc-row"><span class="metric">Capital returned</span><span class="figure">Year 15</span></div>
+          <div class="rc-row"><span class="metric">Post-return</span><span class="figure" style="font-size:10px">25% equity ongoing</span></div>
+          <div class="rc-row"><span class="metric">Total 25yr cash</span><span class="figure ok">~€50M+</span></div>
+        </div>
+      </div>
+
+      <div class="rc waterfall">
+        <div class="rc-head">Option B — Waterfall</div>
+        <div class="rc-body">
+          <div class="rc-row"><span class="metric">Cash Y1</span><span class="figure ok">€4,097,000</span></div>
+          <div class="rc-row"><span class="metric">Cash-on-cash Y1</span><span class="figure ok">16.4%</span></div>
+          <div class="rc-row"><span class="metric">Structure</span><span class="figure" style="font-size:10px">All FCFE until repaid</span></div>
+          <div class="rc-row"><span class="metric">Capital payback</span><span class="figure ok">~Year 6</span></div>
+          <div class="rc-row"><span class="metric">IRR (25yr)</span><span class="figure ok">~13–14%</span></div>
+          <div class="rc-row"><span class="metric">Post-payback</span><span class="figure" style="font-size:10px">25% equity ongoing</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ANNUAL FINANCIALS CHART -->
+    <div style="margin-top:12px">
+      <div class="sh">Annual Income · Costs · ROI</div>
+      <div style="margin-top:6px">
+
+        <!-- Annual Income -->
+        <div style="margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+            <span style="font-size:10px;font-weight:700;color:var(--navy)">Annual Income</span>
+            <span style="font-size:12px;font-weight:800;color:var(--navy)">€8,738,000</span>
+          </div>
+          <div style="background:#EEF1F6;border-radius:3px;height:14px;overflow:hidden">
+            <div style="width:100%;height:100%;background:var(--navy);border-radius:3px;display:flex;align-items:center;padding-left:8px">
+              <span style="font-size:8.5px;color:rgba(255,255,255,.8)">69,932 MWh/yr × €147 net · after 15% aggregator</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Annual Costs -->
+        <div style="margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+            <span style="font-size:10px;font-weight:700;color:#8B1A1A">Annual Costs (OPEX)</span>
+            <span style="font-size:12px;font-weight:800;color:#8B1A1A">€1,156,000</span>
+          </div>
+          <div style="background:#EEF1F6;border-radius:3px;height:14px;overflow:hidden">
+            <div style="width:13.2%;height:100%;background:#C04848;border-radius:3px;display:flex;align-items:center;padding-left:6px;min-width:60px">
+              <span style="font-size:8.5px;color:#fff">O&M · LTSA · lease</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EBITDA -->
+        <div style="margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+            <span style="font-size:10px;font-weight:700;color:#1A6B3C">EBITDA</span>
+            <span style="font-size:12px;font-weight:800;color:#1A6B3C">€7,582,000 <span style="font-size:9px;font-weight:600">(86.8% margin)</span></span>
+          </div>
+          <div style="background:#EEF1F6;border-radius:3px;height:14px;overflow:hidden">
+            <div style="width:86.8%;height:100%;background:#1A6B3C;border-radius:3px;display:flex;align-items:center;padding-left:8px">
+              <span style="font-size:8.5px;color:rgba(255,255,255,.85)">Income minus OPEX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Distributable cash -->
+        <div style="margin-bottom:6px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+            <span style="font-size:10px;font-weight:700;color:var(--gold-light);filter:brightness(0.8)">Free Cash (after debt &amp; tax)</span>
+            <span style="font-size:12px;font-weight:800;color:var(--gold-dark)">€4,097,000</span>
+          </div>
+          <div style="background:#EEF1F6;border-radius:3px;height:14px;overflow:hidden">
+            <div style="width:46.9%;height:100%;background:var(--gold);border-radius:3px;display:flex;align-items:center;padding-left:8px">
+              <span style="font-size:8.5px;color:var(--navy);font-weight:700">Available to distribute</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROI line -->
+        <div style="background:var(--navy);border-radius:4px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+          <div style="text-align:center;flex:1;border-right:1px solid rgba(255,255,255,.2);padding-right:8px">
+            <div style="color:var(--gold);font-size:14px;font-weight:800">8.1%</div>
+            <div style="color:rgba(255,255,255,.7);font-size:8.5px">Partner IRR<br>with bank</div>
+          </div>
+          <div style="text-align:center;flex:1;border-right:1px solid rgba(255,255,255,.2);padding:0 8px">
+            <div style="color:var(--gold);font-size:14px;font-weight:800">15.0%</div>
+            <div style="color:rgba(255,255,255,.7);font-size:8.5px">Partner IRR<br>no bank</div>
+          </div>
+          <div style="text-align:center;flex:1;padding-left:8px">
+            <div style="color:var(--gold);font-size:14px;font-weight:800">Y4–6</div>
+            <div style="color:rgba(255,255,255,.7);font-size:8.5px">Capital payback<br>(waterfall)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- INVESTMENT STRUCTURE -->
+    <div style="margin-top:12px">
+      <div class="sh">Capital Structure</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;margin-top:4px">
+        <div style="background:var(--navy);color:#fff;border-radius:4px;padding:8px 6px">
+          <div style="font-size:15px;font-weight:800;color:var(--gold)">46%</div>
+          <div style="font-size:9px;margin-top:2px;opacity:.8">Senior debt<br>Alpha Bank 4.12%</div>
+        </div>
+        <div style="background:var(--gold);color:var(--navy);border-radius:4px;padding:8px 6px">
+          <div style="font-size:15px;font-weight:800">34%</div>
+          <div style="font-size:9px;margin-top:2px;font-weight:600">Equity partner<br>€25M → 25% SPV</div>
+        </div>
+        <div style="background:#E8F0FF;color:var(--navy);border-radius:4px;padding:8px 6px;border:1.5px solid var(--navy)">
+          <div style="font-size:15px;font-weight:800">20%</div>
+          <div style="font-size:9px;margin-top:2px">Lighthief equity<br>75% SPV control</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT TIMELINE -->
+    <div style="margin-top:12px">
+      <div class="sh">Construction Timeline</div>
+      <div class="timeline">
+        <div class="tl-step">
+          <div class="tl-circle">1</div>
+          <div class="tl-text"><strong>Now</strong>RTB acquisition, financial close</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-circle">2</div>
+          <div class="tl-text"><strong>M1–6</strong>31.5 MW construction starts. 13.7 MW permits arrive.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-circle">3</div>
+          <div class="tl-text"><strong>M9–15</strong>All 45 MW energised. BESS commissioned.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-circle">4</div>
+          <div class="tl-text"><strong>M16+</strong>Full DAM revenue. Distributions begin.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL WIDTH — SECURITY & HIGHLIGHTS -->
+  <div class="full" style="margin-top:4px">
+    <div class="sh">Investment Security &amp; Key Protections</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <div class="hl"><strong>Licensed asset</strong>All 11 CERA generation licences issued. Environmental approvals complete. Grid connection terms accepted and deposit paid.</div>
+      <div class="hl"><strong>Government land</strong>33-year lease with Republic of Cyprus. Annual rent €120K — already signed and 3 years prepaid. No private landlord exposure.</div>
+      <div class="hl"><strong>Senior EPC developer</strong>Lighthief Cyprus Ltd retains 75% and self-performs all construction and O&amp;M. Aligned incentives — developer's capital is at risk alongside investor.</div>
+      <div class="hl"><strong>Linyang BESS (Tier 1)</strong>LFP chemistry, TÜV EN 50549-2 certified. 7,000-cycle life. 15-year warranty available. Global installed base exceeding 10 GWh.</div>
+    </div>
+  </div>
+
+</div><!-- /body -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    <strong>Lighthief Cyprus Ltd</strong> &bull; HE 477423 &bull; solarfarms.cy<br>
+    15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus
+  </div>
+  <div style="display:flex;gap:28px">
+    <div style="text-align:right;color:rgba(255,255,255,.7);font-size:9px;line-height:1.8">
+      <strong style="color:#C9A432;display:block">Dr. Arkadius Sybaris</strong>
+      Founder &amp; CEO, Lighthief<br>
+      a.sybaris@lighthief.com
+    </div>
+    <div style="text-align:right;color:rgba(255,255,255,.7);font-size:9px;line-height:1.8">
+      <strong style="color:#C9A432;display:block">Alexander Papacosta</strong>
+      Cyprus Director<br>
+      +357 99 164 158 &bull; office@lighthief.com
+    </div>
+    <div style="text-align:right;color:rgba(255,255,255,.7);font-size:9px;line-height:1.8">
+      <strong style="color:#C9A432;display:block">Michael Shapiro</strong>
+      Investor Relations<br>
+      [email] &bull; [phone]
+    </div>
+  </div>
+</div>
+<div class="disclaimer">
+  This document is provided for information purposes only and does not constitute an offer or invitation to invest. Project figures are based on current DAM data and cost estimates — subject to due diligence and final underwriting. Past market performance is not a guarantee of future returns. Project is subject to unsold.
+</div>
+
+</body>
+</html>

@@ -58,10 +58,10 @@ const assumptions = [
     category: "Financial Assumptions", 
     items: [
       "Electricity rates: €0.15-0.35/kWh (market range)",
-      "Operating costs: 5-20% of revenue (configurable)",
+      "Operating costs: model OPEX (PV €9k/MW + BESS LTSA €2,200/MWh), sensitivity 50–150%",
       "Discount rate: 8% (for NPV calculations)",
       "Project lifetime: 25 years (standard warranty)",
-      "Construction cost: €640k-1.2M/MW (PV EPC client pricing)"
+      "Construction cost: €600k/MW fixed or €780k/MW tracker PV EPC; €1.70–1.88M/MW all-in with 4h BESS"
     ]
   },
   {

@@ -3,21 +3,19 @@
 Cyprus PV + 4h BESS Investor Pack — 1 / 5 / 10 MW
 =================================================
 Two PV configurations per size:
-  A) Fixed Bifacial                        — 1,850 kWh/kWp (client-tested)
-  B) Single-Axis Tracker + Bifacial + White Albedo — 2,450 kWh/kWp (client-tested)
+  A) Fixed Bifacial                        — 1,800 kWh/kWp
+  B) Single-Axis Tracker 2P Bifacial       — 2,200 kWh/kWp
 
 Outputs:
   1. Excel financial model with yellow INPUT cells (modifiable)
   2. Client-facing HTML one-pager (A4 print)
 
-SSOT sources (all figures codebase-grounded — do not invent):
-  lib/deals/rtb-deal-types.ts          — DAM daytime €140.88, RTE 86.32%, capture 87.4%,
-                                          curtailment 50%, PV EPC €720k/MWp, BESS EPC €127k/MWh
-  lib/portfolio-data.ts                — LTSA Tier C €1,740/MWh/yr
-  lib/constants.ts                     — COMPANY_DATA, RTB €350k/MW
-  docs/internal/konia-epc-cost-model.md — tracker adder +€90k/MW; tracker vs fixed O&M
-  market/data/market-data.json         — evening discharge €210/MWh (18:00–21:00 avg,
-                                          Oct 2025–Jul 2026, deduped half-hourly MCP)
+SSOT: lib/public-hybrid-ssot.ts
+  Public PV EPC = 20% on self-cost (€500k → €600k fixed; €650k → €780k tracker)
+  RTB €450k/MW · EAC connection €150k/MW · 4h BESS €125k/MWh
+  PV O&M €9k/MWp · BESS LTSA €2,200/MWh/yr
+  DAM 339-day TSOC sample: daytime €151.38 / evening €212.42
+  50% curtailment · 95% capture · RTE 86.32%
 
 Revenue model: merchant hybrid (curtailment recovery)
   Uncurtailed PV → DAM daytime  |  Curtailed PV → BESS (€0 charge) → evening discharge
@@ -74,21 +72,18 @@ thin = Border(
 # ── SSOT defaults (mirrored into Inputs sheet) ────────────────────────────────
 DEFAULTS = {
     # Technical (shared)
-    "curtailment_pct": 0.50,        # BESS_DEFAULTS.curtailmentPct
-    "capture_pct": 0.874,           # BESS_DEFAULTS.capturePct (Galascope 365-day)
-    "rte": 0.8632,                  # BESS_DEFAULTS.rteAcAc
-    "full_cycle_days": 280,         # BESS_DEFAULTS.fullCycleDaysPerYear
+    "curtailment_pct": 0.50,
+    "capture_pct": 0.95,            # Avdellero public capture
+    "rte": 0.8632,
+    "full_cycle_days": 280,
     "duration_h": 4,
-    # Prices
-    "dam_day": 140.88,              # DAM.daytimeEURPerMWh (06–17h). Full 9.5m dataset = €123.37
-    "dam_evening": 210.0,           # market-data.json 18:00–21:00 avg, Oct'25–Jul'26 (deduped)
-    # CAPEX unit rates
-    "bess_epc_per_mwh": 127_000,    # LH_EPC.bessPerMWh (official SSOT)
-    "rtb_per_mw": 350_000,          # constants INVESTMENT_SIZES rtbCost
-    "connection_per_mw": 0,         # EAC terms — site-specific (flexible teaser often €80k/MW)
-    "other_capex": 0,               # MV cable / permitting / contingency
-    # OPEX
-    "bess_ltsa_per_mwh": 1_740,     # LTSA.tierC.ratePerMWh
+    "dam_day": 151.38,              # CYPRUS_TSOC_DAM_SAMPLE daytime 06–17h
+    "dam_evening": 212.42,          # CYPRUS_TSOC_DAM_SAMPLE evening peak
+    "bess_epc_per_mwh": 125_000,    # Avdellero 4h installed (CIF €100k + EPC €25k)
+    "rtb_per_mw": 450_000,
+    "connection_per_mw": 150_000,   # Indicative EAC connection
+    "other_capex": 0,
+    "bess_ltsa_per_mwh": 2_200,     # Public LTSA
     "scada_pa": 5_000,
     "admin_pa": 10_000,
     "land_lease_1": 8_000,
@@ -106,9 +101,6 @@ DEFAULTS = {
     "horizon_years": 20,
     "pv_degradation": 0.005,
     "bess_degradation": 0.025,
-    # Extended warranty (disclosure — paid to OEM from Yr 6)
-    "ext_war_6_10": 1_661.68,
-    "ext_war_11_15": 2_083.72,
 }
 
 # PV configurations — yield & EPC & O&M are config-specific, all codebase-grounded
@@ -116,18 +108,18 @@ PV_CONFIGS = {
     "fixed": {
         "label": "Fixed Bifacial",
         "short": "Fixed",
-        "yield": 1850,              # client-tested Year-1
-        "pv_epc": 720_000,          # LH_EPC.pvPerMWp
-        "pv_om": 15_000,            # PV_DEFAULTS.omPerMWPerYear
-        "note": "Fixed-tilt bifacial (1,850 kWh/kWp)",
+        "yield": 1800,
+        "pv_epc": 600_000,
+        "pv_om": 9_000,
+        "note": "Fixed-tilt bifacial (1,800 kWh/kWp)",
     },
     "tracker": {
-        "label": "Single-Axis Tracker · Bifacial · White Albedo",
+        "label": "Single-Axis Tracker · Bifacial 2P",
         "short": "Tracker",
-        "yield": 2450,              # client-tested Year-1
-        "pv_epc": 810_000,          # €720k + €90k/MW tracker adder (konia-epc-cost-model Rev C)
-        "pv_om": 20_000,            # €15k × Konia tracker/fixed O&M ratio (8,900/6,600 ≈ 1.35)
-        "note": "Single-axis tracker, bifacial, white albedo (2,450 kWh/kWp)",
+        "yield": 2200,
+        "pv_epc": 780_000,
+        "pv_om": 9_000,
+        "note": "2P one-axis tracker, bifacial (2,200 kWh/kWp)",
     },
 }
 
@@ -150,7 +142,7 @@ CONTACT = {
 }
 
 REF = "INV-CY-PVBESS-1-5-10-2026"
-DATE_STR = "July 2026"
+DATE_STR = "September 2026"
 
 
 def annuity_factor(rate: float, years: int) -> float:
@@ -203,12 +195,7 @@ def calc_scenario(size: dict, cfg: dict, d: dict) -> dict:
         deg_b = (1 - d["bess_degradation"]) ** (y - 1)
         g = solar_rev * deg_pv + bess_rev * min(deg_pv, deg_b)
         n = g * (1 - d["aggregator_pct"])
-        o = opex
-        if 6 <= y <= 10:
-            o += mwh * d["ext_war_6_10"]
-        elif y >= 11:
-            o += mwh * d["ext_war_11_15"]
-        e = n - o
+        e = n - opex
         svc_y = svc if y <= d["loan_years"] else 0.0
         tax_y = max(0.0, e - svc_y - da) * d["cit_pct"]
         cashflows.append(e - svc_y - tax_y)
@@ -360,32 +347,32 @@ def build_excel(results: list[dict], d: dict) -> None:
     fx, tk = PV_CONFIGS["fixed"], PV_CONFIGS["tracker"]
 
     section("PV CONFIGURATION A — FIXED BIFACIAL")
-    _input_cell(ws, r, "Fixed — specific yield", fx["yield"], "kWh/kWp/yr", "Client-tested Year-1", name_row, "yield_fixed"); r += 1
-    _input_cell(ws, r, "Fixed — PV EPC turnkey", fx["pv_epc"], "€/MWp", "LH_EPC.pvPerMWp", name_row, "pvepc_fixed"); r += 1
-    _input_cell(ws, r, "Fixed — PV O&M", fx["pv_om"], "€/MW/yr", "PV_DEFAULTS.omPerMWPerYear", name_row, "pvom_fixed"); r += 1
+    _input_cell(ws, r, "Fixed — specific yield", fx["yield"], "kWh/kWp/yr", "Public SSOT — fixed bifacial", name_row, "yield_fixed"); r += 1
+    _input_cell(ws, r, "Fixed — PV EPC turnkey", fx["pv_epc"], "€/MWp", "Public turnkey EPC", name_row, "pvepc_fixed"); r += 1
+    _input_cell(ws, r, "Fixed — PV O&M", fx["pv_om"], "€/MW/yr", "Public PV O&M", name_row, "pvom_fixed"); r += 1
 
     section("PV CONFIGURATION B — TRACKER + BIFACIAL + WHITE ALBEDO")
-    _input_cell(ws, r, "Tracker — specific yield", tk["yield"], "kWh/kWp/yr", "Client-tested Year-1", name_row, "yield_tracker"); r += 1
-    _input_cell(ws, r, "Tracker — PV EPC turnkey", tk["pv_epc"], "€/MWp", "€720k + €90k/MW tracker adder (konia-epc-cost-model)", name_row, "pvepc_tracker"); r += 1
-    _input_cell(ws, r, "Tracker — PV O&M", tk["pv_om"], "€/MW/yr", "€15k × Konia tracker/fixed O&M ratio", name_row, "pvom_tracker"); r += 1
+    _input_cell(ws, r, "Tracker — specific yield", tk["yield"], "kWh/kWp/yr", "Public SSOT — 2P tracker bifacial", name_row, "yield_tracker"); r += 1
+    _input_cell(ws, r, "Tracker — PV EPC turnkey", tk["pv_epc"], "€/MWp", "Public turnkey EPC", name_row, "pvepc_tracker"); r += 1
+    _input_cell(ws, r, "Tracker — PV O&M", tk["pv_om"], "€/MW/yr", "Public PV O&M", name_row, "pvom_tracker"); r += 1
 
     section("BESS & TECHNICAL")
     _input_cell(ws, r, "BESS duration", d["duration_h"], "hours", "4-hour system (MW = MWh/4)", name_row, "duration_h"); r += 1
     _input_cell(ws, r, "Curtailment baseline", d["curtailment_pct"], "%", "BESS_DEFAULTS 2027 baseline", name_row, "curtailment_pct", is_pct=True); r += 1
-    _input_cell(ws, r, "BESS capture of curtailment", d["capture_pct"], "%", "Galascope 365-day 87.4%", name_row, "capture_pct", is_pct=True); r += 1
+    _input_cell(ws, r, "BESS capture of curtailment", d["capture_pct"], "%", "Avdellero public capture 95%", name_row, "capture_pct", is_pct=True); r += 1
     _input_cell(ws, r, "RTE AC–AC", d["rte"], "%", "BESS_DEFAULTS.rteAcAc", name_row, "rte", is_pct=True); r += 1
     _input_cell(ws, r, "Full-cycle days / year", d["full_cycle_days"], "days", "Curtailment-active days Cyprus", name_row, "full_cycle_days"); r += 1
 
     section("PRICES (market data)")
-    _input_cell(ws, r, "DAM daytime (uncurtailed PV)", d["dam_day"], "€/MWh", "DAM.daytimeEURPerMWh 06–17h; full dataset €123.37", name_row, "dam_day"); r += 1
-    _input_cell(ws, r, "Evening discharge (BESS)", d["dam_evening"], "€/MWh", "market-data.json 18–21h avg Oct'25–Jul'26; winter €184", name_row, "dam_evening"); r += 1
+    _input_cell(ws, r, "DAM daytime (uncurtailed PV)", d["dam_day"], "€/MWh", "TSOC DAM 339-day sample 06–17h (to 4 Sep 2026)", name_row, "dam_day"); r += 1
+    _input_cell(ws, r, "Evening discharge (BESS)", d["dam_evening"], "€/MWh", "TSOC DAM 339-day sample evening peak", name_row, "dam_evening"); r += 1
 
     section("CAPEX (shared) & OPEX")
-    _input_cell(ws, r, "BESS EPC installed", d["bess_epc_per_mwh"], "€/MWh", "LH_EPC.bessPerMWh", name_row, "bess_epc"); r += 1
-    _input_cell(ws, r, "RTB / development", d["rtb_per_mw"], "€/MW", "constants INVESTMENT_SIZES", name_row, "rtb_per_mw"); r += 1
-    _input_cell(ws, r, "EAC connection terms", d["connection_per_mw"], "€/MW", "Site-specific; flexible teaser €80k/MW", name_row, "connection_per_mw"); r += 1
+    _input_cell(ws, r, "BESS EPC installed", d["bess_epc_per_mwh"], "€/MWh", "4h LFP installed", name_row, "bess_epc"); r += 1
+    _input_cell(ws, r, "RTB / development", d["rtb_per_mw"], "€/MW", "Public RTB acquisition", name_row, "rtb_per_mw"); r += 1
+    _input_cell(ws, r, "EAC connection terms", d["connection_per_mw"], "€/MW", "Indicative EAC connection", name_row, "connection_per_mw"); r += 1
     _input_cell(ws, r, "Other CAPEX (flat)", d["other_capex"], "€", "MV cable / permitting / contingency", name_row, "other_capex"); r += 1
-    _input_cell(ws, r, "BESS LTSA Tier C (Yr 1–5)", d["bess_ltsa_per_mwh"], "€/MWh/yr", "LTSA.tierC.ratePerMWh", name_row, "ltsa"); r += 1
+    _input_cell(ws, r, "BESS LTSA", d["bess_ltsa_per_mwh"], "€/MWh/yr", "Public LTSA — all years (no OEM extended warranty in model)", name_row, "ltsa"); r += 1
     _input_cell(ws, r, "SCADA / EMS", d["scada_pa"], "€/yr", "", name_row, "scada"); r += 1
     _input_cell(ws, r, "Admin", d["admin_pa"], "€/yr", "", name_row, "admin"); r += 1
     _input_cell(ws, r, "Land lease — 1 MW", d["land_lease_1"], "€/yr", "Indicative; site-specific", name_row, "land_lease_1"); r += 1
@@ -490,12 +477,11 @@ def build_excel(results: list[dict], d: dict) -> None:
     sm.cell(row=nr, column=1, value="Notes").font = Font(name="Calibri", bold=True, size=11, color=GOLD)
     notes = [
         "Revenue = uncurtailed PV at DAM daytime + curtailed energy stored (charge €0) and discharged at evening price.",
-        "Evening discharge €210/MWh = 18:00–21:00 average from market/data/market-data.json (Oct 2025–Jul 2026, deduped).",
-        "  Seasonality: winter (Oct–Feb) €179–194, spring (Mar–May) €240–260. Winter-only ≈ €184 as conservative sensitivity.",
-        "Fixed PV EPC €720k/MWp (LH_EPC). Tracker €810k/MWp = €720k + €90k/MW adder (konia-epc-cost-model).",
-        "BESS EPC €127k/MWh (LH_EPC). LTSA €1,740/MWh/yr (portfolio-data). PV O&M €15k fixed / €20k tracker per MW/yr.",
+        "Evening discharge €212.42/MWh = TSOC DAM 339-day sample evening peak (1 Oct 2025–4 Sep 2026).",
+        "Fixed PV EPC €600k/MWp. Tracker €780k/MWp. RTB €450k/MW. EAC connection €150k/MW.",
+        "BESS EPC €125k/MWh installed 4h. LTSA €2,200/MWh/yr. PV O&M €9k/MW/yr.",
         "Cyprus rule: BESS cannot yet buy from DAM — no arbitrage. Capacity/ancillary = €0 (upside).",
-        "20y IRR/NPV include PV & BESS degradation and OEM extended warranty from Year 6. Indicative, non-binding, ex-VAT.",
+        "20y IRR/NPV include PV & BESS degradation. OPEX is PV O&M + BESS LTSA only (no OEM extended warranty). Indicative, non-binding, ex-VAT.",
         f"Contact: {CONTACT['director']}, {CONTACT['title']} · {CONTACT['phone']} · {CONTACT['email']}",
     ]
     for i, n in enumerate(notes):
@@ -586,7 +572,7 @@ def build_excel(results: list[dict], d: dict) -> None:
     cf = wb.create_sheet("Cashflow_20y")
     cf["A1"] = "20-Year Equity Cashflow (computed from Inputs defaults; re-run script to refresh)"
     cf["A1"].font = Font(name="Calibri", bold=True, size=12, color=GOLD)
-    cf["A2"] = "Includes PV & BESS degradation and OEM extended warranty from Year 6."
+    cf["A2"] = "Includes PV & BESS degradation. Recurring OPEX is PV O&M + BESS LTSA only (OEM extended warranty excluded)."
     cf["A2"].font = _font(size=9, color=GREY)
 
     cf.cell(row=4, column=1, value="Year").fill = HDR_FILL
@@ -630,15 +616,15 @@ def build_excel(results: list[dict], d: dict) -> None:
         c.fill = HDR_FILL
         c.font = _font(bold=True, color=WHITE)
     rows = [
-        ("Evening discharge €210", "market/data/market-data.json", "18–21h avg Oct'25–Jul'26 (13,582 deduped prints)"),
-        ("DAM daytime €140.88", "lib/deals/rtb-deal-types.ts → DAM", "06–17h; full dataset 06–17h = €123.37"),
-        ("RTE / capture / curtailment", "rtb-deal-types.ts → BESS_DEFAULTS", "86.32% / 87.4% / 50%"),
-        ("Fixed PV EPC €720k/MWp", "rtb-deal-types.ts → LH_EPC.pvPerMWp", "Bifacial fixed, ~5MWp scale"),
-        ("Tracker PV EPC €810k/MWp", "docs/internal/konia-epc-cost-model.md", "€720k + €90k/MW tracker adder"),
-        ("BESS EPC €127k/MWh", "rtb-deal-types.ts → LH_EPC.bessPerMWh", "Tier-1 LFP installed"),
-        ("PV O&M €15k / €20k", "PV_DEFAULTS + konia O&M ratio", "Fixed €15k; tracker +~35%"),
-        ("BESS LTSA €1,740/MWh/yr", "lib/portfolio-data.ts → LTSA.tierC", "Tier C, Yr 1–5"),
-        ("RTB €350k/MW", "lib/constants.ts → INVESTMENT_SIZES", ""),
+        ("Evening discharge €212.42", "lib/market/cyprus-tsoc-dam-sample.ts", "339 TSOC DAM days to 4 Sep 2026"),
+        ("DAM daytime €151.38", "lib/market/cyprus-tsoc-dam-sample.ts", "06:00–17:00 average"),
+        ("RTE / capture / curtailment", "lib/public-hybrid-ssot.ts", "86.32% / 95% / 50%"),
+        ("Fixed PV EPC €600k/MWp", "lib/public-hybrid-ssot.ts", "Public turnkey EPC"),
+        ("Tracker PV EPC €780k/MWp", "lib/public-hybrid-ssot.ts", "Public turnkey EPC"),
+        ("BESS EPC €125k/MWh", "lib/public-hybrid-ssot.ts", "4h LFP installed"),
+        ("PV O&M €9k/MW/yr", "lib/public-hybrid-ssot.ts", "Public O&M"),
+        ("BESS LTSA €2,200/MWh/yr", "lib/public-hybrid-ssot.ts", "Public LTSA"),
+        ("RTB €450k/MW + connection €150k/MW", "lib/public-hybrid-ssot.ts", ""),
         ("CIT 15% / aggregator 10%", "PV_DEFAULTS", "From 1 Jan 2026"),
         ("Yields 1,850 / 2,450", "Client-tested Year-1", "Fixed bifacial / tracker+bifacial+albedo"),
         ("Contact", "lib/constants.ts → COMPANY_DATA", f"{CONTACT['email']} / {CONTACT['phone']}"),
@@ -772,18 +758,18 @@ def build_html(results: list[dict], d: dict) -> None:
         <li><strong>Uncurtailed PV</strong> sold on TSOC DAM daytime (~&euro;{d['dam_day']:.0f}/MWh)</li>
         <li><strong>Curtailed PV</strong> (~{d['curtailment_pct']*100:.0f}%) charges the BESS at &euro;0 energy cost</li>
         <li><strong>Evening discharge</strong> at &euro;{d['dam_evening']:.0f}/MWh &mdash; the actual 18:00&ndash;21:00 DAM average from our market data</li>
-        <li>RTE {d['rte']*100:.1f}% · curtailment capture {d['capture_pct']*100:.1f}% (Galascope-calibrated)</li>
+        <li>RTE {d['rte']*100:.1f}% · curtailment capture {d['capture_pct']*100:.0f}%</li>
         <li>No DAM arbitrage yet under Cyprus rules &mdash; capacity products = upside</li>
       </ul>
     </div>
     <div>
       <h2>Key assumptions (all in-house rates)</h2>
       <ul class="bullets">
-        <li>Fixed PV EPC &euro;720k/MWp · Tracker &euro;810k/MWp</li>
-        <li>BESS EPC &euro;127k/MWh installed 4h LFP</li>
-        <li>RTB / development &euro;350k/MW</li>
-        <li>PV O&amp;M &euro;15k (fixed) / &euro;20k (tracker) per MW/yr</li>
-        <li>BESS LTSA &euro;1,740/MWh/yr · aggregator 10% · CIT 15%</li>
+        <li>Fixed PV EPC &euro;600k/MWp · Tracker &euro;780k/MWp</li>
+        <li>BESS EPC &euro;125k/MWh installed 4h LFP</li>
+        <li>RTB &euro;450k/MW · EAC connection &euro;150k/MW</li>
+        <li>PV O&amp;M &euro;9k per MW/yr</li>
+        <li>BESS LTSA &euro;2,200/MWh/yr · aggregator 10% · CIT 15%</li>
         <li>100% equity base case (model supports leverage)</li>
       </ul>
       <div class="contact">
@@ -795,9 +781,10 @@ def build_html(results: list[dict], d: dict) -> None:
   </div>
 
   <div class="note">
-    Indicative, non-binding Year-1 figures for discussion only (100% equity, ex-VAT). Evening discharge &euro;{d['dam_evening']:.0f}/MWh is the
-    18:00&ndash;21:00 DAM average over Oct 2025&ndash;Jul 2026 (winter ~&euro;184, spring &euro;240&ndash;260). Land lease, EAC connection, and grid works are
-    site-specific and will adjust CAPEX and returns. 20-year IRR / NPV with degradation and OEM warranty from Year 6 are in the accompanying Excel model
+    Indicative, non-binding Year-1 figures for discussion only (100% equity, ex-VAT). DAM daytime &euro;{d['dam_day']:.0f}/MWh
+    and evening discharge &euro;{d['dam_evening']:.0f}/MWh from the TSOC 339-day sample (1 Oct 2025&ndash;4 Sep 2026).
+    Land lease is site-specific. EAC connection is included at &euro;150k/MW indicative.
+    20-year IRR / NPV with degradation (LTSA only — no OEM extended warranty) are in the accompanying Excel model
     (yellow input cells fully editable): <em>cyprus-pv-bess-1-5-10mw-financial-model.xlsx</em>
   </div>
 

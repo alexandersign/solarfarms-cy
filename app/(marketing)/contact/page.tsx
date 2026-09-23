@@ -126,7 +126,7 @@ const offices = [
 const faqs = [
   {
     question: "What is the minimum investment amount?",
-    answer: "A turnkey 1 MW solar + 4 MWh BESS project starts at approximately €1.75M all-in (PV EPC, BESS, and ready-to-build permitting). PV-only EPC starts from around €640K per MW. Contact us to discuss financing options — up to 70% debt is available for solar+BESS projects."
+    answer: "A turnkey 1 MW solar + 4 MWh BESS project starts at approximately €1.70M all-in (fixed bifacial: PV EPC, 4-hour BESS, RTB, and indicative EAC connection). Tracker configuration is approximately €1.88M. PV-only EPC starts from €600k per MW (fixed) or €780k per MW (tracker). Contact us to discuss financing options — up to 70% debt is available for solar+BESS projects."
   },
   {
     question: "How long does the investment process take?",

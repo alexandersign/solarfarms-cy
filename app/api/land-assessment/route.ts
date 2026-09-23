@@ -12,7 +12,7 @@ import {
   extractTitleDeedFromFile,
   mergeTitleExtractIntoAssessment,
   type TitleDeedExtract,
-} from '@/lib/title-deed-extract'
+import { publicAllInPerMW } from '@/lib/public-hybrid-ssot'
 
 // Validation schema for land assessment
 const landAssessmentSchema = z.object({
@@ -221,10 +221,7 @@ function formatAssessmentResults(
     ? dls.eastWest 
     : dls.southFacing
   
-  // Calculate financial projections
-  // PV+BESS All-In Client: ~€1.44M/MW (5MW scale with 4h BESS)
-  // Based on: PV EPC (self-cost + €100k/MW) + BESS (+17.4%) + RTB (€350k/MW)
-  const investmentPerMW = 1440000 // €1.44M per MW (PV+BESS All-In Client)
+  const investmentPerMW = publicAllInPerMW('fixed')
   const totalInvestment = bestEstimate.capacityMW * investmentPerMW
   const rtbValue = totalInvestment
   

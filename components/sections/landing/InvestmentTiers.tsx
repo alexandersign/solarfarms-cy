@@ -7,38 +7,32 @@ import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/ui/
 import { ArrowRight, MapPin } from 'lucide-react'
 import { getFeaturedListings } from '@/lib/investment-listings'
 
-const tiers = [
-  {
-    size: '1 MW',
-    label: 'Entry',
-    subtitle: '+ 4 MWh BESS',
-    investment: '~€1.74M',
-    annual: '€200K – €280K',
-    irr: '8–13%',
-    npv: '€2.0M – €3.5M',
-    popular: false,
-  },
-  {
-    size: '5 MW',
-    label: 'Most Popular',
-    subtitle: '+ 20 MWh BESS',
-    investment: '~€7.37M',
-    annual: '€1.0M – €1.4M',
-    irr: '8–13%',
-    npv: '€10M – €17.5M',
-    popular: true,
-  },
-  {
-    size: '10 MW',
-    label: 'Institutional',
-    subtitle: '+ 40 MWh BESS',
-    investment: '~€14.04M',
-    annual: '€2.0M – €2.8M',
-    irr: '8–13%',
-    npv: '€20M – €35M',
-    popular: false,
-  },
-]
+import { publicHybridCase } from '@/lib/public-hybrid-ssot'
+
+function eurM(n: number) {
+  return `€${(n / 1_000_000).toFixed(2)}M`
+}
+
+function eurK(n: number) {
+  return `€${Math.round(n / 1000)}K`
+}
+
+const sizeMw = [1, 5, 10] as const
+const tiers = sizeMw.map((mw) => {
+  const fixed = publicHybridCase(mw, 'fixed')
+  const tracker = publicHybridCase(mw, 'tracker')
+  const label = mw === 5 ? 'Most Popular' : mw === 1 ? 'Entry' : 'Institutional'
+  return {
+    size: `${mw} MW`,
+    label,
+    subtitle: `+ ${mw * 4} MWh BESS`,
+    investment: `${eurM(fixed.capex)} – ${eurM(tracker.capex)}`,
+    annual: `${eurK(fixed.gross)} – ${eurK(tracker.gross)}`,
+    irr: `${((fixed.irr20 ?? 0) * 100).toFixed(1)}–${((tracker.irr20 ?? 0) * 100).toFixed(1)}%`,
+    payback: `${Math.min(fixed.simplePayback ?? 99, tracker.simplePayback ?? 99).toFixed(1)}–${Math.max(fixed.simplePayback ?? 99, tracker.simplePayback ?? 99).toFixed(1)} yr`,
+    popular: mw === 5,
+  }
+})
 
 const featured = getFeaturedListings(2)
 
@@ -53,8 +47,8 @@ export function InvestmentTiers() {
               Scalable Solar Farm Investments
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              All-in turnkey pricing: PV EPC + BESS + Ready-to-Build permitting.
-              Transparent financials with optional long-term O&amp;M.
+              All-in turnkey pricing: PV EPC + 4-hour BESS + RTB + indicative EAC connection.
+              Fixed bifacial or 2P tracker. Public O&amp;M and LTSA included in the model.
             </p>
             <div className="mt-6">
               <Button variant="gradient" size="lg" asChild className="focus-visible:ring-2 focus-visible:ring-[#1A365D]">
@@ -132,12 +126,12 @@ export function InvestmentTiers() {
                     <span className="font-semibold text-gray-900">{tier.annual}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="text-gray-500 text-sm">Equity IRR</span>
+                    <span className="text-gray-500 text-sm">20-year IRR</span>
                     <span className="font-semibold text-emerald-600">{tier.irr}</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-500 text-sm">25-Year NPV</span>
-                    <span className="font-semibold text-gray-900">{tier.npv}</span>
+                    <span className="text-gray-500 text-sm">Simple payback</span>
+                    <span className="font-semibold text-gray-900">{tier.payback}</span>
                   </div>
                 </div>
 
@@ -163,8 +157,8 @@ export function InvestmentTiers() {
 
         <AnimatedSection animation="fadeUp" delay={0.3}>
           <p className="text-center text-sm text-gray-400 mt-8">
-            All figures are indicative and based on current TSOC market pricing, typical Cyprus irradiation, and standard financing assumptions.
-            Actual returns depend on site-specific conditions, grid connection timing, and PPA terms.
+            100% equity, current TSOC DAM, 50% curtailment recovery into a 4-hour BESS.
+            Indicative, ex-VAT. Site-specific land lease and grid works can move the ticket.
           </p>
         </AnimatedSection>
       </div>

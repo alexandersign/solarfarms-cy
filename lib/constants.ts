@@ -1,3 +1,9 @@
+import {
+  PUBLIC_HYBRID,
+  PUBLIC_INVESTMENT_SIZES,
+  publicPvSidePerMW,
+} from './public-hybrid-ssot'
+
 // Bank Financing Options (Updated with realistic caps)
 export const FINANCING_OPTIONS = {
   CASH: {
@@ -44,94 +50,39 @@ export const CYPRUS_BANK_RATES = {
   }
 } as const
 
-// Capex Modes - Cyprus Market Pricing (Client Prices)
-// PV EPC Markup: €100,000/MW flat on top of self-cost
-// Self-cost ~€500-540k/MW, Client price ~€600-640k/MW
+// Capex Modes — public EPC (20% on self-cost €500k fixed / €650k tracker)
+// All-in turnkey below is PV + RTB + EAC connection (BESS extra at 4h × €125k/MWh)
 export const CAPEX_MODES = {
   'epc-dev': {
     name: 'EPC Development',
-    pricePerMW: 640000, // Client price (self-cost + €100k/MW markup)
-    description: 'Development from scratch - €640k/MW',
-    financingCap: 500000, // €500k/MW max debt
-    selfCostPerMW: 540000, // Internal reference
-    epcMarkupPerMW: 100000 // €100k/MW flat markup
+    pricePerMW: PUBLIC_HYBRID.pvEpcPublicFixedPerMW,
+    description: `Fixed-tilt public EPC — €${PUBLIC_HYBRID.pvEpcPublicFixedPerMW / 1000}k/MW`,
+    financingCap: 500000,
+    selfCostPerMW: PUBLIC_HYBRID.pvEpcSelfFixedPerMW,
+    epcMarkupPerMW: PUBLIC_HYBRID.pvEpcPublicFixedPerMW - PUBLIC_HYBRID.pvEpcSelfFixedPerMW,
   },
   'turnkey': {
     name: 'Turnkey New Build',
-    pricePerMW: 1090000, // PV EPC (€640k) + RTB (€350k) + contingency
-    description: 'Complete turnkey project - €1.09M/MW',
-    financingCap: 500000
+    pricePerMW: publicPvSidePerMW('fixed'),
+    description: `Fixed PV + RTB + connection — €${publicPvSidePerMW('fixed') / 1000}k/MW (BESS extra)`,
+    financingCap: 500000,
   },
   'rtb-old': {
     name: 'RTB Park (Fixed-Tilt)',
-    pricePerMW: 1090000, // PV EPC (€640k) + RTB (€350k) + contingency
-    description: 'Ready-to-build, older/fixed - €1.09M/MW',
-    financingCap: 500000
+    pricePerMW: publicPvSidePerMW('fixed'),
+    description: `Fixed bifacial public stack — €${publicPvSidePerMW('fixed') / 1000}k/MW`,
+    financingCap: 500000,
   },
   'rtb-new': {
     name: 'RTB Park (Tracking)',
-    pricePerMW: 1200000, // PV EPC (€700k tracking) + RTB (€350k) + contingency
-    description: 'Ready-to-build, new/tracking - €1.2M/MW',
-    financingCap: 500000
-  }
+    pricePerMW: publicPvSidePerMW('tracker'),
+    description: `2P tracker public stack — €${publicPvSidePerMW('tracker') / 1000}k/MW`,
+    financingCap: 500000,
+  },
 } as const
 
-// Investment Constants - PV + BESS All-In Client Pricing
-// Based on: PV EPC (self-cost + €100k/MW) + BESS (15% CIF + 15% EPC margin) + RTB (€350k/MW)
-// See docs/internal/solarpark-epc.md for detailed breakdown
-export const INVESTMENT_SIZES = {
-  "1MW": {
-    minInvestment: 1744000,  // 1 MWp + 4 MWh All-In Client (15% CIF + 15% EPC margin)
-    maxInvestment: 1744000,
-    pvOnlyCost: 730000,      // PV Client: €730k (self-cost €630k + €100k markup)
-    bessCost: 664000,        // BESS Client: 4 MWh @ €166k/MWh (15% margin)
-    rtbCost: 350000,         // RTB: €350k/MW
-    minRevenue: 200000,      // Based on ~2,000 kWh/kWp * €0.19/kWh * 25% curtailment
-    maxRevenue: 280000,      // With optimal performance
-    minROI: 8,               // Conservative with current curtailment
-    maxROI: 13,              // With BESS or better conditions
-    minPayback: 7,           
-    maxPayback: 10,
-    minNPV: 2000000,
-    maxNPV: 3500000,
-    financingCap: 500000,    // €500k/MW max debt (SOLAR ONLY)
-    bessFinancingPct: 70,    // 70% of total for solar+BESS
-  },
-  "5MW": {
-    minInvestment: 7370000,  // 5 MWp + 20 MWh All-In Client (15% CIF + 15% EPC margin)
-    maxInvestment: 7370000,
-    pvOnlyCost: 3200000,     // PV Client: 5 × €640k = €3.2M
-    bessCost: 2420000,       // BESS Client: 20 MWh @ €121k/MWh (15% margin)
-    rtbCost: 1750000,        // RTB: 5 × €350k = €1.75M
-    minRevenue: 1000000,     // Based on real park data with curtailment
-    maxRevenue: 1400000,     // Optimized scenario
-    minROI: 8,               // Conservative 
-    maxROI: 13,              // With BESS (real 5.01MW park shows 13.3%-13.6%)
-    minPayback: 7,
-    maxPayback: 10,
-    minNPV: 10000000,
-    maxNPV: 17500000,
-    financingCap: 2500000,   // €500k/MW * 5MW max debt (SOLAR ONLY)
-    bessFinancingPct: 70,    // 70% of total for solar+BESS
-  },
-  "10MW": {
-    minInvestment: 14041000,  // 10 MWp + 40 MWh All-In Client (15% CIF + 15% EPC margin)
-    maxInvestment: 14041000,
-    pvOnlyCost: 6101000,      // PV Client: 10 × €610k = €6.1M
-    bessCost: 4440000,        // BESS Client: 40 MWh @ €111k/MWh (15% margin)
-    rtbCost: 3500000,         // RTB: 10 × €350k = €3.5M
-    minRevenue: 2000000,      // Scaled from 5MW data
-    maxRevenue: 2800000,
-    minROI: 8,               
-    maxROI: 13,
-    minPayback: 7,
-    maxPayback: 10,
-    minNPV: 20000000,
-    maxNPV: 35000000,
-    financingCap: 5000000,   // €500k/MW * 10MW max debt (SOLAR ONLY)
-    bessFinancingPct: 70,    // 70% of total for solar+BESS
-  },
-} as const
+/** 1 / 5 / 10 MW + 4h BESS public all-in (fixed min → tracker max) */
+export const INVESTMENT_SIZES = PUBLIC_INVESTMENT_SIZES
 
 // Cyprus Solar Data
 export const CYPRUS_SOLAR_DATA = {
@@ -172,12 +123,12 @@ export const COMPANY_DATA = {
     facilities: ["2×8 MW PV farm", "1 MW biogas plant", "BESS systems", "1,000 m² office", "3,500 m² warehouse"]
   },
   constructionCostPerMW: {
-    min: 450000,
-    max: 600000,
+    min: PUBLIC_HYBRID.pvEpcPublicFixedPerMW,
+    max: PUBLIC_HYBRID.pvEpcPublicTrackerPerMW,
   },
   rtbCostPerMW: {
-    min: 450000,
-    max: 600000,
+    min: PUBLIC_HYBRID.rtbPerMW,
+    max: PUBLIC_HYBRID.rtbPerMW,
   },
   address: {
     office: {
@@ -425,19 +376,19 @@ export const CYPRUS_MARKET_DEFAULTS = {
   ppaFixedRate: 0.150,            // €/kWh - Typical fixed PPA rate
   wholesaleAvgRate: 0.200,        // €/kWh - Overall avg MCP €200.23/MWh
   
-  // Curtailment (based on real 2024-2025 data, may decrease with new market mechanisms)
-  curtailmentRate: 0.258,         // 25.8% - 2024 Cyprus average (pre-open market)
+  // Curtailment — public hybrid underwrite (Avdellero / 2027 merchant case)
+  curtailmentRate: 0.50,
   curtailedEnergyRate: 0.00,      // €/kWh - Rate paid for curtailed energy
   curtailmentCompensation: 0.00,  // % compensated under PPA
   
-  // Production
-  annualYield: 1650,              // kWh/kWp - Cyprus typical (1,500-1,800)
-  capacityFactor: 0.22,           // 22% - Cyprus conditions
+  // Production — public SSOT (fixed bifacial). Tracker uses TECHNOLOGY_TYPES multiplier.
+  annualYield: PUBLIC_HYBRID.yieldFixedKwhKwp,
+  capacityFactor: PUBLIC_HYBRID.yieldFixedKwhKwp / 8760,
   annualDegradation: 0.005,       // 0.5% per year
   systemAvailability: 0.99,       // 99% uptime
   
-  // Operating costs (based on real 5MW park data)
-  omCostPerMW: 15000,             // €/MW/year - Lighthief O&M
+  // Operating costs — public O&M
+  omCostPerMW: PUBLIC_HYBRID.pvOmPerMW,
   insurance: 5000,                // €/year
   landLease: 25000,               // €/year - Typical Cyprus lease
   administration: 30000,          // €/year - Management, accounting
@@ -476,7 +427,7 @@ export const BESS_DEFAULTS = {
   epcMarkup: {
     cifMarginPercent: 15,          // CIF equipment: +15% margin
     epcCostsMarginPercent: 15,     // EPC installation costs: +15% margin
-    pvMarkupPerMW: 100000,        // PV: +€100k/MW flat
+    pvMarkupPerMW: PUBLIC_HYBRID.pvEpcPublicFixedPerMW - PUBLIC_HYBRID.pvEpcSelfFixedPerMW,
   },
   
   // O&M costs (€/MWh/year based on LTSA)
@@ -492,7 +443,7 @@ export const BESS_DEFAULTS = {
   
   // Operational parameters
   dailyCycles: 1.0,               // Cycles per day
-  curtailmentRecoveryRate: 0.50,  // 50% of curtailed energy recoverable
+  curtailmentRecoveryRate: 0.95,  // share of curtailed energy captured by 4h BESS
   nightArbitragePremium: 0.105,   // 10.5% premium for evening discharge
   
   // Degradation
@@ -508,9 +459,21 @@ export const PROJECT_STAGES = {
 
 // Technology Options
 export const TECHNOLOGY_TYPES = {
-  FIXED: { name: 'Fixed-Tilt', yieldMultiplier: 1.0, costMultiplier: 1.0 },
-  TRACKER: { name: 'Single-Axis Tracker', yieldMultiplier: 1.15, costMultiplier: 1.15 },
-  BIFACIAL: { name: 'Bifacial + Tracker', yieldMultiplier: 1.25, costMultiplier: 1.25 },
+  FIXED: {
+    name: 'Fixed-Tilt Bifacial',
+    yieldMultiplier: 1.0,
+    costMultiplier: 1.0,
+  },
+  TRACKER: {
+    name: 'Single-Axis Tracker 2P Bifacial',
+    yieldMultiplier: PUBLIC_HYBRID.yieldTrackerKwhKwp / PUBLIC_HYBRID.yieldFixedKwhKwp,
+    costMultiplier: PUBLIC_HYBRID.pvEpcPublicTrackerPerMW / PUBLIC_HYBRID.pvEpcPublicFixedPerMW,
+  },
+  BIFACIAL: {
+    name: 'Bifacial + Tracker',
+    yieldMultiplier: PUBLIC_HYBRID.yieldTrackerKwhKwp / PUBLIC_HYBRID.yieldFixedKwhKwp,
+    costMultiplier: PUBLIC_HYBRID.pvEpcPublicTrackerPerMW / PUBLIC_HYBRID.pvEpcPublicFixedPerMW,
+  },
 } as const
 
 // PPA Types

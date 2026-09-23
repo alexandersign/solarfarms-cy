@@ -2,18 +2,80 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { getCrmToken } from '@/lib/crm-auth';
+import {
+  DEFAULT_LOCALE,
+  isInternalPath,
+  isLocale,
+  LOCALE_COOKIE,
+  LOCALE_HEADER,
+  prefixPath,
+  stripLocalePrefix,
+  type Locale,
+} from '@/i18n/config';
 
-// Passwords are loaded from environment variables — never hardcode them here.
 const DOCS_PASSWORD = process.env.DOCS_PASSWORD ?? '';
 const AUTH_TOKEN = Buffer.from(`docs-auth-${DOCS_PASSWORD}-valid`).toString('base64');
 
 const BESS_PASSWORD = process.env.BESS_PASSWORD ?? '';
 const BESS_AUTH_TOKEN = Buffer.from(`bess-project-auth-${BESS_PASSWORD}-valid`).toString('base64');
 
+function applyLocaleCookie(response: NextResponse, locale: Locale) {
+  response.cookies.set(LOCALE_COOKIE, locale, {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: 'lax',
+  });
+  response.headers.set(LOCALE_HEADER, locale);
+  return response;
+}
+
+function handleLocale(request: NextRequest): NextResponse | null {
+  const { pathname, searchParams } = request.nextUrl;
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    isInternalPath(pathname) ||
+    /\.[a-zA-Z0-9]+$/.test(pathname)
+  ) {
+    return null;
+  }
+
+  const hl = searchParams.get('hl');
+  if (isLocale(hl)) {
+    const clean = request.nextUrl.clone();
+    clean.searchParams.delete('hl');
+    clean.pathname = prefixPath(stripLocalePrefix(pathname), hl);
+    const redirect = NextResponse.redirect(clean);
+    return applyLocaleCookie(redirect, hl);
+  }
+
+  const prefix = pathname.split('/')[1];
+  if (isLocale(prefix) && prefix !== DEFAULT_LOCALE) {
+    const url = request.nextUrl.clone();
+    url.pathname = stripLocalePrefix(pathname);
+    const rewrite = NextResponse.rewrite(url);
+    return applyLocaleCookie(rewrite, prefix);
+  }
+
+  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
+  if (isLocale(cookieLocale) && cookieLocale !== DEFAULT_LOCALE) {
+    const url = request.nextUrl.clone();
+    url.pathname = prefixPath(pathname, cookieLocale);
+    return NextResponse.redirect(url);
+  }
+
+  const next = NextResponse.next();
+  return applyLocaleCookie(next, DEFAULT_LOCALE);
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Protect /internal-docs routes (except login page)
+  const localeResponse = handleLocale(request);
+  if (localeResponse && (localeResponse.headers.get('location') || localeResponse.headers.get('x-middleware-rewrite'))) {
+    return localeResponse;
+  }
+
   if (pathname.startsWith('/internal-docs') && !pathname.startsWith('/internal-docs/login')) {
     const authCookie = request.cookies.get('docs-auth');
 
@@ -24,7 +86,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Protect /bess-project routes (except login page)
   if (pathname.startsWith('/bess-project') && !pathname.startsWith('/bess-project/login')) {
     const authCookie = request.cookies.get('bess-project-auth');
 
@@ -35,8 +96,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Protect /crm — session required, redirect to /crm/login
-  // Use /crm/ prefix (with slash) so /crm-roofs/ static assets are not intercepted.
   if ((pathname === '/crm' || pathname.startsWith('/crm/')) && !pathname.startsWith('/crm/login')) {
     const token = await getCrmToken(request)
     if (!token) {
@@ -46,7 +105,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Protect service routes (tablet, manager, client portals)
   if (
     (pathname.startsWith('/tablet') || pathname.startsWith('/manager') || pathname.startsWith('/client')) &&
     !pathname.startsWith('/login')
@@ -59,7 +117,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    // Role-based access control
     const role = token.role as string;
     if (pathname.startsWith('/manager') && role !== 'manager') {
       return NextResponse.redirect(new URL('/tablet/dashboard', request.url));
@@ -69,16 +126,11 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return localeResponse ?? NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    '/internal-docs/:path*',
-    '/bess-project/:path*',
-    '/crm/:path*',
-    '/tablet/:path*',
-    '/manager/:path*',
-    '/client/:path*',
+    '/((?!_next/static|_next/image|favicon.ico|images/|crm-roofs/).*)',
   ],
 };
