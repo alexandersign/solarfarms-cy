@@ -98,21 +98,6 @@ export const TEAM_MEMBERS: TeamMember[] = [
     linkedin: true,
     image: '/images/team/maurizio.jpg',
   },
-  {
-    name: 'Leon Volkerink',
-    position: 'Director & Chief Compliance Officer',
-    countries: ['NL', 'DE', 'CY'],
-    bio: 'Leon oversees our Dutch market and plays a key role in German operations while serving as Chief Compliance Officer for the entire Lighthief Group. He ensures transaction security, manages KYC protocols, and establishes procedural frameworks that protect operations across 11 countries and maintain NATO certification standards. A Dutch national who has lived in Cyprus for over 15 years, Leon bridges Northern and Mediterranean European business cultures seamlessly.',
-    credentials: [
-      'Chief Compliance Officer',
-      'Netherlands & Germany Operations',
-      'NATO Certification Compliance',
-      'KYC & Transaction Security',
-    ],
-    email: 'leon.volkerink@lighthief.com',
-    linkedin: true,
-    image: '/images/team/leon.jpg',
-  },
 ]
 
 export const BESS_CYPRUS_TEAM: BessTeamMember[] = [

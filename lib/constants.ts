@@ -191,13 +191,6 @@ export const COMPANY_DATA = {
       email: "m.ganis@lighthief.com",
       markets: ["Italy"],
       description: "Italian market, institutional investors"
-    },
-    complianceOfficer: {
-      name: "Leon Volkerink",
-      title: "Director & Chief Compliance Officer",
-      email: "leon.volkerink@lighthief.com",
-      markets: ["Netherlands", "Germany", "Cyprus"],
-      description: "Compliance, KYC, NATO certification"
     }
   },
   monitoringCenters: ["Częstochowa (Poland)", "Hannover (Germany)", "Trieste (Italy)", "Malaga (Spain)"]
