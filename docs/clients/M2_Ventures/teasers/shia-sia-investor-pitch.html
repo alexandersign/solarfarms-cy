@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sia Infrastructure Asset — Investor Summary | Lighthief Cyprus</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1A365D;--gold:#C9A432;--bg:#F8FAFC;--border:#E2E8F0;--text:#1A202C;--muted:#64748B;--green:#059669}
+body{font-family:'Segoe UI',-apple-system,sans-serif;background:#E2E8F0;padding:20px;color:var(--text);font-size:10pt}
+.page{background:#fff;width:210mm;max-width:100%;margin:0 auto;padding:13mm 15mm;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+/* Header */
+.header{background:var(--navy);margin:-13mm -15mm 0;padding:10mm 15mm 9mm;display:flex;justify-content:space-between;align-items:center}
+.logo{height:36px;filter:brightness(0) invert(1)}
+.header-right{text-align:right;color:rgba(255,255,255,.75);font-size:7.5pt;line-height:1.7}
+.header-right strong{color:#fff;display:block;font-size:8pt}
+/* Title block */
+.title-block{border-left:4px solid var(--gold);padding:10px 0 10px 14px;margin:16px 0 14px}
+h1{font-size:14pt;font-weight:800;color:var(--navy);margin-bottom:3px}
+.asset-class{font-size:8.5pt;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+/* KPI strip */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:0 0 14px}
+.kpi{background:#fff;padding:12px 8px;text-align:center}
+.kpi .val{font-size:18pt;font-weight:800;color:var(--navy);line-height:1}
+.kpi .lbl{font-size:6.5pt;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}
+.kpi.accent .val{color:var(--gold)}
+.kpi.green  .val{color:var(--green)}
+/* Two column */
+.two-col{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+h2{font-size:9pt;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--gold);padding-bottom:3px;margin-bottom:9px}
+/* Investment thesis */
+.thesis li{list-style:none;padding:5px 0 5px 20px;border-bottom:1px solid var(--border);font-size:8.5pt;position:relative;line-height:1.5}
+.thesis li:last-child{border:none}
+.thesis li::before{content:"→";position:absolute;left:0;color:var(--gold);font-weight:700}
+.thesis li strong{color:var(--navy)}
+/* Returns table */
+table{width:100%;border-collapse:collapse;font-size:8pt}
+th{background:var(--navy);color:#fff;padding:5px 8px;text-align:left;font-size:7pt;font-weight:600}
+td{padding:5px 8px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.r{text-align:right}
+.hl td{background:#F0FDF4;font-weight:600;color:var(--green)}
+.sub td{background:var(--bg);font-style:italic;color:var(--muted);font-size:7pt}
+/* Milestones */
+.milestones{font-size:7.5pt}
+.milestone{display:flex;align-items:flex-start;padding:4px 0;border-bottom:1px solid var(--border)}
+.milestone:last-child{border:none}
+.dot{width:8px;height:8px;border-radius:50%;margin:3px 8px 0 0;flex-shrink:0}
+.dot-green{background:var(--green)}
+.dot-amber{background:#D97706}
+.dot-grey{background:#94A3B8}
+/* Disclaimer */
+.disc{font-size:6pt;color:var(--muted);margin-top:12px;padding-top:8px;border-top:1px solid var(--border);line-height:1.5}
+/* Footer */
+.footer{background:var(--navy);margin:14px -15mm -13mm;padding:8px 15mm;display:flex;justify-content:space-between;align-items:center}
+.footer-l{color:rgba(255,255,255,.8);font-size:7pt}
+.footer-r{text-align:right;color:rgba(255,255,255,.8);font-size:7pt}
+.print-btn{position:fixed;top:12px;right:12px;background:var(--navy);color:#fff;border:none;padding:8px 14px;border-radius:4px;cursor:pointer;font-size:12px;z-index:100}
+@media print{.print-btn{display:none}html,body{background:#fff;padding:0}.page{box-shadow:none;padding:10mm 12mm;width:auto;max-width:none}.header{margin:-10mm -12mm 0;padding:8mm 12mm 7mm}.footer{margin:12px -12mm -10mm;padding:7px 12mm}}
+@media print { .m2-label { position: static; } }
+</style>
+</head>
+<body>
+<div class="m2-label" style="position:sticky;top:0;z-index:200;background:#1A365D;color:#fff;font:600 11px 'Segoe UI',system-ui,sans-serif;padding:8px 16px;letter-spacing:.03em;text-align:center;">CONFIDENTIAL — Prepared for M2 Ventures GmbH · Not for onward distribution · Lighthief Cyprus Ltd (HE 477423)</div>
+
+<button class="print-btn" onclick="window.print()">Print / PDF</button>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABDCAYAAADZL0qFAAAAAXNSR0IArs4c6QAAAJhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAAEsAAAAAQAAASwAAAABAASQBAACAAAAFAAAAISgAQADAAAAAQABAACgAgAEAAAAAQAAAMigAwAEAAAAAQAAAEMAAAAAMjAyNTowNDowNyAxMDowMzowMQCqK5uMAAAACXBIWXMAAC4jAAAuIwF4pT92AAABsGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iPgogICAgICAgICA8eG1wOkNyZWF0b3JUb29sPkFkb2JlIFBob3Rvc2hvcCAyNi41IChXaW5kb3dzKTwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8eG1wOkNyZWF0ZURhdGU+MjAyNS0wNC0wN1QxMDowMzowMTwveG1wOkNyZWF0ZURhdGU+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgrMWdPvAAAZMklEQVR4Ae1deZBcR3nv7vfeHHtJq9WuV9bqsLSSbEvoxpaFAW1sScgHhIolUzjBKXAglT9SKUiohAS8BAIFAUOqTBEwcVK4CMQqDl+SVgIkB2RZl1eWJdmS19r1rmR7tTr2mp2Zd3V+35t5M29md/acXYm42/a+N31+/Xvf1/3111+3GVNBIaAQUAgoBBQCCgGFgEJAIaAQUAgoBBQCCgGFgEJAIaAQUAgoBBQCCgGFgEJAIaAQUAgoBBQCCgGFgEJAIaAQUAgoBBQCCgGFgEJAIaAQuDoI8KvTbKpVKZk4d+C2sJ2MhyNxbsRDloiahmu6tm3IUHJW/GiSb2PO1aRRtf3uRmDKBeTID9YYdfOtSle4VY7Fa5jG6jQhaiST07gUISkci0neZ9usy2bauRLuvpNk5mXLtS4vuqsl+e7+XKr3U43AlAnIySeXhkqnabOF4ItDgt1uO3I9k2yJ48pqIVhI45zhX4ZZhbn447jMRvxF5G8RnB90bf47V7BTnUnt/Np7jw5MNVCqvXcnAlMiIG27bpplcGMtGH4rBGIzmL6GGoaQeMJAQpEfSFggGEwTDILDmeWyHkOw513JfpZIOvsX3Huyg+Qpv5z6rRAoJgKTKiCkTlXPiy82hPFJqFB/BmavtmyaHQrwdZoakX562dJZKS4ECbFd1o/3nzrcfbTu8omT412jyEYmtt/MMv3fegqKXSNzRwL3ySehFAbCKZRrHKacxMx5MWyHe0ssUa5HnWpWneAN++xAFTmvtC5j27N0bUfqtsA6DOkc6Rg2sgEYEN0eUvnls7kKvwXboP5tDWbdClx4FpcC7WfWiSOU5/LJXNqDTeW/B+mi78UC3ys/76DfW5kLugsw2qDcBSMyDFIwxzgTXt9RH46K0vVCY1/Et2twMFsEBYMoh8D0QwjimCFiUspeEGMKLnRDY6X44tNtx52ObAY+iqd6ESkaCQp0NMdh/xtztL+vP9h8cDSMTWWD4Y3nlq0N66LCRkW6pjHT5P0L7n35UDBP/jupidES7VYhHIPSIignNeedWXeePJWf981n31MpwqwOpC8QUtTiY4UsR8YhXec0Ltu6OnnHik8cj+WXa9u1fHUkpFXGsNoKIzOXMr7/R8cObtueMla0/GrZnLIZxuJYumRpmLFoJNI8bf2By1QX9as0akyj8qMJfhuPHTj24sONTJ7fs/pWpsnSJMpT3WZS9s7dcuywX1fHU6vro5VyXg/a1xFJkm6ZJYdu/Mj+PhKe87tWrcMQUpKEyHjl46xn7t3NR6h8xwu3zTASiVWjoY3owng48P3fNx+kAejsM0tXlJSGZo6m7LRSxvq7jbPzP3yoldqdSKA+Fj0QI5Xpxh0uc74NNenGhJk7MINZgCGHyPCzWKCfwHrjmMv15yHvPRpzIqZk88AYqyEWt4R0Xu9IWWvbspwIxQREf/oNnX+ghNuPtN++6lOMNQ9i0JE6BUH8qq7JlY4UEFQM25r7qnxy65182/bMaJhfx5zqSMXlRPIxXYjpIJ5pIXyIuHgK+T4TzNvStGwO+nY/wL0PauTNjnTLacgXUrpM51cYF0dn1DpPQIiem3fPK1eCZVHtw1I6t0H0MFVAtZSy/bZHtr6fbd8ep3x62NgkHPfrWnpQdx3OrvQlP4ak33rpQnwJ5ddR+dEEv42HP7jhdrYXWu/ApW/rIb6IyktJQzB/CfV8yK9LhuTHXMf9a2o/9R2ZGypJbET6K2z7VsMue+07BuML/PIulyQcd3nlY9Zy8MRPR0Mb0ZUwZRvo+kAj25fQNP5ZJt0tfr99eoZ6uo5gIpz8OtK+M1T6WOKKLiBgMq2j4swnmXAfBoa1QeHwAPX0J35OaPwAmOeQYO5pzIVnb9h8z6ucN/qS9DI68XTX799Xbg0MLJGOvQaj/B/hizXouqxKWOJw0nT6o2FtizTtH7U1LX9g/ubjrWPpONqdgfH5Om8KxR/B+IWRyl/sTWrcYDX4dpWc+A8MxJg7LViuY/fKRVw63wNr3QEhEmRwIF4lqUP/MfXJKqm5mzBwvN/V2I8v7bj181V3HezN1CEl1V1NMBF7SlcOaJ0Jj0zKA+tfCRK8dK8MMguDeTMa/YYMzuCSZ9O9TIX/+G2cCyd5XTJMXariHIYTap9oZxI4ZQPqL0Napn40L2GNTPFRWT+6KGegaLY8Z6QFeEHabhj6QKasHz/Uk+iCdtFPdHnpXE4LtjtUGT+OaAfvYR6ZeCi6gJwtP72hROOfc11ZS+sNP2CBju9KKhTfi1HxF47N95vu7JZFd+1MKwMkE7mh+vb9fYg5ImXjS+2/eep33HQO6yHxiXBIzjJN8YRpSW4Y/C7Xcj+Fb/klfB1fwHIrGuIXwAfvAUf8cV0q6HHDEDlzo6iNVBmUTRXJdLIRerJtOQ9FwuxOos2vEZqYZ3AgFdMFhS5wwYgYDRn8gT4rsRst/MJvBRh51XptoDGonzl9wmQHHqV6Us1K0E4C6AcUEaibael0qgxaZE4gwwcMJV4c5RVOdl1F7Xs0Uhs0g+S1T1Kb6j/mFmoa9Oi6N1x49SE2i6s3gASog26JOTRDOxUgvvBp8SpI/8EACh0ju17BbJZp18+nU55UN/wo75ky7FDNEw9FFZCWpuU1uis/D8zq84UDghEDeP8NVerxud0LD6dUmcFCMVSX0jPLKeiwrVZfrA3q1RdKo/zu3n62B+uBFVB5Hmx/ZsVPGXv55FDlpyruLzeun5no6b3fcTAGp5mWPiDn4gyeF/BaL4SsJQakNVlIZ2Xgt49BsH6F/3IEYfw081cgjdB/UjWASyqh5tzs0+OxDRdvIP0dykEWQjBfV6K6y2Xn6sbf7DhKkoyCxTtA46DZ25NfyTo9uoaoG2TTYNsMGRxs8EAiN2T7EMXGHFVUAQm54j7dcDdYsMn6AbTS6JkEvzyOgew78ze+1MoYqbVjD3PWH4jDZPSLN9/3S7fUlY8Yutxk2vx8aYStSzryAdT4hbHXWrwSA339S0K6qHOwqKJAMwdG4Vddh30Ffb8gpVipaW4jxKeMGNZKfdrVf/XBDSXQs/uLQQl39cdciwwcqdqw7lmlC/ubVvq3rgtmWvxpV4odXg5iUl3Gm5tX2c3slHZrWVEG3lF1xcAq3LLYM5hsd2LASIt0qmg4NcDE6kEXYy059ZGQY5DpM133K5wZg8wRDkrAF+ONnELj/FE0AXl7x6pqkzt/gfk15I9WRJOOoQDD2TOaML41Z+PRCUs1b2x05d4NT7fFLy3SNfZlrB0uQp0hHWFr++4lj87ddPqtcWIx4WK61Op04WjwAvCCAWZMmvypuVtexuwGCdm74WA8fvnPQfcyWLQ8HQ8qUhVPdpIBoigC4luMPALw582mtVyDDoW1jxdF6gfQOj3/Qy/92s+Teh5jMK4AxqkLRIsjtBN1m5ufLdzq8UFJmB8QJ81YWD6/tKG5KLgNaiQdARKLExLcuSOED0+bf37wRlDOzsqE9o3riyAcfr20j+Bo/D+hsh3RdTYbFi6GtcgNjhPd5Oe5Gk8uWAnNmH6gVwwPp/3fNQ37+qGE92DtAdNyaobBbBLuxejh5yn2E1aBQYMgaJpSQRiuT8Bj3LSUxSYPN5/moggIbeJg/fVRrM/04OyhCS5th/94zodfOuo3WKxn/ebjFzAr/wfqS4ukxIDk3Eebk8VqY6z1wBwdEI9UaTt/kStEO6TmdSier0suXscioKXCiVhjbUvlnxoEBo0u42m25ZZVVYZrr/dVC6qDpk/87tRN5ydYCGanlfE0UKAMxuFdtm2+hdF4DunzaGTd9PnJWmTvKFBkyqPzh0fOtccdWz5rS5iOvHWBZlkzWc+UE6YaHBUCRREQQ5OLdMZrHTLPpAPp3wmbvXAoeXMrY5NjXPqvF+/t/OQtPz+KheecJDYj4fFYKWztJpBwzQiIj4f/nPeh5jzd308Z+okpSV6JRtKrGjJ4QLKmMmCpFGwuZfbNiQomj/kd/cv0bWyFuTS7SyYdi6IICCzU9brBdDtgTyBdHBrH77cNszM9NkAG527Egv3BncuOYYb6Y1LtNJ2LpJQL8e5ZLweX+MOKITZEX0IVb51b0rZntc2AL1xjZoW07EA0mT3y1GUuo2ibBh1G7UvXmenvwUy0bdoXsiVf3PbsioZgXVhXMps7ydbQzEMNBfzWaPulrNasO/vcqrTTTaqGSARkCtlzQ8Ox7mCd430vioC40p0N140cGmixjs2A13IiJ+GHYHqbt/tEdYOjsLk0+/ye9654fceVV6+l8yOtO1fOj4RkTTxvtWFgxWS6+umFG48OUrNoUw3rlUqNxx4Wkjsigl1rWy7yTbaTAGdOlWStxsZkHdx/GimB2rccd7lvQs7JPI4fpJLrwr1XC/HVweKknlsJ3rO0q+sBxA+yUtEeKKyXZZZt/2PIILHNhjBMx8l+pwkx/5ONHf9bUQRE46IsnwRvTSD55fz4Yv+GWQBOcjTW0p4D3C6EqLcd82+1UORziOr0Eq7mn/RgD1+vj8A1ZnPGppCmCfsmzOq1v4yfgxwlqT+YiUuxj/InJP2kT1B1bsBSmK5mUh40U6D9Kmxhb6MGPH0GUNvEoUUININgJ78e/akPVkdmXAyuF/oqI/lLOC9b+nuXwKXm48AmJ9CgAt+AS4i8dgQEm2EgKwsaqVe0l4wd5RziJ+OHsEUIu6aoWnobb2CqVdBLrtdM42uIvPoCku60dNxlcGnZks/ccNtn2PD8XiFsSPZp190P2Tc/ZnKfk90+9Y28ZYLB6yMMoMG4od5pAMkPnvrHiyTBqLwoMwhENkffI7rhJ8Mt252Z34Fi/4YgXkcCSSE14sl5aD4Ev/hoKvba+EuDCKmd9F/+d6WoQlSib5SaUcywuMLmuCzOdyvUaCAe0NKklWFWjO0aCBpyZA8UG9UrfTfMURYeWIpkTeQpMHjStfSCuFADQ/lwYWsBmkRx/LCojaIADQQ7cJApJ5AjGSxZNyLyuZyEIv9wXGcpTap+AOjwUuA4164l/Lhr4UlbQnA1MeH9Bw17dAxODADDYA8U7scx0XhCAhVijW7wO2lzdLIDMRuEtxNG+h/7bYGNP2hofF3Q185PG+uTeATrkL3wtDic8oxO1eAJjmS9erTTHKpOzwKDc0RYhzwNF4qcNQjQpeSi7bsVRUC4w8/YzEl6zJn+bjRKQsf8ANzfvzvcGYuhABht3FvPrCmxuLXG931Kw0uP7jBPdo22ninJp2m/hiD3g8EWgfE+GlSbCrUP/qRjcT2R8rJvxAZwdwWC4ZQ/BLP6lAgIDrvB85idt40Yna3wgmaXGzhHUzQBcRhvihr2D/36/aduarK2oW3IQY7MQQ6TfUmN/YueZDlWLAuu1DofyNFo/DrH8yyKgFRU9Z/tvRx9E96pi/2RxcSUggXYrWdLzywEYWfGQ9xIZeywO106cmFw9iIXjqTFWs5VGTkHkUaqa9LS6WsiaN0lu4xK87em69wN9/BRCQiVg4blXGcu7uUbX/CYpW3XygRWsJQ06YHmZczG9sKNZzMWtjebVmIgLE77NFNgBEjWNJwcZKkatnMeYdyuGKhoq8ZJxmHzTjAx/fkmVkvVupZemHn3kXnOD7RnCANNjS7kx6EzU5eKGuCwqGMZNx1fMMc5ktQCCOa+tWuPZvT2ojY8zsrmbDsQnwFTrs21gYBGOGJtYEX+dvmlALLFx3JYIlKegdksdEikiAEDwDjrk3xA6y3KAD9cdwLAD5dt5DSusZ/DdpDwRoV0dqhYWFKyT7Q/tzzHzj1ybSPnaDV71kshG4L+X6SSwEYfk05oUtc9hajDoDDExy7ScFuoURU/qQgUTUCSduRF02IHcZgpQzCdZMMZ4htwIPPzHb9ZMTuTMMEXqstg9me56z4EociMIlBdYOqVB8OaeWysTdBJPbZ1e56pYWy1CG2wGwhmT3JlzwQp3IrgIEIJmH0n1G6m8j/Al0EnFq+xPmSYa6J0LcK56vamFd/HlEn3X5X67gi0PoDq9WHXkh3tu1c9MndT84TOa5z99a3XSTP+N1hAbmbcDfmjNs0esF/E4Vb8w9rNL+cs3EbqG2nUsMUbHU+vmtW2K5GnYJfA7cFyFm463tW5W8gE6Y4Fgsa1Ky5WtX4gDHBYbNO5Xav220xc0KSsdqVzj78XQoKCLNgKkUVbVPpt/yE8PXO3lFVvPvveBQwuIvlBd5h1/aZD52CWyvsm+Tkn73fRBIRITDqRnbil5llc23O/f5EJgYBRNALGfQg2S9HetPzxuZuPnxhPl87uXL7EcOKfwrREB7Miwf0Eb/aw2J5yXd811ro9hpWs1glZX8JRiZyPoQmLaZbTw1rqH5YO0mhPtFCwrBZLYwMQ1hLaqjJhioV59w4JyeC27MTeTA3OLt1Jh6UoQHiwK866YprRXqjK/8/xZMgBCvdwI1mf2qbP9hY8xJKuvHjq1LJ/QOyQ5t5s7sl7K6qAeLPIc8u+hSNsN8HHaLmFk34UyKcHqtY0XHfzGQyaczr2LP9ZWA/vr2k47J2LHql7MOfOlCHrNnDU/bhR4CMYdsvSp1q9oqTW4Z834If1rRlbBvs0jVQ/MTMqmAF989P5qwhsy9GG1Ftd58JflQ6O1euhgtVd1vnZ6a48gANRdyRxdxEJMLpeJhzpOVPSdEEs4Qs2+WHFLbn7pt4FOJNdNNN9QfqutQRSwXFc5hbMD7fk05ba6+OtFT0V/5SfNpW/iyogRPjcu08chSnyG2Fdfs3Q3Xm+2ddzfOPelTX36UzcmEgknu/Y9Z4XYAd/zdWj540S0duSDFsbNlTLtn1dRpj1leFs8SzuWktsaa+D+bbBth24kWAMT8mdh5N3s4XgF2HafeTQwPEXJgIeGDe7gEpXRBFg9VGt1VZsPh5rbVr5KChcAie6Ouo7CUN6wvAGCqqWVCsSatgwTuN8yA8ma58o3YVr+kH4BD5nhlZPRU+NJ5m4q/FSdAFBJ6Tl9v9c2NFK7KT/XVBIPMYGGrhlYxmsTzfCsXAjGP81yxpod7rZhQUi1tu+4yLdqFeSlOK6sMHmYOpZ4ljOIlyQRuuNnEBMBnXmEvjw0dLy5BPbtuRP1DnZc36ARzUyS9O1N8MFb22DSYTy8DgoL4MXDc1YVAElptP8OvSeaJNZHvvXaJg/iBFyGdZKg6Yc4JBAHc2JOPv3ef2LDjIWtClwTYMmp2NRBDM5uaZA2cgG7MbjWh/cP5emO3UxxGDBzpSACwftDdHVRhSov8O5YqBnGjYC0a/UsWA4nea0D9oFte23T4MKdvUzIBIsRDdNyek9qWx50EKYj8bqn+p7tm2oo5l2yZHExvU4mUapuUkKkyEgjNzMjxxZ88Prr9i414c3kspBO8fkvUmB/JEQ0La7GDPLYoAswWtwD8GCFXcsQRB0zh3DwvU5BAKNMukyVM5jzghdP+qyE5YlvnjB0Xav3Xh8wEsc5R/cp/g9rP1mZVzlC5XD5CHhb95VA9PAmQG3pjz8z1AJvPUP1he00/xasCjtd+DY7/dnzLWa4EO5Fty8ArnqwEdRqGsD8IRotxOsOek4R+duOdHK+fEcsQcfPwYexToK0eAEGD16Z7G3Mns6EIgXMCpA7UixBwYZJuPm60Eagu/JuDgTrmDIn24GQONc9IvBPP77zeyk08GWfRcigMvikJ/8NoR820+nJzyxmkBXL7VPjIo1lJRRnsqzpczmu9xHcJNdJfnIUHnI0vlMectsEVE9S0smYYgXqlyw7s5XTJtSbS5/4goOj2fqN9XrDDilfd5tk0OULlrUpArh3kamL7h96WLD1T4NdfNBzAzTTVwJlJaT3E6AEp8YT3xSspSTx1NNaATE/xoBw9QvcZ/uv7nR7qM3FHBJyCmc9+ONPQumhTn2/vGphw0VUJEShosrQrtJUE9tX1o5bQbclKkc0kKaVnAnGPd4RcPJ3mnxmCgR0tYw6DkudwdYSay7EM2XdtRXGCHd8MlKt53xCmjdOz9S5URK/XSiffb00l5eYGNUHlljnO+OgdJUoJdLWiJWqP3WvSunG04iM+onZSl20rPrOnLvKYvGojntX36t279EfHB5M7MTj0HTqA3Q4tNU6Bnse9dTS8rDpTzkt0tpc+9+pRs8MQSnFKpx7PE+T4695BhKwLx7PVxC3hcKuX8KteMOTJ+lNCPQjEJMN1wgAslpj6xUmMpxMwM/DC57Aifbdr7Yf6ItePP5cPWoNIXAeBCYEgEhwmjkMwamzbWEXBPR+UYIx+24BWQ+PEMNT5WHoMAcnOoDhgWKo0B3XuHnOxCQw7bJ9zDD3WeyWHvQPyiVU/1VCBQfgSkTEJ/0jifrolpVeY3DQtdxU96Es+yLMZnMh3RUQz7owmFSbpOYOC/jms4OU/IW3dVO4QqQc0mpdwane79O9VQITBYCUy4gfkcwV/C3j6yJJs4ny0sioiRhuRFhCA2mUazTcYE9bsiMiNCAsPv6Z/S3xHwd1y+vngoBhYBCQCGgEFAIKAQUAgoBhYBCQCGgEFAIKAQUAgoBhYBCQCGgEFAIKAQUAgoBhYBCQCGgEFAIKAQUAgoBhYBCQCGgEFAIKAQUAgoBhYBCQCGgEFAIKATepQj8Hz+6fsiGGlwBAAAAAElFTkSuQmCC" alt="Lighthief Cyprus">
+    <div class="header-right">
+      <strong>INVESTOR SUMMARY — STRICTLY CONFIDENTIAL</strong>
+      Ref: PARK-RTB-SIA-2026 &nbsp;&middot;&nbsp; May 2026<br>
+      Not an offer &middot; Subject to NDA &middot; 100% equity basis
+    </div>
+  </div>
+
+  <!-- Title -->
+  <div class="title-block" style="margin-top:18px">
+    <div class="asset-class">Regulated Infrastructure &nbsp;&middot;&nbsp; Cyprus &nbsp;&middot;&nbsp; Larnaca District</div>
+    <h1>Sia Licensed Energy Infrastructure Asset</h1>
+  </div>
+
+  <!-- KPI strip -->
+  <div class="kpi-strip">
+    <div class="kpi"><div class="val">&euro;5.24M</div><div class="lbl">Equity required</div></div>
+    <div class="kpi accent"><div class="val">7.0%</div><div class="lbl">Unlevered IRR (25yr)</div></div>
+    <div class="kpi green"><div class="val">10.2%</div><div class="lbl">Year 1 cash yield</div></div>
+    <div class="kpi"><div class="val">2.00&times;</div><div class="lbl">Equity multiple (25yr)</div></div>
+  </div>
+
+  <div class="two-col">
+
+    <!-- Left: Thesis + returns -->
+    <div>
+      <h2>Investment thesis</h2>
+      <ul class="thesis">
+        <li><strong>Government-licensed operating rights,</strong> all material regulatory approvals in place and transferable. Zero permitting risk from day one of ownership.</li>
+        <li><strong>Revenue is structurally protected</strong> against market volatility. An integrated energy storage component fully insulates cash flows from grid curtailment — the single largest revenue risk for standalone generation assets in Cyprus.</li>
+        <li><strong>Hard asset with physical scarcity.</strong> Licensed generation capacity in Cyprus is capped and not replicable without a multi-year regulatory process. The grid connection allocation (ref 498000141, accepted Feb 2023) cannot be replicated.</li>
+        <li><strong>Inflation-sensitive revenue.</strong> Wholesale electricity prices in Cyprus have risen materially — peak settlement prices exceeded &euro;340/MWh in April 2026 vs the &euro;183/MWh average used in this model. Returns presented are deliberately conservative.</li>
+        <li><strong>Established O&amp;M operator with active service contract.</strong> Lighthief Cyprus (HE 477423) provides full lifecycle management under a 15-year service agreement, removing operational complexity for the investor.</li>
+      </ul>
+
+      <br>
+      <h2>Financial returns (25-year model)</h2>
+      <table>
+        <thead><tr><th>Metric</th><th class="r">Value</th><th>Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Total equity</td><td class="r">&euro;5,237,842</td><td>100% equity, no leverage</td></tr>
+          <tr class="hl"><td>Unlevered IRR</td><td class="r">7.0%</td><td>25-yr post-tax cash flows</td></tr>
+          <tr><td>Equity multiple (25yr)</td><td class="r">2.00&times;</td><td>Total distributions / equity in</td></tr>
+          <tr><td>Year 1 cash yield</td><td class="r">10.2%</td><td>Post-CIT 15% free cash flow</td></tr>
+          <tr><td>Simple payback</td><td class="r">9.8 years</td><td>Undiscounted</td></tr>
+          <tr><td>Year 1 cash flow</td><td class="r">&euro;536,005</td><td>Declining to ~&euro;397K by Y15</td></tr>
+          <tr><td>Total 25-yr distributions</td><td class="r">&euro;10,499,000</td><td>Pre-terminal value</td></tr>
+          <tr class="sub"><td colspan="3">Conservative basis: no price escalation; revenue floor using Oct 2025 – Feb 2026 settlement averages only. Upside case (observed Apr 2026 pricing) not modelled.</td></tr>
+        </tbody>
+      </table>
+
+      <br>
+      <h2>Equity ticket options</h2>
+      <table>
+        <thead><tr><th>Stake</th><th class="r">Equity in</th><th class="r">Y1 distribution</th><th class="r">25yr total</th></tr></thead>
+        <tbody>
+          <tr><td>25%</td><td class="r">&euro;1,309K</td><td class="r">&euro;134K</td><td class="r">&euro;2,625K</td></tr>
+          <tr><td>50%</td><td class="r">&euro;2,619K</td><td class="r">&euro;268K</td><td class="r">&euro;5,250K</td></tr>
+          <tr class="hl"><td>100%</td><td class="r">&euro;5,238K</td><td class="r">&euro;536K</td><td class="r">&euro;10,499K</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Right: Asset profile + milestones -->
+    <div>
+      <h2>Asset profile</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Asset type</td><td>Licensed energy infrastructure</td></tr>
+          <tr><td>Location</td><td>Larnaca District, Cyprus (EU)</td></tr>
+          <tr><td>Installed capacity</td><td>3.2 MW generation + storage</td></tr>
+          <tr><td>Storage component</td><td>10 MWh / 4-hour integrated</td></tr>
+          <tr><td>Operating life</td><td>25 years (licence to 2050+)</td></tr>
+          <tr><td>Land</td><td>Executed lease to 2051+</td></tr>
+          <tr><td>Transaction</td><td>Direct asset / SPV acquisition</td></tr>
+          <tr><td>O&amp;M provider</td><td>Lighthief Cyprus, 15-yr contract</td></tr>
+          <tr><td>Regulatory jurisdiction</td><td>Cyprus CERA (EU framework)</td></tr>
+          <tr><td>Corporate tax</td><td>12.5% (CIT modelled at 15%)</td></tr>
+        </tbody>
+      </table>
+
+      <br>
+      <h2>Licensing milestones</h2>
+      <div class="milestones">
+        <div class="milestone"><div class="dot dot-green"></div><div><strong>Generation licence</strong> &mdash; issued Apr 2025</div></div>
+        <div class="milestone"><div class="dot dot-green"></div><div><strong>Land planning approval</strong> &mdash; issued May 2025</div></div>
+        <div class="milestone"><div class="dot dot-green"></div><div><strong>Environmental clearance</strong> &mdash; completed Apr 2025</div></div>
+        <div class="milestone"><div class="dot dot-green"></div><div><strong>Land rights</strong> &mdash; lease executed, registered</div></div>
+        <div class="milestone"><div class="dot dot-green"></div><div><strong>Grid connection allocation</strong> &mdash; accepted Feb 2023, deposit paid; amendment 5 Jun 2025</div></div>
+        <div class="milestone"><div class="dot dot-amber"></div><div><strong>Grid final terms</strong> &mdash; in formalisation (substation sublease process)</div></div>
+        <div class="milestone"><div class="dot dot-grey"></div><div><strong>Financial close</strong> &mdash; targeted Q3 2026</div></div>
+        <div class="milestone"><div class="dot dot-grey"></div><div><strong>Target operational date</strong> &mdash; Q3/Q4 2027</div></div>
+      </div>
+
+      <br>
+      <h2>Risk profile</h2>
+      <table>
+        <thead><tr><th>Risk factor</th><th>Assessment</th></tr></thead>
+        <tbody>
+          <tr><td>Regulatory / licensing</td><td>Low &mdash; all primary licences issued</td></tr>
+          <tr><td>Market / revenue</td><td>Low &mdash; storage eliminates curtailment exposure</td></tr>
+          <tr><td>Technology</td><td>Low &mdash; proven Tier-1 equipment, 15yr O&amp;M</td></tr>
+          <tr><td>Grid connection</td><td>Medium &mdash; final sublease formalisation pending</td></tr>
+          <tr><td>Construction</td><td>Medium &mdash; EPC by licensed Cyprus contractor</td></tr>
+          <tr><td>Regulatory (Cyprus/EU)</td><td>Low &mdash; EU renewable energy directive framework</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="disc">
+    IRR and cash flows modelled on conservative wholesale settlement data (TSOC Cyprus Day-Ahead Market, Oct 2025 – Feb 2026 average). No price escalation assumed. Revenue model validated against 365 days of actual production and curtailment data from a comparable operating asset. Cyprus CIT modelled at 15% (statutory rate 12.5%). All figures ex VAT. Extended equipment warranty obligations (Years 6–15) deducted from modelled cash flows. Full financial model, legal documentation, and technical dataroom available under executed NDA. This document is non-binding and does not constitute a prospectus or offer of securities. Independent legal and tax advice recommended.
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-l">
+      <strong style="color:#fff">Alexander Papacosta</strong> &mdash; Cyprus Director<br>
+      +357 99 164 158 &nbsp;&middot;&nbsp; office@lighthief.com &nbsp;&middot;&nbsp; solarfarms.cy
+    </div>
+    <div class="footer-r">
+      Lighthief Cyprus Ltd (HE 477423)<br>
+      PARK-RTB-SIA-2026 &middot; CONFIDENTIAL
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
