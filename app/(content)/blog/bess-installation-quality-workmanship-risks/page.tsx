@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -100,6 +101,11 @@ export default function BESSInstallationQualityArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/bess-installation-quality-workmanship-risks.jpg"
+        alt="Technicians inspecting a white BESS container on a solar farm pad"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

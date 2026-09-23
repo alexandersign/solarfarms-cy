@@ -159,7 +159,7 @@ export default function SolarFinancingStrategiesArticle() {
             
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-12">
               <Image
-                src="/images/solar-park-field-unsplash.jpg"
+                src="/images/blog/solar-farm-financing-strategies-2025.jpg"
                 alt="Solar farm financing and investment strategies"
                 width={800}
                 height={400}

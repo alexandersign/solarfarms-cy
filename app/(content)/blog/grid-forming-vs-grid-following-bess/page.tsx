@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -101,6 +102,11 @@ export default function GridFormingVsFollowingArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/grid-forming-vs-grid-following-bess.jpg"
+        alt="Grid-forming battery inverters and a substation in Mediterranean daylight"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

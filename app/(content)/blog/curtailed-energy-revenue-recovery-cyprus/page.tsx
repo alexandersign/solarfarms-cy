@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -93,6 +94,11 @@ export default function CurtailedEnergyRevenueRecoveryArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/curtailed-energy-revenue-recovery-cyprus.jpg"
+        alt="Cyprus solar farm and switchyard under unused midday sun"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

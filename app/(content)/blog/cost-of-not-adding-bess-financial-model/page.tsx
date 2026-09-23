@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -153,6 +154,11 @@ export default function CostOfNotAddingBESSArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/cost-of-not-adding-bess-financial-model.jpg"
+        alt="Financial charts on a desk with a solar park in the background"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

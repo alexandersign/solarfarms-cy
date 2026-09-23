@@ -217,7 +217,7 @@ export default function RiskMitigationSolarInvestmentsArticle() {
             
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-12">
               <Image
-                src="/images/1690376781153.jpg"
+                src="/images/blog/risk-mitigation-solar-investments.jpg"
                 alt="Solar investment risk management"
                 width={800}
                 height={400}

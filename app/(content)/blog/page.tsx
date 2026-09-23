@@ -41,7 +41,7 @@ const articles: Article[] = [
     categoryColor: 'bg-amber-100 text-amber-800',
     author: 'Alexander Papacosta',
     date: 'Jun 17, 2026',
-    gradient: 'from-amber-100 to-orange-100',
+    image: '/images/blog/grid-forming-vs-grid-following-bess.jpg',
   },
   {
     slug: 'bess-installation-quality-workmanship-risks',
@@ -51,7 +51,7 @@ const articles: Article[] = [
     categoryColor: 'bg-red-100 text-red-800',
     author: 'Alexander Papacosta',
     date: 'Feb 26, 2026',
-    gradient: 'from-red-100 to-orange-100',
+    image: '/images/blog/bess-installation-quality-workmanship-risks.jpg',
   },
   {
     slug: 'investors-guide-battery-energy-storage',
@@ -61,7 +61,7 @@ const articles: Article[] = [
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
     date: 'Feb 18, 2026',
-    gradient: 'from-blue-100 to-cyan-100',
+    image: '/images/blog/investors-guide-battery-energy-storage.jpg',
   },
   {
     slug: 'why-bess-no-longer-optional-res-cyprus',
@@ -91,7 +91,7 @@ const articles: Article[] = [
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
     date: 'Jan 30, 2026',
-    gradient: 'from-green-100 to-emerald-100',
+    image: '/images/blog/lithium-price-crash-bess-viability.jpg',
   },
   {
     slug: 'lfp-vs-nmc-utility-scale-bess',
@@ -101,7 +101,7 @@ const articles: Article[] = [
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
     date: 'Jan 27, 2026',
-    gradient: 'from-purple-100 to-indigo-100',
+    image: '/images/blog/lfp-vs-nmc-utility-scale-bess.jpg',
   },
   {
     slug: 'island-grid-economics-cyprus-bess',
@@ -111,7 +111,7 @@ const articles: Article[] = [
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Alexander Papacosta',
     date: 'Jan 20, 2026',
-    gradient: 'from-sky-100 to-blue-100',
+    image: '/images/blog/island-grid-economics-cyprus-bess.jpg',
   },
   {
     slug: 'bess-sizing-solar-farms',
@@ -121,7 +121,7 @@ const articles: Article[] = [
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
     date: 'Jan 13, 2026',
-    gradient: 'from-emerald-100 to-teal-100',
+    image: '/images/blog/bess-sizing-solar-farms.jpg',
   },
   {
     slug: 'solar-bitcoin-mining-cyprus-case-study',
@@ -151,7 +151,7 @@ const articles: Article[] = [
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
     date: 'Dec 29, 2025',
-    gradient: 'from-green-100 to-emerald-100',
+    image: '/images/blog/peak-shaving-vs-energy-arbitrage-cyprus.jpg',
   },
   {
     slug: 'bess-insurance-risk-lenders',
@@ -161,7 +161,7 @@ const articles: Article[] = [
     categoryColor: 'bg-cyan-100 text-cyan-800',
     author: 'Alexander Papacosta',
     date: 'Dec 16, 2025',
-    gradient: 'from-red-100 to-rose-100',
+    image: '/images/blog/bess-insurance-risk-lenders.jpg',
   },
   {
     slug: 'cyprus-bess-regulatory-framework-europe',
@@ -171,7 +171,7 @@ const articles: Article[] = [
     categoryColor: 'bg-orange-100 text-orange-800',
     author: 'Alexander Papacosta',
     date: 'Dec 2, 2025',
-    gradient: 'from-slate-100 to-gray-100',
+    image: '/images/blog/cyprus-bess-regulatory-framework-europe.jpg',
   },
   {
     slug: 'cyprus-curtailment-crisis-bess-solution',
@@ -191,7 +191,7 @@ const articles: Article[] = [
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Alexander Papacosta',
     date: 'Nov 18, 2025',
-    gradient: 'from-amber-100 to-orange-100',
+    image: '/images/blog/curtailed-energy-revenue-recovery-cyprus.jpg',
   },
   {
     slug: 'ems-scada-bess-revenue',
@@ -201,7 +201,7 @@ const articles: Article[] = [
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
     date: 'Nov 4, 2025',
-    gradient: 'from-violet-100 to-purple-100',
+    image: '/images/blog/ems-scada-bess-revenue.jpg',
   },
   {
     slug: 'cost-of-not-adding-bess-financial-model',
@@ -211,7 +211,7 @@ const articles: Article[] = [
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
     date: 'Oct 21, 2025',
-    gradient: 'from-emerald-100 to-green-100',
+    image: '/images/blog/cost-of-not-adding-bess-financial-model.jpg',
   },
   {
     slug: 'bess-fire-safety-thermal-management',
@@ -221,7 +221,7 @@ const articles: Article[] = [
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
     date: 'Oct 7, 2025',
-    gradient: 'from-red-100 to-orange-100',
+    image: '/images/blog/bess-fire-safety-thermal-management.jpg',
   },
   {
     slug: 'bess-warranties-guarantees-checklist',
@@ -231,7 +231,7 @@ const articles: Article[] = [
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
     date: 'Sep 23, 2025',
-    gradient: 'from-blue-100 to-indigo-100',
+    image: '/images/blog/bess-warranties-guarantees-checklist.jpg',
   },
   {
     slug: 'importance-of-om-solar-farms',
@@ -261,7 +261,7 @@ const articles: Article[] = [
     categoryColor: 'bg-cyan-100 text-cyan-800',
     author: 'Alexander Papacosta',
     date: 'Sep 2, 2025',
-    gradient: 'from-cyan-100 to-sky-100',
+    image: '/images/blog/bess-installation-container-to-grid.jpg',
   },
   {
     slug: 'solar-incentives-cyprus-2025',
@@ -281,8 +281,7 @@ const articles: Article[] = [
     categoryColor: 'bg-green-100 text-green-800',
     author: 'Alexander Papacosta',
     date: 'Aug 12, 2025',
-    emoji: '\uD83D\uDCB0',
-    gradient: 'from-solar-100 to-cyprus-100',
+    image: '/images/blog/solar-farm-financing-strategies-2025.jpg',
   },
   {
     slug: 'cyprus-energy-storage-roadmap-2027-2030',
@@ -292,7 +291,7 @@ const articles: Article[] = [
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Alexander Papacosta',
     date: 'Aug 5, 2025',
-    gradient: 'from-teal-100 to-emerald-100',
+    image: '/images/blog/cyprus-energy-storage-roadmap-2027-2030.jpg',
   },
   {
     slug: 'risk-mitigation-solar-investments',
@@ -302,8 +301,7 @@ const articles: Article[] = [
     categoryColor: 'bg-cyan-100 text-cyan-800',
     author: 'Risk Management',
     date: 'Jul 29, 2025',
-    emoji: '\uD83D\uDEE1\uFE0F',
-    gradient: 'from-cyprus-100 to-solar-100',
+    image: '/images/blog/risk-mitigation-solar-investments.jpg',
   },
   {
     slug: 'virtual-power-plants-island-grids',
@@ -313,7 +311,7 @@ const articles: Article[] = [
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Alexander Papacosta',
     date: 'Jul 22, 2025',
-    gradient: 'from-indigo-100 to-blue-100',
+    image: '/images/blog/virtual-power-plants-island-grids.jpg',
   },
   {
     slug: 'dc-coupled-vs-ac-coupled-bess',
@@ -323,7 +321,7 @@ const articles: Article[] = [
     categoryColor: 'bg-purple-100 text-purple-800',
     author: 'Alexander Papacosta',
     date: 'Jul 8, 2025',
-    gradient: 'from-orange-100 to-amber-100',
+    image: '/images/blog/dc-coupled-vs-ac-coupled-bess.jpg',
   },
   {
     slug: 'cyprus-vs-eu-solar-markets',
@@ -333,8 +331,7 @@ const articles: Article[] = [
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Research Team',
     date: 'Jun 24, 2025',
-    emoji: '\uD83C\uDDEA\uD83C\uDDFA',
-    gradient: 'from-blue-100 to-green-100',
+    image: '/images/blog/cyprus-vs-eu-solar-markets.jpg',
   },
   {
     slug: 'euroasia-interconnector-bess-cyprus',
@@ -344,7 +341,7 @@ const articles: Article[] = [
     categoryColor: 'bg-blue-100 text-blue-800',
     author: 'Alexander Papacosta',
     date: 'Jun 10, 2025',
-    gradient: 'from-blue-100 to-sky-100',
+    image: '/images/blog/euroasia-interconnector-bess-cyprus.jpg',
   },
 ]
 

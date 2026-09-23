@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -93,6 +94,11 @@ export default function BESSFireSafetyArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/bess-fire-safety-thermal-management.jpg"
+        alt="BESS containers with fire-suppression equipment in Mediterranean heat"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

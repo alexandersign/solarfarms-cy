@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -99,6 +100,11 @@ export default function CyprusEnergyStorageRoadmapArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/cyprus-energy-storage-roadmap-2027-2030.jpg"
+        alt="Cyprus solar farm and battery containers at dusk"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

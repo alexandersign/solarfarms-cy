@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -92,6 +93,11 @@ export default function LFPvsNMCArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/lfp-vs-nmc-utility-scale-bess.jpg"
+        alt="Stacked LFP battery modules inside an energy storage container"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

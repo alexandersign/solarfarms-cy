@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -97,6 +98,11 @@ export default function CyprusBESSRegulatoryFrameworkArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/cyprus-bess-regulatory-framework-europe.jpg"
+        alt="Battery storage site beside a European energy office"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

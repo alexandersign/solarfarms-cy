@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -95,6 +96,11 @@ export default function EuroAsiaInterconnectorArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/euroasia-interconnector-bess-cyprus.jpg"
+        alt="Coastal HVDC cable landing and converter equipment in Cyprus"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -94,6 +95,11 @@ export default function DCvsACCoupledBESSArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/dc-coupled-vs-ac-coupled-bess.jpg"
+        alt="Solar inverters wired to white battery containers at a PV park"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

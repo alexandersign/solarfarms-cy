@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -98,6 +99,11 @@ export default function BESSInstallationArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/bess-installation-container-to-grid.jpg"
+        alt="White energy storage containers arriving at a Mediterranean port"
+      />
 
       {/* Article Content */}
       <article className="section-padding">

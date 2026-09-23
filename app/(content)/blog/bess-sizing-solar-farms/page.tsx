@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BlogFeaturedImage } from '@/components/blog/BlogFeaturedImage'
 import { Metadata } from 'next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -92,6 +93,11 @@ export default function BESSSizingSolarFarmsArticle() {
           </div>
         </div>
       </section>
+
+      <BlogFeaturedImage
+        src="/images/blog/bess-sizing-solar-farms.jpg"
+        alt="Aerial view of a solar park with a row of battery containers"
+      />
 
       {/* Article Content */}
       <article className="section-padding">
