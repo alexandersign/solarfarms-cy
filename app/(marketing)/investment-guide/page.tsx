@@ -36,6 +36,10 @@ import {
 
 import { publicHybridCase } from '@/lib/public-hybrid-ssot'
 import {
+  CYPRUS_TSOC_DAM_SAMPLE,
+  damEurMwhLabel,
+} from '@/lib/market/cyprus-tsoc-dam-sample'
+import {
   AGIOS_THEODOROS_RTB as AGIOS,
   formatAgiosEurCompact,
 } from '@/lib/deals/agios-theodoros-rtb'

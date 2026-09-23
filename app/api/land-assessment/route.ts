@@ -12,6 +12,7 @@ import {
   extractTitleDeedFromFile,
   mergeTitleExtractIntoAssessment,
   type TitleDeedExtract,
+} from '@/lib/title-deed-extract'
 import { publicAllInPerMW } from '@/lib/public-hybrid-ssot'
 
 // Validation schema for land assessment

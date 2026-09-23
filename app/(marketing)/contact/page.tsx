@@ -4,6 +4,19 @@ import { ContactForm } from '@/components/forms/ContactForm'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { StructuredData, faqSchema } from '@/components/seo/StructuredData'
+import { Button } from '@/components/ui/button'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Globe,
+  Calendar,
+  MessageCircle,
+  FileText,
+  Users,
+  Award
+} from 'lucide-react'
 
 const CONTACT_FAQS = [
   {
@@ -24,22 +37,9 @@ const CONTACT_FAQS = [
   },
   {
     question: "Where is Lighthief Cyprus located?",
-    answer: "Our Cyprus office is at 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus. Registered company number HE 477423.",
+    answer:     "Our Cyprus office is at 15 Agaritsis, Nektaria Court, Office 201, 3045 Zakaki, Limassol, Cyprus. Registered company number HE 477423.",
   },
 ]
-import { Button } from '@/components/ui/button'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Globe, 
-  Calendar,
-  MessageCircle,
-  FileText,
-  Users,
-  Award
-} from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Contact Lighthief Cyprus | Solar Investment Consultation',
