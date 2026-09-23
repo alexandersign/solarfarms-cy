@@ -97,6 +97,7 @@ export async function GET(request: NextRequest) {
     'Costas':    'Costas Hadjikyriacou',
     'Andreas':   'Andreas Christoforou',
     'Office':    'Andreas Christoforou',
+    'Artur':     'Artur Rull',
   }
 
   // ─── Compute today's call/email activity for this user ────────────────────

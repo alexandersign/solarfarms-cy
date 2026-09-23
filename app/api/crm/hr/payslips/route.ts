@@ -11,9 +11,10 @@ import path from 'path'
 // Maps CRM email → filename slug used in payslip filenames
 const EMAIL_TO_SLUG: Record<string, string> = {
   'costas@lighthief.com':               'costas-hadjikyriacou',
-  'zinovia@lighthief.com':              'zinovia-efesopoulou',
+  'zinovia@lighthief.com':              'zinovia-efesopoulou',   // terminated Jul 2026 — kept for HR records
   'alexander.papacosta@lighthief.com':  'alexander-papacosta',
   'office@lighthief.com':               'andreas-christoforou',
+  'a.rull@lighthief.com':               'artur-rull',
 }
 
 export interface PayslipEntry {

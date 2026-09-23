@@ -38,15 +38,15 @@
 
 ---
 
-## Zinovia Efesopoulou — Sales Executive & Lead Intake
+## Zinovia Efesopoulou — Sales Executive & Lead Intake (Terminated)
 
 | Field | Detail |
 |-------|--------|
 | Role | Sales Executive & Lead Intake Coordinator |
 | Cyprus ID | 1160290 |
 | Social Insurance | 1676925 |
-| Mobile | [MOBILE] |
-| Email | [EMAIL] |
+| **Hired** | **1 December 2025** |
+| **Last Working Day** | **31 July 2026** |
 | Bank | Bank of Cyprus |
 | IBAN | CY88 0020 0195 0000 3570 4195 9199 |
 | BIC/SWIFT | BCYPCY2N |
@@ -98,6 +98,17 @@
 | Bank | [BANK NAME] |
 | IBAN | [IBAN] |
 | BIC/SWIFT | [BIC] |
+
+---
+
+## Artur Rull — Sales
+
+| Field | Detail |
+|-------|--------|
+| Role | Sales |
+| Email | a.rull@lighthief.com |
+| CRM Access | Active |
+| **Hired** | **22 September 2026** |
 
 ---
 
